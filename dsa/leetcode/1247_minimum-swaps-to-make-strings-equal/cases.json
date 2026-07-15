@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1247",
+  "cases": [
+    {
+      "id": "sample-one-swap",
+      "name": "sample: equal-orientation pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "xx",
+        "s2": "yy"
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-swaps",
+      "name": "sample: opposite mismatch orientations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "xy",
+        "s2": "yx"
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: odd mismatch count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s1": "xx",
+        "s2": "xy"
+      },
+      "expected": -1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-already-equal",
+      "name": "trial: strings already equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "xyxy",
+        "s2": "xyxy"
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-mixed-pairs",
+      "name": "trial: paired and residual mismatches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s1": "xxyyxyxyxx",
+        "s2": "yyxxyxyxyy"
+      },
+      "expected": 5,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-single-equal",
+      "name": "hidden: minimum length equal strings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "x",
+        "s2": "x"
+      },
+      "expected": 0,
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-many-pairs",
+      "name": "hidden: several same-orientation pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s1": "xxxxyyyy",
+        "s2": "yyyyxxxx"
+      },
+      "expected": 4,
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

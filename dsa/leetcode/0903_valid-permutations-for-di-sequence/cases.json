@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_903",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: alternating three relations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "DID"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "alternating"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one decrease",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "D"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one increase",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "I"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: all increasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "IIII"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "DDDD"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: peak of three values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ID"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "peak"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: valley of three values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "DI"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "valley"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: two rises then drop",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "IID"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: repeated alternating pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "IDIDID"
+      },
+      "expected": 272,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: grouped runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "IIIDDDII"
+      },
+      "expected": 461,
+      "tags": [
+        "hidden",
+        "grouped"
+      ]
+    }
+  ]
+}

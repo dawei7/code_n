@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_914",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "deck": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "pairs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: incompatible frequencies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "deck": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "gcd-one"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one triple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "deck": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "single-value"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: singleton deck",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "deck": [
+          5
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: two identical cards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "deck": [
+          9,
+          9
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "minimum-group"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: frequencies four and six",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "deck": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: frequencies two and three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "deck": [
+          0,
+          0,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "coprime-frequencies"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: common divisor three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "deck": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "gcd-three"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: zero as an ordinary label",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "deck": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "zero-value"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: boundary card labels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "deck": [
+          0,
+          0,
+          9999,
+          9999,
+          9999,
+          9999
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "value-bounds"
+      ]
+    }
+  ]
+}
+

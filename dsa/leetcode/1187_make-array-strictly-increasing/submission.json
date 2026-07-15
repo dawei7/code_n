@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1290",
+  "frontend_id": "1187",
+  "title_slug": "make-array-strictly-increasing",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.makeArrayIncreasing",
+  "verified_submission_id": "2067907876",
+  "verified_at": "2026-07-14T22:42:25.354749+00:00"
+}

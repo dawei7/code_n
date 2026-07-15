@@ -1,25 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1223",
+  "measurement_note": "Size is the roll count with every consecutive limit fixed at one. Rolling states compute the requested length once, while independently recomputing the dynamic program for every prefix length repeats quadratic work.",
   "cases": [
     {
-      "id": "benchmark-length-five",
-      "name": "benchmark: length five",
+      "id": "benchmark-scale-16",
+      "name": "benchmark: 16 rolls with no equal neighbors",
       "kind": "benchmark",
       "visible": false,
+      "size": 16,
       "input": {
-        "n": 5,
+        "n": 16,
         "roll_max": [
           1,
-          2,
-          2,
-          2,
-          3,
-          3
+          1,
+          1,
+          1,
+          1,
+          1
         ]
       },
-      "expected": 6721,
+      "expected": 105467469,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-small",
+        "no-repeats"
+      ]
+    },
+    {
+      "id": "benchmark-scale-64",
+      "name": "benchmark: 64 rolls with no equal neighbors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 64,
+        "roll_max": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 405652141,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "no-repeats"
+      ]
+    },
+    {
+      "id": "benchmark-scale-192",
+      "name": "benchmark: 192 rolls with no equal neighbors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": {
+        "n": 192,
+        "roll_max": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 704829032,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "no-repeats"
       ]
     }
   ]

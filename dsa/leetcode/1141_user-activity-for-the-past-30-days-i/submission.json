@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1245",
+  "frontend_id": "1141",
+  "title_slug": "user-activity-for-the-past-30-days-i",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2067829093",
+  "verified_at": "2026-07-14T19:31:47.783741+00:00"
+}

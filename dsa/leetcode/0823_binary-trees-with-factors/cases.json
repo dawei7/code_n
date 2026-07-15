@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_823",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one square factorization",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "square-factor"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: unequal factors create two orientations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          4,
+          5,
+          10
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "ordered-children"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: chained powers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "chained-factors"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: singleton has only its leaf tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          18
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: no products are available",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "leaves-only"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: one unequal factor pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          3,
+          6
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "ordered-children"
+      ]
+    },
+    {
+      "id": "trial-4",
+      "name": "trial: root has two distinct factor pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          3,
+          4,
+          6,
+          12
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "trial",
+        "multiple-factorizations"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: unsorted chained input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          16,
+          2,
+          4,
+          8
+        ]
+      },
+      "expected": 23,
+      "tags": [
+        "hidden",
+        "unsorted",
+        "chained-factors"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: unsorted factors for a later composite",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          18,
+          3,
+          6,
+          2
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "unsorted",
+        "ordered-children"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: products reach the value boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1000000000,
+          1000,
+          1000000
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "value-boundary",
+        "square-factor"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: repeated power factorizations require the modulus",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024,
+          2048,
+          4096,
+          8192,
+          16384,
+          32768,
+          65536,
+          131072,
+          262144,
+          524288,
+          1048576
+        ]
+      },
+      "expected": 47166081,
+      "tags": [
+        "hidden",
+        "modulus",
+        "dense-factors"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: large primes remain leaves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          999999937,
+          999999929,
+          999999893
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "large-values",
+        "leaves-only"
+      ]
+    }
+  ]
+}
+

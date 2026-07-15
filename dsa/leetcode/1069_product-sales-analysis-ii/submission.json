@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1154",
+  "frontend_id": "1069",
+  "title_slug": "product-sales-analysis-ii",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067489362",
+  "verified_at": "2026-07-14T14:48:01.953561+00:00"
+}

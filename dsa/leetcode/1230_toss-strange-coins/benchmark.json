@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1230",
+  "measurement_note": "Size is the number of fair coins, with target near half the size. The head-count dynamic program has polynomially many states, while explicitly enumerating every heads-and-tails outcome explores 2^size assignments.",
+  "cases": [
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: exactly 1 heads among 3 fair coins",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "prob": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "target": 1
+      },
+      "expected": 0.375,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "fair-coins"
+      ]
+    },
+    {
+      "id": "benchmark-scale-6",
+      "name": "benchmark: exactly 3 heads among 6 fair coins",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "prob": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "target": 3
+      },
+      "expected": 0.3125,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "fair-coins"
+      ]
+    },
+    {
+      "id": "benchmark-scale-12",
+      "name": "benchmark: exactly 6 heads among 12 fair coins",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "prob": [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "target": 6
+      },
+      "expected": 0.2255859375,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "fair-coins"
+      ]
+    }
+  ]
+}

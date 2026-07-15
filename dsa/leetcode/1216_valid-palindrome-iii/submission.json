@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1178",
+  "frontend_id": "1216",
+  "title_slug": "valid-palindrome-iii",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isValidPalindrome",
+  "verified_submission_id": "2067944129",
+  "verified_at": "2026-07-15T00:46:54.471764+00:00"
+}

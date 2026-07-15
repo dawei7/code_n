@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_826",
+  "cases": [
+    {"id": "sample-1", "name": "sample: increasing jobs and mixed abilities", "kind": "sample", "visible": true, "input": {"difficulty": [2, 4, 6, 8, 10], "profit": [10, 20, 30, 40, 50], "worker": [4, 5, 6, 7]}, "expected": 100, "tags": ["sample", "increasing"]},
+    {"id": "sample-2", "name": "sample: every worker is underqualified", "kind": "sample", "visible": true, "input": {"difficulty": [85, 47, 57], "profit": [24, 66, 99], "worker": [40, 25, 25]}, "expected": 0, "tags": ["sample", "no-eligible-job"]},
+    {"id": "sample-3", "name": "sample: one job reused by several workers", "kind": "sample", "visible": true, "input": {"difficulty": [2], "profit": [10], "worker": [1, 2, 2, 3]}, "expected": 30, "tags": ["sample", "reusable-job"]},
+    {"id": "trial-1", "name": "trial: harder job can be less profitable", "kind": "trial", "visible": true, "input": {"difficulty": [2, 4, 6], "profit": [20, 10, 30], "worker": [5]}, "expected": 20, "tags": ["trial", "dominated-job"]},
+    {"id": "trial-2", "name": "trial: duplicate difficulty uses greater profit", "kind": "trial", "visible": true, "input": {"difficulty": [5, 5, 10], "profit": [10, 30, 20], "worker": [5, 10]}, "expected": 60, "tags": ["trial", "duplicate-difficulty"]},
+    {"id": "trial-3", "name": "trial: unsorted jobs and workers", "kind": "trial", "visible": true, "input": {"difficulty": [8, 2, 6], "profit": [50, 10, 40], "worker": [7, 2, 8]}, "expected": 100, "tags": ["trial", "unsorted"]},
+    {"id": "hidden-1", "name": "hidden: maximum job and ability values", "kind": "real", "visible": false, "input": {"difficulty": [100000], "profit": [100000], "worker": [99999, 100000]}, "expected": 100000, "tags": ["hidden", "value-boundary"]},
+    {"id": "hidden-2", "name": "hidden: abilities just below all jobs", "kind": "real", "visible": false, "input": {"difficulty": [100, 200], "profit": [50, 80], "worker": [1, 99]}, "expected": 0, "tags": ["hidden", "no-eligible-job"]},
+    {"id": "hidden-3", "name": "hidden: easiest job remains most profitable", "kind": "real", "visible": false, "input": {"difficulty": [1, 2, 3, 4], "profit": [100, 1, 90, 80], "worker": [1, 2, 3, 4]}, "expected": 400, "tags": ["hidden", "running-maximum"]},
+    {"id": "hidden-4", "name": "hidden: repeated best job across abilities", "kind": "real", "visible": false, "input": {"difficulty": [3, 5, 7], "profit": [5, 20, 10], "worker": [4, 6, 8, 2]}, "expected": 45, "tags": ["hidden", "reusable-job", "unsorted"]},
+    {"id": "hidden-5", "name": "hidden: preserve difficulty-profit pairing", "kind": "real", "visible": false, "input": {"difficulty": [4, 2, 8], "profit": [1, 50, 100], "worker": [2, 3, 4, 7, 8]}, "expected": 300, "tags": ["hidden", "paired-arrays", "dominated-job"]}
+  ]
+}

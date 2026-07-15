@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "936",
+  "frontend_id": "900",
+  "title_slug": "rle-iterator",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "RLEIterator",
+  "verified_submission_id": "2066795964",
+  "verified_at": "2026-07-14T03:21:51.303995+00:00"
+}

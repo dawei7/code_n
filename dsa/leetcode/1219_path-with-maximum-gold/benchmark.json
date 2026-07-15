@@ -1,42 +1,105 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1219",
+  "measurement_note": "Size is the number of gold cells in a one-row corridor. In-place marking checks visitation in constant time, while retaining a path list and manually scanning it for every neighbor adds a path-length factor across the searches launched from all starting cells.",
   "cases": [
     {
-      "id": "benchmark-dense-gold",
-      "name": "benchmark: dense gold grid",
+      "id": "benchmark-scale-6",
+      "name": "benchmark: 6-cell gold corridor",
       "kind": "benchmark",
       "visible": false,
+      "size": 6,
       "input": {
         "grid": [
           [
-            10,
-            33,
-            13,
-            15
-          ],
-          [
-            22,
-            21,
-            4,
+            1,
+            1,
+            1,
+            1,
+            1,
             1
-          ],
-          [
-            5,
-            0,
-            2,
-            3
-          ],
-          [
-            0,
-            6,
-            14,
-            2
           ]
         ]
       },
-      "expected": 149,
+      "expected": 6,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-small",
+        "corridor"
+      ]
+    },
+    {
+      "id": "benchmark-scale-12",
+      "name": "benchmark: 12-cell gold corridor",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "corridor"
+      ]
+    },
+    {
+      "id": "benchmark-scale-24",
+      "name": "benchmark: 24-cell gold corridor",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "corridor"
       ]
     }
   ]

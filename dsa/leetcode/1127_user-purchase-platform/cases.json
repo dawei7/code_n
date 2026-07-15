@@ -1,0 +1,537 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1127",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all three categories and a missing both group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Spending": [
+            {
+              "user_id": 1,
+              "spend_date": "2019-07-01",
+              "platform": "mobile",
+              "amount": 100
+            },
+            {
+              "user_id": 1,
+              "spend_date": "2019-07-01",
+              "platform": "desktop",
+              "amount": 100
+            },
+            {
+              "user_id": 2,
+              "spend_date": "2019-07-01",
+              "platform": "mobile",
+              "amount": 100
+            },
+            {
+              "user_id": 2,
+              "spend_date": "2019-07-02",
+              "platform": "mobile",
+              "amount": 100
+            },
+            {
+              "user_id": 3,
+              "spend_date": "2019-07-01",
+              "platform": "desktop",
+              "amount": 100
+            },
+            {
+              "user_id": 3,
+              "spend_date": "2019-07-02",
+              "platform": "desktop",
+              "amount": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "spend_date",
+          "platform",
+          "total_amount",
+          "total_users"
+        ],
+        "rows": [
+          [
+            "2019-07-01",
+            "desktop",
+            100,
+            1
+          ],
+          [
+            "2019-07-01",
+            "mobile",
+            100,
+            1
+          ],
+          [
+            "2019-07-01",
+            "both",
+            200,
+            1
+          ],
+          [
+            "2019-07-02",
+            "desktop",
+            100,
+            1
+          ],
+          [
+            "2019-07-02",
+            "mobile",
+            100,
+            1
+          ],
+          [
+            "2019-07-02",
+            "both",
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "all-categories",
+        "zero-row"
+      ]
+    },
+    {
+      "id": "trial-mobile-only",
+      "name": "one mobile-only purchase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Spending": [
+            {
+              "user_id": 1,
+              "spend_date": "2020-01-01",
+              "platform": "mobile",
+              "amount": 25
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "spend_date",
+          "platform",
+          "total_amount",
+          "total_users"
+        ],
+        "rows": [
+          [
+            "2020-01-01",
+            "desktop",
+            0,
+            0
+          ],
+          [
+            "2020-01-01",
+            "mobile",
+            25,
+            1
+          ],
+          [
+            "2020-01-01",
+            "both",
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "single-user"
+      ]
+    },
+    {
+      "id": "trial-both-only",
+      "name": "one user spends on both platforms",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Spending": [
+            {
+              "user_id": 7,
+              "spend_date": "2020-02-02",
+              "platform": "desktop",
+              "amount": 30
+            },
+            {
+              "user_id": 7,
+              "spend_date": "2020-02-02",
+              "platform": "mobile",
+              "amount": 45
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "spend_date",
+          "platform",
+          "total_amount",
+          "total_users"
+        ],
+        "rows": [
+          [
+            "2020-02-02",
+            "desktop",
+            0,
+            0
+          ],
+          [
+            "2020-02-02",
+            "mobile",
+            0,
+            0
+          ],
+          [
+            "2020-02-02",
+            "both",
+            75,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "both"
+      ]
+    },
+    {
+      "id": "trial-multiple-users",
+      "name": "multiple users in one category",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Spending": [
+            {
+              "user_id": 1,
+              "spend_date": "2020-03-03",
+              "platform": "desktop",
+              "amount": 10
+            },
+            {
+              "user_id": 2,
+              "spend_date": "2020-03-03",
+              "platform": "desktop",
+              "amount": 20
+            },
+            {
+              "user_id": 3,
+              "spend_date": "2020-03-03",
+              "platform": "mobile",
+              "amount": 40
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "spend_date",
+          "platform",
+          "total_amount",
+          "total_users"
+        ],
+        "rows": [
+          [
+            "2020-03-03",
+            "desktop",
+            30,
+            2
+          ],
+          [
+            "2020-03-03",
+            "mobile",
+            40,
+            1
+          ],
+          [
+            "2020-03-03",
+            "both",
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "user-count"
+      ]
+    },
+    {
+      "id": "real-user-changes-category",
+      "name": "hidden: one user has different categories by date",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Spending": [
+            {
+              "user_id": 4,
+              "spend_date": "2021-01-01",
+              "platform": "mobile",
+              "amount": 10
+            },
+            {
+              "user_id": 4,
+              "spend_date": "2021-01-02",
+              "platform": "mobile",
+              "amount": 20
+            },
+            {
+              "user_id": 4,
+              "spend_date": "2021-01-02",
+              "platform": "desktop",
+              "amount": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "spend_date",
+          "platform",
+          "total_amount",
+          "total_users"
+        ],
+        "rows": [
+          [
+            "2021-01-01",
+            "desktop",
+            0,
+            0
+          ],
+          [
+            "2021-01-01",
+            "mobile",
+            10,
+            1
+          ],
+          [
+            "2021-01-01",
+            "both",
+            0,
+            0
+          ],
+          [
+            "2021-01-02",
+            "desktop",
+            0,
+            0
+          ],
+          [
+            "2021-01-02",
+            "mobile",
+            0,
+            0
+          ],
+          [
+            "2021-01-02",
+            "both",
+            50,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "date-isolation"
+      ]
+    },
+    {
+      "id": "real-mixed-amounts",
+      "name": "hidden: both amounts are added while user counts once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Spending": [
+            {
+              "user_id": 1,
+              "spend_date": "2022-05-05",
+              "platform": "mobile",
+              "amount": 7
+            },
+            {
+              "user_id": 1,
+              "spend_date": "2022-05-05",
+              "platform": "desktop",
+              "amount": 13
+            },
+            {
+              "user_id": 2,
+              "spend_date": "2022-05-05",
+              "platform": "mobile",
+              "amount": 11
+            },
+            {
+              "user_id": 3,
+              "spend_date": "2022-05-05",
+              "platform": "desktop",
+              "amount": 17
+            },
+            {
+              "user_id": 4,
+              "spend_date": "2022-05-05",
+              "platform": "mobile",
+              "amount": 19
+            },
+            {
+              "user_id": 4,
+              "spend_date": "2022-05-05",
+              "platform": "desktop",
+              "amount": 23
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "spend_date",
+          "platform",
+          "total_amount",
+          "total_users"
+        ],
+        "rows": [
+          [
+            "2022-05-05",
+            "desktop",
+            17,
+            1
+          ],
+          [
+            "2022-05-05",
+            "mobile",
+            11,
+            1
+          ],
+          [
+            "2022-05-05",
+            "both",
+            62,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "real-three-dates",
+      "name": "hidden: complete grid for three dates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Spending": [
+            {
+              "user_id": 1,
+              "spend_date": "2023-01-01",
+              "platform": "desktop",
+              "amount": 5
+            },
+            {
+              "user_id": 2,
+              "spend_date": "2023-01-02",
+              "platform": "mobile",
+              "amount": 6
+            },
+            {
+              "user_id": 3,
+              "spend_date": "2023-01-03",
+              "platform": "desktop",
+              "amount": 7
+            },
+            {
+              "user_id": 3,
+              "spend_date": "2023-01-03",
+              "platform": "mobile",
+              "amount": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "spend_date",
+          "platform",
+          "total_amount",
+          "total_users"
+        ],
+        "rows": [
+          [
+            "2023-01-01",
+            "desktop",
+            5,
+            1
+          ],
+          [
+            "2023-01-01",
+            "mobile",
+            0,
+            0
+          ],
+          [
+            "2023-01-01",
+            "both",
+            0,
+            0
+          ],
+          [
+            "2023-01-02",
+            "desktop",
+            0,
+            0
+          ],
+          [
+            "2023-01-02",
+            "mobile",
+            6,
+            1
+          ],
+          [
+            "2023-01-02",
+            "both",
+            0,
+            0
+          ],
+          [
+            "2023-01-03",
+            "desktop",
+            0,
+            0
+          ],
+          [
+            "2023-01-03",
+            "mobile",
+            0,
+            0
+          ],
+          [
+            "2023-01-03",
+            "both",
+            15,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "multiple-dates"
+      ]
+    }
+  ]
+}

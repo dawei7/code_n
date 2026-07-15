@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_901",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: official mixed prices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "next",
+            100
+          ],
+          [
+            "next",
+            80
+          ],
+          [
+            "next",
+            60
+          ],
+          [
+            "next",
+            70
+          ],
+          [
+            "next",
+            60
+          ],
+          [
+            "next",
+            75
+          ],
+          [
+            "next",
+            85
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        2,
+        1,
+        4,
+        6
+      ],
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: short interrupted span",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "next",
+            7
+          ],
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            1
+          ],
+          [
+            "next",
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        3
+      ],
+      "tags": [
+        "sample",
+        "barrier"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: equal prices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "next",
+            5
+          ],
+          [
+            "next",
+            5
+          ],
+          [
+            "next",
+            5
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "equal"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one quote",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "next",
+            42
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: strictly decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "next",
+            9
+          ],
+          [
+            "next",
+            8
+          ],
+          [
+            "next",
+            7
+          ],
+          [
+            "next",
+            6
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: strictly increasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "next",
+            1
+          ],
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            3
+          ],
+          [
+            "next",
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "trial",
+        "increasing"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: alternating peaks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "next",
+            10
+          ],
+          [
+            "next",
+            1
+          ],
+          [
+            "next",
+            9
+          ],
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            8
+          ],
+          [
+            "next",
+            3
+          ],
+          [
+            "next",
+            7
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: duplicate blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "next",
+            3
+          ],
+          [
+            "next",
+            3
+          ],
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            2
+          ],
+          [
+            "next",
+            4
+          ],
+          [
+            "next",
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        1,
+        2,
+        5,
+        6
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: upper price boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "next",
+            99999
+          ],
+          [
+            "next",
+            100000
+          ],
+          [
+            "next",
+            1
+          ],
+          [
+            "next",
+            100000
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        1,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: long span stopped by first quote",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "next",
+            100
+          ],
+          [
+            "next",
+            10
+          ],
+          [
+            "next",
+            20
+          ],
+          [
+            "next",
+            30
+          ],
+          [
+            "next",
+            40
+          ],
+          [
+            "next",
+            50
+          ],
+          [
+            "next",
+            90
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "tags": [
+        "hidden",
+        "long-span"
+      ]
+    }
+  ]
+}

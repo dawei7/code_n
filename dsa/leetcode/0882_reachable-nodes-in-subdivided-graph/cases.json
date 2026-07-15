@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_882",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: partially traverse several subdivided edges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ]
+        ],
+        "maxMoves": 6,
+        "n": 3
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "partial"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: reach chains through several endpoints",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            1,
+            2,
+            6
+          ],
+          [
+            0,
+            2,
+            8
+          ],
+          [
+            1,
+            3,
+            1
+          ]
+        ],
+        "maxMoves": 10,
+        "n": 4
+      },
+      "expected": 23,
+      "tags": [
+        "sample",
+        "dijkstra"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: node zero is disconnected",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            1,
+            2,
+            4
+          ],
+          [
+            1,
+            4,
+            5
+          ],
+          [
+            1,
+            3,
+            1
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ],
+        "maxMoves": 17,
+        "n": 5
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "disconnected"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: isolated starting node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [],
+        "maxMoves": 0,
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "isolated"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: direct edge is out of range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "maxMoves": 0,
+        "n": 2
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "zero-moves"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: direct edge reaches its endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "maxMoves": 1,
+        "n": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "direct"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: reach only a prefix of one chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ]
+        ],
+        "maxMoves": 3,
+        "n": 2
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "partial-chain"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: chain approached from both endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            4
+          ]
+        ],
+        "maxMoves": 2,
+        "n": 3
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "both-ends"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: disconnected subdivided component",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "maxMoves": 100,
+        "n": 3
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "disconnected"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: zero subdivisions around a cycle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            0
+          ]
+        ],
+        "maxMoves": 1,
+        "n": 3
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "cycle"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: shorter indirect route beats long direct chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ]
+        ],
+        "maxMoves": 2,
+        "n": 3
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "shortest-path"
+      ]
+    }
+  ]
+}

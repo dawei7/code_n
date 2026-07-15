@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1155",
+  "measurement_note": "Size is the number of faces k and also the target, while the dice count stays at 1, so the dynamic-programming range grows with size. Sliding range sums take O(n * target), while the calibrated slower transition loops over up to size faces for every state.",
+  "cases": [
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: one die with 2 faces and target 2",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "n": 1,
+        "k": 2,
+        "target": 2
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "face-loop"
+      ]
+    },
+    {
+      "id": "benchmark-scale-4",
+      "name": "benchmark: one die with 4 faces and target 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "n": 1,
+        "k": 4,
+        "target": 4
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "face-loop"
+      ]
+    },
+    {
+      "id": "benchmark-scale-8",
+      "name": "benchmark: one die with 8 faces and target 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "n": 1,
+        "k": 8,
+        "target": 8
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "face-loop"
+      ]
+    }
+  ]
+}

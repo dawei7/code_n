@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_952","cases":[
+{"id":"sample-1","name":"sample: one factor chain","kind":"sample","visible":true,"input":{"nums":[4,6,15,35]},"expected":4,"tags":["sample","chain"]},
+{"id":"sample-2","name":"sample: two components","kind":"sample","visible":true,"input":{"nums":[20,50,9,63]},"expected":2,"tags":["sample","components"]},
+{"id":"sample-3","name":"sample: indirect full connection","kind":"sample","visible":true,"input":{"nums":[2,3,6,7,4,12,21,39]},"expected":8,"tags":["sample","indirect"]},
+{"id":"trial-1","name":"trial: one value","kind":"trial","visible":true,"input":{"nums":[1]},"expected":1,"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: all primes","kind":"trial","visible":true,"input":{"nums":[2,3,5,7]},"expected":1,"tags":["trial","isolated"]},
+{"id":"trial-3","name":"trial: triangle of factors","kind":"trial","visible":true,"input":{"nums":[6,10,15]},"expected":3,"tags":["trial","multiple-factors"]},
+{"id":"hidden-1","name":"hidden: isolated one beside component","kind":"real","visible":false,"input":{"nums":[1,6,35,10]},"expected":3,"tags":["hidden","one"]},
+{"id":"hidden-2","name":"hidden: prime powers remain separate","kind":"real","visible":false,"input":{"nums":[8,9,25,49]},"expected":1,"tags":["hidden","prime-powers"]},
+{"id":"hidden-3","name":"hidden: two equal-size groups","kind":"real","visible":false,"input":{"nums":[2,4,9,3]},"expected":2,"tags":["hidden","tie"]}
+]}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1379",
+  "frontend_id": "1253",
+  "title_slug": "reconstruct-a-2-row-binary-matrix",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.reconstructMatrix",
+  "verified_submission_id": "2068007902",
+  "verified_at": "2026-07-15T03:08:11.333134+00:00"
+}

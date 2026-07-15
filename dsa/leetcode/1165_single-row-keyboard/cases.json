@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1165",
+  "cases": [
+    {"id":"sample-1","name":"sample: move forward and back","kind":"sample","visible":true,"input":{"keyboard":"abcdefghijklmnopqrstuvwxyz","word":"cba"},"expected":4,"tags":["sample","direction-changes"]},
+    {"id":"sample-2","name":"sample: rotated layout","kind":"sample","visible":true,"input":{"keyboard":"pqrstuvwxyzabcdefghijklmno","word":"leetcode"},"expected":73,"tags":["sample","custom-layout"]},
+    {"id":"trial-first-key","name":"first key requires no movement","kind":"trial","visible":true,"input":{"keyboard":"abcdefghijklmnopqrstuvwxyz","word":"a"},"expected":0,"tags":["trial","zero-cost"]},
+    {"id":"trial-repeated-key","name":"repeated character stays in place","kind":"trial","visible":true,"input":{"keyboard":"abcdefghijklmnopqrstuvwxyz","word":"zzzz"},"expected":25,"tags":["trial","repeated"]},
+    {"id":"real-reversed-layout","name":"hidden: use supplied positions","kind":"real","visible":false,"input":{"keyboard":"zyxwvutsrqponmlkjihgfedcba","word":"az"},"expected":49,"tags":["real","reversed"]},
+    {"id":"real-alternating-ends","name":"hidden: alternate between row ends","kind":"real","visible":false,"input":{"keyboard":"abcdefghijklmnopqrstuvwxyz","word":"zaza"},"expected":100,"tags":["real","maximum-movement"]}
+  ]
+}

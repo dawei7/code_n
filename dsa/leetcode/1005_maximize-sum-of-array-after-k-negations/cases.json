@@ -1,81 +1,11 @@
-{
-  "challenge_id": "lc_1005",
-  "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: one negation",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          4,
-          2,
-          3
-        ],
-        "k": 1
-      },
-      "expected": 5,
-      "tags": [
-        "sample",
-        "greedy"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: two negations",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          3,
-          -1,
-          0,
-          2
-        ],
-        "k": 3
-      },
-      "expected": 6,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: many negatives",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          -3,
-          -1,
-          5,
-          -4
-        ],
-        "k": 2
-      },
-      "expected": 13,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-leftover-odd",
-      "name": "hidden: leftover odd flip",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3
-        ],
-        "k": 1
-      },
-      "expected": 4,
-      "tags": [
-        "hidden"
-      ]
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_1005","cases":[
+{"id":"sample-1","name":"sample: negate smallest positive","kind":"sample","visible":true,"input":{"nums":[4,2,3],"k":1},"expected":5,"tags":["sample"]},
+{"id":"sample-2","name":"sample: zero absorbs paired operations","kind":"sample","visible":true,"input":{"nums":[3,-1,0,2],"k":3},"expected":6,"tags":["sample"]},
+{"id":"sample-3","name":"sample: flip two most negative values","kind":"sample","visible":true,"input":{"nums":[2,-3,-1,5,-4],"k":2},"expected":13,"tags":["sample"]},
+{"id":"trial-1","name":"trial: even operations cancel","kind":"trial","visible":true,"input":{"nums":[1,2,3],"k":2},"expected":6,"tags":["trial","even-remainder"]},
+{"id":"trial-2","name":"trial: more negatives than operations","kind":"trial","visible":true,"input":{"nums":[-8,-3,-5,2],"k":2},"expected":12,"tags":["trial","greedy-order"]},
+{"id":"trial-3","name":"trial: single zero","kind":"trial","visible":true,"input":{"nums":[0],"k":9999},"expected":0,"tags":["trial","zero"]},
+{"id":"hidden-1","name":"hidden: odd operation after all negatives","kind":"real","visible":false,"input":{"nums":[-2,4,5],"k":2},"expected":7,"tags":["hidden","odd-remainder"]},
+{"id":"hidden-2","name":"hidden: duplicate minimum values","kind":"real","visible":false,"input":{"nums":[-5,-5,-1,2],"k":2},"expected":11,"tags":["hidden","duplicates"]},
+{"id":"hidden-3","name":"hidden: operation count far exceeds length","kind":"real","visible":false,"input":{"nums":[-1,2],"k":10000},"expected":1,"tags":["hidden","large-k"]}
+]}

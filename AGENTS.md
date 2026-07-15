@@ -145,7 +145,14 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   mathematical symbols instead of code-styled identifiers. When a compact
   complexity bound uses a problem-specific quantity, define that symbol in
   `Function Contract` or the surrounding non-collapsed explanation before the
-  bound appears.
+  bound appears. When the underlying expression is long or would be repeated,
+  prefer a displayed definition such as:
+
+  $$
+  S = \sum_{w \in \texttt{words}} \lvert w \rvert.
+  $$
+
+  Then use the short symbol `$S$` in the prose and complexity bounds.
 - Keep `Required Complexity` notation-only, with exactly these two bullets:
   `- **Time:** $O(...)$` and `- **Space:** $O(...)$`. Put qualifications and
   the meanings of variables in `Complexity detail`, not beside the bounds.

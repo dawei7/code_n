@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_955","cases":[
+{"id":"sample-1","name":"sample: delete first column","kind":"sample","visible":true,"input":{"strs":["ca","bb","ac"]},"expected":1,"tags":["sample","deletion"]},
+{"id":"sample-2","name":"sample: rows already ordered","kind":"sample","visible":true,"input":{"strs":["xc","yb","za"]},"expected":0,"tags":["sample","ordered"]},
+{"id":"sample-3","name":"sample: delete every column","kind":"sample","visible":true,"input":{"strs":["zyx","wvu","tsr"]},"expected":3,"tags":["sample","all-columns"]},
+{"id":"trial-1","name":"trial: one row","kind":"trial","visible":true,"input":{"strs":["cba"]},"expected":0,"tags":["trial","single-row"]},
+{"id":"trial-2","name":"trial: one ordered column","kind":"trial","visible":true,"input":{"strs":["a","b"]},"expected":0,"tags":["trial","one-column"]},
+{"id":"trial-3","name":"trial: one inverted column","kind":"trial","visible":true,"input":{"strs":["b","a"]},"expected":1,"tags":["trial","one-column"]},
+{"id":"hidden-1","name":"hidden: all rows equal","kind":"real","visible":false,"input":{"strs":["same","same","same"]},"expected":0,"tags":["hidden","equal"]},
+{"id":"hidden-2","name":"hidden: earlier column resolves pairs","kind":"real","visible":false,"input":{"strs":["aa","ba","ac"]},"expected":1,"tags":["hidden","resolved"]},
+{"id":"hidden-3","name":"hidden: delete middle deciding column","kind":"real","visible":false,"input":{"strs":["xga","xfb","yfa"]},"expected":1,"tags":["hidden","middle-column"]}
+]}

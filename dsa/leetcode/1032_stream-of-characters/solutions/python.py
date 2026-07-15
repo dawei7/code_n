@@ -1,30 +1,31 @@
+"""Optimal app-local solution for LeetCode 1032."""
+
+from collections import deque
+
+
 class StreamChecker:
-    def __init__(self, words: list[str]):
-        self.trie: dict[str, dict] = {}
-        self.max_len = 0
+    def __init__(self, words):
+        self.trie = {}
+        self.max_length = max(len(word) for word in words)
         for word in words:
-            self.max_len = max(self.max_len, len(word))
             node = self.trie
-            for char in reversed(word):
-                node = node.setdefault(char, {})
+            for character in reversed(word):
+                node = node.setdefault(character, {})
             node["$"] = {}
-        self.stream: list[str] = []
+        self.stream = deque(maxlen=self.max_length)
 
-    def query(self, letter: str) -> bool:
+    def query(self, letter):
         self.stream.append(letter)
-        if len(self.stream) > self.max_len:
-            self.stream.pop(0)
-
         node = self.trie
-        for char in reversed(self.stream):
-            if char not in node:
+        for character in reversed(self.stream):
+            if character not in node:
                 return False
-            node = node[char]
+            node = node[character]
             if "$" in node:
                 return True
         return False
 
 
-def solve(words: list[str], queries: list[str]) -> list[bool]:
+def solve(words, queries):
     checker = StreamChecker(words)
-    return [checker.query(char) for char in queries]
+    return [checker.query(character) for character in queries]

@@ -1,0 +1,348 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_850",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three overlapping rectangles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            0,
+            2,
+            3
+          ],
+          [
+            1,
+            0,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: large area modulo",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            1000000000,
+            1000000000
+          ]
+        ]
+      },
+      "expected": 49,
+      "tags": [
+        "sample",
+        "modulo"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: rectangles share an edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "touching"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: unit square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: disjoint rectangles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: identical rectangles",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            0,
+            2,
+            3
+          ],
+          [
+            0,
+            0,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "identical"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: rectangle nested inside another",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            5,
+            5
+          ],
+          [
+            1,
+            1,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: partial overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            3,
+            3
+          ],
+          [
+            1,
+            1,
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "hidden",
+        "partial"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: perpendicular strips",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            1,
+            4,
+            2
+          ],
+          [
+            1,
+            0,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "cross"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: corner contact only",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "corner"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: chain of overlapping squares",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            0,
+            3,
+            2
+          ],
+          [
+            2,
+            0,
+            4,
+            2
+          ],
+          [
+            3,
+            0,
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "chain"
+      ]
+    },
+    {
+      "id": "hidden-6",
+      "name": "hidden: same vertical span with gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangles": [
+          [
+            0,
+            0,
+            2,
+            4
+          ],
+          [
+            3,
+            0,
+            5,
+            4
+          ],
+          [
+            6,
+            0,
+            9,
+            4
+          ]
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "hidden",
+        "gaps"
+      ]
+    }
+  ]
+}

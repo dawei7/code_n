@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1027",
+  "frontend_id": "985",
+  "title_slug": "sum-of-even-numbers-after-queries",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.sumEvenAfterQueries",
+  "verified_submission_id": "2067198912",
+  "verified_at": "2026-07-14T09:51:47.955194+00:00"
+}

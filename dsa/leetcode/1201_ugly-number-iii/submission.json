@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1307",
+  "frontend_id": "1201",
+  "title_slug": "ugly-number-iii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.nthUglyNumber",
+  "verified_submission_id": "2067924370",
+  "verified_at": "2026-07-14T23:43:33.568868+00:00"
+}

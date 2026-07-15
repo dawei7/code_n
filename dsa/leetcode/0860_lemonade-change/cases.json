@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_860",
+  "cases": [
+    {"id": "sample-1", "name": "sample: use ten and five for final customer", "kind": "sample", "visible": true, "input": {"bills": [5, 5, 5, 10, 20]}, "expected": true, "tags": ["sample", "greedy"]},
+    {"id": "sample-2", "name": "sample: two tens cannot make fifteen", "kind": "sample", "visible": true, "input": {"bills": [5, 5, 10, 10, 20]}, "expected": false, "tags": ["sample", "failure"]},
+    {"id": "sample-3", "name": "sample: one five changes a ten", "kind": "sample", "visible": true, "input": {"bills": [5, 10]}, "expected": true, "tags": ["sample", "ten"]},
+    {"id": "trial-1", "name": "trial: single exact payment", "kind": "trial", "visible": true, "input": {"bills": [5]}, "expected": true, "tags": ["trial", "minimum"]},
+    {"id": "trial-2", "name": "trial: first customer pays ten", "kind": "trial", "visible": true, "input": {"bills": [10]}, "expected": false, "tags": ["trial", "no-change"]},
+    {"id": "trial-3", "name": "trial: make fifteen with three fives", "kind": "trial", "visible": true, "input": {"bills": [5, 5, 5, 20]}, "expected": true, "tags": ["trial", "three-fives"]},
+    {"id": "hidden-1", "name": "hidden: first customer pays twenty", "kind": "real", "visible": false, "input": {"bills": [20]}, "expected": false, "tags": ["hidden", "no-change"]},
+    {"id": "hidden-2", "name": "hidden: preserve fives with greedy preference", "kind": "real", "visible": false, "input": {"bills": [5, 5, 5, 5, 10, 20, 10, 20]}, "expected": true, "tags": ["hidden", "greedy"]},
+    {"id": "hidden-3", "name": "hidden: second twenty cannot be changed", "kind": "real", "visible": false, "input": {"bills": [5, 5, 5, 10, 20, 20]}, "expected": false, "tags": ["hidden", "depletion"]},
+    {"id": "hidden-4", "name": "hidden: alternating successful transactions", "kind": "real", "visible": false, "input": {"bills": [5, 10, 5, 20]}, "expected": true, "tags": ["hidden", "alternating"]},
+    {"id": "hidden-5", "name": "hidden: many exact payments", "kind": "real", "visible": false, "input": {"bills": [5, 5, 5, 5, 5, 5]}, "expected": true, "tags": ["hidden", "exact"]},
+    {"id": "hidden-6", "name": "hidden: tens exhaust all fives", "kind": "real", "visible": false, "input": {"bills": [5, 5, 10, 10, 10]}, "expected": false, "tags": ["hidden", "depletion"]}
+  ]
+}

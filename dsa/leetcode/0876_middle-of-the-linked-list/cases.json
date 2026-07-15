@@ -1,0 +1,403 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_876",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: unique middle in an odd list",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        3,
+        4,
+        5
+      ],
+      "tags": [
+        "sample",
+        "odd"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: choose the second middle in an even list",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": [
+        4,
+        5,
+        6
+      ],
+      "tags": [
+        "sample",
+        "even"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: single-node list",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          7
+        ]
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: two-node list returns the tail",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          10,
+          20
+        ]
+      },
+      "expected": [
+        20
+      ],
+      "tags": [
+        "trial",
+        "even"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: three-node descending values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          9,
+          8,
+          7
+        ]
+      },
+      "expected": [
+        8,
+        7
+      ],
+      "tags": [
+        "trial",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: repeated values still use position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": [
+        5,
+        5
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: four-node mixed values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          100,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "even",
+        "bounds"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: seven-node list",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14
+        ]
+      },
+      "expected": [
+        8,
+        10,
+        12,
+        14
+      ],
+      "tags": [
+        "hidden",
+        "odd"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: eight-node list",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          11,
+          22,
+          33,
+          44,
+          55,
+          66,
+          77,
+          88
+        ]
+      },
+      "expected": [
+        55,
+        66,
+        77,
+        88
+      ],
+      "tags": [
+        "hidden",
+        "even"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: maximum-length list",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100
+        ]
+      },
+      "expected": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ],
+      "tags": [
+        "hidden",
+        "maximum-length"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: equal boundary values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          1,
+          100,
+          1,
+          100,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        100,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "value-bounds"
+      ]
+    }
+  ]
+}

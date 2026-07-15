@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1256",
+  "measurement_note": "Size is q = num + 1. Direct binary conversion is logarithmic in q; generating every encoding through num performs work proportional to q while returning the same final code.",
+  "cases": [
+    {
+      "id": "benchmark-scale-65",
+      "name": "benchmark: shifted value 65",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "num": 64
+      },
+      "expected": "000001",
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ],
+      "size": 65
+    },
+    {
+      "id": "benchmark-scale-1025",
+      "name": "benchmark: shifted value 1025",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "num": 1024
+      },
+      "expected": "0000000001",
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ],
+      "size": 1025
+    },
+    {
+      "id": "benchmark-scale-16385",
+      "name": "benchmark: shifted value 16385",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "num": 16384
+      },
+      "expected": "00000000000001",
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ],
+      "size": 16385
+    }
+  ]
+}

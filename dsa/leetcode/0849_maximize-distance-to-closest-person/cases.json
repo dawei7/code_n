@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_849",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: best seat in an interior run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "seats": [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "interior"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: trailing run is best",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "seats": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "trailing"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: leading single seat",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "seats": [
+          0,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "leading"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: trailing single seat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "seats": [
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "trailing"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: leading run of length two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "seats": [
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "leading"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: one interior empty seat",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "seats": [
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "interior"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: even interior zero run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "seats": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "even-run"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: trailing boundary beats other runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "seats": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: interior run beats boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "seats": [
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "interior"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: alternating row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "seats": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: single person near center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "seats": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "one-person"
+      ]
+    },
+    {
+      "id": "hidden-6",
+      "name": "hidden: adjacent people and asymmetric ends",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "seats": [
+          0,
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "adjacent"
+      ]
+    }
+  ]
+}

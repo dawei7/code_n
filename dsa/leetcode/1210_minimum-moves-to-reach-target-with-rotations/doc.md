@@ -8,28 +8,37 @@
 | Category | Algorithms |
 | Topics | Array, Breadth-First Search, Matrix |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-moves-to-reach-target-with-rotations](https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-moves-to-reach-target-with-rotations/).
 
 ### Goal
-Move a two-cell snake from the top-left horizontal position to the bottom-right horizontal target in a square grid with blocked cells. The snake may move right, move down, or rotate when the surrounding `2 x 2` area is clear.
+
+An $n\times n$ grid contains empty cells marked `0` and blocked cells marked `1`. A snake spans two adjacent cells. It begins horizontally across `(0, 0)` and `(0, 1)` and must finish horizontally across `(n - 1, n - 2)` and `(n - 1, n - 1)`.
+
+In one move, the snake may translate one cell right or one cell down while preserving its orientation, provided both destination cells are empty. A horizontal snake at `(r, c)` and `(r, c + 1)` may rotate clockwise around `(r, c)` when both cells directly below it are empty, becoming vertical at `(r, c)` and `(r + 1, c)`. A vertical snake at `(r, c)` and `(r + 1, c)` may rotate counterclockwise around `(r, c)` when both cells directly to its right are empty, becoming horizontal at `(r, c)` and `(r, c + 1)`.
+
+Return the minimum number of moves needed to reach the target. If no valid sequence reaches it, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
-- `grid`: an `n x n` matrix where `0` is empty and `1` is blocked.
+- `grid`: An $n\times n$ binary matrix, where $2\le n\le100$; zero cells are empty and one cells are blocked.
+- The two starting cells are guaranteed to be empty.
 
 **Return value**
 
-The minimum number of moves required, or `-1` if the target cannot be reached.
+- The fewest translations and rotations required to reach the bottom-right horizontal target, or `-1` when it is unreachable.
 
 ### Examples
+
 **Example 1**
 
 - Input: `grid = [[0,0,0,0,0,1],[1,1,0,0,1,0],[0,0,0,0,1,1],[0,0,1,0,1,0],[0,1,1,0,0,0],[0,1,1,0,0,0]]`
 - Output: `11`
+
+One shortest sequence uses translations in both directions and both allowed rotations.
 
 **Example 2**
 
@@ -41,59 +50,37 @@ The minimum number of moves required, or `-1` if the target cannot be reached.
 - Input: `grid = [[0,0],[0,0]]`
 - Output: `1`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Breadth-first search over position-and-orientation states.
+- **Time:** $O(n^2)$
+- **Space:** $O(n^2)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)`
-- **Space Complexity**: `O(n^2)`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-from collections import deque
+#### General
 
+**Encode position and orientation together.** Represent a state as `(r, c, orientation)`, where `(r, c)` is the snake's upper or left pivot cell and `orientation` is horizontal or vertical. This identifies both occupied cells; coordinates alone would confuse configurations with different legal next moves.
 
-def solve(grid):
-    n = len(grid)
-    start = (0, 0, 0)
-    target = (n - 1, n - 2, 0)
-    queue = deque([(0, 0, 0, 0)])
-    seen = {start}
+**Generate only geometrically legal neighbors.** From a horizontal state, moving right checks the new rightmost cell. Moving down and rotating clockwise both require the two cells below the snake to be empty. From a vertical state, moving down checks the new bottom cell. Moving right and rotating counterclockwise both require the two cells to its right to be empty. Bounds are checked before grid access.
 
-    while queue:
-        r, c, orientation, steps = queue.popleft()
-        if (r, c, orientation) == target:
-            return steps
+**Use breadth-first search for the minimum.** Begin with the horizontal state at `(0, 0)` in a queue and visited set. Every edge is exactly one move, so BFS removes every state at distance $d$ before any state at distance $d+1$. The first removal of the horizontal target therefore has minimum distance. Marking states when enqueued prevents cycles caused by reversing translations or rotations.
 
-        if orientation == 0:
-            if c + 2 < n and grid[r][c + 2] == 0:
-                state = (r, c + 1, 0)
-                if state not in seen:
-                    seen.add(state)
-                    queue.append((r, c + 1, 0, steps + 1))
-            if r + 1 < n and grid[r + 1][c] == 0 and grid[r + 1][c + 1] == 0:
-                for state in ((r + 1, c, 0), (r, c, 1)):
-                    if state not in seen:
-                        seen.add(state)
-                        queue.append((*state, steps + 1))
-        else:
-            if r + 2 < n and grid[r + 2][c] == 0:
-                state = (r + 1, c, 1)
-                if state not in seen:
-                    seen.add(state)
-                    queue.append((r + 1, c, 1, steps + 1))
-            if c + 1 < n and grid[r][c + 1] == 0 and grid[r + 1][c + 1] == 0:
-                for state in ((r, c + 1, 1), (r, c, 0)):
-                    if state not in seen:
-                        seen.add(state)
-                        queue.append((*state, steps + 1))
+There are at most two orientations for each pivot cell. If the queue empties without the target, every reachable configuration has been explored and no valid sequence exists.
 
-    return -1
-```
+#### Complexity detail
+
+At most $2n^2$ states exist, and each produces at most three constant-time transition checks. Hash-set membership is expected $O(1)$, so total time is $O(n^2)$. The queue and visited set each hold at most $O(n^2)$ states.
+
+#### Alternatives and edge cases
+
+- **Depth-first search over paths:** DFS can establish reachability but does not produce the minimum without exploring and comparing many paths.
+- **BFS with a list for visited states:** It remains correct, but linear membership checks can raise total time to $O(n^4)$.
+- **Dijkstra's algorithm:** It gives the same distances, but all moves have unit cost, so a priority queue adds unnecessary overhead.
+- **Track occupied cells without orientation:** Normalizing cell pairs works, but explicit orientation makes rotations and target comparison clearer.
+- **Blocked target cell:** The target configuration is unreachable and the search returns `-1`.
+- **Open grid:** Translations alone can reach the target, although rotations create extra states.
+- **Rotation clearance:** Both cells in the swept $2\times2$ area must be empty, not only the new endpoint.
+- **Two-by-two grid:** One downward move reaches the target without a special case.
+
 </details>

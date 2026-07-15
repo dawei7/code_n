@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_925",
+  "measurement_note": "Size is the common length of name and typed. Alternating characters force the linear reference to consume the complete strings, while a correct prefix dynamic program fills a quadratic compatibility table.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: alternating exact match at length 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "name": "abababababababab",
+        "typed": "abababababababab"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "prefix-dynamic-programming"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: alternating exact match at length 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "name": "abababababababababababababababababababababababababababababababab",
+        "typed": "abababababababababababababababababababababababababababababababab"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "prefix-dynamic-programming"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: alternating exact match at length 256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "name": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+        "typed": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "prefix-dynamic-programming"
+      ]
+    }
+  ]
+}

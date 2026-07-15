@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "972",
+  "frontend_id": "935",
+  "title_slug": "knight-dialer",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.knightDialer",
+  "verified_submission_id": "2067012913",
+  "verified_at": "2026-07-14T06:45:37.269591+00:00"
+}

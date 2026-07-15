@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1050",
+  "frontend_id": "1008",
+  "title_slug": "construct-binary-search-tree-from-preorder-traversal",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.bstFromPreorder",
+  "verified_submission_id": "2067276950",
+  "verified_at": "2026-07-14T11:11:14.459917+00:00"
+}

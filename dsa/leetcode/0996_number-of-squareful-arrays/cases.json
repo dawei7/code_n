@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_996","cases":[
+{"id":"sample-1","name":"sample: two valid orders","kind":"sample","visible":true,"input":{"nums":[1,17,8]},"expected":2,"tags":["sample"]},
+{"id":"sample-2","name":"sample: all equal values","kind":"sample","visible":true,"input":{"nums":[2,2,2]},"expected":1,"tags":["sample"]},
+{"id":"trial-1","name":"trial: singleton","kind":"trial","visible":true,"input":{"nums":[7]},"expected":1,"tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: incompatible duplicate","kind":"trial","visible":true,"input":{"nums":[1,1]},"expected":0,"tags":["trial","duplicate"]},
+{"id":"trial-3","name":"trial: compatible pair in both orders","kind":"trial","visible":true,"input":{"nums":[3,6]},"expected":2,"tags":["trial","pair"]},
+{"id":"hidden-1","name":"hidden: zero is a square","kind":"real","visible":false,"input":{"nums":[0,0,1]},"expected":3,"tags":["hidden","zero"]},
+{"id":"hidden-2","name":"hidden: repeated endpoints around center","kind":"real","visible":false,"input":{"nums":[1,8,1]},"expected":1,"tags":["hidden","duplicates"]},
+{"id":"hidden-3","name":"hidden: no compatible edge","kind":"real","visible":false,"input":{"nums":[3,5]},"expected":0,"tags":["hidden","none"]}
+]}

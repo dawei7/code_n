@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1121",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: exact three-element shorter sequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "possible"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two required sequences exceed capacity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          6,
+          6,
+          7,
+          8
+        ],
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "trial: whole array forms one sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-all-equal-k-one",
+      "name": "trial: singleton sequences are permitted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 1
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "real-all-equal-too-short",
+      "name": "hidden: duplicates cannot share increasing sequences",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2
+        ],
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "real-exact-capacity",
+      "name": "hidden: total length equals frequency times k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-frequency-at-end",
+      "name": "hidden: maximum run occurs at the array end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          4,
+          4
+        ],
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "terminal-run"
+      ]
+    },
+    {
+      "id": "real-one-short",
+      "name": "hidden: capacity misses by one element",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}

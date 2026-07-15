@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "898",
+  "frontend_id": "867",
+  "title_slug": "transpose-matrix",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.transpose",
+  "verified_submission_id": "2066732971",
+  "verified_at": "2026-07-14T01:00:57.961837+00:00"
+}

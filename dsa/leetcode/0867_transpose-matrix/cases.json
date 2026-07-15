@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_867",
+  "cases": [
+    {"id": "sample-1", "name": "sample: square matrix", "kind": "sample", "visible": true, "input": {"matrix": [[1, 2, 3], [4, 5, 6], [7, 8, 9]]}, "expected": [[1, 4, 7], [2, 5, 8], [3, 6, 9]], "tags": ["sample", "square"]},
+    {"id": "sample-2", "name": "sample: wide rectangle", "kind": "sample", "visible": true, "input": {"matrix": [[1, 2, 3], [4, 5, 6]]}, "expected": [[1, 4], [2, 5], [3, 6]], "tags": ["sample", "rectangular"]},
+    {"id": "sample-3", "name": "sample: one cell", "kind": "sample", "visible": true, "input": {"matrix": [[5]]}, "expected": [[5]], "tags": ["sample", "single"]},
+    {"id": "trial-1", "name": "trial: single row", "kind": "trial", "visible": true, "input": {"matrix": [[1, 2, 3, 4]]}, "expected": [[1], [2], [3], [4]], "tags": ["trial", "single-row"]},
+    {"id": "trial-2", "name": "trial: single column", "kind": "trial", "visible": true, "input": {"matrix": [[1], [2], [3]]}, "expected": [[1, 2, 3]], "tags": ["trial", "single-column"]},
+    {"id": "trial-3", "name": "trial: negative rectangular values", "kind": "trial", "visible": true, "input": {"matrix": [[-1, 0], [5, -7], [9, 2]]}, "expected": [[-1, 5, 9], [0, -7, 2]], "tags": ["trial", "negative"]},
+    {"id": "hidden-1", "name": "hidden: two by two matrix", "kind": "real", "visible": false, "input": {"matrix": [[1, 2], [3, 4]]}, "expected": [[1, 3], [2, 4]], "tags": ["hidden", "square"]},
+    {"id": "hidden-2", "name": "hidden: repeated zeros", "kind": "real", "visible": false, "input": {"matrix": [[0, 0, 0], [0, 0, 0]]}, "expected": [[0, 0], [0, 0], [0, 0]], "tags": ["hidden", "duplicates"]},
+    {"id": "hidden-3", "name": "hidden: value bounds", "kind": "real", "visible": false, "input": {"matrix": [[-1000000000, 1000000000]]}, "expected": [[-1000000000], [1000000000]], "tags": ["hidden", "bounds"]},
+    {"id": "hidden-4", "name": "hidden: tall four-row matrix", "kind": "real", "visible": false, "input": {"matrix": [[8], [6], [7], [5]]}, "expected": [[8, 6, 7, 5]], "tags": ["hidden", "tall"]},
+    {"id": "hidden-5", "name": "hidden: wide asymmetric values", "kind": "real", "visible": false, "input": {"matrix": [[2, 4, 6, 8], [1, 3, 5, 7]]}, "expected": [[2, 1], [4, 3], [6, 5], [8, 7]], "tags": ["hidden", "wide"]},
+    {"id": "hidden-6", "name": "hidden: mixed signs and duplicates", "kind": "real", "visible": false, "input": {"matrix": [[3, -3, 3], [-3, 3, -3], [0, 0, 0]]}, "expected": [[3, -3, 0], [-3, 3, 0], [3, -3, 0]], "tags": ["hidden", "mixed"]}
+  ]
+}

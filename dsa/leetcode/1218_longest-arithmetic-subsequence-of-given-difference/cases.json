@@ -1,88 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1218",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: increasing by one",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "difference": 1
-      },
-      "expected": 4,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: no matching difference",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          3,
-          5,
-          7
-        ],
-        "difference": 1
-      },
-      "expected": 1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: negative difference",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          5,
-          7,
-          8,
-          5,
-          3,
-          4,
-          2,
-          1
-        ],
-        "difference": -2
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-descending-chain",
-      "name": "hidden: full descending chain",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          3,
-          0,
-          -3,
-          -6,
-          -9
-        ],
-        "difference": -3
-      },
-      "expected": 5,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-full-increasing","name":"sample: the full array forms the sequence","kind":"sample","visible":true,"input":{"arr":[1,2,3,4],"difference":1},"expected":4,"tags":["sample","full-chain"]},
+    {"id":"sample-no-pair","name":"sample: no pair has the required difference","kind":"sample","visible":true,"input":{"arr":[1,3,5,7],"difference":1},"expected":1,"tags":["sample","single-element"]},
+    {"id":"sample-negative-difference","name":"sample: descending values are selected noncontiguously","kind":"sample","visible":true,"input":{"arr":[1,5,7,8,5,3,4,2,1],"difference":-2},"expected":4,"tags":["sample","negative-difference"]},
+    {"id":"trial-zero-difference","name":"equal values extend when the difference is zero","kind":"trial","visible":true,"input":{"arr":[5,5,3,5,5],"difference":0},"expected":4,"tags":["duplicates","zero-difference"]},
+    {"id":"real-full-descending","name":"hidden: every value joins a descending chain","kind":"real","visible":false,"input":{"arr":[9,7,5,3,1],"difference":-2},"expected":5,"tags":["hidden","descending"]},
+    {"id":"real-interleaved-chain","name":"hidden: irrelevant values are skipped","kind":"real","visible":false,"input":{"arr":[1,9,3,8,5,7],"difference":2},"expected":4,"tags":["hidden","noncontiguous"]},
+    {"id":"real-value-bounds","name":"hidden: boundary values form a chain","kind":"real","visible":false,"input":{"arr":[-10000,0,10000],"difference":10000},"expected":3,"tags":["hidden","bounds"]}
   ]
 }

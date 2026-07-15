@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_1021","cases":[
+{"id":"sample-1","name":"sample: two primitive components","kind":"sample","visible":true,"input":{"s":"(()())(())"},"expected":"()()()","tags":["sample"]},
+{"id":"sample-2","name":"sample: three mixed primitives","kind":"sample","visible":true,"input":{"s":"(()())(())(()(()))"},"expected":"()()()()(())","tags":["sample"]},
+{"id":"sample-3","name":"sample: primitive pairs become empty","kind":"sample","visible":true,"input":{"s":"()()"},"expected":"","tags":["sample"]},
+{"id":"trial-1","name":"trial: one primitive pair","kind":"trial","visible":true,"input":{"s":"()"},"expected":"","tags":["trial","minimum"]},
+{"id":"trial-2","name":"trial: deep single primitive","kind":"trial","visible":true,"input":{"s":"(((())))"},"expected":"((()))","tags":["trial","nested"]},
+{"id":"trial-3","name":"trial: repeated depth two primitives","kind":"trial","visible":true,"input":{"s":"(())(())"},"expected":"()()","tags":["trial","adjacent"]},
+{"id":"hidden-1","name":"hidden: inner adjacent pairs","kind":"real","visible":false,"input":{"s":"(()()())"},"expected":"()()()","tags":["hidden","inner"]},
+{"id":"hidden-2","name":"hidden: mixed primitive depths","kind":"real","visible":false,"input":{"s":"()(())((()))"},"expected":"()(())","tags":["hidden","mixed"]},
+{"id":"hidden-3","name":"hidden: four primitive pairs","kind":"real","visible":false,"input":{"s":"()()()()"},"expected":"","tags":["hidden","empty-output"]}
+]}

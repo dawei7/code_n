@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1318",
+  "frontend_id": "1194",
+  "title_slug": "tournament-winners",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067917500",
+  "verified_at": "2026-07-14T23:17:23.134786+00:00"
+}

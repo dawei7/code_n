@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1107",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: first logins inside and outside the window",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Traffic": [
+            {
+              "user_id": 1,
+              "activity": "login",
+              "activity_date": "2019-05-01"
+            },
+            {
+              "user_id": 1,
+              "activity": "homepage",
+              "activity_date": "2019-05-01"
+            },
+            {
+              "user_id": 1,
+              "activity": "logout",
+              "activity_date": "2019-05-01"
+            },
+            {
+              "user_id": 2,
+              "activity": "login",
+              "activity_date": "2019-06-21"
+            },
+            {
+              "user_id": 2,
+              "activity": "logout",
+              "activity_date": "2019-06-21"
+            },
+            {
+              "user_id": 3,
+              "activity": "login",
+              "activity_date": "2019-01-01"
+            },
+            {
+              "user_id": 3,
+              "activity": "jobs",
+              "activity_date": "2019-01-01"
+            },
+            {
+              "user_id": 3,
+              "activity": "logout",
+              "activity_date": "2019-01-01"
+            },
+            {
+              "user_id": 4,
+              "activity": "login",
+              "activity_date": "2019-06-21"
+            },
+            {
+              "user_id": 4,
+              "activity": "groups",
+              "activity_date": "2019-06-21"
+            },
+            {
+              "user_id": 4,
+              "activity": "logout",
+              "activity_date": "2019-06-21"
+            },
+            {
+              "user_id": 5,
+              "activity": "login",
+              "activity_date": "2019-03-01"
+            },
+            {
+              "user_id": 5,
+              "activity": "logout",
+              "activity_date": "2019-03-01"
+            },
+            {
+              "user_id": 5,
+              "activity": "login",
+              "activity_date": "2019-06-21"
+            },
+            {
+              "user_id": 5,
+              "activity": "logout",
+              "activity_date": "2019-06-21"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "login_date",
+          "user_count"
+        ],
+        "rows": [
+          [
+            "2019-05-01",
+            1
+          ],
+          [
+            "2019-06-21",
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "first-login"
+      ]
+    },
+    {
+      "id": "trial-window-boundaries",
+      "name": "trial: both inclusive reporting boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Traffic": [
+            {
+              "user_id": 10,
+              "activity": "login",
+              "activity_date": "2019-04-01"
+            },
+            {
+              "user_id": 11,
+              "activity": "login",
+              "activity_date": "2019-06-30"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "login_date",
+          "user_count"
+        ],
+        "rows": [
+          [
+            "2019-04-01",
+            1
+          ],
+          [
+            "2019-06-30",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "inclusive-boundaries"
+      ]
+    },
+    {
+      "id": "trial-non-login-before-login",
+      "name": "trial: earlier non-login activity does not establish login",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Traffic": [
+            {
+              "user_id": 20,
+              "activity": "homepage",
+              "activity_date": "2019-02-01"
+            },
+            {
+              "user_id": 20,
+              "activity": "jobs",
+              "activity_date": "2019-03-01"
+            },
+            {
+              "user_id": 20,
+              "activity": "login",
+              "activity_date": "2019-05-15"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "login_date",
+          "user_count"
+        ],
+        "rows": [
+          [
+            "2019-05-15",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "activity-filter"
+      ]
+    },
+    {
+      "id": "real-prior-login-excludes",
+      "name": "hidden: prior login prevents a later in-window login from being new",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Traffic": [
+            {
+              "user_id": 30,
+              "activity": "login",
+              "activity_date": "2019-03-31"
+            },
+            {
+              "user_id": 30,
+              "activity": "login",
+              "activity_date": "2019-04-01"
+            },
+            {
+              "user_id": 31,
+              "activity": "login",
+              "activity_date": "2019-04-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "login_date",
+          "user_count"
+        ],
+        "rows": [
+          [
+            "2019-04-01",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "filter-after-minimum"
+      ]
+    },
+    {
+      "id": "real-repeat-and-shared-date",
+      "name": "hidden: repeated logins count each user only once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Traffic": [
+            {
+              "user_id": 40,
+              "activity": "login",
+              "activity_date": "2019-06-01"
+            },
+            {
+              "user_id": 40,
+              "activity": "login",
+              "activity_date": "2019-06-01"
+            },
+            {
+              "user_id": 40,
+              "activity": "login",
+              "activity_date": "2019-06-02"
+            },
+            {
+              "user_id": 41,
+              "activity": "login",
+              "activity_date": "2019-06-01"
+            },
+            {
+              "user_id": 41,
+              "activity": "logout",
+              "activity_date": "2019-06-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "login_date",
+          "user_count"
+        ],
+        "rows": [
+          [
+            "2019-06-01",
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "deduplication"
+      ]
+    },
+    {
+      "id": "real-no-qualifying-user",
+      "name": "hidden: schema-bearing rows with no qualifying first login",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Traffic": [
+            {
+              "user_id": 50,
+              "activity": "login",
+              "activity_date": "2019-01-01"
+            },
+            {
+              "user_id": 51,
+              "activity": "homepage",
+              "activity_date": "2019-05-01"
+            },
+            {
+              "user_id": 52,
+              "activity": "login",
+              "activity_date": "2019-07-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "login_date",
+          "user_count"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "empty-result"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_984","cases":[
+{"id":"sample-1","name":"sample: more b letters","kind":"sample","visible":true,"input":{"a":1,"b":2},"expected":"abb","validator":{"kind":"string_without_triples"},"tags":["sample"]},
+{"id":"sample-2","name":"sample: four a letters","kind":"sample","visible":true,"input":{"a":4,"b":1},"expected":"aabaa","validator":{"kind":"string_without_triples"},"tags":["sample"]},
+{"id":"trial-1","name":"trial: equal counts","kind":"trial","visible":true,"input":{"a":3,"b":3},"expected":"ababab","validator":{"kind":"string_without_triples"},"tags":["trial","balanced"]},
+{"id":"trial-2","name":"trial: only a letters","kind":"trial","visible":true,"input":{"a":2,"b":0},"expected":"aa","validator":{"kind":"string_without_triples"},"tags":["trial","single-letter"]},
+{"id":"trial-3","name":"trial: empty string","kind":"trial","visible":true,"input":{"a":0,"b":0},"expected":"","validator":{"kind":"string_without_triples"},"tags":["trial","empty"]},
+{"id":"hidden-1","name":"hidden: maximum balanced counts","kind":"real","visible":false,"input":{"a":100,"b":100},"expected":"abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab","validator":{"kind":"string_without_triples"},"tags":["hidden","bounds"]},
+{"id":"hidden-2","name":"hidden: largest valid imbalance","kind":"real","visible":false,"input":{"a":8,"b":3},"expected":"aabaabaabab","validator":{"kind":"string_without_triples"},"tags":["hidden","imbalanced"]},
+{"id":"hidden-3","name":"hidden: b is the majority","kind":"real","visible":false,"input":{"a":2,"b":5},"expected":"bbabbab","validator":{"kind":"string_without_triples"},"tags":["hidden","majority-b"]}
+]}

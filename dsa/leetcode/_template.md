@@ -38,7 +38,14 @@ as well for identifiers discussed as code, strings, serialized inputs and
 outputs, SQL, and other literal data. Use ordinary mathematical symbols rather
 than code-styled identifiers inside genuine formulas. Define every
 problem-specific complexity symbol in the Function Contract or surrounding
-non-collapsed explanation before using it in a bound.
+non-collapsed explanation before using it in a bound. When the expression is
+long or would otherwise be repeated, prefer a displayed definition:
+
+$$
+S = \sum_{w \in \texttt{words}} \lvert w \rvert.
+$$
+
+Then use `$S$` in the prose and complexity bounds.
 
 ### Function Contract
 **Inputs**

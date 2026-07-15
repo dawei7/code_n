@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1197",
+  "measurement_note": "Size is the target's Manhattan distance along the positive x-axis. The closed-form solution is constant-time, while incrementally testing candidate move counts until the coordinate, Manhattan, and parity bounds all hold takes linear time.",
+  "cases": [
+    {"id":"benchmark-scale-12","name":"benchmark: axis target at distance 12","kind":"benchmark","visible":false,"size":12,"input":{"x":12,"y":0},"expected":6,"tags":["benchmark","scale-small","axis"]},
+    {"id":"benchmark-scale-48","name":"benchmark: axis target at distance 48","kind":"benchmark","visible":false,"size":48,"input":{"x":48,"y":0},"expected":24,"tags":["benchmark","scale-medium","axis"]},
+    {"id":"benchmark-scale-120","name":"benchmark: axis target at distance 120","kind":"benchmark","visible":false,"size":120,"input":{"x":120,"y":0},"expected":60,"tags":["benchmark","scale-large","axis"]}
+  ]
+}

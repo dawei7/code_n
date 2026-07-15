@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_843",
+  "measurement_note": "Size is g, the number of six-letter candidates. Counter-based minimax scoring takes O(size squared) per interactive round. Recomputing each candidate bucket separately makes the identical guesses and filtering decisions in O(size cubed) time. Each benchmark secret is found in two calls.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 binary candidates", "kind": "benchmark", "visible": false, "size": 4, "input": {"words": ["aaaaaa", "aaaaab", "aaaaba", "aaaabb"], "master": {"secret": "aaaabb", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["benchmark", "scale-small", "minimax"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 8 binary candidates", "kind": "benchmark", "visible": false, "size": 8, "input": {"words": ["aaaaaa", "aaaaab", "aaaaba", "aaaabb", "aaabaa", "aaabab", "aaabba", "aaabbb"], "master": {"secret": "aaabbb", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["benchmark", "scale-medium", "minimax"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 16 binary candidates", "kind": "benchmark", "visible": false, "size": 16, "input": {"words": ["aaaaaa", "aaaaab", "aaaaba", "aaaabb", "aaabaa", "aaabab", "aaabba", "aaabbb", "aabaaa", "aabaab", "aababa", "aababb", "aabbaa", "aabbab", "aabbba", "aabbbb"], "master": {"secret": "aabbbb", "allowed_guesses": 10}}, "expected": true, "validator": {"kind": "master_guessed"}, "tags": ["benchmark", "scale-large", "minimax"]}
+  ]
+}

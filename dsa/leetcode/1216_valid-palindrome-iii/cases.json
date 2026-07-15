@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1216",
+  "cases": [
+    {"id":"sample-two-removals","name":"sample: two removals leave a palindrome","kind":"sample","visible":true,"input":{"s":"abcdeca","k":2},"expected":true,"tags":["sample","exact-budget"]},
+    {"id":"trial-one-removal","name":"one interior removal suffices","kind":"trial","visible":true,"input":{"s":"abbababa","k":1},"expected":true,"tags":["one-removal"]},
+    {"id":"trial-insufficient","name":"one removal cannot repair three distinct letters","kind":"trial","visible":true,"input":{"s":"abc","k":1},"expected":false,"tags":["insufficient"]},
+    {"id":"trial-already-palindrome","name":"an existing palindrome needs no budget","kind":"trial","visible":true,"input":{"s":"racecar","k":1},"expected":true,"tags":["palindrome","zero-removals"]},
+    {"id":"real-remove-one-endpoint","name":"hidden: one endpoint of an interval is removed","kind":"real","visible":false,"input":{"s":"abca","k":1},"expected":true,"tags":["hidden","endpoint-choice"]},
+    {"id":"real-budget-too-small","name":"hidden: several mismatches exceed the budget","kind":"real","visible":false,"input":{"s":"abcdef","k":2},"expected":false,"tags":["hidden","insufficient"]},
+    {"id":"real-full-budget","name":"hidden: the full length is an allowed budget","kind":"real","visible":false,"input":{"s":"leetcode","k":8},"expected":true,"tags":["hidden","full-budget"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1329",
+  "frontend_id": "1217",
+  "title_slug": "minimum-cost-to-move-chips-to-the-same-position",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minCostToMoveChips",
+  "verified_submission_id": "2067945170",
+  "verified_at": "2026-07-15T00:49:56.404085+00:00"
+}

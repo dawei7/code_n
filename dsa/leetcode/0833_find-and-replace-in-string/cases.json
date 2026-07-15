@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_833",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two successful replacements", "kind": "sample", "visible": true, "input": {"s": "abcd", "indices": [0, 2], "sources": ["a", "cd"], "targets": ["eee", "ffff"]}, "expected": "eeebffff", "tags": ["sample", "all-match"]},
+    {"id": "sample-2", "name": "sample: one source does not match", "kind": "sample", "visible": true, "input": {"s": "abcd", "indices": [0, 2], "sources": ["ab", "ec"], "targets": ["eee", "ffff"]}, "expected": "eeecd", "tags": ["sample", "partial-match"]},
+    {"id": "trial-1", "name": "trial: replacement grows the middle", "kind": "trial", "visible": true, "input": {"s": "abc", "indices": [1], "sources": ["b"], "targets": ["xyz"]}, "expected": "axyzc", "tags": ["trial", "growing-target"]},
+    {"id": "trial-2", "name": "trial: replacement shrinks the middle", "kind": "trial", "visible": true, "input": {"s": "abcdefgh", "indices": [2], "sources": ["cdef"], "targets": ["x"]}, "expected": "abxgh", "tags": ["trial", "shrinking-target"]},
+    {"id": "trial-3", "name": "trial: unsorted operation positions", "kind": "trial", "visible": true, "input": {"s": "thequickfox", "indices": [8, 0, 3], "sources": ["fox", "the", "quick"], "targets": ["cat", "a", "slow"]}, "expected": "aslowcat", "tags": ["trial", "unsorted-indices"]},
+    {"id": "trial-4", "name": "trial: no source matches", "kind": "trial", "visible": true, "input": {"s": "hello", "indices": [0, 4], "sources": ["j", "x"], "targets": ["y", "z"]}, "expected": "hello", "tags": ["trial", "no-match"]},
+    {"id": "hidden-1", "name": "hidden: replace the entire string", "kind": "real", "visible": false, "input": {"s": "replace", "indices": [0], "sources": ["replace"], "targets": ["x"]}, "expected": "x", "tags": ["hidden", "whole-string"]},
+    {"id": "hidden-2", "name": "hidden: replacements at both boundaries", "kind": "real", "visible": false, "input": {"s": "abcdef", "indices": [0, 5], "sources": ["a", "f"], "targets": ["left", "right"]}, "expected": "leftbcderight", "tags": ["hidden", "boundaries"]},
+    {"id": "hidden-3", "name": "hidden: adjacent successful sources", "kind": "real", "visible": false, "input": {"s": "aabb", "indices": [0, 2], "sources": ["aa", "bb"], "targets": ["b", "aaa"]}, "expected": "baaa", "tags": ["hidden", "adjacent"]},
+    {"id": "hidden-4", "name": "hidden: original text controls all matches", "kind": "real", "visible": false, "input": {"s": "abcd", "indices": [0, 2], "sources": ["ab", "cd"], "targets": ["cd", "x"]}, "expected": "cdx", "tags": ["hidden", "simultaneous"]},
+    {"id": "hidden-5", "name": "hidden: source would exceed suffix", "kind": "real", "visible": false, "input": {"s": "abc", "indices": [2], "sources": ["cd"], "targets": ["z"]}, "expected": "abc", "tags": ["hidden", "suffix-mismatch"]},
+    {"id": "hidden-6", "name": "hidden: unchanged gaps between matches", "kind": "real", "visible": false, "input": {"s": "0123456789", "indices": [1, 7], "sources": ["12", "78"], "targets": ["a", "bcdef"]}, "expected": "0a3456bcdef9", "tags": ["hidden", "gaps"]}
+  ]
+}

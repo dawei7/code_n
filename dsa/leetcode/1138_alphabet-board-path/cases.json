@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1138",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: spell leet",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": "leet"
+      },
+      "expected": "RDD!UURRR!!DDD!",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: spell code",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": "code"
+      },
+      "expected": "RR!RRDD!UUL!R!",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-z",
+      "name": "move directly from a to z",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "z"
+      },
+      "expected": "DDDDD!",
+      "tags": [
+        "trial",
+        "z"
+      ]
+    },
+    {
+      "id": "trial-repeat",
+      "name": "select the same cell repeatedly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "aaa"
+      },
+      "expected": "!!!",
+      "tags": [
+        "trial",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-leave-z",
+      "name": "leave z before moving horizontally",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "zb"
+      },
+      "expected": "DDDDD!UUUUUR!",
+      "tags": [
+        "trial",
+        "leave-z"
+      ]
+    },
+    {
+      "id": "real-enter-leave-z",
+      "name": "hidden: enter and leave z repeatedly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "yzyz"
+      },
+      "expected": "RRRRDDDD!LLLLD!URRRR!LLLLD!",
+      "tags": [
+        "real",
+        "z-transitions"
+      ]
+    },
+    {
+      "id": "real-alphabet",
+      "name": "hidden: increasing board traversal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": "!R!R!R!R!LLLLD!R!R!R!R!LLLLD!R!R!R!R!LLLLD!R!R!R!R!LLLLD!R!R!R!R!LLLLD!",
+      "tags": [
+        "real",
+        "all-letters"
+      ]
+    },
+    {
+      "id": "real-zebra",
+      "name": "hidden: varied long movements",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "zebra"
+      },
+      "expected": "DDDDD!UUUUURRRR!LLL!RDDD!UUULL!",
+      "tags": [
+        "real",
+        "mixed"
+      ]
+    }
+  ]
+}

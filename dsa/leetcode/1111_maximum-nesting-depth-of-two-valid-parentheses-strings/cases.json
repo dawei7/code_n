@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1111",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one outer pair containing two pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "seq": "(()())"
+      },
+      "expected": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "vps_split"
+      },
+      "tags": [
+        "sample",
+        "optimal-tie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: concatenated flat and nested components",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "seq": "()(())()"
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "validator": {
+        "kind": "vps_split"
+      },
+      "tags": [
+        "sample",
+        "concatenation"
+      ]
+    },
+    {
+      "id": "trial-single-pair",
+      "name": "trial: minimum VPS",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "seq": "()"
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "validator": {
+        "kind": "vps_split"
+      },
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-flat",
+      "name": "trial: several depth-one components",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "seq": "()()()()"
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "validator": {
+        "kind": "vps_split"
+      },
+      "tags": [
+        "trial",
+        "flat"
+      ]
+    },
+    {
+      "id": "real-deep",
+      "name": "hidden: one deeply nested component",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "seq": "(((((())))))"
+      },
+      "expected": [
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "vps_split"
+      },
+      "tags": [
+        "hidden",
+        "deep"
+      ]
+    },
+    {
+      "id": "real-mixed-components",
+      "name": "hidden: components with different depths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "seq": "((()))()(()(()))"
+      },
+      "expected": [
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "vps_split"
+      },
+      "tags": [
+        "hidden",
+        "mixed-depth"
+      ]
+    },
+    {
+      "id": "real-sibling-nesting",
+      "name": "hidden: nested siblings at several levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "seq": "(()(()))((())())"
+      },
+      "expected": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "vps_split"
+      },
+      "tags": [
+        "hidden",
+        "siblings"
+      ]
+    }
+  ]
+}

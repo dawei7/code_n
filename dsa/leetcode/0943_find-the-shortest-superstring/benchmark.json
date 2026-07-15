@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_943",
+  "measurement_note": "Size is m, the number of words; each word has length 2m, so both dimensions in the required bound grow across tiers. The optimal method precomputes every directed overlap once. A correct slower bitmask DP that recomputes suffix-prefix overlap inside every state transition repeats that string work exponentially many times.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: zero-overlap words at m=2 and length 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "words": [
+          "aamm",
+          "bbnn"
+        ]
+      },
+      "expected": "aammbbnn",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "recomputed-overlap"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: zero-overlap words at m=5 and length 10",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "words": [
+          "aaaaammmmm",
+          "bbbbbnnnnn",
+          "cccccooooo",
+          "dddddppppp",
+          "eeeeeqqqqq"
+        ]
+      },
+      "expected": "aaaaammmmmbbbbbnnnnncccccooooodddddpppppeeeeeqqqqq",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "recomputed-overlap"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: zero-overlap words at m=9 and length 18",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9,
+      "input": {
+        "words": [
+          "aaaaaaaaammmmmmmmm",
+          "bbbbbbbbbnnnnnnnnn",
+          "cccccccccooooooooo",
+          "dddddddddppppppppp",
+          "eeeeeeeeeqqqqqqqqq",
+          "fffffffffrrrrrrrrr",
+          "gggggggggsssssssss",
+          "hhhhhhhhhttttttttt",
+          "iiiiiiiiiuuuuuuuuu"
+        ]
+      },
+      "expected": "aaaaaaaaammmmmmmmmbbbbbbbbbnnnnnnnnncccccccccooooooooodddddddddpppppppppeeeeeeeeeqqqqqqqqqfffffffffrrrrrrrrrgggggggggssssssssshhhhhhhhhtttttttttiiiiiiiiiuuuuuuuuu",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "recomputed-overlap"
+      ],
+      "validator": {
+        "kind": "shortest_superstring"
+      }
+    }
+  ]
+}

@@ -1,30 +1,30 @@
 from collections import defaultdict
 
 
-def solve(s, pairs):
+def solve(s: str, pairs: list[list[int]]) -> str:
     parent = list(range(len(s)))
+    size = [1] * len(s)
 
-    def find(x):
-        while parent[x] != x:
-            parent[x] = parent[parent[x]]
-            x = parent[x]
-        return x
+    def find(index: int) -> int:
+        while parent[index] != index:
+            parent[index] = parent[parent[index]]
+            index = parent[index]
+        return index
 
-    def union(a, b):
-        ra, rb = find(a), find(b)
-        if ra != rb:
-            parent[rb] = ra
+    for first, second in pairs:
+        first_root = find(first)
+        second_root = find(second)
+        if first_root == second_root:
+            continue
+        if size[first_root] < size[second_root]:
+            first_root, second_root = second_root, first_root
+        parent[second_root] = first_root
+        size[first_root] += size[second_root]
 
-    for a, b in pairs:
-        union(a, b)
+    characters = defaultdict(list)
+    for index, character in enumerate(s):
+        characters[find(index)].append(character)
+    for group in characters.values():
+        group.sort(reverse=True)
 
-    groups = defaultdict(list)
-    for i, ch in enumerate(s):
-        groups[find(i)].append(ch)
-    for chars in groups.values():
-        chars.sort(reverse=True)
-
-    result = []
-    for i in range(len(s)):
-        result.append(groups[find(i)].pop())
-    return "".join(result)
+    return "".join(characters[find(index)].pop() for index in range(len(s)))

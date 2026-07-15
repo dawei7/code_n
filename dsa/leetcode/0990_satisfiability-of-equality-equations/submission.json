@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1032",
+  "frontend_id": "990",
+  "title_slug": "satisfiability-of-equality-equations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.equationsPossible",
+  "verified_submission_id": "2067217817",
+  "verified_at": "2026-07-14T10:09:25.739803+00:00"
+}

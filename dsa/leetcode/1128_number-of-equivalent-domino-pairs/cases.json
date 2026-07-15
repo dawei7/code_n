@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1128",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one equivalent pair",
+      "name": "sample: one rotated pair",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -29,12 +30,12 @@
       "expected": 1,
       "tags": [
         "sample",
-        "hashing"
+        "rotation"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: repeated same domino",
+      "name": "sample: three copies of one orientation",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -63,12 +64,13 @@
       },
       "expected": 3,
       "tags": [
-        "sample"
+        "sample",
+        "repetition"
       ]
     },
     {
-      "id": "trial-single-domino",
-      "name": "single domino",
+      "id": "trial-single",
+      "name": "one domino",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -82,12 +84,70 @@
       "expected": 0,
       "tags": [
         "trial",
-        "edge"
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-double-dominoes",
+      "name": "three identical double dominoes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dominoes": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "double"
+      ]
+    },
+    {
+      "id": "trial-no-pairs",
+      "name": "all normalized keys differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dominoes": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "none"
       ]
     },
     {
       "id": "real-two-groups",
-      "name": "hidden: two equivalent groups",
+      "name": "hidden: two equivalence groups",
       "kind": "real",
       "visible": false,
       "input": {
@@ -116,7 +176,117 @@
       },
       "expected": 4,
       "tags": [
-        "hidden"
+        "real",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "real-mixed-orientation",
+      "name": "hidden: alternating orientations in one group",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "dominoes": [
+          [
+            9,
+            1
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            1,
+            9
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "rotation"
+      ]
+    },
+    {
+      "id": "real-value-bounds",
+      "name": "hidden: lower and upper value bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "dominoes": [
+          [
+            1,
+            9
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            1,
+            9
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "bounds"
+      ]
+    },
+    {
+      "id": "real-repeated-groups",
+      "name": "hidden: differently sized groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "dominoes": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "multiple-groups"
       ]
     }
   ]

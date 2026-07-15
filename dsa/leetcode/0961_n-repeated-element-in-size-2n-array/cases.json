@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_961","cases":[
+{"id":"sample-1","name":"sample: repeated at the end","kind":"sample","visible":true,"input":{"nums":[1,2,3,3]},"expected":3,"tags":["sample","adjacent"]},
+{"id":"sample-2","name":"sample: repeated value interleaved","kind":"sample","visible":true,"input":{"nums":[2,1,2,5,3,2]},"expected":2,"tags":["sample","interleaved"]},
+{"id":"sample-3","name":"sample: four copies alternating","kind":"sample","visible":true,"input":{"nums":[5,1,5,2,5,3,5,4]},"expected":5,"tags":["sample","alternating"]},
+{"id":"trial-1","name":"trial: zero is repeated","kind":"trial","visible":true,"input":{"nums":[0,7,0,8]},"expected":0,"tags":["trial","zero"]},
+{"id":"trial-2","name":"trial: repeated prefix","kind":"trial","visible":true,"input":{"nums":[9,9,1,2]},"expected":9,"tags":["trial","prefix"]},
+{"id":"trial-3","name":"trial: repeated suffix block","kind":"trial","visible":true,"input":{"nums":[1,2,3,4,6,6,6,6]},"expected":6,"tags":["trial","suffix"]},
+{"id":"hidden-1","name":"hidden: repeated maximum value","kind":"real","visible":false,"input":{"nums":[10000,1,2,10000,3,10000]},"expected":10000,"tags":["hidden","maximum"]},
+{"id":"hidden-2","name":"hidden: copies separated by singletons","kind":"real","visible":false,"input":{"nums":[4,1,4,2,4,3,4,5,4,6]},"expected":4,"tags":["hidden","separated"]},
+{"id":"hidden-3","name":"hidden: last singleton after repeated run","kind":"real","visible":false,"input":{"nums":[8,0,8,1,8,2,8,3]},"expected":8,"tags":["hidden","mixed"]}
+]}

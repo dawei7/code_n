@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1264",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: both friendship directions and shared pages",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friendship": [
+            {
+              "user1_id": 1,
+              "user2_id": 2
+            },
+            {
+              "user1_id": 1,
+              "user2_id": 3
+            },
+            {
+              "user1_id": 1,
+              "user2_id": 4
+            },
+            {
+              "user1_id": 2,
+              "user2_id": 3
+            },
+            {
+              "user1_id": 2,
+              "user2_id": 4
+            },
+            {
+              "user1_id": 2,
+              "user2_id": 5
+            },
+            {
+              "user1_id": 6,
+              "user2_id": 1
+            }
+          ],
+          "Likes": [
+            {
+              "user_id": 1,
+              "page_id": 88
+            },
+            {
+              "user_id": 2,
+              "page_id": 23
+            },
+            {
+              "user_id": 3,
+              "page_id": 24
+            },
+            {
+              "user_id": 4,
+              "page_id": 56
+            },
+            {
+              "user_id": 5,
+              "page_id": 11
+            },
+            {
+              "user_id": 6,
+              "page_id": 33
+            },
+            {
+              "user_id": 2,
+              "page_id": 77
+            },
+            {
+              "user_id": 3,
+              "page_id": 77
+            },
+            {
+              "user_id": 6,
+              "page_id": 88
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "recommended_page"
+        ],
+        "rows": [
+          [
+            23
+          ],
+          [
+            24
+          ],
+          [
+            33
+          ],
+          [
+            56
+          ],
+          [
+            77
+          ]
+        ]
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-first-column",
+      "name": "sample: target in first friendship column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friendship": [
+            {
+              "user1_id": 1,
+              "user2_id": 2
+            }
+          ],
+          "Likes": [
+            {
+              "user_id": 2,
+              "page_id": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "recommended_page"
+        ],
+        "rows": [
+          [
+            10
+          ]
+        ]
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-second-column",
+      "name": "sample: target in second friendship column",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friendship": [
+            {
+              "user1_id": 2,
+              "user2_id": 1
+            }
+          ],
+          "Likes": [
+            {
+              "user_id": 2,
+              "page_id": 11
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "recommended_page"
+        ],
+        "rows": [
+          [
+            11
+          ]
+        ]
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-self-liked",
+      "name": "trial: friend page already liked by target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friendship": [
+            {
+              "user1_id": 1,
+              "user2_id": 2
+            }
+          ],
+          "Likes": [
+            {
+              "user_id": 1,
+              "page_id": 9
+            },
+            {
+              "user_id": 2,
+              "page_id": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "recommended_page"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "excluded"
+      ]
+    },
+    {
+      "id": "trial-shared",
+      "name": "trial: two friends share one page",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Friendship": [
+            {
+              "user1_id": 1,
+              "user2_id": 2
+            },
+            {
+              "user1_id": 3,
+              "user2_id": 1
+            }
+          ],
+          "Likes": [
+            {
+              "user_id": 2,
+              "page_id": 5
+            },
+            {
+              "user_id": 3,
+              "page_id": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "recommended_page"
+        ],
+        "rows": [
+          [
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "distinct"
+      ]
+    },
+    {
+      "id": "real-nonfriend",
+      "name": "hidden: nonfriend likes are ignored",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Friendship": [
+            {
+              "user1_id": 1,
+              "user2_id": 2
+            },
+            {
+              "user1_id": 3,
+              "user2_id": 4
+            }
+          ],
+          "Likes": [
+            {
+              "user_id": 2,
+              "page_id": 7
+            },
+            {
+              "user_id": 3,
+              "page_id": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "recommended_page"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-no-friends",
+      "name": "hidden: target has no friendship edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Friendship": [
+            {
+              "user1_id": 2,
+              "user2_id": 3
+            }
+          ],
+          "Likes": [
+            {
+              "user_id": 2,
+              "page_id": 4
+            },
+            {
+              "user_id": 3,
+              "page_id": 6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "recommended_page"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "real",
+        "empty"
+      ]
+    }
+  ]
+}

@@ -8,77 +8,83 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-equal-frequency](https://leetcode.com/problems/maximum-equal-frequency/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-equal-frequency/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-equal-frequency/).
 
 ### Goal
-Find the longest prefix such that, after removing exactly one element from that prefix, every remaining distinct number appears the same number of times.
+
+Given an array of positive integers `nums`, consider a prefix ending at any position. That prefix is valid when exactly one element can be removed so that every number still present in the prefix occurs the same number of times.
+
+Return the length of the longest valid prefix. The removed element is one occurrence at one index, not every occurrence of its value; a prefix of length one is valid because removing its only element leaves no unequal frequencies.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: integer array.
+- `nums`: An array of length $n$, where $1\le n\le10^5$ and $1\le\texttt{nums[i]}\le10^5$.
 
 **Return value**
 
-The maximum valid prefix length.
+- The maximum prefix length for which removing exactly one element makes all remaining positive frequencies equal.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [2,2,1,1,5,3,3,5]`
 - Output: `7`
+
+In the first seven elements, removing `5` leaves `1`, `2`, and `3` with frequency two. The full length-eight prefix cannot be repaired by one removal.
 
 **Example 2**
 
 - Input: `nums = [1,1,1,2,2,2,3,3,3,4,4,4,5]`
 - Output: `13`
 
+Removing the single `5` leaves four values that each occur three times.
+
 **Example 3**
 
 - Input: `nums = [1,1,1,2,2,2]`
 - Output: `5`
 
----
+For the first five elements, removing one `1` leaves both values with frequency two.
 
-## Solution
-### Approach
-Frequency counting with frequency-of-frequency invariants.
+### Required Complexity
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(n)`
+- **Time:** $O(n)$
+- **Space:** $O(n)$
 
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-from collections import Counter
+#### General
 
+**Maintain counts at two levels.** One hash map stores each value's current occurrence count. A second map stores how many distinct values currently have each frequency. When a new array element arrives, decrement the bucket for its old positive frequency, increment its value count, and increment the bucket for the new frequency. Also retain the maximum current frequency $M$.
 
-def solve(nums):
-    counts = Counter()
-    freq = Counter()
-    answer = 0
-    max_freq = 0
+**Recognize the only repairable frequency shapes.** Let the current prefix length be $\ell$, and let $F_r$ be the number of distinct values whose frequency is $r$. Exactly one removal succeeds only in one of three configurations:
 
-    for i, value in enumerate(nums, 1):
-        old = counts[value]
-        if old:
-            freq[old] -= 1
-        counts[value] = old + 1
-        freq[old + 1] += 1
-        max_freq = max(max_freq, old + 1)
+- $M=1$, so every value is a singleton and any one may be removed.
+- $M F_M=\ell-1$, so all but one occurrence belong to frequency-$M$ groups and the remaining value is a singleton to remove.
+- $(M-1)(F_{M-1}+1)=\ell-1$, so exactly one value has frequency $M$ and removing one of its occurrences makes every group have frequency $M-1$.
 
-        if (
-            max_freq == 1
-            or max_freq * freq[max_freq] + 1 == i
-            or (max_freq - 1) * (freq[max_freq - 1] + 1) + 1 == i
-        ):
-            answer = i
-    return answer
-```
+Whenever one condition holds, record $\ell$ as the latest valid prefix.
+
+**Why no other shape can work.** One removal changes only one value's frequency, and changes it by exactly one (or removes a singleton entirely). Therefore all untouched values must already share a frequency, while the changed value must be either a singleton or exactly one occurrence above that common frequency. The three tests enumerate those possibilities, so rejecting every other frequency distribution is sound.
+
+#### Complexity detail
+
+Each of the $n$ elements triggers a constant expected number of hash-map updates and condition checks, giving $O(n)$ expected time. The maps contain at most $n$ value or frequency entries, so space is $O(n)$.
+
+#### Alternatives and edge cases
+
+- **Recount every prefix:** Building frequencies from scratch for each endpoint is correct but takes $O(n^2)$ time.
+- **Try every removal explicitly:** Recomputing the remaining frequency multiset for every index adds another unnecessary factor.
+- **All singleton values:** Every prefix is valid because removing any element leaves all remaining frequencies equal to one.
+- **One distinct value:** Every prefix is valid; remove one occurrence and the sole remaining positive frequency is still uniform.
+- **One singleton among equal groups:** Remove the singleton itself rather than lowering one of the larger groups.
+- **One overfull group:** Remove an occurrence from the unique group at frequency $M$.
+- **Exactly one removal:** A prefix whose frequencies are already equal may still be valid only if one removal preserves equality, as covered by the stated shapes.
+
 </details>

@@ -1,0 +1,5083 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1148",
+  "measurement_note": "Size is the number of Views rows. Duplicate self-views require one scan and one distinct result in the reference query, while the calibrated self-join materializes a quadratic number of matching pairs before deduplication.",
+  "cases": [
+    {
+      "id": "benchmark-scale-64",
+      "name": "benchmark: 64 duplicate self-view rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Views": [
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "self-join"
+      ]
+    },
+    {
+      "id": "benchmark-scale-256",
+      "name": "benchmark: 256 duplicate self-view rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Views": [
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "self-join"
+      ]
+    },
+    {
+      "id": "benchmark-scale-512",
+      "name": "benchmark: 512 duplicate self-view rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Views": [
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            },
+            {
+              "article_id": 1,
+              "author_id": 7,
+              "viewer_id": 7,
+              "view_date": "2020-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "self-join"
+      ]
+    }
+  ]
+}

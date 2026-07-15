@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1229",
+  "cases": [
+    {"id":"sample-earliest-overlap","name":"sample: skip a short overlap and use the next","kind":"sample","visible":true,"input":{"slots1":[[10,50],[60,120],[140,210]],"slots2":[[0,15],[60,70]],"duration":8},"expected":[60,68],"tags":["sample","earliest"]},
+    {"id":"sample-duration-too-long","name":"sample: every overlap is too short","kind":"sample","visible":true,"input":{"slots1":[[10,50],[60,120],[140,210]],"slots2":[[0,15],[60,70]],"duration":12},"expected":[],"tags":["sample","no-solution"]},
+    {"id":"trial-disjoint","name":"separate one-slot schedules do not meet","kind":"trial","visible":true,"input":{"slots1":[[1,2]],"slots2":[[3,4]],"duration":1},"expected":[],"tags":["disjoint"]},
+    {"id":"trial-exact-fit","name":"an overlap may fit the duration exactly","kind":"trial","visible":true,"input":{"slots1":[[5,10]],"slots2":[[7,12]],"duration":3},"expected":[7,10],"tags":["exact-fit"]},
+    {"id":"real-unsorted","name":"hidden: schedules are sorted before scanning","kind":"real","visible":false,"input":{"slots1":[[30,40],[0,10]],"slots2":[[35,50],[5,8]],"duration":3},"expected":[5,8],"tags":["hidden","unsorted"]},
+    {"id":"real-touching","name":"hidden: touching endpoints have zero duration","kind":"real","visible":false,"input":{"slots1":[[0,5]],"slots2":[[5,10]],"duration":1},"expected":[],"tags":["hidden","touching"]},
+    {"id":"real-earliest-among-many","name":"hidden: return the earliest of several valid overlaps","kind":"real","visible":false,"input":{"slots1":[[50,80],[10,30]],"slots2":[[20,40],[60,90]],"duration":5},"expected":[20,25],"tags":["hidden","earliest"]}
+  ]
+}

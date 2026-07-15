@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_933","cases":[
+{"id":"sample-1","name":"sample: inclusive boundary and expiration","kind":"sample","visible":true,"input":{"operations":[["ping",1],["ping",100],["ping",3001],["ping",3002]]},"expected":[1,2,3,3],"tags":["sample","boundary"]},
+{"id":"sample-2","name":"sample: widely spaced requests","kind":"sample","visible":true,"input":{"operations":[["ping",1],["ping",4001],["ping",8001]]},"expected":[1,1,1],"tags":["sample","expiration"]},
+{"id":"trial-1","name":"trial: one request","kind":"trial","visible":true,"input":{"operations":[["ping",42]]},"expected":[1],"tags":["trial","single"]},
+{"id":"trial-2","name":"trial: exact 3000 millisecond boundary","kind":"trial","visible":true,"input":{"operations":[["ping",10],["ping",3010]]},"expected":[1,2],"tags":["trial","inclusive"]},
+{"id":"trial-3","name":"trial: one millisecond beyond boundary","kind":"trial","visible":true,"input":{"operations":[["ping",10],["ping",3011]]},"expected":[1,1],"tags":["trial","outside"]},
+{"id":"hidden-1","name":"hidden: dense increasing requests","kind":"real","visible":false,"input":{"operations":[["ping",1],["ping",2],["ping",3],["ping",4],["ping",5]]},"expected":[1,2,3,4,5],"tags":["hidden","dense"]},
+{"id":"hidden-2","name":"hidden: several requests expire together","kind":"real","visible":false,"input":{"operations":[["ping",1],["ping",2],["ping",3],["ping",5000]]},"expected":[1,2,3,1],"tags":["hidden","bulk-expiration"]},
+{"id":"hidden-3","name":"hidden: moving inclusive window","kind":"real","visible":false,"input":{"operations":[["ping",1000],["ping",2000],["ping",3000],["ping",4000],["ping",5000]]},"expected":[1,2,3,4,4],"tags":["hidden","moving-window"]},
+{"id":"hidden-4","name":"hidden: large timestamp values","kind":"real","visible":false,"input":{"operations":[["ping",999996999],["ping",999999999],["ping",1000000000]]},"expected":[1,2,2],"tags":["hidden","upper-bound"]}
+]}

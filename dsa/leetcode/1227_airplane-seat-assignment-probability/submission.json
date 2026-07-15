@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1362",
+  "frontend_id": "1227",
+  "title_slug": "airplane-seat-assignment-probability",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.nthPersonGetsNthSeat",
+  "verified_submission_id": "2067958320",
+  "verified_at": "2026-07-15T01:26:04.901828+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1202",
+  "frontend_id": "1246",
+  "title_slug": "palindrome-removal",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumMoves",
+  "verified_submission_id": "2067993608",
+  "verified_at": "2026-07-15T02:42:11.068291+00:00"
+}

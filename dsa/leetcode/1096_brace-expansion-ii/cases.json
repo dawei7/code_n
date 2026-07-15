@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_1096",
+  "cases": [
+    {"id": "sample-nested-product", "name": "sample: nested union within concatenation", "kind": "sample", "visible": true, "input": {"expression": "{a,b}{c,{d,e}}"}, "expected": ["ac", "ad", "ae", "bc", "bd", "be"], "tags": ["sample", "nested", "concatenation"]},
+    {"id": "sample-duplicate-alternatives", "name": "sample: duplicate words across branches", "kind": "sample", "visible": true, "input": {"expression": "{{a,z},a{b,c},{ab,z}}"}, "expected": ["a", "ab", "ac", "z"], "tags": ["sample", "deduplication"]},
+    {"id": "trial-literal", "name": "trial: one literal", "kind": "trial", "visible": true, "input": {"expression": "m"}, "expected": ["m"], "tags": ["trial", "literal"]},
+    {"id": "trial-concatenated-groups", "name": "trial: three adjacent factors", "kind": "trial", "visible": true, "input": {"expression": "a{b,c}{d,e}"}, "expected": ["abd", "abe", "acd", "ace"], "tags": ["trial", "concatenation"]},
+    {"id": "real-union-precedence", "name": "hidden: concatenation binds inside union", "kind": "real", "visible": false, "input": {"expression": "{a,b,c{d,e}}"}, "expected": ["a", "b", "cd", "ce"], "tags": ["hidden", "precedence"]},
+    {"id": "real-deep-duplicates", "name": "hidden: nested unions collapse duplicates", "kind": "real", "visible": false, "input": {"expression": "{{{a,b},{a,c}},{{b,c},a}}"}, "expected": ["a", "b", "c"], "tags": ["hidden", "nested", "deduplication"]}
+  ]
+}

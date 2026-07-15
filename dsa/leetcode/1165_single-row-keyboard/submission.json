@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1123",
+  "frontend_id": "1165",
+  "title_slug": "single-row-keyboard",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.calculateTime",
+  "verified_submission_id": "2067877821",
+  "verified_at": "2026-07-14T21:10:43.266463+00:00"
+}

@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_985","cases":[
+{"id":"sample-1","name":"sample: all parity transitions","kind":"sample","visible":true,"input":{"nums":[1,2,3,4],"queries":[[1,0],[-3,1],[-4,0],[2,3]]},"expected":[8,6,2,4],"tags":["sample"]},
+{"id":"sample-2","name":"sample: remains odd","kind":"sample","visible":true,"input":{"nums":[1],"queries":[[4,0]]},"expected":[0],"tags":["sample"]},
+{"id":"trial-1","name":"trial: even becomes odd","kind":"trial","visible":true,"input":{"nums":[2],"queries":[[1,0]]},"expected":[0],"tags":["trial","even-to-odd"]},
+{"id":"trial-2","name":"trial: odd becomes even","kind":"trial","visible":true,"input":{"nums":[3],"queries":[[-1,0]]},"expected":[2],"tags":["trial","odd-to-even"]},
+{"id":"trial-3","name":"trial: negative values","kind":"trial","visible":true,"input":{"nums":[-2,-3],"queries":[[-2,1],[1,0]]},"expected":[-2,0],"tags":["trial","negative"]},
+{"id":"hidden-1","name":"hidden: repeated index updates","kind":"real","visible":false,"input":{"nums":[2,4],"queries":[[2,0],[1,0],[-3,1]]},"expected":[8,4,0],"tags":["hidden","repeated-index"]},
+{"id":"hidden-2","name":"hidden: zero is even","kind":"real","visible":false,"input":{"nums":[0,1],"queries":[[0,0],[1,1]]},"expected":[0,2],"tags":["hidden","zero"]},
+{"id":"hidden-3","name":"hidden: value boundaries","kind":"real","visible":false,"input":{"nums":[10000,-10000],"queries":[[-10000,0],[10000,1]]},"expected":[-10000,0],"tags":["hidden","bounds"]}
+]}

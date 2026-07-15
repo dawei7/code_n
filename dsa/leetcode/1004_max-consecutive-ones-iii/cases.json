@@ -1,94 +1,11 @@
-{
-  "challenge_id": "lc_1004",
-  "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: two flips",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1,
-          1,
-          0,
-          0,
-          0,
-          1,
-          1,
-          1,
-          1,
-          0
-        ],
-        "k": 2
-      },
-      "expected": 6,
-      "tags": [
-        "sample",
-        "sliding-window"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: three flips",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          0,
-          0,
-          1,
-          1,
-          1,
-          0,
-          0
-        ],
-        "k": 0
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-all-zeroes",
-      "name": "all zeroes with one flip",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          0,
-          0,
-          0
-        ],
-        "k": 1
-      },
-      "expected": 1,
-      "tags": [
-        "edge"
-      ]
-    },
-    {
-      "id": "real-alternating",
-      "name": "hidden: alternating bits",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          1,
-          0,
-          1,
-          0,
-          1,
-          0,
-          1
-        ],
-        "k": 2
-      },
-      "expected": 5,
-      "tags": [
-        "hidden"
-      ]
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_1004","cases":[
+{"id":"sample-1","name":"sample: two flips bridge runs","kind":"sample","visible":true,"input":{"nums":[1,1,1,0,0,0,1,1,1,1,0],"k":2},"expected":6,"tags":["sample"]},
+{"id":"sample-2","name":"sample: three flips span ten entries","kind":"sample","visible":true,"input":{"nums":[0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1],"k":3},"expected":10,"tags":["sample"]},
+{"id":"trial-1","name":"trial: no flips needed","kind":"trial","visible":true,"input":{"nums":[1,1,1],"k":0},"expected":3,"tags":["trial","all-ones"]},
+{"id":"trial-2","name":"trial: all zeroes with two flips","kind":"trial","visible":true,"input":{"nums":[0,0,0],"k":2},"expected":2,"tags":["trial","all-zeroes"]},
+{"id":"trial-3","name":"trial: allowance covers every zero","kind":"trial","visible":true,"input":{"nums":[1,0,0,1,0],"k":3},"expected":5,"tags":["trial","full-array"]},
+{"id":"hidden-1","name":"hidden: alternating bits","kind":"real","visible":false,"input":{"nums":[1,0,1,0,1,0,1],"k":2},"expected":5,"tags":["hidden","alternating"]},
+{"id":"hidden-2","name":"hidden: zero allowance among separated runs","kind":"real","visible":false,"input":{"nums":[0,1,1,0,1,1,1,0,1],"k":0},"expected":3,"tags":["hidden","zero-budget"]},
+{"id":"hidden-3","name":"hidden: one flip chooses longer side","kind":"real","visible":false,"input":{"nums":[1,1,0,1,1,1,0,1],"k":1},"expected":6,"tags":["hidden","boundary"]},
+{"id":"hidden-4","name":"hidden: single zero without flips","kind":"real","visible":false,"input":{"nums":[0],"k":0},"expected":0,"tags":["hidden","minimum"]}
+]}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1035",
+  "frontend_id": "993",
+  "title_slug": "cousins-in-binary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isCousins",
+  "verified_submission_id": "2067228595",
+  "verified_at": "2026-07-14T10:19:39.397586+00:00"
+}

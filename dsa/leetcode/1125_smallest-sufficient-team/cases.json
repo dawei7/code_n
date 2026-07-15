@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1125",
   "cases": [
     {
@@ -34,12 +35,12 @@
       },
       "tags": [
         "sample",
-        "dynamic-programming"
+        "overlap"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: overlapping skills",
+      "name": "sample: six skills with overlapping people",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -89,12 +90,13 @@
         "kind": "sufficient_team"
       },
       "tags": [
-        "sample"
+        "sample",
+        "overlap"
       ]
     },
     {
       "id": "trial-single-skill",
-      "name": "single required skill",
+      "name": "one required skill",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -116,12 +118,121 @@
       },
       "tags": [
         "trial",
-        "edge"
+        "single-skill"
       ]
     },
     {
-      "id": "real-two-person-optimum",
-      "name": "hidden: two-person optimum",
+      "id": "trial-one-person",
+      "name": "one person covers every skill",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "req_skills": [
+          "a",
+          "b",
+          "c"
+        ],
+        "people": [
+          [
+            "a"
+          ],
+          [
+            "a",
+            "b",
+            "c"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "trial",
+        "universal-person"
+      ]
+    },
+    {
+      "id": "trial-multiple-optima",
+      "name": "multiple minimum teams are valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "req_skills": [
+          "a",
+          "b"
+        ],
+        "people": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "a"
+          ],
+          [
+            "b"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "trial",
+        "multiple-answers"
+      ]
+    },
+    {
+      "id": "real-empty-skills",
+      "name": "hidden: people with no skills",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "req_skills": [
+          "a",
+          "b",
+          "c"
+        ],
+        "people": [
+          [],
+          [
+            "a",
+            "b"
+          ],
+          [],
+          [
+            "c"
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "real",
+        "empty-person"
+      ]
+    },
+    {
+      "id": "real-three-way",
+      "name": "hidden: three complementary pairs",
       "kind": "real",
       "visible": false,
       "input": {
@@ -140,10 +251,8 @@
             "c"
           ],
           [
+            "a",
             "c"
-          ],
-          [
-            "a"
           ]
         ]
       },
@@ -155,7 +264,106 @@
         "kind": "sufficient_team"
       },
       "tags": [
-        "hidden"
+        "real",
+        "multiple-answers"
+      ]
+    },
+    {
+      "id": "real-dominated",
+      "name": "hidden: dominated single-skill people",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "req_skills": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "people": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "a",
+            "b"
+          ],
+          [
+            "c"
+          ],
+          [
+            "d"
+          ],
+          [
+            "c",
+            "d"
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        5
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "real",
+        "dominance"
+      ]
+    },
+    {
+      "id": "real-chain-overlap",
+      "name": "hidden: chained coverage choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "req_skills": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ],
+        "people": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "b",
+            "c"
+          ],
+          [
+            "c",
+            "d"
+          ],
+          [
+            "d",
+            "e"
+          ],
+          [
+            "a"
+          ],
+          [
+            "e"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "real",
+        "overlap"
       ]
     }
   ]

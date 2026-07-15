@@ -1,32 +1,26 @@
-"""Optimal solution for LeetCode 1008: Construct Binary Search Tree from Preorder Traversal."""
-
-from __future__ import annotations
+"""Optimal app-local solution for LeetCode 1008."""
 
 
 class TreeNode:
-    def __init__(
-        self,
-        val: int = 0,
-        left: "TreeNode | None" = None,
-        right: "TreeNode | None" = None,
-    ):
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
 
-def solve(preorder: list[int]) -> TreeNode | None:
-    index = 0
+def solve(preorder):
+    root = TreeNode(preorder[0])
+    stack = [root]
 
-    def build(upper: int) -> TreeNode | None:
-        nonlocal index
-        if index == len(preorder) or preorder[index] > upper:
-            return None
-        value = preorder[index]
-        index += 1
+    for value in preorder[1:]:
         node = TreeNode(value)
-        node.left = build(value)
-        node.right = build(upper)
-        return node
+        if value < stack[-1].val:
+            stack[-1].left = node
+        else:
+            parent = None
+            while stack and stack[-1].val < value:
+                parent = stack.pop()
+            parent.right = node
+        stack.append(node)
 
-    return build(10**18)
+    return root

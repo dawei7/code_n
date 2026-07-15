@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_958","cases":[
+{"id":"sample-1","name":"sample: left-packed final level","kind":"sample","visible":true,"input":{"root":[1,2,3,4,5,6]},"expected":true,"tags":["sample","complete"]},
+{"id":"sample-2","name":"sample: gap before later node","kind":"sample","visible":true,"input":{"root":[1,2,3,4,5,null,7]},"expected":false,"tags":["sample","gap"]},
+{"id":"trial-1","name":"trial: single node","kind":"trial","visible":true,"input":{"root":[1]},"expected":true,"tags":["trial","single"]},
+{"id":"trial-2","name":"trial: left child only","kind":"trial","visible":true,"input":{"root":[1,2]},"expected":true,"tags":["trial","left-child"]},
+{"id":"trial-3","name":"trial: right child only","kind":"trial","visible":true,"input":{"root":[1,null,2]},"expected":false,"tags":["trial","right-child"]},
+{"id":"hidden-1","name":"hidden: perfect tree","kind":"real","visible":false,"input":{"root":[1,2,3,4,5,6,7]},"expected":true,"tags":["hidden","perfect"]},
+{"id":"hidden-2","name":"hidden: incomplete inner gap","kind":"real","visible":false,"input":{"root":[1,2,3,4,null,6,7]},"expected":false,"tags":["hidden","inner-gap"]},
+{"id":"hidden-3","name":"hidden: five-node complete tree","kind":"real","visible":false,"input":{"root":[1,2,3,4,5]},"expected":true,"tags":["hidden","partial-level"]}
+]}

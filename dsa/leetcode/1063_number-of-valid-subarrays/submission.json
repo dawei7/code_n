@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1061",
+  "frontend_id": "1063",
+  "title_slug": "number-of-valid-subarrays",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.validSubarrays",
+  "verified_submission_id": "2067467527",
+  "verified_at": "2026-07-14T14:28:15.622240+00:00"
+}

@@ -1,7 +1,7 @@
-"""Optimal solution for LeetCode 1013: Partition Array Into Three Parts With Equal Sum."""
+"""Optimal app-local solution for LeetCode 1013."""
 
 
-def solve(arr: list[int]) -> bool:
+def solve(arr):
     total = sum(arr)
     if total % 3 != 0:
         return False
@@ -14,4 +14,5 @@ def solve(arr: list[int]) -> bool:
         if current == target:
             parts += 1
             current = 0
+
     return parts >= 3

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1152",
+  "frontend_id": "1183",
+  "title_slug": "maximum-number-of-ones",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maximumNumberOfOnes",
+  "verified_submission_id": "2067903026",
+  "verified_at": "2026-07-14T22:26:02.683972+00:00"
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_875",
+  "measurement_note": "Size is the maximum pile size M. Two piles of M - 1 and M bananas with h = 2 force the answer to equal M; binary search needs O(log M) feasibility tests, while correct increasing-speed enumeration tests every speed from 1 through M and takes O(M) time.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: find required speed 128 by search",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "piles": [
+          127,
+          128
+        ],
+        "h": 2
+      },
+      "expected": 128,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "linear-speed-search"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: find required speed 2048 by search",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": {
+        "piles": [
+          2047,
+          2048
+        ],
+        "h": 2
+      },
+      "expected": 2048,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "linear-speed-search"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: find required speed 32768 by search",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32768,
+      "input": {
+        "piles": [
+          32767,
+          32768
+        ],
+        "h": 2
+      },
+      "expected": 32768,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "linear-speed-search"
+      ]
+    }
+  ]
+}

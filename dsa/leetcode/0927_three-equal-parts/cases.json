@@ -1,0 +1,287 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_927",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: alternating equal values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "sample",
+        "leading-zeroes"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: ones cannot be divided equally",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: middle and final leading zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "sample",
+        "leading-zeroes"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: all zero values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "trial",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: minimum all-one input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: equal values with trailing zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        2,
+        6
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "trial",
+        "trailing-zeroes"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: leading zeros in every part",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        6
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "hidden",
+        "leading-zeroes"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: one count is not divisible by three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "hidden",
+        "one-count"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: six consecutive ones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        4
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "hidden",
+        "dense-ones"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: equal one counts but different bit patterns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          0,
+          1,
+          1,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": [
+        -1,
+        -1
+      ],
+      "validator": {
+        "kind": "three_equal_parts",
+        "values_param": "arr"
+      },
+      "tags": [
+        "hidden",
+        "pattern-mismatch"
+      ]
+    }
+  ]
+}
+

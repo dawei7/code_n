@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1189",
+  "frontend_id": "1256",
+  "title_slug": "encode-number",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.encode",
+  "verified_submission_id": "2068014912",
+  "verified_at": "2026-07-15T03:19:33.026427+00:00"
+}

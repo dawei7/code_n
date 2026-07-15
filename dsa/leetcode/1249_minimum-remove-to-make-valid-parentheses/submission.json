@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1371",
+  "frontend_id": "1249",
+  "title_slug": "minimum-remove-to-make-valid-parentheses",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minRemoveToMakeValid",
+  "verified_submission_id": "2067999581",
+  "verified_at": "2026-07-15T02:53:14.233402+00:00"
+}

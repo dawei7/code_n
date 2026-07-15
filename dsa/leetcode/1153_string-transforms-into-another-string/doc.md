@@ -8,29 +8,37 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Graph Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [string-transforms-into-another-string](https://leetcode.com/problems/string-transforms-into-another-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/string-transforms-into-another-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/string-transforms-into-another-string/).
 
 ### Goal
-Decide whether `str1` can be transformed into `str2` by repeatedly choosing one lowercase letter and changing all of its current occurrences into another lowercase letter.
+
+You are given two strings, `str1` and `str2`, with the same length. Determine whether zero or more conversions can transform `str1` into `str2`.
+
+In one conversion, choose one lowercase English character currently present in `str1` and replace all of its occurrences with any other lowercase English character. Each operation is global: it changes every current occurrence of the chosen character at once, and later conversions operate on the string produced so far. Return `true` if and only if some sequence of conversions reaches `str2`; the order of conversions can affect whether the transformation succeeds.
 
 ### Function Contract
+
 **Inputs**
 
-- `str1`: Starting lowercase string.
-- `str2`: Desired lowercase string of the same length.
+- `str1`: The starting string of length $n$, containing only lowercase English letters.
+- `str2`: The target string of the same length, also containing only lowercase English letters.
+
+The shared length satisfies $1 \le n \le 10^4$.
 
 **Return value**
 
-Boolean indicating whether the transformation is possible.
+- `true` when `str1` can be transformed into `str2` by the allowed global conversions; otherwise, `false`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `str1 = "aabcc"`, `str2 = "ccdee"`
 - Output: `true`
+
+The conversion order can be `c` to `e`, then `b` to `d`, and finally `a` to `c`.
 
 **Example 2**
 
@@ -42,17 +50,33 @@ Boolean indicating whether the transformation is possible.
 - Input: `str1 = "abcdefghijklmnopqrstuvwxyz"`, `str2 = "bcdefghijklmnopqrstuvwxyza"`
 - Output: `false`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Each source character must always map to one target character, so first build that mapping and reject contradictions.
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-If the strings are already equal, no conversion is needed. Otherwise, cycles can only be broken if at least one lowercase letter is unused in `str2`, giving a temporary spare letter. Therefore, after the mapping is consistent, the answer is true exactly when `str2` does not use all 26 letters.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the string length.
-- **Space Complexity**: `O(1)`, since the alphabet size is fixed.
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Every source character needs one destination.** A global conversion cannot distinguish two occurrences of the same current character. Therefore, whenever `str1[i]` has appeared before, its aligned target `str2[i]` must equal the destination already assigned to that source character. A single left-to-right pass builds this mapping and rejects any contradiction. Different source characters may map to the same target character; merging them is allowed.
+
+**A spare character breaks conversion cycles.** View each nontrivial mapping as a directed edge from a source letter to its target. Acyclic chains can be executed from their target end backward. A directed cycle, however, cannot be rotated directly: changing any cycle letter first would merge it with another letter whose occurrences still need a different final value. If at least one lowercase letter is absent from `str2`, that letter can temporarily hold one group of occurrences, opening every cycle so the remaining conversions can be ordered safely.
+
+If `str1 == str2`, zero conversions already solve the problem, even when the target contains all 26 letters. Otherwise at least one nontrivial mapping exists. After mapping consistency has been established, using all 26 letters in `str2` means every letter is a required final label, leaving no temporary label and making any necessary permutation cycle impossible. Using fewer than 26 target letters supplies the required spare. Thus a consistent mapping succeeds exactly when the strings are already equal or `len(set(str2)) < 26`.
+
+#### Complexity detail
+
+The aligned scan and target-character set each inspect $n$ positions, so the time cost is $O(n)$. The mapping and set contain at most the 26 lowercase English letters, which is constant auxiliary space, giving $O(1)$ space with respect to $n$.
+
+#### Alternatives and edge cases
+
+- **Simulate conversion sequences:** Searching possible operation orders branches heavily and is unnecessary because mapping consistency and the existence of a spare letter completely characterize feasibility.
+- **Check only the character mapping:** A consistent mapping is necessary but not sufficient when a nontrivial cycle occupies all 26 target letters.
+- **Require a one-to-one mapping:** This is too strict; several source letters may safely merge into the same target letter.
+- **Already equal strings:** Return `true` immediately, including when all 26 letters occur, because zero conversions are allowed.
+- **Conflicting occurrences:** If one source letter aligns with two different target letters, no sequence of global conversions can separate its occurrences again.
+- **Conversion order:** Chains and cycles may require conversions in a carefully chosen order; the test proves that such an order exists without constructing it.
+
+</details>

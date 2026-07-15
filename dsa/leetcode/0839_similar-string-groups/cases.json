@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_839",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one chain and one isolated string", "kind": "sample", "visible": true, "input": {"strs": ["tars", "rats", "arts", "star"]}, "expected": 2, "tags": ["sample", "transitive"]},
+    {"id": "sample-2", "name": "sample: one direct swap", "kind": "sample", "visible": true, "input": {"strs": ["omv", "ovm"]}, "expected": 1, "tags": ["sample", "direct-swap"]},
+    {"id": "trial-1", "name": "trial: one string", "kind": "trial", "visible": true, "input": {"strs": ["abc"]}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-2", "name": "trial: duplicate strings", "kind": "trial", "visible": true, "input": {"strs": ["aaaa", "aaaa", "aaaa"]}, "expected": 1, "tags": ["trial", "duplicates"]},
+    {"id": "trial-3", "name": "trial: transitive three-string chain", "kind": "trial", "visible": true, "input": {"strs": ["abc", "bac", "bca"]}, "expected": 1, "tags": ["trial", "indirect"]},
+    {"id": "trial-4", "name": "trial: four mismatches separate pair", "kind": "trial", "visible": true, "input": {"strs": ["abcd", "badc"]}, "expected": 2, "tags": ["trial", "not-similar"]},
+    {"id": "hidden-1", "name": "hidden: three isolated permutations", "kind": "real", "visible": false, "input": {"strs": ["abcd", "badc", "cdab"]}, "expected": 3, "tags": ["hidden", "isolated"]},
+    {"id": "hidden-2", "name": "hidden: all connected through swaps", "kind": "real", "visible": false, "input": {"strs": ["abc", "acb", "cab", "cba"]}, "expected": 1, "tags": ["hidden", "connected"]},
+    {"id": "hidden-3", "name": "hidden: broad connected component", "kind": "real", "visible": false, "input": {"strs": ["abcd", "abdc", "acbd", "bacd", "dcba"]}, "expected": 1, "tags": ["hidden", "component"]},
+    {"id": "hidden-4", "name": "hidden: repeated entries bridge nothing", "kind": "real", "visible": false, "input": {"strs": ["abcd", "abcd", "badc", "badc"]}, "expected": 2, "tags": ["hidden", "duplicate-components"]}
+  ]
+}

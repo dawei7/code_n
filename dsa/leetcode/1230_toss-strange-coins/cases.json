@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1230",
+  "cases": [
+    {"id":"sample-one-coin","name":"sample: one biased coin must land heads","kind":"sample","visible":true,"input":{"prob":[0.4],"target":1},"expected":0.4,"tags":["sample","single-coin"]},
+    {"id":"sample-zero-heads","name":"sample: five fair coins must all land tails","kind":"sample","visible":true,"input":{"prob":[0.5,0.5,0.5,0.5,0.5],"target":0},"expected":0.03125,"tags":["sample","zero-target"]},
+    {"id":"trial-two-of-three","name":"two heads among three fair coins","kind":"trial","visible":true,"input":{"prob":[0.5,0.5,0.5],"target":2},"expected":0.375,"tags":["fair-coins"]},
+    {"id":"trial-mixed-bias","name":"either biased coin may supply the one head","kind":"trial","visible":true,"input":{"prob":[0.2,0.3],"target":1},"expected":0.38,"tags":["mixed-probabilities"]},
+    {"id":"real-certain-outcome","name":"hidden: deterministic coins force the target","kind":"real","visible":false,"input":{"prob":[1.0,0.0,1.0],"target":2},"expected":1.0,"tags":["hidden","deterministic"]},
+    {"id":"real-impossible-target","name":"hidden: deterministic coins make another target impossible","kind":"real","visible":false,"input":{"prob":[1.0,1.0,0.0],"target":1},"expected":0.0,"tags":["hidden","impossible"]},
+    {"id":"real-all-heads","name":"hidden: every coin must land heads","kind":"real","visible":false,"input":{"prob":[0.25,0.5],"target":2},"expected":0.125,"tags":["hidden","all-heads"]}
+  ]
+}

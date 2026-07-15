@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1105",
+  "frontend_id": "1035",
+  "title_slug": "uncrossed-lines",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxUncrossedLines",
+  "verified_submission_id": "2067351345",
+  "verified_at": "2026-07-14T12:37:05.981932+00:00"
+}

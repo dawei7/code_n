@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1257",
+  "cases": [
+    {
+      "id": "sample-cousins",
+      "name": "sample: regions in neighboring subtrees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "Earth",
+            "North America",
+            "South America"
+          ],
+          [
+            "North America",
+            "United States",
+            "Canada"
+          ],
+          [
+            "United States",
+            "New York",
+            "Boston"
+          ],
+          [
+            "Canada",
+            "Ontario",
+            "Quebec"
+          ],
+          [
+            "South America",
+            "Brazil"
+          ]
+        ],
+        "region1": "Quebec",
+        "region2": "New York"
+      },
+      "expected": "North America",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-root",
+      "name": "sample: regions in different root branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "Earth",
+            "North America",
+            "South America"
+          ],
+          [
+            "North America",
+            "United States",
+            "Canada"
+          ],
+          [
+            "United States",
+            "New York",
+            "Boston"
+          ],
+          [
+            "Canada",
+            "Ontario",
+            "Quebec"
+          ],
+          [
+            "South America",
+            "Brazil"
+          ]
+        ],
+        "region1": "Canada",
+        "region2": "South America"
+      },
+      "expected": "Earth",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-ancestor",
+      "name": "sample: one query contains the other",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "Earth",
+            "North America",
+            "South America"
+          ],
+          [
+            "North America",
+            "United States",
+            "Canada"
+          ],
+          [
+            "United States",
+            "New York",
+            "Boston"
+          ],
+          [
+            "Canada",
+            "Ontario",
+            "Quebec"
+          ],
+          [
+            "South America",
+            "Brazil"
+          ]
+        ],
+        "region1": "North America",
+        "region2": "Quebec"
+      },
+      "expected": "North America",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-siblings",
+      "name": "trial: direct siblings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "A",
+            "B",
+            "C"
+          ]
+        ],
+        "region1": "B",
+        "region2": "C"
+      },
+      "expected": "A",
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-deep",
+      "name": "trial: unequal depths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "regions": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "C",
+            "D",
+            "E"
+          ]
+        ],
+        "region1": "D",
+        "region2": "B"
+      },
+      "expected": "B",
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-spaces",
+      "name": "hidden: names containing spaces",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "regions": [
+          [
+            "Whole World",
+            "East Zone",
+            "West Zone"
+          ],
+          [
+            "East Zone",
+            "Inner City"
+          ]
+        ],
+        "region1": "Inner City",
+        "region2": "West Zone"
+      },
+      "expected": "Whole World",
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-two-branches",
+      "name": "hidden: deeper independent branches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "regions": [
+          [
+            "R",
+            "A",
+            "B"
+          ],
+          [
+            "A",
+            "A1"
+          ],
+          [
+            "A1",
+            "A2"
+          ],
+          [
+            "B",
+            "B1"
+          ],
+          [
+            "B1",
+            "B2"
+          ]
+        ],
+        "region1": "A2",
+        "region2": "B2"
+      },
+      "expected": "R",
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

@@ -1,24 +1,63 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1160",
+  "measurement_note": "Size is both the candidate word length and character-pool length. Frequency tables inspect each string once, while the calibrated slower implementation rescans both strings to recount every encountered letter.",
   "cases": [
     {
-      "id": "benchmark-overlapping-words",
-      "name": "benchmark: overlapping words",
+      "id": "benchmark-scale-16",
+      "name": "benchmark: one buildable word of length 16",
       "kind": "benchmark",
       "visible": false,
+      "size": 16,
       "input": {
         "words": [
-          "code",
-          "node",
-          "done",
-          "tone",
-          "stone"
+          "abcdefghijklmnop"
         ],
-        "chars": "onedocte"
+        "chars": "abcdefghijklmnop"
       },
       "expected": 16,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scaling",
+        "repeated-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-64",
+      "name": "benchmark: one buildable word of length 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "words": [
+          "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl"
+        ],
+        "chars": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl"
+      },
+      "expected": 64,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "repeated-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-100",
+      "name": "benchmark: one buildable word of length 100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "words": [
+          "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv"
+        ],
+        "chars": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv"
+      },
+      "expected": 100,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "repeated-rescan"
       ]
     }
   ]

@@ -1,26 +1,79 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1239",
+  "measurement_note": "Size is the number of usable pairwise-disjoint strings. Reachable-mask expansion performs constant bit work per subsequence, while explicitly rebuilding and validating every selected concatenation adds a factor proportional to size.",
   "cases": [
     {
-      "id": "benchmark-overlapping-choices",
-      "name": "benchmark: overlapping choices",
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 3 disjoint two-letter strings",
       "kind": "benchmark",
       "visible": false,
       "input": {
         "arr": [
           "ab",
           "cd",
-          "cde",
-          "cdef",
-          "efg",
-          "fgh",
-          "abxyz"
+          "ef"
         ]
       },
-      "expected": 11,
+      "expected": 6,
       "tags": [
-        "benchmark"
-      ]
+        "benchmark",
+        "scale-small",
+        "disjoint"
+      ],
+      "size": 3
+    },
+    {
+      "id": "benchmark-scale-6",
+      "name": "benchmark: 6 disjoint two-letter strings",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          "ab",
+          "cd",
+          "ef",
+          "gh",
+          "ij",
+          "kl"
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "disjoint"
+      ],
+      "size": 6
+    },
+    {
+      "id": "benchmark-scale-12",
+      "name": "benchmark: 12 disjoint two-letter strings",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          "ab",
+          "cd",
+          "ef",
+          "gh",
+          "ij",
+          "kl",
+          "mn",
+          "op",
+          "qr",
+          "st",
+          "uv",
+          "wx"
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "disjoint"
+      ],
+      "size": 12
     }
   ]
 }

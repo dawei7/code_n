@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1159",
+  "frontend_id": "1081",
+  "title_slug": "smallest-subsequence-of-distinct-characters",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.smallestSubsequence",
+  "verified_submission_id": "2067540243",
+  "verified_at": "2026-07-14T15:33:32.882387+00:00"
+}

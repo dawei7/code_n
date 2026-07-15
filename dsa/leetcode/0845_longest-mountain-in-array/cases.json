@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_845",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mountain inside a larger array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          1,
+          4,
+          7,
+          3,
+          2,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "interior"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all values equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "plateau"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: minimal mountain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "minimal-mountain"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "short"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: strictly increasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: plateau at the peak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "plateau"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: strictly decreasing",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: whole array is a mountain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: two equal longest mountains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          1,
+          4,
+          7,
+          3,
+          2,
+          5,
+          1,
+          2,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "multiple"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: later mountain is longer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          3,
+          2,
+          4,
+          6,
+          5,
+          4,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "later-longest"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: adjacent minimal mountains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "hidden-6",
+      "name": "hidden: flats split every candidate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "flats"
+      ]
+    }
+  ]
+}
+

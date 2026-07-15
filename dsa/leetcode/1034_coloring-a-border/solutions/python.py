@@ -1,25 +1,29 @@
-"""Optimal solution for LeetCode 1034: Coloring A Border."""
+"""Optimal app-local solution for LeetCode 1034."""
 
 
-def solve(grid: list[list[int]], row: int, col: int, color: int) -> list[list[int]]:
+def solve(grid, row, col, color):
     rows, cols = len(grid), len(grid[0])
     original = grid[row][col]
-    seen: set[tuple[int, int]] = set()
-    border: list[tuple[int, int]] = []
+    seen = {(row, col)}
+    stack = [(row, col)]
+    border = []
 
-    def dfs(r: int, c: int) -> None:
-        seen.add((r, c))
-        is_border = r in (0, rows - 1) or c in (0, cols - 1)
-        for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            nr, nc = r + dr, c + dc
-            if not (0 <= nr < rows and 0 <= nc < cols) or grid[nr][nc] != original:
+    while stack:
+        current_row, current_col = stack.pop()
+        is_border = current_row in (0, rows - 1) or current_col in (0, cols - 1)
+        for row_step, col_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            next_row = current_row + row_step
+            next_col = current_col + col_step
+            if not (0 <= next_row < rows and 0 <= next_col < cols):
                 is_border = True
-            elif (nr, nc) not in seen:
-                dfs(nr, nc)
+            elif grid[next_row][next_col] != original:
+                is_border = True
+            elif (next_row, next_col) not in seen:
+                seen.add((next_row, next_col))
+                stack.append((next_row, next_col))
         if is_border:
-            border.append((r, c))
+            border.append((current_row, current_col))
 
-    dfs(row, col)
-    for r, c in border:
-        grid[r][c] = color
+    for border_row, border_col in border:
+        grid[border_row][border_col] = color
     return grid

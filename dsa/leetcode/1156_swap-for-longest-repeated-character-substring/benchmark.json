@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1156",
+  "measurement_note": "Size is the string length. Alternating two letters prevents long runs and forces a substring-enumeration implementation to examine quadratically many candidate windows, while the run scan remains linear.",
+  "cases": [
+    {"id": "benchmark-scale-16", "name": "benchmark: alternating string of length 16", "kind": "benchmark", "visible": false, "size": 16, "input": {"text": "abababababababab"}, "expected": 3, "tags": ["benchmark", "scaling", "window-enumeration"]},
+    {"id": "benchmark-scale-64", "name": "benchmark: alternating string of length 64", "kind": "benchmark", "visible": false, "size": 64, "input": {"text": "abababababababababababababababababababababababababababababababab"}, "expected": 3, "tags": ["benchmark", "scaling", "window-enumeration"]},
+    {"id": "benchmark-scale-128", "name": "benchmark: alternating string of length 128", "kind": "benchmark", "visible": false, "size": 128, "input": {"text": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab"}, "expected": 3, "tags": ["benchmark", "scaling", "window-enumeration"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1048",
+  "frontend_id": "1006",
+  "title_slug": "clumsy-factorial",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.clumsy",
+  "verified_submission_id": "2067270858",
+  "verified_at": "2026-07-14T11:04:16.340289+00:00"
+}

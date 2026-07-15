@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_937","cases":[
+{"id":"sample-1","name":"sample: mixed art and own logs","kind":"sample","visible":true,"input":{"logs":["dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero"]},"expected":["let1 art can","let3 art zero","let2 own kit dig","dig1 8 1 5 1","dig2 3 6"],"tags":["sample","mixed"]},
+{"id":"sample-2","name":"sample: act and off contents","kind":"sample","visible":true,"input":{"logs":["a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo"]},"expected":["g1 act car","a8 act zoo","ab1 off key dog","a1 9 2 3 1","zo4 4 7"],"tags":["sample","mixed"]},
+{"id":"trial-1","name":"trial: equal content uses identifier","kind":"trial","visible":true,"input":{"logs":["b same text","a same text"]},"expected":["a same text","b same text"],"tags":["trial","tie-break"]},
+{"id":"trial-2","name":"trial: all digit logs remain stable","kind":"trial","visible":true,"input":{"logs":["z 3 2","a 1 9","m 4"]},"expected":["z 3 2","a 1 9","m 4"],"tags":["trial","stable"]},
+{"id":"trial-3","name":"trial: all letter logs sort by content","kind":"trial","visible":true,"input":{"logs":["x zebra","y apple","z mango"]},"expected":["y apple","z mango","x zebra"],"tags":["trial","letters"]},
+{"id":"hidden-1","name":"hidden: identifier does not classify log","kind":"real","visible":false,"input":{"logs":["123 alpha beta","abc 1 2"]},"expected":["123 alpha beta","abc 1 2"],"tags":["hidden","identifier"]},
+{"id":"hidden-2","name":"hidden: content prefix ordering","kind":"real","visible":false,"input":{"logs":["b art zero","a art","c art can"]},"expected":["a art","c art can","b art zero"],"tags":["hidden","prefix"]},
+{"id":"hidden-3","name":"hidden: one log","kind":"real","visible":false,"input":{"logs":["id word"]},"expected":["id word"],"tags":["hidden","single"]}
+]}

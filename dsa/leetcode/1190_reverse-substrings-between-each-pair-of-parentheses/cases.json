@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1190",
+  "cases": [
+    {"id":"sample-single-pair","name":"sample: reverse one pair","kind":"sample","visible":true,"input":{"s":"(abcd)"},"expected":"dcba","tags":["sample","single-pair"]},
+    {"id":"sample-nested-word","name":"sample: nested word","kind":"sample","visible":true,"input":{"s":"(u(love)i)"},"expected":"iloveu","tags":["sample","nested"]},
+    {"id":"sample-deep-nesting","name":"sample: several nested pairs","kind":"sample","visible":true,"input":{"s":"(ed(et(oc))el)"},"expected":"leetcode","tags":["sample","deep-nesting"]},
+    {"id":"trial-mixed-boundaries","name":"letters outside and inside nested pairs","kind":"trial","visible":true,"input":{"s":"a(bcdefghijkl(mno)p)q"},"expected":"apmnolkjihgfedcbq","tags":["nested","outer-letters"]},
+    {"id":"trial-no-parentheses","name":"no parentheses preserve order","kind":"trial","visible":true,"input":{"s":"abc"},"expected":"abc","tags":["boundary","plain-string"]},
+    {"id":"real-adjacent-pairs","name":"hidden: adjacent independent pairs","kind":"real","visible":false,"input":{"s":"(ab)(cd)"},"expected":"badc","tags":["hidden","adjacent-pairs"]},
+    {"id":"real-two-levels","name":"hidden: two reversal levels","kind":"real","visible":false,"input":{"s":"(a(bc)d)"},"expected":"dbca","tags":["hidden","parity"]},
+    {"id":"real-empty-pair","name":"hidden: empty balanced pair","kind":"real","visible":false,"input":{"s":"()"},"expected":"","tags":["hidden","empty-content"]}
+  ]
+}

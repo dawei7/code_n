@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1166",
+  "cases": [
+    {"id":"sample-1","name":"sample: create and retrieve root child","kind":"sample","visible":true,"input":{"operations":[["createPath",["/a",1]],["get",["/a"]]]},"expected":[true,1],"tags":["sample","root-child"]},
+    {"id":"sample-2","name":"sample: nested success and missing parent","kind":"sample","visible":true,"input":{"operations":[["createPath",["/leet",1]],["createPath",["/leet/code",2]],["get",["/leet/code"]],["createPath",["/c/d",1]],["get",["/c"]]]},"expected":[true,true,2,false,-1],"tags":["sample","parent"]},
+    {"id":"trial-duplicate","name":"duplicate creation preserves original value","kind":"trial","visible":true,"input":{"operations":[["createPath",["/x",7]],["createPath",["/x",9]],["get",["/x"]]]},"expected":[true,false,7],"tags":["trial","duplicate"]},
+    {"id":"trial-deep-chain","name":"create a complete ancestor chain","kind":"trial","visible":true,"input":{"operations":[["createPath",["/a",1]],["createPath",["/a/b",2]],["createPath",["/a/b/c",3]],["get",["/a/b/c"]]]},"expected":[true,true,true,3],"tags":["trial","deep"]},
+    {"id":"real-grandparent-only","name":"hidden: grandparent does not replace immediate parent","kind":"real","visible":false,"input":{"operations":[["createPath",["/a",1]],["createPath",["/a/b/c",3]],["get",["/a/b/c"]]]},"expected":[true,false,-1],"tags":["real","immediate-parent"]},
+    {"id":"real-independent-branches","name":"hidden: branches retain independent values","kind":"real","visible":false,"input":{"operations":[["createPath",["/a",10]],["createPath",["/b",20]],["createPath",["/a/c",30]],["get",["/b"]],["get",["/a/c"]],["get",["/a"]]]},"expected":[true,true,true,20,30,10],"tags":["real","branches"]}
+  ]
+}

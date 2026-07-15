@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_972","cases":[
+{"id":"sample-1","name":"sample: shifted repeating block","kind":"sample","visible":true,"input":{"s":"0.(52)","t":"0.5(25)"},"expected":true,"tags":["sample","repeating"]},
+{"id":"sample-2","name":"sample: equivalent repeated sixes","kind":"sample","visible":true,"input":{"s":"0.1666(6)","t":"0.166(66)"},"expected":true,"tags":["sample","repeating"]},
+{"id":"sample-3","name":"sample: repeating nines carry","kind":"sample","visible":true,"input":{"s":"0.9(9)","t":"1."},"expected":true,"tags":["sample","nines"]},
+{"id":"trial-1","name":"trial: trailing finite zero","kind":"trial","visible":true,"input":{"s":"0.5","t":"0.50"},"expected":true,"tags":["trial","finite"]},
+{"id":"trial-2","name":"trial: repeating zero","kind":"trial","visible":true,"input":{"s":"0.(0)","t":"0"},"expected":true,"tags":["trial","zero"]},
+{"id":"trial-3","name":"trial: finite and repeating differ","kind":"trial","visible":true,"input":{"s":"1.2(3)","t":"1.23"},"expected":false,"tags":["trial","different"]},
+{"id":"hidden-1","name":"hidden: bare integer and decimal point","kind":"real","visible":false,"input":{"s":"12","t":"12."},"expected":true,"tags":["hidden","integer"]},
+{"id":"hidden-2","name":"hidden: repeating nine advances finite digit","kind":"real","visible":false,"input":{"s":"0.1(9)","t":"0.2"},"expected":true,"tags":["hidden","nines"]},
+{"id":"hidden-3","name":"hidden: finite zeros and repeating zero","kind":"real","visible":false,"input":{"s":"123.000(0)","t":"123"},"expected":true,"tags":["hidden","zero"]}
+]}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_864",
+  "measurement_note": "Size is S = m*n*2^c, the maximum number of position-and-key-mask states. Open grids with keys spread across their boundaries make breadth-first search explore many masks. Hash-set deduplication is O(S), while an otherwise identical correct BFS using a list for visited-state membership has O(S^2) worst-case work.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 18 possible states", "kind": "benchmark", "visible": false, "size": 18, "input": {"grid": ["@..", ".A.", "a.."]}, "expected": 2, "tags": ["benchmark", "scale-small", "state-space"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 100 possible states", "kind": "benchmark", "visible": false, "size": 100, "input": {"grid": ["@...b", ".....", ".A.B.", ".....", "a...."]}, "expected": 12, "tags": ["benchmark", "scale-medium", "state-space"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 512 possible states", "kind": "benchmark", "visible": false, "size": 512, "input": {"grid": ["@......a", "........", "........", ".A.B.C..", "........", "........", "........", "c......b"]}, "expected": 21, "tags": ["benchmark", "scale-large", "state-space"]}
+  ]
+}

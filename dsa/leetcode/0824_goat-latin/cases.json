@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_824",
+  "cases": [
+    {"id": "sample-1", "name": "sample: mixed vowel and consonant initials", "kind": "sample", "visible": true, "input": {"sentence": "I speak Goat Latin"}, "expected": "Imaa peaksmaaa oatGmaaaa atinLmaaaaa", "tags": ["sample", "mixed-initials"]},
+    {"id": "sample-2", "name": "sample: nine indexed words", "kind": "sample", "visible": true, "input": {"sentence": "The quick brown fox jumped over the lazy dog"}, "expected": "heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa", "tags": ["sample", "long-suffix"]},
+    {"id": "trial-1", "name": "trial: uppercase vowel singleton", "kind": "trial", "visible": true, "input": {"sentence": "I"}, "expected": "Imaa", "tags": ["trial", "uppercase-vowel", "single-word"]},
+    {"id": "trial-2", "name": "trial: lowercase vowel word", "kind": "trial", "visible": true, "input": {"sentence": "apple"}, "expected": "applemaa", "tags": ["trial", "lowercase-vowel"]},
+    {"id": "trial-3", "name": "trial: one-letter consonant and uppercase vowel", "kind": "trial", "visible": true, "input": {"sentence": "b A"}, "expected": "bmaa Amaaa", "tags": ["trial", "one-letter", "case"]},
+    {"id": "trial-4", "name": "trial: consonant rotation", "kind": "trial", "visible": true, "input": {"sentence": "goat"}, "expected": "oatgmaa", "tags": ["trial", "rotation"]},
+    {"id": "hidden-1", "name": "hidden: every uppercase vowel", "kind": "real", "visible": false, "input": {"sentence": "AEIOU"}, "expected": "AEIOUmaa", "tags": ["hidden", "uppercase-vowel"]},
+    {"id": "hidden-2", "name": "hidden: preserve case through rotation", "kind": "real", "visible": false, "input": {"sentence": "SMILE orange"}, "expected": "MILESmaa orangemaaa", "tags": ["hidden", "case-preservation", "mixed-initials"]},
+    {"id": "hidden-3", "name": "hidden: suffix grows at every position", "kind": "real", "visible": false, "input": {"sentence": "a b c d e"}, "expected": "amaa bmaaa cmaaaa dmaaaaa emaaaaaa", "tags": ["hidden", "indexed-suffix", "one-letter"]},
+    {"id": "hidden-4", "name": "hidden: vowel then consonant with preserved order", "kind": "real", "visible": false, "input": {"sentence": "under Tree"}, "expected": "undermaa reeTmaaa", "tags": ["hidden", "word-order", "case-preservation"]},
+    {"id": "hidden-5", "name": "hidden: maximum-length single word", "kind": "real", "visible": false, "input": {"sentence": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}, "expected": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbmaa", "tags": ["hidden", "length-boundary", "single-word"]}
+  ]
+}

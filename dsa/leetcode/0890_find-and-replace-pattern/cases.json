@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_890",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two words match a repeated suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "deq",
+          "mee",
+          "aqq",
+          "dkd",
+          "ccc"
+        ],
+        "pattern": "abb"
+      },
+      "expected": [
+        "mee",
+        "aqq"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "repeated-letter"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: every one-letter word matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "b",
+          "c"
+        ],
+        "pattern": "a"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "single-letter"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: distinct-letter pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aa",
+          "ab",
+          "cc",
+          "cd"
+        ],
+        "pattern": "xy"
+      },
+      "expected": [
+        "ab",
+        "cd"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "distinct-letters"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all pattern positions equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "aaa",
+          "bbb",
+          "aba",
+          "ccc"
+        ],
+        "pattern": "aaa"
+      },
+      "expected": [
+        "aaa",
+        "bbb",
+        "ccc"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: three distinct pattern letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "xyz",
+          "xyy",
+          "foo",
+          "bar"
+        ],
+        "pattern": "abc"
+      },
+      "expected": [
+        "xyz",
+        "bar"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "trial",
+        "distinct-letters"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: mirrored equality structure",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "noon",
+          "deed",
+          "moon",
+          "aaaa",
+          "xyyx"
+        ],
+        "pattern": "abba"
+      },
+      "expected": [
+        "noon",
+        "deed",
+        "xyyx"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "mirror"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: first and last positions agree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "zbxz",
+          "aaaa",
+          "abcd",
+          "mnom"
+        ],
+        "pattern": "abca"
+      },
+      "expected": [
+        "zbxz",
+        "mnom"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "repeated-letter"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: repeated three-letter block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abcabc",
+          "xyzxyz",
+          "abcabd",
+          "aaaaaa",
+          "mnomno"
+        ],
+        "pattern": "abcabc"
+      },
+      "expected": [
+        "abcabc",
+        "xyzxyz",
+        "mnomno"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "repeated-block"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: duplicate matching words are preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "mee",
+          "mee",
+          "aqq",
+          "abc"
+        ],
+        "pattern": "abb"
+      },
+      "expected": [
+        "mee",
+        "mee",
+        "aqq"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: one-character duplicates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "z",
+          "z",
+          "a"
+        ],
+        "pattern": "q"
+      },
+      "expected": [
+        "z",
+        "z",
+        "a"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "single-letter",
+        "duplicates"
+      ]
+    }
+  ]
+}

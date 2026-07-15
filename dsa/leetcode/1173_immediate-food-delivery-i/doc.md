@@ -8,24 +8,29 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [immediate-food-delivery-i](https://leetcode.com/problems/immediate-food-delivery-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/immediate-food-delivery-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/immediate-food-delivery-i/).
 
 ### Goal
-Calculate the percentage of deliveries where the order date equals the customer's preferred delivery date. Round the percentage to two decimal places.
 
-### Query Contract
+The `Delivery` table records food orders. Each customer places an order on `order_date` and chooses a `customer_pref_delivery_date` that is either the same date or a later date. An order is called immediate when these two dates are equal; otherwise, it is called scheduled.
+
+Find the percentage of all orders that are immediate. Return one row with the result rounded to two decimal places and named `immediate_percentage`.
+
+### Function Contract
+
 **Input table**
 
-- `Delivery(delivery_id, customer_id, order_date, customer_pref_delivery_date)`: Food delivery orders.
+- `Delivery(delivery_id, customer_id, order_date, customer_pref_delivery_date)`: `delivery_id` is the primary key. Each row describes one order, its customer, its order date, and its preferred delivery date.
+- Let $n$ be the number of rows in `Delivery`.
 
-**Output column**
+**Return value**
 
-- `immediate_percentage`
+- One row and one column named `immediate_percentage`, containing the immediate-order count divided by the total order count, multiplied by $100$ and rounded to two decimal places.
 
 ### Examples
+
 **Example 1**
 
 `Delivery`
@@ -45,15 +50,43 @@ Output:
 |---:|
 | 33.33 |
 
----
+Orders `2` and `3` are immediate, so the percentage is $100\times 2/6=33.33$ after rounding.
 
-## Solution
-### Approach
-Use a conditional aggregate: count rows where `order_date = customer_pref_delivery_date`, divide by the total number of rows, multiply by `100`, and round to two decimals.
+**Example 2**
 
-### Complexity Analysis
-- **Time Complexity**: Depends on the database engine; logically, all delivery rows are scanned once.
-- **Space Complexity**: Depends on the execution plan and indexes.
+If every row has matching order and preferred dates, the result is `100.00`.
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Example 3**
+
+If none of the dates match, the result is `0.00`.
+
+### Required Complexity
+
+- **Time:** $O(n)$
+- **Space:** $O(1)$
+
+<details>
+<summary>Approach</summary>
+
+#### General
+
+**Turn the classification into a numeric contribution.** A `CASE` expression emits `1.0` when `order_date = customer_pref_delivery_date` and `0.0` otherwise. Each row therefore contributes exactly the indicator for being immediate.
+
+**Aggregate the ratio directly.** The average of these zero-or-one indicators is the fraction of immediate orders. Multiplying that average by `100.0` converts it to a percentage, and `ROUND(..., 2)` supplies the required precision. Using decimal literals avoids accidental integer division in database engines where dividing integers would truncate.
+
+Because the query has no `GROUP BY`, the aggregate produces exactly one output row. Aliasing the expression as `immediate_percentage` establishes the required column name.
+
+#### Complexity detail
+
+The aggregate examines each of the $n$ delivery rows once, so its logical running time is $O(n)$. Apart from the aggregate's counters, it needs $O(1)$ working space; physical execution details remain database-engine dependent.
+
+#### Alternatives and edge cases
+
+- **Conditional `SUM` divided by `COUNT`:** This is equally valid and has the same $O(n)$ logical cost, provided the division is forced to use a non-integer numeric type.
+- **Filter and count in a subquery:** Counting immediate rows separately and dividing by another total count is correct but may require two scans instead of one.
+- **All immediate orders:** The indicator average is `1`, producing `100.00`.
+- **No immediate orders:** The indicator average is `0`, producing `0.00`.
+- **Repeated customer:** Classification is per delivery row, not per distinct customer.
+- **Scheduled boundary:** Any preferred date later than the order date is scheduled; only exact equality is immediate.
+
+</details>

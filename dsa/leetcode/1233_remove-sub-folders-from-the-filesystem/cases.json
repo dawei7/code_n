@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1233",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: two roots remain",
+      "id": "sample-multiple-roots",
+      "name": "sample: remove descendants under two roots",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -25,12 +26,12 @@
       },
       "tags": [
         "sample",
-        "sorting"
+        "multiple-roots"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: one root remains",
+      "id": "sample-single-root",
+      "name": "sample: one root removes two deep descendants",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,12 +48,13 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "sample"
+        "sample",
+        "deep-descendants"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: similar names not subfolders",
+      "id": "sample-similar-names",
+      "name": "sample: similar component names remain independent",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -71,33 +73,109 @@
         "kind": "unordered_list"
       },
       "tags": [
-        "sample"
+        "sample",
+        "prefix-boundary"
       ]
     },
     {
-      "id": "real-prefix-trap",
-      "name": "hidden: prefix trap",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single",
+      "name": "a single listed path has no parent",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "folder": [
-          "/x",
-          "/x/y",
-          "/z",
-          "/z/a",
-          "/zab"
+          "/only"
         ]
       },
       "expected": [
-        "/x",
-        "/z",
-        "/zab"
+        "/only"
       ],
       "validator": {
         "kind": "unordered_list"
       },
       "tags": [
-        "hidden"
+        "single-path"
+      ]
+    },
+    {
+      "id": "trial-deep-chain",
+      "name": "only the shortest folder in a deep chain remains",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "folder": [
+          "/a/b/c/d",
+          "/a/b",
+          "/a",
+          "/a/b/c"
+        ]
+      },
+      "expected": [
+        "/a"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "deep-chain",
+        "unsorted-input"
+      ]
+    },
+    {
+      "id": "real-prefix-trap",
+      "name": "hidden: textual prefixes without slash boundaries remain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "folder": [
+          "/a",
+          "/ab",
+          "/a/b",
+          "/abc/d",
+          "/abc"
+        ]
+      },
+      "expected": [
+        "/a",
+        "/ab",
+        "/abc"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "prefix-boundary"
+      ]
+    },
+    {
+      "id": "real-interleaved-roots",
+      "name": "hidden: unordered descendants under several roots",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "folder": [
+          "/m/n/o",
+          "/z/a",
+          "/b",
+          "/m",
+          "/z",
+          "/ba/c",
+          "/ba"
+        ]
+      },
+      "expected": [
+        "/b",
+        "/ba",
+        "/m",
+        "/z"
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "hidden",
+        "multiple-roots"
       ]
     }
   ]

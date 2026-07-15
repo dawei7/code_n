@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1047",
+  "frontend_id": "1005",
+  "title_slug": "maximize-sum-of-array-after-k-negations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.largestSumAfterKNegations",
+  "verified_submission_id": "2067268599",
+  "verified_at": "2026-07-14T11:01:46.614241+00:00"
+}

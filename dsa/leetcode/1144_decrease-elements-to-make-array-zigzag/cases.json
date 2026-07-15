@@ -1,75 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1144",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: increasing triplet",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "greedy"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: alternating highs",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          9,
-          6,
-          1,
-          6,
-          2
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-value",
-      "name": "single value",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-all-equal",
-      "name": "hidden: all equal",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          2,
-          2,
-          2
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: three increasing values","kind":"sample","visible":true,"input":{"nums":[1,2,3]},"expected":2,"tags":["sample","increasing"]},
+    {"id":"sample-2","name":"sample: even positions become peaks","kind":"sample","visible":true,"input":{"nums":[9,6,1,6,2]},"expected":4,"tags":["sample","mixed"]},
+    {"id":"trial-singleton","name":"one element is already zigzag","kind":"trial","visible":true,"input":{"nums":[7]},"expected":0,"tags":["trial","singleton"]},
+    {"id":"trial-ready","name":"already valid with an odd-indexed valley","kind":"trial","visible":true,"input":{"nums":[2,1,2]},"expected":0,"tags":["trial","already-valid"]},
+    {"id":"trial-equal-pair","name":"equal pair needs one decrement","kind":"trial","visible":true,"input":{"nums":[5,5]},"expected":1,"tags":["trial","equality"]},
+    {"id":"real-flat","name":"hidden: three equal values","kind":"real","visible":false,"input":{"nums":[3,3,3]},"expected":1,"tags":["real","flat"]},
+    {"id":"real-ready-longer","name":"hidden: longer array already alternates","kind":"real","visible":false,"input":{"nums":[1,3,2,4,3]},"expected":0,"tags":["real","already-valid"]},
+    {"id":"real-one-conflict","name":"hidden: one valley conflicts with equal peaks","kind":"real","visible":false,"input":{"nums":[5,1,5,5,5]},"expected":1,"tags":["real","interior-equality"]}
   ]
 }

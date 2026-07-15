@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1201",
+  "cases": [
+    {
+      "id": "sample-three-divisors",
+      "name": "sample: first three merged multiples",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "a": 2,
+        "b": 3,
+        "c": 5
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "sample-redundant-divisor",
+      "name": "sample: one divisor is redundant",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "a": 2,
+        "b": 3,
+        "c": 4
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-dominant-divisor",
+      "name": "sample: smallest divisor supplies early sequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "a": 2,
+        "b": 11,
+        "c": 13
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-first-position",
+      "name": "first ugly number is the smallest divisor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "a": 7,
+        "b": 5,
+        "c": 11
+      },
+      "expected": 5,
+      "tags": [
+        "boundary",
+        "first"
+      ]
+    },
+    {
+      "id": "trial-equal-divisors",
+      "name": "equal divisors count each multiple once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "a": 6,
+        "b": 6,
+        "c": 6
+      },
+      "expected": 48,
+      "tags": [
+        "duplicates",
+        "lcm"
+      ]
+    },
+    {
+      "id": "real-nested-divisors",
+      "name": "hidden: all larger divisors are redundant",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "a": 2,
+        "b": 4,
+        "c": 8
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "redundant"
+      ]
+    },
+    {
+      "id": "real-coprime-divisors",
+      "name": "hidden: three pairwise coprime streams",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20,
+        "a": 7,
+        "b": 11,
+        "c": 13
+      },
+      "expected": 66,
+      "tags": [
+        "hidden",
+        "coprime"
+      ]
+    },
+    {
+      "id": "real-large-divisors",
+      "name": "hidden: large least common multiples",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000,
+        "a": 99991,
+        "b": 99989,
+        "c": 99971
+      },
+      "expected": 33390314,
+      "tags": [
+        "hidden",
+        "large-divisors"
+      ]
+    }
+  ]
+}

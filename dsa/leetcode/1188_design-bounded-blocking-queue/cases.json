@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1188",
+  "cases": [
+    {"id":"sample-single-producer-consumer","name":"sample: blocking in both directions","kind":"sample","visible":true,"input":{"capacity":2,"producer_threads":1,"consumer_threads":1,"operations":[["enqueue",1],["dequeue"],["dequeue"],["enqueue",0],["enqueue",2],["enqueue",3],["enqueue",4],["dequeue"],["size"]]},"expected":{"dequeued":[1,0,2],"final_size":2},"tags":["sample","blocking","fifo"]},
+    {"id":"sample-multiple-producers","name":"sample: scheduler may order simultaneous producers","kind":"sample","visible":true,"input":{"capacity":3,"producer_threads":3,"consumer_threads":4,"operations":[["enqueue",1],["enqueue",0],["enqueue",2],["dequeue"],["dequeue"],["dequeue"],["enqueue",3],["size"]]},"expected":{"dequeued_multiset":[0,1,2],"final_size":1},"tags":["sample","concurrency"]},
+    {"id":"trial-capacity-one","name":"capacity one alternates storage ownership","kind":"trial","visible":true,"input":{"capacity":1,"producer_threads":1,"consumer_threads":1,"operations":[["enqueue",7],["enqueue",8],["dequeue"],["dequeue"],["size"]]},"expected":{"dequeued":[7,8],"final_size":0},"tags":["trial","capacity"]},
+    {"id":"real-consumer-first","name":"hidden: consumer blocks before first item","kind":"real","visible":false,"input":{"capacity":2,"producer_threads":1,"consumer_threads":1,"operations":[["dequeue"],["enqueue",5],["size"]]},"expected":{"dequeued":[5],"final_size":0},"tags":["hidden","empty-block"]},
+    {"id":"real-full-producer","name":"hidden: producer blocks until capacity opens","kind":"real","visible":false,"input":{"capacity":2,"producer_threads":2,"consumer_threads":1,"operations":[["enqueue",1],["enqueue",2],["enqueue",3],["dequeue"],["dequeue"],["dequeue"],["size"]]},"expected":{"dequeued":[1,2,3],"final_size":0},"tags":["hidden","full-block"]},
+    {"id":"real-fifo","name":"hidden: sequentially linearized enqueues remain FIFO","kind":"real","visible":false,"input":{"capacity":4,"producer_threads":1,"consumer_threads":1,"operations":[["enqueue",4],["enqueue",1],["enqueue",9],["dequeue"],["dequeue"],["enqueue",2],["dequeue"],["dequeue"],["size"]]},"expected":{"dequeued":[4,1,9,2],"final_size":0},"tags":["hidden","fifo"]}
+  ]
+}

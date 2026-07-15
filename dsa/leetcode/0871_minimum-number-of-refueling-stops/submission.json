@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "902",
+  "frontend_id": "871",
+  "title_slug": "minimum-number-of-refueling-stops",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minRefuelStops",
+  "verified_submission_id": "2066739151",
+  "verified_at": "2026-07-14T01:18:07.846981+00:00"
+}

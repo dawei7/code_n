@@ -1,11 +1,14 @@
-def solve(arr1, arr2):
+"""Optimal app-local solution for LeetCode 1131."""
+
+
+def solve(arr1: list[int], arr2: list[int]) -> int:
     best = 0
-    for s1, s2 in ((1, 1), (1, -1), (-1, 1), (-1, -1)):
+    for sign1, sign2 in ((1, 1), (1, -1), (-1, 1), (-1, -1)):
         low = float("inf")
         high = float("-inf")
-        for i, (a, b) in enumerate(zip(arr1, arr2)):
-            value = s1 * a + s2 * b + i
-            low = min(low, value)
-            high = max(high, value)
+        for index, (value1, value2) in enumerate(zip(arr1, arr2)):
+            transformed = sign1 * value1 + sign2 * value2 + index
+            low = min(low, transformed)
+            high = max(high, transformed)
         best = max(best, high - low)
     return best

@@ -8,24 +8,30 @@
 | Category | Algorithms |
 | Topics | String, Backtracking, Stack, Breadth-First Search, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [brace-expansion](https://leetcode.com/problems/brace-expansion/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/brace-expansion/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/brace-expansion/).
 
 ### Goal
-Expand a pattern where braces contain comma-separated single-character choices. Characters outside braces are fixed. Return every possible expanded word in lexicographic order.
+
+The string `s` describes words using lowercase letters and brace groups. A lowercase letter outside braces is fixed in that position. A group such as `"{a,b,c}"` contributes exactly one of its comma-separated single-letter alternatives. Braces are not nested, and the expression is valid.
+
+Form every word obtained by independently choosing one letter from each brace group while retaining every fixed letter. Return all expanded words in lexicographic order. Each output has one character for every fixed position or brace group in the expression.
 
 ### Function Contract
+
 **Inputs**
 
-- `s`: Brace expression without nested braces.
+- `s`: a valid, non-nested brace expression of length $n$ containing lowercase fixed letters and comma-separated single-letter alternatives.
+
+Let $L$ be the number of output positions after treating each brace group as one position, and let $R$ be the number of expanded words.
 
 **Return value**
 
-Sorted list of all expanded strings.
+- A lexicographically sorted list containing all $R$ expansions, each of length $L$.
 
 ### Examples
+
 **Example 1**
 
 - Input: `s = "{a,b}c{d,e}f"`
@@ -36,22 +42,36 @@ Sorted list of all expanded strings.
 - Input: `s = "abcd"`
 - Output: `["abcd"]`
 
-**Example 3**
+### Required Complexity
 
-- Input: `s = "a{b,c}d"`
-- Output: `["abd", "acd"]`
+- **Time:** $O(n+RL)$
+- **Space:** $O(n+RL)$
 
----
+<details>
+<summary>Approach</summary>
 
-## Solution
-### Approach
-Parse the expression into a list of groups. A group is either a fixed character or a sorted list of choices from a brace block. Then perform backtracking over the groups, appending one choice from each group to build every word.
+#### General
 
-Sorting each brace choice list ensures the generated output is lexicographic.
+**Parse positions rather than punctuation:** Scan `s` from left to right. A fixed letter becomes a one-choice position. On an opening brace, locate its matching closing brace, split the interior on commas, and store the alternatives as one position.
 
-### Complexity Analysis
-- **Time Complexity**: `O(R * L)`, where `R` is the number of generated results and `L` is the output word length.
-- **Space Complexity**: `O(R * L)` for the returned strings.
+**Sort choices before expansion:** Sort every brace position's alternatives. Fixed positions are already trivially sorted. This makes the depth-first traversal visit complete words in lexicographic order, so no separate global result sort is necessary.
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Build one character per position:** Backtrack over the parsed positions, appending each available choice and removing it after the recursive call. Reaching position $L$ yields one complete expansion.
+
+Every expansion selects exactly one option from each parsed position, so each generated word is valid. Conversely, every valid independent selection corresponds to one unique root-to-leaf backtracking path and is generated once. At the earliest position where two generated words differ, the traversal exhausts the smaller sorted choice first, proving output order is lexicographic.
+
+#### Complexity detail
+
+Parsing takes $O(n)$ time. Producing $R$ strings of length $L$ requires $O(RL)$ time and output space. Parsed groups and the active recursion path use $O(n+L)$ additional storage, which is covered by $O(n+RL)$ total space.
+
+#### Alternatives and edge cases
+
+- **Generate then sort globally:** It is correct, but sorting $R$ complete strings adds $O(R\log R)$ comparisons after generation.
+- **Quadratic insertion sort:** Sorting expansions by repeated shifting is correct but can take $O(R^2L)$ time when generation order is reversed.
+- **Breadth-first Cartesian product:** Expand a list of prefixes group by group. It has the same output-sensitive bound but stores intermediate prefix sets explicitly.
+- **No braces:** Return a one-element list containing `s`.
+- **Adjacent groups:** Choose independently from each group; no fixed separator is implied.
+- **Unsorted alternatives:** Sort them before traversal to guarantee lexicographic output.
+- **Fixed prefix or suffix:** Preserve it in every expansion.
+
+</details>

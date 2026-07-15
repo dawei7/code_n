@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "881",
+  "frontend_id": "851",
+  "title_slug": "loud-and-rich",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.loudAndRich",
+  "verified_submission_id": "2066712976",
+  "verified_at": "2026-07-13T23:53:09.980052+00:00"
+}

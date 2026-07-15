@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1262",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: remove one remainder",
+      "id": "sample-eighteen",
+      "name": "sample: remove values to reach eighteen",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -17,13 +18,12 @@
       },
       "expected": 18,
       "tags": [
-        "sample",
-        "dynamic-programming"
+        "sample"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: no divisible subset except empty",
+      "id": "sample-none",
+      "name": "sample: no positive divisible subset",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -37,8 +37,8 @@
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: choose all",
+      "id": "sample-twelve",
+      "name": "sample: several choices produce twelve",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -56,12 +56,47 @@
       ]
     },
     {
-      "id": "real-all-remainder-two",
-      "name": "hidden: all remainder two",
+      "id": "trial-all-divisible",
+      "name": "trial: every value is divisible by three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          9,
+          12
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-pair",
+      "name": "trial: two residues combine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "hidden: duplicate residue values",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
+          2,
+          2,
           2,
           2,
           2
@@ -69,7 +104,27 @@
       },
       "expected": 6,
       "tags": [
-        "hidden"
+        "real"
+      ]
+    },
+    {
+      "id": "real-mixed-large",
+      "name": "hidden: larger mixed values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10000,
+          9999,
+          9998,
+          7,
+          5,
+          4
+        ]
+      },
+      "expected": 30009,
+      "tags": [
+        "real"
       ]
     }
   ]

@@ -1,0 +1,12 @@
+{"schema_version":1,"challenge_id":"lc_925","cases":[
+{"id":"sample-1","name":"sample: two long-pressed letters","kind":"sample","visible":true,"input":{"name":"alex","typed":"aaleex"},"expected":true,"tags":["sample","long-press"]},
+{"id":"sample-2","name":"sample: missing repeated intended letter","kind":"sample","visible":true,"input":{"name":"saeed","typed":"ssaaedd"},"expected":false,"tags":["sample","missing-letter"]},
+{"id":"trial-1","name":"trial: no long press","kind":"trial","visible":true,"input":{"name":"pyplrz","typed":"pyplrz"},"expected":true,"tags":["trial","exact"]},
+{"id":"trial-2","name":"trial: trailing long press","kind":"trial","visible":true,"input":{"name":"vtkgn","typed":"vttkgnn"},"expected":true,"tags":["trial","multiple-runs"]},
+{"id":"trial-3","name":"trial: extra unrelated character","kind":"trial","visible":true,"input":{"name":"alex","typed":"aaleexa"},"expected":false,"tags":["trial","extra-character"]},
+{"id":"hidden-1","name":"hidden: a required repeated letter is missing","kind":"real","visible":false,"input":{"name":"leelee","typed":"llelee"},"expected":false,"tags":["hidden","short-run"]},
+{"id":"hidden-2","name":"hidden: one-letter name long pressed","kind":"real","visible":false,"input":{"name":"a","typed":"aaaaaa"},"expected":true,"tags":["hidden","single-letter"]},
+{"id":"hidden-3","name":"hidden: leading mismatch","kind":"real","visible":false,"input":{"name":"abc","typed":"aabc"},"expected":true,"tags":["hidden","leading-run"]},
+{"id":"hidden-4","name":"hidden: wrong first character","kind":"real","visible":false,"input":{"name":"abc","typed":"xabc"},"expected":false,"tags":["hidden","first-character"]},
+{"id":"hidden-5","name":"hidden: repeated intended run is fully consumed","kind":"real","visible":false,"input":{"name":"aabb","typed":"aaaabbbb"},"expected":true,"tags":["hidden","repeated-name"]}
+]}

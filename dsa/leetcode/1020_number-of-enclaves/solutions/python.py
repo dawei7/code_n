@@ -1,29 +1,36 @@
-"""Optimal solution for LeetCode 1020: Number of Enclaves."""
+"""Optimal app-local solution for LeetCode 1020."""
 
 from collections import deque
 
 
-def solve(grid: list[list[int]]) -> int:
-    rows, cols = len(grid), len(grid[0])
-    queue: deque[tuple[int, int]] = deque()
+def solve(grid):
+    rows = len(grid)
+    columns = len(grid[0])
+    queue = deque()
 
-    for r in range(rows):
-        for c in (0, cols - 1):
-            if grid[r][c] == 1:
-                grid[r][c] = 0
-                queue.append((r, c))
-    for c in range(cols):
-        for r in (0, rows - 1):
-            if grid[r][c] == 1:
-                grid[r][c] = 0
-                queue.append((r, c))
+    def add(row, column):
+        if grid[row][column] == 1:
+            grid[row][column] = 0
+            queue.append((row, column))
+
+    for row in range(rows):
+        add(row, 0)
+        add(row, columns - 1)
+    for column in range(columns):
+        add(0, column)
+        add(rows - 1, column)
 
     while queue:
-        r, c = queue.popleft()
-        for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            nr, nc = r + dr, c + dc
-            if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:
-                grid[nr][nc] = 0
-                queue.append((nr, nc))
+        row, column = queue.popleft()
+        for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            next_row = row + row_step
+            next_column = column + column_step
+            if (
+                0 <= next_row < rows
+                and 0 <= next_column < columns
+                and grid[next_row][next_column] == 1
+            ):
+                grid[next_row][next_column] = 0
+                queue.append((next_row, next_column))
 
     return sum(sum(row) for row in grid)

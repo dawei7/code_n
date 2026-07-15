@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_993","cases":[
+{"id":"sample-1","name":"sample: different depths","kind":"sample","visible":true,"input":{"root":[1,2,3,4],"x":4,"y":3},"expected":false,"tags":["sample"]},
+{"id":"sample-2","name":"sample: cousins across subtrees","kind":"sample","visible":true,"input":{"root":[1,2,3,null,4,null,5],"x":5,"y":4},"expected":true,"tags":["sample"]},
+{"id":"sample-3","name":"sample: siblings","kind":"sample","visible":true,"input":{"root":[1,2,3,null,4],"x":2,"y":3},"expected":false,"tags":["sample"]},
+{"id":"trial-1","name":"trial: leaf siblings","kind":"trial","visible":true,"input":{"root":[1,2,3,4,5],"x":4,"y":5},"expected":false,"tags":["trial","siblings"]},
+{"id":"trial-2","name":"trial: root and child","kind":"trial","visible":true,"input":{"root":[1,2],"x":1,"y":2},"expected":false,"tags":["trial","root"]},
+{"id":"trial-3","name":"trial: complete-tree cousins","kind":"trial","visible":true,"input":{"root":[1,2,3,4,5,6,7],"x":4,"y":6},"expected":true,"tags":["trial","complete"]},
+{"id":"hidden-1","name":"hidden: deep cousins","kind":"real","visible":false,"input":{"root":[1,2,3,4,null,null,5,6,null,null,7],"x":6,"y":7},"expected":true,"tags":["hidden","deep"]},
+{"id":"hidden-2","name":"hidden: different branches and depths","kind":"real","visible":false,"input":{"root":[1,2,3,4,null,null,5,6],"x":6,"y":5},"expected":false,"tags":["hidden","depth"]},
+{"id":"hidden-3","name":"hidden: value bounds","kind":"real","visible":false,"input":{"root":[100,1,99,2,null,98],"x":2,"y":98},"expected":true,"tags":["hidden","bounds"]}
+]}

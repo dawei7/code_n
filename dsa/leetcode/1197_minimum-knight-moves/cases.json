@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1197",
+  "cases": [
+    {"id":"sample-one-move","name":"sample: target is one knight move away","kind":"sample","visible":true,"input":{"x":2,"y":1},"expected":1,"tags":["sample","direct"]},
+    {"id":"sample-diagonal","name":"sample: diagonal target","kind":"sample","visible":true,"input":{"x":5,"y":5},"expected":4,"tags":["sample","diagonal"]},
+    {"id":"trial-origin","name":"origin requires no move","kind":"trial","visible":true,"input":{"x":0,"y":0},"expected":0,"tags":["boundary","origin"]},
+    {"id":"trial-first-exception","name":"local exception at one square along an axis","kind":"trial","visible":true,"input":{"x":1,"y":0},"expected":3,"tags":["exception","axis"]},
+    {"id":"real-second-exception","name":"hidden: local exception at two by two","kind":"real","visible":false,"input":{"x":2,"y":2},"expected":4,"tags":["hidden","exception"]},
+    {"id":"real-negative-symmetry","name":"hidden: reflections preserve distance","kind":"real","visible":false,"input":{"x":-5,"y":-5},"expected":4,"tags":["hidden","symmetry"]},
+    {"id":"real-parity-adjustment","name":"hidden: parity raises the lower bound","kind":"real","visible":false,"input":{"x":1,"y":1},"expected":2,"tags":["hidden","parity"]},
+    {"id":"real-maximum-axis","name":"hidden: maximum Manhattan distance on one axis","kind":"real","visible":false,"input":{"x":300,"y":0},"expected":150,"tags":["hidden","maximum","axis"]},
+    {"id":"real-maximum-diagonal","name":"hidden: maximum Manhattan distance split evenly","kind":"real","visible":false,"input":{"x":150,"y":150},"expected":100,"tags":["hidden","maximum","diagonal"]}
+  ]
+}

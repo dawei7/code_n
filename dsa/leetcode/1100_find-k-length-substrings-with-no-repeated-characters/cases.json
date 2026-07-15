@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_1100",
+  "cases": [
+    {"id": "sample-six-valid-windows", "name": "sample: six distinct-character windows", "kind": "sample", "visible": true, "input": {"s": "havefunonleetcode", "k": 5}, "expected": 6, "tags": ["sample", "sliding-window"]},
+    {"id": "sample-window-longer-than-string", "name": "sample: k exceeds string length", "kind": "sample", "visible": true, "input": {"s": "home", "k": 5}, "expected": 0, "tags": ["sample", "oversized-window"]},
+    {"id": "trial-overlapping-valid", "name": "trial: overlapping windows are counted by position", "kind": "trial", "visible": true, "input": {"s": "abcabc", "k": 3}, "expected": 4, "tags": ["trial", "overlap"]},
+    {"id": "trial-single-character-windows", "name": "trial: every length-one window is valid", "kind": "trial", "visible": true, "input": {"s": "aaaa", "k": 1}, "expected": 4, "tags": ["trial", "k-one"]},
+    {"id": "real-full-alphabet", "name": "hidden: one window uses every lowercase letter", "kind": "real", "visible": false, "input": {"s": "abcdefghijklmnopqrstuvwxyz", "k": 26}, "expected": 1, "tags": ["hidden", "alphabet-boundary"]},
+    {"id": "real-repeated-boundaries", "name": "hidden: repetitions invalidate interior windows", "kind": "real", "visible": false, "input": {"s": "abcaefghia", "k": 5}, "expected": 5, "tags": ["hidden", "repetitions"]}
+  ]
+}

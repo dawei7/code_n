@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: priority order",
+      "name": "sample: repeated priority values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -44,12 +44,12 @@
       ],
       "tags": [
         "sample",
-        "sorting"
+        "relative-order"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: leftover sorted values",
+      "name": "sample: ascending leftover suffix",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -77,66 +77,196 @@
         44
       ],
       "tags": [
-        "sample"
+        "sample",
+        "relative-order"
       ]
     },
     {
-      "id": "trial-all-prioritized",
-      "name": "all values are prioritized",
+      "id": "trial-single",
+      "name": "one value in both arrays",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr1": [
+          0
+        ],
+        "arr2": [
+          0
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial",
+        "relative-order"
+      ]
+    },
+    {
+      "id": "trial-all-priority",
+      "name": "all distinct values are prioritized in reverse",
       "kind": "trial",
       "visible": true,
       "input": {
         "arr1": [
           1,
           2,
-          3
+          3,
+          4
         ],
         "arr2": [
-          1,
+          4,
+          3,
           2,
-          3
+          1
         ]
       },
       "expected": [
-        1,
+        4,
+        3,
         2,
-        3
+        1
       ],
       "tags": [
-        "trial"
+        "trial",
+        "relative-order"
       ]
     },
     {
-      "id": "real-mixed-leftovers",
-      "name": "hidden: mixed leftovers",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-group",
+      "name": "one repeated priority group",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr1": [
           5,
           3,
           5,
           2,
-          1,
-          4,
-          2
+          5,
+          3
         ],
         "arr2": [
+          3
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        2,
+        5,
+        5,
+        5
+      ],
+      "tags": [
+        "trial",
+        "relative-order"
+      ]
+    },
+    {
+      "id": "real-domain-ends",
+      "name": "hidden: zero and one thousand",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr1": [
+          1000,
+          0,
+          500,
+          1000,
+          1,
+          0
+        ],
+        "arr2": [
+          1000,
+          0
+        ]
+      },
+      "expected": [
+        1000,
+        1000,
+        0,
+        0,
+        1,
+        500
+      ],
+      "tags": [
+        "real",
+        "relative-order"
+      ]
+    },
+    {
+      "id": "real-interleaved",
+      "name": "hidden: interleaved duplicate groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr1": [
+          8,
+          4,
+          6,
+          4,
+          8,
           2,
+          7,
+          6,
+          3
+        ],
+        "arr2": [
+          6,
+          8,
+          4
+        ]
+      },
+      "expected": [
+        6,
+        6,
+        8,
+        8,
+        4,
+        4,
+        2,
+        3,
+        7
+      ],
+      "tags": [
+        "real",
+        "relative-order"
+      ]
+    },
+    {
+      "id": "real-leftover-duplicates",
+      "name": "hidden: repeated leftover values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr1": [
+          9,
+          2,
+          7,
+          2,
+          5,
+          7,
+          1,
           5
+        ],
+        "arr2": [
+          2
         ]
       },
       "expected": [
         2,
         2,
-        5,
-        5,
         1,
-        3,
-        4
+        5,
+        5,
+        7,
+        7,
+        9
       ],
       "tags": [
-        "hidden"
+        "real",
+        "relative-order"
       ]
     }
   ]

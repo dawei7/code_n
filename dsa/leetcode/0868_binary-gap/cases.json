@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_868",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two different adjacent gaps", "kind": "sample", "visible": true, "input": {"n": 22}, "expected": 2, "tags": ["sample", "multiple-gaps"]},
+    {"id": "sample-2", "name": "sample: one set bit", "kind": "sample", "visible": true, "input": {"n": 8}, "expected": 0, "tags": ["sample", "power-of-two"]},
+    {"id": "sample-3", "name": "sample: one separating zero", "kind": "sample", "visible": true, "input": {"n": 5}, "expected": 2, "tags": ["sample", "single-gap"]},
+    {"id": "trial-1", "name": "trial: minimum value", "kind": "trial", "visible": true, "input": {"n": 1}, "expected": 0, "tags": ["trial", "minimum"]},
+    {"id": "trial-2", "name": "trial: consecutive ones", "kind": "trial", "visible": true, "input": {"n": 3}, "expected": 1, "tags": ["trial", "consecutive"]},
+    {"id": "trial-3", "name": "trial: endpoint set bits", "kind": "trial", "visible": true, "input": {"n": 9}, "expected": 3, "tags": ["trial", "wide-gap"]},
+    {"id": "hidden-1", "name": "hidden: adjacent high bits", "kind": "real", "visible": false, "input": {"n": 6}, "expected": 1, "tags": ["hidden", "consecutive"]},
+    {"id": "hidden-2", "name": "hidden: shifted alternating bits", "kind": "real", "visible": false, "input": {"n": 10}, "expected": 2, "tags": ["hidden", "trailing-zero"]},
+    {"id": "hidden-3", "name": "hidden: repeated equal gaps", "kind": "real", "visible": false, "input": {"n": 21}, "expected": 2, "tags": ["hidden", "equal-gaps"]},
+    {"id": "hidden-4", "name": "hidden: longer alternating pattern", "kind": "real", "visible": false, "input": {"n": 85}, "expected": 2, "tags": ["hidden", "alternating"]},
+    {"id": "hidden-5", "name": "hidden: maximum input", "kind": "real", "visible": false, "input": {"n": 1000000000}, "expected": 3, "tags": ["hidden", "maximum"]},
+    {"id": "hidden-6", "name": "hidden: twenty-nine consecutive set bits", "kind": "real", "visible": false, "input": {"n": 536870911}, "expected": 1, "tags": ["hidden", "dense"]}
+  ]
+}

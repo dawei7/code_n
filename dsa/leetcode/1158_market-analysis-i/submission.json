@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1268",
+  "frontend_id": "1158",
+  "title_slug": "market-analysis-i",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067867029",
+  "verified_at": "2026-07-14T20:42:17.097066+00:00"
+}

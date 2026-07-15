@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_857",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: official two-worker choice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "quality": [
+          10,
+          20,
+          5
+        ],
+        "wage": [
+          70,
+          50,
+          30
+        ],
+        "k": 2
+      },
+      "expected": 105,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "sample",
+        "ratio"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: official three-worker choice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "quality": [
+          3,
+          1,
+          10,
+          10,
+          1
+        ],
+        "wage": [
+          4,
+          8,
+          2,
+          2,
+          7
+        ],
+        "k": 3
+      },
+      "expected": 30.666666666666664,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "sample",
+        "fractional"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: hire one cheapest worker",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "quality": [
+          5,
+          10,
+          2
+        ],
+        "wage": [
+          30,
+          20,
+          8
+        ],
+        "k": 1
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "sample",
+        "k-one"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: hire every worker",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "quality": [
+          1,
+          2,
+          3
+        ],
+        "wage": [
+          2,
+          2,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 18,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "trial",
+        "all"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: equal pay ratios",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "quality": [
+          2,
+          4,
+          6
+        ],
+        "wage": [
+          3,
+          6,
+          9
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "trial",
+        "equal-ratio"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: two high-ratio low-quality workers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "quality": [
+          10,
+          1,
+          1
+        ],
+        "wage": [
+          1,
+          10,
+          10
+        ],
+        "k": 2
+      },
+      "expected": 20,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "trial",
+        "quality"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: one worker among equal wages",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "quality": [
+          9,
+          3,
+          6,
+          2
+        ],
+        "wage": [
+          12,
+          12,
+          12,
+          12
+        ],
+        "k": 1
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "hidden",
+        "k-one"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: all workers with fractional ratio",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "quality": [
+          4,
+          7,
+          2
+        ],
+        "wage": [
+          5,
+          8,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 19.5,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "hidden",
+        "all"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: duplicate qualities",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "quality": [
+          5,
+          5,
+          10,
+          10
+        ],
+        "wage": [
+          6,
+          7,
+          11,
+          30
+        ],
+        "k": 2
+      },
+      "expected": 14,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: largest quality is evicted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "quality": [
+          100,
+          1,
+          2,
+          3
+        ],
+        "wage": [
+          100,
+          2,
+          4,
+          6
+        ],
+        "k": 3
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "hidden",
+        "heap"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: mixed ratios and group sizes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "quality": [
+          8,
+          6,
+          4,
+          2,
+          10
+        ],
+        "wage": [
+          24,
+          12,
+          20,
+          8,
+          25
+        ],
+        "k": 3
+      },
+      "expected": 60,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-6",
+      "name": "hidden: equal minimum wages",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "quality": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "wage": [
+          16,
+          16,
+          16,
+          16
+        ],
+        "k": 2
+      },
+      "expected": 48,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "hidden",
+        "equal-wage"
+      ]
+    }
+  ]
+}

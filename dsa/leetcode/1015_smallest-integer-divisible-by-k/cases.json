@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_1015","cases":[
+{"id":"sample-1","name":"sample: divisor one","kind":"sample","visible":true,"input":{"k":1},"expected":1,"tags":["sample"]},
+{"id":"sample-2","name":"sample: even divisor impossible","kind":"sample","visible":true,"input":{"k":2},"expected":-1,"tags":["sample"]},
+{"id":"sample-3","name":"sample: three digits","kind":"sample","visible":true,"input":{"k":3},"expected":3,"tags":["sample"]},
+{"id":"trial-1","name":"trial: factor five impossible","kind":"trial","visible":true,"input":{"k":25},"expected":-1,"tags":["trial","factor-five"]},
+{"id":"trial-2","name":"trial: six-digit repunit","kind":"trial","visible":true,"input":{"k":7},"expected":6,"tags":["trial","period"]},
+{"id":"trial-3","name":"trial: another six-digit divisor","kind":"trial","visible":true,"input":{"k":13},"expected":6,"tags":["trial","period"]},
+{"id":"hidden-1","name":"hidden: divisible by nine","kind":"real","visible":false,"input":{"k":9},"expected":9,"tags":["hidden","digit-sum"]},
+{"id":"hidden-2","name":"hidden: composite coprime divisor","kind":"real","visible":false,"input":{"k":27},"expected":27,"tags":["hidden","composite"]},
+{"id":"hidden-3","name":"hidden: factor two and five","kind":"real","visible":false,"input":{"k":100000},"expected":-1,"tags":["hidden","maximum"]}
+]}

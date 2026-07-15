@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_869",
+  "cases": [
+    {"id": "sample-1", "name": "sample: one is a power of two", "kind": "sample", "visible": true, "input": {"n": 1}, "expected": true, "tags": ["sample", "original-order"]},
+    {"id": "sample-2", "name": "sample: leading-zero alternative is invalid", "kind": "sample", "visible": true, "input": {"n": 10}, "expected": false, "tags": ["sample", "zero"]},
+    {"id": "sample-3", "name": "sample: reorder to sixty-four", "kind": "sample", "visible": true, "input": {"n": 46}, "expected": true, "tags": ["sample", "reordered"]},
+    {"id": "trial-1", "name": "trial: original order is power", "kind": "trial", "visible": true, "input": {"n": 16}, "expected": true, "tags": ["trial", "original-order"]},
+    {"id": "trial-2", "name": "trial: two digits do not form a power", "kind": "trial", "visible": true, "input": {"n": 24}, "expected": false, "tags": ["trial", "false"]},
+    {"id": "trial-3", "name": "trial: reorder to one hundred twenty-eight", "kind": "trial", "visible": true, "input": {"n": 821}, "expected": true, "tags": ["trial", "reordered"]},
+    {"id": "hidden-1", "name": "hidden: reverse digits to sixteen", "kind": "real", "visible": false, "input": {"n": 61}, "expected": true, "tags": ["hidden", "reordered"]},
+    {"id": "hidden-2", "name": "hidden: reorder to two hundred fifty-six", "kind": "real", "visible": false, "input": {"n": 625}, "expected": true, "tags": ["hidden", "reordered"]},
+    {"id": "hidden-3", "name": "hidden: distinct digits with no match", "kind": "real", "visible": false, "input": {"n": 123}, "expected": false, "tags": ["hidden", "false"]},
+    {"id": "hidden-4", "name": "hidden: maximum input with repeated zeros", "kind": "real", "visible": false, "input": {"n": 1000000000}, "expected": false, "tags": ["hidden", "maximum"]},
+    {"id": "hidden-5", "name": "hidden: zero-containing nonmatch", "kind": "real", "visible": false, "input": {"n": 107}, "expected": false, "tags": ["hidden", "zero"]},
+    {"id": "hidden-6", "name": "hidden: three-digit power unchanged", "kind": "real", "visible": false, "input": {"n": 128}, "expected": true, "tags": ["hidden", "original-order"]}
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1152",
+  "measurement_note": "Size is the total visit count. Distinct website names make one user's history produce every one of its cubic number of three-visit patterns. The optimal implementation generates each combination once, while the calibrated slower implementation rescans the full history for every candidate pattern.",
+  "cases": [
+    {
+      "id": "benchmark-scale-6",
+      "name": "benchmark: one user with 6 distinct chronological visits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "username": [
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u"
+        ],
+        "timestamp": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "website": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af"
+        ]
+      },
+      "expected": [
+        "aa",
+        "ab",
+        "ac"
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "candidate-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-12",
+      "name": "benchmark: one user with 12 distinct chronological visits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "username": [
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u"
+        ],
+        "timestamp": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "website": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "aj",
+          "ak",
+          "al"
+        ]
+      },
+      "expected": [
+        "aa",
+        "ab",
+        "ac"
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "candidate-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-24",
+      "name": "benchmark: one user with 24 distinct chronological visits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "username": [
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u",
+          "u"
+        ],
+        "timestamp": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24
+        ],
+        "website": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "aj",
+          "ak",
+          "al",
+          "am",
+          "an",
+          "ao",
+          "ap",
+          "aq",
+          "ar",
+          "as",
+          "at",
+          "au",
+          "av",
+          "aw",
+          "ax"
+        ]
+      },
+      "expected": [
+        "aa",
+        "ab",
+        "ac"
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "candidate-rescan"
+      ]
+    }
+  ]
+}

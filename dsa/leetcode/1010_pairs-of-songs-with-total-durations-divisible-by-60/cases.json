@@ -1,78 +1,11 @@
-{
-  "challenge_id": "lc_1010",
-  "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: three pairs",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "time": [
-          30,
-          20,
-          150,
-          100,
-          40
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample",
-        "modulo"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: all multiples",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "time": [
-          60,
-          60,
-          60
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-no-pairs",
-      "name": "no valid pair",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "time": [
-          10,
-          20,
-          30
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "edge"
-      ]
-    },
-    {
-      "id": "real-complementary-remainders",
-      "name": "hidden: complementary remainders",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "time": [
-          10,
-          50,
-          20,
-          40,
-          30
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "hidden"
-      ]
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_1010","cases":[
+{"id":"sample-1","name":"sample: three complementary pairs","kind":"sample","visible":true,"input":{"time":[30,20,150,100,40]},"expected":3,"tags":["sample"]},
+{"id":"sample-2","name":"sample: all multiples of sixty","kind":"sample","visible":true,"input":{"time":[60,60,60]},"expected":3,"tags":["sample"]},
+{"id":"trial-1","name":"trial: no valid pair","kind":"trial","visible":true,"input":{"time":[10,20,30]},"expected":0,"tags":["trial","none"]},
+{"id":"trial-2","name":"trial: complementary and self-complementary","kind":"trial","visible":true,"input":{"time":[10,50,90,30]},"expected":2,"tags":["trial","remainder-thirty"]},
+{"id":"trial-3","name":"trial: one song","kind":"trial","visible":true,"input":{"time":[120]},"expected":0,"tags":["trial","minimum"]},
+{"id":"hidden-1","name":"hidden: four remainder-zero songs","kind":"real","visible":false,"input":{"time":[60,120,180,240]},"expected":6,"tags":["hidden","remainder-zero"]},
+{"id":"hidden-2","name":"hidden: repeated complementary buckets","kind":"real","visible":false,"input":{"time":[1,59,61,119,121,179]},"expected":9,"tags":["hidden","duplicates"]},
+{"id":"hidden-3","name":"hidden: several remainder classes","kind":"real","visible":false,"input":{"time":[15,45,30,30,60,90,120,75,105]},"expected":8,"tags":["hidden","mixed"]},
+{"id":"hidden-4","name":"hidden: maximum duration boundary","kind":"real","visible":false,"input":{"time":[500,460,400,320]},"expected":4,"tags":["hidden","boundary"]}
+]}

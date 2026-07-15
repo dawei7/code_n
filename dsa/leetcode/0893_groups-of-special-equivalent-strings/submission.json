@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "929",
+  "frontend_id": "893",
+  "title_slug": "groups-of-special-equivalent-strings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numSpecialEquivGroups",
+  "verified_submission_id": "2066777939",
+  "verified_at": "2026-07-14T02:49:25.632901+00:00"
+}

@@ -1,95 +1,10 @@
-{
-  "challenge_id": "lc_1002",
-  "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: bella label roller",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "bella",
-          "label",
-          "roller"
-        ]
-      },
-      "expected": [
-        "e",
-        "l",
-        "l"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample",
-        "counter"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: cool lock cook",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "cool",
-          "lock",
-          "cook"
-        ]
-      },
-      "expected": [
-        "c",
-        "o"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-no-common",
-      "name": "no common characters",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "words": [
-          "abc",
-          "def"
-        ]
-      },
-      "expected": [],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "edge"
-      ]
-    },
-    {
-      "id": "real-repeated-common",
-      "name": "hidden: repeated common character",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "words": [
-          "aabb",
-          "abbb",
-          "aaab"
-        ]
-      },
-      "expected": [
-        "a",
-        "b"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "hidden"
-      ]
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_1002","cases":[
+{"id":"sample-1","name":"sample: repeated common letter","kind":"sample","visible":true,"input":{"words":["bella","label","roller"]},"expected":["e","l","l"],"tags":["sample"]},
+{"id":"sample-2","name":"sample: two common letters","kind":"sample","visible":true,"input":{"words":["cool","lock","cook"]},"expected":["c","o"],"tags":["sample"]},
+{"id":"trial-1","name":"trial: one word","kind":"trial","visible":true,"input":{"words":["abc"]},"expected":["a","b","c"],"tags":["trial","single-word"]},
+{"id":"trial-2","name":"trial: disjoint words","kind":"trial","visible":true,"input":{"words":["ab","cd"]},"expected":[],"tags":["trial","empty"]},
+{"id":"trial-3","name":"trial: multiplicity minimum","kind":"trial","visible":true,"input":{"words":["aaa","aa","aaaa"]},"expected":["a","a"],"tags":["trial","duplicates"]},
+{"id":"hidden-1","name":"hidden: multiple repeated characters","kind":"real","visible":false,"input":{"words":["zzxy","xzz","zxz"]},"expected":["x","z","z"],"tags":["hidden","multiplicity"]},
+{"id":"hidden-2","name":"hidden: same singleton everywhere","kind":"real","visible":false,"input":{"words":["a","a","a"]},"expected":["a"],"tags":["hidden","singleton"]},
+{"id":"hidden-3","name":"hidden: same letters in different orders","kind":"real","visible":false,"input":{"words":["abc","bca","cab"]},"expected":["a","b","c"],"tags":["hidden","order"]}
+]}

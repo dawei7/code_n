@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1005",
+  "frontend_id": "965",
+  "title_slug": "univalued-binary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isUnivalTree",
+  "verified_submission_id": "2067116503",
+  "verified_at": "2026-07-14T08:32:11.501670+00:00"
+}

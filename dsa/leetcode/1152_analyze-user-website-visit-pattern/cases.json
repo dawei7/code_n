@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1152",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: shared home-about-career pattern",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "username": ["joe", "joe", "joe", "james", "james", "james", "james", "mary", "mary", "mary"],
+        "timestamp": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        "website": ["home", "about", "career", "home", "cart", "maps", "home", "home", "about", "career"]
+      },
+      "expected": ["home", "about", "career"],
+      "tags": ["sample", "distinct-users"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: lexicographic tie with repeated website",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "username": ["ua", "ua", "ua", "ub", "ub", "ub"],
+        "timestamp": [1, 2, 3, 4, 5, 6],
+        "website": ["a", "b", "a", "a", "b", "c"]
+      },
+      "expected": ["a", "b", "a"],
+      "tags": ["sample", "tie", "repeated-site"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: unsorted timestamps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "username": ["u", "u", "u"],
+        "timestamp": [3, 1, 2],
+        "website": ["c", "a", "b"]
+      },
+      "expected": ["a", "b", "c"],
+      "tags": ["sample", "sorting"]
+    },
+    {
+      "id": "trial-nonconsecutive",
+      "name": "nonconsecutive visits form the leading pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "username": ["u1", "u1", "u1", "u1", "u1", "u2", "u2", "u2"],
+        "timestamp": [1, 2, 3, 4, 5, 6, 7, 8],
+        "website": ["a", "x", "b", "y", "c", "a", "b", "c"]
+      },
+      "expected": ["a", "b", "c"],
+      "tags": ["trial", "subsequence"]
+    },
+    {
+      "id": "trial-repeated-sites",
+      "name": "pattern contains a repeated website",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "username": ["u1", "u1", "u1", "u2", "u2", "u2"],
+        "timestamp": [1, 2, 3, 4, 5, 6],
+        "website": ["x", "x", "y", "x", "x", "y"]
+      },
+      "expected": ["x", "x", "y"],
+      "tags": ["trial", "repeated-site"]
+    },
+    {
+      "id": "real-one-user-once",
+      "name": "hidden: duplicate combinations count one user once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "username": ["u1", "u1", "u1", "u1", "u1", "u1", "u2", "u2", "u2", "u3", "u3", "u3"],
+        "timestamp": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        "website": ["a", "b", "c", "a", "b", "c", "a", "b", "d", "a", "b", "d"]
+      },
+      "expected": ["a", "b", "d"],
+      "tags": ["real", "deduplication"]
+    },
+    {
+      "id": "real-interleaved-users",
+      "name": "hidden: globally interleaved visit histories",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "username": ["p", "q", "p", "q", "p", "q", "r", "r", "r"],
+        "timestamp": [8, 2, 3, 7, 10, 9, 1, 4, 6],
+        "website": ["green", "red", "blue", "blue", "red", "green", "red", "blue", "green"]
+      },
+      "expected": ["red", "blue", "green"],
+      "tags": ["real", "sorting", "distinct-users"]
+    }
+  ]
+}

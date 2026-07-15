@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1319",
+  "frontend_id": "1207",
+  "title_slug": "unique-number-of-occurrences",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.uniqueOccurrences",
+  "verified_submission_id": "2067932452",
+  "verified_at": "2026-07-15T00:11:17.675701+00:00"
+}

@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_948",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: cannot play first token",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tokens": [
+          100
+        ],
+        "power": 50
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "blocked"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one affordable token",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tokens": [
+          200,
+          100
+        ],
+        "power": 150
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-score"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: trade score for power",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tokens": [
+          100,
+          200,
+          300,
+          400
+        ],
+        "power": 200
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "trade"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: empty bag",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tokens": [],
+        "power": 0
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: zero-valued tokens",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tokens": [
+          0,
+          0,
+          0
+        ],
+        "power": 0
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "zero-values"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: stop with one token remaining",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tokens": [
+          100,
+          200
+        ],
+        "power": 100
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "stop"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: trade unlocks two purchases",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tokens": [
+          25,
+          50,
+          75,
+          100
+        ],
+        "power": 50
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "trade"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: exact upper token purchase",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tokens": [
+          9999
+        ],
+        "power": 9999
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "upper-value"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: no affordable value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tokens": [
+          55,
+          71,
+          82
+        ],
+        "power": 54
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "blocked"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: input order is irrelevant",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tokens": [
+          400,
+          100,
+          300,
+          200
+        ],
+        "power": 200
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "unsorted"
+      ]
+    }
+  ]
+}

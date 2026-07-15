@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "868",
+  "frontend_id": "838",
+  "title_slug": "push-dominoes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.pushDominoes",
+  "verified_submission_id": "2066697105",
+  "verified_at": "2026-07-13T22:54:39.634465+00:00"
+}

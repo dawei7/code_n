@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_887",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one egg and two floors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 1,
+        "n": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "one-egg"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two eggs and six floors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 2,
+        "n": 6
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "two-eggs"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three eggs and fourteen floors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 3,
+        "n": 14
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "three-eggs"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one floor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1,
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-floor"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one egg requires a linear search",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1,
+        "n": 10
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "one-egg"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: eggs are not the limiting resource",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 100,
+        "n": 8
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "many-eggs"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: triangular coverage with two eggs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 2,
+        "n": 100
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "two-eggs"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: exact three-egg coverage boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 3,
+        "n": 25
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "exact-coverage"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: four eggs across five hundred floors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 4,
+        "n": 500
+      },
+      "expected": 11,
+      "tags": [
+        "hidden",
+        "four-eggs"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: maximum eggs and floors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 100,
+        "n": 10000
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: extra egg on one floor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 2,
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "single-floor"
+      ]
+    }
+  ]
+}

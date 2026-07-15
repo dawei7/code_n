@@ -1,116 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1139",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: hollow square",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            1,
-            1
-          ],
-          [
-            1,
-            0,
-            1
-          ],
-          [
-            1,
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 9,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: one row",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            1,
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-no-ones",
-      "name": "no ones",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-large-border",
-      "name": "hidden: large border with holes",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "grid": [
-          [
-            1,
-            1,
-            1,
-            1
-          ],
-          [
-            1,
-            0,
-            0,
-            1
-          ],
-          [
-            1,
-            0,
-            1,
-            1
-          ],
-          [
-            1,
-            1,
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 16,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: zero interior does not break border","kind":"sample","visible":true,"input":{"grid":[[1,1,1],[1,0,1],[1,1,1]]},"expected":9,"tags":["sample","hollow"]},
+    {"id":"sample-2","name":"sample: one-row grid","kind":"sample","visible":true,"input":{"grid":[[1,1,0,0]]},"expected":1,"tags":["sample","single-row"]},
+    {"id":"trial-zero","name":"single zero has no valid square","kind":"trial","visible":true,"input":{"grid":[[0]]},"expected":0,"tags":["trial","zero"]},
+    {"id":"trial-one","name":"single one is a side-one square","kind":"trial","visible":true,"input":{"grid":[[1]]},"expected":1,"tags":["trial","singleton"]},
+    {"id":"trial-filled","name":"filled rectangle contains largest fitting square","kind":"trial","visible":true,"input":{"grid":[[1,1,1,1],[1,1,1,1],[1,1,1,1]]},"expected":9,"tags":["trial","rectangle"]},
+    {"id":"real-broken-outer","name":"hidden: broken outer border leaves inner square","kind":"real","visible":false,"input":{"grid":[[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,0]]},"expected":9,"tags":["real","broken-corner"]},
+    {"id":"real-offset","name":"hidden: largest square is offset from origin","kind":"real","visible":false,"input":{"grid":[[0,0,0,0,0],[0,1,1,1,1],[0,1,0,0,1],[0,1,0,0,1],[0,1,1,1,1]]},"expected":16,"tags":["real","offset"]},
+    {"id":"real-no-side-two","name":"hidden: isolated ones only","kind":"real","visible":false,"input":{"grid":[[1,0,1],[0,1,0],[1,0,1]]},"expected":1,"tags":["real","isolated"]}
   ]
 }

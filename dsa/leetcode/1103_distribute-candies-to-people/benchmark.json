@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1103",
+  "measurement_note": "Size is G, the number of complete scheduled gifts represented by candies; num_people stays 16. The optimal arithmetic-progression solution depends only on the output length, while the calibrated slower implementation performs every gift in sequence.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 256 complete scheduled gifts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "candies": 32981,
+        "num_people": 16
+      },
+      "expected": [
+        2021,
+        1952,
+        1968,
+        1984,
+        2000,
+        2016,
+        2032,
+        2048,
+        2064,
+        2080,
+        2096,
+        2112,
+        2128,
+        2144,
+        2160,
+        2176
+      ],
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "gift-by-gift-simulation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 2048 complete scheduled gifts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2048,
+      "input": {
+        "candies": 2098858,
+        "num_people": 16
+      },
+      "expected": [
+        130858,
+        130304,
+        130432,
+        130560,
+        130688,
+        130816,
+        130944,
+        131072,
+        131200,
+        131328,
+        131456,
+        131584,
+        131712,
+        131840,
+        131968,
+        132096
+      ],
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "gift-by-gift-simulation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16384 complete scheduled gifts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16384,
+      "input": {
+        "candies": 134231381,
+        "num_people": 16
+      },
+      "expected": [
+        8386901,
+        8382464,
+        8383488,
+        8384512,
+        8385536,
+        8386560,
+        8387584,
+        8388608,
+        8389632,
+        8390656,
+        8391680,
+        8392704,
+        8393728,
+        8394752,
+        8395776,
+        8396800
+      ],
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "gift-by-gift-simulation"
+      ]
+    }
+  ]
+}

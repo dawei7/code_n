@@ -1,6 +1,12 @@
-def solve(distance, start, destination):
+def solve(distance: list[int], start: int, destination: int) -> int:
     if start > destination:
         start, destination = destination, start
-    clockwise = sum(distance[start:destination])
-    total = sum(distance)
-    return min(clockwise, total - clockwise)
+
+    total = 0
+    direct = 0
+    for index, edge in enumerate(distance):
+        total += edge
+        if start <= index < destination:
+            direct += edge
+
+    return min(direct, total - direct)

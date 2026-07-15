@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1036",
+  "frontend_id": "994",
+  "title_slug": "rotting-oranges",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.orangesRotting",
+  "verified_submission_id": "2067231492",
+  "verified_at": "2026-07-14T10:22:31.987680+00:00"
+}

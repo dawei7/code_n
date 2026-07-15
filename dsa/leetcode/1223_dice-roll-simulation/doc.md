@@ -8,71 +8,82 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [dice-roll-simulation](https://leetcode.com/problems/dice-roll-simulation/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/dice-roll-simulation/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/dice-roll-simulation/).
 
 ### Goal
-Count length-`n` dice roll sequences where face `i` is not rolled more than `rollMax[i]` times consecutively.
+
+A die simulator produces a sequence of `n` rolls, each with a value from `1` through `6`. The six-element array `rollMax` limits consecutive repetitions: face $i+1$ may appear at most `rollMax[i]` times in a row.
+
+Return the number of distinct roll sequences that satisfy every face's consecutive-occurrence limit. Because the count can be large, return it modulo $M=10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: sequence length.
-- `rollMax`: six limits for consecutive occurrences of faces `1` through `6`.
+- `n`: The number of rolls in a sequence, where $1\le n\le5000$.
+- `roll_max`: Six consecutive-run limits corresponding to faces `1` through `6`; each value lies from `1` through `15`. This is the app-local form of LeetCode's `rollMax` parameter.
+
+Define the total number of run-length states as
+
+$$
+R=\sum_{f=0}^{5}\texttt{roll\_max[f]}.
+$$
 
 **Return value**
 
-The number of valid sequences modulo `1_000_000_007`.
+- The number of valid length-`n` roll sequences, reduced modulo $M$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `n = 2`, `rollMax = [1,1,2,2,2,3]`
+- Input: `n = 2`, `roll_max = [1,1,2,2,2,3]`
 - Output: `34`
+
+Of the `36` two-roll sequences, `11` and `22` violate their limits.
 
 **Example 2**
 
-- Input: `n = 2`, `rollMax = [1,1,1,1,1,1]`
+- Input: `n = 2`, `roll_max = [1,1,1,1,1,1]`
 - Output: `30`
+
+The second roll must differ from the first, giving `6 * 5` choices.
 
 **Example 3**
 
-- Input: `n = 3`, `rollMax = [1,1,1,2,2,3]`
+- Input: `n = 3`, `roll_max = [1,1,1,2,2,3]`
 - Output: `181`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Dynamic programming over last face and run length.
+- **Time:** $O(nR)$
+- **Space:** $O(R)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n * 6 * max(rollMax) * 6)`
-- **Space Complexity**: `O(6 * max(rollMax))`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(n, roll_max):
-    mod = 1_000_000_007
-    dp = [[0] * (roll_max[i] + 1) for i in range(6)]
-    for face in range(6):
-        dp[face][1] = 1
+#### General
 
-    for _ in range(1, n):
-        next_dp = [[0] * (roll_max[i] + 1) for i in range(6)]
-        totals = [sum(row) % mod for row in dp]
-        all_total = sum(totals) % mod
-        for face in range(6):
-            next_dp[face][1] = (all_total - totals[face]) % mod
-            for count in range(1, roll_max[face]):
-                next_dp[face][count + 1] = dp[face][count]
-        dp = next_dp
+**Retain both the final face and its run length.** A partial sequence's legal next rolls depend only on which face appears last and how many consecutive times it currently appears. Store a count for every permitted `(face, run_length)` state. At length one, each face has one sequence with run length one.
 
-    return sum(sum(row) for row in dp) % mod
-```
+**Separate face changes from run extensions.** For each new roll position, first total the states ending in every face and the total across all faces. A new run of face `f` with length one can follow any sequence not ending in `f`, so its count is the all-face total minus face `f`'s total. Existing runs of `f` shift from length `r` to `r + 1` only while `r` is below `roll_max[f]`.
+
+**Why the transitions form a partition.** Every valid longer sequence either changes face on its final roll, uniquely placing it in a new length-one state, or repeats its final face, uniquely extending the previous run by one. The limit check rejects exactly the forbidden extensions. Conversely, every constructed state respects its face's bound and inherits validity from its prefix. Induction over sequence length therefore makes the final sum count every valid sequence exactly once.
+
+#### Complexity detail
+
+Each roll position totals and advances the $R$ states once, giving $O(nR)$ time. Only the current and next collections of $R$ states are retained, so auxiliary space is $O(R)$. All additions and subtractions are reduced modulo $M$.
+
+#### Alternatives and edge cases
+
+- **Enumerate complete roll sequences:** Recursive generation is direct but explores exponentially many valid prefixes.
+- **Recompute every prefix length independently:** It produces correct counts but repeats all earlier transitions and takes $O(n^2R)$ time.
+- **Three-dimensional table by length, face, and run:** This mirrors the recurrence but stores $O(nR)$ values when only the preceding length is needed.
+- **One roll:** Every face is legal regardless of its positive limit, so the answer is `6`.
+- **All limits equal one:** Adjacent rolls must differ, yielding $6\cdot5^{n-1}$ sequences before modular reduction.
+- **Large limits:** When every limit is at least `n`, all $6^n$ sequences are valid.
+- **Simultaneous layer update:** New states must not feed other transitions at the same sequence length.
+
 </details>

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "900",
+  "frontend_id": "869",
+  "title_slug": "reordered-power-of-2",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.reorderedPowerOf2",
+  "verified_submission_id": "2066735374",
+  "verified_at": "2026-07-14T01:08:04.767900+00:00"
+}

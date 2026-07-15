@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1136",
+  "cases": [
+    {"id":"sample-1","name":"sample: two prerequisites in parallel","kind":"sample","visible":true,"input":{"n":3,"relations":[[1,3],[2,3]]},"expected":2,"tags":["sample","parallel"]},
+    {"id":"sample-2","name":"sample: all courses form a cycle","kind":"sample","visible":true,"input":{"n":3,"relations":[[1,2],[2,3],[3,1]]},"expected":-1,"tags":["sample","cycle"]},
+    {"id":"trial-chain","name":"chain needs one semester per course","kind":"trial","visible":true,"input":{"n":4,"relations":[[1,2],[2,3],[3,4]]},"expected":4,"tags":["trial","chain"]},
+    {"id":"trial-merge","name":"parallel branches merge into final course","kind":"trial","visible":true,"input":{"n":6,"relations":[[1,4],[2,4],[3,5],[4,6],[5,6]]},"expected":3,"tags":["trial","merge"]},
+    {"id":"trial-independent","name":"independent components progress together","kind":"trial","visible":true,"input":{"n":5,"relations":[[1,2],[3,4]]},"expected":2,"tags":["trial","components"]},
+    {"id":"real-transitive","name":"hidden: transitive edge does not add a semester","kind":"real","visible":false,"input":{"n":4,"relations":[[1,2],[1,3],[2,4],[3,4],[1,4]]},"expected":3,"tags":["real","transitive"]},
+    {"id":"real-partial-cycle","name":"hidden: cycle remains despite acyclic courses","kind":"real","visible":false,"input":{"n":6,"relations":[[1,2],[2,3],[4,5],[5,6],[6,4]]},"expected":-1,"tags":["real","partial-cycle"]},
+    {"id":"real-longest-branch","name":"hidden: longest branch determines semesters","kind":"real","visible":false,"input":{"n":8,"relations":[[1,4],[2,4],[3,5],[4,6],[5,7],[6,8],[7,8]]},"expected":4,"tags":["real","longest-chain"]}
+  ]
+}

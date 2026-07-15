@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "884",
+  "frontend_id": "854",
+  "title_slug": "k-similar-strings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.kSimilarity",
+  "verified_submission_id": "2066716898",
+  "verified_at": "2026-07-14T00:06:31.721910+00:00"
+}

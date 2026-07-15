@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "857",
+  "frontend_id": "830",
+  "title_slug": "positions-of-large-groups",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.largeGroupPositions",
+  "verified_submission_id": "2066685011",
+  "verified_at": "2026-07-13T22:15:23.314009+00:00"
+}

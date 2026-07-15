@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1109",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: overlapping bookings",
+      "name": "sample: three overlapping bookings",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,12 +36,12 @@
       ],
       "tags": [
         "sample",
-        "difference-array"
+        "overlap"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: two flights",
+      "name": "sample: full range plus one flight",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -63,12 +64,13 @@
         25
       ],
       "tags": [
-        "sample"
+        "sample",
+        "single-flight"
       ]
     },
     {
       "id": "trial-single-flight",
-      "name": "single flight",
+      "name": "trial: one booking on the only flight",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -86,12 +88,88 @@
       ],
       "tags": [
         "trial",
-        "edge"
+        "minimum"
       ]
     },
     {
-      "id": "real-three-updates",
-      "name": "hidden: three updates",
+      "id": "trial-disjoint-ranges",
+      "name": "trial: disjoint ranges leave an untouched flight",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "bookings": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            8
+          ]
+        ],
+        "n": 6
+      },
+      "expected": [
+        3,
+        3,
+        0,
+        8,
+        8,
+        0
+      ],
+      "tags": [
+        "trial",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "real-full-range-overlap",
+      "name": "hidden: several full-range and nested bookings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bookings": [
+          [
+            1,
+            6,
+            2
+          ],
+          [
+            1,
+            6,
+            3
+          ],
+          [
+            2,
+            5,
+            7
+          ],
+          [
+            3,
+            4,
+            11
+          ]
+        ],
+        "n": 6
+      },
+      "expected": [
+        5,
+        12,
+        23,
+        23,
+        12,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    },
+    {
+      "id": "real-adjacent-boundaries",
+      "name": "hidden: adjacent inclusive ranges",
       "kind": "real",
       "visible": false,
       "input": {
@@ -99,30 +177,69 @@
           [
             1,
             3,
+            4
+          ],
+          [
+            4,
+            6,
+            9
+          ],
+          [
+            3,
+            4,
+            2
+          ]
+        ],
+        "n": 6
+      },
+      "expected": [
+        4,
+        4,
+        6,
+        11,
+        9,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "real-same-single-flight",
+      "name": "hidden: repeated bookings for one label",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bookings": [
+          [
+            3,
+            3,
             5
           ],
           [
-            2,
-            4,
-            10
+            3,
+            3,
+            8
           ],
           [
-            4,
+            1,
             5,
-            7
+            1
           ]
         ],
         "n": 5
       },
       "expected": [
-        5,
-        15,
-        15,
-        17,
-        7
+        1,
+        1,
+        14,
+        1,
+        1
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "accumulation"
       ]
     }
   ]

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_831",
+  "cases": [
+    {"id": "sample-1", "name": "sample: mixed-case email", "kind": "sample", "visible": true, "input": {"s": "LeetCode@LeetCode.com"}, "expected": "l*****e@leetcode.com", "tags": ["sample", "email", "mixed-case"]},
+    {"id": "sample-2", "name": "sample: two-letter email name", "kind": "sample", "visible": true, "input": {"s": "AB@qq.com"}, "expected": "a*****b@qq.com", "tags": ["sample", "email", "minimum-name"]},
+    {"id": "sample-3", "name": "sample: local phone with separators", "kind": "sample", "visible": true, "input": {"s": "1(234)567-890"}, "expected": "***-***-7890", "tags": ["sample", "phone", "no-country-code"]},
+    {"id": "trial-1", "name": "trial: shortest mixed-case email", "kind": "trial", "visible": true, "input": {"s": "aB@Cd.Ef"}, "expected": "a*****b@cd.ef", "tags": ["trial", "email", "case-folding"]},
+    {"id": "trial-2", "name": "trial: plain ten-digit phone", "kind": "trial", "visible": true, "input": {"s": "1234567890"}, "expected": "***-***-7890", "tags": ["trial", "phone", "no-separators"]},
+    {"id": "trial-3", "name": "trial: one-digit country code", "kind": "trial", "visible": true, "input": {"s": "+1 (501) 123-4567"}, "expected": "+*-***-***-4567", "tags": ["trial", "phone", "country-code-1"]},
+    {"id": "trial-4", "name": "trial: two-digit country code", "kind": "trial", "visible": true, "input": {"s": "86-(10)12345678"}, "expected": "+**-***-***-5678", "tags": ["trial", "phone", "country-code-2"]},
+    {"id": "hidden-1", "name": "hidden: three-digit country code", "kind": "real", "visible": false, "input": {"s": "1234567890123"}, "expected": "+***-***-***-0123", "tags": ["hidden", "phone", "country-code-3", "visible-zero"]},
+    {"id": "hidden-2", "name": "hidden: all permitted phone separators", "kind": "real", "visible": false, "input": {"s": "+12 (345) 678-9012"}, "expected": "+**-***-***-9012", "tags": ["hidden", "phone", "separators"]},
+    {"id": "hidden-3", "name": "hidden: uppercase domain and long name", "kind": "real", "visible": false, "input": {"s": "LongPersonalName@EXAMPLE.COM"}, "expected": "l*****e@example.com", "tags": ["hidden", "email", "mixed-case"]},
+    {"id": "hidden-4", "name": "hidden: domain letters retain order", "kind": "real", "visible": false, "input": {"s": "xy@SubDomain.Org"}, "expected": "x*****y@subdomain.org", "tags": ["hidden", "email", "minimum-name"]},
+    {"id": "hidden-5", "name": "hidden: local suffix begins with zero", "kind": "real", "visible": false, "input": {"s": "(123) 456-0123"}, "expected": "***-***-0123", "tags": ["hidden", "phone", "visible-zero"]}
+  ]
+}

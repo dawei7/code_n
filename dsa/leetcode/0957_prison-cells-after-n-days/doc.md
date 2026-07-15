@@ -8,48 +8,68 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Math, Bit Manipulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [prison-cells-after-n-days](https://leetcode.com/problems/prison-cells-after-n-days/) |
+| LeetCode | [prison-cells-after-n-days](https://leetcode.com/problems/prison-cells-after-n-days/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/prison-cells-after-n-days/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Eight prison cells form a row. Each cell is occupied (`1`) or vacant (`0`). Every day all cells update simultaneously from the previous day's state: an interior cell becomes occupied when its two adjacent neighbors are equal, whether both occupied or both vacant, and becomes vacant otherwise.
+
+The first and last cells lack two neighbors, so they become vacant after every update. Given the initial `cells` state and a positive day count `n`, return the complete eight-cell state after exactly `n` daily updates.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `cells`: a list of exactly eight values, each either `0` or `1`.
+- `n`: the number of simultaneous daily updates, where $1 \le n \le 10^9$.
 
 **Return value**
 
-TODO
+Return the eight occupancy values after exactly `n` days.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `cells = [0,1,0,1,1,0,0,1]`, `n = 7`
+- Output: `[0,0,1,1,0,0,0,0]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `cells = [1,0,0,1,0,0,1,0]`, `n = 1000000000`
+- Output: `[0,0,1,1,1,1,1,0]`
 
-**Example 3**
+### Required Complexity
 
-- Input: `TODO`
-- Output: `TODO`
+- **Time:** $O(1)$
+- **Space:** $O(1)$
 
----
+<details>
+<summary>Approach</summary>
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+#### General
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+**Compute one day from the old state only.** Construct a fresh eight-value list whose endpoints are zero. For each interior index, write `1` exactly when its left and right neighbors in the previous state are equal. A fresh list preserves the required simultaneous-update semantics.
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Detect repetition instead of simulating every day.** An eight-cell binary row has only $2^8=256$ possible states. Record each state together with the number of days still remaining when it is encountered. If the same state appears again, the intervening sequence is a cycle; the difference between the two remaining-day counts is its length.
+
+**Skip complete cycles.** Replace the remaining day count by its remainder modulo the cycle length. Whole cycles would return to the same state and therefore cannot affect the final answer. Simulate only the remaining fraction of a cycle. This preserves the exact day requested because the skipped updates comprise an integer number of identical state cycles.
+
+The process is deterministic, so once a state repeats, every later state repeats in the same order. The returned state is consequently identical to a direct `n`-day simulation, while the number of states actually examined is bounded by the fixed state space rather than by `n`.
+
+#### Complexity detail
+
+At most 256 distinct states can be visited before a repetition, and each update examines exactly eight cells. Both time and stored state count are bounded by constants independent of `n`, giving $O(1)$ time and $O(1)$ space for the fixed eight-cell contract.
+
+#### Alternatives and edge cases
+
+- **Direct day-by-day simulation:** Apply the transition exactly `n` times. It is correct but costs $O(n)$ time and is infeasible when `n` approaches $10^9$.
+- **Use the known 14-day period:** States after the first update follow a period dividing 14. Hard-coding that fact is compact, but generic cycle detection derives the period and is less error-prone.
+- **In-place left-to-right update:** Mutating cells while computing the same day incorrectly lets later cells observe already-updated neighbors.
+- **Endpoints:** Positions zero and seven always become zero because they do not have two adjacent neighbors.
+- **All vacant:** Interior cells become occupied on the next day because their two neighbors are equal.
+- **Large day count:** Cycle reduction must occur before attempting a direct loop over all remaining days.
+
+</details>

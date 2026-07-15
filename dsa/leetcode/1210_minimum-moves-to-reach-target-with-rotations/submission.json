@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1322",
+  "frontend_id": "1210",
+  "title_slug": "minimum-moves-to-reach-target-with-rotations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumMoves",
+  "verified_submission_id": "2067936762",
+  "verified_at": "2026-07-15T00:24:11.809115+00:00"
+}

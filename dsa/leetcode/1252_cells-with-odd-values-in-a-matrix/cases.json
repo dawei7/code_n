@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1252",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: two row-column operations",
+      "id": "sample-all-odd",
+      "name": "sample: every cell becomes odd",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -22,13 +23,12 @@
       },
       "expected": 6,
       "tags": [
-        "sample",
-        "counting"
+        "sample"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: two by two cancels",
+      "id": "sample-all-even",
+      "name": "sample: parity cancels",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -51,9 +51,9 @@
       ]
     },
     {
-      "id": "trial-one-cell-toggle",
-      "name": "one cell toggle",
-      "kind": "trial",
+      "id": "sample-single-cell",
+      "name": "sample: row and column hit one cell",
+      "kind": "sample",
       "visible": true,
       "input": {
         "m": 1,
@@ -67,40 +67,115 @@
       },
       "expected": 0,
       "tags": [
-        "trial",
-        "edge"
+        "sample"
       ]
     },
     {
-      "id": "real-repeated-index",
-      "name": "hidden: repeated index cancels",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-repeat",
+      "name": "trial: repeated operation cancels",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "m": 3,
         "n": 4,
+        "indices": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-one-operation",
+      "name": "trial: one row and column toggle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 4,
+        "indices": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-mixed-repeats",
+      "name": "hidden: mixed repeated indices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 4,
+        "n": 5,
+        "indices": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-one-row",
+      "name": "hidden: one row and several columns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 1,
+        "n": 5,
         "indices": [
           [
             0,
             0
           ],
           [
-            1,
-            1
-          ],
-          [
-            2,
+            0,
             2
           ],
           [
-            1,
-            1
+            0,
+            4
           ]
         ]
       },
-      "expected": 6,
+      "expected": 2,
       "tags": [
-        "hidden"
+        "real"
       ]
     }
   ]

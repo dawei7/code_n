@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_1151","cases":[
+{"id":"sample-1","name":"sample: one swap","kind":"sample","visible":true,"input":{"data":[1,0,1,0,1]},"expected":1,"tags":["sample"]},
+{"id":"sample-2","name":"sample: one one","kind":"sample","visible":true,"input":{"data":[0,0,0,1,0]},"expected":0,"tags":["sample","single-one"]},
+{"id":"sample-3","name":"sample: three swaps","kind":"sample","visible":true,"input":{"data":[1,0,1,0,1,0,0,1,1,0,1]},"expected":3,"tags":["sample"]},
+{"id":"trial-no-ones","name":"no ones","kind":"trial","visible":true,"input":{"data":[0,0,0]},"expected":0,"tags":["trial","empty-group"]},
+{"id":"trial-all-ones","name":"all ones already grouped","kind":"trial","visible":true,"input":{"data":[1,1,1,1]},"expected":0,"tags":["trial","already-grouped"]},
+{"id":"real-best-left","name":"hidden: best block starts at left","kind":"real","visible":false,"input":{"data":[1,1,0,1,0,0]},"expected":1,"tags":["real","boundary"]},
+{"id":"real-best-right","name":"hidden: best block ends at right","kind":"real","visible":false,"input":{"data":[0,0,1,0,1,1]},"expected":1,"tags":["real","boundary"]},
+{"id":"real-separated","name":"hidden: two separated ones","kind":"real","visible":false,"input":{"data":[1,0,0,0,1]},"expected":1,"tags":["real","separated"]}
+]}

@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1244",
+  "cases": [
+    {
+      "id": "sample-full-trace",
+      "name": "sample: add top reset and re-add",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "addScore",
+            [
+              1,
+              73
+            ]
+          ],
+          [
+            "addScore",
+            [
+              2,
+              56
+            ]
+          ],
+          [
+            "addScore",
+            [
+              3,
+              39
+            ]
+          ],
+          [
+            "addScore",
+            [
+              4,
+              51
+            ]
+          ],
+          [
+            "addScore",
+            [
+              5,
+              4
+            ]
+          ],
+          [
+            "top",
+            [
+              1
+            ]
+          ],
+          [
+            "reset",
+            [
+              1
+            ]
+          ],
+          [
+            "reset",
+            [
+              2
+            ]
+          ],
+          [
+            "addScore",
+            [
+              2,
+              51
+            ]
+          ],
+          [
+            "top",
+            [
+              3
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        73,
+        null,
+        null,
+        null,
+        141
+      ],
+      "tags": [
+        "sample",
+        "design"
+      ]
+    },
+    {
+      "id": "trial-accumulate",
+      "name": "multiple additions accumulate for one player",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "addScore",
+            [
+              1,
+              10
+            ]
+          ],
+          [
+            "addScore",
+            [
+              1,
+              15
+            ]
+          ],
+          [
+            "top",
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        25
+      ],
+      "tags": [
+        "accumulation"
+      ]
+    },
+    {
+      "id": "trial-tie",
+      "name": "tied players count separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "addScore",
+            [
+              1,
+              20
+            ]
+          ],
+          [
+            "addScore",
+            [
+              2,
+              20
+            ]
+          ],
+          [
+            "top",
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        40
+      ],
+      "tags": [
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-top-all",
+      "name": "top can include every active player",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "addScore",
+            [
+              1,
+              3
+            ]
+          ],
+          [
+            "addScore",
+            [
+              2,
+              7
+            ]
+          ],
+          [
+            "top",
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        10
+      ],
+      "tags": [
+        "top-all"
+      ]
+    },
+    {
+      "id": "real-reset-readd",
+      "name": "hidden: reset then add starts a fresh total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "addScore",
+            [
+              7,
+              90
+            ]
+          ],
+          [
+            "reset",
+            [
+              7
+            ]
+          ],
+          [
+            "addScore",
+            [
+              7,
+              5
+            ]
+          ],
+          [
+            "top",
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "reset"
+      ]
+    },
+    {
+      "id": "real-ranking-change",
+      "name": "hidden: accumulation changes the leader set",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "addScore",
+            [
+              1,
+              8
+            ]
+          ],
+          [
+            "addScore",
+            [
+              2,
+              10
+            ]
+          ],
+          [
+            "addScore",
+            [
+              1,
+              5
+            ]
+          ],
+          [
+            "top",
+            [
+              1
+            ]
+          ],
+          [
+            "top",
+            [
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        13,
+        23
+      ],
+      "tags": [
+        "hidden",
+        "ranking"
+      ]
+    },
+    {
+      "id": "real-multiple-resets",
+      "name": "hidden: reset different active players",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "addScore",
+            [
+              1,
+              4
+            ]
+          ],
+          [
+            "addScore",
+            [
+              2,
+              9
+            ]
+          ],
+          [
+            "addScore",
+            [
+              3,
+              6
+            ]
+          ],
+          [
+            "reset",
+            [
+              2
+            ]
+          ],
+          [
+            "top",
+            [
+              2
+            ]
+          ],
+          [
+            "reset",
+            [
+              1
+            ]
+          ],
+          [
+            "top",
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        10,
+        null,
+        6
+      ],
+      "tags": [
+        "hidden",
+        "multiple-resets"
+      ]
+    }
+  ]
+}

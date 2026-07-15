@@ -8,27 +8,30 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [team-scores-in-football-tournament](https://leetcode.com/problems/team-scores-in-football-tournament/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/team-scores-in-football-tournament/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/team-scores-in-football-tournament/).
 
 ### Goal
-Compute the tournament standings for every team. Each match gives 3 points to the winner, 1 point to each team in a draw, and 0 points to the loser. Teams with no matches must still appear with 0 points.
 
-### Query Contract
+The `Teams` table contains one row for each football team and uniquely identifies it by `team_id`. The `Matches` table records finished matches between two different registered teams, naming the host and guest team IDs and the goals scored by each side; `match_id` is unique.
+
+Compute every team's tournament score after all matches. A win awards three points, a draw awards one point to each team, and a loss awards no points. Teams that played no match must still appear with zero points. Return `team_id`, `team_name`, and `num_points`, ordered by decreasing points and then by increasing `team_id` when scores tie.
+
+### Function Contract
+
 **Input tables**
 
-- `Teams(team_id, team_name)`: Team identifiers and names.
-- `Matches(match_id, host_team, guest_team, host_goals, guest_goals)`: Finished games with the two team ids and their goals.
+- `Teams(team_id, team_name)`: `team_id` is unique and each row represents one team.
+- `Matches(match_id, host_team, guest_team, host_goals, guest_goals)`: `match_id` is unique; host and guest are different IDs from `Teams`.
+- Let $t$ be the number of teams and $m$ the number of matches.
 
-**Output columns**
+**Return value**
 
-- `team_id`
-- `team_name`
-- `num_points`
+- One row per team with columns `team_id`, `team_name`, and `num_points`, sorted by `num_points DESC, team_id ASC`.
 
 ### Examples
+
 **Example 1**
 
 `Teams`
@@ -63,23 +66,42 @@ Output:
 
 **Example 2**
 
-If two teams have equal points, the smaller `team_id` is listed first.
+Two teams that draw each receive one point.
 
 **Example 3**
 
-A team with no hosted or guest matches is still returned with `num_points = 0`.
+A team absent from both host and guest columns still appears with zero points.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Convert each match into two point rows: one from the host team's perspective and one from the guest team's perspective. Award points with a `CASE` expression based on the two goal counts, aggregate by team, and left join that aggregate to `Teams` so teams without matches receive 0.
+- **Time:** $O(t+m)$
+- **Space:** $O(t+m)$
 
-Finally order by `num_points DESC, team_id ASC`.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: Database dependent; logically linear in the number of match-team rows plus the team rows after grouping.
-- **Space Complexity**: Database dependent; the grouped point totals store one aggregate row per team that appeared in a match.
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**View every match from both sides.** Emit one point event for `host_team` and one for `guest_team`. A host event awards 3, 1, or 0 according to whether `host_goals` is greater than, equal to, or less than `guest_goals`. The guest event applies the symmetric comparison.
+
+**Aggregate events by team ID.** Combining these two projections with `UNION ALL` preserves both teams' contributions from every match. Grouping by the emitted team ID and summing points produces exactly each participating team's total.
+
+**Restore the complete team catalog.** Left join `Teams` to the point events before grouping, or to their totals afterward. A team with no event then has a null sum, which `COALESCE` converts to zero. Grouping with the catalog also supplies the team name.
+
+**Apply the standings order.** Sort the final rows by total points descending. For equal totals, sort `team_id` ascending. This explicitly implements both levels of the required order rather than relying on group output order.
+
+#### Complexity detail
+
+The event stream contains exactly $2m$ rows. Building it, aggregating it, and joining the $t$ team rows take $O(t+m)$ logical time with hash aggregation and indexed or hash joins. The event and grouping state can occupy $O(t+m)$ space. Physical engines may choose different join or sort plans.
+
+#### Alternatives and edge cases
+
+- **Join with `team_id = host_team OR team_id = guest_team`:** This is concise and correct, but an optimizer may use a nested comparison of teams and matches, taking $O(tm)$ time.
+- **Two separate aggregates joined to Teams:** Host and guest totals can be computed independently and added, but null handling becomes more verbose.
+- **Idle team:** The left join and `COALESCE` are necessary to return zero points.
+- **Draw:** Both perspective events must award one point.
+- **Away win:** The guest event, not the host event, receives three points.
+- **No negative scores:** A loss contributes zero rather than subtracting points.
+- **Tied standings:** Smaller `team_id` comes first regardless of team name.
+
+</details>

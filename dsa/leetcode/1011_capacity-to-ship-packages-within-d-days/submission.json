@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1056",
+  "frontend_id": "1011",
+  "title_slug": "capacity-to-ship-packages-within-d-days",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.shipWithinDays",
+  "verified_submission_id": "2067285666",
+  "verified_at": "2026-07-14T11:21:04.463960+00:00"
+}

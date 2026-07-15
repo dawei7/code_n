@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1328",
+  "frontend_id": "1205",
+  "title_slug": "monthly-transactions-ii",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067930019",
+  "verified_at": "2026-07-15T00:03:47.143442+00:00"
+}

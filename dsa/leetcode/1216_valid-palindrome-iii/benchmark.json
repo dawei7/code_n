@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1216",
+  "measurement_note": "Size is the string length. The rolling interval recurrence processes quadratically many states with constant-size values, while an LCS table that stores and copies the subsequence string at every state incurs cubic total character-copying work on the uniform palindrome.",
+  "cases": [
+    {
+      "id": "benchmark-scale-24",
+      "name": "benchmark: 24-character uniform palindrome",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaa",
+        "k": 1
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "benchmark-scale-48",
+      "name": "benchmark: 48-character uniform palindrome",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "k": 1
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "benchmark-scale-96",
+      "name": "benchmark: 96-character uniform palindrome",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "k": 1
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "palindrome"
+      ]
+    }
+  ]
+}

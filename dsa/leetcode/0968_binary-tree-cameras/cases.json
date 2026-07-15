@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_968","cases":[
+{"id":"sample-1","name":"sample: one camera covers a fork","kind":"sample","visible":true,"input":{"root":[0,0,null,0,0]},"expected":1,"tags":["sample","fork"]},
+{"id":"sample-2","name":"sample: sparse chain requires two cameras","kind":"sample","visible":true,"input":{"root":[0,0,null,0,null,0,null,null,0]},"expected":2,"tags":["sample","chain"]},
+{"id":"trial-1","name":"trial: single root","kind":"trial","visible":true,"input":{"root":[0]},"expected":1,"tags":["trial","single"]},
+{"id":"trial-2","name":"trial: root and one child","kind":"trial","visible":true,"input":{"root":[0,0]},"expected":1,"tags":["trial","two-nodes"]},
+{"id":"trial-3","name":"trial: perfect three-level tree","kind":"trial","visible":true,"input":{"root":[0,0,0,0,0,0,0]},"expected":2,"tags":["trial","perfect"]},
+{"id":"hidden-1","name":"hidden: three-node chain","kind":"real","visible":false,"input":{"root":[0,0,null,0]},"expected":1,"tags":["hidden","chain"]},
+{"id":"hidden-2","name":"hidden: four-node chain","kind":"real","visible":false,"input":{"root":[0,0,null,0,null,0]},"expected":2,"tags":["hidden","chain"]},
+{"id":"hidden-3","name":"hidden: root with two leaves","kind":"real","visible":false,"input":{"root":[0,0,0]},"expected":1,"tags":["hidden","leaves"]}
+]}

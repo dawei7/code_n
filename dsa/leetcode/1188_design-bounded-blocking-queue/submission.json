@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1209",
+  "frontend_id": "1188",
+  "title_slug": "design-bounded-blocking-queue",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "BoundedBlockingQueue",
+  "verified_submission_id": "2067908712",
+  "verified_at": "2026-07-14T22:45:17.541664+00:00"
+}

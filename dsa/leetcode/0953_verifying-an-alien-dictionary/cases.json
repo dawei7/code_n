@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_953","cases":[
+{"id":"sample-1","name":"sample: alien first letters ordered","kind":"sample","visible":true,"input":{"words":["hello","leetcode"],"order":"hlabcdefgijkmnopqrstuvwxyz"},"expected":true,"tags":["sample","ordered"]},
+{"id":"sample-2","name":"sample: differing suffix reversed","kind":"sample","visible":true,"input":{"words":["word","world","row"],"order":"worldabcefghijkmnpqstuvxyz"},"expected":false,"tags":["sample","character-order"]},
+{"id":"sample-3","name":"sample: longer prefix first","kind":"sample","visible":true,"input":{"words":["apple","app"],"order":"abcdefghijklmnopqrstuvwxyz"},"expected":false,"tags":["sample","prefix"]},
+{"id":"trial-1","name":"trial: one word","kind":"trial","visible":true,"input":{"words":["alone"],"order":"abcdefghijklmnopqrstuvwxyz"},"expected":true,"tags":["trial","single"]},
+{"id":"trial-2","name":"trial: equal words","kind":"trial","visible":true,"input":{"words":["same","same"],"order":"abcdefghijklmnopqrstuvwxyz"},"expected":true,"tags":["trial","equal"]},
+{"id":"trial-3","name":"trial: shorter prefix first","kind":"trial","visible":true,"input":{"words":["app","apple"],"order":"abcdefghijklmnopqrstuvwxyz"},"expected":true,"tags":["trial","prefix"]},
+{"id":"hidden-1","name":"hidden: reversed alphabet ordering","kind":"real","visible":false,"input":{"words":["zoo","yak","x"],"order":"zyxwvutsrqponmlkjihgfedcba"},"expected":true,"tags":["hidden","custom-order"]},
+{"id":"hidden-2","name":"hidden: late differing character","kind":"real","visible":false,"input":{"words":["aaaaaaaaab","aaaaaaaaac"],"order":"abcdefghijklmnopqrstuvwxyz"},"expected":true,"tags":["hidden","long-prefix"]},
+{"id":"hidden-3","name":"hidden: later adjacent inversion","kind":"real","visible":false,"input":{"words":["a","c","b"],"order":"abcdefghijklmnopqrstuvwxyz"},"expected":false,"tags":["hidden","later-pair"]}
+]}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1136",
+  "frontend_id": "1050",
+  "title_slug": "actors-and-directors-who-cooperated-at-least-three-times",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2067411298",
+  "verified_at": "2026-07-14T13:36:50.168017+00:00"
+}

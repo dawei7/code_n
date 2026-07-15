@@ -1,19 +1,23 @@
-"""Optimal solution for LeetCode 1024: Video Stitching."""
+"""Optimal app-local solution for LeetCode 1024."""
 
 
-def solve(clips: list[list[int]], time: int) -> int:
-    clips.sort()
-    answer = 0
+def solve(clips, time):
+    farthest_from_start = [0] * (time + 1)
+    for start, end in clips:
+        if start <= time:
+            farthest_from_start[start] = max(farthest_from_start[start], end)
+
+    used = 0
     current_end = 0
     farthest = 0
-    i = 0
-
-    while current_end < time:
-        while i < len(clips) and clips[i][0] <= current_end:
-            farthest = max(farthest, clips[i][1])
-            i += 1
-        if farthest == current_end:
+    for position in range(time):
+        farthest = max(farthest, farthest_from_start[position])
+        if farthest <= position:
             return -1
-        answer += 1
-        current_end = farthest
-    return answer
+        if position == current_end:
+            used += 1
+            current_end = farthest
+            if current_end >= time:
+                return used
+
+    return used

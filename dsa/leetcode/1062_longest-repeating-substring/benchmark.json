@@ -1,0 +1,53 @@
+{
+  "challenge_id": "lc_1062",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: thirty-two-character periodic string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdef"
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "quadratic-suffix-dp"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: ninety-six-character periodic string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr"
+      },
+      "expected": 70,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "quadratic-suffix-dp"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: two-hundred-fifty-six-character periodic string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv"
+      },
+      "expected": 230,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "quadratic-suffix-dp"
+      ]
+    }
+  ]
+}

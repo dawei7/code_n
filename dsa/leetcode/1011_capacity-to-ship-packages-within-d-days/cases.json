@@ -1,90 +1,11 @@
-{
-  "challenge_id": "lc_1011",
-  "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: five days",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "weights": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10
-        ],
-        "days": 5
-      },
-      "expected": 15,
-      "tags": [
-        "sample",
-        "binary-search"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: three days",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "weights": [
-          3,
-          2,
-          2,
-          4,
-          1,
-          4
-        ],
-        "days": 3
-      },
-      "expected": 6,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: four days",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "weights": [
-          1,
-          2,
-          3,
-          1,
-          1
-        ],
-        "days": 4
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-one-day",
-      "name": "hidden: all packages in one day",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "weights": [
-          5,
-          5,
-          5
-        ],
-        "days": 1
-      },
-      "expected": 15,
-      "tags": [
-        "hidden"
-      ]
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_1011","cases":[
+{"id":"sample-1","name":"sample: increasing weights over five days","kind":"sample","visible":true,"input":{"weights":[1,2,3,4,5,6,7,8,9,10],"days":5},"expected":15,"tags":["sample"]},
+{"id":"sample-2","name":"sample: three balanced days","kind":"sample","visible":true,"input":{"weights":[3,2,2,4,1,4],"days":3},"expected":6,"tags":["sample"]},
+{"id":"sample-3","name":"sample: four days","kind":"sample","visible":true,"input":{"weights":[1,2,3,1,1],"days":4},"expected":3,"tags":["sample"]},
+{"id":"trial-1","name":"trial: one shipping day","kind":"trial","visible":true,"input":{"weights":[5,5,5],"days":1},"expected":15,"tags":["trial","one-day"]},
+{"id":"trial-2","name":"trial: one day per package","kind":"trial","visible":true,"input":{"weights":[7,2,9,4],"days":4},"expected":9,"tags":["trial","maximum-days"]},
+{"id":"trial-3","name":"trial: single package","kind":"trial","visible":true,"input":{"weights":[500],"days":1},"expected":500,"tags":["trial","minimum"]},
+{"id":"hidden-1","name":"hidden: order determines consecutive groups","kind":"real","visible":false,"input":{"weights":[8,1,1,8],"days":2},"expected":9,"tags":["hidden","order"]},
+{"id":"hidden-2","name":"hidden: heavy package sets lower bound","kind":"real","visible":false,"input":{"weights":[1,1,10,1,1],"days":3},"expected":10,"tags":["hidden","lower-bound"]},
+{"id":"hidden-3","name":"hidden: uneven consecutive partitions","kind":"real","visible":false,"input":{"weights":[7,2,5,10,8,3,4],"days":3},"expected":15,"tags":["hidden","partition"]}
+]}

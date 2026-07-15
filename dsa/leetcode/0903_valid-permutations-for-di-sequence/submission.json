@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "939",
+  "frontend_id": "903",
+  "title_slug": "valid-permutations-for-di-sequence",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numPermsDISequence",
+  "verified_submission_id": "2066803279",
+  "verified_at": "2026-07-14T03:33:16.339339+00:00"
+}

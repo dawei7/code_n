@@ -1,96 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1169",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: same name different city",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "transactions": [
-          "alice,20,800,mtv",
-          "alice,50,100,beijing"
-        ]
-      },
-      "expected": [
-        "alice,20,800,mtv",
-        "alice,50,100,beijing"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample",
-        "hashing"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: amount too high",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "transactions": [
-          "alice,20,1200,mtv",
-          "bob,50,100,beijing"
-        ]
-      },
-      "expected": [
-        "alice,20,1200,mtv"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-same-city-high-amount",
-      "name": "same city plus high amount",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "transactions": [
-          "alice,20,800,mtv",
-          "alice,50,1200,mtv"
-        ]
-      },
-      "expected": [
-        "alice,50,1200,mtv"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-two-names",
-      "name": "hidden: two names with invalid transactions",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "transactions": [
-          "alice,20,800,mtv",
-          "alice,80,100,beijing",
-          "bob,30,1200,rome",
-          "bob,90,100,paris"
-        ]
-      },
-      "expected": [
-        "alice,20,800,mtv",
-        "alice,80,100,beijing",
-        "bob,30,1200,rome",
-        "bob,90,100,paris"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: same name different city","kind":"sample","visible":true,"input":{"transactions":["alice,20,800,mtv","alice,50,100,beijing"]},"expected":["alice,20,800,mtv","alice,50,100,beijing"],"validator":{"kind":"unordered_list"},"tags":["sample","city-conflict"]},
+    {"id":"sample-2","name":"sample: amount too high","kind":"sample","visible":true,"input":{"transactions":["alice,20,800,mtv","alice,50,1200,mtv"]},"expected":["alice,50,1200,mtv"],"validator":{"kind":"unordered_list"},"tags":["sample","amount"]},
+    {"id":"sample-3","name":"sample: different names do not conflict","kind":"sample","visible":true,"input":{"transactions":["alice,20,800,mtv","bob,50,1200,mtv"]},"expected":["bob,50,1200,mtv"],"validator":{"kind":"unordered_list"},"tags":["sample","different-names"]},
+    {"id":"trial-inclusive-sixty","name":"exactly sixty minutes is invalid","kind":"trial","visible":true,"input":{"transactions":["alice,20,1000,mtv","alice,80,1000,beijing"]},"expected":["alice,20,1000,mtv","alice,80,1000,beijing"],"validator":{"kind":"unordered_list"},"tags":["trial","inclusive-boundary"]},
+    {"id":"trial-same-city","name":"nearby records in one city remain valid","kind":"trial","visible":true,"input":{"transactions":["alice,20,100,mtv","alice,40,1000,mtv"]},"expected":[],"validator":{"kind":"unordered_list"},"tags":["trial","same-city"]},
+    {"id":"real-nonadjacent-conflict","name":"hidden: conflict need not be adjacent after sorting","kind":"real","visible":false,"input":{"transactions":["alice,10,100,mtv","alice,20,100,mtv","alice,60,100,beijing"]},"expected":["alice,10,100,mtv","alice,20,100,mtv","alice,60,100,beijing"],"validator":{"kind":"unordered_list"},"tags":["real","window"]},
+    {"id":"real-duplicate-occurrences","name":"hidden: preserve duplicate invalid occurrences","kind":"real","visible":false,"input":{"transactions":["alice,10,100,mtv","alice,10,100,mtv","alice,20,100,rome"]},"expected":["alice,10,100,mtv","alice,10,100,mtv","alice,20,100,rome"],"validator":{"kind":"unordered_list"},"tags":["real","duplicates"]},
+    {"id":"real-outside-window","name":"hidden: sixty-one minutes does not conflict","kind":"real","visible":false,"input":{"transactions":["alice,0,100,mtv","alice,61,100,beijing","bob,500,1500,rome"]},"expected":["bob,500,1500,rome"],"validator":{"kind":"unordered_list"},"tags":["real","outside-window"]}
   ]
 }

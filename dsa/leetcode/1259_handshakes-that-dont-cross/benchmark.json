@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1259",
+  "measurement_note": "Size is numPeople. The successive Catalan ratio performs one modular update per pair; the split recurrence without memoization recomputes subproblems exponentially while returning identical modular counts.",
+  "cases": [
+    {
+      "id": "benchmark-scale-4",
+      "name": "benchmark: 4 people",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "numPeople": 4
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ],
+      "size": 4
+    },
+    {
+      "id": "benchmark-scale-8",
+      "name": "benchmark: 8 people",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "numPeople": 8
+      },
+      "expected": 14,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ],
+      "size": 8
+    },
+    {
+      "id": "benchmark-scale-16",
+      "name": "benchmark: 16 people",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "numPeople": 16
+      },
+      "expected": 1430,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ],
+      "size": 16
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1087",
+  "frontend_id": "1027",
+  "title_slug": "longest-arithmetic-subsequence",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.longestArithSeqLength",
+  "verified_submission_id": "2067328551",
+  "verified_at": "2026-07-14T12:11:29.616851+00:00"
+}

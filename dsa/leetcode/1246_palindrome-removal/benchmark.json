@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1246",
+  "measurement_note": "Size is array length for an all-equal interval with many matching split choices. Interval DP computes each state once, while the same recurrence without memoization revisits overlapping intervals exponentially often and returns the same one-move answer.",
+  "cases": [
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 3 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "all-equal"
+      ],
+      "size": 3
+    },
+    {
+      "id": "benchmark-scale-6",
+      "name": "benchmark: 6 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "all-equal"
+      ],
+      "size": 6
+    },
+    {
+      "id": "benchmark-scale-12",
+      "name": "benchmark: 12 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "all-equal"
+      ],
+      "size": 12
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1154",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: January date",
+      "kind": "sample",
+      "visible": true,
+      "input": {"date": "2019-01-09"},
+      "expected": 9,
+      "tags": ["sample", "january"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: date in February",
+      "kind": "sample",
+      "visible": true,
+      "input": {"date": "2019-02-10"},
+      "expected": 41,
+      "tags": ["sample", "common-year"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: date after leap day",
+      "kind": "sample",
+      "visible": true,
+      "input": {"date": "2000-03-01"},
+      "expected": 61,
+      "tags": ["sample", "leap-year"]
+    },
+    {
+      "id": "trial-first-day",
+      "name": "first day of a year",
+      "kind": "trial",
+      "visible": true,
+      "input": {"date": "1900-01-01"},
+      "expected": 1,
+      "tags": ["trial", "lower-bound"]
+    },
+    {
+      "id": "trial-century-common-year",
+      "name": "1900 is not a leap year",
+      "kind": "trial",
+      "visible": true,
+      "input": {"date": "1900-03-01"},
+      "expected": 60,
+      "tags": ["trial", "century", "common-year"]
+    },
+    {
+      "id": "real-leap-day",
+      "name": "hidden: valid leap day",
+      "kind": "real",
+      "visible": false,
+      "input": {"date": "2016-02-29"},
+      "expected": 60,
+      "tags": ["real", "leap-day"]
+    },
+    {
+      "id": "real-leap-year-end",
+      "name": "hidden: final day of a leap year",
+      "kind": "real",
+      "visible": false,
+      "input": {"date": "2016-12-31"},
+      "expected": 366,
+      "tags": ["real", "leap-year", "upper-day"]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: latest permitted date",
+      "kind": "real",
+      "visible": false,
+      "input": {"date": "2019-12-31"},
+      "expected": 365,
+      "tags": ["real", "upper-bound"]
+    }
+  ]
+}

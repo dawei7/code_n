@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_923",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four value patterns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5
+        ],
+        "target": 8
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one repeated pair pattern",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2,
+          2,
+          2,
+          2
+        ],
+        "target": 5
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "two-equal"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one distinct triple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          1,
+          3
+        ],
+        "target": 6
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: all three values equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "target": 6
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "three-equal"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: no matching triple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "target": 100
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: zero-valued triple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          0,
+          0,
+          1,
+          2
+        ],
+        "target": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "zeros"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: larger pair is repeated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          2,
+          2,
+          3
+        ],
+        "target": 5
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "larger-pair"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: several overlapping patterns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "target": 3
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "patterns"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: upper value boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          100,
+          100,
+          100,
+          0,
+          50,
+          50
+        ],
+        "target": 300
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "value-bound"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: large combination count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "target": 21
+      },
+      "expected": 280840,
+      "tags": [
+        "hidden",
+        "combination"
+      ]
+    }
+  ]
+}
+

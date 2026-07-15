@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_852",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: minimal mountain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "minimal"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: peak followed by two values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          2,
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "left-peak"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: high peak near left",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          10,
+          5,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "left-peak"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: peak near right",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "right-peak"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: centered peak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          3,
+          5,
+          7,
+          6,
+          4,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "center"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: maximum allowed value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          1000000,
+          999999
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "large-value"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: long ascent and one-step descent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          9
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "right-peak"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: one-step ascent and long descent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "left-peak"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: asymmetric mountain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          3,
+          5,
+          9,
+          12,
+          8,
+          2,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "asymmetric"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: even length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          4,
+          8,
+          12,
+          9,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "even"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: peak just left of center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          6,
+          11,
+          10,
+          7,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "off-center"
+      ]
+    },
+    {
+      "id": "hidden-6",
+      "name": "hidden: values reused across sides",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          3,
+          6,
+          9,
+          6,
+          3,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "symmetric-values"
+      ]
+    }
+  ]
+}

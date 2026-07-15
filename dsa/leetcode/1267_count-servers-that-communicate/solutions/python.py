@@ -1,9 +1,20 @@
-def solve(grid):
-    row_counts = [sum(row) for row in grid]
-    col_counts = [sum(grid[r][c] for r in range(len(grid))) for c in range(len(grid[0]))]
-    answer = 0
-    for r, row in enumerate(grid):
-        for c, value in enumerate(row):
-            if value and (row_counts[r] > 1 or col_counts[c] > 1):
-                answer += 1
-    return answer
+"""Row-and-column counting solution for LeetCode 1267."""
+
+
+def solve(grid: list[list[int]]) -> int:
+    rows = len(grid)
+    cols = len(grid[0])
+    row_counts = [0] * rows
+    col_counts = [0] * cols
+
+    for row in range(rows):
+        for col in range(cols):
+            if grid[row][col] == 1:
+                row_counts[row] += 1
+                col_counts[col] += 1
+
+    return sum(
+        grid[row][col] == 1 and (row_counts[row] > 1 or col_counts[col] > 1)
+        for row in range(rows)
+        for col in range(cols)
+    )

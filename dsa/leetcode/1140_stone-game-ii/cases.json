@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1140",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: five piles",
+      "name": "sample: choosing one pile is better",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,47 +19,14 @@
       "expected": 10,
       "tags": [
         "sample",
-        "dynamic-programming"
+        "strategy"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: three piles",
+      "name": "sample: valuable final pile",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "piles": [
-          14,
-          2,
-          9
-        ]
-      },
-      "expected": 16,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-pile",
-      "name": "single pile",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "piles": [
-          1
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-large-tail",
-      "name": "hidden: large tail pile",
-      "kind": "real",
-      "visible": false,
       "input": {
         "piles": [
           1,
@@ -71,7 +39,130 @@
       },
       "expected": 104,
       "tags": [
-        "hidden"
+        "sample",
+        "suffix"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one pile is taken immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-two",
+      "name": "two piles fit in the opening move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          19,
+          3
+        ]
+      },
+      "expected": 22,
+      "tags": [
+        "trial",
+        "take-all"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "equal piles require optimal tie choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "piles": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "equal"
+      ]
+    },
+    {
+      "id": "real-front-heavy",
+      "name": "hidden: large opening pile",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "piles": [
+          100,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 103,
+      "tags": [
+        "real",
+        "front-heavy"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating pile values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "piles": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3,
+          6,
+          4
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "real",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-increasing",
+      "name": "hidden: increasing sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "piles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "expected": 26,
+      "tags": [
+        "real",
+        "increasing"
       ]
     }
   ]

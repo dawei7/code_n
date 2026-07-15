@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1155",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one die",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 1, "k": 6, "target": 3},
+      "expected": 1,
+      "tags": ["sample", "single-die"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: six ways to make seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2, "k": 6, "target": 7},
+      "expected": 6,
+      "tags": ["sample", "ordered-outcomes"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: result requires modulo",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 30, "k": 30, "target": 500},
+      "expected": 222616187,
+      "tags": ["sample", "modulo", "maximum-dice"]
+    },
+    {
+      "id": "trial-below-minimum",
+      "name": "target below minimum possible sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "k": 6, "target": 2},
+      "expected": 0,
+      "tags": ["trial", "unreachable"]
+    },
+    {
+      "id": "trial-above-maximum",
+      "name": "target above maximum possible sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 2, "k": 3, "target": 7},
+      "expected": 0,
+      "tags": ["trial", "unreachable"]
+    },
+    {
+      "id": "real-one-faced",
+      "name": "hidden: deterministic one-faced dice",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "k": 1, "target": 5},
+      "expected": 1,
+      "tags": ["real", "single-face"]
+    },
+    {
+      "id": "real-small-middle",
+      "name": "hidden: two binary dice make three",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 2, "k": 2, "target": 3},
+      "expected": 2,
+      "tags": ["real", "ordered-outcomes"]
+    },
+    {
+      "id": "real-all-maximum",
+      "name": "hidden: only all maximum faces work",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4, "k": 5, "target": 20},
+      "expected": 1,
+      "tags": ["real", "boundary-sum"]
+    }
+  ]
+}

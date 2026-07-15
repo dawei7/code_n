@@ -1,0 +1,3784 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1211",
+  "measurement_note": "Size is both the Queries row count and number of output groups. One grouped scan is linear, while a redundant cross join repeats every row once per source row before aggregation and creates quadratic intermediate work without changing either average.",
+  "cases": [
+    {
+      "id": "benchmark-scale-16",
+      "name": "benchmark: 16 distinct query names",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "Queries": [
+            {
+              "query_name": "Q0001",
+              "result": "R1",
+              "position": 2,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0002",
+              "result": "R2",
+              "position": 3,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0003",
+              "result": "R3",
+              "position": 4,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0004",
+              "result": "R4",
+              "position": 5,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0005",
+              "result": "R5",
+              "position": 6,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0006",
+              "result": "R6",
+              "position": 7,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0007",
+              "result": "R7",
+              "position": 8,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0008",
+              "result": "R8",
+              "position": 9,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0009",
+              "result": "R9",
+              "position": 10,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0010",
+              "result": "R10",
+              "position": 11,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0011",
+              "result": "R11",
+              "position": 12,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0012",
+              "result": "R12",
+              "position": 13,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0013",
+              "result": "R13",
+              "position": 14,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0014",
+              "result": "R14",
+              "position": 15,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0015",
+              "result": "R15",
+              "position": 16,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0016",
+              "result": "R16",
+              "position": 17,
+              "rating": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "query_name",
+          "quality",
+          "poor_query_percentage"
+        ],
+        "rows": [
+          [
+            "Q0001",
+            1.0,
+            100.0
+          ],
+          [
+            "Q0002",
+            1.0,
+            0.0
+          ],
+          [
+            "Q0003",
+            1.0,
+            0.0
+          ],
+          [
+            "Q0004",
+            1.0,
+            0.0
+          ],
+          [
+            "Q0005",
+            0.17,
+            100.0
+          ],
+          [
+            "Q0006",
+            0.29,
+            100.0
+          ],
+          [
+            "Q0007",
+            0.38,
+            0.0
+          ],
+          [
+            "Q0008",
+            0.44,
+            0.0
+          ],
+          [
+            "Q0009",
+            0.5,
+            0.0
+          ],
+          [
+            "Q0010",
+            0.09,
+            100.0
+          ],
+          [
+            "Q0011",
+            0.17,
+            100.0
+          ],
+          [
+            "Q0012",
+            0.23,
+            0.0
+          ],
+          [
+            "Q0013",
+            0.29,
+            0.0
+          ],
+          [
+            "Q0014",
+            0.33,
+            0.0
+          ],
+          [
+            "Q0015",
+            0.06,
+            100.0
+          ],
+          [
+            "Q0016",
+            0.12,
+            100.0
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "distinct-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-64",
+      "name": "benchmark: 64 distinct query names",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Queries": [
+            {
+              "query_name": "Q0001",
+              "result": "R1",
+              "position": 2,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0002",
+              "result": "R2",
+              "position": 3,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0003",
+              "result": "R3",
+              "position": 4,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0004",
+              "result": "R4",
+              "position": 5,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0005",
+              "result": "R5",
+              "position": 6,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0006",
+              "result": "R6",
+              "position": 7,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0007",
+              "result": "R7",
+              "position": 8,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0008",
+              "result": "R8",
+              "position": 9,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0009",
+              "result": "R9",
+              "position": 10,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0010",
+              "result": "R10",
+              "position": 11,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0011",
+              "result": "R11",
+              "position": 12,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0012",
+              "result": "R12",
+              "position": 13,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0013",
+              "result": "R13",
+              "position": 14,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0014",
+              "result": "R14",
+              "position": 15,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0015",
+              "result": "R15",
+              "position": 16,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0016",
+              "result": "R16",
+              "position": 17,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0017",
+              "result": "R17",
+              "position": 18,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0018",
+              "result": "R18",
+              "position": 19,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0019",
+              "result": "R19",
+              "position": 20,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0020",
+              "result": "R20",
+              "position": 21,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0021",
+              "result": "R21",
+              "position": 22,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0022",
+              "result": "R22",
+              "position": 23,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0023",
+              "result": "R23",
+              "position": 24,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0024",
+              "result": "R24",
+              "position": 25,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0025",
+              "result": "R25",
+              "position": 26,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0026",
+              "result": "R26",
+              "position": 27,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0027",
+              "result": "R27",
+              "position": 28,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0028",
+              "result": "R28",
+              "position": 29,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0029",
+              "result": "R29",
+              "position": 30,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0030",
+              "result": "R30",
+              "position": 31,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0031",
+              "result": "R31",
+              "position": 32,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0032",
+              "result": "R32",
+              "position": 33,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0033",
+              "result": "R33",
+              "position": 34,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0034",
+              "result": "R34",
+              "position": 35,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0035",
+              "result": "R35",
+              "position": 36,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0036",
+              "result": "R36",
+              "position": 37,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0037",
+              "result": "R37",
+              "position": 38,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0038",
+              "result": "R38",
+              "position": 39,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0039",
+              "result": "R39",
+              "position": 40,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0040",
+              "result": "R40",
+              "position": 41,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0041",
+              "result": "R41",
+              "position": 42,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0042",
+              "result": "R42",
+              "position": 43,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0043",
+              "result": "R43",
+              "position": 44,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0044",
+              "result": "R44",
+              "position": 45,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0045",
+              "result": "R45",
+              "position": 46,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0046",
+              "result": "R46",
+              "position": 47,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0047",
+              "result": "R47",
+              "position": 48,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0048",
+              "result": "R48",
+              "position": 49,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0049",
+              "result": "R49",
+              "position": 50,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0050",
+              "result": "R50",
+              "position": 51,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0051",
+              "result": "R51",
+              "position": 52,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0052",
+              "result": "R52",
+              "position": 53,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0053",
+              "result": "R53",
+              "position": 54,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0054",
+              "result": "R54",
+              "position": 55,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0055",
+              "result": "R55",
+              "position": 56,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0056",
+              "result": "R56",
+              "position": 57,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0057",
+              "result": "R57",
+              "position": 58,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0058",
+              "result": "R58",
+              "position": 59,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0059",
+              "result": "R59",
+              "position": 60,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0060",
+              "result": "R60",
+              "position": 61,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0061",
+              "result": "R61",
+              "position": 62,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0062",
+              "result": "R62",
+              "position": 63,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0063",
+              "result": "R63",
+              "position": 64,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0064",
+              "result": "R64",
+              "position": 65,
+              "rating": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "query_name",
+          "quality",
+          "poor_query_percentage"
+        ],
+        "rows": [
+          [
+            "Q0001",
+            1.0,
+            100.0
+          ],
+          [
+            "Q0002",
+            1.0,
+            0.0
+          ],
+          [
+            "Q0003",
+            1.0,
+            0.0
+          ],
+          [
+            "Q0004",
+            1.0,
+            0.0
+          ],
+          [
+            "Q0005",
+            0.17,
+            100.0
+          ],
+          [
+            "Q0006",
+            0.29,
+            100.0
+          ],
+          [
+            "Q0007",
+            0.38,
+            0.0
+          ],
+          [
+            "Q0008",
+            0.44,
+            0.0
+          ],
+          [
+            "Q0009",
+            0.5,
+            0.0
+          ],
+          [
+            "Q0010",
+            0.09,
+            100.0
+          ],
+          [
+            "Q0011",
+            0.17,
+            100.0
+          ],
+          [
+            "Q0012",
+            0.23,
+            0.0
+          ],
+          [
+            "Q0013",
+            0.29,
+            0.0
+          ],
+          [
+            "Q0014",
+            0.33,
+            0.0
+          ],
+          [
+            "Q0015",
+            0.06,
+            100.0
+          ],
+          [
+            "Q0016",
+            0.12,
+            100.0
+          ],
+          [
+            "Q0017",
+            0.17,
+            0.0
+          ],
+          [
+            "Q0018",
+            0.21,
+            0.0
+          ],
+          [
+            "Q0019",
+            0.25,
+            0.0
+          ],
+          [
+            "Q0020",
+            0.05,
+            100.0
+          ],
+          [
+            "Q0021",
+            0.09,
+            100.0
+          ],
+          [
+            "Q0022",
+            0.13,
+            0.0
+          ],
+          [
+            "Q0023",
+            0.17,
+            0.0
+          ],
+          [
+            "Q0024",
+            0.2,
+            0.0
+          ],
+          [
+            "Q0025",
+            0.04,
+            100.0
+          ],
+          [
+            "Q0026",
+            0.07,
+            100.0
+          ],
+          [
+            "Q0027",
+            0.11,
+            0.0
+          ],
+          [
+            "Q0028",
+            0.14,
+            0.0
+          ],
+          [
+            "Q0029",
+            0.17,
+            0.0
+          ],
+          [
+            "Q0030",
+            0.03,
+            100.0
+          ],
+          [
+            "Q0031",
+            0.06,
+            100.0
+          ],
+          [
+            "Q0032",
+            0.09,
+            0.0
+          ],
+          [
+            "Q0033",
+            0.12,
+            0.0
+          ],
+          [
+            "Q0034",
+            0.14,
+            0.0
+          ],
+          [
+            "Q0035",
+            0.03,
+            100.0
+          ],
+          [
+            "Q0036",
+            0.05,
+            100.0
+          ],
+          [
+            "Q0037",
+            0.08,
+            0.0
+          ],
+          [
+            "Q0038",
+            0.1,
+            0.0
+          ],
+          [
+            "Q0039",
+            0.13,
+            0.0
+          ],
+          [
+            "Q0040",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0041",
+            0.05,
+            100.0
+          ],
+          [
+            "Q0042",
+            0.07,
+            0.0
+          ],
+          [
+            "Q0043",
+            0.09,
+            0.0
+          ],
+          [
+            "Q0044",
+            0.11,
+            0.0
+          ],
+          [
+            "Q0045",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0046",
+            0.04,
+            100.0
+          ],
+          [
+            "Q0047",
+            0.06,
+            0.0
+          ],
+          [
+            "Q0048",
+            0.08,
+            0.0
+          ],
+          [
+            "Q0049",
+            0.1,
+            0.0
+          ],
+          [
+            "Q0050",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0051",
+            0.04,
+            100.0
+          ],
+          [
+            "Q0052",
+            0.06,
+            0.0
+          ],
+          [
+            "Q0053",
+            0.07,
+            0.0
+          ],
+          [
+            "Q0054",
+            0.09,
+            0.0
+          ],
+          [
+            "Q0055",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0056",
+            0.04,
+            100.0
+          ],
+          [
+            "Q0057",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0058",
+            0.07,
+            0.0
+          ],
+          [
+            "Q0059",
+            0.08,
+            0.0
+          ],
+          [
+            "Q0060",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0061",
+            0.03,
+            100.0
+          ],
+          [
+            "Q0062",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0063",
+            0.06,
+            0.0
+          ],
+          [
+            "Q0064",
+            0.08,
+            0.0
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "distinct-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-256",
+      "name": "benchmark: 256 distinct query names",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Queries": [
+            {
+              "query_name": "Q0001",
+              "result": "R1",
+              "position": 2,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0002",
+              "result": "R2",
+              "position": 3,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0003",
+              "result": "R3",
+              "position": 4,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0004",
+              "result": "R4",
+              "position": 5,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0005",
+              "result": "R5",
+              "position": 6,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0006",
+              "result": "R6",
+              "position": 7,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0007",
+              "result": "R7",
+              "position": 8,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0008",
+              "result": "R8",
+              "position": 9,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0009",
+              "result": "R9",
+              "position": 10,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0010",
+              "result": "R10",
+              "position": 11,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0011",
+              "result": "R11",
+              "position": 12,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0012",
+              "result": "R12",
+              "position": 13,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0013",
+              "result": "R13",
+              "position": 14,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0014",
+              "result": "R14",
+              "position": 15,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0015",
+              "result": "R15",
+              "position": 16,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0016",
+              "result": "R16",
+              "position": 17,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0017",
+              "result": "R17",
+              "position": 18,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0018",
+              "result": "R18",
+              "position": 19,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0019",
+              "result": "R19",
+              "position": 20,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0020",
+              "result": "R20",
+              "position": 21,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0021",
+              "result": "R21",
+              "position": 22,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0022",
+              "result": "R22",
+              "position": 23,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0023",
+              "result": "R23",
+              "position": 24,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0024",
+              "result": "R24",
+              "position": 25,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0025",
+              "result": "R25",
+              "position": 26,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0026",
+              "result": "R26",
+              "position": 27,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0027",
+              "result": "R27",
+              "position": 28,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0028",
+              "result": "R28",
+              "position": 29,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0029",
+              "result": "R29",
+              "position": 30,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0030",
+              "result": "R30",
+              "position": 31,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0031",
+              "result": "R31",
+              "position": 32,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0032",
+              "result": "R32",
+              "position": 33,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0033",
+              "result": "R33",
+              "position": 34,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0034",
+              "result": "R34",
+              "position": 35,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0035",
+              "result": "R35",
+              "position": 36,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0036",
+              "result": "R36",
+              "position": 37,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0037",
+              "result": "R37",
+              "position": 38,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0038",
+              "result": "R38",
+              "position": 39,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0039",
+              "result": "R39",
+              "position": 40,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0040",
+              "result": "R40",
+              "position": 41,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0041",
+              "result": "R41",
+              "position": 42,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0042",
+              "result": "R42",
+              "position": 43,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0043",
+              "result": "R43",
+              "position": 44,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0044",
+              "result": "R44",
+              "position": 45,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0045",
+              "result": "R45",
+              "position": 46,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0046",
+              "result": "R46",
+              "position": 47,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0047",
+              "result": "R47",
+              "position": 48,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0048",
+              "result": "R48",
+              "position": 49,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0049",
+              "result": "R49",
+              "position": 50,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0050",
+              "result": "R50",
+              "position": 51,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0051",
+              "result": "R51",
+              "position": 52,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0052",
+              "result": "R52",
+              "position": 53,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0053",
+              "result": "R53",
+              "position": 54,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0054",
+              "result": "R54",
+              "position": 55,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0055",
+              "result": "R55",
+              "position": 56,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0056",
+              "result": "R56",
+              "position": 57,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0057",
+              "result": "R57",
+              "position": 58,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0058",
+              "result": "R58",
+              "position": 59,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0059",
+              "result": "R59",
+              "position": 60,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0060",
+              "result": "R60",
+              "position": 61,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0061",
+              "result": "R61",
+              "position": 62,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0062",
+              "result": "R62",
+              "position": 63,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0063",
+              "result": "R63",
+              "position": 64,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0064",
+              "result": "R64",
+              "position": 65,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0065",
+              "result": "R65",
+              "position": 66,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0066",
+              "result": "R66",
+              "position": 67,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0067",
+              "result": "R67",
+              "position": 68,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0068",
+              "result": "R68",
+              "position": 69,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0069",
+              "result": "R69",
+              "position": 70,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0070",
+              "result": "R70",
+              "position": 71,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0071",
+              "result": "R71",
+              "position": 72,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0072",
+              "result": "R72",
+              "position": 73,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0073",
+              "result": "R73",
+              "position": 74,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0074",
+              "result": "R74",
+              "position": 75,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0075",
+              "result": "R75",
+              "position": 76,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0076",
+              "result": "R76",
+              "position": 77,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0077",
+              "result": "R77",
+              "position": 78,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0078",
+              "result": "R78",
+              "position": 79,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0079",
+              "result": "R79",
+              "position": 80,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0080",
+              "result": "R80",
+              "position": 81,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0081",
+              "result": "R81",
+              "position": 82,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0082",
+              "result": "R82",
+              "position": 83,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0083",
+              "result": "R83",
+              "position": 84,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0084",
+              "result": "R84",
+              "position": 85,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0085",
+              "result": "R85",
+              "position": 86,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0086",
+              "result": "R86",
+              "position": 87,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0087",
+              "result": "R87",
+              "position": 88,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0088",
+              "result": "R88",
+              "position": 89,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0089",
+              "result": "R89",
+              "position": 90,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0090",
+              "result": "R90",
+              "position": 91,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0091",
+              "result": "R91",
+              "position": 92,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0092",
+              "result": "R92",
+              "position": 93,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0093",
+              "result": "R93",
+              "position": 94,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0094",
+              "result": "R94",
+              "position": 95,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0095",
+              "result": "R95",
+              "position": 96,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0096",
+              "result": "R96",
+              "position": 97,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0097",
+              "result": "R97",
+              "position": 98,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0098",
+              "result": "R98",
+              "position": 99,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0099",
+              "result": "R99",
+              "position": 100,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0100",
+              "result": "R100",
+              "position": 101,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0101",
+              "result": "R101",
+              "position": 102,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0102",
+              "result": "R102",
+              "position": 103,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0103",
+              "result": "R103",
+              "position": 104,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0104",
+              "result": "R104",
+              "position": 105,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0105",
+              "result": "R105",
+              "position": 106,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0106",
+              "result": "R106",
+              "position": 107,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0107",
+              "result": "R107",
+              "position": 108,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0108",
+              "result": "R108",
+              "position": 109,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0109",
+              "result": "R109",
+              "position": 110,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0110",
+              "result": "R110",
+              "position": 111,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0111",
+              "result": "R111",
+              "position": 112,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0112",
+              "result": "R112",
+              "position": 113,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0113",
+              "result": "R113",
+              "position": 114,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0114",
+              "result": "R114",
+              "position": 115,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0115",
+              "result": "R115",
+              "position": 116,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0116",
+              "result": "R116",
+              "position": 117,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0117",
+              "result": "R117",
+              "position": 118,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0118",
+              "result": "R118",
+              "position": 119,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0119",
+              "result": "R119",
+              "position": 120,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0120",
+              "result": "R120",
+              "position": 121,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0121",
+              "result": "R121",
+              "position": 122,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0122",
+              "result": "R122",
+              "position": 123,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0123",
+              "result": "R123",
+              "position": 124,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0124",
+              "result": "R124",
+              "position": 125,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0125",
+              "result": "R125",
+              "position": 126,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0126",
+              "result": "R126",
+              "position": 127,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0127",
+              "result": "R127",
+              "position": 128,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0128",
+              "result": "R128",
+              "position": 129,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0129",
+              "result": "R129",
+              "position": 130,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0130",
+              "result": "R130",
+              "position": 131,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0131",
+              "result": "R131",
+              "position": 132,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0132",
+              "result": "R132",
+              "position": 133,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0133",
+              "result": "R133",
+              "position": 134,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0134",
+              "result": "R134",
+              "position": 135,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0135",
+              "result": "R135",
+              "position": 136,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0136",
+              "result": "R136",
+              "position": 137,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0137",
+              "result": "R137",
+              "position": 138,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0138",
+              "result": "R138",
+              "position": 139,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0139",
+              "result": "R139",
+              "position": 140,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0140",
+              "result": "R140",
+              "position": 141,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0141",
+              "result": "R141",
+              "position": 142,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0142",
+              "result": "R142",
+              "position": 143,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0143",
+              "result": "R143",
+              "position": 144,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0144",
+              "result": "R144",
+              "position": 145,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0145",
+              "result": "R145",
+              "position": 146,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0146",
+              "result": "R146",
+              "position": 147,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0147",
+              "result": "R147",
+              "position": 148,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0148",
+              "result": "R148",
+              "position": 149,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0149",
+              "result": "R149",
+              "position": 150,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0150",
+              "result": "R150",
+              "position": 151,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0151",
+              "result": "R151",
+              "position": 152,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0152",
+              "result": "R152",
+              "position": 153,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0153",
+              "result": "R153",
+              "position": 154,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0154",
+              "result": "R154",
+              "position": 155,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0155",
+              "result": "R155",
+              "position": 156,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0156",
+              "result": "R156",
+              "position": 157,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0157",
+              "result": "R157",
+              "position": 158,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0158",
+              "result": "R158",
+              "position": 159,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0159",
+              "result": "R159",
+              "position": 160,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0160",
+              "result": "R160",
+              "position": 161,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0161",
+              "result": "R161",
+              "position": 162,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0162",
+              "result": "R162",
+              "position": 163,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0163",
+              "result": "R163",
+              "position": 164,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0164",
+              "result": "R164",
+              "position": 165,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0165",
+              "result": "R165",
+              "position": 166,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0166",
+              "result": "R166",
+              "position": 167,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0167",
+              "result": "R167",
+              "position": 168,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0168",
+              "result": "R168",
+              "position": 169,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0169",
+              "result": "R169",
+              "position": 170,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0170",
+              "result": "R170",
+              "position": 171,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0171",
+              "result": "R171",
+              "position": 172,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0172",
+              "result": "R172",
+              "position": 173,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0173",
+              "result": "R173",
+              "position": 174,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0174",
+              "result": "R174",
+              "position": 175,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0175",
+              "result": "R175",
+              "position": 176,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0176",
+              "result": "R176",
+              "position": 177,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0177",
+              "result": "R177",
+              "position": 178,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0178",
+              "result": "R178",
+              "position": 179,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0179",
+              "result": "R179",
+              "position": 180,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0180",
+              "result": "R180",
+              "position": 181,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0181",
+              "result": "R181",
+              "position": 182,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0182",
+              "result": "R182",
+              "position": 183,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0183",
+              "result": "R183",
+              "position": 184,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0184",
+              "result": "R184",
+              "position": 185,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0185",
+              "result": "R185",
+              "position": 186,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0186",
+              "result": "R186",
+              "position": 187,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0187",
+              "result": "R187",
+              "position": 188,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0188",
+              "result": "R188",
+              "position": 189,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0189",
+              "result": "R189",
+              "position": 190,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0190",
+              "result": "R190",
+              "position": 191,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0191",
+              "result": "R191",
+              "position": 192,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0192",
+              "result": "R192",
+              "position": 193,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0193",
+              "result": "R193",
+              "position": 194,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0194",
+              "result": "R194",
+              "position": 195,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0195",
+              "result": "R195",
+              "position": 196,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0196",
+              "result": "R196",
+              "position": 197,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0197",
+              "result": "R197",
+              "position": 198,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0198",
+              "result": "R198",
+              "position": 199,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0199",
+              "result": "R199",
+              "position": 200,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0200",
+              "result": "R200",
+              "position": 201,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0201",
+              "result": "R201",
+              "position": 202,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0202",
+              "result": "R202",
+              "position": 203,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0203",
+              "result": "R203",
+              "position": 204,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0204",
+              "result": "R204",
+              "position": 205,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0205",
+              "result": "R205",
+              "position": 206,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0206",
+              "result": "R206",
+              "position": 207,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0207",
+              "result": "R207",
+              "position": 208,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0208",
+              "result": "R208",
+              "position": 209,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0209",
+              "result": "R209",
+              "position": 210,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0210",
+              "result": "R210",
+              "position": 211,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0211",
+              "result": "R211",
+              "position": 212,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0212",
+              "result": "R212",
+              "position": 213,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0213",
+              "result": "R213",
+              "position": 214,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0214",
+              "result": "R214",
+              "position": 215,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0215",
+              "result": "R215",
+              "position": 216,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0216",
+              "result": "R216",
+              "position": 217,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0217",
+              "result": "R217",
+              "position": 218,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0218",
+              "result": "R218",
+              "position": 219,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0219",
+              "result": "R219",
+              "position": 220,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0220",
+              "result": "R220",
+              "position": 221,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0221",
+              "result": "R221",
+              "position": 222,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0222",
+              "result": "R222",
+              "position": 223,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0223",
+              "result": "R223",
+              "position": 224,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0224",
+              "result": "R224",
+              "position": 225,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0225",
+              "result": "R225",
+              "position": 226,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0226",
+              "result": "R226",
+              "position": 227,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0227",
+              "result": "R227",
+              "position": 228,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0228",
+              "result": "R228",
+              "position": 229,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0229",
+              "result": "R229",
+              "position": 230,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0230",
+              "result": "R230",
+              "position": 231,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0231",
+              "result": "R231",
+              "position": 232,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0232",
+              "result": "R232",
+              "position": 233,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0233",
+              "result": "R233",
+              "position": 234,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0234",
+              "result": "R234",
+              "position": 235,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0235",
+              "result": "R235",
+              "position": 236,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0236",
+              "result": "R236",
+              "position": 237,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0237",
+              "result": "R237",
+              "position": 238,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0238",
+              "result": "R238",
+              "position": 239,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0239",
+              "result": "R239",
+              "position": 240,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0240",
+              "result": "R240",
+              "position": 241,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0241",
+              "result": "R241",
+              "position": 242,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0242",
+              "result": "R242",
+              "position": 243,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0243",
+              "result": "R243",
+              "position": 244,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0244",
+              "result": "R244",
+              "position": 245,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0245",
+              "result": "R245",
+              "position": 246,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0246",
+              "result": "R246",
+              "position": 247,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0247",
+              "result": "R247",
+              "position": 248,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0248",
+              "result": "R248",
+              "position": 249,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0249",
+              "result": "R249",
+              "position": 250,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0250",
+              "result": "R250",
+              "position": 251,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0251",
+              "result": "R251",
+              "position": 252,
+              "rating": 2
+            },
+            {
+              "query_name": "Q0252",
+              "result": "R252",
+              "position": 253,
+              "rating": 3
+            },
+            {
+              "query_name": "Q0253",
+              "result": "R253",
+              "position": 254,
+              "rating": 4
+            },
+            {
+              "query_name": "Q0254",
+              "result": "R254",
+              "position": 255,
+              "rating": 5
+            },
+            {
+              "query_name": "Q0255",
+              "result": "R255",
+              "position": 256,
+              "rating": 1
+            },
+            {
+              "query_name": "Q0256",
+              "result": "R256",
+              "position": 257,
+              "rating": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "query_name",
+          "quality",
+          "poor_query_percentage"
+        ],
+        "rows": [
+          [
+            "Q0001",
+            1.0,
+            100.0
+          ],
+          [
+            "Q0002",
+            1.0,
+            0.0
+          ],
+          [
+            "Q0003",
+            1.0,
+            0.0
+          ],
+          [
+            "Q0004",
+            1.0,
+            0.0
+          ],
+          [
+            "Q0005",
+            0.17,
+            100.0
+          ],
+          [
+            "Q0006",
+            0.29,
+            100.0
+          ],
+          [
+            "Q0007",
+            0.38,
+            0.0
+          ],
+          [
+            "Q0008",
+            0.44,
+            0.0
+          ],
+          [
+            "Q0009",
+            0.5,
+            0.0
+          ],
+          [
+            "Q0010",
+            0.09,
+            100.0
+          ],
+          [
+            "Q0011",
+            0.17,
+            100.0
+          ],
+          [
+            "Q0012",
+            0.23,
+            0.0
+          ],
+          [
+            "Q0013",
+            0.29,
+            0.0
+          ],
+          [
+            "Q0014",
+            0.33,
+            0.0
+          ],
+          [
+            "Q0015",
+            0.06,
+            100.0
+          ],
+          [
+            "Q0016",
+            0.12,
+            100.0
+          ],
+          [
+            "Q0017",
+            0.17,
+            0.0
+          ],
+          [
+            "Q0018",
+            0.21,
+            0.0
+          ],
+          [
+            "Q0019",
+            0.25,
+            0.0
+          ],
+          [
+            "Q0020",
+            0.05,
+            100.0
+          ],
+          [
+            "Q0021",
+            0.09,
+            100.0
+          ],
+          [
+            "Q0022",
+            0.13,
+            0.0
+          ],
+          [
+            "Q0023",
+            0.17,
+            0.0
+          ],
+          [
+            "Q0024",
+            0.2,
+            0.0
+          ],
+          [
+            "Q0025",
+            0.04,
+            100.0
+          ],
+          [
+            "Q0026",
+            0.07,
+            100.0
+          ],
+          [
+            "Q0027",
+            0.11,
+            0.0
+          ],
+          [
+            "Q0028",
+            0.14,
+            0.0
+          ],
+          [
+            "Q0029",
+            0.17,
+            0.0
+          ],
+          [
+            "Q0030",
+            0.03,
+            100.0
+          ],
+          [
+            "Q0031",
+            0.06,
+            100.0
+          ],
+          [
+            "Q0032",
+            0.09,
+            0.0
+          ],
+          [
+            "Q0033",
+            0.12,
+            0.0
+          ],
+          [
+            "Q0034",
+            0.14,
+            0.0
+          ],
+          [
+            "Q0035",
+            0.03,
+            100.0
+          ],
+          [
+            "Q0036",
+            0.05,
+            100.0
+          ],
+          [
+            "Q0037",
+            0.08,
+            0.0
+          ],
+          [
+            "Q0038",
+            0.1,
+            0.0
+          ],
+          [
+            "Q0039",
+            0.13,
+            0.0
+          ],
+          [
+            "Q0040",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0041",
+            0.05,
+            100.0
+          ],
+          [
+            "Q0042",
+            0.07,
+            0.0
+          ],
+          [
+            "Q0043",
+            0.09,
+            0.0
+          ],
+          [
+            "Q0044",
+            0.11,
+            0.0
+          ],
+          [
+            "Q0045",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0046",
+            0.04,
+            100.0
+          ],
+          [
+            "Q0047",
+            0.06,
+            0.0
+          ],
+          [
+            "Q0048",
+            0.08,
+            0.0
+          ],
+          [
+            "Q0049",
+            0.1,
+            0.0
+          ],
+          [
+            "Q0050",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0051",
+            0.04,
+            100.0
+          ],
+          [
+            "Q0052",
+            0.06,
+            0.0
+          ],
+          [
+            "Q0053",
+            0.07,
+            0.0
+          ],
+          [
+            "Q0054",
+            0.09,
+            0.0
+          ],
+          [
+            "Q0055",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0056",
+            0.04,
+            100.0
+          ],
+          [
+            "Q0057",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0058",
+            0.07,
+            0.0
+          ],
+          [
+            "Q0059",
+            0.08,
+            0.0
+          ],
+          [
+            "Q0060",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0061",
+            0.03,
+            100.0
+          ],
+          [
+            "Q0062",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0063",
+            0.06,
+            0.0
+          ],
+          [
+            "Q0064",
+            0.08,
+            0.0
+          ],
+          [
+            "Q0065",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0066",
+            0.03,
+            100.0
+          ],
+          [
+            "Q0067",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0068",
+            0.06,
+            0.0
+          ],
+          [
+            "Q0069",
+            0.07,
+            0.0
+          ],
+          [
+            "Q0070",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0071",
+            0.03,
+            100.0
+          ],
+          [
+            "Q0072",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0073",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0074",
+            0.07,
+            0.0
+          ],
+          [
+            "Q0075",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0076",
+            0.03,
+            100.0
+          ],
+          [
+            "Q0077",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0078",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0079",
+            0.06,
+            0.0
+          ],
+          [
+            "Q0080",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0081",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0082",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0083",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0084",
+            0.06,
+            0.0
+          ],
+          [
+            "Q0085",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0086",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0087",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0088",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0089",
+            0.06,
+            0.0
+          ],
+          [
+            "Q0090",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0091",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0092",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0093",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0094",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0095",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0096",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0097",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0098",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0099",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0100",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0101",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0102",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0103",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0104",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0105",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0106",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0107",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0108",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0109",
+            0.05,
+            0.0
+          ],
+          [
+            "Q0110",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0111",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0112",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0113",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0114",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0115",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0116",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0117",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0118",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0119",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0120",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0121",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0122",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0123",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0124",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0125",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0126",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0127",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0128",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0129",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0130",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0131",
+            0.02,
+            100.0
+          ],
+          [
+            "Q0132",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0133",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0134",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0135",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0136",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0137",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0138",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0139",
+            0.04,
+            0.0
+          ],
+          [
+            "Q0140",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0141",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0142",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0143",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0144",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0145",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0146",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0147",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0148",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0149",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0150",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0151",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0152",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0153",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0154",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0155",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0156",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0157",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0158",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0159",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0160",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0161",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0162",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0163",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0164",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0165",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0166",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0167",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0168",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0169",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0170",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0171",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0172",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0173",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0174",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0175",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0176",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0177",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0178",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0179",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0180",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0181",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0182",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0183",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0184",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0185",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0186",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0187",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0188",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0189",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0190",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0191",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0192",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0193",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0194",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0195",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0196",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0197",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0198",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0199",
+            0.03,
+            0.0
+          ],
+          [
+            "Q0200",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0201",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0202",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0203",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0204",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0205",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0206",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0207",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0208",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0209",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0210",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0211",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0212",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0213",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0214",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0215",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0216",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0217",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0218",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0219",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0220",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0221",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0222",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0223",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0224",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0225",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0226",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0227",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0228",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0229",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0230",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0231",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0232",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0233",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0234",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0235",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0236",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0237",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0238",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0239",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0240",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0241",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0242",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0243",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0244",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0245",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0246",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0247",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0248",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0249",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0250",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0251",
+            0.01,
+            100.0
+          ],
+          [
+            "Q0252",
+            0.01,
+            0.0
+          ],
+          [
+            "Q0253",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0254",
+            0.02,
+            0.0
+          ],
+          [
+            "Q0255",
+            0.0,
+            100.0
+          ],
+          [
+            "Q0256",
+            0.01,
+            100.0
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "distinct-groups"
+      ]
+    }
+  ]
+}

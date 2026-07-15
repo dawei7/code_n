@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1247",
+  "frontend_id": "1144",
+  "title_slug": "decrease-elements-to-make-array-zigzag",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.movesToMakeZigzag",
+  "verified_submission_id": "2067836393",
+  "verified_at": "2026-07-14T19:43:27.787068+00:00"
+}

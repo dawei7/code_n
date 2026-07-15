@@ -1,22 +1,34 @@
+"""Optimal app-local solution for LeetCode 1169."""
+
 from collections import defaultdict
 
 
-def solve(transactions):
-    parsed = []
-    by_name = defaultdict(list)
+def solve(transactions: list[str]) -> list[str]:
+    groups: dict[str, list[tuple[int, str, int]]] = defaultdict(list)
+    invalid = [False] * len(transactions)
+
     for index, transaction in enumerate(transactions):
-        name, time, amount, city = transaction.split(",")
-        entry = (index, name, int(time), int(amount), city)
-        parsed.append(entry)
-        by_name[name].append(entry)
-
-    invalid = set()
-    for index, name, time, amount, city in parsed:
+        name, time_text, amount_text, city = transaction.split(",")
+        time = int(time_text)
+        amount = int(amount_text)
+        groups[name].append((time, city, index))
         if amount > 1000:
-            invalid.add(index)
-        for other_index, _, other_time, _, other_city in by_name[name]:
-            if city != other_city and abs(time - other_time) <= 60:
-                invalid.add(index)
-                invalid.add(other_index)
+            invalid[index] = True
 
-    return [transactions[i] for i in range(len(transactions)) if i in invalid]
+    for group in groups.values():
+        group.sort()
+        city_counts: dict[str, int] = defaultdict(int)
+        left = 0
+        right = 0
+        for time, city, index in group:
+            while right < len(group) and group[right][0] <= time + 60:
+                city_counts[group[right][1]] += 1
+                right += 1
+            while group[left][0] < time - 60:
+                old_city = group[left][1]
+                city_counts[old_city] -= 1
+                left += 1
+            if right - left > city_counts[city]:
+                invalid[index] = True
+
+    return [transaction for index, transaction in enumerate(transactions) if invalid[index]]

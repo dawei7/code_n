@@ -1,106 +1,11 @@
-{
-  "challenge_id": "lc_1023",
-  "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: pattern FB",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "queries": [
-          "FooBar",
-          "FooBarTest",
-          "FootBall",
-          "FrameBuffer",
-          "ForceFeedBack"
-        ],
-        "pattern": "FB"
-      },
-      "expected": [
-        true,
-        false,
-        true,
-        true,
-        false
-      ],
-      "tags": [
-        "sample",
-        "string"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: pattern FoBa",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "queries": [
-          "FooBar",
-          "FooBarTest",
-          "FootBall",
-          "FrameBuffer",
-          "ForceFeedBack"
-        ],
-        "pattern": "FoBa"
-      },
-      "expected": [
-        true,
-        false,
-        true,
-        false,
-        false
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: pattern FoBaT",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "queries": [
-          "FooBar",
-          "FooBarTest",
-          "FootBall",
-          "FrameBuffer",
-          "ForceFeedBack"
-        ],
-        "pattern": "FoBaT"
-      },
-      "expected": [
-        false,
-        true,
-        false,
-        false,
-        false
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-lowercase-extra",
-      "name": "hidden: lowercase extras allowed",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "queries": [
-          "CompetitiveProgramming",
-          "CounterPick",
-          "ControlPanel"
-        ],
-        "pattern": "CP"
-      },
-      "expected": [
-        true,
-        true,
-        true
-      ],
-      "tags": [
-        "hidden"
-      ]
-    }
-  ]
-}
+{"schema_version":1,"challenge_id":"lc_1023","cases":[
+{"id":"sample-1","name":"sample: uppercase pattern FB","kind":"sample","visible":true,"input":{"queries":["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"],"pattern":"FB"},"expected":[true,false,true,true,false],"tags":["sample"]},
+{"id":"sample-2","name":"sample: mixed-case pattern FoBa","kind":"sample","visible":true,"input":{"queries":["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"],"pattern":"FoBa"},"expected":[true,false,true,false,false],"tags":["sample"]},
+{"id":"sample-3","name":"sample: pattern with trailing T","kind":"sample","visible":true,"input":{"queries":["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"],"pattern":"FoBaT"},"expected":[false,true,false,false,false],"tags":["sample"]},
+{"id":"trial-1","name":"trial: exact and lowercase insertions","kind":"trial","visible":true,"input":{"queries":["AbC","AblueC","AbcC"],"pattern":"AbC"},"expected":[true,true,true],"tags":["trial","lowercase"]},
+{"id":"trial-2","name":"trial: extra uppercase forbidden","kind":"trial","visible":true,"input":{"queries":["AbXC","XAbC"],"pattern":"AbC"},"expected":[false,false],"tags":["trial","uppercase"]},
+{"id":"trial-3","name":"trial: required suffix missing","kind":"trial","visible":true,"input":{"queries":["ab","aextra"],"pattern":"abc"},"expected":[false,false],"tags":["trial","missing"]},
+{"id":"hidden-1","name":"hidden: same uppercase skeleton","kind":"real","visible":false,"input":{"queries":["CompetitiveProgramming","CounterPick","ControlPanel"],"pattern":"CP"},"expected":[true,true,true],"tags":["hidden","skeleton"]},
+{"id":"hidden-2","name":"hidden: lowercase pattern order matters","kind":"real","visible":false,"input":{"queries":["camelCase","camCase","caxmelyCase"],"pattern":"camelCase"},"expected":[true,false,true],"tags":["hidden","order"]},
+{"id":"hidden-3","name":"hidden: unmatched trailing uppercase","kind":"real","visible":false,"input":{"queries":["CodeNow","CodeNew","CoolNoodle","cooden"],"pattern":"CN"},"expected":[true,true,true,false],"tags":["hidden","uppercase"]}
+]}

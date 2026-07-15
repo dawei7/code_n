@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1182",
+  "cases": [
+    {"id":"sample-mixed-queries","name":"sample: left, exact, and right distances","kind":"sample","visible":true,"input":{"colors":[1,1,2,1,3,2,2,3,3],"queries":[[1,3],[2,2],[6,1]]},"expected":[3,0,3],"tags":["sample","mixed-directions"]},
+    {"id":"sample-missing-color","name":"sample: requested color is absent","kind":"sample","visible":true,"input":{"colors":[1,2],"queries":[[0,3]]},"expected":[-1],"tags":["sample","missing-color"]},
+    {"id":"trial-single-item","name":"single item with present and absent targets","kind":"trial","visible":true,"input":{"colors":[2],"queries":[[0,2],[0,1],[0,3]]},"expected":[0,-1,-1],"tags":["boundary","single-item"]},
+    {"id":"trial-one-color","name":"all positions have one color","kind":"trial","visible":true,"input":{"colors":[3,3,3,3],"queries":[[0,3],[3,3],[2,1]]},"expected":[0,0,-1],"tags":["repeated","missing-color"]},
+    {"id":"real-both-sides","name":"hidden: choose the closer side for each query","kind":"real","visible":false,"input":{"colors":[1,2,3,2,1,3,1],"queries":[[3,1],[4,3],[1,3],[6,2]]},"expected":[1,1,1,3],"tags":["hidden","both-sides"]},
+    {"id":"real-tied-distance","name":"hidden: equal nearest distances","kind":"real","visible":false,"input":{"colors":[2,1,2],"queries":[[1,2],[0,1],[2,1]]},"expected":[1,1,1],"tags":["hidden","tie"]},
+    {"id":"real-all-colors","name":"hidden: repeated queries retain order","kind":"real","visible":false,"input":{"colors":[1,2,3,1,2,3],"queries":[[5,1],[0,3],[4,2],[2,1],[1,3]]},"expected":[2,2,0,1,1],"tags":["hidden","query-order"]}
+  ]
+}

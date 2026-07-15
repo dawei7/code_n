@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1167",
+  "cases": [
+    {"id":"sample-1","name":"sample: three sticks","kind":"sample","visible":true,"input":{"sticks":[2,4,3]},"expected":14,"tags":["sample","greedy"]},
+    {"id":"sample-2","name":"sample: four sticks","kind":"sample","visible":true,"input":{"sticks":[1,8,3,5]},"expected":30,"tags":["sample","multiple-merges"]},
+    {"id":"sample-3","name":"sample: one stick","kind":"sample","visible":true,"input":{"sticks":[5]},"expected":0,"tags":["sample","single"]},
+    {"id":"trial-two-sticks","name":"one required connection","kind":"trial","visible":true,"input":{"sticks":[7,11]},"expected":18,"tags":["trial","one-merge"]},
+    {"id":"trial-equal","name":"equal stick lengths","kind":"trial","visible":true,"input":{"sticks":[1,1,1,1]},"expected":8,"tags":["trial","ties"]},
+    {"id":"real-unbalanced","name":"hidden: delay the long stick","kind":"real","visible":false,"input":{"sticks":[1,2,3,100]},"expected":115,"tags":["real","unbalanced"]},
+    {"id":"real-unsorted","name":"hidden: input order is irrelevant","kind":"real","visible":false,"input":{"sticks":[8,4,6,12]},"expected":58,"tags":["real","unsorted"]}
+  ]
+}

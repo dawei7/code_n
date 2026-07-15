@@ -1,94 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1202",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: two components",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "s": "dcab",
-        "pairs": [
-          [
-            0,
-            3
-          ],
-          [
-            1,
-            2
-          ]
-        ]
-      },
-      "expected": "bacd",
-      "tags": [
-        "sample",
-        "union-find"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: connected component",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "s": "dcab",
-        "pairs": [
-          [
-            0,
-            3
-          ],
-          [
-            1,
-            2
-          ],
-          [
-            0,
-            2
-          ]
-        ]
-      },
-      "expected": "abcd",
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: fully connected",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "s": "cba",
-        "pairs": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            2
-          ]
-        ]
-      },
-      "expected": "abc",
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-no-swaps",
-      "name": "hidden: no swaps",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "s": "zxy",
-        "pairs": []
-      },
-      "expected": "zxy",
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
+    {"id":"sample-two-components","name":"sample: two independent swap components","kind":"sample","visible":true,"input":{"s":"dcab","pairs":[[0,3],[1,2]]},"expected":"bacd","tags":["sample","components"]},
+    {"id":"sample-one-component","name":"sample: an extra edge connects all indices","kind":"sample","visible":true,"input":{"s":"dcab","pairs":[[0,3],[1,2],[0,2]]},"expected":"abcd","tags":["sample","union-find"]},
+    {"id":"sample-chain","name":"sample: transitive swaps sort a chain","kind":"sample","visible":true,"input":{"s":"cba","pairs":[[0,1],[1,2]]},"expected":"abc","tags":["sample","transitive"]},
+    {"id":"trial-no-swaps","name":"no allowed pair preserves the string","kind":"trial","visible":true,"input":{"s":"zxy","pairs":[]},"expected":"zxy","tags":["boundary","no-pairs"]},
+    {"id":"trial-self-and-duplicate","name":"self and duplicate pairs do not change reachability","kind":"trial","visible":true,"input":{"s":"ba","pairs":[[0,0],[0,1],[0,1]]},"expected":"ab","tags":["idempotent","self-pair"]},
+    {"id":"real-repeated-characters","name":"hidden: repeated characters remain component-local","kind":"real","visible":false,"input":{"s":"baca","pairs":[[0,1],[2,3]]},"expected":"abac","tags":["hidden","duplicates"]},
+    {"id":"real-disconnected-singleton","name":"hidden: singleton stays between two components","kind":"real","visible":false,"input":{"s":"edcba","pairs":[[0,4],[1,3]]},"expected":"abcde","tags":["hidden","disconnected"]},
+    {"id":"real-full-chain","name":"hidden: reverse string becomes globally sorted","kind":"real","visible":false,"input":{"s":"fedcba","pairs":[[0,1],[1,2],[2,3],[3,4],[4,5]]},"expected":"abcdef","tags":["hidden","full-component"]}
   ]
 }

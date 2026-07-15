@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_856",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one primitive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "()"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "primitive"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one wrapper",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "(())"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: two concatenated primitives",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "()()"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "concatenated"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: mixed nested expression",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "(()(()))"
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: four nested pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "(((())))"
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "deep"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: primitive plus wrapped concatenation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "()(()())"
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: wrapped pair plus primitive",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(())()"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "concatenation"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: two primitives in one wrapper",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(()())"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "wrapper"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: three structures concatenated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "()(())(()())"
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: nested mixed inner expression",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "((())())"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: wrapped concatenation plus wrapped pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(()())(())"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "multiple"
+      ]
+    },
+    {
+      "id": "hidden-6",
+      "name": "hidden: five top-level primitives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "()()()()()"
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "flat"
+      ]
+    }
+  ]
+}

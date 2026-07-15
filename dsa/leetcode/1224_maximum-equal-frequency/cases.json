@@ -1,90 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1224",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: prefix length seven",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          2,
-          1,
-          1,
-          5,
-          3,
-          3,
-          5
-        ]
-      },
-      "expected": 7,
-      "tags": [
-        "sample",
-        "hashing"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: full prefix",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1,
-          1,
-          2,
-          2,
-          2,
-          3,
-          3,
-          3,
-          4,
-          4,
-          4,
-          5
-        ]
-      },
-      "expected": 13,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-value",
-      "name": "single value",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-all-singletons",
-      "name": "hidden: all singleton counts",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-prefix-seven","name":"sample: the final element breaks a valid prefix","kind":"sample","visible":true,"input":{"nums":[2,2,1,1,5,3,3,5]},"expected":7,"tags":["sample","singleton"]},
+    {"id":"sample-full-singleton-tail","name":"sample: remove the last singleton","kind":"sample","visible":true,"input":{"nums":[1,1,1,2,2,2,3,3,3,4,4,4,5]},"expected":13,"tags":["sample","full-prefix"]},
+    {"id":"sample-one-overfull","name":"sample: one group has one extra occurrence","kind":"sample","visible":true,"input":{"nums":[1,1,1,2,2,2]},"expected":5,"tags":["sample","overfull"]},
+    {"id":"trial-single-element","name":"one element may be removed","kind":"trial","visible":true,"input":{"nums":[7]},"expected":1,"tags":["single-element"]},
+    {"id":"real-all-singletons","name":"hidden: every prefix remains all singletons","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5]},"expected":5,"tags":["hidden","singletons"]},
+    {"id":"real-overfull-at-end","name":"hidden: the full prefix has one overfull group","kind":"real","visible":false,"input":{"nums":[1,1,2,2,3,3,3]},"expected":7,"tags":["hidden","overfull"]},
+    {"id":"real-singleton-at-end","name":"hidden: one singleton accompanies equal pairs","kind":"real","visible":false,"input":{"nums":[1,1,2,2,3]},"expected":5,"tags":["hidden","singleton"]}
   ]
 }

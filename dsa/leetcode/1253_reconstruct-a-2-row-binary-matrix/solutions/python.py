@@ -1,4 +1,7 @@
-def solve(upper, lower, colsum):
+from typing import List
+
+
+def solve(upper: int, lower: int, colsum: List[int]) -> List[List[int]]:
     top = [0] * len(colsum)
     bottom = [0] * len(colsum)
     for i, value in enumerate(colsum):

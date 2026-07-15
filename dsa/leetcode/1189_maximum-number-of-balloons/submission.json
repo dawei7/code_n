@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1297",
+  "frontend_id": "1189",
+  "title_slug": "maximum-number-of-balloons",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxNumberOfBalloons",
+  "verified_submission_id": "2067910464",
+  "verified_at": "2026-07-14T22:51:17.066029+00:00"
+}

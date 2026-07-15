@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1237",
+  "cases": [
+    {
+      "id": "sample-sum",
+      "name": "sample: additive function at target five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "function_id": 1,
+        "z": 5
+      },
+      "expected": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "sample",
+        "addition"
+      ]
+    },
+    {
+      "id": "sample-product",
+      "name": "sample: product function at target five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "function_id": 2,
+        "z": 5
+      },
+      "expected": [
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "sample",
+        "multiplication"
+      ]
+    },
+    {
+      "id": "trial-squares",
+      "name": "sum of squares has two ordered pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "function_id": 5,
+        "z": 25
+      },
+      "expected": [
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "sum-of-squares"
+      ]
+    },
+    {
+      "id": "trial-no-solution",
+      "name": "target has no solution for squared sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "function_id": 6,
+        "z": 10
+      },
+      "expected": [],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "no-solution"
+      ]
+    },
+    {
+      "id": "real-cubic",
+      "name": "hidden: sum of cubes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "function_id": 7,
+        "z": 9
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "hidden",
+        "cubic"
+      ]
+    },
+    {
+      "id": "real-asymmetric-eight",
+      "name": "hidden: asymmetric x squared times y",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "function_id": 8,
+        "z": 36
+      },
+      "expected": [
+        [
+          1,
+          36
+        ],
+        [
+          2,
+          9
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          6,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "hidden",
+        "asymmetric"
+      ]
+    },
+    {
+      "id": "real-asymmetric-nine",
+      "name": "hidden: asymmetric x times y squared",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "function_id": 9,
+        "z": 36
+      },
+      "expected": [
+        [
+          1,
+          6
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          9,
+          2
+        ],
+        [
+          36,
+          1
+        ]
+      ],
+      "validator": {
+        "kind": "unordered_nested_list"
+      },
+      "tags": [
+        "hidden",
+        "asymmetric"
+      ]
+    }
+  ]
+}

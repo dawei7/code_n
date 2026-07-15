@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1092",
+  "frontend_id": "1026",
+  "title_slug": "maximum-difference-between-node-and-ancestor",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxAncestorDiff",
+  "verified_submission_id": "2067325739",
+  "verified_at": "2026-07-14T12:08:04.831845+00:00"
+}

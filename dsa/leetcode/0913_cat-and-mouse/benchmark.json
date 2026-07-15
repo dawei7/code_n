@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_913",
+  "measurement_note": "Size is n, the number of graph nodes. Each tier is a legal undirected path whose labels place Mouse and Cat at the far end from the hole, forcing outcome information to propagate through increasingly many game states. Retrograde analysis resolves each state once in O(n^3) worst-case time; repeated full-table relaxation revisits unresolved states and exhibits an additional growth factor on these paths.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: forced path with n=6",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "graph": [
+          [
+            3
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "repeated-relaxation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: forced path with n=12",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "graph": [
+          [
+            3
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            9,
+            11
+          ],
+          [
+            10,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "repeated-relaxation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: forced path with n=24",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "graph": [
+          [
+            3
+          ],
+          [
+            23,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            10
+          ],
+          [
+            9,
+            11
+          ],
+          [
+            10,
+            12
+          ],
+          [
+            11,
+            13
+          ],
+          [
+            12,
+            14
+          ],
+          [
+            13,
+            15
+          ],
+          [
+            14,
+            16
+          ],
+          [
+            15,
+            17
+          ],
+          [
+            16,
+            18
+          ],
+          [
+            17,
+            19
+          ],
+          [
+            18,
+            20
+          ],
+          [
+            19,
+            21
+          ],
+          [
+            20,
+            22
+          ],
+          [
+            21,
+            23
+          ],
+          [
+            22,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "repeated-relaxation"
+      ]
+    }
+  ]
+}
+

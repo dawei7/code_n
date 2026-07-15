@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_1106",
+  "cases": [
+    {"id": "sample-nested-single-or", "name": "sample: AND contains single false OR", "kind": "sample", "visible": true, "input": {"expression": "&(|(f))"}, "expected": false, "tags": ["sample", "nested"]},
+    {"id": "sample-wide-or", "name": "sample: final true operand satisfies OR", "kind": "sample", "visible": true, "input": {"expression": "|(f,f,f,t)"}, "expected": true, "tags": ["sample", "or"]},
+    {"id": "sample-not-of-and", "name": "sample: NOT flips false conjunction", "kind": "sample", "visible": true, "input": {"expression": "!(&(f,t))"}, "expected": true, "tags": ["sample", "not", "and"]},
+    {"id": "trial-literal", "name": "trial: expression is one literal", "kind": "trial", "visible": true, "input": {"expression": "t"}, "expected": true, "tags": ["trial", "literal"]},
+    {"id": "real-mixed-branches", "name": "hidden: mixed nested operators", "kind": "real", "visible": false, "input": {"expression": "|(&(t,t),!(t),&(t,|(f,t)))"}, "expected": true, "tags": ["hidden", "mixed"]},
+    {"id": "real-single-operands", "name": "hidden: unary-width AND and OR groups", "kind": "real", "visible": false, "input": {"expression": "!(&(|(f)))"}, "expected": true, "tags": ["hidden", "single-operand"]}
+  ]
+}

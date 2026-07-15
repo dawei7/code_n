@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1214",
+  "cases": [
+    {"id":"sample-found","name":"sample: pair crosses the two trees","kind":"sample","visible":true,"input":{"root1":[2,1,4],"root2":[1,0,3],"target":5},"expected":true,"tags":["sample","found"]},
+    {"id":"sample-missing","name":"sample: target has no cross-tree pair","kind":"sample","visible":true,"input":{"root1":[0,-10,10],"root2":[5,1,7,0,2],"target":18},"expected":false,"tags":["sample","missing"]},
+    {"id":"trial-root-pair","name":"roots themselves form the target","kind":"trial","visible":true,"input":{"root1":[8,3,10],"root2":[4,1,9],"target":12},"expected":true,"tags":["root-pair"]},
+    {"id":"trial-single-nodes","name":"single node from each tree may pair","kind":"trial","visible":true,"input":{"root1":[-5],"root2":[7],"target":2},"expected":true,"tags":["single-node","negative"]},
+    {"id":"real-equal-values","name":"hidden: equal values in different trees may pair","kind":"real","visible":false,"input":{"root1":[5,3,8],"root2":[5,2,9],"target":10},"expected":true,"tags":["hidden","equal-values"]},
+    {"id":"real-negative-target","name":"hidden: negative complement is found","kind":"real","visible":false,"input":{"root1":[-4,-8,-1],"root2":[3,1,6],"target":-7},"expected":true,"tags":["hidden","negative-target"]},
+    {"id":"real-skewed-missing","name":"hidden: skewed trees exhaust without a pair","kind":"real","visible":false,"input":{"root1":[1,null,2,null,3,null,4],"root2":[10,null,11,null,12],"target":100},"expected":false,"tags":["hidden","skewed"]}
+  ]
+}

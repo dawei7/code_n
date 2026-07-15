@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1192",
+  "frontend_id": "1231",
+  "title_slug": "divide-chocolate",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maximizeSweetness",
+  "verified_submission_id": "2067965292",
+  "verified_at": "2026-07-15T01:43:18.598688+00:00"
+}

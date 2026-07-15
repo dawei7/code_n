@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1133",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: maximum value is repeated",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          7,
+          3,
+          9,
+          4,
+          9,
+          8,
+          3,
+          1
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "repeated-maximum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no value is unique",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          8,
+          8
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one-element array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          42
+        ]
+      },
+      "expected": 42,
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "zero is the only unique value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          2,
+          2,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "all values are unique",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          8,
+          3,
+          6
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "all-unique"
+      ]
+    },
+    {
+      "id": "real-largest-middle",
+      "name": "hidden: answer lies between repeated larger values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000,
+          1000,
+          999,
+          998,
+          998,
+          997,
+          997
+        ]
+      },
+      "expected": 999,
+      "tags": [
+        "real",
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "real-many-copies",
+      "name": "hidden: frequencies greater than two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          6,
+          6,
+          5,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "frequency"
+      ]
+    },
+    {
+      "id": "real-value-bounds",
+      "name": "hidden: both value bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1000,
+          0,
+          999,
+          999
+        ]
+      },
+      "expected": 1000,
+      "tags": [
+        "real",
+        "bounds"
+      ]
+    },
+    {
+      "id": "real-one-unique-among-groups",
+      "name": "hidden: one eligible value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          4,
+          4,
+          5,
+          5
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "single-eligible"
+      ]
+    }
+  ]
+}

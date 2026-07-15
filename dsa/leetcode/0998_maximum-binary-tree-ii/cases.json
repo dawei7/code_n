@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_998","cases":[
+{"id":"sample-1","name":"sample: new global maximum","kind":"sample","visible":true,"input":{"root":[4,1,3,null,null,2],"val":5},"expected":[5,4,null,1,3,null,null,2],"tags":["sample"]},
+{"id":"sample-2","name":"sample: append below right child","kind":"sample","visible":true,"input":{"root":[5,2,4,null,1],"val":3},"expected":[5,2,4,null,1,null,3],"tags":["sample"]},
+{"id":"sample-3","name":"sample: replace right subtree root","kind":"sample","visible":true,"input":{"root":[5,2,3,null,1],"val":4},"expected":[5,2,4,null,1,3],"tags":["sample"]},
+{"id":"trial-1","name":"trial: singleton gets new root","kind":"trial","visible":true,"input":{"root":[5],"val":6},"expected":[6,5],"tags":["trial","new-root"]},
+{"id":"trial-2","name":"trial: singleton gets right leaf","kind":"trial","visible":true,"input":{"root":[5],"val":4},"expected":[5,null,4],"tags":["trial","leaf"]},
+{"id":"trial-3","name":"trial: existing left chain is unchanged","kind":"trial","visible":true,"input":{"root":[5,3,null,2],"val":4},"expected":[5,3,4,2],"tags":["trial","left-chain"]},
+{"id":"hidden-1","name":"hidden: descend to end of right spine","kind":"real","visible":false,"input":{"root":[9,7,8],"val":6},"expected":[9,7,8,null,null,null,6],"tags":["hidden","right-spine"]},
+{"id":"hidden-2","name":"hidden: maximum value becomes root","kind":"real","visible":false,"input":{"root":[9,7,8],"val":10},"expected":[10,9,null,7,8],"tags":["hidden","maximum"]},
+{"id":"hidden-3","name":"hidden: insert between two right-spine values","kind":"real","visible":false,"input":{"root":[10,5,8,null,null,7,6],"val":9},"expected":[10,5,9,null,null,8,null,7,6],"tags":["hidden","middle"]}
+]}

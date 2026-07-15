@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1106",
+  "frontend_id": "1036",
+  "title_slug": "escape-a-large-maze",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isEscapePossible",
+  "verified_submission_id": "2067354240",
+  "verified_at": "2026-07-14T12:40:10.689876+00:00"
+}

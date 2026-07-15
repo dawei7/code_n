@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1228",
+  "frontend_id": "1130",
+  "title_slug": "minimum-cost-tree-from-leaf-values",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.mctFromLeafValues",
+  "verified_submission_id": "2067794433",
+  "verified_at": "2026-07-14T18:47:14.624872+00:00"
+}

@@ -1,0 +1,416 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1179",
+  "cases": [
+    {
+      "id": "sample-sparse-months",
+      "name": "sample: sparse revenue rows for three departments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "id": 1,
+              "revenue": 8000,
+              "month": "Jan"
+            },
+            {
+              "id": 2,
+              "revenue": 9000,
+              "month": "Jan"
+            },
+            {
+              "id": 3,
+              "revenue": 10000,
+              "month": "Feb"
+            },
+            {
+              "id": 1,
+              "revenue": 7000,
+              "month": "Feb"
+            },
+            {
+              "id": 1,
+              "revenue": 6000,
+              "month": "Mar"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "Jan_Revenue",
+          "Feb_Revenue",
+          "Mar_Revenue",
+          "Apr_Revenue",
+          "May_Revenue",
+          "Jun_Revenue",
+          "Jul_Revenue",
+          "Aug_Revenue",
+          "Sep_Revenue",
+          "Oct_Revenue",
+          "Nov_Revenue",
+          "Dec_Revenue"
+        ],
+        "rows": [
+          [
+            1,
+            8000,
+            7000,
+            6000,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            2,
+            9000,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            3,
+            null,
+            10000,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "pivot"
+      ]
+    },
+    {
+      "id": "trial-december-only",
+      "name": "one department has only December revenue",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "id": 7,
+              "revenue": 120,
+              "month": "Dec"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "Jan_Revenue",
+          "Feb_Revenue",
+          "Mar_Revenue",
+          "Apr_Revenue",
+          "May_Revenue",
+          "Jun_Revenue",
+          "Jul_Revenue",
+          "Aug_Revenue",
+          "Sep_Revenue",
+          "Oct_Revenue",
+          "Nov_Revenue",
+          "Dec_Revenue"
+        ],
+        "rows": [
+          [
+            7,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            120
+          ]
+        ]
+      },
+      "tags": [
+        "sparse",
+        "december"
+      ]
+    },
+    {
+      "id": "trial-zero-revenue",
+      "name": "zero revenue is distinct from a missing row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "id": 1,
+              "revenue": 0,
+              "month": "Jan"
+            },
+            {
+              "id": 1,
+              "revenue": 25,
+              "month": "Mar"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "Jan_Revenue",
+          "Feb_Revenue",
+          "Mar_Revenue",
+          "Apr_Revenue",
+          "May_Revenue",
+          "Jun_Revenue",
+          "Jul_Revenue",
+          "Aug_Revenue",
+          "Sep_Revenue",
+          "Oct_Revenue",
+          "Nov_Revenue",
+          "Dec_Revenue"
+        ],
+        "rows": [
+          [
+            1,
+            0,
+            null,
+            25,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "zero",
+        "null"
+      ]
+    },
+    {
+      "id": "real-all-months",
+      "name": "hidden: every month is populated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "id": 4,
+              "revenue": 1,
+              "month": "Jan"
+            },
+            {
+              "id": 4,
+              "revenue": 2,
+              "month": "Feb"
+            },
+            {
+              "id": 4,
+              "revenue": 3,
+              "month": "Mar"
+            },
+            {
+              "id": 4,
+              "revenue": 4,
+              "month": "Apr"
+            },
+            {
+              "id": 4,
+              "revenue": 5,
+              "month": "May"
+            },
+            {
+              "id": 4,
+              "revenue": 6,
+              "month": "Jun"
+            },
+            {
+              "id": 4,
+              "revenue": 7,
+              "month": "Jul"
+            },
+            {
+              "id": 4,
+              "revenue": 8,
+              "month": "Aug"
+            },
+            {
+              "id": 4,
+              "revenue": 9,
+              "month": "Sep"
+            },
+            {
+              "id": 4,
+              "revenue": 10,
+              "month": "Oct"
+            },
+            {
+              "id": 4,
+              "revenue": 11,
+              "month": "Nov"
+            },
+            {
+              "id": 4,
+              "revenue": 12,
+              "month": "Dec"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "Jan_Revenue",
+          "Feb_Revenue",
+          "Mar_Revenue",
+          "Apr_Revenue",
+          "May_Revenue",
+          "Jun_Revenue",
+          "Jul_Revenue",
+          "Aug_Revenue",
+          "Sep_Revenue",
+          "Oct_Revenue",
+          "Nov_Revenue",
+          "Dec_Revenue"
+        ],
+        "rows": [
+          [
+            4,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "dense"
+      ]
+    },
+    {
+      "id": "real-unsorted-input",
+      "name": "hidden: input row order does not affect pivot",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Department": [
+            {
+              "id": 9,
+              "revenue": 90,
+              "month": "Sep"
+            },
+            {
+              "id": 2,
+              "revenue": 20,
+              "month": "Feb"
+            },
+            {
+              "id": 9,
+              "revenue": 10,
+              "month": "Jan"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "Jan_Revenue",
+          "Feb_Revenue",
+          "Mar_Revenue",
+          "Apr_Revenue",
+          "May_Revenue",
+          "Jun_Revenue",
+          "Jul_Revenue",
+          "Aug_Revenue",
+          "Sep_Revenue",
+          "Oct_Revenue",
+          "Nov_Revenue",
+          "Dec_Revenue"
+        ],
+        "rows": [
+          [
+            2,
+            null,
+            20,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          [
+            9,
+            10,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            90,
+            null,
+            null,
+            null
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}

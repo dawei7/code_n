@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "892",
+  "frontend_id": "862",
+  "title_slug": "shortest-subarray-with-sum-at-least-k",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.shortestSubarray",
+  "verified_submission_id": "2066725928",
+  "verified_at": "2026-07-14T00:38:02.763852+00:00"
+}

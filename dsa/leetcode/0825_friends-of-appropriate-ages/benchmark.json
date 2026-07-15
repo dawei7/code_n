@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_825",
+  "measurement_note": "Size is the number of people. Frequency and prefix counting takes O(size + 120) time, while checking every ordered pair takes O(size^2). Equal age sixteen makes every non-self pair valid, so the quadratic implementation cannot exit early.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 8 equal-age people", "kind": "benchmark", "visible": false, "size": 8, "input": {"ages": [16, 16, 16, 16, 16, 16, 16, 16]}, "expected": 56, "tags": ["benchmark", "scale-small", "all-pairs"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 equal-age people", "kind": "benchmark", "visible": false, "size": 16, "input": {"ages": [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16]}, "expected": 240, "tags": ["benchmark", "scale-medium", "all-pairs"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 32 equal-age people", "kind": "benchmark", "visible": false, "size": 32, "input": {"ages": [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16]}, "expected": 992, "tags": ["benchmark", "scale-large", "all-pairs"]}
+  ]
+}

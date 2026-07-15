@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "866",
+  "frontend_id": "836",
+  "title_slug": "rectangle-overlap",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isRectangleOverlap",
+  "verified_submission_id": "2066694580",
+  "verified_at": "2026-07-13T22:46:12.441971+00:00"
+}

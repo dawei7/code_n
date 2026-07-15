@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1135",
+  "frontend_id": "1045",
+  "title_slug": "customers-who-bought-all-products",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2067391005",
+  "verified_at": "2026-07-14T13:17:41.537352+00:00"
+}

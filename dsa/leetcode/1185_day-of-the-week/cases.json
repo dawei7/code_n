@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1185",
+  "cases": [
+    {"id":"sample-2019","name":"sample: date in 2019","kind":"sample","visible":true,"input":{"day":31,"month":8,"year":2019},"expected":"Saturday","tags":["sample"]},
+    {"id":"sample-1999","name":"sample: date in 1999","kind":"sample","visible":true,"input":{"day":18,"month":7,"year":1999},"expected":"Sunday","tags":["sample"]},
+    {"id":"sample-1993","name":"sample: date in 1993","kind":"sample","visible":true,"input":{"day":15,"month":8,"year":1993},"expected":"Sunday","tags":["sample"]},
+    {"id":"trial-reference-date","name":"given reference date","kind":"trial","visible":true,"input":{"day":1,"month":1,"year":1971},"expected":"Friday","tags":["boundary","anchor"]},
+    {"id":"trial-century-leap-day","name":"leap day in a year divisible by 400","kind":"trial","visible":true,"input":{"day":29,"month":2,"year":2000},"expected":"Tuesday","tags":["leap-year","century"]},
+    {"id":"real-modern-leap-day","name":"hidden: modern leap day","kind":"real","visible":false,"input":{"day":29,"month":2,"year":2024},"expected":"Thursday","tags":["hidden","leap-year"]},
+    {"id":"real-nonleap-century","name":"hidden: 2100 is not a leap year","kind":"real","visible":false,"input":{"day":1,"month":3,"year":2100},"expected":"Monday","tags":["hidden","century"]},
+    {"id":"real-end-first-year","name":"hidden: end of first allowed year","kind":"real","visible":false,"input":{"day":31,"month":12,"year":1971},"expected":"Friday","tags":["hidden","boundary"]}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_1171",
+  "cases": [
+    {"id":"sample-alternative-results","name":"sample: overlapping removal choices","kind":"sample","visible":true,"input":{"head":[1,2,-3,3,1]},"expected":[3,1],"tags":["sample","linked-list"]},
+    {"id":"sample-middle-range","name":"sample: remove a middle zero-sum range","kind":"sample","visible":true,"input":{"head":[1,2,3,-3,4]},"expected":[1,2,4],"tags":["sample","middle"]},
+    {"id":"sample-overlapping-tail","name":"sample: nested prefix repetitions","kind":"sample","visible":true,"input":{"head":[1,2,3,-3,-2]},"expected":[1],"tags":["sample","overlap"]},
+    {"id":"trial-entire-list","name":"entire list is removed","kind":"trial","visible":true,"input":{"head":[1,-1]},"expected":[],"tags":["boundary","all-removed"]},
+    {"id":"trial-cascading","name":"separate removals leave one node","kind":"trial","visible":true,"input":{"head":[1,-1,2,-2,3]},"expected":[3],"tags":["cascading"]},
+    {"id":"real-zero-nodes","name":"hidden: zero nodes around a survivor","kind":"real","visible":false,"input":{"head":[0,1,0]},"expected":[1],"tags":["hidden","zero"]},
+    {"id":"real-no-removal","name":"hidden: no zero-sum sequence","kind":"real","visible":false,"input":{"head":[1,2,3]},"expected":[1,2,3],"tags":["hidden","unchanged"]}
+  ]
+}

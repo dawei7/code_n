@@ -1,23 +1,125 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1130",
+  "measurement_note": "Size is the leaf count n. Zigzag values exercise stack pops and all interval split choices; the monotonic stack is linear, while the calibrated interval dynamic program evaluates O(n^3) split transitions.",
   "cases": [
     {
-      "id": "benchmark-repeated-high",
-      "name": "benchmark: repeated high leaves",
+      "id": "benchmark-scale-8",
+      "name": "benchmark: 8 zigzag leaf values",
       "kind": "benchmark",
       "visible": false,
+      "size": 8,
       "input": {
         "arr": [
+          1,
+          8,
           15,
+          7,
+          14,
+          6,
           13,
-          5,
-          3,
-          15
+          5
         ]
       },
-      "expected": 500,
+      "expected": 761,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scaling",
+        "interval-splits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-20",
+      "name": "benchmark: 20 zigzag leaf values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "arr": [
+          1,
+          8,
+          15,
+          7,
+          14,
+          6,
+          13,
+          5,
+          12,
+          4,
+          11,
+          3,
+          10,
+          2,
+          9,
+          1,
+          8,
+          15,
+          7,
+          14
+        ]
+      },
+      "expected": 1949,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "interval-splits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-40",
+      "name": "benchmark: 40 zigzag leaf values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {
+        "arr": [
+          1,
+          8,
+          15,
+          7,
+          14,
+          6,
+          13,
+          5,
+          12,
+          4,
+          11,
+          3,
+          10,
+          2,
+          9,
+          1,
+          8,
+          15,
+          7,
+          14,
+          6,
+          13,
+          5,
+          12,
+          4,
+          11,
+          3,
+          10,
+          2,
+          9,
+          1,
+          8,
+          15,
+          7,
+          14,
+          6,
+          13,
+          5,
+          12,
+          4
+        ]
+      },
+      "expected": 3986,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "interval-splits"
       ]
     }
   ]

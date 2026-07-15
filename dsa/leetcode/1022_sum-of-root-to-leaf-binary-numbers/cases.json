@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_1022","cases":[
+{"id":"sample-1","name":"sample: four three-bit paths","kind":"sample","visible":true,"input":{"root":[1,0,1,0,1,0,1]},"expected":22,"tags":["sample"]},
+{"id":"sample-2","name":"sample: single zero node","kind":"sample","visible":true,"input":{"root":[0]},"expected":0,"tags":["sample"]},
+{"id":"trial-1","name":"trial: one left child","kind":"trial","visible":true,"input":{"root":[1,1]},"expected":3,"tags":["trial","single-path"]},
+{"id":"trial-2","name":"trial: one right child","kind":"trial","visible":true,"input":{"root":[1,null,0]},"expected":2,"tags":["trial","right-child"]},
+{"id":"trial-3","name":"trial: zero leading paths","kind":"trial","visible":true,"input":{"root":[0,1,0]},"expected":1,"tags":["trial","leading-zero"]},
+{"id":"hidden-1","name":"hidden: uneven tree depths","kind":"real","visible":false,"input":{"root":[1,0,1,1,null,null,0]},"expected":11,"tags":["hidden","uneven"]},
+{"id":"hidden-2","name":"hidden: all one paths","kind":"real","visible":false,"input":{"root":[1,1,1,1,1,1,1]},"expected":28,"tags":["hidden","perfect-tree"]},
+{"id":"hidden-3","name":"hidden: mixed path depths","kind":"real","visible":false,"input":{"root":[1,0,1,1,0,null,1,0,1]},"expected":32,"tags":["hidden","mixed"]}
+]}

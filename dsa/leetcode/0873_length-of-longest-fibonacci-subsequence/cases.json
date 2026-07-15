@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_873",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: five-value Fibonacci-like subsequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: several valid triples",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          3,
+          7,
+          11,
+          12,
+          14,
+          18
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "triple"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no Fibonacci-like triple",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          4,
+          10
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: minimum valid array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: entire array is Fibonacci-like",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          4,
+          6,
+          10,
+          16,
+          26
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "full-array"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: classic Fibonacci progression",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          5,
+          8,
+          13,
+          21
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "full-array"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: longest sequence starts later",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          4,
+          10,
+          11,
+          21,
+          32,
+          53
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "later-start"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: values near the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          499999999,
+          500000000,
+          999999999
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "bounds"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: dense candidates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "dense"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: all values are even without a valid sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          6,
+          14,
+          30,
+          62
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "none"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: competing chains share pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          7,
+          11,
+          18,
+          29,
+          47
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "shared-states"
+      ]
+    }
+  ]
+}

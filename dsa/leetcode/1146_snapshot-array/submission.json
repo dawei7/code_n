@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1249",
+  "frontend_id": "1146",
+  "title_slug": "snapshot-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "SnapshotArray",
+  "verified_submission_id": "2067841094",
+  "verified_at": "2026-07-14T19:51:42.570328+00:00"
+}

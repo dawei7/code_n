@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1104",
+  "measurement_note": "Size is L, the target label. The optimal method climbs only log L ancestors with level mirroring, while the calibrated slower implementation materializes all zigzag-labelled rows through the target before following parent positions.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: materialization through label 1023",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1023,
+      "input": {
+        "label": 1023
+      },
+      "expected": [
+        1,
+        3,
+        4,
+        15,
+        16,
+        63,
+        64,
+        255,
+        256,
+        1023
+      ],
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "level-materialization"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: materialization through label 8191",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8191,
+      "input": {
+        "label": 8191
+      },
+      "expected": [
+        1,
+        2,
+        7,
+        8,
+        31,
+        32,
+        127,
+        128,
+        511,
+        512,
+        2047,
+        2048,
+        8191
+      ],
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "level-materialization"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: materialization through label 65535",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 65535,
+      "input": {
+        "label": 65535
+      },
+      "expected": [
+        1,
+        3,
+        4,
+        15,
+        16,
+        63,
+        64,
+        255,
+        256,
+        1023,
+        1024,
+        4095,
+        4096,
+        16383,
+        16384,
+        65535
+      ],
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "level-materialization"
+      ]
+    }
+  ]
+}

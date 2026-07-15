@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "937",
+  "frontend_id": "901",
+  "title_slug": "online-stock-span",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "StockSpanner",
+  "verified_submission_id": "2066797913",
+  "verified_at": "2026-07-14T03:25:00.601251+00:00"
+}

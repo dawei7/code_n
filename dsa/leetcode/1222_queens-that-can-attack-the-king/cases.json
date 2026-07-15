@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1222",
   "cases": [
     {
@@ -337,6 +338,32 @@
       "tags": [
         "hidden"
       ]
+    },
+    {
+      "id": "trial-nearest-blockers",
+      "name": "near queens block farther queens on two rays",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "queens": [[0, 1], [0, 2], [1, 1], [2, 2]],
+        "king": [0, 0]
+      },
+      "expected": [[0, 1], [1, 1]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["trial", "blockers"]
+    },
+    {
+      "id": "real-no-alignment",
+      "name": "hidden: no queen shares an attack ray",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "queens": [[0, 1], [1, 0], [7, 2]],
+        "king": [3, 3]
+      },
+      "expected": [],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "empty-result"]
     }
   ]
 }

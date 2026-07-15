@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "968",
+  "frontend_id": "932",
+  "title_slug": "beautiful-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.beautifulArray",
+  "verified_submission_id": "2066998915",
+  "verified_at": "2026-07-14T06:34:14.842021+00:00"
+}

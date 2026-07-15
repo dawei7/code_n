@@ -1,82 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1207",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: unique frequencies",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2,
-          2,
-          1,
-          1,
-          3
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "sample",
-        "hashing"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: duplicate frequencies",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2
-        ]
-      },
-      "expected": false,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: negative values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          -3,
-          0,
-          1,
-          -3,
-          1,
-          1,
-          1,
-          -3,
-          10,
-          0
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-single-value",
-      "name": "hidden: single value",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          5
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
+    {"id":"sample-unique","name":"sample: frequencies three two and one are unique","kind":"sample","visible":true,"input":{"arr":[1,2,2,1,1,3]},"expected":true,"tags":["sample","hashing"]},
+    {"id":"sample-collision","name":"sample: two singleton frequencies collide","kind":"sample","visible":true,"input":{"arr":[1,2]},"expected":false,"tags":["sample","collision"]},
+    {"id":"sample-negative","name":"sample: negative zero and positive values","kind":"sample","visible":true,"input":{"arr":[-3,0,1,-3,1,1,1,-3,10,0]},"expected":true,"tags":["sample","negative"]},
+    {"id":"trial-single-value","name":"one occurrence count is unique","kind":"trial","visible":true,"input":{"arr":[5]},"expected":true,"tags":["single-value"]},
+    {"id":"real-all-equal","name":"hidden: one value repeated many times","kind":"real","visible":false,"input":{"arr":[0,0,0,0]},"expected":true,"tags":["hidden","one-distinct"]},
+    {"id":"real-late-collision","name":"hidden: equal frequencies belong to distant values","kind":"real","visible":false,"input":{"arr":[4,4,4,1,2,2,2]},"expected":false,"tags":["hidden","collision"]},
+    {"id":"real-four-unique-counts","name":"hidden: unsorted values have counts one through four","kind":"real","visible":false,"input":{"arr":[3,-1,2,3,0,-1,3,2,-1,3]},"expected":true,"tags":["hidden","unsorted"]}
   ]
 }

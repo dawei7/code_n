@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_835",
+  "measurement_note": "Size is n, the common image side length. Row-bitmask translation takes O(size cubed) word operations; scanning every cell for every displacement takes O(size to the fourth) time. Dense all-one images force every in-bounds cell check while retaining a simple exact maximum.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: dense 3 by 3 images",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {"img1": [[1, 1, 1], [1, 1, 1], [1, 1, 1]], "img2": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]},
+      "expected": 9,
+      "tags": ["benchmark", "scale-small", "dense"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: dense 6 by 6 images",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"img1": [[1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1]], "img2": [[1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1]]},
+      "expected": 36,
+      "tags": ["benchmark", "scale-medium", "dense"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: dense 12 by 12 images",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "img1": [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]],
+        "img2": [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+      },
+      "expected": 144,
+      "tags": ["benchmark", "scale-large", "dense"]
+    }
+  ]
+}

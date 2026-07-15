@@ -1,0 +1,9 @@
+{"schema_version":1,"challenge_id":"lc_957","cases":[
+{"id":"sample-1","name":"sample: seven days","kind":"sample","visible":true,"input":{"cells":[0,1,0,1,1,0,0,1],"n":7},"expected":[0,0,1,1,0,0,0,0],"tags":["sample","cycle"]},
+{"id":"sample-2","name":"sample: one billion days","kind":"sample","visible":true,"input":{"cells":[1,0,0,1,0,0,1,0],"n":1000000000},"expected":[0,0,1,1,1,1,1,0],"tags":["sample","large-n"]},
+{"id":"trial-1","name":"trial: one day","kind":"trial","visible":true,"input":{"cells":[0,1,0,1,1,0,0,1],"n":1},"expected":[0,1,1,0,0,0,0,0],"tags":["trial","transition"]},
+{"id":"trial-2","name":"trial: two days","kind":"trial","visible":true,"input":{"cells":[0,1,0,1,1,0,0,1],"n":2},"expected":[0,0,0,0,1,1,1,0],"tags":["trial","transition"]},
+{"id":"trial-3","name":"trial: vacant row after seven days","kind":"trial","visible":true,"input":{"cells":[0,0,0,0,0,0,0,0],"n":7},"expected":[0,0,0,0,0,0,0,0],"tags":["trial","vacant"]},
+{"id":"hidden-1","name":"hidden: fourteen days from mixed endpoints","kind":"real","visible":false,"input":{"cells":[1,1,0,0,1,0,1,1],"n":14},"expected":[0,0,1,1,0,1,0,0],"tags":["hidden","period"]},
+{"id":"hidden-2","name":"hidden: endpoints become vacant","kind":"real","visible":false,"input":{"cells":[1,1,1,1,1,1,1,1],"n":1},"expected":[0,1,1,1,1,1,1,0],"tags":["hidden","endpoints"]}
+]}

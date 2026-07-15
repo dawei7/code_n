@@ -1,3 +1,4 @@
-def solve(position):
-    odd = sum(value % 2 for value in position)
-    return min(odd, len(position) - odd)
+def solve(position: list[int]) -> int:
+    odd_count = sum(value % 2 for value in position)
+    even_count = len(position) - odd_count
+    return min(odd_count, even_count)

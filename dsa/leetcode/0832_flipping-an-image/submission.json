@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "861",
+  "frontend_id": "832",
+  "title_slug": "flipping-an-image",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.flipAndInvertImage",
+  "verified_submission_id": "2066689284",
+  "verified_at": "2026-07-13T22:29:02.831536+00:00"
+}

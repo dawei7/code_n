@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1143",
+  "cases": [
+    {"id":"sample-1","name":"sample: characters with gaps","kind":"sample","visible":true,"input":{"text1":"abcde","text2":"ace"},"expected":3,"tags":["sample","gaps"]},
+    {"id":"sample-2","name":"sample: identical strings","kind":"sample","visible":true,"input":{"text1":"abc","text2":"abc"},"expected":3,"tags":["sample","identical"]},
+    {"id":"sample-3","name":"sample: disjoint alphabets","kind":"sample","visible":true,"input":{"text1":"abc","text2":"def"},"expected":0,"tags":["sample","none"]},
+    {"id":"trial-subsequence","name":"one string is a complete subsequence","kind":"trial","visible":true,"input":{"text1":"algorithm","text2":"aim"},"expected":3,"tags":["trial","complete-subsequence"]},
+    {"id":"trial-repeated","name":"repeated occurrences cannot be reused","kind":"trial","visible":true,"input":{"text1":"aaaa","text2":"aa"},"expected":2,"tags":["trial","repeated"]},
+    {"id":"real-order","name":"hidden: same characters in conflicting order","kind":"real","visible":false,"input":{"text1":"abc","text2":"cba"},"expected":1,"tags":["real","order"]},
+    {"id":"real-crossing","name":"hidden: optimal choices cross local matches","kind":"real","visible":false,"input":{"text1":"abcbdab","text2":"bdcaba"},"expected":4,"tags":["real","choice"]},
+    {"id":"real-unequal","name":"hidden: substantially unequal lengths","kind":"real","visible":false,"input":{"text1":"zzprogrammingzz","text2":"prmg"},"expected":4,"tags":["real","unequal-length"]}
+  ]
+}

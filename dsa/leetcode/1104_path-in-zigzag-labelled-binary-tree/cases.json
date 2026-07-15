@@ -1,0 +1,11 @@
+{
+  "challenge_id": "lc_1104",
+  "cases": [
+    {"id": "sample-even-row-label", "name": "sample: target on reversed row", "kind": "sample", "visible": true, "input": {"label": 14}, "expected": [1,3,4,14], "tags": ["sample", "zigzag"]},
+    {"id": "sample-deeper-label", "name": "sample: five-level path", "kind": "sample", "visible": true, "input": {"label": 26}, "expected": [1,2,6,10,26], "tags": ["sample", "mirror"]},
+    {"id": "trial-root", "name": "trial: target is root", "kind": "trial", "visible": true, "input": {"label": 1}, "expected": [1], "tags": ["trial", "root"]},
+    {"id": "trial-level-end", "name": "trial: target is numeric end of level", "kind": "trial", "visible": true, "input": {"label": 7}, "expected": [1,2,7], "tags": ["trial", "level-boundary"]},
+    {"id": "real-level-start", "name": "hidden: target is power-of-two level start", "kind": "real", "visible": false, "input": {"label": 16}, "expected": [1,3,4,15,16], "tags": ["hidden", "power-of-two"]},
+    {"id": "real-next-level-end", "name": "hidden: deeper numeric level end", "kind": "real", "visible": false, "input": {"label": 31}, "expected": [1,2,7,8,31], "tags": ["hidden", "level-boundary"]}
+  ]
+}

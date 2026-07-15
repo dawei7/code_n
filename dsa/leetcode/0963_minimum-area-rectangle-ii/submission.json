@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1003",
+  "frontend_id": "963",
+  "title_slug": "minimum-area-rectangle-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minAreaFreeRect",
+  "verified_submission_id": "2067110539",
+  "verified_at": "2026-07-14T08:25:52.994751+00:00"
+}

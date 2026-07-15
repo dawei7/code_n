@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_864",
+  "cases": [
+    {"id": "sample-1", "name": "sample: collect two keys around walls", "kind": "sample", "visible": true, "input": {"grid": ["@.a..", "###.#", "b.A.B"]}, "expected": 8, "tags": ["sample", "walls"]},
+    {"id": "sample-2", "name": "sample: revisit with a key", "kind": "sample", "visible": true, "input": {"grid": ["@..aA", "..B#.", "....b"]}, "expected": 6, "tags": ["sample", "state"]},
+    {"id": "sample-3", "name": "sample: key trapped behind its own lock", "kind": "sample", "visible": true, "input": {"grid": ["@Aa"]}, "expected": -1, "tags": ["sample", "impossible"]},
+    {"id": "trial-1", "name": "trial: key adjacent to start", "kind": "trial", "visible": true, "input": {"grid": ["@aA"]}, "expected": 1, "tags": ["trial", "minimum"]},
+    {"id": "trial-2", "name": "trial: second key trapped behind its lock", "kind": "trial", "visible": true, "input": {"grid": ["@.a", "##A", "b.B"]}, "expected": -1, "tags": ["trial", "impossible"]},
+    {"id": "trial-3", "name": "trial: first key opens route to second", "kind": "trial", "visible": true, "input": {"grid": ["@.a", "##A", "b..", "B.."]}, "expected": 6, "tags": ["trial", "lock"]},
+    {"id": "hidden-1", "name": "hidden: keys along one corridor", "kind": "real", "visible": false, "input": {"grid": ["@.aA.bB"]}, "expected": 5, "tags": ["hidden", "corridor"]},
+    {"id": "hidden-2", "name": "hidden: descend through unlocked door", "kind": "real", "visible": false, "input": {"grid": ["@..a", "##.#", "b..A", "B..."]}, "expected": 8, "tags": ["hidden", "unlock"]},
+    {"id": "hidden-3", "name": "hidden: key reachable around its lock", "kind": "real", "visible": false, "input": {"grid": ["@A", "a."]}, "expected": 1, "tags": ["hidden", "alternate-route"]},
+    {"id": "hidden-4", "name": "hidden: one distant key in open grid", "kind": "real", "visible": false, "input": {"grid": ["@..", ".A.", "a.."]}, "expected": 2, "tags": ["hidden", "open"]},
+    {"id": "hidden-5", "name": "hidden: two opposite keys", "kind": "real", "visible": false, "input": {"grid": ["@...b", ".....", ".A.B.", ".....", "a...."]}, "expected": 12, "tags": ["hidden", "two-keys"]},
+    {"id": "hidden-6", "name": "hidden: detour around a wall", "kind": "real", "visible": false, "input": {"grid": ["@#a", "...", "A.."]}, "expected": 4, "tags": ["hidden", "detour"]}
+  ]
+}

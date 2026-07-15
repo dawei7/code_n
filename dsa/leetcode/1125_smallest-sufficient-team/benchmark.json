@@ -1,50 +1,187 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1125",
+  "measurement_note": "Size is the required-skill count s; each skill has two singleton specialists, so p = 2s. The skill-mask DP uses at most 2^s coverage states, while a calibrated correct search enumerates subsets of the 2s people until it finds a size-s sufficient team.",
   "cases": [
     {
-      "id": "benchmark-paired-skills",
-      "name": "benchmark: paired skills beat singles",
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 2 skills and 4 duplicated specialists",
       "kind": "benchmark",
       "visible": false,
+      "size": 2,
       "input": {
         "req_skills": [
-          "a",
-          "b",
-          "c",
-          "d"
+          "s0",
+          "s1"
         ],
         "people": [
           [
-            "a"
+            "s0"
           ],
           [
-            "b"
+            "s0"
           ],
           [
-            "c"
+            "s1"
           ],
           [
-            "d"
-          ],
-          [
-            "a",
-            "d"
-          ],
-          [
-            "b",
-            "c"
+            "s1"
           ]
         ]
       },
       "expected": [
-        4,
-        5
+        0,
+        2
       ],
       "validator": {
         "kind": "sufficient_team"
       },
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scaling",
+        "duplicate-specialists"
+      ]
+    },
+    {
+      "id": "benchmark-scale-4",
+      "name": "benchmark: 4 skills and 8 duplicated specialists",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "req_skills": [
+          "s0",
+          "s1",
+          "s2",
+          "s3"
+        ],
+        "people": [
+          [
+            "s0"
+          ],
+          [
+            "s0"
+          ],
+          [
+            "s1"
+          ],
+          [
+            "s1"
+          ],
+          [
+            "s2"
+          ],
+          [
+            "s2"
+          ],
+          [
+            "s3"
+          ],
+          [
+            "s3"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "duplicate-specialists"
+      ]
+    },
+    {
+      "id": "benchmark-scale-8",
+      "name": "benchmark: 8 skills and 16 duplicated specialists",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "req_skills": [
+          "s0",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "s5",
+          "s6",
+          "s7"
+        ],
+        "people": [
+          [
+            "s0"
+          ],
+          [
+            "s0"
+          ],
+          [
+            "s1"
+          ],
+          [
+            "s1"
+          ],
+          [
+            "s2"
+          ],
+          [
+            "s2"
+          ],
+          [
+            "s3"
+          ],
+          [
+            "s3"
+          ],
+          [
+            "s4"
+          ],
+          [
+            "s4"
+          ],
+          [
+            "s5"
+          ],
+          [
+            "s5"
+          ],
+          [
+            "s6"
+          ],
+          [
+            "s6"
+          ],
+          [
+            "s7"
+          ],
+          [
+            "s7"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14
+      ],
+      "validator": {
+        "kind": "sufficient_team"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "duplicate-specialists"
       ]
     }
   ]

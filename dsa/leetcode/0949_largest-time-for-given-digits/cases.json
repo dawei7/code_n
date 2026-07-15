@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_949",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several valid arrangements",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": "23:41",
+      "tags": [
+        "sample",
+        "multiple-valid"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no valid time",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "sample",
+        "invalid"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: midnight",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": "00:00",
+      "tags": [
+        "trial",
+        "midnight"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: leading-zero hour",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          0,
+          6,
+          6
+        ]
+      },
+      "expected": "06:26",
+      "tags": [
+        "trial",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: exact hour boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          2,
+          4,
+          0,
+          0
+        ]
+      },
+      "expected": "20:40",
+      "tags": [
+        "trial",
+        "hour-boundary"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: latest possible time",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          3,
+          5,
+          9
+        ]
+      },
+      "expected": "23:59",
+      "tags": [
+        "hidden",
+        "latest"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: repeated nines",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          9,
+          5,
+          9
+        ]
+      },
+      "expected": "19:59",
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: one nonzero digit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": "10:00",
+      "tags": [
+        "hidden",
+        "zeros"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: no valid minute",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          9,
+          9,
+          2,
+          2
+        ]
+      },
+      "expected": "",
+      "tags": [
+        "hidden",
+        "invalid"
+      ]
+    }
+  ]
+}

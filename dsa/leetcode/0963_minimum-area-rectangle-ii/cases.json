@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_963","cases":[
+{"id":"sample-1","name":"sample: rotated square","kind":"sample","visible":true,"input":{"points":[[1,2],[2,1],[1,0],[0,1]]},"expected":2.0,"tags":["sample","rotated"]},
+{"id":"sample-2","name":"sample: unit axis-aligned rectangle","kind":"sample","visible":true,"input":{"points":[[0,1],[2,1],[1,1],[1,0],[2,0]]},"expected":1.0,"tags":["sample","axis-aligned"]},
+{"id":"sample-3","name":"sample: no rectangle","kind":"sample","visible":true,"input":{"points":[[0,3],[1,2],[3,1],[1,3],[2,1]]},"expected":0.0,"tags":["sample","none"]},
+{"id":"trial-1","name":"trial: four corners of a six-unit rectangle","kind":"trial","visible":true,"input":{"points":[[0,0],[3,0],[3,2],[0,2]]},"expected":6.0,"tags":["trial","axis-aligned"]},
+{"id":"trial-2","name":"trial: too few points","kind":"trial","visible":true,"input":{"points":[[0,0],[1,1],[2,2]]},"expected":0.0,"tags":["trial","minimum"]},
+{"id":"trial-3","name":"trial: translated rotated square","kind":"trial","visible":true,"input":{"points":[[3,2],[4,3],[3,4],[2,3]]},"expected":2.0,"tags":["trial","rotated"]},
+{"id":"hidden-1","name":"hidden: choose smaller nested rectangle","kind":"real","visible":false,"input":{"points":[[0,0],[4,0],[4,4],[0,4],[1,1],[2,1],[2,2],[1,2]]},"expected":1.0,"tags":["hidden","minimum"]},
+{"id":"hidden-2","name":"hidden: collinear points","kind":"real","visible":false,"input":{"points":[[0,0],[1,0],[2,0],[3,0],[4,0]]},"expected":0.0,"tags":["hidden","collinear"]},
+{"id":"hidden-3","name":"hidden: non-square rotated rectangle","kind":"real","visible":false,"input":{"points":[[1,1],[3,2],[2,4],[0,3]]},"expected":5.0,"tags":["hidden","rotated"]}
+]}

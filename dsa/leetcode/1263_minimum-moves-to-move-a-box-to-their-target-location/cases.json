@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1263",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: three pushes",
+      "id": "sample-three",
+      "name": "sample: target reached in three pushes",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -60,13 +61,12 @@
       },
       "expected": 3,
       "tags": [
-        "sample",
-        "bfs"
+        "sample"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: blocked path",
+      "id": "sample-impossible",
+      "name": "sample: wall disconnects required side",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -127,8 +127,8 @@
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: longer route",
+      "id": "sample-five",
+      "name": "sample: box requires turns",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -189,31 +189,117 @@
       ]
     },
     {
-      "id": "real-small-blocked",
-      "name": "hidden: small blocked board",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one",
+      "name": "trial: one push to target",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "grid": [
           [
             "#",
             "#",
             "#",
+            "#",
+            "#",
             "#"
           ],
           [
             "#",
-            "S",
-            "B",
+            ".",
+            ".",
+            ".",
+            ".",
             "#"
           ],
           [
             "#",
             ".",
             "T",
+            ".",
+            ".",
             "#"
           ],
           [
+            "#",
+            ".",
+            "B",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            "S",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            "#",
+            "#",
+            "#",
+            "#",
+            "#"
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-corner",
+      "name": "trial: box trapped away from target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            "#",
+            "#",
+            "#",
+            "#",
+            "#",
+            "#"
+          ],
+          [
+            "#",
+            "B",
+            ".",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            "T",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            ".",
+            "S",
+            "#"
+          ],
+          [
+            "#",
+            "#",
             "#",
             "#",
             "#",
@@ -223,7 +309,152 @@
       },
       "expected": -1,
       "tags": [
-        "hidden"
+        "trial"
+      ]
+    },
+    {
+      "id": "real-horizontal",
+      "name": "hidden: straight horizontal pushes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "#",
+            "#",
+            "#",
+            "#",
+            "#",
+            "#",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            ".",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            "S",
+            ".",
+            "B",
+            ".",
+            "T",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            ".",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            ".",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            "#",
+            "#",
+            "#",
+            "#",
+            "#",
+            "#"
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-route-around",
+      "name": "hidden: player routes around box",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            "#",
+            "#",
+            "#",
+            "#",
+            "#",
+            "#",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            "T",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            "#",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            "B",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            "S",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            ".",
+            ".",
+            ".",
+            ".",
+            ".",
+            "#"
+          ],
+          [
+            "#",
+            "#",
+            "#",
+            "#",
+            "#",
+            "#",
+            "#"
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real"
       ]
     }
   ]

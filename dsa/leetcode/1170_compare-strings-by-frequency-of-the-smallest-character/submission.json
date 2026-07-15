@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1273",
+  "frontend_id": "1170",
+  "title_slug": "compare-strings-by-frequency-of-the-smallest-character",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numSmallerByFrequency",
+  "verified_submission_id": "2067884786",
+  "verified_at": "2026-07-14T21:30:08.833820+00:00"
+}

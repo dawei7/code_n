@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_902",
+  "measurement_note": "Size is d, the decimal length of n, with three available digits fixed. Prefix counting processes d positions; a correct slower baseline counts shorter lengths combinatorially but explicitly explores every eligible boundary-length prefix, whose work grows exponentially on these all-9 limits.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: all generated values through 2 digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "digits": [
+          "1",
+          "4",
+          "9"
+        ],
+        "n": 99
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "explicit-generation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: all generated values through 5 digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "digits": [
+          "1",
+          "4",
+          "9"
+        ],
+        "n": 99999
+      },
+      "expected": 363,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "explicit-generation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: all generated values through 9 digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9,
+      "input": {
+        "digits": [
+          "1",
+          "4",
+          "9"
+        ],
+        "n": 999999999
+      },
+      "expected": 29523,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "explicit-generation"
+      ]
+    }
+  ]
+}

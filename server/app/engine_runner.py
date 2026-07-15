@@ -163,6 +163,30 @@ class _JudgeListNode:
         self.next = next
 
 
+class _JudgeImmutableListNode:
+    """Read-only linked-list interface used by LeetCode 1265."""
+
+    def __init__(
+        self,
+        value: Any,
+        next_node: "_JudgeImmutableListNode | None" = None,
+        printed_values: list[Any] | None = None,
+    ):
+        self._value = value
+        self._next_node = next_node
+        self._printed_values = printed_values if printed_values is not None else []
+
+    def getNext(self) -> "_JudgeImmutableListNode | None":
+        return self._next_node
+
+    def printValue(self) -> None:
+        self._printed_values.append(self._value)
+
+    @property
+    def printed_values(self) -> tuple[Any, ...]:
+        return tuple(self._printed_values)
+
+
 class _JudgeQuadNode:
     def __init__(
         self,
@@ -252,6 +276,49 @@ class _JudgeRobot:
         return f"Robot(cleaned={len(self._cleaned)}/{len(self.reachable_cells)})"
 
 
+class _JudgeMaster:
+    """Hidden-word simulator for LeetCode's Master guessing interface."""
+
+    def __init__(self, secret: str, words: list[str], allowed_guesses: int):
+        if not isinstance(secret, str) or not isinstance(words, list):
+            raise ValueError("master fixture requires a secret and word list")
+        if secret not in words:
+            raise ValueError("master secret must occur in the word list")
+        if len(set(words)) != len(words) or any(not isinstance(word, str) or len(word) != 6 for word in words):
+            raise ValueError("master words must be unique six-letter strings")
+        if allowed_guesses < 0:
+            raise ValueError("master allowed_guesses must be non-negative")
+        self._secret = secret
+        self._words = frozenset(words)
+        self._allowed_guesses = allowed_guesses
+        self._guess_count = 0
+        self._found = False
+
+    def guess(self, word: str) -> int:
+        self._guess_count += 1
+        if word not in self._words:
+            return -1
+        matches = sum(left == right for left, right in zip(word, self._secret))
+        if matches == 6:
+            self._found = True
+        return matches
+
+    @property
+    def found(self) -> bool:
+        return self._found
+
+    @property
+    def guess_count(self) -> int:
+        return self._guess_count
+
+    @property
+    def allowed_guesses(self) -> int:
+        return self._allowed_guesses
+
+    def __repr__(self) -> str:
+        return f"Master(found={self._found}, guesses={self._guess_count}/{self._allowed_guesses})"
+
+
 def _returns_tree(returns_hint: str) -> bool:
     text = returns_hint.lower()
     return (
@@ -323,6 +390,16 @@ def _list_node_from_values(values: Any) -> Any:
     if nodes and 0 <= cycle_position < len(nodes):
         nodes[-1].next = nodes[cycle_position]
     return nodes[0] if nodes else None
+
+
+def _immutable_list_node_from_values(values: Any) -> Any:
+    if not isinstance(values, list):
+        return values
+    printed_values: list[Any] = []
+    head: _JudgeImmutableListNode | None = None
+    for value in reversed(values):
+        head = _JudgeImmutableListNode(value, head, printed_values)
+    return head
 
 
 def _prepare_shared_list_nodes(kwargs: dict[str, Any], names: list[str] | tuple[str, ...]) -> set[str]:
@@ -504,6 +581,33 @@ def _balanced_bst_matches_values(level_order: Any, values: Any) -> bool:
     return _tree_inorder_values(root) == values and _tree_height_if_balanced(root) is not None
 
 
+def _pre_post_tree_match(actual: Any, preorder: Any, postorder: Any) -> bool:
+    if (
+        not isinstance(actual, list)
+        or not isinstance(preorder, list)
+        or not isinstance(postorder, list)
+        or len(preorder) != len(postorder)
+    ):
+        return False
+    root = _tree_from_level_order(actual)
+    if _tree_to_level_order(root) != _trim_level_order(actual):
+        return False
+
+    actual_preorder: list[Any] = []
+    actual_postorder: list[Any] = []
+
+    def traverse(node: Any) -> None:
+        if node is None:
+            return
+        actual_preorder.append(getattr(node, "val", None))
+        traverse(getattr(node, "left", None))
+        traverse(getattr(node, "right", None))
+        actual_postorder.append(getattr(node, "val", None))
+
+    traverse(root)
+    return actual_preorder == preorder and actual_postorder == postorder
+
+
 def _unordered_list_matches(actual: Any, expected: Any) -> bool:
     if not isinstance(actual, list) or not isinstance(expected, list):
         return False
@@ -552,6 +656,141 @@ def _beautiful_arrangement_ii_match(actual: Any, n: Any, k: Any) -> bool:
     if set(actual) != set(range(1, n + 1)):
         return False
     return len({abs(left - right) for left, right in zip(actual, actual[1:])}) == k
+
+
+def _beautiful_array_match(actual: Any, n: Any) -> bool:
+    if not isinstance(n, int) or isinstance(n, bool) or n < 1:
+        return False
+    if not isinstance(actual, list) or len(actual) != n:
+        return False
+    if any(not isinstance(value, int) or isinstance(value, bool) for value in actual):
+        return False
+    if sorted(actual) != list(range(1, n + 1)):
+        return False
+
+    position = [0] * (n + 1)
+    for index, value in enumerate(actual):
+        position[value] = index
+    for first in range(1, n + 1):
+        for second in range(first + 1, n + 1):
+            if (first + second) % 2:
+                continue
+            midpoint = (first + second) // 2
+            left = min(position[first], position[second])
+            right = max(position[first], position[second])
+            if left < position[midpoint] < right:
+                return False
+    return True
+
+
+def _di_string_match(actual: Any, pattern: Any) -> bool:
+    if not isinstance(pattern, str) or any(character not in {"I", "D"} for character in pattern):
+        return False
+    n = len(pattern)
+    if not isinstance(actual, list) or len(actual) != n + 1:
+        return False
+    if any(not isinstance(value, int) or isinstance(value, bool) for value in actual):
+        return False
+    if sorted(actual) != list(range(n + 1)):
+        return False
+    return all(
+        (left < right) if character == "I" else (left > right)
+        for left, right, character in zip(actual[:-1], actual[1:], pattern, strict=True)
+    )
+
+
+def _shortest_superstring_match(actual: Any, expected: Any, words: Any) -> bool:
+    if not isinstance(actual, str) or not isinstance(expected, str):
+        return False
+    if not isinstance(words, list) or any(not isinstance(word, str) for word in words):
+        return False
+    return len(actual) == len(expected) and all(word in actual for word in words)
+
+
+def _shortest_common_supersequence_match(actual: Any, left: Any, right: Any) -> bool:
+    if not isinstance(actual, str) or not isinstance(left, str) or not isinstance(right, str):
+        return False
+
+    def is_subsequence(candidate: str, container: str) -> bool:
+        position = 0
+        for character in container:
+            if position < len(candidate) and candidate[position] == character:
+                position += 1
+        return position == len(candidate)
+
+    previous = [0] * (len(right) + 1)
+    for left_character in left:
+        current = [0] * (len(right) + 1)
+        for column, right_character in enumerate(right, start=1):
+            if left_character == right_character:
+                current[column] = previous[column - 1] + 1
+            else:
+                current[column] = max(previous[column], current[column - 1])
+        previous = current
+
+    minimum_length = len(left) + len(right) - previous[-1]
+    return (
+        len(actual) == minimum_length
+        and is_subsequence(left, actual)
+        and is_subsequence(right, actual)
+    )
+
+
+def _stamping_sequence_match(actual: Any, expected: Any, stamp: Any, target: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(expected, list):
+        return False
+    if not isinstance(stamp, str) or not isinstance(target, str) or not stamp or len(stamp) > len(target):
+        return False
+    if not actual:
+        return not expected
+    if len(actual) > 10 * len(target):
+        return False
+    if any(not isinstance(index, int) or isinstance(index, bool) for index in actual):
+        return False
+
+    built = ["?"] * len(target)
+    for start in actual:
+        if not 0 <= start <= len(target) - len(stamp):
+            return False
+        for offset, character in enumerate(stamp):
+            built[start + offset] = character
+    return "".join(built) == target
+
+
+def _pancake_sort_match(actual: Any, values: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(values, list) or not values:
+        return False
+    if len(actual) > 10 * len(values):
+        return False
+    if any(not isinstance(length, int) or isinstance(length, bool) for length in actual):
+        return False
+
+    working = list(values)
+    for length in actual:
+        if not 1 <= length <= len(working):
+            return False
+        working[:length] = reversed(working[:length])
+    return working == sorted(values)
+
+
+def _string_without_triples_match(actual: Any, a: Any, b: Any) -> bool:
+    if (
+        not isinstance(actual, str)
+        or not isinstance(a, int)
+        or isinstance(a, bool)
+        or not isinstance(b, int)
+        or isinstance(b, bool)
+        or a < 0
+        or b < 0
+    ):
+        return False
+    return (
+        len(actual) == a + b
+        and actual.count("a") == a
+        and actual.count("b") == b
+        and "aaa" not in actual
+        and "bbb" not in actual
+    )
 
 
 def _ordered_unordered_groups_match(actual: Any, expected: Any) -> bool:
@@ -1092,6 +1331,183 @@ def _gray_code_match(actual: Any, bits: Any) -> bool:
     return True
 
 
+def _circular_gray_code_match(actual: Any, bits: Any, start: Any) -> bool:
+    if (
+        not isinstance(bits, int)
+        or bits < 1
+        or not isinstance(start, int)
+        or isinstance(start, bool)
+        or not isinstance(actual, list)
+    ):
+        return False
+    size = 1 << bits
+    if (
+        not 0 <= start < size
+        or len(actual) != size
+        or actual[0] != start
+        or any(not isinstance(value, int) or not 0 <= value < size for value in actual)
+        or len(set(actual)) != size
+    ):
+        return False
+
+    for left, right in zip(actual, actual[1:] + actual[:1]):
+        difference = left ^ right
+        if difference == 0 or difference & (difference - 1):
+            return False
+    return True
+
+
+def _advantage_shuffle_match(actual: Any, nums1: Any, nums2: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(nums1, list) or not isinstance(nums2, list):
+        return False
+    if len(actual) != len(nums1) or len(nums1) != len(nums2):
+        return False
+    if any(not isinstance(value, int) or isinstance(value, bool) for value in actual):
+        return False
+    if Counter(actual) != Counter(nums1):
+        return False
+
+    sorted_targets = sorted(nums2)
+    matched_targets = 0
+    for value in sorted(nums1):
+        if matched_targets < len(sorted_targets) and value > sorted_targets[matched_targets]:
+            matched_targets += 1
+
+    actual_advantage = sum(
+        value > target for value, target in zip(actual, nums2)
+    )
+    return actual_advantage == matched_targets
+
+
+def _parity_partition_match(actual: Any, original: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(original, list):
+        return False
+    if any(
+        not isinstance(value, int) or isinstance(value, bool)
+        for value in actual + original
+    ):
+        return False
+    if Counter(actual) != Counter(original):
+        return False
+
+    seen_odd = False
+    for value in actual:
+        if value % 2:
+            seen_odd = True
+        elif seen_odd:
+            return False
+    return True
+
+
+def _indexed_parity_match(actual: Any, original: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(original, list):
+        return False
+    if any(
+        not isinstance(value, int) or isinstance(value, bool)
+        for value in actual + original
+    ):
+        return False
+    if Counter(actual) != Counter(original):
+        return False
+    return all(value % 2 == index % 2 for index, value in enumerate(actual))
+
+
+def _three_equal_binary_parts_match(actual: Any, arr: Any) -> bool:
+    if not isinstance(actual, (list, tuple)) or len(actual) != 2:
+        return False
+    if not isinstance(arr, list) or len(arr) < 3:
+        return False
+    if any(not isinstance(value, int) or isinstance(value, bool) for value in actual):
+        return False
+    if any(not isinstance(bit, int) or isinstance(bit, bool) or bit not in (0, 1) for bit in arr):
+        return False
+
+    left_end, right_start = actual
+    if [left_end, right_start] == [-1, -1]:
+        total_ones = sum(arr)
+        if total_ones == 0:
+            return False
+        if total_ones % 3:
+            return True
+        ones_per_part = total_ones // 3
+        one_positions = [index for index, bit in enumerate(arr) if bit]
+        first = one_positions[0]
+        second = one_positions[ones_per_part]
+        third = one_positions[2 * ones_per_part]
+        significant_length = len(arr) - third
+        exists = (
+            first + significant_length <= second
+            and second + significant_length <= third
+            and arr[first : first + significant_length]
+            == arr[second : second + significant_length]
+            == arr[third:]
+        )
+        return not exists
+
+    if not (0 <= left_end and left_end + 1 < right_start < len(arr)):
+        return False
+
+    def normalized(part: list[int]) -> list[int]:
+        first_one = next((index for index, bit in enumerate(part) if bit), len(part))
+        return part[first_one:]
+
+    first_part = normalized(arr[: left_end + 1])
+    second_part = normalized(arr[left_end + 1 : right_start])
+    third_part = normalized(arr[right_start:])
+    return first_part == second_part == third_part
+
+
+def _three_equal_parts_match(actual: Any, expected: Any, bits: Any) -> bool:
+    if (
+        not isinstance(actual, (list, tuple))
+        or len(actual) != 2
+        or not isinstance(bits, list)
+    ):
+        return False
+    if any(not isinstance(index, int) or isinstance(index, bool) for index in actual):
+        return False
+    if any(bit not in (0, 1) or isinstance(bit, bool) for bit in bits):
+        return False
+
+    first_end, third_start = actual
+    if first_end == -1 and third_start == -1:
+        return expected == [-1, -1]
+    if not (0 <= first_end and first_end + 1 < third_start < len(bits)):
+        return False
+
+    def significant_part(start: int, end: int) -> list[int]:
+        while start < end and bits[start] == 0:
+            start += 1
+        return bits[start:end]
+
+    first = significant_part(0, first_end + 1)
+    second = significant_part(first_end + 1, third_start)
+    third = significant_part(third_start, len(bits))
+    return first == second == third
+
+
+def _fair_candy_swap_match(actual: Any, alice_sizes: Any, bob_sizes: Any) -> bool:
+    if (
+        not isinstance(actual, (list, tuple))
+        or len(actual) != 2
+        or not isinstance(alice_sizes, list)
+        or not isinstance(bob_sizes, list)
+    ):
+        return False
+    alice_box, bob_box = actual
+    if any(
+        not isinstance(value, int) or isinstance(value, bool)
+        for value in (alice_box, bob_box)
+    ):
+        return False
+    if alice_box not in alice_sizes or bob_box not in bob_sizes:
+        return False
+    return (
+        sum(alice_sizes) - alice_box + bob_box
+        == sum(bob_sizes) - bob_box + alice_box
+    )
+
+
 def _de_bruijn_sequence_match(actual: Any, n: Any, k: Any) -> bool:
     if (
         not isinstance(actual, str)
@@ -1287,6 +1703,37 @@ def _sufficient_team_match(actual: Any, expected: Any, req_skills: Any, people: 
             return False
         covered.update(skills)
     return set(req_skills).issubset(covered)
+
+
+def _vps_split_match(actual: Any, sequence: Any) -> bool:
+    if not isinstance(sequence, str) or not isinstance(actual, list) or len(actual) != len(sequence):
+        return False
+    if not all(isinstance(group, int) and not isinstance(group, bool) and group in {0, 1} for group in actual):
+        return False
+
+    balances = [0, 0]
+    group_depths = [0, 0]
+    original_depth = 0
+    depth = 0
+    for character, group in zip(sequence, actual):
+        if character == "(":
+            depth += 1
+            original_depth = max(original_depth, depth)
+            balances[group] += 1
+            group_depths[group] = max(group_depths[group], balances[group])
+        elif character == ")":
+            depth -= 1
+            balances[group] -= 1
+            if depth < 0 or balances[group] < 0:
+                return False
+        else:
+            return False
+
+    return (
+        depth == 0
+        and balances == [0, 0]
+        and max(group_depths) == (original_depth + 1) // 2
+    )
 
 
 def _forest_roots_match(actual: Any, expected: Any) -> bool:
@@ -1652,12 +2099,54 @@ def _robot_room_cleaner_match(actual: Any, expected: Any) -> bool:
     return actual.cleaned_cells == reachable
 
 
+def _immutable_list_print_match(actual: Any, expected: Any) -> bool:
+    return (
+        isinstance(actual, _JudgeImmutableListNode)
+        and isinstance(expected, list)
+        and list(actual.printed_values) == expected
+    )
+
+
+def _fibonacci_split_match(actual: Any, expected: Any, digits: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(digits, str):
+        return False
+    if not actual:
+        return actual == expected
+    if len(actual) < 3:
+        return False
+    if any(
+        not isinstance(value, int)
+        or isinstance(value, bool)
+        or value < 0
+        or value >= 2**31
+        for value in actual
+    ):
+        return False
+    if any(actual[index - 2] + actual[index - 1] != actual[index] for index in range(2, len(actual))):
+        return False
+    return "".join(str(value) for value in actual) == digits
+
+
+def _master_guessed_match(actual: Any) -> bool:
+    return (
+        isinstance(actual, _JudgeMaster)
+        and actual.found
+        and actual.guess_count <= actual.allowed_guesses
+    )
+
+
 def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> bool:
     validator = case.validator or {}
     kind = str(validator.get("kind") or "")
     if kind == "balanced_bst":
         values_param = str(validator.get("values_param") or "nums")
         return _balanced_bst_matches_values(actual, case.input.get(values_param))
+    if kind == "pre_post_tree":
+        return _pre_post_tree_match(
+            actual,
+            case.input.get(str(validator.get("preorder_param") or "preorder")),
+            case.input.get(str(validator.get("postorder_param") or "postorder")),
+        )
     if kind == "unordered_list":
         return _unordered_list_matches(actual, expected)
     if kind == "unordered_nested_list":
@@ -1669,6 +2158,46 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             actual,
             case.input.get(str(validator.get("n_param") or "n")),
             case.input.get(str(validator.get("k_param") or "k")),
+        )
+    if kind == "beautiful_array":
+        return _beautiful_array_match(
+            actual,
+            case.input.get(str(validator.get("n_param") or "n")),
+        )
+    if kind == "di_string":
+        return _di_string_match(
+            actual,
+            case.input.get(str(validator.get("string_param") or "s")),
+        )
+    if kind == "shortest_superstring":
+        return _shortest_superstring_match(
+            actual,
+            expected,
+            case.input.get(str(validator.get("words_param") or "words")),
+        )
+    if kind == "shortest_common_supersequence":
+        return _shortest_common_supersequence_match(
+            actual,
+            case.input.get(str(validator.get("left_param") or "str1")),
+            case.input.get(str(validator.get("right_param") or "str2")),
+        )
+    if kind == "stamping_sequence":
+        return _stamping_sequence_match(
+            actual,
+            expected,
+            case.input.get(str(validator.get("stamp_param") or "stamp")),
+            case.input.get(str(validator.get("target_param") or "target")),
+        )
+    if kind == "pancake_sort":
+        return _pancake_sort_match(
+            actual,
+            case.input.get(str(validator.get("values_param") or "arr")),
+        )
+    if kind == "string_without_triples":
+        return _string_without_triples_match(
+            actual,
+            case.input.get(str(validator.get("a_param") or "a")),
+            case.input.get(str(validator.get("b_param") or "b")),
         )
     if kind == "ordered_unordered_groups":
         return _ordered_unordered_groups_match(actual, expected)
@@ -1736,6 +2265,30 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             actual,
             case.input.get(str(validator.get("people_param") or "people")),
         )
+    if kind == "advantage_shuffle":
+        return _advantage_shuffle_match(
+            actual,
+            case.input.get(str(validator.get("left_param") or "nums1")),
+            case.input.get(str(validator.get("right_param") or "nums2")),
+        )
+    if kind == "parity_partition":
+        values_param = str(validator.get("values_param") or "nums")
+        return _parity_partition_match(actual, case.input.get(values_param))
+    if kind == "indexed_parity":
+        values_param = str(validator.get("values_param") or "nums")
+        return _indexed_parity_match(actual, case.input.get(values_param))
+    if kind == "three_equal_binary_parts":
+        values_param = str(validator.get("values_param") or "arr")
+        return _three_equal_binary_parts_match(actual, case.input.get(values_param))
+    if kind == "three_equal_parts":
+        values_param = str(validator.get("values_param") or "arr")
+        return _three_equal_parts_match(actual, expected, case.input.get(values_param))
+    if kind == "fair_candy_swap":
+        return _fair_candy_swap_match(
+            actual,
+            case.input.get(str(validator.get("alice_param") or "aliceSizes")),
+            case.input.get(str(validator.get("bob_param") or "bobSizes")),
+        )
     if kind == "minimum_unique_abbreviation":
         return _minimum_unique_abbreviation_match(
             actual,
@@ -1759,6 +2312,14 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
     if kind == "gray_code":
         bits_param = str(validator.get("bits_param") or "n")
         return _gray_code_match(actual, case.input.get(bits_param))
+    if kind == "circular_gray_code":
+        bits_param = str(validator.get("bits_param") or "n")
+        start_param = str(validator.get("start_param") or "start")
+        return _circular_gray_code_match(
+            actual,
+            case.input.get(bits_param),
+            case.input.get(start_param),
+        )
     if kind == "de_bruijn_sequence":
         return _de_bruijn_sequence_match(
             actual,
@@ -1833,6 +2394,9 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             case.input.get(str(validator.get("skills_param") or "req_skills")),
             case.input.get(str(validator.get("people_param") or "people")),
         )
+    if kind == "vps_split":
+        sequence_param = str(validator.get("sequence_param") or "seq")
+        return _vps_split_match(actual, case.input.get(sequence_param))
     if kind == "forest_roots":
         return _forest_roots_match(actual, expected)
     if kind == "unique_bsts":
@@ -1897,10 +2461,17 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         )
     if kind == "robot_room_cleaner":
         return _robot_room_cleaner_match(actual, expected)
+    if kind == "immutable_list_print":
+        return _immutable_list_print_match(actual, expected)
     if kind == "node_value":
         if actual is None:
             return expected is None
         return getattr(actual, "val", object()) == expected
+    if kind == "fibonacci_split":
+        digits_param = str(validator.get("digits_param") or "num")
+        return _fibonacci_split_match(actual, expected, case.input.get(digits_param))
+    if kind == "master_guessed":
+        return _master_guessed_match(actual)
     return actual == expected
 
 
@@ -1919,6 +2490,17 @@ def _prepare_validated_kwargs(
             int(robot_fixture.get("col", 0)),
             int(robot_fixture.get("direction", 0)),
         )
+    master_fixture = kwargs.get("master")
+    if isinstance(master_fixture, dict) and "secret" in master_fixture:
+        words = kwargs.get("words")
+        kwargs["master"] = _JudgeMaster(
+            str(master_fixture["secret"]),
+            words if isinstance(words, list) else [],
+            int(master_fixture.get("allowed_guesses", 10)),
+        )
+    for name, fixture in list(kwargs.items()):
+        if isinstance(fixture, dict) and set(fixture) == {"immutable_values"}:
+            kwargs[name] = _immutable_list_node_from_values(fixture["immutable_values"])
     for name in tree_param_names:
         if name in kwargs:
             kwargs[name] = _tree_from_level_order(kwargs[name])

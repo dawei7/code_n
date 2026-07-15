@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_926",
+  "measurement_note": "Size is n, the binary-string length. Every tier alternates 1 and 0, so all candidate split positions remain relevant. The prefix recurrence is linear, while a correct implementation that separately counts misplaced bits for every split performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: alternating binary string at n=8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "10101010"
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "all-splits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: alternating binary string at n=32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "10101010101010101010101010101010"
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "all-splits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: alternating binary string at n=128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "10101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010"
+      },
+      "expected": 64,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "all-splits"
+      ]
+    }
+  ]
+}
+

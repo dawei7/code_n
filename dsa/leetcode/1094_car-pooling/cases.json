@@ -2,105 +2,58 @@
   "challenge_id": "lc_1094",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: over capacity",
+      "id": "sample-over-capacity",
+      "name": "sample: overlapping trips exceed capacity",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "trips": [
-          [
-            2,
-            1,
-            5
-          ],
-          [
-            3,
-            3,
-            7
-          ]
-        ],
-        "capacity": 4
-      },
+      "input": {"trips": [[2, 1, 5], [3, 3, 7]], "capacity": 4},
       "expected": false,
-      "tags": [
-        "sample",
-        "prefix-sum"
-      ]
+      "tags": ["sample", "overlap"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: exact capacity",
+      "id": "sample-exact-capacity",
+      "name": "sample: overlapping trips exactly fill car",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "trips": [
-          [
-            2,
-            1,
-            5
-          ],
-          [
-            3,
-            3,
-            7
-          ]
-        ],
-        "capacity": 5
-      },
+      "input": {"trips": [[2, 1, 5], [3, 3, 7]], "capacity": 5},
       "expected": true,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "exact-capacity"]
     },
     {
-      "id": "trial-single-trip",
-      "name": "single trip fits",
+      "id": "trial-drop-before-pickup",
+      "name": "trial: seats are reused at the same location",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "trips": [
-          [
-            2,
-            1,
-            5
-          ]
-        ],
-        "capacity": 2
-      },
+      "input": {"trips": [[5, 0, 5], [5, 5, 10]], "capacity": 5},
       "expected": true,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["trial", "shared-endpoint"]
     },
     {
-      "id": "real-drop-before-pickup",
-      "name": "hidden: drop-off frees seats",
+      "id": "trial-boundary-locations",
+      "name": "trial: trip spans full coordinate range",
+      "kind": "trial",
+      "visible": true,
+      "input": {"trips": [[100, 0, 1000]], "capacity": 100},
+      "expected": true,
+      "tags": ["trial", "boundaries"]
+    },
+    {
+      "id": "real-three-way-overlap",
+      "name": "hidden: three groups create a brief overload",
       "kind": "real",
       "visible": false,
-      "input": {
-        "trips": [
-          [
-            3,
-            2,
-            7
-          ],
-          [
-            3,
-            7,
-            9
-          ],
-          [
-            8,
-            3,
-            9
-          ]
-        ],
-        "capacity": 11
-      },
+      "input": {"trips": [[3, 2, 8], [4, 4, 9], [2, 6, 7], [4, 9, 12]], "capacity": 8},
+      "expected": false,
+      "tags": ["hidden", "overlap"]
+    },
+    {
+      "id": "real-unsorted-trips",
+      "name": "hidden: input order differs from travel order",
+      "kind": "real",
+      "visible": false,
+      "input": {"trips": [[2, 8, 10], [3, 0, 4], [3, 4, 8], [1, 2, 9]], "capacity": 4},
       "expected": true,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "unsorted", "shared-endpoints"]
     }
   ]
 }

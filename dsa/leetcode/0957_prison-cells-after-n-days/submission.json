@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "994",
+  "frontend_id": "957",
+  "title_slug": "prison-cells-after-n-days",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.prisonAfterNDays",
+  "verified_submission_id": "2067090307",
+  "verified_at": "2026-07-14T08:03:54.750983+00:00"
+}

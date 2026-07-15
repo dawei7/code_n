@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_994","cases":[
+{"id":"sample-1","name":"sample: complete spread","kind":"sample","visible":true,"input":{"grid":[[2,1,1],[1,1,0],[0,1,1]]},"expected":4,"tags":["sample"]},
+{"id":"sample-2","name":"sample: unreachable corner","kind":"sample","visible":true,"input":{"grid":[[2,1,1],[0,1,1],[1,0,1]]},"expected":-1,"tags":["sample"]},
+{"id":"sample-3","name":"sample: no fresh oranges","kind":"sample","visible":true,"input":{"grid":[[0,2]]},"expected":0,"tags":["sample"]},
+{"id":"trial-1","name":"trial: isolated fresh orange","kind":"trial","visible":true,"input":{"grid":[[1]]},"expected":-1,"tags":["trial","no-source"]},
+{"id":"trial-2","name":"trial: rotten singleton","kind":"trial","visible":true,"input":{"grid":[[2]]},"expected":0,"tags":["trial","minimum"]},
+{"id":"trial-3","name":"trial: source between fresh oranges","kind":"trial","visible":true,"input":{"grid":[[1,2,1]]},"expected":1,"tags":["trial","simultaneous"]},
+{"id":"hidden-1","name":"hidden: multiple corner sources","kind":"real","visible":false,"input":{"grid":[[2,1,1],[1,1,1],[1,1,2]]},"expected":2,"tags":["hidden","multi-source"]},
+{"id":"hidden-2","name":"hidden: empty barriers","kind":"real","visible":false,"input":{"grid":[[2,0,1],[0,0,0],[1,0,2]]},"expected":-1,"tags":["hidden","barrier"]},
+{"id":"hidden-3","name":"hidden: compact winding path","kind":"real","visible":false,"input":{"grid":[[2,1,1,1],[0,0,0,1],[1,1,1,1],[1,0,0,0]]},"expected":9,"tags":["hidden","corridor"]}
+]}

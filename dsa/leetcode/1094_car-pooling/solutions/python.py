@@ -1,15 +1,15 @@
-"""Optimal solution for LeetCode 1094: Car Pooling."""
+"""Optimal app-local solution for LeetCode 1094."""
 
 
 def solve(trips: list[list[int]], capacity: int) -> bool:
-    changes: dict[int, int] = {}
+    changes = [0] * 1001
     for passengers, start, end in trips:
-        changes[start] = changes.get(start, 0) + passengers
-        changes[end] = changes.get(end, 0) - passengers
+        changes[start] += passengers
+        changes[end] -= passengers
 
-    current = 0
-    for location in sorted(changes):
-        current += changes[location]
-        if current > capacity:
+    passengers_aboard = 0
+    for change in changes:
+        passengers_aboard += change
+        if passengers_aboard > capacity:
             return False
     return True

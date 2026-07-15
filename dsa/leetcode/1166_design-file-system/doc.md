@@ -8,52 +8,75 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Design, Trie |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [design-file-system](https://leetcode.com/problems/design-file-system/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/design-file-system/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/design-file-system/).
 
 ### Goal
-Design a file-system-like key-value store for absolute paths. A path can be created only if it does not already exist and its parent path already exists. Values are integers.
 
-### Design Contract
+Design a file system that creates new absolute paths and associates an integer value with each one. A valid path consists of one or more components, where every component begins with `/` and then contains one or more lowercase English letters. Thus `"/leetcode"` and `"/leetcode/problems"` are valid, while `""` and `"/"` are not.
+
+The system begins without any created paths. A new path may be created only when it does not already exist and its immediate parent already exists; a one-component path has the implicit root as its parent and may be created directly. Existing values cannot be overwritten. A lookup returns the stored value for an existing path and `-1` for a missing path.
+
+### Function Contract
+
 **Operations**
 
-- `FileSystem()`: Create an empty file system.
-- `createPath(path, value)`: Create `path` with `value` and return whether creation succeeded.
-- `get(path)`: Return the value for `path`, or `-1` if the path does not exist.
+- `FileSystem()`: Initialize an empty file system.
+- `createPath(path, value)`: If `path` is new and its parent exists, associate it with `value` and return `true`; otherwise return `false` without changing the system.
+- `get(path)`: Return the value associated with `path`, or `-1` when it has not been created.
+- Every `path` has length from $2$ through $100$, every value is from $1$ through $10^9$, and at most $10^4$ method calls are made.
+- Define
+
+$$
+S = \sum_{o \in \text{operations}} \lvert \operatorname{path}(o) \rvert.
+$$
 
 **Return value**
 
-Operation-specific return values as described above.
+- Each operation returns its method-specific result described above.
 
 ### Examples
+
 **Example 1**
 
-- Input: `["FileSystem", "createPath", "get"]`, `[[], ["/a", 1], ["/a"]]`
-- Output: `[null, true, 1]`
+- Input: `operations = [["createPath", ["/a", 1]], ["get", ["/a"]]]`
+- Output: `[true, 1]`
 
 **Example 2**
 
-- Input: `["FileSystem", "createPath", "createPath", "get"]`, `[[], ["/leet", 1], ["/leet/code", 2], ["/leet/code"]]`
-- Output: `[null, true, true, 2]`
+- Input: `operations = [["createPath", ["/leet", 1]], ["createPath", ["/leet/code", 2]], ["get", ["/leet/code"]], ["createPath", ["/c/d", 1]], ["get", ["/c"]]]`
+- Output: `[true, true, 2, false, -1]`
 
-**Example 3**
+The nested path `"/leet/code"` succeeds after its parent is present. Creating `"/c/d"` fails because `"/c"` does not exist.
 
-- Input: `["FileSystem", "createPath", "get"]`, `[[], ["/c/d", 1], ["/c"]]`
-- Output: `[null, false, -1]`
+### Required Complexity
 
----
+- **Time:** $O(S)$
+- **Space:** $O(S)$
 
-## Solution
-### Approach
-Store created paths in a hash map from full path string to value. To create a path, reject empty/root paths and existing paths, then extract the parent prefix before the final slash. The parent is valid if it is root or already exists in the map.
+<details>
+<summary>Approach</summary>
 
-A trie is also natural, but a hash map keeps each operation direct and compact.
+#### General
 
-### Complexity Analysis
-- **Time Complexity**: `O(L)` per operation, where `L` is the path length.
-- **Space Complexity**: `O(T)`, where `T` is the total length of stored paths.
+**Store complete paths as keys.** Maintain a hash map from each successfully created path string to its integer value. Full paths are already unique identifiers, so a separate tree node is unnecessary for the required operations.
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Validate only the immediate parent.** For `createPath(path, value)`, first reject `path` when it is already a key. Locate its final `/`; the prefix before that slash is the immediate parent. An empty prefix means the parent is the implicit root, so a one-component path is allowed. A non-empty parent must already be in the map. Only after both checks pass should `paths[path] = value` be performed, which prevents failed creations from changing state.
+
+**Use the same map for lookup.** `get(path)` returns the mapped value when present and `-1` otherwise. Because creation requires the immediate parent, every stored nested path has a complete chain of previously created ancestors. Existing keys are never reassigned, so their associated values remain stable.
+
+#### Complexity detail
+
+Hashing a path and finding its final separator cost time proportional to that path's length. Summed over all method calls, the expected total time is $O(S)$. The map stores at most one copy of every successfully created path, whose combined length is at most $S$, so its space use is $O(S)$.
+
+#### Alternatives and edge cases
+
+- **Trie by components:** A trie naturally represents the hierarchy and also achieves linear work in the path text, but it needs node and child-map machinery that the two requested operations do not require.
+- **Linear list of paths:** Searching every previously created path is correct but can take quadratic time across many operations.
+- **Missing parent:** Creating a nested path fails even if all components are syntactically valid; no intermediate directory is created automatically.
+- **Duplicate path:** A second creation fails and must not replace the original value.
+- **One-component path:** Its parent prefix is empty, representing the implicit root, so it can be created in an empty system.
+- **Missing lookup:** `get` returns `-1` and does not create the requested path.
+
+</details>

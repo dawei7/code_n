@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1193",
+  "frontend_id": "1097",
+  "title_slug": "game-play-analysis-v",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067617043",
+  "verified_at": "2026-07-14T16:35:00.928792+00:00"
+}

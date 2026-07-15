@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1278",
+  "frontend_id": "1164",
+  "title_slug": "product-price-at-a-given-date",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "MySQL query",
+  "verified_submission_id": "2067876945",
+  "verified_at": "2026-07-14T21:08:18.393244+00:00"
+}

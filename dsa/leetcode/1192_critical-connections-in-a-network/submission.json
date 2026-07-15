@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1300",
+  "frontend_id": "1192",
+  "title_slug": "critical-connections-in-a-network",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.criticalConnections",
+  "verified_submission_id": "2067914970",
+  "verified_at": "2026-07-14T23:07:34.541755+00:00"
+}

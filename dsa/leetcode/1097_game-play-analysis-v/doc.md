@@ -8,26 +8,30 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [game-play-analysis-v](https://leetcode.com/problems/game-play-analysis-v/) |
+| LeetCode | [Open](https://leetcode.com/problems/game-play-analysis-v/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/game-play-analysis-v/).
 
 ### Goal
-For each install date, report how many players installed on that date and the day-one retention rate: the fraction of those players who logged in again exactly one day after their install date.
 
-### Query Contract
+The `Activity` table records a player's login on a particular date, the device used, and how many games the player completed before logging out. The pair `(player_id, event_date)` is unique, and `games_played` may be zero.
+
+A player's install date is that player's first login date. For each install date $x$, report the number of players whose first login occurred on $x$ and the day-one retention: the fraction of that cohort that logged in again exactly one day after $x$, rounded to two decimal places. Return one row per install date in any order.
+
+### Function Contract
+
 **Input table**
 
-- `Activity(player_id, device_id, event_date, games_played)`: Player activity records.
+- `Activity(player_id, device_id, event_date, games_played)`: one row per player's activity date; `(player_id, event_date)` is the primary key.
 
-**Output columns**
+Let $A$ be the number of rows in `Activity`.
 
-- `install_dt`
-- `installs`
-- `Day1_retention`
+**Return value**
+
+A relation with columns `install_dt`, `installs`, and `Day1_retention`. The first is an install date, the second is its cohort size, and the third is its retained-player count divided by that size and rounded to two decimal places.
 
 ### Examples
+
 **Example 1**
 
 `Activity`
@@ -37,29 +41,47 @@ For each install date, report how many players installed on that date and the da
 | 1 | 2 | 2016-03-01 | 5 |
 | 1 | 2 | 2016-03-02 | 6 |
 | 2 | 3 | 2017-06-25 | 1 |
-| 3 | 1 | 2016-03-02 | 0 |
-| 3 | 4 | 2018-07-03 | 5 |
+| 3 | 1 | 2016-03-01 | 0 |
+| 3 | 4 | 2016-07-03 | 5 |
 
 Output:
 
 | install_dt | installs | Day1_retention |
 |---|---:|---:|
-| 2016-03-01 | 1 | 1.00 |
-| 2016-03-02 | 1 | 0.00 |
+| 2016-03-01 | 2 | 0.50 |
 | 2017-06-25 | 1 | 0.00 |
-| 2018-07-03 | 1 | 0.00 |
 
----
+Players 1 and 3 share the first cohort, but only player 1 returns on `2016-03-02`. Player 3's July activity does not create another install.
 
-## Solution
-### Approach
-First find each player's install date with `MIN(event_date)`. Then left join those install rows to activity records for the same player on `install_dt + 1 day`. Group by install date, count installs, and divide retained players by installs.
+### Required Complexity
 
-The retention value should be rounded to two decimal places.
+- **Time:** $O(A \log A)$
+- **Space:** $O(A)$
 
-### Complexity Analysis
-- **Time Complexity**: Depends on the database engine; logically, the query groups activity by player and joins back to next-day activity.
-- **Space Complexity**: Depends on the database execution plan and indexes.
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Materialize one install row per player.** Group `Activity` by `player_id` and take `MIN(event_date)` as `install_dt`. This prevents later activity from being counted as another install and gives exactly one row for every cohort member.
+
+**Join only the exact next date.** Left join each install row back to `Activity` for the same player where the activity date equals `date(install_dt, '+1 day')`. Because `(player_id, event_date)` is unique, each install row matches at most one retained activity row and therefore remains one cohort member after the join.
+
+**Aggregate the retention indicator.** Group the joined rows by `install_dt`. `COUNT(*)` is the number of installs. Convert a successful next-day match to `1.0` and a missing match to `0.0`; their average is retained players divided by installs. Rounding that average to two decimal places gives `Day1_retention`.
+
+The initial grouping assigns every player to the unique date of their first activity. The left join marks that player precisely when an activity exists one calendar day later, while preserving non-returning players. Consequently, the final count and average use exactly the numerator and denominator in the retention definition.
+
+#### Complexity detail
+
+Grouping $A$ activity rows and joining the resulting install rows back to `Activity` takes $O(A \log A)$ time under standard sort-based plans; indexed or hash-based plans may be linear on average. The grouped relation, join state, and result aggregation require at most $O(A)$ working space. Actual constants and plan choices depend on the database engine and indexes.
+
+#### Alternatives and edge cases
+
+- **Window minimum:** `MIN(event_date) OVER (PARTITION BY player_id)` can annotate every activity row, but the query must then avoid counting a player more than once per cohort.
+- **Correlated next-day subquery:** Testing `Activity` separately for every installed player is concise, but without an index it may repeatedly scan the table and approach $O(A^2)$ time.
+- **Later return:** Activity two or more days after installation does not count toward day-one retention.
+- **No return:** The left join must preserve the player and contribute zero rather than remove that player from the denominator.
+- **Multiple install dates:** Cohort counts and retention rates are computed independently for each first-login date.
+- **Zero games played:** Such a row is still a login and participates in both install and retention calculations.
+
+</details>

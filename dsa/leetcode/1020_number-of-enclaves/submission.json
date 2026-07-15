@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1073",
+  "frontend_id": "1020",
+  "title_slug": "number-of-enclaves",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numEnclaves",
+  "verified_submission_id": "2067309409",
+  "verified_at": "2026-07-14T11:49:22.836211+00:00"
+}

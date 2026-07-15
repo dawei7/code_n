@@ -1,24 +1,25 @@
-"""Optimal solution for LeetCode 1000: Minimum Cost to Merge Stones."""
+"""Optimal app-local solution for LeetCode 1000."""
 
 
-def solve(stones: list[int], k: int) -> int:
-    n = len(stones)
-    if (n - 1) % (k - 1) != 0:
+def solve(stones, k):
+    size = len(stones)
+    if (size - 1) % (k - 1):
         return -1
 
     prefix = [0]
-    for value in stones:
-        prefix.append(prefix[-1] + value)
+    for amount in stones:
+        prefix.append(prefix[-1] + amount)
 
-    dp = [[0] * n for _ in range(n)]
-    for length in range(k, n + 1):
-        for left in range(n - length + 1):
+    dp = [[0] * size for _ in range(size)]
+    for length in range(2, size + 1):
+        for left in range(size - length + 1):
             right = left + length - 1
-            best = min(
-                dp[left][mid] + dp[mid + 1][right]
-                for mid in range(left, right, k - 1)
-            )
+            dp[left][right] = float("inf")
+            for middle in range(left, right, k - 1):
+                candidate = dp[left][middle] + dp[middle + 1][right]
+                if candidate < dp[left][right]:
+                    dp[left][right] = candidate
             if (length - 1) % (k - 1) == 0:
-                best += prefix[right + 1] - prefix[left]
-            dp[left][right] = best
-    return dp[0][n - 1]
+                dp[left][right] += prefix[right + 1] - prefix[left]
+
+    return dp[0][size - 1]

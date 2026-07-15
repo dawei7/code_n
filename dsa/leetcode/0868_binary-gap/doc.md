@@ -5,51 +5,77 @@
 | Source | LeetCode |
 | Frontend ID | 868 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Bit Manipulation |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [binary-gap](https://leetcode.com/problems/binary-gap/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/binary-gap/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/binary-gap/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given a positive integer `n`, examine the `1` bits in its binary representation and return the greatest distance between two adjacent `1` bits. Two `1` bits are adjacent in this sense when every bit strictly between them is `0`; consecutive `1` bits with no separating zero also form an adjacent pair.
+
+The distance is the absolute difference between the two bit positions. For example, the `1` bits in binary `1001` are three positions apart. If the representation contains fewer than two `1` bits and therefore has no adjacent pair, return `0`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: a positive integer where $1 \leq n \leq 10^9$.
+
+Let $L=\lfloor\log_2 n\rfloor+1$ be the number of bits in the binary representation without leading zeros.
 
 **Return value**
 
-TODO
+Return the maximum difference between the positions of consecutive `1` bits when all set-bit positions are listed in order, or `0` if fewer than two exist.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 22`
+- Output: `2`
+
+Binary `10110` has consecutive set-bit gaps `2` and `1`. The outside pair is not adjacent because another `1` lies between it.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 8`
+- Output: `0`
+
+Binary `1000` contains only one `1`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5`
+- Output: `2`
 
----
+Binary `101` has one adjacent pair whose positions differ by `2`.
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+### Required Complexity
+- **Time:** $O(\log n)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Scan bits from least significant to most significant**
+
+Maintain the current bit position, the position of the most recently encountered `1`, and the largest gap seen. At each step, test the low bit with `n & 1`, then shift the remaining value right by one position.
+
+When the current bit is `1` and a previous set-bit position exists, their difference is the gap between consecutive `1` bits: no other set bit has been encountered between them. Update the maximum and replace the previous position with the current one. Zero bits change neither stored position.
+
+Every adjacent pair is considered exactly when its later `1` is encountered. Non-adjacent pairs are never compared because the stored position is always overwritten by the latest `1`. Thus the maximum recorded difference is precisely the longest binary gap; if no comparison occurs, the initialized result `0` is correct.
+
+#### Complexity detail
+
+Right shifts remove one bit per iteration, so the loop runs $L=O(\log n)$ times. The current position, previous set-bit position, maximum gap, and shifting value use a fixed number of integers, giving $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Convert to a binary string:** Scanning characters is correct and still linear in $L$, but it allocates $O(L)$ additional storage.
+- **Store every set-bit position:** Consecutive differences can then be computed, but the position list uses unnecessary $O(L)$ space.
+- **Compare every pair of set bits:** Filtering for consecutive positions remains correct but raises the worst-case work to $O(L^2)$.
+- **One set bit:** Powers of two have no pair and return `0`.
+- **Consecutive set bits:** With no zero between them, their distance is `1`.
+- **Several set bits:** Only consecutive entries in bit-position order are adjacent; a farther pair separated by another `1` is invalid.
+- **Leading zeros:** They are not part of the standard binary representation and cannot create or enlarge a gap.
+
+</details>

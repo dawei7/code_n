@@ -1,19 +1,28 @@
-def solve(grid):
-    rows = len(grid)
-    cols = len(grid[0]) if rows else 0
-    horizontal = [[0] * (cols + 1) for _ in range(rows + 1)]
-    vertical = [[0] * (cols + 1) for _ in range(rows + 1)]
+"""Optimal app-local solution for LeetCode 1139."""
 
-    best = 0
-    for r in range(1, rows + 1):
-        for c in range(1, cols + 1):
-            if grid[r - 1][c - 1] == 1:
-                horizontal[r][c] = horizontal[r][c - 1] + 1
-                vertical[r][c] = vertical[r - 1][c] + 1
-                side = min(horizontal[r][c], vertical[r][c])
-                while side > best:
-                    if horizontal[r - side + 1][c] >= side and vertical[r][c - side + 1] >= side:
-                        best = side
-                        break
-                    side -= 1
-    return best * best
+
+def solve(grid: list[list[int]]) -> int:
+    rows = len(grid)
+    columns = len(grid[0])
+    right = [[0] * columns for _ in range(rows)]
+    down = [[0] * columns for _ in range(rows)]
+
+    for row in range(rows - 1, -1, -1):
+        for column in range(columns - 1, -1, -1):
+            if grid[row][column] == 1:
+                right[row][column] = 1 + (right[row][column + 1] if column + 1 < columns else 0)
+                down[row][column] = 1 + (down[row + 1][column] if row + 1 < rows else 0)
+
+    for side in range(min(rows, columns), 0, -1):
+        for row in range(rows - side + 1):
+            bottom = row + side - 1
+            for column in range(columns - side + 1):
+                far_right = column + side - 1
+                if (
+                    right[row][column] >= side
+                    and down[row][column] >= side
+                    and right[bottom][column] >= side
+                    and down[row][far_right] >= side
+                ):
+                    return side * side
+    return 0

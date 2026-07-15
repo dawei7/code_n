@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_931","cases":[
+{"id":"sample-1","name":"sample: two minimum paths","kind":"sample","visible":true,"input":{"matrix":[[2,1,3],[6,5,4],[7,8,9]]},"expected":13,"tags":["sample","multiple-optima"]},
+{"id":"sample-2","name":"sample: negative two-row path","kind":"sample","visible":true,"input":{"matrix":[[-19,57],[-40,-5]]},"expected":-59,"tags":["sample","negative"]},
+{"id":"trial-1","name":"trial: single positive cell","kind":"trial","visible":true,"input":{"matrix":[[7]]},"expected":7,"tags":["trial","single-cell"]},
+{"id":"trial-2","name":"trial: single negative cell","kind":"trial","visible":true,"input":{"matrix":[[-100]]},"expected":-100,"tags":["trial","lower-bound"]},
+{"id":"trial-3","name":"trial: path follows right boundary","kind":"trial","visible":true,"input":{"matrix":[[9,1,0],[9,9,-5],[9,9,-6]]},"expected":-11,"tags":["trial","boundary"]},
+{"id":"hidden-1","name":"hidden: all zero matrix","kind":"real","visible":false,"input":{"matrix":[[0,0,0],[0,0,0],[0,0,0]]},"expected":0,"tags":["hidden","zero"]},
+{"id":"hidden-2","name":"hidden: diagonal change is required","kind":"real","visible":false,"input":{"matrix":[[1,100,100],[100,-10,100],[100,100,-20]]},"expected":-29,"tags":["hidden","diagonal"]},
+{"id":"hidden-3","name":"hidden: greedy smallest next value is not globally best","kind":"real","visible":false,"input":{"matrix":[[0,1,100],[1,2,100],[100,-100,0]]},"expected":-99,"tags":["hidden","global-optimum"]},
+{"id":"hidden-4","name":"hidden: all entries negative","kind":"real","visible":false,"input":{"matrix":[[-1,-2],[-3,-4]]},"expected":-6,"tags":["hidden","all-negative"]}
+]}

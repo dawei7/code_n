@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1148",
+  "frontend_id": "1073",
+  "title_slug": "adding-two-negabinary-numbers",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.addNegabinary",
+  "verified_submission_id": "2067503716",
+  "verified_at": "2026-07-14T15:01:09.541454+00:00"
+}

@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1250",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: gcd one",
+      "id": "sample-four-values",
+      "name": "sample: four values with gcd one",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,13 +17,12 @@
       },
       "expected": true,
       "tags": [
-        "sample",
-        "math"
+        "sample"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: another gcd one",
+      "id": "sample-three-values",
+      "name": "sample: three values combine to one",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -38,8 +38,8 @@
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: gcd not one",
+      "id": "sample-common-divisor",
+      "name": "sample: common divisor prevents one",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -54,10 +54,10 @@
       ]
     },
     {
-      "id": "real-single-one",
-      "name": "hidden: single one",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-one",
+      "name": "trial: singleton one",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1
@@ -65,8 +65,58 @@
       },
       "expected": true,
       "tags": [
-        "hidden",
-        "edge"
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-single-large",
+      "name": "trial: singleton greater than one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          99991
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "real-late-coprime",
+      "name": "hidden: gcd becomes one at the end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          42,
+          70,
+          105,
+          11
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real"
+      ]
+    },
+    {
+      "id": "real-many-common",
+      "name": "hidden: repeated common divisor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          84,
+          126,
+          210,
+          294
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real"
       ]
     }
   ]

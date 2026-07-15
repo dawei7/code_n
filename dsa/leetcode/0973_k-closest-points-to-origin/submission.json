@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1014",
+  "frontend_id": "973",
+  "title_slug": "k-closest-points-to-origin",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.kClosest",
+  "verified_submission_id": "2067152191",
+  "verified_at": "2026-07-14T09:07:43.127561+00:00"
+}

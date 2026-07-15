@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1161",
+  "cases": [
+    {"id":"sample-1","name":"sample: second level has greatest sum","kind":"sample","visible":true,"input":{"root":[1,7,0,7,-8,null,null]},"expected":2,"tags":["sample","mixed-values"]},
+    {"id":"sample-2","name":"sample: sparse deep tree","kind":"sample","visible":true,"input":{"root":[989,null,10250,98693,-89388,null,null,null,-32127]},"expected":2,"tags":["sample","sparse"]},
+    {"id":"sample-3","name":"sample: one node","kind":"sample","visible":true,"input":{"root":[1]},"expected":1,"tags":["sample","single-node"]},
+    {"id":"trial-tied-levels","name":"smallest level wins a tied maximum","kind":"trial","visible":true,"input":{"root":[1,0,1]},"expected":1,"tags":["trial","tie"]},
+    {"id":"trial-all-negative","name":"all level sums are negative","kind":"trial","visible":true,"input":{"root":[-1,-2,-3]},"expected":1,"tags":["trial","negative"]},
+    {"id":"real-deep-winner","name":"hidden: deepest level wins","kind":"real","visible":false,"input":{"root":[1,2,3,4,5,6,7]},"expected":3,"tags":["real","complete-tree"]},
+    {"id":"real-sparse-tie","name":"hidden: sparse later level ties the root","kind":"real","visible":false,"input":{"root":[5,null,2,null,3]},"expected":1,"tags":["real","sparse","tie"]},
+    {"id":"real-negative-root","name":"hidden: child level exceeds negative root","kind":"real","visible":false,"input":{"root":[-100,-20,-30]},"expected":2,"tags":["real","negative-root"]}
+  ]
+}

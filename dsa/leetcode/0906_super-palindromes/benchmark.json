@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_906",
+  "measurement_note": "Size is m, the greatest possible integer square root of right. Generating palindromic roots examines on the order of the square root of size candidates, while a correct slower baseline scans all roots from 1 through size and tests both the root and its square.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: roots through one hundred",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "left": "1",
+        "right": "10000"
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "root-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: roots through one thousand",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "left": "1",
+        "right": "1000000"
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "root-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: roots through ten thousand",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {
+        "left": "1",
+        "right": "100000000"
+      },
+      "expected": 13,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "root-scan"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_898",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated one then two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: distinct powers of two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "powers-of-two"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: one maximum value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1000000000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "maximum"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: all zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: repeated identical masks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "identical"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: zero between disjoint bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          0,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "zero"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: descending powers of two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          8,
+          4,
+          2,
+          1
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "powers-of-two"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: overlapping bit patterns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          1,
+          5,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "overlapping-bits"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: zeros around maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          1000000000,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundaries"
+      ]
+    }
+  ]
+}

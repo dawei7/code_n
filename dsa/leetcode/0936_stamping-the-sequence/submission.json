@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "973",
+  "frontend_id": "936",
+  "title_slug": "stamping-the-sequence",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.movesToStamp",
+  "verified_submission_id": "2067018021",
+  "verified_at": "2026-07-14T06:50:06.360234+00:00"
+}

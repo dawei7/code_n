@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_912",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four distinct values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated zeroes and ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          1,
+          2,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        1,
+        1,
+        2,
+        5
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: negative values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          2,
+          -8,
+          -10
+        ]
+      },
+      "expected": [
+        -10,
+        -8,
+        -1,
+        2
+      ],
+      "tags": [
+        "trial",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: already ascending",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          -1,
+          0,
+          4,
+          9
+        ]
+      },
+      "expected": [
+        -3,
+        -1,
+        0,
+        4,
+        9
+      ],
+      "tags": [
+        "trial",
+        "sorted"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: reverse sorted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          5,
+          2,
+          0,
+          -4
+        ]
+      },
+      "expected": [
+        -4,
+        0,
+        2,
+        5,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "reverse"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: all equal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: mixed duplicate negatives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          -2,
+          5,
+          -2,
+          5,
+          1
+        ]
+      },
+      "expected": [
+        -2,
+        -2,
+        0,
+        1,
+        5,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "duplicates",
+        "negative"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: value boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          50000,
+          -50000,
+          0
+        ]
+      },
+      "expected": [
+        -50000,
+        0,
+        50000
+      ],
+      "tags": [
+        "hidden",
+        "bounds"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: two descending values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          -1
+        ]
+      },
+      "expected": [
+        -1,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "two-values"
+      ]
+    }
+  ]
+}

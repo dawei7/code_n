@@ -1,0 +1,5 @@
+{"challenge_id":"lc_1006","cases":[
+{"id":"benchmark-scale-1","name":"benchmark: closed form at 64","kind":"benchmark","visible":false,"size":64,"input":{"n":64},"expected":65,"tags":["benchmark","scale-small","streaming-simulation"]},
+{"id":"benchmark-scale-2","name":"benchmark: closed form at 512","kind":"benchmark","visible":false,"size":512,"input":{"n":512},"expected":513,"tags":["benchmark","scale-medium","streaming-simulation"]},
+{"id":"benchmark-scale-3","name":"benchmark: closed form at 4096","kind":"benchmark","visible":false,"size":4096,"input":{"n":4096},"expected":4097,"tags":["benchmark","scale-large","streaming-simulation"]}
+]}

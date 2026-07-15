@@ -3,8 +3,10 @@
 
 def solve(stones: list[int]) -> int:
     total = sum(stones)
-    possible = {0}
+    reachable = {0}
+
     for stone in stones:
-        possible |= {value + stone for value in possible}
-    best = max(value for value in possible if value <= total // 2)
+        reachable |= {subtotal + stone for subtotal in reachable}
+
+    best = max(subtotal for subtotal in reachable if subtotal <= total // 2)
     return total - 2 * best

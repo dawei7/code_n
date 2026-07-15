@@ -2,21 +2,25 @@
 
 
 def solve(stones: list[int]) -> list[int]:
-    stones.sort()
-    n = len(stones)
-    max_moves = max(
-        stones[-1] - stones[1] + 1 - (n - 1),
-        stones[-2] - stones[0] + 1 - (n - 1),
+    positions = sorted(stones)
+    stone_count = len(positions)
+
+    maximum_moves = max(
+        positions[-1] - positions[1] - (stone_count - 2),
+        positions[-2] - positions[0] - (stone_count - 2),
     )
 
-    min_moves = n
+    minimum_moves = stone_count
     left = 0
-    for right, stone in enumerate(stones):
-        while stone - stones[left] + 1 > n:
+    for right, position in enumerate(positions):
+        while position - positions[left] + 1 > stone_count:
             left += 1
-        already = right - left + 1
-        if already == n - 1 and stone - stones[left] + 1 == n - 1:
-            min_moves = min(min_moves, 2)
+
+        stones_in_window = right - left + 1
+        consecutive_span = position - positions[left] + 1
+        if stones_in_window == stone_count - 1 and consecutive_span == stone_count - 1:
+            minimum_moves = min(minimum_moves, 2)
         else:
-            min_moves = min(min_moves, n - already)
-    return [min_moves, max_moves]
+            minimum_moves = min(minimum_moves, stone_count - stones_in_window)
+
+    return [minimum_moves, maximum_moves]

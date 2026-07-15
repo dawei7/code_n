@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1261",
+  "cases": [
+    {
+      "id": "sample-right",
+      "name": "sample: root with right child",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          -1,
+          null,
+          -1
+        ],
+        "queries": [
+          1,
+          2
+        ]
+      },
+      "expected": [
+        false,
+        true
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-five",
+      "name": "sample: five-node tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "queries": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-sparse",
+      "name": "sample: sparse recovered paths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          -1,
+          null,
+          -1,
+          -1,
+          null,
+          -1
+        ],
+        "queries": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "sample",
+        "sparse"
+      ]
+    },
+    {
+      "id": "trial-root",
+      "name": "trial: single-node tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          -1
+        ],
+        "queries": [
+          0,
+          1
+        ]
+      },
+      "expected": [
+        true,
+        false
+      ],
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-repeat",
+      "name": "trial: repeated membership query",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          -1,
+          -1,
+          -1
+        ],
+        "queries": [
+          2,
+          2,
+          7
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "trial",
+        "repeated"
+      ]
+    },
+    {
+      "id": "real-left-chain",
+      "name": "hidden: left-skewed tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          -1,
+          -1,
+          null,
+          -1,
+          null,
+          -1
+        ],
+        "queries": [
+          0,
+          1,
+          3,
+          7,
+          8
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "real",
+        "skewed"
+      ]
+    },
+    {
+      "id": "real-large-absent",
+      "name": "hidden: large absent targets",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          -1,
+          -1,
+          -1,
+          null,
+          -1
+        ],
+        "queries": [
+          4,
+          5,
+          999999,
+          1000000
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "real"
+      ]
+    }
+  ]
+}

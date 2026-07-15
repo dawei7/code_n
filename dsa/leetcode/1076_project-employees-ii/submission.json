@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1162",
+  "frontend_id": "1076",
+  "title_slug": "project-employees-ii",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2067516991",
+  "verified_at": "2026-07-14T15:13:06.043211+00:00"
+}

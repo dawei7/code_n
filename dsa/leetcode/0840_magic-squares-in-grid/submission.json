@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "870",
+  "frontend_id": "840",
+  "title_slug": "magic-squares-in-grid",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numMagicSquaresInside",
+  "verified_submission_id": "2066699119",
+  "verified_at": "2026-07-13T23:02:00.972877+00:00"
+}

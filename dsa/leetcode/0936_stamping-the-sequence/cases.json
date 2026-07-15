@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_936",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: overlapping abc stamps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stamp": "abc",
+        "target": "ababc"
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "validator": {
+        "kind": "stamping_sequence"
+      },
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: overwritten abca stamps",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stamp": "abca",
+        "target": "aabcaca"
+      },
+      "expected": [
+        3,
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "stamping_sequence"
+      },
+      "tags": [
+        "sample",
+        "overwrite"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: impossible final character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "stamp": "ab",
+        "target": "ac"
+      },
+      "expected": [],
+      "validator": {
+        "kind": "stamping_sequence"
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: stamp equals target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stamp": "code",
+        "target": "code"
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "stamping_sequence"
+      },
+      "tags": [
+        "trial",
+        "exact"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: single-character stamp",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stamp": "a",
+        "target": "aaaa"
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "stamping_sequence"
+      },
+      "tags": [
+        "trial",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: two overlapping stamps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stamp": "aba",
+        "target": "ababa"
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "validator": {
+        "kind": "stamping_sequence"
+      },
+      "tags": [
+        "trial",
+        "overlap"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: right-to-left erase chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stamp": "ab",
+        "target": "aaaaab"
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "validator": {
+        "kind": "stamping_sequence"
+      },
+      "tags": [
+        "hidden",
+        "chain"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: first stamp is overwritten",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stamp": "xyz",
+        "target": "xxyz"
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "stamping_sequence"
+      },
+      "tags": [
+        "hidden",
+        "overwrite"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: repeated identical letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stamp": "aaa",
+        "target": "aaaaa"
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "stamping_sequence"
+      },
+      "tags": [
+        "hidden",
+        "repeated"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: no stamp can cover one character",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stamp": "abc",
+        "target": "abxabc"
+      },
+      "expected": [],
+      "validator": {
+        "kind": "stamping_sequence"
+      },
+      "tags": [
+        "hidden",
+        "impossible"
+      ]
+    }
+  ]
+}

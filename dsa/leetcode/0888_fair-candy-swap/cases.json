@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_888",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: duplicate boxes on both sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "aliceSizes": [
+          1,
+          1
+        ],
+        "bobSizes": [
+          2,
+          2
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: adjacent box sizes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "aliceSizes": [
+          1,
+          2
+        ],
+        "bobSizes": [
+          2,
+          3
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: Alice owns one box",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "aliceSizes": [
+          2
+        ],
+        "bobSizes": [
+          1,
+          3
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "sample",
+        "single-box"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: two distinct valid exchanges",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "aliceSizes": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "bobSizes": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": [
+        1,
+        5
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "trial",
+        "multiple-answers"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: Alice has twice Bob's total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "aliceSizes": [
+          10,
+          10
+        ],
+        "bobSizes": [
+          5,
+          5
+        ]
+      },
+      "expected": [
+        10,
+        5
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "trial",
+        "alice-larger"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: repeated sizes with Bob ahead",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "aliceSizes": [
+          1,
+          1,
+          4
+        ],
+        "bobSizes": [
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "bob-larger"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: unequal box counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "aliceSizes": [
+          5,
+          7
+        ],
+        "bobSizes": [
+          1,
+          2,
+          3,
+          4,
+          8
+        ]
+      },
+      "expected": [
+        5,
+        8
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "hidden",
+        "unequal-lengths"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: partner occurs in the middle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "aliceSizes": [
+          1,
+          2,
+          5
+        ],
+        "bobSizes": [
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": [
+        2,
+        4
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "hidden"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: sizes near the maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "aliceSizes": [
+          100000,
+          100000
+        ],
+        "bobSizes": [
+          99999,
+          99999
+        ]
+      },
+      "expected": [
+        100000,
+        99999
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "hidden",
+        "maximum-size"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: Alice has more candy across equal lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "aliceSizes": [
+          2,
+          2,
+          6
+        ],
+        "bobSizes": [
+          1,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "hidden",
+        "alice-larger"
+      ]
+    },
+    {
+      "id": "hidden-5",
+      "name": "hidden: multiple distinct valid value pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "aliceSizes": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "bobSizes": [
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": [
+        1,
+        5
+      ],
+      "validator": {
+        "kind": "fair_candy_swap"
+      },
+      "tags": [
+        "hidden",
+        "multiple-answers"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "851",
+  "frontend_id": "824",
+  "title_slug": "goat-latin",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.toGoatLatin",
+  "verified_submission_id": "2066674870",
+  "verified_at": "2026-07-13T21:45:32.990499+00:00"
+}

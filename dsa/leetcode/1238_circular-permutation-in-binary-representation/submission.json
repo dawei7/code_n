@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1359",
+  "frontend_id": "1238",
+  "title_slug": "circular-permutation-in-binary-representation",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.circularPermutation",
+  "verified_submission_id": "2067976290",
+  "verified_at": "2026-07-15T02:07:34.025005+00:00"
+}

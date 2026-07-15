@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_974","cases":[
+{"id":"sample-1","name":"sample: mixed values","kind":"sample","visible":true,"input":{"nums":[4,5,0,-2,-3,1],"k":5},"expected":7,"tags":["sample"]},
+{"id":"sample-2","name":"sample: no divisible subarray","kind":"sample","visible":true,"input":{"nums":[5],"k":9},"expected":0,"tags":["sample"]},
+{"id":"trial-1","name":"trial: single divisible value","kind":"trial","visible":true,"input":{"nums":[6],"k":3},"expected":1,"tags":["trial","single"]},
+{"id":"trial-2","name":"trial: all zeros","kind":"trial","visible":true,"input":{"nums":[0,0,0],"k":2},"expected":6,"tags":["trial","zero"]},
+{"id":"trial-3","name":"trial: negative values","kind":"trial","visible":true,"input":{"nums":[-1,2,9],"k":2},"expected":2,"tags":["trial","negative"]},
+{"id":"hidden-1","name":"hidden: alternating cancellation","kind":"real","visible":false,"input":{"nums":[3,-3,3,-3],"k":3},"expected":10,"tags":["hidden","negative"]},
+{"id":"hidden-2","name":"hidden: divisor larger than values","kind":"real","visible":false,"input":{"nums":[1,2,3,4],"k":100},"expected":0,"tags":["hidden","large-k"]},
+{"id":"hidden-3","name":"hidden: repeated nonzero remainder","kind":"real","visible":false,"input":{"nums":[1,1,1,1,1],"k":2},"expected":6,"tags":["hidden","remainder"]}
+]}

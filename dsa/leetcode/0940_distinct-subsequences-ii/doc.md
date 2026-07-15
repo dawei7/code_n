@@ -8,48 +8,72 @@
 | Category | Algorithms |
 | Topics | String, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [distinct-subsequences-ii](https://leetcode.com/problems/distinct-subsequences-ii/) |
+| LeetCode | [distinct-subsequences-ii](https://leetcode.com/problems/distinct-subsequences-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/distinct-subsequences-ii/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a string `s`, count its distinct non-empty subsequences. A subsequence is formed by deleting zero or more characters without changing the relative order of the characters that remain. Different choices of deleted positions can produce the same string, and such equal results must be counted only once.
+
+Because the number of distinct subsequences can be very large, return the count modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: a string of $N$ lowercase English letters, where $1 \le N \le 2000$.
 
 **Return value**
 
-TODO
+Return the number of distinct non-empty subsequences of `s`, modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abc"`
+- Output: `7`
+- Explanation: The distinct results are `"a"`, `"b"`, `"c"`, `"ab"`, `"ac"`, `"bc"`, and `"abc"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aba"`
+- Output: `6`
+- Explanation: The distinct results are `"a"`, `"b"`, `"ab"`, `"aa"`, `"ba"`, and `"aba"`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaa"`
+- Output: `3`
+- Explanation: Only `"a"`, `"aa"`, and `"aaa"` are distinct.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(N)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Partition subsequences by their final character.** Maintain one count for each lowercase letter. The count for a letter represents how many distinct non-empty subsequences of the processed prefix end with that letter. These 26 groups are disjoint, so their sum is the total number currently known.
+
+**Append the current character to every existing result.** Suppose the next character is `c` and the current total is `total`. Appending `c` to every existing distinct subsequence creates `total` strings ending in `c`; the one-character string `"c"` contributes one more. Therefore the complete new group ending in `c` has size `total + 1`.
+
+**Replace instead of adding the same ending group.** Any strings previously counted as ending in `c` are duplicates of strings in the newly constructed group: each was already obtainable at the earlier occurrence of `c`, while the new occurrence recreates it. Assign `ending[c] = total + 1` rather than adding to the old value. Groups ending in other letters remain unchanged. Consequently, after every prefix, each distinct non-empty subsequence occurs in exactly the group named by its final character. Apply the modulus after each update and sum the 26 groups at the end.
+
+#### Complexity detail
+
+Each of the $N$ characters performs a sum over the fixed 26-letter alphabet and one replacement, so the running time is $O(N)$. The 26 ending counts use $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Quadratic prefix recomputation:** Store the net number of new distinct results contributed at every position and rescan all earlier contributions to obtain each prefix total. This preserves the same duplicate correction but costs $O(N^2)$ time and $O(N)$ space.
+- **Explicit subsequence set:** Generate strings by extending every existing subsequence and deduplicate them in a set. This can require exponential time and space and is infeasible at the maximum length.
+- **Repeated character:** A string such as `"aaa"` has only one distinct subsequence of each possible positive length; replacing the previous ending group prevents overcounting.
+- **Modulo subtraction:** Implementations using a subtractive recurrence must normalize negative intermediate values before returning them.
+- **Empty subsequence:** It is useful conceptually as the source of each one-character subsequence, but it must not be included in the returned count.
+
+</details>

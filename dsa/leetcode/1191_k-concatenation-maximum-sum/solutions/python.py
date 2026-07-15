@@ -1,17 +1,20 @@
-def solve(arr, k):
-    mod = 1_000_000_007
+def solve(arr: list[int], k: int) -> int:
+    modulo = 1_000_000_007
 
-    def kadane(values):
-        best = current = 0
-        for value in values:
-            current = max(0, current + value)
-            best = max(best, current)
+    def best_over_copies(copy_count: int) -> int:
+        best = 0
+        current = 0
+        for _ in range(copy_count):
+            for value in arr:
+                current = max(0, current + value)
+                best = max(best, current)
         return best
 
     if k == 1:
-        return kadane(arr) % mod
-    best_twice = kadane(arr * 2)
+        return best_over_copies(1) % modulo
+
+    best = best_over_copies(2)
     total = sum(arr)
     if total > 0:
-        best_twice += (k - 2) * total
-    return best_twice % mod
+        best += (k - 2) * total
+    return best % modulo

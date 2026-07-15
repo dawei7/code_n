@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "918",
+  "frontend_id": "882",
+  "title_slug": "reachable-nodes-in-subdivided-graph",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.reachableNodes",
+  "verified_submission_id": "2066755173",
+  "verified_at": "2026-07-14T01:59:25.472233+00:00"
+}

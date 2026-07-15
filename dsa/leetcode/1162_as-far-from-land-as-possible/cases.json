@@ -1,110 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1162",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: center water",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            1
-          ],
-          [
-            0,
-            0,
-            0
-          ],
-          [
-            1,
-            0,
-            1
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "bfs"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: corner land",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-all-land",
-      "name": "all land",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            1
-          ],
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-all-water",
-      "name": "hidden: all water",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "grid": [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
+    {"id":"sample-1","name":"sample: land at four corners","kind":"sample","visible":true,"input":{"grid":[[1,0,1],[0,0,0],[1,0,1]]},"expected":2,"tags":["sample","multiple-sources"]},
+    {"id":"sample-2","name":"sample: one corner is land","kind":"sample","visible":true,"input":{"grid":[[1,0,0],[0,0,0],[0,0,0]]},"expected":4,"tags":["sample","single-source"]},
+    {"id":"sample-3","name":"sample: all land","kind":"sample","visible":true,"input":{"grid":[[1,1],[1,1]]},"expected":-1,"tags":["sample","all-land"]},
+    {"id":"trial-all-water","name":"grid contains no land","kind":"trial","visible":true,"input":{"grid":[[0,0],[0,0]]},"expected":-1,"tags":["trial","all-water"]},
+    {"id":"trial-single-water","name":"one water cell beside land","kind":"trial","visible":true,"input":{"grid":[[0,1],[1,1]]},"expected":1,"tags":["trial","single-water"]},
+    {"id":"real-center-land","name":"hidden: center source reaches corners","kind":"real","visible":false,"input":{"grid":[[0,0,0],[0,1,0],[0,0,0]]},"expected":2,"tags":["real","center-source"]},
+    {"id":"real-strip-land","name":"hidden: land along one border","kind":"real","visible":false,"input":{"grid":[[1,1,1,1],[0,0,0,0],[0,0,0,0],[0,0,0,0]]},"expected":3,"tags":["real","border"]},
+    {"id":"real-one-cell-water","name":"hidden: one-cell all-water grid","kind":"real","visible":false,"input":{"grid":[[0]]},"expected":-1,"tags":["real","minimum-size"]}
   ]
 }

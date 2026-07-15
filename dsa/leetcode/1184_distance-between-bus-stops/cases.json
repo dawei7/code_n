@@ -1,90 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1184",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: adjacent stops",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "distance": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "start": 0,
-        "destination": 1
-      },
-      "expected": 1,
-      "tags": [
-        "sample",
-        "prefix-sum"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: two steps clockwise",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "distance": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "start": 0,
-        "destination": 2
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: shorter counterclockwise",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "distance": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "start": 0,
-        "destination": 3
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-wrap-around",
-      "name": "hidden: wrap around route",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "distance": [
-          7,
-          10,
-          1,
-          12,
-          11,
-          14,
-          5,
-          0
-        ],
-        "start": 7,
-        "destination": 2
-      },
-      "expected": 17,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-adjacent","name":"sample: adjacent stops","kind":"sample","visible":true,"input":{"distance":[1,2,3,4],"start":0,"destination":1},"expected":1,"tags":["sample","adjacent"]},
+    {"id":"sample-two-edges","name":"sample: forward arc uses two edges","kind":"sample","visible":true,"input":{"distance":[1,2,3,4],"start":0,"destination":2},"expected":3,"tags":["sample","clockwise"]},
+    {"id":"sample-complement-shorter","name":"sample: complementary arc is shorter","kind":"sample","visible":true,"input":{"distance":[1,2,3,4],"start":0,"destination":3},"expected":4,"tags":["sample","counterclockwise"]},
+    {"id":"trial-reversed-stops","name":"reversed stop order gives the same result","kind":"trial","visible":true,"input":{"distance":[1,2,3,4],"start":3,"destination":0},"expected":4,"tags":["normalization"]},
+    {"id":"trial-same-stop","name":"same starting and destination stop","kind":"trial","visible":true,"input":{"distance":[5,6,7],"start":1,"destination":1},"expected":0,"tags":["boundary","same-stop"]},
+    {"id":"real-one-stop","name":"hidden: one-stop circular route","kind":"real","visible":false,"input":{"distance":[9],"start":0,"destination":0},"expected":0,"tags":["hidden","single-stop"]},
+    {"id":"real-zero-edges","name":"hidden: zero-length route edges","kind":"real","visible":false,"input":{"distance":[0,5,0,5],"start":0,"destination":2},"expected":5,"tags":["hidden","zero-edges"]},
+    {"id":"real-equal-arcs","name":"hidden: both directions have equal length","kind":"real","visible":false,"input":{"distance":[2,3,2,3],"start":1,"destination":3},"expected":5,"tags":["hidden","tie"]}
   ]
 }

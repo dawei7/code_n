@@ -8,25 +8,31 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [sales-analysis-ii](https://leetcode.com/problems/sales-analysis-ii/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/sales-analysis-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sales-analysis-ii/).
 
 ### Goal
-Report buyers who bought product `S8` but did not buy product `iPhone`.
 
-### Query Contract
-**Input tables**
+The `Product` table maps each `product_id` to its product name and unit price. The `Sales` table records purchases, including the product and buyer involved in each sale along with seller, date, quantity, and price details.
 
-- `Sales(seller_id, product_id, buyer_id, sale_date, quantity, price)`: Sale records.
-- `Product(product_id, product_name, unit_price)`: Product metadata.
+Report the `buyer_id` of every buyer who purchased the product named `S8` and never purchased the product named `iPhone`. Purchases of other products neither qualify nor disqualify a buyer. Return each qualifying buyer once; result rows may appear in any order.
 
-**Output columns**
+### Function Contract
 
-- `buyer_id`
+**Inputs**
+
+- `Product(product_id, product_name, unit_price)`: $P$ product rows keyed by `product_id`.
+- `Sales(seller_id, product_id, buyer_id, sale_date, quantity, price)`: $R$ sale rows whose `product_id` values refer to `Product`.
+
+**Return value**
+
+- One column named `buyer_id`.
+- One row for each buyer with at least one `S8` purchase and zero `iPhone` purchases.
+- Result order is unrestricted; the local reference orders by `buyer_id` for deterministic validation.
 
 ### Examples
+
 **Example 1**
 
 `Product`
@@ -52,17 +58,36 @@ Output:
 |---:|
 | 1 |
 
----
+Buyer 1 purchased `S8` and no `iPhone`. Buyer 3 purchased both named products, while buyer 2 never purchased `S8`.
 
-## Solution
-### Approach
-Join `Sales` to `Product` so purchases can be filtered by product name. Group by `buyer_id`, then require that the buyer has at least one `S8` purchase and no `iPhone` purchase.
+### Required Complexity
 
-This can be expressed with conditional aggregation in `HAVING`, or with set operations that subtract iPhone buyers from S8 buyers.
+- **Time:** $O(P+R\log R)$
+- **Space:** $O(P+R)$
 
-### Complexity Analysis
-- **Time Complexity**: Depends on the database engine; logically, the query joins sales to product rows and groups or filters buyer ids.
-- **Space Complexity**: Depends on the database execution plan and indexes.
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Attach product names to purchases:** Join `Sales` with `Product` on `product_id`. Filtering by numeric identifiers alone would assume which rows represent `S8` and `iPhone`; the contract identifies them by `product_name`.
+
+**Summarize both conditions per buyer:** Group the joined rows by `buyer_id`. A conditional sum counts rows named `S8`, and another counts rows named `iPhone`. Keep a group only when the first count is positive and the second equals zero.
+
+Every retained buyer has witnessed at least one `S8` row and no `iPhone` row by the two `HAVING` predicates. Conversely, any buyer satisfying the requested purchase history has a positive first count and zero second count, so that buyer's group is retained exactly once. Other product names contribute zero to both counts and cannot change eligibility.
+
+#### Complexity detail
+
+A hash join can build a $P$-row product lookup and process $R$ sales in expected $O(P+R)$ time. Sort-based grouping and deterministic output ordering can add $O(R\log R)$ time. Join, grouping, and sort state use up to $O(P+R)$ execution space; indexes and the optimizer may choose another plan.
+
+#### Alternatives and edge cases
+
+- **Set difference:** Select distinct `S8` buyers and subtract distinct `iPhone` buyers. It directly models the condition but may require two scans or engine-specific set syntax.
+- **Correlated anti-subquery:** Start with `S8` purchases and test separately for an `iPhone` purchase per buyer. It is correct but can repeatedly rescan sales without a suitable index.
+- **Filter out iPhone rows before grouping:** It is incorrect because deleting the disqualifying evidence can make an iPhone buyer appear eligible.
+- **Several S8 purchases:** Return the buyer once, not once per sale.
+- **S8 plus other products:** The buyer remains eligible unless one of those products is `iPhone`.
+- **iPhone without S8:** The buyer does not qualify.
+- **Product identifiers:** Resolve names through `Product`; do not assume fixed IDs for the named products.
+
+</details>

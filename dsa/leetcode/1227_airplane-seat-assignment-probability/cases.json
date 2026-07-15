@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1227",
+  "cases": [
+    {"id":"sample-one-passenger","name":"sample: the only seat is assigned","kind":"sample","visible":true,"input":{"n":1},"expected":1.0,"tags":["sample","base-case"]},
+    {"id":"sample-two-passengers","name":"sample: two equally likely seats","kind":"sample","visible":true,"input":{"n":2},"expected":0.5,"tags":["sample"]},
+    {"id":"trial-three-passengers","name":"an intermediate displacement preserves the probability","kind":"trial","visible":true,"input":{"n":3},"expected":0.5,"tags":["induction"]},
+    {"id":"trial-ten-passengers","name":"a larger cabin has the same probability","kind":"trial","visible":true,"input":{"n":10},"expected":0.5,"tags":["constant-result"]},
+    {"id":"real-prime-size","name":"hidden: passenger count arithmetic is irrelevant","kind":"real","visible":false,"input":{"n":97},"expected":0.5,"tags":["hidden","prime"]},
+    {"id":"real-large","name":"hidden: large input remains constant work","kind":"real","visible":false,"input":{"n":1024},"expected":0.5,"tags":["hidden","large"]},
+    {"id":"real-power-of-two","name":"hidden: a larger power of two has the same result","kind":"real","visible":false,"input":{"n":4096},"expected":0.5,"tags":["hidden","large"]}
+  ]
+}

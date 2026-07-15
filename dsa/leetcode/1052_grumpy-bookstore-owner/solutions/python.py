@@ -2,13 +2,19 @@
 
 
 def solve(customers: list[int], grumpy: list[int], minutes: int) -> int:
-    base = sum(c for c, g in zip(customers, grumpy) if g == 0)
-    extra = 0
-    best_extra = 0
-    for i, (customer, is_grumpy) in enumerate(zip(customers, grumpy)):
+    baseline = sum(
+        customer
+        for customer, is_grumpy in zip(customers, grumpy)
+        if not is_grumpy
+    )
+
+    window_gain = 0
+    best_gain = 0
+    for index, (customer, is_grumpy) in enumerate(zip(customers, grumpy)):
         if is_grumpy:
-            extra += customer
-        if i >= minutes and grumpy[i - minutes]:
-            extra -= customers[i - minutes]
-        best_extra = max(best_extra, extra)
-    return base + best_extra
+            window_gain += customer
+        if index >= minutes and grumpy[index - minutes]:
+            window_gain -= customers[index - minutes]
+        best_gain = max(best_gain, window_gain)
+
+    return baseline + best_gain

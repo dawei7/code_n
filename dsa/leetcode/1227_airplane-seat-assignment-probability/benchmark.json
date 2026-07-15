@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1227",
+  "measurement_note": "Size is the passenger count. The proven closed form returns in constant time, whereas explicitly evaluating the probability recurrence for every smaller passenger count takes linear time.",
+  "cases": [
+    {
+      "id": "benchmark-scale-16",
+      "name": "benchmark: probability for 16 passengers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "n": 16
+      },
+      "expected": 0.5,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "constant-result"
+      ]
+    },
+    {
+      "id": "benchmark-scale-256",
+      "name": "benchmark: probability for 256 passengers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "n": 256
+      },
+      "expected": 0.5,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "constant-result"
+      ]
+    },
+    {
+      "id": "benchmark-scale-4096",
+      "name": "benchmark: probability for 4096 passengers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {
+        "n": 4096
+      },
+      "expected": 0.5,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "constant-result"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,497 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_895",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: official frequency and recency trace",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "push",
+            5
+          ],
+          [
+            "push",
+            7
+          ],
+          [
+            "push",
+            5
+          ],
+          [
+            "push",
+            7
+          ],
+          [
+            "push",
+            4
+          ],
+          [
+            "push",
+            5
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        5,
+        7,
+        5,
+        4
+      ],
+      "tags": [
+        "sample",
+        "frequency-tie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one push and pop",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "push",
+            9
+          ],
+          [
+            "pop"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        9
+      ],
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: tied values use recency",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "push",
+            2
+          ],
+          [
+            "push",
+            1
+          ],
+          [
+            "push",
+            2
+          ],
+          [
+            "push",
+            1
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "recency"
+      ]
+    },
+    {
+      "id": "trial-1",
+      "name": "trial: repeated identical value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "push",
+            3
+          ],
+          [
+            "push",
+            3
+          ],
+          [
+            "push",
+            3
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        3,
+        3,
+        3
+      ],
+      "tags": [
+        "trial",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-2",
+      "name": "trial: value boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "push",
+            0
+          ],
+          [
+            "push",
+            1000000000
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        1000000000,
+        0
+      ],
+      "tags": [
+        "trial",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "trial-3",
+      "name": "trial: frequency outranks recent singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          [
+            "push",
+            1
+          ],
+          [
+            "push",
+            2
+          ],
+          [
+            "push",
+            1
+          ],
+          [
+            "push",
+            2
+          ],
+          [
+            "push",
+            1
+          ],
+          [
+            "push",
+            3
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        2
+      ],
+      "tags": [
+        "trial",
+        "frequency-priority"
+      ]
+    },
+    {
+      "id": "hidden-1",
+      "name": "hidden: interleaved pushes and pops",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "push",
+            5
+          ],
+          [
+            "push",
+            7
+          ],
+          [
+            "push",
+            5
+          ],
+          [
+            "pop"
+          ],
+          [
+            "push",
+            7
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        5,
+        null,
+        7,
+        7,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "interleaved"
+      ]
+    },
+    {
+      "id": "hidden-2",
+      "name": "hidden: empty then reuse",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "push",
+            4
+          ],
+          [
+            "pop"
+          ],
+          [
+            "push",
+            4
+          ],
+          [
+            "push",
+            6
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        4,
+        null,
+        null,
+        6,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "reuse"
+      ]
+    },
+    {
+      "id": "hidden-3",
+      "name": "hidden: three-way recency tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "push",
+            1
+          ],
+          [
+            "push",
+            2
+          ],
+          [
+            "push",
+            3
+          ],
+          [
+            "push",
+            1
+          ],
+          [
+            "push",
+            2
+          ],
+          [
+            "push",
+            3
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "three-way-tie"
+      ]
+    },
+    {
+      "id": "hidden-4",
+      "name": "hidden: descending frequency cascade",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          [
+            "push",
+            8
+          ],
+          [
+            "push",
+            9
+          ],
+          [
+            "push",
+            8
+          ],
+          [
+            "push",
+            10
+          ],
+          [
+            "push",
+            9
+          ],
+          [
+            "push",
+            8
+          ],
+          [
+            "push",
+            10
+          ],
+          [
+            "push",
+            9
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ],
+          [
+            "pop"
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        9,
+        8,
+        10,
+        9,
+        8
+      ],
+      "tags": [
+        "hidden",
+        "frequency-cascade"
+      ]
+    }
+  ]
+}

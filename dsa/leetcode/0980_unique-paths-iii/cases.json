@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_980","cases":[
+{"id":"sample-1","name":"sample: obstacle leaves two paths","kind":"sample","visible":true,"input":{"grid":[[1,0,0,0],[0,0,0,0],[0,0,2,-1]]},"expected":2,"tags":["sample"]},
+{"id":"sample-2","name":"sample: full rectangle","kind":"sample","visible":true,"input":{"grid":[[1,0,0,0],[0,0,0,0],[0,0,0,2]]},"expected":4,"tags":["sample"]},
+{"id":"sample-3","name":"sample: impossible coverage","kind":"sample","visible":true,"input":{"grid":[[0,1],[2,0]]},"expected":0,"tags":["sample"]},
+{"id":"trial-1","name":"trial: one straight path","kind":"trial","visible":true,"input":{"grid":[[1,0,2]]},"expected":1,"tags":["trial","line"]},
+{"id":"trial-2","name":"trial: obstacle forces path","kind":"trial","visible":true,"input":{"grid":[[1,-1],[0,2]]},"expected":1,"tags":["trial","obstacle"]},
+{"id":"trial-3","name":"trial: adjacent endpoints","kind":"trial","visible":true,"input":{"grid":[[1,2]]},"expected":1,"tags":["trial","minimum"]},
+{"id":"hidden-1","name":"hidden: two by two Hamiltonian path","kind":"real","visible":false,"input":{"grid":[[1,0],[2,0]]},"expected":1,"tags":["hidden","dense"]},
+{"id":"hidden-2","name":"hidden: central obstacle blocks coverage","kind":"real","visible":false,"input":{"grid":[[1,0,0],[0,-1,0],[2,0,0]]},"expected":0,"tags":["hidden","impossible"]},
+{"id":"hidden-3","name":"hidden: early end is invalid","kind":"real","visible":false,"input":{"grid":[[1,0,2],[0,-1,0]]},"expected":0,"tags":["hidden","early-end"]}
+]}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1009",
+  "frontend_id": "969",
+  "title_slug": "pancake-sorting",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.pancakeSort",
+  "verified_submission_id": "2067131595",
+  "verified_at": "2026-07-14T08:47:57.508195+00:00"
+}

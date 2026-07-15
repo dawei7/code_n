@@ -8,28 +8,35 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [market-analysis-i](https://leetcode.com/problems/market-analysis-i/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/market-analysis-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/market-analysis-i/).
 
 ### Goal
-For every user, report their join date and how many orders they placed as a buyer during calendar year 2019.
 
-### Query Contract
+The marketplace stores its members in `Users`, every purchase in `Orders`, and item brands in `Items`. Users may participate in orders as buyers or sellers, but this report concerns only purchases they made as buyers.
+
+For every user, return the user's ID, join date, and number of orders placed as a buyer during calendar year 2019. Users with no qualifying order must still appear with a count of zero. The `Items` data and favorite brands do not affect this report. The result may be returned in any order.
+
+### Function Contract
+
 **Input tables**
 
-- `Users(user_id, join_date, favorite_brand)`: Marketplace users.
-- `Orders(order_id, order_date, item_id, buyer_id, seller_id)`: Orders between users.
-- `Items(item_id, item_brand)`: Item brand metadata.
+- `Users(user_id, join_date, favorite_brand)`: `user_id` is the primary key; each row describes one marketplace user.
+- `Orders(order_id, order_date, item_id, buyer_id, seller_id)`: `order_id` is the primary key, `item_id` references `Items`, and both user IDs reference `Users`.
+- `Items(item_id, item_brand)`: `item_id` is the primary key.
+- Let $r$ be the combined number of rows in `Users` and `Orders`, the only tables the report needs to inspect.
 
-**Output columns**
+**Return value**
 
-- `buyer_id`
-- `join_date`
-- `orders_in_2019`
+A relation with these columns:
+
+- `buyer_id`: the user's ID.
+- `join_date`: that user's stored join date.
+- `orders_in_2019`: the number of the user's buyer-side orders dated from January 1 through December 31, 2019.
 
 ### Examples
+
 **Example 1**
 
 `Users`
@@ -61,15 +68,33 @@ Output:
 | 3 | 2018-01-19 | 0 |
 | 4 | 2018-05-21 | 0 |
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Start from `Users` so users with zero matching orders remain present. Left join to `Orders` restricted to dates from `2019-01-01` through `2019-12-31`, group by user, and count matching order ids.
+- **Time:** $O(r \log r)$
+- **Space:** $O(r)$
 
-### Complexity Analysis
-- **Time Complexity**: Depends on the database engine; logically, orders are filtered and aggregated by buyer.
-- **Space Complexity**: Depends on the execution plan and indexes.
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Preserve every user.** Begin with `Users` and use a `LEFT JOIN` to `Orders`. An inner join would discard members who bought nothing in 2019, even though they must appear with zero.
+
+**Filter inside the join condition.** Restrict joined orders to `order_date >= '2019-01-01'` and `order_date < '2020-01-01'`. Keeping this predicate in `ON` preserves the null-extended row for a user with no match. Moving it to `WHERE` would remove that row and effectively undo the outer join. The half-open interval also expresses the entire calendar year without applying a function to the date column.
+
+**Count matched orders, not joined rows.** Group by the user's ID and join date, then use `COUNT(o.order_id)`. Because `order_id` is non-null for a real order but null on an unmatched outer-join row, the count becomes zero for non-buyers. Counting `*` would incorrectly report one. Alias the requested columns and order by `buyer_id` only to make the app fixture output deterministic; the source contract itself permits any row order.
+
+#### Complexity detail
+
+A comparison-based join and grouping plan can sort or index the $r$ relevant rows in $O(r \log r)$ time and retain $O(r)$ working state. A database may instead use indexes or hash aggregation for expected linear work. `Items` is not read because neither item identity nor brand changes the requested buyer count.
+
+#### Alternatives and edge cases
+
+- **Correlated count per user:** A scalar subquery is concise, but without a supporting index it can rescan all orders for every user and take quadratic time.
+- **Filter in `WHERE`:** This loses users with zero 2019 orders because their joined order date is null.
+- **Use `COUNT(*)`:** An unmatched user still has one null-extended join row, producing the wrong count of one.
+- **Seller-only activity:** Orders where a user appears only as `seller_id` must not increase that user's buyer count.
+- **Year boundaries:** Both `2019-01-01` and `2019-12-31` qualify; dates before 2019 or on and after `2020-01-01` do not.
+- **Unused item data:** Missing or unrelated brand information cannot affect this report because the requested fields depend only on users and buyer-side orders.
+
+</details>

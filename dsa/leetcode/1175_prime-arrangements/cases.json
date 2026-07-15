@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1175",
+  "cases": [
+    {"id":"sample-five","name":"sample: three primes through five","kind":"sample","visible":true,"input":{"n":5},"expected":12,"tags":["sample","factorials"]},
+    {"id":"sample-hundred","name":"sample: maximum input","kind":"sample","visible":true,"input":{"n":100},"expected":682289015,"tags":["sample","maximum","modulo"]},
+    {"id":"sample-one","name":"sample: one is not prime","kind":"sample","visible":true,"input":{"n":1},"expected":1,"tags":["sample","minimum"]},
+    {"id":"trial-two","name":"single prime and single non-prime","kind":"trial","visible":true,"input":{"n":2},"expected":1,"tags":["boundary","prime"]},
+    {"id":"trial-ten","name":"four prime positions","kind":"trial","visible":true,"input":{"n":10},"expected":17280,"tags":["combinatorics"]},
+    {"id":"real-three","name":"hidden: two primes can swap","kind":"real","visible":false,"input":{"n":3},"expected":2,"tags":["hidden","small"]},
+    {"id":"real-twenty","name":"hidden: modular factorial product","kind":"real","visible":false,"input":{"n":20},"expected":344376809,"tags":["hidden","modulo"]}
+  ]
+}

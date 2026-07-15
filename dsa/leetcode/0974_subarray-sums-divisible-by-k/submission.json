@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1016",
+  "frontend_id": "974",
+  "title_slug": "subarray-sums-divisible-by-k",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.subarraysDivByK",
+  "verified_submission_id": "2067156354",
+  "verified_at": "2026-07-14T09:11:39.404082+00:00"
+}
