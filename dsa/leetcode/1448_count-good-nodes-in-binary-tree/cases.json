@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1448",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: good nodes across both branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          3,
+          1,
+          4,
+          3,
+          null,
+          1,
+          5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "branching"
+      ]
+    },
+    {
+      "id": "sample-equal",
+      "name": "sample: equality is good",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          3,
+          3,
+          null,
+          4,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "equality"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: root only",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-negative",
+      "name": "negative path maxima",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          -5,
+          -6,
+          -4,
+          -5,
+          null,
+          -10,
+          -4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "negative",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-root-dominates",
+      "name": "root is greater than every descendant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "root-maximum"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: every node ties the path maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-independent-branches",
+      "name": "hidden: path maxima remain branch-local",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          5,
+          1,
+          10,
+          6,
+          4,
+          9,
+          11
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "branch-independence"
+      ]
+    },
+    {
+      "id": "real-increasing-chain",
+      "name": "hidden: every node in an increasing chain is good",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          null,
+          2,
+          null,
+          3,
+          null,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "skewed",
+        "increasing"
+      ]
+    },
+    {
+      "id": "real-decreasing-chain",
+      "name": "hidden: only root in a decreasing chain is good",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          4,
+          3,
+          null,
+          2,
+          null,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "skewed",
+        "decreasing"
+      ]
+    }
+  ]
+}

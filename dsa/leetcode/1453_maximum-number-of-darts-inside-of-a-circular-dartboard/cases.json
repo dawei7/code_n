@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1453",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: four points on circle",
+      "id": "sample-four-boundary",
+      "name": "sample: four darts on one circumference",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -30,12 +31,12 @@
       "expected": 4,
       "tags": [
         "sample",
-        "geometry"
+        "boundary"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: five darts fit",
+      "id": "sample-five-covered",
+      "name": "sample: five of six darts fit",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -69,13 +70,14 @@
       },
       "expected": 5,
       "tags": [
-        "sample"
+        "sample",
+        "offset-center"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: two of three darts",
-      "kind": "sample",
+      "id": "trial-two-of-three",
+      "name": "two of three separated darts fit",
+      "kind": "trial",
       "visible": true,
       "input": {
         "darts": [
@@ -96,12 +98,59 @@
       },
       "expected": 2,
       "tags": [
-        "sample"
+        "trial",
+        "partial-coverage"
       ]
     },
     {
-      "id": "real-collinear-cluster",
-      "name": "hidden: best circle covers three collinear points",
+      "id": "trial-single",
+      "name": "single dart",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "darts": [
+          [
+            10000,
+            -10000
+          ]
+        ],
+        "r": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-point",
+        "coordinate-boundary"
+      ]
+    },
+    {
+      "id": "trial-diameter",
+      "name": "two darts exactly one diameter apart",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "darts": [
+          [
+            -1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "r": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "diameter",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-collinear",
+      "name": "hidden: best board covers three collinear darts",
       "kind": "real",
       "visible": false,
       "input": {
@@ -127,7 +176,105 @@
       },
       "expected": 3,
       "tags": [
-        "hidden"
+        "hidden",
+        "collinear"
+      ]
+    },
+    {
+      "id": "real-mutually-far",
+      "name": "hidden: no two darts share a board",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "darts": [
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "r": 1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "separated"
+      ]
+    },
+    {
+      "id": "real-square",
+      "name": "hidden: square fits inside an offset circle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "darts": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "r": 1
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-negative-cluster",
+      "name": "hidden: translated negative-coordinate cluster",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "darts": [
+          [
+            -5,
+            -5
+          ],
+          [
+            -4,
+            -5
+          ],
+          [
+            -5,
+            -4
+          ],
+          [
+            -4,
+            -4
+          ],
+          [
+            5,
+            5
+          ]
+        ],
+        "r": 1
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "negative",
+        "translation"
       ]
     }
   ]

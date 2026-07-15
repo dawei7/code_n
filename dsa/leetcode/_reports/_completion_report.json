@@ -1,8 +1,8 @@
 {
   "total_docs": 3985,
   "counts": {
-    "manual_complete": 2513,
-    "needs_authoring": 1472
+    "manual_complete": 2518,
+    "needs_authoring": 1467
   },
   "entries": [
     {
@@ -10122,15 +10122,15 @@
     },
     {
       "path": "dsa/leetcode/1446_consecutive-characters/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1447_simplified-fractions/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -10157,8 +10157,8 @@
     },
     {
       "path": "dsa/leetcode/1451_rearrange-words-in-a-sentence/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -10178,15 +10178,15 @@
     },
     {
       "path": "dsa/leetcode/1454_active-users/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1455_check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },

@@ -1,12 +1,15 @@
 def solve(favorite_companies):
-    sets = []
-    for companies in favorite_companies:
-        if isinstance(companies, list):
-            sets.append(set(companies))
-        else:
-            sets.append({companies})
+    company_sets = [set(companies) for companies in favorite_companies]
     result = []
-    for index, companies in enumerate(sets):
-        if not any(index != other and companies <= other_companies for other, other_companies in enumerate(sets)):
+
+    for index, current in enumerate(company_sets):
+        contained = any(
+            index != other_index
+            and len(current) < len(candidate)
+            and current.issubset(candidate)
+            for other_index, candidate in enumerate(company_sets)
+        )
+        if not contained:
             result.append(index)
+
     return result

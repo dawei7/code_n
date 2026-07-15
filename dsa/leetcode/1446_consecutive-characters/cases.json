@@ -1,0 +1,131 @@
+{
+  "challenge_id": "lc_1446",
+  "cases": [
+    {
+      "id": "sample-leetcode",
+      "name": "sample: repeated e run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcode"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "middle-run"
+      ]
+    },
+    {
+      "id": "sample-five",
+      "name": "sample: longest run has length five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abbcccddddeeeeedcba"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single-character string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-distinct",
+      "name": "every adjacent character differs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "trial-entire-string",
+      "name": "entire string is one run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaaaa"
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "single-run"
+      ]
+    },
+    {
+      "id": "real-run-at-start",
+      "name": "hidden: longest run occurs at the beginning",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "mmmmnopqqq"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "leading-run"
+      ]
+    },
+    {
+      "id": "real-run-at-end",
+      "name": "hidden: longest run ends with the string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aabbcdddddd"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "trailing-run"
+      ]
+    },
+    {
+      "id": "real-tied-runs",
+      "name": "hidden: multiple runs tie for maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaabbbcccaaa"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "ties"
+      ]
+    },
+    {
+      "id": "real-separated-equals",
+      "name": "hidden: equal letters in separate runs do not combine",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abacada"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "contiguity"
+      ]
+    }
+  ]
+}

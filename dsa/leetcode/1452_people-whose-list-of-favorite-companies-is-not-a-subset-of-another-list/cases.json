@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1452",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-several-subsets",
       "name": "sample: several subset relationships",
       "kind": "sample",
       "visible": true,
@@ -36,12 +37,12 @@
       ],
       "tags": [
         "sample",
-        "sets"
+        "subsets"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: one subset removed",
+      "id": "sample-one-subset",
+      "name": "sample: one list is contained in another",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -66,39 +67,96 @@
         1
       ],
       "tags": [
-        "sample"
+        "sample",
+        "subset"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: duplicate singleton lists",
+      "id": "sample-disjoint-singletons",
+      "name": "sample: distinct singleton lists all qualify",
       "kind": "sample",
       "visible": true,
       "input": {
         "favorite_companies": [
           [
-            "a"
+            "leetcode"
           ],
           [
-            "a"
+            "google"
           ],
           [
-            "a",
-            "b"
+            "facebook"
+          ],
+          [
+            "amazon"
           ]
         ]
       },
       "expected": [
-        2
+        0,
+        1,
+        2,
+        3
       ],
       "tags": [
         "sample",
-        "duplicates"
+        "disjoint"
       ]
     },
     {
-      "id": "real-equal-sets-excluded",
-      "name": "hidden: equal sets are subsets too",
+      "id": "trial-single-person",
+      "name": "one person has no possible containing list",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "favorite_companies": [
+          [
+            "solo"
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial",
+        "single-person"
+      ]
+    },
+    {
+      "id": "trial-equal-cardinality",
+      "name": "equal-size distinct sets do not contain one another",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "favorite_companies": [
+          [
+            "a",
+            "b"
+          ],
+          [
+            "a",
+            "c"
+          ],
+          [
+            "b",
+            "c"
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "tags": [
+        "trial",
+        "equal-size"
+      ]
+    },
+    {
+      "id": "real-transitive",
+      "name": "hidden: nested chain excludes every nonmaximal list",
       "kind": "real",
       "visible": false,
       "input": {
@@ -107,20 +165,91 @@
             "a"
           ],
           [
+            "a",
+            "b"
+          ],
+          [
+            "a",
+            "b",
+            "c"
+          ],
+          [
+            "d",
+            "e"
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "transitive"
+      ]
+    },
+    {
+      "id": "real-input-order",
+      "name": "hidden: company order does not affect containment",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "favorite_companies": [
+          [
+            "b",
+            "a"
+          ],
+          [
+            "c",
+            "a",
+            "b"
+          ],
+          [
+            "d"
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "unordered-membership"
+      ]
+    },
+    {
+      "id": "real-multiple-witnesses",
+      "name": "hidden: one list can be contained by several others",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "favorite_companies": [
+          [
             "a"
           ],
           [
             "a",
             "b"
+          ],
+          [
+            "a",
+            "c"
+          ],
+          [
+            "d",
+            "e"
           ]
         ]
       },
       "expected": [
-        2
+        1,
+        2,
+        3
       ],
       "tags": [
         "hidden",
-        "regression"
+        "multiple-supersets"
       ]
     }
   ]

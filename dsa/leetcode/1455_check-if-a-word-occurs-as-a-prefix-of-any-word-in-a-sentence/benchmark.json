@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1455",
+  "measurement_note": "Size is W, the number of one-letter words; sentence length is 2W-1. The 10/25/50 tiers span 5x and remain within the 100-character limit. No word matches, so direct boundary scanning exercises all W words in O(N) time. A correct alternative examines every word and recomputes its 1-based index by recounting all preceding words, takes O(W^2), completes normally at W = 50, and is rejected by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 10 nonmatching one-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "sentence": "b b b b b b b b b b",
+        "search_word": "a"
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "no-match",
+        "full-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 25 nonmatching one-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25,
+      "input": {
+        "sentence": "b b b b b b b b b b b b b b b b b b b b b b b b b",
+        "search_word": "a"
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "no-match",
+        "full-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 50 nonmatching one-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {
+        "sentence": "b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b b",
+        "search_word": "a"
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "no-match",
+        "full-scan"
+      ]
+    }
+  ]
+}

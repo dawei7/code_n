@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1450",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-one-active",
       "name": "sample: one active student",
       "kind": "sample",
       "visible": true,
@@ -22,12 +23,12 @@
       "expected": 1,
       "tags": [
         "sample",
-        "intervals"
+        "mixed"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: single inclusive interval",
+      "id": "sample-point-interval",
+      "name": "sample: single inclusive point interval",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,13 +42,38 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "point-interval"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no active students",
-      "kind": "sample",
+      "id": "trial-both-endpoints",
+      "name": "query is a finish for one student and a start for another",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start_time": [
+          1,
+          2,
+          5
+        ],
+        "end_time": [
+          2,
+          5,
+          6
+        ],
+        "query_time": 5
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "inclusive-endpoints"
+      ]
+    },
+    {
+      "id": "trial-before-all",
+      "name": "query precedes every interval",
+      "kind": "trial",
       "visible": true,
       "input": {
         "start_time": [
@@ -64,31 +90,112 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
-        "edge"
+        "trial",
+        "none-active"
       ]
     },
     {
-      "id": "real-right-end-inclusive",
-      "name": "hidden: query equals right endpoint",
+      "id": "trial-all-overlap",
+      "name": "every interval contains the query",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start_time": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "end_time": [
+          10,
+          9,
+          8,
+          7
+        ],
+        "query_time": 5
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-after-all",
+      "name": "hidden: query follows every interval",
       "kind": "real",
       "visible": false,
       "input": {
         "start_time": [
           1,
-          2,
-          5
+          10,
+          20
         ],
         "end_time": [
-          2,
           5,
-          6
+          15,
+          25
         ],
-        "query_time": 5
+        "query_time": 30
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "none-active"
+      ]
+    },
+    {
+      "id": "real-mixed-points",
+      "name": "hidden: point intervals and wider intervals mix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "start_time": [
+          6,
+          1,
+          6,
+          5,
+          7
+        ],
+        "end_time": [
+          6,
+          10,
+          6,
+          5,
+          9
+        ],
+        "query_time": 6
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "point-interval",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-boundary-one-thousand",
+      "name": "hidden: maximum time remains inclusive",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "start_time": [
+          999,
+          1000,
+          1
+        ],
+        "end_time": [
+          1000,
+          1000,
+          999
+        ],
+        "query_time": 1000
       },
       "expected": 2,
       "tags": [
-        "hidden"
+        "hidden",
+        "maximum-time",
+        "right-endpoint"
       ]
     }
   ]

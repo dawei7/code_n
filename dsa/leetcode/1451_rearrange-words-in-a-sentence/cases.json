@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1451",
+  "cases": [
+    {
+      "id": "sample-basic",
+      "name": "sample: three distinct lengths",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "Leetcode is cool"
+      },
+      "expected": "Is cool leetcode",
+      "tags": [
+        "sample",
+        "length-sort"
+      ]
+    },
+    {
+      "id": "sample-stable-four",
+      "name": "sample: equal length words preserve input order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "Keep calm and code on"
+      },
+      "expected": "On and keep calm code",
+      "tags": [
+        "sample",
+        "stable-ties"
+      ]
+    },
+    {
+      "id": "sample-many-ties",
+      "name": "sample: several two-letter words remain stable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "To be or not to be"
+      },
+      "expected": "To be or to be not",
+      "tags": [
+        "sample",
+        "stable-ties"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single-word sentence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "Hello"
+      },
+      "expected": "Hello",
+      "tags": [
+        "trial",
+        "single-word"
+      ]
+    },
+    {
+      "id": "trial-original-first-moves",
+      "name": "original capitalized word moves to the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "Apple a bb"
+      },
+      "expected": "A bb apple",
+      "tags": [
+        "trial",
+        "capitalization"
+      ]
+    },
+    {
+      "id": "trial-all-tied",
+      "name": "all words have equal length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "Code time made easy"
+      },
+      "expected": "Code time made easy",
+      "tags": [
+        "trial",
+        "all-tied"
+      ]
+    },
+    {
+      "id": "real-shortest-ties",
+      "name": "hidden: shortest tied words follow original order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": "Three one two six"
+      },
+      "expected": "One two six three",
+      "tags": [
+        "hidden",
+        "stable-ties"
+      ]
+    },
+    {
+      "id": "real-repeated-words",
+      "name": "hidden: repeated words remain separate entries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": "Longer a bb a ccc bb"
+      },
+      "expected": "A a bb bb ccc longer",
+      "tags": [
+        "hidden",
+        "duplicates",
+        "capitalization"
+      ]
+    }
+  ]
+}

@@ -1,16 +1,28 @@
 def solve(cost, target):
-    costs = list(cost[:9])
-    if len(costs) < 9:
-        costs.extend([target + 1] * (9 - len(costs)))
-    dp = [""] + [None] * target
+    unreachable = -(target + 1)
+    maximum_digits = [unreachable] * (target + 1)
+    maximum_digits[0] = 0
+
     for total in range(1, target + 1):
-        best = None
-        for digit in range(9, 0, -1):
-            price = costs[digit - 1]
-            if total >= price and dp[total - price] is not None:
-                candidate = dp[total - price] + str(digit)
-                candidate = "".join(sorted(candidate, reverse=True))
-                if best is None or len(candidate) > len(best) or (len(candidate) == len(best) and candidate > best):
-                    best = candidate
-        dp[total] = best
-    return dp[target] or "0"
+        for price in cost:
+            if total >= price:
+                maximum_digits[total] = max(
+                    maximum_digits[total],
+                    maximum_digits[total - price] + 1,
+                )
+
+    if maximum_digits[target] < 0:
+        return "0"
+
+    answer = []
+    remaining = target
+    for digit in range(9, 0, -1):
+        price = cost[digit - 1]
+        while (
+            remaining >= price
+            and maximum_digits[remaining] == maximum_digits[remaining - price] + 1
+        ):
+            answer.append(str(digit))
+            remaining -= price
+
+    return "".join(answer)

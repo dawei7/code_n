@@ -1,0 +1,481 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1454",
+  "cases": [
+    {
+      "id": "sample-duplicate-day",
+      "name": "sample: duplicate event does not interrupt five distinct days",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Accounts": [
+            {
+              "id": 1,
+              "name": "Winston"
+            },
+            {
+              "id": 7,
+              "name": "Jonathan"
+            }
+          ],
+          "Logins": [
+            {
+              "id": 7,
+              "login_date": "2020-05-30"
+            },
+            {
+              "id": 1,
+              "login_date": "2020-05-30"
+            },
+            {
+              "id": 7,
+              "login_date": "2020-05-31"
+            },
+            {
+              "id": 7,
+              "login_date": "2020-06-01"
+            },
+            {
+              "id": 7,
+              "login_date": "2020-06-02"
+            },
+            {
+              "id": 7,
+              "login_date": "2020-06-02"
+            },
+            {
+              "id": 7,
+              "login_date": "2020-06-03"
+            },
+            {
+              "id": 1,
+              "login_date": "2020-06-07"
+            },
+            {
+              "id": 7,
+              "login_date": "2020-06-10"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "name"
+        ],
+        "rows": [
+          [
+            7,
+            "Jonathan"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "duplicate-date",
+        "month-boundary"
+      ]
+    },
+    {
+      "id": "trial-exact-five",
+      "name": "exactly five consecutive days qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Accounts": [
+            {
+              "id": 2,
+              "name": "Ada"
+            }
+          ],
+          "Logins": [
+            {
+              "id": 2,
+              "login_date": "2022-01-01"
+            },
+            {
+              "id": 2,
+              "login_date": "2022-01-02"
+            },
+            {
+              "id": 2,
+              "login_date": "2022-01-03"
+            },
+            {
+              "id": 2,
+              "login_date": "2022-01-04"
+            },
+            {
+              "id": 2,
+              "login_date": "2022-01-05"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "name"
+        ],
+        "rows": [
+          [
+            2,
+            "Ada"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "exact-threshold"
+      ]
+    },
+    {
+      "id": "trial-gap",
+      "name": "five dates with one missing day do not qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Accounts": [
+            {
+              "id": 3,
+              "name": "Lin"
+            }
+          ],
+          "Logins": [
+            {
+              "id": 3,
+              "login_date": "2022-02-01"
+            },
+            {
+              "id": 3,
+              "login_date": "2022-02-02"
+            },
+            {
+              "id": 3,
+              "login_date": "2022-02-04"
+            },
+            {
+              "id": 3,
+              "login_date": "2022-02-05"
+            },
+            {
+              "id": 3,
+              "login_date": "2022-02-06"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "gap"
+      ]
+    },
+    {
+      "id": "trial-duplicate-only",
+      "name": "repeated events on one date count as one day",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Accounts": [
+            {
+              "id": 4,
+              "name": "Grace"
+            }
+          ],
+          "Logins": [
+            {
+              "id": 4,
+              "login_date": "2022-03-10"
+            },
+            {
+              "id": 4,
+              "login_date": "2022-03-10"
+            },
+            {
+              "id": 4,
+              "login_date": "2022-03-10"
+            },
+            {
+              "id": 4,
+              "login_date": "2022-03-10"
+            },
+            {
+              "id": 4,
+              "login_date": "2022-03-10"
+            },
+            {
+              "id": 4,
+              "login_date": "2022-03-10"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "duplicate-date"
+      ]
+    },
+    {
+      "id": "real-order-and-mixed",
+      "name": "hidden: active and inactive accounts return in id order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Accounts": [
+            {
+              "id": 9,
+              "name": "Nine"
+            },
+            {
+              "id": 2,
+              "name": "Two"
+            },
+            {
+              "id": 5,
+              "name": "Five"
+            }
+          ],
+          "Logins": [
+            {
+              "id": 9,
+              "login_date": "2023-04-10"
+            },
+            {
+              "id": 9,
+              "login_date": "2023-04-11"
+            },
+            {
+              "id": 9,
+              "login_date": "2023-04-12"
+            },
+            {
+              "id": 9,
+              "login_date": "2023-04-13"
+            },
+            {
+              "id": 9,
+              "login_date": "2023-04-14"
+            },
+            {
+              "id": 2,
+              "login_date": "2023-04-01"
+            },
+            {
+              "id": 2,
+              "login_date": "2023-04-02"
+            },
+            {
+              "id": 2,
+              "login_date": "2023-04-03"
+            },
+            {
+              "id": 2,
+              "login_date": "2023-04-05"
+            },
+            {
+              "id": 2,
+              "login_date": "2023-04-06"
+            },
+            {
+              "id": 5,
+              "login_date": "2023-04-20"
+            },
+            {
+              "id": 5,
+              "login_date": "2023-04-21"
+            },
+            {
+              "id": 5,
+              "login_date": "2023-04-22"
+            },
+            {
+              "id": 5,
+              "login_date": "2023-04-23"
+            },
+            {
+              "id": 5,
+              "login_date": "2023-04-24"
+            },
+            {
+              "id": 5,
+              "login_date": "2023-04-25"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "name"
+        ],
+        "rows": [
+          [
+            5,
+            "Five"
+          ],
+          [
+            9,
+            "Nine"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering",
+        "multiple-accounts"
+      ]
+    },
+    {
+      "id": "real-year-boundary",
+      "name": "hidden: streak crosses a year boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Accounts": [
+            {
+              "id": 6,
+              "name": "Year"
+            }
+          ],
+          "Logins": [
+            {
+              "id": 6,
+              "login_date": "2021-12-29"
+            },
+            {
+              "id": 6,
+              "login_date": "2021-12-30"
+            },
+            {
+              "id": 6,
+              "login_date": "2021-12-31"
+            },
+            {
+              "id": 6,
+              "login_date": "2022-01-01"
+            },
+            {
+              "id": 6,
+              "login_date": "2022-01-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "name"
+        ],
+        "rows": [
+          [
+            6,
+            "Year"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "year-boundary"
+      ]
+    },
+    {
+      "id": "real-two-streaks",
+      "name": "hidden: multiple qualifying streaks emit one account row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Accounts": [
+            {
+              "id": 8,
+              "name": "Repeat"
+            }
+          ],
+          "Logins": [
+            {
+              "id": 8,
+              "login_date": "2023-01-01"
+            },
+            {
+              "id": 8,
+              "login_date": "2023-01-02"
+            },
+            {
+              "id": 8,
+              "login_date": "2023-01-03"
+            },
+            {
+              "id": 8,
+              "login_date": "2023-01-04"
+            },
+            {
+              "id": 8,
+              "login_date": "2023-01-05"
+            },
+            {
+              "id": 8,
+              "login_date": "2023-02-10"
+            },
+            {
+              "id": 8,
+              "login_date": "2023-02-11"
+            },
+            {
+              "id": 8,
+              "login_date": "2023-02-12"
+            },
+            {
+              "id": 8,
+              "login_date": "2023-02-13"
+            },
+            {
+              "id": 8,
+              "login_date": "2023-02-14"
+            },
+            {
+              "id": 8,
+              "login_date": "2023-02-15"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "name"
+        ],
+        "rows": [
+          [
+            8,
+            "Repeat"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiple-streaks",
+        "dedup-output"
+      ]
+    }
+  ]
+}

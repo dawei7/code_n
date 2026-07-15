@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1455",
+  "cases": [
+    {
+      "id": "sample-fourth",
+      "name": "sample: prefix occurs in the fourth word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sentence": "i love eating burger",
+        "search_word": "burg"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "later-word"
+      ]
+    },
+    {
+      "id": "sample-first-of-many",
+      "name": "sample: return first of multiple matching words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sentence": "this problem is an easy problem",
+        "search_word": "pro"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "multiple-matches"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: no word has the prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sentence": "i am tired",
+        "search_word": "you"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-first",
+      "name": "first word matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "alpha beta gamma",
+        "search_word": "alp"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "first-word"
+      ]
+    },
+    {
+      "id": "trial-whole-word",
+      "name": "whole-word equality is a prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sentence": "we code daily",
+        "search_word": "code"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-middle-only",
+      "name": "hidden: middle occurrence does not qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sentence": "hamburger fries",
+        "search_word": "burger"
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "word-boundary"
+      ]
+    },
+    {
+      "id": "real-longer-search",
+      "name": "hidden: search word cannot cross a separator",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sentence": "a ab abc",
+        "search_word": "abcd"
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "longer-search"
+      ]
+    },
+    {
+      "id": "real-single",
+      "name": "hidden: single-word sentence matches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sentence": "prefix",
+        "search_word": "pre"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "single-word"
+      ]
+    },
+    {
+      "id": "real-late-and-early",
+      "name": "hidden: earliest matching prefix wins",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sentence": "zero preview other prefix",
+        "search_word": "pre"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "minimum-index"
+      ]
+    }
+  ]
+}

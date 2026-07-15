@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1560",
+  "frontend_id": "1450",
+  "title_slug": "number-of-students-doing-homework-at-a-given-time",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.busyStudent",
+  "verified_submission_id": "2069161957",
+  "verified_at": "2026-07-15T22:52:26.719157+00:00"
+}

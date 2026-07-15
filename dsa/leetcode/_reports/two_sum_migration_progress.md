@@ -1,6 +1,6 @@
 # Two Sum Migration Progress
 
-Generated: 2026-07-15T22:28:12.343495+00:00
+Generated: 2026-07-15T23:16:30.672512+00:00
 
 All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.
 
@@ -13,20 +13,20 @@ A package is locally complete only when its canonical document (including a sour
 | Metric | Count |
 | --- | ---: |
 | packages | 3985 |
-| local complete | 1445 |
-| fully complete and verified | 1431 |
+| local complete | 1455 |
+| fully complete and verified | 1441 |
 | blocked | 14 |
-| doc complete | 1445 |
-| cases complete | 2012 |
-| benchmarks complete | 1419 |
-| optimal solution complete | 2129 |
-| leetcode submission complete | 1431 |
+| doc complete | 1455 |
+| cases complete | 2022 |
+| benchmarks complete | 1429 |
+| optimal solution complete | 2135 |
+| leetcode submission complete | 1441 |
 | complexity certified | 26 |
-| complexity complete | 1445 |
+| complexity complete | 1455 |
 
 ## Next package
 
-- 1446 — Consecutive Characters (`dsa/leetcode/1446_consecutive-characters`)
+- 1456 — Maximum Number of Vowels in a Substring of Given Length (`dsa/leetcode/1456_maximum-number-of-vowels-in-a-substring-of-given-length`)
 
 ## Recorded blockers
 

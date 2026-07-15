@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1449",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: repeated digit seven",
+      "id": "sample-repeated-seven",
+      "name": "sample: longer repeated sevens beat a leading nine",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -23,12 +24,12 @@
       "expected": "7772",
       "tags": [
         "sample",
-        "dynamic-programming"
+        "length-priority"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: two digits",
+      "id": "sample-two-digits",
+      "name": "sample: exact two-digit optimum",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,12 +48,13 @@
       },
       "expected": "85",
       "tags": [
-        "sample"
+        "sample",
+        "reconstruction"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: impossible exact target",
+      "id": "sample-impossible",
+      "name": "sample: odd target is unreachable with even costs",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -72,14 +74,14 @@
       "expected": "0",
       "tags": [
         "sample",
-        "edge"
+        "unreachable"
       ]
     },
     {
-      "id": "real-all-digits-cheap",
-      "name": "hidden: all digits have the same cost",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-equal-costs",
+      "name": "equal costs choose the highest digit repeatedly",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "cost": [
           1,
@@ -96,7 +98,133 @@
       },
       "expected": "999",
       "tags": [
-        "hidden"
+        "trial",
+        "equal-costs"
+      ]
+    },
+    {
+      "id": "trial-length-before-digit",
+      "name": "three low digits beat two nines",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          2,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          3
+        ],
+        "target": 6
+      },
+      "expected": "111",
+      "tags": [
+        "trial",
+        "length-priority"
+      ]
+    },
+    {
+      "id": "trial-lexicographic-tie",
+      "name": "equal-length construction chooses larger digits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "cost": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          2,
+          2
+        ],
+        "target": 4
+      },
+      "expected": "99",
+      "tags": [
+        "trial",
+        "lexicographic"
+      ]
+    },
+    {
+      "id": "real-greedy-remainder",
+      "name": "hidden: cheapest digit alone leaves an unusable remainder",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cost": [
+          5,
+          4,
+          3,
+          2,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "target": 7
+      },
+      "expected": "443",
+      "tags": [
+        "hidden",
+        "remainder-feasibility"
+      ]
+    },
+    {
+      "id": "real-single-digit",
+      "name": "hidden: exact target paints one highest digit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cost": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          1
+        ],
+        "target": 1
+      },
+      "expected": "9",
+      "tags": [
+        "hidden",
+        "minimum-target"
+      ]
+    },
+    {
+      "id": "real-repeated-mixed",
+      "name": "hidden: reconstruction reuses multiple digit costs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "cost": [
+          6,
+          10,
+          15,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40
+        ],
+        "target": 47
+      },
+      "expected": "32211",
+      "tags": [
+        "hidden",
+        "unbounded-knapsack"
       ]
     }
   ]
