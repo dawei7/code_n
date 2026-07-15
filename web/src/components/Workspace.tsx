@@ -5,6 +5,7 @@ import { ReferenceTab } from './layout/tabs/ReferenceTab';
 import { CodenTab } from './layout/tabs/CodenTab';
 import { AITutorTab } from './layout/tabs/AITutorTab';
 import { CareerPathTab } from './layout/tabs/CareerPathTab';
+import { VisualizationTab } from './layout/tabs/VisualizationTab';
 import { getAlgorithmSetLabel, getAlgorithmSetOption } from '../lib/algorithmSets';
 
 export function Workspace() {
@@ -20,7 +21,10 @@ export function Workspace() {
     if (!activeSetOption.hasCareerPath && activeTopic === 'career_path') {
       setActiveTopic('reference');
     }
-  }, [activeSetOption.hasCareerPath, activeTopic, setActiveTopic]);
+    if (activeTopic === 'visualization' && !detail?.has_visualization) {
+      setActiveTopic('reference');
+    }
+  }, [activeSetOption.hasCareerPath, activeTopic, detail?.has_visualization, setActiveTopic]);
 
   if (!detail) {
     if (activeSetOption.hasCareerPath) {
@@ -47,6 +51,9 @@ export function Workspace() {
     { id: 'reference', label: '≡', title: language === 'en' ? 'Reference' : 'Referenz', className: 'font-serif text-lg' },
     { id: 'complexity', label: 'O', title: 'Complexity Analysis', className: 'font-serif italic text-lg' },
     { id: 'coden', label: '</>', title: 'cOde(n)', className: 'font-mono text-sm tracking-tight' },
+    ...(detail.has_visualization
+      ? [{ id: 'visualization' as Topic, label: '▶', title: 'Visual Walkthrough', className: 'font-sans text-sm' }]
+      : []),
     { id: 'ai', label: 'AI', title: 'AI Tutor', className: 'font-mono text-xs tracking-tight' },
     ...(activeSetOption.hasCareerPath
       ? [{ id: 'career_path' as Topic, label: '∴', title: 'Career Path', className: 'font-serif text-lg' }]
@@ -55,6 +62,7 @@ export function Workspace() {
   const workspaceFontScope = `workspace:${activeTopic}`;
   const workspaceFontScale = paneFontScales[workspaceFontScope] ?? 1;
   const isCodenWorkspace = activeTopic === 'coden';
+  const hasCoordinateSensitiveEditor = isCodenWorkspace || activeTopic === 'visualization';
 
   return (
     <div className="flex-1 flex flex-col min-h-0 bg-coden-bg">
@@ -82,10 +90,10 @@ export function Workspace() {
         <div
           data-font-scope={workspaceFontScope}
           // Monaco performs its own coordinate-sensitive layout. CSS zoom on
-          // an ancestor makes its caret and gutter hit targets drift away
-          // from the rendered lines, so CodenTab applies this scale through
-          // Monaco's fontSize option instead.
-          style={isCodenWorkspace ? undefined : { zoom: workspaceFontScale }}
+          // an ancestor makes its scrolling and line hit targets drift away
+          // from the rendered source, so editor-backed workspaces apply this
+          // scale through Monaco's fontSize option instead.
+          style={hasCoordinateSensitiveEditor ? undefined : { zoom: workspaceFontScale }}
           className={isCodenWorkspace ? 'flex-1 flex flex-col min-h-0' : 'w-full'}
         >
           {activeTopic === 'coden' ? (
@@ -99,6 +107,8 @@ export function Workspace() {
                 <ReferenceTab />
               </div>
             )}
+
+            {activeTopic === 'visualization' && <VisualizationTab />}
 
             {activeTopic === 'complexity' && (
               <div className="bg-coden-surface rounded-xl p-6 shadow-lg">

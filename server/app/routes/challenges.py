@@ -24,7 +24,10 @@ from server.app.challenge_sets import (
     external_subset_memberships_for,
     normalize_algorithm_set,
 )
-from server.app.challenge_packages import leetcode_submission_manifest_path
+from server.app.challenge_packages import (
+    leetcode_submission_manifest_path,
+    leetcode_visualization_path,
+)
 from server.app.schemas import (
     ChallengeDetail,
     ChallengeSummary,
@@ -119,6 +122,7 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
             leetcode_title="",
             leetcode_slug="",
             leetcode_url="",
+            has_visualization=False,
         )
     reference_metadata = getattr(spec, "reference_metadata", {}) or {}
     lc_slug = str(reference_metadata.get("slug") or "")
@@ -182,6 +186,10 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
             if isinstance(language, str)
         ],
         runnable_in_coden=category_is_runnable(reference_metadata),
+        has_visualization=bool(
+            (visualization_path := leetcode_visualization_path(spec.id))
+            and visualization_path.is_file()
+        ),
         leetcode_submission_status=submission_status,
         leetcode_submission_language=submission_language,
         leetcode_submission_paid_only=submission_paid_only,

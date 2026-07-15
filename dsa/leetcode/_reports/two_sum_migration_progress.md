@@ -1,6 +1,6 @@
 # Two Sum Migration Progress
 
-Generated: 2026-07-15T20:02:05.641522+00:00
+Generated: 2026-07-15T22:28:12.343495+00:00
 
 All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.
 
@@ -13,20 +13,20 @@ A package is locally complete only when its canonical document (including a sour
 | Metric | Count |
 | --- | ---: |
 | packages | 3985 |
-| local complete | 1441 |
-| fully complete and verified | 1427 |
+| local complete | 1445 |
+| fully complete and verified | 1431 |
 | blocked | 14 |
-| doc complete | 1441 |
-| cases complete | 2008 |
-| benchmarks complete | 1415 |
-| optimal solution complete | 2127 |
-| leetcode submission complete | 1427 |
+| doc complete | 1445 |
+| cases complete | 2012 |
+| benchmarks complete | 1419 |
+| optimal solution complete | 2129 |
+| leetcode submission complete | 1431 |
 | complexity certified | 26 |
-| complexity complete | 1441 |
+| complexity complete | 1445 |
 
 ## Next package
 
-- 1442 — Count Triplets That Can Form Two Arrays of Equal XOR (`dsa/leetcode/1442_count-triplets-that-can-form-two-arrays-of-equal-xor`)
+- 1446 — Consecutive Characters (`dsa/leetcode/1446_consecutive-characters`)
 
 ## Recorded blockers
 

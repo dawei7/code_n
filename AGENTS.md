@@ -70,6 +70,7 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   cases.json
   benchmark.json             # normal complexity-verification path
   complexity_certificate.json # only when legal scaling is inapplicable
+  visualization.json          # optional validated interactive state trace
   submission.json            # optional verified LeetCode submission manifest
   assets/                   # optional package-local doc assets
   solutions/
@@ -79,6 +80,15 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
 ```
 
 - `server/app/challenge_packages.py` is the path API for these packages.
+- Visual walkthroughs are declarative, package-authored snapshots served by
+  `/api/visualizations/{challenge_id}`. Keep narration, semantic code anchors, and
+  renderer state synchronized in `visualization.json`; do not copy another
+  platform's prose, code, illustration assets, or visual composition.
+- `VISUALIZATIONS.md` is the framework and authoring authority. Visual manifests
+  must reference a real package `solutions/*` source and use semantic anchors;
+  never duplicate source as JSON lines. Reuse the shared player, controls,
+  phase timeline, narration, and Monaco code stage. Add a renderer only for a
+  genuinely new data-structure scene.
 - Canonical package prefixes are zero-padded to four digits for numeric
   filesystem ordering. This formatting does not change metadata frontend IDs,
   challenge IDs such as `lc_1`, official URLs, or user-data identities.

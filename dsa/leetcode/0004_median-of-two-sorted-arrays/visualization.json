@@ -1,0 +1,391 @@
+{
+  "version": 2,
+  "challenge_id": "lc_4",
+  "renderer": "binary-partition",
+  "title": "Binary search for the median cut",
+  "pattern": "Partition binary search",
+  "summary": "Search cut positions in the shorter array until the two sorted arrays form one balanced, globally ordered partition.",
+  "learning_objective": "See the median as a rank boundary: one cut determines the other, and failed cross-boundary comparisons reveal which half of the cut search is impossible.",
+  "invariant": "Every candidate keeps exactly six values in the combined left half; binary search changes only which values occupy that half.",
+  "complexity": {
+    "time": "O(log(min(m, n)))",
+    "space": "O(1)"
+  },
+  "phases": [
+    {
+      "id": "frame",
+      "title": "Turn median into a cut",
+      "summary": "Fix the left-half size and reduce two cuts to one independent choice."
+    },
+    {
+      "id": "eliminate",
+      "title": "Eliminate bad cuts",
+      "summary": "Use both failure directions to discard impossible cut positions."
+    },
+    {
+      "id": "certify",
+      "title": "Certify the partition",
+      "summary": "Check the only two cross-array relationships that sorted order does not guarantee."
+    },
+    {
+      "id": "conclude",
+      "title": "Read the median",
+      "summary": "Recover the middle rank directly from the valid partition boundaries."
+    }
+  ],
+  "example": {
+    "nums1": [1, 3, 8, 12, 15],
+    "nums2": [2, 4, 6, 9, 10, 11],
+    "expected": 8.0
+  },
+  "code": {
+    "language": "python",
+    "source_path": "solutions/python.py",
+    "anchors": {
+      "entry": { "start": "def solve(nums1:" },
+      "normalize": { "start": "if len(nums1) > len(nums2):", "end": "nums1, nums2 = nums2, nums1" },
+      "sizes": { "start": "total = len(nums1) + len(nums2)", "end": "left_size = (total + 1) // 2" },
+      "range": { "start": "low, high = 0, len(nums1)" },
+      "loop": { "start": "while low <= high:" },
+      "cuts": { "start": "cut1 = (low + high) // 2", "end": "cut2 = left_size - cut1" },
+      "boundaries": { "start": "left1 = nums1[cut1 - 1]", "end": "right2 = nums2[cut2]" },
+      "valid_partition": { "start": "if left1 <= right2 and left2 <= right1:" },
+      "odd_case": { "start": "if total % 2:" },
+      "return_odd": { "start": "return float(max(left1, left2))" },
+      "move_left": { "start": "if left1 > right2:", "end": "high = cut1 - 1" },
+      "move_right": { "start": "low = cut1 + 1" }
+    }
+  },
+  "steps": [
+    {
+      "id": "start-from-rank",
+      "phase": "frame",
+      "title": "Do not merge the arrays",
+      "description": "The combined collection contains 11 values, so its median is the value at rank 6. We only need to identify the boundary around that rank.",
+      "insight": "Merging would reveal every rank but cost linear time. The sorted inputs let us search directly for the one boundary that matters.",
+      "badge": { "label": "Problem model", "tone": "neutral" },
+      "active_code": ["entry"],
+      "duration_ms": 2800,
+      "state": {
+        "event": "ready",
+        "low": null,
+        "high": null,
+        "cut1": null,
+        "cut2": null,
+        "boundaries": { "left1": null, "right1": null, "left2": null, "right2": null },
+        "comparison": { "left1_le_right2": null, "left2_le_right1": null },
+        "violation": "none",
+        "result": null,
+        "changed": []
+      }
+    },
+    {
+      "id": "choose-shorter-array",
+      "phase": "frame",
+      "title": "Search the shorter array",
+      "description": "A has 5 values and B has 6, so A is already the shorter array. Its six gaps are the complete binary-search domain.",
+      "insight": "Searching the shorter array gives O(log(min(m, n))) time and keeps the complementary cut inside the longer array.",
+      "badge": { "label": "Normalize", "tone": "active" },
+      "active_code": ["normalize"],
+      "duration_ms": 2500,
+      "state": {
+        "event": "ready",
+        "low": null,
+        "high": null,
+        "cut1": null,
+        "cut2": null,
+        "boundaries": { "left1": null, "right1": null, "left2": null, "right2": null },
+        "comparison": { "left1_le_right2": null, "left2_le_right1": null },
+        "violation": "none",
+        "result": null,
+        "changed": []
+      }
+    },
+    {
+      "id": "fix-left-size",
+      "phase": "frame",
+      "title": "Fix six places on the left",
+      "description": "left_size = (11 + 1) // 2 = 6. If cut A takes i values, cut B must take exactly 6 - i.",
+      "insight": "The size equation removes one degree of freedom. Binary search chooses only cut A; cut B is forced.",
+      "badge": { "label": "Invariant begins", "tone": "active" },
+      "active_code": ["sizes", "range"],
+      "duration_ms": 3000,
+      "state": {
+        "event": "searching",
+        "low": 0,
+        "high": 5,
+        "cut1": null,
+        "cut2": null,
+        "boundaries": { "left1": null, "right1": null, "left2": null, "right2": null },
+        "comparison": { "left1_le_right2": null, "left2_le_right1": null },
+        "violation": "none",
+        "result": null,
+        "changed": ["range"]
+      }
+    },
+    {
+      "id": "first-cuts",
+      "phase": "eliminate",
+      "title": "Try the middle cut",
+      "description": "The midpoint of [0, 5] is cut A = 2. The size invariant immediately forces cut B = 6 - 2 = 4.",
+      "insight": "No matter whether this candidate succeeds, the combined left side contains exactly 2 + 4 = 6 values.",
+      "badge": { "label": "Candidate 1", "tone": "active" },
+      "active_code": ["loop", "cuts"],
+      "duration_ms": 2400,
+      "state": {
+        "event": "partitioned",
+        "low": 0,
+        "high": 5,
+        "cut1": 2,
+        "cut2": 4,
+        "boundaries": { "left1": null, "right1": null, "left2": null, "right2": null },
+        "comparison": { "left1_le_right2": null, "left2_le_right1": null },
+        "violation": "none",
+        "result": null,
+        "changed": ["cuts"]
+      }
+    },
+    {
+      "id": "first-boundaries",
+      "phase": "eliminate",
+      "title": "Inspect only four boundary values",
+      "description": "The cuts expose A.left = 3, A.right = 8, B.left = 9, and B.right = 10. Internal values cannot create a new violation because each array is sorted.",
+      "insight": "Four values summarize the global ordering question; every other value is dominated by one of these boundaries.",
+      "badge": { "label": "Read boundaries", "tone": "active" },
+      "active_code": ["boundaries"],
+      "duration_ms": 3000,
+      "state": {
+        "event": "partitioned",
+        "low": 0,
+        "high": 5,
+        "cut1": 2,
+        "cut2": 4,
+        "boundaries": { "left1": 3, "right1": 8, "left2": 9, "right2": 10 },
+        "comparison": { "left1_le_right2": null, "left2_le_right1": null },
+        "violation": "none",
+        "result": null,
+        "changed": ["boundaries"]
+      }
+    },
+    {
+      "id": "first-comparison",
+      "phase": "eliminate",
+      "title": "B contributes a value that is too large",
+      "description": "3 ≤ 10 passes, but 9 ≤ 8 fails. B.left belongs on the left yet exceeds A.right on the right.",
+      "insight": "Predict the repair: A must contribute more values to the left, which simultaneously makes B contribute fewer.",
+      "badge": { "label": "Too far left", "tone": "attention" },
+      "active_code": ["valid_partition"],
+      "duration_ms": 3200,
+      "state": {
+        "event": "compared",
+        "low": 0,
+        "high": 5,
+        "cut1": 2,
+        "cut2": 4,
+        "boundaries": { "left1": 3, "right1": 8, "left2": 9, "right2": 10 },
+        "comparison": { "left1_le_right2": true, "left2_le_right1": false },
+        "violation": "left2-too-large",
+        "result": null,
+        "changed": ["comparison"]
+      }
+    },
+    {
+      "id": "discard-left-cuts",
+      "phase": "eliminate",
+      "title": "Discard cuts 0, 1, and 2",
+      "description": "Set low = cut A + 1 = 3. Moving A farther left would only make A.right smaller and B.left larger, so those cuts cannot work.",
+      "insight": "The direction is justified by monotonic boundary motion, not by trial and error. One comparison eliminates half the remaining candidates.",
+      "badge": { "label": "Move right", "tone": "attention" },
+      "active_code": ["move_right"],
+      "duration_ms": 3400,
+      "state": {
+        "event": "narrowed",
+        "low": 3,
+        "high": 5,
+        "cut1": 2,
+        "cut2": 4,
+        "boundaries": { "left1": 3, "right1": 8, "left2": 9, "right2": 10 },
+        "comparison": { "left1_le_right2": true, "left2_le_right1": false },
+        "violation": "left2-too-large",
+        "result": null,
+        "changed": ["range"]
+      }
+    },
+    {
+      "id": "second-cuts",
+      "phase": "eliminate",
+      "title": "Try the new midpoint",
+      "description": "The midpoint of [3, 5] is cut A = 4, forcing cut B = 2. The left half still contains exactly six values.",
+      "insight": "The candidate jumps across the unknown valid cut, which lets this example expose the opposite failure direction next.",
+      "badge": { "label": "Candidate 2", "tone": "active" },
+      "active_code": ["loop", "cuts"],
+      "duration_ms": 2400,
+      "state": {
+        "event": "partitioned",
+        "low": 3,
+        "high": 5,
+        "cut1": 4,
+        "cut2": 2,
+        "boundaries": { "left1": null, "right1": null, "left2": null, "right2": null },
+        "comparison": { "left1_le_right2": null, "left2_le_right1": null },
+        "violation": "none",
+        "result": null,
+        "changed": ["cuts", "boundaries", "comparison"]
+      }
+    },
+    {
+      "id": "second-boundaries",
+      "phase": "eliminate",
+      "title": "Read the new boundary quartet",
+      "description": "The boundaries are now A.left = 12, A.right = 15, B.left = 4, and B.right = 6.",
+      "insight": "Moving A right raised its left boundary from 3 to 12 while moving B left lowered its right boundary from 10 to 6.",
+      "badge": { "label": "Read boundaries", "tone": "active" },
+      "active_code": ["boundaries"],
+      "duration_ms": 2800,
+      "state": {
+        "event": "partitioned",
+        "low": 3,
+        "high": 5,
+        "cut1": 4,
+        "cut2": 2,
+        "boundaries": { "left1": 12, "right1": 15, "left2": 4, "right2": 6 },
+        "comparison": { "left1_le_right2": null, "left2_le_right1": null },
+        "violation": "none",
+        "result": null,
+        "changed": ["boundaries"]
+      }
+    },
+    {
+      "id": "second-comparison",
+      "phase": "eliminate",
+      "title": "A now contributes a value that is too large",
+      "description": "12 ≤ 6 fails while 4 ≤ 15 passes. A.left cannot remain in the lower half when B.right is smaller.",
+      "insight": "This is the mirror image of the first failure. A's cut has crossed too far to the right.",
+      "badge": { "label": "Too far right", "tone": "attention" },
+      "active_code": ["valid_partition", "move_left"],
+      "duration_ms": 3200,
+      "state": {
+        "event": "compared",
+        "low": 3,
+        "high": 5,
+        "cut1": 4,
+        "cut2": 2,
+        "boundaries": { "left1": 12, "right1": 15, "left2": 4, "right2": 6 },
+        "comparison": { "left1_le_right2": false, "left2_le_right1": true },
+        "violation": "left1-too-large",
+        "result": null,
+        "changed": ["comparison"]
+      }
+    },
+    {
+      "id": "discard-right-cuts",
+      "phase": "eliminate",
+      "title": "Discard cuts 4 and 5",
+      "description": "Set high = cut A - 1 = 3. Larger cuts only raise A.left and lower B.right, so neither can repair 12 > 6.",
+      "insight": "Both binary-search directions have now been derived from the same pair of cross-boundary inequalities.",
+      "badge": { "label": "Move left", "tone": "attention" },
+      "active_code": ["move_left"],
+      "duration_ms": 3400,
+      "state": {
+        "event": "narrowed",
+        "low": 3,
+        "high": 3,
+        "cut1": 4,
+        "cut2": 2,
+        "boundaries": { "left1": 12, "right1": 15, "left2": 4, "right2": 6 },
+        "comparison": { "left1_le_right2": false, "left2_le_right1": true },
+        "violation": "left1-too-large",
+        "result": null,
+        "changed": ["range"]
+      }
+    },
+    {
+      "id": "final-cuts",
+      "phase": "certify",
+      "title": "Only cut 3 remains",
+      "description": "With low = high = 3, choose cut A = 3 and force cut B = 3. The left side again contains exactly six values.",
+      "insight": "Binary search has isolated the only possible cut without comparing or merging the arrays element by element.",
+      "badge": { "label": "Candidate 3", "tone": "active" },
+      "active_code": ["loop", "cuts"],
+      "duration_ms": 2500,
+      "state": {
+        "event": "partitioned",
+        "low": 3,
+        "high": 3,
+        "cut1": 3,
+        "cut2": 3,
+        "boundaries": { "left1": null, "right1": null, "left2": null, "right2": null },
+        "comparison": { "left1_le_right2": null, "left2_le_right1": null },
+        "violation": "none",
+        "result": null,
+        "changed": ["cuts", "boundaries", "comparison"]
+      }
+    },
+    {
+      "id": "final-boundaries",
+      "phase": "certify",
+      "title": "Expose the decisive four values",
+      "description": "The final candidate gives A.left = 8, A.right = 12, B.left = 6, and B.right = 9.",
+      "insight": "Within-array order is automatic. Only 8 versus 9 and 6 versus 12 remain to certify global order.",
+      "badge": { "label": "Read boundaries", "tone": "active" },
+      "active_code": ["boundaries"],
+      "duration_ms": 2800,
+      "state": {
+        "event": "partitioned",
+        "low": 3,
+        "high": 3,
+        "cut1": 3,
+        "cut2": 3,
+        "boundaries": { "left1": 8, "right1": 12, "left2": 6, "right2": 9 },
+        "comparison": { "left1_le_right2": null, "left2_le_right1": null },
+        "violation": "none",
+        "result": null,
+        "changed": ["boundaries"]
+      }
+    },
+    {
+      "id": "valid-partition",
+      "phase": "certify",
+      "title": "Both cross checks pass",
+      "description": "8 ≤ 9 and 6 ≤ 12. Together with sorted order inside A and B, these checks prove that every left-side value is at most every right-side value.",
+      "insight": "The size invariant proves the correct rank; the two inequalities prove the correct ordering. Those are exactly the two ingredients needed for the median.",
+      "badge": { "label": "Partition valid", "tone": "success" },
+      "active_code": ["valid_partition"],
+      "duration_ms": 3800,
+      "state": {
+        "event": "valid",
+        "low": 3,
+        "high": 3,
+        "cut1": 3,
+        "cut2": 3,
+        "boundaries": { "left1": 8, "right1": 12, "left2": 6, "right2": 9 },
+        "comparison": { "left1_le_right2": true, "left2_le_right1": true },
+        "violation": "valid",
+        "result": null,
+        "changed": ["comparison"]
+      }
+    },
+    {
+      "id": "return-odd-median",
+      "phase": "conclude",
+      "title": "Read rank 6 from the left boundary",
+      "description": "Because the total length is odd, the left half owns the extra value. Its maximum is max(8, 6) = 8, which is the median.",
+      "insight": "Only three of six possible cuts were examined. That shrinking cut search gives logarithmic time while the visualization stores only a few indices and boundary values.",
+      "badge": { "label": "Median 8.0", "tone": "success" },
+      "active_code": ["odd_case", "return_odd"],
+      "duration_ms": 4000,
+      "state": {
+        "event": "returned",
+        "low": 3,
+        "high": 3,
+        "cut1": 3,
+        "cut2": 3,
+        "boundaries": { "left1": 8, "right1": 12, "left2": 6, "right2": 9 },
+        "comparison": { "left1_le_right2": true, "left2_le_right1": true },
+        "violation": "valid",
+        "result": 8.0,
+        "changed": ["result"]
+      }
+    }
+  ]
+}

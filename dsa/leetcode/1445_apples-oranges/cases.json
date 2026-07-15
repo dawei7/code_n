@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1445",
+  "cases": [
+    {
+      "id": "sample-four-days",
+      "name": "sample: positive, zero, and negative differences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_date": "2020-05-01",
+              "fruit": "apples",
+              "sold_num": 10
+            },
+            {
+              "sale_date": "2020-05-01",
+              "fruit": "oranges",
+              "sold_num": 8
+            },
+            {
+              "sale_date": "2020-05-02",
+              "fruit": "apples",
+              "sold_num": 15
+            },
+            {
+              "sale_date": "2020-05-02",
+              "fruit": "oranges",
+              "sold_num": 15
+            },
+            {
+              "sale_date": "2020-05-03",
+              "fruit": "apples",
+              "sold_num": 20
+            },
+            {
+              "sale_date": "2020-05-03",
+              "fruit": "oranges",
+              "sold_num": 0
+            },
+            {
+              "sale_date": "2020-05-04",
+              "fruit": "apples",
+              "sold_num": 15
+            },
+            {
+              "sale_date": "2020-05-04",
+              "fruit": "oranges",
+              "sold_num": 16
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sale_date",
+          "diff"
+        ],
+        "rows": [
+          [
+            "2020-05-01",
+            2
+          ],
+          [
+            "2020-05-02",
+            0
+          ],
+          [
+            "2020-05-03",
+            20
+          ],
+          [
+            "2020-05-04",
+            -1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "conditional-aggregation"
+      ]
+    },
+    {
+      "id": "trial-equal",
+      "name": "trial: equal fruit sales produce zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_date": "2021-01-10",
+              "fruit": "oranges",
+              "sold_num": 7
+            },
+            {
+              "sale_date": "2021-01-10",
+              "fruit": "apples",
+              "sold_num": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sale_date",
+          "diff"
+        ],
+        "rows": [
+          [
+            "2021-01-10",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero-difference"
+      ]
+    },
+    {
+      "id": "trial-orange-lead",
+      "name": "trial: oranges exceed apples",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_date": "2021-02-01",
+              "fruit": "apples",
+              "sold_num": 2
+            },
+            {
+              "sale_date": "2021-02-01",
+              "fruit": "oranges",
+              "sold_num": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sale_date",
+          "diff"
+        ],
+        "rows": [
+          [
+            "2021-02-01",
+            -7
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "negative-difference"
+      ]
+    },
+    {
+      "id": "real-zero-orange",
+      "name": "hidden: zero orange sales",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_date": "2022-03-15",
+              "fruit": "oranges",
+              "sold_num": 0
+            },
+            {
+              "sale_date": "2022-03-15",
+              "fruit": "apples",
+              "sold_num": 25
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sale_date",
+          "diff"
+        ],
+        "rows": [
+          [
+            "2022-03-15",
+            25
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "zero-units"
+      ]
+    },
+    {
+      "id": "real-unordered-dates",
+      "name": "hidden: insertion order differs from date order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_date": "2023-12-31",
+              "fruit": "oranges",
+              "sold_num": 18
+            },
+            {
+              "sale_date": "2020-01-01",
+              "fruit": "apples",
+              "sold_num": 5
+            },
+            {
+              "sale_date": "2023-12-31",
+              "fruit": "apples",
+              "sold_num": 20
+            },
+            {
+              "sale_date": "2020-01-01",
+              "fruit": "oranges",
+              "sold_num": 8
+            },
+            {
+              "sale_date": "2022-06-30",
+              "fruit": "oranges",
+              "sold_num": 3
+            },
+            {
+              "sale_date": "2022-06-30",
+              "fruit": "apples",
+              "sold_num": 11
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sale_date",
+          "diff"
+        ],
+        "rows": [
+          [
+            "2020-01-01",
+            -3
+          ],
+          [
+            "2022-06-30",
+            8
+          ],
+          [
+            "2023-12-31",
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-large-counts",
+      "name": "hidden: large daily quantities",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_date": "2040-07-07",
+              "fruit": "apples",
+              "sold_num": 1000000
+            },
+            {
+              "sale_date": "2040-07-07",
+              "fruit": "oranges",
+              "sold_num": 999999
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sale_date",
+          "diff"
+        ],
+        "rows": [
+          [
+            "2040-07-07",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    }
+  ]
+}

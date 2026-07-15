@@ -50,7 +50,7 @@ export type { ChallengeDetail } from '../types/api';
 
 
 export type RunMode = 'practice' | 'real_test';
-export type Topic = 'reference' | 'complexity' | 'coden' | 'ai' | 'career_path';
+export type Topic = 'reference' | 'visualization' | 'complexity' | 'coden' | 'ai' | 'career_path';
 export const MAX_DEBUG_CASES = 9;
 const allTrialCasesId = '__all_trial__';
 

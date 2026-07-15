@@ -149,6 +149,46 @@ body,
   50% { opacity: 0.45; }
 }
 
+@keyframes coden-visual-update {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--coden-accent) 45%, transparent);
+    transform: translateY(2px);
+  }
+  100% {
+    box-shadow: 0 0 0 7px transparent;
+    transform: translateY(0);
+  }
+}
+
+.coden-visual-updated {
+  animation: coden-visual-update 360ms ease-out;
+}
+
+.monaco-editor .coden-visual-active-line {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--coden-accent) 22%, transparent),
+    color-mix(in srgb, var(--coden-accent) 7%, transparent)
+  );
+  border-top: 1px solid color-mix(in srgb, var(--coden-accent) 28%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--coden-accent) 28%, transparent);
+}
+
+.monaco-editor .coden-visual-active-glyph {
+  border-left: 3px solid var(--coden-accent);
+  margin-left: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coden-visual-updated {
+    animation: none;
+  }
+
+  .coden-visual-root * {
+    transition-duration: 0ms !important;
+  }
+}
+
 .coden-debug-current-glyph::before {
   content: "";
   display: block;

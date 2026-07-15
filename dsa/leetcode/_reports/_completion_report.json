@@ -1,8 +1,8 @@
 {
   "total_docs": 3985,
   "counts": {
-    "manual_complete": 2511,
-    "needs_authoring": 1474
+    "manual_complete": 2513,
+    "needs_authoring": 1472
   },
   "entries": [
     {
@@ -10101,8 +10101,8 @@
     },
     {
       "path": "dsa/leetcode/1443_minimum-time-to-collect-all-apples-in-a-tree/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -10115,8 +10115,8 @@
     },
     {
       "path": "dsa/leetcode/1445_apples-oranges/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },

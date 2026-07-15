@@ -1,6 +1,6 @@
 # Active LeetCode Migration Handoff
 
-Updated: 2026-07-15
+Updated: 2026-07-16
 
 This work is active. It is neither complete nor globally blocked. The full
 goal remains the canonical migration of every problem through frontend ID
@@ -33,20 +33,21 @@ the problem-specific reason and continue to the next numeric frontend ID.
 ## Repository and branch state
 
 - Repository: `C:\dawei7\code_n`
-- Current local branch: `agent/leetcode-migration-1268`
-- Current checkpoint commit: `c560f3c1ca503c2f1a48435f7a27a8d9cdcef228`
-- The current branch contains uncommitted concurrency-runtime,
-  complexity-certificate, UI, regression, and refreshed-report changes.
+- Current local branch: `main`
+- Current checkpoint commit: `fbf24fe84635dc546653b6eb60f8e91d89700919`
+- Commit `fbf24fe8` merged the canonical migration through frontend ID 1441
+  into `main`.
+- The worktree contains package migration changes for frontend IDs 1442
+  through 1445 and a separate visualization framework. The visualization
+  changes predate this continuation and must be preserved.
 - The four-digit directory migration remains based on
   `1fc55b6e7ff0e808e207376bc663ea60cb2cb798`.
-- Draft PR #1 contains only the directory-padding migration:
-  <https://github.com/dawei7/code_n/pull/1>
-- `main` and `origin/main` are still at `3f0040f9`. They do not yet contain the
-  zero-padded package paths. Do not switch to `main` and then recreate or move
-  the current work.
-- Do not commit, push, merge the draft PR, or publish a release without a new
-  explicit user request. The earlier commit/push authorization applied to the
-  directory-padding change, not automatically to subsequent migration work.
+- The directory-padding and migration-through-1441 pull requests have been
+  merged. Both `main` and `origin/main` are at `fbf24fe8` before the
+  current uncommitted work.
+- The user explicitly authorized committing and pushing the current delivery
+  on 2026-07-16. That authorization applies to this checkpoint only and does
+  not authorize a later merge or release.
 
 Canonical problem directories now use four-digit frontend-ID prefixes, for
 example `dsa/leetcode/0001_two-sum` and
@@ -225,21 +226,21 @@ For each package in ascending numeric frontend-ID order:
 
 ## Current authoritative checkpoint
 
-The refreshed migration audit after completing packages through 1441 reports:
+The refreshed migration audit after completing packages through 1445 reports:
 
 - 3985 canonical packages;
-- 1441 locally complete;
-- 1427 packages fully complete and remotely verified;
-- 1415 completed three-tier scaling benchmarks;
+- 1445 locally complete;
+- 1431 packages fully complete and remotely verified;
+- 1419 completed three-tier scaling benchmarks;
 - 26 strictly validated complexity certificates;
-- 1441 packages with complete complexity verification;
+- 1445 packages with complete complexity verification;
 - 14 recorded remote-verification blockers at frontend IDs 1413 through 1426;
   each package is locally complete, but Electron `safeStorage.decryptString`
   fails with Windows error `0x8009000B`;
-- frontend ID 1442, Count Triplets That Can Form Two Arrays of Equal XOR, as the first actionable
-  incomplete package.
+- frontend ID 1446, Consecutive Characters, as the first actionable incomplete
+  package.
 
-There are 2544 locally incomplete packages after this checkpoint. The fourteen
+There are 2540 locally incomplete packages after this checkpoint. The fourteen
 recorded blockers affect only remote Accepted verification; per the user's
 instruction, record the exact failure for each affected package and continue
 numerically without waiting for user input. Use the generated report for the
@@ -1111,11 +1112,32 @@ latest completed packages add this evidence:
   built-in membership candidate was explicitly rejected as an uncalibrated
   counterexample, while a correct explicit repeated target scan completed
   normally and failed scaling at `+0.93`;
-- the refreshed migration audit: 1441 locally complete, 1427 fully verified,
-  14 blocked, 1415 scaling benchmarks, 26 certificates, and frontend ID 1442
+- problem 1442 was remotely Accepted as submission `2069150164`; its linear
+  matching-prefix aggregation passed alongside an independently structured
+  linear implementation, while correct quadratic outer-endpoint enumeration
+  completed normally and failed only scaling at `+1.14` and `65.26x`;
+- problem 1443 was remotely Accepted as submission `2069151267`; its iterative
+  postorder avoids recursion depth on legal chains, an independent linear
+  leaf-pruning method passed, and correct per-apple ancestor walking completed
+  normally and failed only scaling at `+0.97` and `67.58x`;
+- problem 1444 was remotely Accepted as submission `2069152814`; its
+  suffix-sum memoized DP preserves the directional giving semantics and exact
+  `k`, an independent bottom-up DP passed, and correct per-state rectangle
+  rescanning completed normally and failed only scaling at `+0.49` and
+  `8.96x`. A slower draft that reached the safety cap was rejected as invalid
+  calibration rather than counted as a complexity failure;
+- problem 1445 was remotely Accepted as MySQL submission `2069155302`; its
+  conditional aggregation passed alongside an independently structured linear
+  aggregation, while correct correlated per-date lookups completed normally
+  and failed only scaling at `+0.92` and `25.81x`;
+- the refreshed migration audit: 1445 locally complete, 1431 fully verified,
+  14 blocked, 1419 scaling benchmarks, 26 certificates, and frontend ID 1446
   next;
-- the dataset checker: 3985 documents, 2511 manually complete, and 1474 still
+- the dataset checker: 3985 documents, 2513 manually complete, and 1472 still
   needing authoring;
+- the focused validated-case and dynamic-documentation suite after problem
+  1445 passed 115 tests, with only the existing Starlette `httpx` deprecation
+  warning;
 - the focused validated-case and dynamic-documentation suite after problem
   1434 passed 115 tests, with only the existing Starlette `httpx` deprecation
   and pytest-cache permission warnings;
@@ -1177,10 +1199,10 @@ git rev-parse HEAD
 Get-Content dsa\leetcode\_reports\two_sum_migration_progress.md
 ```
 
-The expected branch is `agent/leetcode-migration-1268`, the expected checkpoint
-commit is `c560f3c1ca503c2f1a48435f7a27a8d9cdcef228`, and the refreshed first
-actionable package should be
-`dsa/leetcode/1442_count-triplets-that-can-form-two-arrays-of-equal-xor`. If
+The expected branch is `main`. Before the current authorized commit, the base
+checkpoint is `fbf24fe84635dc546653b6eb60f8e91d89700919`; after that commit, use
+the live `HEAD` recorded by Git. The refreshed first actionable package should
+be `dsa/leetcode/1446_consecutive-characters`. If
 any of those facts differ, trust the live worktree and refreshed audit,
 investigate the drift, and preserve rather than discard changes.
 
@@ -1197,7 +1219,7 @@ For the next native candidate, replace the frontend ID in:
 
 ```powershell
 $env:ELECTRON_RUN_AS_NODE=$null
-npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1442
+npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1446
 ```
 
 ## Exact prompt for a new Codex session
@@ -1206,21 +1228,19 @@ Copy and paste this entire block into the new session:
 
 > Resume the active canonical LeetCode migration in `C:\dawei7\code_n` with
 > the full goal of completing every problem through frontend ID 3985. Stay on
-> the existing local branch `agent/leetcode-migration-1268`, currently at
-> checkpoint commit `c560f3c1ca503c2f1a48435f7a27a8d9cdcef228`, and preserve
-> every uncommitted change. Do not switch to `main`: draft PR #1 contains the
-> four-digit canonical directory migration and has not been merged. Before
+> the existing local branch `main` and preserve every local change, including
+> the separate visualization framework work. Before
 > changing anything, read `AGENTS.md`, `BENCHMARKING.md`,
 > `LEETCODE_SUBMISSIONS.md`, `dsa/leetcode/_template.md`,
 > `dsa/leetcode/_reports/ORIGINAL_18_BLOCKER_PLAYBOOK.md`,
 > `dsa/leetcode/_reports/ACTIVE_MIGRATION_HANDOFF.md`, and
 > `dsa/leetcode/_reports/two_sum_migration_progress.md` completely. Then run a
 > fresh migration audit and treat the live worktree and generated reports as
-> authoritative. Problems through frontend ID 1441 are locally complete;
-> 1427 packages are remotely verified, while 1413 through 1426 have
+> authoritative. Problems through frontend ID 1445 are locally complete;
+> 1431 packages are remotely verified, while 1413 through 1426 have
 > recorded Electron credential-decryption blockers. The expected first
 > actionable package is
-> `dsa/leetcode/1442_count-triplets-that-can-form-two-arrays-of-equal-xor`, but follow
+> `dsa/leetcode/1446_consecutive-characters`, but follow
 > the refreshed audit if it differs.
 > Continue autonomously in numeric frontend-ID order and do not stop after
 > planning. If any of the original eighteen complexity blockers reappears,

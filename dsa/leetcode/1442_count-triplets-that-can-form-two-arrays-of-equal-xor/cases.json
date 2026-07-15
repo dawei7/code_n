@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: mixed xor values",
+      "name": "sample: four splits across two zero-xor intervals",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -23,7 +23,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: all ones",
+      "name": "sample: repeated ones",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -37,12 +37,13 @@
       },
       "expected": 10,
       "tags": [
-        "sample"
+        "sample",
+        "repeated-prefix"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: no valid triplets",
+      "name": "sample: no zero-xor interval",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -54,12 +55,45 @@
       "expected": 0,
       "tags": [
         "sample",
-        "edge"
+        "no-match"
       ]
     },
     {
-      "id": "real-repeated-same-value",
-      "name": "hidden: repeated equal values",
+      "id": "trial-singleton",
+      "name": "trial: one element cannot form a triplet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-equal-pair",
+      "name": "trial: one split between equal neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          5,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "adjacent-equal"
+      ]
+    },
+    {
+      "id": "real-four-equal",
+      "name": "hidden: repeated equal values create nested intervals",
       "kind": "real",
       "visible": false,
       "input": {
@@ -72,7 +106,70 @@
       },
       "expected": 6,
       "tags": [
-        "hidden"
+        "hidden",
+        "repeated-prefix"
+      ]
+    },
+    {
+      "id": "real-mixed-prefixes",
+      "name": "hidden: several nonadjacent matching prefixes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          3,
+          5,
+          7,
+          9
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-upper-values",
+      "name": "hidden: values near the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          100000000,
+          99999999,
+          1,
+          100000000,
+          99999999,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "upper-bound-values"
+      ]
+    },
+    {
+      "id": "real-six-ones",
+      "name": "hidden: many valid splits share outer endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "hidden",
+        "dense-matches"
       ]
     }
   ]

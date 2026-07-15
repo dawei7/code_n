@@ -25,7 +25,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from server.app.config import CORS_ORIGINS, WEB_DIST, ensure_data_dirs
-from server.app.routes import challenges, debug, docs, health, leetcode_submission, practice_export, progress, run, solutions, profiles
+from server.app.routes import challenges, debug, docs, health, leetcode_submission, practice_export, progress, run, solutions, profiles, visualizations
 from server.app import error_handlers
 
 
@@ -85,6 +85,7 @@ def create_app() -> FastAPI:
     app.include_router(health.router, prefix="/api")
     app.include_router(challenges.router, prefix="/api")
     app.include_router(docs.router, prefix="/api")
+    app.include_router(visualizations.router, prefix="/api")
     app.include_router(run.router, prefix="/api")
     app.include_router(debug.router, prefix="/api")
     app.include_router(practice_export.router, prefix="/api")

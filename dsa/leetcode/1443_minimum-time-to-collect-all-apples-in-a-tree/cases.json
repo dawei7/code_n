@@ -1,0 +1,366 @@
+{
+  "challenge_id": "lc_1443",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: apples across both root branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "hasApple": [
+          false,
+          false,
+          true,
+          false,
+          true,
+          true,
+          false
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "shared-paths"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two apples with one shared branch edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "hasApple": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "branching"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no apples",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            6
+          ]
+        ],
+        "hasApple": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-apples"
+      ]
+    },
+    {
+      "id": "trial-single-root-apple",
+      "name": "trial: the only vertex already has an apple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "edges": [],
+        "hasApple": [
+          true
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-tree",
+        "root-apple"
+      ]
+    },
+    {
+      "id": "trial-root-only",
+      "name": "trial: only the root has an apple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "hasApple": [
+          true,
+          false,
+          false
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "root-apple"
+      ]
+    },
+    {
+      "id": "real-deep-chain",
+      "name": "hidden: one apple at the end of a chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "hasApple": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "deep-chain"
+      ]
+    },
+    {
+      "id": "real-nested-apples",
+      "name": "hidden: ancestor and descendant apples share every upper edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "hasApple": [
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "nested-apples"
+      ]
+    },
+    {
+      "id": "real-three-branches",
+      "name": "hidden: apples require five distinct edges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "hasApple": [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "separate-branches"
+      ]
+    },
+    {
+      "id": "real-internal-apple",
+      "name": "hidden: an internal apple does not require child edges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "hasApple": [
+          false,
+          false,
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "internal-apple"
+      ]
+    }
+  ]
+}

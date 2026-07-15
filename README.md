@@ -31,6 +31,11 @@ approved, sponsored, or endorsed cOde(n).
   without switching to an external IDE.
 - **Original explanations:** every migrated package restates the task in
   independent language and teaches the reasoning behind the selected method.
+- **Interactive visual walkthroughs:** package-authored state traces synchronize
+  the example, changing variables, data structures, narration, and semantic
+  anchors in the real canonical solution rendered by Monaco. A reusable player
+  and problem-shaped renderers keep each lesson tightly authored without
+  duplicating the playback framework. Two Sum is the first available walkthrough.
 - **Verified solutions:** a native submission is marked verified only after the
   exact stored source receives an Accepted result from LeetCode.
 - **Correctness and complexity as separate skills:** ordinary cases check the
@@ -65,6 +70,7 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   doc.md
   cases.json
   benchmark.json
+  visualization.json                # optional interactive state trace
   submission.json                 # present after reviewed remote verification
   solutions/
     python.py                     # app-local solve(...) implementation
@@ -139,7 +145,7 @@ reviewed promptly.
 ## Product architecture
 
 - **`web/`:** React, TypeScript, Vite, Zustand, Monaco, reference rendering,
-  career views, and the in-app debugger interface.
+  visual walkthroughs, career views, and the in-app debugger interface.
 - **`server/`:** FastAPI routes, execution harnesses, validation, benchmark
   analysis, DAP integration, progress storage, and user-solution storage.
 - **`engine/` and `challenges/`:** language contracts, challenge types,

@@ -1,22 +1,98 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1444",
+  "measurement_note": "Size is s = m*n, the number of cells, on square all-apple pizzas with k fixed at 5. The reviewed suffix-sum DP uses O(kmn(m+n)) time. A correct memoized implementation that recomputes the remaining apple count by scanning the entire suffix rectangle in every state adds an avoidable area factor, completes all legal tiers, and is rejected by scaling.",
   "cases": [
     {
-      "id": "benchmark-cross-apple-grid",
-      "name": "benchmark: cross-shaped apple distribution",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 5x5 all-apple pizza",
       "kind": "benchmark",
       "visible": false,
+      "size": 25,
       "input": {
         "pizza": [
-          "A.A",
-          "AAA",
-          "A.A"
+          "AAAAA",
+          "AAAAA",
+          "AAAAA",
+          "AAAAA",
+          "AAAAA"
         ],
-        "k": 4
+        "k": 5
       },
-      "expected": 10,
+      "expected": 346,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-small",
+        "all-apples",
+        "memoized-dp"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 10x10 all-apple pizza",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "pizza": [
+          "AAAAAAAAAA",
+          "AAAAAAAAAA",
+          "AAAAAAAAAA",
+          "AAAAAAAAAA",
+          "AAAAAAAAAA",
+          "AAAAAAAAAA",
+          "AAAAAAAAAA",
+          "AAAAAAAAAA",
+          "AAAAAAAAAA",
+          "AAAAAAAAAA"
+        ],
+        "k": 5
+      },
+      "expected": 14076,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "all-apples",
+        "memoized-dp"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 20x20 all-apple pizza",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 400,
+      "input": {
+        "pizza": [
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA",
+          "AAAAAAAAAAAAAAAAAAAA"
+        ],
+        "k": 5
+      },
+      "expected": 330486,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "all-apples",
+        "memoized-dp"
       ]
     }
   ]

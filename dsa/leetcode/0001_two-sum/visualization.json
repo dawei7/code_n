@@ -1,0 +1,335 @@
+{
+  "version": 2,
+  "challenge_id": "lc_1",
+  "renderer": "array-hash-map",
+  "title": "Find the complement",
+  "pattern": "One-pass hash map",
+  "summary": "Turn a search over pairs into one forced-complement question per value, then watch the processed prefix become searchable memory.",
+  "learning_objective": "Recognize that choosing the current value fixes its only useful partner, so a hash lookup can replace an inner scan.",
+  "invariant": "Before every lookup, seen contains exactly the values at earlier indices—never the current index.",
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(n)"
+  },
+  "phases": [
+    {
+      "id": "frame",
+      "title": "Frame the search",
+      "summary": "Translate a pair search into a complement lookup and establish the map invariant."
+    },
+    {
+      "id": "build",
+      "title": "Build memory",
+      "summary": "Scan left to right, checking first and storing only after a miss."
+    },
+    {
+      "id": "connect",
+      "title": "Connect the pair",
+      "summary": "Use the current complement to retrieve its earlier index in constant expected time."
+    },
+    {
+      "id": "conclude",
+      "title": "Return indices",
+      "summary": "Stop as soon as the unique valid pair is identified."
+    }
+  ],
+  "example": {
+    "nums": [3, 2, 4],
+    "target": 6
+  },
+  "code": {
+    "language": "python",
+    "source_path": "solutions/python.py",
+    "anchors": {
+      "entry": { "start": "def solve(nums:" },
+      "initialize": { "start": "seen: dict[int, int] = {}" },
+      "scan": { "start": "for i, value in enumerate(nums):" },
+      "complement": { "start": "need = target - value" },
+      "lookup": { "start": "if need in seen:" },
+      "return": { "start": "return [seen[need], i]" },
+      "store": { "start": "seen[value] = i" }
+    }
+  },
+  "steps": [
+    {
+      "id": "ready",
+      "phase": "frame",
+      "title": "Start from the contract",
+      "description": "We need two different indices whose values total 6. The result must contain positions, not the values themselves.",
+      "insight": "The example begins with 3, whose complement is also 3. That makes it ideal for exposing the same-index trap.",
+      "badge": { "label": "Problem model", "tone": "neutral" },
+      "active_code": ["entry"],
+      "duration_ms": 2200,
+      "state": {
+        "event": "ready",
+        "current_index": null,
+        "match_index": null,
+        "visited_indices": [],
+        "variables": { "index": null, "value": null, "complement": null },
+        "seen": [],
+        "result": null,
+        "changed": []
+      }
+    },
+    {
+      "id": "initialize-map",
+      "phase": "frame",
+      "title": "Create searchable memory",
+      "description": "The map stores each processed value together with the index where it appeared.",
+      "insight": "At this moment the invariant is established: no index has been processed, so seen must be empty.",
+      "badge": { "label": "Invariant begins", "tone": "active" },
+      "active_code": ["initialize"],
+      "duration_ms": 2100,
+      "state": {
+        "event": "ready",
+        "current_index": null,
+        "match_index": null,
+        "visited_indices": [],
+        "variables": { "index": null, "value": null, "complement": null },
+        "seen": [],
+        "result": null,
+        "changed": ["seen"]
+      }
+    },
+    {
+      "id": "visit-zero",
+      "phase": "build",
+      "title": "Read the first value",
+      "description": "The scan begins at index 0, so the current value becomes 3 while seen remains empty.",
+      "insight": "Only the current pointer moves. No information is stored until the lookup has failed.",
+      "badge": { "label": "Scan index 0", "tone": "active" },
+      "active_code": ["scan"],
+      "duration_ms": 1700,
+      "state": {
+        "event": "scanning",
+        "current_index": 0,
+        "match_index": null,
+        "visited_indices": [],
+        "variables": { "index": 0, "value": 3, "complement": null },
+        "seen": [],
+        "result": null,
+        "changed": ["index", "value"]
+      }
+    },
+    {
+      "id": "complement-zero",
+      "phase": "build",
+      "title": "Force the only useful partner",
+      "description": "Once value 3 is fixed, its partner is no longer unknown: 6 - 3 = 3.",
+      "insight": "This algebraic step removes an entire search dimension. We ask one membership question instead of trying every partner.",
+      "badge": { "label": "Need 3", "tone": "active" },
+      "active_code": ["complement"],
+      "duration_ms": 2200,
+      "state": {
+        "event": "scanning",
+        "current_index": 0,
+        "match_index": null,
+        "visited_indices": [],
+        "variables": { "index": 0, "value": 3, "complement": 3 },
+        "seen": [],
+        "result": null,
+        "changed": ["complement"]
+      }
+    },
+    {
+      "id": "miss-zero",
+      "phase": "build",
+      "title": "Check before inserting",
+      "description": "Complement 3 is absent because the map still contains only earlier indices—and there are none.",
+      "insight": "If we inserted first, this lookup would find index 0 and incorrectly reuse the same element twice. Operation order is part of correctness.",
+      "badge": { "label": "Lookup miss", "tone": "attention" },
+      "active_code": ["lookup"],
+      "duration_ms": 2800,
+      "state": {
+        "event": "miss",
+        "current_index": 0,
+        "match_index": null,
+        "visited_indices": [],
+        "variables": { "index": 0, "value": 3, "complement": 3 },
+        "seen": [],
+        "result": null,
+        "changed": ["lookup"]
+      }
+    },
+    {
+      "id": "store-zero",
+      "phase": "build",
+      "title": "Remember index 0",
+      "description": "After the miss, store 3 → 0 so later values can find this position in expected constant time.",
+      "insight": "The processed prefix is now [3], and the map is an exact searchable representation of that prefix.",
+      "badge": { "label": "Map updated", "tone": "active" },
+      "active_code": ["store"],
+      "duration_ms": 2100,
+      "state": {
+        "event": "stored",
+        "current_index": 0,
+        "match_index": null,
+        "visited_indices": [0],
+        "variables": { "index": 0, "value": 3, "complement": 3 },
+        "seen": [{ "value": 3, "index": 0 }],
+        "result": null,
+        "changed": ["seen"]
+      }
+    },
+    {
+      "id": "visit-one",
+      "phase": "build",
+      "title": "Advance to index 1",
+      "description": "The current value changes to 2. The earlier 3 remains available in seen.",
+      "insight": "At the start of every iteration, the map contains earlier values only. The invariant has survived the transition.",
+      "badge": { "label": "Scan index 1", "tone": "active" },
+      "active_code": ["scan"],
+      "duration_ms": 1700,
+      "state": {
+        "event": "scanning",
+        "current_index": 1,
+        "match_index": null,
+        "visited_indices": [0],
+        "variables": { "index": 1, "value": 2, "complement": null },
+        "seen": [{ "value": 3, "index": 0 }],
+        "result": null,
+        "changed": ["index", "value", "complement"]
+      }
+    },
+    {
+      "id": "complement-one",
+      "phase": "build",
+      "title": "Compute the next need",
+      "description": "For current value 2, the required partner is 6 - 2 = 4.",
+      "insight": "The algorithm never asks whether any value might work; it computes the one value that must work.",
+      "badge": { "label": "Need 4", "tone": "active" },
+      "active_code": ["complement"],
+      "duration_ms": 1800,
+      "state": {
+        "event": "scanning",
+        "current_index": 1,
+        "match_index": null,
+        "visited_indices": [0],
+        "variables": { "index": 1, "value": 2, "complement": 4 },
+        "seen": [{ "value": 3, "index": 0 }],
+        "result": null,
+        "changed": ["complement"]
+      }
+    },
+    {
+      "id": "miss-one",
+      "phase": "build",
+      "title": "Search only the processed prefix",
+      "description": "Seen contains 3, not 4, so the required partner has not appeared yet.",
+      "insight": "A miss does not mean the value is useless. Storing it lets a future element discover the pair from the other direction.",
+      "badge": { "label": "Lookup miss", "tone": "attention" },
+      "active_code": ["lookup"],
+      "duration_ms": 2200,
+      "state": {
+        "event": "miss",
+        "current_index": 1,
+        "match_index": null,
+        "visited_indices": [0],
+        "variables": { "index": 1, "value": 2, "complement": 4 },
+        "seen": [{ "value": 3, "index": 0 }],
+        "result": null,
+        "changed": ["lookup"]
+      }
+    },
+    {
+      "id": "store-one",
+      "phase": "build",
+      "title": "Expand searchable memory",
+      "description": "Store 2 → 1. Seen now represents exactly the processed prefix [3, 2].",
+      "insight": "Each array value is inserted at most once, which is why the total work can stay linear.",
+      "badge": { "label": "Map updated", "tone": "active" },
+      "active_code": ["store"],
+      "duration_ms": 2100,
+      "state": {
+        "event": "stored",
+        "current_index": 1,
+        "match_index": null,
+        "visited_indices": [0, 1],
+        "variables": { "index": 1, "value": 2, "complement": 4 },
+        "seen": [{ "value": 3, "index": 0 }, { "value": 2, "index": 1 }],
+        "result": null,
+        "changed": ["seen"]
+      }
+    },
+    {
+      "id": "visit-two",
+      "phase": "connect",
+      "title": "Reach the value that completes the pair",
+      "description": "The scan reaches value 4 at index 2 while both earlier values are indexed in seen.",
+      "insight": "Predict the next complement before continuing: what must be added to 4 to reach 6?",
+      "badge": { "label": "Scan index 2", "tone": "active" },
+      "active_code": ["scan"],
+      "duration_ms": 2400,
+      "state": {
+        "event": "scanning",
+        "current_index": 2,
+        "match_index": null,
+        "visited_indices": [0, 1],
+        "variables": { "index": 2, "value": 4, "complement": null },
+        "seen": [{ "value": 3, "index": 0 }, { "value": 2, "index": 1 }],
+        "result": null,
+        "changed": ["index", "value", "complement"]
+      }
+    },
+    {
+      "id": "complement-two",
+      "phase": "connect",
+      "title": "Derive the matching key",
+      "description": "For value 4, the required partner is 6 - 4 = 2.",
+      "insight": "The computed number is simultaneously a mathematical complement and a hash-map key.",
+      "badge": { "label": "Need 2", "tone": "active" },
+      "active_code": ["complement"],
+      "duration_ms": 1900,
+      "state": {
+        "event": "scanning",
+        "current_index": 2,
+        "match_index": null,
+        "visited_indices": [0, 1],
+        "variables": { "index": 2, "value": 4, "complement": 2 },
+        "seen": [{ "value": 3, "index": 0 }, { "value": 2, "index": 1 }],
+        "result": null,
+        "changed": ["complement"]
+      }
+    },
+    {
+      "id": "hit-two",
+      "phase": "connect",
+      "title": "Retrieve the earlier index",
+      "description": "Key 2 is present and maps to index 1. Values 2 and 4 therefore reach the target 6.",
+      "insight": "The lookup proves both conditions at once: the values sum correctly, and the stored index is distinct because it is earlier.",
+      "badge": { "label": "Match found", "tone": "success" },
+      "active_code": ["lookup"],
+      "duration_ms": 2700,
+      "state": {
+        "event": "found",
+        "current_index": 2,
+        "match_index": 1,
+        "visited_indices": [0, 1],
+        "variables": { "index": 2, "value": 4, "complement": 2 },
+        "seen": [{ "value": 3, "index": 0 }, { "value": 2, "index": 1 }],
+        "result": null,
+        "changed": ["lookup"]
+      }
+    },
+    {
+      "id": "return-result",
+      "phase": "conclude",
+      "title": "Return and stop",
+      "description": "The stored index 1 and current index 2 form the unique answer, so no later values need to be inspected.",
+      "insight": "One pass, one lookup per value, and immediate termination give O(n) expected time with O(n) auxiliary space.",
+      "badge": { "label": "Answer [1, 2]", "tone": "success" },
+      "active_code": ["return"],
+      "duration_ms": 3000,
+      "state": {
+        "event": "returned",
+        "current_index": 2,
+        "match_index": 1,
+        "visited_indices": [0, 1, 2],
+        "variables": { "index": 2, "value": 4, "complement": 2 },
+        "seen": [{ "value": 3, "index": 0 }, { "value": 2, "index": 1 }],
+        "result": [1, 2],
+        "changed": ["result"]
+      }
+    }
+  ]
+}
