@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1365",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-duplicates",
       "name": "sample: duplicate middle values",
       "kind": "sample",
       "visible": true,
@@ -24,12 +25,12 @@
       ],
       "tags": [
         "sample",
-        "counting"
+        "duplicates"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: descending values",
+      "id": "sample-descending",
+      "name": "sample: descending distinct values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,12 +48,13 @@
         3
       ],
       "tags": [
-        "sample"
+        "sample",
+        "descending"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: all equal",
+      "id": "sample-all-equal",
+      "name": "sample: all values equal",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -71,26 +73,109 @@
       ],
       "tags": [
         "sample",
-        "edge"
+        "equal"
       ]
     },
     {
-      "id": "real-min-and-max",
-      "name": "hidden: minimum and maximum constraints",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-increasing",
+      "name": "trial: already increasing",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           0,
-          100
+          1,
+          2,
+          3
         ]
       },
       "expected": [
         0,
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "trial",
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-mixed",
+      "name": "trial: repeated value around extremes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          0,
+          10,
+          5
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        3,
         1
       ],
       "tags": [
-        "hidden"
+        "trial",
+        "mixed"
+      ]
+    },
+    {
+      "id": "hidden-domain-boundaries",
+      "name": "hidden: zero and one hundred duplicates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          0,
+          100,
+          50,
+          0
+        ]
+      },
+      "expected": [
+        3,
+        0,
+        3,
+        2,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "hidden-two-values",
+      "name": "hidden: two repeated value groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": [
+        3,
+        0,
+        3,
+        0,
+        3,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
       ]
     }
   ]

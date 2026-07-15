@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1445",
+  "frontend_id": "1343",
+  "title_slug": "number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numOfSubarrays",
+  "verified_submission_id": "2068634512",
+  "verified_at": "2026-07-15T13:13:14.340627+00:00"
+}

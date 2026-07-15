@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1522",
+  "frontend_id": "1406",
+  "title_slug": "stone-game-iii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.stoneGameIII",
+  "verified_submission_id": "2068907802",
+  "verified_at": "2026-07-15T17:01:37.598806+00:00"
+}

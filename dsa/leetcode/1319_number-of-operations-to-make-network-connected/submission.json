@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1442",
+  "frontend_id": "1319",
+  "title_slug": "number-of-operations-to-make-network-connected",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.makeConnected",
+  "verified_submission_id": "2068487705",
+  "verified_at": "2026-07-15T10:37:03.319031+00:00"
+}

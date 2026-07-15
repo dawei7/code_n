@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1312",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: already a palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "zzazz"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "palindrome"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two insertions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "mbadm"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: five insertions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcode"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "interval-dp"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "x"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-two-different",
+      "name": "trial: two unequal characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "hidden-all-distinct",
+      "name": "hidden: every character differs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdef"
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "worst-structure"
+      ]
+    },
+    {
+      "id": "hidden-inner-palindrome",
+      "name": "hidden: preserve a long inner palindrome",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aebcbda"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "subsequence"
+      ]
+    }
+  ]
+}

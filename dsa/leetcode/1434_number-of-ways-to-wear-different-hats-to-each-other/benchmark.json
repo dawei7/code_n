@@ -1,11 +1,46 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1434",
+  "measurement_note": "Size is S = 2^p, the number of person-mask states. The p = 3/5/7 tiers have sizes 8/32/128 and span 16x; every person likes every one of p hats. Hat-oriented bitmask DP takes O(p squared times 2^p) work on these tiers. Correct person-by-person backtracking enumerates p! assignments, completes normally, and is rejected by scaling.",
   "cases": [
     {
-      "id": "benchmark-five-factorial",
-      "name": "benchmark: five people all like five hats",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3 people all like 3 hats",
       "kind": "benchmark",
       "visible": false,
+      "size": 8,
+      "input": {
+        "hats": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "dense-preferences"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 5 people all like 5 hats",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
       "input": {
         "hats": [
           [
@@ -47,7 +82,89 @@
       },
       "expected": 120,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-medium",
+        "dense-preferences"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 7 people all like 7 hats",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "hats": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        ]
+      },
+      "expected": 5040,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "dense-preferences"
       ]
     }
   ]

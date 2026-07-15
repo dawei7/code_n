@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "pending",
+  "question_id": "1532",
+  "frontend_id": "1416",
+  "title_slug": "restore-the-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numberOfArrays"
+}

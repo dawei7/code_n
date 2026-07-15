@@ -1,36 +1,115 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1349",
+  "measurement_note": "Size is m times 4 to the n, matching the worst-case row-mask transition bound for m rows and n columns. Every seat is usable, maximizing valid row masks and compatibility work. Dynamic programming merges histories ending in the same previous mask. A correct slower alternative recursively enumerates every compatible row-mask sequence without memoization; it completes all tiers but repeats equivalent suffix subproblems.",
   "cases": [
     {
-      "id": "benchmark-diagonal-conflicts",
-      "name": "benchmark: diagonal conflicts",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: open 2-by-2 room",
       "kind": "benchmark",
       "visible": false,
+      "size": 32,
       "input": {
         "seats": [
           [
             ".",
-            "#",
-            ".",
             "."
           ],
           [
             ".",
-            ".",
-            "#",
             "."
-          ],
-          [
-            "#",
-            ".",
-            ".",
-            "#"
           ]
         ]
       },
-      "expected": 4,
+      "expected": 2,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-small",
+        "open-room"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: open 3-by-4 room",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 768,
+      "input": {
+        "seats": [
+          [
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "."
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "open-room"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: open 4-by-6 room",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16384,
+      "input": {
+        "seats": [
+          [
+            ".",
+            ".",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            ".",
+            ".",
+            "."
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "open-room"
       ]
     }
   ]

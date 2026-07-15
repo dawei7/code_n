@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1270",
+  "cases": [
+    {
+      "id": "sample-mixed-hierarchies", "name": "sample: direct, indirect, and unrelated employees", "kind": "sample", "visible": true,
+      "input": {"tables": {"Employees": [
+        {"employee_id": 1, "employee_name": "Boss", "manager_id": 1},
+        {"employee_id": 3, "employee_name": "Alice", "manager_id": 3},
+        {"employee_id": 2, "employee_name": "Bob", "manager_id": 1},
+        {"employee_id": 4, "employee_name": "Daniel", "manager_id": 2},
+        {"employee_id": 7, "employee_name": "Luis", "manager_id": 4},
+        {"employee_id": 8, "employee_name": "John", "manager_id": 3},
+        {"employee_id": 9, "employee_name": "Angela", "manager_id": 8},
+        {"employee_id": 77, "employee_name": "Robert", "manager_id": 1}
+      ]}},
+      "expected": {"columns": ["employee_id"], "rows": [[2], [4], [7], [77]]},
+      "tags": ["sample", "mixed-hierarchies"]
+    },
+    {
+      "id": "sample-head-only", "name": "sample: no employees report to the head", "kind": "sample", "visible": true,
+      "input": {"tables": {"Employees": [{"employee_id": 1, "employee_name": "Boss", "manager_id": 1}]}},
+      "expected": {"columns": ["employee_id"], "rows": []},
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "trial-maximum-depth", "name": "trial: chain uses all three manager links", "kind": "trial", "visible": true,
+      "input": {"tables": {"Employees": [
+        {"employee_id": 1, "employee_name": "Boss", "manager_id": 1},
+        {"employee_id": 2, "employee_name": "A", "manager_id": 1},
+        {"employee_id": 3, "employee_name": "B", "manager_id": 2},
+        {"employee_id": 4, "employee_name": "C", "manager_id": 3}
+      ]}},
+      "expected": {"columns": ["employee_id"], "rows": [[2], [3], [4]]},
+      "tags": ["trial", "maximum-depth"]
+    },
+    {
+      "id": "trial-direct-report", "name": "trial: one direct report", "kind": "trial", "visible": true,
+      "input": {"tables": {"Employees": [
+        {"employee_id": 1, "employee_name": "Boss", "manager_id": 1},
+        {"employee_id": 10, "employee_name": "Direct", "manager_id": 1}
+      ]}},
+      "expected": {"columns": ["employee_id"], "rows": [[10]]},
+      "tags": ["trial", "direct"]
+    },
+    {
+      "id": "real-separate-root", "name": "hidden: self-managed outsider and descendant are excluded", "kind": "real", "visible": false,
+      "input": {"tables": {"Employees": [
+        {"employee_id": 1, "employee_name": "Boss", "manager_id": 1},
+        {"employee_id": 2, "employee_name": "Included", "manager_id": 1},
+        {"employee_id": 20, "employee_name": "OtherBoss", "manager_id": 20},
+        {"employee_id": 21, "employee_name": "OtherWorker", "manager_id": 20}
+      ]}},
+      "expected": {"columns": ["employee_id"], "rows": [[2]]},
+      "tags": ["hidden", "separate-hierarchy"]
+    },
+    {
+      "id": "real-branching-tree", "name": "hidden: several branches and depths report to the head", "kind": "real", "visible": false,
+      "input": {"tables": {"Employees": [
+        {"employee_id": 1, "employee_name": "Boss", "manager_id": 1},
+        {"employee_id": 2, "employee_name": "A", "manager_id": 1},
+        {"employee_id": 3, "employee_name": "B", "manager_id": 1},
+        {"employee_id": 4, "employee_name": "C", "manager_id": 2},
+        {"employee_id": 5, "employee_name": "D", "manager_id": 2},
+        {"employee_id": 6, "employee_name": "E", "manager_id": 4}
+      ]}},
+      "expected": {"columns": ["employee_id"], "rows": [[2], [3], [4], [5], [6]]},
+      "tags": ["hidden", "branching"]
+    }
+  ]
+}

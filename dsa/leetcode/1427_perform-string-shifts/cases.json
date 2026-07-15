@@ -1,0 +1,181 @@
+{
+  "challenge_id": "lc_1427",
+  "cases": [
+    {
+      "id": "sample-two",
+      "name": "sample: left then right",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "shift": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": "cab",
+      "tags": [
+        "sample",
+        "combined"
+      ]
+    },
+    {
+      "id": "sample-four",
+      "name": "sample: four mixed operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcdefg",
+        "shift": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": "efgabcd",
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-full",
+      "name": "sample: full-length rotations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "shift": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            8
+          ]
+        ]
+      },
+      "expected": "abcd",
+      "tags": [
+        "sample",
+        "wrap"
+      ]
+    },
+    {
+      "id": "trial-cancel",
+      "name": "opposite shifts cancel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "rotation",
+        "shift": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": "rotation",
+      "tags": [
+        "trial",
+        "cancel"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single character never changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "x",
+        "shift": [
+          [
+            0,
+            100
+          ],
+          [
+            1,
+            37
+          ]
+        ]
+      },
+      "expected": "x",
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-large-net",
+      "name": "hidden: total exceeds string length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdef",
+        "shift": [
+          [
+            1,
+            100
+          ],
+          [
+            1,
+            100
+          ]
+        ]
+      },
+      "expected": "efabcd",
+      "tags": [
+        "hidden",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-negative-net",
+      "name": "hidden: net direction is left",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdef",
+        "shift": [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": "defabc",
+      "tags": [
+        "hidden",
+        "left"
+      ]
+    }
+  ]
+}

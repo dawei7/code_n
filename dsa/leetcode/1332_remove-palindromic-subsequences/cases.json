@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1332",
+  "cases": [
+    {"id":"sample-1","name":"sample: whole string is a palindrome","kind":"sample","visible":true,"input":{"s":"ababa"},"expected":1,"tags":["sample","palindrome"]},
+    {"id":"sample-2","name":"sample: asymmetric suffix","kind":"sample","visible":true,"input":{"s":"abb"},"expected":2,"tags":["sample","not-palindrome"]},
+    {"id":"sample-3","name":"sample: two removals required","kind":"sample","visible":true,"input":{"s":"baabb"},"expected":2,"tags":["sample","not-palindrome"]},
+    {"id":"trial-single","name":"trial: one character","kind":"trial","visible":true,"input":{"s":"a"},"expected":1,"tags":["trial","boundary"]},
+    {"id":"trial-even-palindrome","name":"trial: even-length palindrome","kind":"trial","visible":true,"input":{"s":"abba"},"expected":1,"tags":["trial","palindrome"]},
+    {"id":"hidden-two-characters","name":"hidden: shortest non-palindrome","kind":"real","visible":false,"input":{"s":"ab"},"expected":2,"tags":["hidden","boundary"]},
+    {"id":"hidden-one-letter","name":"hidden: repeated single letter","kind":"real","visible":false,"input":{"s":"bbbbbbbb"},"expected":1,"tags":["hidden","single-letter"]}
+  ]
+}

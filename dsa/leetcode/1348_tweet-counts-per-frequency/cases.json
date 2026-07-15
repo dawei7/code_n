@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1348",
+  "cases": [
+    {"id":"sample-trace","name":"sample: minute and hour queries","kind":"sample","visible":true,"input":{"operations":["TweetCounts","recordTweet","recordTweet","recordTweet","getTweetCountsPerFrequency","getTweetCountsPerFrequency","recordTweet","getTweetCountsPerFrequency"],"arguments":[[],["tweet3",0],["tweet3",60],["tweet3",10],["minute","tweet3",0,59],["minute","tweet3",0,60],["tweet3",120],["hour","tweet3",0,210]]},"expected":[null,null,null,null,[2],[2,1],null,[4]],"tags":["sample","design"]},
+    {"id":"trial-duplicate-times","name":"trial: duplicate recordings count separately","kind":"trial","visible":true,"input":{"operations":["TweetCounts","recordTweet","recordTweet","getTweetCountsPerFrequency"],"arguments":[[],["same",30],["same",30],["minute","same",0,59]]},"expected":[null,null,null,[2]],"tags":["trial","duplicates"]},
+    {"id":"trial-independent-names","name":"trial: tweet names have independent histories","kind":"trial","visible":true,"input":{"operations":["TweetCounts","recordTweet","recordTweet","getTweetCountsPerFrequency","getTweetCountsPerFrequency"],"arguments":[[],["a",10],["b",10],["minute","a",0,59],["minute","b",0,59]]},"expected":[null,null,null,[1],[1]],"tags":["trial","names"]},
+    {"id":"trial-missing-name","name":"trial: missing name returns zero buckets","kind":"trial","visible":true,"input":{"operations":["TweetCounts","getTweetCountsPerFrequency"],"arguments":[[],["minute","missing",0,120]]},"expected":[null,[0,0,0]],"tags":["trial","empty"]},
+    {"id":"hidden-inclusive-end","name":"hidden: inclusive query endpoint","kind":"real","visible":false,"input":{"operations":["TweetCounts","recordTweet","recordTweet","getTweetCountsPerFrequency"],"arguments":[[],["edge",59],["edge",60],["minute","edge",0,60]]},"expected":[null,null,null,[1,1]],"tags":["hidden","endpoint"]},
+    {"id":"hidden-partial-hour","name":"hidden: partial final hour bucket","kind":"real","visible":false,"input":{"operations":["TweetCounts","recordTweet","recordTweet","recordTweet","getTweetCountsPerFrequency"],"arguments":[[],["x",100],["x",3699],["x",3700],["hour","x",100,3700]]},"expected":[null,null,null,null,[2,1]],"tags":["hidden","partial-bucket"]},
+    {"id":"hidden-day-frequency","name":"hidden: day buckets","kind":"real","visible":false,"input":{"operations":["TweetCounts","recordTweet","recordTweet","recordTweet","getTweetCountsPerFrequency"],"arguments":[[],["daily",0],["daily",86400],["daily",172800],["day","daily",0,172800]]},"expected":[null,null,null,null,[1,1,1]],"tags":["hidden","day"]}
+  ]
+}

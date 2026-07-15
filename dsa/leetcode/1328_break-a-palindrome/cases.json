@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1328",
+  "cases": [
+    {"id":"sample-1","name":"sample: reduce first non-a in left half","kind":"sample","visible":true,"input":{"palindrome":"abccba"},"expected":"aaccba","tags":["sample","greedy"]},
+    {"id":"sample-2","name":"sample: one character is impossible","kind":"sample","visible":true,"input":{"palindrome":"a"},"expected":"","tags":["sample","impossible"]},
+    {"id":"trial-two-as","name":"trial: all-a even palindrome","kind":"trial","visible":true,"input":{"palindrome":"aa"},"expected":"ab","tags":["trial","suffix-change"]},
+    {"id":"trial-odd-center","name":"trial: do not change the center","kind":"trial","visible":true,"input":{"palindrome":"aba"},"expected":"abb","tags":["trial","odd-length"]},
+    {"id":"trial-inner-reduction","name":"trial: reduce an inner left-half character","kind":"trial","visible":true,"input":{"palindrome":"abba"},"expected":"aaba","tags":["trial","lexicographic"]},
+    {"id":"hidden-all-z","name":"hidden: reduce the leading character","kind":"real","visible":false,"input":{"palindrome":"zz"},"expected":"az","tags":["hidden","leading-change"]},
+    {"id":"hidden-five-as","name":"hidden: odd all-a palindrome","kind":"real","visible":false,"input":{"palindrome":"aaaaa"},"expected":"aaaab","tags":["hidden","suffix-change"]}
+  ]
+}

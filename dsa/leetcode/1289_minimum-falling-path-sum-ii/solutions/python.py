@@ -1,15 +1,21 @@
 def solve(grid):
-    n = len(grid)
-    prev = grid[0][:]
-    for r in range(1, n):
-        first = second = float("inf")
-        first_index = -1
-        for c, value in enumerate(prev):
-            if value < first:
-                second = first
-                first = value
-                first_index = c
-            elif value < second:
-                second = value
-        prev = [grid[r][c] + (second if c == first_index else first) for c in range(n)]
-    return min(prev)
+    length = len(grid)
+    previous = grid[0][:]
+
+    for row in range(1, length):
+        smallest = second_smallest = float("inf")
+        smallest_column = -1
+        for column, value in enumerate(previous):
+            if value < smallest:
+                second_smallest = smallest
+                smallest = value
+                smallest_column = column
+            elif value < second_smallest:
+                second_smallest = value
+
+        previous = [
+            grid[row][column] + (second_smallest if column == smallest_column else smallest)
+            for column in range(length)
+        ]
+
+    return min(previous)

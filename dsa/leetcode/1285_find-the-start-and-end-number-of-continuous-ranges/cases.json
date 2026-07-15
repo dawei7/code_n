@@ -1,0 +1,318 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1285",
+  "cases": [
+    {
+      "id": "sample-three-ranges",
+      "name": "sample: two runs and one singleton",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Logs": [
+            {
+              "log_id": 1
+            },
+            {
+              "log_id": 2
+            },
+            {
+              "log_id": 3
+            },
+            {
+              "log_id": 7
+            },
+            {
+              "log_id": 8
+            },
+            {
+              "log_id": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "start_id",
+          "end_id"
+        ],
+        "rows": [
+          [
+            1,
+            3
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            10,
+            10
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "ranges"
+      ]
+    },
+    {
+      "id": "sample-one-range",
+      "name": "sample: one continuous range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Logs": [
+            {
+              "log_id": 4
+            },
+            {
+              "log_id": 5
+            },
+            {
+              "log_id": 6
+            },
+            {
+              "log_id": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "start_id",
+          "end_id"
+        ],
+        "rows": [
+          [
+            4,
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "continuous"
+      ]
+    },
+    {
+      "id": "trial-all-singletons",
+      "name": "trial: every identifier is isolated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Logs": [
+            {
+              "log_id": 2
+            },
+            {
+              "log_id": 4
+            },
+            {
+              "log_id": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "start_id",
+          "end_id"
+        ],
+        "rows": [
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            8,
+            8
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "singletons"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "trial: one log identifier",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Logs": [
+            {
+              "log_id": 42
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "start_id",
+          "end_id"
+        ],
+        "rows": [
+          [
+            42,
+            42
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-empty",
+      "name": "trial: no log rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Logs": {
+            "columns": [
+              "log_id"
+            ],
+            "rows": []
+          }
+        }
+      },
+      "expected": {
+        "columns": [
+          "start_id",
+          "end_id"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "empty"
+      ]
+    },
+    {
+      "id": "hidden-unsorted-fixture",
+      "name": "hidden: insertion order differs from numeric order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Logs": [
+            {
+              "log_id": 10
+            },
+            {
+              "log_id": 3
+            },
+            {
+              "log_id": 2
+            },
+            {
+              "log_id": 20
+            },
+            {
+              "log_id": 1
+            },
+            {
+              "log_id": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "start_id",
+          "end_id"
+        ],
+        "rows": [
+          [
+            1,
+            3
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            20,
+            20
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "hidden-varied-gaps",
+      "name": "hidden: ranges of several lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Logs": [
+            {
+              "log_id": 1
+            },
+            {
+              "log_id": 3
+            },
+            {
+              "log_id": 4
+            },
+            {
+              "log_id": 5
+            },
+            {
+              "log_id": 9
+            },
+            {
+              "log_id": 10
+            },
+            {
+              "log_id": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "start_id",
+          "end_id"
+        ],
+        "rows": [
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            20,
+            20
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "gaps"
+      ]
+    }
+  ]
+}

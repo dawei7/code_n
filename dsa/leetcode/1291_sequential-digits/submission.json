@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1212",
+  "frontend_id": "1291",
+  "title_slug": "sequential-digits",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.sequentialDigits",
+  "verified_submission_id": "2068351238",
+  "verified_at": "2026-07-15T08:34:28.331876+00:00"
+}

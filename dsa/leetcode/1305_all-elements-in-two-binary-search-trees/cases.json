@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1305",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: overlapping values across two trees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root1": [
+          2,
+          1,
+          4
+        ],
+        "root2": [
+          1,
+          0,
+          3
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "sample",
+        "in-order",
+        "merge"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated values in both trees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root1": [
+          1,
+          null,
+          8
+        ],
+        "root2": [
+          8,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        8,
+        8
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: both trees are empty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root1": [],
+        "root2": []
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "boundary",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-one-empty",
+      "name": "trial: only the second tree has nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root1": [],
+        "root2": [
+          0,
+          -10,
+          10
+        ]
+      },
+      "expected": [
+        -10,
+        0,
+        10
+      ],
+      "tags": [
+        "trial",
+        "empty-tree"
+      ]
+    },
+    {
+      "id": "trial-negative-values",
+      "name": "trial: merge negative and positive values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root1": [
+          0,
+          -5,
+          2
+        ],
+        "root2": [
+          -1,
+          -3,
+          4
+        ]
+      },
+      "expected": [
+        -5,
+        -3,
+        -1,
+        0,
+        2,
+        4
+      ],
+      "tags": [
+        "trial",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "hidden-interleaved-chains",
+      "name": "hidden: values alternate between skewed trees",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          2,
+          null,
+          4,
+          null,
+          6,
+          null,
+          8
+        ],
+        "root2": [
+          1,
+          null,
+          3,
+          null,
+          5,
+          null,
+          7
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "tags": [
+        "hidden",
+        "skewed",
+        "interleaved"
+      ]
+    },
+    {
+      "id": "hidden-value-bounds",
+      "name": "hidden: values at both allowed bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          -100000
+        ],
+        "root2": [
+          100000
+        ]
+      },
+      "expected": [
+        -100000,
+        100000
+      ],
+      "tags": [
+        "hidden",
+        "boundary-values"
+      ]
+    }
+  ]
+}

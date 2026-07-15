@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1389",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: insert in middle",
+      "id": "sample-mixed",
+      "name": "sample: insert into middle positions",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -31,12 +32,12 @@
       ],
       "tags": [
         "sample",
-        "array"
+        "middle"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: insert at front once",
+      "id": "sample-front-last",
+      "name": "sample: final value inserted at front",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -63,13 +64,14 @@
         4
       ],
       "tags": [
-        "sample"
+        "sample",
+        "front"
       ]
     },
     {
-      "id": "trial-single-value",
-      "name": "single insertion",
-      "kind": "trial",
+      "id": "sample-single",
+      "name": "sample: one value",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
@@ -83,40 +85,125 @@
         1
       ],
       "tags": [
-        "trial",
-        "edge"
+        "sample",
+        "boundary"
       ]
     },
     {
-      "id": "real-duplicate-values",
-      "name": "hidden: duplicate inserted values",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-front",
+      "name": "trial: every value inserted at front",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
-          4,
+          1,
           2,
-          4,
           3,
-          2
+          4
         ],
         "index": [
           0,
           0,
-          1,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "trial",
+        "front"
+      ]
+    },
+    {
+      "id": "trial-append",
+      "name": "trial: every value appended",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
           3,
+          2,
+          1
+        ],
+        "index": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "trial",
+        "append"
+      ]
+    },
+    {
+      "id": "hidden-repeated-index",
+      "name": "hidden: same middle position reused",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "index": [
+          0,
+          1,
+          1,
           1
         ]
       },
       "expected": [
-        2,
-        2,
-        4,
-        4,
-        3
+        5,
+        8,
+        7,
+        6
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "repeated-position"
+      ]
+    },
+    {
+      "id": "hidden-duplicates",
+      "name": "hidden: duplicate values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "index": [
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        5,
+        5,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
       ]
     }
   ]

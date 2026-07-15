@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1344",
+  "cases": [
+    {"id":"sample-twelve-thirty","name":"sample: half past twelve","kind":"sample","visible":true,"input":{"hour":12,"minutes":30},"expected":165.0,"tags":["sample","continuous-hour-hand"]},
+    {"id":"sample-three-thirty","name":"sample: half past three","kind":"sample","visible":true,"input":{"hour":3,"minutes":30},"expected":75.0,"tags":["sample","acute"]},
+    {"id":"sample-three-fifteen","name":"sample: quarter past three","kind":"sample","visible":true,"input":{"hour":3,"minutes":15},"expected":7.5,"tags":["sample","fractional"]},
+    {"id":"trial-exactly-noon","name":"trial: hands overlap at noon","kind":"trial","visible":true,"input":{"hour":12,"minutes":0},"expected":0.0,"tags":["trial","overlap"]},
+    {"id":"trial-opposite","name":"trial: hands are opposite","kind":"trial","visible":true,"input":{"hour":6,"minutes":0},"expected":180.0,"tags":["trial","maximum-angle"]},
+    {"id":"trial-wraparound","name":"trial: one minute after twelve","kind":"trial","visible":true,"input":{"hour":12,"minutes":1},"expected":5.5,"tags":["trial","wraparound"]},
+    {"id":"hidden-before-twelve","name":"hidden: one minute before twelve","kind":"real","visible":false,"input":{"hour":11,"minutes":59},"expected":5.5,"tags":["hidden","wraparound"]},
+    {"id":"hidden-obtuse-complement","name":"hidden: complementary route is smaller","kind":"real","visible":false,"input":{"hour":9,"minutes":45},"expected":22.5,"tags":["hidden","complement"]}
+  ]
+}

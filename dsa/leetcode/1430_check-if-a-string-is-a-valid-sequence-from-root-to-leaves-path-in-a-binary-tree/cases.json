@@ -1,0 +1,185 @@
+{
+  "challenge_id": "lc_1430",
+  "cases": [
+    {
+      "id": "sample-valid",
+      "name": "sample: exact root-to-leaf sequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0
+        ],
+        "arr": [
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-wrong-value",
+      "name": "sample: path value does not match",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0
+        ],
+        "arr": [
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "sample-internal-end",
+      "name": "sample: sequence stops at internal node",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0
+        ],
+        "arr": [
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "leaf-condition"
+      ]
+    },
+    {
+      "id": "trial-single-match",
+      "name": "single-node matching sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          7
+        ],
+        "arr": [
+          7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-single-mismatch",
+      "name": "single-node mismatching sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          7
+        ],
+        "arr": [
+          6
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "real-too-long",
+      "name": "hidden: array continues beyond leaf",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3
+        ],
+        "arr": [
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "length"
+      ]
+    },
+    {
+      "id": "real-right-path",
+      "name": "hidden: valid path uses right children",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          null,
+          2,
+          null,
+          3
+        ],
+        "arr": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "right-skew"
+      ]
+    }
+  ]
+}

@@ -7,8 +7,8 @@
 | Difficulty | Medium |
 | Category | Concurrency |
 | Topics | Concurrency |
-| Supported Languages | Tracked only |
-| LeetCode | [Open problem](https://leetcode.com/problems/print-foobar-alternately/) |
+| Supported Languages | Python |
+| Official Link | [LeetCode](https://leetcode.com/problems/print-foobar-alternately/) |
 
 ## Problem Description
 

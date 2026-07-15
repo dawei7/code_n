@@ -1,97 +1,13 @@
 {
   "challenge_id": "lc_1391",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: connected road",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            2,
-            4,
-            3
-          ],
-          [
-            6,
-            5,
-            2
-          ]
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "sample",
-        "graph"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: disconnected road",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            2,
-            1
-          ],
-          [
-            1,
-            2,
-            1
-          ]
-        ]
-      },
-      "expected": false,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-one-row-dead-end",
-      "name": "one row dead end",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            1,
-            2
-          ]
-        ]
-      },
-      "expected": false,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-vertical-path",
-      "name": "hidden: vertical path",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "grid": [
-          [
-            2
-          ],
-          [
-            2
-          ],
-          [
-            2
-          ]
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-1", "name": "sample: winding valid path", "kind": "sample", "visible": true, "input": {"grid": [[2, 4, 3], [6, 5, 2]]}, "expected": true, "tags": ["sample", "valid"]},
+    {"id": "sample-2", "name": "sample: incompatible vertical neighbors", "kind": "sample", "visible": true, "input": {"grid": [[1, 2, 1], [1, 2, 1]]}, "expected": false, "tags": ["sample", "invalid"]},
+    {"id": "sample-3", "name": "sample: destination does not open back", "kind": "sample", "visible": true, "input": {"grid": [[1, 1, 2]]}, "expected": false, "tags": ["sample", "reciprocal"]},
+    {"id": "trial-single-cell", "name": "single cell is already the destination", "kind": "trial", "visible": true, "input": {"grid": [[5]]}, "expected": true, "tags": ["trial", "single-cell"]},
+    {"id": "trial-vertical", "name": "straight vertical street", "kind": "trial", "visible": true, "input": {"grid": [[2], [2], [2], [2]]}, "expected": true, "tags": ["trial", "vertical"]},
+    {"id": "real-all-turn-types", "name": "hidden: path uses compatible turns", "kind": "real", "visible": false, "input": {"grid": [[4, 1, 3], [6, 1, 5]]}, "expected": true, "tags": ["hidden", "turns"]},
+    {"id": "real-one-sided-connection", "name": "hidden: reject one-sided border", "kind": "real", "visible": false, "input": {"grid": [[4, 2], [6, 2]]}, "expected": false, "tags": ["hidden", "reciprocal"]},
+    {"id": "real-horizontal-destination", "name": "hidden: destination may open away after arrival", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 1, 1, 3]]}, "expected": true, "tags": ["hidden", "destination"]}
   ]
 }

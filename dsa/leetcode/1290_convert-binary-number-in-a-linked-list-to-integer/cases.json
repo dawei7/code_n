@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1290",
+  "cases": [
+    {
+      "id": "sample-101",
+      "name": "sample: three-bit value five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "binary"
+      ]
+    },
+    {
+      "id": "sample-zero",
+      "name": "sample: single zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: single one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-four-ones",
+      "name": "trial: four one-bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "trial"
+      ]
+    },
+    {
+      "id": "trial-power-two",
+      "name": "trial: one followed by zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "trial",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "hidden-alternating",
+      "name": "hidden: alternating bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 699050,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "hidden-thirty-ones",
+      "name": "hidden: maximum-length all-one list",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1073741823,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}

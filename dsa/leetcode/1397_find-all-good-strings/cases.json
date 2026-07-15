@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_1397",
+  "cases": [
+    {"id": "sample-single-letter-evil", "name": "sample: exclude strings containing b", "kind": "sample", "visible": true, "input": {"n": 2, "s1": "aa", "s2": "da", "evil": "b"}, "expected": 51, "tags": ["sample", "bounds"]},
+    {"id": "sample-short-range", "name": "sample: one of three strings is forbidden", "kind": "sample", "visible": true, "input": {"n": 2, "s1": "gx", "s2": "gz", "evil": "x"}, "expected": 2, "tags": ["sample", "short-range"]},
+    {"id": "sample-full-small-domain", "name": "sample: exclude one letter everywhere", "kind": "sample", "visible": true, "input": {"n": 2, "s1": "aa", "s2": "zz", "evil": "a"}, "expected": 625, "tags": ["sample", "full-domain"]},
+    {"id": "trial-single-good", "name": "single-string interval avoids evil", "kind": "trial", "visible": true, "input": {"n": 4, "s1": "code", "s2": "code", "evil": "evil"}, "expected": 1, "tags": ["trial", "inclusive"]},
+    {"id": "trial-single-bad", "name": "single-string interval contains evil", "kind": "trial", "visible": true, "input": {"n": 5, "s1": "ababa", "s2": "ababa", "evil": "aba"}, "expected": 0, "tags": ["trial", "overlap"]},
+    {"id": "real-endpoint-exclusion", "name": "hidden: lower endpoint alone contains evil", "kind": "real", "visible": false, "input": {"n": 3, "s1": "abc", "s2": "abf", "evil": "bc"}, "expected": 3, "tags": ["hidden", "endpoint"]},
+    {"id": "real-overlapping-evil", "name": "hidden: overlapping forbidden prefix excludes range", "kind": "real", "visible": false, "input": {"n": 4, "s1": "aaaa", "s2": "aaaz", "evil": "aa"}, "expected": 0, "tags": ["hidden", "overlap"]}
+  ]
+}

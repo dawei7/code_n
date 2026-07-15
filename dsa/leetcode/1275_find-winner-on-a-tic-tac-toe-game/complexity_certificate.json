@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1275",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(m)",
+  "summary": "A legal game contains at most nine moves on a fixed 3-by-3 board, which is too small to produce an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "m",
+    "maximum": 9,
+    "unit": "moves",
+    "source_constraint": "moves contains between 1 and 9 entries on a fixed 3-by-3 grid"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "The implementation performs one constant-size counter update per move and inspects exactly eight line totals after at most nine updates."},
+    {"kind": "boundary_property_cases", "evidence": "Regression enumerates every reachable valid board state, stops expansion at wins or a full board, and compares the reference result with an independent board-line oracle."}
+  ]
+}

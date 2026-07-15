@@ -1,24 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1390",
+  "measurement_note": "Size D is floor(sqrt(x)), the number of possible small-divisor positions for the single input value x. Prime cubes exercise the complete square-root scan while still having exactly four divisors. The 11/70/225 tiers span more than 4x. The reference performs O(D) divisor tests; a correct slower implementation enumerates all candidates through x, which is quadratic in D for these values, and completes normally.",
   "cases": [
     {
-      "id": "benchmark-many-semiprimes",
-      "name": "benchmark: many four-divisor numbers",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: prime cube 125",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "nums": [
-          6,
-          8,
-          10,
-          14,
-          22
-        ]
-      },
-      "expected": 105,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 11,
+      "input": {"nums": [125]},
+      "expected": 156,
+      "tags": ["benchmark", "scale-small", "prime-cube"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: prime cube 4913",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 70,
+      "input": {"nums": [4913]},
+      "expected": 5220,
+      "tags": ["benchmark", "scale-medium", "prime-cube"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: prime cube 50653",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 225,
+      "input": {"nums": [50653]},
+      "expected": 52060,
+      "tags": ["benchmark", "scale-large", "prime-cube"]
     }
   ]
 }

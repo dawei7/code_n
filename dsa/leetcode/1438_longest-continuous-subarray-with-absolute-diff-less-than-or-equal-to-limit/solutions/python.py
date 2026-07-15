@@ -1,23 +1,29 @@
+"""Optimal app-local solution for LeetCode 1438."""
+
 from collections import deque
 
 
-def solve(nums, limit):
-    min_q = deque()
-    max_q = deque()
+def solve(nums: list[int], limit: int) -> int:
+    min_deque = deque()
+    max_deque = deque()
     left = 0
     best = 0
+
     for right, value in enumerate(nums):
-        while min_q and nums[min_q[-1]] >= value:
-            min_q.pop()
-        while max_q and nums[max_q[-1]] <= value:
-            max_q.pop()
-        min_q.append(right)
-        max_q.append(right)
-        while nums[max_q[0]] - nums[min_q[0]] > limit:
-            if min_q[0] == left:
-                min_q.popleft()
-            if max_q[0] == left:
-                max_q.popleft()
+        while min_deque and nums[min_deque[-1]] >= value:
+            min_deque.pop()
+        while max_deque and nums[max_deque[-1]] <= value:
+            max_deque.pop()
+        min_deque.append(right)
+        max_deque.append(right)
+
+        while nums[max_deque[0]] - nums[min_deque[0]] > limit:
+            if min_deque[0] == left:
+                min_deque.popleft()
+            if max_deque[0] == left:
+                max_deque.popleft()
             left += 1
+
         best = max(best, right - left + 1)
+
     return best

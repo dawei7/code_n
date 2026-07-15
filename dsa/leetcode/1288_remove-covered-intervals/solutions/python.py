@@ -1,9 +1,9 @@
 def solve(intervals):
-    intervals.sort(key=lambda item: (item[0], -item[1]))
+    ordered = sorted(intervals, key=lambda interval: (interval[0], -interval[1]))
     remaining = 0
-    farthest_end = -1
-    for _, end in intervals:
-        if end > farthest_end:
+    farthest_right = -1
+    for _, right in ordered:
+        if right > farthest_right:
             remaining += 1
-            farthest_end = end
+            farthest_right = right
     return remaining

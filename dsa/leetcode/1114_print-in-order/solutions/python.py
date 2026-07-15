@@ -1,4 +1,4 @@
-"""Synchronization reference for LeetCode 1114 (not app-runnable)."""
+"""Source-native synchronization reference for LeetCode 1114."""
 
 from threading import Event
 

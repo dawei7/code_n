@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_1400",
+  "cases": [
+    {"id": "sample-annabelle", "name": "sample: one odd count fits two palindromes", "kind": "sample", "visible": true, "input": {"s": "annabelle", "k": 2}, "expected": true, "tags": ["sample", "possible"]},
+    {"id": "sample-too-many-odds", "name": "sample: odd counts exceed k", "kind": "sample", "visible": true, "input": {"s": "leetcode", "k": 3}, "expected": false, "tags": ["sample", "odd-counts"]},
+    {"id": "sample-all-singletons", "name": "sample: every character is its own palindrome", "kind": "sample", "visible": true, "input": {"s": "true", "k": 4}, "expected": true, "tags": ["sample", "singletons"]},
+    {"id": "trial-one-character", "name": "minimum string and k", "kind": "trial", "visible": true, "input": {"s": "a", "k": 1}, "expected": true, "tags": ["trial", "boundary"]},
+    {"id": "trial-k-too-large", "name": "more nonempty strings than characters", "kind": "trial", "visible": true, "input": {"s": "cr", "k": 7}, "expected": false, "tags": ["trial", "too-many-strings"]},
+    {"id": "real-one-palindrome", "name": "hidden: exactly one center allowed", "kind": "real", "visible": false, "input": {"s": "aabbccd", "k": 1}, "expected": true, "tags": ["hidden", "one-palindrome"]},
+    {"id": "real-odd-boundary", "name": "hidden: odd count just exceeds k", "kind": "real", "visible": false, "input": {"s": "abc", "k": 2}, "expected": false, "tags": ["hidden", "odd-counts"]}
+  ]
+}

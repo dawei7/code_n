@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1312",
+  "measurement_note": "Size is n, the string length. Interval dynamic programming takes O(n squared) time. A correct recursive alternative without memoization explores both choices for every unequal boundary and takes exponential time on these all-distinct strings; all three legal tiers finish and return n - 1.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "s": "abcd"
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "abcdefgh"
+      },
+      "expected": 7,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "abcdefghijklmnop"
+      },
+      "expected": 15,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "all-distinct"
+      ]
+    }
+  ]
+}

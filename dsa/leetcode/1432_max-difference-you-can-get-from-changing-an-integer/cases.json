@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_1432",
+  "cases": [
+    {
+      "id": "sample-repeated",
+      "name": "sample: replace one repeated digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 555
+      },
+      "expected": 888,
+      "tags": [
+        "sample",
+        "repeated"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: single decimal digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 9
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-distinct",
+      "name": "sample: different maximizing and minimizing digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 123456
+      },
+      "expected": 820000,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "trial-leading-one-zeroes",
+      "name": "minimum cannot lower leading one or zeroes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 10000
+      },
+      "expected": 80000,
+      "tags": [
+        "trial",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "trial-both-extremes",
+      "name": "different first improvable positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 9288
+      },
+      "expected": 8700,
+      "tags": [
+        "trial",
+        "positions"
+      ]
+    },
+    {
+      "id": "real-repeated-one",
+      "name": "hidden: leading one repeats before reducible digit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 1101057
+      },
+      "expected": 8808050,
+      "tags": [
+        "hidden",
+        "repeated"
+      ]
+    },
+    {
+      "id": "real-all-nine",
+      "name": "hidden: maximum is already fixed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 99999
+      },
+      "expected": 88888,
+      "tags": [
+        "hidden",
+        "all-nine"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: largest legal input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 100000000
+      },
+      "expected": 800000000,
+      "tags": [
+        "hidden",
+        "upper-bound"
+      ]
+    }
+  ]
+}

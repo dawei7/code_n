@@ -2,7 +2,7 @@
   "challenge_id": "lc_1413",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-negative-dips",
       "name": "sample: negative dips",
       "kind": "sample",
       "visible": true,
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "sample-2",
+      "id": "sample-already-positive",
       "name": "sample: already positive",
       "kind": "sample",
       "visible": true,
@@ -34,11 +34,12 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "positive"
       ]
     },
     {
-      "id": "sample-3",
+      "id": "sample-later-dip",
       "name": "sample: later negative dip",
       "kind": "sample",
       "visible": true,
@@ -51,7 +52,45 @@
       },
       "expected": 5,
       "tags": [
-        "sample"
+        "sample",
+        "late-minimum"
+      ]
+    },
+    {
+      "id": "trial-zeros",
+      "name": "zero values need only starting value one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-recovery",
+      "name": "recovery precedes deepest deficit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -2,
+          5,
+          -10,
+          8
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "recovery"
       ]
     },
     {
@@ -70,7 +109,123 @@
       },
       "expected": 6,
       "tags": [
-        "hidden"
+        "hidden",
+        "first-prefix"
+      ]
+    },
+    {
+      "id": "real-maximum-deficit",
+      "name": "hidden: maximum-length negative array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100,
+          -100
+        ]
+      },
+      "expected": 10001,
+      "tags": [
+        "hidden",
+        "maximum"
       ]
     }
   ]

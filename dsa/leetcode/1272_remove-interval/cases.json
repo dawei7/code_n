@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1272",
+  "cases": [
+    {"id": "sample-spans-several", "name": "sample: removal spans several intervals", "kind": "sample", "visible": true, "input": {"intervals": [[0,2],[3,4],[5,7]], "to_be_removed": [1,6]}, "expected": [[0,1],[6,7]], "tags": ["sample", "multiple-overlaps"]},
+    {"id": "sample-splits-one", "name": "sample: removal splits one interval", "kind": "sample", "visible": true, "input": {"intervals": [[0,5]], "to_be_removed": [2,3]}, "expected": [[0,2],[3,5]], "tags": ["sample", "split"]},
+    {"id": "sample-negative-and-positive", "name": "sample: removal crosses a gap and zero", "kind": "sample", "visible": true, "input": {"intervals": [[-5,-4],[-3,-2],[1,2],[3,5],[8,9]], "to_be_removed": [-1,4]}, "expected": [[-5,-4],[-3,-2],[4,5],[8,9]], "tags": ["sample", "negative"]},
+    {"id": "trial-touching-boundaries", "name": "trial: half-open boundaries only touch", "kind": "trial", "visible": true, "input": {"intervals": [[0,2],[3,5]], "to_be_removed": [2,3]}, "expected": [[0,2],[3,5]], "tags": ["trial", "half-open"]},
+    {"id": "trial-fully-covered", "name": "trial: every represented point is removed", "kind": "trial", "visible": true, "input": {"intervals": [[1,2],[4,6]], "to_be_removed": [0,10]}, "expected": [], "tags": ["trial", "empty"]},
+    {"id": "trial-no-overlap", "name": "trial: removal lies to the right", "kind": "trial", "visible": true, "input": {"intervals": [[-4,-2],[0,1]], "to_be_removed": [3,8]}, "expected": [[-4,-2],[0,1]], "tags": ["trial", "unchanged"]},
+    {"id": "real-left-trim", "name": "hidden: only the left side is removed", "kind": "real", "visible": false, "input": {"intervals": [[0,10],[12,15]], "to_be_removed": [-5,4]}, "expected": [[4,10],[12,15]], "tags": ["hidden", "left-trim"]},
+    {"id": "real-right-trim", "name": "hidden: only the right side is removed", "kind": "real", "visible": false, "input": {"intervals": [[-10,-2],[1,4]], "to_be_removed": [-5,0]}, "expected": [[-10,-5],[1,4]], "tags": ["hidden", "right-trim"]},
+    {"id": "real-exact-match", "name": "hidden: exact interval match disappears", "kind": "real", "visible": false, "input": {"intervals": [[1,3],[5,8]], "to_be_removed": [5,8]}, "expected": [[1,3]], "tags": ["hidden", "exact-match"]}
+  ]
+}

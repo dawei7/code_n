@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1494",
+  "frontend_id": "1355",
+  "title_slug": "activity-participants",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2068682973",
+  "verified_at": "2026-07-15T13:57:54.377462+00:00"
+}

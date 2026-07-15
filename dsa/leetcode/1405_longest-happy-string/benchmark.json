@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1405",
+  "measurement_note": "Size is N = a + b + c, the total available characters. Balanced 3/3/3, 6/6/6, and 12/12/12 supplies make every character usable and span 4x. The heap reference performs O(N) work because its heap has at most three entries. Correct memoized exhaustive search explores a three-dimensional remaining-count state space, grows superlinearly, and completes normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 9 balanced characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9,
+      "input": {
+        "a": 3,
+        "b": 3,
+        "c": 3
+      },
+      "expected": "abcabcabc",
+      "validator": {
+        "kind": "longest_happy_string"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "balanced"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 18 balanced characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 18,
+      "input": {
+        "a": 6,
+        "b": 6,
+        "c": 6
+      },
+      "expected": "abcabcabcabcabcabc",
+      "validator": {
+        "kind": "longest_happy_string"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "balanced"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 36 balanced characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {
+        "a": 12,
+        "b": 12,
+        "c": 12
+      },
+      "expected": "abcabcabcabcabcabcabcabcabcabcabcabc",
+      "validator": {
+        "kind": "longest_happy_string"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "balanced"
+      ]
+    }
+  ]
+}

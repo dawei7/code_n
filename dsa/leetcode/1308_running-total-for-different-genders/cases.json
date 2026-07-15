@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1308",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: running totals for both teams",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "Aron",
+              "gender": "F",
+              "day": "2020-01-01",
+              "score_points": 17
+            },
+            {
+              "player_name": "Alice",
+              "gender": "F",
+              "day": "2020-01-07",
+              "score_points": 23
+            },
+            {
+              "player_name": "Bajrang",
+              "gender": "M",
+              "day": "2020-01-07",
+              "score_points": 7
+            },
+            {
+              "player_name": "Khali",
+              "gender": "M",
+              "day": "2019-12-25",
+              "score_points": 11
+            },
+            {
+              "player_name": "Slaman",
+              "gender": "M",
+              "day": "2019-12-30",
+              "score_points": 13
+            },
+            {
+              "player_name": "Joe",
+              "gender": "M",
+              "day": "2019-12-31",
+              "score_points": 3
+            },
+            {
+              "player_name": "Jose",
+              "gender": "M",
+              "day": "2019-12-18",
+              "score_points": 2
+            },
+            {
+              "player_name": "Priya",
+              "gender": "F",
+              "day": "2019-12-31",
+              "score_points": 23
+            },
+            {
+              "player_name": "Priyanka",
+              "gender": "F",
+              "day": "2019-12-30",
+              "score_points": 17
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "F",
+            "2019-12-30",
+            17
+          ],
+          [
+            "F",
+            "2019-12-31",
+            40
+          ],
+          [
+            "F",
+            "2020-01-01",
+            57
+          ],
+          [
+            "F",
+            "2020-01-07",
+            80
+          ],
+          [
+            "M",
+            "2019-12-18",
+            2
+          ],
+          [
+            "M",
+            "2019-12-25",
+            13
+          ],
+          [
+            "M",
+            "2019-12-30",
+            26
+          ],
+          [
+            "M",
+            "2019-12-31",
+            29
+          ],
+          [
+            "M",
+            "2020-01-07",
+            36
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "window-function"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: one score starts its partition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "Ada",
+              "gender": "F",
+              "day": "2024-04-10",
+              "score_points": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "F",
+            "2024-04-10",
+            9
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-input-order",
+      "name": "trial: insertion order differs from date order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "C",
+              "gender": "M",
+              "day": "2021-01-03",
+              "score_points": 5
+            },
+            {
+              "player_name": "A",
+              "gender": "M",
+              "day": "2021-01-01",
+              "score_points": 2
+            },
+            {
+              "player_name": "B",
+              "gender": "M",
+              "day": "2021-01-02",
+              "score_points": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "M",
+            "2021-01-01",
+            2
+          ],
+          [
+            "M",
+            "2021-01-02",
+            9
+          ],
+          [
+            "M",
+            "2021-01-03",
+            14
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-same-date-partitions",
+      "name": "trial: genders score on the same dates independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "F1",
+              "gender": "F",
+              "day": "2022-05-01",
+              "score_points": 4
+            },
+            {
+              "player_name": "M1",
+              "gender": "M",
+              "day": "2022-05-01",
+              "score_points": 10
+            },
+            {
+              "player_name": "F2",
+              "gender": "F",
+              "day": "2022-05-02",
+              "score_points": 6
+            },
+            {
+              "player_name": "M2",
+              "gender": "M",
+              "day": "2022-05-02",
+              "score_points": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "F",
+            "2022-05-01",
+            4
+          ],
+          [
+            "F",
+            "2022-05-02",
+            10
+          ],
+          [
+            "M",
+            "2022-05-01",
+            10
+          ],
+          [
+            "M",
+            "2022-05-02",
+            11
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "partitions"
+      ]
+    },
+    {
+      "id": "hidden-only-female",
+      "name": "hidden: only one gender appears",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "A",
+              "gender": "F",
+              "day": "2020-06-05",
+              "score_points": 3
+            },
+            {
+              "player_name": "B",
+              "gender": "F",
+              "day": "2020-06-20",
+              "score_points": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "F",
+            "2020-06-05",
+            3
+          ],
+          [
+            "F",
+            "2020-06-20",
+            11
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "single-partition"
+      ]
+    },
+    {
+      "id": "hidden-date-gaps",
+      "name": "hidden: gaps between score dates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "A",
+              "gender": "M",
+              "day": "2018-01-01",
+              "score_points": 1
+            },
+            {
+              "player_name": "B",
+              "gender": "M",
+              "day": "2019-01-01",
+              "score_points": 2
+            },
+            {
+              "player_name": "C",
+              "gender": "M",
+              "day": "2025-01-01",
+              "score_points": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "M",
+            "2018-01-01",
+            1
+          ],
+          [
+            "M",
+            "2019-01-01",
+            3
+          ],
+          [
+            "M",
+            "2025-01-01",
+            6
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "date-gaps"
+      ]
+    },
+    {
+      "id": "hidden-partition-reset",
+      "name": "hidden: second gender starts a separate total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "M",
+              "gender": "M",
+              "day": "2023-03-01",
+              "score_points": 50
+            },
+            {
+              "player_name": "F",
+              "gender": "F",
+              "day": "2023-03-02",
+              "score_points": 7
+            },
+            {
+              "player_name": "M2",
+              "gender": "M",
+              "day": "2023-03-03",
+              "score_points": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "F",
+            "2023-03-02",
+            7
+          ],
+          [
+            "M",
+            "2023-03-01",
+            50
+          ],
+          [
+            "M",
+            "2023-03-03",
+            55
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "partition-reset"
+      ]
+    }
+  ]
+}

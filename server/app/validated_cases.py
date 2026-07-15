@@ -17,7 +17,11 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Literal
 
-from server.app.challenge_packages import is_leetcode_id, leetcode_cases_path
+from server.app.challenge_packages import (
+    is_leetcode_id,
+    leetcode_cases_path,
+    leetcode_complexity_certificate_status,
+)
 
 
 CaseKind = Literal["sample", "trial", "real", "benchmark", "custom"]
@@ -229,8 +233,10 @@ def select_cases_for_run(
         benchmark_cases = [case for case in suite if case.kind == "benchmark"]
         if not hidden:
             raise NoValidatedCases(f"{challenge_id} has no hidden real-test cases.")
-        if not benchmark_cases:
-            raise NoValidatedCases(f"{challenge_id} has no benchmark cases for runtime gating.")
+        if not benchmark_cases and not leetcode_complexity_certificate_status(challenge_id).complete:
+            raise NoValidatedCases(
+                f"{challenge_id} has neither benchmark cases nor a verified complexity certificate."
+            )
         run_cases = [*visible, *user_cases, *hidden, *benchmark_cases]
         return run_cases, benchmark_cases
 
@@ -258,6 +264,4 @@ def select_cases_for_run(
     if not benchmark_cases:
         if user_cases:
             benchmark_cases = user_cases
-        else:
-            raise NoValidatedCases(f"{challenge_id} has no benchmark cases for runtime gating.")
     return run_cases, benchmark_cases

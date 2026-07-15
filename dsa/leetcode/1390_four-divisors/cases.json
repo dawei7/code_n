@@ -6,71 +6,63 @@
       "name": "sample: one value has four divisors",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          21,
-          4,
-          7
-        ]
-      },
+      "input": {"nums": [21, 4, 7]},
       "expected": 32,
-      "tags": [
-        "sample",
-        "math"
-      ]
+      "tags": ["sample", "mixed"]
     },
     {
       "id": "sample-2",
-      "name": "sample: duplicate four-divisor values",
+      "name": "sample: duplicate qualifying values",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          21,
-          21
-        ]
-      },
+      "input": {"nums": [21, 21]},
       "expected": 64,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "duplicates"]
     },
     {
-      "id": "trial-no-four-divisors",
-      "name": "no qualifying values",
+      "id": "trial-prime-cube",
+      "name": "prime cube has four divisors",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "trial",
-        "edge"
-      ]
+      "input": {"nums": [8]},
+      "expected": 15,
+      "tags": ["trial", "prime-cube"]
     },
     {
-      "id": "real-mixed-values",
-      "name": "hidden: primes and composites",
+      "id": "trial-perfect-squares",
+      "name": "perfect squares do not qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 9, 25, 49]},
+      "expected": 0,
+      "tags": ["trial", "perfect-square"]
+    },
+    {
+      "id": "real-extra-factor-pairs",
+      "name": "hidden: reject values with more than four divisors",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          10,
-          15,
-          16,
-          17
-        ]
-      },
-      "expected": 42,
-      "tags": [
-        "hidden"
-      ]
+      "input": {"nums": [12, 16, 24, 36]},
+      "expected": 0,
+      "tags": ["hidden", "many-divisors"]
+    },
+    {
+      "id": "real-primes-and-one",
+      "name": "hidden: primes and one contribute zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 5, 97]},
+      "expected": 0,
+      "tags": ["hidden", "too-few-divisors"]
+    },
+    {
+      "id": "real-mixed-forms",
+      "name": "hidden: semiprimes and prime cubes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 10, 27, 15, 64, 17]},
+      "expected": 94,
+      "tags": ["hidden", "mixed"]
     }
   ]
 }

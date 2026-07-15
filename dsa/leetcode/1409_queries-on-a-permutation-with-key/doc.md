@@ -8,25 +8,29 @@
 | Category | Algorithms |
 | Topics | Array, Binary Indexed Tree, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [queries-on-a-permutation-with-key](https://leetcode.com/problems/queries-on-a-permutation-with-key/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/queries-on-a-permutation-with-key/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/queries-on-a-permutation-with-key/).
 
 ### Goal
-Maintain a permutation of numbers `1..m`. For each query value, report its current zero-based index, then move that value to the front of the permutation.
+
+Start with the permutation `P = [1, 2, ..., m]`. Process the values in `queries` from left to right. For each query value, find its current zero-based index in `P` and append that index to the answer.
+
+After recording the index, remove that occurrence from its current position and move it to the front of `P`. Each later query observes the permutation produced by every earlier move. Return the recorded indices in query order.
 
 ### Function Contract
+
 **Inputs**
 
-- `queries`: the values to look up and move.
-- `m`: the largest value in the initial permutation `1..m`.
+- `queries`: an array of $q$ values, where $1 \le q \le 1000$ and every value lies from 1 through `m`.
+- `m`: the size and maximum value of the initial permutation, where $1 \le m \le 1000$.
 
 **Return value**
 
-A list of indices, one for each query before it is moved to the front.
+- An array of $q$ zero-based positions, each measured immediately before its queried value moves to the front.
 
 ### Examples
+
 **Example 1**
 
 - Input: `queries = [3,1,2,1], m = 5`
@@ -42,57 +46,33 @@ A list of indices, one for each query before it is moved to the front.
 - Input: `queries = [7,5,5,8,3], m = 8`
 - Output: `[6,5,0,7,5]`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Simulation or indexed order statistics. The direct solution keeps a list and moves queried values to the front; an optimized solution uses a Fenwick tree with reserved front positions to support index queries and moves in logarithmic time.
+- **Time:** $O((m+q)\log(m+q))$
+- **Space:** $O(m+q)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(qm)` for direct simulation, or `O((q + m) log(q + m))` with a Fenwick tree.
-- **Space Complexity**: `O(m)` for simulation, or `O(q + m)` for the Fenwick tree approach.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-"""Optimal solution for LeetCode 1409: Queries on a Permutation With Key."""
+#### General
 
+**Represent order with occupied positions.** Reserve the first $q$ position numbers for future move-to-front operations. Place initial value `v` at position `q + v`, record that position in a map, and mark every occupied position with one in a Fenwick tree.
 
-class _Fenwick:
-    def __init__(self, size: int):
-        self.tree = [0] * (size + 1)
+For a queried value at position `p`, the Fenwick prefix sum through `p` is the number of permutation elements at or before it. Subtract one to obtain its zero-based index. Remove the old occupancy, assign the next unused reserved position immediately before all current elements, mark it occupied, and decrement the front pointer.
 
-    def add(self, index: int, delta: int) -> None:
-        while index < len(self.tree):
-            self.tree[index] += delta
-            index += index & -index
+The tree always contains one marker for each permutation value, ordered exactly as the conceptual permutation. Prefix counts therefore give current indices. Reserved positions decrease with query time, so each moved value becomes earlier than every existing position, exactly implementing a move to the front.
 
-    def sum(self, index: int) -> int:
-        total = 0
-        while index > 0:
-            total += self.tree[index]
-            index -= index & -index
-        return total
+#### Complexity detail
 
+Initializing $m$ positions and processing $q$ queries performs $O(m+q)$ Fenwick operations, each costing $O(\log(m+q))$. Total time is $O((m+q)\log(m+q))$. The tree and position map use $O(m+q)$ space.
 
-def solve(queries: list[int], m: int) -> list[int]:
-    q = len(queries)
-    bit = _Fenwick(q + m + 2)
-    positions = {value: q + value for value in range(1, m + 1)}
-    for pos in positions.values():
-        bit.add(pos, 1)
+#### Alternatives and edge cases
 
-    answer: list[int] = []
-    front = q
-    for value in queries:
-        pos = positions[value]
-        answer.append(bit.sum(pos) - 1)
-        bit.add(pos, -1)
-        positions[value] = front
-        bit.add(front, 1)
-        front -= 1
-    return answer
-```
+- **Direct list simulation:** Use linear search, removal, and front insertion. It is simple and correct but can take $O(qm)$ time.
+- **Order-statistics tree:** Store values in a balanced indexed tree with decreasing front keys. It has the same asymptotic behavior but is not built into many languages.
+- **Repeated query:** A value queried twice consecutively has index zero on the second query.
+- **Value already first:** Removing and reinserting it preserves the permutation order.
+- **Maximum value:** It begins at zero-based index `m - 1`.
+- **Reserved indexing:** Fenwick indices must remain positive; using initial offset $q$ leaves exactly enough front positions.
+
 </details>

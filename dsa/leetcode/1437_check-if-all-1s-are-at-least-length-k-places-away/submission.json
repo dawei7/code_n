@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1548",
+  "frontend_id": "1437",
+  "title_slug": "check-if-all-1s-are-at-least-length-k-places-away",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.kLengthApart",
+  "verified_submission_id": "2069093475",
+  "verified_at": "2026-07-15T19:46:58.856626+00:00"
+}

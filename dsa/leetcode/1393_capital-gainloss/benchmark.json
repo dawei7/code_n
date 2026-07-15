@@ -1,0 +1,2773 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1393",
+  "measurement_note": "Size is N, the number of Stocks rows. Every stock has one buy and one sell, so K = N / 2 and every group must be emitted. The 16/64/256-row tiers span 16x. Conditional hash aggregation processes all rows in O(N) expected time; a correct correlated query that rescans Stocks for each distinct name performs O(KN) work and completes normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 independent stocks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "Stocks": [
+            {
+              "stock_name": "Stock 001",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1001
+            },
+            {
+              "stock_name": "Stock 001",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2002
+            },
+            {
+              "stock_name": "Stock 002",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1002
+            },
+            {
+              "stock_name": "Stock 002",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2004
+            },
+            {
+              "stock_name": "Stock 003",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1003
+            },
+            {
+              "stock_name": "Stock 003",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2006
+            },
+            {
+              "stock_name": "Stock 004",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1004
+            },
+            {
+              "stock_name": "Stock 004",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2008
+            },
+            {
+              "stock_name": "Stock 005",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1005
+            },
+            {
+              "stock_name": "Stock 005",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2010
+            },
+            {
+              "stock_name": "Stock 006",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1006
+            },
+            {
+              "stock_name": "Stock 006",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2012
+            },
+            {
+              "stock_name": "Stock 007",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1007
+            },
+            {
+              "stock_name": "Stock 007",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2014
+            },
+            {
+              "stock_name": "Stock 008",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1008
+            },
+            {
+              "stock_name": "Stock 008",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2016
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "stock_name",
+          "capital_gain_loss"
+        ],
+        "rows": [
+          [
+            "Stock 001",
+            1001
+          ],
+          [
+            "Stock 002",
+            1002
+          ],
+          [
+            "Stock 003",
+            1003
+          ],
+          [
+            "Stock 004",
+            1004
+          ],
+          [
+            "Stock 005",
+            1005
+          ],
+          [
+            "Stock 006",
+            1006
+          ],
+          [
+            "Stock 007",
+            1007
+          ],
+          [
+            "Stock 008",
+            1008
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "distinct-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 independent stocks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Stocks": [
+            {
+              "stock_name": "Stock 001",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1001
+            },
+            {
+              "stock_name": "Stock 001",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2002
+            },
+            {
+              "stock_name": "Stock 002",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1002
+            },
+            {
+              "stock_name": "Stock 002",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2004
+            },
+            {
+              "stock_name": "Stock 003",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1003
+            },
+            {
+              "stock_name": "Stock 003",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2006
+            },
+            {
+              "stock_name": "Stock 004",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1004
+            },
+            {
+              "stock_name": "Stock 004",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2008
+            },
+            {
+              "stock_name": "Stock 005",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1005
+            },
+            {
+              "stock_name": "Stock 005",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2010
+            },
+            {
+              "stock_name": "Stock 006",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1006
+            },
+            {
+              "stock_name": "Stock 006",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2012
+            },
+            {
+              "stock_name": "Stock 007",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1007
+            },
+            {
+              "stock_name": "Stock 007",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2014
+            },
+            {
+              "stock_name": "Stock 008",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1008
+            },
+            {
+              "stock_name": "Stock 008",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2016
+            },
+            {
+              "stock_name": "Stock 009",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1009
+            },
+            {
+              "stock_name": "Stock 009",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2018
+            },
+            {
+              "stock_name": "Stock 010",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1010
+            },
+            {
+              "stock_name": "Stock 010",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2020
+            },
+            {
+              "stock_name": "Stock 011",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1011
+            },
+            {
+              "stock_name": "Stock 011",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2022
+            },
+            {
+              "stock_name": "Stock 012",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1012
+            },
+            {
+              "stock_name": "Stock 012",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2024
+            },
+            {
+              "stock_name": "Stock 013",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1013
+            },
+            {
+              "stock_name": "Stock 013",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2026
+            },
+            {
+              "stock_name": "Stock 014",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1014
+            },
+            {
+              "stock_name": "Stock 014",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2028
+            },
+            {
+              "stock_name": "Stock 015",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1015
+            },
+            {
+              "stock_name": "Stock 015",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2030
+            },
+            {
+              "stock_name": "Stock 016",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1016
+            },
+            {
+              "stock_name": "Stock 016",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2032
+            },
+            {
+              "stock_name": "Stock 017",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1017
+            },
+            {
+              "stock_name": "Stock 017",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2034
+            },
+            {
+              "stock_name": "Stock 018",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1018
+            },
+            {
+              "stock_name": "Stock 018",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2036
+            },
+            {
+              "stock_name": "Stock 019",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1019
+            },
+            {
+              "stock_name": "Stock 019",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2038
+            },
+            {
+              "stock_name": "Stock 020",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1020
+            },
+            {
+              "stock_name": "Stock 020",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2040
+            },
+            {
+              "stock_name": "Stock 021",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1021
+            },
+            {
+              "stock_name": "Stock 021",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2042
+            },
+            {
+              "stock_name": "Stock 022",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1022
+            },
+            {
+              "stock_name": "Stock 022",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2044
+            },
+            {
+              "stock_name": "Stock 023",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1023
+            },
+            {
+              "stock_name": "Stock 023",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2046
+            },
+            {
+              "stock_name": "Stock 024",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1024
+            },
+            {
+              "stock_name": "Stock 024",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2048
+            },
+            {
+              "stock_name": "Stock 025",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1025
+            },
+            {
+              "stock_name": "Stock 025",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2050
+            },
+            {
+              "stock_name": "Stock 026",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1026
+            },
+            {
+              "stock_name": "Stock 026",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2052
+            },
+            {
+              "stock_name": "Stock 027",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1027
+            },
+            {
+              "stock_name": "Stock 027",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2054
+            },
+            {
+              "stock_name": "Stock 028",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1028
+            },
+            {
+              "stock_name": "Stock 028",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2056
+            },
+            {
+              "stock_name": "Stock 029",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1029
+            },
+            {
+              "stock_name": "Stock 029",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2058
+            },
+            {
+              "stock_name": "Stock 030",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1030
+            },
+            {
+              "stock_name": "Stock 030",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2060
+            },
+            {
+              "stock_name": "Stock 031",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1031
+            },
+            {
+              "stock_name": "Stock 031",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2062
+            },
+            {
+              "stock_name": "Stock 032",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1032
+            },
+            {
+              "stock_name": "Stock 032",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2064
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "stock_name",
+          "capital_gain_loss"
+        ],
+        "rows": [
+          [
+            "Stock 001",
+            1001
+          ],
+          [
+            "Stock 002",
+            1002
+          ],
+          [
+            "Stock 003",
+            1003
+          ],
+          [
+            "Stock 004",
+            1004
+          ],
+          [
+            "Stock 005",
+            1005
+          ],
+          [
+            "Stock 006",
+            1006
+          ],
+          [
+            "Stock 007",
+            1007
+          ],
+          [
+            "Stock 008",
+            1008
+          ],
+          [
+            "Stock 009",
+            1009
+          ],
+          [
+            "Stock 010",
+            1010
+          ],
+          [
+            "Stock 011",
+            1011
+          ],
+          [
+            "Stock 012",
+            1012
+          ],
+          [
+            "Stock 013",
+            1013
+          ],
+          [
+            "Stock 014",
+            1014
+          ],
+          [
+            "Stock 015",
+            1015
+          ],
+          [
+            "Stock 016",
+            1016
+          ],
+          [
+            "Stock 017",
+            1017
+          ],
+          [
+            "Stock 018",
+            1018
+          ],
+          [
+            "Stock 019",
+            1019
+          ],
+          [
+            "Stock 020",
+            1020
+          ],
+          [
+            "Stock 021",
+            1021
+          ],
+          [
+            "Stock 022",
+            1022
+          ],
+          [
+            "Stock 023",
+            1023
+          ],
+          [
+            "Stock 024",
+            1024
+          ],
+          [
+            "Stock 025",
+            1025
+          ],
+          [
+            "Stock 026",
+            1026
+          ],
+          [
+            "Stock 027",
+            1027
+          ],
+          [
+            "Stock 028",
+            1028
+          ],
+          [
+            "Stock 029",
+            1029
+          ],
+          [
+            "Stock 030",
+            1030
+          ],
+          [
+            "Stock 031",
+            1031
+          ],
+          [
+            "Stock 032",
+            1032
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "distinct-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128 independent stocks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Stocks": [
+            {
+              "stock_name": "Stock 001",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1001
+            },
+            {
+              "stock_name": "Stock 001",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2002
+            },
+            {
+              "stock_name": "Stock 002",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1002
+            },
+            {
+              "stock_name": "Stock 002",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2004
+            },
+            {
+              "stock_name": "Stock 003",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1003
+            },
+            {
+              "stock_name": "Stock 003",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2006
+            },
+            {
+              "stock_name": "Stock 004",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1004
+            },
+            {
+              "stock_name": "Stock 004",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2008
+            },
+            {
+              "stock_name": "Stock 005",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1005
+            },
+            {
+              "stock_name": "Stock 005",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2010
+            },
+            {
+              "stock_name": "Stock 006",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1006
+            },
+            {
+              "stock_name": "Stock 006",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2012
+            },
+            {
+              "stock_name": "Stock 007",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1007
+            },
+            {
+              "stock_name": "Stock 007",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2014
+            },
+            {
+              "stock_name": "Stock 008",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1008
+            },
+            {
+              "stock_name": "Stock 008",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2016
+            },
+            {
+              "stock_name": "Stock 009",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1009
+            },
+            {
+              "stock_name": "Stock 009",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2018
+            },
+            {
+              "stock_name": "Stock 010",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1010
+            },
+            {
+              "stock_name": "Stock 010",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2020
+            },
+            {
+              "stock_name": "Stock 011",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1011
+            },
+            {
+              "stock_name": "Stock 011",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2022
+            },
+            {
+              "stock_name": "Stock 012",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1012
+            },
+            {
+              "stock_name": "Stock 012",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2024
+            },
+            {
+              "stock_name": "Stock 013",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1013
+            },
+            {
+              "stock_name": "Stock 013",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2026
+            },
+            {
+              "stock_name": "Stock 014",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1014
+            },
+            {
+              "stock_name": "Stock 014",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2028
+            },
+            {
+              "stock_name": "Stock 015",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1015
+            },
+            {
+              "stock_name": "Stock 015",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2030
+            },
+            {
+              "stock_name": "Stock 016",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1016
+            },
+            {
+              "stock_name": "Stock 016",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2032
+            },
+            {
+              "stock_name": "Stock 017",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1017
+            },
+            {
+              "stock_name": "Stock 017",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2034
+            },
+            {
+              "stock_name": "Stock 018",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1018
+            },
+            {
+              "stock_name": "Stock 018",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2036
+            },
+            {
+              "stock_name": "Stock 019",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1019
+            },
+            {
+              "stock_name": "Stock 019",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2038
+            },
+            {
+              "stock_name": "Stock 020",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1020
+            },
+            {
+              "stock_name": "Stock 020",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2040
+            },
+            {
+              "stock_name": "Stock 021",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1021
+            },
+            {
+              "stock_name": "Stock 021",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2042
+            },
+            {
+              "stock_name": "Stock 022",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1022
+            },
+            {
+              "stock_name": "Stock 022",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2044
+            },
+            {
+              "stock_name": "Stock 023",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1023
+            },
+            {
+              "stock_name": "Stock 023",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2046
+            },
+            {
+              "stock_name": "Stock 024",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1024
+            },
+            {
+              "stock_name": "Stock 024",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2048
+            },
+            {
+              "stock_name": "Stock 025",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1025
+            },
+            {
+              "stock_name": "Stock 025",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2050
+            },
+            {
+              "stock_name": "Stock 026",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1026
+            },
+            {
+              "stock_name": "Stock 026",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2052
+            },
+            {
+              "stock_name": "Stock 027",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1027
+            },
+            {
+              "stock_name": "Stock 027",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2054
+            },
+            {
+              "stock_name": "Stock 028",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1028
+            },
+            {
+              "stock_name": "Stock 028",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2056
+            },
+            {
+              "stock_name": "Stock 029",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1029
+            },
+            {
+              "stock_name": "Stock 029",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2058
+            },
+            {
+              "stock_name": "Stock 030",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1030
+            },
+            {
+              "stock_name": "Stock 030",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2060
+            },
+            {
+              "stock_name": "Stock 031",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1031
+            },
+            {
+              "stock_name": "Stock 031",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2062
+            },
+            {
+              "stock_name": "Stock 032",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1032
+            },
+            {
+              "stock_name": "Stock 032",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2064
+            },
+            {
+              "stock_name": "Stock 033",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1033
+            },
+            {
+              "stock_name": "Stock 033",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2066
+            },
+            {
+              "stock_name": "Stock 034",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1034
+            },
+            {
+              "stock_name": "Stock 034",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2068
+            },
+            {
+              "stock_name": "Stock 035",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1035
+            },
+            {
+              "stock_name": "Stock 035",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2070
+            },
+            {
+              "stock_name": "Stock 036",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1036
+            },
+            {
+              "stock_name": "Stock 036",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2072
+            },
+            {
+              "stock_name": "Stock 037",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1037
+            },
+            {
+              "stock_name": "Stock 037",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2074
+            },
+            {
+              "stock_name": "Stock 038",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1038
+            },
+            {
+              "stock_name": "Stock 038",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2076
+            },
+            {
+              "stock_name": "Stock 039",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1039
+            },
+            {
+              "stock_name": "Stock 039",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2078
+            },
+            {
+              "stock_name": "Stock 040",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1040
+            },
+            {
+              "stock_name": "Stock 040",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2080
+            },
+            {
+              "stock_name": "Stock 041",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1041
+            },
+            {
+              "stock_name": "Stock 041",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2082
+            },
+            {
+              "stock_name": "Stock 042",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1042
+            },
+            {
+              "stock_name": "Stock 042",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2084
+            },
+            {
+              "stock_name": "Stock 043",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1043
+            },
+            {
+              "stock_name": "Stock 043",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2086
+            },
+            {
+              "stock_name": "Stock 044",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1044
+            },
+            {
+              "stock_name": "Stock 044",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2088
+            },
+            {
+              "stock_name": "Stock 045",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1045
+            },
+            {
+              "stock_name": "Stock 045",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2090
+            },
+            {
+              "stock_name": "Stock 046",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1046
+            },
+            {
+              "stock_name": "Stock 046",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2092
+            },
+            {
+              "stock_name": "Stock 047",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1047
+            },
+            {
+              "stock_name": "Stock 047",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2094
+            },
+            {
+              "stock_name": "Stock 048",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1048
+            },
+            {
+              "stock_name": "Stock 048",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2096
+            },
+            {
+              "stock_name": "Stock 049",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1049
+            },
+            {
+              "stock_name": "Stock 049",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2098
+            },
+            {
+              "stock_name": "Stock 050",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1050
+            },
+            {
+              "stock_name": "Stock 050",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2100
+            },
+            {
+              "stock_name": "Stock 051",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1051
+            },
+            {
+              "stock_name": "Stock 051",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2102
+            },
+            {
+              "stock_name": "Stock 052",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1052
+            },
+            {
+              "stock_name": "Stock 052",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2104
+            },
+            {
+              "stock_name": "Stock 053",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1053
+            },
+            {
+              "stock_name": "Stock 053",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2106
+            },
+            {
+              "stock_name": "Stock 054",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1054
+            },
+            {
+              "stock_name": "Stock 054",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2108
+            },
+            {
+              "stock_name": "Stock 055",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1055
+            },
+            {
+              "stock_name": "Stock 055",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2110
+            },
+            {
+              "stock_name": "Stock 056",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1056
+            },
+            {
+              "stock_name": "Stock 056",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2112
+            },
+            {
+              "stock_name": "Stock 057",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1057
+            },
+            {
+              "stock_name": "Stock 057",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2114
+            },
+            {
+              "stock_name": "Stock 058",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1058
+            },
+            {
+              "stock_name": "Stock 058",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2116
+            },
+            {
+              "stock_name": "Stock 059",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1059
+            },
+            {
+              "stock_name": "Stock 059",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2118
+            },
+            {
+              "stock_name": "Stock 060",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1060
+            },
+            {
+              "stock_name": "Stock 060",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2120
+            },
+            {
+              "stock_name": "Stock 061",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1061
+            },
+            {
+              "stock_name": "Stock 061",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2122
+            },
+            {
+              "stock_name": "Stock 062",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1062
+            },
+            {
+              "stock_name": "Stock 062",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2124
+            },
+            {
+              "stock_name": "Stock 063",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1063
+            },
+            {
+              "stock_name": "Stock 063",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2126
+            },
+            {
+              "stock_name": "Stock 064",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1064
+            },
+            {
+              "stock_name": "Stock 064",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2128
+            },
+            {
+              "stock_name": "Stock 065",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1065
+            },
+            {
+              "stock_name": "Stock 065",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2130
+            },
+            {
+              "stock_name": "Stock 066",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1066
+            },
+            {
+              "stock_name": "Stock 066",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2132
+            },
+            {
+              "stock_name": "Stock 067",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1067
+            },
+            {
+              "stock_name": "Stock 067",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2134
+            },
+            {
+              "stock_name": "Stock 068",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1068
+            },
+            {
+              "stock_name": "Stock 068",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2136
+            },
+            {
+              "stock_name": "Stock 069",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1069
+            },
+            {
+              "stock_name": "Stock 069",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2138
+            },
+            {
+              "stock_name": "Stock 070",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1070
+            },
+            {
+              "stock_name": "Stock 070",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2140
+            },
+            {
+              "stock_name": "Stock 071",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1071
+            },
+            {
+              "stock_name": "Stock 071",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2142
+            },
+            {
+              "stock_name": "Stock 072",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1072
+            },
+            {
+              "stock_name": "Stock 072",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2144
+            },
+            {
+              "stock_name": "Stock 073",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1073
+            },
+            {
+              "stock_name": "Stock 073",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2146
+            },
+            {
+              "stock_name": "Stock 074",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1074
+            },
+            {
+              "stock_name": "Stock 074",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2148
+            },
+            {
+              "stock_name": "Stock 075",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1075
+            },
+            {
+              "stock_name": "Stock 075",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2150
+            },
+            {
+              "stock_name": "Stock 076",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1076
+            },
+            {
+              "stock_name": "Stock 076",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2152
+            },
+            {
+              "stock_name": "Stock 077",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1077
+            },
+            {
+              "stock_name": "Stock 077",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2154
+            },
+            {
+              "stock_name": "Stock 078",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1078
+            },
+            {
+              "stock_name": "Stock 078",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2156
+            },
+            {
+              "stock_name": "Stock 079",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1079
+            },
+            {
+              "stock_name": "Stock 079",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2158
+            },
+            {
+              "stock_name": "Stock 080",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1080
+            },
+            {
+              "stock_name": "Stock 080",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2160
+            },
+            {
+              "stock_name": "Stock 081",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1081
+            },
+            {
+              "stock_name": "Stock 081",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2162
+            },
+            {
+              "stock_name": "Stock 082",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1082
+            },
+            {
+              "stock_name": "Stock 082",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2164
+            },
+            {
+              "stock_name": "Stock 083",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1083
+            },
+            {
+              "stock_name": "Stock 083",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2166
+            },
+            {
+              "stock_name": "Stock 084",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1084
+            },
+            {
+              "stock_name": "Stock 084",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2168
+            },
+            {
+              "stock_name": "Stock 085",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1085
+            },
+            {
+              "stock_name": "Stock 085",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2170
+            },
+            {
+              "stock_name": "Stock 086",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1086
+            },
+            {
+              "stock_name": "Stock 086",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2172
+            },
+            {
+              "stock_name": "Stock 087",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1087
+            },
+            {
+              "stock_name": "Stock 087",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2174
+            },
+            {
+              "stock_name": "Stock 088",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1088
+            },
+            {
+              "stock_name": "Stock 088",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2176
+            },
+            {
+              "stock_name": "Stock 089",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1089
+            },
+            {
+              "stock_name": "Stock 089",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2178
+            },
+            {
+              "stock_name": "Stock 090",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1090
+            },
+            {
+              "stock_name": "Stock 090",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2180
+            },
+            {
+              "stock_name": "Stock 091",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1091
+            },
+            {
+              "stock_name": "Stock 091",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2182
+            },
+            {
+              "stock_name": "Stock 092",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1092
+            },
+            {
+              "stock_name": "Stock 092",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2184
+            },
+            {
+              "stock_name": "Stock 093",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1093
+            },
+            {
+              "stock_name": "Stock 093",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2186
+            },
+            {
+              "stock_name": "Stock 094",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1094
+            },
+            {
+              "stock_name": "Stock 094",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2188
+            },
+            {
+              "stock_name": "Stock 095",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1095
+            },
+            {
+              "stock_name": "Stock 095",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2190
+            },
+            {
+              "stock_name": "Stock 096",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1096
+            },
+            {
+              "stock_name": "Stock 096",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2192
+            },
+            {
+              "stock_name": "Stock 097",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1097
+            },
+            {
+              "stock_name": "Stock 097",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2194
+            },
+            {
+              "stock_name": "Stock 098",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1098
+            },
+            {
+              "stock_name": "Stock 098",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2196
+            },
+            {
+              "stock_name": "Stock 099",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1099
+            },
+            {
+              "stock_name": "Stock 099",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2198
+            },
+            {
+              "stock_name": "Stock 100",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1100
+            },
+            {
+              "stock_name": "Stock 100",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2200
+            },
+            {
+              "stock_name": "Stock 101",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1101
+            },
+            {
+              "stock_name": "Stock 101",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2202
+            },
+            {
+              "stock_name": "Stock 102",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1102
+            },
+            {
+              "stock_name": "Stock 102",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2204
+            },
+            {
+              "stock_name": "Stock 103",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1103
+            },
+            {
+              "stock_name": "Stock 103",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2206
+            },
+            {
+              "stock_name": "Stock 104",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1104
+            },
+            {
+              "stock_name": "Stock 104",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2208
+            },
+            {
+              "stock_name": "Stock 105",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1105
+            },
+            {
+              "stock_name": "Stock 105",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2210
+            },
+            {
+              "stock_name": "Stock 106",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1106
+            },
+            {
+              "stock_name": "Stock 106",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2212
+            },
+            {
+              "stock_name": "Stock 107",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1107
+            },
+            {
+              "stock_name": "Stock 107",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2214
+            },
+            {
+              "stock_name": "Stock 108",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1108
+            },
+            {
+              "stock_name": "Stock 108",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2216
+            },
+            {
+              "stock_name": "Stock 109",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1109
+            },
+            {
+              "stock_name": "Stock 109",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2218
+            },
+            {
+              "stock_name": "Stock 110",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1110
+            },
+            {
+              "stock_name": "Stock 110",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2220
+            },
+            {
+              "stock_name": "Stock 111",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1111
+            },
+            {
+              "stock_name": "Stock 111",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2222
+            },
+            {
+              "stock_name": "Stock 112",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1112
+            },
+            {
+              "stock_name": "Stock 112",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2224
+            },
+            {
+              "stock_name": "Stock 113",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1113
+            },
+            {
+              "stock_name": "Stock 113",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2226
+            },
+            {
+              "stock_name": "Stock 114",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1114
+            },
+            {
+              "stock_name": "Stock 114",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2228
+            },
+            {
+              "stock_name": "Stock 115",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1115
+            },
+            {
+              "stock_name": "Stock 115",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2230
+            },
+            {
+              "stock_name": "Stock 116",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1116
+            },
+            {
+              "stock_name": "Stock 116",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2232
+            },
+            {
+              "stock_name": "Stock 117",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1117
+            },
+            {
+              "stock_name": "Stock 117",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2234
+            },
+            {
+              "stock_name": "Stock 118",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1118
+            },
+            {
+              "stock_name": "Stock 118",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2236
+            },
+            {
+              "stock_name": "Stock 119",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1119
+            },
+            {
+              "stock_name": "Stock 119",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2238
+            },
+            {
+              "stock_name": "Stock 120",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1120
+            },
+            {
+              "stock_name": "Stock 120",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2240
+            },
+            {
+              "stock_name": "Stock 121",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1121
+            },
+            {
+              "stock_name": "Stock 121",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2242
+            },
+            {
+              "stock_name": "Stock 122",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1122
+            },
+            {
+              "stock_name": "Stock 122",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2244
+            },
+            {
+              "stock_name": "Stock 123",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1123
+            },
+            {
+              "stock_name": "Stock 123",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2246
+            },
+            {
+              "stock_name": "Stock 124",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1124
+            },
+            {
+              "stock_name": "Stock 124",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2248
+            },
+            {
+              "stock_name": "Stock 125",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1125
+            },
+            {
+              "stock_name": "Stock 125",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2250
+            },
+            {
+              "stock_name": "Stock 126",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1126
+            },
+            {
+              "stock_name": "Stock 126",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2252
+            },
+            {
+              "stock_name": "Stock 127",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1127
+            },
+            {
+              "stock_name": "Stock 127",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2254
+            },
+            {
+              "stock_name": "Stock 128",
+              "operation": "Buy",
+              "operation_day": 1,
+              "price": 1128
+            },
+            {
+              "stock_name": "Stock 128",
+              "operation": "Sell",
+              "operation_day": 2,
+              "price": 2256
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "stock_name",
+          "capital_gain_loss"
+        ],
+        "rows": [
+          [
+            "Stock 001",
+            1001
+          ],
+          [
+            "Stock 002",
+            1002
+          ],
+          [
+            "Stock 003",
+            1003
+          ],
+          [
+            "Stock 004",
+            1004
+          ],
+          [
+            "Stock 005",
+            1005
+          ],
+          [
+            "Stock 006",
+            1006
+          ],
+          [
+            "Stock 007",
+            1007
+          ],
+          [
+            "Stock 008",
+            1008
+          ],
+          [
+            "Stock 009",
+            1009
+          ],
+          [
+            "Stock 010",
+            1010
+          ],
+          [
+            "Stock 011",
+            1011
+          ],
+          [
+            "Stock 012",
+            1012
+          ],
+          [
+            "Stock 013",
+            1013
+          ],
+          [
+            "Stock 014",
+            1014
+          ],
+          [
+            "Stock 015",
+            1015
+          ],
+          [
+            "Stock 016",
+            1016
+          ],
+          [
+            "Stock 017",
+            1017
+          ],
+          [
+            "Stock 018",
+            1018
+          ],
+          [
+            "Stock 019",
+            1019
+          ],
+          [
+            "Stock 020",
+            1020
+          ],
+          [
+            "Stock 021",
+            1021
+          ],
+          [
+            "Stock 022",
+            1022
+          ],
+          [
+            "Stock 023",
+            1023
+          ],
+          [
+            "Stock 024",
+            1024
+          ],
+          [
+            "Stock 025",
+            1025
+          ],
+          [
+            "Stock 026",
+            1026
+          ],
+          [
+            "Stock 027",
+            1027
+          ],
+          [
+            "Stock 028",
+            1028
+          ],
+          [
+            "Stock 029",
+            1029
+          ],
+          [
+            "Stock 030",
+            1030
+          ],
+          [
+            "Stock 031",
+            1031
+          ],
+          [
+            "Stock 032",
+            1032
+          ],
+          [
+            "Stock 033",
+            1033
+          ],
+          [
+            "Stock 034",
+            1034
+          ],
+          [
+            "Stock 035",
+            1035
+          ],
+          [
+            "Stock 036",
+            1036
+          ],
+          [
+            "Stock 037",
+            1037
+          ],
+          [
+            "Stock 038",
+            1038
+          ],
+          [
+            "Stock 039",
+            1039
+          ],
+          [
+            "Stock 040",
+            1040
+          ],
+          [
+            "Stock 041",
+            1041
+          ],
+          [
+            "Stock 042",
+            1042
+          ],
+          [
+            "Stock 043",
+            1043
+          ],
+          [
+            "Stock 044",
+            1044
+          ],
+          [
+            "Stock 045",
+            1045
+          ],
+          [
+            "Stock 046",
+            1046
+          ],
+          [
+            "Stock 047",
+            1047
+          ],
+          [
+            "Stock 048",
+            1048
+          ],
+          [
+            "Stock 049",
+            1049
+          ],
+          [
+            "Stock 050",
+            1050
+          ],
+          [
+            "Stock 051",
+            1051
+          ],
+          [
+            "Stock 052",
+            1052
+          ],
+          [
+            "Stock 053",
+            1053
+          ],
+          [
+            "Stock 054",
+            1054
+          ],
+          [
+            "Stock 055",
+            1055
+          ],
+          [
+            "Stock 056",
+            1056
+          ],
+          [
+            "Stock 057",
+            1057
+          ],
+          [
+            "Stock 058",
+            1058
+          ],
+          [
+            "Stock 059",
+            1059
+          ],
+          [
+            "Stock 060",
+            1060
+          ],
+          [
+            "Stock 061",
+            1061
+          ],
+          [
+            "Stock 062",
+            1062
+          ],
+          [
+            "Stock 063",
+            1063
+          ],
+          [
+            "Stock 064",
+            1064
+          ],
+          [
+            "Stock 065",
+            1065
+          ],
+          [
+            "Stock 066",
+            1066
+          ],
+          [
+            "Stock 067",
+            1067
+          ],
+          [
+            "Stock 068",
+            1068
+          ],
+          [
+            "Stock 069",
+            1069
+          ],
+          [
+            "Stock 070",
+            1070
+          ],
+          [
+            "Stock 071",
+            1071
+          ],
+          [
+            "Stock 072",
+            1072
+          ],
+          [
+            "Stock 073",
+            1073
+          ],
+          [
+            "Stock 074",
+            1074
+          ],
+          [
+            "Stock 075",
+            1075
+          ],
+          [
+            "Stock 076",
+            1076
+          ],
+          [
+            "Stock 077",
+            1077
+          ],
+          [
+            "Stock 078",
+            1078
+          ],
+          [
+            "Stock 079",
+            1079
+          ],
+          [
+            "Stock 080",
+            1080
+          ],
+          [
+            "Stock 081",
+            1081
+          ],
+          [
+            "Stock 082",
+            1082
+          ],
+          [
+            "Stock 083",
+            1083
+          ],
+          [
+            "Stock 084",
+            1084
+          ],
+          [
+            "Stock 085",
+            1085
+          ],
+          [
+            "Stock 086",
+            1086
+          ],
+          [
+            "Stock 087",
+            1087
+          ],
+          [
+            "Stock 088",
+            1088
+          ],
+          [
+            "Stock 089",
+            1089
+          ],
+          [
+            "Stock 090",
+            1090
+          ],
+          [
+            "Stock 091",
+            1091
+          ],
+          [
+            "Stock 092",
+            1092
+          ],
+          [
+            "Stock 093",
+            1093
+          ],
+          [
+            "Stock 094",
+            1094
+          ],
+          [
+            "Stock 095",
+            1095
+          ],
+          [
+            "Stock 096",
+            1096
+          ],
+          [
+            "Stock 097",
+            1097
+          ],
+          [
+            "Stock 098",
+            1098
+          ],
+          [
+            "Stock 099",
+            1099
+          ],
+          [
+            "Stock 100",
+            1100
+          ],
+          [
+            "Stock 101",
+            1101
+          ],
+          [
+            "Stock 102",
+            1102
+          ],
+          [
+            "Stock 103",
+            1103
+          ],
+          [
+            "Stock 104",
+            1104
+          ],
+          [
+            "Stock 105",
+            1105
+          ],
+          [
+            "Stock 106",
+            1106
+          ],
+          [
+            "Stock 107",
+            1107
+          ],
+          [
+            "Stock 108",
+            1108
+          ],
+          [
+            "Stock 109",
+            1109
+          ],
+          [
+            "Stock 110",
+            1110
+          ],
+          [
+            "Stock 111",
+            1111
+          ],
+          [
+            "Stock 112",
+            1112
+          ],
+          [
+            "Stock 113",
+            1113
+          ],
+          [
+            "Stock 114",
+            1114
+          ],
+          [
+            "Stock 115",
+            1115
+          ],
+          [
+            "Stock 116",
+            1116
+          ],
+          [
+            "Stock 117",
+            1117
+          ],
+          [
+            "Stock 118",
+            1118
+          ],
+          [
+            "Stock 119",
+            1119
+          ],
+          [
+            "Stock 120",
+            1120
+          ],
+          [
+            "Stock 121",
+            1121
+          ],
+          [
+            "Stock 122",
+            1122
+          ],
+          [
+            "Stock 123",
+            1123
+          ],
+          [
+            "Stock 124",
+            1124
+          ],
+          [
+            "Stock 125",
+            1125
+          ],
+          [
+            "Stock 126",
+            1126
+          ],
+          [
+            "Stock 127",
+            1127
+          ],
+          [
+            "Stock 128",
+            1128
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "distinct-groups"
+      ]
+    }
+  ]
+}

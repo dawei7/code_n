@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1432",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(d)",
+  "summary": "The legal input contains at most nine decimal digits, so only nine workload sizes exist and an honest multi-tier asymptotic runtime verdict cannot be calibrated.",
+  "workload_bound": {
+    "symbol": "d",
+    "maximum": 9,
+    "unit": "decimal digits",
+    "source_constraint": "num is an integer from 1 through 100000000 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference makes a constant number of scans and replacements over at most nine decimal digits."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares an independent 100-digit-pair oracle for every input from 1 through 9999 and targeted upper-bound values."
+    }
+  ]
+}

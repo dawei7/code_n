@@ -2,7 +2,7 @@
   "challenge_id": "lc_1418",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-several",
       "name": "sample: several tables and foods",
       "kind": "sample",
       "visible": true,
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "id": "sample-2",
+      "id": "sample-repeated",
       "name": "sample: repeated same food",
       "kind": "sample",
       "visible": true,
@@ -127,11 +127,12 @@
         ]
       ],
       "tags": [
-        "sample"
+        "sample",
+        "counts"
       ]
     },
     {
-      "id": "sample-3",
+      "id": "sample-one-table",
       "name": "sample: one table",
       "kind": "sample",
       "visible": true,
@@ -169,11 +170,80 @@
         ]
       ],
       "tags": [
-        "sample"
+        "sample",
+        "one-table"
       ]
     },
     {
-      "id": "real-numeric-table-order",
+      "id": "trial-one-order",
+      "name": "single order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "orders": [
+          [
+            "A",
+            "500",
+            "Tea"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "Table",
+          "Tea"
+        ],
+        [
+          "500",
+          "1"
+        ]
+      ],
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-duplicate-records",
+      "name": "identical records are counted separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "orders": [
+          [
+            "A",
+            "1",
+            "Soup"
+          ],
+          [
+            "A",
+            "1",
+            "Soup"
+          ],
+          [
+            "A",
+            "1",
+            "Soup"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "Table",
+          "Soup"
+        ],
+        [
+          "1",
+          "3"
+        ]
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-numeric-order",
       "name": "hidden: numeric table sorting",
       "kind": "real",
       "visible": false,
@@ -229,7 +299,49 @@
         ]
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "numeric-order"
+      ]
+    },
+    {
+      "id": "real-missing-cells",
+      "name": "hidden: missing combinations become zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "orders": [
+          [
+            "A",
+            "1",
+            "B"
+          ],
+          [
+            "B",
+            "2",
+            "A"
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "Table",
+          "A",
+          "B"
+        ],
+        [
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "2",
+          "1",
+          "0"
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "zero-cells"
       ]
     }
   ]

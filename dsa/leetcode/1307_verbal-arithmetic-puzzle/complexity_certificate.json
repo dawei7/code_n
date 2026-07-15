@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1307",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(10!)",
+  "summary": "The source permits at most ten distinct letters, so the complete assignment search is bounded by the fixed decimal digit set and cannot support an honest asymptotic runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "U",
+    "maximum": 10,
+    "unit": "distinct letters",
+    "source_constraint": "Across all words and the result there are at most ten distinct uppercase letters."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each letter is assigned at most once along a branch, distinct assignments are digit permutations, and therefore at most 10! complete assignments exist."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares the reference with an independent coefficient-and-permutation oracle on smaller puzzles and checks satisfiable and impossible ten-letter boundaries."
+    }
+  ]
+}

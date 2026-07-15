@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1455",
+  "frontend_id": "1333",
+  "title_slug": "filter-restaurants-by-vegan-friendly-price-and-distance",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.filterRestaurants",
+  "verified_submission_id": "2068599010",
+  "verified_at": "2026-07-15T12:37:50.826539+00:00"
+}

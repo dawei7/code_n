@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1370",
+  "cases": [
+    {
+      "id": "sample-balanced",
+      "name": "sample: three balanced character groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaaabbbbcccc"
+      },
+      "expected": "abccbaabccba",
+      "tags": [
+        "sample",
+        "multiple-rounds"
+      ]
+    },
+    {
+      "id": "sample-distinct",
+      "name": "sample: three distinct letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "rat"
+      },
+      "expected": "art",
+      "tags": [
+        "sample",
+        "single-sweep"
+      ]
+    },
+    {
+      "id": "sample-uneven",
+      "name": "sample: uneven frequencies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leetcode"
+      },
+      "expected": "cdelotee",
+      "tags": [
+        "sample",
+        "uneven"
+      ]
+    },
+    {
+      "id": "trial-one-character",
+      "name": "trial: one repeated character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ggggggg"
+      },
+      "expected": "ggggggg",
+      "tags": [
+        "trial",
+        "one-distinct"
+      ]
+    },
+    {
+      "id": "trial-two-groups",
+      "name": "trial: two duplicate groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "bbaa"
+      },
+      "expected": "abba",
+      "tags": [
+        "trial",
+        "two-groups"
+      ]
+    },
+    {
+      "id": "hidden-paired-alphabet",
+      "name": "hidden: paired ascending alphabet prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aabbccddeeff"
+      },
+      "expected": "abcdeffedcba",
+      "tags": [
+        "hidden",
+        "balanced"
+      ]
+    },
+    {
+      "id": "hidden-reverse-input",
+      "name": "hidden: physical input order does not matter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zyxwv"
+      },
+      "expected": "vwxyz",
+      "tags": [
+        "hidden",
+        "distinct"
+      ]
+    }
+  ]
+}

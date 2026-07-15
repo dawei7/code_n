@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1385",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: two distant values",
+      "id": "sample-one",
+      "name": "sample: two qualifying values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -23,12 +24,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "binary-search"
+        "mixed"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: negative values",
+      "id": "sample-two",
+      "name": "sample: negative comparison values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -50,12 +51,13 @@
       },
       "expected": 2,
       "tags": [
-        "sample"
+        "sample",
+        "negative"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one distant value",
+      "id": "sample-three",
+      "name": "sample: one distant outlier",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -76,27 +78,94 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "outlier"
       ]
     },
     {
-      "id": "real-single-distant",
-      "name": "hidden: one element far away",
+      "id": "trial-zero",
+      "name": "trial: zero threshold rejects equality",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr1": [
+          1,
+          2,
+          3
+        ],
+        "arr2": [
+          2
+        ],
+        "d": 0
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "zero-threshold"
+      ]
+    },
+    {
+      "id": "trial-exact",
+      "name": "trial: exact threshold is disqualifying",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr1": [
+          5
+        ],
+        "arr2": [
+          2
+        ],
+        "d": 3
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-repeats",
+      "name": "hidden: repeated occurrences count separately",
       "kind": "real",
       "visible": false,
       "input": {
         "arr1": [
+          10,
+          10,
           1
         ],
         "arr2": [
-          100
+          20
         ],
-        "d": 10
+        "d": 5
       },
-      "expected": 1,
+      "expected": 3,
       "tags": [
         "hidden",
-        "edge"
+        "duplicates"
+      ]
+    },
+    {
+      "id": "hidden-all-far",
+      "name": "hidden: every value qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr1": [
+          -10,
+          -9
+        ],
+        "arr2": [
+          10,
+          11
+        ],
+        "d": 4
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "all-qualify"
       ]
     }
   ]

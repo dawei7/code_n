@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1322",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed ad interactions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 1,
+              "user_id": 1,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 2,
+              "user_id": 2,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 3,
+              "user_id": 3,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 5,
+              "user_id": 5,
+              "action": "Ignored"
+            },
+            {
+              "ad_id": 1,
+              "user_id": 7,
+              "action": "Ignored"
+            },
+            {
+              "ad_id": 2,
+              "user_id": 7,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 3,
+              "user_id": 5,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 1,
+              "user_id": 4,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 2,
+              "user_id": 11,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 1,
+              "user_id": 2,
+              "action": "Clicked"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            1,
+            66.67
+          ],
+          [
+            3,
+            50
+          ],
+          [
+            2,
+            33.33
+          ],
+          [
+            5,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "mixed-actions"
+      ]
+    },
+    {
+      "id": "trial-ignored-only",
+      "name": "trial: ignored actions only",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 5,
+              "user_id": 1,
+              "action": "Ignored"
+            },
+            {
+              "ad_id": 5,
+              "user_id": 2,
+              "action": "Ignored"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            5,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero-denominator"
+      ]
+    },
+    {
+      "id": "trial-clicked-only",
+      "name": "trial: every counted interaction clicks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 2,
+              "user_id": 1,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 2,
+              "user_id": 2,
+              "action": "Clicked"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            2,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "full-rate"
+      ]
+    },
+    {
+      "id": "trial-viewed-only",
+      "name": "trial: views without clicks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 3,
+              "user_id": 1,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 3,
+              "user_id": 2,
+              "action": "Viewed"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            3,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "zero-rate"
+      ]
+    },
+    {
+      "id": "hidden-tied-rates",
+      "name": "hidden: equal rates sort by id",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 9,
+              "user_id": 1,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 9,
+              "user_id": 2,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 4,
+              "user_id": 1,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 4,
+              "user_id": 2,
+              "action": "Viewed"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            4,
+            50
+          ],
+          [
+            9,
+            50
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "tie-order"
+      ]
+    },
+    {
+      "id": "hidden-third-rate",
+      "name": "hidden: rounding a one-third rate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 7,
+              "user_id": 1,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 7,
+              "user_id": 2,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 7,
+              "user_id": 3,
+              "action": "Viewed"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            7,
+            33.33
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "rounding"
+      ]
+    },
+    {
+      "id": "hidden-all-actions",
+      "name": "hidden: ignored rows do not change rate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Ads": [
+            {
+              "ad_id": 8,
+              "user_id": 1,
+              "action": "Clicked"
+            },
+            {
+              "ad_id": 8,
+              "user_id": 2,
+              "action": "Viewed"
+            },
+            {
+              "ad_id": 8,
+              "user_id": 3,
+              "action": "Ignored"
+            },
+            {
+              "ad_id": 6,
+              "user_id": 1,
+              "action": "Ignored"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ad_id",
+          "ctr"
+        ],
+        "rows": [
+          [
+            8,
+            50
+          ],
+          [
+            6,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ignored-actions"
+      ]
+    }
+  ]
+}

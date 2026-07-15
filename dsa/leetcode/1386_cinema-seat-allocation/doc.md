@@ -8,78 +8,72 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Greedy, Bit Manipulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [cinema-seat-allocation](https://leetcode.com/problems/cinema-seat-allocation/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/cinema-seat-allocation/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/cinema-seat-allocation/).
 
 ### Goal
-In a cinema with `n` rows and seats `1` through `10`, reserve some seats and then fit as many four-person families as possible. A family can sit in seats `2-5`, `4-7`, or `6-9` within one row.
+
+A cinema has `n` rows, each containing seats numbered from `1` through `10`. Some seats are already listed in `reserved_seats`. Seat as many four-person families as possible without using a reserved seat or assigning one seat to two families.
+
+Within one row, a family may occupy seats `2-5`, `4-7`, or `6-9`. These are the only permitted four-seat blocks, including the arrangements that place two family members on each side of an aisle. Return the maximum number of families over all rows.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: the number of cinema rows.
-- `reservedSeats`: a list of `[row, seat]` reservations.
+- `n`: the number of cinema rows, which may be as large as $10^9$.
+- `reserved_seats`: $r$ distinct `[row, seat]` reservations.
 
 **Return value**
 
-The maximum number of four-person families that can be seated.
+- The maximum number of nonoverlapping four-seat family blocks that remain available.
 
 ### Examples
+
 **Example 1**
 
-- Input: `n = 3, reservedSeats = [[1,2],[1,3],[1,8],[2,6],[3,1],[3,10]]`
+- Input: `n = 3, reserved_seats = [[1,2],[1,3],[1,8],[2,6],[3,1],[3,10]]`
 - Output: `4`
 
 **Example 2**
 
-- Input: `n = 2, reservedSeats = [[2,1],[1,8],[2,6]]`
+- Input: `n = 2, reserved_seats = [[2,1],[1,8],[2,6]]`
 - Output: `2`
 
 **Example 3**
 
-- Input: `n = 1, reservedSeats = []`
-- Output: `2`
+- Input: `n = 4, reserved_seats = [[4,3],[1,4],[4,6],[1,7]]`
+- Output: `4`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Row bitmasking. Rows without relevant reservations contribute `2`; for touched rows, mark seats `2` through `9` and test whether the left, middle, and right family blocks are free.
+- **Time:** $O(r)$
+- **Space:** $O(min(n,r))$
 
-### Complexity Analysis
-- **Time Complexity**: `O(r)` where `r` is the number of reserved seats.
-- **Space Complexity**: `O(t)` where `t` is the number of rows with relevant reservations.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-"""Optimal solution for LeetCode 1386: Cinema Seat Allocation."""
+#### General
 
-from collections import defaultdict
+**Account for untouched rows immediately.** A row with no reservation in seats `2` through `9` can hold both disjoint outer blocks, `2-5` and `6-9`. Because `n` can be enormous, start from two families per row and inspect only rows whose relevant seats are reserved.
 
+**Compress each touched row.** Store a bitmask for reserved seats `2` through `9`. Test that mask against the left, middle, and right block masks. If both outer blocks are free, the row contributes two families. Otherwise it contributes one when any of the three blocks is free, and zero when all are blocked.
 
-def solve(n: int, reserved_seats: list[list[int]]) -> int:
-    occupied: dict[int, int] = defaultdict(int)
-    for row, seat in reserved_seats:
-        if 2 <= seat <= 9:
-            occupied[row] |= 1 << seat
+The outer blocks are the only pair that can coexist; the middle block overlaps both. Therefore these three tests cover every legal allocation within a row, and summing independent row optima gives the global maximum. Reservations in seats `1` and `10` never affect a family block.
 
-    answer = (n - len(occupied)) * 2
-    left = sum(1 << seat for seat in range(2, 6))
-    middle = sum(1 << seat for seat in range(4, 8))
-    right = sum(1 << seat for seat in range(6, 10))
+#### Complexity detail
 
-    for mask in occupied.values():
-        can_left = mask & left == 0
-        can_right = mask & right == 0
-        if can_left and can_right:
-            answer += 2
-        elif can_left or can_right or mask & middle == 0:
-            answer += 1
-    return answer
-```
+Each of the $r$ reservations is processed once, and each touched row receives constant mask work, so time is $O(r)$. At most $min(n,r)$ rows have relevant reservations, giving $O(\min(n,r))$ space.
+
+#### Alternatives and edge cases
+
+- **Scan every row:** Build reservation masks and examine all `n` rows. It is correct but takes $O(n+r)$ time and is impossible when `n` approaches $10^9$.
+- **Store every seat:** A set of coordinate pairs works but uses more state than one bitmask per touched row.
+- **Seats 1 and 10:** Ignore them because no allowed family block contains either seat.
+- **Only middle block free:** When both outer blocks are blocked, seats `4-7` may still hold one family.
+- **Both outer blocks free:** Count two families and do not also count the overlapping middle block.
+- **No reservations:** Every row contributes exactly two.
+- **All blocks obstructed:** A touched row can contribute zero.
+
 </details>

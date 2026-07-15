@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1273",
+  "cases": [
+    {"id": "sample-two-remain", "name": "sample: two zero-sum subtrees are removed", "kind": "sample", "visible": true, "input": {"nodes": 7, "parent": [-1,0,0,1,2,2,2], "value": [1,-2,4,0,-2,-1,-1]}, "expected": 2, "tags": ["sample", "nested"]},
+    {"id": "sample-six-remain", "name": "sample: only one zero-valued leaf is removed", "kind": "sample", "visible": true, "input": {"nodes": 7, "parent": [-1,0,0,1,2,2,2], "value": [1,-2,4,0,-2,-1,-2]}, "expected": 6, "tags": ["sample", "leaf"]},
+    {"id": "trial-zero-root", "name": "trial: zero-sum root removes the whole tree", "kind": "trial", "visible": true, "input": {"nodes": 1, "parent": [-1], "value": [0]}, "expected": 0, "tags": ["trial", "root"]},
+    {"id": "trial-single-nonzero", "name": "trial: nonzero singleton remains", "kind": "trial", "visible": true, "input": {"nodes": 1, "parent": [-1], "value": [-5]}, "expected": 1, "tags": ["trial", "singleton"]},
+    {"id": "trial-internal-zero-sum", "name": "trial: internal subtree cancels", "kind": "trial", "visible": true, "input": {"nodes": 5, "parent": [-1,0,0,1,1], "value": [5,3,2,-1,-2]}, "expected": 2, "tags": ["trial", "internal"]},
+    {"id": "real-no-deletions", "name": "hidden: no subtree sum is zero", "kind": "real", "visible": false, "input": {"nodes": 5, "parent": [-1,0,1,0,0], "value": [-672,441,18,728,378]}, "expected": 5, "tags": ["hidden", "none"]},
+    {"id": "real-negative-nonzero", "name": "hidden: negative values do not imply deletion", "kind": "real", "visible": false, "input": {"nodes": 5, "parent": [-1,0,0,1,1], "value": [-686,-842,616,-739,-746]}, "expected": 5, "tags": ["hidden", "negative"]},
+    {"id": "real-child-zero-parent-nonzero", "name": "hidden: deleted child contributes zero to parent", "kind": "real", "visible": false, "input": {"nodes": 4, "parent": [-1,0,1,1], "value": [4,0,2,-2]}, "expected": 1, "tags": ["hidden", "child-zero"]},
+    {"id": "real-root-cancels-after-children", "name": "hidden: root total zero removes everything", "kind": "real", "visible": false, "input": {"nodes": 4, "parent": [-1,0,0,2], "value": [3,-1,-4,2]}, "expected": 0, "tags": ["hidden", "root-zero"]}
+  ]
+}

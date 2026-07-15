@@ -8,24 +8,28 @@
 | Category | Algorithms |
 | Topics | Array |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-times-binary-string-is-prefix-aligned](https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-times-binary-string-is-prefix-aligned/).
 
 ### Goal
-A binary string of length `n` starts with all zeroes. At step `i`, one indexed bit from `flips` becomes `1`. Count how many steps leave every `1` bit inside the prefix `1..i` and every bit after that prefix still `0`.
+
+A binary string of length `n` initially contains only zeroes. The array `flips` is a permutation of the positions from $1$ through $n$. At step `i`, the bit at position `flips[i]` changes permanently from `0` to `1`.
+
+The string is prefix-aligned after a step when every bit from position $1$ through the number of completed steps is `1`; because exactly that many bits have been changed, all later positions are then still `0`. Count how many steps leave the string prefix-aligned.
 
 ### Function Contract
+
 **Inputs**
 
-- `flips`: a permutation of positions from `1` to `n` in the order they are turned on.
+- `flips`: a permutation of $1, 2, \ldots, n$ describing the order in which the `n` bits are turned on.
 
 **Return value**
 
-The number of moments when the turned-on bits exactly form a prefix.
+- The number of steps after which the bits equal a prefix of `1` values followed by only `0` values.
 
 ### Examples
+
 **Example 1**
 
 - Input: `flips = [3,2,4,1,5]`
@@ -41,31 +45,31 @@ The number of moments when the turned-on bits exactly form a prefix.
 - Input: `flips = [1,2,3]`
 - Output: `3`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Prefix maximum tracking. After `i` flips, the first `i` positions are exactly filled if and only if the maximum flipped position seen so far is `i`.
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-"""Optimal solution for LeetCode 1375: Number of Times Binary String Is Prefix-Aligned."""
+#### General
 
+**Replace the bit string with one boundary.** After `i` steps, exactly `i` distinct positions are on. Those positions are exactly $1, 2, \ldots, i$ if and only if none lies to the right of `i`. Track the largest position encountered so far as `rightmost`.
 
-def solve(flips: list[int]) -> int:
-    answer = 0
-    rightmost = 0
-    for step, position in enumerate(flips, start=1):
-        rightmost = max(rightmost, position)
-        if rightmost == step:
-            answer += 1
-    return answer
-```
+At step `i`, every seen position is at most `i` exactly when `rightmost == i`. Since there are `i` distinct seen positions drawn from the `i` available positions in that prefix, they must fill the entire prefix. Conversely, a prefix-aligned state cannot contain an on bit beyond `i`, so its maximum is necessarily `i`. Count each step satisfying this equality.
+
+#### Complexity detail
+
+The scan processes each of the `n` flips once and performs constant work per entry, so time is $O(n)$. The running maximum and answer counter use $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Materialize and rescan the bits:** Mark each flipped position and test the current prefix after every step. This is correct but can take $O(n^2)$ time.
+- **Track a set of missing positions:** Removing each flip and checking whether the prefix is complete works, but requires $O(n)$ additional space.
+- **First position delayed:** No alignment occurs until every earlier gap is filled, even if many positions to its right are already on.
+- **Already ordered flips:** For `[1,2,...,n]`, every step is prefix-aligned.
+- **Reverse order:** Only the final step is aligned when positions are flipped from `n` down to `1`.
+- **Final step:** It always counts because all `n` positions are on and the running maximum equals `n`.
+
 </details>

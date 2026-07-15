@@ -1,43 +1,72 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1386",
+  "measurement_note": "Size is the cinema row count n. Each tier has one reservation at seat 1, which affects no family block, so the correct answer is 2n. The sparse bitmask reference runs in O(r) time with fixed r=1. A correct slower implementation builds the same masks but scans every row in O(n+r) time; the 1000/10000/100000-row tiers complete normally.",
   "cases": [
     {
-      "id": "benchmark-mixed-blocks",
-      "name": "benchmark: mixed blocked sections",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 1000 rows with one irrelevant reservation",
       "kind": "benchmark",
       "visible": false,
+      "size": 1000,
       "input": {
-        "n": 5,
+        "n": 1000,
         "reserved_seats": [
           [
             1,
-            5
-          ],
-          [
-            1,
-            6
-          ],
-          [
-            2,
-            4
-          ],
-          [
-            2,
-            7
-          ],
-          [
-            5,
-            2
-          ],
-          [
-            5,
-            9
+            1
           ]
         ]
       },
-      "expected": 5,
+      "expected": 2000,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-small",
+        "sparse"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 10000 rows with one irrelevant reservation",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {
+        "n": 10000,
+        "reserved_seats": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 20000,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "sparse"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100000 rows with one irrelevant reservation",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100000,
+      "input": {
+        "n": 100000,
+        "reserved_seats": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 200000,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "sparse"
       ]
     }
   ]

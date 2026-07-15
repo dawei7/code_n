@@ -1,17 +1,25 @@
-def solve(job_difficulty, d):
-    n = len(job_difficulty)
-    if n < d:
-        return -1
-    dp = job_difficulty[:]
-    for i in range(n - 2, -1, -1):
-        dp[i] = max(job_difficulty[i], dp[i + 1])
+"""Optimal app-local solution for LeetCode 1335."""
 
-    for day in range(2, d + 1):
-        next_dp = [float("inf")] * n
-        for i in range(n - day + 1):
+
+def solve(job_difficulty, d):
+    job_count = len(job_difficulty)
+    if job_count < d:
+        return -1
+
+    dp = [0] * job_count
+    hardest = 0
+    for index in range(job_count - 1, -1, -1):
+        hardest = max(hardest, job_difficulty[index])
+        dp[index] = hardest
+
+    for day_count in range(2, d + 1):
+        next_dp = [float("inf")] * job_count
+        for start in range(job_count - day_count + 1):
             hardest = 0
-            for cut in range(i, n - day + 1):
+            last_cut = job_count - day_count
+            for cut in range(start, last_cut + 1):
                 hardest = max(hardest, job_difficulty[cut])
-                next_dp[i] = min(next_dp[i], hardest + dp[cut + 1])
+                next_dp[start] = min(next_dp[start], hardest + dp[cut + 1])
         dp = next_dp
+
     return dp[0]

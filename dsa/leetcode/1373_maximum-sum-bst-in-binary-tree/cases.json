@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1373",
+  "cases": [
+    {
+      "id": "sample-internal-bst",
+      "name": "sample: best BST is an internal subtree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          4,
+          3,
+          2,
+          4,
+          2,
+          5,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          4,
+          6
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "sample",
+        "internal-subtree"
+      ]
+    },
+    {
+      "id": "sample-invalid-left",
+      "name": "sample: small leaf is best",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          4,
+          3,
+          null,
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "invalid-root"
+      ]
+    },
+    {
+      "id": "sample-all-negative",
+      "name": "sample: all nonempty sums are negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          -4,
+          -2,
+          -5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-whole-tree",
+      "name": "trial: complete tree is a BST",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          4,
+          3,
+          8,
+          1,
+          null,
+          6,
+          10
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "trial",
+        "whole-tree"
+      ]
+    },
+    {
+      "id": "trial-duplicate",
+      "name": "trial: equal left child invalidates root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "strict"
+      ]
+    },
+    {
+      "id": "hidden-left-subtree",
+      "name": "hidden: left subtree beats invalid right side",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          5,
+          4,
+          8,
+          3,
+          null,
+          6,
+          3
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "internal-subtree"
+      ]
+    },
+    {
+      "id": "hidden-positive-leaf",
+      "name": "hidden: one positive leaf among negatives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          -10,
+          -20,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "leaf"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1498",
+  "frontend_id": "1379",
+  "title_slug": "find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getTargetCopy",
+  "verified_submission_id": "2068787062",
+  "verified_at": "2026-07-15T15:29:49.192908+00:00"
+}

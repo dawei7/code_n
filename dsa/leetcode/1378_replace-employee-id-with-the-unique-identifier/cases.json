@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1378",
+  "cases": [
+    {
+      "id": "sample-partial",
+      "name": "sample: some employees lack mappings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "id": 1,
+              "name": "Alice"
+            },
+            {
+              "id": 7,
+              "name": "Bob"
+            },
+            {
+              "id": 11,
+              "name": "Meir"
+            },
+            {
+              "id": 90,
+              "name": "Winston"
+            },
+            {
+              "id": 3,
+              "name": "Jonathan"
+            }
+          ],
+          "EmployeeUNI": [
+            {
+              "id": 3,
+              "unique_id": 1
+            },
+            {
+              "id": 11,
+              "unique_id": 2
+            },
+            {
+              "id": 90,
+              "unique_id": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "unique_id",
+          "name"
+        ],
+        "rows": [
+          [
+            null,
+            "Alice"
+          ],
+          [
+            1,
+            "Jonathan"
+          ],
+          [
+            null,
+            "Bob"
+          ],
+          [
+            2,
+            "Meir"
+          ],
+          [
+            3,
+            "Winston"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "partial"
+      ]
+    },
+    {
+      "id": "sample-all",
+      "name": "sample: every employee is mapped",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "id": 5,
+              "name": "Ada"
+            },
+            {
+              "id": 8,
+              "name": "Lin"
+            }
+          ],
+          "EmployeeUNI": [
+            {
+              "id": 5,
+              "unique_id": 105
+            },
+            {
+              "id": 8,
+              "unique_id": 108
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "unique_id",
+          "name"
+        ],
+        "rows": [
+          [
+            105,
+            "Ada"
+          ],
+          [
+            108,
+            "Lin"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "all-mapped"
+      ]
+    },
+    {
+      "id": "sample-none",
+      "name": "sample: one employee has no unique identifier",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "id": 4,
+              "name": "Solo"
+            },
+            {
+              "id": 9,
+              "name": "Mapped"
+            }
+          ],
+          "EmployeeUNI": [
+            {
+              "id": 9,
+              "unique_id": 109
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "unique_id",
+          "name"
+        ],
+        "rows": [
+          [
+            null,
+            "Solo"
+          ],
+          [
+            109,
+            "Mapped"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "unmapped"
+      ]
+    },
+    {
+      "id": "trial-scrambled",
+      "name": "trial: mapping order differs from employees",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "id": 20,
+              "name": "Twenty"
+            },
+            {
+              "id": 2,
+              "name": "Two"
+            },
+            {
+              "id": 11,
+              "name": "Eleven"
+            }
+          ],
+          "EmployeeUNI": [
+            {
+              "id": 11,
+              "unique_id": 511
+            },
+            {
+              "id": 2,
+              "unique_id": 502
+            },
+            {
+              "id": 20,
+              "unique_id": 520
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "unique_id",
+          "name"
+        ],
+        "rows": [
+          [
+            502,
+            "Two"
+          ],
+          [
+            511,
+            "Eleven"
+          ],
+          [
+            520,
+            "Twenty"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "order"
+      ]
+    },
+    {
+      "id": "trial-duplicate-names",
+      "name": "trial: equal names join by ID",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "id": 1,
+              "name": "Sam"
+            },
+            {
+              "id": 2,
+              "name": "Sam"
+            }
+          ],
+          "EmployeeUNI": [
+            {
+              "id": 2,
+              "unique_id": 42
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "unique_id",
+          "name"
+        ],
+        "rows": [
+          [
+            null,
+            "Sam"
+          ],
+          [
+            42,
+            "Sam"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicate-name"
+      ]
+    },
+    {
+      "id": "hidden-mixed",
+      "name": "hidden: alternating mapped employees",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employees": [
+            {
+              "id": 1,
+              "name": "A"
+            },
+            {
+              "id": 2,
+              "name": "B"
+            },
+            {
+              "id": 3,
+              "name": "C"
+            },
+            {
+              "id": 4,
+              "name": "D"
+            }
+          ],
+          "EmployeeUNI": [
+            {
+              "id": 1,
+              "unique_id": 91
+            },
+            {
+              "id": 3,
+              "unique_id": 93
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "unique_id",
+          "name"
+        ],
+        "rows": [
+          [
+            91,
+            "A"
+          ],
+          [
+            null,
+            "B"
+          ],
+          [
+            93,
+            "C"
+          ],
+          [
+            null,
+            "D"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "partial"
+      ]
+    }
+  ]
+}

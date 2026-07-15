@@ -29,7 +29,8 @@ or external memory.
 1. The current worktree and tests.
 2. `dsa/leetcode/index.json`, `dsa/leetcode/subsets.json`, and each package's
    `metadata.json`.
-3. Authored `cases.json`, `benchmark.json`, and package solutions.
+3. Authored `cases.json`, complexity verification (`benchmark.json` or a
+   strictly validated `complexity_certificate.json`), and package solutions.
 4. `dsa/leetcode/_reports/_completion_report.json` for the current doc queue.
 5. This `AGENTS.md` for repository workflow and invariants.
 6. `README.md` for the public/product overview and developer quick start.
@@ -67,7 +68,8 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   doc.md
   doc_de.md                 # optional translation
   cases.json
-  benchmark.json
+  benchmark.json             # normal complexity-verification path
+  complexity_certificate.json # only when legal scaling is inapplicable
   submission.json            # optional verified LeetCode submission manifest
   assets/                   # optional package-local doc assets
   solutions/
@@ -213,6 +215,28 @@ Always reopen the refreshed completion report before selecting the next batch.
   appropriate to its constraints, likely slower alternative, and runtime.
 - Preserve the legacy one-tier 1.5x rule until a package is intentionally
   migrated; do not silently infer tiers from ordinary cases.
+- Scaling remains the default and preferred complexity-verification method. A
+  package may use `complexity_certificate.json` only when its complete legal
+  source domain is bounded too tightly for an honest scaling verdict, when a
+  fixed concurrency contract is verified through safety/progress evidence, or
+  when a problem-level lower bound matches the required upper bound and no
+  genuine principal slower class exists.
+- A certificate must pass `engine/complexity_certificates.py`, use one of the
+  reviewed methods `bounded_domain`, `bounded_concurrency`, or
+  `asymptotic_optimality`, and record the required replacement evidence. It is
+  not a generic waiver and must not coexist with a completed scaling benchmark.
+- Certified packages still require every ordinary correctness case, the
+  optimal app-local reference, the separate native artifact, remote Accepted
+  verification, and certificate-specific regression tests. Real-test and the
+  UI must identify the certificate method explicitly and must never describe
+  it as a measured runtime verdict.
+- If any of the original eighteen complexity blockers (frontend IDs 401, 405,
+  479, 999, 1108, 1114-1118, 1134, 1137, 1154, 1165, 1188, 1195, 1226, or
+  1242) reappears, read
+  `dsa/leetcode/_reports/ORIGINAL_18_BLOCKER_PLAYBOOK.md` completely. It owns
+  the reviewed per-ID benchmark-versus-certificate routing, shared concurrency
+  runtime prerequisites, regression evidence, and blocker-clearing procedure.
+  Do not reclassify those packages from an old chat summary.
 
 ## Personal solutions and progress
 

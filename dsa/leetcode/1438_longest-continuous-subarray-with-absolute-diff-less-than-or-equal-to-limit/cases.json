@@ -2,8 +2,8 @@
   "challenge_id": "lc_1438",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: short valid window",
+      "id": "sample-short",
+      "name": "sample: best window has length two",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,12 +18,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "sliding-window"
+        "window"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: four-value window",
+      "id": "sample-four",
+      "name": "sample: shrink to a four-value window",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -39,12 +39,13 @@
       },
       "expected": 4,
       "tags": [
-        "sample"
+        "sample",
+        "shrink"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: zero limit",
+      "id": "sample-zero",
+      "name": "sample: zero limit requires equal values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -63,27 +64,109 @@
       "expected": 3,
       "tags": [
         "sample",
-        "edge"
+        "zero-limit"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single value is always valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100
+        ],
+        "limit": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-exact",
+      "name": "range exactly equals limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          3,
+          2
+        ],
+        "limit": 4
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "exact-limit"
       ]
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: all values equal with zero limit",
+      "name": "hidden: all equal values fill the array",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          1,
-          1,
-          1,
-          1,
-          1
+          7,
+          7,
+          7,
+          7,
+          7
         ],
         "limit": 0
       },
       "expected": 5,
       "tags": [
-        "hidden"
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-decreasing",
+      "name": "hidden: decreasing values require repeated expiry",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          3,
+          2,
+          1
+        ],
+        "limit": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "real-late-window",
+      "name": "hidden: longest window begins after invalid prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "limit": 4
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "late-window"
       ]
     }
   ]

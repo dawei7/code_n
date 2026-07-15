@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1546",
+  "frontend_id": "1412",
+  "title_slug": "find-the-quiet-students-in-all-exams",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2069002090",
+  "verified_at": "2026-07-15T18:08:23.790812+00:00"
+}

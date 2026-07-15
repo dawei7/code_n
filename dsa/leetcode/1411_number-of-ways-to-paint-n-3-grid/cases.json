@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_1411",
+  "cases": [
+    {
+      "id": "sample-one-row",
+      "name": "sample: one row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-two-rows",
+      "name": "sample: two rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 54,
+      "tags": [
+        "sample",
+        "transition"
+      ]
+    },
+    {
+      "id": "sample-three-rows",
+      "name": "sample: three rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 246,
+      "tags": [
+        "sample",
+        "transition"
+      ]
+    },
+    {
+      "id": "trial-four-rows",
+      "name": "four rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": 1122,
+      "tags": [
+        "trial",
+        "recurrence"
+      ]
+    },
+    {
+      "id": "trial-seven-rows",
+      "name": "seven rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": 106494,
+      "tags": [
+        "trial",
+        "recurrence"
+      ]
+    },
+    {
+      "id": "real-modulo",
+      "name": "hidden: modulo is required",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 125
+      },
+      "expected": 779502179,
+      "tags": [
+        "hidden",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "hidden: maximum row count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5000
+      },
+      "expected": 30228214,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
+  ]
+}

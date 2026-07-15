@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1465",
+  "frontend_id": "1339",
+  "title_slug": "maximum-product-of-splitted-binary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxProduct",
+  "verified_submission_id": "2068620361",
+  "verified_at": "2026-07-15T12:59:34.414396+00:00"
+}

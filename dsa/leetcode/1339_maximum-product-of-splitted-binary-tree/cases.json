@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1339",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: balanced six-node tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 110,
+      "tags": [
+        "sample",
+        "subtree-sum"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: uneven tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          null,
+          2,
+          3,
+          4,
+          null,
+          null,
+          5,
+          6
+        ]
+      },
+      "expected": 90,
+      "tags": [
+        "sample",
+        "uneven"
+      ]
+    },
+    {
+      "id": "trial-two-nodes",
+      "name": "trial: only one removable edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-balanced-tie",
+      "name": "trial: equal leaf subtree products",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-skewed",
+      "name": "trial: best split inside a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          null,
+          4,
+          null,
+          3,
+          null,
+          2
+        ]
+      },
+      "expected": 45,
+      "tags": [
+        "trial",
+        "skewed"
+      ]
+    },
+    {
+      "id": "hidden-large-modulo",
+      "name": "hidden: maximize before applying modulo",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000,
+          null,
+          10000
+        ]
+      },
+      "expected": 999999937,
+      "tags": [
+        "hidden",
+        "modulo"
+      ]
+    },
+    {
+      "id": "hidden-asymmetric",
+      "name": "hidden: best edge is not adjacent to root",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          10,
+          1,
+          1,
+          20,
+          null,
+          null,
+          2
+        ]
+      },
+      "expected": 280,
+      "tags": [
+        "hidden",
+        "asymmetric"
+      ]
+    }
+  ]
+}

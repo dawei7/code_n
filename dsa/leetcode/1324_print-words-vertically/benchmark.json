@@ -1,23 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1324",
+  "measurement_note": "Size is P = wL, the padded word-rectangle cell count. The reference splits once and visits each cell once. A correct slower alternative re-splits and rescans the sentence for every cell, taking O(P times the sentence length) time; every legal tier completes and returns the same vertical rows.",
   "cases": [
-    {
-      "id": "benchmark-leading-spaces",
-      "name": "benchmark: leading spaces inside rows",
-      "kind": "benchmark",
-      "visible": false,
-      "input": {
-        "s": "AB CDE FGHI"
-      },
-      "expected": [
-        "ACF",
-        "BDG",
-        " EH",
-        "  I"
-      ],
-      "tags": [
-        "benchmark"
-      ]
-    }
+    {"id":"benchmark-scale-1","name":"benchmark: eight columns by four rows","kind":"benchmark","visible":false,"size":32,"input":{"s":"ABCD A A A A A A A"},"expected":["AAAAAAAA","B","C","D"],"tags":["benchmark","scale-small","padded-rectangle"]},
+    {"id":"benchmark-scale-2","name":"benchmark: sixteen columns by eight rows","kind":"benchmark","visible":false,"size":128,"input":{"s":"ABCDEFGH A A A A A A A A A A A A A A A"},"expected":["AAAAAAAAAAAAAAAA","B","C","D","E","F","G","H"],"tags":["benchmark","scale-medium","padded-rectangle"]},
+    {"id":"benchmark-scale-3","name":"benchmark: thirty-two columns by sixteen rows","kind":"benchmark","visible":false,"size":512,"input":{"s":"ABCDEFGHIJKLMNOP A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A"},"expected":["AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P"],"tags":["benchmark","scale-large","padded-rectangle"]}
   ]
 }

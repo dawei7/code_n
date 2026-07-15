@@ -1,0 +1,718 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1321",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: official ten-day history",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 1,
+              "name": "Jhon",
+              "visited_on": "2019-01-01",
+              "amount": 100
+            },
+            {
+              "customer_id": 2,
+              "name": "Daniel",
+              "visited_on": "2019-01-02",
+              "amount": 110
+            },
+            {
+              "customer_id": 3,
+              "name": "Jade",
+              "visited_on": "2019-01-03",
+              "amount": 120
+            },
+            {
+              "customer_id": 4,
+              "name": "Khaled",
+              "visited_on": "2019-01-04",
+              "amount": 130
+            },
+            {
+              "customer_id": 5,
+              "name": "Winston",
+              "visited_on": "2019-01-05",
+              "amount": 110
+            },
+            {
+              "customer_id": 6,
+              "name": "Elvis",
+              "visited_on": "2019-01-06",
+              "amount": 140
+            },
+            {
+              "customer_id": 7,
+              "name": "Anna",
+              "visited_on": "2019-01-07",
+              "amount": 150
+            },
+            {
+              "customer_id": 8,
+              "name": "Maria",
+              "visited_on": "2019-01-08",
+              "amount": 80
+            },
+            {
+              "customer_id": 9,
+              "name": "Jaze",
+              "visited_on": "2019-01-09",
+              "amount": 110
+            },
+            {
+              "customer_id": 1,
+              "name": "Jhon",
+              "visited_on": "2019-01-10",
+              "amount": 130
+            },
+            {
+              "customer_id": 3,
+              "name": "Jade",
+              "visited_on": "2019-01-10",
+              "amount": 150
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "visited_on",
+          "amount",
+          "average_amount"
+        ],
+        "rows": [
+          [
+            "2019-01-07",
+            860,
+            122.86
+          ],
+          [
+            "2019-01-08",
+            840,
+            120
+          ],
+          [
+            "2019-01-09",
+            840,
+            120
+          ],
+          [
+            "2019-01-10",
+            1000,
+            142.86
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "multiple-visits"
+      ]
+    },
+    {
+      "id": "trial-exact-window",
+      "name": "trial: exactly seven dates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 1,
+              "name": "C1",
+              "visited_on": "2020-01-01",
+              "amount": 1
+            },
+            {
+              "customer_id": 2,
+              "name": "C2",
+              "visited_on": "2020-01-02",
+              "amount": 1
+            },
+            {
+              "customer_id": 3,
+              "name": "C3",
+              "visited_on": "2020-01-03",
+              "amount": 1
+            },
+            {
+              "customer_id": 4,
+              "name": "C4",
+              "visited_on": "2020-01-04",
+              "amount": 1
+            },
+            {
+              "customer_id": 5,
+              "name": "C5",
+              "visited_on": "2020-01-05",
+              "amount": 1
+            },
+            {
+              "customer_id": 6,
+              "name": "C6",
+              "visited_on": "2020-01-06",
+              "amount": 1
+            },
+            {
+              "customer_id": 7,
+              "name": "C7",
+              "visited_on": "2020-01-07",
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "visited_on",
+          "amount",
+          "average_amount"
+        ],
+        "rows": [
+          [
+            "2020-01-07",
+            7,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-multiple-visits",
+      "name": "trial: aggregate two visits on one date",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 1,
+              "name": "C1",
+              "visited_on": "2020-02-01",
+              "amount": 10
+            },
+            {
+              "customer_id": 2,
+              "name": "C2",
+              "visited_on": "2020-02-02",
+              "amount": 20
+            },
+            {
+              "customer_id": 3,
+              "name": "C3",
+              "visited_on": "2020-02-03",
+              "amount": 30
+            },
+            {
+              "customer_id": 4,
+              "name": "D4A",
+              "visited_on": "2020-02-04",
+              "amount": 15
+            },
+            {
+              "customer_id": 14,
+              "name": "D4B",
+              "visited_on": "2020-02-04",
+              "amount": 25
+            },
+            {
+              "customer_id": 5,
+              "name": "C5",
+              "visited_on": "2020-02-05",
+              "amount": 50
+            },
+            {
+              "customer_id": 6,
+              "name": "C6",
+              "visited_on": "2020-02-06",
+              "amount": 60
+            },
+            {
+              "customer_id": 7,
+              "name": "C7",
+              "visited_on": "2020-02-07",
+              "amount": 70
+            },
+            {
+              "customer_id": 8,
+              "name": "C8",
+              "visited_on": "2020-02-08",
+              "amount": 80
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "visited_on",
+          "amount",
+          "average_amount"
+        ],
+        "rows": [
+          [
+            "2020-02-07",
+            280,
+            40
+          ],
+          [
+            "2020-02-08",
+            350,
+            50
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "daily-aggregation"
+      ]
+    },
+    {
+      "id": "trial-constant",
+      "name": "trial: constant daily revenue",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 1,
+              "name": "C1",
+              "visited_on": "2020-03-01",
+              "amount": 20
+            },
+            {
+              "customer_id": 2,
+              "name": "C2",
+              "visited_on": "2020-03-02",
+              "amount": 20
+            },
+            {
+              "customer_id": 3,
+              "name": "C3",
+              "visited_on": "2020-03-03",
+              "amount": 20
+            },
+            {
+              "customer_id": 4,
+              "name": "C4",
+              "visited_on": "2020-03-04",
+              "amount": 20
+            },
+            {
+              "customer_id": 5,
+              "name": "C5",
+              "visited_on": "2020-03-05",
+              "amount": 20
+            },
+            {
+              "customer_id": 6,
+              "name": "C6",
+              "visited_on": "2020-03-06",
+              "amount": 20
+            },
+            {
+              "customer_id": 7,
+              "name": "C7",
+              "visited_on": "2020-03-07",
+              "amount": 20
+            },
+            {
+              "customer_id": 8,
+              "name": "C8",
+              "visited_on": "2020-03-08",
+              "amount": 20
+            },
+            {
+              "customer_id": 9,
+              "name": "C9",
+              "visited_on": "2020-03-09",
+              "amount": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "visited_on",
+          "amount",
+          "average_amount"
+        ],
+        "rows": [
+          [
+            "2020-03-07",
+            140,
+            20
+          ],
+          [
+            "2020-03-08",
+            140,
+            20
+          ],
+          [
+            "2020-03-09",
+            140,
+            20
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "constant"
+      ]
+    },
+    {
+      "id": "hidden-cross-month",
+      "name": "hidden: windows cross a month boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 1,
+              "name": "C1",
+              "visited_on": "2020-01-27",
+              "amount": 3
+            },
+            {
+              "customer_id": 2,
+              "name": "C2",
+              "visited_on": "2020-01-28",
+              "amount": 5
+            },
+            {
+              "customer_id": 3,
+              "name": "C3",
+              "visited_on": "2020-01-29",
+              "amount": 7
+            },
+            {
+              "customer_id": 4,
+              "name": "C4",
+              "visited_on": "2020-01-30",
+              "amount": 9
+            },
+            {
+              "customer_id": 5,
+              "name": "C5",
+              "visited_on": "2020-01-31",
+              "amount": 11
+            },
+            {
+              "customer_id": 6,
+              "name": "C6",
+              "visited_on": "2020-02-01",
+              "amount": 13
+            },
+            {
+              "customer_id": 7,
+              "name": "C7",
+              "visited_on": "2020-02-02",
+              "amount": 15
+            },
+            {
+              "customer_id": 8,
+              "name": "C8",
+              "visited_on": "2020-02-03",
+              "amount": 17
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "visited_on",
+          "amount",
+          "average_amount"
+        ],
+        "rows": [
+          [
+            "2020-02-02",
+            63,
+            9
+          ],
+          [
+            "2020-02-03",
+            77,
+            11
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "date-boundary"
+      ]
+    },
+    {
+      "id": "hidden-two-per-day",
+      "name": "hidden: two customers visit every date",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 1,
+              "name": "A0",
+              "visited_on": "2021-06-01",
+              "amount": 1
+            },
+            {
+              "customer_id": 101,
+              "name": "B0",
+              "visited_on": "2021-06-01",
+              "amount": 10
+            },
+            {
+              "customer_id": 2,
+              "name": "A1",
+              "visited_on": "2021-06-02",
+              "amount": 2
+            },
+            {
+              "customer_id": 102,
+              "name": "B1",
+              "visited_on": "2021-06-02",
+              "amount": 10
+            },
+            {
+              "customer_id": 3,
+              "name": "A2",
+              "visited_on": "2021-06-03",
+              "amount": 3
+            },
+            {
+              "customer_id": 103,
+              "name": "B2",
+              "visited_on": "2021-06-03",
+              "amount": 10
+            },
+            {
+              "customer_id": 4,
+              "name": "A3",
+              "visited_on": "2021-06-04",
+              "amount": 4
+            },
+            {
+              "customer_id": 104,
+              "name": "B3",
+              "visited_on": "2021-06-04",
+              "amount": 10
+            },
+            {
+              "customer_id": 5,
+              "name": "A4",
+              "visited_on": "2021-06-05",
+              "amount": 5
+            },
+            {
+              "customer_id": 105,
+              "name": "B4",
+              "visited_on": "2021-06-05",
+              "amount": 10
+            },
+            {
+              "customer_id": 6,
+              "name": "A5",
+              "visited_on": "2021-06-06",
+              "amount": 6
+            },
+            {
+              "customer_id": 106,
+              "name": "B5",
+              "visited_on": "2021-06-06",
+              "amount": 10
+            },
+            {
+              "customer_id": 7,
+              "name": "A6",
+              "visited_on": "2021-06-07",
+              "amount": 7
+            },
+            {
+              "customer_id": 107,
+              "name": "B6",
+              "visited_on": "2021-06-07",
+              "amount": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "visited_on",
+          "amount",
+          "average_amount"
+        ],
+        "rows": [
+          [
+            "2021-06-07",
+            98,
+            14
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiple-visits"
+      ]
+    },
+    {
+      "id": "hidden-fourteen-days",
+      "name": "hidden: two complete weeks of varying revenue",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 1,
+              "name": "C1",
+              "visited_on": "2022-05-10",
+              "amount": 2
+            },
+            {
+              "customer_id": 2,
+              "name": "C2",
+              "visited_on": "2022-05-11",
+              "amount": 9
+            },
+            {
+              "customer_id": 3,
+              "name": "C3",
+              "visited_on": "2022-05-12",
+              "amount": 4
+            },
+            {
+              "customer_id": 4,
+              "name": "C4",
+              "visited_on": "2022-05-13",
+              "amount": 11
+            },
+            {
+              "customer_id": 5,
+              "name": "C5",
+              "visited_on": "2022-05-14",
+              "amount": 6
+            },
+            {
+              "customer_id": 6,
+              "name": "C6",
+              "visited_on": "2022-05-15",
+              "amount": 13
+            },
+            {
+              "customer_id": 7,
+              "name": "C7",
+              "visited_on": "2022-05-16",
+              "amount": 8
+            },
+            {
+              "customer_id": 8,
+              "name": "C8",
+              "visited_on": "2022-05-17",
+              "amount": 15
+            },
+            {
+              "customer_id": 9,
+              "name": "C9",
+              "visited_on": "2022-05-18",
+              "amount": 10
+            },
+            {
+              "customer_id": 10,
+              "name": "C10",
+              "visited_on": "2022-05-19",
+              "amount": 17
+            },
+            {
+              "customer_id": 11,
+              "name": "C11",
+              "visited_on": "2022-05-20",
+              "amount": 12
+            },
+            {
+              "customer_id": 12,
+              "name": "C12",
+              "visited_on": "2022-05-21",
+              "amount": 19
+            },
+            {
+              "customer_id": 13,
+              "name": "C13",
+              "visited_on": "2022-05-22",
+              "amount": 14
+            },
+            {
+              "customer_id": 14,
+              "name": "C14",
+              "visited_on": "2022-05-23",
+              "amount": 21
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "visited_on",
+          "amount",
+          "average_amount"
+        ],
+        "rows": [
+          [
+            "2022-05-16",
+            53,
+            7.57
+          ],
+          [
+            "2022-05-17",
+            66,
+            9.43
+          ],
+          [
+            "2022-05-18",
+            67,
+            9.57
+          ],
+          [
+            "2022-05-19",
+            80,
+            11.43
+          ],
+          [
+            "2022-05-20",
+            81,
+            11.57
+          ],
+          [
+            "2022-05-21",
+            94,
+            13.43
+          ],
+          [
+            "2022-05-22",
+            95,
+            13.57
+          ],
+          [
+            "2022-05-23",
+            108,
+            15.43
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "rolling-window"
+      ]
+    }
+  ]
+}

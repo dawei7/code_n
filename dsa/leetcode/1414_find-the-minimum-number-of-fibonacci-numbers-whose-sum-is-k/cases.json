@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_1414",
+  "cases": [
+    {
+      "id": "sample-seven",
+      "name": "sample: five plus two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 7
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-ten",
+      "name": "sample: eight plus two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 10
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "greedy"
+      ]
+    },
+    {
+      "id": "sample-nineteen",
+      "name": "sample: thirteen plus five plus one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 19
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "multiple-terms"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "smallest input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-fibonacci",
+      "name": "exact large Fibonacci number",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 832040
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "exact-fibonacci"
+      ]
+    },
+    {
+      "id": "real-between-fibonacci",
+      "name": "hidden: several greedy remainders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 4000
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "remainders"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: maximum input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 1000000000
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
+  ]
+}

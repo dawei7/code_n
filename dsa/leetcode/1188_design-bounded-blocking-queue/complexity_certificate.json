@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1188",
+  "status": "verified",
+  "method": "bounded_concurrency",
+  "required_time": "O(1)",
+  "summary": "The source permits at most forty queue-method calls with capacity at most thirty, so per-call complexity is verified through bounded synchronization semantics rather than noisy thread-dominated scaling.",
+  "workload_bound": {
+    "symbol": "Q",
+    "maximum": 40,
+    "unit": "queue-method calls",
+    "source_constraint": "capacity is at most 30 and each test makes at most 40 queue-method calls"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Each completed operation uses constant semaphore, mutex, and deque work after scheduler waiting."},
+    {"kind": "scheduler_stress", "evidence": "Authored cases exercise producer-first, consumer-first, full-queue, empty-queue, and multiple-producer schedules."},
+    {"kind": "semantic_validator", "evidence": "The queue validator checks FIFO results or the permitted producer-order multiset plus final size."},
+    {"kind": "deadlock_timeout", "evidence": "The isolated concurrency subprocess terminates blocked or deadlocked implementations with a hard timeout."}
+  ]
+}

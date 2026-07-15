@@ -8,48 +8,74 @@
 | Category | Algorithms |
 | Topics | Math, Dynamic Programming, Combinatorics |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-all-valid-pickup-and-delivery-options](https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+There are $n$ distinct orders. Order $i$ contributes two labeled events: pickup $P_i$ and delivery $D_i$. Count the sequences containing all $2n$ events exactly once in which every delivery occurs after the pickup belonging to the same order.
+
+Events from different orders may be interleaved in any way, and their pickup or delivery order need not match. Because the number of valid sequences grows rapidly, return the count modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: the number of distinct pickup-and-delivery orders.
 
 **Return value**
 
-TODO
+- The number of permutations of the $2n$ labeled events satisfying $P_i$ before $D_i$ for every order $i$, reduced modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 1`
+- Output: `1`
+- Explanation: only `P1, D1` respects the order constraint.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 2`
+- Output: `6`
+- Explanation: six interleavings place each delivery after its matching pickup.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3`
+- Output: `90`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Insert one labeled order at a time.** Suppose all valid sequences for $i-1$ orders have already been counted. Such a sequence contains $2i-2$ events. After adding two empty positions, there are $2i$ positions available for the new pickup and delivery.
+
+Choose any two distinct positions for the new events. The earlier chosen position must hold the pickup and the later one must hold the delivery, so each unordered pair gives exactly one legal insertion. The number of pairs is
+$$
+\binom{2i}{2}=i(2i-1).
+$$
+Removing order $i$ from any valid $i$-order sequence recovers one valid sequence for $i-1$ orders and its unique pair of insertion positions. This reversible construction neither misses nor duplicates a sequence. Therefore multiply the running count by $i(2i-1)$ for every $i$ from $1$ through $n$, taking the modulus after each step.
+
+#### Complexity detail
+
+The loop performs one constant-time modular update for each of the $n$ orders, giving $O(n)$ time. The running count and loop index occupy $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Pickup/delivery state DP:** Track how many labeled pickups and deliveries have been placed and multiply transitions by the available choices. This is correct but uses $O(n^2)$ states instead of the direct product.
+- **Factorial symmetry:** Among all $(2n)!$ event permutations, independently requiring each pickup to precede its delivery leaves $(2n)!/2^n$ valid sequences. Computing the equivalent product avoids modular division concerns.
+- **Backtracking over events:** Explicitly generate legal next events, but the exponential search is infeasible even for moderate $n$.
+- **Single order:** The factor for $i=1$ is one, matching the sole pickup-then-delivery sequence.
+- **Labeled orders:** Swapping event labels between two orders creates a different sequence and must be counted.
+- **Modular arithmetic:** Reduce after every multiplication so intermediate values remain bounded while preserving the final residue.
+
+</details>

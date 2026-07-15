@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1396",
+  "cases": [
+    {"id": "sample-one-trip", "name": "sample: one completed trip", "kind": "sample", "visible": true, "input": {"operations": [["checkIn", [1, "A", 3]], ["checkOut", [1, "B", 13]], ["getAverageTime", ["A", "B"]]]}, "expected": [null, null, 10.0], "tags": ["sample", "average"]},
+    {"id": "sample-two-trips", "name": "sample: average two durations", "kind": "sample", "visible": true, "input": {"operations": [["checkIn", [1, "A", 1]], ["checkOut", [1, "B", 11]], ["checkIn", [2, "A", 20]], ["checkOut", [2, "B", 40]], ["getAverageTime", ["A", "B"]]]}, "expected": [null, null, null, null, 15.0], "tags": ["sample", "multiple-trips"]},
+    {"id": "sample-ordered-routes", "name": "sample: reverse route is independent", "kind": "sample", "visible": true, "input": {"operations": [["checkIn", [1, "A", 2]], ["checkIn", [2, "B", 3]], ["checkOut", [1, "B", 7]], ["checkOut", [2, "A", 12]], ["getAverageTime", ["A", "B"]], ["getAverageTime", ["B", "A"]]]}, "expected": [null, null, null, null, 5.0, 9.0], "tags": ["sample", "ordered-route"]},
+    {"id": "trial-reused-passenger", "name": "passenger travels again after checkout", "kind": "trial", "visible": true, "input": {"operations": [["checkIn", [7, "X", 1]], ["checkOut", [7, "Y", 5]], ["checkIn", [7, "X", 10]], ["checkOut", [7, "Y", 20]], ["getAverageTime", ["X", "Y"]]]}, "expected": [null, null, null, null, 7.0], "tags": ["trial", "reused-id"]},
+    {"id": "real-query-between-trips", "name": "hidden: later trip updates the average", "kind": "real", "visible": false, "input": {"operations": [["checkIn", [1, "S", 1]], ["checkOut", [1, "T", 5]], ["getAverageTime", ["S", "T"]], ["checkIn", [2, "S", 10]], ["checkOut", [2, "T", 20]], ["getAverageTime", ["S", "T"]]]}, "expected": [null, null, 4.0, null, null, 7.0], "tags": ["hidden", "updated-average"]},
+    {"id": "real-interleaved", "name": "hidden: overlapping active passengers", "kind": "real", "visible": false, "input": {"operations": [["checkIn", [11, "P", 2]], ["checkIn", [22, "P", 4]], ["checkOut", [22, "Q", 9]], ["checkOut", [11, "Q", 14]], ["getAverageTime", ["P", "Q"]]]}, "expected": [null, null, null, null, 8.5], "tags": ["hidden", "interleaved"]}
+  ]
+}

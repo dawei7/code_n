@@ -1,4 +1,4 @@
-"""Optimal solution for LeetCode 1409: Queries on a Permutation With Key."""
+"""Optimal app-local solution for LeetCode 1409."""
 
 
 class _Fenwick:
@@ -10,28 +10,29 @@ class _Fenwick:
             self.tree[index] += delta
             index += index & -index
 
-    def sum(self, index: int) -> int:
+    def prefix_sum(self, index: int) -> int:
         total = 0
-        while index > 0:
+        while index:
             total += self.tree[index]
             index -= index & -index
         return total
 
 
 def solve(queries: list[int], m: int) -> list[int]:
-    q = len(queries)
-    bit = _Fenwick(q + m + 2)
-    positions = {value: q + value for value in range(1, m + 1)}
-    for pos in positions.values():
-        bit.add(pos, 1)
+    query_count = len(queries)
+    tree = _Fenwick(query_count + m + 1)
+    positions = [0] * (m + 1)
+    for value in range(1, m + 1):
+        positions[value] = query_count + value
+        tree.add(positions[value], 1)
 
     answer: list[int] = []
-    front = q
+    front = query_count
     for value in queries:
-        pos = positions[value]
-        answer.append(bit.sum(pos) - 1)
-        bit.add(pos, -1)
+        position = positions[value]
+        answer.append(tree.prefix_sum(position) - 1)
+        tree.add(position, -1)
         positions[value] = front
-        bit.add(front, 1)
+        tree.add(front, 1)
         front -= 1
     return answer

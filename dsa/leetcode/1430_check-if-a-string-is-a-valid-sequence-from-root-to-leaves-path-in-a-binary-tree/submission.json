@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1432",
+  "frontend_id": "1430",
+  "title_slug": "check-if-a-string-is-a-valid-sequence-from-root-to-leaves-path-in-a-binary-tree",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isValidSequence",
+  "verified_submission_id": "2069077262",
+  "verified_at": "2026-07-15T19:20:57.168642+00:00"
+}

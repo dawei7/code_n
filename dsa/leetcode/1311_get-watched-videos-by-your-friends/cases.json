@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1311",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: level one",
+      "name": "sample: friends at level one",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -50,12 +51,12 @@
       ],
       "tags": [
         "sample",
-        "bfs"
+        "breadth-first-search"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: level two",
+      "name": "sample: only one person at level two",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -100,12 +101,100 @@
         "D"
       ],
       "tags": [
-        "sample"
+        "sample",
+        "exact-distance"
       ]
     },
     {
-      "id": "trial-level-zero",
-      "name": "level zero uses starting person",
+      "id": "sample-3",
+      "name": "sample: frequency precedes alphabetical order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "watched_videos": [
+          [
+            "self"
+          ],
+          [
+            "B",
+            "A"
+          ],
+          [
+            "A"
+          ]
+        ],
+        "friends": [
+          [
+            1,
+            2
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "id": 0,
+        "level": 1
+      },
+      "expected": [
+        "B",
+        "A"
+      ],
+      "tags": [
+        "sample",
+        "frequency-order"
+      ]
+    },
+    {
+      "id": "trial-alphabetical-tie",
+      "name": "trial: equal frequencies use alphabetical order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "watched_videos": [
+          [
+            "root"
+          ],
+          [
+            "z",
+            "a"
+          ],
+          [
+            "m",
+            "b"
+          ]
+        ],
+        "friends": [
+          [
+            1,
+            2
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "id": 0,
+        "level": 1
+      },
+      "expected": [
+        "a",
+        "b",
+        "m",
+        "z"
+      ],
+      "tags": [
+        "trial",
+        "alphabetical-tie"
+      ]
+    },
+    {
+      "id": "trial-no-target-level",
+      "name": "trial: requested level has no people",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -125,43 +214,37 @@
             1
           ],
           [
-            0,
-            2
+            0
           ],
-          [
-            1
-          ]
+          []
         ],
-        "id": 1,
-        "level": 0
+        "id": 0,
+        "level": 2
       },
-      "expected": [
-        "B"
-      ],
+      "expected": [],
       "tags": [
         "trial",
-        "edge"
+        "empty-layer"
       ]
     },
     {
-      "id": "real-frequency-tie",
-      "name": "hidden: one video at level two",
+      "id": "hidden-shortest-path",
+      "name": "hidden: a shorter path prevents later recounting",
       "kind": "real",
       "visible": false,
       "input": {
         "watched_videos": [
           [
-            "x"
+            "root"
           ],
           [
-            "y",
-            "z"
+            "near"
           ],
           [
-            "y"
+            "middle"
           ],
           [
-            "z"
+            "far"
           ]
         ],
         "friends": [
@@ -171,25 +254,72 @@
           ],
           [
             0,
+            2,
             3
           ],
           [
             0,
-            3
+            1
           ],
           [
-            1,
-            2
+            1
           ]
         ],
         "id": 0,
         "level": 2
       },
       "expected": [
-        "z"
+        "far"
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "shortest-path",
+        "cycle"
+      ]
+    },
+    {
+      "id": "hidden-duplicate-occurrences",
+      "name": "hidden: repeated entries contribute repeatedly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "watched_videos": [
+          [
+            "root"
+          ],
+          [
+            "x",
+            "x",
+            "a"
+          ],
+          [
+            "x",
+            "b"
+          ]
+        ],
+        "friends": [
+          [
+            1,
+            2
+          ],
+          [
+            0
+          ],
+          [
+            0
+          ]
+        ],
+        "id": 0,
+        "level": 1
+      },
+      "expected": [
+        "a",
+        "b",
+        "x"
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
       ]
     }
   ]

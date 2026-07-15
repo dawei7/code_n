@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1435",
+  "cases": [
+    {
+      "id": "sample-chart",
+      "name": "sample: populated and empty intervals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sessions": [
+            {
+              "session_id": 1,
+              "duration": 30
+            },
+            {
+              "session_id": 2,
+              "duration": 199
+            },
+            {
+              "session_id": 3,
+              "duration": 299
+            },
+            {
+              "session_id": 4,
+              "duration": 580
+            },
+            {
+              "session_id": 5,
+              "duration": 1000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bin",
+          "total"
+        ],
+        "rows": [
+          [
+            "[0-5>",
+            3
+          ],
+          [
+            "[5-10>",
+            1
+          ],
+          [
+            "[10-15>",
+            0
+          ],
+          [
+            "15 or more",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "empty-bin"
+      ]
+    },
+    {
+      "id": "sample-boundaries",
+      "name": "sample: exact interval boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sessions": [
+            {
+              "session_id": 1,
+              "duration": 299
+            },
+            {
+              "session_id": 2,
+              "duration": 300
+            },
+            {
+              "session_id": 3,
+              "duration": 599
+            },
+            {
+              "session_id": 4,
+              "duration": 600
+            },
+            {
+              "session_id": 5,
+              "duration": 899
+            },
+            {
+              "session_id": 6,
+              "duration": 900
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bin",
+          "total"
+        ],
+        "rows": [
+          [
+            "[0-5>",
+            1
+          ],
+          [
+            "[5-10>",
+            2
+          ],
+          [
+            "[10-15>",
+            2
+          ],
+          [
+            "15 or more",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "sample-first-only",
+      "name": "sample: sessions occupy only first bin",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sessions": [
+            {
+              "session_id": 1,
+              "duration": 42
+            },
+            {
+              "session_id": 2,
+              "duration": 120
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bin",
+          "total"
+        ],
+        "rows": [
+          [
+            "[0-5>",
+            2
+          ],
+          [
+            "[5-10>",
+            0
+          ],
+          [
+            "[10-15>",
+            0
+          ],
+          [
+            "15 or more",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "zero-counts"
+      ]
+    },
+    {
+      "id": "trial-each-bin",
+      "name": "one session in every interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sessions": [
+            {
+              "session_id": 1,
+              "duration": 0
+            },
+            {
+              "session_id": 2,
+              "duration": 300
+            },
+            {
+              "session_id": 3,
+              "duration": 600
+            },
+            {
+              "session_id": 4,
+              "duration": 900
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bin",
+          "total"
+        ],
+        "rows": [
+          [
+            "[0-5>",
+            1
+          ],
+          [
+            "[5-10>",
+            1
+          ],
+          [
+            "[10-15>",
+            1
+          ],
+          [
+            "15 or more",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "lower-bounds"
+      ]
+    },
+    {
+      "id": "trial-upper-edges",
+      "name": "values immediately below every upper edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Sessions": [
+            {
+              "session_id": 1,
+              "duration": 299
+            },
+            {
+              "session_id": 2,
+              "duration": 599
+            },
+            {
+              "session_id": 3,
+              "duration": 899
+            },
+            {
+              "session_id": 4,
+              "duration": 901
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bin",
+          "total"
+        ],
+        "rows": [
+          [
+            "[0-5>",
+            1
+          ],
+          [
+            "[5-10>",
+            1
+          ],
+          [
+            "[10-15>",
+            1
+          ],
+          [
+            "15 or more",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "upper-edges"
+      ]
+    },
+    {
+      "id": "real-middle-only",
+      "name": "hidden: only middle interval is populated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Sessions": [
+            {
+              "session_id": 10,
+              "duration": 601
+            },
+            {
+              "session_id": 20,
+              "duration": 750
+            },
+            {
+              "session_id": 30,
+              "duration": 899
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bin",
+          "total"
+        ],
+        "rows": [
+          [
+            "[0-5>",
+            0
+          ],
+          [
+            "[5-10>",
+            0
+          ],
+          [
+            "[10-15>",
+            3
+          ],
+          [
+            "15 or more",
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "empty-bins"
+      ]
+    },
+    {
+      "id": "real-repeated",
+      "name": "hidden: repeated durations count independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Sessions": [
+            {
+              "session_id": 1,
+              "duration": 300
+            },
+            {
+              "session_id": 2,
+              "duration": 300
+            },
+            {
+              "session_id": 3,
+              "duration": 900
+            },
+            {
+              "session_id": 4,
+              "duration": 900
+            },
+            {
+              "session_id": 5,
+              "duration": 900
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "bin",
+          "total"
+        ],
+        "rows": [
+          [
+            "[0-5>",
+            0
+          ],
+          [
+            "[5-10>",
+            2
+          ],
+          [
+            "[10-15>",
+            0
+          ],
+          [
+            "15 or more",
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiplicity"
+      ]
+    }
+  ]
+}

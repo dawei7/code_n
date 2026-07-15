@@ -148,6 +148,16 @@ def _load_solution_source(doc_path: Path, params: list[str]) -> str:
     return _noop_source(params)
 
 
+def _load_class_solution_source(doc_path: Path, params: list[str]) -> str:
+    challenge_id = leetcode_package_id(doc_path.parent)
+    solution_path = leetcode_solution_path(challenge_id, "python") if challenge_id else None
+    if solution_path is not None and solution_path.is_file():
+        source = solution_path.read_text(encoding="utf-8")
+        if source.strip():
+            return source
+    return _noop_source(params)
+
+
 def _package_metadata(doc_path: Path) -> dict[str, Any]:
     challenge_id = leetcode_package_id(doc_path.parent)
     return leetcode_metadata(challenge_id) if challenge_id else {}
@@ -397,7 +407,7 @@ def _parse_complexity(text: str) -> ComplexityClass:
         return ComplexityClass.O_N2
         
     # Check n log n
-    if "n log" in raw or "nlog" in raw:
+    if "n log" in raw or "nlog" in raw or re.search(r"n\s*\\log", raw):
         return ComplexityClass.O_N_LOG_N
         
     # Check log n
@@ -468,7 +478,13 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
         source_url = ""
  
     samples = _examples(text)
-    source = _load_solution_source(path, params) if runnable_in_coden else _noop_source(params)
+    source = (
+        _load_class_solution_source(path, params)
+        if runnable_in_coden and leetcode_category == "concurrency"
+        else _load_solution_source(path, params)
+        if runnable_in_coden
+        else _noop_source(params)
+    )
     required_complexity = _parse_complexity(text) if runnable_in_coden else ComplexityClass.UNKNOWN
     hint = (
         "Use the Reference tab for the problem statement and algorithm outline."
@@ -481,6 +497,8 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
  
     environment_starter = environment_starter_source(leetcode_category, title_match.group(1).strip())
     starter_sources = {environment_starter[0]: environment_starter[1]} if environment_starter else {}
+    if leetcode_category == "concurrency" and runnable_in_coden:
+        starter_sources = {"python": source}
 
     return AlgorithmSpec(
         id=f"lc_{frontend_id}",

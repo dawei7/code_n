@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1405",
+  "cases": [
+    {
+      "id": "sample-dominant",
+      "name": "sample dominant",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 1,
+        "c": 7
+      },
+      "expected": "ccaccbcc",
+      "validator": {
+        "kind": "longest_happy_string"
+      },
+      "tags": [
+        "sample",
+        "dominant"
+      ]
+    },
+    {
+      "id": "sample-two-letters",
+      "name": "sample two letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 7,
+        "b": 1,
+        "c": 0
+      },
+      "expected": "aabaa",
+      "validator": {
+        "kind": "longest_happy_string"
+      },
+      "tags": [
+        "sample",
+        "unused"
+      ]
+    },
+    {
+      "id": "sample-balanced",
+      "name": "sample balanced",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": 2,
+        "b": 2,
+        "c": 2
+      },
+      "expected": "abcabc",
+      "validator": {
+        "kind": "longest_happy_string"
+      },
+      "tags": [
+        "sample",
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-single-copy",
+      "name": "trial single copy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 1,
+        "b": 0,
+        "c": 0
+      },
+      "expected": "a",
+      "validator": {
+        "kind": "longest_happy_string"
+      },
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-only-one-letter",
+      "name": "trial only one letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": 0,
+        "b": 0,
+        "c": 4
+      },
+      "expected": "cc",
+      "validator": {
+        "kind": "longest_happy_string"
+      },
+      "tags": [
+        "trial",
+        "unused"
+      ]
+    },
+    {
+      "id": "real-dominant-uses-all",
+      "name": "real dominant uses all",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": 3,
+        "b": 3,
+        "c": 9
+      },
+      "expected": "ccaccbccacbcabc",
+      "validator": {
+        "kind": "longest_happy_string"
+      },
+      "tags": [
+        "hidden",
+        "dominant"
+      ]
+    },
+    {
+      "id": "real-unequal-balanced",
+      "name": "real unequal balanced",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": 4,
+        "b": 5,
+        "c": 6
+      },
+      "expected": "cbcabcabcabcabc",
+      "validator": {
+        "kind": "longest_happy_string"
+      },
+      "tags": [
+        "hidden",
+        "all-used"
+      ]
+    }
+  ]
+}

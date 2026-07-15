@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1334",
+  "cases": [
+    {"id":"sample-1","name":"sample: four-city graph","kind":"sample","visible":true,"input":{"n":4,"edges":[[0,1,3],[1,2,1],[1,3,4],[2,3,1]],"distance_threshold":4},"expected":3,"tags":["sample","shortest-path"]},
+    {"id":"sample-2","name":"sample: smallest reachable count","kind":"sample","visible":true,"input":{"n":5,"edges":[[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]],"distance_threshold":2},"expected":0,"tags":["sample","threshold"]},
+    {"id":"trial-all-tie","name":"trial: every city reaches every other city","kind":"trial","visible":true,"input":{"n":3,"edges":[[0,1,5],[1,2,5],[0,2,20]],"distance_threshold":10},"expected":2,"tags":["trial","tie-break"]},
+    {"id":"trial-indirect","name":"trial: indirect path beats direct edge","kind":"trial","visible":true,"input":{"n":4,"edges":[[0,1,2],[1,2,2],[0,2,9],[2,3,20]],"distance_threshold":4},"expected":3,"tags":["trial","indirect-path"]},
+    {"id":"trial-disconnected","name":"trial: disconnected components","kind":"trial","visible":true,"input":{"n":4,"edges":[[0,1,1],[2,3,1]],"distance_threshold":5},"expected":3,"tags":["trial","disconnected","tie-break"]},
+    {"id":"hidden-inclusive","name":"hidden: path exactly at threshold","kind":"real","visible":false,"input":{"n":3,"edges":[[0,1,3],[1,2,4]],"distance_threshold":7},"expected":2,"tags":["hidden","boundary"]},
+    {"id":"hidden-chain","name":"hidden: unequal chain neighborhoods","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1,1],[1,2,1],[2,3,1],[3,4,10]],"distance_threshold":2},"expected":4,"tags":["hidden","chain"]}
+  ]
+}

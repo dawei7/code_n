@@ -8,76 +8,70 @@
 | Category | Algorithms |
 | Topics | Array, Math, Dynamic Programming, Game Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [stone-game-iii](https://leetcode.com/problems/stone-game-iii/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/stone-game-iii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/stone-game-iii/).
 
 ### Goal
-Alice and Bob continue their games with piles of stones. There are several stones arranged in a row, and each stone has an associated value which is an integer given in the array `stone_value`.
 
-Alice and Bob take turns, with Alice starting first. On each turn, a player can take `1`, `2`, or `3` stones from the first remaining stones in the row.
+Stones are arranged in a row, and `stoneValue[i]` is the possibly negative value of one stone. Alice and Bob alternate turns, with Alice moving first. On a turn, the player removes the first one, two, or three remaining stones and adds their values to their score.
 
-The game ends when no more stones are left. The player with the highest score wins. The score of a player is the sum of the values of the stones taken by that player.
-
-Return `"Alice"` if Alice wins, `"Bob"` if Bob wins, or `"Tie"` if they get the same score.
+The game ends after every stone has been taken. Both players choose moves optimally. Return `"Alice"` when Alice's final score is greater, `"Bob"` when Bob's is greater, and `"Tie"` when the scores are equal.
 
 ### Function Contract
+
 **Inputs**
 
-- `stone_value`: List[int]
+- `stoneValue`: an array of $n$ integers, where $1 \le n \le 5 \times 10^4$ and $-1000 \le \texttt{stoneValue[i]} \le 1000$.
 
 **Return value**
 
-str - 'Alice', 'Bob', or 'Tie'
+- `"Alice"`, `"Bob"`, or `"Tie"` according to optimal play and final scores.
 
 ### Examples
+
 **Example 1**
 
-- Input: `stone_value = [1, 2, 3, 7]`
+- Input: `stoneValue = [1,2,3,7]`
 - Output: `"Bob"`
 
 **Example 2**
 
-- Input: `stone_value = [2]`
-- Output: `'Alice'`
+- Input: `stoneValue = [1,2,3,-9]`
+- Output: `"Alice"`
 
 **Example 3**
 
-- Input: `stone_value = [-6, 8]`
-- Output: `'Alice'`
+- Input: `stoneValue = [1,2,3,6]`
+- Output: `"Tie"`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-- [Climbing stairs recurrence](dp_02_climbing-stairs.md)
-- [Coin change](dp_05_coin-change.md)
-- [Longest increasing subsequence](dp_07_longest-increasing-subsequence.md)
-- [House robber](dp_11_house-robber.md)
+- **Time:** $O(n)$
+- **Space:** $O(n)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(n)` auxiliary space, excluding the output object unless the output itself is the constructed result.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(stone_value):
-    n = len(stone_value)
-    dp = [0] * (n + 1)
-    for i in range(n - 1, -1, -1):
-        take = 0
-        dp[i] = float("-inf")
-        for j in range(i, min(i + 3, n)):
-            take += stone_value[j]
-            dp[i] = max(dp[i], take - dp[j + 1])
-    if dp[0] > 0:
-        return "Alice"
-    if dp[0] < 0:
-        return "Bob"
-    return "Tie"
-```
+#### General
+
+**Measure the advantage of the player to move.** Let `difference[i]` be the greatest score difference current player minus opponent achievable from the suffix beginning at `i`.
+
+If the current player takes one through three stones, accumulate their values as `taken`. Roles swap on the remaining suffix, where `difference[next]` is the next player's advantage. The current move therefore produces `taken - difference[next]`. Store the maximum of the legal choices. The empty suffix has difference zero.
+
+Backward evaluation makes every required later state available. The recurrence tests every legal first move, and subtraction incorporates the opponent's optimal response, so induction over suffix length proves each state is the true optimal advantage. The sign of `difference[0]` directly identifies Alice, Bob, or a tie.
+
+#### Complexity detail
+
+Each of the $n$ suffix states tests at most three moves, giving $O(n)$ time. The difference table uses $O(n)$ space. Because only the next three states are needed, a rolling implementation can reduce auxiliary space to $O(1)$, but the table keeps the recurrence explicit.
+
+#### Alternatives and edge cases
+
+- **Absolute-score DP with suffix totals:** Compute the current player's best score as suffix total minus the opponent's best remainder. It is equivalent, but recomputing every suffix total makes it $O(n^2)$.
+- **Minimax without memoization:** Exploring every take sequence repeats suffix states and takes exponential time.
+- **Negative stones:** A player must take at least one stone while any remain, so choosing fewer negative values can matter.
+- **Take all remaining:** When at most three stones remain, any legal prefix length through the full suffix is considered.
+- **Tie:** A zero optimal difference must return `"Tie"`, not either player's name.
+- **Greedy local sum:** Taking the largest immediate one-, two-, or three-stone sum can lose because it ignores the opponent's suffix.
+
 </details>

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1523",
+  "frontend_id": "1393",
+  "title_slug": "capital-gainloss",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2068851797",
+  "verified_at": "2026-07-15T16:21:38.449799+00:00"
+}

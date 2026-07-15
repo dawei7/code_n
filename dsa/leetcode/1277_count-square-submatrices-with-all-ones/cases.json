@@ -1,112 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1277",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: fifteen squares",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "matrix": [
-          [
-            0,
-            1,
-            1,
-            1
-          ],
-          [
-            1,
-            1,
-            1,
-            1
-          ],
-          [
-            0,
-            1,
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 15,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: seven squares",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "matrix": [
-          [
-            1,
-            0,
-            1
-          ],
-          [
-            1,
-            1,
-            0
-          ],
-          [
-            1,
-            1,
-            0
-          ]
-        ]
-      },
-      "expected": 7,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-no-ones",
-      "name": "no ones",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "matrix": [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-two-by-two-full",
-      "name": "hidden: full two by two",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "matrix": [
-          [
-            1,
-            1
-          ],
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-fifteen", "name": "sample: fifteen overlapping squares", "kind": "sample", "visible": true, "input": {"matrix": [[0,1,1,1],[1,1,1,1],[0,1,1,1]]}, "expected": 15, "tags": ["sample", "overlap"]},
+    {"id": "sample-seven", "name": "sample: seven squares in a sparse matrix", "kind": "sample", "visible": true, "input": {"matrix": [[1,0,1],[1,1,0],[1,1,0]]}, "expected": 7, "tags": ["sample", "sparse"]},
+    {"id": "sample-single", "name": "sample: one occupied cell", "kind": "sample", "visible": true, "input": {"matrix": [[1]]}, "expected": 1, "tags": ["sample", "singleton"]},
+    {"id": "trial-zero", "name": "trial: matrix with no ones", "kind": "trial", "visible": true, "input": {"matrix": [[0,0],[0,0],[0,0]]}, "expected": 0, "tags": ["trial", "all-zero"]},
+    {"id": "trial-rectangle", "name": "trial: all-ones rectangular matrix", "kind": "trial", "visible": true, "input": {"matrix": [[1,1,1,1],[1,1,1,1]]}, "expected": 11, "tags": ["trial", "rectangular"]},
+    {"id": "hidden-checkerboard", "name": "hidden: checkerboard has only unit squares", "kind": "real", "visible": false, "input": {"matrix": [[1,0,1,0],[0,1,0,1],[1,0,1,0]]}, "expected": 6, "tags": ["hidden", "checkerboard"]},
+    {"id": "hidden-full-four", "name": "hidden: all-ones four by four matrix", "kind": "real", "visible": false, "input": {"matrix": [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]}, "expected": 30, "tags": ["hidden", "nested-squares"]}
   ]
 }

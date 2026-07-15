@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1358",
+  "cases": [
+    {
+      "id": "sample-repeated-cycle",
+      "name": "sample: repeated abc cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcabc"
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "overlapping"
+      ]
+    },
+    {
+      "id": "sample-repeated-a",
+      "name": "sample: three possible starts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaacb"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "repeated-character"
+      ]
+    },
+    {
+      "id": "sample-minimum-valid",
+      "name": "sample: minimum valid string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-two-valid-starts",
+      "name": "trial: later repeat changes boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abac"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-no-complete-substring",
+      "name": "trial: one required character absent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabb"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "absent-character"
+      ]
+    },
+    {
+      "id": "hidden-long-prefix",
+      "name": "hidden: many starts share one ending",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaabc"
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "late-completion"
+      ]
+    },
+    {
+      "id": "hidden-reverse-and-repeat",
+      "name": "hidden: changing latest occurrence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "cbaabc"
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "latest-index"
+      ]
+    }
+  ]
+}

@@ -8,25 +8,31 @@
 | Category | Algorithms |
 | Topics | Array, Queue, Sliding Window, Heap (Priority Queue), Ordered Set, Monotonic Queue |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/).
 
 ### Goal
-Find the longest contiguous subarray where the difference between the largest and smallest values is at most `limit`.
+
+Find the maximum length of a nonempty contiguous subarray of `nums` such that the absolute difference between any two elements in that subarray is at most `limit`.
+
+For a fixed subarray, the largest absolute pairwise difference is the difference between its maximum and minimum values. The subarray is therefore valid exactly when `maximum - minimum <= limit`.
+
+The selected elements must occupy consecutive indices in the original array; values cannot be skipped to create a longer subsequence.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: a list of integers.
-- `limit`: the maximum allowed absolute difference inside the window.
+- `nums`: an integer array of length $n$, where $1 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^9$.
+- `limit`: the greatest permitted difference, where $0 \le \texttt{limit} \le 10^9$.
 
 **Return value**
 
-The maximum length of a valid contiguous subarray.
+- The greatest length of a contiguous subarray whose maximum minus minimum is at most `limit`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [8,2,4,7], limit = 4`
@@ -42,43 +48,41 @@ The maximum length of a valid contiguous subarray.
 - Input: `nums = [4,2,2,2,4,4,2,2], limit = 0`
 - Output: `3`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Sliding window with two monotonic deques. One deque keeps candidate maximums and the other keeps candidate minimums; shrink the left side until their difference is within the limit.
+- **Time:** $O(n)$
+- **Space:** $O(n)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(n)` for the deques in the worst case.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-from collections import deque
+#### General
 
+**Use a window because invalidity is monotone.** Expand a right endpoint from left to right. If the current window has `maximum - minimum > limit`, adding more elements cannot make that same left boundary valid: the maximum can only rise and the minimum can only fall. Move the left boundary forward until the window becomes valid again.
 
-def solve(nums, limit):
-    min_q = deque()
-    max_q = deque()
-    left = 0
-    best = 0
-    for right, value in enumerate(nums):
-        while min_q and nums[min_q[-1]] >= value:
-            min_q.pop()
-        while max_q and nums[max_q[-1]] <= value:
-            max_q.pop()
-        min_q.append(right)
-        max_q.append(right)
-        while nums[max_q[0]] - nums[min_q[0]] > limit:
-            if min_q[0] == left:
-                min_q.popleft()
-            if max_q[0] == left:
-                max_q.popleft()
-            left += 1
-        best = max(best, right - left + 1)
-    return best
-```
+**Maintain candidate minima in increasing order.** Store indices in `min_deque` so their values increase from front to back. Before appending a new index `right`, remove back indices whose values are at least `nums[right]`. The new value is no larger and expires later, so every removed value is dominated for all future windows. The front is the current minimum.
+
+**Maintain candidate maxima symmetrically.** Store indices in `max_deque` with decreasing values. Remove back indices whose values are at most the new value, then append `right`. The front is the current maximum.
+
+**Expire values as the left boundary advances.** While the two front values differ by more than `limit`, increment `left`. If either deque front equals the index being removed, pop it first. Indices not at the front need no direct removal: they remain behind a more extreme live candidate and will either become a front later or be removed as dominated.
+
+**Why the remaining window is the best one ending at right.** Shrinking stops at the smallest left boundary for which the window ending at `right` is valid. Any earlier left boundary was explicitly invalid; any later one is shorter. Thus `right - left + 1` is the longest valid window ending at this right endpoint. Taking the maximum over all endpoints yields the global answer.
+
+**Why deque updates remain linear.** Each index is appended once to each deque and can be removed at most once from each deque, either from the back as dominated or from the front as expired. The nested loops therefore perform only $O(n)$ total deque operations rather than $O(n)$ work per endpoint.
+
+#### Complexity detail
+
+Every array index enters and leaves each monotonic deque at most once, so the full sliding-window scan takes $O(n)$ time. In the worst case a deque can retain $O(n)$ indices, giving $O(n)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Recompute minimum and maximum for every window:** A sliding window with repeated full-window scans is correct but can take $O(n^2)$ time.
+- **Balanced ordered multiset:** Insert, remove, and read both extremes in $O(\log n)$ time per element, for $O(n\log n)$ total time.
+- **Two heaps with lazy deletion:** This also tracks extremes but has more bookkeeping and logarithmic operations.
+- **Zero limit:** A valid window may contain only one distinct value, though repeated equal values can form a long answer.
+- **Exact limit:** A maximum-minus-minimum difference equal to `limit` is valid.
+- **Single element:** Its range is zero, so the answer is `1`.
+- **Duplicate extremes:** Index-based deques expire the correct occurrences even when values repeat.
+- **Large limit:** The entire array may remain valid, and the window never needs to shrink.
+
 </details>

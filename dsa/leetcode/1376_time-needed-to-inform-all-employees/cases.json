@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1376",
+  "cases": [
+    {
+      "id": "sample-single",
+      "name": "sample: head is the only employee",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "headID": 0,
+        "manager": [
+          -1
+        ],
+        "informTime": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "sample-star",
+      "name": "sample: head informs every employee",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "headID": 2,
+        "manager": [
+          2,
+          2,
+          -1,
+          2,
+          2,
+          2
+        ],
+        "informTime": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "star"
+      ]
+    },
+    {
+      "id": "sample-chain",
+      "name": "sample: weighted reporting chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "headID": 6,
+        "manager": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          -1
+        ],
+        "informTime": [
+          0,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "sample",
+        "chain"
+      ]
+    },
+    {
+      "id": "trial-branching",
+      "name": "trial: deepest branch determines time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8,
+        "headID": 0,
+        "manager": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          6
+        ],
+        "informTime": [
+          2,
+          3,
+          4,
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "branching"
+      ]
+    },
+    {
+      "id": "trial-nonzero-head",
+      "name": "trial: nonzero head with deeper report",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "headID": 1,
+        "manager": [
+          1,
+          -1,
+          1,
+          2
+        ],
+        "informTime": [
+          0,
+          2,
+          3,
+          0
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "head-id"
+      ]
+    },
+    {
+      "id": "hidden-uniform-star",
+      "name": "hidden: many simultaneous reports",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "headID": 0,
+        "manager": [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "informTime": [
+          7,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "simultaneous"
+      ]
+    },
+    {
+      "id": "hidden-zero-delay",
+      "name": "hidden: chain with zero delays",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "headID": 0,
+        "manager": [
+          -1,
+          0,
+          1,
+          2
+        ],
+        "informTime": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "zero"
+      ]
+    }
+  ]
+}

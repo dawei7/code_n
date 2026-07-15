@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_1399",
+  "cases": [
+    {"id": "sample-thirteen", "name": "sample: four groups tie", "kind": "sample", "visible": true, "input": {"n": 13}, "expected": 4, "tags": ["sample", "tie"]},
+    {"id": "sample-two", "name": "sample: both groups are singletons", "kind": "sample", "visible": true, "input": {"n": 2}, "expected": 2, "tags": ["sample", "singleton"]},
+    {"id": "sample-fifteen", "name": "sample: six groups tie", "kind": "sample", "visible": true, "input": {"n": 15}, "expected": 6, "tags": ["sample", "tie"]},
+    {"id": "trial-one", "name": "minimum upper bound", "kind": "trial", "visible": true, "input": {"n": 1}, "expected": 1, "tags": ["trial", "boundary"]},
+    {"id": "trial-twenty-four", "name": "two-digit grouping boundary", "kind": "trial", "visible": true, "input": {"n": 24}, "expected": 5, "tags": ["trial", "two-digit"]},
+    {"id": "real-power-of-ten", "name": "hidden: power of ten rejoins small sum", "kind": "real", "visible": false, "input": {"n": 100}, "expected": 1, "tags": ["hidden", "power-of-ten"]},
+    {"id": "real-multiple-decades", "name": "hidden: several complete decimal decades", "kind": "real", "visible": false, "input": {"n": 50}, "expected": 1, "tags": ["hidden", "distribution"]}
+  ]
+}

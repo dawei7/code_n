@@ -1,14 +1,12 @@
-"""Optimal solution for LeetCode 1403: Minimum Subsequence in Non-Increasing Order."""
+"""Optimal app-local solution for LeetCode 1403."""
 
 
 def solve(nums: list[int]) -> list[int]:
-    nums.sort(reverse=True)
-    total = sum(nums)
-    chosen = 0
-    result: list[int] = []
-    for value in nums:
-        result.append(value)
-        chosen += value
-        if chosen > total - chosen:
-            return result
-    return result
+    ordered = sorted(nums, reverse=True)
+    total = sum(ordered)
+    selected_sum = 0
+    for length, value in enumerate(ordered, start=1):
+        selected_sum += value
+        if selected_sum > total - selected_sum:
+            return ordered[:length]
+    return ordered

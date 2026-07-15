@@ -2,8 +2,8 @@
   "challenge_id": "lc_1439",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: fifth smallest sum",
+      "id": "sample-five",
+      "name": "sample: fifth sum from two rows",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,12 +24,12 @@
       "expected": 7,
       "tags": [
         "sample",
-        "heap"
+        "pair-sums"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: largest pair sum",
+      "id": "sample-last",
+      "name": "sample: final rank among nine choices",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -49,12 +49,13 @@
       },
       "expected": 17,
       "tags": [
-        "sample"
+        "sample",
+        "last-rank"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: three sorted rows",
+      "id": "sample-three-rows",
+      "name": "sample: merge three sorted rows",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -79,34 +80,113 @@
       },
       "expected": 9,
       "tags": [
-        "sample"
+        "sample",
+        "three-rows"
       ]
     },
     {
-      "id": "real-small-three-rows",
-      "name": "hidden: compact three-row matrix",
+      "id": "trial-one-row",
+      "name": "one row preserves its sorted ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            2,
+            5,
+            9,
+            12
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "one-row"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "equal sums retain multiplicity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "k": 4
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-first",
+      "name": "hidden: first rank chooses every row minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            2,
+            8
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-overlap",
+      "name": "hidden: overlapping pair sums",
       "kind": "real",
       "visible": false,
       "input": {
         "mat": [
           [
             1,
-            2
+            2,
+            4
           ],
           [
+            1,
             3,
             4
           ],
           [
-            5,
-            6
+            2,
+            3,
+            5
           ]
         ],
-        "k": 4
+        "k": 10
       },
-      "expected": 10,
+      "expected": 7,
       "tags": [
-        "hidden"
+        "hidden",
+        "overlap"
       ]
     }
   ]

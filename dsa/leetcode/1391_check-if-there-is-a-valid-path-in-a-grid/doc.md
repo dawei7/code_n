@@ -8,24 +8,30 @@
 | Category | Algorithms |
 | Topics | Array, Depth-First Search, Breadth-First Search, Union-Find, Matrix |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-there-is-a-valid-path-in-a-grid](https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-there-is-a-valid-path-in-a-grid/).
 
 ### Goal
-Each cell contains a street shape connecting two directions. Starting at the top-left cell, decide whether the street connections allow travel to the bottom-right cell without crossing an incompatible edge.
+
+An $m \times n$ grid represents streets. Every cell contains one of six street types, and each type joins exactly two sides of its cell: type `1` joins left and right, type `2` joins up and down, type `3` joins left and down, type `4` joins right and down, type `5` joins left and up, and type `6` joins right and up.
+
+A move between orthogonally adjacent cells is valid only when the current street opens toward the neighbor and the neighboring street opens back toward the current cell. Street pieces cannot be changed or rotated.
+
+Determine whether the existing streets contain a valid path from the upper-left cell `(0, 0)` to the lower-right cell `(m - 1, n - 1)`.
 
 ### Function Contract
+
 **Inputs**
 
-- `grid`: an `m x n` matrix of street type ids from `1` to `6`.
+- `grid`: a nonempty $m \times n$ matrix whose entries are street types from `1` through `6`, with $1 \le m,n \le 300$.
 
 **Return value**
 
-`true` if there is a connected valid path from `(0, 0)` to `(m - 1, n - 1)`, otherwise `false`.
+- `true` if compatible street connections join the upper-left and lower-right cells; otherwise `false`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `grid = [[2,4,3],[6,5,2]]`
@@ -41,50 +47,34 @@ Each cell contains a street shape connecting two directions. Starting at the top
 - Input: `grid = [[1,1,2]]`
 - Output: `false`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Graph traversal with compatibility checks. Map each street type to its open directions, move only along open exits, and require the neighboring street to have the opposite opening.
+- **Time:** $O(mn)$
+- **Space:** $O(mn)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(mn)`
-- **Space Complexity**: `O(mn)` for visited state or traversal queue/stack.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-"""Optimal solution for LeetCode 1391: Check if There is a Valid Path in a Grid."""
+#### General
 
-from collections import deque
+**Treat compatible borders as graph edges.** Associate each street type with its two opening directions. Begin a breadth-first search at `(0, 0)`. From a cell, inspect only the two neighbors indicated by its street piece.
 
+An opening alone does not establish an edge. For a proposed direction `(dr, dc)`, first require the neighbor to lie inside the grid, then require its opening set to contain the reverse direction `(-dr, -dc)`. This reciprocal check precisely matches the rule that the two street pieces connect across their shared border.
 
-def solve(grid: list[list[int]]) -> bool:
-    openings = {
-        1: [(0, -1), (0, 1)],
-        2: [(-1, 0), (1, 0)],
-        3: [(0, -1), (1, 0)],
-        4: [(0, 1), (1, 0)],
-        5: [(0, -1), (-1, 0)],
-        6: [(0, 1), (-1, 0)],
-    }
-    rows, cols = len(grid), len(grid[0])
-    queue: deque[tuple[int, int]] = deque([(0, 0)])
-    seen = {(0, 0)}
+Mark a cell when it enters the queue. Every enqueued cell is reachable by a sequence of compatible borders: this is true for the start, and the reciprocal check extends such a path by one valid move. Conversely, any valid path can be followed edge by edge by the search because each of its moves passes that same check. Thus reaching the lower-right cell is equivalent to the requested path existing. The visited set prevents cycles from causing repeated work.
 
-    while queue:
-        r, c = queue.popleft()
-        if r == rows - 1 and c == cols - 1:
-            return True
-        for dr, dc in openings[grid[r][c]]:
-            nr, nc = r + dr, c + dc
-            if not (0 <= nr < rows and 0 <= nc < cols) or (nr, nc) in seen:
-                continue
-            if (-dr, -dc) in openings[grid[nr][nc]]:
-                seen.add((nr, nc))
-                queue.append((nr, nc))
-    return False
-```
+#### Complexity detail
+
+There are $mn$ cells. Each is enqueued at most once and exposes exactly two directions, so traversal time is $O(mn)$. The queue and visited state can each hold $O(mn)$ coordinates.
+
+#### Alternatives and edge cases
+
+- **Depth-first search:** A stack or recursion with the same reciprocal checks also runs in $O(mn)$; recursion can exceed the language call-stack limit on a long path.
+- **Union-find:** Join every reciprocally compatible neighboring pair and compare the two endpoint roots. This also costs near-linear time but builds connectivity beyond what the single query needs.
+- **One-sided opening:** A current tile pointing at a neighbor is insufficient when the neighbor does not point back.
+- **Boundary-facing opening:** An opening that leaves the grid produces no move.
+- **Cycles:** Visited state is necessary even though each tile has only two openings.
+- **Single cell:** The start already equals the destination, so the answer is `true` regardless of its street type.
+- **Destination orientation:** Reaching the destination is enough; its unused opening need not lead anywhere.
+
 </details>

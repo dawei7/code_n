@@ -1,98 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1343",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: threshold windows",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          2,
-          2,
-          2,
-          2,
-          5,
-          5,
-          5,
-          8
-        ],
-        "k": 3,
-        "threshold": 4
-      },
-      "expected": 3,
-      "tags": [
-        "sample",
-        "sliding-window"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: many high windows",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          11,
-          13,
-          17,
-          23,
-          29,
-          31,
-          7,
-          5,
-          2,
-          3
-        ],
-        "k": 3,
-        "threshold": 5
-      },
-      "expected": 6,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-k-one",
-      "name": "window size one",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "k": 1,
-        "threshold": 1
-      },
-      "expected": 4,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-whole-array",
-      "name": "hidden: whole array window",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ],
-        "k": 5,
-        "threshold": 3
-      },
-      "expected": 1,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: threshold windows","kind":"sample","visible":true,"input":{"arr":[2,2,2,2,5,5,5,8],"k":3,"threshold":4},"expected":3,"tags":["sample","sliding-window"]},
+    {"id":"sample-2","name":"sample: many high windows","kind":"sample","visible":true,"input":{"arr":[11,13,17,23,29,31,7,5,2,3],"k":3,"threshold":5},"expected":6,"tags":["sample","fractional-average"]},
+    {"id":"trial-none","name":"trial: no window reaches threshold","kind":"trial","visible":true,"input":{"arr":[1,1,1,1],"k":2,"threshold":2},"expected":0,"tags":["trial","none"]},
+    {"id":"trial-k-one","name":"trial: window size one","kind":"trial","visible":true,"input":{"arr":[1,3,2,4],"k":1,"threshold":3},"expected":2,"tags":["trial","boundary"]},
+    {"id":"trial-zero-threshold","name":"trial: zero threshold qualifies every window","kind":"trial","visible":true,"input":{"arr":[1,2,3],"k":2,"threshold":0},"expected":2,"tags":["trial","zero-threshold"]},
+    {"id":"hidden-whole-array","name":"hidden: whole array window exactly qualifies","kind":"real","visible":false,"input":{"arr":[1,2,3,4,5],"k":5,"threshold":3},"expected":1,"tags":["hidden","whole-array"]},
+    {"id":"hidden-fractional","name":"hidden: fractional average above threshold","kind":"real","visible":false,"input":{"arr":[4,5,4],"k":2,"threshold":4},"expected":2,"tags":["hidden","fractional-average"]}
   ]
 }

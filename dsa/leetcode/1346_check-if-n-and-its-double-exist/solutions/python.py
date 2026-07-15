@@ -1,3 +1,6 @@
+"""Optimal app-local solution for LeetCode 1346."""
+
+
 def solve(arr):
     seen = set()
     for value in arr:

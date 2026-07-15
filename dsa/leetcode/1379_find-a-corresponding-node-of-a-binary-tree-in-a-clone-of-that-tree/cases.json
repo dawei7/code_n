@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1379",
+  "cases": [
+    {
+      "id": "sample-internal",
+      "name": "sample: internal target with children",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "original": {
+          "tree": [
+            7,
+            4,
+            3,
+            null,
+            null,
+            6,
+            19
+          ],
+          "target_index": 2
+        },
+        "cloned": {
+          "clone_of": "original"
+        },
+        "target": {
+          "target_of": "original"
+        }
+      },
+      "expected": [
+        3,
+        6,
+        19
+      ],
+      "tags": [
+        "sample",
+        "internal"
+      ]
+    },
+    {
+      "id": "sample-root",
+      "name": "sample: target is root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "original": {
+          "tree": [
+            7
+          ],
+          "target_index": 0
+        },
+        "cloned": {
+          "clone_of": "original"
+        },
+        "target": {
+          "target_of": "original"
+        }
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "sample",
+        "root"
+      ]
+    },
+    {
+      "id": "sample-skewed",
+      "name": "sample: target in right chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "original": {
+          "tree": [
+            8,
+            null,
+            6,
+            null,
+            5,
+            null,
+            4
+          ],
+          "target_index": 2
+        },
+        "cloned": {
+          "clone_of": "original"
+        },
+        "target": {
+          "target_of": "original"
+        }
+      },
+      "expected": [
+        6,
+        null,
+        5,
+        null,
+        4
+      ],
+      "tags": [
+        "sample",
+        "skewed"
+      ]
+    },
+    {
+      "id": "trial-duplicate",
+      "name": "trial: duplicate value at root and target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "original": {
+          "tree": [
+            7,
+            4,
+            7,
+            null,
+            null,
+            6,
+            8
+          ],
+          "target_index": 2
+        },
+        "cloned": {
+          "clone_of": "original"
+        },
+        "target": {
+          "target_of": "original"
+        }
+      },
+      "expected": [
+        7,
+        6,
+        8
+      ],
+      "tags": [
+        "trial",
+        "duplicate-values"
+      ]
+    },
+    {
+      "id": "trial-left-leaf",
+      "name": "trial: target is left leaf",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "original": {
+          "tree": [
+            5,
+            3,
+            9,
+            2,
+            4,
+            8,
+            10
+          ],
+          "target_index": 3
+        },
+        "cloned": {
+          "clone_of": "original"
+        },
+        "target": {
+          "target_of": "original"
+        }
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "trial",
+        "leaf"
+      ]
+    },
+    {
+      "id": "hidden-deep",
+      "name": "hidden: target deep in left chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "original": {
+          "tree": [
+            1,
+            2,
+            null,
+            3,
+            null,
+            4,
+            null,
+            5
+          ],
+          "target_index": 7
+        },
+        "cloned": {
+          "clone_of": "original"
+        },
+        "target": {
+          "target_of": "original"
+        }
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "hidden",
+        "deep"
+      ]
+    },
+    {
+      "id": "hidden-right-internal",
+      "name": "hidden: right internal node",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "original": {
+          "tree": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "target_index": 2
+        },
+        "cloned": {
+          "clone_of": "original"
+        },
+        "target": {
+          "target_of": "original"
+        }
+      },
+      "expected": [
+        3,
+        6,
+        7
+      ],
+      "tags": [
+        "hidden",
+        "internal"
+      ]
+    }
+  ]
+}

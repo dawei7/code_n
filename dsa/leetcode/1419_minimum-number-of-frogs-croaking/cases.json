@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_1419",
+  "cases": [
+    {
+      "id": "sample-sequential",
+      "name": "sample: one frog croaks twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "croakOfFrogs": "croakcroak"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "sequential"
+      ]
+    },
+    {
+      "id": "sample-overlap",
+      "name": "sample: two overlapping frogs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "croakOfFrogs": "crcoakroak"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "sample-wrong-stage",
+      "name": "sample: wrong internal character order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "croakOfFrogs": "croakcrook"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "invalid"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "one complete sound",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "croakOfFrogs": "croak"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-full-overlap",
+      "name": "three fully overlapping frogs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "croakOfFrogs": "cccrrroooaaakkk"
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "real-incomplete",
+      "name": "hidden: ordered but incomplete ending",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "croakOfFrogs": "croakcroa"
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "incomplete"
+      ]
+    },
+    {
+      "id": "real-premature",
+      "name": "hidden: later stage has no predecessor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "croakOfFrogs": "croakrcaok"
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "predecessor"
+      ]
+    }
+  ]
+}

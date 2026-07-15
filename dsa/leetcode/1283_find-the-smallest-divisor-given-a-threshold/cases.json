@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1283",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: divisor five",
+      "name": "sample: first feasible divisor is five",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -23,7 +24,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: divisor max value",
+      "name": "sample: threshold equals array length",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -38,12 +39,13 @@
       },
       "expected": 44,
       "tags": [
-        "sample"
+        "sample",
+        "maximum"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: huge threshold",
+      "name": "sample: divisor one is feasible",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -56,12 +58,50 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "minimum"
       ]
     },
     {
-      "id": "real-small-primes",
-      "name": "hidden: small primes",
+      "id": "trial-single-value",
+      "name": "trial: one array value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          19
+        ],
+        "threshold": 4
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "trial: repeated values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          8,
+          8,
+          8
+        ],
+        "threshold": 8
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "repeated"
+      ]
+    },
+    {
+      "id": "hidden-small-primes",
+      "name": "hidden: small prime values",
       "kind": "real",
       "visible": false,
       "input": {
@@ -77,6 +117,25 @@
       "expected": 3,
       "tags": [
         "hidden"
+      ]
+    },
+    {
+      "id": "hidden-million-boundary",
+      "name": "hidden: maximum element value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          1,
+          1
+        ],
+        "threshold": 3
+      },
+      "expected": 1000000,
+      "tags": [
+        "hidden",
+        "boundary"
       ]
     }
   ]

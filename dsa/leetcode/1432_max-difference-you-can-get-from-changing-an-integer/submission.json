@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1529",
+  "frontend_id": "1432",
+  "title_slug": "max-difference-you-can-get-from-changing-an-integer",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxDiff",
+  "verified_submission_id": "2069082111",
+  "verified_at": "2026-07-15T19:28:09.831187+00:00"
+}

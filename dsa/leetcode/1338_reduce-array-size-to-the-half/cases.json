@@ -1,91 +1,13 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1338",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: mixed frequencies",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          3,
-          3,
-          3,
-          3,
-          5,
-          5,
-          5,
-          2,
-          2,
-          7
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "greedy"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: one value dominates",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          7,
-          7,
-          7,
-          7,
-          7,
-          7
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-all-distinct",
-      "name": "all values distinct",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "trial",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-tie-counts",
-      "name": "hidden: tied frequencies",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          1,
-          1,
-          2,
-          2,
-          3,
-          3,
-          3,
-          4
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: mixed frequencies","kind":"sample","visible":true,"input":{"arr":[3,3,3,3,5,5,5,2,2,7]},"expected":2,"tags":["sample","greedy"]},
+    {"id":"sample-2","name":"sample: one value dominates","kind":"sample","visible":true,"input":{"arr":[7,7,7,7,7,7]},"expected":1,"tags":["sample","single-value"]},
+    {"id":"trial-all-distinct","name":"trial: all values distinct","kind":"trial","visible":true,"input":{"arr":[1,2,3,4]},"expected":2,"tags":["trial","distinct"]},
+    {"id":"trial-exact-half","name":"trial: largest frequency removes exactly half","kind":"trial","visible":true,"input":{"arr":[1,1,1,2,3,4]},"expected":1,"tags":["trial","boundary"]},
+    {"id":"trial-overshoot","name":"trial: largest frequencies overshoot half","kind":"trial","visible":true,"input":{"arr":[1,1,1,1,2,2,2,3,4,5]},"expected":2,"tags":["trial","overshoot"]},
+    {"id":"hidden-ties","name":"hidden: tied frequencies","kind":"real","visible":false,"input":{"arr":[1,1,2,2,3,3,4,4]},"expected":2,"tags":["hidden","ties"]},
+    {"id":"hidden-many-small","name":"hidden: one large and several small groups","kind":"real","visible":false,"input":{"arr":[9,9,9,9,1,1,2,2,3,4,5,6]},"expected":2,"tags":["hidden","mixed-frequencies"]}
   ]
 }

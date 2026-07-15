@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1489",
+  "frontend_id": "1388",
+  "title_slug": "pizza-with-3n-slices",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxSizeSlices",
+  "verified_submission_id": "2068824739",
+  "verified_at": "2026-07-15T16:00:53.417165+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1425",
+  "frontend_id": "1294",
+  "title_slug": "weather-type-in-each-country",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2068365190",
+  "verified_at": "2026-07-15T08:47:59.130550+00:00"
+}

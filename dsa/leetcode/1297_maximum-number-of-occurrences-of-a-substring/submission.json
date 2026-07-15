@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1423",
+  "frontend_id": "1297",
+  "title_slug": "maximum-number-of-occurrences-of-a-substring",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxFreq",
+  "verified_submission_id": "2068380987",
+  "verified_at": "2026-07-15T09:01:37.458352+00:00"
+}

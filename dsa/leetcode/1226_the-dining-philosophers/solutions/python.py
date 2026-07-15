@@ -1,4 +1,4 @@
-"""Synchronization reference for LeetCode 1226 (not app-runnable)."""
+"""Source-native synchronization reference for LeetCode 1226."""
 
 from threading import Lock
 from typing import Callable

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1114",
+  "status": "verified",
+  "method": "bounded_concurrency",
+  "required_time": "O(1)",
+  "summary": "The contract always launches exactly three method calls on one Foo instance, so correctness is a happens-before property over six launch permutations rather than a scalable runtime workload.",
+  "workload_bound": {
+    "symbol": "T",
+    "maximum": 3,
+    "unit": "concurrent method calls",
+    "source_constraint": "one thread calls each of first, second, and third exactly once"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Each method performs one callback and a constant number of synchronization operations."},
+    {"kind": "scheduler_stress", "evidence": "All six source-valid launch permutations are authored and executed through the isolated concurrency runner."},
+    {"kind": "semantic_validator", "evidence": "The runner accepts only the callback sequence firstsecondthird for every launch order."},
+    {"kind": "deadlock_timeout", "evidence": "Every execution runs in an isolated subprocess with a hard timeout and daemon worker joins."}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1490",
+  "frontend_id": "1374",
+  "title_slug": "generate-a-string-with-characters-that-have-odd-counts",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.generateTheString",
+  "verified_submission_id": "2068766105",
+  "verified_at": "2026-07-15T15:11:20.854565+00:00"
+}

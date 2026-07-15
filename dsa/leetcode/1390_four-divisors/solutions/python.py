@@ -1,25 +1,30 @@
-"""Optimal solution for LeetCode 1390: Four Divisors."""
+"""Optimal app-local solution for LeetCode 1390: Four Divisors."""
 
 from math import isqrt
 
 
 def solve(nums: list[int]) -> int:
     total = 0
+
     for value in nums:
-        divisor_count = 0
-        divisor_sum = 0
-        for d in range(1, isqrt(value) + 1):
-            if value % d != 0:
+        divisor_sum = 1 + value
+        interior_pairs = 0
+
+        for divisor in range(2, isqrt(value) + 1):
+            if value % divisor != 0:
                 continue
-            other = value // d
-            if other == d:
-                divisor_count += 1
-                divisor_sum += d
-            else:
-                divisor_count += 2
-                divisor_sum += d + other
-            if divisor_count > 4:
+
+            other = value // divisor
+            if divisor == other:
+                interior_pairs = 2
                 break
-        if divisor_count == 4:
+
+            interior_pairs += 1
+            if interior_pairs > 1:
+                break
+            divisor_sum += divisor + other
+
+        if interior_pairs == 1:
             total += divisor_sum
+
     return total

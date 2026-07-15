@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "pending",
+  "question_id": "1548",
+  "frontend_id": "1422",
+  "title_slug": "maximum-score-after-splitting-a-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxScore"
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1362",
+  "cases": [
+    {
+      "id": "sample-square-first",
+      "name": "sample: num plus one is a square",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 8
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "sample",
+        "perfect-square"
+      ]
+    },
+    {
+      "id": "sample-second-product",
+      "name": "sample: num plus two has the closer pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 123
+      },
+      "expected": [
+        5,
+        25
+      ],
+      "tags": [
+        "sample",
+        "second-product"
+      ]
+    },
+    {
+      "id": "sample-first-product",
+      "name": "sample: num plus one has the closer pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 999
+      },
+      "expected": [
+        25,
+        40
+      ],
+      "tags": [
+        "sample",
+        "first-product"
+      ]
+    },
+    {
+      "id": "trial-minimum",
+      "name": "trial: smallest input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 1
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-square-second",
+      "name": "trial: num plus two is a square",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 2
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "tags": [
+        "trial",
+        "perfect-square"
+      ]
+    },
+    {
+      "id": "hidden-equal-factors",
+      "name": "hidden: later perfect square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 7
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "zero-difference"
+      ]
+    },
+    {
+      "id": "hidden-first-square",
+      "name": "hidden: first candidate is forty-nine",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 48
+      },
+      "expected": [
+        7,
+        7
+      ],
+      "tags": [
+        "hidden",
+        "first-product"
+      ]
+    }
+  ]
+}

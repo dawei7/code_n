@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1309",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: marked values followed by single digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "10#11#12"
+      },
+      "expected": "jkab",
+      "tags": [
+        "sample",
+        "mixed-tokens"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one-digit codes before z",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1326#"
+      },
+      "expected": "acz",
+      "tags": [
+        "sample",
+        "upper-endpoint"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every one-digit code",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "123456789"
+      },
+      "expected": "abcdefghi",
+      "tags": [
+        "sample",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-lower-marked-bound",
+      "name": "trial: first marked value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10#"
+      },
+      "expected": "j",
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-upper-marked-bound",
+      "name": "trial: final alphabet letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "26#"
+      },
+      "expected": "z",
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-alternating",
+      "name": "hidden: alternating marked and unmarked tokens",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "120#221#9"
+      },
+      "expected": "atbui",
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "hidden-maximum-length",
+      "name": "hidden: maximum-length one-digit encoding",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": [
+        "hidden",
+        "maximum-length"
+      ]
+    }
+  ]
+}

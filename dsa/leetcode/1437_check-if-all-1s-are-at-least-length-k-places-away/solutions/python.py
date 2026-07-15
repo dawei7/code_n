@@ -1,4 +1,7 @@
-def solve(nums, k):
+"""Optimal app-local solution for LeetCode 1437."""
+
+
+def solve(nums: list[int], k: int) -> bool:
     previous = None
     for index, value in enumerate(nums):
         if value == 1:

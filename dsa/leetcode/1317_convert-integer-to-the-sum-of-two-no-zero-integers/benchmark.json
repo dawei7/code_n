@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1317",
+  "measurement_note": "Size is n, the target value and candidate-search domain. The reference derives the complementary addend and stops at the first valid pair. A correct slower alternative independently enumerates every positive pair before returning a remembered valid answer, taking O(n squared log n) time; all tiers finish and the semantic validator accepts any valid pair.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: target 24",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"n": 24},
+      "expected": [1, 23],
+      "validator": {"kind": "no_zero_sum"},
+      "tags": ["benchmark", "scale-small", "construction"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: target 96",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {"n": 96},
+      "expected": [1, 95],
+      "validator": {"kind": "no_zero_sum"},
+      "tags": ["benchmark", "scale-medium", "construction"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: target 384",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 384,
+      "input": {"n": 384},
+      "expected": [1, 383],
+      "validator": {"kind": "no_zero_sum"},
+      "tags": ["benchmark", "scale-large", "construction"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1366",
+  "frontend_id": "1429",
+  "title_slug": "first-unique-number",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "FirstUnique",
+  "verified_submission_id": "2069073389",
+  "verified_at": "2026-07-15T19:15:27.981871+00:00"
+}

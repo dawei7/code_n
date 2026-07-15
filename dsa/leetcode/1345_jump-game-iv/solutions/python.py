@@ -1,22 +1,26 @@
+"""Optimal app-local solution for LeetCode 1345."""
+
 from collections import defaultdict, deque
 
 
 def solve(arr):
-    if len(arr) <= 1:
+    if len(arr) == 1:
         return 0
+
     positions = defaultdict(list)
-    for i, value in enumerate(arr):
-        positions[value].append(i)
+    for index, value in enumerate(arr):
+        positions[value].append(index)
 
     queue = deque([(0, 0)])
     seen = {0}
     while queue:
-        i, steps = queue.popleft()
-        for nxt in positions[arr[i]] + [i - 1, i + 1]:
-            if nxt == len(arr) - 1:
-                return steps + 1
-            if 0 <= nxt < len(arr) and nxt not in seen:
-                seen.add(nxt)
-                queue.append((nxt, steps + 1))
-        positions[arr[i]].clear()
-    return -1
+        index, jumps = queue.popleft()
+        destinations = positions.pop(arr[index], ())
+        for next_index in (*destinations, index - 1, index + 1):
+            if next_index == len(arr) - 1:
+                return jumps + 1
+            if 0 <= next_index < len(arr) and next_index not in seen:
+                seen.add(next_index)
+                queue.append((next_index, jumps + 1))
+
+    raise RuntimeError("the final index is always reachable")

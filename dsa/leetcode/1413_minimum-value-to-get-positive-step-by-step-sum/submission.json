@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "pending",
+  "question_id": "1529",
+  "frontend_id": "1413",
+  "title_slug": "minimum-value-to-get-positive-step-by-step-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minStartValue"
+}

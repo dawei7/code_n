@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 
-RUNNABLE_CATEGORIES = {"algorithms", "database", "pandas", "shell"}
+RUNNABLE_CATEGORIES = {"algorithms", "concurrency", "database", "pandas", "shell"}
 
 
 def category_is_runnable(metadata: dict[str, Any]) -> bool:
@@ -15,7 +15,7 @@ def category_is_runnable(metadata: dict[str, Any]) -> bool:
 
 def special_environment(category: str | None) -> str | None:
     normalized = str(category or "").lower()
-    return normalized if normalized in {"database", "pandas", "shell"} else None
+    return normalized if normalized in {"concurrency", "database", "pandas", "shell"} else None
 
 
 def starter_source(category: str | None, title: str = "") -> tuple[str, str] | None:
@@ -46,6 +46,11 @@ def starter_source(category: str | None, title: str = "") -> tuple[str, str] | N
             "# Read stdin or files supplied by the JSON input.\n"
             "cat\n",
         )
+    if environment == "concurrency":
+        return (
+            "python",
+            f'"""{heading}\n\nDefine the source-native LeetCode concurrency class.\n"""\n',
+        )
     return None
 
 
@@ -57,4 +62,6 @@ def input_example(category: str | None) -> str:
         return '{\n  "tables": {\n    "data": [{"id": 1, "score": 95}]\n  }\n}'
     if environment == "shell":
         return '{\n  "stdin": "first line\\nsecond line\\n",\n  "files": {"file.txt": "first line\\nsecond line\\n"}\n}'
+    if environment == "concurrency":
+        return '{\n  "n": 2\n}'
     return ""

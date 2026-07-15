@@ -1,18 +1,20 @@
-from functools import lru_cache
+"""Optimal app-local solution for LeetCode 1340."""
 
 
 def solve(arr, d):
-    n = len(arr)
+    length = len(arr)
+    best = [1] * length
 
-    @lru_cache(None)
-    def dp(i):
-        best = 1
+    for index in sorted(range(length), key=arr.__getitem__):
         for direction in (-1, 1):
-            for step in range(1, d + 1):
-                j = i + direction * step
-                if not (0 <= j < n) or arr[j] >= arr[i]:
+            for distance in range(1, d + 1):
+                destination = index + direction * distance
+                if (
+                    destination < 0
+                    or destination >= length
+                    or arr[destination] >= arr[index]
+                ):
                     break
-                best = max(best, 1 + dp(j))
-        return best
+                best[index] = max(best[index], 1 + best[destination])
 
-    return max(dp(i) for i in range(n))
+    return max(best)

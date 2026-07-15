@@ -1,4 +1,4 @@
-"""Synchronization reference for LeetCode 1188 (not app-runnable)."""
+"""Source-native synchronization reference for LeetCode 1188."""
 
 from collections import deque
 from threading import Lock, Semaphore

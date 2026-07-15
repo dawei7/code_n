@@ -1,34 +1,212 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1439",
+  "measurement_note": "Size is n, the row width. The 10/20/40 tiers span 4x, use two increasing rows, and request rank k = 100. The bounded pair-sum heap emits at most k values in O(n + k log k) time for these fixed-row tiers. A correct implementation that materializes and sorts the full n by n cross product takes O(n squared log n) time, completes normally, and is rejected by scaling.",
   "cases": [
     {
-      "id": "benchmark-duplicate-sums",
-      "name": "benchmark: duplicate row values create tied sums",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: retain rank 100 from two 10-value rows",
       "kind": "benchmark",
       "visible": false,
+      "size": 10,
       "input": {
         "mat": [
           [
             1,
-            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
             10
           ],
           [
+            1,
             2,
             3,
-            9
-          ],
-          [
             4,
+            5,
             6,
-            8
+            7,
+            8,
+            9,
+            10
           ]
         ],
-        "k": 8
+        "k": 100
       },
-      "expected": 10,
+      "expected": 20,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-small",
+        "heap-merge"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: retain rank 100 from two 20-value rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ]
+        ],
+        "k": 100
+      },
+      "expected": 15,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "heap-merge"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: retain rank 100 from two 40-value rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {
+        "mat": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ]
+        ],
+        "k": 100
+      },
+      "expected": 15,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "heap-merge"
       ]
     }
   ]

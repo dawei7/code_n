@@ -1,14 +1,16 @@
-from collections import defaultdict
+"""Optimal app-local solution for LeetCode 1424."""
 
 
-def solve(nums):
-    diagonals = defaultdict(list)
+def solve(nums: list[list[int]]) -> list[int]:
+    diagonals: list[list[int]] = []
     for row, values in enumerate(nums):
-        if not isinstance(values, list):
-            values = [values]
-        for col, value in enumerate(values):
-            diagonals[row + col].append(value)
-    result = []
-    for key in sorted(diagonals):
-        result.extend(reversed(diagonals[key]))
-    return result
+        for column, value in enumerate(values):
+            diagonal = row + column
+            while len(diagonals) <= diagonal:
+                diagonals.append([])
+            diagonals[diagonal].append(value)
+
+    traversal: list[int] = []
+    for diagonal in diagonals:
+        traversal.extend(reversed(diagonal))
+    return traversal

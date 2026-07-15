@@ -8,24 +8,28 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Binary Indexed Tree, Segment Tree |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-number-of-teams](https://leetcode.com/problems/count-number-of-teams/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/count-number-of-teams/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-number-of-teams/).
 
 ### Goal
-Count teams of three soldiers chosen in increasing index order where ratings are either strictly increasing or strictly decreasing.
+
+Soldiers stand in a row, and `rating[i]` gives the distinct rating of the soldier at position `i`. A team consists of three soldiers selected at indices $i < j < k$, so their order in the row must be preserved.
+
+The team is valid when its ratings are strictly increasing, with $\texttt{rating[i]} < \texttt{rating[j]} < \texttt{rating[k]}$, or strictly decreasing, with $\texttt{rating[i]} > \texttt{rating[j]} > \texttt{rating[k]}$. Return the number of valid teams. A soldier may participate in more than one team.
 
 ### Function Contract
+
 **Inputs**
 
-- `rating`: a list of distinct soldier ratings.
+- `rating`: an array of $n$ pairwise distinct ratings, where $3 \le n \le 1000$ and $1 \le \texttt{rating[i]} \le 10^5$.
 
 **Return value**
 
-The number of valid three-person teams.
+- The number of increasing or decreasing index-ordered triples.
 
 ### Examples
+
 **Example 1**
 
 - Input: `rating = [2,5,3,4,1]`
@@ -41,40 +45,33 @@ The number of valid three-person teams.
 - Input: `rating = [1,2,3,4]`
 - Output: `4`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Middle-index counting. Treat each soldier as the middle member, count smaller/larger ratings on the left and right, then add increasing and decreasing combinations.
+- **Time:** $O(n^2)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)` with direct counting around each middle index.
-- **Space Complexity**: `O(1)` extra.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-"""Optimal solution for LeetCode 1395: Count Number of Teams."""
+#### General
 
+**Choose the middle soldier first.** For each index `j`, count four groups relative to `rating[j]`: smaller and greater ratings to its left, and smaller and greater ratings to its right.
 
-def solve(rating: list[int]) -> int:
-    total = 0
-    n = len(rating)
-    for mid in range(n):
-        left_less = left_greater = right_less = right_greater = 0
-        for i in range(mid):
-            if rating[i] < rating[mid]:
-                left_less += 1
-            else:
-                left_greater += 1
-        for i in range(mid + 1, n):
-            if rating[i] < rating[mid]:
-                right_less += 1
-            else:
-                right_greater += 1
-        total += left_less * right_greater + left_greater * right_less
-    return total
-```
+An increasing team with middle index `j` is formed by choosing one smaller left rating and one greater right rating, giving `left_smaller * right_greater` teams. A decreasing team similarly contributes `left_greater * right_smaller`. Add both products for every possible middle index.
+
+Every counted choice has indices in the required order because its members come from the left side, `j`, and the right side. The comparison groups enforce one of the two strict rating orders. Conversely, every valid triple has one unique middle index and belongs to exactly one of those products, so no team is omitted or counted twice.
+
+#### Complexity detail
+
+For each of $n$ middle positions, the two side scans inspect $O(n)$ ratings, for $O(n^2)$ time. Only four counters and the total are stored, so auxiliary space is $O(1)$.
+
+#### Alternatives and edge cases
+
+- **Enumerate all triples:** Testing every $i < j < k$ is correct but costs $O(n^3)$ time.
+- **Fenwick trees:** Coordinate-compressed prefix and suffix counts reduce time to $O(n\log n)$ but add data-structure complexity and $O(n)$ space.
+- **Exactly three soldiers:** The result is either one or zero depending on their strict order.
+- **Strict comparisons:** Equal ratings would not qualify, though the contract guarantees all ratings are distinct.
+- **Monotone array:** Every choice of three indices is valid, so the answer is $\binom{n}{3}$.
+- **Mixed directions:** A triple that rises and then falls, or falls and then rises, contributes nothing.
+
 </details>

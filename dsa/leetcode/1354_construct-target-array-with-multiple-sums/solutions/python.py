@@ -1,9 +1,9 @@
-"""Optimal solution for LeetCode 1354: Construct Target Array With Multiple Sums."""
+"""Optimal app-local solution for LeetCode 1354."""
 
 from heapq import heapify, heappop, heappush
 
 
-def solve(target: list[int]) -> bool:
+def solve(target):
     if len(target) == 1:
         return target[0] == 1
 

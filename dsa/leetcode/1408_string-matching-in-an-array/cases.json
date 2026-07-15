@@ -1,100 +1,12 @@
 {
   "challenge_id": "lc_1408",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: nested short words",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "mass",
-          "as",
-          "hero",
-          "superhero"
-        ]
-      },
-      "expected": [
-        "as",
-        "hero"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample",
-        "string-matching"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: multiple substrings",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "leetcode",
-          "et",
-          "code"
-        ]
-      },
-      "expected": [
-        "et",
-        "code"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: no substrings",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "blue",
-          "green",
-          "red"
-        ]
-      },
-      "expected": [],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-overlapping-substrings",
-      "name": "hidden: overlapping substring candidates",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "words": [
-          "leetcoder",
-          "leetcode",
-          "od",
-          "hamlet",
-          "am"
-        ]
-      },
-      "expected": [
-        "leetcode",
-        "od",
-        "am"
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-two-matches", "name": "sample: two words have different containers", "kind": "sample", "visible": true, "input": {"words": ["mass", "as", "hero", "superhero"]}, "expected": ["as", "hero"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "matches"]},
+    {"id": "sample-overlapping", "name": "sample: two words occur in one longer word", "kind": "sample", "visible": true, "input": {"words": ["leetcode", "et", "code"]}, "expected": ["et", "code"], "validator": {"kind": "unordered_list"}, "tags": ["sample", "matches"]},
+    {"id": "sample-none", "name": "sample: no cross-word substring", "kind": "sample", "visible": true, "input": {"words": ["blue", "green", "red"]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["sample", "none"]},
+    {"id": "trial-single-word", "name": "single word cannot match itself", "kind": "trial", "visible": true, "input": {"words": ["alone"]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["trial", "self"]},
+    {"id": "trial-chain", "name": "several nested substring levels", "kind": "trial", "visible": true, "input": {"words": ["a", "ba", "cba", "dcba"]}, "expected": ["a", "ba", "cba"], "validator": {"kind": "unordered_list"}, "tags": ["trial", "nested"]},
+    {"id": "real-equal-length", "name": "hidden: distinct equal-length words do not match", "kind": "real", "visible": false, "input": {"words": ["abc", "bca", "cab"]}, "expected": [], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "equal-length"]},
+    {"id": "real-one-word-many-containers", "name": "hidden: emit one match only once", "kind": "real", "visible": false, "input": {"words": ["an", "banana", "bandana", "can"]}, "expected": ["an"], "validator": {"kind": "unordered_list"}, "tags": ["hidden", "deduplicate"]}
   ]
 }

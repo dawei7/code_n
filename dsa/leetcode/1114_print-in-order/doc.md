@@ -7,8 +7,8 @@
 | Difficulty | Easy |
 | Category | Concurrency |
 | Topics | Concurrency |
-| Supported Languages | Tracked only |
-| LeetCode | [Open problem](https://leetcode.com/problems/print-in-order/) |
+| Supported Languages | Python |
+| Official Link | [LeetCode](https://leetcode.com/problems/print-in-order/) |
 
 ## Problem Description
 

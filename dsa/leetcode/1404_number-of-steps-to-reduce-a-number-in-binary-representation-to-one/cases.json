@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_1404",
+  "cases": [
+    {"id": "sample-thirteen", "name": "sample: alternating operations", "kind": "sample", "visible": true, "input": {"s": "1101"}, "expected": 6, "tags": ["sample", "carry"]},
+    {"id": "sample-two", "name": "sample: one division", "kind": "sample", "visible": true, "input": {"s": "10"}, "expected": 1, "tags": ["sample", "even"]},
+    {"id": "sample-one", "name": "sample: already reduced", "kind": "sample", "visible": true, "input": {"s": "1"}, "expected": 0, "tags": ["sample", "boundary"]},
+    {"id": "trial-all-ones", "name": "carry propagates through all bits", "kind": "trial", "visible": true, "input": {"s": "1111"}, "expected": 5, "tags": ["trial", "carry"]},
+    {"id": "trial-power-of-two", "name": "only divisions are required", "kind": "trial", "visible": true, "input": {"s": "100000"}, "expected": 5, "tags": ["trial", "power-of-two"]},
+    {"id": "real-carry-and-zero", "name": "hidden: carry crosses mixed bits", "kind": "real", "visible": false, "input": {"s": "101011"}, "expected": 9, "tags": ["hidden", "mixed"]},
+    {"id": "real-small-odd", "name": "hidden: binary three", "kind": "real", "visible": false, "input": {"s": "11"}, "expected": 3, "tags": ["hidden", "odd"]}
+  ]
+}

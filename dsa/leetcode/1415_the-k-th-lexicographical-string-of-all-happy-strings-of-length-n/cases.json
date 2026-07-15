@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_1415",
+  "cases": [
+    {
+      "id": "sample-third-single",
+      "name": "sample: third one-character string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 3
+      },
+      "expected": "c",
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-out-of-range",
+      "name": "sample: one-character rank absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 4
+      },
+      "expected": "",
+      "tags": [
+        "sample",
+        "absent"
+      ]
+    },
+    {
+      "id": "sample-ninth",
+      "name": "sample: ninth length-three string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 9
+      },
+      "expected": "cab",
+      "tags": [
+        "sample",
+        "unranking"
+      ]
+    },
+    {
+      "id": "trial-last-length-two",
+      "name": "last happy string of length two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "k": 6
+      },
+      "expected": "cb",
+      "tags": [
+        "trial",
+        "last"
+      ]
+    },
+    {
+      "id": "trial-first-maximum-length",
+      "name": "first maximum-length string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10,
+        "k": 1
+      },
+      "expected": "ababababab",
+      "tags": [
+        "trial",
+        "first"
+      ]
+    },
+    {
+      "id": "real-block-boundary",
+      "name": "hidden: exact block boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "k": 25
+      },
+      "expected": "bcaba",
+      "tags": [
+        "hidden",
+        "block-boundary"
+      ]
+    },
+    {
+      "id": "real-large-rank",
+      "name": "hidden: largest permitted rank",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "k": 100
+      },
+      "expected": "abacbabacb",
+      "tags": [
+        "hidden",
+        "maximum-rank"
+      ]
+    }
+  ]
+}

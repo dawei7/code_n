@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1440",
+  "cases": [
+    {
+      "id": "sample-three-operators",
+      "name": "sample: evaluate all supported operators",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Variables": [
+            {
+              "name": "x",
+              "value": 66
+            },
+            {
+              "name": "y",
+              "value": 77
+            }
+          ],
+          "Expressions": [
+            {
+              "left_operand": "x",
+              "operator": ">",
+              "right_operand": "y"
+            },
+            {
+              "left_operand": "x",
+              "operator": "<",
+              "right_operand": "y"
+            },
+            {
+              "left_operand": "x",
+              "operator": "=",
+              "right_operand": "y"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "left_operand",
+          "operator",
+          "right_operand",
+          "value"
+        ],
+        "rows": [
+          [
+            "x",
+            "<",
+            "y",
+            "true"
+          ],
+          [
+            "x",
+            "=",
+            "y",
+            "false"
+          ],
+          [
+            "x",
+            ">",
+            "y",
+            "false"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "operators"
+      ]
+    },
+    {
+      "id": "sample-equal-values",
+      "name": "sample: different names have equal values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Variables": [
+            {
+              "name": "a",
+              "value": 5
+            },
+            {
+              "name": "b",
+              "value": 5
+            }
+          ],
+          "Expressions": [
+            {
+              "left_operand": "a",
+              "operator": "=",
+              "right_operand": "b"
+            },
+            {
+              "left_operand": "a",
+              "operator": "<",
+              "right_operand": "b"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "left_operand",
+          "operator",
+          "right_operand",
+          "value"
+        ],
+        "rows": [
+          [
+            "a",
+            "<",
+            "b",
+            "false"
+          ],
+          [
+            "a",
+            "=",
+            "b",
+            "true"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "equality"
+      ]
+    },
+    {
+      "id": "sample-negative",
+      "name": "sample: compare negative and positive values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Variables": [
+            {
+              "name": "low",
+              "value": -2
+            },
+            {
+              "name": "high",
+              "value": 3
+            }
+          ],
+          "Expressions": [
+            {
+              "left_operand": "high",
+              "operator": ">",
+              "right_operand": "low"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "left_operand",
+          "operator",
+          "right_operand",
+          "value"
+        ],
+        "rows": [
+          [
+            "high",
+            ">",
+            "low",
+            "true"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-same-operand",
+      "name": "same variable appears on both sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Variables": [
+            {
+              "name": "z",
+              "value": 10
+            }
+          ],
+          "Expressions": [
+            {
+              "left_operand": "z",
+              "operator": "=",
+              "right_operand": "z"
+            },
+            {
+              "left_operand": "z",
+              "operator": ">",
+              "right_operand": "z"
+            },
+            {
+              "left_operand": "z",
+              "operator": "<",
+              "right_operand": "z"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "left_operand",
+          "operator",
+          "right_operand",
+          "value"
+        ],
+        "rows": [
+          [
+            "z",
+            "<",
+            "z",
+            "false"
+          ],
+          [
+            "z",
+            "=",
+            "z",
+            "true"
+          ],
+          [
+            "z",
+            ">",
+            "z",
+            "false"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "same-operand"
+      ]
+    },
+    {
+      "id": "trial-mixed",
+      "name": "mixed true and false relations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Variables": [
+            {
+              "name": "p",
+              "value": 1
+            },
+            {
+              "name": "q",
+              "value": 2
+            },
+            {
+              "name": "r",
+              "value": 3
+            }
+          ],
+          "Expressions": [
+            {
+              "left_operand": "p",
+              "operator": "<",
+              "right_operand": "q"
+            },
+            {
+              "left_operand": "r",
+              "operator": "=",
+              "right_operand": "q"
+            },
+            {
+              "left_operand": "r",
+              "operator": ">",
+              "right_operand": "p"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "left_operand",
+          "operator",
+          "right_operand",
+          "value"
+        ],
+        "rows": [
+          [
+            "p",
+            "<",
+            "q",
+            "true"
+          ],
+          [
+            "r",
+            "=",
+            "q",
+            "false"
+          ],
+          [
+            "r",
+            ">",
+            "p",
+            "true"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: signed values and equality",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Variables": [
+            {
+              "name": "min",
+              "value": -100
+            },
+            {
+              "name": "zero",
+              "value": 0
+            },
+            {
+              "name": "max",
+              "value": 100
+            }
+          ],
+          "Expressions": [
+            {
+              "left_operand": "min",
+              "operator": "<",
+              "right_operand": "zero"
+            },
+            {
+              "left_operand": "max",
+              "operator": ">",
+              "right_operand": "zero"
+            },
+            {
+              "left_operand": "min",
+              "operator": "=",
+              "right_operand": "max"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "left_operand",
+          "operator",
+          "right_operand",
+          "value"
+        ],
+        "rows": [
+          [
+            "max",
+            ">",
+            "zero",
+            "true"
+          ],
+          [
+            "min",
+            "<",
+            "zero",
+            "true"
+          ],
+          [
+            "min",
+            "=",
+            "max",
+            "false"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "signed"
+      ]
+    }
+  ]
+}

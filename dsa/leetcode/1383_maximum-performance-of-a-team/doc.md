@@ -8,27 +8,33 @@
 | Category | Algorithms |
 | Topics | Array, Greedy, Sorting, Heap (Priority Queue) |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-performance-of-a-team](https://leetcode.com/problems/maximum-performance-of-a-team/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/maximum-performance-of-a-team/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-performance-of-a-team/).
 
 ### Goal
-Choose at most `k` engineers. The team's performance is the sum of chosen speeds multiplied by the minimum efficiency among the chosen engineers. Return the largest possible performance value.
+
+There are `n` engineers. Engineer `i` has speed `speed[i]` and efficiency `efficiency[i]`. Choose a nonempty team containing at most `k` engineers.
+
+A team's performance is the sum of its members' speeds multiplied by the minimum efficiency among those members. Find the greatest performance obtainable from any allowed team, then return that maximum modulo $1{,}000{,}000{,}007$.
+
+Every selected engineer contributes speed to the sum.
 
 ### Function Contract
+
 **Inputs**
 
 - `n`: the number of engineers.
-- `speed`: a list of each engineer's speed.
-- `efficiency`: a list of each engineer's efficiency.
-- `k`: the maximum team size.
+- `speed`: an array of `n` positive engineer speeds.
+- `efficiency`: an array of `n` positive engineer efficiencies.
+- `k`: the maximum number of engineers that may be selected, with $1 \le k \le n$.
 
 **Return value**
 
-The maximum performance, returned modulo `1_000_000_007` when required by the platform contract.
+- The maximum raw team performance reduced modulo $1{,}000{,}000{,}007$.
 
 ### Examples
+
 **Example 1**
 
 - Input: `n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 2`
@@ -41,41 +47,37 @@ The maximum performance, returned modulo `1_000_000_007` when required by the pl
 
 **Example 3**
 
-- Input: `n = 3, speed = [5,5,5], efficiency = [1,2,3], k = 1`
-- Output: `15`
+- Input: `n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 4`
+- Output: `72`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Greedy sorting with a min-heap. Process engineers from highest to lowest efficiency so the current engineer's efficiency is the team's minimum, keep the largest `k` speeds seen so far, and test each candidate performance.
+- **Time:** $O(n log n)$
+- **Space:** $O(n)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n log n + n log k)`
-- **Space Complexity**: `O(n + k)`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-"""Optimal solution for LeetCode 1383: Maximum Performance of a Team."""
+#### General
 
-from heapq import heappop, heappush
+**Fix efficiency thresholds in descending order.** Sort engineers from greatest to least efficiency. When processing an engineer with efficiency `e`, every engineer seen so far has efficiency at least `e`; any team drawn from this prefix can therefore use `e` as its current minimum-efficiency threshold.
 
+**Retain the largest speeds.** Keep a min-heap of at most `k` speeds from the processed prefix and their running sum. Insert the current speed, and if the heap grows beyond `k`, remove its smallest speed. The heap then holds the speed choices that maximize the sum under this threshold. Multiply the retained sum by `e` and update the best raw performance.
 
-def solve(n: int, speed: list[int], efficiency: list[int], k: int) -> int:
-    engineers = sorted(zip(efficiency, speed), reverse=True)
-    speed_heap: list[int] = []
-    speed_sum = 0
-    best = 0
+For an optimal team, consider the iteration containing its least-efficient member. Every team member is then available. Keeping the best speeds cannot produce a worse sum; if the threshold member itself is displaced, the replacement team has only higher-efficiency members and was also eligible at an earlier threshold. Thus some iteration attains the optimum. Apply the modulus only after selecting the largest raw product, because modular residues do not preserve numeric order.
 
-    for eff, spd in engineers:
-        heappush(speed_heap, spd)
-        speed_sum += spd
-        if len(speed_heap) > k:
-            speed_sum -= heappop(speed_heap)
-        best = max(best, speed_sum * eff)
-    return best % 1_000_000_007
-```
+#### Complexity detail
+
+Sorting the `n` engineers takes $O(n \log n)$ time. Each speed enters and leaves a heap of size at most `k` once, adding $O(n \log k)$ time, which is within $O(n \log n)$. The sorted pairs and heap use $O(n)$ space.
+
+#### Alternatives and edge cases
+
+- **Enumerate teams:** Trying all subsets of size at most `k` is exponential and infeasible.
+- **Resort every efficiency prefix:** Recompute the largest `k` speeds after each threshold. It is correct but can take $O(n^2 \log n)$ time.
+- **Choose only the fastest engineers:** A very fast engineer with low efficiency can reduce the whole team's multiplier.
+- **Choose only the most efficient engineers:** High efficiency may not compensate for a small total speed.
+- **Team size is at most `k`:** The optimum may use fewer than `k` members; every prefix candidate naturally uses no more than the limit.
+- **Single allowed member:** Maximize `speed[i] * efficiency[i]`.
+- **Modulo timing:** Compare full-precision products and reduce only the final maximum.
+
 </details>

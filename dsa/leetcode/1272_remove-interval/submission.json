@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1200",
+  "frontend_id": "1272",
+  "title_slug": "remove-interval",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.removeInterval",
+  "verified_submission_id": "2068263023",
+  "verified_at": "2026-07-15T07:03:35.877033+00:00"
+}

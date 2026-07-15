@@ -187,7 +187,8 @@ class RunResponse(BaseModel):
 
     The verdict (``passed``, ``correct``, ``within_threshold``,
     ``actual_complexity``, ``message``) is derived from correctness plus
-    the calibrated runtime check against the optimal reference. Legacy fields
+    either the calibrated runtime check against the optimal reference or a
+    verified non-scaling complexity certificate. Legacy fields
     (``user_ast_ops``, ``reference_ast_ops``, ``reference_ci_low``,
     ``reference_ci_high``) remain nullable for older clients and no longer drive the
     pass/fail verdict.
@@ -208,8 +209,8 @@ class RunResponse(BaseModel):
     actual_complexity: str
     required_complexity: str
     mode: str = "practice"      # Echoed: "practice" or "real_test"
-    too_efficient: bool = False # Legacy flag; new verdicts use
-                                # correctness plus runtime.
+    too_efficient: bool = False # Legacy flag; new verdicts use correctness
+                                # plus explicit complexity verification.
     too_efficient_reason: str = ""
     message: str
     return_value_repr: str
@@ -234,6 +235,10 @@ class RunResponse(BaseModel):
     runtime_message: str = ""
     benchmark_correct: bool = True
     runtime_scaling_data: list[RuntimeScalingPoint] = Field(default_factory=list)
+    complexity_check: bool = False
+    complexity_passed: Optional[bool] = None
+    complexity_method: str = ""
+    complexity_message: str = ""
     case_results: list[RunCaseResult] = Field(default_factory=list)
     selected_case_ids: list[str] = Field(default_factory=list)
 

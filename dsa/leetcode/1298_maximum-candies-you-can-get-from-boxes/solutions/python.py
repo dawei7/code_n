@@ -1,25 +1,37 @@
+"""Optimal app-local solution for LeetCode 1298."""
+
 from collections import deque
 
 
-def solve(status, candies, keys, contained_boxes, initial_boxes):
-    owned = set(initial_boxes)
-    opened = set()
-    queue = deque(box for box in initial_boxes if status[box] == 1)
-    total = 0
+def solve(status, candies, keys, containedBoxes, initialBoxes):
+    n = len(status)
+    owned = [False] * n
+    openable = [value == 1 for value in status]
+    opened = [False] * n
+    queue = deque()
 
+    for box in initialBoxes:
+        owned[box] = True
+        if openable[box]:
+            queue.append(box)
+
+    total = 0
     while queue:
         box = queue.popleft()
-        if box in opened or status[box] == 0:
+        if opened[box] or not owned[box] or not openable[box]:
             continue
-        opened.add(box)
+
+        opened[box] = True
         total += candies[box]
+
         for key in keys[box]:
-            if status[key] == 0:
-                status[key] = 1
-                if key in owned and key not in opened:
-                    queue.append(key)
-        for child in contained_boxes[box]:
-            owned.add(child)
-            if status[child] == 1 and child not in opened:
+            openable[key] = True
+            if owned[key] and not opened[key]:
+                queue.append(key)
+
+        for child in containedBoxes[box]:
+            owned[child] = True
+            if openable[child] and not opened[child]:
                 queue.append(child)
+
     return total

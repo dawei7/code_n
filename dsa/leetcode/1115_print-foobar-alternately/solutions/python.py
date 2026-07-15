@@ -1,4 +1,4 @@
-"""Synchronization reference for LeetCode 1115 (not app-runnable)."""
+"""Source-native synchronization reference for LeetCode 1115."""
 
 from threading import Semaphore
 

@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1268",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: mouse",
+      "id": "sample-mouse",
+      "name": "sample: suggestions narrow while typing mouse",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -42,12 +43,12 @@
       ],
       "tags": [
         "sample",
-        "binary-search"
+        "prefix-narrowing"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: havana",
+      "id": "sample-havana",
+      "name": "sample: the only product remains eligible",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -77,14 +78,111 @@
         ]
       ],
       "tags": [
-        "sample"
+        "sample",
+        "singleton"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: bags",
-      "kind": "sample",
+      "id": "trial-three-suggestion-cap",
+      "name": "trial: only the three minimum names survive",
+      "kind": "trial",
       "visible": true,
+      "input": {
+        "products": [
+          "apple",
+          "app",
+          "application",
+          "apply",
+          "banana"
+        ],
+        "search_word": "app"
+      },
+      "expected": [
+        [
+          "app",
+          "apple",
+          "application"
+        ],
+        [
+          "app",
+          "apple",
+          "application"
+        ],
+        [
+          "app",
+          "apple",
+          "application"
+        ]
+      ],
+      "tags": [
+        "trial",
+        "lexicographic-cap"
+      ]
+    },
+    {
+      "id": "trial-prefix-disappears",
+      "name": "trial: a missing prefix keeps later results empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "products": [
+          "havana",
+          "hammer"
+        ],
+        "search_word": "hat"
+      },
+      "expected": [
+        [
+          "hammer",
+          "havana"
+        ],
+        [
+          "hammer",
+          "havana"
+        ],
+        []
+      ],
+      "tags": [
+        "trial",
+        "missing-prefix"
+      ]
+    },
+    {
+      "id": "trial-product-is-prefix",
+      "name": "trial: a complete product precedes its extensions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "products": [
+          "a",
+          "aa",
+          "aaa",
+          "ab",
+          "b"
+        ],
+        "search_word": "aa"
+      },
+      "expected": [
+        [
+          "a",
+          "aa",
+          "aaa"
+        ],
+        [
+          "aa",
+          "aaa"
+        ]
+      ],
+      "tags": [
+        "trial",
+        "terminal-prefix"
+      ]
+    },
+    {
+      "id": "real-branching-prefixes",
+      "name": "hidden: branches leave the active suggestion interval",
+      "kind": "real",
+      "visible": false,
       "input": {
         "products": [
           "bags",
@@ -115,42 +213,72 @@
         ]
       ],
       "tags": [
-        "sample"
+        "hidden",
+        "branching"
       ]
     },
     {
-      "id": "real-exact-prefix",
-      "name": "hidden: exact prefix",
+      "id": "real-four-matching-products",
+      "name": "hidden: lexicographic cap changes at a deeper prefix",
       "kind": "real",
       "visible": false,
       "input": {
         "products": [
-          "apple",
-          "app",
-          "application",
-          "banana"
+          "car",
+          "card",
+          "care",
+          "careful",
+          "cargo",
+          "dog"
         ],
-        "search_word": "app"
+        "search_word": "care"
       },
       "expected": [
         [
-          "app",
-          "apple",
-          "application"
+          "car",
+          "card",
+          "care"
         ],
         [
-          "app",
-          "apple",
-          "application"
+          "car",
+          "card",
+          "care"
         ],
         [
-          "app",
-          "apple",
-          "application"
+          "car",
+          "card",
+          "care"
+        ],
+        [
+          "care",
+          "careful"
         ]
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "cap-transition"
+      ]
+    },
+    {
+      "id": "real-first-character-miss",
+      "name": "hidden: no product shares the first character",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "products": [
+          "alpha",
+          "beta"
+        ],
+        "search_word": "zoo"
+      },
+      "expected": [
+        [],
+        [],
+        []
+      ],
+      "tags": [
+        "hidden",
+        "no-match"
       ]
     }
   ]

@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1367",
+  "cases": [
+    {
+      "id": "sample-deep-match",
+      "name": "sample: match begins below root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          4,
+          2,
+          8
+        ],
+        "root": [
+          1,
+          4,
+          9,
+          null,
+          2,
+          null,
+          4,
+          null,
+          8
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "deep-start"
+      ]
+    },
+    {
+      "id": "sample-root-match",
+      "name": "sample: full path begins at root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          4,
+          2,
+          6
+        ],
+        "root": [
+          1,
+          4,
+          3,
+          null,
+          2,
+          null,
+          null,
+          6
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "root-start"
+      ]
+    },
+    {
+      "id": "sample-too-long",
+      "name": "sample: matching prefix does not complete",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          4,
+          2,
+          6,
+          8
+        ],
+        "root": [
+          1,
+          4,
+          3,
+          null,
+          2,
+          null,
+          null,
+          6
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "incomplete"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value appears below root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          7
+        ],
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          7
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-siblings-do-not-connect",
+      "name": "trial: siblings cannot form a path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          2,
+          3
+        ],
+        "root": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "siblings"
+      ]
+    },
+    {
+      "id": "hidden-overlap-fallback",
+      "name": "hidden: overlapping prefix restarts in chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          1,
+          2,
+          1,
+          2,
+          3
+        ],
+        "root": [
+          1,
+          null,
+          2,
+          null,
+          1,
+          null,
+          2,
+          null,
+          1,
+          null,
+          2,
+          null,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "overlap"
+      ]
+    },
+    {
+      "id": "hidden-direction-mismatch",
+      "name": "hidden: value order exists but not downward",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          3,
+          1
+        ],
+        "root": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "direction"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1108",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "A valid IPv4 address has exactly four octets, three separators, and at most fifteen characters, so legal inputs cannot provide a fourfold scalable workload.",
+  "workload_bound": {
+    "symbol": "L",
+    "maximum": 15,
+    "unit": "address characters",
+    "source_constraint": "address is one syntactically valid IPv4 address"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Four decimal octets of at most three digits plus three dots give length at most fifteen."},
+    {"kind": "boundary_property_cases", "evidence": "Authored cases cover shortest and longest octets, zeros, repeated digits, and every separator position."}
+  ]
+}

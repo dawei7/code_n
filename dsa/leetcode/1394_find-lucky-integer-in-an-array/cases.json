@@ -1,79 +1,12 @@
 {
   "challenge_id": "lc_1394",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: lucky two",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          2,
-          2,
-          3,
-          4
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "counting"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: largest lucky value",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2,
-          2,
-          3,
-          3,
-          3
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: no lucky integer",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          2,
-          2,
-          2,
-          3,
-          3
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-single-non-lucky",
-      "name": "hidden: single non-lucky value",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          5
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
+    {"id": "sample-one-lucky", "name": "sample: one lucky integer", "kind": "sample", "visible": true, "input": {"arr": [2, 2, 3, 4]}, "expected": 2, "tags": ["sample", "lucky"]},
+    {"id": "sample-largest-lucky", "name": "sample: choose the largest lucky integer", "kind": "sample", "visible": true, "input": {"arr": [1, 2, 2, 3, 3, 3]}, "expected": 3, "tags": ["sample", "maximum"]},
+    {"id": "sample-no-lucky", "name": "sample: no frequency equals its value", "kind": "sample", "visible": true, "input": {"arr": [2, 2, 2, 3, 3]}, "expected": -1, "tags": ["sample", "none"]},
+    {"id": "trial-single-one", "name": "one occurs exactly once", "kind": "trial", "visible": true, "input": {"arr": [1]}, "expected": 1, "tags": ["trial", "boundary"]},
+    {"id": "trial-single-nonone", "name": "single value greater than one", "kind": "trial", "visible": true, "input": {"arr": [500]}, "expected": -1, "tags": ["trial", "boundary"]},
+    {"id": "real-several-qualify", "name": "hidden: several lucky values", "kind": "real", "visible": false, "input": {"arr": [1, 2, 2, 4, 4, 4, 4, 5]}, "expected": 4, "tags": ["hidden", "maximum"]},
+    {"id": "real-near-misses", "name": "hidden: reject counts adjacent to values", "kind": "real", "visible": false, "input": {"arr": [2, 3, 3, 3, 3, 5, 5, 5, 5]}, "expected": -1, "tags": ["hidden", "near-miss"]}
   ]
 }

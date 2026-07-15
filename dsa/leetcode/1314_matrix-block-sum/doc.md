@@ -5,26 +5,33 @@
 | Source | LeetCode |
 | Frontend ID | 1314 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Matrix, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [matrix-block-sum](https://leetcode.com/problems/matrix-block-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/matrix-block-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/matrix-block-sum/).
-
 ### Goal
-For every cell, compute the sum of all matrix values within `k` rows and `k` columns of that cell, clipped to the matrix boundaries.
+Given an $m\times n$ integer matrix `mat` and a positive integer `k`, produce an answer matrix with the same dimensions. For each output cell `answer[i][j]`, sum every `mat[r][c]` whose row lies from $i-k$ through $i+k$ and whose column lies from $j-k$ through $j+k$.
+
+Only valid matrix positions contribute. In other words, the square block centered at `(i, j)` is clipped at the top, bottom, left, and right boundaries rather than padded with additional values.
 
 ### Function Contract
 **Inputs**
 
-- `mat`: integer matrix.
-- `k`: block radius.
+- `mat`: an $m\times n$ matrix, where $1\le m,n\le100$.
+- Every `mat[i][j]` is between 1 and 100 inclusive.
+- `k`: the block radius, where $1\le k\le100$.
 
 **Return value**
 
-A matrix of block sums with the same shape as `mat`.
+An $m\times n$ matrix `answer` satisfying
+
+$$
+\texttt{answer[i][j]}
+=
+\sum_{r=\max(0,i-k)}^{\min(m-1,i+k)}
+\sum_{c=\max(0,j-k)}^{\min(n-1,j+k)}
+\texttt{mat[r][c]}.
+$$
 
 ### Examples
 **Example 1**
@@ -34,45 +41,46 @@ A matrix of block sums with the same shape as `mat`.
 
 **Example 2**
 
-- Input: `mat = [[1,2,3],[4,5,6],[7,8,9]]`, `k = 2`
+- Input: the same matrix, `k = 2`
 - Output: `[[45,45,45],[45,45,45],[45,45,45]]`
 
 **Example 3**
 
-- Input: `mat = [[5]]`, `k = 3`
+- Input: `mat = [[5]]`, `k = 1`
 - Output: `[[5]]`
 
----
+### Required Complexity
+- **Time:** $O(mn)$
+- **Space:** $O(mn)$
 
-## Solution
-### Approach
-2D prefix sums.
-
-### Complexity Analysis
-- **Time Complexity**: `O(m * n)`
-- **Space Complexity**: `O(m * n)`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(mat, k):
-    rows = len(mat)
-    cols = len(mat[0]) if rows else 0
-    prefix = [[0] * (cols + 1) for _ in range(rows + 1)]
-    for r in range(rows):
-        for c in range(cols):
-            prefix[r + 1][c + 1] = mat[r][c] + prefix[r][c + 1] + prefix[r + 1][c] - prefix[r][c]
+#### General
 
-    answer = [[0] * cols for _ in range(rows)]
-    for r in range(rows):
-        r1 = max(0, r - k)
-        r2 = min(rows, r + k + 1)
-        for c in range(cols):
-            c1 = max(0, c - k)
-            c2 = min(cols, c + k + 1)
-            answer[r][c] = prefix[r2][c2] - prefix[r1][c2] - prefix[r2][c1] + prefix[r1][c1]
-    return answer
-```
+**Build a padded two-dimensional prefix table**
+
+Create `prefix` with $m+1$ rows and $n+1$ columns of zeros. Define `prefix[r + 1][c + 1]` as the sum of the rectangle from `mat[0][0]` through `mat[r][c]`. Inclusion-exclusion gives the update from the cell value, the prefix above, and the prefix to the left, subtracting the overlap counted twice.
+
+**Answer each clipped rectangle with four lookups**
+
+For output position `(i, j)`, convert the clipped inclusive bounds to half-open bounds `[top, bottom)` and `[left, right)`. Its block sum is
+
+`prefix[bottom][right] - prefix[top][right] - prefix[bottom][left] + prefix[top][left]`.
+
+The full prefix at `bottom, right` contains the desired rectangle plus cells above and left. Subtracting those two outside strips removes them, while their shared corner was removed twice and must be added back. This leaves exactly the valid cells within $k$ rows and columns of the center. Applying the formula independently to every cell produces the required matrix.
+
+#### Complexity detail
+
+Constructing the prefix table visits all $mn$ cells. Each of the $mn$ answers uses constant-time bound calculations and four prefix lookups, so total time is $O(mn)$. The prefix and answer matrices each occupy $O(mn)$ space.
+
+#### Alternatives and edge cases
+
+- **Direct neighborhood enumeration:** Iterating through every cell in every clipped block is correct but can take $O(mn(2k+1)^2)$ time.
+- **Two one-dimensional sliding passes:** Horizontal window sums followed by vertical window sums also achieve $O(mn)$ time, but require careful changing boundary widths.
+- **Radius covers the matrix:** Every answer equals the complete matrix sum when the clipped block includes all rows and columns.
+- **Corner cells:** Both row and column ranges clip on one side, which the half-open bounds handle uniformly.
+- **Rectangular matrices:** Row and column limits are calculated separately; no square-shape assumption is valid.
+- **Single cell:** Any legal positive radius still returns that one value.
+
 </details>

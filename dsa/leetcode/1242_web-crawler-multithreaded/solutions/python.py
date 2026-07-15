@@ -1,4 +1,4 @@
-"""Concurrency reference for LeetCode 1242 (not app-runnable)."""
+"""Source-native concurrency reference for LeetCode 1242."""
 
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from typing import List

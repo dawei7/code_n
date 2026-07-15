@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1421",
+  "frontend_id": "1295",
+  "title_slug": "find-numbers-with-even-number-of-digits",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findNumbers",
+  "verified_submission_id": "2068368120",
+  "verified_at": "2026-07-15T08:50:36.310246+00:00"
+}

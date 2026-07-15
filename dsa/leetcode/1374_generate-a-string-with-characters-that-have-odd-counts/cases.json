@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1374",
+  "cases": [
+    {
+      "id": "sample-even-four",
+      "name": "sample: even length four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": "aaab",
+      "tags": [
+        "sample",
+        "even"
+      ]
+    },
+    {
+      "id": "sample-even-two",
+      "name": "sample: smallest even length",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": "ab",
+      "tags": [
+        "sample",
+        "even"
+      ]
+    },
+    {
+      "id": "sample-odd-seven",
+      "name": "sample: odd length seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": "aaaaaaa",
+      "tags": [
+        "sample",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: minimum length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": "a",
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-odd-three",
+      "name": "trial: small odd length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": "aaa",
+      "tags": [
+        "trial",
+        "odd"
+      ]
+    },
+    {
+      "id": "hidden-even-six",
+      "name": "hidden: another even length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6
+      },
+      "expected": "aaaaab",
+      "tags": [
+        "hidden",
+        "even"
+      ]
+    },
+    {
+      "id": "hidden-maximum",
+      "name": "hidden: maximum legal length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 500
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    }
+  ]
+}

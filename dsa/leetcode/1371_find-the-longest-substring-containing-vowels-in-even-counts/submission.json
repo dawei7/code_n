@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1473",
+  "frontend_id": "1371",
+  "title_slug": "find-the-longest-substring-containing-vowels-in-even-counts",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findTheLongestSubstring",
+  "verified_submission_id": "2068755255",
+  "verified_at": "2026-07-15T15:01:33.368363+00:00"
+}

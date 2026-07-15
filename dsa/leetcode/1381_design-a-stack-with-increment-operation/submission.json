@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1497",
+  "frontend_id": "1381",
+  "title_slug": "design-a-stack-with-increment-operation",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "CustomStack",
+  "verified_submission_id": "2068793772",
+  "verified_at": "2026-07-15T15:35:34.819369+00:00"
+}

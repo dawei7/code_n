@@ -1,8 +1,11 @@
-"""Optimal solution for LeetCode 1394: Find Lucky Integer in an Array."""
+"""Optimal app-local solution for LeetCode 1394."""
 
 from collections import Counter
 
 
 def solve(arr: list[int]) -> int:
-    counts = Counter(arr)
-    return max((value for value, count in counts.items() if value == count), default=-1)
+    frequencies = Counter(arr)
+    return max(
+        (value for value, frequency in frequencies.items() if value == frequency),
+        default=-1,
+    )

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "pending",
+  "question_id": "1551",
+  "frontend_id": "1425",
+  "title_slug": "constrained-subsequence-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.constrainedSubsetSum"
+}

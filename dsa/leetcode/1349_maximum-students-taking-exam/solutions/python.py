@@ -1,29 +1,29 @@
-def solve(seats):
-    rows = len(seats)
-    cols = len(seats[0]) if rows else 0
-    valid_by_row = []
-    for r in range(rows):
-        blocked = 0
-        for c in range(cols):
-            if seats[r][c] == "#":
-                blocked |= 1 << c
-        masks = []
-        for mask in range(1 << cols):
-            if mask & blocked or mask & (mask << 1):
-                continue
-            masks.append(mask)
-        valid_by_row.append(masks)
+"""Optimal app-local solution for LeetCode 1349."""
 
+
+def solve(seats):
+    columns = len(seats[0])
     dp = {0: 0}
-    for masks in valid_by_row:
+
+    for row in seats:
+        usable = 0
+        for column, seat in enumerate(row):
+            if seat == ".":
+                usable |= 1 << column
+
+        valid_masks = [
+            mask
+            for mask in range(1 << columns)
+            if mask & ~usable == 0 and mask & (mask << 1) == 0
+        ]
         next_dp = {}
-        for mask in masks:
-            count = mask.bit_count()
-            best = 0
-            for prev, value in dp.items():
-                if mask & (prev << 1) or mask & (prev >> 1):
-                    continue
-                best = max(best, value + count)
-            next_dp[mask] = best
+        for mask in valid_masks:
+            students = mask.bit_count()
+            next_dp[mask] = max(
+                total + students
+                for previous, total in dp.items()
+                if mask & (previous << 1) == 0 and mask & (previous >> 1) == 0
+            )
         dp = next_dp
-    return max(dp.values(), default=0)
+
+    return max(dp.values())

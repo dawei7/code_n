@@ -8,81 +8,75 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Design |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [apply-discount-every-n-orders](https://leetcode.com/problems/apply-discount-every-n-orders/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/apply-discount-every-n-orders/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/apply-discount-every-n-orders/).
 
 ### Goal
-Design a cashier that knows product prices and applies a percentage discount to every `n`th customer order. Other orders are charged at full price.
+
+Design a `Cashier` for a store with a fixed product catalog. Parallel arrays `products` and `prices` associate each product ID with its unit price. Each call to `getBill(product, amount)` describes one customer's order using parallel product-ID and quantity arrays.
+
+Charge the full subtotal to ordinary customers. Every $n$th customer receives the configured percentage `discount` on the entire order, after which counting continues so that every subsequent multiple of $n$ is also discounted. Return each bill as a floating-point value.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: every nth order receives the discount.
-- `discount`: discount percentage.
-- `products`: product ids known by the cashier.
-- `prices`: prices parallel to `products`.
-- `orders`: list of `[product, amount]` pairs passed to `getBill`.
+- Constructor arguments `n`, `discount`, `products`, and `prices`.
+- `getBill(product, amount)`: parallel arrays of distinct catalog product IDs and positive quantities for one customer.
+- The app-local adapter receives an `orders` list of `[product, amount]` pairs.
+- Let $P$ be the catalog size and $L$ be the total number of line items across all processed orders.
 
 **Return value**
 
-List of order totals after applying the scheduled discount when applicable.
+- Native `getBill` returns that customer's subtotal after applying the scheduled discount when appropriate.
+- The app-local `solve` returns all bill values in customer order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `n = 3, discount = 50, products = [1,2], prices = [100,200], orders = [[[1],[1]]]`
-- Output: `[100.0]`
+- Configuration: `n = 3, discount = 50, products = [1,2], prices = [100,200]`.
+- First order: product `1`, quantity `1`.
+- Output: `100.0`.
 
 **Example 2**
 
-- Input: `n = 3, discount = 50, products = [1,2], prices = [100,200], orders = [[[1],[1]], [[2],[2]]]`
-- Output: `[100.0, 400.0]`
+- Under the same configuration, the second order buys two units of product `2`.
+- Output: `400.0`.
 
 **Example 3**
 
-- Input: `n = 3, discount = 50, products = [1,2], prices = [100,200], orders = [[[1],[1]], [[2],[2]], [[1,2],[1,1]]]`
-- Output: `[100.0, 400.0, 150.0]`
+- The third order buys one unit each of products `1` and `2`.
+- Output: `150.0`, because the $50\%$ discount applies to the $300$ subtotal.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Hash map lookup with an order counter. Store product prices by id, increment the counter on each bill, compute the subtotal, and multiply by `(100 - discount) / 100` only when the counter is divisible by `n`.
+- **Time:** $O(P+L)$
+- **Space:** $O(P)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(p)` to initialize `p` products and `O(k)` per bill with `k` line items.
-- **Space Complexity**: `O(p)`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-class Cashier:
-    def __init__(self, n: int, discount: int, products: list[int], prices: list[int]):
-        self.n = n
-        self.discount = discount
-        self.customer_count = 0
-        self.price_by_product = dict(zip(products, prices))
+#### General
 
-    def getBill(self, product: list[int], amount: list[int]) -> float:
-        self.customer_count += 1
-        total = sum(self.price_by_product[item] * count for item, count in zip(product, amount))
-        if self.customer_count % self.n == 0:
-            total *= (100 - self.discount) / 100
-        return float(total)
+**Index the catalog once.** Build a hash map from every product ID to its unit price during construction. This makes each later price lookup constant expected time instead of searching the parallel catalog arrays.
 
+**Track customer position.** Increment an order counter exactly once at the beginning of each `getBill` call. Compute the subtotal by summing `price_by_product[item] * quantity` for corresponding entries in the two order arrays.
 
-def solve(
-    n: int,
-    discount: int,
-    products: list[int],
-    prices: list[int],
-    orders: list[tuple[list[int], list[int]]],
-) -> list[float]:
-    cashier = Cashier(n, discount, products, prices)
-    return [cashier.getBill(product, amount) for product, amount in orders]
-```
+If the updated counter is divisible by $n$, multiply the subtotal by `(100 - discount) / 100`; otherwise return the full subtotal. Divisibility selects exactly customers $n,2n,3n,\ldots$, and the line-item sum contains each requested quantity at its catalog price, so every returned bill follows the store rules.
+
+#### Complexity detail
+
+Constructing the price map takes $O(P)$ time and space. Processing all $L$ line items across the order sequence takes $O(L)$ expected time, while discount scheduling adds constant work per bill. Total time is $O(P+L)$ and auxiliary space is $O(P)$.
+
+#### Alternatives and edge cases
+
+- **Linear catalog lookup:** Searching `products` for every bill item is correct but can cost $O(PL)$ across a full-catalog order.
+- **Precompute discounted prices:** This can reduce one multiplication per discounted line but duplicates catalog storage and is unnecessary because the discount applies to the subtotal.
+- **Every customer discounted:** When $n=1$, each order receives the discount.
+- **Full discount:** A $100\%$ discount makes each scheduled bill zero.
+- **Multiple discount cycles:** The counter must use divisibility rather than reset incorrectly after only the first discounted order.
+- **Several quantities:** Each unit price is multiplied by its parallel amount before the discount is applied.
+
 </details>

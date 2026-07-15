@@ -8,48 +8,75 @@
 | Category | Algorithms |
 | Topics | Math |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-burgers-with-no-waste-of-ingredients](https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-burgers-with-no-waste-of-ingredients/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Two burger sizes consume ingredients differently. Each jumbo burger requires four tomato slices and one cheese slice, while each small burger requires two tomato slices and one cheese slice.
+
+Given the available numbers of tomato and cheese slices, determine nonnegative counts of jumbo and small burgers that use every slice of both ingredients, leaving no waste. Return the counts with jumbo burgers first. If no such combination exists, return an empty list.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `tomato_slices`: the available tomato-slice count, where $0 \le \texttt{tomato_slices} \le 10^7$.
+- `cheese_slices`: the available cheese-slice count, where $0 \le \texttt{cheese_slices} \le 10^7$.
 
 **Return value**
 
-TODO
+- Return `[jumbo, small]` when nonnegative integers satisfy both $4\,\textit{jumbo}+2\,\textit{small}=\texttt{tomato_slices}$ and $\textit{jumbo}+\textit{small}=\texttt{cheese_slices}$. Return `[]` if no such counts exist.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `tomato_slices = 16, cheese_slices = 7`
+- Output: `[1,6]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `tomato_slices = 17, cheese_slices = 4`
+- Output: `[]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `tomato_slices = 4, cheese_slices = 17`
+- Output: `[]`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(1)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+Let $j$ be the number of jumbo burgers and $s$ the number of small burgers. Cheese gives $j+s=\texttt{cheese_slices}$. If every cheese slice were initially assigned to a small burger, that would consume twice as many tomato slices as cheese slices. Changing one of those burgers from small to jumbo consumes two additional tomato slices, so
+
+$$
+j = \frac{\texttt{tomato_slices}-2\,\texttt{cheese_slices}}{2},
+\qquad
+s = \texttt{cheese_slices}-j.
+$$
+
+These equations determine at most one answer. It is valid only when the numerator for $j$ is even and both computed counts are nonnegative. Those checks also cover having too few tomatoes to make every burger small or too many tomatoes even if every burger is jumbo. When all conditions hold, substituting the two values back into the equations accounts for every tomato and cheese slice exactly.
+
+#### Complexity detail
+
+The method performs a fixed number of integer arithmetic operations and comparisons, independent of the ingredient counts, for $O(1)$ time and $O(1)$ auxiliary space. The benchmark uses the total burger count as its scaling size and contrasts this direct calculation with enumerating possible jumbo counts.
+
+#### Alternatives and edge cases
+
+- **Enumerate jumbo counts:** Trying every value from zero through `cheese_slices` finds the same unique answer but requires $O(\texttt{cheese_slices})$ time.
+- **Solve with floating-point arithmetic:** It risks unnecessary representation and equality problems; the equations and divisibility conditions are entirely integral.
+- **Odd tomato count:** Every burger consumes an even number of tomato slices, so no solution exists.
+- **No ingredients:** `[0,0]` is valid because it uses both zero totals without waste.
+- **All one size:** Either computed count may be zero and remains a valid answer.
+- **Insufficient or excess tomatoes:** Counts outside the range from twice to four times the cheese count make one computed burger count negative.
+
+</details>

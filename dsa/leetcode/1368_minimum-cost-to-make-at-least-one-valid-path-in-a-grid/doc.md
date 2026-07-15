@@ -8,24 +8,28 @@
 | Category | Algorithms |
 | Topics | Array, Breadth-First Search, Graph Theory, Heap (Priority Queue), Matrix, Shortest Path |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-cost-to-make-at-least-one-valid-path-in-a-grid](https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/) |
+| LeetCode | [Open Problem](https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/).
 
 ### Goal
-Each grid cell points in one of four directions. Moving in the indicated direction costs `0`; changing direction for a move costs `1`. Find the minimum total cost needed so there is at least one valid path from the top-left cell to the bottom-right cell.
+
+Each cell of an $R\times C$ grid contains a direction sign: `1` points right, `2` left, `3` down, and `4` up. Following a sign may leave the grid, and the original signs do not necessarily provide a path from the top-left cell to the bottom-right cell.
+
+Changing a cell's sign to another direction costs one, and unchanged signs cost zero. Determine the minimum total modification cost needed so that at least one sequence of followed signs reaches the destination. A cell's sign may be modified at most once.
 
 ### Function Contract
+
 **Inputs**
 
-- `grid`: an `m x n` matrix whose values encode directions: right, left, down, and up.
+- `grid`: an $R\times C$ matrix whose entries are direction codes from `1` through `4`.
 
 **Return value**
 
-The minimum number of direction changes needed to make a path reach the destination.
+- The minimum number of sign changes required to create a valid path from `(0, 0)` to `(R-1, C-1)`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `grid = [[1,1,3],[3,2,2],[1,1,4]]`
@@ -34,53 +38,41 @@ The minimum number of direction changes needed to make a path reach the destinat
 **Example 2**
 
 - Input: `grid = [[1,1,1],[2,2,2],[1,1,1]]`
-- Output: `1`
+- Output: `2`
 
 **Example 3**
 
 - Input: `grid = [[4]]`
 - Output: `0`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-0-1 BFS on the grid graph. Edges that follow the cell arrow have weight `0`; the other three outgoing directions have weight `1`, so a deque-based shortest path search gives the minimum change count.
+- **Time:** $O(RC)$
+- **Space:** $O(RC)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(mn)`
-- **Space Complexity**: `O(mn)`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-"""Optimal solution for LeetCode 1368: Minimum Cost to Make at Least One Valid Path in a Grid."""
+#### General
 
-from collections import deque
+**Interpret modifications as edge weights.** Treat every cell as a graph vertex with edges to its in-bounds orthogonal neighbors. The edge matching the cell's current sign has weight zero; each other outgoing edge has weight one because taking it requires changing that sign.
 
+**Run 0–1 BFS.** Store the best known cost to every cell and process candidates in a deque. When relaxing a zero-weight edge, place the neighbor at the front; when relaxing a one-weight edge, place it at the back. This ordering processes lower-cost reachability before more expensive alternatives without a heap.
 
-def solve(grid: list[list[int]]) -> int:
-    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-    rows, cols = len(grid), len(grid[0])
-    dist = [[10**9] * cols for _ in range(rows)]
-    dist[0][0] = 0
-    queue: deque[tuple[int, int]] = deque([(0, 0)])
+Every possible grid path corresponds to choosing one outgoing direction at each visited cell, and its edge-weight sum is exactly the number of signs that must change along that path. Conversely, every sequence of modified signs defining a valid path has the same graph cost. Therefore the shortest graph distance to the bottom-right cell is precisely the required minimum modification cost.
 
-    while queue:
-        r, c = queue.popleft()
-        for index, (dr, dc) in enumerate(directions, start=1):
-            nr, nc = r + dr, c + dc
-            if 0 <= nr < rows and 0 <= nc < cols:
-                cost = 0 if grid[r][c] == index else 1
-                new_dist = dist[r][c] + cost
-                if new_dist < dist[nr][nc]:
-                    dist[nr][nc] = new_dist
-                    if cost == 0:
-                        queue.appendleft((nr, nc))
-                    else:
-                        queue.append((nr, nc))
-    return dist[-1][-1]
-```
+#### Complexity detail
+
+The graph has $RC$ vertices and at most $4RC$ directed edges. In 0–1 BFS each successful distance relaxation enters the deque in the standard linear-edge bound, so time is $O(RC)$. The distance matrix and deque use $O(RC)$ space.
+
+#### Alternatives and edge cases
+
+- **Heap Dijkstra:** General nonnegative shortest path also works in $O(RC\log(RC))$ time, but it ignores the special zero-or-one weights.
+- **Unsorted Dijkstra frontier:** Scan a pending list for the lowest-distance cell on every extraction. It is correct but adds substantial repeated selection work.
+- **Ordinary BFS:** Counting every move equally is wrong because following an existing sign costs zero while changing it costs one.
+- **Single cell:** Start and destination coincide, so no sign needs modification.
+- **Sign leaves the grid:** That zero-cost edge is simply unavailable; other in-bounds directions remain weight-one choices.
+- **Already valid path:** A chain of existing signs produces distance zero.
+- **Several optimal paths:** Only the minimum cost is returned; the path itself need not be reconstructed.
+
 </details>

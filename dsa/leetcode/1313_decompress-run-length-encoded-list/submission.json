@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1241",
+  "frontend_id": "1313",
+  "title_slug": "decompress-run-length-encoded-list",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.decompressRLElist",
+  "verified_submission_id": "2068464551",
+  "verified_at": "2026-07-15T10:15:01.655935+00:00"
+}

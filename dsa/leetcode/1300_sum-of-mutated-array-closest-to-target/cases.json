@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1300",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: cap three",
+      "name": "sample: adjacent caps tie",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -17,12 +18,12 @@
       "expected": 3,
       "tags": [
         "sample",
-        "binary-search"
+        "tie"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: keep maximum",
+      "name": "sample: original sum matches target",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,7 +36,8 @@
       },
       "expected": 5,
       "tags": [
-        "sample"
+        "sample",
+        "unchanged"
       ]
     },
     {
@@ -55,14 +57,15 @@
       },
       "expected": 11361,
       "tags": [
-        "sample"
+        "sample",
+        "binary-search"
       ]
     },
     {
-      "id": "real-target-above-sum",
-      "name": "hidden: target above total sum",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-target-above-sum",
+      "name": "trial: target exceeds original sum",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           1,
@@ -73,7 +76,63 @@
       },
       "expected": 1,
       "tags": [
-        "hidden"
+        "trial",
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: answer lies inside one value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          100
+        ],
+        "target": 51
+      },
+      "expected": 51,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "hidden-zero-tie",
+      "name": "hidden: zero wins a tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          5
+        ],
+        "target": 1
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "zero",
+        "tie"
+      ]
+    },
+    {
+      "id": "hidden-unlisted-cap",
+      "name": "hidden: optimal cap is not in the array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          10,
+          20,
+          30
+        ],
+        "target": 25
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "unlisted"
       ]
     }
   ]

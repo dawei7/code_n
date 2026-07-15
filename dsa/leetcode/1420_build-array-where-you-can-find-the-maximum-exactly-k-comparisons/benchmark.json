@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1420",
+  "measurement_note": "Size is W = nkm, the number of dynamic-programming states. The 64/512/4096 tiers span 64x while all three dimensions grow. Prefix accumulation evaluates each state in O(1), for O(W) required time. Correct direct summation over every smaller previous maximum takes O(nkm^2) time and completes normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: n=4, m=8, k=2",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 4,
+        "m": 8,
+        "k": 2
+      },
+      "expected": 1974,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "dp-states"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: n=8, m=16, k=4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "n": 8,
+        "m": 16,
+        "k": 4
+      },
+      "expected": 552572930,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "dp-states"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: n=16, m=32, k=8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {
+        "n": 16,
+        "m": 32,
+        "k": 8
+      },
+      "expected": 770040125,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "dp-states"
+      ]
+    }
+  ]
+}

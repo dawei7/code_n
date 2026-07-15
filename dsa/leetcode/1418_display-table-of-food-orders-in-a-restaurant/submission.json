@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "pending",
+  "question_id": "1534",
+  "frontend_id": "1418",
+  "title_slug": "display-table-of-food-orders-in-a-restaurant",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.displayTable"
+}

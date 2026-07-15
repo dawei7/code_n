@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_1392",
+  "cases": [
+    {"id": "sample-level", "name": "sample: one-character border", "kind": "sample", "visible": true, "input": {"s": "level"}, "expected": "l", "tags": ["sample", "border"]},
+    {"id": "sample-repeated-pattern", "name": "sample: overlapping repeated pattern", "kind": "sample", "visible": true, "input": {"s": "ababab"}, "expected": "abab", "tags": ["sample", "overlap"]},
+    {"id": "sample-word-border", "name": "sample: word prefix repeats as suffix", "kind": "sample", "visible": true, "input": {"s": "leetcodeleet"}, "expected": "leet", "tags": ["sample", "border"]},
+    {"id": "trial-no-border", "name": "no nonempty border", "kind": "trial", "visible": true, "input": {"s": "abcdef"}, "expected": "", "tags": ["trial", "empty-result"]},
+    {"id": "trial-single-character", "name": "single character has no proper border", "kind": "trial", "visible": true, "input": {"s": "a"}, "expected": "", "tags": ["trial", "single-character"]},
+    {"id": "real-all-equal", "name": "hidden: longest border overlaps almost entirely", "kind": "real", "visible": false, "input": {"s": "aaaaa"}, "expected": "aaaa", "tags": ["hidden", "overlap"]},
+    {"id": "real-fallback-chain", "name": "hidden: several candidate borders require fallback", "kind": "real", "visible": false, "input": {"s": "aabaacaabaa"}, "expected": "aabaa", "tags": ["hidden", "fallback"]},
+    {"id": "real-proper-prefix-only", "name": "hidden: never return the entire string", "kind": "real", "visible": false, "input": {"s": "zz"}, "expected": "z", "tags": ["hidden", "proper-prefix"]}
+  ]
+}

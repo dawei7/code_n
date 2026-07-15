@@ -1,80 +1,12 @@
 {
   "challenge_id": "lc_1402",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: skip very negative dishes",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "satisfaction": [
-          -1,
-          -8,
-          0,
-          5,
-          -9
-        ]
-      },
-      "expected": 14,
-      "tags": [
-        "sample",
-        "greedy"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: all positive",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "satisfaction": [
-          4,
-          3,
-          2
-        ]
-      },
-      "expected": 20,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: all negative",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "satisfaction": [
-          -1,
-          -4,
-          -5
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-mixed-values",
-      "name": "hidden: mixed positive and negative values",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "satisfaction": [
-          -2,
-          5,
-          -1,
-          0,
-          3,
-          -3
-        ]
-      },
-      "expected": 35,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-mixed", "name": "sample: useful negative and nonnegative dishes", "kind": "sample", "visible": true, "input": {"satisfaction": [-1, -8, 0, 5, -9]}, "expected": 14, "tags": ["sample", "mixed"]},
+    {"id": "sample-positive", "name": "sample: select every positive dish", "kind": "sample", "visible": true, "input": {"satisfaction": [4, 3, 2]}, "expected": 20, "tags": ["sample", "positive"]},
+    {"id": "sample-negative", "name": "sample: discard every dish", "kind": "sample", "visible": true, "input": {"satisfaction": [-1, -4, -5]}, "expected": 0, "tags": ["sample", "empty-selection"]},
+    {"id": "trial-single-zero", "name": "single zero gives no improvement", "kind": "trial", "visible": true, "input": {"satisfaction": [0]}, "expected": 0, "tags": ["trial", "zero"]},
+    {"id": "trial-negative-useful", "name": "negative dish is worth prepending", "kind": "trial", "visible": true, "input": {"satisfaction": [-2, 5, 6]}, "expected": 26, "tags": ["trial", "negative-useful"]},
+    {"id": "real-stop-at-zero", "name": "hidden: zero cumulative addition is excluded", "kind": "real", "visible": false, "input": {"satisfaction": [-6, 1, 2, 3]}, "expected": 14, "tags": ["hidden", "stopping-rule"]},
+    {"id": "real-duplicates", "name": "hidden: duplicate satisfaction values", "kind": "real", "visible": false, "input": {"satisfaction": [-1, -1, 4, 4]}, "expected": 25, "tags": ["hidden", "duplicates"]}
   ]
 }

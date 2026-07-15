@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1477",
+  "frontend_id": "1352",
+  "title_slug": "product-of-the-last-k-numbers",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "ProductOfNumbers",
+  "verified_submission_id": "2068670862",
+  "verified_at": "2026-07-15T13:47:11.440463+00:00"
+}

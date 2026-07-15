@@ -1,0 +1,7390 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1321",
+  "measurement_note": "Size is r, the number of Customer rows and distinct consecutive dates in these tiers. Daily aggregation plus ordered bounded window functions takes O(r log r) time. A correct correlated date-range aggregation repeatedly scans the daily relation and takes O(r squared) time; every tier completes and returns identical rows.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 consecutive visit rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 1,
+              "name": "B01",
+              "visited_on": "2020-01-01",
+              "amount": 1
+            },
+            {
+              "customer_id": 2,
+              "name": "B02",
+              "visited_on": "2020-01-02",
+              "amount": 2
+            },
+            {
+              "customer_id": 3,
+              "name": "B03",
+              "visited_on": "2020-01-03",
+              "amount": 3
+            },
+            {
+              "customer_id": 4,
+              "name": "B04",
+              "visited_on": "2020-01-04",
+              "amount": 4
+            },
+            {
+              "customer_id": 5,
+              "name": "B05",
+              "visited_on": "2020-01-05",
+              "amount": 5
+            },
+            {
+              "customer_id": 6,
+              "name": "B06",
+              "visited_on": "2020-01-06",
+              "amount": 6
+            },
+            {
+              "customer_id": 7,
+              "name": "B07",
+              "visited_on": "2020-01-07",
+              "amount": 7
+            },
+            {
+              "customer_id": 8,
+              "name": "B08",
+              "visited_on": "2020-01-08",
+              "amount": 8
+            },
+            {
+              "customer_id": 9,
+              "name": "B09",
+              "visited_on": "2020-01-09",
+              "amount": 9
+            },
+            {
+              "customer_id": 10,
+              "name": "B010",
+              "visited_on": "2020-01-10",
+              "amount": 1
+            },
+            {
+              "customer_id": 11,
+              "name": "B011",
+              "visited_on": "2020-01-11",
+              "amount": 2
+            },
+            {
+              "customer_id": 12,
+              "name": "B012",
+              "visited_on": "2020-01-12",
+              "amount": 3
+            },
+            {
+              "customer_id": 13,
+              "name": "B013",
+              "visited_on": "2020-01-13",
+              "amount": 4
+            },
+            {
+              "customer_id": 14,
+              "name": "B014",
+              "visited_on": "2020-01-14",
+              "amount": 5
+            },
+            {
+              "customer_id": 15,
+              "name": "B015",
+              "visited_on": "2020-01-15",
+              "amount": 6
+            },
+            {
+              "customer_id": 16,
+              "name": "B016",
+              "visited_on": "2020-01-16",
+              "amount": 7
+            },
+            {
+              "customer_id": 17,
+              "name": "B017",
+              "visited_on": "2020-01-17",
+              "amount": 8
+            },
+            {
+              "customer_id": 18,
+              "name": "B018",
+              "visited_on": "2020-01-18",
+              "amount": 9
+            },
+            {
+              "customer_id": 19,
+              "name": "B019",
+              "visited_on": "2020-01-19",
+              "amount": 1
+            },
+            {
+              "customer_id": 20,
+              "name": "B020",
+              "visited_on": "2020-01-20",
+              "amount": 2
+            },
+            {
+              "customer_id": 21,
+              "name": "B021",
+              "visited_on": "2020-01-21",
+              "amount": 3
+            },
+            {
+              "customer_id": 22,
+              "name": "B022",
+              "visited_on": "2020-01-22",
+              "amount": 4
+            },
+            {
+              "customer_id": 23,
+              "name": "B023",
+              "visited_on": "2020-01-23",
+              "amount": 5
+            },
+            {
+              "customer_id": 24,
+              "name": "B024",
+              "visited_on": "2020-01-24",
+              "amount": 6
+            },
+            {
+              "customer_id": 25,
+              "name": "B025",
+              "visited_on": "2020-01-25",
+              "amount": 7
+            },
+            {
+              "customer_id": 26,
+              "name": "B026",
+              "visited_on": "2020-01-26",
+              "amount": 8
+            },
+            {
+              "customer_id": 27,
+              "name": "B027",
+              "visited_on": "2020-01-27",
+              "amount": 9
+            },
+            {
+              "customer_id": 28,
+              "name": "B028",
+              "visited_on": "2020-01-28",
+              "amount": 1
+            },
+            {
+              "customer_id": 29,
+              "name": "B029",
+              "visited_on": "2020-01-29",
+              "amount": 2
+            },
+            {
+              "customer_id": 30,
+              "name": "B030",
+              "visited_on": "2020-01-30",
+              "amount": 3
+            },
+            {
+              "customer_id": 31,
+              "name": "B031",
+              "visited_on": "2020-01-31",
+              "amount": 4
+            },
+            {
+              "customer_id": 32,
+              "name": "B032",
+              "visited_on": "2020-02-01",
+              "amount": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "visited_on",
+          "amount",
+          "average_amount"
+        ],
+        "rows": [
+          [
+            "2020-01-07",
+            28,
+            4
+          ],
+          [
+            "2020-01-08",
+            35,
+            5
+          ],
+          [
+            "2020-01-09",
+            42,
+            6
+          ],
+          [
+            "2020-01-10",
+            40,
+            5.71
+          ],
+          [
+            "2020-01-11",
+            38,
+            5.43
+          ],
+          [
+            "2020-01-12",
+            36,
+            5.14
+          ],
+          [
+            "2020-01-13",
+            34,
+            4.86
+          ],
+          [
+            "2020-01-14",
+            32,
+            4.57
+          ],
+          [
+            "2020-01-15",
+            30,
+            4.29
+          ],
+          [
+            "2020-01-16",
+            28,
+            4
+          ],
+          [
+            "2020-01-17",
+            35,
+            5
+          ],
+          [
+            "2020-01-18",
+            42,
+            6
+          ],
+          [
+            "2020-01-19",
+            40,
+            5.71
+          ],
+          [
+            "2020-01-20",
+            38,
+            5.43
+          ],
+          [
+            "2020-01-21",
+            36,
+            5.14
+          ],
+          [
+            "2020-01-22",
+            34,
+            4.86
+          ],
+          [
+            "2020-01-23",
+            32,
+            4.57
+          ],
+          [
+            "2020-01-24",
+            30,
+            4.29
+          ],
+          [
+            "2020-01-25",
+            28,
+            4
+          ],
+          [
+            "2020-01-26",
+            35,
+            5
+          ],
+          [
+            "2020-01-27",
+            42,
+            6
+          ],
+          [
+            "2020-01-28",
+            40,
+            5.71
+          ],
+          [
+            "2020-01-29",
+            38,
+            5.43
+          ],
+          [
+            "2020-01-30",
+            36,
+            5.14
+          ],
+          [
+            "2020-01-31",
+            34,
+            4.86
+          ],
+          [
+            "2020-02-01",
+            32,
+            4.57
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "rolling-window"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 consecutive visit rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 1,
+              "name": "B11",
+              "visited_on": "2020-01-01",
+              "amount": 1
+            },
+            {
+              "customer_id": 2,
+              "name": "B12",
+              "visited_on": "2020-01-02",
+              "amount": 2
+            },
+            {
+              "customer_id": 3,
+              "name": "B13",
+              "visited_on": "2020-01-03",
+              "amount": 3
+            },
+            {
+              "customer_id": 4,
+              "name": "B14",
+              "visited_on": "2020-01-04",
+              "amount": 4
+            },
+            {
+              "customer_id": 5,
+              "name": "B15",
+              "visited_on": "2020-01-05",
+              "amount": 5
+            },
+            {
+              "customer_id": 6,
+              "name": "B16",
+              "visited_on": "2020-01-06",
+              "amount": 6
+            },
+            {
+              "customer_id": 7,
+              "name": "B17",
+              "visited_on": "2020-01-07",
+              "amount": 7
+            },
+            {
+              "customer_id": 8,
+              "name": "B18",
+              "visited_on": "2020-01-08",
+              "amount": 8
+            },
+            {
+              "customer_id": 9,
+              "name": "B19",
+              "visited_on": "2020-01-09",
+              "amount": 9
+            },
+            {
+              "customer_id": 10,
+              "name": "B110",
+              "visited_on": "2020-01-10",
+              "amount": 1
+            },
+            {
+              "customer_id": 11,
+              "name": "B111",
+              "visited_on": "2020-01-11",
+              "amount": 2
+            },
+            {
+              "customer_id": 12,
+              "name": "B112",
+              "visited_on": "2020-01-12",
+              "amount": 3
+            },
+            {
+              "customer_id": 13,
+              "name": "B113",
+              "visited_on": "2020-01-13",
+              "amount": 4
+            },
+            {
+              "customer_id": 14,
+              "name": "B114",
+              "visited_on": "2020-01-14",
+              "amount": 5
+            },
+            {
+              "customer_id": 15,
+              "name": "B115",
+              "visited_on": "2020-01-15",
+              "amount": 6
+            },
+            {
+              "customer_id": 16,
+              "name": "B116",
+              "visited_on": "2020-01-16",
+              "amount": 7
+            },
+            {
+              "customer_id": 17,
+              "name": "B117",
+              "visited_on": "2020-01-17",
+              "amount": 8
+            },
+            {
+              "customer_id": 18,
+              "name": "B118",
+              "visited_on": "2020-01-18",
+              "amount": 9
+            },
+            {
+              "customer_id": 19,
+              "name": "B119",
+              "visited_on": "2020-01-19",
+              "amount": 1
+            },
+            {
+              "customer_id": 20,
+              "name": "B120",
+              "visited_on": "2020-01-20",
+              "amount": 2
+            },
+            {
+              "customer_id": 21,
+              "name": "B121",
+              "visited_on": "2020-01-21",
+              "amount": 3
+            },
+            {
+              "customer_id": 22,
+              "name": "B122",
+              "visited_on": "2020-01-22",
+              "amount": 4
+            },
+            {
+              "customer_id": 23,
+              "name": "B123",
+              "visited_on": "2020-01-23",
+              "amount": 5
+            },
+            {
+              "customer_id": 24,
+              "name": "B124",
+              "visited_on": "2020-01-24",
+              "amount": 6
+            },
+            {
+              "customer_id": 25,
+              "name": "B125",
+              "visited_on": "2020-01-25",
+              "amount": 7
+            },
+            {
+              "customer_id": 26,
+              "name": "B126",
+              "visited_on": "2020-01-26",
+              "amount": 8
+            },
+            {
+              "customer_id": 27,
+              "name": "B127",
+              "visited_on": "2020-01-27",
+              "amount": 9
+            },
+            {
+              "customer_id": 28,
+              "name": "B128",
+              "visited_on": "2020-01-28",
+              "amount": 1
+            },
+            {
+              "customer_id": 29,
+              "name": "B129",
+              "visited_on": "2020-01-29",
+              "amount": 2
+            },
+            {
+              "customer_id": 30,
+              "name": "B130",
+              "visited_on": "2020-01-30",
+              "amount": 3
+            },
+            {
+              "customer_id": 31,
+              "name": "B131",
+              "visited_on": "2020-01-31",
+              "amount": 4
+            },
+            {
+              "customer_id": 32,
+              "name": "B132",
+              "visited_on": "2020-02-01",
+              "amount": 5
+            },
+            {
+              "customer_id": 33,
+              "name": "B133",
+              "visited_on": "2020-02-02",
+              "amount": 6
+            },
+            {
+              "customer_id": 34,
+              "name": "B134",
+              "visited_on": "2020-02-03",
+              "amount": 7
+            },
+            {
+              "customer_id": 35,
+              "name": "B135",
+              "visited_on": "2020-02-04",
+              "amount": 8
+            },
+            {
+              "customer_id": 36,
+              "name": "B136",
+              "visited_on": "2020-02-05",
+              "amount": 9
+            },
+            {
+              "customer_id": 37,
+              "name": "B137",
+              "visited_on": "2020-02-06",
+              "amount": 1
+            },
+            {
+              "customer_id": 38,
+              "name": "B138",
+              "visited_on": "2020-02-07",
+              "amount": 2
+            },
+            {
+              "customer_id": 39,
+              "name": "B139",
+              "visited_on": "2020-02-08",
+              "amount": 3
+            },
+            {
+              "customer_id": 40,
+              "name": "B140",
+              "visited_on": "2020-02-09",
+              "amount": 4
+            },
+            {
+              "customer_id": 41,
+              "name": "B141",
+              "visited_on": "2020-02-10",
+              "amount": 5
+            },
+            {
+              "customer_id": 42,
+              "name": "B142",
+              "visited_on": "2020-02-11",
+              "amount": 6
+            },
+            {
+              "customer_id": 43,
+              "name": "B143",
+              "visited_on": "2020-02-12",
+              "amount": 7
+            },
+            {
+              "customer_id": 44,
+              "name": "B144",
+              "visited_on": "2020-02-13",
+              "amount": 8
+            },
+            {
+              "customer_id": 45,
+              "name": "B145",
+              "visited_on": "2020-02-14",
+              "amount": 9
+            },
+            {
+              "customer_id": 46,
+              "name": "B146",
+              "visited_on": "2020-02-15",
+              "amount": 1
+            },
+            {
+              "customer_id": 47,
+              "name": "B147",
+              "visited_on": "2020-02-16",
+              "amount": 2
+            },
+            {
+              "customer_id": 48,
+              "name": "B148",
+              "visited_on": "2020-02-17",
+              "amount": 3
+            },
+            {
+              "customer_id": 49,
+              "name": "B149",
+              "visited_on": "2020-02-18",
+              "amount": 4
+            },
+            {
+              "customer_id": 50,
+              "name": "B150",
+              "visited_on": "2020-02-19",
+              "amount": 5
+            },
+            {
+              "customer_id": 51,
+              "name": "B151",
+              "visited_on": "2020-02-20",
+              "amount": 6
+            },
+            {
+              "customer_id": 52,
+              "name": "B152",
+              "visited_on": "2020-02-21",
+              "amount": 7
+            },
+            {
+              "customer_id": 53,
+              "name": "B153",
+              "visited_on": "2020-02-22",
+              "amount": 8
+            },
+            {
+              "customer_id": 54,
+              "name": "B154",
+              "visited_on": "2020-02-23",
+              "amount": 9
+            },
+            {
+              "customer_id": 55,
+              "name": "B155",
+              "visited_on": "2020-02-24",
+              "amount": 1
+            },
+            {
+              "customer_id": 56,
+              "name": "B156",
+              "visited_on": "2020-02-25",
+              "amount": 2
+            },
+            {
+              "customer_id": 57,
+              "name": "B157",
+              "visited_on": "2020-02-26",
+              "amount": 3
+            },
+            {
+              "customer_id": 58,
+              "name": "B158",
+              "visited_on": "2020-02-27",
+              "amount": 4
+            },
+            {
+              "customer_id": 59,
+              "name": "B159",
+              "visited_on": "2020-02-28",
+              "amount": 5
+            },
+            {
+              "customer_id": 60,
+              "name": "B160",
+              "visited_on": "2020-02-29",
+              "amount": 6
+            },
+            {
+              "customer_id": 61,
+              "name": "B161",
+              "visited_on": "2020-03-01",
+              "amount": 7
+            },
+            {
+              "customer_id": 62,
+              "name": "B162",
+              "visited_on": "2020-03-02",
+              "amount": 8
+            },
+            {
+              "customer_id": 63,
+              "name": "B163",
+              "visited_on": "2020-03-03",
+              "amount": 9
+            },
+            {
+              "customer_id": 64,
+              "name": "B164",
+              "visited_on": "2020-03-04",
+              "amount": 1
+            },
+            {
+              "customer_id": 65,
+              "name": "B165",
+              "visited_on": "2020-03-05",
+              "amount": 2
+            },
+            {
+              "customer_id": 66,
+              "name": "B166",
+              "visited_on": "2020-03-06",
+              "amount": 3
+            },
+            {
+              "customer_id": 67,
+              "name": "B167",
+              "visited_on": "2020-03-07",
+              "amount": 4
+            },
+            {
+              "customer_id": 68,
+              "name": "B168",
+              "visited_on": "2020-03-08",
+              "amount": 5
+            },
+            {
+              "customer_id": 69,
+              "name": "B169",
+              "visited_on": "2020-03-09",
+              "amount": 6
+            },
+            {
+              "customer_id": 70,
+              "name": "B170",
+              "visited_on": "2020-03-10",
+              "amount": 7
+            },
+            {
+              "customer_id": 71,
+              "name": "B171",
+              "visited_on": "2020-03-11",
+              "amount": 8
+            },
+            {
+              "customer_id": 72,
+              "name": "B172",
+              "visited_on": "2020-03-12",
+              "amount": 9
+            },
+            {
+              "customer_id": 73,
+              "name": "B173",
+              "visited_on": "2020-03-13",
+              "amount": 1
+            },
+            {
+              "customer_id": 74,
+              "name": "B174",
+              "visited_on": "2020-03-14",
+              "amount": 2
+            },
+            {
+              "customer_id": 75,
+              "name": "B175",
+              "visited_on": "2020-03-15",
+              "amount": 3
+            },
+            {
+              "customer_id": 76,
+              "name": "B176",
+              "visited_on": "2020-03-16",
+              "amount": 4
+            },
+            {
+              "customer_id": 77,
+              "name": "B177",
+              "visited_on": "2020-03-17",
+              "amount": 5
+            },
+            {
+              "customer_id": 78,
+              "name": "B178",
+              "visited_on": "2020-03-18",
+              "amount": 6
+            },
+            {
+              "customer_id": 79,
+              "name": "B179",
+              "visited_on": "2020-03-19",
+              "amount": 7
+            },
+            {
+              "customer_id": 80,
+              "name": "B180",
+              "visited_on": "2020-03-20",
+              "amount": 8
+            },
+            {
+              "customer_id": 81,
+              "name": "B181",
+              "visited_on": "2020-03-21",
+              "amount": 9
+            },
+            {
+              "customer_id": 82,
+              "name": "B182",
+              "visited_on": "2020-03-22",
+              "amount": 1
+            },
+            {
+              "customer_id": 83,
+              "name": "B183",
+              "visited_on": "2020-03-23",
+              "amount": 2
+            },
+            {
+              "customer_id": 84,
+              "name": "B184",
+              "visited_on": "2020-03-24",
+              "amount": 3
+            },
+            {
+              "customer_id": 85,
+              "name": "B185",
+              "visited_on": "2020-03-25",
+              "amount": 4
+            },
+            {
+              "customer_id": 86,
+              "name": "B186",
+              "visited_on": "2020-03-26",
+              "amount": 5
+            },
+            {
+              "customer_id": 87,
+              "name": "B187",
+              "visited_on": "2020-03-27",
+              "amount": 6
+            },
+            {
+              "customer_id": 88,
+              "name": "B188",
+              "visited_on": "2020-03-28",
+              "amount": 7
+            },
+            {
+              "customer_id": 89,
+              "name": "B189",
+              "visited_on": "2020-03-29",
+              "amount": 8
+            },
+            {
+              "customer_id": 90,
+              "name": "B190",
+              "visited_on": "2020-03-30",
+              "amount": 9
+            },
+            {
+              "customer_id": 91,
+              "name": "B191",
+              "visited_on": "2020-03-31",
+              "amount": 1
+            },
+            {
+              "customer_id": 92,
+              "name": "B192",
+              "visited_on": "2020-04-01",
+              "amount": 2
+            },
+            {
+              "customer_id": 93,
+              "name": "B193",
+              "visited_on": "2020-04-02",
+              "amount": 3
+            },
+            {
+              "customer_id": 94,
+              "name": "B194",
+              "visited_on": "2020-04-03",
+              "amount": 4
+            },
+            {
+              "customer_id": 95,
+              "name": "B195",
+              "visited_on": "2020-04-04",
+              "amount": 5
+            },
+            {
+              "customer_id": 96,
+              "name": "B196",
+              "visited_on": "2020-04-05",
+              "amount": 6
+            },
+            {
+              "customer_id": 97,
+              "name": "B197",
+              "visited_on": "2020-04-06",
+              "amount": 7
+            },
+            {
+              "customer_id": 98,
+              "name": "B198",
+              "visited_on": "2020-04-07",
+              "amount": 8
+            },
+            {
+              "customer_id": 99,
+              "name": "B199",
+              "visited_on": "2020-04-08",
+              "amount": 9
+            },
+            {
+              "customer_id": 100,
+              "name": "B1100",
+              "visited_on": "2020-04-09",
+              "amount": 1
+            },
+            {
+              "customer_id": 101,
+              "name": "B1101",
+              "visited_on": "2020-04-10",
+              "amount": 2
+            },
+            {
+              "customer_id": 102,
+              "name": "B1102",
+              "visited_on": "2020-04-11",
+              "amount": 3
+            },
+            {
+              "customer_id": 103,
+              "name": "B1103",
+              "visited_on": "2020-04-12",
+              "amount": 4
+            },
+            {
+              "customer_id": 104,
+              "name": "B1104",
+              "visited_on": "2020-04-13",
+              "amount": 5
+            },
+            {
+              "customer_id": 105,
+              "name": "B1105",
+              "visited_on": "2020-04-14",
+              "amount": 6
+            },
+            {
+              "customer_id": 106,
+              "name": "B1106",
+              "visited_on": "2020-04-15",
+              "amount": 7
+            },
+            {
+              "customer_id": 107,
+              "name": "B1107",
+              "visited_on": "2020-04-16",
+              "amount": 8
+            },
+            {
+              "customer_id": 108,
+              "name": "B1108",
+              "visited_on": "2020-04-17",
+              "amount": 9
+            },
+            {
+              "customer_id": 109,
+              "name": "B1109",
+              "visited_on": "2020-04-18",
+              "amount": 1
+            },
+            {
+              "customer_id": 110,
+              "name": "B1110",
+              "visited_on": "2020-04-19",
+              "amount": 2
+            },
+            {
+              "customer_id": 111,
+              "name": "B1111",
+              "visited_on": "2020-04-20",
+              "amount": 3
+            },
+            {
+              "customer_id": 112,
+              "name": "B1112",
+              "visited_on": "2020-04-21",
+              "amount": 4
+            },
+            {
+              "customer_id": 113,
+              "name": "B1113",
+              "visited_on": "2020-04-22",
+              "amount": 5
+            },
+            {
+              "customer_id": 114,
+              "name": "B1114",
+              "visited_on": "2020-04-23",
+              "amount": 6
+            },
+            {
+              "customer_id": 115,
+              "name": "B1115",
+              "visited_on": "2020-04-24",
+              "amount": 7
+            },
+            {
+              "customer_id": 116,
+              "name": "B1116",
+              "visited_on": "2020-04-25",
+              "amount": 8
+            },
+            {
+              "customer_id": 117,
+              "name": "B1117",
+              "visited_on": "2020-04-26",
+              "amount": 9
+            },
+            {
+              "customer_id": 118,
+              "name": "B1118",
+              "visited_on": "2020-04-27",
+              "amount": 1
+            },
+            {
+              "customer_id": 119,
+              "name": "B1119",
+              "visited_on": "2020-04-28",
+              "amount": 2
+            },
+            {
+              "customer_id": 120,
+              "name": "B1120",
+              "visited_on": "2020-04-29",
+              "amount": 3
+            },
+            {
+              "customer_id": 121,
+              "name": "B1121",
+              "visited_on": "2020-04-30",
+              "amount": 4
+            },
+            {
+              "customer_id": 122,
+              "name": "B1122",
+              "visited_on": "2020-05-01",
+              "amount": 5
+            },
+            {
+              "customer_id": 123,
+              "name": "B1123",
+              "visited_on": "2020-05-02",
+              "amount": 6
+            },
+            {
+              "customer_id": 124,
+              "name": "B1124",
+              "visited_on": "2020-05-03",
+              "amount": 7
+            },
+            {
+              "customer_id": 125,
+              "name": "B1125",
+              "visited_on": "2020-05-04",
+              "amount": 8
+            },
+            {
+              "customer_id": 126,
+              "name": "B1126",
+              "visited_on": "2020-05-05",
+              "amount": 9
+            },
+            {
+              "customer_id": 127,
+              "name": "B1127",
+              "visited_on": "2020-05-06",
+              "amount": 1
+            },
+            {
+              "customer_id": 128,
+              "name": "B1128",
+              "visited_on": "2020-05-07",
+              "amount": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "visited_on",
+          "amount",
+          "average_amount"
+        ],
+        "rows": [
+          [
+            "2020-01-07",
+            28,
+            4
+          ],
+          [
+            "2020-01-08",
+            35,
+            5
+          ],
+          [
+            "2020-01-09",
+            42,
+            6
+          ],
+          [
+            "2020-01-10",
+            40,
+            5.71
+          ],
+          [
+            "2020-01-11",
+            38,
+            5.43
+          ],
+          [
+            "2020-01-12",
+            36,
+            5.14
+          ],
+          [
+            "2020-01-13",
+            34,
+            4.86
+          ],
+          [
+            "2020-01-14",
+            32,
+            4.57
+          ],
+          [
+            "2020-01-15",
+            30,
+            4.29
+          ],
+          [
+            "2020-01-16",
+            28,
+            4
+          ],
+          [
+            "2020-01-17",
+            35,
+            5
+          ],
+          [
+            "2020-01-18",
+            42,
+            6
+          ],
+          [
+            "2020-01-19",
+            40,
+            5.71
+          ],
+          [
+            "2020-01-20",
+            38,
+            5.43
+          ],
+          [
+            "2020-01-21",
+            36,
+            5.14
+          ],
+          [
+            "2020-01-22",
+            34,
+            4.86
+          ],
+          [
+            "2020-01-23",
+            32,
+            4.57
+          ],
+          [
+            "2020-01-24",
+            30,
+            4.29
+          ],
+          [
+            "2020-01-25",
+            28,
+            4
+          ],
+          [
+            "2020-01-26",
+            35,
+            5
+          ],
+          [
+            "2020-01-27",
+            42,
+            6
+          ],
+          [
+            "2020-01-28",
+            40,
+            5.71
+          ],
+          [
+            "2020-01-29",
+            38,
+            5.43
+          ],
+          [
+            "2020-01-30",
+            36,
+            5.14
+          ],
+          [
+            "2020-01-31",
+            34,
+            4.86
+          ],
+          [
+            "2020-02-01",
+            32,
+            4.57
+          ],
+          [
+            "2020-02-02",
+            30,
+            4.29
+          ],
+          [
+            "2020-02-03",
+            28,
+            4
+          ],
+          [
+            "2020-02-04",
+            35,
+            5
+          ],
+          [
+            "2020-02-05",
+            42,
+            6
+          ],
+          [
+            "2020-02-06",
+            40,
+            5.71
+          ],
+          [
+            "2020-02-07",
+            38,
+            5.43
+          ],
+          [
+            "2020-02-08",
+            36,
+            5.14
+          ],
+          [
+            "2020-02-09",
+            34,
+            4.86
+          ],
+          [
+            "2020-02-10",
+            32,
+            4.57
+          ],
+          [
+            "2020-02-11",
+            30,
+            4.29
+          ],
+          [
+            "2020-02-12",
+            28,
+            4
+          ],
+          [
+            "2020-02-13",
+            35,
+            5
+          ],
+          [
+            "2020-02-14",
+            42,
+            6
+          ],
+          [
+            "2020-02-15",
+            40,
+            5.71
+          ],
+          [
+            "2020-02-16",
+            38,
+            5.43
+          ],
+          [
+            "2020-02-17",
+            36,
+            5.14
+          ],
+          [
+            "2020-02-18",
+            34,
+            4.86
+          ],
+          [
+            "2020-02-19",
+            32,
+            4.57
+          ],
+          [
+            "2020-02-20",
+            30,
+            4.29
+          ],
+          [
+            "2020-02-21",
+            28,
+            4
+          ],
+          [
+            "2020-02-22",
+            35,
+            5
+          ],
+          [
+            "2020-02-23",
+            42,
+            6
+          ],
+          [
+            "2020-02-24",
+            40,
+            5.71
+          ],
+          [
+            "2020-02-25",
+            38,
+            5.43
+          ],
+          [
+            "2020-02-26",
+            36,
+            5.14
+          ],
+          [
+            "2020-02-27",
+            34,
+            4.86
+          ],
+          [
+            "2020-02-28",
+            32,
+            4.57
+          ],
+          [
+            "2020-02-29",
+            30,
+            4.29
+          ],
+          [
+            "2020-03-01",
+            28,
+            4
+          ],
+          [
+            "2020-03-02",
+            35,
+            5
+          ],
+          [
+            "2020-03-03",
+            42,
+            6
+          ],
+          [
+            "2020-03-04",
+            40,
+            5.71
+          ],
+          [
+            "2020-03-05",
+            38,
+            5.43
+          ],
+          [
+            "2020-03-06",
+            36,
+            5.14
+          ],
+          [
+            "2020-03-07",
+            34,
+            4.86
+          ],
+          [
+            "2020-03-08",
+            32,
+            4.57
+          ],
+          [
+            "2020-03-09",
+            30,
+            4.29
+          ],
+          [
+            "2020-03-10",
+            28,
+            4
+          ],
+          [
+            "2020-03-11",
+            35,
+            5
+          ],
+          [
+            "2020-03-12",
+            42,
+            6
+          ],
+          [
+            "2020-03-13",
+            40,
+            5.71
+          ],
+          [
+            "2020-03-14",
+            38,
+            5.43
+          ],
+          [
+            "2020-03-15",
+            36,
+            5.14
+          ],
+          [
+            "2020-03-16",
+            34,
+            4.86
+          ],
+          [
+            "2020-03-17",
+            32,
+            4.57
+          ],
+          [
+            "2020-03-18",
+            30,
+            4.29
+          ],
+          [
+            "2020-03-19",
+            28,
+            4
+          ],
+          [
+            "2020-03-20",
+            35,
+            5
+          ],
+          [
+            "2020-03-21",
+            42,
+            6
+          ],
+          [
+            "2020-03-22",
+            40,
+            5.71
+          ],
+          [
+            "2020-03-23",
+            38,
+            5.43
+          ],
+          [
+            "2020-03-24",
+            36,
+            5.14
+          ],
+          [
+            "2020-03-25",
+            34,
+            4.86
+          ],
+          [
+            "2020-03-26",
+            32,
+            4.57
+          ],
+          [
+            "2020-03-27",
+            30,
+            4.29
+          ],
+          [
+            "2020-03-28",
+            28,
+            4
+          ],
+          [
+            "2020-03-29",
+            35,
+            5
+          ],
+          [
+            "2020-03-30",
+            42,
+            6
+          ],
+          [
+            "2020-03-31",
+            40,
+            5.71
+          ],
+          [
+            "2020-04-01",
+            38,
+            5.43
+          ],
+          [
+            "2020-04-02",
+            36,
+            5.14
+          ],
+          [
+            "2020-04-03",
+            34,
+            4.86
+          ],
+          [
+            "2020-04-04",
+            32,
+            4.57
+          ],
+          [
+            "2020-04-05",
+            30,
+            4.29
+          ],
+          [
+            "2020-04-06",
+            28,
+            4
+          ],
+          [
+            "2020-04-07",
+            35,
+            5
+          ],
+          [
+            "2020-04-08",
+            42,
+            6
+          ],
+          [
+            "2020-04-09",
+            40,
+            5.71
+          ],
+          [
+            "2020-04-10",
+            38,
+            5.43
+          ],
+          [
+            "2020-04-11",
+            36,
+            5.14
+          ],
+          [
+            "2020-04-12",
+            34,
+            4.86
+          ],
+          [
+            "2020-04-13",
+            32,
+            4.57
+          ],
+          [
+            "2020-04-14",
+            30,
+            4.29
+          ],
+          [
+            "2020-04-15",
+            28,
+            4
+          ],
+          [
+            "2020-04-16",
+            35,
+            5
+          ],
+          [
+            "2020-04-17",
+            42,
+            6
+          ],
+          [
+            "2020-04-18",
+            40,
+            5.71
+          ],
+          [
+            "2020-04-19",
+            38,
+            5.43
+          ],
+          [
+            "2020-04-20",
+            36,
+            5.14
+          ],
+          [
+            "2020-04-21",
+            34,
+            4.86
+          ],
+          [
+            "2020-04-22",
+            32,
+            4.57
+          ],
+          [
+            "2020-04-23",
+            30,
+            4.29
+          ],
+          [
+            "2020-04-24",
+            28,
+            4
+          ],
+          [
+            "2020-04-25",
+            35,
+            5
+          ],
+          [
+            "2020-04-26",
+            42,
+            6
+          ],
+          [
+            "2020-04-27",
+            40,
+            5.71
+          ],
+          [
+            "2020-04-28",
+            38,
+            5.43
+          ],
+          [
+            "2020-04-29",
+            36,
+            5.14
+          ],
+          [
+            "2020-04-30",
+            34,
+            4.86
+          ],
+          [
+            "2020-05-01",
+            32,
+            4.57
+          ],
+          [
+            "2020-05-02",
+            30,
+            4.29
+          ],
+          [
+            "2020-05-03",
+            28,
+            4
+          ],
+          [
+            "2020-05-04",
+            35,
+            5
+          ],
+          [
+            "2020-05-05",
+            42,
+            6
+          ],
+          [
+            "2020-05-06",
+            40,
+            5.71
+          ],
+          [
+            "2020-05-07",
+            38,
+            5.43
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "rolling-window"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 consecutive visit rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 1,
+              "name": "B21",
+              "visited_on": "2020-01-01",
+              "amount": 1
+            },
+            {
+              "customer_id": 2,
+              "name": "B22",
+              "visited_on": "2020-01-02",
+              "amount": 2
+            },
+            {
+              "customer_id": 3,
+              "name": "B23",
+              "visited_on": "2020-01-03",
+              "amount": 3
+            },
+            {
+              "customer_id": 4,
+              "name": "B24",
+              "visited_on": "2020-01-04",
+              "amount": 4
+            },
+            {
+              "customer_id": 5,
+              "name": "B25",
+              "visited_on": "2020-01-05",
+              "amount": 5
+            },
+            {
+              "customer_id": 6,
+              "name": "B26",
+              "visited_on": "2020-01-06",
+              "amount": 6
+            },
+            {
+              "customer_id": 7,
+              "name": "B27",
+              "visited_on": "2020-01-07",
+              "amount": 7
+            },
+            {
+              "customer_id": 8,
+              "name": "B28",
+              "visited_on": "2020-01-08",
+              "amount": 8
+            },
+            {
+              "customer_id": 9,
+              "name": "B29",
+              "visited_on": "2020-01-09",
+              "amount": 9
+            },
+            {
+              "customer_id": 10,
+              "name": "B210",
+              "visited_on": "2020-01-10",
+              "amount": 1
+            },
+            {
+              "customer_id": 11,
+              "name": "B211",
+              "visited_on": "2020-01-11",
+              "amount": 2
+            },
+            {
+              "customer_id": 12,
+              "name": "B212",
+              "visited_on": "2020-01-12",
+              "amount": 3
+            },
+            {
+              "customer_id": 13,
+              "name": "B213",
+              "visited_on": "2020-01-13",
+              "amount": 4
+            },
+            {
+              "customer_id": 14,
+              "name": "B214",
+              "visited_on": "2020-01-14",
+              "amount": 5
+            },
+            {
+              "customer_id": 15,
+              "name": "B215",
+              "visited_on": "2020-01-15",
+              "amount": 6
+            },
+            {
+              "customer_id": 16,
+              "name": "B216",
+              "visited_on": "2020-01-16",
+              "amount": 7
+            },
+            {
+              "customer_id": 17,
+              "name": "B217",
+              "visited_on": "2020-01-17",
+              "amount": 8
+            },
+            {
+              "customer_id": 18,
+              "name": "B218",
+              "visited_on": "2020-01-18",
+              "amount": 9
+            },
+            {
+              "customer_id": 19,
+              "name": "B219",
+              "visited_on": "2020-01-19",
+              "amount": 1
+            },
+            {
+              "customer_id": 20,
+              "name": "B220",
+              "visited_on": "2020-01-20",
+              "amount": 2
+            },
+            {
+              "customer_id": 21,
+              "name": "B221",
+              "visited_on": "2020-01-21",
+              "amount": 3
+            },
+            {
+              "customer_id": 22,
+              "name": "B222",
+              "visited_on": "2020-01-22",
+              "amount": 4
+            },
+            {
+              "customer_id": 23,
+              "name": "B223",
+              "visited_on": "2020-01-23",
+              "amount": 5
+            },
+            {
+              "customer_id": 24,
+              "name": "B224",
+              "visited_on": "2020-01-24",
+              "amount": 6
+            },
+            {
+              "customer_id": 25,
+              "name": "B225",
+              "visited_on": "2020-01-25",
+              "amount": 7
+            },
+            {
+              "customer_id": 26,
+              "name": "B226",
+              "visited_on": "2020-01-26",
+              "amount": 8
+            },
+            {
+              "customer_id": 27,
+              "name": "B227",
+              "visited_on": "2020-01-27",
+              "amount": 9
+            },
+            {
+              "customer_id": 28,
+              "name": "B228",
+              "visited_on": "2020-01-28",
+              "amount": 1
+            },
+            {
+              "customer_id": 29,
+              "name": "B229",
+              "visited_on": "2020-01-29",
+              "amount": 2
+            },
+            {
+              "customer_id": 30,
+              "name": "B230",
+              "visited_on": "2020-01-30",
+              "amount": 3
+            },
+            {
+              "customer_id": 31,
+              "name": "B231",
+              "visited_on": "2020-01-31",
+              "amount": 4
+            },
+            {
+              "customer_id": 32,
+              "name": "B232",
+              "visited_on": "2020-02-01",
+              "amount": 5
+            },
+            {
+              "customer_id": 33,
+              "name": "B233",
+              "visited_on": "2020-02-02",
+              "amount": 6
+            },
+            {
+              "customer_id": 34,
+              "name": "B234",
+              "visited_on": "2020-02-03",
+              "amount": 7
+            },
+            {
+              "customer_id": 35,
+              "name": "B235",
+              "visited_on": "2020-02-04",
+              "amount": 8
+            },
+            {
+              "customer_id": 36,
+              "name": "B236",
+              "visited_on": "2020-02-05",
+              "amount": 9
+            },
+            {
+              "customer_id": 37,
+              "name": "B237",
+              "visited_on": "2020-02-06",
+              "amount": 1
+            },
+            {
+              "customer_id": 38,
+              "name": "B238",
+              "visited_on": "2020-02-07",
+              "amount": 2
+            },
+            {
+              "customer_id": 39,
+              "name": "B239",
+              "visited_on": "2020-02-08",
+              "amount": 3
+            },
+            {
+              "customer_id": 40,
+              "name": "B240",
+              "visited_on": "2020-02-09",
+              "amount": 4
+            },
+            {
+              "customer_id": 41,
+              "name": "B241",
+              "visited_on": "2020-02-10",
+              "amount": 5
+            },
+            {
+              "customer_id": 42,
+              "name": "B242",
+              "visited_on": "2020-02-11",
+              "amount": 6
+            },
+            {
+              "customer_id": 43,
+              "name": "B243",
+              "visited_on": "2020-02-12",
+              "amount": 7
+            },
+            {
+              "customer_id": 44,
+              "name": "B244",
+              "visited_on": "2020-02-13",
+              "amount": 8
+            },
+            {
+              "customer_id": 45,
+              "name": "B245",
+              "visited_on": "2020-02-14",
+              "amount": 9
+            },
+            {
+              "customer_id": 46,
+              "name": "B246",
+              "visited_on": "2020-02-15",
+              "amount": 1
+            },
+            {
+              "customer_id": 47,
+              "name": "B247",
+              "visited_on": "2020-02-16",
+              "amount": 2
+            },
+            {
+              "customer_id": 48,
+              "name": "B248",
+              "visited_on": "2020-02-17",
+              "amount": 3
+            },
+            {
+              "customer_id": 49,
+              "name": "B249",
+              "visited_on": "2020-02-18",
+              "amount": 4
+            },
+            {
+              "customer_id": 50,
+              "name": "B250",
+              "visited_on": "2020-02-19",
+              "amount": 5
+            },
+            {
+              "customer_id": 51,
+              "name": "B251",
+              "visited_on": "2020-02-20",
+              "amount": 6
+            },
+            {
+              "customer_id": 52,
+              "name": "B252",
+              "visited_on": "2020-02-21",
+              "amount": 7
+            },
+            {
+              "customer_id": 53,
+              "name": "B253",
+              "visited_on": "2020-02-22",
+              "amount": 8
+            },
+            {
+              "customer_id": 54,
+              "name": "B254",
+              "visited_on": "2020-02-23",
+              "amount": 9
+            },
+            {
+              "customer_id": 55,
+              "name": "B255",
+              "visited_on": "2020-02-24",
+              "amount": 1
+            },
+            {
+              "customer_id": 56,
+              "name": "B256",
+              "visited_on": "2020-02-25",
+              "amount": 2
+            },
+            {
+              "customer_id": 57,
+              "name": "B257",
+              "visited_on": "2020-02-26",
+              "amount": 3
+            },
+            {
+              "customer_id": 58,
+              "name": "B258",
+              "visited_on": "2020-02-27",
+              "amount": 4
+            },
+            {
+              "customer_id": 59,
+              "name": "B259",
+              "visited_on": "2020-02-28",
+              "amount": 5
+            },
+            {
+              "customer_id": 60,
+              "name": "B260",
+              "visited_on": "2020-02-29",
+              "amount": 6
+            },
+            {
+              "customer_id": 61,
+              "name": "B261",
+              "visited_on": "2020-03-01",
+              "amount": 7
+            },
+            {
+              "customer_id": 62,
+              "name": "B262",
+              "visited_on": "2020-03-02",
+              "amount": 8
+            },
+            {
+              "customer_id": 63,
+              "name": "B263",
+              "visited_on": "2020-03-03",
+              "amount": 9
+            },
+            {
+              "customer_id": 64,
+              "name": "B264",
+              "visited_on": "2020-03-04",
+              "amount": 1
+            },
+            {
+              "customer_id": 65,
+              "name": "B265",
+              "visited_on": "2020-03-05",
+              "amount": 2
+            },
+            {
+              "customer_id": 66,
+              "name": "B266",
+              "visited_on": "2020-03-06",
+              "amount": 3
+            },
+            {
+              "customer_id": 67,
+              "name": "B267",
+              "visited_on": "2020-03-07",
+              "amount": 4
+            },
+            {
+              "customer_id": 68,
+              "name": "B268",
+              "visited_on": "2020-03-08",
+              "amount": 5
+            },
+            {
+              "customer_id": 69,
+              "name": "B269",
+              "visited_on": "2020-03-09",
+              "amount": 6
+            },
+            {
+              "customer_id": 70,
+              "name": "B270",
+              "visited_on": "2020-03-10",
+              "amount": 7
+            },
+            {
+              "customer_id": 71,
+              "name": "B271",
+              "visited_on": "2020-03-11",
+              "amount": 8
+            },
+            {
+              "customer_id": 72,
+              "name": "B272",
+              "visited_on": "2020-03-12",
+              "amount": 9
+            },
+            {
+              "customer_id": 73,
+              "name": "B273",
+              "visited_on": "2020-03-13",
+              "amount": 1
+            },
+            {
+              "customer_id": 74,
+              "name": "B274",
+              "visited_on": "2020-03-14",
+              "amount": 2
+            },
+            {
+              "customer_id": 75,
+              "name": "B275",
+              "visited_on": "2020-03-15",
+              "amount": 3
+            },
+            {
+              "customer_id": 76,
+              "name": "B276",
+              "visited_on": "2020-03-16",
+              "amount": 4
+            },
+            {
+              "customer_id": 77,
+              "name": "B277",
+              "visited_on": "2020-03-17",
+              "amount": 5
+            },
+            {
+              "customer_id": 78,
+              "name": "B278",
+              "visited_on": "2020-03-18",
+              "amount": 6
+            },
+            {
+              "customer_id": 79,
+              "name": "B279",
+              "visited_on": "2020-03-19",
+              "amount": 7
+            },
+            {
+              "customer_id": 80,
+              "name": "B280",
+              "visited_on": "2020-03-20",
+              "amount": 8
+            },
+            {
+              "customer_id": 81,
+              "name": "B281",
+              "visited_on": "2020-03-21",
+              "amount": 9
+            },
+            {
+              "customer_id": 82,
+              "name": "B282",
+              "visited_on": "2020-03-22",
+              "amount": 1
+            },
+            {
+              "customer_id": 83,
+              "name": "B283",
+              "visited_on": "2020-03-23",
+              "amount": 2
+            },
+            {
+              "customer_id": 84,
+              "name": "B284",
+              "visited_on": "2020-03-24",
+              "amount": 3
+            },
+            {
+              "customer_id": 85,
+              "name": "B285",
+              "visited_on": "2020-03-25",
+              "amount": 4
+            },
+            {
+              "customer_id": 86,
+              "name": "B286",
+              "visited_on": "2020-03-26",
+              "amount": 5
+            },
+            {
+              "customer_id": 87,
+              "name": "B287",
+              "visited_on": "2020-03-27",
+              "amount": 6
+            },
+            {
+              "customer_id": 88,
+              "name": "B288",
+              "visited_on": "2020-03-28",
+              "amount": 7
+            },
+            {
+              "customer_id": 89,
+              "name": "B289",
+              "visited_on": "2020-03-29",
+              "amount": 8
+            },
+            {
+              "customer_id": 90,
+              "name": "B290",
+              "visited_on": "2020-03-30",
+              "amount": 9
+            },
+            {
+              "customer_id": 91,
+              "name": "B291",
+              "visited_on": "2020-03-31",
+              "amount": 1
+            },
+            {
+              "customer_id": 92,
+              "name": "B292",
+              "visited_on": "2020-04-01",
+              "amount": 2
+            },
+            {
+              "customer_id": 93,
+              "name": "B293",
+              "visited_on": "2020-04-02",
+              "amount": 3
+            },
+            {
+              "customer_id": 94,
+              "name": "B294",
+              "visited_on": "2020-04-03",
+              "amount": 4
+            },
+            {
+              "customer_id": 95,
+              "name": "B295",
+              "visited_on": "2020-04-04",
+              "amount": 5
+            },
+            {
+              "customer_id": 96,
+              "name": "B296",
+              "visited_on": "2020-04-05",
+              "amount": 6
+            },
+            {
+              "customer_id": 97,
+              "name": "B297",
+              "visited_on": "2020-04-06",
+              "amount": 7
+            },
+            {
+              "customer_id": 98,
+              "name": "B298",
+              "visited_on": "2020-04-07",
+              "amount": 8
+            },
+            {
+              "customer_id": 99,
+              "name": "B299",
+              "visited_on": "2020-04-08",
+              "amount": 9
+            },
+            {
+              "customer_id": 100,
+              "name": "B2100",
+              "visited_on": "2020-04-09",
+              "amount": 1
+            },
+            {
+              "customer_id": 101,
+              "name": "B2101",
+              "visited_on": "2020-04-10",
+              "amount": 2
+            },
+            {
+              "customer_id": 102,
+              "name": "B2102",
+              "visited_on": "2020-04-11",
+              "amount": 3
+            },
+            {
+              "customer_id": 103,
+              "name": "B2103",
+              "visited_on": "2020-04-12",
+              "amount": 4
+            },
+            {
+              "customer_id": 104,
+              "name": "B2104",
+              "visited_on": "2020-04-13",
+              "amount": 5
+            },
+            {
+              "customer_id": 105,
+              "name": "B2105",
+              "visited_on": "2020-04-14",
+              "amount": 6
+            },
+            {
+              "customer_id": 106,
+              "name": "B2106",
+              "visited_on": "2020-04-15",
+              "amount": 7
+            },
+            {
+              "customer_id": 107,
+              "name": "B2107",
+              "visited_on": "2020-04-16",
+              "amount": 8
+            },
+            {
+              "customer_id": 108,
+              "name": "B2108",
+              "visited_on": "2020-04-17",
+              "amount": 9
+            },
+            {
+              "customer_id": 109,
+              "name": "B2109",
+              "visited_on": "2020-04-18",
+              "amount": 1
+            },
+            {
+              "customer_id": 110,
+              "name": "B2110",
+              "visited_on": "2020-04-19",
+              "amount": 2
+            },
+            {
+              "customer_id": 111,
+              "name": "B2111",
+              "visited_on": "2020-04-20",
+              "amount": 3
+            },
+            {
+              "customer_id": 112,
+              "name": "B2112",
+              "visited_on": "2020-04-21",
+              "amount": 4
+            },
+            {
+              "customer_id": 113,
+              "name": "B2113",
+              "visited_on": "2020-04-22",
+              "amount": 5
+            },
+            {
+              "customer_id": 114,
+              "name": "B2114",
+              "visited_on": "2020-04-23",
+              "amount": 6
+            },
+            {
+              "customer_id": 115,
+              "name": "B2115",
+              "visited_on": "2020-04-24",
+              "amount": 7
+            },
+            {
+              "customer_id": 116,
+              "name": "B2116",
+              "visited_on": "2020-04-25",
+              "amount": 8
+            },
+            {
+              "customer_id": 117,
+              "name": "B2117",
+              "visited_on": "2020-04-26",
+              "amount": 9
+            },
+            {
+              "customer_id": 118,
+              "name": "B2118",
+              "visited_on": "2020-04-27",
+              "amount": 1
+            },
+            {
+              "customer_id": 119,
+              "name": "B2119",
+              "visited_on": "2020-04-28",
+              "amount": 2
+            },
+            {
+              "customer_id": 120,
+              "name": "B2120",
+              "visited_on": "2020-04-29",
+              "amount": 3
+            },
+            {
+              "customer_id": 121,
+              "name": "B2121",
+              "visited_on": "2020-04-30",
+              "amount": 4
+            },
+            {
+              "customer_id": 122,
+              "name": "B2122",
+              "visited_on": "2020-05-01",
+              "amount": 5
+            },
+            {
+              "customer_id": 123,
+              "name": "B2123",
+              "visited_on": "2020-05-02",
+              "amount": 6
+            },
+            {
+              "customer_id": 124,
+              "name": "B2124",
+              "visited_on": "2020-05-03",
+              "amount": 7
+            },
+            {
+              "customer_id": 125,
+              "name": "B2125",
+              "visited_on": "2020-05-04",
+              "amount": 8
+            },
+            {
+              "customer_id": 126,
+              "name": "B2126",
+              "visited_on": "2020-05-05",
+              "amount": 9
+            },
+            {
+              "customer_id": 127,
+              "name": "B2127",
+              "visited_on": "2020-05-06",
+              "amount": 1
+            },
+            {
+              "customer_id": 128,
+              "name": "B2128",
+              "visited_on": "2020-05-07",
+              "amount": 2
+            },
+            {
+              "customer_id": 129,
+              "name": "B2129",
+              "visited_on": "2020-05-08",
+              "amount": 3
+            },
+            {
+              "customer_id": 130,
+              "name": "B2130",
+              "visited_on": "2020-05-09",
+              "amount": 4
+            },
+            {
+              "customer_id": 131,
+              "name": "B2131",
+              "visited_on": "2020-05-10",
+              "amount": 5
+            },
+            {
+              "customer_id": 132,
+              "name": "B2132",
+              "visited_on": "2020-05-11",
+              "amount": 6
+            },
+            {
+              "customer_id": 133,
+              "name": "B2133",
+              "visited_on": "2020-05-12",
+              "amount": 7
+            },
+            {
+              "customer_id": 134,
+              "name": "B2134",
+              "visited_on": "2020-05-13",
+              "amount": 8
+            },
+            {
+              "customer_id": 135,
+              "name": "B2135",
+              "visited_on": "2020-05-14",
+              "amount": 9
+            },
+            {
+              "customer_id": 136,
+              "name": "B2136",
+              "visited_on": "2020-05-15",
+              "amount": 1
+            },
+            {
+              "customer_id": 137,
+              "name": "B2137",
+              "visited_on": "2020-05-16",
+              "amount": 2
+            },
+            {
+              "customer_id": 138,
+              "name": "B2138",
+              "visited_on": "2020-05-17",
+              "amount": 3
+            },
+            {
+              "customer_id": 139,
+              "name": "B2139",
+              "visited_on": "2020-05-18",
+              "amount": 4
+            },
+            {
+              "customer_id": 140,
+              "name": "B2140",
+              "visited_on": "2020-05-19",
+              "amount": 5
+            },
+            {
+              "customer_id": 141,
+              "name": "B2141",
+              "visited_on": "2020-05-20",
+              "amount": 6
+            },
+            {
+              "customer_id": 142,
+              "name": "B2142",
+              "visited_on": "2020-05-21",
+              "amount": 7
+            },
+            {
+              "customer_id": 143,
+              "name": "B2143",
+              "visited_on": "2020-05-22",
+              "amount": 8
+            },
+            {
+              "customer_id": 144,
+              "name": "B2144",
+              "visited_on": "2020-05-23",
+              "amount": 9
+            },
+            {
+              "customer_id": 145,
+              "name": "B2145",
+              "visited_on": "2020-05-24",
+              "amount": 1
+            },
+            {
+              "customer_id": 146,
+              "name": "B2146",
+              "visited_on": "2020-05-25",
+              "amount": 2
+            },
+            {
+              "customer_id": 147,
+              "name": "B2147",
+              "visited_on": "2020-05-26",
+              "amount": 3
+            },
+            {
+              "customer_id": 148,
+              "name": "B2148",
+              "visited_on": "2020-05-27",
+              "amount": 4
+            },
+            {
+              "customer_id": 149,
+              "name": "B2149",
+              "visited_on": "2020-05-28",
+              "amount": 5
+            },
+            {
+              "customer_id": 150,
+              "name": "B2150",
+              "visited_on": "2020-05-29",
+              "amount": 6
+            },
+            {
+              "customer_id": 151,
+              "name": "B2151",
+              "visited_on": "2020-05-30",
+              "amount": 7
+            },
+            {
+              "customer_id": 152,
+              "name": "B2152",
+              "visited_on": "2020-05-31",
+              "amount": 8
+            },
+            {
+              "customer_id": 153,
+              "name": "B2153",
+              "visited_on": "2020-06-01",
+              "amount": 9
+            },
+            {
+              "customer_id": 154,
+              "name": "B2154",
+              "visited_on": "2020-06-02",
+              "amount": 1
+            },
+            {
+              "customer_id": 155,
+              "name": "B2155",
+              "visited_on": "2020-06-03",
+              "amount": 2
+            },
+            {
+              "customer_id": 156,
+              "name": "B2156",
+              "visited_on": "2020-06-04",
+              "amount": 3
+            },
+            {
+              "customer_id": 157,
+              "name": "B2157",
+              "visited_on": "2020-06-05",
+              "amount": 4
+            },
+            {
+              "customer_id": 158,
+              "name": "B2158",
+              "visited_on": "2020-06-06",
+              "amount": 5
+            },
+            {
+              "customer_id": 159,
+              "name": "B2159",
+              "visited_on": "2020-06-07",
+              "amount": 6
+            },
+            {
+              "customer_id": 160,
+              "name": "B2160",
+              "visited_on": "2020-06-08",
+              "amount": 7
+            },
+            {
+              "customer_id": 161,
+              "name": "B2161",
+              "visited_on": "2020-06-09",
+              "amount": 8
+            },
+            {
+              "customer_id": 162,
+              "name": "B2162",
+              "visited_on": "2020-06-10",
+              "amount": 9
+            },
+            {
+              "customer_id": 163,
+              "name": "B2163",
+              "visited_on": "2020-06-11",
+              "amount": 1
+            },
+            {
+              "customer_id": 164,
+              "name": "B2164",
+              "visited_on": "2020-06-12",
+              "amount": 2
+            },
+            {
+              "customer_id": 165,
+              "name": "B2165",
+              "visited_on": "2020-06-13",
+              "amount": 3
+            },
+            {
+              "customer_id": 166,
+              "name": "B2166",
+              "visited_on": "2020-06-14",
+              "amount": 4
+            },
+            {
+              "customer_id": 167,
+              "name": "B2167",
+              "visited_on": "2020-06-15",
+              "amount": 5
+            },
+            {
+              "customer_id": 168,
+              "name": "B2168",
+              "visited_on": "2020-06-16",
+              "amount": 6
+            },
+            {
+              "customer_id": 169,
+              "name": "B2169",
+              "visited_on": "2020-06-17",
+              "amount": 7
+            },
+            {
+              "customer_id": 170,
+              "name": "B2170",
+              "visited_on": "2020-06-18",
+              "amount": 8
+            },
+            {
+              "customer_id": 171,
+              "name": "B2171",
+              "visited_on": "2020-06-19",
+              "amount": 9
+            },
+            {
+              "customer_id": 172,
+              "name": "B2172",
+              "visited_on": "2020-06-20",
+              "amount": 1
+            },
+            {
+              "customer_id": 173,
+              "name": "B2173",
+              "visited_on": "2020-06-21",
+              "amount": 2
+            },
+            {
+              "customer_id": 174,
+              "name": "B2174",
+              "visited_on": "2020-06-22",
+              "amount": 3
+            },
+            {
+              "customer_id": 175,
+              "name": "B2175",
+              "visited_on": "2020-06-23",
+              "amount": 4
+            },
+            {
+              "customer_id": 176,
+              "name": "B2176",
+              "visited_on": "2020-06-24",
+              "amount": 5
+            },
+            {
+              "customer_id": 177,
+              "name": "B2177",
+              "visited_on": "2020-06-25",
+              "amount": 6
+            },
+            {
+              "customer_id": 178,
+              "name": "B2178",
+              "visited_on": "2020-06-26",
+              "amount": 7
+            },
+            {
+              "customer_id": 179,
+              "name": "B2179",
+              "visited_on": "2020-06-27",
+              "amount": 8
+            },
+            {
+              "customer_id": 180,
+              "name": "B2180",
+              "visited_on": "2020-06-28",
+              "amount": 9
+            },
+            {
+              "customer_id": 181,
+              "name": "B2181",
+              "visited_on": "2020-06-29",
+              "amount": 1
+            },
+            {
+              "customer_id": 182,
+              "name": "B2182",
+              "visited_on": "2020-06-30",
+              "amount": 2
+            },
+            {
+              "customer_id": 183,
+              "name": "B2183",
+              "visited_on": "2020-07-01",
+              "amount": 3
+            },
+            {
+              "customer_id": 184,
+              "name": "B2184",
+              "visited_on": "2020-07-02",
+              "amount": 4
+            },
+            {
+              "customer_id": 185,
+              "name": "B2185",
+              "visited_on": "2020-07-03",
+              "amount": 5
+            },
+            {
+              "customer_id": 186,
+              "name": "B2186",
+              "visited_on": "2020-07-04",
+              "amount": 6
+            },
+            {
+              "customer_id": 187,
+              "name": "B2187",
+              "visited_on": "2020-07-05",
+              "amount": 7
+            },
+            {
+              "customer_id": 188,
+              "name": "B2188",
+              "visited_on": "2020-07-06",
+              "amount": 8
+            },
+            {
+              "customer_id": 189,
+              "name": "B2189",
+              "visited_on": "2020-07-07",
+              "amount": 9
+            },
+            {
+              "customer_id": 190,
+              "name": "B2190",
+              "visited_on": "2020-07-08",
+              "amount": 1
+            },
+            {
+              "customer_id": 191,
+              "name": "B2191",
+              "visited_on": "2020-07-09",
+              "amount": 2
+            },
+            {
+              "customer_id": 192,
+              "name": "B2192",
+              "visited_on": "2020-07-10",
+              "amount": 3
+            },
+            {
+              "customer_id": 193,
+              "name": "B2193",
+              "visited_on": "2020-07-11",
+              "amount": 4
+            },
+            {
+              "customer_id": 194,
+              "name": "B2194",
+              "visited_on": "2020-07-12",
+              "amount": 5
+            },
+            {
+              "customer_id": 195,
+              "name": "B2195",
+              "visited_on": "2020-07-13",
+              "amount": 6
+            },
+            {
+              "customer_id": 196,
+              "name": "B2196",
+              "visited_on": "2020-07-14",
+              "amount": 7
+            },
+            {
+              "customer_id": 197,
+              "name": "B2197",
+              "visited_on": "2020-07-15",
+              "amount": 8
+            },
+            {
+              "customer_id": 198,
+              "name": "B2198",
+              "visited_on": "2020-07-16",
+              "amount": 9
+            },
+            {
+              "customer_id": 199,
+              "name": "B2199",
+              "visited_on": "2020-07-17",
+              "amount": 1
+            },
+            {
+              "customer_id": 200,
+              "name": "B2200",
+              "visited_on": "2020-07-18",
+              "amount": 2
+            },
+            {
+              "customer_id": 201,
+              "name": "B2201",
+              "visited_on": "2020-07-19",
+              "amount": 3
+            },
+            {
+              "customer_id": 202,
+              "name": "B2202",
+              "visited_on": "2020-07-20",
+              "amount": 4
+            },
+            {
+              "customer_id": 203,
+              "name": "B2203",
+              "visited_on": "2020-07-21",
+              "amount": 5
+            },
+            {
+              "customer_id": 204,
+              "name": "B2204",
+              "visited_on": "2020-07-22",
+              "amount": 6
+            },
+            {
+              "customer_id": 205,
+              "name": "B2205",
+              "visited_on": "2020-07-23",
+              "amount": 7
+            },
+            {
+              "customer_id": 206,
+              "name": "B2206",
+              "visited_on": "2020-07-24",
+              "amount": 8
+            },
+            {
+              "customer_id": 207,
+              "name": "B2207",
+              "visited_on": "2020-07-25",
+              "amount": 9
+            },
+            {
+              "customer_id": 208,
+              "name": "B2208",
+              "visited_on": "2020-07-26",
+              "amount": 1
+            },
+            {
+              "customer_id": 209,
+              "name": "B2209",
+              "visited_on": "2020-07-27",
+              "amount": 2
+            },
+            {
+              "customer_id": 210,
+              "name": "B2210",
+              "visited_on": "2020-07-28",
+              "amount": 3
+            },
+            {
+              "customer_id": 211,
+              "name": "B2211",
+              "visited_on": "2020-07-29",
+              "amount": 4
+            },
+            {
+              "customer_id": 212,
+              "name": "B2212",
+              "visited_on": "2020-07-30",
+              "amount": 5
+            },
+            {
+              "customer_id": 213,
+              "name": "B2213",
+              "visited_on": "2020-07-31",
+              "amount": 6
+            },
+            {
+              "customer_id": 214,
+              "name": "B2214",
+              "visited_on": "2020-08-01",
+              "amount": 7
+            },
+            {
+              "customer_id": 215,
+              "name": "B2215",
+              "visited_on": "2020-08-02",
+              "amount": 8
+            },
+            {
+              "customer_id": 216,
+              "name": "B2216",
+              "visited_on": "2020-08-03",
+              "amount": 9
+            },
+            {
+              "customer_id": 217,
+              "name": "B2217",
+              "visited_on": "2020-08-04",
+              "amount": 1
+            },
+            {
+              "customer_id": 218,
+              "name": "B2218",
+              "visited_on": "2020-08-05",
+              "amount": 2
+            },
+            {
+              "customer_id": 219,
+              "name": "B2219",
+              "visited_on": "2020-08-06",
+              "amount": 3
+            },
+            {
+              "customer_id": 220,
+              "name": "B2220",
+              "visited_on": "2020-08-07",
+              "amount": 4
+            },
+            {
+              "customer_id": 221,
+              "name": "B2221",
+              "visited_on": "2020-08-08",
+              "amount": 5
+            },
+            {
+              "customer_id": 222,
+              "name": "B2222",
+              "visited_on": "2020-08-09",
+              "amount": 6
+            },
+            {
+              "customer_id": 223,
+              "name": "B2223",
+              "visited_on": "2020-08-10",
+              "amount": 7
+            },
+            {
+              "customer_id": 224,
+              "name": "B2224",
+              "visited_on": "2020-08-11",
+              "amount": 8
+            },
+            {
+              "customer_id": 225,
+              "name": "B2225",
+              "visited_on": "2020-08-12",
+              "amount": 9
+            },
+            {
+              "customer_id": 226,
+              "name": "B2226",
+              "visited_on": "2020-08-13",
+              "amount": 1
+            },
+            {
+              "customer_id": 227,
+              "name": "B2227",
+              "visited_on": "2020-08-14",
+              "amount": 2
+            },
+            {
+              "customer_id": 228,
+              "name": "B2228",
+              "visited_on": "2020-08-15",
+              "amount": 3
+            },
+            {
+              "customer_id": 229,
+              "name": "B2229",
+              "visited_on": "2020-08-16",
+              "amount": 4
+            },
+            {
+              "customer_id": 230,
+              "name": "B2230",
+              "visited_on": "2020-08-17",
+              "amount": 5
+            },
+            {
+              "customer_id": 231,
+              "name": "B2231",
+              "visited_on": "2020-08-18",
+              "amount": 6
+            },
+            {
+              "customer_id": 232,
+              "name": "B2232",
+              "visited_on": "2020-08-19",
+              "amount": 7
+            },
+            {
+              "customer_id": 233,
+              "name": "B2233",
+              "visited_on": "2020-08-20",
+              "amount": 8
+            },
+            {
+              "customer_id": 234,
+              "name": "B2234",
+              "visited_on": "2020-08-21",
+              "amount": 9
+            },
+            {
+              "customer_id": 235,
+              "name": "B2235",
+              "visited_on": "2020-08-22",
+              "amount": 1
+            },
+            {
+              "customer_id": 236,
+              "name": "B2236",
+              "visited_on": "2020-08-23",
+              "amount": 2
+            },
+            {
+              "customer_id": 237,
+              "name": "B2237",
+              "visited_on": "2020-08-24",
+              "amount": 3
+            },
+            {
+              "customer_id": 238,
+              "name": "B2238",
+              "visited_on": "2020-08-25",
+              "amount": 4
+            },
+            {
+              "customer_id": 239,
+              "name": "B2239",
+              "visited_on": "2020-08-26",
+              "amount": 5
+            },
+            {
+              "customer_id": 240,
+              "name": "B2240",
+              "visited_on": "2020-08-27",
+              "amount": 6
+            },
+            {
+              "customer_id": 241,
+              "name": "B2241",
+              "visited_on": "2020-08-28",
+              "amount": 7
+            },
+            {
+              "customer_id": 242,
+              "name": "B2242",
+              "visited_on": "2020-08-29",
+              "amount": 8
+            },
+            {
+              "customer_id": 243,
+              "name": "B2243",
+              "visited_on": "2020-08-30",
+              "amount": 9
+            },
+            {
+              "customer_id": 244,
+              "name": "B2244",
+              "visited_on": "2020-08-31",
+              "amount": 1
+            },
+            {
+              "customer_id": 245,
+              "name": "B2245",
+              "visited_on": "2020-09-01",
+              "amount": 2
+            },
+            {
+              "customer_id": 246,
+              "name": "B2246",
+              "visited_on": "2020-09-02",
+              "amount": 3
+            },
+            {
+              "customer_id": 247,
+              "name": "B2247",
+              "visited_on": "2020-09-03",
+              "amount": 4
+            },
+            {
+              "customer_id": 248,
+              "name": "B2248",
+              "visited_on": "2020-09-04",
+              "amount": 5
+            },
+            {
+              "customer_id": 249,
+              "name": "B2249",
+              "visited_on": "2020-09-05",
+              "amount": 6
+            },
+            {
+              "customer_id": 250,
+              "name": "B2250",
+              "visited_on": "2020-09-06",
+              "amount": 7
+            },
+            {
+              "customer_id": 251,
+              "name": "B2251",
+              "visited_on": "2020-09-07",
+              "amount": 8
+            },
+            {
+              "customer_id": 252,
+              "name": "B2252",
+              "visited_on": "2020-09-08",
+              "amount": 9
+            },
+            {
+              "customer_id": 253,
+              "name": "B2253",
+              "visited_on": "2020-09-09",
+              "amount": 1
+            },
+            {
+              "customer_id": 254,
+              "name": "B2254",
+              "visited_on": "2020-09-10",
+              "amount": 2
+            },
+            {
+              "customer_id": 255,
+              "name": "B2255",
+              "visited_on": "2020-09-11",
+              "amount": 3
+            },
+            {
+              "customer_id": 256,
+              "name": "B2256",
+              "visited_on": "2020-09-12",
+              "amount": 4
+            },
+            {
+              "customer_id": 257,
+              "name": "B2257",
+              "visited_on": "2020-09-13",
+              "amount": 5
+            },
+            {
+              "customer_id": 258,
+              "name": "B2258",
+              "visited_on": "2020-09-14",
+              "amount": 6
+            },
+            {
+              "customer_id": 259,
+              "name": "B2259",
+              "visited_on": "2020-09-15",
+              "amount": 7
+            },
+            {
+              "customer_id": 260,
+              "name": "B2260",
+              "visited_on": "2020-09-16",
+              "amount": 8
+            },
+            {
+              "customer_id": 261,
+              "name": "B2261",
+              "visited_on": "2020-09-17",
+              "amount": 9
+            },
+            {
+              "customer_id": 262,
+              "name": "B2262",
+              "visited_on": "2020-09-18",
+              "amount": 1
+            },
+            {
+              "customer_id": 263,
+              "name": "B2263",
+              "visited_on": "2020-09-19",
+              "amount": 2
+            },
+            {
+              "customer_id": 264,
+              "name": "B2264",
+              "visited_on": "2020-09-20",
+              "amount": 3
+            },
+            {
+              "customer_id": 265,
+              "name": "B2265",
+              "visited_on": "2020-09-21",
+              "amount": 4
+            },
+            {
+              "customer_id": 266,
+              "name": "B2266",
+              "visited_on": "2020-09-22",
+              "amount": 5
+            },
+            {
+              "customer_id": 267,
+              "name": "B2267",
+              "visited_on": "2020-09-23",
+              "amount": 6
+            },
+            {
+              "customer_id": 268,
+              "name": "B2268",
+              "visited_on": "2020-09-24",
+              "amount": 7
+            },
+            {
+              "customer_id": 269,
+              "name": "B2269",
+              "visited_on": "2020-09-25",
+              "amount": 8
+            },
+            {
+              "customer_id": 270,
+              "name": "B2270",
+              "visited_on": "2020-09-26",
+              "amount": 9
+            },
+            {
+              "customer_id": 271,
+              "name": "B2271",
+              "visited_on": "2020-09-27",
+              "amount": 1
+            },
+            {
+              "customer_id": 272,
+              "name": "B2272",
+              "visited_on": "2020-09-28",
+              "amount": 2
+            },
+            {
+              "customer_id": 273,
+              "name": "B2273",
+              "visited_on": "2020-09-29",
+              "amount": 3
+            },
+            {
+              "customer_id": 274,
+              "name": "B2274",
+              "visited_on": "2020-09-30",
+              "amount": 4
+            },
+            {
+              "customer_id": 275,
+              "name": "B2275",
+              "visited_on": "2020-10-01",
+              "amount": 5
+            },
+            {
+              "customer_id": 276,
+              "name": "B2276",
+              "visited_on": "2020-10-02",
+              "amount": 6
+            },
+            {
+              "customer_id": 277,
+              "name": "B2277",
+              "visited_on": "2020-10-03",
+              "amount": 7
+            },
+            {
+              "customer_id": 278,
+              "name": "B2278",
+              "visited_on": "2020-10-04",
+              "amount": 8
+            },
+            {
+              "customer_id": 279,
+              "name": "B2279",
+              "visited_on": "2020-10-05",
+              "amount": 9
+            },
+            {
+              "customer_id": 280,
+              "name": "B2280",
+              "visited_on": "2020-10-06",
+              "amount": 1
+            },
+            {
+              "customer_id": 281,
+              "name": "B2281",
+              "visited_on": "2020-10-07",
+              "amount": 2
+            },
+            {
+              "customer_id": 282,
+              "name": "B2282",
+              "visited_on": "2020-10-08",
+              "amount": 3
+            },
+            {
+              "customer_id": 283,
+              "name": "B2283",
+              "visited_on": "2020-10-09",
+              "amount": 4
+            },
+            {
+              "customer_id": 284,
+              "name": "B2284",
+              "visited_on": "2020-10-10",
+              "amount": 5
+            },
+            {
+              "customer_id": 285,
+              "name": "B2285",
+              "visited_on": "2020-10-11",
+              "amount": 6
+            },
+            {
+              "customer_id": 286,
+              "name": "B2286",
+              "visited_on": "2020-10-12",
+              "amount": 7
+            },
+            {
+              "customer_id": 287,
+              "name": "B2287",
+              "visited_on": "2020-10-13",
+              "amount": 8
+            },
+            {
+              "customer_id": 288,
+              "name": "B2288",
+              "visited_on": "2020-10-14",
+              "amount": 9
+            },
+            {
+              "customer_id": 289,
+              "name": "B2289",
+              "visited_on": "2020-10-15",
+              "amount": 1
+            },
+            {
+              "customer_id": 290,
+              "name": "B2290",
+              "visited_on": "2020-10-16",
+              "amount": 2
+            },
+            {
+              "customer_id": 291,
+              "name": "B2291",
+              "visited_on": "2020-10-17",
+              "amount": 3
+            },
+            {
+              "customer_id": 292,
+              "name": "B2292",
+              "visited_on": "2020-10-18",
+              "amount": 4
+            },
+            {
+              "customer_id": 293,
+              "name": "B2293",
+              "visited_on": "2020-10-19",
+              "amount": 5
+            },
+            {
+              "customer_id": 294,
+              "name": "B2294",
+              "visited_on": "2020-10-20",
+              "amount": 6
+            },
+            {
+              "customer_id": 295,
+              "name": "B2295",
+              "visited_on": "2020-10-21",
+              "amount": 7
+            },
+            {
+              "customer_id": 296,
+              "name": "B2296",
+              "visited_on": "2020-10-22",
+              "amount": 8
+            },
+            {
+              "customer_id": 297,
+              "name": "B2297",
+              "visited_on": "2020-10-23",
+              "amount": 9
+            },
+            {
+              "customer_id": 298,
+              "name": "B2298",
+              "visited_on": "2020-10-24",
+              "amount": 1
+            },
+            {
+              "customer_id": 299,
+              "name": "B2299",
+              "visited_on": "2020-10-25",
+              "amount": 2
+            },
+            {
+              "customer_id": 300,
+              "name": "B2300",
+              "visited_on": "2020-10-26",
+              "amount": 3
+            },
+            {
+              "customer_id": 301,
+              "name": "B2301",
+              "visited_on": "2020-10-27",
+              "amount": 4
+            },
+            {
+              "customer_id": 302,
+              "name": "B2302",
+              "visited_on": "2020-10-28",
+              "amount": 5
+            },
+            {
+              "customer_id": 303,
+              "name": "B2303",
+              "visited_on": "2020-10-29",
+              "amount": 6
+            },
+            {
+              "customer_id": 304,
+              "name": "B2304",
+              "visited_on": "2020-10-30",
+              "amount": 7
+            },
+            {
+              "customer_id": 305,
+              "name": "B2305",
+              "visited_on": "2020-10-31",
+              "amount": 8
+            },
+            {
+              "customer_id": 306,
+              "name": "B2306",
+              "visited_on": "2020-11-01",
+              "amount": 9
+            },
+            {
+              "customer_id": 307,
+              "name": "B2307",
+              "visited_on": "2020-11-02",
+              "amount": 1
+            },
+            {
+              "customer_id": 308,
+              "name": "B2308",
+              "visited_on": "2020-11-03",
+              "amount": 2
+            },
+            {
+              "customer_id": 309,
+              "name": "B2309",
+              "visited_on": "2020-11-04",
+              "amount": 3
+            },
+            {
+              "customer_id": 310,
+              "name": "B2310",
+              "visited_on": "2020-11-05",
+              "amount": 4
+            },
+            {
+              "customer_id": 311,
+              "name": "B2311",
+              "visited_on": "2020-11-06",
+              "amount": 5
+            },
+            {
+              "customer_id": 312,
+              "name": "B2312",
+              "visited_on": "2020-11-07",
+              "amount": 6
+            },
+            {
+              "customer_id": 313,
+              "name": "B2313",
+              "visited_on": "2020-11-08",
+              "amount": 7
+            },
+            {
+              "customer_id": 314,
+              "name": "B2314",
+              "visited_on": "2020-11-09",
+              "amount": 8
+            },
+            {
+              "customer_id": 315,
+              "name": "B2315",
+              "visited_on": "2020-11-10",
+              "amount": 9
+            },
+            {
+              "customer_id": 316,
+              "name": "B2316",
+              "visited_on": "2020-11-11",
+              "amount": 1
+            },
+            {
+              "customer_id": 317,
+              "name": "B2317",
+              "visited_on": "2020-11-12",
+              "amount": 2
+            },
+            {
+              "customer_id": 318,
+              "name": "B2318",
+              "visited_on": "2020-11-13",
+              "amount": 3
+            },
+            {
+              "customer_id": 319,
+              "name": "B2319",
+              "visited_on": "2020-11-14",
+              "amount": 4
+            },
+            {
+              "customer_id": 320,
+              "name": "B2320",
+              "visited_on": "2020-11-15",
+              "amount": 5
+            },
+            {
+              "customer_id": 321,
+              "name": "B2321",
+              "visited_on": "2020-11-16",
+              "amount": 6
+            },
+            {
+              "customer_id": 322,
+              "name": "B2322",
+              "visited_on": "2020-11-17",
+              "amount": 7
+            },
+            {
+              "customer_id": 323,
+              "name": "B2323",
+              "visited_on": "2020-11-18",
+              "amount": 8
+            },
+            {
+              "customer_id": 324,
+              "name": "B2324",
+              "visited_on": "2020-11-19",
+              "amount": 9
+            },
+            {
+              "customer_id": 325,
+              "name": "B2325",
+              "visited_on": "2020-11-20",
+              "amount": 1
+            },
+            {
+              "customer_id": 326,
+              "name": "B2326",
+              "visited_on": "2020-11-21",
+              "amount": 2
+            },
+            {
+              "customer_id": 327,
+              "name": "B2327",
+              "visited_on": "2020-11-22",
+              "amount": 3
+            },
+            {
+              "customer_id": 328,
+              "name": "B2328",
+              "visited_on": "2020-11-23",
+              "amount": 4
+            },
+            {
+              "customer_id": 329,
+              "name": "B2329",
+              "visited_on": "2020-11-24",
+              "amount": 5
+            },
+            {
+              "customer_id": 330,
+              "name": "B2330",
+              "visited_on": "2020-11-25",
+              "amount": 6
+            },
+            {
+              "customer_id": 331,
+              "name": "B2331",
+              "visited_on": "2020-11-26",
+              "amount": 7
+            },
+            {
+              "customer_id": 332,
+              "name": "B2332",
+              "visited_on": "2020-11-27",
+              "amount": 8
+            },
+            {
+              "customer_id": 333,
+              "name": "B2333",
+              "visited_on": "2020-11-28",
+              "amount": 9
+            },
+            {
+              "customer_id": 334,
+              "name": "B2334",
+              "visited_on": "2020-11-29",
+              "amount": 1
+            },
+            {
+              "customer_id": 335,
+              "name": "B2335",
+              "visited_on": "2020-11-30",
+              "amount": 2
+            },
+            {
+              "customer_id": 336,
+              "name": "B2336",
+              "visited_on": "2020-12-01",
+              "amount": 3
+            },
+            {
+              "customer_id": 337,
+              "name": "B2337",
+              "visited_on": "2020-12-02",
+              "amount": 4
+            },
+            {
+              "customer_id": 338,
+              "name": "B2338",
+              "visited_on": "2020-12-03",
+              "amount": 5
+            },
+            {
+              "customer_id": 339,
+              "name": "B2339",
+              "visited_on": "2020-12-04",
+              "amount": 6
+            },
+            {
+              "customer_id": 340,
+              "name": "B2340",
+              "visited_on": "2020-12-05",
+              "amount": 7
+            },
+            {
+              "customer_id": 341,
+              "name": "B2341",
+              "visited_on": "2020-12-06",
+              "amount": 8
+            },
+            {
+              "customer_id": 342,
+              "name": "B2342",
+              "visited_on": "2020-12-07",
+              "amount": 9
+            },
+            {
+              "customer_id": 343,
+              "name": "B2343",
+              "visited_on": "2020-12-08",
+              "amount": 1
+            },
+            {
+              "customer_id": 344,
+              "name": "B2344",
+              "visited_on": "2020-12-09",
+              "amount": 2
+            },
+            {
+              "customer_id": 345,
+              "name": "B2345",
+              "visited_on": "2020-12-10",
+              "amount": 3
+            },
+            {
+              "customer_id": 346,
+              "name": "B2346",
+              "visited_on": "2020-12-11",
+              "amount": 4
+            },
+            {
+              "customer_id": 347,
+              "name": "B2347",
+              "visited_on": "2020-12-12",
+              "amount": 5
+            },
+            {
+              "customer_id": 348,
+              "name": "B2348",
+              "visited_on": "2020-12-13",
+              "amount": 6
+            },
+            {
+              "customer_id": 349,
+              "name": "B2349",
+              "visited_on": "2020-12-14",
+              "amount": 7
+            },
+            {
+              "customer_id": 350,
+              "name": "B2350",
+              "visited_on": "2020-12-15",
+              "amount": 8
+            },
+            {
+              "customer_id": 351,
+              "name": "B2351",
+              "visited_on": "2020-12-16",
+              "amount": 9
+            },
+            {
+              "customer_id": 352,
+              "name": "B2352",
+              "visited_on": "2020-12-17",
+              "amount": 1
+            },
+            {
+              "customer_id": 353,
+              "name": "B2353",
+              "visited_on": "2020-12-18",
+              "amount": 2
+            },
+            {
+              "customer_id": 354,
+              "name": "B2354",
+              "visited_on": "2020-12-19",
+              "amount": 3
+            },
+            {
+              "customer_id": 355,
+              "name": "B2355",
+              "visited_on": "2020-12-20",
+              "amount": 4
+            },
+            {
+              "customer_id": 356,
+              "name": "B2356",
+              "visited_on": "2020-12-21",
+              "amount": 5
+            },
+            {
+              "customer_id": 357,
+              "name": "B2357",
+              "visited_on": "2020-12-22",
+              "amount": 6
+            },
+            {
+              "customer_id": 358,
+              "name": "B2358",
+              "visited_on": "2020-12-23",
+              "amount": 7
+            },
+            {
+              "customer_id": 359,
+              "name": "B2359",
+              "visited_on": "2020-12-24",
+              "amount": 8
+            },
+            {
+              "customer_id": 360,
+              "name": "B2360",
+              "visited_on": "2020-12-25",
+              "amount": 9
+            },
+            {
+              "customer_id": 361,
+              "name": "B2361",
+              "visited_on": "2020-12-26",
+              "amount": 1
+            },
+            {
+              "customer_id": 362,
+              "name": "B2362",
+              "visited_on": "2020-12-27",
+              "amount": 2
+            },
+            {
+              "customer_id": 363,
+              "name": "B2363",
+              "visited_on": "2020-12-28",
+              "amount": 3
+            },
+            {
+              "customer_id": 364,
+              "name": "B2364",
+              "visited_on": "2020-12-29",
+              "amount": 4
+            },
+            {
+              "customer_id": 365,
+              "name": "B2365",
+              "visited_on": "2020-12-30",
+              "amount": 5
+            },
+            {
+              "customer_id": 366,
+              "name": "B2366",
+              "visited_on": "2020-12-31",
+              "amount": 6
+            },
+            {
+              "customer_id": 367,
+              "name": "B2367",
+              "visited_on": "2021-01-01",
+              "amount": 7
+            },
+            {
+              "customer_id": 368,
+              "name": "B2368",
+              "visited_on": "2021-01-02",
+              "amount": 8
+            },
+            {
+              "customer_id": 369,
+              "name": "B2369",
+              "visited_on": "2021-01-03",
+              "amount": 9
+            },
+            {
+              "customer_id": 370,
+              "name": "B2370",
+              "visited_on": "2021-01-04",
+              "amount": 1
+            },
+            {
+              "customer_id": 371,
+              "name": "B2371",
+              "visited_on": "2021-01-05",
+              "amount": 2
+            },
+            {
+              "customer_id": 372,
+              "name": "B2372",
+              "visited_on": "2021-01-06",
+              "amount": 3
+            },
+            {
+              "customer_id": 373,
+              "name": "B2373",
+              "visited_on": "2021-01-07",
+              "amount": 4
+            },
+            {
+              "customer_id": 374,
+              "name": "B2374",
+              "visited_on": "2021-01-08",
+              "amount": 5
+            },
+            {
+              "customer_id": 375,
+              "name": "B2375",
+              "visited_on": "2021-01-09",
+              "amount": 6
+            },
+            {
+              "customer_id": 376,
+              "name": "B2376",
+              "visited_on": "2021-01-10",
+              "amount": 7
+            },
+            {
+              "customer_id": 377,
+              "name": "B2377",
+              "visited_on": "2021-01-11",
+              "amount": 8
+            },
+            {
+              "customer_id": 378,
+              "name": "B2378",
+              "visited_on": "2021-01-12",
+              "amount": 9
+            },
+            {
+              "customer_id": 379,
+              "name": "B2379",
+              "visited_on": "2021-01-13",
+              "amount": 1
+            },
+            {
+              "customer_id": 380,
+              "name": "B2380",
+              "visited_on": "2021-01-14",
+              "amount": 2
+            },
+            {
+              "customer_id": 381,
+              "name": "B2381",
+              "visited_on": "2021-01-15",
+              "amount": 3
+            },
+            {
+              "customer_id": 382,
+              "name": "B2382",
+              "visited_on": "2021-01-16",
+              "amount": 4
+            },
+            {
+              "customer_id": 383,
+              "name": "B2383",
+              "visited_on": "2021-01-17",
+              "amount": 5
+            },
+            {
+              "customer_id": 384,
+              "name": "B2384",
+              "visited_on": "2021-01-18",
+              "amount": 6
+            },
+            {
+              "customer_id": 385,
+              "name": "B2385",
+              "visited_on": "2021-01-19",
+              "amount": 7
+            },
+            {
+              "customer_id": 386,
+              "name": "B2386",
+              "visited_on": "2021-01-20",
+              "amount": 8
+            },
+            {
+              "customer_id": 387,
+              "name": "B2387",
+              "visited_on": "2021-01-21",
+              "amount": 9
+            },
+            {
+              "customer_id": 388,
+              "name": "B2388",
+              "visited_on": "2021-01-22",
+              "amount": 1
+            },
+            {
+              "customer_id": 389,
+              "name": "B2389",
+              "visited_on": "2021-01-23",
+              "amount": 2
+            },
+            {
+              "customer_id": 390,
+              "name": "B2390",
+              "visited_on": "2021-01-24",
+              "amount": 3
+            },
+            {
+              "customer_id": 391,
+              "name": "B2391",
+              "visited_on": "2021-01-25",
+              "amount": 4
+            },
+            {
+              "customer_id": 392,
+              "name": "B2392",
+              "visited_on": "2021-01-26",
+              "amount": 5
+            },
+            {
+              "customer_id": 393,
+              "name": "B2393",
+              "visited_on": "2021-01-27",
+              "amount": 6
+            },
+            {
+              "customer_id": 394,
+              "name": "B2394",
+              "visited_on": "2021-01-28",
+              "amount": 7
+            },
+            {
+              "customer_id": 395,
+              "name": "B2395",
+              "visited_on": "2021-01-29",
+              "amount": 8
+            },
+            {
+              "customer_id": 396,
+              "name": "B2396",
+              "visited_on": "2021-01-30",
+              "amount": 9
+            },
+            {
+              "customer_id": 397,
+              "name": "B2397",
+              "visited_on": "2021-01-31",
+              "amount": 1
+            },
+            {
+              "customer_id": 398,
+              "name": "B2398",
+              "visited_on": "2021-02-01",
+              "amount": 2
+            },
+            {
+              "customer_id": 399,
+              "name": "B2399",
+              "visited_on": "2021-02-02",
+              "amount": 3
+            },
+            {
+              "customer_id": 400,
+              "name": "B2400",
+              "visited_on": "2021-02-03",
+              "amount": 4
+            },
+            {
+              "customer_id": 401,
+              "name": "B2401",
+              "visited_on": "2021-02-04",
+              "amount": 5
+            },
+            {
+              "customer_id": 402,
+              "name": "B2402",
+              "visited_on": "2021-02-05",
+              "amount": 6
+            },
+            {
+              "customer_id": 403,
+              "name": "B2403",
+              "visited_on": "2021-02-06",
+              "amount": 7
+            },
+            {
+              "customer_id": 404,
+              "name": "B2404",
+              "visited_on": "2021-02-07",
+              "amount": 8
+            },
+            {
+              "customer_id": 405,
+              "name": "B2405",
+              "visited_on": "2021-02-08",
+              "amount": 9
+            },
+            {
+              "customer_id": 406,
+              "name": "B2406",
+              "visited_on": "2021-02-09",
+              "amount": 1
+            },
+            {
+              "customer_id": 407,
+              "name": "B2407",
+              "visited_on": "2021-02-10",
+              "amount": 2
+            },
+            {
+              "customer_id": 408,
+              "name": "B2408",
+              "visited_on": "2021-02-11",
+              "amount": 3
+            },
+            {
+              "customer_id": 409,
+              "name": "B2409",
+              "visited_on": "2021-02-12",
+              "amount": 4
+            },
+            {
+              "customer_id": 410,
+              "name": "B2410",
+              "visited_on": "2021-02-13",
+              "amount": 5
+            },
+            {
+              "customer_id": 411,
+              "name": "B2411",
+              "visited_on": "2021-02-14",
+              "amount": 6
+            },
+            {
+              "customer_id": 412,
+              "name": "B2412",
+              "visited_on": "2021-02-15",
+              "amount": 7
+            },
+            {
+              "customer_id": 413,
+              "name": "B2413",
+              "visited_on": "2021-02-16",
+              "amount": 8
+            },
+            {
+              "customer_id": 414,
+              "name": "B2414",
+              "visited_on": "2021-02-17",
+              "amount": 9
+            },
+            {
+              "customer_id": 415,
+              "name": "B2415",
+              "visited_on": "2021-02-18",
+              "amount": 1
+            },
+            {
+              "customer_id": 416,
+              "name": "B2416",
+              "visited_on": "2021-02-19",
+              "amount": 2
+            },
+            {
+              "customer_id": 417,
+              "name": "B2417",
+              "visited_on": "2021-02-20",
+              "amount": 3
+            },
+            {
+              "customer_id": 418,
+              "name": "B2418",
+              "visited_on": "2021-02-21",
+              "amount": 4
+            },
+            {
+              "customer_id": 419,
+              "name": "B2419",
+              "visited_on": "2021-02-22",
+              "amount": 5
+            },
+            {
+              "customer_id": 420,
+              "name": "B2420",
+              "visited_on": "2021-02-23",
+              "amount": 6
+            },
+            {
+              "customer_id": 421,
+              "name": "B2421",
+              "visited_on": "2021-02-24",
+              "amount": 7
+            },
+            {
+              "customer_id": 422,
+              "name": "B2422",
+              "visited_on": "2021-02-25",
+              "amount": 8
+            },
+            {
+              "customer_id": 423,
+              "name": "B2423",
+              "visited_on": "2021-02-26",
+              "amount": 9
+            },
+            {
+              "customer_id": 424,
+              "name": "B2424",
+              "visited_on": "2021-02-27",
+              "amount": 1
+            },
+            {
+              "customer_id": 425,
+              "name": "B2425",
+              "visited_on": "2021-02-28",
+              "amount": 2
+            },
+            {
+              "customer_id": 426,
+              "name": "B2426",
+              "visited_on": "2021-03-01",
+              "amount": 3
+            },
+            {
+              "customer_id": 427,
+              "name": "B2427",
+              "visited_on": "2021-03-02",
+              "amount": 4
+            },
+            {
+              "customer_id": 428,
+              "name": "B2428",
+              "visited_on": "2021-03-03",
+              "amount": 5
+            },
+            {
+              "customer_id": 429,
+              "name": "B2429",
+              "visited_on": "2021-03-04",
+              "amount": 6
+            },
+            {
+              "customer_id": 430,
+              "name": "B2430",
+              "visited_on": "2021-03-05",
+              "amount": 7
+            },
+            {
+              "customer_id": 431,
+              "name": "B2431",
+              "visited_on": "2021-03-06",
+              "amount": 8
+            },
+            {
+              "customer_id": 432,
+              "name": "B2432",
+              "visited_on": "2021-03-07",
+              "amount": 9
+            },
+            {
+              "customer_id": 433,
+              "name": "B2433",
+              "visited_on": "2021-03-08",
+              "amount": 1
+            },
+            {
+              "customer_id": 434,
+              "name": "B2434",
+              "visited_on": "2021-03-09",
+              "amount": 2
+            },
+            {
+              "customer_id": 435,
+              "name": "B2435",
+              "visited_on": "2021-03-10",
+              "amount": 3
+            },
+            {
+              "customer_id": 436,
+              "name": "B2436",
+              "visited_on": "2021-03-11",
+              "amount": 4
+            },
+            {
+              "customer_id": 437,
+              "name": "B2437",
+              "visited_on": "2021-03-12",
+              "amount": 5
+            },
+            {
+              "customer_id": 438,
+              "name": "B2438",
+              "visited_on": "2021-03-13",
+              "amount": 6
+            },
+            {
+              "customer_id": 439,
+              "name": "B2439",
+              "visited_on": "2021-03-14",
+              "amount": 7
+            },
+            {
+              "customer_id": 440,
+              "name": "B2440",
+              "visited_on": "2021-03-15",
+              "amount": 8
+            },
+            {
+              "customer_id": 441,
+              "name": "B2441",
+              "visited_on": "2021-03-16",
+              "amount": 9
+            },
+            {
+              "customer_id": 442,
+              "name": "B2442",
+              "visited_on": "2021-03-17",
+              "amount": 1
+            },
+            {
+              "customer_id": 443,
+              "name": "B2443",
+              "visited_on": "2021-03-18",
+              "amount": 2
+            },
+            {
+              "customer_id": 444,
+              "name": "B2444",
+              "visited_on": "2021-03-19",
+              "amount": 3
+            },
+            {
+              "customer_id": 445,
+              "name": "B2445",
+              "visited_on": "2021-03-20",
+              "amount": 4
+            },
+            {
+              "customer_id": 446,
+              "name": "B2446",
+              "visited_on": "2021-03-21",
+              "amount": 5
+            },
+            {
+              "customer_id": 447,
+              "name": "B2447",
+              "visited_on": "2021-03-22",
+              "amount": 6
+            },
+            {
+              "customer_id": 448,
+              "name": "B2448",
+              "visited_on": "2021-03-23",
+              "amount": 7
+            },
+            {
+              "customer_id": 449,
+              "name": "B2449",
+              "visited_on": "2021-03-24",
+              "amount": 8
+            },
+            {
+              "customer_id": 450,
+              "name": "B2450",
+              "visited_on": "2021-03-25",
+              "amount": 9
+            },
+            {
+              "customer_id": 451,
+              "name": "B2451",
+              "visited_on": "2021-03-26",
+              "amount": 1
+            },
+            {
+              "customer_id": 452,
+              "name": "B2452",
+              "visited_on": "2021-03-27",
+              "amount": 2
+            },
+            {
+              "customer_id": 453,
+              "name": "B2453",
+              "visited_on": "2021-03-28",
+              "amount": 3
+            },
+            {
+              "customer_id": 454,
+              "name": "B2454",
+              "visited_on": "2021-03-29",
+              "amount": 4
+            },
+            {
+              "customer_id": 455,
+              "name": "B2455",
+              "visited_on": "2021-03-30",
+              "amount": 5
+            },
+            {
+              "customer_id": 456,
+              "name": "B2456",
+              "visited_on": "2021-03-31",
+              "amount": 6
+            },
+            {
+              "customer_id": 457,
+              "name": "B2457",
+              "visited_on": "2021-04-01",
+              "amount": 7
+            },
+            {
+              "customer_id": 458,
+              "name": "B2458",
+              "visited_on": "2021-04-02",
+              "amount": 8
+            },
+            {
+              "customer_id": 459,
+              "name": "B2459",
+              "visited_on": "2021-04-03",
+              "amount": 9
+            },
+            {
+              "customer_id": 460,
+              "name": "B2460",
+              "visited_on": "2021-04-04",
+              "amount": 1
+            },
+            {
+              "customer_id": 461,
+              "name": "B2461",
+              "visited_on": "2021-04-05",
+              "amount": 2
+            },
+            {
+              "customer_id": 462,
+              "name": "B2462",
+              "visited_on": "2021-04-06",
+              "amount": 3
+            },
+            {
+              "customer_id": 463,
+              "name": "B2463",
+              "visited_on": "2021-04-07",
+              "amount": 4
+            },
+            {
+              "customer_id": 464,
+              "name": "B2464",
+              "visited_on": "2021-04-08",
+              "amount": 5
+            },
+            {
+              "customer_id": 465,
+              "name": "B2465",
+              "visited_on": "2021-04-09",
+              "amount": 6
+            },
+            {
+              "customer_id": 466,
+              "name": "B2466",
+              "visited_on": "2021-04-10",
+              "amount": 7
+            },
+            {
+              "customer_id": 467,
+              "name": "B2467",
+              "visited_on": "2021-04-11",
+              "amount": 8
+            },
+            {
+              "customer_id": 468,
+              "name": "B2468",
+              "visited_on": "2021-04-12",
+              "amount": 9
+            },
+            {
+              "customer_id": 469,
+              "name": "B2469",
+              "visited_on": "2021-04-13",
+              "amount": 1
+            },
+            {
+              "customer_id": 470,
+              "name": "B2470",
+              "visited_on": "2021-04-14",
+              "amount": 2
+            },
+            {
+              "customer_id": 471,
+              "name": "B2471",
+              "visited_on": "2021-04-15",
+              "amount": 3
+            },
+            {
+              "customer_id": 472,
+              "name": "B2472",
+              "visited_on": "2021-04-16",
+              "amount": 4
+            },
+            {
+              "customer_id": 473,
+              "name": "B2473",
+              "visited_on": "2021-04-17",
+              "amount": 5
+            },
+            {
+              "customer_id": 474,
+              "name": "B2474",
+              "visited_on": "2021-04-18",
+              "amount": 6
+            },
+            {
+              "customer_id": 475,
+              "name": "B2475",
+              "visited_on": "2021-04-19",
+              "amount": 7
+            },
+            {
+              "customer_id": 476,
+              "name": "B2476",
+              "visited_on": "2021-04-20",
+              "amount": 8
+            },
+            {
+              "customer_id": 477,
+              "name": "B2477",
+              "visited_on": "2021-04-21",
+              "amount": 9
+            },
+            {
+              "customer_id": 478,
+              "name": "B2478",
+              "visited_on": "2021-04-22",
+              "amount": 1
+            },
+            {
+              "customer_id": 479,
+              "name": "B2479",
+              "visited_on": "2021-04-23",
+              "amount": 2
+            },
+            {
+              "customer_id": 480,
+              "name": "B2480",
+              "visited_on": "2021-04-24",
+              "amount": 3
+            },
+            {
+              "customer_id": 481,
+              "name": "B2481",
+              "visited_on": "2021-04-25",
+              "amount": 4
+            },
+            {
+              "customer_id": 482,
+              "name": "B2482",
+              "visited_on": "2021-04-26",
+              "amount": 5
+            },
+            {
+              "customer_id": 483,
+              "name": "B2483",
+              "visited_on": "2021-04-27",
+              "amount": 6
+            },
+            {
+              "customer_id": 484,
+              "name": "B2484",
+              "visited_on": "2021-04-28",
+              "amount": 7
+            },
+            {
+              "customer_id": 485,
+              "name": "B2485",
+              "visited_on": "2021-04-29",
+              "amount": 8
+            },
+            {
+              "customer_id": 486,
+              "name": "B2486",
+              "visited_on": "2021-04-30",
+              "amount": 9
+            },
+            {
+              "customer_id": 487,
+              "name": "B2487",
+              "visited_on": "2021-05-01",
+              "amount": 1
+            },
+            {
+              "customer_id": 488,
+              "name": "B2488",
+              "visited_on": "2021-05-02",
+              "amount": 2
+            },
+            {
+              "customer_id": 489,
+              "name": "B2489",
+              "visited_on": "2021-05-03",
+              "amount": 3
+            },
+            {
+              "customer_id": 490,
+              "name": "B2490",
+              "visited_on": "2021-05-04",
+              "amount": 4
+            },
+            {
+              "customer_id": 491,
+              "name": "B2491",
+              "visited_on": "2021-05-05",
+              "amount": 5
+            },
+            {
+              "customer_id": 492,
+              "name": "B2492",
+              "visited_on": "2021-05-06",
+              "amount": 6
+            },
+            {
+              "customer_id": 493,
+              "name": "B2493",
+              "visited_on": "2021-05-07",
+              "amount": 7
+            },
+            {
+              "customer_id": 494,
+              "name": "B2494",
+              "visited_on": "2021-05-08",
+              "amount": 8
+            },
+            {
+              "customer_id": 495,
+              "name": "B2495",
+              "visited_on": "2021-05-09",
+              "amount": 9
+            },
+            {
+              "customer_id": 496,
+              "name": "B2496",
+              "visited_on": "2021-05-10",
+              "amount": 1
+            },
+            {
+              "customer_id": 497,
+              "name": "B2497",
+              "visited_on": "2021-05-11",
+              "amount": 2
+            },
+            {
+              "customer_id": 498,
+              "name": "B2498",
+              "visited_on": "2021-05-12",
+              "amount": 3
+            },
+            {
+              "customer_id": 499,
+              "name": "B2499",
+              "visited_on": "2021-05-13",
+              "amount": 4
+            },
+            {
+              "customer_id": 500,
+              "name": "B2500",
+              "visited_on": "2021-05-14",
+              "amount": 5
+            },
+            {
+              "customer_id": 501,
+              "name": "B2501",
+              "visited_on": "2021-05-15",
+              "amount": 6
+            },
+            {
+              "customer_id": 502,
+              "name": "B2502",
+              "visited_on": "2021-05-16",
+              "amount": 7
+            },
+            {
+              "customer_id": 503,
+              "name": "B2503",
+              "visited_on": "2021-05-17",
+              "amount": 8
+            },
+            {
+              "customer_id": 504,
+              "name": "B2504",
+              "visited_on": "2021-05-18",
+              "amount": 9
+            },
+            {
+              "customer_id": 505,
+              "name": "B2505",
+              "visited_on": "2021-05-19",
+              "amount": 1
+            },
+            {
+              "customer_id": 506,
+              "name": "B2506",
+              "visited_on": "2021-05-20",
+              "amount": 2
+            },
+            {
+              "customer_id": 507,
+              "name": "B2507",
+              "visited_on": "2021-05-21",
+              "amount": 3
+            },
+            {
+              "customer_id": 508,
+              "name": "B2508",
+              "visited_on": "2021-05-22",
+              "amount": 4
+            },
+            {
+              "customer_id": 509,
+              "name": "B2509",
+              "visited_on": "2021-05-23",
+              "amount": 5
+            },
+            {
+              "customer_id": 510,
+              "name": "B2510",
+              "visited_on": "2021-05-24",
+              "amount": 6
+            },
+            {
+              "customer_id": 511,
+              "name": "B2511",
+              "visited_on": "2021-05-25",
+              "amount": 7
+            },
+            {
+              "customer_id": 512,
+              "name": "B2512",
+              "visited_on": "2021-05-26",
+              "amount": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "visited_on",
+          "amount",
+          "average_amount"
+        ],
+        "rows": [
+          [
+            "2020-01-07",
+            28,
+            4
+          ],
+          [
+            "2020-01-08",
+            35,
+            5
+          ],
+          [
+            "2020-01-09",
+            42,
+            6
+          ],
+          [
+            "2020-01-10",
+            40,
+            5.71
+          ],
+          [
+            "2020-01-11",
+            38,
+            5.43
+          ],
+          [
+            "2020-01-12",
+            36,
+            5.14
+          ],
+          [
+            "2020-01-13",
+            34,
+            4.86
+          ],
+          [
+            "2020-01-14",
+            32,
+            4.57
+          ],
+          [
+            "2020-01-15",
+            30,
+            4.29
+          ],
+          [
+            "2020-01-16",
+            28,
+            4
+          ],
+          [
+            "2020-01-17",
+            35,
+            5
+          ],
+          [
+            "2020-01-18",
+            42,
+            6
+          ],
+          [
+            "2020-01-19",
+            40,
+            5.71
+          ],
+          [
+            "2020-01-20",
+            38,
+            5.43
+          ],
+          [
+            "2020-01-21",
+            36,
+            5.14
+          ],
+          [
+            "2020-01-22",
+            34,
+            4.86
+          ],
+          [
+            "2020-01-23",
+            32,
+            4.57
+          ],
+          [
+            "2020-01-24",
+            30,
+            4.29
+          ],
+          [
+            "2020-01-25",
+            28,
+            4
+          ],
+          [
+            "2020-01-26",
+            35,
+            5
+          ],
+          [
+            "2020-01-27",
+            42,
+            6
+          ],
+          [
+            "2020-01-28",
+            40,
+            5.71
+          ],
+          [
+            "2020-01-29",
+            38,
+            5.43
+          ],
+          [
+            "2020-01-30",
+            36,
+            5.14
+          ],
+          [
+            "2020-01-31",
+            34,
+            4.86
+          ],
+          [
+            "2020-02-01",
+            32,
+            4.57
+          ],
+          [
+            "2020-02-02",
+            30,
+            4.29
+          ],
+          [
+            "2020-02-03",
+            28,
+            4
+          ],
+          [
+            "2020-02-04",
+            35,
+            5
+          ],
+          [
+            "2020-02-05",
+            42,
+            6
+          ],
+          [
+            "2020-02-06",
+            40,
+            5.71
+          ],
+          [
+            "2020-02-07",
+            38,
+            5.43
+          ],
+          [
+            "2020-02-08",
+            36,
+            5.14
+          ],
+          [
+            "2020-02-09",
+            34,
+            4.86
+          ],
+          [
+            "2020-02-10",
+            32,
+            4.57
+          ],
+          [
+            "2020-02-11",
+            30,
+            4.29
+          ],
+          [
+            "2020-02-12",
+            28,
+            4
+          ],
+          [
+            "2020-02-13",
+            35,
+            5
+          ],
+          [
+            "2020-02-14",
+            42,
+            6
+          ],
+          [
+            "2020-02-15",
+            40,
+            5.71
+          ],
+          [
+            "2020-02-16",
+            38,
+            5.43
+          ],
+          [
+            "2020-02-17",
+            36,
+            5.14
+          ],
+          [
+            "2020-02-18",
+            34,
+            4.86
+          ],
+          [
+            "2020-02-19",
+            32,
+            4.57
+          ],
+          [
+            "2020-02-20",
+            30,
+            4.29
+          ],
+          [
+            "2020-02-21",
+            28,
+            4
+          ],
+          [
+            "2020-02-22",
+            35,
+            5
+          ],
+          [
+            "2020-02-23",
+            42,
+            6
+          ],
+          [
+            "2020-02-24",
+            40,
+            5.71
+          ],
+          [
+            "2020-02-25",
+            38,
+            5.43
+          ],
+          [
+            "2020-02-26",
+            36,
+            5.14
+          ],
+          [
+            "2020-02-27",
+            34,
+            4.86
+          ],
+          [
+            "2020-02-28",
+            32,
+            4.57
+          ],
+          [
+            "2020-02-29",
+            30,
+            4.29
+          ],
+          [
+            "2020-03-01",
+            28,
+            4
+          ],
+          [
+            "2020-03-02",
+            35,
+            5
+          ],
+          [
+            "2020-03-03",
+            42,
+            6
+          ],
+          [
+            "2020-03-04",
+            40,
+            5.71
+          ],
+          [
+            "2020-03-05",
+            38,
+            5.43
+          ],
+          [
+            "2020-03-06",
+            36,
+            5.14
+          ],
+          [
+            "2020-03-07",
+            34,
+            4.86
+          ],
+          [
+            "2020-03-08",
+            32,
+            4.57
+          ],
+          [
+            "2020-03-09",
+            30,
+            4.29
+          ],
+          [
+            "2020-03-10",
+            28,
+            4
+          ],
+          [
+            "2020-03-11",
+            35,
+            5
+          ],
+          [
+            "2020-03-12",
+            42,
+            6
+          ],
+          [
+            "2020-03-13",
+            40,
+            5.71
+          ],
+          [
+            "2020-03-14",
+            38,
+            5.43
+          ],
+          [
+            "2020-03-15",
+            36,
+            5.14
+          ],
+          [
+            "2020-03-16",
+            34,
+            4.86
+          ],
+          [
+            "2020-03-17",
+            32,
+            4.57
+          ],
+          [
+            "2020-03-18",
+            30,
+            4.29
+          ],
+          [
+            "2020-03-19",
+            28,
+            4
+          ],
+          [
+            "2020-03-20",
+            35,
+            5
+          ],
+          [
+            "2020-03-21",
+            42,
+            6
+          ],
+          [
+            "2020-03-22",
+            40,
+            5.71
+          ],
+          [
+            "2020-03-23",
+            38,
+            5.43
+          ],
+          [
+            "2020-03-24",
+            36,
+            5.14
+          ],
+          [
+            "2020-03-25",
+            34,
+            4.86
+          ],
+          [
+            "2020-03-26",
+            32,
+            4.57
+          ],
+          [
+            "2020-03-27",
+            30,
+            4.29
+          ],
+          [
+            "2020-03-28",
+            28,
+            4
+          ],
+          [
+            "2020-03-29",
+            35,
+            5
+          ],
+          [
+            "2020-03-30",
+            42,
+            6
+          ],
+          [
+            "2020-03-31",
+            40,
+            5.71
+          ],
+          [
+            "2020-04-01",
+            38,
+            5.43
+          ],
+          [
+            "2020-04-02",
+            36,
+            5.14
+          ],
+          [
+            "2020-04-03",
+            34,
+            4.86
+          ],
+          [
+            "2020-04-04",
+            32,
+            4.57
+          ],
+          [
+            "2020-04-05",
+            30,
+            4.29
+          ],
+          [
+            "2020-04-06",
+            28,
+            4
+          ],
+          [
+            "2020-04-07",
+            35,
+            5
+          ],
+          [
+            "2020-04-08",
+            42,
+            6
+          ],
+          [
+            "2020-04-09",
+            40,
+            5.71
+          ],
+          [
+            "2020-04-10",
+            38,
+            5.43
+          ],
+          [
+            "2020-04-11",
+            36,
+            5.14
+          ],
+          [
+            "2020-04-12",
+            34,
+            4.86
+          ],
+          [
+            "2020-04-13",
+            32,
+            4.57
+          ],
+          [
+            "2020-04-14",
+            30,
+            4.29
+          ],
+          [
+            "2020-04-15",
+            28,
+            4
+          ],
+          [
+            "2020-04-16",
+            35,
+            5
+          ],
+          [
+            "2020-04-17",
+            42,
+            6
+          ],
+          [
+            "2020-04-18",
+            40,
+            5.71
+          ],
+          [
+            "2020-04-19",
+            38,
+            5.43
+          ],
+          [
+            "2020-04-20",
+            36,
+            5.14
+          ],
+          [
+            "2020-04-21",
+            34,
+            4.86
+          ],
+          [
+            "2020-04-22",
+            32,
+            4.57
+          ],
+          [
+            "2020-04-23",
+            30,
+            4.29
+          ],
+          [
+            "2020-04-24",
+            28,
+            4
+          ],
+          [
+            "2020-04-25",
+            35,
+            5
+          ],
+          [
+            "2020-04-26",
+            42,
+            6
+          ],
+          [
+            "2020-04-27",
+            40,
+            5.71
+          ],
+          [
+            "2020-04-28",
+            38,
+            5.43
+          ],
+          [
+            "2020-04-29",
+            36,
+            5.14
+          ],
+          [
+            "2020-04-30",
+            34,
+            4.86
+          ],
+          [
+            "2020-05-01",
+            32,
+            4.57
+          ],
+          [
+            "2020-05-02",
+            30,
+            4.29
+          ],
+          [
+            "2020-05-03",
+            28,
+            4
+          ],
+          [
+            "2020-05-04",
+            35,
+            5
+          ],
+          [
+            "2020-05-05",
+            42,
+            6
+          ],
+          [
+            "2020-05-06",
+            40,
+            5.71
+          ],
+          [
+            "2020-05-07",
+            38,
+            5.43
+          ],
+          [
+            "2020-05-08",
+            36,
+            5.14
+          ],
+          [
+            "2020-05-09",
+            34,
+            4.86
+          ],
+          [
+            "2020-05-10",
+            32,
+            4.57
+          ],
+          [
+            "2020-05-11",
+            30,
+            4.29
+          ],
+          [
+            "2020-05-12",
+            28,
+            4
+          ],
+          [
+            "2020-05-13",
+            35,
+            5
+          ],
+          [
+            "2020-05-14",
+            42,
+            6
+          ],
+          [
+            "2020-05-15",
+            40,
+            5.71
+          ],
+          [
+            "2020-05-16",
+            38,
+            5.43
+          ],
+          [
+            "2020-05-17",
+            36,
+            5.14
+          ],
+          [
+            "2020-05-18",
+            34,
+            4.86
+          ],
+          [
+            "2020-05-19",
+            32,
+            4.57
+          ],
+          [
+            "2020-05-20",
+            30,
+            4.29
+          ],
+          [
+            "2020-05-21",
+            28,
+            4
+          ],
+          [
+            "2020-05-22",
+            35,
+            5
+          ],
+          [
+            "2020-05-23",
+            42,
+            6
+          ],
+          [
+            "2020-05-24",
+            40,
+            5.71
+          ],
+          [
+            "2020-05-25",
+            38,
+            5.43
+          ],
+          [
+            "2020-05-26",
+            36,
+            5.14
+          ],
+          [
+            "2020-05-27",
+            34,
+            4.86
+          ],
+          [
+            "2020-05-28",
+            32,
+            4.57
+          ],
+          [
+            "2020-05-29",
+            30,
+            4.29
+          ],
+          [
+            "2020-05-30",
+            28,
+            4
+          ],
+          [
+            "2020-05-31",
+            35,
+            5
+          ],
+          [
+            "2020-06-01",
+            42,
+            6
+          ],
+          [
+            "2020-06-02",
+            40,
+            5.71
+          ],
+          [
+            "2020-06-03",
+            38,
+            5.43
+          ],
+          [
+            "2020-06-04",
+            36,
+            5.14
+          ],
+          [
+            "2020-06-05",
+            34,
+            4.86
+          ],
+          [
+            "2020-06-06",
+            32,
+            4.57
+          ],
+          [
+            "2020-06-07",
+            30,
+            4.29
+          ],
+          [
+            "2020-06-08",
+            28,
+            4
+          ],
+          [
+            "2020-06-09",
+            35,
+            5
+          ],
+          [
+            "2020-06-10",
+            42,
+            6
+          ],
+          [
+            "2020-06-11",
+            40,
+            5.71
+          ],
+          [
+            "2020-06-12",
+            38,
+            5.43
+          ],
+          [
+            "2020-06-13",
+            36,
+            5.14
+          ],
+          [
+            "2020-06-14",
+            34,
+            4.86
+          ],
+          [
+            "2020-06-15",
+            32,
+            4.57
+          ],
+          [
+            "2020-06-16",
+            30,
+            4.29
+          ],
+          [
+            "2020-06-17",
+            28,
+            4
+          ],
+          [
+            "2020-06-18",
+            35,
+            5
+          ],
+          [
+            "2020-06-19",
+            42,
+            6
+          ],
+          [
+            "2020-06-20",
+            40,
+            5.71
+          ],
+          [
+            "2020-06-21",
+            38,
+            5.43
+          ],
+          [
+            "2020-06-22",
+            36,
+            5.14
+          ],
+          [
+            "2020-06-23",
+            34,
+            4.86
+          ],
+          [
+            "2020-06-24",
+            32,
+            4.57
+          ],
+          [
+            "2020-06-25",
+            30,
+            4.29
+          ],
+          [
+            "2020-06-26",
+            28,
+            4
+          ],
+          [
+            "2020-06-27",
+            35,
+            5
+          ],
+          [
+            "2020-06-28",
+            42,
+            6
+          ],
+          [
+            "2020-06-29",
+            40,
+            5.71
+          ],
+          [
+            "2020-06-30",
+            38,
+            5.43
+          ],
+          [
+            "2020-07-01",
+            36,
+            5.14
+          ],
+          [
+            "2020-07-02",
+            34,
+            4.86
+          ],
+          [
+            "2020-07-03",
+            32,
+            4.57
+          ],
+          [
+            "2020-07-04",
+            30,
+            4.29
+          ],
+          [
+            "2020-07-05",
+            28,
+            4
+          ],
+          [
+            "2020-07-06",
+            35,
+            5
+          ],
+          [
+            "2020-07-07",
+            42,
+            6
+          ],
+          [
+            "2020-07-08",
+            40,
+            5.71
+          ],
+          [
+            "2020-07-09",
+            38,
+            5.43
+          ],
+          [
+            "2020-07-10",
+            36,
+            5.14
+          ],
+          [
+            "2020-07-11",
+            34,
+            4.86
+          ],
+          [
+            "2020-07-12",
+            32,
+            4.57
+          ],
+          [
+            "2020-07-13",
+            30,
+            4.29
+          ],
+          [
+            "2020-07-14",
+            28,
+            4
+          ],
+          [
+            "2020-07-15",
+            35,
+            5
+          ],
+          [
+            "2020-07-16",
+            42,
+            6
+          ],
+          [
+            "2020-07-17",
+            40,
+            5.71
+          ],
+          [
+            "2020-07-18",
+            38,
+            5.43
+          ],
+          [
+            "2020-07-19",
+            36,
+            5.14
+          ],
+          [
+            "2020-07-20",
+            34,
+            4.86
+          ],
+          [
+            "2020-07-21",
+            32,
+            4.57
+          ],
+          [
+            "2020-07-22",
+            30,
+            4.29
+          ],
+          [
+            "2020-07-23",
+            28,
+            4
+          ],
+          [
+            "2020-07-24",
+            35,
+            5
+          ],
+          [
+            "2020-07-25",
+            42,
+            6
+          ],
+          [
+            "2020-07-26",
+            40,
+            5.71
+          ],
+          [
+            "2020-07-27",
+            38,
+            5.43
+          ],
+          [
+            "2020-07-28",
+            36,
+            5.14
+          ],
+          [
+            "2020-07-29",
+            34,
+            4.86
+          ],
+          [
+            "2020-07-30",
+            32,
+            4.57
+          ],
+          [
+            "2020-07-31",
+            30,
+            4.29
+          ],
+          [
+            "2020-08-01",
+            28,
+            4
+          ],
+          [
+            "2020-08-02",
+            35,
+            5
+          ],
+          [
+            "2020-08-03",
+            42,
+            6
+          ],
+          [
+            "2020-08-04",
+            40,
+            5.71
+          ],
+          [
+            "2020-08-05",
+            38,
+            5.43
+          ],
+          [
+            "2020-08-06",
+            36,
+            5.14
+          ],
+          [
+            "2020-08-07",
+            34,
+            4.86
+          ],
+          [
+            "2020-08-08",
+            32,
+            4.57
+          ],
+          [
+            "2020-08-09",
+            30,
+            4.29
+          ],
+          [
+            "2020-08-10",
+            28,
+            4
+          ],
+          [
+            "2020-08-11",
+            35,
+            5
+          ],
+          [
+            "2020-08-12",
+            42,
+            6
+          ],
+          [
+            "2020-08-13",
+            40,
+            5.71
+          ],
+          [
+            "2020-08-14",
+            38,
+            5.43
+          ],
+          [
+            "2020-08-15",
+            36,
+            5.14
+          ],
+          [
+            "2020-08-16",
+            34,
+            4.86
+          ],
+          [
+            "2020-08-17",
+            32,
+            4.57
+          ],
+          [
+            "2020-08-18",
+            30,
+            4.29
+          ],
+          [
+            "2020-08-19",
+            28,
+            4
+          ],
+          [
+            "2020-08-20",
+            35,
+            5
+          ],
+          [
+            "2020-08-21",
+            42,
+            6
+          ],
+          [
+            "2020-08-22",
+            40,
+            5.71
+          ],
+          [
+            "2020-08-23",
+            38,
+            5.43
+          ],
+          [
+            "2020-08-24",
+            36,
+            5.14
+          ],
+          [
+            "2020-08-25",
+            34,
+            4.86
+          ],
+          [
+            "2020-08-26",
+            32,
+            4.57
+          ],
+          [
+            "2020-08-27",
+            30,
+            4.29
+          ],
+          [
+            "2020-08-28",
+            28,
+            4
+          ],
+          [
+            "2020-08-29",
+            35,
+            5
+          ],
+          [
+            "2020-08-30",
+            42,
+            6
+          ],
+          [
+            "2020-08-31",
+            40,
+            5.71
+          ],
+          [
+            "2020-09-01",
+            38,
+            5.43
+          ],
+          [
+            "2020-09-02",
+            36,
+            5.14
+          ],
+          [
+            "2020-09-03",
+            34,
+            4.86
+          ],
+          [
+            "2020-09-04",
+            32,
+            4.57
+          ],
+          [
+            "2020-09-05",
+            30,
+            4.29
+          ],
+          [
+            "2020-09-06",
+            28,
+            4
+          ],
+          [
+            "2020-09-07",
+            35,
+            5
+          ],
+          [
+            "2020-09-08",
+            42,
+            6
+          ],
+          [
+            "2020-09-09",
+            40,
+            5.71
+          ],
+          [
+            "2020-09-10",
+            38,
+            5.43
+          ],
+          [
+            "2020-09-11",
+            36,
+            5.14
+          ],
+          [
+            "2020-09-12",
+            34,
+            4.86
+          ],
+          [
+            "2020-09-13",
+            32,
+            4.57
+          ],
+          [
+            "2020-09-14",
+            30,
+            4.29
+          ],
+          [
+            "2020-09-15",
+            28,
+            4
+          ],
+          [
+            "2020-09-16",
+            35,
+            5
+          ],
+          [
+            "2020-09-17",
+            42,
+            6
+          ],
+          [
+            "2020-09-18",
+            40,
+            5.71
+          ],
+          [
+            "2020-09-19",
+            38,
+            5.43
+          ],
+          [
+            "2020-09-20",
+            36,
+            5.14
+          ],
+          [
+            "2020-09-21",
+            34,
+            4.86
+          ],
+          [
+            "2020-09-22",
+            32,
+            4.57
+          ],
+          [
+            "2020-09-23",
+            30,
+            4.29
+          ],
+          [
+            "2020-09-24",
+            28,
+            4
+          ],
+          [
+            "2020-09-25",
+            35,
+            5
+          ],
+          [
+            "2020-09-26",
+            42,
+            6
+          ],
+          [
+            "2020-09-27",
+            40,
+            5.71
+          ],
+          [
+            "2020-09-28",
+            38,
+            5.43
+          ],
+          [
+            "2020-09-29",
+            36,
+            5.14
+          ],
+          [
+            "2020-09-30",
+            34,
+            4.86
+          ],
+          [
+            "2020-10-01",
+            32,
+            4.57
+          ],
+          [
+            "2020-10-02",
+            30,
+            4.29
+          ],
+          [
+            "2020-10-03",
+            28,
+            4
+          ],
+          [
+            "2020-10-04",
+            35,
+            5
+          ],
+          [
+            "2020-10-05",
+            42,
+            6
+          ],
+          [
+            "2020-10-06",
+            40,
+            5.71
+          ],
+          [
+            "2020-10-07",
+            38,
+            5.43
+          ],
+          [
+            "2020-10-08",
+            36,
+            5.14
+          ],
+          [
+            "2020-10-09",
+            34,
+            4.86
+          ],
+          [
+            "2020-10-10",
+            32,
+            4.57
+          ],
+          [
+            "2020-10-11",
+            30,
+            4.29
+          ],
+          [
+            "2020-10-12",
+            28,
+            4
+          ],
+          [
+            "2020-10-13",
+            35,
+            5
+          ],
+          [
+            "2020-10-14",
+            42,
+            6
+          ],
+          [
+            "2020-10-15",
+            40,
+            5.71
+          ],
+          [
+            "2020-10-16",
+            38,
+            5.43
+          ],
+          [
+            "2020-10-17",
+            36,
+            5.14
+          ],
+          [
+            "2020-10-18",
+            34,
+            4.86
+          ],
+          [
+            "2020-10-19",
+            32,
+            4.57
+          ],
+          [
+            "2020-10-20",
+            30,
+            4.29
+          ],
+          [
+            "2020-10-21",
+            28,
+            4
+          ],
+          [
+            "2020-10-22",
+            35,
+            5
+          ],
+          [
+            "2020-10-23",
+            42,
+            6
+          ],
+          [
+            "2020-10-24",
+            40,
+            5.71
+          ],
+          [
+            "2020-10-25",
+            38,
+            5.43
+          ],
+          [
+            "2020-10-26",
+            36,
+            5.14
+          ],
+          [
+            "2020-10-27",
+            34,
+            4.86
+          ],
+          [
+            "2020-10-28",
+            32,
+            4.57
+          ],
+          [
+            "2020-10-29",
+            30,
+            4.29
+          ],
+          [
+            "2020-10-30",
+            28,
+            4
+          ],
+          [
+            "2020-10-31",
+            35,
+            5
+          ],
+          [
+            "2020-11-01",
+            42,
+            6
+          ],
+          [
+            "2020-11-02",
+            40,
+            5.71
+          ],
+          [
+            "2020-11-03",
+            38,
+            5.43
+          ],
+          [
+            "2020-11-04",
+            36,
+            5.14
+          ],
+          [
+            "2020-11-05",
+            34,
+            4.86
+          ],
+          [
+            "2020-11-06",
+            32,
+            4.57
+          ],
+          [
+            "2020-11-07",
+            30,
+            4.29
+          ],
+          [
+            "2020-11-08",
+            28,
+            4
+          ],
+          [
+            "2020-11-09",
+            35,
+            5
+          ],
+          [
+            "2020-11-10",
+            42,
+            6
+          ],
+          [
+            "2020-11-11",
+            40,
+            5.71
+          ],
+          [
+            "2020-11-12",
+            38,
+            5.43
+          ],
+          [
+            "2020-11-13",
+            36,
+            5.14
+          ],
+          [
+            "2020-11-14",
+            34,
+            4.86
+          ],
+          [
+            "2020-11-15",
+            32,
+            4.57
+          ],
+          [
+            "2020-11-16",
+            30,
+            4.29
+          ],
+          [
+            "2020-11-17",
+            28,
+            4
+          ],
+          [
+            "2020-11-18",
+            35,
+            5
+          ],
+          [
+            "2020-11-19",
+            42,
+            6
+          ],
+          [
+            "2020-11-20",
+            40,
+            5.71
+          ],
+          [
+            "2020-11-21",
+            38,
+            5.43
+          ],
+          [
+            "2020-11-22",
+            36,
+            5.14
+          ],
+          [
+            "2020-11-23",
+            34,
+            4.86
+          ],
+          [
+            "2020-11-24",
+            32,
+            4.57
+          ],
+          [
+            "2020-11-25",
+            30,
+            4.29
+          ],
+          [
+            "2020-11-26",
+            28,
+            4
+          ],
+          [
+            "2020-11-27",
+            35,
+            5
+          ],
+          [
+            "2020-11-28",
+            42,
+            6
+          ],
+          [
+            "2020-11-29",
+            40,
+            5.71
+          ],
+          [
+            "2020-11-30",
+            38,
+            5.43
+          ],
+          [
+            "2020-12-01",
+            36,
+            5.14
+          ],
+          [
+            "2020-12-02",
+            34,
+            4.86
+          ],
+          [
+            "2020-12-03",
+            32,
+            4.57
+          ],
+          [
+            "2020-12-04",
+            30,
+            4.29
+          ],
+          [
+            "2020-12-05",
+            28,
+            4
+          ],
+          [
+            "2020-12-06",
+            35,
+            5
+          ],
+          [
+            "2020-12-07",
+            42,
+            6
+          ],
+          [
+            "2020-12-08",
+            40,
+            5.71
+          ],
+          [
+            "2020-12-09",
+            38,
+            5.43
+          ],
+          [
+            "2020-12-10",
+            36,
+            5.14
+          ],
+          [
+            "2020-12-11",
+            34,
+            4.86
+          ],
+          [
+            "2020-12-12",
+            32,
+            4.57
+          ],
+          [
+            "2020-12-13",
+            30,
+            4.29
+          ],
+          [
+            "2020-12-14",
+            28,
+            4
+          ],
+          [
+            "2020-12-15",
+            35,
+            5
+          ],
+          [
+            "2020-12-16",
+            42,
+            6
+          ],
+          [
+            "2020-12-17",
+            40,
+            5.71
+          ],
+          [
+            "2020-12-18",
+            38,
+            5.43
+          ],
+          [
+            "2020-12-19",
+            36,
+            5.14
+          ],
+          [
+            "2020-12-20",
+            34,
+            4.86
+          ],
+          [
+            "2020-12-21",
+            32,
+            4.57
+          ],
+          [
+            "2020-12-22",
+            30,
+            4.29
+          ],
+          [
+            "2020-12-23",
+            28,
+            4
+          ],
+          [
+            "2020-12-24",
+            35,
+            5
+          ],
+          [
+            "2020-12-25",
+            42,
+            6
+          ],
+          [
+            "2020-12-26",
+            40,
+            5.71
+          ],
+          [
+            "2020-12-27",
+            38,
+            5.43
+          ],
+          [
+            "2020-12-28",
+            36,
+            5.14
+          ],
+          [
+            "2020-12-29",
+            34,
+            4.86
+          ],
+          [
+            "2020-12-30",
+            32,
+            4.57
+          ],
+          [
+            "2020-12-31",
+            30,
+            4.29
+          ],
+          [
+            "2021-01-01",
+            28,
+            4
+          ],
+          [
+            "2021-01-02",
+            35,
+            5
+          ],
+          [
+            "2021-01-03",
+            42,
+            6
+          ],
+          [
+            "2021-01-04",
+            40,
+            5.71
+          ],
+          [
+            "2021-01-05",
+            38,
+            5.43
+          ],
+          [
+            "2021-01-06",
+            36,
+            5.14
+          ],
+          [
+            "2021-01-07",
+            34,
+            4.86
+          ],
+          [
+            "2021-01-08",
+            32,
+            4.57
+          ],
+          [
+            "2021-01-09",
+            30,
+            4.29
+          ],
+          [
+            "2021-01-10",
+            28,
+            4
+          ],
+          [
+            "2021-01-11",
+            35,
+            5
+          ],
+          [
+            "2021-01-12",
+            42,
+            6
+          ],
+          [
+            "2021-01-13",
+            40,
+            5.71
+          ],
+          [
+            "2021-01-14",
+            38,
+            5.43
+          ],
+          [
+            "2021-01-15",
+            36,
+            5.14
+          ],
+          [
+            "2021-01-16",
+            34,
+            4.86
+          ],
+          [
+            "2021-01-17",
+            32,
+            4.57
+          ],
+          [
+            "2021-01-18",
+            30,
+            4.29
+          ],
+          [
+            "2021-01-19",
+            28,
+            4
+          ],
+          [
+            "2021-01-20",
+            35,
+            5
+          ],
+          [
+            "2021-01-21",
+            42,
+            6
+          ],
+          [
+            "2021-01-22",
+            40,
+            5.71
+          ],
+          [
+            "2021-01-23",
+            38,
+            5.43
+          ],
+          [
+            "2021-01-24",
+            36,
+            5.14
+          ],
+          [
+            "2021-01-25",
+            34,
+            4.86
+          ],
+          [
+            "2021-01-26",
+            32,
+            4.57
+          ],
+          [
+            "2021-01-27",
+            30,
+            4.29
+          ],
+          [
+            "2021-01-28",
+            28,
+            4
+          ],
+          [
+            "2021-01-29",
+            35,
+            5
+          ],
+          [
+            "2021-01-30",
+            42,
+            6
+          ],
+          [
+            "2021-01-31",
+            40,
+            5.71
+          ],
+          [
+            "2021-02-01",
+            38,
+            5.43
+          ],
+          [
+            "2021-02-02",
+            36,
+            5.14
+          ],
+          [
+            "2021-02-03",
+            34,
+            4.86
+          ],
+          [
+            "2021-02-04",
+            32,
+            4.57
+          ],
+          [
+            "2021-02-05",
+            30,
+            4.29
+          ],
+          [
+            "2021-02-06",
+            28,
+            4
+          ],
+          [
+            "2021-02-07",
+            35,
+            5
+          ],
+          [
+            "2021-02-08",
+            42,
+            6
+          ],
+          [
+            "2021-02-09",
+            40,
+            5.71
+          ],
+          [
+            "2021-02-10",
+            38,
+            5.43
+          ],
+          [
+            "2021-02-11",
+            36,
+            5.14
+          ],
+          [
+            "2021-02-12",
+            34,
+            4.86
+          ],
+          [
+            "2021-02-13",
+            32,
+            4.57
+          ],
+          [
+            "2021-02-14",
+            30,
+            4.29
+          ],
+          [
+            "2021-02-15",
+            28,
+            4
+          ],
+          [
+            "2021-02-16",
+            35,
+            5
+          ],
+          [
+            "2021-02-17",
+            42,
+            6
+          ],
+          [
+            "2021-02-18",
+            40,
+            5.71
+          ],
+          [
+            "2021-02-19",
+            38,
+            5.43
+          ],
+          [
+            "2021-02-20",
+            36,
+            5.14
+          ],
+          [
+            "2021-02-21",
+            34,
+            4.86
+          ],
+          [
+            "2021-02-22",
+            32,
+            4.57
+          ],
+          [
+            "2021-02-23",
+            30,
+            4.29
+          ],
+          [
+            "2021-02-24",
+            28,
+            4
+          ],
+          [
+            "2021-02-25",
+            35,
+            5
+          ],
+          [
+            "2021-02-26",
+            42,
+            6
+          ],
+          [
+            "2021-02-27",
+            40,
+            5.71
+          ],
+          [
+            "2021-02-28",
+            38,
+            5.43
+          ],
+          [
+            "2021-03-01",
+            36,
+            5.14
+          ],
+          [
+            "2021-03-02",
+            34,
+            4.86
+          ],
+          [
+            "2021-03-03",
+            32,
+            4.57
+          ],
+          [
+            "2021-03-04",
+            30,
+            4.29
+          ],
+          [
+            "2021-03-05",
+            28,
+            4
+          ],
+          [
+            "2021-03-06",
+            35,
+            5
+          ],
+          [
+            "2021-03-07",
+            42,
+            6
+          ],
+          [
+            "2021-03-08",
+            40,
+            5.71
+          ],
+          [
+            "2021-03-09",
+            38,
+            5.43
+          ],
+          [
+            "2021-03-10",
+            36,
+            5.14
+          ],
+          [
+            "2021-03-11",
+            34,
+            4.86
+          ],
+          [
+            "2021-03-12",
+            32,
+            4.57
+          ],
+          [
+            "2021-03-13",
+            30,
+            4.29
+          ],
+          [
+            "2021-03-14",
+            28,
+            4
+          ],
+          [
+            "2021-03-15",
+            35,
+            5
+          ],
+          [
+            "2021-03-16",
+            42,
+            6
+          ],
+          [
+            "2021-03-17",
+            40,
+            5.71
+          ],
+          [
+            "2021-03-18",
+            38,
+            5.43
+          ],
+          [
+            "2021-03-19",
+            36,
+            5.14
+          ],
+          [
+            "2021-03-20",
+            34,
+            4.86
+          ],
+          [
+            "2021-03-21",
+            32,
+            4.57
+          ],
+          [
+            "2021-03-22",
+            30,
+            4.29
+          ],
+          [
+            "2021-03-23",
+            28,
+            4
+          ],
+          [
+            "2021-03-24",
+            35,
+            5
+          ],
+          [
+            "2021-03-25",
+            42,
+            6
+          ],
+          [
+            "2021-03-26",
+            40,
+            5.71
+          ],
+          [
+            "2021-03-27",
+            38,
+            5.43
+          ],
+          [
+            "2021-03-28",
+            36,
+            5.14
+          ],
+          [
+            "2021-03-29",
+            34,
+            4.86
+          ],
+          [
+            "2021-03-30",
+            32,
+            4.57
+          ],
+          [
+            "2021-03-31",
+            30,
+            4.29
+          ],
+          [
+            "2021-04-01",
+            28,
+            4
+          ],
+          [
+            "2021-04-02",
+            35,
+            5
+          ],
+          [
+            "2021-04-03",
+            42,
+            6
+          ],
+          [
+            "2021-04-04",
+            40,
+            5.71
+          ],
+          [
+            "2021-04-05",
+            38,
+            5.43
+          ],
+          [
+            "2021-04-06",
+            36,
+            5.14
+          ],
+          [
+            "2021-04-07",
+            34,
+            4.86
+          ],
+          [
+            "2021-04-08",
+            32,
+            4.57
+          ],
+          [
+            "2021-04-09",
+            30,
+            4.29
+          ],
+          [
+            "2021-04-10",
+            28,
+            4
+          ],
+          [
+            "2021-04-11",
+            35,
+            5
+          ],
+          [
+            "2021-04-12",
+            42,
+            6
+          ],
+          [
+            "2021-04-13",
+            40,
+            5.71
+          ],
+          [
+            "2021-04-14",
+            38,
+            5.43
+          ],
+          [
+            "2021-04-15",
+            36,
+            5.14
+          ],
+          [
+            "2021-04-16",
+            34,
+            4.86
+          ],
+          [
+            "2021-04-17",
+            32,
+            4.57
+          ],
+          [
+            "2021-04-18",
+            30,
+            4.29
+          ],
+          [
+            "2021-04-19",
+            28,
+            4
+          ],
+          [
+            "2021-04-20",
+            35,
+            5
+          ],
+          [
+            "2021-04-21",
+            42,
+            6
+          ],
+          [
+            "2021-04-22",
+            40,
+            5.71
+          ],
+          [
+            "2021-04-23",
+            38,
+            5.43
+          ],
+          [
+            "2021-04-24",
+            36,
+            5.14
+          ],
+          [
+            "2021-04-25",
+            34,
+            4.86
+          ],
+          [
+            "2021-04-26",
+            32,
+            4.57
+          ],
+          [
+            "2021-04-27",
+            30,
+            4.29
+          ],
+          [
+            "2021-04-28",
+            28,
+            4
+          ],
+          [
+            "2021-04-29",
+            35,
+            5
+          ],
+          [
+            "2021-04-30",
+            42,
+            6
+          ],
+          [
+            "2021-05-01",
+            40,
+            5.71
+          ],
+          [
+            "2021-05-02",
+            38,
+            5.43
+          ],
+          [
+            "2021-05-03",
+            36,
+            5.14
+          ],
+          [
+            "2021-05-04",
+            34,
+            4.86
+          ],
+          [
+            "2021-05-05",
+            32,
+            4.57
+          ],
+          [
+            "2021-05-06",
+            30,
+            4.29
+          ],
+          [
+            "2021-05-07",
+            28,
+            4
+          ],
+          [
+            "2021-05-08",
+            35,
+            5
+          ],
+          [
+            "2021-05-09",
+            42,
+            6
+          ],
+          [
+            "2021-05-10",
+            40,
+            5.71
+          ],
+          [
+            "2021-05-11",
+            38,
+            5.43
+          ],
+          [
+            "2021-05-12",
+            36,
+            5.14
+          ],
+          [
+            "2021-05-13",
+            34,
+            4.86
+          ],
+          [
+            "2021-05-14",
+            32,
+            4.57
+          ],
+          [
+            "2021-05-15",
+            30,
+            4.29
+          ],
+          [
+            "2021-05-16",
+            28,
+            4
+          ],
+          [
+            "2021-05-17",
+            35,
+            5
+          ],
+          [
+            "2021-05-18",
+            42,
+            6
+          ],
+          [
+            "2021-05-19",
+            40,
+            5.71
+          ],
+          [
+            "2021-05-20",
+            38,
+            5.43
+          ],
+          [
+            "2021-05-21",
+            36,
+            5.14
+          ],
+          [
+            "2021-05-22",
+            34,
+            4.86
+          ],
+          [
+            "2021-05-23",
+            32,
+            4.57
+          ],
+          [
+            "2021-05-24",
+            30,
+            4.29
+          ],
+          [
+            "2021-05-25",
+            28,
+            4
+          ],
+          [
+            "2021-05-26",
+            35,
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "rolling-window"
+      ]
+    }
+  ]
+}

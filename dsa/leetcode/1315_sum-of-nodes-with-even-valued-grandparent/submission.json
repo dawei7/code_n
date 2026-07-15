@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1243",
+  "frontend_id": "1315",
+  "title_slug": "sum-of-nodes-with-even-valued-grandparent",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.sumEvenGrandparent",
+  "verified_submission_id": "2068470451",
+  "verified_at": "2026-07-15T10:20:20.370618+00:00"
+}

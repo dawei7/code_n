@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1422",
+  "measurement_note": "Size is n, the string length. Every tier places all zeros before all ones, making the middle boundary optimal while every candidate boundary remains legal; the 125/250/500 tiers span 4x. Updating two running counts takes O(n) time. Correctly slicing and recounting both sides at every boundary takes O(n^2) time and completes normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 125 grouped bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 125,
+      "input": {
+        "s": "00000000000000000000000000000000000000000000000000000000000000111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "expected": 125,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "grouped"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 250 grouped bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 250,
+      "input": {
+        "s": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "expected": 250,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "grouped"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 500 grouped bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 500,
+      "input": {
+        "s": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "expected": 500,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "grouped"
+      ]
+    }
+  ]
+}

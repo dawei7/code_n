@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1359",
+  "cases": [
+    {
+      "id": "sample-one-order",
+      "name": "sample: 1 labeled order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "sample-two-orders",
+      "name": "sample: 2 labeled orders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "sample-three-orders",
+      "name": "sample: 3 labeled orders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 90,
+      "tags": [
+        "sample",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "trial-four-orders",
+      "name": "trial: 4 labeled orders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": 2520,
+      "tags": [
+        "trial",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "trial-five-orders",
+      "name": "trial: 5 labeled orders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 113400,
+      "tags": [
+        "trial",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "hidden-eight-orders",
+      "name": "real: 8 labeled orders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 8
+      },
+      "expected": 729647433,
+      "tags": [
+        "real",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "hidden-modular-large",
+      "name": "real: 20 labeled orders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20
+      },
+      "expected": 580270580,
+      "tags": [
+        "real",
+        "modulus"
+      ]
+    }
+  ]
+}

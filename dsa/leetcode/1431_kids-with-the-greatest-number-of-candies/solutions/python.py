@@ -1,3 +1,6 @@
-def solve(candies, extra_candies):
-    best = max(candies) if candies else 0
-    return [candy + extra_candies >= best for candy in candies]
+"""Optimal app-local solution for LeetCode 1431."""
+
+
+def solve(candies: list[int], extra_candies: int) -> list[bool]:
+    greatest = max(candies)
+    return [candy + extra_candies >= greatest for candy in candies]

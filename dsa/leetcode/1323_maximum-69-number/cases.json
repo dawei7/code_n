@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1323",
+  "cases": [
+    {"id":"sample-1","name":"sample: change an internal six","kind":"sample","visible":true,"input":{"num":9669},"expected":9969,"tags":["sample","greedy"]},
+    {"id":"sample-2","name":"sample: change the final digit","kind":"sample","visible":true,"input":{"num":9996},"expected":9999,"tags":["sample","suffix"]},
+    {"id":"sample-3","name":"sample: all digits already nine","kind":"sample","visible":true,"input":{"num":9999},"expected":9999,"tags":["sample","no-change"]},
+    {"id":"trial-single-six","name":"trial: one-digit six","kind":"trial","visible":true,"input":{"num":6},"expected":9,"tags":["trial","boundary"]},
+    {"id":"trial-single-nine","name":"trial: one-digit nine","kind":"trial","visible":true,"input":{"num":9},"expected":9,"tags":["trial","no-change"]},
+    {"id":"hidden-all-sixes","name":"hidden: choose the most significant of four sixes","kind":"real","visible":false,"input":{"num":6666},"expected":9666,"tags":["hidden","multiple-options"]},
+    {"id":"hidden-leading-six","name":"hidden: first digit is the unique six","kind":"real","visible":false,"input":{"num":6999},"expected":9999,"tags":["hidden","leading-digit"]}
+  ]
+}

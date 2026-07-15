@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1306",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: reachable from five",
+      "name": "sample: reachable from index five",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -21,12 +22,12 @@
       "expected": true,
       "tags": [
         "sample",
-        "bfs"
+        "breadth-first-search"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: reachable from zero",
+      "name": "sample: reachable from index zero",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -43,12 +44,13 @@
       },
       "expected": true,
       "tags": [
-        "sample"
+        "sample",
+        "alternate-start"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: unreachable zero",
+      "name": "sample: zero is unreachable",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -63,14 +65,15 @@
       },
       "expected": false,
       "tags": [
-        "sample"
+        "sample",
+        "cycle"
       ]
     },
     {
-      "id": "real-start-on-zero",
-      "name": "hidden: start on zero",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-start-on-zero",
+      "name": "trial: starting value is zero",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
           0
@@ -79,8 +82,74 @@
       },
       "expected": true,
       "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-no-zero",
+      "name": "trial: cyclic component with no zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "start": 0
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "no-target",
+        "cycle"
+      ]
+    },
+    {
+      "id": "hidden-left-boundary-jump",
+      "name": "hidden: only useful jump goes to index zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          3,
+          1,
+          1,
+          4
+        ],
+        "start": 4
+      },
+      "expected": true,
+      "tags": [
         "hidden",
-        "edge"
+        "left-jump",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-disconnected-zero",
+      "name": "hidden: zero lies in another component",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          0,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "start": 5
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "unreachable",
+        "cycle"
       ]
     }
   ]

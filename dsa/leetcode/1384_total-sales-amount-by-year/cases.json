@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1384",
+  "cases": [
+    {
+      "id": "sample-cross-years",
+      "name": "sample: three products across year boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Product": [
+            {
+              "product_id": 1,
+              "product_name": "LC Phone"
+            },
+            {
+              "product_id": 2,
+              "product_name": "LC T-Shirt"
+            },
+            {
+              "product_id": 3,
+              "product_name": "LC Keychain"
+            }
+          ],
+          "Sales": [
+            {
+              "product_id": 1,
+              "period_start": "2019-01-25",
+              "period_end": "2019-02-28",
+              "average_daily_sales": 100
+            },
+            {
+              "product_id": 2,
+              "period_start": "2018-12-01",
+              "period_end": "2020-01-01",
+              "average_daily_sales": 10
+            },
+            {
+              "product_id": 3,
+              "period_start": "2019-12-01",
+              "period_end": "2020-01-31",
+              "average_daily_sales": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "report_year",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "LC Phone",
+            "2019",
+            3500
+          ],
+          [
+            2,
+            "LC T-Shirt",
+            "2018",
+            310
+          ],
+          [
+            2,
+            "LC T-Shirt",
+            "2019",
+            3650
+          ],
+          [
+            2,
+            "LC T-Shirt",
+            "2020",
+            10
+          ],
+          [
+            3,
+            "LC Keychain",
+            "2019",
+            31
+          ],
+          [
+            3,
+            "LC Keychain",
+            "2020",
+            31
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "cross-year"
+      ]
+    },
+    {
+      "id": "sample-leap-day",
+      "name": "sample: one leap day",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Product": [
+            {
+              "product_id": 1,
+              "product_name": "Leap"
+            }
+          ],
+          "Sales": [
+            {
+              "product_id": 1,
+              "period_start": "2020-02-29",
+              "period_end": "2020-02-29",
+              "average_daily_sales": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "report_year",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "Leap",
+            "2020",
+            7
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "leap-day"
+      ]
+    },
+    {
+      "id": "sample-boundary",
+      "name": "sample: two dates in different years",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Product": [
+            {
+              "product_id": 2,
+              "product_name": "Boundary"
+            }
+          ],
+          "Sales": [
+            {
+              "product_id": 2,
+              "period_start": "2019-12-31",
+              "period_end": "2020-01-01",
+              "average_daily_sales": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "report_year",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            2,
+            "Boundary",
+            "2019",
+            5
+          ],
+          [
+            2,
+            "Boundary",
+            "2020",
+            5
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-full-leap-year",
+      "name": "trial: complete leap year",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Product": [
+            {
+              "product_id": 3,
+              "product_name": "Full 2020"
+            }
+          ],
+          "Sales": [
+            {
+              "product_id": 3,
+              "period_start": "2020-01-01",
+              "period_end": "2020-12-31",
+              "average_daily_sales": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "report_year",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            3,
+            "Full 2020",
+            "2020",
+            732
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "leap-year"
+      ]
+    },
+    {
+      "id": "trial-two-periods",
+      "name": "trial: periods aggregate within one year",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Product": [
+            {
+              "product_id": 4,
+              "product_name": "Split"
+            }
+          ],
+          "Sales": [
+            {
+              "product_id": 4,
+              "period_start": "2019-01-01",
+              "period_end": "2019-01-10",
+              "average_daily_sales": 3
+            },
+            {
+              "product_id": 4,
+              "period_start": "2019-02-01",
+              "period_end": "2019-02-05",
+              "average_daily_sales": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "report_year",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            4,
+            "Split",
+            "2019",
+            50
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "aggregate"
+      ]
+    },
+    {
+      "id": "hidden-unsold-product",
+      "name": "hidden: product without sales is omitted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Product": [
+            {
+              "product_id": 5,
+              "product_name": "Sold"
+            },
+            {
+              "product_id": 6,
+              "product_name": "Unsold"
+            }
+          ],
+          "Sales": [
+            {
+              "product_id": 5,
+              "period_start": "2018-06-01",
+              "period_end": "2018-06-03",
+              "average_daily_sales": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "report_year",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            5,
+            "Sold",
+            "2018",
+            27
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "no-sales"
+      ]
+    }
+  ]
+}

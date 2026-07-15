@@ -1,11 +1,11 @@
-"""Optimal solution for LeetCode 1324: Print Words Vertically."""
+"""Optimal app-local solution for LeetCode 1324."""
 
 
-def solve(s: str) -> list[str]:
+def solve(s):
     words = s.split()
-    width = max(len(word) for word in words)
-    rows: list[str] = []
-    for col in range(width):
-        chars = [word[col] if col < len(word) else " " for word in words]
-        rows.append("".join(chars).rstrip())
+    height = max(map(len, words))
+    rows = []
+    for row in range(height):
+        characters = [word[row] if row < len(word) else " " for word in words]
+        rows.append("".join(characters).rstrip())
     return rows

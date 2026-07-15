@@ -5,26 +5,25 @@
 | Source | LeetCode |
 | Frontend ID | 1293 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Breadth-First Search, Matrix |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [shortest-path-in-a-grid-with-obstacles-elimination](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/).
-
 ### Goal
-Move from the top-left to the bottom-right of a grid in the fewest steps. You may pass through at most `k` obstacle cells by eliminating them.
+You are given an $m \times n$ binary matrix in which zero is an empty cell and one is an obstacle. Starting at the empty upper-left cell, one step moves up, down, left, or right to an in-bounds neighboring cell.
+
+Reach the empty lower-right cell in the minimum number of steps. During the walk you may eliminate at most `k` obstacles, allowing those obstacle cells to be entered. Return `-1` if no walk satisfies the elimination budget.
 
 ### Function Contract
 **Inputs**
 
-- `grid`: binary matrix where `1` is an obstacle.
-- `k`: maximum number of obstacles that may be removed.
+- `grid`: an $m \times n$ binary matrix, where $1 \le m,n \le 40$ and both endpoint cells are zero.
+- `k`: an integer satisfying $1 \le k \le mn$.
+- Let $S = mn(k+1)$ be the maximum number of position-and-budget states.
 
 **Return value**
 
-The shortest path length, or `-1` if the target cannot be reached.
+The fewest four-direction steps from $(0,0)$ to $(m-1,n-1)$ using at most `k` obstacle eliminations, or `-1` when no such walk exists.
 
 ### Examples
 **Example 1**
@@ -39,52 +38,34 @@ The shortest path length, or `-1` if the target cannot be reached.
 
 **Example 3**
 
-- Input: `grid = [[0,1],[0,0]]`, `k = 0`
+- Input: `grid = [[0,1],[0,0]]`, `k = 1`
 - Output: `2`
 
----
+### Required Complexity
+- **Time:** $O(S)$
+- **Space:** $O(S)$
 
-## Solution
-### Approach
-Breadth-first search with remaining-resource state.
-
-### Complexity Analysis
-- **Time Complexity**: `O(m * n * (k + 1))`
-- **Space Complexity**: `O(m * n * (k + 1))`
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-from collections import deque
+#### General
 
+A position alone is not a complete search state: reaching the same cell with more eliminations remaining may enable a path that a depleted arrival cannot follow. Breadth-first search therefore carries `(row, column, remaining)`, and entering an obstacle decreases `remaining` by one.
 
-def solve(grid, k):
-    rows = len(grid)
-    cols = len(grid[0]) if rows else 0
-    if rows == 1 and cols == 1:
-        return 0
-    if k >= rows + cols - 3:
-        return rows + cols - 2
+**Dominance at one cell.** For each cell, remember the greatest remaining budget seen there. If a new arrival has no more budget than that record, it is dominated: it occurs no earlier than the recorded BFS arrival and has no additional future choices. Discard it. An arrival with more remaining budget can be useful, so update the record and enqueue it.
 
-    queue = deque([(0, 0, k, 0)])
-    best_remaining = {(0, 0): k}
-    while queue:
-        r, c, remaining, steps = queue.popleft()
-        for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            nr, nc = r + dr, c + dc
-            if not (0 <= nr < rows and 0 <= nc < cols):
-                continue
-            next_remaining = remaining - grid[nr][nc]
-            if next_remaining < 0:
-                continue
-            if nr == rows - 1 and nc == cols - 1:
-                return steps + 1
-            if best_remaining.get((nr, nc), -1) >= next_remaining:
-                continue
-            best_remaining[(nr, nc)] = next_remaining
-            queue.append((nr, nc, next_remaining, steps + 1))
-    return -1
-```
+Breadth-first layers contain walks in increasing step count. Consequently, the first generated target state has minimum length. Dominance pruning never removes a uniquely useful continuation, because the earlier state at that cell has at least the same budget. If `k` is at least the number of intermediate cells on a Manhattan route, obstacles cannot prevent the direct length $m+n-2$; this safe shortcut also handles large budgets.
+
+#### Complexity detail
+
+There are at most $S=mn(k+1)$ distinct position-and-remaining-budget states, and each has four constant-time transitions, giving $O(S)$ worst-case time. The queue may contain $O(S)$ states; the dominance table itself uses only $O(mn)$ entries, so the overall auxiliary-space bound is $O(S)$.
+
+#### Alternatives and edge cases
+
+- **Visited positions only:** Marking a cell visited without its budget can discard a later arrival that retains more eliminations and is necessary for a solution.
+- **List-based Dijkstra:** Unit edge costs make BFS sufficient; repeatedly scanning an unsorted state list for the minimum distance adds quadratic selection work.
+- **Single-cell grid:** Start already equals target, so the answer is zero.
+- **Large elimination budget:** When a Manhattan route's intermediate cells can all be removed, return $m+n-2$ immediately.
+- **Unreachable target:** Exhausting every nondominated state without reaching the target requires returning `-1`.
+
 </details>

@@ -1,16 +1,20 @@
+"""Optimal app-local solution for LeetCode 1300."""
+
+
 def solve(arr, target):
-    def total_with_cap(cap):
+    def capped_sum(cap):
         return sum(min(value, cap) for value in arr)
 
-    left, right = 0, max(arr)
-    while left < right:
-        mid = (left + right) // 2
-        if total_with_cap(mid) < target:
-            left = mid + 1
+    low, high = 0, max(arr)
+    while low < high:
+        middle = (low + high) // 2
+        if capped_sum(middle) < target:
+            low = middle + 1
         else:
-            right = mid
+            high = middle
 
-    lower = left - 1
-    if abs(total_with_cap(lower) - target) <= abs(total_with_cap(left) - target):
+    upper = low
+    lower = upper - 1
+    if abs(capped_sum(lower) - target) <= abs(capped_sum(upper) - target):
         return lower
-    return left
+    return upper

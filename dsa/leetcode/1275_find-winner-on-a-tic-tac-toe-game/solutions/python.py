@@ -1,12 +1,21 @@
 def solve(moves):
-    board = [[0] * 3 for _ in range(3)]
-    for turn, (r, c) in enumerate(moves):
-        board[r][c] = 1 if turn % 2 == 0 else -1
-    lines = board + [[board[r][c] for r in range(3)] for c in range(3)]
-    lines.append([board[i][i] for i in range(3)])
-    lines.append([board[i][2 - i] for i in range(3)])
-    if any(sum(line) == 3 for line in lines):
+    rows = [0, 0, 0]
+    columns = [0, 0, 0]
+    diagonal = 0
+    anti_diagonal = 0
+
+    for turn, (row, column) in enumerate(moves):
+        value = 1 if turn % 2 == 0 else -1
+        rows[row] += value
+        columns[column] += value
+        if row == column:
+            diagonal += value
+        if row + column == 2:
+            anti_diagonal += value
+
+    lines = rows + columns + [diagonal, anti_diagonal]
+    if 3 in lines:
         return "A"
-    if any(sum(line) == -3 for line in lines):
+    if -3 in lines:
         return "B"
     return "Draw" if len(moves) == 9 else "Pending"

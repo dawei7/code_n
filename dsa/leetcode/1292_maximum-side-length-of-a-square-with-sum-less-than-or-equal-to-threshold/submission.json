@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1413",
+  "frontend_id": "1292",
+  "title_slug": "maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxSideLength",
+  "verified_submission_id": "2068356607",
+  "verified_at": "2026-07-15T08:39:45.552451+00:00"
+}

@@ -1,15 +1,28 @@
+"""Optimal app-local solution for LeetCode 1439."""
+
 import heapq
 
 
-def solve(mat, k):
+def solve(mat: list[list[int]], k: int) -> int:
     sums = [0]
     for row in mat:
-        if not isinstance(row, list):
-            row = [row]
-        row = sorted(row)
+        heap = [
+            (base + row[0], index, 0)
+            for index, base in enumerate(sums)
+        ]
+        heapq.heapify(heap)
         merged = []
-        for base in sums:
-            for value in row:
-                merged.append(base + value)
-        sums = heapq.nsmallest(max(1, k), merged)
-    return sorted(sums)[max(0, min(k, len(sums)) - 1)] if sums else 0
+        while heap and len(merged) < k:
+            value, sum_index, column = heapq.heappop(heap)
+            merged.append(value)
+            if column + 1 < len(row):
+                heapq.heappush(
+                    heap,
+                    (
+                        sums[sum_index] + row[column + 1],
+                        sum_index,
+                        column + 1,
+                    ),
+                )
+        sums = merged
+    return sums[k - 1]

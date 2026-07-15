@@ -19,7 +19,7 @@ export function ComplexityAnalysis() {
 
   if (error && !runResult) {
     return (
-      <AnalysisShell title="Runtime analysis" requiredComplexity={detail.required_complexity}>
+      <AnalysisShell title="Complexity analysis" requiredComplexity={detail.required_complexity}>
         <EmptyAnalysis
           tone="danger"
           title="The last run could not be analyzed"
@@ -33,7 +33,7 @@ export function ComplexityAnalysis() {
 
   if (!runResult) {
     return (
-      <AnalysisShell title="Runtime analysis" requiredComplexity={detail.required_complexity}>
+      <AnalysisShell title="Complexity analysis" requiredComplexity={detail.required_complexity}>
         <EmptyAnalysis
           tone="neutral"
           title="Run your solution to measure it"
@@ -58,7 +58,7 @@ export function ComplexityAnalysis() {
   );
 
   return (
-    <AnalysisShell title="Runtime analysis" requiredComplexity={detail.required_complexity}>
+    <AnalysisShell title="Complexity analysis" requiredComplexity={detail.required_complexity}>
       <VerdictHero
         tone={state.tone}
         title={state.title}
@@ -76,6 +76,8 @@ export function ComplexityAnalysis() {
         (runResult.runtime_scaling_data?.length ?? 0) >= 2
           ? <ScalingRuntimeComparison result={runResult} baselineLabel={baselineLabel} />
           : <RuntimeComparison result={runResult} baselineLabel={baselineLabel} />
+      ) : runResult.complexity_check ? (
+        <CertificateVerification result={runResult} />
       ) : (
         <BenchmarkUnavailable result={runResult} onOpenEditor={() => setActiveTopic('coden')} />
       ))}
@@ -98,7 +100,11 @@ export function ComplexityAnalysis() {
         <ContextCard
           label="Evaluation"
           value={runResult.mode === 'real_test' ? 'Full run' : runResult.case_results.length > 1 ? 'Multiple cases' : 'Single case'}
-          note={runResult.runtime_check ? `Timed against ${workloadLabel}` : 'Correctness run without a comparable baseline'}
+          note={runResult.runtime_check
+            ? `Timed against ${workloadLabel}`
+            : runResult.complexity_check
+              ? `Verified by ${formatCertificateMethod(runResult.complexity_method)}`
+              : 'Correctness run without a comparable baseline'}
           tone="neutral"
         />
       </div>
@@ -472,6 +478,30 @@ function BenchmarkUnavailable({ result, onOpenEditor }: { result: RunResponse; o
 }
 
 
+function CertificateVerification({ result }: { result: RunResponse }) {
+  const passed = result.complexity_passed !== false;
+  return (
+    <section className={`rounded-xl border p-5 shadow-sm ${passed ? 'border-emerald-500/30 bg-emerald-500/[0.08]' : 'border-amber-500/35 bg-amber-500/10'}`}>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="max-w-3xl">
+          <div className="text-sm font-bold text-coden-text">
+            {passed ? 'Complexity verified without runtime scaling' : 'Complexity certificate rejected'}
+          </div>
+          <p className="mt-1 text-xs leading-relaxed text-coden-muted">
+            {result.complexity_message || 'This source contract has a verified non-scaling complexity certificate.'}
+          </p>
+        </div>
+        <StatusPill label={formatCertificateMethod(result.complexity_method)} good={passed} />
+      </div>
+      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <ContextCard label="Verification method" value={formatCertificateMethod(result.complexity_method)} note="Machine-validated package evidence" tone={passed ? 'success' : 'warning'} />
+        <ContextCard label="Runtime tiers" value="Not applicable" note="No invalid inputs or artificial repetition were introduced" tone="neutral" />
+      </div>
+    </section>
+  );
+}
+
+
 function ContextCard({ label, value, note, tone }: { label: string; value: string; note: string; tone: AnalysisTone }) {
   const style = toneStyles(tone);
   return (
@@ -593,6 +623,12 @@ function analysisState(result: RunResponse, customFailureCount: number): { tone:
   if (result.too_efficient) {
     return { tone: 'warning', title: 'Correct output, but the submission was rejected', body: firstSentence(result.too_efficient_reason || result.message) || 'Review the judge feedback before submitting again.' };
   }
+  if (result.complexity_check) {
+    if (result.complexity_passed === false) {
+      return { tone: 'warning', title: 'Official cases passed, but complexity evidence failed', body: firstSentence(result.complexity_message || result.message) };
+    }
+    return { tone: 'success', title: 'All official cases and complexity checks passed', body: `${firstSentence(result.complexity_message || result.message)}${customNote}` };
+  }
   if (!result.runtime_check) {
     return { tone: 'neutral', title: 'Official cases passed — runtime target unavailable', body: `The official outputs are correct, but this run has no compatible benchmark for a fair speed comparison.${customNote}` };
   }
@@ -600,6 +636,12 @@ function analysisState(result: RunResponse, customFailureCount: number): { tone:
     return { tone: 'warning', title: 'Official cases passed, but runtime is over target', body: `${firstSentence(result.runtime_message || result.message) || 'The algorithm needs a faster implementation.'}${customNote}` };
   }
   return { tone: 'success', title: 'All official cases passed', body: `${firstSentence(result.runtime_message || result.message) || 'The solution meets both correctness and performance requirements.'}${customNote}` };
+}
+
+
+function formatCertificateMethod(method: string): string {
+  if (!method) return 'Complexity certificate';
+  return method.split('_').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
 

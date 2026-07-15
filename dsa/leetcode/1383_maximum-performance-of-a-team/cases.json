@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1383",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: choose two engineers",
+      "id": "sample-two",
+      "name": "sample: choose at most two engineers",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -29,12 +30,12 @@
       "expected": 60,
       "tags": [
         "sample",
-        "heap"
+        "k-two"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: choose up to three engineers",
+      "id": "sample-three",
+      "name": "sample: choose at most three engineers",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -59,12 +60,44 @@
       },
       "expected": 68,
       "tags": [
-        "sample"
+        "sample",
+        "k-three"
       ]
     },
     {
-      "id": "trial-one-engineer",
-      "name": "only one engineer can be chosen",
+      "id": "sample-four",
+      "name": "sample: choose at most four engineers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "speed": [
+          2,
+          10,
+          3,
+          1,
+          5,
+          8
+        ],
+        "efficiency": [
+          5,
+          4,
+          3,
+          9,
+          7,
+          2
+        ],
+        "k": 4
+      },
+      "expected": 72,
+      "tags": [
+        "sample",
+        "k-four"
+      ]
+    },
+    {
+      "id": "trial-single-choice",
+      "name": "trial: only one engineer allowed",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -84,14 +117,14 @@
       "expected": 15,
       "tags": [
         "trial",
-        "edge"
+        "single-member"
       ]
     },
     {
-      "id": "real-all-engineers-allowed",
-      "name": "hidden: all engineers allowed",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-all-allowed",
+      "name": "trial: all engineers may be selected",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 4,
         "speed": [
@@ -110,7 +143,54 @@
       },
       "expected": 12,
       "tags": [
-        "hidden"
+        "trial",
+        "all-allowed"
+      ]
+    },
+    {
+      "id": "hidden-modulo",
+      "name": "hidden: raw optimum exceeds modulus",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "speed": [
+          100000
+        ],
+        "efficiency": [
+          100000
+        ],
+        "k": 1
+      },
+      "expected": 999999937,
+      "tags": [
+        "hidden",
+        "modulo"
+      ]
+    },
+    {
+      "id": "hidden-fewer-than-k",
+      "name": "hidden: low efficiency makes smaller team better",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "speed": [
+          10,
+          1,
+          1
+        ],
+        "efficiency": [
+          10,
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 100,
+      "tags": [
+        "hidden",
+        "fewer-members"
       ]
     }
   ]
