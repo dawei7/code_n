@@ -34,20 +34,21 @@ the problem-specific reason and continue to the next numeric frontend ID.
 
 - Repository: `C:\dawei7\code_n`
 - Current local branch: `main`
-- Current checkpoint commit: `fbf24fe84635dc546653b6eb60f8e91d89700919`
-- Commit `fbf24fe8` merged the canonical migration through frontend ID 1441
-  into `main`.
-- The worktree contains package migration changes for frontend IDs 1442
-  through 1445 and a separate visualization framework. The visualization
-  changes predate this continuation and must be preserved.
+- Current migration checkpoint commit:
+  `fb27481d65d8ffe67660cf7b3fb2ce3b5e3d5492`
+- Commit `fb27481d` advances the canonical migration through frontend ID 1455
+  on `main`; commit `34c99b68` is the preceding checkpoint through 1445 and
+  includes the visualization framework.
+- The package and generated-report worktree is clean at this checkpoint. Any
+  later local changes belong to the continuing migration and must be
+  preserved.
 - The four-digit directory migration remains based on
   `1fc55b6e7ff0e808e207376bc663ea60cb2cb798`.
-- The directory-padding and migration-through-1441 pull requests have been
-  merged. Both `main` and `origin/main` are at `fbf24fe8` before the
-  current uncommitted work.
-- The user explicitly authorized committing and pushing the current delivery
-  on 2026-07-16. That authorization applies to this checkpoint only and does
-  not authorize a later merge or release.
+- `main` is at `fb27481d` before this handoff-only update; `origin/main` will
+  be advanced to the resulting handoff commit by the explicitly authorized
+  checkpoint push.
+- The current commit-and-push authorization is consumed by this checkpoint.
+  Do not commit, push, merge, or release without a new explicit user request.
 
 Canonical problem directories now use four-digit frontend-ID prefixes, for
 example `dsa/leetcode/0001_two-sum` and
@@ -226,21 +227,21 @@ For each package in ascending numeric frontend-ID order:
 
 ## Current authoritative checkpoint
 
-The refreshed migration audit after completing packages through 1445 reports:
+The refreshed migration audit after completing packages through 1455 reports:
 
 - 3985 canonical packages;
-- 1445 locally complete;
-- 1431 packages fully complete and remotely verified;
-- 1419 completed three-tier scaling benchmarks;
+- 1455 locally complete;
+- 1441 packages fully complete and remotely verified;
+- 1429 completed three-tier scaling benchmarks;
 - 26 strictly validated complexity certificates;
-- 1445 packages with complete complexity verification;
+- 1455 packages with complete complexity verification;
 - 14 recorded remote-verification blockers at frontend IDs 1413 through 1426;
   each package is locally complete, but Electron `safeStorage.decryptString`
   fails with Windows error `0x8009000B`;
-- frontend ID 1446, Consecutive Characters, as the first actionable incomplete
-  package.
+- frontend ID 1456, Maximum Number of Vowels in a Substring of Given Length,
+  as the first actionable incomplete package.
 
-There are 2540 locally incomplete packages after this checkpoint. The fourteen
+There are 2530 locally incomplete packages after this checkpoint. The fourteen
 recorded blockers affect only remote Accepted verification; per the user's
 instruction, record the exact failure for each affected package and continue
 numerically without waiting for user input. Use the generated report for the
@@ -1130,13 +1131,57 @@ latest completed packages add this evidence:
   conditional aggregation passed alongside an independently structured linear
   aggregation, while correct correlated per-date lookups completed normally
   and failed only scaling at `+0.92` and `25.81x`;
-- the refreshed migration audit: 1445 locally complete, 1431 fully verified,
-  14 blocked, 1419 scaling benchmarks, 26 certificates, and frontend ID 1446
+- problem 1446 was remotely Accepted as submission `2069157201`; its one-pass
+  run counter and an independent run-boundary scan passed, while correct
+  quadratic run expansion completed normally and failed only scaling at
+  `+1.32` and `135.98x`;
+- problem 1447 was remotely Accepted as submission `2069158331`; its Euclidean
+  GCD enumeration and an independently structured comprehension using the
+  same complexity primitive passed, while correct trial-divisor enumeration
+  completed normally and failed only scaling at `+1.23` and `29.82x`. A
+  Python-level hand-written Euclid comparison that did not match the calibrated
+  primitive was rejected rather than counted as same-class evidence;
+- problem 1448 was remotely Accepted as submission `2069159432`; its iterative
+  path-maximum DFS and an independent BFS passed, while correct full-path
+  rescanning completed normally and failed only scaling at `+0.38`;
+- problem 1449 was remotely Accepted as submission `2069160966`; its
+  integer-length knapsack DP and an independent forward-state DP passed, while
+  the prior correct string-valued DP completed normally and failed only
+  scaling at `+0.40`;
+- problem 1450 was remotely Accepted as submission `2069161957`; its direct
+  interval predicate and an independent index scan passed, while correct
+  time-unit simulation completed normally and failed only scaling at `+1.42`
+  and `24.40x`;
+- problem 1451 was remotely Accepted as submission `2069163111`; its stable
+  key sort and an independently written stable key sort passed, while correct
+  stable insertion completed normally and failed only scaling at `+1.67` and
+  `438.29x`. The initial 2048-word insertion tier hit the safety cap and was
+  replaced by legal 64/256/640 tiers; indexed tuple sorting and Python-level
+  buckets with mismatched curves were rejected as same-class evidence;
+- problem 1452 was remotely Accepted as submission `2069164103`; invalid
+  duplicate-list cases were removed because the source guarantees distinct
+  favorite-company sets. Two set-containment implementations passed, while
+  correct list-membership checks completed normally and failed only scaling at
+  `+1.02`;
+- problem 1453 was remotely Accepted as submission `2069165700`; its angular
+  sweep and an independently wrapped sweep passed, while correct direct
+  pair-center enumeration completed normally and failed only scaling at
+  `+0.68`;
+- problem 1454 was remotely Accepted as MySQL submission `2069166953`; its
+  gaps-and-islands query deduplicates login dates, and an independent `LAG`
+  formulation passed, while correct correlated window counting completed
+  normally and failed only scaling at `+1.19` and `65.43x`;
+- problem 1455 was remotely Accepted as submission `2069168170`; its direct
+  word-boundary scan and an independent linear split scan passed, while a
+  correct implementation that repeatedly recounted preceding words completed
+  normally and failed only scaling at `+0.81`;
+- the refreshed migration audit: 1455 locally complete, 1441 fully verified,
+  14 blocked, 1429 scaling benchmarks, 26 certificates, and frontend ID 1456
   next;
-- the dataset checker: 3985 documents, 2513 manually complete, and 1472 still
+- the dataset checker: 3985 documents, 2518 manually complete, and 1467 still
   needing authoring;
 - the focused validated-case and dynamic-documentation suite after problem
-  1445 passed 115 tests, with only the existing Starlette `httpx` deprecation
+  1455 passed 115 tests, with only the existing Starlette `httpx` deprecation
   warning;
 - the focused validated-case and dynamic-documentation suite after problem
   1434 passed 115 tests, with only the existing Starlette `httpx` deprecation
@@ -1199,10 +1244,11 @@ git rev-parse HEAD
 Get-Content dsa\leetcode\_reports\two_sum_migration_progress.md
 ```
 
-The expected branch is `main`. Before the current authorized commit, the base
-checkpoint is `fbf24fe84635dc546653b6eb60f8e91d89700919`; after that commit, use
-the live `HEAD` recorded by Git. The refreshed first actionable package should
-be `dsa/leetcode/1446_consecutive-characters`. If
+The expected branch is `main`, and the expected migration checkpoint is
+`fb27481d65d8ffe67660cf7b3fb2ce3b5e3d5492` plus the immediately following
+handoff-only commit. The refreshed first actionable
+package should be
+`dsa/leetcode/1456_maximum-number-of-vowels-in-a-substring-of-given-length`. If
 any of those facts differ, trust the live worktree and refreshed audit,
 investigate the drift, and preserve rather than discard changes.
 
@@ -1219,7 +1265,7 @@ For the next native candidate, replace the frontend ID in:
 
 ```powershell
 $env:ELECTRON_RUN_AS_NODE=$null
-npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1446
+npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1456
 ```
 
 ## Exact prompt for a new Codex session
@@ -1236,11 +1282,12 @@ Copy and paste this entire block into the new session:
 > `dsa/leetcode/_reports/ACTIVE_MIGRATION_HANDOFF.md`, and
 > `dsa/leetcode/_reports/two_sum_migration_progress.md` completely. Then run a
 > fresh migration audit and treat the live worktree and generated reports as
-> authoritative. Problems through frontend ID 1445 are locally complete;
-> 1431 packages are remotely verified, while 1413 through 1426 have
+> authoritative. Problems through frontend ID 1455 are locally complete;
+> 1441 packages are remotely verified, while 1413 through 1426 have
 > recorded Electron credential-decryption blockers. The expected first
 > actionable package is
-> `dsa/leetcode/1446_consecutive-characters`, but follow
+> `dsa/leetcode/1456_maximum-number-of-vowels-in-a-substring-of-given-length`,
+> but follow
 > the refreshed audit if it differs.
 > Continue autonomously in numeric frontend-ID order and do not stop after
 > planning. If any of the original eighteen complexity blockers reappears,
