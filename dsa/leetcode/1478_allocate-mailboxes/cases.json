@@ -39,13 +39,14 @@
       },
       "expected": 9,
       "tags": [
-        "sample"
+        "sample",
+        "median"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one mailbox",
-      "kind": "sample",
+      "id": "trial-one-mailbox",
+      "name": "trial: unsorted houses use global median",
+      "kind": "trial",
       "visible": true,
       "input": {
         "houses": [
@@ -58,14 +59,15 @@
       },
       "expected": 8,
       "tags": [
-        "sample"
+        "trial",
+        "one-mailbox"
       ]
     },
     {
-      "id": "real-one-mailbox-per-house",
-      "name": "hidden: enough mailboxes for every house",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-mailbox-per-house",
+      "name": "trial: every house gets a mailbox",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "houses": [
           1,
@@ -76,8 +78,89 @@
       },
       "expected": 0,
       "tags": [
+        "trial",
+        "maximum-k"
+      ]
+    },
+    {
+      "id": "real-uneven-clusters",
+      "name": "hidden: partition is not by equal group size",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "houses": [
+          10,
+          1,
+          2,
+          20,
+          21,
+          22
+        ],
+        "k": 2
+      },
+      "expected": 11,
+      "tags": [
         "hidden",
-        "edge"
+        "clusters"
+      ]
+    },
+    {
+      "id": "real-three-separated-groups",
+      "name": "hidden: large gaps determine partitions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "houses": [
+          1,
+          2,
+          3,
+          100,
+          101,
+          200
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "clusters"
+      ]
+    },
+    {
+      "id": "real-two-houses-even-median",
+      "name": "hidden: even group has an interval of medians",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "houses": [
+          1,
+          100
+        ],
+        "k": 1
+      },
+      "expected": 99,
+      "tags": [
+        "hidden",
+        "even-median"
+      ]
+    },
+    {
+      "id": "real-position-bounds",
+      "name": "hidden: inclusive position bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "houses": [
+          1,
+          9999,
+          10000
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "bounds"
       ]
     }
   ]

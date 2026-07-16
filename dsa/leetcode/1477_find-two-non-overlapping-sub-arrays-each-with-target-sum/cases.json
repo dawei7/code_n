@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: two singletons",
+      "name": "sample: two singleton targets",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,7 +24,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: endpoints",
+      "name": "sample: shortest endpoint pair wins",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -38,12 +38,13 @@
       },
       "expected": 2,
       "tags": [
-        "sample"
+        "sample",
+        "global-minimum"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: only one valid subarray",
+      "name": "sample: only one target subarray",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -61,26 +62,135 @@
       "expected": -1,
       "tags": [
         "sample",
-        "edge"
+        "impossible"
       ]
     },
     {
-      "id": "real-two-length-two-windows",
-      "name": "hidden: two length-two windows",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-element",
+      "name": "trial: one array position cannot form a pair",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "arr": [
-          1,
+          1
+        ],
+        "target": 1
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-overlap-only",
+      "name": "trial: two target windows overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
           1,
           1,
           1
         ],
         "target": 2
       },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-adjacent-windows",
+      "name": "hidden: adjacent target windows are legal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1
+        ],
+        "target": 3
+      },
       "expected": 4,
       "tags": [
-        "hidden"
+        "hidden",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "real-singleton-versus-long",
+      "name": "hidden: global pair mixes singleton and longer window",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          1,
+          2,
+          3,
+          5,
+          3,
+          2,
+          1
+        ],
+        "target": 5
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "singleton"
+      ]
+    },
+    {
+      "id": "real-many-overlaps",
+      "name": "hidden: prefix minimum selects disjoint partners",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1
+        ],
+        "target": 5
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "overlap",
+        "global-minimum"
+      ]
+    },
+    {
+      "id": "real-value-bound",
+      "name": "hidden: maximum values and compound target window",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1000,
+          1000,
+          1,
+          999,
+          1000
+        ],
+        "target": 1000
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "bounds"
       ]
     }
   ]

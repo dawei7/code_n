@@ -1,20 +1,32 @@
 def solve(houses, k):
-    houses = sorted(houses)
-    n = len(houses)
-    if n == 0:
-        return 0
-    k = max(1, min(int(k), n))
-    cost = [[0] * n for _ in range(n)]
-    for left in range(n):
-        for right in range(left, n):
-            mid = (left + right) // 2
-            cost[left][right] = sum(abs(houses[i] - houses[mid]) for i in range(left, right + 1))
-    inf = 10**18
-    dp = [[inf] * n for _ in range(k + 1)]
-    for i in range(n):
-        dp[1][i] = cost[0][i]
-    for boxes in range(2, k + 1):
-        for i in range(n):
-            for prev in range(i):
-                dp[boxes][i] = min(dp[boxes][i], dp[boxes - 1][prev] + cost[prev + 1][i])
-    return dp[k][n - 1]
+    positions = sorted(houses)
+    house_count = len(positions)
+
+    interval_cost = [[0] * house_count for _ in range(house_count)]
+    for length in range(2, house_count + 1):
+        for left in range(house_count - length + 1):
+            right = left + length - 1
+            inner_cost = 0
+            if left + 1 <= right - 1:
+                inner_cost = interval_cost[left + 1][right - 1]
+            interval_cost[left][right] = (
+                inner_cost + positions[right] - positions[left]
+            )
+
+    infinity = 10**18
+    previous = [infinity] * (house_count + 1)
+    previous[0] = 0
+
+    for boxes in range(1, k + 1):
+        current = [infinity] * (house_count + 1)
+
+        for end in range(boxes, house_count + 1):
+            for start in range(boxes - 1, end):
+                current[end] = min(
+                    current[end],
+                    previous[start] + interval_cost[start][end - 1],
+                )
+
+        previous = current
+
+    return previous[house_count]

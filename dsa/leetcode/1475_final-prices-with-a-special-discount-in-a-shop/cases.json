@@ -29,7 +29,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: increasing prices",
+      "name": "sample: increasing prices receive no discount",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -49,12 +49,13 @@
         5
       ],
       "tags": [
-        "sample"
+        "sample",
+        "increasing"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: equal discount value",
+      "name": "sample: equality qualifies",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -72,16 +73,62 @@
         6
       ],
       "tags": [
-        "sample"
+        "sample",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-one-item",
+      "name": "trial: one item has no later discount",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          37
+        ]
+      },
+      "expected": [
+        37
+      ],
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: each next item is the discount",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          9,
+          7,
+          5,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "tags": [
+        "trial",
+        "decreasing"
       ]
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: repeated equal prices",
+      "name": "hidden: each equal successor discounts its predecessor",
       "kind": "real",
       "visible": false,
       "input": {
         "prices": [
+          5,
           5,
           5,
           5
@@ -90,10 +137,84 @@
       "expected": [
         0,
         0,
+        0,
         5
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-nearest-not-smallest",
+      "name": "hidden: nearest qualifying price wins",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          12,
+          9,
+          10,
+          1
+        ]
+      },
+      "expected": [
+        3,
+        8,
+        9,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "nearest"
+      ]
+    },
+    {
+      "id": "real-stack-multiple-pop",
+      "name": "hidden: one price resolves several waiting items",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          3,
+          8,
+          6,
+          7,
+          2
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        4,
+        5,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "multiple-pop"
+      ]
+    },
+    {
+      "id": "real-price-bounds",
+      "name": "hidden: inclusive price bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          1000,
+          1,
+          1000
+        ]
+      },
+      "expected": [
+        999,
+        1,
+        1000
+      ],
+      "tags": [
+        "hidden",
+        "bounds"
       ]
     }
   ]

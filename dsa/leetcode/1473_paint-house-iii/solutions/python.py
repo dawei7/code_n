@@ -1,28 +1,57 @@
 def solve(houses, cost, m, n, target):
-    houses = list(houses)
-    m = min(len(houses), int(m)) if isinstance(m, int) and m > 0 else len(houses)
-    houses = houses[:m]
-    colors = max(1, int(n) if isinstance(n, int) and n > 0 else max((len(row) for row in cost if isinstance(row, list)), default=1))
-    target = max(1, min(int(target), m)) if m else 0
-    prices = []
-    for i in range(m):
-        row = cost[i] if i < len(cost) and isinstance(cost[i], list) else []
-        padded = [abs(int(row[j])) if j < len(row) else 10**6 for j in range(colors)]
-        prices.append(padded)
-    inf = 10**18
-    dp = {(0, 0): 0}
-    for i, painted in enumerate(houses):
-        next_dp = {}
-        available = [painted] if isinstance(painted, int) and 1 <= painted <= colors else range(1, colors + 1)
-        for color in available:
-            paint_cost = 0 if painted == color else prices[i][color - 1]
-            for (prev, groups), value in dp.items():
-                new_groups = groups + (color != prev)
-                if new_groups <= target:
-                    key = (color, new_groups)
-                    candidate = value + paint_cost
-                    if candidate < next_dp.get(key, inf):
-                        next_dp[key] = candidate
-        dp = next_dp
-    answer = min((value for (color, groups), value in dp.items() if groups == target), default=inf)
-    return -1 if answer == inf else answer
+    infinity = 10**18
+
+    previous = [[infinity] * n for _ in range(target + 1)]
+    if houses[0] == 0:
+        for color in range(n):
+            previous[1][color] = cost[0][color]
+    else:
+        previous[1][houses[0] - 1] = 0
+
+    for house_index in range(1, m):
+        best = [(infinity, infinity, -1)] * (target + 1)
+
+        for groups in range(1, min(target, house_index) + 1):
+            smallest = infinity
+            second_smallest = infinity
+            smallest_color = -1
+
+            for color, value in enumerate(previous[groups]):
+                if value < smallest:
+                    second_smallest = smallest
+                    smallest = value
+                    smallest_color = color
+                elif value < second_smallest:
+                    second_smallest = value
+
+            best[groups] = (smallest, second_smallest, smallest_color)
+
+        next_costs = [[infinity] * n for _ in range(target + 1)]
+        if houses[house_index] == 0:
+            available_colors = range(n)
+        else:
+            available_colors = (houses[house_index] - 1,)
+
+        for groups in range(1, min(target, house_index + 1) + 1):
+            for color in available_colors:
+                predecessor = previous[groups][color]
+
+                if groups > 1:
+                    smallest, second_smallest, smallest_color = best[groups - 1]
+                    different_color = (
+                        smallest if smallest_color != color else second_smallest
+                    )
+                    predecessor = min(predecessor, different_color)
+
+                if predecessor == infinity:
+                    continue
+
+                paint_cost = 0
+                if houses[house_index] == 0:
+                    paint_cost = cost[house_index][color]
+                next_costs[groups][color] = predecessor + paint_cost
+
+        previous = next_costs
+
+    answer = min(previous[target])
+    return -1 if answer == infinity else answer

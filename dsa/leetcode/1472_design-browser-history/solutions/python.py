@@ -1,38 +1,37 @@
 class BrowserHistory:
-    def __init__(self, homepage: str):
+    def __init__(self, homepage):
         self.history = [homepage]
         self.current = 0
+        self.last = 0
 
-    def visit(self, url: str) -> None:
-        self.history = self.history[: self.current + 1]
-        self.history.append(url)
+    def visit(self, url):
         self.current += 1
+        if self.current == len(self.history):
+            self.history.append(url)
+        else:
+            self.history[self.current] = url
+        self.last = self.current
 
-    def back(self, steps: int) -> str:
+    def back(self, steps):
         self.current = max(0, self.current - steps)
         return self.history[self.current]
 
-    def forward(self, steps: int) -> str:
-        self.current = min(len(self.history) - 1, self.current + steps)
+    def forward(self, steps):
+        self.current = min(self.last, self.current + steps)
         return self.history[self.current]
 
 
 def solve(homepage, operations):
-    browser = BrowserHistory(str(homepage))
+    browser = BrowserHistory(homepage)
     output = []
-    for raw_operation in operations:
-        if not isinstance(raw_operation, list) or not raw_operation:
-            continue
-        name = str(raw_operation[0])
-        args = raw_operation[1] if len(raw_operation) > 1 and isinstance(raw_operation[1], list) else []
+
+    for name, arguments in operations:
         if name == "visit":
-            url = str(args[0]) if args else ""
-            browser.visit(url)
+            browser.visit(arguments[0])
             output.append(None)
         elif name == "back":
-            steps = int(args[0]) if args else 0
-            output.append(browser.back(max(0, steps)))
-        elif name == "forward":
-            steps = int(args[0]) if args else 0
-            output.append(browser.forward(max(0, steps)))
+            output.append(browser.back(arguments[0]))
+        else:
+            output.append(browser.forward(arguments[0]))
+
     return output

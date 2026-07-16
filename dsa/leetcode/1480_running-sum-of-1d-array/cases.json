@@ -52,7 +52,7 @@
     },
     {
       "id": "sample-3",
-      "name": "sample: mixed positive values",
+      "name": "sample: varied positive values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -76,8 +76,50 @@
       ]
     },
     {
+      "id": "trial-one-value",
+      "name": "trial: minimum length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -7
+        ]
+      },
+      "expected": [
+        -7
+      ],
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-zero",
+      "name": "trial: zeros repeat the total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          0,
+          0,
+          -2
+        ]
+      },
+      "expected": [
+        5,
+        5,
+        5,
+        3
+      ],
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
       "id": "real-negative-values",
-      "name": "hidden: includes negative values",
+      "name": "hidden: totals rise and fall",
       "kind": "real",
       "visible": false,
       "input": {
@@ -95,7 +137,58 @@
         2
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "negative"
+      ]
+    },
+    {
+      "id": "real-cancellation",
+      "name": "hidden: prefixes repeatedly cancel",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          -10,
+          10,
+          -10,
+          10
+        ]
+      },
+      "expected": [
+        10,
+        0,
+        10,
+        0,
+        10
+      ],
+      "tags": [
+        "hidden",
+        "cancellation"
+      ]
+    },
+    {
+      "id": "real-value-bounds",
+      "name": "hidden: inclusive magnitude bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          -1000000,
+          -1000000,
+          1000000
+        ]
+      },
+      "expected": [
+        1000000,
+        0,
+        -1000000,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "bounds"
       ]
     }
   ]

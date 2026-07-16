@@ -1,18 +1,24 @@
 def solve(arr, target):
-    best_left = [10**9] * len(arr)
-    seen = {0: -1}
-    prefix = 0
-    best = 10**9
-    answer = 10**9
-    for index, value in enumerate(arr):
-        prefix += value
-        need = prefix - target
-        if need in seen:
-            start = seen[need] + 1
-            length = index - seen[need]
-            if start > 0 and best_left[start - 1] < 10**9:
-                answer = min(answer, length + best_left[start - 1])
-            best = min(best, length)
-        best_left[index] = best
-        seen[prefix] = index
-    return -1 if answer == 10**9 else answer
+    infinity = len(arr) + 1
+    best_until = [infinity] * len(arr)
+    best_length = infinity
+    answer = infinity
+    left = 0
+    window_sum = 0
+
+    for right, value in enumerate(arr):
+        window_sum += value
+
+        while window_sum > target:
+            window_sum -= arr[left]
+            left += 1
+
+        if window_sum == target:
+            current_length = right - left + 1
+            if left > 0 and best_until[left - 1] != infinity:
+                answer = min(answer, current_length + best_until[left - 1])
+            best_length = min(best_length, current_length)
+
+        best_until[right] = best_length
+
+    return -1 if answer == infinity else answer

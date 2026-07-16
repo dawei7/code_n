@@ -1,8 +1,8 @@
 {
   "total_docs": 3985,
   "counts": {
-    "manual_complete": 2525,
-    "needs_authoring": 1460
+    "manual_complete": 2527,
+    "needs_authoring": 1458
   },
   "entries": [
     {
@@ -10318,8 +10318,8 @@
     },
     {
       "path": "dsa/leetcode/1474_delete-n-nodes-after-m-nodes-of-a-linked-list/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -10353,8 +10353,8 @@
     },
     {
       "path": "dsa/leetcode/1479_sales-by-day-of-the-week/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },

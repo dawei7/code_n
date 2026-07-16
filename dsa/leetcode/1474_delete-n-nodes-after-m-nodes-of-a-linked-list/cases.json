@@ -1,0 +1,272 @@
+{
+  "challenge_id": "lc_1474",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: keep two and delete three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "m": 2,
+        "n": 3
+      },
+      "expected": [
+        1,
+        2,
+        6,
+        7,
+        11,
+        12
+      ],
+      "tags": [
+        "sample",
+        "linked-list"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: retain one per four-node cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "m": 1,
+        "n": 3
+      },
+      "expected": [
+        1,
+        5,
+        9
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: delete one after each three retained",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "m": 3,
+        "n": 1
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-one-node",
+      "name": "trial: lone node is always retained",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          42
+        ],
+        "m": 1,
+        "n": 1000
+      },
+      "expected": [
+        42
+      ],
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-shorter-than-keep",
+      "name": "trial: list ends inside first keep block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "head": [
+          4,
+          5,
+          6
+        ],
+        "m": 5,
+        "n": 2
+      },
+      "expected": [
+        4,
+        5,
+        6
+      ],
+      "tags": [
+        "trial",
+        "partial-keep"
+      ]
+    },
+    {
+      "id": "real-delete-tail",
+      "name": "hidden: incomplete deletion block reaches tail",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "m": 3,
+        "n": 5
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "partial-delete"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "hidden: repeated values remain position based",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "m": 2,
+        "n": 2
+      },
+      "expected": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: keep one and delete one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "m": 1,
+        "n": 1
+      },
+      "expected": [
+        9,
+        7,
+        5,
+        3,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-large-keep-and-delete",
+      "name": "hidden: bounds larger than list",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "head": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "m": 1000,
+        "n": 1000
+      },
+      "expected": [
+        10,
+        20,
+        30,
+        40,
+        50
+      ],
+      "tags": [
+        "hidden",
+        "parameter-bounds"
+      ]
+    }
+  ]
+}

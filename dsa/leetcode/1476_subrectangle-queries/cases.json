@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: query update query",
+      "name": "sample: official overlapping row update",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -53,44 +53,94 @@
               0,
               2
             ]
+          ],
+          [
+            "getValue",
+            [
+              3,
+              1
+            ]
+          ],
+          [
+            "updateSubrectangle",
+            [
+              3,
+              0,
+              3,
+              2,
+              10
+            ]
+          ],
+          [
+            "getValue",
+            [
+              3,
+              1
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              2
+            ]
           ]
         ]
       },
       "expected": [
         1,
         null,
+        5,
+        5,
+        null,
+        10,
         5
       ],
       "tags": [
         "sample",
-        "design"
+        "design",
+        "overlap"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: single-cell update",
+      "name": "sample: official overlapping lower-right update",
       "kind": "sample",
       "visible": true,
       "input": {
         "rectangle": [
           [
             1,
+            1,
             1
           ],
           [
             2,
+            2,
             2
+          ],
+          [
+            3,
+            3,
+            3
           ]
         ],
         "operations": [
+          [
+            "getValue",
+            [
+              0,
+              0
+            ]
+          ],
           [
             "updateSubrectangle",
             [
               0,
               0,
-              0,
-              0,
-              7
+              2,
+              2,
+              100
             ]
           ],
           [
@@ -103,24 +153,45 @@
           [
             "getValue",
             [
+              2,
+              2
+            ]
+          ],
+          [
+            "updateSubrectangle",
+            [
               1,
-              1
+              1,
+              2,
+              2,
+              20
+            ]
+          ],
+          [
+            "getValue",
+            [
+              2,
+              2
             ]
           ]
         ]
       },
       "expected": [
+        1,
         null,
-        7,
-        2
+        100,
+        100,
+        null,
+        20
       ],
       "tags": [
-        "sample"
+        "sample",
+        "overlap"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: one-cell rectangle",
+      "name": "sample: one-cell matrix",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -163,48 +234,42 @@
       ],
       "tags": [
         "sample",
-        "edge"
+        "minimum"
       ]
     },
     {
-      "id": "real-column-update",
-      "name": "hidden: update one column",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-one-column",
+      "name": "trial: inclusive vertical update",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rectangle": [
           [
-            1,
+            1
+          ],
+          [
             2
           ],
           [
-            3,
-            4
+            3
           ]
         ],
         "operations": [
           [
-            "getValue",
-            [
-              1,
-              1
-            ]
-          ],
-          [
             "updateSubrectangle",
             [
               0,
+              0,
               1,
-              1,
-              1,
-              8
+              0,
+              7
             ]
           ],
           [
             "getValue",
             [
               0,
-              1
+              0
             ]
           ],
           [
@@ -213,17 +278,247 @@
               1,
               0
             ]
+          ],
+          [
+            "getValue",
+            [
+              2,
+              0
+            ]
           ]
         ]
       },
       "expected": [
-        4,
         null,
-        8,
+        7,
+        7,
         3
       ],
       "tags": [
-        "hidden"
+        "trial",
+        "one-column"
+      ]
+    },
+    {
+      "id": "real-disjoint-updates",
+      "name": "hidden: disjoint cells retain independent values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangle": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "operations": [
+          [
+            "updateSubrectangle",
+            [
+              0,
+              0,
+              0,
+              0,
+              8
+            ]
+          ],
+          [
+            "updateSubrectangle",
+            [
+              1,
+              2,
+              1,
+              2,
+              9
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              1
+            ]
+          ],
+          [
+            "getValue",
+            [
+              1,
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        8,
+        2,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "real-nested-overwrites",
+      "name": "hidden: latest nested assignment wins",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangle": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "operations": [
+          [
+            "updateSubrectangle",
+            [
+              0,
+              0,
+              2,
+              2,
+              4
+            ]
+          ],
+          [
+            "updateSubrectangle",
+            [
+              0,
+              1,
+              1,
+              2,
+              6
+            ]
+          ],
+          [
+            "updateSubrectangle",
+            [
+              1,
+              2,
+              1,
+              2,
+              9
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              2
+            ]
+          ],
+          [
+            "getValue",
+            [
+              1,
+              2
+            ]
+          ],
+          [
+            "getValue",
+            [
+              2,
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        4,
+        6,
+        9,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "nested",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-value-bound",
+      "name": "hidden: maximum assigned value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rectangle": [
+          [
+            1,
+            2
+          ]
+        ],
+        "operations": [
+          [
+            "updateSubrectangle",
+            [
+              0,
+              0,
+              0,
+              1,
+              1000000000
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            "getValue",
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        1000000000,
+        1000000000
+      ],
+      "tags": [
+        "hidden",
+        "bounds"
       ]
     }
   ]

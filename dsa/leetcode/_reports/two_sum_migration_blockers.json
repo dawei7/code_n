@@ -88,6 +88,46 @@
     "1470": {
       "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
       "recorded_at": "2026-07-16T00:35:31.800326+00:00"
+    },
+    "1471": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:42:25.461471+00:00"
+    },
+    "1472": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:47:29.844994+00:00"
+    },
+    "1473": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:51:36.927566+00:00"
+    },
+    "1474": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:54:59.356229+00:00"
+    },
+    "1475": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:57:11.585301+00:00"
+    },
+    "1476": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T01:00:36.431236+00:00"
+    },
+    "1477": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T01:05:29.465012+00:00"
+    },
+    "1478": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T01:08:08.376992+00:00"
+    },
+    "1479": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T01:15:02.786072+00:00"
+    },
+    "1480": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T01:19:05.705771+00:00"
     }
   }
 }

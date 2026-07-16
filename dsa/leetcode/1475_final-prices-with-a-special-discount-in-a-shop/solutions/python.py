@@ -1,8 +1,10 @@
 def solve(prices):
     result = list(prices)
-    stack = []
+    unresolved = []
+
     for index, price in enumerate(prices):
-        while stack and prices[stack[-1]] >= price:
-            result[stack.pop()] -= price
-        stack.append(index)
+        while unresolved and prices[unresolved[-1]] >= price:
+            result[unresolved.pop()] -= price
+        unresolved.append(index)
+
     return result

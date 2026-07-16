@@ -1,23 +1,116 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1478",
+  "measurement_note": "Size is N, the number of houses. The 8/16/32 tiers span 4x, keep k = 3, use unique quadratically spaced legal positions, and reverse the input to exercise sorting. The median-pair recurrence precomputes all interval costs in O(N^2), followed by O(k * N^2) partitioning. A correct implementation that re-sums every interval around its median takes O(N^3) preprocessing, completes normally at N = 32, and is rejected by scaling.",
   "cases": [
     {
-      "id": "benchmark-two-clusters",
-      "name": "benchmark: two tight clusters",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 quadratically spaced houses",
       "kind": "benchmark",
       "visible": false,
+      "size": 8,
       "input": {
         "houses": [
-          1,
+          50,
+          37,
+          26,
+          17,
+          10,
+          5,
           2,
-          100,
-          101
+          1
         ],
-        "k": 2
+        "k": 3
       },
-      "expected": 2,
+      "expected": 32,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scale-small",
+        "interval-cost-precomputation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 quadratically spaced houses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "houses": [
+          226,
+          197,
+          170,
+          145,
+          122,
+          101,
+          82,
+          65,
+          50,
+          37,
+          26,
+          17,
+          10,
+          5,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 288,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "interval-cost-precomputation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32 quadratically spaced houses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "houses": [
+          962,
+          901,
+          842,
+          785,
+          730,
+          677,
+          626,
+          577,
+          530,
+          485,
+          442,
+          401,
+          362,
+          325,
+          290,
+          257,
+          226,
+          197,
+          170,
+          145,
+          122,
+          101,
+          82,
+          65,
+          50,
+          37,
+          26,
+          17,
+          10,
+          5,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 2424,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "interval-cost-precomputation"
       ]
     }
   ]

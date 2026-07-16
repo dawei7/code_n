@@ -1,0 +1,437 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1479",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official weekly category pivot",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "customer_id": 1,
+              "order_date": "2020-06-01",
+              "item_id": "1",
+              "quantity": 10
+            },
+            {
+              "order_id": 2,
+              "customer_id": 1,
+              "order_date": "2020-06-08",
+              "item_id": "2",
+              "quantity": 10
+            },
+            {
+              "order_id": 3,
+              "customer_id": 2,
+              "order_date": "2020-06-02",
+              "item_id": "1",
+              "quantity": 5
+            },
+            {
+              "order_id": 4,
+              "customer_id": 3,
+              "order_date": "2020-06-03",
+              "item_id": "3",
+              "quantity": 5
+            },
+            {
+              "order_id": 5,
+              "customer_id": 4,
+              "order_date": "2020-06-04",
+              "item_id": "4",
+              "quantity": 1
+            },
+            {
+              "order_id": 6,
+              "customer_id": 4,
+              "order_date": "2020-06-05",
+              "item_id": "5",
+              "quantity": 5
+            },
+            {
+              "order_id": 7,
+              "customer_id": 5,
+              "order_date": "2020-06-05",
+              "item_id": "1",
+              "quantity": 10
+            },
+            {
+              "order_id": 8,
+              "customer_id": 5,
+              "order_date": "2020-06-14",
+              "item_id": "4",
+              "quantity": 5
+            },
+            {
+              "order_id": 9,
+              "customer_id": 5,
+              "order_date": "2020-06-21",
+              "item_id": "3",
+              "quantity": 5
+            }
+          ],
+          "Items": [
+            {
+              "item_id": "1",
+              "item_name": "LC Alg. Book",
+              "item_category": "Book"
+            },
+            {
+              "item_id": "2",
+              "item_name": "LC DB. Book",
+              "item_category": "Book"
+            },
+            {
+              "item_id": "3",
+              "item_name": "LC SmarthPhone",
+              "item_category": "Phone"
+            },
+            {
+              "item_id": "4",
+              "item_name": "LC Phone 2020",
+              "item_category": "Phone"
+            },
+            {
+              "item_id": "5",
+              "item_name": "LC SmartGlass",
+              "item_category": "Glasses"
+            },
+            {
+              "item_id": "6",
+              "item_name": "LC T-Shirt XL",
+              "item_category": "T-shirt"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Category",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "rows": [
+          [
+            "Book",
+            20,
+            5,
+            0,
+            0,
+            10,
+            0,
+            0
+          ],
+          [
+            "Glasses",
+            0,
+            0,
+            0,
+            0,
+            5,
+            0,
+            0
+          ],
+          [
+            "Phone",
+            0,
+            0,
+            5,
+            1,
+            0,
+            0,
+            10
+          ],
+          [
+            "T-shirt",
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "conditional-aggregation",
+        "left-join"
+      ]
+    },
+    {
+      "id": "trial-shared-category",
+      "name": "trial: two items share Monday total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "customer_id": 1,
+              "order_date": "2020-06-01",
+              "item_id": "a",
+              "quantity": 3
+            },
+            {
+              "order_id": 2,
+              "customer_id": 2,
+              "order_date": "2020-06-01",
+              "item_id": "b",
+              "quantity": 7
+            }
+          ],
+          "Items": [
+            {
+              "item_id": "a",
+              "item_name": "Apple",
+              "item_category": "Food"
+            },
+            {
+              "item_id": "b",
+              "item_name": "Bread",
+              "item_category": "Food"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Category",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "rows": [
+          [
+            "Food",
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "shared-category"
+      ]
+    },
+    {
+      "id": "trial-saturday",
+      "name": "trial: Saturday weekday mapping",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "customer_id": 1,
+              "order_date": "2020-06-06",
+              "item_id": "x",
+              "quantity": 4
+            }
+          ],
+          "Items": [
+            {
+              "item_id": "x",
+              "item_name": "X",
+              "item_category": "Weekend"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Category",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "rows": [
+          [
+            "Weekend",
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "weekday"
+      ]
+    },
+    {
+      "id": "real-unsold",
+      "name": "hidden: unsold category remains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "customer_id": 1,
+              "order_date": "2020-06-01",
+              "item_id": "s",
+              "quantity": 2
+            }
+          ],
+          "Items": [
+            {
+              "item_id": "z",
+              "item_name": "Zero",
+              "item_category": "Empty"
+            },
+            {
+              "item_id": "s",
+              "item_name": "Sold",
+              "item_category": "Sold"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Category",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "rows": [
+          [
+            "Empty",
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "Sold",
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "left-join"
+      ]
+    },
+    {
+      "id": "real-ordering",
+      "name": "hidden: categories sort ascending",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "customer_id": 1,
+              "order_date": "2020-06-07",
+              "item_id": "z",
+              "quantity": 9
+            },
+            {
+              "order_id": 2,
+              "customer_id": 1,
+              "order_date": "2020-06-02",
+              "item_id": "a",
+              "quantity": 2
+            }
+          ],
+          "Items": [
+            {
+              "item_id": "z",
+              "item_name": "Z",
+              "item_category": "Zulu"
+            },
+            {
+              "item_id": "a",
+              "item_name": "A",
+              "item_category": "Alpha"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "Category",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "rows": [
+          [
+            "Alpha",
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            "Zulu",
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            9
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    }
+  ]
+}

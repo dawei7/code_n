@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: visit twice then go back",
+      "name": "sample: official branch-changing sequence",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -22,9 +22,51 @@
             ]
           ],
           [
+            "visit",
+            [
+              "youtube.com"
+            ]
+          ],
+          [
             "back",
             [
               1
+            ]
+          ],
+          [
+            "back",
+            [
+              1
+            ]
+          ],
+          [
+            "forward",
+            [
+              1
+            ]
+          ],
+          [
+            "visit",
+            [
+              "linkedin.com"
+            ]
+          ],
+          [
+            "forward",
+            [
+              2
+            ]
+          ],
+          [
+            "back",
+            [
+              2
+            ]
+          ],
+          [
+            "back",
+            [
+              7
             ]
           ]
         ]
@@ -32,20 +74,28 @@
       "expected": [
         null,
         null,
-        "google.com"
+        null,
+        "facebook.com",
+        "google.com",
+        "facebook.com",
+        null,
+        "linkedin.com",
+        "google.com",
+        "leetcode.com"
       ],
       "tags": [
         "sample",
-        "design"
+        "design",
+        "branch-clearing"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: back then forward",
+      "name": "sample: backward and forward preserve history",
       "kind": "sample",
       "visible": true,
       "input": {
-        "homepage": "leetcode.com",
+        "homepage": "home.com",
         "operations": [
           [
             "visit",
@@ -76,16 +126,17 @@
       "expected": [
         null,
         null,
-        "leetcode.com",
+        "home.com",
         "a.com"
       ],
       "tags": [
-        "sample"
+        "sample",
+        "navigation"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: visit clears forward history",
+      "name": "sample: visit clears the forward branch",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -112,7 +163,7 @@
           [
             "forward",
             [
-              1
+              100
             ]
           ]
         ]
@@ -124,16 +175,100 @@
         "y.com"
       ],
       "tags": [
-        "sample"
+        "sample",
+        "branch-clearing"
       ]
     },
     {
-      "id": "real-visit-after-back",
-      "name": "hidden: new visit after back clears future entries",
+      "id": "trial-clamp-at-homepage",
+      "name": "trial: oversized back remains at homepage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "homepage": "root.com",
+        "operations": [
+          [
+            "back",
+            [
+              100
+            ]
+          ],
+          [
+            "forward",
+            [
+              100
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        "root.com",
+        "root.com"
+      ],
+      "tags": [
+        "trial",
+        "clamping"
+      ]
+    },
+    {
+      "id": "trial-repeated-url",
+      "name": "trial: equal URLs remain distinct entries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "homepage": "same.com",
+        "operations": [
+          [
+            "visit",
+            [
+              "same.com"
+            ]
+          ],
+          [
+            "visit",
+            [
+              "same.com"
+            ]
+          ],
+          [
+            "back",
+            [
+              1
+            ]
+          ],
+          [
+            "back",
+            [
+              1
+            ]
+          ],
+          [
+            "forward",
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        "same.com",
+        "same.com",
+        "same.com"
+      ],
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-reuse-after-multiple-branches",
+      "name": "hidden: stale physical cells never become reachable",
       "kind": "real",
       "visible": false,
       "input": {
-        "homepage": "start.com",
+        "homepage": "h.com",
         "operations": [
           [
             "visit",
@@ -148,6 +283,24 @@
             ]
           ],
           [
+            "visit",
+            [
+              "c.com"
+            ]
+          ],
+          [
+            "back",
+            [
+              2
+            ]
+          ],
+          [
+            "visit",
+            [
+              "d.com"
+            ]
+          ],
+          [
             "back",
             [
               1
@@ -156,13 +309,155 @@
           [
             "visit",
             [
-              "c.com"
+              "e.com"
+            ]
+          ],
+          [
+            "forward",
+            [
+              99
+            ]
+          ],
+          [
+            "back",
+            [
+              99
             ]
           ],
           [
             "forward",
             [
               2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        "a.com",
+        null,
+        "a.com",
+        null,
+        "e.com",
+        "h.com",
+        "e.com"
+      ],
+      "tags": [
+        "hidden",
+        "multiple-branches"
+      ]
+    },
+    {
+      "id": "real-navigation-around-latest",
+      "name": "hidden: latest position clamps repeatedly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "homepage": "start.com",
+        "operations": [
+          [
+            "visit",
+            [
+              "a.com"
+            ]
+          ],
+          [
+            "forward",
+            [
+              3
+            ]
+          ],
+          [
+            "back",
+            [
+              1
+            ]
+          ],
+          [
+            "forward",
+            [
+              1
+            ]
+          ],
+          [
+            "forward",
+            [
+              100
+            ]
+          ],
+          [
+            "visit",
+            [
+              "b.com"
+            ]
+          ],
+          [
+            "back",
+            [
+              2
+            ]
+          ],
+          [
+            "forward",
+            [
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        "a.com",
+        "start.com",
+        "a.com",
+        "a.com",
+        null,
+        "start.com",
+        "a.com"
+      ],
+      "tags": [
+        "hidden",
+        "clamping"
+      ]
+    },
+    {
+      "id": "real-maximum-step",
+      "name": "hidden: maximum step requests in both directions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "homepage": "zero.com",
+        "operations": [
+          [
+            "visit",
+            [
+              "one.com"
+            ]
+          ],
+          [
+            "visit",
+            [
+              "two.com"
+            ]
+          ],
+          [
+            "visit",
+            [
+              "three.com"
+            ]
+          ],
+          [
+            "back",
+            [
+              100
+            ]
+          ],
+          [
+            "forward",
+            [
+              100
             ]
           ],
           [
@@ -176,13 +471,14 @@
       "expected": [
         null,
         null,
-        "a.com",
         null,
-        "c.com",
-        "start.com"
+        "zero.com",
+        "three.com",
+        "one.com"
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "step-bound"
       ]
     }
   ]
