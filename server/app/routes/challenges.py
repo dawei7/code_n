@@ -25,8 +25,8 @@ from server.app.challenge_sets import (
     normalize_algorithm_set,
 )
 from server.app.challenge_packages import (
+    leetcode_guided_example_path,
     leetcode_submission_manifest_path,
-    leetcode_visualization_path,
 )
 from server.app.schemas import (
     ChallengeDetail,
@@ -122,7 +122,7 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
             leetcode_title="",
             leetcode_slug="",
             leetcode_url="",
-            has_visualization=False,
+            has_guided_example=False,
         )
     reference_metadata = getattr(spec, "reference_metadata", {}) or {}
     lc_slug = str(reference_metadata.get("slug") or "")
@@ -185,10 +185,11 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
             for language in reference_metadata.get("supported_languages", [])
             if isinstance(language, str)
         ],
+        primary_language=str(reference_metadata.get("primary_language") or "python"),
         runnable_in_coden=category_is_runnable(reference_metadata),
-        has_visualization=bool(
-            (visualization_path := leetcode_visualization_path(spec.id))
-            and visualization_path.is_file()
+        has_guided_example=bool(
+            (guided_example_path := leetcode_guided_example_path(spec.id))
+            and guided_example_path.is_file()
         ),
         leetcode_submission_status=submission_status,
         leetcode_submission_language=submission_language,

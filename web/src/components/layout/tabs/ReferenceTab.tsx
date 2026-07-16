@@ -21,6 +21,7 @@
  */
 import { Children, isValidElement, useEffect, useState, useCallback } from 'react';
 import type { ReactNode } from 'react';
+import { Editor } from '@monaco-editor/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
@@ -32,6 +33,7 @@ import { faLeetcode } from '@fortawesome/free-brands-svg-icons/faLeetcode';
 
 import { ApiError, apiText } from '../../../api/client';
 import { useAppStore } from '../../../store/useAppStore';
+import type { SupportedLanguage } from '../../../types/api';
 
 
 type LoadState =
@@ -43,6 +45,23 @@ type LoadState =
 
 const CACHE: Map<string, string> = new Map();
 const OVERVIEW_CACHE: Map<string, string> = new Map();
+
+const REFERENCE_LANGUAGES: Array<{
+  id: SupportedLanguage;
+  label: string;
+  monaco: string;
+  extension: string;
+}> = [
+  { id: 'python', label: 'Python', monaco: 'python', extension: 'py' },
+  { id: 'cpp', label: 'C++', monaco: 'cpp', extension: 'cpp' },
+  { id: 'java', label: 'Java', monaco: 'java', extension: 'java' },
+  { id: 'csharp', label: 'C#', monaco: 'csharp', extension: 'cs' },
+  { id: 'javascript', label: 'JavaScript', monaco: 'javascript', extension: 'js' },
+  { id: 'go', label: 'Go', monaco: 'go', extension: 'go' },
+  { id: 'kotlin', label: 'Kotlin', monaco: 'kotlin', extension: 'kt' },
+  { id: 'sql', label: 'SQL', monaco: 'sql', extension: 'sql' },
+  { id: 'bash', label: 'Bash', monaco: 'shell', extension: 'sh' },
+];
 
 function localizedCacheKey(language: string, id: string): string {
   return `${language}:${id}`;
@@ -180,8 +199,14 @@ export function ReferenceTab() {
   const markdown = state.markdown;
   const { mainMarkdown, approachMarkdown } = splitApproachSection(markdown);
   const solutionSource = challengeId ? detail?.optimal_source?.trim() ?? '' : '';
+  const solutionSources: Partial<Record<SupportedLanguage, string>> = {
+    ...(detail?.optimal_sources ?? {}),
+  };
+  if (solutionSource && !solutionSources.python?.trim()) {
+    solutionSources.python = solutionSource;
+  }
+  const hasSolution = REFERENCE_LANGUAGES.some(({ id }) => Boolean(solutionSources[id]?.trim()));
   const solutionUnlocked = challengeId ? completed.includes(challengeId) : false;
-
   return (
     <div>
       <article className="prose prose-sm max-w-none p-4 text-coden-text
@@ -320,10 +345,11 @@ export function ReferenceTab() {
             markdown={approachMarkdown}
           />
         )}
-        {solutionSource && challengeId && (
+        {hasSolution && challengeId && (
           <SolutionDisclosure
             key={`solution:${challengeId}`}
-            source={solutionSource}
+            challengeId={challengeId}
+            sources={solutionSources}
             unlocked={solutionUnlocked}
           />
         )}
@@ -366,6 +392,7 @@ function ApproachDisclosure({ markdown }: { markdown: string }) {
   return (
     <section className="not-prose my-4 overflow-hidden rounded border border-coden-border bg-coden-bg/40">
       <button
+        data-pdf-exclude="true"
         type="button"
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
@@ -374,8 +401,7 @@ function ApproachDisclosure({ markdown }: { markdown: string }) {
         <span aria-hidden="true" className="w-3 text-xs">{open ? '▼' : '▶'}</span>
         <span>Approach</span>
       </button>
-      {open && (
-        <div className="overflow-x-auto border-t border-coden-border px-4 py-3 text-sm text-coden-text">
+      <div className={`${open ? '' : 'hidden'} coden-pdf-disclosure-content overflow-x-auto border-t border-coden-border px-4 py-3 text-sm text-coden-text`}>
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeRaw, rehypeKatex]}
@@ -436,21 +462,44 @@ function ApproachDisclosure({ markdown }: { markdown: string }) {
           >
             {markdown}
           </ReactMarkdown>
-        </div>
-      )}
+      </div>
     </section>
   );
 }
 
-function SolutionDisclosure({ source, unlocked }: { source: string; unlocked: boolean }) {
+function SolutionDisclosure({
+  challengeId,
+  sources,
+  unlocked,
+}: {
+  challengeId: string;
+  sources: Partial<Record<SupportedLanguage, string>>;
+  unlocked: boolean;
+}) {
   const [open, setOpen] = useState(false);
+  const availableLanguages = REFERENCE_LANGUAGES.filter(({ id }) => Boolean(sources[id]?.trim()));
+  const [selectedLanguage, setSelectedLanguage] = useState<SupportedLanguage>(
+    availableLanguages[0]?.id ?? 'python',
+  );
+  const theme = useAppStore((state) => state.theme);
+  const selectedMeta = availableLanguages.find(({ id }) => id === selectedLanguage)
+    ?? availableLanguages[0];
+  const source = selectedMeta ? sources[selectedMeta.id]?.trim() ?? '' : '';
+  const editorHeight = Math.min(640, Math.max(260, source.split(/\r?\n/).length * 19 + 32));
 
   useEffect(() => {
     if (!unlocked) setOpen(false);
   }, [unlocked]);
 
+  useEffect(() => {
+    if (!availableLanguages.some(({ id }) => id === selectedLanguage) && availableLanguages[0]) {
+      setSelectedLanguage(availableLanguages[0].id);
+    }
+  }, [availableLanguages, selectedLanguage]);
+
   return (
     <section
+      data-pdf-exclude="true"
       className={`not-prose my-4 overflow-hidden rounded border transition-colors ${
         unlocked
           ? 'border-coden-border bg-coden-bg/40'
@@ -458,11 +507,12 @@ function SolutionDisclosure({ source, unlocked }: { source: string; unlocked: bo
       }`}
     >
       <button
+        data-pdf-exclude="true"
         type="button"
         aria-expanded={unlocked ? open : false}
         aria-disabled={!unlocked}
         disabled={!unlocked}
-        title={unlocked ? 'Show the optimal Python solution' : 'Solve this challenge successfully to unlock the solution'}
+        title={unlocked ? 'Show the optimal solution' : 'Solve this challenge successfully to unlock the solution'}
         onClick={() => setOpen((current) => !current)}
         className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold transition-colors ${
           unlocked
@@ -478,14 +528,60 @@ function SolutionDisclosure({ source, unlocked }: { source: string; unlocked: bo
         <span>Solution</span>
         {!unlocked && <span className="ml-auto text-xs font-normal">Solve to unlock</span>}
       </button>
-      {unlocked && open && (
-        <div className="border-t border-coden-border px-4 py-3 text-sm text-coden-text">
-          <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-coden-muted">
-            Optimal solution in Python
+      {unlocked && open && selectedMeta && (
+        <div className="coden-screen-only border-t border-coden-border px-4 py-3 text-sm text-coden-text">
+          <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+            <div className="text-xs font-semibold uppercase tracking-wide text-coden-muted">
+              Optimal solution
+            </div>
+            <label className="flex items-center gap-2 text-xs text-coden-muted">
+              <span>Language</span>
+              <select
+                value={selectedMeta.id}
+                onChange={(event) => setSelectedLanguage(event.target.value as SupportedLanguage)}
+                disabled={availableLanguages.length === 1}
+                aria-label="Reference solution language"
+                className="h-8 rounded border border-coden-border bg-coden-bg px-2 font-medium text-coden-text outline-none transition-colors focus:border-coden-accent disabled:cursor-default disabled:opacity-70"
+              >
+                {availableLanguages.map((language) => (
+                  <option key={language.id} value={language.id}>{language.label}</option>
+                ))}
+              </select>
+            </label>
           </div>
-          <pre className="overflow-x-auto rounded border border-coden-border bg-coden-bg p-3 text-xs text-coden-text">
-            <code className="language-python">{source}</code>
-          </pre>
+          <div className="overflow-hidden rounded border border-coden-border bg-coden-bg" style={{ height: editorHeight }}>
+            <Editor
+              path={`reference://${challengeId}/optimal.${selectedMeta.extension}`}
+              height="100%"
+              language={selectedMeta.monaco}
+              theme={theme === 'dark' ? 'vs-dark' : 'light'}
+              value={source}
+              options={{
+                readOnly: true,
+                domReadOnly: true,
+                contextmenu: false,
+                minimap: { enabled: false },
+                folding: true,
+                glyphMargin: false,
+                lineNumbersMinChars: 3,
+                fontSize: 13,
+                fontFamily: "'Cascadia Code', 'Cascadia Mono', Consolas, 'SFMono-Regular', monospace",
+                renderLineHighlight: 'none',
+                scrollBeyondLastLine: false,
+                overviewRulerLanes: 0,
+                hideCursorInOverviewRuler: true,
+                wordWrap: 'off',
+                automaticLayout: true,
+                padding: { top: 14, bottom: 14 },
+                ariaLabel: `Read-only optimal solution in ${selectedMeta.label}`,
+              }}
+              loading={
+                <div className="flex h-full items-center justify-center text-xs text-coden-muted">
+                  Loading code editor...
+                </div>
+              }
+            />
+          </div>
         </div>
       )}
     </section>

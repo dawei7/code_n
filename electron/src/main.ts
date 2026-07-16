@@ -17,6 +17,7 @@ import * as path from 'node:path';
 import { startServer, ServerHandle } from './server-process';
 import { initAutoUpdater, runAutoCheckOnLaunch } from './updater';
 import { initLeetCodeIntegration } from './leetcode';
+import { initPdfExport } from './pdf-export';
 
 
 let mainWindow: BrowserWindow | null = null;
@@ -281,6 +282,7 @@ app.whenReady().then(() => {
   initAutoUpdater({
     beforeInstallAndQuit: () => stopServer('auto-update install'),
   });
+  initPdfExport(() => mainWindow);
 
   void createWindow();
 

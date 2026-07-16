@@ -17,6 +17,7 @@ from challenges.registry import CHALLENGE_REGISTRY
 from server.app.challenge_packages import (
     is_leetcode_id,
     leetcode_doc_path,
+    leetcode_guided_example_path,
     leetcode_package_dir,
 )
 from server.app.config import DSA_ROOT, LEETCODE_ROOT, OVERVIEW_DOC
@@ -107,6 +108,32 @@ def docs_by_id(challenge_id: str, lang: str = "en") -> Response:
         )
     return Response(
         content=doc.read_text(encoding="utf-8"),
+        media_type="text/markdown; charset=utf-8",
+    )
+
+
+@router.get("/docs/by-id/{challenge_id}/guided-example")
+def guided_example_by_id(challenge_id: str) -> Response:
+    """Return one challenge's code-free, representative worked example."""
+    if challenge_id not in CHALLENGE_REGISTRY:
+        raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
+    guide = leetcode_guided_example_path(challenge_id)
+    if guide is None or not guide.is_file():
+        package_dir = leetcode_package_dir(challenge_id)
+        package_name = (
+            package_dir.name
+            if package_dir is not None
+            else "<frontend_id:04d>_<slug>"
+        )
+        raise HTTPException(
+            status_code=404,
+            detail=(
+                f"No guided example for {challenge_id}. Contribute at "
+                f"dsa/leetcode/{package_name}/guided_example.md"
+            ),
+        )
+    return Response(
+        content=guide.read_text(encoding="utf-8"),
         media_type="text/markdown; charset=utf-8",
     )
 

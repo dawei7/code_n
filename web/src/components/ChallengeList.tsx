@@ -1,8 +1,14 @@
-import { Fragment, useState, useMemo } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useAppStore } from '../store/useAppStore';
 import type { ChallengeSummary } from '../types/api';
-import { challengesForAlgorithmSet } from '../lib/algorithmSets';
+import { challengesForAlgorithmSet, getAlgorithmSetLabel } from '../lib/algorithmSets';
 import { buildUnlockedCareerSequence, resolveCareerSequenceOrder } from '../lib/careerUnlocks';
+import {
+  buildPdfBundleFilename,
+  exportChallengePdfBundle,
+  type PdfTocNode,
+} from './pdf/PdfBundleExport';
 import {
   downloadChallengePracticeFile,
   downloadPracticeBundle,
@@ -773,6 +779,80 @@ function collectGroupChallenges(group: NavigationGroup): ChallengeSummary[] {
   return result;
 }
 
+function collectGroupChallengesInSetOrder(group: NavigationGroup): ChallengeSummary[] {
+  const result = group.children.flatMap(collectGroupChallengesInSetOrder);
+  result.push(...group.challenges);
+  return result;
+}
+
+function uniqueChallengesInOrder(challenges: ChallengeSummary[]): ChallengeSummary[] {
+  const seen = new Set<string>();
+  return challenges.filter((challenge) => {
+    if (seen.has(challenge.id)) return false;
+    seen.add(challenge.id);
+    return true;
+  });
+}
+
+function challengesInSetOrder(
+  navigationGroups: NavigationGroup[],
+  filteredChallenges: ChallengeSummary[],
+  activeSet: string,
+): ChallengeSummary[] {
+  if (activeSet === 'leetcode') {
+    return sortByLeetcodeId(filteredChallenges);
+  }
+  const ordered = uniqueChallengesInOrder(
+    navigationGroups.flatMap(collectGroupChallengesInSetOrder),
+  );
+  const seen = new Set(ordered.map((challenge) => challenge.id));
+  ordered.push(...filteredChallenges.filter((challenge) => !seen.has(challenge.id)));
+  return ordered;
+}
+
+function pdfTocProblem(challenge: ChallengeSummary): PdfTocNode {
+  return {
+    kind: 'problem',
+    challengeId: challenge.id,
+    frontendId: challenge.leetcode_frontend_id || challenge.id.replace(/^lc_/, ''),
+    label: challenge.name,
+    difficultyLabel: challenge.difficulty_label,
+    eloRating: challenge.elo_rating,
+  };
+}
+
+function pdfTocGroup(group: NavigationGroup): PdfTocNode {
+  return {
+    kind: 'group',
+    id: group.id,
+    label: group.label,
+    children: [
+      ...group.children
+        .filter((child) => collectGroupChallenges(child).length > 0)
+        .map(pdfTocGroup),
+      ...group.challenges.map(pdfTocProblem),
+    ],
+  };
+}
+
+function pdfTocForNavigation(
+  groups: NavigationGroup[],
+  scopedChallenges: ChallengeSummary[],
+): PdfTocNode[] {
+  const nodes = groups
+    .filter((group) => collectGroupChallenges(group).length > 0)
+    .map(pdfTocGroup);
+  const groupedIds = new Set(
+    groups.flatMap(collectGroupChallengesInSetOrder).map((challenge) => challenge.id),
+  );
+  nodes.push(
+    ...scopedChallenges
+      .filter((challenge) => !groupedIds.has(challenge.id))
+      .map(pdfTocProblem),
+  );
+  return nodes;
+}
+
 function numberKey(context: string, challengeId: string): string {
   return `${context}::${challengeId}`;
 }
@@ -865,6 +945,161 @@ function DownloadIcon({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
+function PdfIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 2.5h6l4 4v11H5z" />
+      <path d="M11 2.5v4h4" />
+      <text
+        x="6.4"
+        y="14.2"
+        fill="currentColor"
+        stroke="none"
+        fontSize="5.2"
+        fontWeight="700"
+        fontFamily="Arial, sans-serif"
+      >
+        PDF
+      </text>
+    </svg>
+  );
+}
+
+type PdfMenuButtonProps = {
+  disabled?: boolean;
+  className: string;
+  iconClassName?: string;
+  label?: string;
+  title: string;
+  ariaLabel: string;
+  onSelect: (includeSolution: boolean) => void;
+};
+
+function PdfMenuButton({
+  disabled = false,
+  className,
+  iconClassName = 'h-4 w-4',
+  label,
+  title,
+  ariaLabel,
+  onSelect,
+}: PdfMenuButtonProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const [menuPosition, setMenuPosition] = useState<{ left: number; top: number } | null>(null);
+
+  useEffect(() => {
+    if (!menuPosition) return undefined;
+
+    const closeIfOutside = (event: PointerEvent) => {
+      const target = event.target as Node | null;
+      if (target && (buttonRef.current?.contains(target) || menuRef.current?.contains(target))) return;
+      setMenuPosition(null);
+    };
+    const close = () => setMenuPosition(null);
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        close();
+        buttonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('pointerdown', closeIfOutside);
+    document.addEventListener('keydown', closeOnEscape);
+    window.addEventListener('resize', close);
+    window.addEventListener('scroll', close, true);
+    return () => {
+      document.removeEventListener('pointerdown', closeIfOutside);
+      document.removeEventListener('keydown', closeOnEscape);
+      window.removeEventListener('resize', close);
+      window.removeEventListener('scroll', close, true);
+    };
+  }, [menuPosition]);
+
+  const toggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    if (disabled) return;
+    if (menuPosition) {
+      setMenuPosition(null);
+      return;
+    }
+    const rect = buttonRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const menuWidth = 224;
+    const menuHeight = 104;
+    const left = Math.max(8, Math.min(rect.right - menuWidth, window.innerWidth - menuWidth - 8));
+    const below = rect.bottom + 4;
+    const top = below + menuHeight <= window.innerHeight - 8
+      ? below
+      : Math.max(8, rect.top - menuHeight - 4);
+    setMenuPosition({ left, top });
+  };
+
+  const choose = (event: React.MouseEvent, includeSolution: boolean) => {
+    event.stopPropagation();
+    setMenuPosition(null);
+    onSelect(includeSolution);
+  };
+
+  return (
+    <>
+      <button
+        ref={buttonRef}
+        type="button"
+        onClick={toggleMenu}
+        disabled={disabled}
+        className={className}
+        title={title}
+        aria-label={ariaLabel}
+        aria-haspopup="menu"
+        aria-expanded={menuPosition !== null}
+      >
+        <PdfIcon className={iconClassName} />
+        {label && <span>{label}</span>}
+      </button>
+      {menuPosition && createPortal(
+        <div
+          ref={menuRef}
+          role="menu"
+          aria-label="PDF contents"
+          className="fixed z-[300] w-56 overflow-hidden rounded border border-coden-border bg-coden-surface shadow-2xl"
+          style={menuPosition}
+          onClick={(event) => event.stopPropagation()}
+        >
+          <button
+            type="button"
+            role="menuitem"
+            className="block w-full px-3 py-2 text-left hover:bg-coden-border focus:bg-coden-border focus:outline-none"
+            onClick={(event) => choose(event, false)}
+          >
+            <span className="block text-xs font-semibold text-coden-text">Without solution</span>
+            <span className="block text-[10px] text-coden-muted">Reference and Guided Example</span>
+          </button>
+          <button
+            type="button"
+            role="menuitem"
+            className="block w-full border-t border-coden-border px-3 py-2 text-left hover:bg-coden-border focus:bg-coden-border focus:outline-none"
+            onClick={(event) => choose(event, true)}
+          >
+            <span className="block text-xs font-semibold text-coden-text">With solution</span>
+            <span className="block text-[10px] text-coden-muted">Add each problem's primary language</span>
+          </button>
+        </div>,
+        document.body,
+      )}
+    </>
+  );
+}
+
 function StatusTick({ complete, color }: { complete: boolean; color: string }) {
   return (
     <span
@@ -925,11 +1160,13 @@ export function ChallengeList() {
   const completed = useAppStore((s) => s.progress?.completed ?? []);
   const leetcodeSubmissions = useAppStore((s) => s.progress?.leetcode_submissions ?? {});
   const activeSet = useAppStore((s) => s.activeSet);
+  const language = useAppStore((s) => s.language);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState('all');
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [downloadState, setDownloadState] = useState<DownloadState | null>(null);
+  const [pdfExporting, setPdfExporting] = useState(false);
   const [submittingChallengeId, setSubmittingChallengeId] = useState<string | null>(null);
   const [submissionNotice, setSubmissionNotice] = useState<SubmissionNotice | null>(null);
   const completedSet = useMemo(() => new Set(completed), [completed]);
@@ -981,6 +1218,16 @@ export function ChallengeList() {
   const navigationGroups = useMemo(
     () => buildNavigationGroups(filteredChallenges, activeSet),
     [filteredChallenges, activeSet],
+  );
+
+  const shownChallengesForPdf = useMemo(
+    () => challengesInSetOrder(navigationGroups, filteredChallenges, activeSet),
+    [navigationGroups, filteredChallenges, activeSet],
+  );
+
+  const shownTocForPdf = useMemo(
+    () => pdfTocForNavigation(navigationGroups, shownChallengesForPdf),
+    [navigationGroups, shownChallengesForPdf],
   );
 
   const careerUnlocks = useMemo(
@@ -1109,6 +1356,74 @@ export function ChallengeList() {
     }
   };
 
+  const handlePdfBundle = async (
+    scopedChallenges: ChallengeSummary[],
+    scopeLabel: string,
+    toc: PdfTocNode[],
+    includeSolution: boolean,
+  ) => {
+    if (pdfExporting) return;
+
+    const orderedChallenges = uniqueChallengesInOrder(scopedChallenges);
+    const label = `Preparing ${orderedChallenges.length}-problem PDF${includeSolution ? ' with solutions' : ''}`;
+    setPdfExporting(true);
+    setDownloadState({
+      label,
+      loaded: 0,
+      total: null,
+      percent: null,
+      status: 'active',
+      message: includeSolution
+        ? 'Loading References, Guided Examples, and primary-language solutions...'
+        : 'Loading References and Guided Examples...',
+    });
+
+    try {
+      const result = await exportChallengePdfBundle({
+        challenges: orderedChallenges,
+        language,
+        title: `${scopeLabel} - References and Guided Examples${includeSolution ? ' with Solutions' : ''}`,
+        suggestedFilename: buildPdfBundleFilename(
+          scopeLabel,
+          orderedChallenges,
+          includeSolution,
+        ),
+        toc,
+        includeSolution,
+        onProgress: ({ completed, total, message }) => {
+          setDownloadState({
+            label,
+            loaded: completed,
+            total,
+            percent: total > 0 ? completed / total * 100 : null,
+            status: 'active',
+            message,
+          });
+        },
+      });
+      if (result.status === 'error') {
+        throw new Error(result.message || 'The PDF could not be saved.');
+      }
+      if (result.status === 'cancelled') {
+        setDownloadState(null);
+        return;
+      }
+      setDownloadState({
+        label,
+        loaded: orderedChallenges.length,
+        total: orderedChallenges.length,
+        percent: 100,
+        status: 'done',
+        message: 'PDF saved',
+      });
+      window.setTimeout(() => setDownloadState(null), 2500);
+    } catch (error) {
+      failDownload(label, error);
+    } finally {
+      setPdfExporting(false);
+    }
+  };
+
   const handleLeetCodeSubmit = async (event: React.MouseEvent, challenge: ChallengeSummary) => {
     event.stopPropagation();
     if (!completed.includes(challenge.id)) {
@@ -1233,6 +1548,18 @@ export function ChallengeList() {
         >
           <DownloadIcon className="h-4 w-4" />
         </button>
+        <PdfMenuButton
+          disabled={pdfExporting}
+          className="w-7 rounded text-coden-muted hover:text-coden-text hover:bg-coden-border shrink-0 inline-flex items-center justify-center disabled:cursor-wait disabled:opacity-40"
+          title={`Save Reference and Guided Example for ${c.name} as PDF`}
+          ariaLabel={`Save PDF for ${c.name}`}
+          onSelect={(includeSolution) => void handlePdfBundle(
+            [c],
+            `LeetCode ${c.leetcode_frontend_id || c.id.replace(/^lc_/, '')} - ${c.name}`,
+            [pdfTocProblem(c)],
+            includeSolution,
+          )}
+        />
       </li>
     );
   };
@@ -1261,15 +1588,29 @@ export function ChallengeList() {
               </span>
             </button>
             {groupEntries.length > 0 && (
-              <button
-                type="button"
-                onClick={(event) => handleDownloadBundle(event, groupEntries)}
-                className="w-7 h-7 rounded text-coden-muted hover:text-coden-text hover:bg-coden-border shrink-0 inline-flex items-center justify-center"
-                title={`Download ${group.label}`}
-                aria-label={`Download ${group.label}`}
-              >
-                <DownloadIcon className="h-4 w-4" />
-              </button>
+              <>
+                <button
+                  type="button"
+                  onClick={(event) => handleDownloadBundle(event, groupEntries)}
+                  className="w-7 h-7 rounded text-coden-muted hover:text-coden-text hover:bg-coden-border shrink-0 inline-flex items-center justify-center"
+                  title={`Download ${group.label}`}
+                  aria-label={`Download ${group.label}`}
+                >
+                  <DownloadIcon className="h-4 w-4" />
+                </button>
+                <PdfMenuButton
+                  disabled={pdfExporting}
+                  className="w-7 h-7 rounded text-coden-muted hover:text-coden-text hover:bg-coden-border shrink-0 inline-flex items-center justify-center disabled:cursor-wait disabled:opacity-40"
+                  title={`Save ${group.label} References and Guided Examples as one PDF`}
+                  ariaLabel={`Save ${group.label} PDF`}
+                  onSelect={(includeSolution) => void handlePdfBundle(
+                    collectGroupChallengesInSetOrder(group),
+                    `${getAlgorithmSetLabel(activeSet)} - ${path.join(' - ')}`,
+                    [pdfTocGroup(group)],
+                    includeSolution,
+                  )}
+                />
+              </>
             )}
           </div>
 
@@ -1329,7 +1670,7 @@ export function ChallengeList() {
             <> · {filteredChallenges.length} of {challenges.length} shown</>
           )}
         </div>
-        <div className="mt-2 flex justify-end text-[11px]">
+        <div className="mt-2 flex justify-end gap-1 text-[11px]">
           <button
             type="button"
             onClick={(event) => handleDownloadBundle(
@@ -1343,6 +1684,20 @@ export function ChallengeList() {
             <DownloadIcon className="h-3.5 w-3.5" />
             <span>all</span>
           </button>
+          <PdfMenuButton
+            className="h-7 px-2 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border inline-flex items-center gap-1 disabled:cursor-wait disabled:opacity-40"
+            disabled={challengesLoading || filteredChallenges.length === 0 || pdfExporting}
+            title="Save all currently shown problems as one ordered Reference and Guided Example PDF"
+            ariaLabel="Save all currently shown problems as PDF"
+            iconClassName="h-3.5 w-3.5"
+            label="all"
+            onSelect={(includeSolution) => void handlePdfBundle(
+              shownChallengesForPdf,
+              `${getAlgorithmSetLabel(activeSet)} - currently shown`,
+              shownTocForPdf,
+              includeSolution,
+            )}
+          />
         </div>
         {downloadState && (
           <div className="mt-2 rounded border border-coden-border bg-coden-bg/60 px-2 py-1.5">

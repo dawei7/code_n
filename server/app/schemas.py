@@ -81,8 +81,9 @@ class ChallengeSummary(BaseModel):
     leetcode_study_plans: list[dict[str, Any]] = Field(default_factory=list)
     leetcode_external_subsets: list[dict[str, Any]] = Field(default_factory=list)
     supported_languages: list[str] = Field(default_factory=list)
+    primary_language: str = "python"
     runnable_in_coden: bool = True
-    has_visualization: bool = False
+    has_guided_example: bool = False
     leetcode_submission_status: str = "missing"
     leetcode_submission_language: str = ""
     leetcode_submission_paid_only: bool = False

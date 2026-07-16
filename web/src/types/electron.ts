@@ -64,6 +64,17 @@ export interface LeetCodeSubmissionResult {
   message: string;
 }
 
+export interface PdfSaveRequest {
+  suggestedFilename: string;
+  title: string;
+}
+
+export interface PdfSaveResult {
+  status: 'saved' | 'cancelled' | 'error';
+  path?: string;
+  message?: string;
+}
+
 
 export type ElectronAPI = {
   checkForUpdates: () => Promise<UpdateCheckResult>;
@@ -74,6 +85,7 @@ export type ElectronAPI = {
   clearLeetCodeCredentials: () => Promise<LeetCodeSessionStatus>;
   getLeetCodeSessionStatus: () => Promise<LeetCodeSessionStatus>;
   submitVerifiedToLeetCode: (challengeId: string) => Promise<LeetCodeSubmissionResult>;
+  saveDocumentPdf: (request: PdfSaveRequest) => Promise<PdfSaveResult>;
 };
 
 

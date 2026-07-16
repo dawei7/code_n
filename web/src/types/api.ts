@@ -82,8 +82,9 @@ export interface ChallengeSummary {
   leetcode_study_plans: Array<Record<string, unknown>>;
   leetcode_external_subsets: Array<Record<string, unknown>>;
   supported_languages: string[];
+  primary_language: SupportedLanguage;
   runnable_in_coden: boolean;
-  has_visualization: boolean;
+  has_guided_example: boolean;
   leetcode_submission_status: 'missing' | 'candidate' | 'verified';
   leetcode_submission_language: string;
   leetcode_submission_paid_only: boolean;
@@ -103,135 +104,6 @@ export interface ChallengeDetail extends ChallengeSummary {
    *  that haven't been annotated yet. */
   complexity_notes: Record<string, string>;
 }
-
-export type VisualizationChange =
-  | 'index'
-  | 'value'
-  | 'complement'
-  | 'lookup'
-  | 'seen'
-  | 'result';
-
-export interface VisualizationHashMapEntry {
-  value: number;
-  index: number;
-}
-
-export type VisualizationTone = 'neutral' | 'active' | 'attention' | 'success';
-
-export interface VisualizationPhase {
-  id: string;
-  title: string;
-  summary: string;
-}
-
-export interface VisualizationStepBase {
-  id: string;
-  phase: string;
-  title: string;
-  description: string;
-  insight: string;
-  badge: {
-    label: string;
-    tone: VisualizationTone;
-  };
-  active_code: string[];
-  duration_ms: number;
-}
-
-export interface ArrayHashMapVisualizationStep extends VisualizationStepBase {
-  state: {
-    event: 'ready' | 'scanning' | 'miss' | 'stored' | 'found' | 'returned';
-    current_index: number | null;
-    match_index: number | null;
-    visited_indices: number[];
-    variables: {
-      index: number | null;
-      value: number | null;
-      complement: number | null;
-    };
-    seen: VisualizationHashMapEntry[];
-    result: number[] | null;
-    changed: VisualizationChange[];
-  };
-}
-
-export interface VisualizationCode {
-  language: string;
-  source_path: string;
-  source: string;
-  anchors: Record<string, {
-    start_line: number;
-    end_line: number;
-  }>;
-}
-
-export interface VisualizationDefinitionBase {
-  version: 2;
-  challenge_id: string;
-  title: string;
-  pattern: string;
-  summary: string;
-  learning_objective: string;
-  invariant: string;
-  complexity: {
-    time: string;
-    space: string;
-  };
-  phases: VisualizationPhase[];
-  code: VisualizationCode;
-}
-
-export interface ArrayHashMapVisualizationDefinition extends VisualizationDefinitionBase {
-  renderer: 'array-hash-map';
-  example: {
-    nums: number[];
-    target: number;
-  };
-  steps: ArrayHashMapVisualizationStep[];
-}
-
-export type BinaryPartitionBoundary = number | '-inf' | 'inf';
-export type BinaryPartitionViolation = 'none' | 'left1-too-large' | 'left2-too-large' | 'valid';
-export type BinaryPartitionChange = 'range' | 'cuts' | 'boundaries' | 'comparison' | 'result';
-
-export interface BinaryPartitionVisualizationStep extends VisualizationStepBase {
-  state: {
-    event: 'ready' | 'searching' | 'partitioned' | 'compared' | 'narrowed' | 'valid' | 'returned';
-    low: number | null;
-    high: number | null;
-    cut1: number | null;
-    cut2: number | null;
-    boundaries: {
-      left1: BinaryPartitionBoundary | null;
-      right1: BinaryPartitionBoundary | null;
-      left2: BinaryPartitionBoundary | null;
-      right2: BinaryPartitionBoundary | null;
-    };
-    comparison: {
-      left1_le_right2: boolean | null;
-      left2_le_right1: boolean | null;
-    };
-    violation: BinaryPartitionViolation;
-    result: number | null;
-    changed: BinaryPartitionChange[];
-  };
-}
-
-export interface BinaryPartitionVisualizationDefinition extends VisualizationDefinitionBase {
-  renderer: 'binary-partition';
-  example: {
-    nums1: number[];
-    nums2: number[];
-    expected: number;
-  };
-  steps: BinaryPartitionVisualizationStep[];
-}
-
-export type VisualizationStep = ArrayHashMapVisualizationStep | BinaryPartitionVisualizationStep;
-export type VisualizationDefinition =
-  | ArrayHashMapVisualizationDefinition
-  | BinaryPartitionVisualizationDefinition;
 
 export interface ScalingPoint {
   n: number;

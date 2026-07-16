@@ -15,6 +15,9 @@
  *     broadcast by the main process whenever the auto-updater
  *     state changes. Returns an unsubscribe function.
  *
+ *   - saveDocumentPdf(request) opens the native Save As dialog and renders
+ *     the prepared Reference or Guided Example print document.
+ *
  * The `ElectronAPI` type and the `Window.electronAPI` global
  * augmentation are declared in `web/src/types/electron.ts` so
  * both the renderer and the preload agree on a single shape.
@@ -48,4 +51,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
   clearLeetCodeCredentials: () => ipcRenderer.invoke('leetcode:credentials-clear'),
   getLeetCodeSessionStatus: () => ipcRenderer.invoke('leetcode:session-status'),
   submitVerifiedToLeetCode: (challengeId) => ipcRenderer.invoke('leetcode:submit', challengeId),
+  saveDocumentPdf: (request) => ipcRenderer.invoke('pdf:save', request),
 } satisfies ElectronAPI);

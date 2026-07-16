@@ -37,6 +37,7 @@ import { TabBar } from './TabBar';
 import { Workspace } from './Workspace';
 import { ProfileModal } from './ProfileModal';
 import { InfoModal } from './InfoModal';
+import { BrandWordmark } from './BrandWordmark';
 import { ALGORITHM_SETS, challengesForAlgorithmSet } from '../lib/algorithmSets';
 import {
   ACCENT_PRESETS,
@@ -250,7 +251,7 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
           title="About cOde(n)"
           aria-label="About cOde(n)"
         >
-          cOde(n)
+          <BrandWordmark />
         </button>
         {challenges.length > 0 && (
           <span className="text-[11px] text-slate-500 font-mono shrink-0">

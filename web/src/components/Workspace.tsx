@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { useAppStore, Topic } from '../store/useAppStore';
 import { ComplexityAnalysis } from './ComplexityAnalysis';
 import { ReferenceTab } from './layout/tabs/ReferenceTab';
 import { CodenTab } from './layout/tabs/CodenTab';
 import { AITutorTab } from './layout/tabs/AITutorTab';
 import { CareerPathTab } from './layout/tabs/CareerPathTab';
-import { VisualizationTab } from './layout/tabs/VisualizationTab';
+import { GuidedExampleTab } from './layout/tabs/GuidedExampleTab';
+import { BrandWordmark } from './BrandWordmark';
 import { getAlgorithmSetLabel, getAlgorithmSetOption } from '../lib/algorithmSets';
 
 export function Workspace() {
@@ -21,10 +22,10 @@ export function Workspace() {
     if (!activeSetOption.hasCareerPath && activeTopic === 'career_path') {
       setActiveTopic('reference');
     }
-    if (activeTopic === 'visualization' && !detail?.has_visualization) {
+    if (activeTopic === 'guided_example' && !detail?.has_guided_example) {
       setActiveTopic('reference');
     }
-  }, [activeSetOption.hasCareerPath, activeTopic, detail?.has_visualization, setActiveTopic]);
+  }, [activeSetOption.hasCareerPath, activeTopic, detail?.has_guided_example, setActiveTopic]);
 
   if (!detail) {
     if (activeSetOption.hasCareerPath) {
@@ -38,7 +39,9 @@ export function Workspace() {
     return (
       <div className="flex-1 flex flex-col items-center justify-center min-h-0 bg-coden-bg p-6 text-coden-muted text-center space-y-3 select-none">
         <span className="text-4xl">⌘</span>
-        <h3 className="text-lg font-bold text-coden-text">Welcome to cOde(n)</h3>
+        <h3 className="text-lg font-bold text-coden-text">
+          Welcome to <BrandWordmark />
+        </h3>
         <p className="text-xs max-w-sm leading-relaxed text-coden-muted font-mono">
           You are practicing with the <strong>{getAlgorithmSetLabel(activeSet)}</strong> dataset.
           Select any available challenge from the left sidebar to start practicing.
@@ -47,12 +50,12 @@ export function Workspace() {
     );
   }
 
-  const topics: { id: Topic; label: string; title: string; className?: string }[] = [
+  const topics: { id: Topic; label: ReactNode; title: string; className?: string }[] = [
     { id: 'reference', label: '≡', title: language === 'en' ? 'Reference' : 'Referenz', className: 'font-serif text-lg' },
     { id: 'complexity', label: 'O', title: 'Complexity Analysis', className: 'font-serif italic text-lg' },
     { id: 'coden', label: '</>', title: 'cOde(n)', className: 'font-mono text-sm tracking-tight' },
-    ...(detail.has_visualization
-      ? [{ id: 'visualization' as Topic, label: '▶', title: 'Visual Walkthrough', className: 'font-sans text-sm' }]
+    ...(detail.has_guided_example
+      ? [{ id: 'guided_example' as Topic, label: <ProfessorLectureIcon />, title: 'Guided Example' }]
       : []),
     { id: 'ai', label: 'AI', title: 'AI Tutor', className: 'font-mono text-xs tracking-tight' },
     ...(activeSetOption.hasCareerPath
@@ -62,7 +65,7 @@ export function Workspace() {
   const workspaceFontScope = `workspace:${activeTopic}`;
   const workspaceFontScale = paneFontScales[workspaceFontScope] ?? 1;
   const isCodenWorkspace = activeTopic === 'coden';
-  const hasCoordinateSensitiveEditor = isCodenWorkspace || activeTopic === 'visualization';
+  const hasCoordinateSensitiveEditor = isCodenWorkspace;
 
   return (
     <div className="flex-1 flex flex-col min-h-0 bg-coden-bg">
@@ -108,7 +111,11 @@ export function Workspace() {
               </div>
             )}
 
-            {activeTopic === 'visualization' && <VisualizationTab />}
+            {activeTopic === 'guided_example' && (
+              <div className="overflow-hidden rounded-lg bg-coden-surface shadow-lg">
+                <GuidedExampleTab />
+              </div>
+            )}
 
             {activeTopic === 'complexity' && (
               <div className="bg-coden-surface rounded-xl p-6 shadow-lg">
@@ -130,5 +137,28 @@ export function Workspace() {
         </div>
       </div>
     </div>
+  );
+}
+
+
+function ProfessorLectureIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-[18px] w-[18px]"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M12 3h9v11h-8" />
+      <path d="M15 7h3.5M15 10h2.5" />
+      <circle cx="6.5" cy="6.5" r="2.25" />
+      <path d="M2.5 18v-4.75a4 4 0 0 1 8 0V18" />
+      <path d="m9.5 10.75 4-2.25" />
+      <path d="M1.5 20h21" />
+    </svg>
   );
 }

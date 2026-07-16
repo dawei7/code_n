@@ -19,6 +19,8 @@ class SpecialEnvironmentRouteTest(conftest._Base):
         body = detail.json()
         self.assertTrue(body["runnable_in_coden"])
         self.assertEqual(body["supported_languages"], ["sql"])
+        self.assertEqual(body["primary_language"], "sql")
+        self.assertTrue(body["optimal_sources"]["sql"])
         self.assertIn("SELECT", body["starter_sources"]["sql"])
 
         response = self.client.post(

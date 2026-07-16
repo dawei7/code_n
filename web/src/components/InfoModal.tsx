@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { BrandWordmark } from './BrandWordmark';
 
 interface InfoModalProps {
   onClose: () => void;
@@ -20,7 +21,9 @@ export function InfoModal({ onClose }: InfoModalProps) {
       <div className="w-full max-w-3xl bg-coden-surface border border-coden-border rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] text-coden-text">
         <div className="flex items-center justify-between px-6 py-4 border-b border-coden-border bg-coden-bg">
           <div>
-            <h2 className="text-base font-bold text-coden-text">About cOde(n)</h2>
+            <h2 className="text-base font-bold text-coden-text">
+              About <BrandWordmark />
+            </h2>
             <p className="text-xs text-coden-muted font-mono mt-0.5">Algorithms, debugging, and complexity in one workspace</p>
           </div>
           <button
@@ -48,7 +51,7 @@ export function InfoModal({ onClose }: InfoModalProps) {
 
           <section className="space-y-2">
             <h3 className="text-sm font-bold text-coden-accent border-b border-coden-border pb-1 uppercase tracking-wide">
-              Why The Name cOde(n)
+              Why The Name <BrandWordmark />
             </h3>
             <p>
               The name combines <strong>code</strong> with <strong>O(n)</strong>, the notation used to describe algorithmic complexity.

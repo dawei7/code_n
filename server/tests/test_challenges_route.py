@@ -87,6 +87,7 @@ class ChallengesRouteTest(conftest._Base):
         self.assertEqual(detail["name"], "Two Sum")
         self.assertEqual(detail["leetcode_slug"], "two-sum")
         self.assertEqual(detail["leetcode_url"], "https://leetcode.com/problems/two-sum/")
+        self.assertEqual(detail["primary_language"], "python")
         self.assertIn("def solve(nums, target):", detail["starter_source"])
         self.assertTrue(detail["test_cases"])
         self.assertTrue(detail["optimal_source"])

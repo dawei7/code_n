@@ -31,11 +31,19 @@ approved, sponsored, or endorsed cOde(n).
   without switching to an external IDE.
 - **Original explanations:** every migrated package restates the task in
   independent language and teaches the reasoning behind the selected method.
-- **Interactive visual walkthroughs:** package-authored state traces synchronize
-  the example, changing variables, data structures, narration, and semantic
-  anchors in the real canonical solution rendered by Monaco. A reusable player
-  and problem-shaped renderers keep each lesson tightly authored without
-  duplicating the playback framework. Two Sum is the first available walkthrough.
+- **Guided representative examples:** package-authored Markdown lessons work
+  through carefully selected inputs with tables, diagrams, mathematical
+  notation, correctness reasoning, and explicit traps. They teach how and why
+  the method works without revealing solution code.
+- **Publication-quality study PDFs:** PDF controls beside the left-pane download
+  controls export one problem, a hierarchy level, or all currently shown
+  problems through native Save As. Bundles follow set order and place each
+  problem's Reference before its Guided Example in a professional light-mode
+  A4 layout. A linked hierarchical contents page records the UTC generation
+  time, and every later page links back to it. The PDF menu can omit solutions
+  or append each problem's primary-language solution (Python 3 for ordinary
+  algorithms; source-native SQL, Bash, JavaScript, or another declared default
+  where required).
 - **Verified solutions:** a native submission is marked verified only after the
   exact stored source receives an Accepted result from LeetCode.
 - **Correctness and complexity as separate skills:** ordinary cases check the
@@ -70,7 +78,7 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   doc.md
   cases.json
   benchmark.json
-  visualization.json                # optional interactive state trace
+  guided_example.md                 # optional code-free worked example
   submission.json                 # present after reviewed remote verification
   solutions/
     python.py                     # app-local solve(...) implementation
@@ -144,8 +152,8 @@ reviewed promptly.
 
 ## Product architecture
 
-- **`web/`:** React, TypeScript, Vite, Zustand, Monaco, reference rendering,
-  visual walkthroughs, career views, and the in-app debugger interface.
+- **`web/`:** React, TypeScript, Vite, Zustand, Monaco, reference and guided
+  example rendering, career views, and the in-app debugger interface.
 - **`server/`:** FastAPI routes, execution harnesses, validation, benchmark
   analysis, DAP integration, progress storage, and user-solution storage.
 - **`engine/` and `challenges/`:** language contracts, challenge types,

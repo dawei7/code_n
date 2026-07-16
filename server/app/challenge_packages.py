@@ -11,7 +11,7 @@ frontend-ID order:
     ``cases.json``
     ``benchmark.json``
     ``complexity_certificate.json``
-    ``visualization.json`` (optional)
+    ``guided_example.md`` (optional)
     ``solutions/<language>.<ext>``
 
 These packages are the sole source for challenge metadata and artifacts.
@@ -158,10 +158,10 @@ def leetcode_doc_path(challenge_id: str, lang: str = "en") -> Path | None:
     return doc if doc.is_file() else None
 
 
-def leetcode_visualization_path(challenge_id: str) -> Path | None:
-    """Return the optional package-authored visual walkthrough definition."""
+def leetcode_guided_example_path(challenge_id: str) -> Path | None:
+    """Return the optional package-authored guided-example document."""
     package_dir = leetcode_package_dir(challenge_id)
-    return None if package_dir is None else package_dir / "visualization.json"
+    return None if package_dir is None else package_dir / "guided_example.md"
 
 
 def leetcode_solution_path(challenge_id: str, language: str | None = "python") -> Path | None:

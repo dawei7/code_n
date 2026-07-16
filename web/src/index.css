@@ -149,46 +149,6 @@ body,
   50% { opacity: 0.45; }
 }
 
-@keyframes coden-visual-update {
-  0% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--coden-accent) 45%, transparent);
-    transform: translateY(2px);
-  }
-  100% {
-    box-shadow: 0 0 0 7px transparent;
-    transform: translateY(0);
-  }
-}
-
-.coden-visual-updated {
-  animation: coden-visual-update 360ms ease-out;
-}
-
-.monaco-editor .coden-visual-active-line {
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--coden-accent) 22%, transparent),
-    color-mix(in srgb, var(--coden-accent) 7%, transparent)
-  );
-  border-top: 1px solid color-mix(in srgb, var(--coden-accent) 28%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--coden-accent) 28%, transparent);
-}
-
-.monaco-editor .coden-visual-active-glyph {
-  border-left: 3px solid var(--coden-accent);
-  margin-left: 2px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .coden-visual-updated {
-    animation: none;
-  }
-
-  .coden-visual-root * {
-    transition-duration: 0ms !important;
-  }
-}
-
 .coden-debug-current-glyph::before {
   content: "";
   display: block;
@@ -203,4 +163,554 @@ body,
 select option {
   background-color: var(--coden-surface);
   color: var(--coden-text);
+}
+
+/* Display mathematics reads like part of the surrounding derivation rather
+   than a centered poster. This applies to Reference and Guided Example. */
+.prose .katex-display {
+  margin: 1rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: left !important;
+}
+
+.prose .katex-display > .katex {
+  text-align: left !important;
+}
+
+#coden-pdf-root {
+  display: none;
+}
+
+/* printToPDF uses the live renderer canvas for the physical page margin.
+   Temporarily make that canvas light while the native Save As flow runs. */
+html.coden-pdf-export-active,
+html.coden-pdf-export-active body {
+  background: #ffffff !important;
+  color-scheme: light !important;
+}
+
+.coden-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  text-transform: none;
+}
+
+.coden-wordmark-code {
+  color: #2563eb;
+}
+
+.coden-wordmark-complexity {
+  color: #dc2626;
+  font-family: "KaTeX_Math", "Cambria Math", "STIX Two Math", serif;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+.dark .coden-wordmark-code {
+  color: #60a5fa;
+}
+
+.dark .coden-wordmark-complexity {
+  color: #f87171;
+}
+
+/* Briefly lay out the cloned document off screen so fonts and high-resolution
+   images are fully loaded before Electron begins printing. */
+#coden-pdf-root.coden-pdf-preparing {
+  position: fixed;
+  top: 0;
+  left: -100000px;
+  display: block;
+  width: 174mm;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 16mm 18mm 20mm;
+    background: #ffffff;
+  }
+
+  html,
+  body {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: #ffffff !important;
+    color-scheme: light !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body > * {
+    display: none !important;
+  }
+
+  body > #coden-pdf-root {
+    --coden-bg: #ffffff;
+    --coden-surface: #ffffff;
+    --coden-surface-elevated: #f8fafc;
+    --coden-border: #cbd5e1;
+    --coden-muted: #475569;
+    --coden-text: #111827;
+    --coden-accent: #075985;
+    --coden-accent-contrast: #ffffff;
+    --coden-compare: #92400e;
+    --coden-swap: #9f1239;
+    --coden-read: #1d4ed8;
+    --coden-inner: #f8fafc;
+    display: block !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    color-scheme: light !important;
+    font-family: "Segoe UI", Arial, sans-serif !important;
+    font-size: 10.5pt !important;
+    line-height: 1.55 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  #coden-pdf-root .coden-pdf-paper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0 !important;
+    outline: 0 !important;
+    background: #ffffff !important;
+  }
+
+  #coden-pdf-root .coden-pdf-document {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: #ffffff !important;
+  }
+
+  #coden-pdf-root .coden-pdf-document:not(:last-child) {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  #coden-pdf-root .coden-pdf-destination {
+    display: block !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+  }
+
+  #coden-pdf-root .coden-pdf-header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12mm;
+    margin: 0 0 8mm;
+    padding: 0 0 3mm;
+    border: 0 !important;
+    border-bottom: 0.2mm solid #dbe3ec !important;
+    outline: 0 !important;
+    background: #ffffff !important;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  #coden-pdf-root .coden-pdf-brand {
+    position: relative;
+    z-index: 3;
+    flex: none;
+    color: #0f172a;
+    font-size: 12pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  #coden-pdf-root .coden-wordmark-code {
+    color: #2563eb !important;
+  }
+
+  #coden-pdf-root .coden-wordmark-complexity {
+    color: #dc2626 !important;
+  }
+
+  #coden-pdf-root .coden-pdf-metadata {
+    min-width: 0;
+    color: #475569;
+    font-size: 8.5pt;
+    font-weight: 600;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+
+  /* Chromium repeats fixed print content on each page. A small negative top
+     offset places its repeated fragment inside the reserved lower page margin,
+     above the native footer and outside the document body. */
+  #coden-pdf-root .coden-pdf-back-to-toc {
+    position: fixed;
+    top: -5mm;
+    right: 0;
+    bottom: auto;
+    z-index: 20;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 1.2mm;
+    padding: 1mm 1.5mm;
+    border: 0 !important;
+    background: #ffffff !important;
+    color: #475569 !important;
+    font-size: 7.5pt !important;
+    font-weight: 600;
+    line-height: 1 !important;
+    text-decoration: none !important;
+  }
+
+  #coden-pdf-root .coden-pdf-back-to-toc svg {
+    width: 3.2mm !important;
+    height: 3.2mm !important;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 8mm;
+    margin: -2mm 0 7mm !important;
+    color: #64748b !important;
+    font-size: 9pt !important;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-list {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-list .coden-pdf-toc-list {
+    margin: 1.5mm 0 3mm 0 !important;
+    padding-left: 7mm !important;
+    border: 0 !important;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-group {
+    margin: 0 0 3mm !important;
+    padding: 0 !important;
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-group-heading {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 3mm;
+    margin: 0 0 1.5mm;
+    color: #0f172a;
+    font-size: 10pt;
+    font-weight: 700;
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-group-heading[data-numbered="false"] {
+    display: block;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-problem {
+    margin: 0 !important;
+    padding: 0 !important;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-problem > a {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 3mm;
+    padding: 1.4mm 0;
+    border-bottom: 0.2mm solid #e2e8f0;
+    color: #075985 !important;
+    font-size: 9.5pt !important;
+    line-height: 1.3 !important;
+    text-decoration: none !important;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-number {
+    color: #475569;
+    font-family: "Cascadia Mono", Consolas, monospace;
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-entry {
+    min-width: 0;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-title {
+    color: #075985 !important;
+    font-weight: 600;
+  }
+
+  #coden-pdf-root .coden-pdf-toc-metadata {
+    color: #475569 !important;
+    font-size: 8.5pt;
+    font-weight: 500;
+  }
+
+  #coden-pdf-root .coden-pdf-solution-language {
+    margin: -2mm 0 5mm !important;
+    color: #475569 !important;
+    font-size: 9pt !important;
+    font-weight: 700;
+  }
+
+  #coden-pdf-root article,
+  #coden-pdf-root section,
+  #coden-pdf-root div {
+    max-width: none !important;
+    box-shadow: none !important;
+  }
+
+  #coden-pdf-root article {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    color: #111827 !important;
+    background: #ffffff !important;
+  }
+
+  #coden-pdf-root section {
+    overflow: visible !important;
+    border: 0 !important;
+    background: transparent !important;
+    opacity: 1 !important;
+  }
+
+  #coden-pdf-root .coden-screen-only {
+    display: none !important;
+  }
+
+  #coden-pdf-root .coden-pdf-disclosure-content {
+    display: block !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  #coden-pdf-root h1,
+  #coden-pdf-root h2,
+  #coden-pdf-root h3,
+  #coden-pdf-root h4 {
+    color: #0f172a !important;
+    font-family: "Segoe UI", Arial, sans-serif !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  #coden-pdf-root h1 {
+    margin: 0 0 5mm !important;
+    font-size: 21pt !important;
+    letter-spacing: -0.025em;
+  }
+
+  #coden-pdf-root h2 {
+    margin: 8mm 0 3mm !important;
+    padding-bottom: 1.5mm !important;
+    border-bottom: 0.25mm solid #cbd5e1 !important;
+    font-size: 14.5pt !important;
+  }
+
+  #coden-pdf-root h3 {
+    margin: 6mm 0 2mm !important;
+    font-size: 12pt !important;
+  }
+
+  #coden-pdf-root h4 {
+    margin: 5mm 0 2mm !important;
+    font-size: 10.5pt !important;
+  }
+
+  #coden-pdf-root p,
+  #coden-pdf-root li {
+    color: #111827 !important;
+    font-size: 10.5pt !important;
+    line-height: 1.55 !important;
+    orphans: 3;
+    widows: 3;
+  }
+
+  #coden-pdf-root p {
+    margin: 0 0 3mm !important;
+  }
+
+  #coden-pdf-root ul,
+  #coden-pdf-root ol {
+    margin: 2mm 0 4mm !important;
+    padding-left: 7mm !important;
+  }
+
+  #coden-pdf-root li {
+    margin: 0 0 1.5mm !important;
+    padding-left: 1mm !important;
+  }
+
+  #coden-pdf-root strong {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+  }
+
+  #coden-pdf-root a {
+    color: #075985 !important;
+    text-decoration: underline;
+    text-underline-offset: 1px;
+  }
+
+  #coden-pdf-root blockquote {
+    margin: 4mm 0 !important;
+    padding: 2.5mm 4mm !important;
+    border: 0 !important;
+    border-left: 1mm solid #075985 !important;
+    background: #f8fafc !important;
+    color: #1e293b !important;
+    font-style: normal !important;
+    break-inside: avoid-page;
+  }
+
+  #coden-pdf-root table {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 4mm 0 5mm !important;
+    border-collapse: collapse !important;
+    table-layout: auto !important;
+    color: #111827 !important;
+    font-size: 8.8pt !important;
+  }
+
+  #coden-pdf-root thead {
+    display: table-header-group;
+  }
+
+  #coden-pdf-root tr {
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  #coden-pdf-root th,
+  #coden-pdf-root td {
+    border: 0.25mm solid #94a3b8 !important;
+    padding: 2mm 2.5mm !important;
+    color: #111827 !important;
+    background: #ffffff !important;
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+  }
+
+  #coden-pdf-root th {
+    background: #e2e8f0 !important;
+    color: #0f172a !important;
+    font-weight: 700 !important;
+  }
+
+  #coden-pdf-root pre {
+    max-width: 100% !important;
+    margin: 4mm 0 !important;
+    padding: 3.5mm !important;
+    overflow: visible !important;
+    border: 0.25mm solid #cbd5e1 !important;
+    border-radius: 0 !important;
+    background: #f8fafc !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    font-family: "Cascadia Mono", Consolas, monospace !important;
+    font-size: 8.5pt !important;
+    line-height: 1.45 !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere;
+  }
+
+  #coden-pdf-root code {
+    border: 0 !important;
+    background: #f1f5f9 !important;
+    color: #0f3b5f !important;
+    font-family: "Cascadia Mono", Consolas, monospace !important;
+    font-size: 0.9em !important;
+  }
+
+  #coden-pdf-root code::before,
+  #coden-pdf-root code::after {
+    content: none !important;
+  }
+
+  #coden-pdf-root pre code {
+    padding: 0 !important;
+    background: transparent !important;
+    color: #0f172a !important;
+    font-size: inherit !important;
+    white-space: pre-wrap !important;
+  }
+
+  #coden-pdf-root .coden-pdf-solution-source span {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  #coden-pdf-root img,
+  #coden-pdf-root svg {
+    max-width: 100% !important;
+    max-height: 225mm !important;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  #coden-pdf-root .katex-display {
+    margin: 4mm 0 !important;
+    overflow: visible !important;
+    color: #000000 !important;
+    font-size: 1em !important;
+    text-align: left !important;
+    break-inside: avoid-page;
+  }
+
+  #coden-pdf-root .katex-display > .katex {
+    color: #000000 !important;
+    text-align: left !important;
+  }
+
+  #coden-pdf-root summary {
+    display: block;
+    margin: 7mm 0 3mm;
+    color: #0f172a !important;
+    font-size: 14.5pt;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  #coden-pdf-root summary::-webkit-details-marker {
+    display: none;
+  }
+
 }
