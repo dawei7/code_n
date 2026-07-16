@@ -46,6 +46,7 @@ CERTIFIED_METHODS = {
     "1344": "bounded_domain",
     "1401": "asymptotic_optimality",
     "1432": "bounded_domain",
+    "1491": "bounded_domain",
 }
 
 
@@ -148,6 +149,33 @@ def test_max_difference_bounded_domain_matches_digit_pair_oracle() -> None:
     values.update({10_000, 10_001, 90_909, 9_999_999, 99_999_999, 100_000_000})
     for value in sorted(values):
         assert max_difference(value) == expected(value)
+
+
+def test_average_salary_bounded_domain_matches_sort_and_slice_oracle() -> None:
+    average_salary = _reference_solve("1491")
+
+    for length in range(3, 101):
+        values = [1000 + index * 7919 for index in range(length)]
+        if length % 2 == 0:
+            values.reverse()
+        else:
+            offset = length // 2
+            values = values[offset:] + values[:offset]
+
+        ordered = sorted(values)
+        expected = sum(ordered[1:-1]) / (length - 2)
+        assert abs(average_salary(values) - expected) <= 1e-12
+
+    boundary_fixtures = [
+        [1000, 1001, 1_000_000],
+        [1_000_000, 1000, 999_999, 1001, 500_000],
+        [4000, 3000, 1000, 2000],
+        [1000, 2000, 3001, 9000],
+    ]
+    for values in boundary_fixtures:
+        ordered = sorted(values)
+        expected = sum(ordered[1:-1]) / (len(values) - 2)
+        assert abs(average_salary(values) - expected) <= 1e-12
 
 
 def test_circle_rectangle_overlap_matches_axis_gap_oracle() -> None:

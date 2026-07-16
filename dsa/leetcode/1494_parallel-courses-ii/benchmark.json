@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1494",
+  "measurement_note": "Size is 2^N, the number of possible completed-course masks. The legal even N = 6/8/10 tiers therefore use sizes 64/256/1024, a 16x span. The relation from course 1 to course N prevents the no-prerequisite shortcut while leaving many subset states reachable under k = 2. Generating exact-k combinations only from available courses follows the reviewed subset-DP bound. A correct baseline that tests every full-universe mask at every reachable state completes at N = 10 and is rejected by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 6 courses with one gating relation",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 6,
+        "relations": [
+          [
+            1,
+            6
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "state-space",
+        "subset-choice"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 courses with one gating relation",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "n": 8,
+        "relations": [
+          [
+            1,
+            8
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "state-space",
+        "subset-choice"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 10 courses with one gating relation",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {
+        "n": 10,
+        "relations": [
+          [
+            1,
+            10
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "state-space",
+        "subset-choice"
+      ]
+    }
+  ]
+}

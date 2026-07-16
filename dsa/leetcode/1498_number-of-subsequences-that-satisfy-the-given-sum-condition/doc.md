@@ -5,77 +5,105 @@
 | Source | LeetCode |
 | Frontend ID | 1498 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Two Pointers, Binary Search, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-subsequences-that-satisfy-the-given-sum-condition](https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/).
-
 ### Goal
-Count the non-empty subsequences whose smallest value plus largest value is at
-most `target`. Return the count modulo `1_000_000_007`.
+
+Given an integer array `nums` and an integer `target`, consider every non-empty subsequence of the array. A subsequence selects one or more original indices while preserving their relative order; equal values selected from different indices still form different choices.
+
+Count the subsequences for which the sum of the selected minimum value and selected maximum value is less than or equal to `target`. Because the count can be very large, return it modulo $10^9+7$.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: an integer array.
-- `target`: the maximum allowed sum of the subsequence minimum and maximum.
+Let $N$ be the length of `nums`, and let $M=10^9+7$ be the result modulus.
+
+- `nums`: an integer list with $1 \le N \le 10^5$.
+- Every value satisfies $1 \le \texttt{nums[i]} \le 10^6$.
+- `target`: an integer with $1 \le \texttt{target} \le 10^6$.
 
 **Return value**
 
-The number of valid subsequences modulo `1_000_000_007`.
+Return, modulo $M$, the number of non-empty subsequences whose minimum plus maximum is at most `target`.
 
 ### Examples
 **Example 1**
 
-- Input: `nums = [3, 5, 6, 7], target = 9`
+- Input: `nums = [3,5,6,7], target = 9`
 - Output: `4`
+- Explanation: The valid subsequences are `[3]`, `[3,5]`, `[3,6]`, and `[3,5,6]`.
 
 **Example 2**
 
-- Input: `nums = [3, 3, 6, 8], target = 10`
+- Input: `nums = [3,3,6,8], target = 10`
 - Output: `6`
+- Explanation: The two occurrences of `3` belong to different indices, so selections using either one are counted separately.
 
 **Example 3**
 
-- Input: `nums = [2, 3, 3, 4, 6, 7], target = 12`
+- Input: `nums = [2,3,3,4,6,7], target = 12`
 - Output: `61`
+- Explanation: Of the $63$ non-empty subsequences, only `[7]` and `[6,7]` violate the condition.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Sort the array and use two pointers. When `nums[left] + nums[right] <= target`,
-every subset of the values between those endpoints can be combined with
-`nums[left]`, so add `2 ** (right - left)` and move `left` forward. If the sum is
-too large, move `right` backward. Precompute powers of two modulo
-`1_000_000_007` for constant-time additions.
+- **Time:** $O(N \log N)$
+- **Space:** $O(N)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)` for sorting plus a linear scan.
-- **Space Complexity**: `O(n)` for the precomputed powers.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(nums, target):
-    mod = 1_000_000_007
-    nums = sorted(nums)
-    powers = [1] * (len(nums) + 1)
-    for i in range(1, len(powers)):
-        powers[i] = (powers[i - 1] * 2) % mod
-    left, right = 0, len(nums) - 1
-    answer = 0
-    while left <= right:
-        if nums[left] + nums[right] <= target:
-            answer = (answer + powers[right - left]) % mod
-            left += 1
-        else:
-            right -= 1
-    return answer
-```
+#### General
+
+**Sort without changing how many index selections exist**
+
+The condition depends only on the minimum and maximum selected values, not on the positions between them. Sorting permutes the original indexed elements but gives a one-to-one correspondence between index subsets before and after the permutation. Duplicate values remain separate array positions, so their distinct subsequences are still counted separately.
+
+After sorting, keep indices `left` and `right` around the unresolved range. Precompute $2^e \bmod M$ for every exponent $0 \le e \le N$, because each valid endpoint choice will contribute a power of two.
+
+**Count every subsequence whose first selected index is `left`**
+
+Suppose `nums[left] + nums[right] <= target`. Any subsequence that includes `nums[left]` and chooses an arbitrary subset of the `right - left` later positions through `right` is valid. Its minimum is `nums[left]`, and even if it includes the largest available value, its maximum is at most `nums[right]`.
+
+Each of those later positions may be independently included or omitted, giving exactly
+
+$$
+2^{\texttt{right}-\texttt{left}}
+$$
+
+valid subsequences. This count includes the singleton containing only `nums[left]`. Add the power modulo $M$, then increment `left`. Every counted subsequence has `left` as its smallest selected sorted index, so no later iteration can count it again.
+
+**Discard an endpoint that cannot participate**
+
+If `nums[left] + nums[right] > target`, then `nums[right]` cannot belong to any valid subsequence made from the unresolved range. Every possible minimum there is at least `nums[left]`, so pairing it with `nums[right]` would make the endpoint sum no smaller.
+
+Decrement `right` without adding anything. The right pointer never needs to move back: once an endpoint is too large for the smallest remaining value, it is too large for all later minima as well.
+
+**Why the two pointer cases are exhaustive**
+
+At each step, either the endpoint sum is valid or it is not. In the valid case, the power-of-two block contains exactly all unresolved subsequences whose first selected index is `left`; removing that left endpoint cannot affect subsequences whose first index is later. In the invalid case, no unresolved valid subsequence can contain `right`; removing that endpoint loses nothing.
+
+The interval shrinks after every decision. By induction, all and only valid non-empty index subsets are counted when the pointers cross.
+
+#### Complexity detail
+
+Sorting takes $O(N \log N)$ time. Building the powers table and moving both pointers take $O(N)$ additional time. The powers table and sorted copy use $O(N)$ auxiliary space.
+
+The benchmark uses arrays of ones with `target = 1`, so no non-empty subsequence is valid. The reference moves the right pointer across the array once. A correct alternative that restarts a right-end search for every possible minimum performs $O(N^2)$ work, completes every tier, and is rejected by scaling.
+
+#### Alternatives and edge cases
+
+- **Binary search for each minimum:** after sorting, find the last compatible maximum independently for every left index and add the same power-of-two contribution. This is correct in $O(N \log N)$ time but repeats searches that the monotone right pointer shares.
+- **Restarted linear search:** scan down from the last index for every possible minimum. It preserves the counting formula but takes $O(N^2)$ time.
+- **Enumerate all subsequences:** testing every non-empty index subset takes exponential time and is infeasible at $N=10^5$.
+- **Duplicate values:** equal values at different indices represent distinct subsequence choices and must not be deduplicated.
+- **Singleton subsequence:** its minimum and maximum are the same value, so it is valid exactly when twice that value is at most `target`.
+- **No valid value:** if even twice the smallest number exceeds `target`, the result is `0`.
+- **Every subsequence valid:** if the smallest-plus-largest condition holds for the whole sorted array, the answer is $2^N-1$ modulo $M$.
+- **Modulo discipline:** reduce every accumulated power and answer update modulo $10^9+7$.
+- **Input order:** sorting is valid for counting index subsets even though a subsequence normally preserves original order, because each selected index set has exactly one sorted-image index set.
+- **Pointer equality:** when `left == right`, the contribution is $2^0=1$, representing the singleton at that position.
+
 </details>

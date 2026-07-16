@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1499",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: only close x-pairs count",
+      "name": "sample: only adjacent close pairs are legal",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -30,7 +31,7 @@
       "expected": 4,
       "tags": [
         "sample",
-        "monotonic-queue"
+        "distance-window"
       ]
     },
     {
@@ -57,13 +58,14 @@
       },
       "expected": 3,
       "tags": [
-        "sample"
+        "sample",
+        "exact-boundary"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: increasing diagonal",
-      "kind": "sample",
+      "id": "trial-increasing-diagonal",
+      "name": "trial: oldest active point remains best",
+      "kind": "trial",
       "visible": true,
       "input": {
         "points": [
@@ -84,38 +86,181 @@
       },
       "expected": 6,
       "tags": [
-        "sample"
+        "trial",
+        "active-window"
       ]
     },
     {
-      "id": "real-mixed-y-values",
-      "name": "hidden: mixed positive and negative y-values",
+      "id": "trial-expired-high-score",
+      "name": "trial: high score outside the window is ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            100
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            2
+          ]
+        ],
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "expiration"
+      ]
+    },
+    {
+      "id": "real-nonadjacent-best",
+      "name": "hidden: nonadjacent active pair is optimal",
       "kind": "real",
       "visible": false,
       "input": {
         "points": [
           [
             1,
-            -1
+            10
+          ],
+          [
+            2,
+            -100
           ],
           [
             3,
+            5
+          ]
+        ],
+        "k": 2
+      },
+      "expected": 17,
+      "tags": [
+        "hidden",
+        "nonadjacent"
+      ]
+    },
+    {
+      "id": "real-negative-answer",
+      "name": "hidden: maximum equation value is negative",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            -10
+          ],
+          [
+            1,
+            -20
+          ]
+        ],
+        "k": 1
+      },
+      "expected": -29,
+      "tags": [
+        "hidden",
+        "negative-result"
+      ]
+    },
+    {
+      "id": "real-equal-scores",
+      "name": "hidden: newer equal score safely dominates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            8
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 17,
+      "tags": [
+        "hidden",
+        "equal-scores",
+        "dominance"
+      ]
+    },
+    {
+      "id": "real-coordinate-boundaries",
+      "name": "hidden: extreme coordinates and values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            -100000000,
+            -100000000
+          ],
+          [
+            100000000,
+            100000000
+          ]
+        ],
+        "k": 200000000
+      },
+      "expected": 200000000,
+      "tags": [
+        "hidden",
+        "coordinate-boundaries"
+      ]
+    },
+    {
+      "id": "real-mixed-windows",
+      "name": "hidden: repeated expiration and insertion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            -5,
             4
           ],
           [
-            6,
-            -2
+            -2,
+            -3
           ],
           [
-            10,
-            3
+            0,
+            8
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            9
           ]
         ],
         "k": 5
       },
-      "expected": 5,
+      "expected": 22,
       "tags": [
-        "hidden"
+        "hidden",
+        "multiple-windows"
       ]
     }
   ]

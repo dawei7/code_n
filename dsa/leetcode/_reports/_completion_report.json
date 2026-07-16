@@ -1,8 +1,8 @@
 {
   "total_docs": 3985,
   "counts": {
-    "manual_complete": 2531,
-    "needs_authoring": 1454
+    "manual_complete": 2536,
+    "needs_authoring": 1449
   },
   "entries": [
     {
@@ -10430,8 +10430,8 @@
     },
     {
       "path": "dsa/leetcode/1490_clone-n-ary-tree/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -10444,8 +10444,8 @@
     },
     {
       "path": "dsa/leetcode/1492_the-kth-factor-of-n/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -10458,22 +10458,22 @@
     },
     {
       "path": "dsa/leetcode/1494_parallel-courses-ii/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1495_friendly-movies-streamed-last-month/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1496_path-crossing/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },

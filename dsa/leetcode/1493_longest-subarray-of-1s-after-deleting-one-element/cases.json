@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1493",
   "cases": [
     {
@@ -17,12 +18,12 @@
       "expected": 3,
       "tags": [
         "sample",
-        "sliding-window"
+        "merge-runs"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: best window spans one zero",
+      "name": "sample: choose the best separating zero",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -40,12 +41,13 @@
       },
       "expected": 5,
       "tags": [
-        "sample"
+        "sample",
+        "multiple-zeros"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: all ones still delete one",
+      "name": "sample: all ones still require deletion",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,16 +60,72 @@
       "expected": 2,
       "tags": [
         "sample",
-        "edge"
+        "all-ones",
+        "mandatory-deletion"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: delete the only one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "mandatory-deletion"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: delete the only zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "all-zeros"
+      ]
+    },
+    {
+      "id": "trial-boundary-zero",
+      "name": "trial: leading zero can be deleted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "boundary-zero"
       ]
     },
     {
       "id": "real-all-zeros",
-      "name": "hidden: deleting from all zeros leaves no ones",
+      "name": "hidden: no run can be created",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
+          0,
           0,
           0,
           0,
@@ -76,8 +134,78 @@
       },
       "expected": 0,
       "tags": [
-        "hidden",
-        "edge"
+        "real",
+        "all-zeros"
+      ]
+    },
+    {
+      "id": "real-equal-merges",
+      "name": "hidden: equal choices around two zeros",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "multiple-optima"
+      ]
+    },
+    {
+      "id": "real-shrink-past-old-zero",
+      "name": "hidden: later window is longer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "window-shrink",
+        "later-optimum"
+      ]
+    },
+    {
+      "id": "real-trailing-zero",
+      "name": "hidden: deleting trailing zero preserves run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "boundary-zero",
+        "trailing"
       ]
     }
   ]

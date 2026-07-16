@@ -1,0 +1,489 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1495",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: only Aladdin meets all filters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TVProgram": [
+            {
+              "program_date": "2020-06-10 08:00:00",
+              "content_id": 1,
+              "channel": "LC-Channel"
+            },
+            {
+              "program_date": "2020-05-11 12:00:00",
+              "content_id": 2,
+              "channel": "LC-Channel"
+            },
+            {
+              "program_date": "2020-05-12 12:00:00",
+              "content_id": 3,
+              "channel": "LC-Channel"
+            },
+            {
+              "program_date": "2020-05-13 14:00:00",
+              "content_id": 4,
+              "channel": "Disney Ch"
+            },
+            {
+              "program_date": "2020-06-18 14:00:00",
+              "content_id": 4,
+              "channel": "Disney Ch"
+            },
+            {
+              "program_date": "2020-07-15 16:00:00",
+              "content_id": 5,
+              "channel": "Disney Ch"
+            }
+          ],
+          "Content": [
+            {
+              "content_id": 1,
+              "title": "Leetcode Movie",
+              "Kids_content": "N",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 2,
+              "title": "Alg. for Kids",
+              "Kids_content": "Y",
+              "content_type": "Series"
+            },
+            {
+              "content_id": 3,
+              "title": "Database Sols",
+              "Kids_content": "N",
+              "content_type": "Series"
+            },
+            {
+              "content_id": 4,
+              "title": "Aladdin",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 5,
+              "title": "Cinderella",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "title"
+        ],
+        "rows": [
+          [
+            "Aladdin"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "join",
+        "three-filters"
+      ]
+    },
+    {
+      "id": "sample-boundaries",
+      "name": "sample: half-open June boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TVProgram": [
+            {
+              "program_date": "2020-06-01 00:00:00",
+              "content_id": 1,
+              "channel": "A"
+            },
+            {
+              "program_date": "2020-06-30 23:59:59",
+              "content_id": 2,
+              "channel": "B"
+            },
+            {
+              "program_date": "2020-07-01 00:00:00",
+              "content_id": 3,
+              "channel": "C"
+            },
+            {
+              "program_date": "2020-05-31 23:59:59",
+              "content_id": 4,
+              "channel": "D"
+            }
+          ],
+          "Content": [
+            {
+              "content_id": 1,
+              "title": "June Opens",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 2,
+              "title": "June Closes",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 3,
+              "title": "July Starts",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 4,
+              "title": "May Ends",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "title"
+        ],
+        "rows": [
+          [
+            "June Closes"
+          ],
+          [
+            "June Opens"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "date-boundaries"
+      ]
+    },
+    {
+      "id": "sample-distinct-title",
+      "name": "sample: repeated qualifying title is distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TVProgram": [
+            {
+              "program_date": "2020-06-05",
+              "content_id": 10,
+              "channel": "A"
+            },
+            {
+              "program_date": "2020-06-06",
+              "content_id": 10,
+              "channel": "B"
+            },
+            {
+              "program_date": "2020-06-07",
+              "content_id": 11,
+              "channel": "C"
+            }
+          ],
+          "Content": [
+            {
+              "content_id": 10,
+              "title": "Shared",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 11,
+              "title": "Shared",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "title"
+        ],
+        "rows": [
+          [
+            "Shared"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "distinct",
+        "multiple-streams"
+      ]
+    },
+    {
+      "id": "trial-independent-filters",
+      "name": "trial: audience and type filters are independent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TVProgram": [
+            {
+              "program_date": "2020-06-12",
+              "content_id": 1,
+              "channel": "A"
+            },
+            {
+              "program_date": "2020-06-13",
+              "content_id": 2,
+              "channel": "A"
+            },
+            {
+              "program_date": "2020-06-14",
+              "content_id": 3,
+              "channel": "A"
+            }
+          ],
+          "Content": [
+            {
+              "content_id": 1,
+              "title": "Kids Series",
+              "Kids_content": "Y",
+              "content_type": "Series"
+            },
+            {
+              "content_id": 2,
+              "title": "Adult Movie",
+              "Kids_content": "N",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 3,
+              "title": "Kids Movie",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "title"
+        ],
+        "rows": [
+          [
+            "Kids Movie"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "content-filters"
+      ]
+    },
+    {
+      "id": "trial-other-years",
+      "name": "trial: same month in other years is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "TVProgram": [
+            {
+              "program_date": "2019-06-15",
+              "content_id": 1,
+              "channel": "A"
+            },
+            {
+              "program_date": "2020-06-15",
+              "content_id": 2,
+              "channel": "A"
+            },
+            {
+              "program_date": "2021-06-15",
+              "content_id": 3,
+              "channel": "A"
+            }
+          ],
+          "Content": [
+            {
+              "content_id": 1,
+              "title": "Old June",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 2,
+              "title": "Target June",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 3,
+              "title": "Future June",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "title"
+        ],
+        "rows": [
+          [
+            "Target June"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "year-filter"
+      ]
+    },
+    {
+      "id": "real-no-match",
+      "name": "hidden: no row meets every predicate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "TVProgram": [
+            {
+              "program_date": "2020-06-01",
+              "content_id": 1,
+              "channel": "A"
+            },
+            {
+              "program_date": "2020-07-01",
+              "content_id": 2,
+              "channel": "B"
+            }
+          ],
+          "Content": [
+            {
+              "content_id": 1,
+              "title": "Adult",
+              "Kids_content": "N",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 2,
+              "title": "Late",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "title"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "real",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-unmatched-content",
+      "name": "hidden: content without a program is absent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "TVProgram": [
+            {
+              "program_date": "2020-06-20",
+              "content_id": 1,
+              "channel": "A"
+            }
+          ],
+          "Content": [
+            {
+              "content_id": 1,
+              "title": "Streamed",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            },
+            {
+              "content_id": 2,
+              "title": "Not Streamed",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "title"
+        ],
+        "rows": [
+          [
+            "Streamed"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "inner-join"
+      ]
+    },
+    {
+      "id": "real-channel-irrelevant",
+      "name": "hidden: multiple channels do not duplicate title",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "TVProgram": [
+            {
+              "program_date": "2020-06-03",
+              "content_id": 7,
+              "channel": "One"
+            },
+            {
+              "program_date": "2020-06-04",
+              "content_id": 7,
+              "channel": "Two"
+            },
+            {
+              "program_date": "2020-06-05",
+              "content_id": 7,
+              "channel": "Three"
+            }
+          ],
+          "Content": [
+            {
+              "content_id": 7,
+              "title": "Everywhere",
+              "Kids_content": "Y",
+              "content_type": "Movies"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "title"
+        ],
+        "rows": [
+          [
+            "Everywhere"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "multiple-channels",
+        "distinct"
+      ]
+    }
+  ]
+}

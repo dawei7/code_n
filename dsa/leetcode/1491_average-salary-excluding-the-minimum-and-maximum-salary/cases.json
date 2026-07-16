@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1491",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: four salaries",
+      "name": "sample: four unsorted salaries",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -14,19 +15,19 @@
           2000
         ]
       },
-      "expected": 2500.0,
+      "expected": 2500,
       "validator": {
         "kind": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       },
       "tags": [
         "sample",
-        "array"
+        "unsorted"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: three salaries",
+      "name": "sample: three increasing salaries",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -36,19 +37,43 @@
           3000
         ]
       },
-      "expected": 2000.0,
+      "expected": 2000,
       "validator": {
         "kind": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       },
       "tags": [
-        "sample"
+        "sample",
+        "minimum-length"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: six salaries",
+      "name": "sample: fractional average",
       "kind": "sample",
+      "visible": true,
+      "input": {
+        "salary": [
+          1000,
+          2000,
+          3001,
+          9000
+        ]
+      },
+      "expected": 2500.5,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "sample",
+        "fractional"
+      ]
+    },
+    {
+      "id": "trial-descending",
+      "name": "trial: descending values",
+      "kind": "trial",
       "visible": true,
       "input": {
         "salary": [
@@ -60,36 +85,236 @@
           1000
         ]
       },
-      "expected": 3500.0,
+      "expected": 3500,
       "validator": {
         "kind": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       },
       "tags": [
-        "sample"
+        "trial",
+        "descending"
       ]
     },
     {
-      "id": "real-five-salaries",
-      "name": "hidden: five salaries",
+      "id": "trial-three-unsorted",
+      "name": "trial: one retained salary at first position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "salary": [
+          6000,
+          1000,
+          9000
+        ]
+      },
+      "expected": 6000,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "positions"
+      ]
+    },
+    {
+      "id": "trial-legal-bounds",
+      "name": "trial: both salary bounds and a fractional quotient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "salary": [
+          1000000,
+          1000,
+          999999,
+          1001,
+          500000
+        ]
+      },
+      "expected": 500333.3333333333,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "trial",
+        "value-boundaries",
+        "fractional"
+      ]
+    },
+    {
+      "id": "real-arbitrary-order",
+      "name": "hidden: extremes occur inside the array",
       "kind": "real",
       "visible": false,
       "input": {
         "salary": [
-          8000,
-          1000,
-          3000,
-          2000,
-          4000
+          7000,
+          1200,
+          5100,
+          3100,
+          9900,
+          4200,
+          2300
         ]
       },
-      "expected": 3000.0,
+      "expected": 4340,
       "validator": {
         "kind": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       },
       "tags": [
-        "hidden"
+        "real",
+        "positions",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: one hundred permuted salaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "salary": [
+          1000,
+          294003,
+          587006,
+          88109,
+          381112,
+          674115,
+          175218,
+          468221,
+          761224,
+          262327,
+          555330,
+          56433,
+          349436,
+          642439,
+          143542,
+          436545,
+          729548,
+          230651,
+          523654,
+          24757,
+          317760,
+          610763,
+          111866,
+          404869,
+          697872,
+          198975,
+          491978,
+          784981,
+          286084,
+          579087,
+          80190,
+          373193,
+          666196,
+          167299,
+          460302,
+          753305,
+          254408,
+          547411,
+          48514,
+          341517,
+          634520,
+          135623,
+          428626,
+          721629,
+          222732,
+          515735,
+          16838,
+          309841,
+          602844,
+          103947,
+          396950,
+          689953,
+          191056,
+          484059,
+          777062,
+          278165,
+          571168,
+          72271,
+          365274,
+          658277,
+          159380,
+          452383,
+          745386,
+          246489,
+          539492,
+          40595,
+          333598,
+          626601,
+          127704,
+          420707,
+          713710,
+          214813,
+          507816,
+          8919,
+          301922,
+          594925,
+          96028,
+          389031,
+          682034,
+          183137,
+          476140,
+          769143,
+          270246,
+          563249,
+          64352,
+          357355,
+          650358,
+          151461,
+          444464,
+          737467,
+          238570,
+          531573,
+          32676,
+          325679,
+          618682,
+          119785,
+          412788,
+          705791,
+          206894,
+          499897
+        ]
+      },
+      "expected": 392990.5,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "real",
+        "maximum-length",
+        "permuted"
+      ]
+    },
+    {
+      "id": "real-narrow-range",
+      "name": "hidden: consecutive unique salaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "salary": [
+          1007,
+          1003,
+          1005,
+          1001,
+          1006,
+          1002,
+          1004
+        ]
+      },
+      "expected": 1004,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "real",
+        "narrow-range",
+        "unsorted"
       ]
     }
   ]

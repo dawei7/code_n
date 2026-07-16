@@ -1,23 +1,23 @@
+"""Optimal app-local solution for LeetCode 1499."""
+
 from collections import deque
 
 
-def solve(points, k):
-    normalized = []
-    for index, point in enumerate(points):
-        if isinstance(point, list) and len(point) >= 2:
-            normalized.append((point[0], point[1]))
-        else:
-            normalized.append((index, point))
-    normalized.sort()
-    queue = deque()
-    best = -10**18
-    for x, y in normalized:
-        while queue and x - queue[0][1] > k:
-            queue.popleft()
-        if queue:
-            best = max(best, x + y + queue[0][0])
-        value = y - x
-        while queue and queue[-1][0] <= value:
-            queue.pop()
-        queue.append((value, x))
-    return 0 if best == -10**18 else best
+def solve(points: list[list[int]], k: int) -> int:
+    """Return the maximum equation value among horizontally close point pairs."""
+    candidates: deque[tuple[int, int]] = deque()
+    best = -10**30
+
+    for x, y in points:
+        while candidates and x - candidates[0][0] > k:
+            candidates.popleft()
+
+        if candidates:
+            best = max(best, x + y + candidates[0][1])
+
+        score = y - x
+        while candidates and candidates[-1][1] <= score:
+            candidates.pop()
+        candidates.append((x, score))
+
+    return best

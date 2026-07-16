@@ -1,6 +1,6 @@
 # Two Sum Migration Progress
 
-Generated: 2026-07-16T02:07:21.934849+00:00
+Generated: 2026-07-16T05:07:01.057078+00:00
 
 All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.
 
@@ -13,20 +13,20 @@ A package is locally complete only when its canonical document (including a sour
 | Metric | Count |
 | --- | ---: |
 | packages | 3985 |
-| local complete | 1489 |
-| fully complete and verified | 1448 |
-| blocked | 41 |
-| doc complete | 1489 |
-| cases complete | 2056 |
-| benchmarks complete | 1463 |
-| optimal solution complete | 2150 |
-| leetcode submission complete | 1448 |
-| complexity certified | 26 |
-| complexity complete | 1489 |
+| local complete | 1499 |
+| fully complete and verified | 1452 |
+| blocked | 47 |
+| doc complete | 1499 |
+| cases complete | 2066 |
+| benchmarks complete | 1472 |
+| optimal solution complete | 2155 |
+| leetcode submission complete | 1452 |
+| complexity certified | 27 |
+| complexity complete | 1499 |
 
 ## Next package
 
-- 1490 — Clone N-ary Tree (`dsa/leetcode/1490_clone-n-ary-tree`)
+- 1500 — Design a File Sharing System (`dsa/leetcode/1500_design-a-file-sharing-system`)
 
 ## Recorded blockers
 
@@ -71,5 +71,11 @@ A package is locally complete only when its canonical document (including a sour
 - 1487 — Making File Names Unique: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
 - 1488 — Avoid Flood in The City: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
 - 1489 — Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
+- 1490 — Clone N-ary Tree: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
+- 1491 — Average Salary Excluding the Minimum and Maximum Salary: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
+- 1492 — The kth Factor of n: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
+- 1493 — Longest Subarray of 1's After Deleting One Element: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
+- 1494 — Parallel Courses II: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
+- 1495 — Friendly Movies Streamed Last Month: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
 
 The JSON report contains the per-package check details.

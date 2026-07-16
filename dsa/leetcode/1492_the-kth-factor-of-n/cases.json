@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1492",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: third factor of twelve",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 12,
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "small-factor"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: second factor of a prime",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "prime",
+        "large-factor"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: requested rank does not exist",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 4
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "missing-rank",
+        "perfect-square"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: one has exactly one factor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-square-middle",
+      "name": "trial: square root is counted once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 36,
+        "k": 5
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "perfect-square",
+        "middle-factor"
+      ]
+    },
+    {
+      "id": "trial-last-factor",
+      "name": "trial: final rank returns n",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1000,
+        "k": 16
+      },
+      "expected": 1000,
+      "tags": [
+        "trial",
+        "last-factor",
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "real-large-half",
+      "name": "hidden: first factor above square root",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 36,
+        "k": 6
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "large-factor",
+        "perfect-square"
+      ]
+    },
+    {
+      "id": "real-prime-missing",
+      "name": "hidden: prime with impossible rank",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 997,
+        "k": 997
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "prime",
+        "missing-rank",
+        "upper-bound"
+      ]
+    },
+    {
+      "id": "real-highly-composite",
+      "name": "hidden: interior factor of a composite",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 720,
+        "k": 20
+      },
+      "expected": 48,
+      "tags": [
+        "real",
+        "many-factors",
+        "large-factor"
+      ]
+    }
+  ]
+}

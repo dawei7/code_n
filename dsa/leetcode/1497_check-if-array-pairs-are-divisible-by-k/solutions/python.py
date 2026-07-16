@@ -1,12 +1,18 @@
+"""Optimal app-local solution for LeetCode 1497."""
+
 from collections import Counter
 
 
-def solve(arr, k):
-    k = abs(int(k)) or 1
-    counts = Counter(num % k for num in arr)
-    if counts.get(0, 0) % 2:
-        return False
-    for rem in range(1, k):
-        if counts.get(rem, 0) != counts.get((-rem) % k, 0):
+def solve(arr: list[int], k: int) -> bool:
+    """Return whether all values can form pairs summing to multiples of k."""
+    counts = Counter(value % k for value in arr)
+
+    for remainder, count in counts.items():
+        complement = (-remainder) % k
+        if remainder == complement:
+            if count % 2 != 0:
+                return False
+        elif count != counts[complement]:
             return False
+
     return True

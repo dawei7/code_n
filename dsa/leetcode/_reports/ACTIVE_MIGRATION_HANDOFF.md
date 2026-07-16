@@ -35,16 +35,16 @@ the problem-specific reason and continue to the next numeric frontend ID.
 - Repository: `C:\dawei7\code_n`
 - Current local branch: `main`
 - Current committed migration checkpoint:
-  `37755dd2dc09ea27ed3a94c02d0edcddde63aada`, which completes and delivers
-  frontend IDs 1471 through 1480.
+  `97717019379cb191b141940935075f9667ece6c4`, which completes and delivers
+  frontend IDs 1481 through 1489.
 - The worktree contains the completed local package changes for frontend IDs
-  1481 through 1489 plus refreshed generated reports and the focused ordered-group
-  validator regression. Preserve them and any later local
-  changes unless inspection proves they are unrelated.
+  1490 through 1499, the bounded-domain certificate regression for 1491, and
+  refreshed generated reports. Preserve them and any later local changes unless
+  inspection proves they are unrelated.
 - The four-digit directory migration remains based on
   `1fc55b6e7ff0e808e207376bc663ea60cb2cb798`.
-- `main` and `origin/main` are at checkpoint `37755dd2` before the uncommitted
-  frontend ID 1481-1489 package changes.
+- `main` and `origin/main` are at checkpoint `97717019` before the uncommitted
+  frontend ID 1490 package changes.
 - The current commit-and-push authorization is consumed by this checkpoint.
   Do not commit, push, merge, or release without a new explicit user request.
 
@@ -225,24 +225,25 @@ For each package in ascending numeric frontend-ID order:
 
 ## Current authoritative checkpoint
 
-The refreshed migration audit after completing local package work through 1489 reports:
+The refreshed migration audit after completing and remotely verifying package
+work through 1499 reports:
 
 - 3985 canonical packages;
-- 1489 locally complete;
-- 1448 packages fully complete and remotely verified;
-- 1463 completed three-tier scaling benchmarks;
-- 26 strictly validated complexity certificates;
-- 1489 packages with complete complexity verification;
-- 41 recorded remote-verification blockers. Frontend IDs 1413 through 1426
+- 1499 locally complete;
+- 1452 packages fully complete and remotely verified;
+- 1472 completed three-tier scaling benchmarks;
+- 27 strictly validated complexity certificates;
+- 1499 packages with complete complexity verification;
+- 47 recorded remote-verification blockers. Frontend IDs 1413 through 1426
   are locally complete but Electron `safeStorage.decryptString` fails with
-  Windows error `0x8009000B`. Frontend IDs 1463 through 1489 are locally
+  Windows error `0x8009000B`. Frontend IDs 1463 through 1495 are locally
   complete but Chrome was not running; the Chrome-control policy requires an
   explicit confirmation before launching it, while the user instructed the
   migration to record blockers rather than request input;
-- frontend ID 1490, Clone N-ary Tree,
+- frontend ID 1500, Design a File Sharing System,
   as the first actionable incomplete package.
 
-There are 2496 locally incomplete packages after this checkpoint. The forty-one
+There are 2486 locally incomplete packages after this checkpoint. The forty-seven
 recorded blockers affect only remote Accepted verification; per the user's
 instruction, record the exact failure for each affected package and continue
 numerically without waiting for user input. Use the generated report for the
@@ -1373,9 +1374,92 @@ latest completed packages add this evidence:
   cases and the legal 8/32/128 tiers at `-0.00` with a `0.98x` largest-tier
   ratio. Correct exclude/force Kruskal completed normally and failed only
   scaling at `+1.08` and `48.76x`. It has the same Chrome launch blocker;
-- the refreshed migration audit: 1489 locally complete, 1448 fully verified,
-  41 blocked, 1463 scaling benchmarks, 26 certificates, and frontend ID 1490
+- problem 1490 is locally complete. Its explicit stack carries corresponding
+  original/copy N-ary node pairs, allocates every child exactly once, and
+  preserves ordered child lists without recursion-depth risk or an unnecessary
+  identity map. The reference passed every correctness case and the legal
+  625/2500/10000 wide-tree tiers at `-0.00` with a `1.00x` largest-tier
+  ratio. Correct repeated child-list concatenation completed normally, returned
+  every exact cloned tree, and failed only scaling at `+0.43`. It has the
+  same Chrome launch blocker;
+- problem 1491 is locally complete. Its one-pass sum/minimum/maximum aggregation
+  returns the average after removing exactly the two unique extremes in
+  $O(N)$ time and $O(1)$ auxiliary space. Because the official domain caps
+  $N$ at 100, the package uses a strict `bounded_domain` certificate rather
+  than pretending optimized sorting can be distinguished by stable scaling.
+  An independent sort-and-slice oracle checks every legal length from 3 through
+  100, varied orders, value boundaries, and fractional results. The certificate
+  suite passed 18 tests and 27 certificate-route subtests. It has the same
+  Chrome launch blocker;
+- problem 1492 is locally complete. Its two integer-square-root scans enumerate
+  small divisors upward and paired large divisors upward via a reverse scan,
+  skip the duplicate square root, and use $O(1)$ auxiliary space. It passed
+  all cases and the legal prime 61/251/997 tiers at `+0.00` with a `1.01x`
+  largest-tier ratio. Correct linear divisor enumeration completed normally,
+  returned every answer, and failed only scaling at `+0.41`. It has the same
+  Chrome launch blocker;
+- problem 1493 is locally complete. Its at-most-one-zero sliding window encodes
+  the mandatory deletion as `right - left`, covering all-ones, all-zeros,
+  boundary-zero, and repeated-shrink cases in $O(N)$ time and $O(1)$ space.
+  It passed all cases and the legal 64/256/1024 repeated-run tiers at `-0.00`
+  with a `1.00x` largest-tier ratio. A direct nested-loop draft was rejected
+  as invalid calibration after reaching the safety cap; a correct quadratic
+  try-every-deletion implementation using finishable built-in rescans returned
+  every expected answer and failed only scaling at `+0.88` and `16.42x`.
+  It has the same Chrome launch blocker;
+- problem 1494 is locally complete. Its completed-course-mask DP precomputes
+  prerequisite masks, takes all available courses when capacity does not bind,
+  and generates only exact-$k$ combinations when selection matters. A
+  no-prerequisite closed form avoids unnecessary exponential work on the
+  official 11-course sample. The reference passed all cases and the
+  64/256/1024 state-space tiers at `-0.01` with a `0.99x` largest-tier
+  ratio. A correct full-universe subset baseline completed normally and failed
+  only scaling at `+0.85` and `22.50x`. It has the same Chrome launch
+  blocker;
+- problem 1495 is locally complete. Its portable SQL joins schedule and content
+  metadata, applies independent kid/movie predicates, uses the half-open June
+  timestamp interval, and deduplicates titles. It passed all cases and the
+  32/128/512 content-row tiers at `+0.01` with a `1.00x` largest-tier
+  ratio. A correct correlated `EXISTS` formulation completed normally,
+  returned every title, and failed only scaling at `+0.63`. It is paid SQL,
+  remote submission is standing-authorized, and it has the same Chrome launch
+  blocker;
+- problem 1496 is complete and remotely verified as submission `2069341486`.
+  Its 625/2500/10000 straight-path tiers passed both linear hash-set
+  implementations. Correct list membership returned every answer and failed
+  only scaling at `+0.85` with a `22.29x` largest-tier ratio;
+- problem 1497 is complete and remotely verified as submission `2069349686`.
+  Its sparse remainder-count implementation handles the legal maximum divisor
+  without exhausting the ordinary-case step guard. Correct repeated
+  complement search completed the 256/512/1024 tiers and failed only scaling
+  at `+1.26` and `104.02x`;
+- problem 1498 is complete and remotely verified as submission `2069354834`.
+  Its sort-and-two-pointer counting passed the 128/256/512 tiers. Correct
+  restarted right-end search returned every modulo count and failed only
+  scaling at `+1.15` and `106.60x`;
+- problem 1499 is complete and remotely verified as submission `2069359603`.
+  Its monotonic deque and an independent linear queue both passed the
+  128/256/512 all-eligible tiers. Correct all-pairs enumeration completed
+  normally and failed only scaling at `+1.11` and `88.02x`;
+- the refreshed migration audit: 1499 locally complete, 1452 fully verified,
+  47 blocked, 1472 scaling benchmarks, 27 certificates, and frontend ID 1500
   next;
+- the dataset checker after problem 1499: 3985 documents, 2536 manually
+  complete, and 1449 still needing authoring;
+- the dataset checker after problem 1495: 3985 documents, 2535 manually
+  complete, and 1450 still needing authoring;
+- the dataset checker after problem 1494: 3985 documents, 2534 manually
+  complete, and 1451 still needing authoring;
+- the dataset checker after problem 1492: 3985 documents, 2533 manually
+  complete, and 1452 still needing authoring;
+- the combined complexity-certificate, validated-case, dynamic-documentation,
+  and submission suite after problem 1493 passed 141 tests and 27 certificate
+  subtests, with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1490: 3985 documents, 2532 manually
+  complete, and 1453 still needing authoring;
+- the focused validated-case, dynamic-documentation, and submission suite after
+  problem 1490 passed 123 tests, with only the existing Starlette `httpx`
+  deprecation warning;
 - the dataset checker after problem 1478: 3985 documents, 2526 manually
   complete, and 1459 still needing authoring;
 - the focused validated-case, dynamic-documentation, and submission suite after
@@ -1449,9 +1533,9 @@ Get-Content dsa\leetcode\_reports\two_sum_migration_progress.md
 ```
 
 The expected branch is `main`, and the expected committed migration checkpoint is
-`37755dd2dc09ea27ed3a94c02d0edcddde63aada`. The refreshed first actionable
+`97717019379cb191b141940935075f9667ece6c4`. The refreshed first actionable
 package should be
-`dsa/leetcode/1490_clone-n-ary-tree`. If
+`dsa/leetcode/1500_design-a-file-sharing-system`. If
 any of those facts differ, trust the live worktree and refreshed audit,
 investigate the drift, and preserve rather than discard changes.
 
@@ -1468,7 +1552,7 @@ For the next native candidate, replace the frontend ID in:
 
 ```powershell
 $env:ELECTRON_RUN_AS_NODE=$null
-npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1490
+npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1500
 ```
 
 ## Exact prompt for a new Codex session
@@ -1485,12 +1569,12 @@ Copy and paste this entire block into the new session:
 > `dsa/leetcode/_reports/ACTIVE_MIGRATION_HANDOFF.md`, and
 > `dsa/leetcode/_reports/two_sum_migration_progress.md` completely. Then run a
 > fresh migration audit and treat the live worktree and generated reports as
-> authoritative. Problems through frontend ID 1489 are locally complete;
-> 1448 packages are remotely verified. Problems 1413 through 1426 have
-> recorded Electron credential-decryption blockers, while 1463 through 1489
+> authoritative. Problems through frontend ID 1499 are locally complete;
+> 1452 packages are remotely verified. Problems 1413 through 1426 have
+> recorded Electron credential-decryption blockers, while 1463 through 1495
 > have recorded Chrome-not-running launch-policy blockers. The expected first
 > actionable package is
-> `dsa/leetcode/1490_clone-n-ary-tree`,
+> `dsa/leetcode/1500_design-a-file-sharing-system`,
 > but follow
 > the refreshed audit if it differs.
 > Continue autonomously in numeric frontend-ID order and do not stop after
