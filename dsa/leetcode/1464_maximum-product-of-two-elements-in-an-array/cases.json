@@ -6,73 +6,54 @@
       "name": "sample: two largest values",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          4,
-          5,
-          2
-        ]
-      },
+      "input": {"nums": [3,4,5,2]},
       "expected": 12,
-      "tags": [
-        "sample",
-        "array"
-      ]
+      "tags": ["sample", "array"]
     },
     {
       "id": "sample-2",
       "name": "sample: duplicate maximum",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          5,
-          4,
-          5
-        ]
-      },
+      "input": {"nums": [1,5,4,5]},
       "expected": 16,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "duplicates"]
     },
     {
       "id": "sample-3",
-      "name": "sample: single large maximum",
+      "name": "sample: exactly two entries",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          10,
-          2,
-          5,
-          2
-        ]
-      },
-      "expected": 36,
-      "tags": [
-        "sample"
-      ]
+      "input": {"nums": [3,7]},
+      "expected": 12,
+      "tags": ["sample", "minimum-length"]
     },
     {
-      "id": "real-second-largest-matters",
-      "name": "hidden: second largest determines product",
+      "id": "trial-zero-product",
+      "name": "trial: both adjusted factors are zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1,1]},
+      "expected": 0,
+      "tags": ["trial", "minimum-values"]
+    },
+    {
+      "id": "real-second-largest",
+      "name": "hidden: isolated maximum needs the true runner-up",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          9,
-          8,
-          1,
-          2
-        ]
-      },
+      "input": {"nums": [9,8,1,2]},
       "expected": 56,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "runner-up"]
+    },
+    {
+      "id": "real-maximum-constraints",
+      "name": "hidden: duplicate upper-bound values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000,2,1000,999]},
+      "expected": 998001,
+      "tags": ["hidden", "duplicates", "upper-bound"]
     }
   ]
 }

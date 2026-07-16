@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_1469",
+  "cases": [
+    {
+      "id":"sample-1","name":"sample: one right-only child","kind":"sample","visible":true,
+      "input":{"root":[1,2,3,null,4]},"expected":[4],"validator":{"kind":"unordered_list"},
+      "tags":["sample","right-child"]
+    },
+    {
+      "id":"sample-2","name":"sample: lonely nodes at different depths","kind":"sample","visible":true,
+      "input":{"root":[7,1,4,6,null,5,3,null,null,null,null,null,2]},"expected":[6,2],"validator":{"kind":"unordered_list"},
+      "tags":["sample","multiple-depths"]
+    },
+    {
+      "id":"trial-single-root","name":"trial: root alone is not lonely","kind":"trial","visible":true,
+      "input":{"root":[197]},"expected":[],"validator":{"kind":"unordered_list"},
+      "tags":["trial","single-node"]
+    },
+    {
+      "id":"trial-right-chain","name":"trial: every non-root node is lonely","kind":"trial","visible":true,
+      "input":{"root":[31,null,78,null,28]},"expected":[78,28],"validator":{"kind":"unordered_list"},
+      "tags":["trial","chain"]
+    },
+    {
+      "id":"real-full-tree","name":"hidden: every internal node has two children","kind":"real","visible":false,
+      "input":{"root":[1,2,3,4,5,6,7]},"expected":[],"validator":{"kind":"unordered_list"},
+      "tags":["hidden","no-lonely-nodes"]
+    },
+    {
+      "id":"real-mixed-sides","name":"hidden: left-only and right-only children coexist","kind":"real","visible":false,
+      "input":{"root":[10,5,15,3,null,null,20,null,4]},"expected":[3,20,4],"validator":{"kind":"unordered_list"},
+      "tags":["hidden","mixed-sides"]
+    }
+  ]
+}

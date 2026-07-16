@@ -1,28 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1458",
+  "measurement_note": "Size is q, the common length of the two arrays. The 6/12/24 square tiers span 4x and use all ones, so the optimum uses every aligned pair and equals q. Rolling-row prefix DP takes O(q^2) time. A correct implementation that, for each final pair, rescans all compatible earlier final-pair states takes O(q^4), completes normally at q = 24, and is rejected by scaling.",
   "cases": [
     {
-      "id": "benchmark-mixed-signs",
-      "name": "benchmark: mixed signs and skips",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: two length-6 all-one arrays",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "nums1": [
-          1,
-          -2,
-          3,
-          -4
-        ],
-        "nums2": [
-          2,
-          -1,
-          4
-        ]
-      },
-      "expected": 16,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 6,
+      "input": {"nums1": [1,1,1,1,1,1], "nums2": [1,1,1,1,1,1]},
+      "expected": 6,
+      "tags": ["benchmark", "scale-small", "square-dp"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: two length-12 all-one arrays",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"nums1": [1,1,1,1,1,1,1,1,1,1,1,1], "nums2": [1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 12,
+      "tags": ["benchmark", "scale-medium", "square-dp"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: two length-24 all-one arrays",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"nums1": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], "nums2": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 24,
+      "tags": ["benchmark", "scale-large", "square-dp"]
     }
   ]
 }

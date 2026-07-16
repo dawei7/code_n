@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1456",
+  "cases": [
+    {
+      "id": "sample-three-vowels",
+      "name": "sample: all-vowel window occurs in the middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abciiidef", "k": 3},
+      "expected": 3,
+      "tags": ["sample", "middle-window"]
+    },
+    {
+      "id": "sample-all-vowels",
+      "name": "sample: every two-character window is all vowels",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aeiou", "k": 2},
+      "expected": 2,
+      "tags": ["sample", "upper-bound"]
+    },
+    {
+      "id": "sample-tied-windows",
+      "name": "sample: several windows share the maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "leetcode", "k": 3},
+      "expected": 2,
+      "tags": ["sample", "ties"]
+    },
+    {
+      "id": "trial-no-vowels",
+      "name": "all windows contain no vowels",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "rhythms", "k": 4},
+      "expected": 0,
+      "tags": ["trial", "zero"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "one-character windows find a late vowel",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "bcda", "k": 1},
+      "expected": 1,
+      "tags": ["trial", "k-one"]
+    },
+    {
+      "id": "real-whole-string",
+      "name": "hidden: whole string is the only window",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "algorithm", "k": 9},
+      "expected": 3,
+      "tags": ["hidden", "k-equals-n"]
+    },
+    {
+      "id": "real-best-first",
+      "name": "hidden: best window is the first one",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aeibcdfg", "k": 4},
+      "expected": 3,
+      "tags": ["hidden", "first-window"]
+    },
+    {
+      "id": "real-best-last",
+      "name": "hidden: best window is the final one",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "bcdfaei", "k": 3},
+      "expected": 3,
+      "tags": ["hidden", "last-window"]
+    },
+    {
+      "id": "real-remove-and-add-vowels",
+      "name": "hidden: outgoing and incoming vowels balance",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aebicodu", "k": 4},
+      "expected": 3,
+      "tags": ["hidden", "window-update"]
+    },
+    {
+      "id": "real-single-consonant",
+      "name": "hidden: minimum input with no vowel",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "z", "k": 1},
+      "expected": 0,
+      "tags": ["hidden", "minimum"]
+    }
+  ]
+}

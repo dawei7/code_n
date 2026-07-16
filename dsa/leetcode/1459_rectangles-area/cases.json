@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1459",
+  "cases": [
+    {
+      "id": "sample-two-rectangles",
+      "name": "sample: two positive rectangles and one zero-width pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Points": [
+        {"id": 1, "x_value": 2, "y_value": 7},
+        {"id": 2, "x_value": 4, "y_value": 8},
+        {"id": 3, "x_value": 2, "y_value": 10}
+      ]}},
+      "expected": {"columns": ["p1", "p2", "area"], "rows": [[2, 3, 4], [1, 2, 2]]},
+      "tags": ["sample", "zero-width"]
+    },
+    {
+      "id": "trial-one-valid",
+      "name": "only the diagonal point pair has positive area",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Points": [
+        {"id": 1, "x_value": 0, "y_value": 0},
+        {"id": 2, "x_value": 0, "y_value": 5},
+        {"id": 3, "x_value": 4, "y_value": 5}
+      ]}},
+      "expected": {"columns": ["p1", "p2", "area"], "rows": [[1, 3, 20]]},
+      "tags": ["trial", "degenerate-pairs"]
+    },
+    {
+      "id": "trial-tied-areas",
+      "name": "equal areas use both ascending ID tie-breakers",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Points": [
+        {"id": 1, "x_value": 0, "y_value": 0},
+        {"id": 2, "x_value": 1, "y_value": 1},
+        {"id": 3, "x_value": 2, "y_value": 0},
+        {"id": 4, "x_value": 1, "y_value": -1}
+      ]}},
+      "expected": {"columns": ["p1", "p2", "area"], "rows": [
+        [1, 2, 1], [1, 4, 1], [2, 3, 1], [3, 4, 1]
+      ]},
+      "tags": ["trial", "tie-ordering"]
+    },
+    {
+      "id": "real-single-point",
+      "name": "hidden: one point produces no rectangle",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Points": [{"id": 9, "x_value": -2, "y_value": -3}]}},
+      "expected": {"columns": ["p1", "p2", "area"], "rows": []},
+      "tags": ["hidden", "minimum"]
+    },
+    {
+      "id": "real-negative-nonconsecutive",
+      "name": "hidden: negative coordinates and nonconsecutive IDs",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Points": [
+        {"id": 10, "x_value": -2, "y_value": -3},
+        {"id": 2, "x_value": 4, "y_value": 5},
+        {"id": 7, "x_value": -2, "y_value": 5}
+      ]}},
+      "expected": {"columns": ["p1", "p2", "area"], "rows": [[2, 10, 48]]},
+      "tags": ["hidden", "negative-coordinates", "id-order"]
+    },
+    {
+      "id": "real-duplicate-coordinates",
+      "name": "hidden: duplicate coordinates are degenerate with each other",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Points": [
+        {"id": 1, "x_value": 0, "y_value": 0},
+        {"id": 2, "x_value": 0, "y_value": 0},
+        {"id": 3, "x_value": 2, "y_value": 3}
+      ]}},
+      "expected": {"columns": ["p1", "p2", "area"], "rows": [[1, 3, 6], [2, 3, 6]]},
+      "tags": ["hidden", "duplicate-coordinates"]
+    },
+    {
+      "id": "real-area-order",
+      "name": "hidden: larger areas precede smaller areas",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Points": [
+        {"id": 1, "x_value": 0, "y_value": 0},
+        {"id": 2, "x_value": 2, "y_value": 3},
+        {"id": 3, "x_value": 5, "y_value": 1}
+      ]}},
+      "expected": {"columns": ["p1", "p2", "area"], "rows": [[1, 2, 6], [2, 3, 6], [1, 3, 5]]},
+      "tags": ["hidden", "area-order"]
+    }
+  ]
+}

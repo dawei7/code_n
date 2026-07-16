@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1461",
+  "cases": [
+    {
+      "id": "sample-all-two-bit",
+      "name": "sample: every two-bit code occurs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "00110110", "k": 2},
+      "expected": true,
+      "tags": ["sample", "complete"]
+    },
+    {
+      "id": "sample-all-one-bit",
+      "name": "sample: both one-bit codes occur",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "0110", "k": 1},
+      "expected": true,
+      "tags": ["sample", "k-one"]
+    },
+    {
+      "id": "sample-missing-zero-zero",
+      "name": "sample: one two-bit code is absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "0110", "k": 2},
+      "expected": false,
+      "tags": ["sample", "missing-code"]
+    },
+    {
+      "id": "trial-overlap-complete",
+      "name": "overlapping windows cover all two-bit codes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "00110", "k": 2},
+      "expected": true,
+      "tags": ["trial", "overlap"]
+    },
+    {
+      "id": "trial-k-longer",
+      "name": "code length exceeds the string length",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "101", "k": 4},
+      "expected": false,
+      "tags": ["trial", "k-greater-than-n"]
+    },
+    {
+      "id": "real-too-few-windows",
+      "name": "hidden: pigeonhole bound rejects before scanning",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "1010", "k": 3},
+      "expected": false,
+      "tags": ["hidden", "window-count-bound"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: duplicates do not replace missing codes",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "00000000", "k": 2},
+      "expected": false,
+      "tags": ["hidden", "duplicate-windows"]
+    },
+    {
+      "id": "real-three-bit-complete",
+      "name": "hidden: compact sequence covers all three-bit codes",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "0001011100", "k": 3},
+      "expected": true,
+      "tags": ["hidden", "three-bit"]
+    },
+    {
+      "id": "real-one-bit-missing",
+      "name": "hidden: only zero occurs for k one",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "00000", "k": 1},
+      "expected": false,
+      "tags": ["hidden", "k-one", "missing-one"]
+    },
+    {
+      "id": "real-single-character",
+      "name": "hidden: one character cannot contain both one-bit codes",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "1", "k": 1},
+      "expected": false,
+      "tags": ["hidden", "minimum"]
+    }
+  ]
+}

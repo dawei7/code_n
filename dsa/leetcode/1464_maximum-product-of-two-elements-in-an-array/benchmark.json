@@ -1,23 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1464",
+  "measurement_note": "Size is n, the array length. The 8/32/128 tiers span 16x and place 1000 and 999 among otherwise minimal values, so the expected product is 999*998 = 997002 at every tier. A single scan takes O(n) time. Correct enumeration of every distinct index pair takes O(n^2), completes normally at n = 128, and is rejected by scaling.",
   "cases": [
     {
-      "id": "benchmark-large-values",
-      "name": "benchmark: large top two values",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: length 8 with two isolated maxima",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "nums": [
-          100,
-          99,
-          1,
-          1
-        ]
-      },
-      "expected": 9702,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 8,
+      "input": {"nums": [1,1,1,1000,1,999,1,1]},
+      "expected": 997002,
+      "tags": ["benchmark", "scale-small", "two-maxima"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: length 32 with two isolated maxima",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1000,1,1,1,1,1,1,1,999,1,1,1,1,1,1,1,1]},
+      "expected": 997002,
+      "tags": ["benchmark", "scale-medium", "two-maxima"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: length 128 with two isolated maxima",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1000,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,999,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 997002,
+      "tags": ["benchmark", "scale-large", "two-maxima"]
     }
   ]
 }

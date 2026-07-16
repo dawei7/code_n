@@ -3,110 +3,57 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: four rows",
+      "name": "sample: coordinated four-row routes",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            3,
-            1,
-            1
-          ],
-          [
-            2,
-            5,
-            1
-          ],
-          [
-            1,
-            5,
-            5
-          ],
-          [
-            2,
-            1,
-            1
-          ]
-        ]
-      },
+      "input": {"grid": [[3,1,1],[2,5,1],[1,5,5],[2,1,1]]},
       "expected": 24,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
+      "tags": ["sample", "dynamic-programming"]
     },
     {
       "id": "sample-2",
-      "name": "sample: sparse cherries",
+      "name": "sample: wide sparse field",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            2,
-            0
-          ]
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
+      "input": {"grid": [[1,0,0,0,0,0,1],[2,0,0,0,0,3,0],[2,0,9,0,0,0,0],[0,3,0,5,4,0,0],[1,0,2,3,0,0,6]]},
+      "expected": 28,
+      "tags": ["sample", "sparse"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: two by two grid",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            1
-          ],
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-single-cell",
-      "name": "hidden: robots start on same single cell",
+      "id": "real-collision",
+      "name": "hidden: optimal robots meet and count center once",
       "kind": "real",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            5
-          ]
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "hidden"
-      ]
+      "input": {"grid": [[1,0,1],[0,10,0]]},
+      "expected": 12,
+      "tags": ["hidden", "collision"]
+    },
+    {
+      "id": "trial-two-by-two",
+      "name": "trial: smallest dimensions with distinct routes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1],[1,1]]},
+      "expected": 4,
+      "tags": ["hidden", "minimum-dimensions"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: no cherries anywhere",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[0,0,0,0],[0,0,0,0],[0,0,0,0]]},
+      "expected": 0,
+      "tags": ["hidden", "zero-values"]
+    },
+    {
+      "id": "real-boundary-and-collision",
+      "name": "hidden: boundary moves compete with a valuable center",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[5,1,5],[9,0,9],[0,20,0],[7,0,7]]},
+      "expected": 62,
+      "tags": ["hidden", "boundaries", "collision"]
     }
   ]
 }

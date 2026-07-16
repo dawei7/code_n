@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1607",
+  "frontend_id": "1459",
+  "title_slug": "rectangles-area",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2069173889",
+  "verified_at": "2026-07-15T23:39:23.482161+00:00"
+}

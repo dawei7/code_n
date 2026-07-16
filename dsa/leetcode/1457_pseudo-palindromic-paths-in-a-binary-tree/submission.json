@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1568",
+  "frontend_id": "1457",
+  "title_slug": "pseudo-palindromic-paths-in-a-binary-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.pseudoPalindromicPaths",
+  "verified_submission_id": "2069171315",
+  "verified_at": "2026-07-15T23:28:35.069682+00:00"
+}

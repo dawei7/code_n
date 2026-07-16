@@ -1,43 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1463",
+  "measurement_note": "Size is q, both the row count and column count of a square grid. The 3/6/12 tiers span 4x and contain only ones, so two robots can remain in distinct columns and the optimum is 2q. Rolling column-pair DP takes O(q^3) time on these square instances. A correct implementation that redundantly recomputes the complete DP q times takes O(q^4), completes normally at q = 12, and is rejected by scaling.",
   "cases": [
     {
-      "id": "benchmark-crossing-high-values",
-      "name": "benchmark: high values require coordinated paths",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3 by 3 uniform field",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            1,
-            2,
-            3,
-            4
-          ],
-          [
-            0,
-            10,
-            0,
-            1
-          ],
-          [
-            2,
-            0,
-            9,
-            0
-          ],
-          [
-            1,
-            1,
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 29,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 3,
+      "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]},
+      "expected": 6,
+      "tags": ["benchmark", "scale-small", "joint-state-dp"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 by 6 uniform field",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"grid": [[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1]]},
+      "expected": 12,
+      "tags": ["benchmark", "scale-medium", "joint-state-dp"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 12 by 12 uniform field",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"grid": [[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1]]},
+      "expected": 24,
+      "tags": ["benchmark", "scale-large", "joint-state-dp"]
     }
   ]
 }

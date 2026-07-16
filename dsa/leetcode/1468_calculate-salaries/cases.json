@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1468",
+  "cases": [
+    {
+      "id": "sample-three-brackets",
+      "name": "sample: companies exercise all three tax brackets",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Salaries": [
+        {"company_id":1,"employee_id":1,"employee_name":"Tony","salary":2000},
+        {"company_id":1,"employee_id":2,"employee_name":"Pronub","salary":21300},
+        {"company_id":1,"employee_id":3,"employee_name":"Tyrrox","salary":10800},
+        {"company_id":2,"employee_id":1,"employee_name":"Pam","salary":300},
+        {"company_id":2,"employee_id":7,"employee_name":"Bassem","salary":450},
+        {"company_id":2,"employee_id":9,"employee_name":"Hermione","salary":700},
+        {"company_id":3,"employee_id":7,"employee_name":"Bocaben","salary":100},
+        {"company_id":3,"employee_id":2,"employee_name":"Ognjen","salary":2200},
+        {"company_id":3,"employee_id":13,"employee_name":"Nyancat","salary":3300},
+        {"company_id":3,"employee_id":15,"employee_name":"Morninngcat","salary":7777}
+      ]}},
+      "expected": {"columns":["company_id","employee_id","employee_name","salary"],"rows":[[1,1,"Tony",1020],[1,2,"Pronub",10863],[1,3,"Tyrrox",5508],[2,1,"Pam",300],[2,7,"Bassem",450],[2,9,"Hermione",700],[3,7,"Bocaben",76],[3,2,"Ognjen",1672],[3,13,"Nyancat",2508],[3,15,"Morninngcat",5911]]},
+      "tags": ["sample", "all-brackets", "rounding"]
+    },
+    {
+      "id": "trial-thresholds",
+      "name": "trial: company maxima surround every threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Salaries": [
+        {"company_id":10,"employee_id":1,"employee_name":"Below","salary":999},
+        {"company_id":11,"employee_id":1,"employee_name":"AtLow","salary":1000},
+        {"company_id":12,"employee_id":1,"employee_name":"AtHigh","salary":10000},
+        {"company_id":13,"employee_id":1,"employee_name":"Above","salary":10001}
+      ]}},
+      "expected": {"columns":["company_id","employee_id","employee_name","salary"],"rows":[[10,1,"Below",999],[11,1,"AtLow",760],[12,1,"AtHigh",7600],[13,1,"Above",5101]]},
+      "tags": ["trial", "thresholds"]
+    },
+    {
+      "id": "trial-round-nearest",
+      "name": "trial: fractional adjusted salary rounds upward",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Salaries": [
+        {"company_id":3,"employee_id":15,"employee_name":"Morninngcat","salary":7777}
+      ]}},
+      "expected": {"columns":["company_id","employee_id","employee_name","salary"],"rows":[[3,15,"Morninngcat",5911]]},
+      "tags": ["trial", "rounding"]
+    },
+    {
+      "id": "real-company-rate",
+      "name": "hidden: high earner sets the rate for a low earner",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Salaries": [
+        {"company_id":20,"employee_id":1,"employee_name":"Junior","salary":100},
+        {"company_id":20,"employee_id":2,"employee_name":"Senior","salary":12000}
+      ]}},
+      "expected": {"columns":["company_id","employee_id","employee_name","salary"],"rows":[[20,1,"Junior",51],[20,2,"Senior",6120]]},
+      "tags": ["hidden", "company-wide-rate"]
+    },
+    {
+      "id": "real-independent-companies",
+      "name": "hidden: employee identifiers repeat across companies",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Salaries": [
+        {"company_id":30,"employee_id":1,"employee_name":"Same","salary":500},
+        {"company_id":31,"employee_id":1,"employee_name":"Same","salary":5000}
+      ]}},
+      "expected": {"columns":["company_id","employee_id","employee_name","salary"],"rows":[[30,1,"Same",500],[31,1,"Same",3800]]},
+      "tags": ["hidden", "composite-key", "independent-groups"]
+    }
+  ]
+}

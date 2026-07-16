@@ -56,6 +56,38 @@
     "1426": {
       "reason": "Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.",
       "recorded_at": "2026-07-15T18:59:53.179438+00:00"
+    },
+    "1463": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:03:47.710798+00:00"
+    },
+    "1464": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:06:47.146891+00:00"
+    },
+    "1465": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:10:14.031887+00:00"
+    },
+    "1466": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:14:20.693518+00:00"
+    },
+    "1467": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:18:20.929950+00:00"
+    },
+    "1468": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:26:05.379744+00:00"
+    },
+    "1469": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:29:53.580853+00:00"
+    },
+    "1470": {
+      "reason": "Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.",
+      "recorded_at": "2026-07-16T00:35:31.800326+00:00"
     }
   }
 }

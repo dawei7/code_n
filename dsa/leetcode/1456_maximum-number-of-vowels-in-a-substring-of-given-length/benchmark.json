@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1456",
+  "measurement_note": "Size is n, the length of s. Each tier sets k = n/2 and alternates a vowel with a consonant, so every candidate window must be considered and no early upper-bound return applies. The 64/192/512 tiers span 8x. Sliding-window implementations take O(n). A correct alternative that recounts every length-k window takes O((n-k+1)k), completes normally at n = 512, and is rejected by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 64 alternating characters with half-width windows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "abababababababababababababababababababababababababababababababab",
+        "k": 32
+      },
+      "expected": 16,
+      "tags": ["benchmark", "scale-small", "alternating", "half-width"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 192 alternating characters with half-width windows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": {
+        "s": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+        "k": 96
+      },
+      "expected": 48,
+      "tags": ["benchmark", "scale-medium", "alternating", "half-width"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 alternating characters with half-width windows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+        "k": 256
+      },
+      "expected": 128,
+      "tags": ["benchmark", "scale-large", "alternating", "half-width"]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1457",
+  "cases": [
+    {
+      "id": "sample-two-valid",
+      "name": "sample: two of three paths are pseudo-palindromic",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [2, 3, 1, 3, 1, null, 1]},
+      "expected": 2,
+      "tags": ["sample", "mixed-paths"]
+    },
+    {
+      "id": "sample-one-valid",
+      "name": "sample: one valid path in an uneven tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [2, 1, 1, 1, 3, null, null, null, null, null, 1]},
+      "expected": 1,
+      "tags": ["sample", "uneven-tree"]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: single-node path",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [9]},
+      "expected": 1,
+      "tags": ["sample", "single-node"]
+    },
+    {
+      "id": "trial-none-valid",
+      "name": "two paths each have two odd frequencies",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, 2, 3]},
+      "expected": 0,
+      "tags": ["trial", "no-valid-path"]
+    },
+    {
+      "id": "trial-all-valid",
+      "name": "all four identical-value paths are valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [4, 4, 4, 4, 4, 4, 4]},
+      "expected": 4,
+      "tags": ["trial", "all-valid"]
+    },
+    {
+      "id": "real-even-length-valid",
+      "name": "hidden: all frequencies even on a skewed path",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [1, 2, null, 2, null, 1]},
+      "expected": 1,
+      "tags": ["hidden", "even-length", "skewed"]
+    },
+    {
+      "id": "real-three-valid",
+      "name": "hidden: separate leaves with shared value patterns",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [2, 3, 1, 3, 1, 1, 1]},
+      "expected": 3,
+      "tags": ["hidden", "path-identity"]
+    },
+    {
+      "id": "real-deep-invalid",
+      "name": "hidden: deep path has three odd frequencies",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [1, 2, null, 3, null, 2]},
+      "expected": 0,
+      "tags": ["hidden", "multiple-odd"]
+    },
+    {
+      "id": "real-parity-toggle",
+      "name": "hidden: repeated values toggle parity back to even",
+      "kind": "real",
+      "visible": false,
+      "input": {"root": [7, 8, null, 7, null, 8, null, 9]},
+      "expected": 1,
+      "tags": ["hidden", "parity-toggle"]
+    }
+  ]
+}

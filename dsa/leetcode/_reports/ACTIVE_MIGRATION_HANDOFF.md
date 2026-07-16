@@ -35,18 +35,18 @@ the problem-specific reason and continue to the next numeric frontend ID.
 - Repository: `C:\dawei7\code_n`
 - Current local branch: `main`
 - Current migration checkpoint commit:
-  `fb27481d65d8ffe67660cf7b3fb2ce3b5e3d5492`
+  `78643cf854f8a351ff7ac6fe6b09c6e1f7b3ba38`
 - Commit `fb27481d` advances the canonical migration through frontend ID 1455
   on `main`; commit `34c99b68` is the preceding checkpoint through 1445 and
   includes the visualization framework.
-- The package and generated-report worktree is clean at this checkpoint. Any
-  later local changes belong to the continuing migration and must be
-  preserved.
+- The worktree contains uncommitted migration changes for frontend IDs 1456
+  through 1470 plus refreshed generated reports. Preserve them. Any later local
+  changes also belong to the continuing migration unless live inspection
+  proves otherwise.
 - The four-digit directory migration remains based on
   `1fc55b6e7ff0e808e207376bc663ea60cb2cb798`.
-- `main` is at `fb27481d` before this handoff-only update; `origin/main` will
-  be advanced to the resulting handoff commit by the explicitly authorized
-  checkpoint push.
+- `main` and `origin/main` are at handoff checkpoint `78643cf8` before these
+  uncommitted package changes.
 - The current commit-and-push authorization is consumed by this checkpoint.
   Do not commit, push, merge, or release without a new explicit user request.
 
@@ -227,21 +227,24 @@ For each package in ascending numeric frontend-ID order:
 
 ## Current authoritative checkpoint
 
-The refreshed migration audit after completing packages through 1455 reports:
+The refreshed migration audit after completing local package work through 1470 reports:
 
 - 3985 canonical packages;
-- 1455 locally complete;
-- 1441 packages fully complete and remotely verified;
-- 1429 completed three-tier scaling benchmarks;
+- 1470 locally complete;
+- 1448 packages fully complete and remotely verified;
+- 1444 completed three-tier scaling benchmarks;
 - 26 strictly validated complexity certificates;
-- 1455 packages with complete complexity verification;
-- 14 recorded remote-verification blockers at frontend IDs 1413 through 1426;
-  each package is locally complete, but Electron `safeStorage.decryptString`
-  fails with Windows error `0x8009000B`;
-- frontend ID 1456, Maximum Number of Vowels in a Substring of Given Length,
+- 1470 packages with complete complexity verification;
+- 22 recorded remote-verification blockers. Frontend IDs 1413 through 1426
+  are locally complete but Electron `safeStorage.decryptString` fails with
+  Windows error `0x8009000B`. Frontend IDs 1463 through 1470 are locally
+  complete but Chrome was not running; the Chrome-control policy requires an
+  explicit confirmation before launching it, while the user instructed the
+  migration to record blockers rather than request input;
+- frontend ID 1471, The k Strongest Values in an Array,
   as the first actionable incomplete package.
 
-There are 2530 locally incomplete packages after this checkpoint. The fourteen
+There are 2515 locally incomplete packages after this checkpoint. The twenty-two
 recorded blockers affect only remote Accepted verification; per the user's
 instruction, record the exact failure for each affected package and continue
 numerically without waiting for user input. Use the generated report for the
@@ -1175,13 +1178,80 @@ latest completed packages add this evidence:
   word-boundary scan and an independent linear split scan passed, while a
   correct implementation that repeatedly recounted preceding words completed
   normally and failed only scaling at `+0.81`;
-- the refreshed migration audit: 1455 locally complete, 1441 fully verified,
-  14 blocked, 1429 scaling benchmarks, 26 certificates, and frontend ID 1456
+- problem 1456 was remotely Accepted as submission `2069169780`; its fixed-
+  width sliding window and an independent constant-space scan passed, while
+  correct full-window recounting completed normally and failed only scaling at
+  `+1.23` and `54.00x`;
+- problem 1457 was remotely Accepted as submission `2069171315`; its iterative
+  parity-mask DFS and an independent iterative traversal passed. Restoring the
+  canonical `**Inputs**` marker repaired binary-tree fixture conversion, and
+  correct explicit path reconstruction completed normally and failed only
+  scaling at `+1.12` and `97.51x`;
+- problem 1458 was remotely Accepted as submission `2069172396`; its rolling-
+  row and full-table dynamic programs passed. A hidden order-sensitive case
+  was corrected after validation exposed a better legal pairing, while correct
+  predecessor rescanning completed normally and failed only scaling at `+2.32`
+  and `73.07x`;
+- problem 1459 was remotely Accepted as Premium MySQL submission `2069173889`;
+  its direct self-join and an independent cross join passed on output-sensitive
+  all-valid-pair tiers, while a correct correlated full-table rescan completed
+  normally and failed only scaling at `+0.56`;
+- problem 1460 was remotely Accepted as submission `2069175019`; its fixed-
+  domain balance array and an independent frequency map passed. Incremental
+  nonzero-balance tracking removed a fixed-scan calibration artifact, while
+  correct repeated list removal completed normally and failed only scaling at
+  `+0.51`;
+- problem 1461 was remotely Accepted as submission `2069176461`; its rolling
+  bitmask and an independent rolling integer set passed. A native substring-
+  search draft was rejected as an uncalibrated counterexample, while correct
+  exhaustive code-by-window scanning completed normally and failed only
+  scaling at `+1.12` and `33.30x`;
+- problem 1462 was remotely Accepted as submission `2069177679`; its reverse-
+  topological set closure and an independent bitset closure passed, while
+  correct per-query DFS completed normally and failed only scaling at `+1.42`
+  and `33.59x`;
+- problem 1463 is locally complete. Its rolling joint-column dynamic program
+  passed scaling at extra exponent `+0.01`; correct redundant recomputation
+  returned every expected output, completed normally, and failed only scaling
+  at `+1.16` and `12.57x`. Remote verification is blocked because Chrome is
+  not running and policy requires explicit launch confirmation;
+- problem 1464 is locally complete. Its one-pass two-maxima scan passed at
+  `+0.00`; correct pair enumeration returned every expected output, completed
+  normally, and failed only scaling at `+1.21` and `34.11x`. It has the same
+  Chrome launch blocker;
+- problem 1465 is locally complete. Its sort-and-gap scan passed at `-0.01`;
+  correct predecessor rescanning returned every expected output, completed
+  normally, and failed only scaling at `+1.04` and `21.36x`. It has the same
+  Chrome launch blocker;
+- problem 1466 is locally complete. Its direction-marked iterative tree
+  traversal passed at `+0.01`; correct repeated frontier scans returned every
+  expected output, completed normally, and failed only scaling at `+0.99` and
+  `15.47x`. It has the same Chrome launch blocker;
+- problem 1467 is locally complete. Its exact rolling combinatorial DP over
+  ball count and distinct-color difference passed at `+0.01`; correct
+  allocation-vector enumeration returned every float-validated answer,
+  completed normally, and failed only scaling at `+2.78` and `51.03x`. It has
+  the same Chrome launch blocker;
+- problem 1468 is locally complete. Its grouped company-maximum scan plus join
+  passed SQL scaling at `+0.01`; a correct correlated maximum query returned
+  every expected row, completed normally, and failed only scaling at `+0.70`.
+  It has the same Chrome launch blocker;
+- problem 1469 is locally complete. Its parent-local iterative tree traversal
+  passed at `+0.00`; correct repeated parent searches returned every unordered
+  result, completed normally, and failed only scaling at `+0.90` and `14.89x`.
+  It has the same Chrome launch blocker;
+- problem 1470 is locally complete. Its direct two-half interleaving passed at
+  `+0.01`; correct explicit prefix reconstruction returned every expected
+  output, completed normally, and failed only scaling at `+0.84` and `10.91x`.
+  The audit also caught and prompted repair of a 54-word Goal narrative before
+  completion. It has the same Chrome launch blocker;
+- the refreshed migration audit: 1470 locally complete, 1448 fully verified,
+  22 blocked, 1444 scaling benchmarks, 26 certificates, and frontend ID 1471
   next;
-- the dataset checker: 3985 documents, 2518 manually complete, and 1467 still
+- the dataset checker: 3985 documents, 2522 manually complete, and 1463 still
   needing authoring;
-- the focused validated-case and dynamic-documentation suite after problem
-  1455 passed 115 tests, with only the existing Starlette `httpx` deprecation
+- the focused validated-case, dynamic-documentation, and submission suite after
+  problem 1470 passed 122 tests, with only the existing Starlette `httpx` deprecation
   warning;
 - the focused validated-case and dynamic-documentation suite after problem
   1434 passed 115 tests, with only the existing Starlette `httpx` deprecation
@@ -1245,10 +1315,9 @@ Get-Content dsa\leetcode\_reports\two_sum_migration_progress.md
 ```
 
 The expected branch is `main`, and the expected migration checkpoint is
-`fb27481d65d8ffe67660cf7b3fb2ce3b5e3d5492` plus the immediately following
-handoff-only commit. The refreshed first actionable
+`78643cf854f8a351ff7ac6fe6b09c6e1f7b3ba38`. The refreshed first actionable
 package should be
-`dsa/leetcode/1456_maximum-number-of-vowels-in-a-substring-of-given-length`. If
+`dsa/leetcode/1471_the-k-strongest-values-in-an-array`. If
 any of those facts differ, trust the live worktree and refreshed audit,
 investigate the drift, and preserve rather than discard changes.
 
@@ -1265,7 +1334,7 @@ For the next native candidate, replace the frontend ID in:
 
 ```powershell
 $env:ELECTRON_RUN_AS_NODE=$null
-npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1456
+npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1471
 ```
 
 ## Exact prompt for a new Codex session
@@ -1282,11 +1351,12 @@ Copy and paste this entire block into the new session:
 > `dsa/leetcode/_reports/ACTIVE_MIGRATION_HANDOFF.md`, and
 > `dsa/leetcode/_reports/two_sum_migration_progress.md` completely. Then run a
 > fresh migration audit and treat the live worktree and generated reports as
-> authoritative. Problems through frontend ID 1455 are locally complete;
-> 1441 packages are remotely verified, while 1413 through 1426 have
-> recorded Electron credential-decryption blockers. The expected first
+> authoritative. Problems through frontend ID 1470 are locally complete;
+> 1448 packages are remotely verified. Problems 1413 through 1426 have
+> recorded Electron credential-decryption blockers, while 1463 through 1470
+> have recorded Chrome-not-running launch-policy blockers. The expected first
 > actionable package is
-> `dsa/leetcode/1456_maximum-number-of-vowels-in-a-substring-of-given-length`,
+> `dsa/leetcode/1471_the-k-strongest-values-in-an-array`,
 > but follow
 > the refreshed audit if it differs.
 > Continue autonomously in numeric frontend-ID order and do not stop after

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1567",
+  "frontend_id": "1456",
+  "title_slug": "maximum-number-of-vowels-in-a-substring-of-given-length",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxVowels",
+  "verified_submission_id": "2069169780",
+  "verified_at": "2026-07-15T23:22:33.951911+00:00"
+}

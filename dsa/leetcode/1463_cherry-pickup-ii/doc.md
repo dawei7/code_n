@@ -5,73 +5,106 @@
 | Source | LeetCode |
 | Frontend ID | 1463 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Dynamic Programming, Matrix |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [cherry-pickup-ii](https://leetcode.com/problems/cherry-pickup-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/cherry-pickup-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/cherry-pickup-ii/).
-
 ### Goal
-Two robots start at the top row, one at the leftmost column and one at the rightmost column. On each step both move to the next row and may shift left, stay, or shift right. Maximize the total cherries collected.
+
+A rectangular `grid` represents a field of cherries. The value `grid[i][j]` is the number of cherries available in the cell at row `i` and column `j`. Two robots begin in the top row: robot 1 at the top-left cell `(0, 0)` and robot 2 at the top-right cell `(0, cols - 1)`.
+
+Both robots move simultaneously from one row to the next. From `(i, j)`, a robot may enter `(i + 1, j - 1)`, `(i + 1, j)`, or `(i + 1, j + 1)`, provided that the destination remains inside the grid. Both robots must eventually reach the bottom row, so each robot visits exactly one cell in every row.
+
+When a robot visits a cell, it collects all cherries in that cell. If the robots occupy different cells in a row, both cell values contribute to the total. If they occupy the same cell, that cell is collected only once; the two robots cannot duplicate its cherries. Determine the maximum total number of cherries that the two valid top-to-bottom routes can collect together.
 
 ### Function Contract
 **Inputs**
 
-- `grid`: a matrix where each cell contains cherries.
+- `grid`: an $R \times C$ matrix of integers, where $2 \le R, C \le 70$ and `grid[i][j]` lies between $0$ and $100$, inclusive.
+- $R$ is the number of rows and $C$ is the number of columns. Every row has exactly $C$ entries.
 
 **Return value**
 
-The maximum number of cherries both robots can collect.
+Return the maximum combined number of cherries collected by the two robots while both remain in bounds and finish in row $R - 1$.
 
 ### Examples
 **Example 1**
 
 - Input: `grid = [[3,1,1],[2,5,1],[1,5,5],[2,1,1]]`
 - Output: `24`
+- Explanation: The robots can collect `3 + 2 + 5 + 2 = 12` and `1 + 5 + 5 + 1 = 12` along two compatible routes.
 
 **Example 2**
 
-- Input: `grid = [[1,0,0,0],[0,0,0,0],[0,0,2,0]]`
-- Output: `3`
+- Input: `grid = [[1,0,0,0,0,0,1],[2,0,0,0,0,3,0],[2,0,9,0,0,0,0],[0,3,0,5,4,0,0],[1,0,2,3,0,0,6]]`
+- Output: `28`
 
 **Example 3**
 
-- Input: `grid = [[1,1],[1,1]]`
-- Output: `4`
+- Input: `grid = [[1,0,1],[0,10,0]]`
+- Output: `12`
+- Explanation: The robots collect both corner values in the first row. They may then meet on the center cell, whose `10` cherries count once rather than twice.
 
----
+### Required Complexity
+- **Time:** $O(RC^2)$
+- **Space:** $O(C^2)$
 
-## Solution
-### Approach
-Row-by-row dynamic programming over the two robot columns. Each state `(row, c1, c2)` stores the best cherries after both robots reach those columns; transitions try all nine next-column pairs.
-
-### Complexity Analysis
-- **Time Complexity**: `O(rows * cols^2 * 9)`
-- **Space Complexity**: `O(cols^2)` with rolling rows.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(grid):
-    rows = len(grid)
-    cols = len(grid[0]) if rows else 0
-    if not rows or not cols:
-        return 0
-    dp = {(0, cols - 1): grid[0][0] + (grid[0][cols - 1] if cols > 1 else 0)}
-    for row in range(1, rows):
-        next_dp = {}
-        for (c1, c2), value in dp.items():
-            for nc1 in (c1 - 1, c1, c1 + 1):
-                for nc2 in (c2 - 1, c2, c2 + 1):
-                    if 0 <= nc1 < cols and 0 <= nc2 < cols:
-                        gain = grid[row][nc1] + (grid[row][nc2] if nc1 != nc2 else 0)
-                        key = (nc1, nc2)
-                        next_dp[key] = max(next_dp.get(key, -1), value + gain)
-        dp = next_dp
-    return max(dp[key] for key in dp)
-```
+#### General
+
+**Why two positions form one state**
+
+Choosing each robot's route independently is not valid: their rewards interact whenever both routes enter the same cell. At the same time, the past route itself does not matter after a row has been processed. The only information needed to decide future moves is the current row, the column of robot 1, the column of robot 2, and the best score that can reach that pair.
+
+For a fixed row, define the state for columns $(c_1, c_2)$ as the maximum cherries collected after robot 1 reaches `c1` and robot 2 reaches `c2` in that row. There are at most $C^2$ such pairs. The initial layer has exactly one reachable state, $(0, C - 1)$, with reward `grid[0][0] + grid[0][C - 1]`. The constraints guarantee $C \ge 2$, so the robots begin in distinct cells.
+
+**Counting the current row exactly once**
+
+The reward contributed by a state in row `r` is
+
+$$
+g(r,c_1,c_2)=
+\begin{cases}
+\texttt{grid[r][c1]}, & c_1=c_2,\\
+\texttt{grid[r][c1]}+\texttt{grid[r][c2]}, & c_1\ne c_2.
+\end{cases}
+$$
+
+This definition captures the emptied-cell rule directly. It is important not to add both values first and try to repair collisions later: when $c_1=c_2$, there is only one cell reward in that row.
+
+**Advancing both robots together**
+
+From a reachable pair $(c_1,c_2)$, robot 1 may choose `c1 - 1`, `c1`, or `c1 + 1`, and robot 2 independently may choose the corresponding three options around `c2`. This gives at most nine destination pairs. Discard any pair containing a column outside $[0,C-1]`. For every legal pair $(n_1,n_2)$, update the next layer with the previous score plus $g(r,n_1,n_2)$, retaining the maximum if several histories reach the same pair.
+
+Processing an entire row before replacing the previous layer matters. An in-place update could use a state that already belongs to the new row, effectively allowing extra moves and counting a row more than once. Two separate $C \times C$ tables make the row boundary explicit.
+
+**Why the recurrence finds the optimum**
+
+After the first row, the sole stored state has exactly the reward of the only possible pair of starting cells. Suppose every state in the table for row $r-1$ stores the best score among all valid route pairs ending at its two columns. Every valid route pair reaching row $r$ has one legal predecessor pair in row $r-1$, and the transition examines that predecessor and adds precisely the new row's reward. Conversely, every transition generated by the recurrence is a legal simultaneous move and therefore describes valid route prefixes.
+
+Taking the maximum over all predecessors consequently preserves the best valid score for each state in row $r$. By induction, the last layer contains the best score for every possible pair of bottom-row destinations. Both robots are allowed to finish in any in-bounds columns, so the largest value anywhere in that layer is the required answer.
+
+**A compact trace of collision handling**
+
+For `[[1,0,1],[0,10,0]]`, the initial state is `(0, 2)` with score `2`. In the next row both robots can move to column `1`, producing state `(1, 1)`. Its added reward is `10`, not `20`, so the final score is `12`. Other destination pairs collect only zeros in the second row, making the collision the optimal choice rather than something that must be forbidden.
+
+#### Complexity detail
+
+There are $R$ row layers and at most $C^2$ column-pair states per layer. Each reachable state considers at most $3 \cdot 3=9$ simultaneous moves, which is a constant factor. The total time is therefore $O(RC^2)$.
+
+Only the previous and current $C \times C$ score tables are needed. Replacing a completed layer discards information that can no longer affect a future transition, so auxiliary space is $O(C^2)$. The input matrix itself is not included in this bound.
+
+#### Alternatives and edge cases
+
+- **Top-down memoization:** A recursive function on `(row, c1, c2)` expresses the same state graph and has the same asymptotic bounds. It can be concise, but it adds recursion and cache overhead and requires careful handling of invalid columns.
+- **Three-dimensional table:** Storing every `dp[row][c1][c2]` state makes reconstruction or inspection of all layers easier, but increases auxiliary space from $O(C^2)$ to $O(RC^2)$ without improving the returned value.
+- **Independent single-robot optimization:** Maximizing the two routes separately is incorrect because both choices may rely on collecting the same high-valued cell. The joint column-pair state is what enforces the count-once rule.
+- **Greedy movement toward the largest next cell:** A locally valuable move can block access to a much larger later region or cause both robots to compete for the same cells. The optimum depends on complete suffix possibilities, not only the next row.
+- **Robots occupy the same cell:** This state is legal. Add that cell's value once and continue allowing the robots to separate on the next row.
+- **Zero-valued cells:** A route may need to cross zeros to reach valuable later cells; zeros are valid rewards, not unreachable markers.
+- **Grid boundaries:** Near either side, fewer than three next columns are legal. Invalid destinations must be skipped rather than clamped, because clamping would duplicate a different move.
+- **Bottom-row destination:** There is no prescribed ending column. Take the maximum over every pair in the final layer, including pairs where the robots meet.
+
 </details>

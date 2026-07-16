@@ -2,88 +2,40 @@
   "challenge_id": "lc_1467",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: two single balls",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "balls": [
-          1,
-          1
-        ]
-      },
-      "expected": 1.0,
-      "validator": {
-        "kind": "float_close",
-        "tolerance": 1e-05
-      },
-      "tags": [
-        "sample",
-        "probability"
-      ]
+      "id": "sample-1", "name": "sample: two singleton colors", "kind": "sample", "visible": true,
+      "input": {"balls": [1,1]}, "expected": 1.0,
+      "validator": {"kind": "float_close", "tolerance": 1e-5},
+      "tags": ["sample", "probability"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: two thirds probability",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "balls": [
-          2,
-          1,
-          1
-        ]
-      },
-      "expected": 0.66667,
-      "validator": {
-        "kind": "float_close",
-        "tolerance": 1e-05
-      },
-      "tags": [
-        "sample"
-      ]
+      "id": "sample-2", "name": "sample: repeated first color", "kind": "sample", "visible": true,
+      "input": {"balls": [2,1,1]}, "expected": 0.6666666666666666,
+      "validator": {"kind": "float_close", "tolerance": 1e-5},
+      "tags": ["sample", "combinatorics"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: three fifths probability",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "balls": [
-          1,
-          2,
-          1,
-          2
-        ]
-      },
-      "expected": 0.6,
-      "validator": {
-        "kind": "float_close",
-        "tolerance": 1e-05
-      },
-      "tags": [
-        "sample"
-      ]
+      "id": "sample-3", "name": "sample: four uneven colors", "kind": "sample", "visible": true,
+      "input": {"balls": [1,2,1,2]}, "expected": 0.6,
+      "validator": {"kind": "float_close", "tolerance": 1e-5},
+      "tags": ["sample", "dynamic-programming"]
     },
     {
-      "id": "real-two-balanced-colors",
-      "name": "hidden: each box gets one of each color",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "balls": [
-          2,
-          2
-        ]
-      },
-      "expected": 1.0,
-      "validator": {
-        "kind": "float_close",
-        "tolerance": 1e-05
-      },
-      "tags": [
-        "hidden"
-      ]
+      "id": "trial-two-balanced-colors", "name": "trial: every allocation has equal distinct counts", "kind": "trial", "visible": true,
+      "input": {"balls": [2,2]}, "expected": 1.0,
+      "validator": {"kind": "float_close", "tolerance": 1e-5},
+      "tags": ["trial", "balanced"]
+    },
+    {
+      "id": "real-asymmetric-counts", "name": "hidden: asymmetric multiplicities", "kind": "real", "visible": false,
+      "input": {"balls": [3,2,1]}, "expected": 0.3,
+      "validator": {"kind": "float_close", "tolerance": 1e-5},
+      "tags": ["hidden", "asymmetric"]
+    },
+    {
+      "id": "real-maximum-color-count", "name": "hidden: maximum multiplicity with singleton colors", "kind": "real", "visible": false,
+      "input": {"balls": [6,1,1]}, "expected": 0.5714285714285714,
+      "validator": {"kind": "float_close", "tolerance": 1e-5},
+      "tags": ["hidden", "maximum-count"]
     }
   ]
 }

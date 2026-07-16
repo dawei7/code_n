@@ -5,51 +5,131 @@
 | Source | LeetCode |
 | Frontend ID | 1461 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Hash Table, String, Bit Manipulation, Rolling Hash, Hash Function |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-a-string-contains-all-binary-codes-of-size-k](https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a binary string `s` and a positive integer `k`, determine whether
+every possible binary code of length exactly `k` occurs somewhere in `s`
+as a substring. A substring is contiguous, and occurrences may overlap.
+
+There are $2^k$ different length-$k$ binary strings, ranging from the all-zero
+code through the all-one code. Return `true` only when each of those distinct
+codes appears at least once; repeated occurrences of one code do not compensate
+for another code being absent.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: a string of $n$ characters, each either `"0"` or `"1"`, where
+  $1 \le n \le 5\cdot10^5$.
+- `k`: the required code length, where $1 \le k \le 20$.
 
 **Return value**
 
-TODO
+Return `true` if the set of all contiguous length-$k$ substrings of `s`
+contains all $2^k$ binary codes; otherwise return `false`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "00110110", k = 2`
+- Output: `true`
+- Explanation: `"00"`, `"01"`, `"10"`, and `"11"` all occur.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "0110", k = 1`
+- Output: `true`
+- Explanation: Both one-bit codes occur.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "0110", k = 2`
+- Output: `false`
+- Explanation: The code `"00"` is absent.
 
----
+### Required Complexity
+- **Time:** $O(n)$
+- **Space:** $O(2^k)$
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Reject impossible instances by counting windows**
+
+A length-$n$ string has exactly $n-k+1$ starting positions for a length-$k$
+substring when $k\le n$, and none otherwise. Each position can contribute at
+most one distinct code. Therefore, if
+
+$$
+n-k+1 < 2^k,
+$$
+
+covering all codes is impossible. Return `false` before allocating the seen
+structure. Besides being a useful shortcut, this guard ensures that whenever
+the main scan runs, $2^k\le n-k+1\le n$, so its memory is bounded by the
+input scale.
+
+**Encode each window as a rolling integer**
+
+Interpret a length-$k$ binary substring as an integer from $0$ through
+$2^k-1$. Maintain `window`, the value of the most recent at-most-$k$ bits,
+and `mask = (1 << k) - 1`, whose lowest $k$ bits are set.
+
+For each character, shift `window` left, add the new bit, and apply the mask:
+`window = ((window << 1) & mask) | new_bit`. The shift moves every retained
+bit one place toward its proper significance, the mask discards the bit that
+has just left the window, and the new bit occupies the lowest position. Once
+at least $k$ characters have been read, `window` is exactly the integer value
+of the current length-$k$ substring.
+
+**Count each distinct code only once**
+
+Use a byte array of length $2^k$ indexed by the rolling value. Initialize
+`remaining` to $2^k$. When a window value has not been seen, mark it and
+decrement `remaining`; duplicate occurrences do nothing.
+
+Return `true` immediately when `remaining` reaches zero, because every code
+has then appeared and later characters cannot invalidate that fact. If the
+scan ends with a positive remainder, at least one required code is absent.
+
+The rolling update is exact by binary positional notation, so the algorithm
+visits the encoded value of every length-$k$ substring in order. The seen array
+therefore marks exactly the set of codes occurring in `s`. Its remaining
+counter reaches zero exactly when that set is the complete universe
+$\{0,1,\ldots,2^k-1\}$, which proves the returned result.
+
+#### Complexity detail
+
+The impossibility test is constant time. When scanning is necessary, each of
+the $n$ characters causes constant bit work and at most one seen-array update,
+for $O(n)$ time. The byte array has $2^k$ entries, so auxiliary space is
+$O(2^k)$. The early guard implies this allocation is also $O(n)$ on instances
+that reach it.
+
+#### Alternatives and edge cases
+
+- **Substring set:** Insert every slice `s[i:i+k]` into a hash set and compare
+  its size with $2^k$. This is concise but materializes and hashes $k$-character
+  strings, taking $O(nk)$ character work and $O(2^k k)$ stored characters in
+  the worst case.
+- **Search for every code:** Generate all $2^k$ binary strings and search for
+  each in `s`. It is correct but can take $O(2^k(n+k))$ time.
+- **`k > n`:** No length-$k$ substring exists, so return `false`.
+- **Too few window positions:** Even when $k\le n$, fewer than $2^k$ windows
+  proves that complete coverage is impossible.
+- **`k = 1`:** Both `"0"` and `"1"` must occur.
+- **Overlapping occurrences:** Every starting position is considered, so codes
+  may share characters.
+- **Duplicate windows:** Marking a code twice does not reduce the remaining
+  count twice.
+- **All-zero or all-one string:** It contains only one distinct code for any
+  feasible $k$, so it fails whenever $2^k>1$.
+- **Early completion:** Return as soon as the final unseen code is discovered.
+
+</details>
