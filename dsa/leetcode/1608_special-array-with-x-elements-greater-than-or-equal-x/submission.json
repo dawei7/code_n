@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1730",
+  "frontend_id": "1608",
+  "title_slug": "special-array-with-x-elements-greater-than-or-equal-x",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.specialArray",
+  "verified_submission_id": "2070120538",
+  "verified_at": "2026-07-16T16:19:11.286596+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1677",
+  "frontend_id": "1572",
+  "title_slug": "matrix-diagonal-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.diagonalSum",
+  "verified_submission_id": "2069859153",
+  "verified_at": "2026-07-16T12:41:10.653837+00:00"
+}

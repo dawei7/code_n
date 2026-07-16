@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1551",
+  "measurement_note": "Size is n, the implicit array length. The legal 625/2500/10000 tiers span 16x and include the maximum n. The remotely Accepted floor(n^2/4) formula is O(1), and an independent product of the two half sizes also passes. A correct direct summation of every lower-half deficit completes every tier and is rejected only by its O(n) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: formula at n = 625",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 625,
+      "input": {
+        "n": 625
+      },
+      "expected": 97656,
+      "tags": [
+        "benchmark",
+        "closed-form",
+        "n-625"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: formula at n = 2500",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2500,
+      "input": {
+        "n": 2500
+      },
+      "expected": 1562500,
+      "tags": [
+        "benchmark",
+        "closed-form",
+        "n-2500"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: formula at n = 10000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {
+        "n": 10000
+      },
+      "expected": 25000000,
+      "tags": [
+        "benchmark",
+        "closed-form",
+        "n-10000"
+      ]
+    }
+  ]
+}

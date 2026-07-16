@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1598",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: child, parent, child, and stay",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "logs": [
+          "d1/",
+          "d2/",
+          "../",
+          "d21/",
+          "./"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: several nested child moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "logs": [
+          "d1/",
+          "d2/",
+          "./",
+          "d3/",
+          "../",
+          "d31/"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: parent moves clamp at root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "logs": [
+          "d1/",
+          "../",
+          "../",
+          "../"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "root-clamp"
+      ]
+    },
+    {
+      "id": "trial-single-child",
+      "name": "trial: one child move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "logs": [
+          "a/"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-operation",
+        "child"
+      ]
+    },
+    {
+      "id": "trial-single-stay",
+      "name": "trial: one stay operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "logs": [
+          "./"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single-operation",
+        "stay"
+      ]
+    },
+    {
+      "id": "real-single-parent-at-root",
+      "name": "hidden: one parent operation at root",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "logs": [
+          "../"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "root-clamp"
+      ]
+    },
+    {
+      "id": "real-only-children",
+      "name": "hidden: every operation enters a child",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "logs": [
+          "a/",
+          "b/",
+          "c/",
+          "d/"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "children-only"
+      ]
+    },
+    {
+      "id": "real-only-stays",
+      "name": "hidden: every operation stays put",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "logs": [
+          "./",
+          "./",
+          "./"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "stay-only"
+      ]
+    },
+    {
+      "id": "real-return-exactly-root",
+      "name": "hidden: parent moves exactly cancel children",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "logs": [
+          "a/",
+          "b/",
+          "../",
+          "../"
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "balanced"
+      ]
+    },
+    {
+      "id": "real-root-clamp-then-descend",
+      "name": "hidden: ignored parents precede child moves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "logs": [
+          "../",
+          "../",
+          "a/",
+          "b/"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "root-clamp",
+        "children"
+      ]
+    },
+    {
+      "id": "real-reenter-after-root",
+      "name": "hidden: return to root and enter another branch",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "logs": [
+          "a/",
+          "b/",
+          "../",
+          "../",
+          "c/"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "reentry"
+      ]
+    },
+    {
+      "id": "real-folder-name-characters",
+      "name": "hidden: alphanumeric folder names",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "logs": [
+          "a1/",
+          "z9/",
+          "./",
+          "../"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "folder-names",
+        "alphanumeric"
+      ]
+    }
+  ]
+}
+

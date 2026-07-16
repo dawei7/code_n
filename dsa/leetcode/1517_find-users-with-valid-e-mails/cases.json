@@ -1,0 +1,531 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1517",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official mixture of valid and invalid mails",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "name": "Winston",
+              "mail": "winston@leetcode.com"
+            },
+            {
+              "user_id": 2,
+              "name": "Jonathan",
+              "mail": "jonathanisgreat"
+            },
+            {
+              "user_id": 3,
+              "name": "Annabelle",
+              "mail": "bella-@leetcode.com"
+            },
+            {
+              "user_id": 4,
+              "name": "Sally",
+              "mail": "sally.come@leetcode.com"
+            },
+            {
+              "user_id": 5,
+              "name": "Marwan",
+              "mail": "quarz#2020@leetcode.com"
+            },
+            {
+              "user_id": 6,
+              "name": "David",
+              "mail": "david69@gmail.com"
+            },
+            {
+              "user_id": 7,
+              "name": "Shapiro",
+              "mail": ".shapo@leetcode.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "mail"
+        ],
+        "rows": [
+          [
+            1,
+            "Winston",
+            "winston@leetcode.com"
+          ],
+          [
+            3,
+            "Annabelle",
+            "bella-@leetcode.com"
+          ],
+          [
+            4,
+            "Sally",
+            "sally.come@leetcode.com"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "official",
+        "mixed-validity"
+      ]
+    },
+    {
+      "id": "sample-allowed-prefix",
+      "name": "sample: every allowed prefix character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 10,
+              "name": "Minimal",
+              "mail": "a@leetcode.com"
+            },
+            {
+              "user_id": 11,
+              "name": "Mixed",
+              "mail": "Ada_9-z.x@leetcode.com"
+            },
+            {
+              "user_id": 12,
+              "name": "Upper",
+              "mail": "Z@leetcode.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "mail"
+        ],
+        "rows": [
+          [
+            10,
+            "Minimal",
+            "a@leetcode.com"
+          ],
+          [
+            11,
+            "Mixed",
+            "Ada_9-z.x@leetcode.com"
+          ],
+          [
+            12,
+            "Upper",
+            "Z@leetcode.com"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "allowed-characters",
+        "minimal-prefix"
+      ]
+    },
+    {
+      "id": "trial-leading-character",
+      "name": "trial: prefix must begin with an English letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 20,
+              "name": "Digit",
+              "mail": "1abc@leetcode.com"
+            },
+            {
+              "user_id": 21,
+              "name": "Underscore",
+              "mail": "_abc@leetcode.com"
+            },
+            {
+              "user_id": 22,
+              "name": "Period",
+              "mail": ".abc@leetcode.com"
+            },
+            {
+              "user_id": 23,
+              "name": "Dash",
+              "mail": "-abc@leetcode.com"
+            },
+            {
+              "user_id": 24,
+              "name": "Letter",
+              "mail": "A.bc@leetcode.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "mail"
+        ],
+        "rows": [
+          [
+            24,
+            "Letter",
+            "A.bc@leetcode.com"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "leading-letter",
+        "punctuation"
+      ]
+    },
+    {
+      "id": "trial-domain-case",
+      "name": "trial: domain is exactly lowercase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 30,
+              "name": "Lower",
+              "mail": "name@leetcode.com"
+            },
+            {
+              "user_id": 31,
+              "name": "Upper",
+              "mail": "name@LEETCODE.COM"
+            },
+            {
+              "user_id": 32,
+              "name": "Mixed",
+              "mail": "name@LeetCode.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "mail"
+        ],
+        "rows": [
+          [
+            30,
+            "Lower",
+            "name@leetcode.com"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "case-sensitive-domain"
+      ]
+    },
+    {
+      "id": "real-forbidden-prefix",
+      "name": "hidden: forbidden prefix punctuation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 40,
+              "name": "Hash",
+              "mail": "a#b@leetcode.com"
+            },
+            {
+              "user_id": 41,
+              "name": "Plus",
+              "mail": "a+b@leetcode.com"
+            },
+            {
+              "user_id": 42,
+              "name": "Space",
+              "mail": "a b@leetcode.com"
+            },
+            {
+              "user_id": 43,
+              "name": "SecondAt",
+              "mail": "a@b@leetcode.com"
+            },
+            {
+              "user_id": 44,
+              "name": "Allowed",
+              "mail": "a_b-c.d@leetcode.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "mail"
+        ],
+        "rows": [
+          [
+            44,
+            "Allowed",
+            "a_b-c.d@leetcode.com"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "forbidden-characters",
+        "extra-at"
+      ]
+    },
+    {
+      "id": "real-lookalike-domain",
+      "name": "hidden: suffix must occupy the exact end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 50,
+              "name": "Extra",
+              "mail": "a@leetcode.com.extra"
+            },
+            {
+              "user_id": 51,
+              "name": "Subdomain",
+              "mail": "a@x.leetcode.com"
+            },
+            {
+              "user_id": 52,
+              "name": "NoDot",
+              "mail": "a@leetcodecom"
+            },
+            {
+              "user_id": 53,
+              "name": "WrongDot",
+              "mail": "a@leetcodeXcom"
+            },
+            {
+              "user_id": 54,
+              "name": "Exact",
+              "mail": "a@leetcode.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "mail"
+        ],
+        "rows": [
+          [
+            54,
+            "Exact",
+            "a@leetcode.com"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "anchored-suffix",
+        "lookalikes"
+      ]
+    },
+    {
+      "id": "real-duplicate-addresses",
+      "name": "hidden: filtering preserves distinct user rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 62,
+              "name": "Second",
+              "mail": "same@leetcode.com"
+            },
+            {
+              "user_id": 61,
+              "name": "First",
+              "mail": "same@leetcode.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "mail"
+        ],
+        "rows": [
+          [
+            61,
+            "First",
+            "same@leetcode.com"
+          ],
+          [
+            62,
+            "Second",
+            "same@leetcode.com"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "duplicate-mail",
+        "primary-key"
+      ]
+    },
+    {
+      "id": "real-empty-and-domain-only",
+      "name": "hidden: empty and domain-only strings fail",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 70,
+              "name": "Empty",
+              "mail": ""
+            },
+            {
+              "user_id": 71,
+              "name": "DomainOnly",
+              "mail": "@leetcode.com"
+            },
+            {
+              "user_id": 72,
+              "name": "Minimal",
+              "mail": "b@leetcode.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "mail"
+        ],
+        "rows": [
+          [
+            72,
+            "Minimal",
+            "b@leetcode.com"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "empty-prefix",
+        "minimal-valid"
+      ]
+    },
+    {
+      "id": "real-ascii-only",
+      "name": "hidden: non-English initial letters fail",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 80,
+              "name": "Accented",
+              "mail": "éclair@leetcode.com"
+            },
+            {
+              "user_id": 81,
+              "name": "Greek",
+              "mail": "α@leetcode.com"
+            },
+            {
+              "user_id": 82,
+              "name": "Ascii",
+              "mail": "eclair@leetcode.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "mail"
+        ],
+        "rows": [
+          [
+            82,
+            "Ascii",
+            "eclair@leetcode.com"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "english-letters",
+        "unicode-trap"
+      ]
+    },
+    {
+      "id": "real-long-prefix",
+      "name": "hidden: long legal prefix remains valid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 90,
+              "name": "Long",
+              "mail": "A123456789_123456789.123456789-123456@leetcode.com"
+            },
+            {
+              "user_id": 91,
+              "name": "LongBad",
+              "mail": "A123456789_123456789#123456789-123456@leetcode.com"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "name",
+          "mail"
+        ],
+        "rows": [
+          [
+            90,
+            "Long",
+            "A123456789_123456789.123456789-123456@leetcode.com"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "long-prefix",
+        "late-invalid-character"
+      ]
+    }
+  ]
+}
+

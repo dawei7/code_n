@@ -1,24 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1575",
+  "measurement_note": "Size is F, the available fuel, with three distinct unit-spaced cities fixed. Every legal tier exercises repeated city-and-fuel states. The remotely Accepted memoized recurrence and an independent bottom-up table use O(N^2 F) time. A correct slower implementation rebuilds the bottom-up table separately for every budget from zero through F, uses O(N^2 F^2) total time, completes every fuel 16/64/200 tier and all ordinary cases, and is rejected only by scaling.",
   "cases": [
     {
-      "id": "benchmark-evenly-spaced-cities",
-      "name": "benchmark: evenly spaced cities with limited fuel",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: unit-spaced routes with fuel 16",
       "kind": "benchmark",
       "visible": false,
+      "size": 16,
       "input": {
         "locations": [
-          0,
+          1,
           2,
-          4
+          3
         ],
         "start": 0,
         "finish": 2,
-        "fuel": 6
+        "fuel": 16
       },
-      "expected": 2,
+      "expected": 4920,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "fuel-scaling",
+        "revisits",
+        "f-16"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: unit-spaced routes with fuel 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "locations": [
+          1,
+          2,
+          3
+        ],
+        "start": 0,
+        "finish": 2,
+        "fuel": 64
+      },
+      "expected": 131910525,
+      "tags": [
+        "benchmark",
+        "fuel-scaling",
+        "revisits",
+        "f-64"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: unit-spaced routes with fuel 200",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 200,
+      "input": {
+        "locations": [
+          1,
+          2,
+          3
+        ],
+        "start": 0,
+        "finish": 2,
+        "fuel": 200
+      },
+      "expected": 164531279,
+      "tags": [
+        "benchmark",
+        "fuel-scaling",
+        "revisits",
+        "f-200"
       ]
     }
   ]

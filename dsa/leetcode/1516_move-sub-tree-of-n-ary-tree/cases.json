@@ -1,0 +1,837 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1516",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: move an internal subtree to the root's end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tree": [
+          [
+            1,
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            2,
+            [
+              4,
+              5
+            ]
+          ],
+          [
+            3,
+            [
+              6
+            ]
+          ],
+          [
+            4,
+            [
+              7,
+              8
+            ]
+          ],
+          [
+            5,
+            []
+          ],
+          [
+            6,
+            []
+          ],
+          [
+            7,
+            []
+          ],
+          [
+            8,
+            []
+          ]
+        ],
+        "p": 4,
+        "q": 1
+      },
+      "expected": [
+        [
+          1,
+          [
+            2,
+            3,
+            4
+          ]
+        ],
+        [
+          2,
+          [
+            5
+          ]
+        ],
+        [
+          3,
+          [
+            6
+          ]
+        ],
+        [
+          4,
+          [
+            7,
+            8
+          ]
+        ],
+        [
+          5,
+          []
+        ],
+        [
+          6,
+          []
+        ],
+        [
+          7,
+          []
+        ],
+        [
+          8,
+          []
+        ]
+      ],
+      "tags": [
+        "sample",
+        "q-ancestor",
+        "internal-subtree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: direct child remains unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tree": [
+          [
+            1,
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            2,
+            [
+              4,
+              5
+            ]
+          ],
+          [
+            3,
+            [
+              6
+            ]
+          ],
+          [
+            4,
+            [
+              7,
+              8
+            ]
+          ],
+          [
+            5,
+            []
+          ],
+          [
+            6,
+            []
+          ],
+          [
+            7,
+            []
+          ],
+          [
+            8,
+            []
+          ]
+        ],
+        "p": 7,
+        "q": 4
+      },
+      "expected": [
+        [
+          1,
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          2,
+          [
+            4,
+            5
+          ]
+        ],
+        [
+          3,
+          [
+            6
+          ]
+        ],
+        [
+          4,
+          [
+            7,
+            8
+          ]
+        ],
+        [
+          5,
+          []
+        ],
+        [
+          6,
+          []
+        ],
+        [
+          7,
+          []
+        ],
+        [
+          8,
+          []
+        ]
+      ],
+      "tags": [
+        "sample",
+        "direct-child",
+        "no-op"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: move between unrelated branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tree": [
+          [
+            1,
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            2,
+            [
+              4,
+              5
+            ]
+          ],
+          [
+            3,
+            [
+              6
+            ]
+          ],
+          [
+            4,
+            [
+              7,
+              8
+            ]
+          ],
+          [
+            5,
+            []
+          ],
+          [
+            6,
+            []
+          ],
+          [
+            7,
+            []
+          ],
+          [
+            8,
+            []
+          ]
+        ],
+        "p": 3,
+        "q": 8
+      },
+      "expected": [
+        [
+          1,
+          [
+            2
+          ]
+        ],
+        [
+          2,
+          [
+            4,
+            5
+          ]
+        ],
+        [
+          4,
+          [
+            7,
+            8
+          ]
+        ],
+        [
+          5,
+          []
+        ],
+        [
+          7,
+          []
+        ],
+        [
+          8,
+          [
+            3
+          ]
+        ],
+        [
+          3,
+          [
+            6
+          ]
+        ],
+        [
+          6,
+          []
+        ]
+      ],
+      "tags": [
+        "sample",
+        "separate-branches",
+        "deep-target"
+      ]
+    },
+    {
+      "id": "sample-4",
+      "name": "sample: descendant becomes the new root",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tree": [
+          [
+            1,
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            2,
+            [
+              4
+            ]
+          ],
+          [
+            3,
+            []
+          ],
+          [
+            4,
+            []
+          ]
+        ],
+        "p": 1,
+        "q": 4
+      },
+      "expected": [
+        [
+          4,
+          [
+            1
+          ]
+        ],
+        [
+          1,
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          2,
+          []
+        ],
+        [
+          3,
+          []
+        ]
+      ],
+      "tags": [
+        "sample",
+        "p-root",
+        "q-descendant"
+      ]
+    },
+    {
+      "id": "trial-descendant-swap",
+      "name": "trial: deep descendant replaces a non-root p",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tree": [
+          [
+            10,
+            [
+              20,
+              30
+            ]
+          ],
+          [
+            20,
+            [
+              40
+            ]
+          ],
+          [
+            30,
+            []
+          ],
+          [
+            40,
+            [
+              50
+            ]
+          ],
+          [
+            50,
+            []
+          ]
+        ],
+        "p": 20,
+        "q": 50
+      },
+      "expected": [
+        [
+          10,
+          [
+            50,
+            30
+          ]
+        ],
+        [
+          50,
+          [
+            20
+          ]
+        ],
+        [
+          30,
+          []
+        ],
+        [
+          20,
+          [
+            40
+          ]
+        ],
+        [
+          40,
+          []
+        ]
+      ],
+      "tags": [
+        "trial",
+        "q-descendant",
+        "replacement"
+      ]
+    },
+    {
+      "id": "trial-deep-p",
+      "name": "trial: deep p moves directly under an ancestor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tree": [
+          [
+            1,
+            [
+              2
+            ]
+          ],
+          [
+            2,
+            [
+              3
+            ]
+          ],
+          [
+            3,
+            [
+              4
+            ]
+          ],
+          [
+            4,
+            []
+          ]
+        ],
+        "p": 4,
+        "q": 1
+      },
+      "expected": [
+        [
+          1,
+          [
+            2,
+            4
+          ]
+        ],
+        [
+          2,
+          [
+            3
+          ]
+        ],
+        [
+          4,
+          []
+        ],
+        [
+          3,
+          []
+        ]
+      ],
+      "tags": [
+        "trial",
+        "q-ancestor",
+        "deep-p"
+      ]
+    },
+    {
+      "id": "real-siblings",
+      "name": "hidden: subtree moves between siblings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tree": [
+          [
+            1,
+            [
+              2,
+              3,
+              4
+            ]
+          ],
+          [
+            2,
+            [
+              5
+            ]
+          ],
+          [
+            3,
+            []
+          ],
+          [
+            4,
+            []
+          ],
+          [
+            5,
+            []
+          ]
+        ],
+        "p": 2,
+        "q": 4
+      },
+      "expected": [
+        [
+          1,
+          [
+            3,
+            4
+          ]
+        ],
+        [
+          3,
+          []
+        ],
+        [
+          4,
+          [
+            2
+          ]
+        ],
+        [
+          2,
+          [
+            5
+          ]
+        ],
+        [
+          5,
+          []
+        ]
+      ],
+      "tags": [
+        "real",
+        "siblings",
+        "subtree"
+      ]
+    },
+    {
+      "id": "real-direct-not-last",
+      "name": "hidden: direct child no-op takes priority over last position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tree": [
+          [
+            1,
+            [
+              2,
+              3,
+              4
+            ]
+          ],
+          [
+            2,
+            [
+              5
+            ]
+          ],
+          [
+            3,
+            []
+          ],
+          [
+            4,
+            []
+          ],
+          [
+            5,
+            []
+          ]
+        ],
+        "p": 2,
+        "q": 1
+      },
+      "expected": [
+        [
+          1,
+          [
+            2,
+            3,
+            4
+          ]
+        ],
+        [
+          2,
+          [
+            5
+          ]
+        ],
+        [
+          3,
+          []
+        ],
+        [
+          4,
+          []
+        ],
+        [
+          5,
+          []
+        ]
+      ],
+      "tags": [
+        "real",
+        "direct-child",
+        "ordering-trap"
+      ]
+    },
+    {
+      "id": "real-q-directly-below-p",
+      "name": "hidden: child q replaces p before receiving it",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tree": [
+          [
+            100,
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          [
+            1,
+            []
+          ],
+          [
+            2,
+            [
+              4,
+              5,
+              6
+            ]
+          ],
+          [
+            3,
+            []
+          ],
+          [
+            4,
+            []
+          ],
+          [
+            5,
+            []
+          ],
+          [
+            6,
+            []
+          ]
+        ],
+        "p": 2,
+        "q": 5
+      },
+      "expected": [
+        [
+          100,
+          [
+            1,
+            5,
+            3
+          ]
+        ],
+        [
+          1,
+          []
+        ],
+        [
+          5,
+          [
+            2
+          ]
+        ],
+        [
+          3,
+          []
+        ],
+        [
+          2,
+          [
+            4,
+            6
+          ]
+        ],
+        [
+          4,
+          []
+        ],
+        [
+          6,
+          []
+        ]
+      ],
+      "tags": [
+        "real",
+        "q-descendant",
+        "adjacent-targets"
+      ]
+    },
+    {
+      "id": "real-root-deep-q",
+      "name": "hidden: root moves below a deeply nested q",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tree": [
+          [
+            1,
+            [
+              2,
+              3
+            ]
+          ],
+          [
+            2,
+            [
+              4,
+              5
+            ]
+          ],
+          [
+            3,
+            []
+          ],
+          [
+            4,
+            []
+          ],
+          [
+            5,
+            [
+              6
+            ]
+          ],
+          [
+            6,
+            []
+          ]
+        ],
+        "p": 1,
+        "q": 6
+      },
+      "expected": [
+        [
+          6,
+          [
+            1
+          ]
+        ],
+        [
+          1,
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          2,
+          [
+            4,
+            5
+          ]
+        ],
+        [
+          3,
+          []
+        ],
+        [
+          4,
+          []
+        ],
+        [
+          5,
+          []
+        ]
+      ],
+      "tags": [
+        "real",
+        "p-root",
+        "deep-q"
+      ]
+    }
+  ]
+}
+

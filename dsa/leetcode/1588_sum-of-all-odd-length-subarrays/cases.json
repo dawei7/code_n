@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1588",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: five mixed values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          4,
+          2,
+          5,
+          3
+        ]
+      },
+      "expected": 58,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "even-length-array"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: three consecutive values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          10,
+          11,
+          12
+        ]
+      },
+      "expected": 66,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-even-length",
+      "name": "trial: four increasing values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 25,
+      "tags": [
+        "trial",
+        "even-length-array"
+      ]
+    },
+    {
+      "id": "real-all-ones",
+      "name": "hidden: repeated unit values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-symmetric",
+      "name": "hidden: symmetric three-element array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          5,
+          1,
+          5
+        ]
+      },
+      "expected": 22,
+      "tags": [
+        "hidden",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-two-value-boundaries",
+      "name": "hidden: minimum and maximum values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1000
+        ]
+      },
+      "expected": 1001,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-six-increasing",
+      "name": "hidden: several odd lengths in an even array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 98,
+      "tags": [
+        "hidden",
+        "even-length-array"
+      ]
+    },
+    {
+      "id": "real-maximum-domain",
+      "name": "hidden: maximum length and values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000
+        ]
+      },
+      "expected": 85850000,
+      "tags": [
+        "hidden",
+        "maximum-domain"
+      ]
+    }
+  ]
+}

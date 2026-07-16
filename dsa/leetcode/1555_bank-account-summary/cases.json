@@ -1,0 +1,708 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1555",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official three-transfer balance changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "Moustafa",
+              "credit": 100
+            },
+            {
+              "user_id": 2,
+              "user_name": "Jonathan",
+              "credit": 200
+            },
+            {
+              "user_id": 3,
+              "user_name": "Winston",
+              "credit": 10000
+            },
+            {
+              "user_id": 4,
+              "user_name": "Luis",
+              "credit": 800
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "paid_by": 1,
+              "paid_to": 3,
+              "amount": 400,
+              "transacted_on": "2020-08-01"
+            },
+            {
+              "trans_id": 2,
+              "paid_by": 3,
+              "paid_to": 2,
+              "amount": 500,
+              "transacted_on": "2020-08-02"
+            },
+            {
+              "trans_id": 3,
+              "paid_by": 2,
+              "paid_to": 1,
+              "amount": 200,
+              "transacted_on": "2020-08-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "user_name",
+          "credit",
+          "credit_limit_breached"
+        ],
+        "rows": [
+          [
+            1,
+            "Moustafa",
+            -100,
+            "Yes"
+          ],
+          [
+            2,
+            "Jonathan",
+            500,
+            "No"
+          ],
+          [
+            3,
+            "Winston",
+            9900,
+            "No"
+          ],
+          [
+            4,
+            "Luis",
+            800,
+            "No"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "net-balance",
+        "official"
+      ]
+    },
+    {
+      "id": "sample-zero-uninvolved",
+      "name": "sample: uninvolved zero balance is not breached",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "Zero",
+              "credit": 0
+            },
+            {
+              "user_id": 2,
+              "user_name": "Payer",
+              "credit": 5
+            },
+            {
+              "user_id": 3,
+              "user_name": "Receiver",
+              "credit": 0
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "paid_by": 2,
+              "paid_to": 3,
+              "amount": 2,
+              "transacted_on": "2020-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "user_name",
+          "credit",
+          "credit_limit_breached"
+        ],
+        "rows": [
+          [
+            1,
+            "Zero",
+            0,
+            "No"
+          ],
+          [
+            2,
+            "Payer",
+            3,
+            "No"
+          ],
+          [
+            3,
+            "Receiver",
+            2,
+            "No"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "net-balance",
+        "zero-uninvolved"
+      ]
+    },
+    {
+      "id": "sample-net-outgoing",
+      "name": "sample: incoming and outgoing net together",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A",
+              "credit": 100
+            },
+            {
+              "user_id": 2,
+              "user_name": "B",
+              "credit": 100
+            },
+            {
+              "user_id": 3,
+              "user_name": "C",
+              "credit": 100
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "paid_by": 1,
+              "paid_to": 2,
+              "amount": 75,
+              "transacted_on": "2021-01-01"
+            },
+            {
+              "trans_id": 2,
+              "paid_by": 3,
+              "paid_to": 1,
+              "amount": 20,
+              "transacted_on": "2021-01-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "user_name",
+          "credit",
+          "credit_limit_breached"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            45,
+            "No"
+          ],
+          [
+            2,
+            "B",
+            175,
+            "No"
+          ],
+          [
+            3,
+            "C",
+            80,
+            "No"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "net-balance",
+        "net-outgoing"
+      ]
+    },
+    {
+      "id": "trial-exact-zero",
+      "name": "trial: transfer reduces credit exactly to zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A",
+              "credit": 50
+            },
+            {
+              "user_id": 2,
+              "user_name": "B",
+              "credit": 0
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "paid_by": 1,
+              "paid_to": 2,
+              "amount": 50,
+              "transacted_on": "2022-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "user_name",
+          "credit",
+          "credit_limit_breached"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            0,
+            "No"
+          ],
+          [
+            2,
+            "B",
+            50,
+            "No"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "net-balance",
+        "exact-zero"
+      ]
+    },
+    {
+      "id": "trial-negative-one",
+      "name": "trial: one unit below zero breaches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A",
+              "credit": 50
+            },
+            {
+              "user_id": 2,
+              "user_name": "B",
+              "credit": 0
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "paid_by": 1,
+              "paid_to": 2,
+              "amount": 51,
+              "transacted_on": "2022-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "user_name",
+          "credit",
+          "credit_limit_breached"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            -1,
+            "Yes"
+          ],
+          [
+            2,
+            "B",
+            51,
+            "No"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "net-balance",
+        "negative-one"
+      ]
+    },
+    {
+      "id": "trial-untouched-user",
+      "name": "trial: uninvolved user remains present",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A",
+              "credit": 10
+            },
+            {
+              "user_id": 2,
+              "user_name": "Idle",
+              "credit": 20
+            },
+            {
+              "user_id": 3,
+              "user_name": "C",
+              "credit": 30
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "paid_by": 1,
+              "paid_to": 3,
+              "amount": 5,
+              "transacted_on": "2020-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "user_name",
+          "credit",
+          "credit_limit_breached"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            5,
+            "No"
+          ],
+          [
+            2,
+            "Idle",
+            20,
+            "No"
+          ],
+          [
+            3,
+            "C",
+            35,
+            "No"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "net-balance",
+        "untouched-user"
+      ]
+    },
+    {
+      "id": "real-multiple-same-direction",
+      "name": "hidden: repeated transfers all count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A",
+              "credit": 100
+            },
+            {
+              "user_id": 2,
+              "user_name": "B",
+              "credit": 0
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "paid_by": 1,
+              "paid_to": 2,
+              "amount": 20,
+              "transacted_on": "2020-01-01"
+            },
+            {
+              "trans_id": 2,
+              "paid_by": 1,
+              "paid_to": 2,
+              "amount": 20,
+              "transacted_on": "2020-01-02"
+            },
+            {
+              "trans_id": 3,
+              "paid_by": 1,
+              "paid_to": 2,
+              "amount": 20,
+              "transacted_on": "2020-01-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "user_name",
+          "credit",
+          "credit_limit_breached"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            40,
+            "No"
+          ],
+          [
+            2,
+            "B",
+            60,
+            "No"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "net-balance",
+        "multiple-same-direction"
+      ]
+    },
+    {
+      "id": "real-cycle-conservation",
+      "name": "hidden: transfer cycle preserves each equal balance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A",
+              "credit": 10
+            },
+            {
+              "user_id": 2,
+              "user_name": "B",
+              "credit": 10
+            },
+            {
+              "user_id": 3,
+              "user_name": "C",
+              "credit": 10
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "paid_by": 1,
+              "paid_to": 2,
+              "amount": 7,
+              "transacted_on": "2020-01-01"
+            },
+            {
+              "trans_id": 2,
+              "paid_by": 2,
+              "paid_to": 3,
+              "amount": 7,
+              "transacted_on": "2020-01-02"
+            },
+            {
+              "trans_id": 3,
+              "paid_by": 3,
+              "paid_to": 1,
+              "amount": 7,
+              "transacted_on": "2020-01-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "user_name",
+          "credit",
+          "credit_limit_breached"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            10,
+            "No"
+          ],
+          [
+            2,
+            "B",
+            10,
+            "No"
+          ],
+          [
+            3,
+            "C",
+            10,
+            "No"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "net-balance",
+        "cycle-conservation"
+      ]
+    },
+    {
+      "id": "real-duplicate-names",
+      "name": "hidden: duplicate names remain separate users",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 2,
+              "user_name": "Same",
+              "credit": 5
+            },
+            {
+              "user_id": 1,
+              "user_name": "Same",
+              "credit": 5
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "paid_by": 1,
+              "paid_to": 2,
+              "amount": 9,
+              "transacted_on": "2020-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "user_name",
+          "credit",
+          "credit_limit_breached"
+        ],
+        "rows": [
+          [
+            1,
+            "Same",
+            -4,
+            "Yes"
+          ],
+          [
+            2,
+            "Same",
+            14,
+            "No"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "net-balance",
+        "duplicate-names"
+      ]
+    },
+    {
+      "id": "real-dates-irrelevant",
+      "name": "hidden: chronology does not alter total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A",
+              "credit": 0
+            },
+            {
+              "user_id": 2,
+              "user_name": "B",
+              "credit": 0
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "paid_by": 1,
+              "paid_to": 2,
+              "amount": 100,
+              "transacted_on": "2030-12-31"
+            },
+            {
+              "trans_id": 2,
+              "paid_by": 2,
+              "paid_to": 1,
+              "amount": 40,
+              "transacted_on": "2000-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "user_name",
+          "credit",
+          "credit_limit_breached"
+        ],
+        "rows": [
+          [
+            1,
+            "A",
+            -60,
+            "Yes"
+          ],
+          [
+            2,
+            "B",
+            60,
+            "No"
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "net-balance",
+        "dates-irrelevant"
+      ]
+    }
+  ]
+}

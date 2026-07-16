@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1611",
+  "cases": [
+    {
+      "id": "sample-three",
+      "name": "sample: binary eleven reaches zero in two operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "two-bits"
+      ]
+    },
+    {
+      "id": "sample-six",
+      "name": "sample: binary one-one-zero needs four operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "sample-zero",
+      "name": "sample: zero is already the target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-one",
+      "name": "trial: flip the rightmost bit once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "single-bit"
+      ]
+    },
+    {
+      "id": "trial-power-two",
+      "name": "trial: isolated high bit traverses lower pattern",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8
+      },
+      "expected": 15,
+      "tags": [
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "real-two",
+      "name": "hidden: binary ten takes three operations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2
+      },
+      "expected": 3,
+      "tags": [
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating bits exercise suffix XOR",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 42
+      },
+      "expected": 51,
+      "tags": [
+        "alternating-bits"
+      ]
+    },
+    {
+      "id": "real-all-ones",
+      "name": "hidden: consecutive set bits invert correctly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 255
+      },
+      "expected": 170,
+      "tags": [
+        "all-ones"
+      ]
+    },
+    {
+      "id": "real-near-power",
+      "name": "hidden: value immediately below a power of two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1023
+      },
+      "expected": 682,
+      "tags": [
+        "all-ones",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "real-power-large",
+      "name": "hidden: larger isolated bit uses full reflected prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 65536
+      },
+      "expected": 131071,
+      "tags": [
+        "power-of-two",
+        "large-value"
+      ]
+    },
+    {
+      "id": "real-mixed-large",
+      "name": "hidden: mixed high and low bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 987654321
+      },
+      "expected": 747917089,
+      "tags": [
+        "large-value",
+        "mixed-bits"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "hidden: maximum allowed input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000000
+      },
+      "expected": 756249599,
+      "tags": [
+        "maximum-value"
+      ]
+    }
+  ]
+}
+

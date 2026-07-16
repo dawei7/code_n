@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1594",
+  "cases": [
+    {"id":"sample-1","name":"sample: every path is negative","kind":"sample","visible":true,"input":{"grid":[[-1,-2,-3],[-2,-3,-3],[-3,-3,-2]]},"expected":-1,"tags":["sample","negative-only"]},
+    {"id":"sample-2","name":"sample: two negatives produce the maximum","kind":"sample","visible":true,"input":{"grid":[[1,-2,1],[1,-2,1],[3,-4,1]]},"expected":8,"tags":["sample","sign-flip"]},
+    {"id":"sample-3","name":"sample: zero is the best non-negative product","kind":"sample","visible":true,"input":{"grid":[[1,3],[0,-4]]},"expected":0,"tags":["sample","zero"]},
+    {"id":"trial-single-positive","name":"trial: one positive cell","kind":"trial","visible":true,"input":{"grid":[[4]]},"expected":4,"tags":["single-cell","positive"]},
+    {"id":"trial-single-negative","name":"trial: one negative cell","kind":"trial","visible":true,"input":{"grid":[[-4]]},"expected":-1,"tags":["single-cell","negative"]},
+    {"id":"real-single-row","name":"hidden: unique path across one row","kind":"real","visible":false,"input":{"grid":[[-1,2,-3,4]]},"expected":24,"tags":["single-row","signs"]},
+    {"id":"real-single-column-zero","name":"hidden: unique column path contains zero","kind":"real","visible":false,"input":{"grid":[[2],[-3],[0],[-4]]},"expected":0,"tags":["single-column","zero"]},
+    {"id":"real-minimum-becomes-maximum","name":"hidden: negative minimum later becomes positive maximum","kind":"real","visible":false,"input":{"grid":[[1,-2,3],[4,-5,-6]]},"expected":120,"tags":["min-max-state","sign-flip"]},
+    {"id":"real-positive-choice","name":"hidden: competing positive paths","kind":"real","visible":false,"input":{"grid":[[2,3],[4,5]]},"expected":40,"tags":["positive","path-choice"]},
+    {"id":"real-zero-not-chosen","name":"hidden: positive path beats reachable zero","kind":"real","visible":false,"input":{"grid":[[1,0,2],[3,4,5]]},"expected":60,"tags":["zero","path-choice"]},
+    {"id":"real-modulo-after-comparison","name":"hidden: large product is reduced only at the end","kind":"real","visible":false,"input":{"grid":[[4,4,4,4,4,4,4,4,4,4,4,4,4,4,4]]},"expected":73741817,"tags":["modulo","maximum-width"]},
+    {"id":"real-all-zero","name":"hidden: every path product is zero","kind":"real","visible":false,"input":{"grid":[[0,0],[0,0]]},"expected":0,"tags":["zero","all-paths"]}
+  ]
+}

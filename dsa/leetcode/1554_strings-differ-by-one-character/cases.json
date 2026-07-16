@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1554",
+  "cases": [
+    {
+      "id": "sample-second-character",
+      "name": "sample: pair differs at second character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "dict": [
+          "abcd",
+          "acbd",
+          "aacd"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "hamming-one",
+        "second-character"
+      ]
+    },
+    {
+      "id": "sample-all-two-apart",
+      "name": "sample: every pair differs twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "dict": [
+          "ab",
+          "cd",
+          "yz"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "hamming-one",
+        "all-two-apart"
+      ]
+    },
+    {
+      "id": "sample-interior-match",
+      "name": "sample: interior one-character difference",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "dict": [
+          "abcd",
+          "cccc",
+          "abyd",
+          "abab"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "hamming-one",
+        "interior-match"
+      ]
+    },
+    {
+      "id": "trial-one-word",
+      "name": "trial: one word cannot form a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dict": [
+          "alone"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "hamming-one",
+        "one-word"
+      ]
+    },
+    {
+      "id": "trial-width-one",
+      "name": "trial: distinct width-one strings qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dict": [
+          "a",
+          "z"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "hamming-one",
+        "width-one"
+      ]
+    },
+    {
+      "id": "trial-first-character",
+      "name": "trial: difference at first index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "dict": [
+          "abc",
+          "xbc",
+          "ayz"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "hamming-one",
+        "first-character"
+      ]
+    },
+    {
+      "id": "real-final-character",
+      "name": "hidden: difference at final index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "dict": [
+          "abcde",
+          "abcdf",
+          "xbcdy"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "hamming-one",
+        "final-character"
+      ]
+    },
+    {
+      "id": "real-two-differences",
+      "name": "hidden: exactly two mismatches are rejected",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "dict": [
+          "aaaa",
+          "aabb",
+          "bbaa"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "hamming-one",
+        "two-differences"
+      ]
+    },
+    {
+      "id": "real-shared-wildcards",
+      "name": "hidden: many masked patterns share partial text",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "dict": [
+          "cat",
+          "bat",
+          "bad",
+          "dad"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "hamming-one",
+        "shared-wildcards"
+      ]
+    },
+    {
+      "id": "real-long-words",
+      "name": "hidden: long equal prefix and suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "dict": [
+          "abcdefghijklmnopqrst",
+          "abcdefghijklmnozqrst",
+          "zzzzzzzzzzzzzzzzzzzz"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "hamming-one",
+        "long-words"
+      ]
+    },
+    {
+      "id": "real-no-pair-five",
+      "name": "hidden: several words remain separated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "dict": [
+          "aaaaa",
+          "bbbbb",
+          "ccccc",
+          "ddddd",
+          "eeeee"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "hamming-one",
+        "no-pair-five"
+      ]
+    },
+    {
+      "id": "real-late-qualifier",
+      "name": "hidden: qualifying pair appears last",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "dict": [
+          "abcd",
+          "efgh",
+          "ijkl",
+          "mnop",
+          "qrst",
+          "qrut"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "hamming-one",
+        "late-qualifier"
+      ]
+    }
+  ]
+}

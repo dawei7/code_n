@@ -3,74 +3,84 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: reorder into progression",
+      "name": "sample: reorder into an increasing progression",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "arr": [
-          3,
-          5,
-          1
-        ]
-      },
+      "input": {"arr": [3, 5, 1]},
       "expected": true,
-      "tags": [
-        "sample",
-        "sorting"
-      ]
+      "tags": ["sample", "reordering"]
     },
     {
       "id": "sample-2",
-      "name": "sample: gap mismatch",
+      "name": "sample: unequal gaps cannot be repaired",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2,
-          4
-        ]
-      },
+      "input": {"arr": [1, 2, 4]},
       "expected": false,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "gap"]
     },
     {
       "id": "sample-3",
-      "name": "sample: constant progression",
+      "name": "sample: equal values have zero difference",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "arr": [
-          7,
-          7,
-          7
-        ]
-      },
+      "input": {"arr": [7, 7, 7]},
       "expected": true,
-      "tags": [
-        "sample",
-        "edge"
-      ]
+      "tags": ["sample", "zero-difference"]
     },
     {
-      "id": "real-negative-progression",
-      "name": "hidden: negative arithmetic progression",
+      "id": "trial-two-extremes",
+      "name": "trial: any two values form a progression",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": [-1000000, 1000000]},
+      "expected": true,
+      "tags": ["trial", "minimum-length", "bounds"]
+    },
+    {
+      "id": "trial-negative-shuffled",
+      "name": "trial: shuffled progression crosses zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": [3, -9, -1, -5, 7]},
+      "expected": true,
+      "tags": ["trial", "negative-values"]
+    },
+    {
+      "id": "real-span-not-divisible",
+      "name": "hidden: endpoint span cannot supply an integer step",
       "kind": "real",
       "visible": false,
-      "input": {
-        "arr": [
-          -3,
-          -1,
-          -5,
-          -7
-        ]
-      },
+      "input": {"arr": [0, 2, 3, 6]},
+      "expected": false,
+      "tags": ["hidden", "divisibility"]
+    },
+    {
+      "id": "real-duplicate-nonzero-span",
+      "name": "hidden: duplicate replaces a required interior term",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": [1, 1, 3]},
+      "expected": false,
+      "tags": ["hidden", "duplicate", "cardinality"]
+    },
+    {
+      "id": "real-aligned-values-with-gap",
+      "name": "hidden: divisible span still needs every target value",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": [-8, -4, 0, 8, 8]},
+      "expected": false,
+      "tags": ["hidden", "missing-term", "duplicate"]
+    },
+    {
+      "id": "real-long-descending-progression",
+      "name": "hidden: descending order is irrelevant",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": [45, 35, 25, 15, 5, -5, -15]},
       "expected": true,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "descending", "negative-values"]
     }
   ]
 }

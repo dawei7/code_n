@@ -1,0 +1,101 @@
+{
+  "challenge_id": "lc_1500",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: official sharing and ID-reuse sequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "operations": [["join", [[1, 2]]], ["join", [[2, 3]]], ["join", [[4]]], ["request", [1, 3]], ["request", [2, 2]], ["leave", [1]], ["request", [2, 1]], ["leave", [2]], ["join", [[]]]]
+      },
+      "expected": [1, 2, 3, [2], [1, 2], null, [], null, 1],
+      "tags": ["sample", "transfer", "reuse"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: successful request adds ownership",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "operations": [["join", [[]]], ["join", [[1]]], ["request", [1, 1]], ["request", [1, 1]]]
+      },
+      "expected": [1, 2, [2], [1, 2]],
+      "tags": ["sample", "transfer", "repeat-request"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: leaving removes all ownership",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "operations": [["join", [[1, 2]]], ["join", [[2]]], ["leave", [1]], ["request", [2, 1]], ["join", [[1]]], ["request", [2, 1]]]
+      },
+      "expected": [1, 2, null, [], 1, [1]],
+      "tags": ["sample", "leave", "rejoin"]
+    },
+    {
+      "id": "trial-smallest-of-several-free-ids",
+      "name": "trial: joins reuse released IDs in numeric order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "operations": [["join", [[]]], ["join", [[]]], ["join", [[]]], ["leave", [2]], ["leave", [1]], ["join", [[]]], ["join", [[]]]]
+      },
+      "expected": [1, 2, 3, null, null, 1, 2],
+      "tags": ["trial", "min-heap", "reuse-order"]
+    },
+    {
+      "id": "trial-request-own-chunk",
+      "name": "trial: an existing owner appears once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "operations": [["join", [[2]]], ["request", [1, 2]], ["request", [1, 3]]]
+      },
+      "expected": [1, [1], []],
+      "tags": ["trial", "idempotence", "empty-request"]
+    },
+    {
+      "id": "real-acquired-chunks-leave-with-user",
+      "name": "hidden: acquired chunks are removed on leave",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 5,
+        "operations": [["join", [[1]]], ["join", [[2, 3]]], ["join", [[4, 5]]], ["request", [1, 2]], ["request", [1, 4]], ["leave", [1]], ["request", [2, 4]], ["request", [3, 2]]]
+      },
+      "expected": [1, 2, 3, [2], [3], null, [3], [2]],
+      "tags": ["hidden", "acquired-ownership", "leave"]
+    },
+    {
+      "id": "real-empty-chunk-restored-by-reused-user",
+      "name": "hidden: reused identity has only new holdings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 4,
+        "operations": [["join", [[1, 2, 3]]], ["join", [[4]]], ["leave", [1]], ["join", [[3]]], ["request", [2, 1]], ["request", [2, 3]], ["leave", [1]], ["request", [2, 3]]]
+      },
+      "expected": [1, 2, null, 1, [], [1], null, [2]],
+      "tags": ["hidden", "identity-reuse", "ownership-reset"]
+    },
+    {
+      "id": "real-sorted-owner-snapshot",
+      "name": "hidden: owner output is sorted before transfer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 2,
+        "operations": [["join", [[1]]], ["join", [[]]], ["join", [[1]]], ["leave", [1]], ["join", [[1]]], ["request", [2, 1]], ["request", [2, 1]]]
+      },
+      "expected": [1, 2, 3, null, 1, [1, 3], [1, 2, 3]],
+      "tags": ["hidden", "sorting", "snapshot-before-transfer"]
+    }
+  ]
+}

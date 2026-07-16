@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1608",
+  "cases": [
+    {
+      "id": "sample-two-large",
+      "name": "sample: candidate is not an array value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "candidate-absent"
+      ]
+    },
+    {
+      "id": "sample-all-zero",
+      "name": "sample: all zeros have no special value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "no-solution"
+      ]
+    },
+    {
+      "id": "sample-three",
+      "name": "sample: three values reach threshold three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          4,
+          3,
+          0,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "mixed-values"
+      ]
+    },
+    {
+      "id": "trial-single-positive",
+      "name": "trial: one positive element gives one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-element",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero has no answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "single-element",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-equalities-count",
+      "name": "hidden: values equal to x are included",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          0,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "inclusive-threshold"
+      ]
+    },
+    {
+      "id": "real-too-many-at-threshold",
+      "name": "hidden: candidate fails when one extra value qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "exact-count"
+      ]
+    },
+    {
+      "id": "real-unsorted-boundary",
+      "name": "hidden: qualifying suffix is hidden by input order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          0,
+          2,
+          6,
+          1,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "unsorted",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-answer-length",
+      "name": "hidden: every value reaches the full length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          4,
+          6,
+          10
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "answer-n"
+      ]
+    },
+    {
+      "id": "real-gap-answer",
+      "name": "hidden: candidate lies in a value gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          10,
+          10,
+          10,
+          10
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "candidate-absent",
+        "gap"
+      ]
+    },
+    {
+      "id": "real-duplicates-around-boundary",
+      "name": "hidden: duplicates straddle candidate boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3,
+          2,
+          2
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "duplicates",
+        "exact-count"
+      ]
+    },
+    {
+      "id": "real-large-no-solution",
+      "name": "hidden: large and zero values still have no candidate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          1000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "no-solution",
+        "extremes"
+      ]
+    }
+  ]
+}
+

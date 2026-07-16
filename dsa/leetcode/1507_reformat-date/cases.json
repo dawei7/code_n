@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1507",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two-digit day in October", "kind": "sample", "visible": true, "input": {"date": "20th Oct 2052"}, "expected": "2052-10-20", "tags": ["sample", "two-digit-day"]},
+    {"id": "sample-2", "name": "sample: single-digit day in June", "kind": "sample", "visible": true, "input": {"date": "6th Jun 1933"}, "expected": "1933-06-06", "tags": ["sample", "leading-zero"]},
+    {"id": "sample-3", "name": "sample: May date", "kind": "sample", "visible": true, "input": {"date": "26th May 1960"}, "expected": "1960-05-26", "tags": ["sample", "middle-month"]},
+    {"id": "trial-lower-bound", "name": "trial: earliest permitted date", "kind": "trial", "visible": true, "input": {"date": "1st Jan 1900"}, "expected": "1900-01-01", "tags": ["trial", "lower-bound", "st"]},
+    {"id": "trial-nd", "name": "trial: nd suffix", "kind": "trial", "visible": true, "input": {"date": "2nd Feb 2000"}, "expected": "2000-02-02", "tags": ["trial", "nd", "leading-zero"]},
+    {"id": "trial-rd", "name": "trial: rd suffix", "kind": "trial", "visible": true, "input": {"date": "3rd Mar 2024"}, "expected": "2024-03-03", "tags": ["trial", "rd", "leading-zero"]},
+    {"id": "real-ordinal-exception", "name": "hidden: teen ordinal uses th", "kind": "real", "visible": false, "input": {"date": "13th Apr 1999"}, "expected": "1999-04-13", "tags": ["real", "ordinal-exception"]},
+    {"id": "real-twenty-first", "name": "hidden: compound st suffix", "kind": "real", "visible": false, "input": {"date": "21st Aug 2077"}, "expected": "2077-08-21", "tags": ["real", "st", "two-digit-day"]},
+    {"id": "real-twenty-second", "name": "hidden: compound nd suffix", "kind": "real", "visible": false, "input": {"date": "22nd Nov 2010"}, "expected": "2010-11-22", "tags": ["real", "nd", "two-digit-day"]},
+    {"id": "real-upper-bound", "name": "hidden: latest permitted date", "kind": "real", "visible": false, "input": {"date": "31st Dec 2100"}, "expected": "2100-12-31", "tags": ["real", "upper-bound", "december"]}
+  ]
+}

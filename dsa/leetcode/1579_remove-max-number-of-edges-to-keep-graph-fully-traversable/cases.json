@@ -1,0 +1,471 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1579",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two redundant Alice edges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            3,
+            2,
+            3
+          ],
+          [
+            1,
+            1,
+            3
+          ],
+          [
+            1,
+            2,
+            4
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "redundant",
+        "shared-first"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: every edge is necessary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            3,
+            2,
+            3
+          ],
+          [
+            1,
+            1,
+            4
+          ],
+          [
+            2,
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-redundancy"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: both users cannot become connected",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            3,
+            2,
+            3
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-minimum-shared",
+      "name": "trial: one shared edge connects two nodes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            3,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-graph",
+        "shared"
+      ]
+    },
+    {
+      "id": "trial-private-pair",
+      "name": "trial: separate private edges connect each user",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "private-edges"
+      ]
+    },
+    {
+      "id": "real-redundant-types",
+      "name": "hidden: extra private edges duplicate shared reachability",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            2,
+            3
+          ],
+          [
+            1,
+            1,
+            3
+          ],
+          [
+            2,
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "redundant",
+        "both-users"
+      ]
+    },
+    {
+      "id": "real-shared-cycle",
+      "name": "hidden: one edge in a shared triangle is removable",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            3,
+            2,
+            3
+          ],
+          [
+            3,
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "shared-cycle"
+      ]
+    },
+    {
+      "id": "real-mixed-bridge",
+      "name": "hidden: private edges bridge two shared components",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "mixed-connectivity"
+      ]
+    },
+    {
+      "id": "real-bob-disconnected",
+      "name": "hidden: Alice connects but Bob remains disconnected",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            4
+          ],
+          [
+            2,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "bob-disconnected"
+      ]
+    },
+    {
+      "id": "real-complex-redundancy",
+      "name": "hidden: useful shared edges maximize overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            3,
+            2,
+            3
+          ],
+          [
+            1,
+            3,
+            4
+          ],
+          [
+            2,
+            1,
+            4
+          ],
+          [
+            3,
+            1,
+            3
+          ],
+          [
+            1,
+            1,
+            4
+          ],
+          [
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "shared-first",
+        "cycles"
+      ]
+    },
+    {
+      "id": "real-shared-plus-private-cycle",
+      "name": "hidden: shared tree makes private cycles removable",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            3,
+            1,
+            2
+          ],
+          [
+            3,
+            2,
+            3
+          ],
+          [
+            3,
+            3,
+            4
+          ],
+          [
+            1,
+            1,
+            3
+          ],
+          [
+            2,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "shared-tree",
+        "private-redundancy"
+      ]
+    },
+    {
+      "id": "real-alice-only",
+      "name": "hidden: Bob has no path between two nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            1,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "bob-disconnected",
+        "minimum-graph"
+      ]
+    },
+    {
+      "id": "real-shared-order-late",
+      "name": "hidden: shared edge appears after private alternatives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            2,
+            3
+          ],
+          [
+            3,
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "input-order",
+        "shared-first"
+      ]
+    }
+  ]
+}

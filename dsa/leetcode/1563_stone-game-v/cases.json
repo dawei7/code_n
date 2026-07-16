@@ -1,81 +1,18 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1563",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: mixed stone values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "stone_value": [
-          6,
-          2,
-          3,
-          4,
-          5,
-          5
-        ]
-      },
-      "expected": 18,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: all equal stones",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "stone_value": [
-          7,
-          7,
-          7,
-          7,
-          7,
-          7,
-          7
-        ]
-      },
-      "expected": 28,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: one stone",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "stone_value": [
-          4
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-small-increasing",
-      "name": "hidden: small increasing array",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "stone_value": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-1", "name": "sample: asymmetric six-stone game", "kind": "sample", "visible": true, "input": {"stone_value": [6,2,3,4,5,5]}, "expected": 18, "tags": ["sample", "interval-dp", "asymmetric"]},
+    {"id": "sample-2", "name": "sample: seven equal stones", "kind": "sample", "visible": true, "input": {"stone_value": [7,7,7,7,7,7,7]}, "expected": 28, "tags": ["sample", "equal-values", "ties"]},
+    {"id": "sample-3", "name": "sample: one stone cannot be split", "kind": "sample", "visible": true, "input": {"stone_value": [4]}, "expected": 0, "tags": ["sample", "single-stone", "base-case"]},
+    {"id": "trial-two-stones", "name": "trial: only one split is available", "kind": "trial", "visible": true, "input": {"stone_value": [1,2]}, "expected": 1, "tags": ["trial", "two-stones", "single-split"]},
+    {"id": "trial-equal-first-split", "name": "trial: equality permits the better continuation", "kind": "trial", "visible": true, "input": {"stone_value": [1,2,3]}, "expected": 4, "tags": ["trial", "equal-sum", "choice"]},
+    {"id": "trial-four-ones", "name": "trial: balanced recursive halves", "kind": "trial", "visible": true, "input": {"stone_value": [1,1,1,1]}, "expected": 3, "tags": ["trial", "equal-values", "balanced"]},
+    {"id": "real-large-ends", "name": "hidden: large endpoints surround small middle", "kind": "real", "visible": false, "input": {"stone_value": [10,1,1,10]}, "expected": 12, "tags": ["real", "large-ends", "ties"]},
+    {"id": "real-increasing", "name": "hidden: strictly increasing values", "kind": "real", "visible": false, "input": {"stone_value": [1,2,3,4,5]}, "expected": 10, "tags": ["real", "increasing", "asymmetric"]},
+    {"id": "real-decreasing", "name": "hidden: strictly decreasing values", "kind": "real", "visible": false, "input": {"stone_value": [5,4,3,2,1]}, "expected": 10, "tags": ["real", "decreasing", "asymmetric"]},
+    {"id": "real-paired-blocks", "name": "hidden: repeated paired values", "kind": "real", "visible": false, "input": {"stone_value": [5,5,10,10]}, "expected": 15, "tags": ["real", "duplicates", "equal-sum"]},
+    {"id": "real-upper-bound-values", "name": "hidden: maximum values around a small center", "kind": "real", "visible": false, "input": {"stone_value": [1000000,1,1000000]}, "expected": 1000000, "tags": ["real", "upper-bound", "large-sum"]},
+    {"id": "real-irregular", "name": "hidden: irregular five-stone values", "kind": "real", "visible": false, "input": {"stone_value": [2,9,1,8,3]}, "expected": 14, "tags": ["real", "irregular", "interval-dp"]}
   ]
 }

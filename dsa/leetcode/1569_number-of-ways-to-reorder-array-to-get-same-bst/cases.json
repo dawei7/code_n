@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1569",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one alternate ordering",
+      "name": "sample: root with two singleton children",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,12 +17,13 @@
       "expected": 1,
       "tags": [
         "sample",
-        "combinatorics"
+        "one-alternative",
+        "balanced"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: mixed left and right subtrees",
+      "name": "sample: mixed left and right subtree orders",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,12 +37,14 @@
       },
       "expected": 5,
       "tags": [
-        "sample"
+        "sample",
+        "interleaving",
+        "asymmetric"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: already a chain",
+      "name": "sample: increasing chain has no alternative",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -53,12 +57,97 @@
       "expected": 0,
       "tags": [
         "sample",
-        "edge"
+        "increasing-chain",
+        "unique-order"
       ]
     },
     {
-      "id": "real-balanced-with-six-values",
-      "name": "hidden: balanced left and right subtrees",
+      "id": "trial-single-key",
+      "name": "trial: one key has only its original order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-n",
+        "unique-order"
+      ]
+    },
+    {
+      "id": "trial-two-key-chain",
+      "name": "trial: two keys cannot be reordered",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "two-keys",
+        "unique-order"
+      ]
+    },
+    {
+      "id": "trial-balanced-seven",
+      "name": "trial: perfect seven-key tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          1,
+          3,
+          6,
+          5,
+          7
+        ]
+      },
+      "expected": 79,
+      "tags": [
+        "trial",
+        "balanced",
+        "binomial-interleaving"
+      ]
+    },
+    {
+      "id": "real-reverse-chain",
+      "name": "hidden: decreasing chain has no alternative",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "decreasing-chain",
+        "unique-order"
+      ]
+    },
+    {
+      "id": "real-balanced-six",
+      "name": "hidden: balanced subtrees with unequal sizes",
       "kind": "real",
       "visible": false,
       "input": {
@@ -73,7 +162,131 @@
       },
       "expected": 19,
       "tags": [
-        "hidden"
+        "real",
+        "balanced-subtrees",
+        "interleaving"
+      ]
+    },
+    {
+      "id": "real-asymmetric-seven",
+      "name": "hidden: shallow left chain and balanced right side",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          1,
+          3,
+          2,
+          6,
+          5,
+          7
+        ]
+      },
+      "expected": 39,
+      "tags": [
+        "real",
+        "asymmetric",
+        "nested-subtree"
+      ]
+    },
+    {
+      "id": "real-mixed-nine",
+      "name": "hidden: multiple nested interleavings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          3,
+          8,
+          2,
+          4,
+          7,
+          9,
+          1,
+          6
+        ]
+      },
+      "expected": 629,
+      "tags": [
+        "real",
+        "mixed-shape",
+        "nested-subtree"
+      ]
+    },
+    {
+      "id": "real-mixed-ten",
+      "name": "hidden: unequal recursive subtree sizes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          2,
+          1,
+          4,
+          3,
+          5,
+          9,
+          7,
+          8,
+          10
+        ]
+      },
+      "expected": 3023,
+      "tags": [
+        "real",
+        "unequal-subtrees",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "real-modulo-balanced-thirty-one",
+      "name": "hidden: large balanced count requires modular arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          16,
+          8,
+          4,
+          2,
+          1,
+          3,
+          6,
+          5,
+          7,
+          12,
+          10,
+          9,
+          11,
+          14,
+          13,
+          15,
+          24,
+          20,
+          18,
+          17,
+          19,
+          22,
+          21,
+          23,
+          28,
+          26,
+          25,
+          27,
+          30,
+          29,
+          31
+        ]
+      },
+      "expected": 203434153,
+      "tags": [
+        "real",
+        "modulo",
+        "balanced",
+        "large-count"
       ]
     }
   ]

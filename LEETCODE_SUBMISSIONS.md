@@ -51,6 +51,43 @@ verification evidence. Valid statuses are:
 
 Never label a candidate verified based only on local tests or code inspection.
 
+## Migration authoring order
+
+For corpus migration and maintainer-authored package work, obtain remote
+Accepted evidence early enough that the platform-verified native source anchors
+the remaining artifacts. This is distinct from the end-user **Send to
+LeetCode** gate above, which still requires the complete local judge to pass.
+
+Use this order for every package when remote submission is available:
+
+1. Confirm the public contract, LeetCode identity, access class, supported
+   language, and exact native declaration or query interface.
+2. Create the platform-native source and perform minimal, contract-focused
+   sanity checks. Also create the candidate manifest needed to submit that
+   exact file.
+3. Submit the exact native source to LeetCode early. Do not begin full case or
+   benchmark authoring until it is Accepted, unless remote verification is
+   unavailable and an exact blocker has been recorded.
+4. Treat the Accepted source as the semantic and algorithmic anchor for the
+   separate app-local implementation. Preserve both artifacts; never replace
+   the native declaration with the app adapter.
+5. Author comprehensive visible and hidden correctness cases from the problem
+   contract, including semantic traps exposed while obtaining acceptance.
+6. Author and calibrate exactly three legal scaling tiers, or the reviewed
+   strict certificate when scaling is inapplicable. Verify the accepted-class
+   implementation and an independent same-class implementation pass, while a
+   correct principal slower class returns every expected output and fails only
+   the complexity verdict.
+7. Rerun all correctness, calibration, audit, dataset, and regression checks
+   after any later source change.
+
+A rejection caused only by an implementation defect normally changes the
+native and app-local sources, not contract-derived expected results. A
+rejection that reveals misunderstood semantics requires a coordinated repair:
+update the document, cases, expected outputs, both solution forms, and any
+benchmark workload or complexity claim affected by that misunderstanding.
+Never patch only the submitted source and leave contradictory local evidence.
+
 ## Maintainer verification
 
 Credentials are read from environment variables so secrets do not appear in

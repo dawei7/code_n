@@ -1,0 +1,1787 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1543",
+  "measurement_note": "Size is r, the Sales row count. The legal 16/64/256 tiers span 16x while varying capitalization, surrounding whitespace, and dates inside one month. The remotely Accepted grouped normalization is O(r log r) in the portable bound, and an independent CTE grouping also passes. A correct correlated query that recounts every normalized product-month pair completes all tiers and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 normalized rows in one product-month group",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 2,
+              "product_name": "product",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 3,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 4,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 5,
+              "product_name": "product",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 6,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 7,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 8,
+              "product_name": "product",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 9,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 10,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 11,
+              "product_name": "product",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 12,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 13,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 14,
+              "product_name": "product",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 15,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 16,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-16"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_name",
+          "sale_date",
+          "total"
+        ],
+        "rows": [
+          [
+            "product",
+            "2000-01",
+            16
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "normalization",
+        "single-group",
+        "n-16"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 normalized rows in one product-month group",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 2,
+              "product_name": "product",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 3,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 4,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 5,
+              "product_name": "product",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 6,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 7,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 8,
+              "product_name": "product",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 9,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 10,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 11,
+              "product_name": "product",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 12,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 13,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 14,
+              "product_name": "product",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 15,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 16,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 17,
+              "product_name": "product",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 18,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 19,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 20,
+              "product_name": "product",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 21,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 22,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 23,
+              "product_name": "product",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 24,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 25,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 26,
+              "product_name": "product",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 27,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 28,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 29,
+              "product_name": "product",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 30,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 31,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 32,
+              "product_name": "product",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 33,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 34,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 35,
+              "product_name": "product",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 36,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 37,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 38,
+              "product_name": "product",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 39,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 40,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 41,
+              "product_name": "product",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 42,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 43,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 44,
+              "product_name": "product",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 45,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 46,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 47,
+              "product_name": "product",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 48,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 49,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 50,
+              "product_name": "product",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 51,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 52,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 53,
+              "product_name": "product",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 54,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 55,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 56,
+              "product_name": "product",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 57,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 58,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 59,
+              "product_name": "product",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 60,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 61,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 62,
+              "product_name": "product",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 63,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 64,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-08"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_name",
+          "sale_date",
+          "total"
+        ],
+        "rows": [
+          [
+            "product",
+            "2000-01",
+            64
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "normalization",
+        "single-group",
+        "n-64"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 normalized rows in one product-month group",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Sales": [
+            {
+              "sale_id": 1,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 2,
+              "product_name": "product",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 3,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 4,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 5,
+              "product_name": "product",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 6,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 7,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 8,
+              "product_name": "product",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 9,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 10,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 11,
+              "product_name": "product",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 12,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 13,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 14,
+              "product_name": "product",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 15,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 16,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 17,
+              "product_name": "product",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 18,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 19,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 20,
+              "product_name": "product",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 21,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 22,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 23,
+              "product_name": "product",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 24,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 25,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 26,
+              "product_name": "product",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 27,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 28,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 29,
+              "product_name": "product",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 30,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 31,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 32,
+              "product_name": "product",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 33,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 34,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 35,
+              "product_name": "product",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 36,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 37,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 38,
+              "product_name": "product",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 39,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 40,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 41,
+              "product_name": "product",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 42,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 43,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 44,
+              "product_name": "product",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 45,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 46,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 47,
+              "product_name": "product",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 48,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 49,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 50,
+              "product_name": "product",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 51,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 52,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 53,
+              "product_name": "product",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 54,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 55,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 56,
+              "product_name": "product",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 57,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 58,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 59,
+              "product_name": "product",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 60,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 61,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 62,
+              "product_name": "product",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 63,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 64,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 65,
+              "product_name": "product",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 66,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 67,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 68,
+              "product_name": "product",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 69,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 70,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 71,
+              "product_name": "product",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 72,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 73,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 74,
+              "product_name": "product",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 75,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 76,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 77,
+              "product_name": "product",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 78,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 79,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 80,
+              "product_name": "product",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 81,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 82,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 83,
+              "product_name": "product",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 84,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 85,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 86,
+              "product_name": "product",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 87,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 88,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 89,
+              "product_name": "product",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 90,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 91,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 92,
+              "product_name": "product",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 93,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 94,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 95,
+              "product_name": "product",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 96,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 97,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 98,
+              "product_name": "product",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 99,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 100,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 101,
+              "product_name": "product",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 102,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 103,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 104,
+              "product_name": "product",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 105,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 106,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 107,
+              "product_name": "product",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 108,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 109,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 110,
+              "product_name": "product",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 111,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 112,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 113,
+              "product_name": "product",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 114,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 115,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 116,
+              "product_name": "product",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 117,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 118,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 119,
+              "product_name": "product",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 120,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 121,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 122,
+              "product_name": "product",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 123,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 124,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 125,
+              "product_name": "product",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 126,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 127,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 128,
+              "product_name": "product",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 129,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 130,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 131,
+              "product_name": "product",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 132,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 133,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 134,
+              "product_name": "product",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 135,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 136,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 137,
+              "product_name": "product",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 138,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 139,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 140,
+              "product_name": "product",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 141,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 142,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 143,
+              "product_name": "product",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 144,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 145,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 146,
+              "product_name": "product",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 147,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 148,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 149,
+              "product_name": "product",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 150,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 151,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 152,
+              "product_name": "product",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 153,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 154,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 155,
+              "product_name": "product",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 156,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 157,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 158,
+              "product_name": "product",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 159,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 160,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 161,
+              "product_name": "product",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 162,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 163,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 164,
+              "product_name": "product",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 165,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 166,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 167,
+              "product_name": "product",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 168,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 169,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 170,
+              "product_name": "product",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 171,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 172,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 173,
+              "product_name": "product",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 174,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 175,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 176,
+              "product_name": "product",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 177,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 178,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 179,
+              "product_name": "product",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 180,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 181,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 182,
+              "product_name": "product",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 183,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 184,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 185,
+              "product_name": "product",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 186,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 187,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 188,
+              "product_name": "product",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 189,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 190,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 191,
+              "product_name": "product",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 192,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 193,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 194,
+              "product_name": "product",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 195,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 196,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 197,
+              "product_name": "product",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 198,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 199,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 200,
+              "product_name": "product",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 201,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 202,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 203,
+              "product_name": "product",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 204,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 205,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 206,
+              "product_name": "product",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 207,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 208,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 209,
+              "product_name": "product",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 210,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 211,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 212,
+              "product_name": "product",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 213,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 214,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 215,
+              "product_name": "product",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 216,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 217,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 218,
+              "product_name": "product",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 219,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 220,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 221,
+              "product_name": "product",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 222,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 223,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 224,
+              "product_name": "product",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 225,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 226,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 227,
+              "product_name": "product",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 228,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-04"
+            },
+            {
+              "sale_id": 229,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-05"
+            },
+            {
+              "sale_id": 230,
+              "product_name": "product",
+              "sale_date": "2000-01-06"
+            },
+            {
+              "sale_id": 231,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-07"
+            },
+            {
+              "sale_id": 232,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-08"
+            },
+            {
+              "sale_id": 233,
+              "product_name": "product",
+              "sale_date": "2000-01-09"
+            },
+            {
+              "sale_id": 234,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-10"
+            },
+            {
+              "sale_id": 235,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-11"
+            },
+            {
+              "sale_id": 236,
+              "product_name": "product",
+              "sale_date": "2000-01-12"
+            },
+            {
+              "sale_id": 237,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-13"
+            },
+            {
+              "sale_id": 238,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-14"
+            },
+            {
+              "sale_id": 239,
+              "product_name": "product",
+              "sale_date": "2000-01-15"
+            },
+            {
+              "sale_id": 240,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-16"
+            },
+            {
+              "sale_id": 241,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-17"
+            },
+            {
+              "sale_id": 242,
+              "product_name": "product",
+              "sale_date": "2000-01-18"
+            },
+            {
+              "sale_id": 243,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-19"
+            },
+            {
+              "sale_id": 244,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-20"
+            },
+            {
+              "sale_id": 245,
+              "product_name": "product",
+              "sale_date": "2000-01-21"
+            },
+            {
+              "sale_id": 246,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-22"
+            },
+            {
+              "sale_id": 247,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-23"
+            },
+            {
+              "sale_id": 248,
+              "product_name": "product",
+              "sale_date": "2000-01-24"
+            },
+            {
+              "sale_id": 249,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-25"
+            },
+            {
+              "sale_id": 250,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-26"
+            },
+            {
+              "sale_id": 251,
+              "product_name": "product",
+              "sale_date": "2000-01-27"
+            },
+            {
+              "sale_id": 252,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-28"
+            },
+            {
+              "sale_id": 253,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-01"
+            },
+            {
+              "sale_id": 254,
+              "product_name": "product",
+              "sale_date": "2000-01-02"
+            },
+            {
+              "sale_id": 255,
+              "product_name": "PrOdUcT",
+              "sale_date": "2000-01-03"
+            },
+            {
+              "sale_id": 256,
+              "product_name": " PRODUCT ",
+              "sale_date": "2000-01-04"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_name",
+          "sale_date",
+          "total"
+        ],
+        "rows": [
+          [
+            "product",
+            "2000-01",
+            256
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "normalization",
+        "single-group",
+        "n-256"
+      ]
+    }
+  ]
+}
+

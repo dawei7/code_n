@@ -5,93 +5,79 @@
 | Source | LeetCode |
 | Frontend ID | 1562 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Hash Table, Binary Search, Simulation |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-latest-group-of-size-m](https://leetcode.com/problems/find-latest-group-of-size-m/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-latest-group-of-size-m/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-latest-group-of-size-m/).
-
 ### Goal
-Bits are turned from `0` to `1` in the order given by `arr`. Find the latest step
-where there exists a contiguous group of exactly `m` ones.
+
+Start with a binary string of length $N$ whose bits are all `0`. The array `arr` is a permutation of the positions from `1` through $N$. At step $i$, change the bit at the 1-based position `arr[i]` to `1`.
+
+A group of ones is a maximal contiguous substring of `1` bits: it cannot be extended by another `1` on either side. Given a target length `m`, return the latest step at which at least one group has length exactly `m`. Return `-1` if no such step occurs.
 
 ### Function Contract
 **Inputs**
 
-- `arr`: the 1-based positions turned on at each step.
-- `m`: the target group length.
+- `arr`: A permutation of all integers from `1` through $N$, where $1 \le N \le 10^5$.
+- `m`: The required maximal-group length, with $1 \le m \le N$.
 
 **Return value**
 
-The latest step containing a group of exactly `m` ones, or `-1` if it never
-happens.
+Return the greatest 1-based activation step containing at least one maximal one-group of exactly length `m`, or `-1` when no step qualifies.
 
 ### Examples
 **Example 1**
 
-- Input: `arr = [3, 5, 1, 2, 4], m = 1`
+- Input: `arr = [3,5,1,2,4], m = 1`
 - Output: `4`
 
 **Example 2**
 
-- Input: `arr = [3, 1, 5, 4, 2], m = 2`
+- Input: `arr = [3,1,5,4,2], m = 2`
 - Output: `-1`
 
 **Example 3**
 
-- Input: `arr = [1, 2, 3], m = 3`
+- Input: `arr = [1,2,3], m = 3`
 - Output: `3`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Maintain the lengths of one-groups at their boundary positions and a count of
-how many groups currently have each length. When turning on position `x`, merge
-the group ending at `x - 1` and the group starting at `x + 1`, update the length
-counts, and record the step whenever the count for length `m` is positive.
+- **Time:** $O(N)$
+- **Space:** $O(N)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`.
-- **Space Complexity**: `O(n)`.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(arr, m):
-    n = len(arr)
-    if m <= 0:
-        return -1
-    if m == n:
-        return n
-    length = [0] * (n + 2)
-    active = [False] * (n + 2)
-    count = 0
-    answer = -1
-    for step, raw_pos in enumerate(arr, 1):
-        if not 1 <= raw_pos <= n or active[raw_pos]:
-            if count > 0:
-                answer = step
-            continue
-        active[raw_pos] = True
-        left = length[raw_pos - 1]
-        right = length[raw_pos + 1]
-        merged = left + 1 + right
-        if left == m:
-            count -= 1
-        if right == m:
-            count -= 1
-        if merged == m:
-            count += 1
-        length[raw_pos - left] = merged
-        length[raw_pos + right] = merged
-        length[raw_pos] = merged
-        if count > 0:
-            answer = step
-    return answer
-```
+#### General
+
+**Store each run length at its boundaries**
+
+Maintain an array `length` with sentinel zeros outside positions `1..N`. For every active one-run, store its complete length at the run's left and right boundary positions. Interior entries do not need to be current because a newly activated position can touch only the right boundary of the run immediately to its left and the left boundary of the run immediately to its right.
+
+When activating `position`, read `left = length[position - 1]` and `right = length[position + 1]`. The new maximal run has length `left + 1 + right`, begins at `position - left`, and ends at `position + right`. Writing the merged length at those two endpoints restores the boundary invariant in constant time.
+
+**Track whether the target length currently exists**
+
+Keep the number of active groups whose length is exactly `m`. Before the merge, remove one contribution when the left run has length `m` and one when the right run has length `m`. Then add one contribution if the merged run has length `m`. These are the only groups changed by the activation; every other group's maximal boundaries remain untouched.
+
+After each merge, if the target-group count is positive, record the current step. Because steps are processed in increasing order, overwriting the answer produces the latest qualifying step. If the count never becomes positive, the initial `-1` remains correct.
+
+#### Complexity detail
+
+Each of the $N$ activations performs a fixed number of boundary reads, writes, and count updates, for $O(N)$ total time.
+
+The boundary-length array contains $N+2$ integers, so auxiliary space is $O(N)$. No explicit binary string, interval tree, or per-step scan is required.
+
+#### Alternatives and edge cases
+
+- **Union-find:** activate positions as singleton sets, union active neighbors, and maintain counts by component size. This has near-linear time and expresses the same merging invariant with parent pointers.
+- **Reverse deletion:** begin with all ones and remove positions in reverse activation order while maintaining zero boundaries. It can find the latest step naturally but requires careful interval bookkeeping.
+- **Direct bitstring scan:** rebuild maximal runs after every activation. It is simple and correct but takes $O(N^2)$ time.
+- **Target equals `N`:** the only qualifying state is the final all-one string, so the answer is `N`.
+- **Target one:** isolated active positions count only while neither adjacent bit extends their group.
+- **Merge two target groups:** activating the gap removes two size-`m` groups before possibly creating a different-sized group.
+- **No qualifying step:** the permutation can skip directly over a target length when two neighboring runs merge, so `-1` is possible.
+- **Boundary activations:** sentinel zeros make positions `1` and `N` follow the same merge formula as interior positions.
+
 </details>

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1715",
+  "frontend_id": "1593",
+  "title_slug": "split-a-string-into-the-max-number-of-unique-substrings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxUniqueSplit",
+  "verified_submission_id": "2070012003",
+  "verified_at": "2026-07-16T14:56:28.824701+00:00"
+}

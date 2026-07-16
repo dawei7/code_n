@@ -8,7 +8,13 @@ from datetime import date, timedelta
 from pathlib import Path
 
 from engine.complexity_certificates import validate_complexity_certificate
-from server.app.engine_runner import _JudgePoint, _JudgeSea, _list_node_from_values
+from server.app.engine_runner import (
+    _JudgeArrayReader,
+    _JudgeMajorityReader,
+    _JudgePoint,
+    _JudgeSea,
+    _list_node_from_values,
+)
 from server.app.challenge_packages import (
     leetcode_complexity_certificate_path,
     leetcode_complexity_certificate_status,
@@ -47,6 +53,10 @@ CERTIFIED_METHODS = {
     "1401": "asymptotic_optimality",
     "1432": "bounded_domain",
     "1491": "bounded_domain",
+    "1507": "bounded_domain",
+    "1518": "bounded_domain",
+    "1533": "asymptotic_optimality",
+    "1556": "bounded_domain",
 }
 
 
@@ -130,6 +140,72 @@ def test_clock_angle_bounded_domain_matches_exact_half_degree_oracle() -> None:
             half_degree_difference = abs(hour_position - minute_position)
             expected = min(half_degree_difference, 720 - half_degree_difference) / 2
             assert angle_clock(hour, minutes) == expected
+
+
+def test_reformat_date_bounded_domain_matches_every_valid_date() -> None:
+    reformat_date = _reference_solve("1507")
+    month_names = (
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+    )
+
+    def suffix(day: int) -> str:
+        if 10 < day % 100 < 14:
+            return "th"
+        return {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
+
+    current = date(1900, 1, 1)
+    end = date(2100, 12, 31)
+    while current <= end:
+        source = f"{current.day}{suffix(current.day)} {month_names[current.month - 1]} {current.year}"
+        assert reformat_date(source) == current.isoformat()
+        current += timedelta(days=1)
+
+
+def test_water_bottles_bounded_domain_matches_every_legal_pair() -> None:
+    water_bottles = _reference_solve("1518")
+
+    for num_bottles in range(1, 101):
+        for num_exchange in range(2, 101):
+            full = num_bottles
+            empty = 0
+            expected = 0
+            while full:
+                expected += full
+                empty += full
+                full, empty = divmod(empty, num_exchange)
+            assert water_bottles(num_bottles, num_exchange) == expected
+
+
+def test_thousand_separator_bounded_domain_matches_forward_grouping_oracle() -> None:
+    thousand_separator = _reference_solve("1556")
+
+    def expected(value: int) -> str:
+        digits = str(value)
+        first_group_width = len(digits) % 3 or 3
+        result = digits[:first_group_width]
+        for index in range(first_group_width, len(digits), 3):
+            result += "." + digits[index:index + 3]
+        return result
+
+    values = set(range(100_001))
+    values.add(2**31 - 1)
+    for power in range(1, 10):
+        boundary = 10**power
+        values.update({boundary - 1, boundary, min(boundary + 1, 2**31 - 1)})
+
+    state = 1_556
+    for _ in range(10_000):
+        state = (1_103_515_245 * state + 12_345) % (2**31)
+        values.add(state)
+
+    for value in sorted(values):
+        actual = thousand_separator(value)
+        assert actual == expected(value)
+        assert actual.replace(".", "") == str(value)
+        groups = actual.split(".")
+        assert 1 <= len(groups[0]) <= 3
+        assert all(len(group) == 3 for group in groups[1:])
 
 
 def test_max_difference_bounded_domain_matches_digit_pair_oracle() -> None:
@@ -380,6 +456,59 @@ def test_sequential_digits_matches_every_candidate_boundary_interval() -> None:
         for high in ordered_boundaries[low_index:]:
             expected = [value for value in candidates if low <= value <= high]
             assert sequential_digits(low, high) == expected
+
+
+def test_large_integer_reader_binary_search_matches_boundaries_and_query_cap() -> None:
+    get_index = _reference_solve("1533")
+
+    for length in range(2, 129):
+        for large_index in range(length):
+            values = [7] * length
+            values[large_index] = 8
+            reader = _JudgeArrayReader(values)
+            assert get_index(reader) == large_index
+            assert reader.query_count <= 20
+
+    samples = [
+        (257, 0),
+        (257, 128),
+        (257, 256),
+        (999, 731),
+        (65_535, 32_767),
+        (500_000, 499_999),
+    ]
+    for length, large_index in samples:
+        values = [99] * length
+        values[large_index] = 100
+        reader = _JudgeArrayReader(values)
+        assert get_index(reader) == large_index
+        assert reader.query_count <= 20
+
+
+def test_hidden_binary_majority_reader_matches_exhaustive_arrays_and_query_cap() -> None:
+    from itertools import product
+
+    guess_majority = _reference_solve("1538")
+
+    for length in range(5, 13):
+        for values_tuple in product((0, 1), repeat=length):
+            values = list(values_tuple)
+            reader = _JudgeMajorityReader(values)
+            result = guess_majority(reader)
+            ones = sum(values)
+            zeros = length - ones
+            assert reader.query_count <= 2 * length
+            if ones == zeros:
+                assert result == -1
+            else:
+                assert 0 <= result < length
+                assert values[result] == (1 if ones > zeros else 0)
+
+    values = [1 if index % 2 == 0 else 0 for index in range(100_000)]
+    reader = _JudgeMajorityReader(values)
+    result = guess_majority(reader)
+    assert result == -1
+    assert reader.query_count == len(values)
 
 
 def test_verbal_arithmetic_matches_an_independent_bounded_oracle() -> None:

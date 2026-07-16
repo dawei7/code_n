@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1697",
+  "frontend_id": "1554",
+  "title_slug": "strings-differ-by-one-character",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.differByOne",
+  "verified_submission_id": "2069759643",
+  "verified_at": "2026-07-16T10:53:17.872973+00:00"
+}

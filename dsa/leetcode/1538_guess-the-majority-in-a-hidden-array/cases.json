@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1538",
+  "cases": [
+    {
+      "id": "sample-ones-majority",
+      "name": "sample: ones form the majority",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "reader": {
+          "api": "majority",
+          "array": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "max_queries": 16
+        }
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "majority_index"
+      },
+      "tags": [
+        "sample",
+        "official",
+        "ones-majority"
+      ]
+    },
+    {
+      "id": "sample-zeros-majority",
+      "name": "sample: zeros form the majority at minimum length",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "reader": {
+          "api": "majority",
+          "array": [
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          "max_queries": 10
+        }
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "majority_index"
+      },
+      "tags": [
+        "sample",
+        "official",
+        "zeros-majority"
+      ]
+    },
+    {
+      "id": "sample-tie",
+      "name": "sample: equal counts require minus one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "reader": {
+          "api": "majority",
+          "array": [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          "max_queries": 16
+        }
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "majority_index"
+      },
+      "tags": [
+        "sample",
+        "official",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: every hidden bit is zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "reader": {
+          "api": "majority",
+          "array": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_queries": 10
+        }
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "majority_index"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "uniform"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one outlier does not change the zero majority",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "reader": {
+          "api": "majority",
+          "array": [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "max_queries": 10
+        }
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "majority_index"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "single-outlier"
+      ]
+    },
+    {
+      "id": "trial-three-ones",
+      "name": "trial: smallest strict one majority",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "reader": {
+          "api": "majority",
+          "array": [
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "max_queries": 10
+        }
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "majority_index"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "ones-majority"
+      ]
+    },
+    {
+      "id": "real-reference-minority",
+      "name": "hidden: reference index belongs to the minority",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "reader": {
+          "api": "majority",
+          "array": [
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          "max_queries": 18
+        }
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "majority_index"
+      },
+      "tags": [
+        "real",
+        "reference-minority",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "real-first-three-opposite",
+      "name": "hidden: all first replacement classifications differ",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "reader": {
+          "api": "majority",
+          "array": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "max_queries": 22
+        }
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "majority_index"
+      },
+      "tags": [
+        "real",
+        "replacement-queries",
+        "zeros-majority"
+      ]
+    },
+    {
+      "id": "real-late-majority",
+      "name": "hidden: late positions reverse the early balance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "reader": {
+          "api": "majority",
+          "array": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "max_queries": 26
+        }
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "majority_index"
+      },
+      "tags": [
+        "real",
+        "late-majority",
+        "ones-majority"
+      ]
+    },
+    {
+      "id": "real-long-tie",
+      "name": "hidden: balanced longer array still returns minus one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "reader": {
+          "api": "majority",
+          "array": [
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1
+          ],
+          "max_queries": 24
+        }
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "majority_index"
+      },
+      "tags": [
+        "real",
+        "tie",
+        "even-length"
+      ]
+    }
+  ]
+}

@@ -1,119 +1,16 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1515",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: diamond around the center",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "positions": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            0
-          ],
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            1
-          ]
-        ]
-      },
-      "expected": 4.0,
-      "validator": {
-        "kind": "float_close",
-        "tolerance": 0.0001
-      },
-      "tags": [
-        "sample",
-        "geometry"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: two diagonal points",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "positions": [
-          [
-            1,
-            1
-          ],
-          [
-            3,
-            3
-          ]
-        ]
-      },
-      "expected": 2.82843,
-      "validator": {
-        "kind": "float_close",
-        "tolerance": 0.0001
-      },
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: one customer",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "positions": [
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 0.0,
-      "validator": {
-        "kind": "float_close",
-        "tolerance": 0.0001
-      },
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-collinear-three-points",
-      "name": "hidden: median point on a line",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "positions": [
-          [
-            0,
-            0
-          ],
-          [
-            2,
-            0
-          ],
-          [
-            4,
-            0
-          ]
-        ]
-      },
-      "expected": 4.0,
-      "validator": {
-        "kind": "float_close",
-        "tolerance": 0.0001
-      },
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: diamond around the centre","kind":"sample","visible":true,"input":{"positions":[[0,1],[1,0],[1,2],[2,1]]},"expected":4.0,"validator":{"kind":"float_close","tolerance":0.00001},"tags":["sample","symmetric"]},
+    {"id":"sample-2","name":"sample: two diagonal customers","kind":"sample","visible":true,"input":{"positions":[[1,1],[3,3]]},"expected":2.8284271247461903,"validator":{"kind":"float_close","tolerance":0.00001},"tags":["sample","two-points"]},
+    {"id":"sample-single","name":"sample: one customer","kind":"sample","visible":true,"input":{"positions":[[1,1]]},"expected":0.0,"validator":{"kind":"float_close","tolerance":0.00001},"tags":["sample","single-point"]},
+    {"id":"trial-collinear-odd","name":"trial: odd collinear set minimizes at middle point","kind":"trial","visible":true,"input":{"positions":[[0,0],[2,0],[4,0]]},"expected":4.0,"validator":{"kind":"float_close","tolerance":0.00001},"tags":["trial","collinear","odd-count"]},
+    {"id":"trial-collinear-even","name":"trial: even collinear set has an interval of minimizers","kind":"trial","visible":true,"input":{"positions":[[0,0],[2,0],[6,0],[10,0]]},"expected":14.0,"validator":{"kind":"float_close","tolerance":0.00001},"tags":["trial","collinear","even-count"]},
+    {"id":"trial-duplicates","name":"trial: all customers share one position","kind":"trial","visible":true,"input":{"positions":[[5,5],[5,5],[5,5]]},"expected":0.0,"validator":{"kind":"float_close","tolerance":0.00001},"tags":["trial","duplicates"]},
+    {"id":"real-right-triangle","name":"hidden: Fermat point is not the right-angle vertex","kind":"real","visible":false,"input":{"positions":[[0,0],[4,0],[0,3]]},"expected":6.766432567522308,"validator":{"kind":"float_close","tolerance":0.00001},"tags":["real","fractional-optimum","triangle"]},
+    {"id":"real-square","name":"hidden: square corners minimize at centre","kind":"real","visible":false,"input":{"positions":[[0,0],[0,2],[2,0],[2,2]]},"expected":5.656854249492381,"validator":{"kind":"float_close","tolerance":0.00001},"tags":["real","symmetric","fractional-distance"]},
+    {"id":"real-weighted-centre","name":"hidden: interior customer shifts square-corner optimum","kind":"real","visible":false,"input":{"positions":[[0,0],[100,0],[0,100],[100,100],[50,20]]},"expected":296.38291878382495,"validator":{"kind":"float_close","tolerance":0.00001},"tags":["real","asymmetric","boundary-coordinates"]},
+    {"id":"real-distant-outlier","name":"hidden: cluster competes with one distant customer","kind":"real","visible":false,"input":{"positions":[[0,0],[1,0],[0,1],[10,10]]},"expected":15.556349186104047,"validator":{"kind":"float_close","tolerance":0.00001},"tags":["real","outlier","nonsmooth"]}
   ]
 }

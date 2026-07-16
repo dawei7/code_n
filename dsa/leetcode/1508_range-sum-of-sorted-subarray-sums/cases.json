@@ -1,88 +1,16 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1508",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: first five sorted sums",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "n": 4,
-        "left": 1,
-        "right": 5
-      },
-      "expected": 13,
-      "tags": [
-        "sample",
-        "subarray-sums"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: middle range",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "n": 4,
-        "left": 3,
-        "right": 4
-      },
-      "expected": 6,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: all sorted sums",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "n": 4,
-        "left": 1,
-        "right": 10
-      },
-      "expected": 50,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-single-element",
-      "name": "hidden: single subarray sum",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          5
-        ],
-        "n": 1,
-        "left": 1,
-        "right": 1
-      },
-      "expected": 5,
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
+    {"id":"sample-1","name":"sample: first five ranks","kind":"sample","visible":true,"input":{"nums":[1,2,3,4],"n":4,"left":1,"right":5},"expected":13,"tags":["sample","prefix-range"]},
+    {"id":"sample-2","name":"sample: duplicate middle ranks","kind":"sample","visible":true,"input":{"nums":[1,2,3,4],"n":4,"left":3,"right":4},"expected":6,"tags":["sample","duplicates"]},
+    {"id":"sample-3","name":"sample: all ranks","kind":"sample","visible":true,"input":{"nums":[1,2,3,4],"n":4,"left":1,"right":10},"expected":50,"tags":["sample","full-range"]},
+    {"id":"trial-single","name":"trial: one subarray","kind":"trial","visible":true,"input":{"nums":[5],"n":1,"left":1,"right":1},"expected":5,"tags":["trial","single-element"]},
+    {"id":"trial-equal","name":"trial: equal elements create duplicate sums","kind":"trial","visible":true,"input":{"nums":[3,3],"n":2,"left":1,"right":3},"expected":12,"tags":["trial","duplicates"]},
+    {"id":"trial-interior","name":"trial: interior rank interval","kind":"trial","visible":true,"input":{"nums":[4,1,7],"n":3,"left":2,"right":5},"expected":24,"tags":["trial","interior-range"]},
+    {"id":"real-max-values","name":"hidden: repeated maximum values","kind":"real","visible":false,"input":{"nums":[100,100,100,100],"n":4,"left":1,"right":10},"expected":2000,"tags":["real","maximum-values","full-range"]},
+    {"id":"real-duplicate-threshold","name":"hidden: interval cuts through equal sums","kind":"real","visible":false,"input":{"nums":[2,1,3,2],"n":4,"left":4,"right":8},"expected":21,"tags":["real","duplicate-threshold"]},
+    {"id":"real-uneven","name":"hidden: uneven values and broad interval","kind":"real","visible":false,"input":{"nums":[10,1,1,10,1],"n":5,"left":3,"right":12},"expected":92,"tags":["real","uneven"]},
+    {"id":"real-all-ones","name":"hidden: many equal sums","kind":"real","visible":false,"input":{"nums":[1,1,1,1,1],"n":5,"left":6,"right":15},"expected":30,"tags":["real","all-ones","duplicates"]}
   ]
 }

@@ -1,0 +1,671 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1548",
+  "cases": [
+    {
+      "id": "sample-official-four",
+      "name": "sample: official four-name target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "roads": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "names": [
+          "ATL",
+          "PEK",
+          "LAX",
+          "DXB",
+          "HND"
+        ],
+        "targetPath": [
+          "ATL",
+          "DXB",
+          "HND",
+          "LAX"
+        ]
+      },
+      "expected": [
+        0,
+        3,
+        0,
+        2
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "sample",
+        "semantic-path",
+        "official-four"
+      ]
+    },
+    {
+      "id": "sample-official-exact",
+      "name": "sample: exact three-city route",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "roads": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "names": [
+          "ATL",
+          "PEK",
+          "LAX",
+          "DXB",
+          "HND"
+        ],
+        "targetPath": [
+          "ATL",
+          "LAX",
+          "PEK"
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "sample",
+        "semantic-path",
+        "official-exact"
+      ]
+    },
+    {
+      "id": "sample-two-city-alternation",
+      "name": "sample: forced alternating walk",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "roads": [
+          [
+            0,
+            1
+          ]
+        ],
+        "names": [
+          "A",
+          "B"
+        ],
+        "targetPath": [
+          "B",
+          "A",
+          "B"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "sample",
+        "semantic-path",
+        "two-city-alternation"
+      ]
+    },
+    {
+      "id": "trial-one-target",
+      "name": "trial: one target name needs no edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "names": [
+          "X",
+          "Y",
+          "Z"
+        ],
+        "targetPath": [
+          "Z"
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "trial",
+        "semantic-path",
+        "one-target"
+      ]
+    },
+    {
+      "id": "trial-line-backtrack",
+      "name": "trial: line graph requires backtracking",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "names": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "targetPath": [
+          "A",
+          "B",
+          "C",
+          "B",
+          "A"
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        1,
+        0
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "trial",
+        "semantic-path",
+        "line-backtrack"
+      ]
+    },
+    {
+      "id": "trial-optimal-tie",
+      "name": "trial: cycle has multiple optimal routes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "names": [
+          "A",
+          "B",
+          "A",
+          "B"
+        ],
+        "targetPath": [
+          "A",
+          "B",
+          "A"
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        0
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "trial",
+        "semantic-path",
+        "optimal-tie"
+      ]
+    },
+    {
+      "id": "real-star-revisits",
+      "name": "hidden: star route repeatedly revisits center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "names": [
+          "C",
+          "A",
+          "B",
+          "D",
+          "E"
+        ],
+        "targetPath": [
+          "A",
+          "C",
+          "B",
+          "C",
+          "E"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        2,
+        0,
+        4
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "real",
+        "semantic-path",
+        "star-revisits"
+      ]
+    },
+    {
+      "id": "real-no-exact-name",
+      "name": "hidden: every route has mismatches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "names": [
+          "A",
+          "B",
+          "C"
+        ],
+        "targetPath": [
+          "X",
+          "X",
+          "X",
+          "X"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "real",
+        "semantic-path",
+        "no-exact-name"
+      ]
+    },
+    {
+      "id": "real-complete-no-stay",
+      "name": "hidden: complete graph still forbids staying put",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "names": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "targetPath": [
+          "A",
+          "A",
+          "A",
+          "A"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "real",
+        "semantic-path",
+        "complete-no-stay"
+      ]
+    },
+    {
+      "id": "real-duplicate-names",
+      "name": "hidden: duplicate names create tied states",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            0
+          ]
+        ],
+        "names": [
+          "A",
+          "A",
+          "B",
+          "B",
+          "C"
+        ],
+        "targetPath": [
+          "A",
+          "B",
+          "C",
+          "A",
+          "B"
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        1,
+        0,
+        1
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "real",
+        "semantic-path",
+        "duplicate-names"
+      ]
+    },
+    {
+      "id": "real-long-line",
+      "name": "hidden: longer sparse graph target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 7,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "names": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+          "G"
+        ],
+        "targetPath": [
+          "G",
+          "F",
+          "E",
+          "D",
+          "C",
+          "B",
+          "A"
+        ]
+      },
+      "expected": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "real",
+        "semantic-path",
+        "long-line"
+      ]
+    },
+    {
+      "id": "real-mixed-cycle-chord",
+      "name": "hidden: cycle plus chord changes predecessor choice",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "names": [
+          "AA",
+          "BB",
+          "CC",
+          "DD",
+          "EE",
+          "FF"
+        ],
+        "targetPath": [
+          "AA",
+          "FF",
+          "EE",
+          "BB",
+          "CC",
+          "DD"
+        ]
+      },
+      "expected": [
+        0,
+        5,
+        4,
+        1,
+        2,
+        3
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "real",
+        "semantic-path",
+        "mixed-cycle-chord"
+      ]
+    }
+  ]
+}

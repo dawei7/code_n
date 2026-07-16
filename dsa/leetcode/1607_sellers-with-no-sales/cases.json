@@ -1,0 +1,679 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1607",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official sellers and mixed years",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 101,
+              "customer_name": "Alice"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Bob"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "sale_date": "2020-03-01",
+              "order_cost": 1500,
+              "customer_id": 101,
+              "seller_id": 1
+            },
+            {
+              "order_id": 2,
+              "sale_date": "2020-05-25",
+              "order_cost": 2400,
+              "customer_id": 102,
+              "seller_id": 2
+            },
+            {
+              "order_id": 3,
+              "sale_date": "2019-05-25",
+              "order_cost": 800,
+              "customer_id": 101,
+              "seller_id": 3
+            },
+            {
+              "order_id": 4,
+              "sale_date": "2020-09-13",
+              "order_cost": 1000,
+              "customer_id": 101,
+              "seller_id": 2
+            },
+            {
+              "order_id": 5,
+              "sale_date": "2019-02-11",
+              "order_cost": 700,
+              "customer_id": 101,
+              "seller_id": 2
+            }
+          ],
+          "Seller": [
+            {
+              "seller_id": 1,
+              "seller_name": "Daniel"
+            },
+            {
+              "seller_id": 2,
+              "seller_name": "Elizabeth"
+            },
+            {
+              "seller_id": 3,
+              "seller_name": "Frank"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_name"
+        ],
+        "rows": [
+          [
+            "Frank"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "mixed-years"
+      ]
+    },
+    {
+      "id": "sample-no-orders",
+      "name": "sample: sellers with no order history qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 101,
+              "customer_name": "Alice"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Bob"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "sale_date": "2020-06-01",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 3
+            }
+          ],
+          "Seller": [
+            {
+              "seller_id": 1,
+              "seller_name": "Zoe"
+            },
+            {
+              "seller_id": 2,
+              "seller_name": "Amy"
+            },
+            {
+              "seller_id": 3,
+              "seller_name": "Active"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_name"
+        ],
+        "rows": [
+          [
+            "Amy"
+          ],
+          [
+            "Zoe"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "no-orders",
+        "output-order"
+      ]
+    },
+    {
+      "id": "trial-start-boundary",
+      "name": "trial: January first is inside 2020",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 101,
+              "customer_name": "Alice"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Bob"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "sale_date": "2020-01-01",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 1
+            },
+            {
+              "order_id": 2,
+              "sale_date": "2019-12-31",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 2
+            }
+          ],
+          "Seller": [
+            {
+              "seller_id": 1,
+              "seller_name": "Ada"
+            },
+            {
+              "seller_id": 2,
+              "seller_name": "Grace"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_name"
+        ],
+        "rows": [
+          [
+            "Grace"
+          ]
+        ]
+      },
+      "tags": [
+        "inclusive-start"
+      ]
+    },
+    {
+      "id": "trial-end-boundary",
+      "name": "trial: December thirty-first is inside 2020",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 101,
+              "customer_name": "Alice"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Bob"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "sale_date": "2020-12-31",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 1
+            },
+            {
+              "order_id": 2,
+              "sale_date": "2021-01-01",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 2
+            }
+          ],
+          "Seller": [
+            {
+              "seller_id": 1,
+              "seller_name": "Ada"
+            },
+            {
+              "seller_id": 2,
+              "seller_name": "Grace"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_name"
+        ],
+        "rows": [
+          [
+            "Grace"
+          ]
+        ]
+      },
+      "tags": [
+        "inclusive-end"
+      ]
+    },
+    {
+      "id": "real-outside-both-sides",
+      "name": "hidden: sales surrounding 2020 do not exclude",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 101,
+              "customer_name": "Alice"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Bob"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "sale_date": "2019-12-31",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 1
+            },
+            {
+              "order_id": 2,
+              "sale_date": "2021-01-01",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 2
+            },
+            {
+              "order_id": 3,
+              "sale_date": "2020-06-15",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 3
+            }
+          ],
+          "Seller": [
+            {
+              "seller_id": 1,
+              "seller_name": "Before"
+            },
+            {
+              "seller_id": 2,
+              "seller_name": "After"
+            },
+            {
+              "seller_id": 3,
+              "seller_name": "During"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_name"
+        ],
+        "rows": [
+          [
+            "After"
+          ],
+          [
+            "Before"
+          ]
+        ]
+      },
+      "tags": [
+        "outside-window"
+      ]
+    },
+    {
+      "id": "real-many-active-orders",
+      "name": "hidden: repeated 2020 sales exclude once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 101,
+              "customer_name": "Alice"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Bob"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "sale_date": "2020-02-01",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 1
+            },
+            {
+              "order_id": 2,
+              "sale_date": "2020-03-01",
+              "order_cost": 100,
+              "customer_id": 102,
+              "seller_id": 1
+            },
+            {
+              "order_id": 3,
+              "sale_date": "2020-04-01",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 1
+            }
+          ],
+          "Seller": [
+            {
+              "seller_id": 1,
+              "seller_name": "Active"
+            },
+            {
+              "seller_id": 2,
+              "seller_name": "Quiet"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_name"
+        ],
+        "rows": [
+          [
+            "Quiet"
+          ]
+        ]
+      },
+      "tags": [
+        "duplicates",
+        "no-orders"
+      ]
+    },
+    {
+      "id": "real-all-active",
+      "name": "hidden: every seller has a 2020 sale",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 101,
+              "customer_name": "Alice"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Bob"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "sale_date": "2020-01-02",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 1
+            },
+            {
+              "order_id": 2,
+              "sale_date": "2020-02-02",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 2
+            },
+            {
+              "order_id": 3,
+              "sale_date": "2020-03-02",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 3
+            }
+          ],
+          "Seller": [
+            {
+              "seller_id": 1,
+              "seller_name": "A"
+            },
+            {
+              "seller_id": 2,
+              "seller_name": "B"
+            },
+            {
+              "seller_id": 3,
+              "seller_name": "C"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "empty-output"
+      ]
+    },
+    {
+      "id": "real-all-inactive",
+      "name": "hidden: every order is outside 2020",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 101,
+              "customer_name": "Alice"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Bob"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "sale_date": "2018-01-01",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 10
+            },
+            {
+              "order_id": 2,
+              "sale_date": "2019-06-01",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 2
+            },
+            {
+              "order_id": 3,
+              "sale_date": "2022-01-01",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 7
+            }
+          ],
+          "Seller": [
+            {
+              "seller_id": 10,
+              "seller_name": "Zulu"
+            },
+            {
+              "seller_id": 2,
+              "seller_name": "Alpha"
+            },
+            {
+              "seller_id": 7,
+              "seller_name": "Mike"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_name"
+        ],
+        "rows": [
+          [
+            "Alpha"
+          ],
+          [
+            "Mike"
+          ],
+          [
+            "Zulu"
+          ]
+        ]
+      },
+      "tags": [
+        "all-qualify",
+        "name-order"
+      ]
+    },
+    {
+      "id": "real-id-order-differs",
+      "name": "hidden: sort by seller name rather than ID",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 101,
+              "customer_name": "Alice"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Bob"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "sale_date": "2020-07-07",
+              "order_cost": 100,
+              "customer_id": 101,
+              "seller_id": 2
+            }
+          ],
+          "Seller": [
+            {
+              "seller_id": 1,
+              "seller_name": "Zulu"
+            },
+            {
+              "seller_id": 2,
+              "seller_name": "Beta"
+            },
+            {
+              "seller_id": 3,
+              "seller_name": "Alpha"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_name"
+        ],
+        "rows": [
+          [
+            "Alpha"
+          ],
+          [
+            "Zulu"
+          ]
+        ]
+      },
+      "tags": [
+        "output-order",
+        "id-name-order"
+      ]
+    },
+    {
+      "id": "real-customers-costs-irrelevant",
+      "name": "hidden: customer and cost do not affect exclusion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customer": [
+            {
+              "customer_id": 101,
+              "customer_name": "Alice"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Bob"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "sale_date": "2020-08-08",
+              "order_cost": 1,
+              "customer_id": 101,
+              "seller_id": 1
+            },
+            {
+              "order_id": 2,
+              "sale_date": "2019-08-08",
+              "order_cost": 100000000,
+              "customer_id": 102,
+              "seller_id": 2
+            }
+          ],
+          "Seller": [
+            {
+              "seller_id": 1,
+              "seller_name": "Cheap"
+            },
+            {
+              "seller_id": 2,
+              "seller_name": "Expensive"
+            },
+            {
+              "seller_id": 3,
+              "seller_name": "None"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "seller_name"
+        ],
+        "rows": [
+          [
+            "Expensive"
+          ],
+          [
+            "None"
+          ]
+        ]
+      },
+      "tags": [
+        "irrelevant-columns"
+      ]
+    }
+  ]
+}

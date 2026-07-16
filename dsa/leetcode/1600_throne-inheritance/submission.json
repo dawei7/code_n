@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1722",
+  "frontend_id": "1600",
+  "title_slug": "throne-inheritance",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "ThroneInheritance",
+  "verified_submission_id": "2070058534",
+  "verified_at": "2026-07-16T15:33:46.420445+00:00"
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1518",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Both integer inputs are capped at 100, so all 9,900 legal pairs can be checked exhaustively and no honest unbounded scaling dimension exists.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 9900,
+    "unit": "legal input pairs",
+    "source_constraint": "1 <= numBottles <= 100 and 2 <= numExchange <= 100"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted expression performs a fixed number of integer arithmetic operations independent of both input magnitudes."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "The certificate regression compares the closed form with direct exchange simulation for every one of the 9,900 legal input pairs."
+    }
+  ]
+}

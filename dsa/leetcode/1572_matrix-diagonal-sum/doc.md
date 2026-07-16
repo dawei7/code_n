@@ -5,36 +5,34 @@
 | Source | LeetCode |
 | Frontend ID | 1572 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array, Matrix |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [matrix-diagonal-sum](https://leetcode.com/problems/matrix-diagonal-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/matrix-diagonal-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/matrix-diagonal-sum/).
-
 ### Goal
-Sum the values on both diagonals of a square matrix, counting the center only
-once when the matrix size is odd.
+
+Given a square matrix `mat`, add every value on its primary diagonal, whose cells run from the top-left to the bottom-right, and every value on its secondary diagonal, whose cells run from the top-right to the bottom-left.
+
+When the matrix dimension is odd, the two diagonals share the center cell. Include that value only once. Return the resulting diagonal sum; values outside the two diagonals do not contribute.
 
 ### Function Contract
 **Inputs**
 
-- `mat`: an `n x n` integer matrix.
+- `mat`: An $N \times N$ integer matrix, where $1 \le N \le 100$ and $1 \le \texttt{mat[i][j]} \le 100$.
 
 **Return value**
 
-The sum of all primary and secondary diagonal cells.
+Return the sum of all cells `(i, i)` and `(i, N - 1 - i)`, counting a shared center cell once.
 
 ### Examples
 **Example 1**
 
-- Input: `mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]`
+- Input: `mat = [[1,2,3],[4,5,6],[7,8,9]]`
 - Output: `25`
 
 **Example 2**
 
-- Input: `mat = [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]`
+- Input: `mat = [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]`
 - Output: `8`
 
 **Example 3**
@@ -42,30 +40,41 @@ The sum of all primary and secondary diagonal cells.
 - Input: `mat = [[5]]`
 - Output: `5`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-For each row `i`, add `mat[i][i]` and `mat[i][n - 1 - i]`. If both indices are
-the same center cell, add it only once.
+- **Time:** $O(N)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`.
-- **Space Complexity**: `O(1)`.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(mat):
-    n = min(len(mat), len(mat[0]) if mat else 0)
-    total = 0
-    for i in range(n):
-        total += mat[i][i]
-        j = n - 1 - i
-        if j != i:
-            total += mat[i][j]
-    return total
-```
+#### General
+
+**Derive both diagonal columns from the row**
+
+In row `index`, the primary-diagonal cell is `mat[index][index]`. The secondary-diagonal column mirrors that index across the matrix, so its cell is `mat[index][N - 1 - index]`. Add both values for every row. This visits exactly the two requested diagonal positions and ignores every other matrix cell.
+
+**Correct the unique overlap**
+
+For even $N$, the diagonal column indices are never equal, so all $2N$ visited cells are distinct. For odd $N$, they coincide only when `index = N // 2`; the center was then added twice. Subtract that one center value after the scan.
+
+Every diagonal cell appears in its own row's two selected positions. The parity argument identifies the only possible duplicate, proving that the corrected total counts the union of both diagonals exactly once.
+
+#### Complexity detail
+
+The algorithm performs constant work for each of $N$ rows, so it takes $O(N)$ time rather than scanning all $N^2$ matrix cells.
+
+Only the matrix dimension, loop index, and running total are stored, giving $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Two separate diagonal sums:** sum the primary and secondary diagonals independently and subtract the center for odd $N$. This has the same $O(N)$ time and $O(1)$ space.
+- **Full matrix scan:** inspect every coordinate and add it when `row == column` or `row + column == N - 1`. It is correct but takes $O(N^2)$ time.
+- **Set of coordinates:** insert both diagonal positions into a set before summing. It prevents duplicate counting but uses unnecessary $O(N)$ space.
+- **One-by-one matrix:** its only cell belongs to both diagonals and must be returned once.
+- **Odd dimension:** exactly one center cell overlaps.
+- **Even dimension:** the diagonals cross between cells, so no correction is needed.
+- **Off-diagonal values:** they never affect the result, regardless of magnitude.
+- **Equal diagonal values:** positions, not value equality, determine whether a cell is counted once or twice.
+
 </details>

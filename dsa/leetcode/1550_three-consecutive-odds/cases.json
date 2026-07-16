@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1550",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: no three odds",
+      "id": "sample-no-run",
+      "name": "sample: isolated final odd",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,12 +17,14 @@
       },
       "expected": false,
       "tags": [
-        "sample"
+        "sample",
+        "parity-run",
+        "no-run"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: three odds at end",
+      "id": "sample-interior-run",
+      "name": "sample: three odds inside mixed array",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -39,31 +42,197 @@
       },
       "expected": true,
       "tags": [
-        "sample"
+        "sample",
+        "parity-run",
+        "interior-run"
       ]
     },
     {
-      "id": "trial-start",
-      "name": "three odds at start",
+      "id": "sample-exact-three",
+      "name": "sample: exactly three odds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          3,
+          5
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "parity-run",
+        "exact-three"
+      ]
+    },
+    {
+      "id": "trial-one-value",
+      "name": "trial: one odd is insufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "parity-run",
+        "one-value"
+      ]
+    },
+    {
+      "id": "trial-two-odds",
+      "name": "trial: two adjacent odds are insufficient",
       "kind": "trial",
       "visible": true,
       "input": {
         "arr": [
           9,
-          11,
-          13,
+          11
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "parity-run",
+        "two-odds"
+      ]
+    },
+    {
+      "id": "trial-even-break",
+      "name": "trial: even value breaks two odd pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          3,
+          2,
+          5,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "parity-run",
+        "even-break"
+      ]
+    },
+    {
+      "id": "real-run-at-start",
+      "name": "hidden: qualifying block begins at zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          9,
+          7,
+          5,
           2,
           4
         ]
       },
       "expected": true,
       "tags": [
-        "edge"
+        "real",
+        "parity-run",
+        "run-at-start"
       ]
     },
     {
-      "id": "real-separated",
-      "name": "hidden: odds separated by evens",
+      "id": "real-run-at-end",
+      "name": "hidden: qualifying block ends at final position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          4,
+          6,
+          1,
+          9,
+          11
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "parity-run",
+        "run-at-end"
+      ]
+    },
+    {
+      "id": "real-four-odds",
+      "name": "hidden: longer odd run qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          2,
+          1,
+          3,
+          5,
+          7,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "parity-run",
+        "four-odds"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating parity never reaches three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "parity-run",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: parity of upper-range values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          999,
+          997,
+          995,
+          1000
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "parity-run",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-many-pairs",
+      "name": "hidden: repeated runs of exactly two",
       "kind": "real",
       "visible": false,
       "input": {
@@ -75,12 +244,15 @@
           7,
           4,
           9,
-          11
+          11,
+          6
         ]
       },
       "expected": false,
       "tags": [
-        "hidden"
+        "real",
+        "parity-run",
+        "many-pairs"
       ]
     }
   ]

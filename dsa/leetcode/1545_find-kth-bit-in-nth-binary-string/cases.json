@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1545",
+  "cases": [
+    {
+      "id": "sample-first-bit",
+      "name": "sample: official first bit of S3",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "k": 1
+      },
+      "expected": "0",
+      "tags": [
+        "sample",
+        "recurrence",
+        "first-bit"
+      ]
+    },
+    {
+      "id": "sample-interior",
+      "name": "sample: official interior bit of S4",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 11
+      },
+      "expected": "1",
+      "tags": [
+        "sample",
+        "recurrence",
+        "interior"
+      ]
+    },
+    {
+      "id": "sample-base",
+      "name": "sample: base string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "k": 1
+      },
+      "expected": "0",
+      "tags": [
+        "sample",
+        "recurrence",
+        "base"
+      ]
+    },
+    {
+      "id": "trial-middle",
+      "name": "trial: exact middle is one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "k": 16
+      },
+      "expected": "1",
+      "tags": [
+        "trial",
+        "recurrence",
+        "middle"
+      ]
+    },
+    {
+      "id": "trial-last",
+      "name": "trial: final position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "k": 63
+      },
+      "expected": "1",
+      "tags": [
+        "trial",
+        "recurrence",
+        "last"
+      ]
+    },
+    {
+      "id": "trial-left-unchanged",
+      "name": "trial: left half descends unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 5
+      },
+      "expected": "0",
+      "tags": [
+        "trial",
+        "recurrence",
+        "left-unchanged"
+      ]
+    },
+    {
+      "id": "real-first-large",
+      "name": "hidden: first bit at largest level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20,
+        "k": 1
+      },
+      "expected": "0",
+      "tags": [
+        "real",
+        "recurrence",
+        "first-large"
+      ]
+    },
+    {
+      "id": "real-middle-large",
+      "name": "hidden: middle at largest level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20,
+        "k": 524288
+      },
+      "expected": "1",
+      "tags": [
+        "real",
+        "recurrence",
+        "middle-large"
+      ]
+    },
+    {
+      "id": "real-right-neighbor",
+      "name": "hidden: first position right of middle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "k": 513
+      },
+      "expected": "0",
+      "tags": [
+        "real",
+        "recurrence",
+        "right-neighbor"
+      ]
+    },
+    {
+      "id": "real-deep-reflections",
+      "name": "hidden: repeated right-half reflections",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20,
+        "k": 999999
+      },
+      "expected": "1",
+      "tags": [
+        "real",
+        "recurrence",
+        "deep-reflections"
+      ]
+    },
+    {
+      "id": "real-last-large",
+      "name": "hidden: last position at largest level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20,
+        "k": 1048575
+      },
+      "expected": "1",
+      "tags": [
+        "real",
+        "recurrence",
+        "last-large"
+      ]
+    },
+    {
+      "id": "real-even-position",
+      "name": "hidden: nontrivial interior coordinate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 17,
+        "k": 87342
+      },
+      "expected": "0",
+      "tags": [
+        "real",
+        "recurrence",
+        "even-position"
+      ]
+    }
+  ]
+}
+

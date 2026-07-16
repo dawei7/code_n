@@ -1,0 +1,584 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1571",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official warehouses and product dimensions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "LCHouse1",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "LCHouse1",
+              "product_id": 2,
+              "units": 10
+            },
+            {
+              "name": "LCHouse1",
+              "product_id": 3,
+              "units": 5
+            },
+            {
+              "name": "LCHouse2",
+              "product_id": 1,
+              "units": 2
+            },
+            {
+              "name": "LCHouse2",
+              "product_id": 2,
+              "units": 2
+            },
+            {
+              "name": "LCHouse3",
+              "product_id": 4,
+              "units": 1
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "LC-TV",
+              "Width": 5,
+              "Length": 50,
+              "Height": 40
+            },
+            {
+              "product_id": 2,
+              "product_name": "LC-KeyChain",
+              "Width": 5,
+              "Length": 5,
+              "Height": 5
+            },
+            {
+              "product_id": 3,
+              "product_name": "LC-Phone",
+              "Width": 2,
+              "Length": 10,
+              "Height": 10
+            },
+            {
+              "product_id": 4,
+              "product_name": "LC-T-Shirt",
+              "Width": 4,
+              "Length": 10,
+              "Height": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "LCHouse1",
+            12250
+          ],
+          [
+            "LCHouse2",
+            20250
+          ],
+          [
+            "LCHouse3",
+            800
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "multiple-warehouses",
+        "multiple-products"
+      ]
+    },
+    {
+      "id": "sample-single-product",
+      "name": "sample: units multiply one product volume",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "A",
+              "product_id": 1,
+              "units": 3
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "box",
+              "Width": 2,
+              "Length": 3,
+              "Height": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "A",
+            72
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "single-row",
+        "units"
+      ]
+    },
+    {
+      "id": "sample-shared-product",
+      "name": "sample: warehouses share dimensions but not units",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "East",
+              "product_id": 1,
+              "units": 2
+            },
+            {
+              "name": "West",
+              "product_id": 1,
+              "units": 5
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "cube",
+              "Width": 2,
+              "Length": 2,
+              "Height": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "East",
+            16
+          ],
+          [
+            "West",
+            40
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "shared-product",
+        "multiple-warehouses"
+      ]
+    },
+    {
+      "id": "trial-two-products",
+      "name": "trial: add two occupied product volumes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "A",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "A",
+              "product_id": 2,
+              "units": 2
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "unit",
+              "Width": 1,
+              "Length": 1,
+              "Height": 1
+            },
+            {
+              "product_id": 2,
+              "product_name": "block",
+              "Width": 2,
+              "Length": 3,
+              "Height": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "A",
+            49
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "multiple-products",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-unit-dimensions",
+      "name": "trial: unit dimensions leave units unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "Tiny",
+              "product_id": 7,
+              "units": 11
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 7,
+              "product_name": "point",
+              "Width": 1,
+              "Length": 1,
+              "Height": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "Tiny",
+            11
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "unit-dimensions",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-dimension-product",
+      "name": "trial: all three dimensions participate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "Shape",
+              "product_id": 3,
+              "units": 1
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 3,
+              "product_name": "rectangular",
+              "Width": 7,
+              "Length": 8,
+              "Height": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "Shape",
+            504
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "three-dimensions",
+        "single-unit"
+      ]
+    },
+    {
+      "id": "real-unused-product",
+      "name": "hidden: unused catalog row contributes nothing",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "Used",
+              "product_id": 1,
+              "units": 4
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "used",
+              "Width": 2,
+              "Length": 2,
+              "Height": 3
+            },
+            {
+              "product_id": 2,
+              "product_name": "unused",
+              "Width": 100,
+              "Length": 100,
+              "Height": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "Used",
+            48
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "unused-product",
+        "inner-join"
+      ]
+    },
+    {
+      "id": "real-three-products",
+      "name": "hidden: three row volumes aggregate together",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "Main",
+              "product_id": 1,
+              "units": 2
+            },
+            {
+              "name": "Main",
+              "product_id": 2,
+              "units": 3
+            },
+            {
+              "name": "Main",
+              "product_id": 3,
+              "units": 4
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "a",
+              "Width": 1,
+              "Length": 2,
+              "Height": 3
+            },
+            {
+              "product_id": 2,
+              "product_name": "b",
+              "Width": 2,
+              "Length": 2,
+              "Height": 2
+            },
+            {
+              "product_id": 3,
+              "product_name": "c",
+              "Width": 3,
+              "Length": 1,
+              "Height": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "Main",
+            60
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "multiple-products",
+        "sum"
+      ]
+    },
+    {
+      "id": "real-name-grouping",
+      "name": "hidden: product name does not split warehouse group",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "Depot",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "Depot",
+              "product_id": 2,
+              "units": 1
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "alpha",
+              "Width": 2,
+              "Length": 3,
+              "Height": 4
+            },
+            {
+              "product_id": 2,
+              "product_name": "beta",
+              "Width": 5,
+              "Length": 2,
+              "Height": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "Depot",
+            34
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "warehouse-group",
+        "product-name-irrelevant"
+      ]
+    },
+    {
+      "id": "real-independent-warehouses",
+      "name": "hidden: each name receives its own aggregate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "A",
+              "product_id": 1,
+              "units": 2
+            },
+            {
+              "name": "A",
+              "product_id": 2,
+              "units": 1
+            },
+            {
+              "name": "B",
+              "product_id": 2,
+              "units": 4
+            },
+            {
+              "name": "C",
+              "product_id": 1,
+              "units": 1
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "x",
+              "Width": 3,
+              "Length": 3,
+              "Height": 1
+            },
+            {
+              "product_id": 2,
+              "product_name": "y",
+              "Width": 2,
+              "Length": 5,
+              "Height": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "A",
+            38
+          ],
+          [
+            "B",
+            80
+          ],
+          [
+            "C",
+            9
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "multiple-warehouses",
+        "independent-groups"
+      ]
+    }
+  ]
+}

@@ -1,11 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1515",
+  "measurement_note": "Size is n, the number of customer positions. The legal 4/16/48 tiers span 12x and repeat the four corners of a 100-by-100 square equally, keeping the geometric median at the center. Fixed 45-by-45 app-local nested ternary search runs in O(n I^2) time for tolerance iteration count I. A correct over-refined implementation unnecessarily uses 45 + floor(n / 2) iterations per coordinate, completes at n = 48, and is rejected by its superlinear scaling.",
   "cases": [
     {
-      "id": "benchmark-square-corners",
-      "name": "benchmark: square corners minimize at the center",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 balanced square-corner customers",
       "kind": "benchmark",
       "visible": false,
+      "size": 4,
       "input": {
         "positions": [
           [
@@ -14,25 +17,328 @@
           ],
           [
             0,
-            2
+            100
           ],
           [
-            2,
+            100,
             0
           ],
           [
-            2,
-            2
+            100,
+            100
           ]
         ]
       },
-      "expected": 5.656854249492381,
+      "expected": 282.842712474619,
       "validator": {
         "kind": "float_close",
-        "tolerance": 0.0001
+        "tolerance": 0.00001
       },
       "tags": [
-        "benchmark"
+        "benchmark",
+        "scaling",
+        "symmetric",
+        "duplicate-positions"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 balanced square-corner customers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "positions": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ]
+        ]
+      },
+      "expected": 1131.370849898476,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "symmetric",
+        "duplicate-positions"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 48 balanced square-corner customers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "positions": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            100
+          ],
+          [
+            100,
+            0
+          ],
+          [
+            100,
+            100
+          ]
+        ]
+      },
+      "expected": 3394.1125496954282,
+      "validator": {
+        "kind": "float_close",
+        "tolerance": 0.00001
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "symmetric",
+        "duplicate-positions"
       ]
     }
   ]

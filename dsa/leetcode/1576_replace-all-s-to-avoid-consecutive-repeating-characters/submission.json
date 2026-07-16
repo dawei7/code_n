@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1698",
+  "frontend_id": "1576",
+  "title_slug": "replace-all-s-to-avoid-consecutive-repeating-characters",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.modifyString",
+  "verified_submission_id": "2069885198",
+  "verified_at": "2026-07-16T13:07:57.219620+00:00"
+}

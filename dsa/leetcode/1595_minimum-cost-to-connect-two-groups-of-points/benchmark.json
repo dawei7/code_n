@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1595",
+  "measurement_note": "Size is M, the number of first-group points, while the second group has two points. The legal 3/6/12-row tiers exercise the linear M factor of the required O(MN2^N) bitmask DP. The Accepted memoized recursion and an independent bottom-up mask DP share states. Correct endpoint-assignment enumeration explores all 2^M assignments, completes every tier, and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: three first-group points","kind":"benchmark","visible":false,"size":3,"input":{"cost":[[1,1],[1,1],[1,1]]},"expected":3,"tags":["benchmark","scale-small","ties"]},
+    {"id":"benchmark-scale-2","name":"benchmark: six first-group points","kind":"benchmark","visible":false,"size":6,"input":{"cost":[[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]]},"expected":6,"tags":["benchmark","scale-medium","ties"]},
+    {"id":"benchmark-scale-3","name":"benchmark: twelve first-group points","kind":"benchmark","visible":false,"size":12,"input":{"cost":[[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]]},"expected":12,"tags":["benchmark","scale-large","ties"]}
+  ]
+}

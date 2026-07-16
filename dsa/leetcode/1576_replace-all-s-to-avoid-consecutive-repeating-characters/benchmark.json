@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1576",
+  "measurement_note": "Size is N, the string length. Every legal workload consists entirely of placeholders, so every position must be replaced. The remotely Accepted mutable-list scan and an independent linear construction use O(N) time. A correct slower implementation repeatedly rebuilds an immutable string and rescans the completed prefix after every replacement, uses O(N^2) time, completes all 16/64/100 tiers, and is rejected only by scaling. The semantic validator accepts any valid completion.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 consecutive placeholders",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "????????????????"
+      },
+      "expected": "abababababababab",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "benchmark",
+        "all-placeholders",
+        "immutable-rebuild-scan",
+        "n-16"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 consecutive placeholders",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "????????????????????????????????????????????????????????????????"
+      },
+      "expected": "abababababababababababababababababababababababababababababababab",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "benchmark",
+        "all-placeholders",
+        "immutable-rebuild-scan",
+        "n-64"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100 consecutive placeholders",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "s": "????????????????????????????????????????????????????????????????????????????????????????????????????"
+      },
+      "expected": "abababababababababababababababababababababababababababababababababababababababababababababababababab",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "benchmark",
+        "all-placeholders",
+        "immutable-rebuild-scan",
+        "n-100"
+      ]
+    }
+  ]
+}

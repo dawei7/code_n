@@ -1,37 +1,70 @@
-def solve(grid):
+def solve(grid: list[list[int]]) -> int:
     rows = len(grid)
-    cols = len(grid[0]) if rows else 0
+    columns = len(grid[0])
+    land_count = sum(sum(row) for row in grid)
 
-    def is_land(value):
-        return value == 1
-
-    def island_count(skip=None):
-        seen = [[False] * cols for _ in range(rows)]
-        count = 0
-        for r in range(rows):
-            for c in range(cols):
-                if skip == (r, c) or seen[r][c] or not is_land(grid[r][c]):
-                    continue
-                count += 1
-                stack = [(r, c)]
-                seen[r][c] = True
-                while stack:
-                    cr, cc = stack.pop()
-                    for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        nr = cr + dr
-                        nc = cc + dc
-                        if nr < 0 or nr >= rows or nc < 0 or nc >= cols:
-                            continue
-                        if skip == (nr, nc) or seen[nr][nc] or not is_land(grid[nr][nc]):
-                            continue
-                        seen[nr][nc] = True
-                        stack.append((nr, nc))
-        return count
-
-    if island_count() != 1:
+    if land_count == 0:
         return 0
-    for r in range(rows):
-        for c in range(cols):
-            if is_land(grid[r][c]) and island_count((r, c)) != 1:
-                return 1
-    return 2
+
+    discovery = [[-1] * columns for _ in range(rows)]
+    low = [[-1] * columns for _ in range(rows)]
+    time = 0
+    visited = 0
+    has_articulation = False
+
+    def dfs(
+        row: int,
+        column: int,
+        parent: tuple[int, int] | None,
+    ) -> None:
+        nonlocal time, visited, has_articulation
+
+        discovery[row][column] = time
+        low[row][column] = time
+        time += 1
+        visited += 1
+        children = 0
+
+        for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            next_row = row + row_delta
+            next_column = column + column_delta
+
+            if not (0 <= next_row < rows and 0 <= next_column < columns):
+                continue
+            if grid[next_row][next_column] == 0:
+                continue
+            if (next_row, next_column) == parent:
+                continue
+
+            if discovery[next_row][next_column] == -1:
+                children += 1
+                dfs(next_row, next_column, (row, column))
+                low[row][column] = min(
+                    low[row][column], low[next_row][next_column]
+                )
+
+                if parent is None and children > 1:
+                    has_articulation = True
+                if (
+                    parent is not None
+                    and low[next_row][next_column] >= discovery[row][column]
+                ):
+                    has_articulation = True
+            else:
+                low[row][column] = min(
+                    low[row][column], discovery[next_row][next_column]
+                )
+
+    start = next(
+        (row, column)
+        for row in range(rows)
+        for column in range(columns)
+        if grid[row][column] == 1
+    )
+    dfs(start[0], start[1], None)
+
+    if visited != land_count:
+        return 0
+    if land_count == 1:
+        return 1
+    return 1 if has_articulation else 2

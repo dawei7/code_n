@@ -5,105 +5,98 @@
 | Source | LeetCode |
 | Frontend ID | 1515 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Math, Geometry, Randomized |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [best-position-for-a-service-centre](https://leetcode.com/problems/best-position-for-a-service-centre/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/best-position-for-a-service-centre/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/best-position-for-a-service-centre/).
-
 ### Goal
-Choose a point for a service centre so that the sum of Euclidean distances from
-that point to all given customer positions is as small as possible.
+
+A delivery company knows the Cartesian coordinates of all customers in a city. It may place one service centre at any real-valued point in the plane, not only at an existing customer position or an integer coordinate.
+
+Choose the centre so that the sum of its Euclidean distances to every customer is as small as possible, and return that minimum total. An answer within $10^{-5}$ of the true value is accepted.
 
 ### Function Contract
 **Inputs**
 
-- `positions`: a list of `[x, y]` coordinates.
+Let $n$ be the number of customer positions and $I$ the fixed number of ternary-search iterations used per coordinate.
+
+- `positions`: A list of $n$ coordinate pairs `[x_i, y_i]`, where $1 \leq n \leq 50$.
+- Each coordinate is an integer in the inclusive range from 0 through 100.
+- The service centre may use arbitrary real coordinates.
 
 **Return value**
 
-The minimum possible total distance, accepted within a small floating-point
-tolerance.
+Return the minimum possible value of
+
+$$
+\sum_{i=1}^{n}\sqrt{(x-x_i)^2+(y-y_i)^2}
+$$
+
+over all real centre positions $(x,y)$.
 
 ### Examples
 **Example 1**
 
 - Input: `positions = [[0, 1], [1, 0], [1, 2], [2, 1]]`
 - Output: `4.0`
+- Explanation: Placing the centre at `(1, 1)` gives distance 1 to each customer.
 
 **Example 2**
 
 - Input: `positions = [[1, 1], [3, 3]]`
 - Output: `2.82843`
+- Explanation: Every point on the segment between the two customers has the same minimum total, equal to their separation.
 
 **Example 3**
 
 - Input: `positions = [[1, 1]]`
 - Output: `0.0`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-The objective is convex over the plane. A common approach is nested ternary
-search: for a fixed `x`, ternary-search the best `y`, then ternary-search `x`
-using that inner optimum. Gradient descent with a shrinking step size is another
-practical method for the same convex surface.
+- **Time:** $O(nI^2)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n * I^2)` for nested ternary search with `I` iterations per dimension.
-- **Space Complexity**: `O(1)` extra space.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-import math
+#### General
 
+**Use convexity of the geometric-median objective**
 
-def solve(positions):
-    points = []
-    for index, point in enumerate(positions):
-        if isinstance(point, list) and len(point) >= 2:
-            points.append((float(point[0]), float(point[1])))
-        else:
-            points.append((float(index), float(point)))
-    if not points:
-        return 0.0
+For any fixed centre, summing its distances to the customers defines a convex function over the plane. Its restriction to any horizontal or vertical line is therefore convex and unimodal: moving along that line reaches one minimum region and cannot create separated local minima.
 
-    def total(cx, cy):
-        return sum(math.hypot(px - cx, py - cy) for px, py in points)
+The optimum lies inside the axis-aligned bounding box of the customer points. Outside that box, moving toward it decreases every coordinatewise separation and cannot worsen the total distance. These finite coordinate bounds make tolerance-controlled search possible.
 
-    min_x = min(px for px, _ in points)
-    max_x = max(px for px, _ in points)
-    min_y = min(py for _, py in points)
-    max_y = max(py for _, py in points)
+**Minimize one coordinate inside the other**
 
-    def best_for_x(cx):
-        lo, hi = min_y, max_y
-        for _ in range(80):
-            third = (hi - lo) / 3.0
-            y1 = lo + third
-            y2 = hi - third
-            if total(cx, y1) < total(cx, y2):
-                hi = y2
-            else:
-                lo = y1
-        cy = (lo + hi) / 2.0
-        return total(cx, cy)
+For a fixed $x$, ternary-search $y$ between the minimum and maximum customer $y$ coordinates. Compare the objective at the two trisection points and discard the third that cannot contain the minimum. After $I$ iterations, evaluate the midpoint of the narrow remaining interval; call this minimized value $g(x)$.
 
-    lo, hi = min_x, max_x
-    for _ in range(80):
-        third = (hi - lo) / 3.0
-        x1 = lo + third
-        x2 = hi - third
-        if best_for_x(x1) < best_for_x(x2):
-            hi = x2
-        else:
-            lo = x1
-    return best_for_x((lo + hi) / 2.0)
-```
+Partial minimization preserves convexity, so $g(x)=\min_y f(x,y)$ is convex in $x$. Apply the same ternary search to $x$, calling the inner $y$ search for each comparison. The verified native artifact uses seventy iterations per dimension, while the traced app-local adapter uses forty-five. Even forty-five shrinks an initial width of at most 100 to roughly $10^{-6}$, below the required $10^{-5}$ output tolerance.
+
+**Why the returned value is globally minimal**
+
+Each inner search converges to the global minimum on its vertical line because that restriction is convex. The outer search then minimizes the convex function formed by those exact line minima. As both retained intervals shrink geometrically, the final point approaches the two-dimensional geometric median and its objective approaches the global minimum.
+
+The objective value, rather than the centre coordinates, is returned. This matters when the minimizer is not unique, such as two customers: every point on their connecting segment gives the same optimal total.
+
+#### Complexity detail
+
+One objective evaluation scans all $n$ positions in $O(n)$ time. An inner search performs $O(I)$ evaluations, and the outer search invokes two inner searches in each of $O(I)$ iterations. Total time is $O(nI^2)$.
+
+The coordinate bounds, trisection points, and running totals occupy constant auxiliary state. The input positions are read directly, so extra space is $O(1)$.
+
+#### Alternatives and edge cases
+
+- **Weiszfeld's algorithm:** iteratively computes a weighted average using inverse distances and often converges quickly. A robust implementation must handle an iterate that lands exactly on a customer.
+- **Shrinking-step hill climbing:** move toward improving neighboring points and reduce the step when none improves. Convexity makes it practical, but direction choice and stopping tolerance require care.
+- **Gradient descent:** the objective is convex but nondifferentiable at customer positions, so a naive gradient formula can divide by zero or oscillate.
+- **Integer grid search:** restricting the centre to integer coordinates is incorrect because the geometric median may have fractional coordinates.
+- **Single customer:** placing the centre at that customer yields zero.
+- **Two customers:** the minimum equals their Euclidean separation and is attained along the entire connecting segment.
+- **Repeated positions:** duplicates increase that location's weight and may pull the optimum onto the repeated point.
+- **Collinear customers:** the problem reduces to a one-dimensional median along their line.
+- **Symmetric configuration:** symmetry often identifies the centre, but the algorithm does not rely on it.
+- **Nonsmooth optimum:** ternary comparisons use objective values only and do not require derivatives.
+
 </details>

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1707",
+  "frontend_id": "1585",
+  "title_slug": "check-if-string-is-transformable-with-substring-sort-operations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isTransformable",
+  "verified_submission_id": "2069945934",
+  "verified_at": "2026-07-16T14:02:54.249693+00:00"
+}

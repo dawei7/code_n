@@ -1,5 +1,6 @@
 def solve(arr):
     streak = 0
+
     for value in arr:
         if value % 2:
             streak += 1
@@ -7,4 +8,5 @@ def solve(arr):
                 return True
         else:
             streak = 0
+
     return False

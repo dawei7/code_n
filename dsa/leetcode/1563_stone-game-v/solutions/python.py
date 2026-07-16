@@ -1,52 +1,39 @@
-def solve(stone_value):
+"""Optimal app-local solution for LeetCode 1563."""
+
+
+def solve(stone_value: list[int]) -> int:
+    """Compute the optimized interval DP with monotone split crossings."""
     n = len(stone_value)
-    if n <= 1:
+    if n < 2:
         return 0
+
     prefix = [0]
     for value in stone_value:
         prefix.append(prefix[-1] + value)
 
-    def interval_sum(left, right):
-        return prefix[right + 1] - prefix[left]
-
-    dp = [[0] * n for _ in range(n)]
+    score = [[0] * n for _ in range(n)]
     best_left = [[0] * n for _ in range(n)]
     best_right = [[0] * n for _ in range(n)]
-    for index, value in enumerate(stone_value):
-        best_left[index][index] = value
-        best_right[index][index] = value
 
-    for length in range(2, n + 1):
-        for left in range(n - length + 1):
-            right = left + length - 1
-            total = interval_sum(left, right)
-            best = 0
+    for left in range(n - 1, -1, -1):
+        best_left[left][left] = stone_value[left]
+        best_right[left][left] = stone_value[left]
+        crossing = left
+        for right in range(left + 1, n):
+            total = prefix[right + 1] - prefix[left]
+            while crossing < right and 2 * (prefix[crossing + 1] - prefix[left]) < total:
+                crossing += 1
 
-            lo, hi = left, right - 1
-            last_left_not_greater = left - 1
-            while lo <= hi:
-                mid = (lo + hi) // 2
-                if 2 * interval_sum(left, mid) <= total:
-                    last_left_not_greater = mid
-                    lo = mid + 1
-                else:
-                    hi = mid - 1
-            if last_left_not_greater >= left:
-                best = max(best, best_left[left][last_left_not_greater])
+            if crossing == right:
+                best = best_left[left][right - 1]
+            else:
+                left_sum = prefix[crossing + 1] - prefix[left]
+                left_boundary = crossing if 2 * left_sum == total else crossing - 1
+                best = best_left[left][left_boundary] if left_boundary >= left else 0
+                best = max(best, best_right[crossing + 1][right])
 
-            lo, hi = left, right - 1
-            first_left_not_less = right
-            while lo <= hi:
-                mid = (lo + hi) // 2
-                if 2 * interval_sum(left, mid) >= total:
-                    first_left_not_less = mid
-                    hi = mid - 1
-                else:
-                    lo = mid + 1
-            if first_left_not_less <= right - 1:
-                best = max(best, best_right[first_left_not_less + 1][right])
-
-            dp[left][right] = best
+            score[left][right] = best
             best_left[left][right] = max(best_left[left][right - 1], best + total)
             best_right[left][right] = max(best_right[left + 1][right], best + total)
-    return dp[0][n - 1]
+
+    return score[0][n - 1]

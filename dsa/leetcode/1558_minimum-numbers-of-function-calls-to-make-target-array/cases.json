@@ -1,73 +1,18 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1558",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: one and five",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          5
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "sample",
-        "bits"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: two equal powers",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          2
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: mixed values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          4,
-          2,
-          5
-        ]
-      },
-      "expected": 6,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-all-zero",
-      "name": "hidden: zero target array",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          0,
-          0,
-          0
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "hidden",
-        "edge"
-      ]
-    }
+    {"id": "sample-1", "name": "sample: unequal bit patterns", "kind": "sample", "visible": true, "input": {"nums": [1,5]}, "expected": 5, "tags": ["sample", "shared-doubling"]},
+    {"id": "sample-2", "name": "sample: equal powers of two", "kind": "sample", "visible": true, "input": {"nums": [2,2]}, "expected": 3, "tags": ["sample", "shared-doubling"]},
+    {"id": "sample-3", "name": "sample: mixed three-element target", "kind": "sample", "visible": true, "input": {"nums": [4,2,5]}, "expected": 6, "tags": ["sample", "mixed-bits"]},
+    {"id": "trial-zero", "name": "trial: one zero needs no calls", "kind": "trial", "visible": true, "input": {"nums": [0]}, "expected": 0, "tags": ["trial", "zero", "lower-bound"]},
+    {"id": "trial-all-zero", "name": "trial: all entries already match", "kind": "trial", "visible": true, "input": {"nums": [0,0,0,0]}, "expected": 0, "tags": ["trial", "all-zero"]},
+    {"id": "trial-one-bits", "name": "trial: every position needs one increment", "kind": "trial", "visible": true, "input": {"nums": [1,1,1,1]}, "expected": 4, "tags": ["trial", "increments-only"]},
+    {"id": "real-single-power", "name": "hidden: one high power of two", "kind": "real", "visible": false, "input": {"nums": [1024]}, "expected": 11, "tags": ["real", "single-element", "power-of-two"]},
+    {"id": "real-zero-padding", "name": "hidden: zeros beside a nonzero target", "kind": "real", "visible": false, "input": {"nums": [0,8,0]}, "expected": 4, "tags": ["real", "zeros", "power-of-two"]},
+    {"id": "real-all-ones", "name": "hidden: dense low bits", "kind": "real", "visible": false, "input": {"nums": [7,7]}, "expected": 8, "tags": ["real", "dense-bits", "repeated"]},
+    {"id": "real-mixed-lengths", "name": "hidden: several bit lengths share stages", "kind": "real", "visible": false, "input": {"nums": [1,2,3,8,15]}, "expected": 12, "tags": ["real", "mixed-bits", "shared-doubling"]},
+    {"id": "real-large-power", "name": "hidden: largest legal power of two", "kind": "real", "visible": false, "input": {"nums": [536870912]}, "expected": 30, "tags": ["real", "large-value", "power-of-two"]},
+    {"id": "real-upper-bound", "name": "hidden: maximum permitted value", "kind": "real", "visible": false, "input": {"nums": [1000000000]}, "expected": 42, "tags": ["real", "upper-bound", "dense-bits"]}
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1687",
+  "frontend_id": "1548",
+  "title_slug": "the-most-similar-path-in-a-graph",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.mostSimilar",
+  "verified_submission_id": "2069726269",
+  "verified_at": "2026-07-16T10:21:18.867412+00:00"
+}

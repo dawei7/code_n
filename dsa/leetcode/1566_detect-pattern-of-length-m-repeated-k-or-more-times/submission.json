@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1689",
+  "frontend_id": "1566",
+  "title_slug": "detect-pattern-of-length-m-repeated-k-or-more-times",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.containsPattern",
+  "verified_submission_id": "2069828346",
+  "verified_at": "2026-07-16T12:08:10.010361+00:00"
+}

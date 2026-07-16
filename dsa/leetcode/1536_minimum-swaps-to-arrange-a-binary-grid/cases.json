@@ -1,132 +1,16 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1536",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: three swaps",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            0,
-            0,
-            1
-          ],
-          [
-            1,
-            1,
-            0
-          ],
-          [
-            1,
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample",
-        "greedy"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: impossible grid",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            0,
-            1,
-            1,
-            0
-          ],
-          [
-            0,
-            1,
-            1,
-            0
-          ],
-          [
-            0,
-            1,
-            1,
-            0
-          ],
-          [
-            0,
-            1,
-            1,
-            0
-          ]
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: already valid",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            0
-          ],
-          [
-            1,
-            1,
-            0
-          ],
-          [
-            1,
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-one-row-bubble",
-      "name": "hidden: one row bubbles to the top",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "grid": [
-          [
-            1,
-            1,
-            0
-          ],
-          [
-            1,
-            0,
-            0
-          ],
-          [
-            1,
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-three-swaps", "name": "sample: two rows bubble upward for three swaps", "kind": "sample", "visible": true, "input": {"grid": [[0, 0, 1], [1, 1, 0], [1, 0, 0]]}, "expected": 3, "tags": ["sample", "official", "multiple-swaps"]},
+    {"id": "sample-impossible", "name": "sample: identical rows cannot meet top requirement", "kind": "sample", "visible": true, "input": {"grid": [[0, 1, 1, 0], [0, 1, 1, 0], [0, 1, 1, 0], [0, 1, 1, 0]]}, "expected": -1, "tags": ["sample", "official", "impossible"]},
+    {"id": "sample-already-valid", "name": "sample: triangular grid needs no swaps", "kind": "sample", "visible": true, "input": {"grid": [[1, 0, 0], [1, 1, 0], [1, 1, 1]]}, "expected": 0, "tags": ["sample", "official", "zero-swaps"]},
+    {"id": "trial-single", "name": "trial: one cell has no above-diagonal requirement", "kind": "trial", "visible": true, "input": {"grid": [[1]]}, "expected": 0, "tags": ["trial", "minimum-size"]},
+    {"id": "trial-one-swap", "name": "trial: one adjacent row swap suffices", "kind": "trial", "visible": true, "input": {"grid": [[1, 1], [1, 0]]}, "expected": 1, "tags": ["trial", "one-swap"]},
+    {"id": "trial-extra-zeros", "name": "trial: rows may exceed their required capacity", "kind": "trial", "visible": true, "input": {"grid": [[0, 0, 0], [1, 0, 0], [1, 1, 0]]}, "expected": 0, "tags": ["trial", "extra-capacity", "already-valid"]},
+    {"id": "real-reverse-capacities", "name": "hidden: reversed capacities require maximum swaps", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 1, 1], [1, 1, 1, 0], [1, 1, 0, 0], [1, 0, 0, 0]]}, "expected": 6, "tags": ["real", "maximum-swaps", "reverse-order"]},
+    {"id": "real-late-impossible", "name": "hidden: top succeeds but a later position is impossible", "kind": "real", "visible": false, "input": {"grid": [[1, 0, 0], [1, 1, 1], [1, 1, 1]]}, "expected": -1, "tags": ["real", "late-failure"]},
+    {"id": "real-duplicate-capacities", "name": "hidden: earliest equal-capacity row minimizes movement", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 0, 0], [1, 1, 0, 0], [1, 0, 0, 0], [1, 1, 1, 1]]}, "expected": 2, "tags": ["real", "duplicate-capacities", "stable-greedy"]},
+    {"id": "real-mixed", "name": "hidden: several requirements use nonconsecutive candidates", "kind": "real", "visible": false, "input": {"grid": [[1, 1, 1, 0, 0], [1, 1, 1, 1, 1], [1, 0, 0, 0, 0], [1, 1, 0, 0, 0], [1, 1, 1, 1, 0]]}, "expected": 5, "tags": ["real", "mixed-capacities", "multiple-moves"]}
   ]
 }

@@ -5,51 +5,90 @@
 | Source | LeetCode |
 | Frontend ID | 1511 |
 | Difficulty | Easy |
-| Category | Database |
 | Topics | Database |
-| Supported Languages | sql |
-| Official Link | [customer-order-frequency](https://leetcode.com/problems/customer-order-frequency/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/customer-order-frequency/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/customer-order-frequency/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `Customers` table identifies customers, the `Product` table stores each product's unit price, and `Orders` records which product a customer bought, on which date, and in what quantity. An order's monetary value is its quantity multiplied by the joined product price.
+
+Report each customer whose total order value was at least 100 during June 2020 and also at least 100 during July 2020. Spending from other months does not contribute. Return the qualifying customer's identifier and name.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+Let $C$, $P$, and $O$ denote the row counts of `Customers`, `Product`, and `Orders`.
+
+- `Customers(customer_id, name, country)`: one row per customer.
+- `Product(product_id, description, price)`: one row per product, with its unit price.
+- `Orders(order_id, customer_id, product_id, order_date, quantity)`: order facts referencing a customer and product.
+- June covers dates from `2020-06-01` through `2020-06-30`; July covers `2020-07-01` through `2020-07-31`.
 
 **Return value**
 
-TODO
+Return columns `customer_id` and `name` for customers whose June spending is at least 100 and whose July spending is independently at least 100. Return one row per qualifying customer.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: Winston spends 300 in June and 100 in July; Jonathan spends 600 in June but only 20 in July; Moustafa has qualifying June spending but no July order.
+- Output: `[[1, "Winston"]]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: A customer spends exactly 100 on `2020-06-01` and exactly 100 on `2020-07-31`.
+- Output: That customer qualifies because both thresholds are inclusive and both dates belong to their respective months.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: A customer spends 200 in June and 99 in July, plus 500 in August.
+- Output: `[]`
+- Explanation: August spending cannot repair the July shortfall.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(C + P + O\log O)$
+- **Space:** $O(C + P + O)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Join order facts to their monetary value**
+
+Each `Orders` row contains quantity but not price, so join it to `Product` by `product_id` and compute `quantity * price`. Join `Customers` as well so the grouped result can return the required identity and name.
+
+Restrict orders with the half-open interval from `2020-06-01` through, but not including, `2020-08-01`. This includes every possible June and July timestamp while excluding May and August without relying on month-extraction functions.
+
+**Aggregate both months in one grouped pass**
+
+Group by customer identity. One conditional sum assigns rows before `2020-07-01` to June; a second assigns rows on or after that boundary to July. Because the earlier `WHERE` clause already limits rows to the two-month window, those branches cover exactly the two required months.
+
+The `HAVING` clause requires both conditional totals to be at least 100. This is different from requiring their combined total to be 200: a customer with 199 in June and 1 in July must fail. Grouping also ensures that many orders or products still yield only one output row per customer.
+
+**Why the filters preserve boundary semantics**
+
+The lower bound includes `2020-06-01`; the July split includes `2020-07-01`; and the upper bound excludes `2020-08-01`. Every qualifying order enters exactly one conditional sum. Multiplying before summing correctly handles both multi-unit orders and several orders that together reach the threshold.
+
+#### Complexity detail
+
+With ordinary database indexes or hash joins, reading the three relations and joining relevant keys is linear in their row counts; grouping may require sorting the $O$ relevant order rows, yielding the conservative bound $O(C+P+O\log O)$. Hash aggregation can reduce the expected grouping work to linear time.
+
+The joins and grouped customer totals may retain data proportional to the input relations, so the stated working-space bound is $O(C+P+O)$. Physical indexes and query-planner choices can change constants without changing the relational strategy.
+
+#### Alternatives and edge cases
+
+- **Two monthly aggregates joined together:** compute qualifying June and July customer sets separately, then intersect them. This is correct but duplicates the join and grouping structure.
+- **Correlated monthly subqueries:** calculate each customer's two totals with subqueries. It is readable for small data but can repeatedly rescan orders and products for every customer.
+- **Combined two-month threshold:** requiring total spending of 200 is incorrect because each month must independently reach 100.
+- **Exact threshold:** `>= 100`, not `> 100`, includes customers spending exactly 100.
+- **Several orders:** sum all qualifying order values within each month before comparing.
+- **Quantity:** spending is `quantity * price`, not merely the sum of product prices.
+- **Missing month:** a customer with no order in either June or July fails that month's threshold.
+- **Outside dates:** May and August orders never contribute.
+- **Month boundaries:** June 30 belongs to June, July 1 belongs to July, and August 1 is excluded.
+- **Duplicate names:** group by `customer_id` as well as `name`; distinct customers sharing a name remain separate.
+
+</details>

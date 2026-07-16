@@ -1,80 +1,18 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1567",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: two negatives make full product positive",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          -2,
-          -3,
-          4
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample",
-        "dynamic-programming"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: zero splits the array",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          0,
-          1,
-          -2,
-          -3,
-          -4
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: trailing positive after zero",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          -1,
-          -2,
-          -3,
-          0,
-          1
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-four-negatives",
-      "name": "hidden: even count of negatives",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          -1,
-          -2,
-          -3,
-          -4
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-1", "name": "sample: two negatives make the whole product positive", "kind": "sample", "visible": true, "input": {"nums": [1,-2,-3,4]}, "expected": 4, "tags": ["sample", "even-negatives", "whole-array"]},
+    {"id": "sample-2", "name": "sample: zero separates an odd-negative suffix", "kind": "sample", "visible": true, "input": {"nums": [0,1,-2,-3,-4]}, "expected": 3, "tags": ["sample", "zero-boundary", "odd-negatives"]},
+    {"id": "sample-3", "name": "sample: best prefix precedes a zero", "kind": "sample", "visible": true, "input": {"nums": [-1,-2,-3,0,1]}, "expected": 2, "tags": ["sample", "zero-boundary", "prefix"]},
+    {"id": "trial-all-positive", "name": "trial: every positive value extends the answer", "kind": "trial", "visible": true, "input": {"nums": [1,2,3,4]}, "expected": 4, "tags": ["trial", "all-positive", "whole-array"]},
+    {"id": "trial-single-negative", "name": "trial: one negative has no positive subarray", "kind": "trial", "visible": true, "input": {"nums": [-7]}, "expected": 0, "tags": ["trial", "single", "negative"]},
+    {"id": "trial-single-zero", "name": "trial: one zero has no positive product", "kind": "trial", "visible": true, "input": {"nums": [0]}, "expected": 0, "tags": ["trial", "single", "zero"]},
+    {"id": "real-four-negatives", "name": "hidden: an even negative segment is wholly valid", "kind": "real", "visible": false, "input": {"nums": [-1,-2,-3,-4]}, "expected": 4, "tags": ["real", "even-negatives", "whole-array"]},
+    {"id": "real-drop-first-negative", "name": "hidden: odd negative count drops the leading negative", "kind": "real", "visible": false, "input": {"nums": [-1,2,3,4]}, "expected": 3, "tags": ["real", "odd-negatives", "drop-prefix"]},
+    {"id": "real-drop-last-negative", "name": "hidden: odd negative count drops the trailing negative", "kind": "real", "visible": false, "input": {"nums": [1,2,3,-4]}, "expected": 3, "tags": ["real", "odd-negatives", "drop-suffix"]},
+    {"id": "real-two-zero-delimited-segments", "name": "hidden: best segment occurs after a zero", "kind": "real", "visible": false, "input": {"nums": [1,-2,0,-3,-4,5]}, "expected": 3, "tags": ["real", "multiple-segments", "zero-boundary"]},
+    {"id": "real-later-even-segment", "name": "hidden: later segment with four negatives wins", "kind": "real", "visible": false, "input": {"nums": [1,-2,-3,0,-1,-2,-3,-4,5]}, "expected": 5, "tags": ["real", "multiple-segments", "even-negatives"]},
+    {"id": "real-only-zeros", "name": "hidden: repeated zeros always reset both states", "kind": "real", "visible": false, "input": {"nums": [0,0,0,0]}, "expected": 0, "tags": ["real", "all-zero", "reset"]}
   ]
 }

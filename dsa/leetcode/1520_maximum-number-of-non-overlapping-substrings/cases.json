@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1520",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three independent minimum intervals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "adefaddaccc"
+      },
+      "expected": [
+        "e",
+        "f",
+        "ccc"
+      ],
+      "tags": [
+        "sample",
+        "closure",
+        "replacement"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: minimum length breaks cardinality tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abbaccd"
+      },
+      "expected": [
+        "bb",
+        "cc",
+        "d"
+      ],
+      "tags": [
+        "sample",
+        "tie-break",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-distinct",
+      "name": "sample: every unique character stands alone",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "tags": [
+        "sample",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one-character string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": [
+        "z"
+      ],
+      "tags": [
+        "trial",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: one label spans the whole source",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaa"
+      },
+      "expected": [
+        "aaaaaaaa"
+      ],
+      "tags": [
+        "trial",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-nested",
+      "name": "trial: smaller closed intervals nested inside an outer span",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cabcccbaa"
+      },
+      "expected": [
+        "cabcccbaa"
+      ],
+      "tags": [
+        "trial",
+        "nested",
+        "replacement"
+      ]
+    },
+    {
+      "id": "real-crossing-closure",
+      "name": "hidden: interval expansion crosses several labels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abacbcdefed"
+      },
+      "expected": [
+        "abacbc",
+        "f"
+      ],
+      "tags": [
+        "real",
+        "expansion",
+        "crossing"
+      ]
+    },
+    {
+      "id": "real-separated-groups",
+      "name": "hidden: several closed groups remain disjoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abacddcxyyx"
+      },
+      "expected": [
+        "b",
+        "dd",
+        "yy"
+      ],
+      "tags": [
+        "real",
+        "multiple-groups",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "real-repeated-singletons",
+      "name": "hidden: singleton letters sit inside a repeated outer letter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aebfcgda"
+      },
+      "expected": [
+        "e",
+        "b",
+        "f",
+        "c",
+        "g",
+        "d"
+      ],
+      "tags": [
+        "real",
+        "singletons",
+        "outer-span"
+      ]
+    },
+    {
+      "id": "real-alphabet-mix",
+      "name": "hidden: dense repeated labels and terminal singleton",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "eccbbbbdecf"
+      },
+      "expected": [
+        "bbbb",
+        "d",
+        "f"
+      ],
+      "tags": [
+        "real",
+        "dense",
+        "terminal-singleton"
+      ]
+    }
+  ]
+}
+

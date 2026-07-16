@@ -198,17 +198,25 @@ before problem 823 began.
 
 For each package in ascending numeric frontend-ID order:
 
-1. Confirm public identity and contract facts from the official LeetCode page
-   or public GraphQL metadata when needed, then write an independent document.
-2. Author visible samples, trials, and meaningful hidden correctness cases.
-3. If multiple outputs are valid, use or add a semantic validator; never reject
-   a valid output solely because its serialization differs.
-4. Normally author exactly three increasing benchmark tiers with one
+1. Confirm public identity, contract facts, access class, supported language,
+   and the exact native declaration or query interface from the official
+   LeetCode page or live GraphQL metadata when needed.
+2. Create the exact platform-native source and candidate manifest, and perform
+   minimal contract-focused sanity checks.
+3. Submit that exact native artifact early and promote the manifest only on
+   remote Accepted evidence. If remote verification is unavailable, record the
+   exact blocker before continuing local authoring.
+4. Use the Accepted source as the semantic and algorithmic anchor for the
+   separate app-local implementation and independent document.
+5. Author visible samples, trials, and meaningful hidden correctness cases. If
+   multiple outputs are valid, use or add a semantic validator; never reject a
+   valid output solely because its serialization differs.
+6. Normally author exactly three increasing benchmark tiers with one
    consistent `size` meaning, unique positive sizes, and at least a fourfold
    total span. If and only if the source contract meets a reviewed non-scaling
    condition, author `complexity_certificate.json` and every required
    replacement check instead.
-5. For a benchmark, the reference and a separate implementation in the
+7. For a benchmark, the reference and a separate implementation in the
    required complexity class must pass. A correct principal slower-class
    implementation must return every expected output and fail only the
    complexity verdict whenever the legal domain permits such a distinction.
@@ -216,34 +224,35 @@ For each package in ascending numeric frontend-ID order:
    For a certificate, strict schema validation and method-specific bounded,
    proof, semantic, scheduler, or deadlock regressions must pass; certificates
    are never reported as runtime measurements.
-6. Preserve the app-local solution and add the native LeetCode artifact.
-7. Submit that exact native artifact and promote the manifest only on remote
-   Accepted evidence.
-8. Refresh the audit and dataset report, run focused regression tests, and run
+8. If any source changes after acceptance, rerun correctness and calibration.
+   If a rejection or later discovery exposes misunderstood semantics, revise
+   the document, cases, expected outputs, both solution forms, and affected
+   benchmark or complexity claims together; never patch only the submission.
+9. Refresh the audit and dataset report, run focused regression tests, and run
    `git diff --check`.
-9. Record a genuine blocker with exact evidence and continue numerically.
+10. Record a genuine blocker with exact evidence and continue numerically.
 
 ## Current authoritative checkpoint
 
 The refreshed migration audit after completing and remotely verifying package
-work through 1499 reports:
+work through 1613 reports:
 
 - 3985 canonical packages;
-- 1499 locally complete;
-- 1452 packages fully complete and remotely verified;
-- 1472 completed three-tier scaling benchmarks;
-- 27 strictly validated complexity certificates;
-- 1499 packages with complete complexity verification;
+- 1613 locally complete;
+- 1566 packages fully complete and remotely verified;
+- 1582 completed three-tier scaling benchmarks;
+- 31 strictly validated complexity certificates;
+- 1613 packages with complete complexity verification;
 - 47 recorded remote-verification blockers. Frontend IDs 1413 through 1426
   are locally complete but Electron `safeStorage.decryptString` fails with
   Windows error `0x8009000B`. Frontend IDs 1463 through 1495 are locally
   complete but Chrome was not running; the Chrome-control policy requires an
   explicit confirmation before launching it, while the user instructed the
   migration to record blockers rather than request input;
-- frontend ID 1500, Design a File Sharing System,
-  as the first actionable incomplete package.
+- frontend ID 1614, Maximum Nesting Depth of the Parentheses, as the first
+  actionable incomplete package.
 
-There are 2486 locally incomplete packages after this checkpoint. The forty-seven
+There are 2372 locally incomplete packages after this checkpoint. The forty-seven
 recorded blockers affect only remote Accepted verification; per the user's
 instruction, record the exact failure for each affected package and continue
 numerically without waiting for user input. Use the generated report for the
@@ -1441,9 +1450,1092 @@ latest completed packages add this evidence:
   Its monotonic deque and an independent linear queue both passed the
   128/256/512 all-eligible tiers. Correct all-pairs enumeration completed
   normally and failed only scaling at `+1.11` and `88.02x`;
-- the refreshed migration audit: 1499 locally complete, 1452 fully verified,
-  47 blocked, 1472 scaling benchmarks, 27 certificates, and frontend ID 1500
+- problem 1500 is complete and remotely verified as submission `2069377610`.
+  Its sparse bidirectional ownership maps and reusable-ID min-heap passed the
+  16/64/256 high-ID-reuse tiers. Correct linear ID search returned every
+  output and failed only scaling at `+0.93` with a `22.65x` largest ratio;
+- problem 1501 is complete and remotely verified as MySQL submission
+  `2069382920`. Its accepted endpoint-expansion query anchors the app-local
+  SQLite query, correctness cases, and 32/128/512 country tiers. A correct
+  correlated per-country rescan returned every result and failed only scaling
+  at `+0.87` with an `11.74x` largest ratio;
+- problem 1502 is complete and remotely verified as submission `2069390999`.
+  Its accepted linear spacing-and-hash-set source anchors the app-local
+  solution and 64/256/1000 descending-progression tiers. An independently
+  structured set-congruence implementation passed; correct repeated list
+  membership returned every answer and failed only scaling at `+0.45`;
+- problem 1503 is complete and remotely verified as submission `2069396697`.
+  Its collision/pass-through equivalence anchors a constant-space linear scan
+  and 32/128/512 dense-occupancy tiers. The independent native-style extrema
+  implementation passed; correct second-by-second pass-through simulation
+  returned every answer and failed only scaling at `+1.42` with a `233.62x`
+  largest ratio;
+- problem 1504 is complete and remotely verified as submission `2069404571`.
+  Its accepted histogram/minimum-sum monotonic stack anchors the app-local
+  source and 5/20/80 all-one square tiers. An independent index-stack dynamic
+  program passed; the correct per-row leftward histogram scan returned every
+  count and failed only scaling at `+0.78` with a `9.06x` largest ratio;
+- problem 1505 is complete and remotely verified as submission `2069411408`.
+  Its accepted digit-position queues and Fenwick tree source anchors the
+  app-local solution and 64/256/1024 repeated reverse-digit tiers. An
+  independently structured Fenwick implementation passed; correct greedy
+  removal from a mutable list returned every answer and failed only scaling
+  at `+0.19`;
+- problem 1506 is complete and remotely verified as submission `2069419267`.
+  Its accepted XOR cancellation source anchors the constant-space app-local
+  solution and 128/512/2048 wide-tree tiers with the root last. An independent
+  child-value hash-set implementation passed; correct repeated membership in
+  the flattened child list returned every root and failed only scaling at
+  `+0.46`;
+- problem 1507 is complete and remotely verified as submission `2069426510`.
+  Its accepted fixed-format parser anchors the app-local source and ten
+  ordinary cases. Because every valid source input has at most thirteen
+  characters, a strict `bounded_domain` certificate replaces artificial
+  scaling; its regression exhaustively checks every valid date from 1900
+  through 2100 with the proper ordinal suffix;
+- problem 1508 is complete and remotely verified as submission `2069432165`.
+  Its accepted threshold counting and prefix-of-prefix source anchors the
+  app-local solution and 64/250/1000 all-rank tiers. An independently derived
+  sliding aggregate passed; correct materialization and sorting returned every
+  answer and failed only scaling at `+0.84`;
+- problem 1509 is complete and remotely verified as submission `2069440199`.
+  Its accepted fixed-size extreme heaps anchor the linear app-local source and
+  64/256/1024 shuffled-consecutive tiers. An independent bounded sorted-list
+  scan passed; correct retained-interval enumeration returned every answer and
+  failed only scaling at `+1.14` with a `46.17x` largest ratio;
+- problem 1510 is complete and remotely verified as submission `2069447412`.
+  Its accepted bottom-up winning-state recurrence anchors the app-local source
+  and 128/512/4096 pile-size tiers. An independent descending-square recurrence
+  passed; correct enumeration of every possible removal returned every answer
+  and failed only scaling at `+0.26`;
+- problem 1511 is complete and remotely verified as MySQL submission
+  `2069457310`. Its accepted joined conditional aggregation anchors the
+  app-local SQL and 32/128/512 customer tiers. An independent monthly CTE
+  passed; correct correlated monthly subqueries returned every row and failed
+  only scaling at `+0.82` with a `12.55x` largest ratio;
+- problem 1512 is complete and remotely verified as submission `2069465467`.
+  Its accepted streaming frequency invariant anchors the app-local source and
+  legal 6/25/100 all-equal tiers. An independent frequency-combination method
+  passed; correct direct pair enumeration returned every answer and failed
+  only scaling at `+1.04` with a `20.65x` largest ratio;
+- problem 1513 is complete and remotely verified as submission `2069472420`.
+  Its accepted right-endpoint run accumulation anchors the app-local source and
+  64/256/1024 all-one tiers. An independent triangular run calculation passed;
+  correct prefix-pair enumeration returned every answer and failed only
+  scaling at `+1.29` with a `378.80x` largest ratio;
+- problem 1514 is complete and remotely verified as submission `2069479831`.
+  Its accepted max-probability Dijkstra source anchors the app-local adapter
+  and 16/64/256 reverse-ordered chain tiers. An independent negative-log
+  Dijkstra passed; correct Bellman-Ford relaxation returned every answer and
+  failed only scaling at `+1.11` with a `46.59x` largest ratio;
+- problem 1515 is complete and remotely verified as submission `2069487983`.
+  Its accepted nested ternary search uses seventy iterations per coordinate;
+  the app-local adapter uses forty-five iterations per coordinate to remain
+  within the traced execution budget while retaining better than the required
+  precision. It and an independent shrinking-step hill climb passed the legal
+  4/16/48 balanced-corner tiers. Correct over-refinement with
+  `45 + floor(n / 2)` iterations returned every answer and failed only scaling
+  at `+0.31`;
+- problem 1516 is complete and remotely verified as submission `2069506271`.
+  Its accepted parent-map pointer rewiring anchors the app-local ordered-record
+  adapter, and the two forms matched on 2,000 randomized trees. It and an
+  independent descendant-set traversal passed the legal 32/128/512 deep-chain
+  tiers. Correct repeated parent rescans returned every adjusted tree and
+  failed only scaling at `+1.00` with a `31.42x` largest ratio;
+- problem 1517 is complete and remotely verified as MySQL submission
+  `2069514846`. Its accepted case-sensitive anchored regular expression
+  anchors the app-local SQLite glob predicate, and the two semantics matched
+  on 10,000 randomized addresses. It and an independent parsed-prefix query
+  passed the 64/256/1024 user tiers. A correct grouped cross join returned
+  every qualifying user and failed only scaling at `+1.30` with a `205.64x`
+  largest ratio;
+- problem 1518 is complete and remotely verified as submission `2069522926`.
+  Its accepted constant-time net-empty formula matched direct simulation for
+  all 9,900 legal input pairs. A strict `bounded_domain` certificate records
+  the complete finite domain and the exhaustive replacement regression;
+- problem 1519 is complete and remotely verified as submission `2069527776`.
+  Its accepted iterative enter/exit counter-difference traversal matched a
+  brute subtree oracle on 1,500 randomized trees and passed the 32/128/512
+  all-equal chain tiers with an independent postorder frequency-vector method.
+  Correct per-subtree traversal returned every count and failed only scaling
+  at `+0.99` with a `54.00x` largest ratio;
+- problem 1520 is complete and remotely verified as submission `2069533580`.
+  Its accepted first/last-occurrence closure greedy matched interval dynamic
+  programming for every `abc` string through length eight. It and an
+  independent sorted-interval greedy passed the 32/128/512 full-closure tiers;
+  correct repeated whole-string rescans returned the optimum and failed only
+  scaling at `+0.92` with a `29.78x` largest ratio;
+- problem 1521 is complete and remotely verified as submission `2069538119`.
+  Its accepted distinct-ending-AND state compression matched direct subarray
+  enumeration on 5,000 randomized arrays. It and an independent sorted-state
+  implementation passed the 32/128/512 no-early-exit tiers; correct all-range
+  enumeration returned the minimum difference and failed only scaling at
+  `+0.93` with a `23.56x` largest ratio;
+- problem 1522 is complete and remotely verified as submission `2069543443`.
+  Its accepted iterative postorder-height source matched two-sweep diameter on
+  3,000 randomized N-ary trees. It and an independent two-sweep implementation
+  passed the recalibrated 16/64/256 chain tiers; correct all-source distance
+  traversal completed every tier and failed only scaling at `+1.05` with a
+  `78.03x` largest ratio;
+- problem 1523 is complete and remotely verified as submission `2069547887`.
+  Its accepted prefix-count formula matched direct counting over every interval
+  through 100 and 10,000 randomized legal intervals. It and an independent
+  endpoint-parity formula passed the legal 1000/4000/16000 width tiers; correct
+  direct enumeration completed every tier and failed only scaling at `+0.96`
+  with a `137.24x` largest ratio;
+- problem 1524 is complete and remotely verified as submission `2069552475`.
+  Its accepted opposite-parity prefix product matched direct enumeration on
+  5,000 randomized arrays. It and an independent ending-state recurrence
+  passed the 32/128/512 alternating-parity tiers; correct nested subarray
+  enumeration completed every tier and failed only scaling at `+1.23` with a
+  `183.50x` largest ratio;
+- problem 1525 is complete and remotely verified as submission `2069555850`.
+  Its accepted incremental left-set/right-frequency scan matched direct split
+  checking on 10,000 randomized strings. It and independent prefix/suffix
+  distinct-count arrays passed the 64/256/1024 repeated-alphabet tiers; correct
+  per-boundary set rebuilding completed every tier and failed only scaling at
+  `+0.54`;
+- problem 1526 is complete and remotely verified as submission `2069559814`.
+  Its accepted positive-rise layer count matched per-height run counting on
+  5,000 randomized targets. It and an independent reverse drop-count scan
+  passed the 16/64/256 unique-height zigzag tiers; correct compressed
+  height-band run counting completed every tier and failed only scaling at
+  `+1.45` with a `292.79x` largest ratio;
+- problem 1527 is complete and remotely verified as MySQL submission
+  `2069565144`. Its accepted two-boundary `LIKE` filter anchors the app-local
+  deterministic SQLite query and the 64/256/1024 all-matching patient tiers.
+  An independent prepended-boundary filter passed; a correct grouped cross
+  join returned every qualifying row and failed only scaling at `+1.32` with
+  a `242.50x` largest ratio;
+- problem 1528 is complete and remotely verified as submission `2069574023`.
+  Its accepted direct destination placement matched a sorted-pair oracle on
+  5,000 randomized legal permutations. It and an independent indexed
+  placement loop passed the legal 6/25/100 reverse-permutation tiers; correct
+  repeated Python scans for each destination completed every tier and failed
+  only scaling at `+1.00` with an `18.57x` largest ratio;
+- problem 1529 is complete and remotely verified as submission `2069578266`.
+  Its accepted effective-bit transition scan matched breadth-first minimum
+  distances for every binary target through length eight. It and an
+  independent adjacent-transition count passed the 32/128/512 alternating
+  tiers; correct explicit suffix simulation completed every tier and failed
+  only scaling at `+1.34` with a `151.64x` largest ratio;
+- problem 1530 is complete and remotely verified as submission `2069583223`.
+  Its accepted iterative bounded-distance histogram matched a brute-force
+  oracle on 1,960 randomized trees and handled a legal 1,024-node chain. It
+  and an independent recursive histogram passed the 31/127/511 complete-tree
+  tiers; correct all-leaf-pairs root-path comparison completed every tier and
+  failed only scaling at `+0.88`;
+- problem 1531 is complete and remotely verified as submission `2069589037`.
+  Its accepted first-run dynamic program matched exhaustive deletion on 1,000
+  randomized strings. It and an independent memoized formulation passed the
+  legal 8/16/32 interleaved tiers; a correct interval-rescan dynamic program
+  with a uniform-string base case completed every tier and failed only scaling
+  at `+0.34`;
+- problem 1532 is complete and remotely verified as MySQL submission
+  `2069600087`. Its accepted partitioned row-number query anchors the app-local
+  SQLite form and the 64/256/1024 single-customer order tiers. An independent
+  rank window passed; a correct correlated newer-order count completed every
+  tier and failed only scaling at `+1.10` with a `31.65x` largest ratio;
+- problem 1533 is complete and remotely verified as submission `2069607131`.
+  Its accepted equal-half search matched all exceptional positions through
+  length 1,000 and 5,000 randomized legal arrays. The app-local hidden
+  `ArrayReader` enforces the 20-call limit, including a 500,000-element
+  boundary regression. A strict `asymptotic_optimality` certificate records
+  the matching $\Omega(\log n)$ information lower bound and $O(\log n)$ upper
+  bound, because the query cap excludes an honest slower scaling class;
+- problem 1534 is complete and remotely verified as submission `2069620174`.
+  Its accepted pruned cubic enumeration matched an independent combinations
+  oracle on 5,000 randomized arrays. It and a separate combinations
+  implementation passed the legal 25/50/100 all-equal tiers; a correct
+  per-triplet sixteen-fold array-materialization control completed every tier
+  and failed only scaling at `+0.20`;
+- problem 1535 is complete and remotely verified as submission `2069627756`.
+  Its accepted champion scan matched literal deque simulation on 5,000
+  randomized games. It and an independent maximum-aware scan passed the
+  32/128/512 increasing tiers with legal `k = n^2`; correct deque simulation
+  with a two-element base case completed every tier and failed only scaling at
+  `+1.36` with a `397.96x` largest ratio;
+- problem 1536 is complete and remotely verified as submission `2069634458`.
+  Its accepted trailing-zero capacity greedy matched adjacent-swap BFS on
+  2,100 randomized grids. It and an independent stable-selection method passed
+  the legal 25/100/200 reverse-capacity tiers; correct physical-row simulation
+  with fixed eight-fold snapshots completed every tier and failed only scaling
+  at `+0.19`;
+- problem 1537 is complete and remotely verified as submission `2069645143`.
+  Its Accepted two-pointer score merge matched all official examples and an
+  exhaustive-path oracle on 5,000 randomized array pairs. It and an
+  independently structured segment accumulator passed the legal 64/256/1024
+  disjoint interleaved tiers; a correct repeated linear-membership method
+  completed every tier and failed only scaling at `+1.09` with a `94.14x`
+  largest ratio;
+- problem 1538 is complete and remotely verified as Premium submission
+  `2069658953`. Its Accepted relative-query classifier passed every binary
+  array through length 12, 1,000 randomized arrays, and maximum-length
+  boundary checks. The app-local hidden `ArrayReader` enforces the exact
+  distribution API and $2n$ query cap, while semantic validation accepts any
+  majority index. The Accepted implementation and an independent balance
+  formulation passed the legal 65/257/1025 alternating tiers; correct
+  256-fold proportional snapshot work preserved the legal $n$ queries,
+  completed every tier, and failed only scaling at `+0.73` with a `9.23x`
+  largest ratio;
+- problem 1539 is complete and remotely verified as submission `2069668925`.
+  Its Accepted missing-count binary search matched exhaustive small
+  combinations and 10,000 randomized legal inputs. It and an independent
+  upper-bound search passed the legal 64/256/1000 dense-prefix tiers with
+  maximum `k`; the correct linear rank-adjustment scan completed every tier
+  and failed only scaling at `+0.53`;
+- problem 1540 is complete and remotely verified as submission `2069674585`.
+  Its Accepted residue scheduler matched exhaustive small strings and 20,000
+  randomized schedules. It and an independent maximum-occurrence formulation
+  passed the legal 32/128/384 repeated-shift tiers; the correct prefix-rescan
+  scheduler completed every tier and failed only scaling at `+1.24` with a
+  `96.01x` largest ratio;
+- problem 1541 is complete and remotely verified as submission `2069680468`.
+  Its Accepted outstanding-close greedy matched exhaustive balanced
+  supersequences through length eight and 20,000 randomized token scans. It
+  and an independent token-consumption formulation passed the legal
+  1024/8192/65536 all-closing tiers; correct snapshotting literal list repair
+  completed every tier and failed only scaling at `+0.60` with a `24.69x`
+  largest ratio;
+- problem 1542 is complete and remotely verified as submission `2069688798`.
+  Its Accepted ten-bit prefix-parity scan matched every ternary string through
+  length nine and 10,000 randomized decimal strings. It and an independent
+  earliest-mask map passed the legal 20/80/320 repeated-decimal tiers; the
+  correct full substring parity scan completed every tier and failed only
+  scaling at `+0.97` with a `16.14x` largest ratio;
+- problem 1543 is complete and remotely verified as MySQL submission
+  `2069695334`. The SQLite adapter anchored to that Accepted query and an
+  independent normalized CTE passed all ten correctness cases and the legal
+  16/64/256 tiers. A correct correlated normalized-product/month recount
+  completed every tier and failed only scaling, with relative runtime ratios
+  of `2.60x`, `13.27x`, and `82.52x`;
+- problem 1544 is complete and remotely verified as submission `2069702856`.
+  Its live backend `question_id` is `1666`. The Accepted stack and an
+  independent ASCII-case stack agreed with exhaustive restart reduction over
+  every `aAbB` string through length eight and passed the legal 16/48/96
+  nested-cancellation tiers. Correct restart-and-splice reduction completed
+  every tier and failed only scaling at `+0.74`, with a `4.47x` largest ratio;
+- problem 1545 is complete and remotely verified as submission `2069708049`.
+  Its Accepted recursive symmetry lookup passed every position through level
+  seven, while an independent iterative reflection passed all authored cases
+  and the legal 4/10/20 level tiers. Correct full-string construction using
+  native translation completed every tier and failed only scaling at `+1.30`,
+  with an `8.81x` largest ratio;
+- problem 1546 is complete and remotely verified as submission `2069713462`.
+  Its live backend `question_id` is `1649`. The Accepted earliest-finish
+  prefix-set greedy matched exhaustive dynamic programming for every ternary
+  array through length seven. It and an independent prefix-map DP passed the
+  legal 32/128/512 all-one tiers; the correct interval DP completed every tier
+  and failed only scaling at `+1.30`, with a `168.62x` largest ratio;
+- problem 1547 is complete and remotely verified as submission `2069720258`.
+  Its live backend `question_id` is `1669`. The Accepted bottom-up interval DP
+  matched exhaustive cut-order search for all tested subsets through stick
+  length nine. It and an independent memoized recurrence passed the legal
+  6/12/24-cut tiers; the correct quartic transition evaluator completed every
+  tier and failed only scaling at `+0.89`, with a `6.24x` largest ratio;
+- problem 1548 is complete and remotely verified as submission `2069726269`.
+  Its live backend `question_id` is `1687`. The Accepted layered graph DP
+  passed 1,400 randomized connected instances. A new semantic validator accepts
+  any legal minimum-mismatch path and rejects invalid or suboptimal paths. The
+  Accepted source and an independent edge-relaxation DP passed the legal
+  3/6/12 target-length tiers; correct exhaustive walk enumeration completed
+  every tier and failed only scaling at `+3.13`, with an `84.08x` largest ratio;
+- problem 1549 is complete and remotely verified as MySQL submission
+  `2069733378`. Its live backend `question_id` is `1688`. The Accepted
+  `DENSE_RANK` query and an independent grouped-maximum join passed all ten
+  correctness cases and the legal 64/256/1024 order tiers. A correct correlated
+  maximum query completed every tier and failed only scaling at `+1.13`, with
+  a `34.61x` largest ratio;
+- problem 1550 is complete and remotely verified as submission `2069738369`.
+  Its live backend `question_id` is `1293`. The Accepted streak scan matched
+  every parity pattern through length ten. It and an independent constant-window
+  scan passed the legal 64/256/1000 all-even tiers; correct prefix rescanning
+  completed every tier and failed only scaling at `+0.40`, with a `4.13x`
+  largest ratio;
+- problem 1551 is complete and remotely verified as submission `2069743661`.
+  Its live backend `question_id` is `1674`. The Accepted closed form matched
+  direct deficit sums for every legal `n` through 10000. It and an independent
+  half-product formula passed the legal 625/2500/10000 tiers; correct direct
+  summation completed every tier and failed only scaling at `+0.81`, with a
+  `23.09x` largest ratio;
+- problem 1552 is complete and remotely verified as submission `2069747390`.
+  Its live backend `question_id` is `1675`. The Accepted binary search matched
+  exhaustive placement for all tested subsets of up to seven baskets. It and
+  an independent tight-bound search passed the legal 16/64/256 all-basket
+  tiers; correct restart-scan feasibility completed every tier and failed only
+  scaling at `+1.16`, with a `41.59x` largest ratio;
+- problem 1553 is complete and remotely verified as submission `2069752628`.
+  Its live backend `question_id` is `1676`. The Accepted memoized recurrence
+  matched bottom-up DP for every `n` through 10000. It and an independent
+  cached recurrence passed the legal 127/2047/32767 tiers; correct unmemoized
+  recursion completed every tier and failed only scaling at `+0.58`, with a
+  `33.57x` largest ratio;
+- problem 1554 is complete and remotely verified as submission `2069759643`.
+  Its live backend `question_id` is `1697`. Submission `2069758383` exposed
+  `O(q*l)` retained exact signatures as a memory-limit failure, and the
+  column-wise exact-integer revision `2069758915` then timed out. The Accepted
+  source uses column-wise double rolling hashes with exact collision
+  verification; it passed bounded exhaustive and 10,000 randomized dictionaries.
+  It and an independent prefix/suffix-ID method passed the legal 16/64/256-word
+  tiers; correct pairwise Hamming comparison completed every tier and failed
+  only scaling at `+0.78`;
+- problem 1555 is complete and remotely verified as MySQL submission
+  `2069766835`. Its live backend `question_id` is `1702`. The Accepted signed
+  flow aggregation and an independent dual-aggregate query passed all ten
+  correctness cases and the legal 32/128/512 user-and-transfer tiers. Correct
+  per-user correlated sums completed every tier and failed only scaling at
+  `+0.95`, with a `16.59x` largest ratio;
+- problem 1556 is complete and remotely verified as submission `2069772868`.
+  Its live backend `question_id` is `1660`; the early remote check corrected
+  the initially guessed backend ID before package authoring. The Accepted
+  right-to-left grouping source passed 100,001 consecutive values, every
+  legal decimal-width transition, the upper bound, and 10,000 deterministic
+  full-range values against an independent forward-grouping oracle. Its strict
+  bounded-domain certificate records the ten-digit source maximum instead of
+  claiming an unstable fixed-width timing verdict;
+- problem 1557 is complete and remotely verified as submission `2069776826`.
+  Its live backend `question_id` is `1661`. The Accepted Boolean indegree scan
+  and an independent destination-set implementation passed all correctness
+  cases and the legal 512/2048/8192-vertex chain tiers. A correct tuple-count
+  edge-rescan implementation completed every tier and failed only scaling at
+  `+0.97`, with a `33.53x` largest ratio;
+- problem 1558 is complete and remotely verified as submission `2069783015`.
+  Its live backend `question_id` is `1662`. The Accepted population-count
+  formula and an independent binary-string bit scan passed all correctness
+  cases and the legal 512/2048/8192-entry maximum-width tiers. A correct
+  repeated-prefix-maximum implementation completed every tier and failed only
+  scaling at `+0.82`, with a `44.02x` largest ratio;
+- problem 1559 is complete and remotely verified as submission `2069788767`.
+  Its live backend `question_id` is `1663`. The Accepted parent-aware iterative
+  DFS matched exhaustive binary grids through `3x3`; it and an independent
+  union-find implementation passed all cases and the legal 64/256/1024-cell
+  alternating-row tiers. Correct repeated component traversal completed every
+  tier and failed only scaling at `+0.51`, with an `18.58x` largest ratio;
+- problem 1560 is complete and remotely verified as submission `2069793551`.
+  Its live backend `question_id` is `1682`; early verification corrected the
+  initially guessed backend ID before package authoring. The Accepted endpoint
+  arc and an independent modular-distance implementation passed all cases and
+  the complete legal 4/20/100-sector tiers. Correct visit-by-visit simulation
+  completed every tier and failed only scaling at `+1.47`, with a `146.30x`
+  largest ratio;
+- problem 1561 is complete and remotely verified as submission `2069798426`.
+  Its live backend `question_id` is `1683`. The Accepted ascending rank scan
+  matched exhaustive optimal grouping for every multiset through six piles
+  over values 1 through 5. It and an independent descending-rank scan passed
+  all cases and the legal 384/1536/6144-pile tiers. Correct repeated extrema
+  extraction completed every tier and failed only scaling at `+1.63`, with a
+  `1177.16x` largest ratio;
+- problem 1562 is complete and remotely verified as submission `2069803480`.
+  Its live backend `question_id` is `1684`. The Accepted boundary-length merge
+  matched every permutation through `n=7` for every legal target size. It and
+  an independent union-find implementation passed all cases and the legal
+  512/2048/8192-position odd-then-even tiers. Correct full-bitstring rescanning
+  completed every tier and failed only scaling at `+0.86`, with a `9.48x`
+  largest ratio;
+- problem 1563 is complete and remotely verified as submission `2069809632`.
+  Its live backend `question_id` is `1685`. The Accepted first-crossing
+  monotone DP matched the direct cubic recurrence exhaustively through length
+  eight over values 1 through 4. It and an independent last-not-greater
+  monotone formulation passed all cases and the legal 16/32/64-stone balanced
+  tiers. Correct cubic interval DP completed every tier and failed only scaling
+  at `+0.87`;
+- problem 1564 is complete and remotely verified as submission `2069815797`.
+  Its live backend `question_id` is `1703`. The remotely Accepted prefix-
+  clearance greedy and an independently structured prefix-minimum matcher
+  passed all eleven correctness cases and the legal 256/1024/4096 descending-
+  clearance tiers. A correct implementation that recomputes every prefix
+  minimum from a fresh slice completed every tier and failed only scaling at
+  `+0.64`;
+- problem 1565 is complete and remotely verified as MySQL submission
+  `2069823481`. Its live backend `question_id` is `1712`. The Accepted strict-
+  threshold monthly aggregation and an independent substring-key aggregation
+  passed all ten correctness cases and the legal 32/128/512 distinct-month
+  tiers. A correct correlated monthly-rescan query completed every tier and
+  failed only scaling at `+0.98`, with a `30.25x` largest ratio;
+- problem 1566 is complete and remotely verified as submission `2069828346`.
+  Its live backend `question_id` is `1689`. The Accepted offset-equality streak
+  and an independent grouped-equality scan passed all eleven correctness cases
+  and the legal 8/32/100-value distinct-array tiers. A correct direct region
+  verifier completed every tier and failed only scaling at `+0.86`, with a
+  `10.81x` largest ratio;
+- problem 1567 is complete and remotely verified as submission `2069833033`.
+  Its live backend `question_id` is `1690`. The Accepted two-sign ending-state
+  DP matched exhaustive brute force on all 9,840 sign arrays through length
+  eight. It and an independent zero-delimited parity scan passed all twelve
+  correctness cases and the legal 32/128/512 all-positive tiers. A correct
+  exhaustive subarray scan completed every tier and failed only scaling at
+  `+1.17`, with a `266.51x` largest ratio;
+- problem 1568 is complete and remotely verified as submission `2069837609`.
+  Its live backend `question_id` is `1691`. The Accepted implicit-grid low-link
+  DFS matched brute force for every binary grid through `3x3`. It and an
+  independent explicit-graph articulation implementation passed all twelve
+  correctness cases and the legal 16/36/64-cell solid-square tiers. Correct
+  remove-and-recount scanning completed every final tier and failed only
+  scaling at `+0.99`, with a `21.09x` largest ratio. Larger draft tiers were
+  discarded because the slower implementation reached the safety cap;
+- problem 1569 is complete and remotely verified as submission `2069845927`.
+  Its live backend `question_id` is `1692`. An initially Accepted quadratic
+  partition source was superseded by the final linear Cartesian-tree source,
+  then resubmitted. The final source matched all 46,233 permutations through
+  length eight. It and an independent reverse union-find formulation passed
+  all twelve correctness cases and the legal 32/128/512-key increasing-chain
+  tiers. Correct recursive root partitioning completed every tier and failed
+  only scaling at `+0.89`;
+- problem 1570 is complete and remotely verified as submission `2069851041`.
+  Its live backend `question_id` is `1713`. The Accepted smaller-map lookup and
+  an independent sorted two-pointer intersection passed all twelve correctness
+  cases and the legal 32/128/512-coordinate full-support tiers. Correct
+  pairwise sparse-entry matching completed every tier and failed only scaling
+  at `+1.17`, with a `228.36x` largest ratio;
+- problem 1571 is complete and remotely verified as MySQL submission
+  `2069854873`. Its live backend `question_id` is `1718`. The Accepted direct
+  join-and-group query and an independent precomputed-unit-volume aggregation
+  passed all ten correctness cases and the legal 32/128/512-row distinct-
+  warehouse tiers. A correct correlated warehouse rescan completed every tier
+  and failed only scaling at `+0.80`, with a `12.74x` largest ratio;
+- problem 1572 is complete and remotely verified as submission `2069859153`.
+  Its live backend `question_id` is `1677`. The Accepted two-index diagonal
+  scan and an independent two-sum formulation passed all twelve correctness
+  cases and the legal 8/32/100-dimension all-one tiers. Correct full-matrix
+  scanning completed every tier and failed only scaling at `+1.25`, with a
+  `37.42x` largest ratio. The Accepted source also exposed and corrected a
+  stale hidden expected result after an out-of-contract zero was replaced;
+- problem 1573 is complete and remotely verified as submission `2069863817`.
+  Its live backend `question_id` is `1678`. The Accepted four-boundary scan
+  matched every binary string from length three through twelve. It and an
+  independent constant-space gap scan passed all twelve correctness cases and
+  the legal 32/128/512-character all-zero tiers. Correct prefix-count cut-pair
+  enumeration completed every tier and failed only scaling at `+1.87`, with a
+  `2160.71x` largest ratio. The audit initially withheld completion until the
+  Goal narrative was expanded past the source-fidelity threshold;
+- problem 1574 is complete and remotely verified as submission `2069870124`.
+  Its live backend `question_id` is `1679`. The Accepted prefix/suffix merge
+  matched a brute-force removal oracle on all 87,380 arrays over values zero
+  through three and lengths one through eight. It and an independent linear
+  suffix-first scan passed all thirteen correctness cases and the legal
+  32/128/512-element incompatible-sorted-halves tiers. Correct removal-interval
+  enumeration completed every tier and failed only scaling at `+1.09`, with a
+  `428.41x` largest ratio. The first bridge launch inherited
+  `ELECTRON_RUN_AS_NODE=1`; clearing it restored Electron secure-storage access
+  before the unchanged candidate was submitted;
+- problem 1575 is complete and remotely verified as submission `2069876316`.
+  Its live backend `question_id` is `1680`. The Accepted memoized recurrence,
+  an independent bottom-up table, and a direct recursive oracle matched all
+  17,780 small distinct-coordinate contracts. The Accepted and bottom-up forms
+  passed all thirteen correctness cases and the legal 16/64/200-fuel tiers.
+  Correct repeated table construction completed every ordinary and benchmark
+  case and failed only scaling at `+0.97`, with a `191.46x` largest ratio. An
+  initially considered exponential route enumerator was rejected as invalid
+  calibration because it could not reasonably complete the official fuel-40
+  case; no safety-cap result was counted as complexity evidence;
+- problem 1576 is complete and remotely verified as submission `2069885198`.
+  Its live backend `question_id` is `1698`. A new semantic validator accepts
+  any valid completion while checking length, fixed-letter preservation,
+  lowercase replacements, and unequal adjacent characters; its focused
+  regression test covers alternate valid outputs and invalid mutations. The
+  Accepted mutable-list scan, an independent linear construction, and correct
+  immutable rebuild-and-rescan scanning passed all thirteen cases, the legal
+  16/64/100-character all-placeholder tiers, and 983 exhaustive valid source
+  strings. The quadratic candidate completed every tier and failed only
+  scaling at `+0.90`, with a `13.16x` largest ratio;
+- problem 1577 is complete and remotely verified as submission `2069890487`.
+  Its live backend `question_id` is `1699`. The Accepted pair-product counter,
+  an independent square-frequency formulation, and direct triplet enumeration
+  matched all 115,600 small array-pair contracts. All three passed thirteen
+  correctness cases and the final legal 8/24/64-element duplicate tiers. The
+  cubic enumerator completed and failed only scaling at `+1.19`, with a
+  `41.66x` largest ratio. Exhaustive checking corrected one duplicate-sensitive
+  expected result from four to three. A draft 100-element tier was discarded
+  because the slower implementation reached the execution safety cap;
+- problem 1578 is complete and remotely verified as submission `2069896899`.
+  Its live backend `question_id` is `1700`. The Accepted streaming greedy scan,
+  an independent run-sum formulation, and correct repeated-run recomputation
+  matched 21,844 exhaustive small contracts and passed all thirteen ordinary
+  cases plus the legal 16/64/256-balloon single-run tiers. The quadratic
+  recomputation completed every tier and failed only scaling at `+1.20`, with
+  a `178.17x` largest ratio;
+- problem 1579 is complete and remotely verified as submission `2069902982`.
+  Its live backend `question_id` is `1701`. The Accepted ranked,
+  path-compressed DSU, an independent optimized DSU, and a correct uncompressed
+  DSU matched a brute-force retained-subset oracle on all 511 nonempty typed
+  three-node graphs and passed all thirteen cases plus the legal 32/128/512-node
+  shared-chain-and-chord tiers. The uncompressed candidate completed every tier
+  and failed only scaling at `+0.70`, with a `10.03x` largest ratio;
+- problem 1580 is complete and remotely verified through Premium access as
+  submission `2069909471`. Its live backend `question_id` is `1719`. The
+  Accepted directional-capacity matching and an independent two-ended greedy
+  formulation matched 1,860,496 small box/warehouse contracts and passed all
+  thirteen cases plus the legal 32/128/256-item all-fit tiers. Correct
+  quadratic smallest-fitting-box selection completed every tier and failed
+  only scaling at `+1.03`, with a `41.71x` largest ratio;
+- problem 1581 is complete and remotely verified as MySQL submission
+  `2069914477`. Its live backend `question_id` is `1724`. The Accepted left
+  anti-join and an independent uncorrelated `NOT IN` materialization passed all
+  ten fixtures and the legal 32/128/512-visit tiers. A correct correlated
+  transaction-count query completed every tier and failed only scaling at
+  `+0.62`, with a `5.12x` largest ratio. Empty-table drafts were replaced by
+  semantically neutral transactional rows because the local SQL fixture loader
+  needs one row to infer an empty table's columns; an unindexed correlated
+  `NOT EXISTS` draft was rejected as the independent passing candidate after
+  it also showed slower growth;
+- problem 1582 is complete and remotely verified as submission `2069920845`.
+  Its live backend `question_id` is `1704`. The Accepted row/column-count scan,
+  an independent transpose-count formulation, and correct full recounting
+  matched 74,954 exhaustive binary matrices and passed all thirteen ordinary
+  cases plus the legal 64/1024/4096-cell dense tiers. The slower recount
+  completed every tier and failed only scaling at `+0.51`, with a `42.36x`
+  largest ratio;
+- problem 1583 is complete and remotely verified as submission `2069926627`.
+  Its live backend `question_id` is `1705`. The Accepted dense rank table, an
+  independent inverse-rank-map formulation, and explicit linear rank searches
+  matched all 3,888 four-friend preference/pairing contracts and passed all
+  thirteen ordinary cases plus the final legal 16/32/64-friend stable tiers.
+  Explicit rank scanning completed every tier and failed only scaling at
+  `+0.56`. Exhaustive checking corrected one asymmetric expected result from
+  two to zero. A built-in `list.index` draft was discarded because optimized
+  C-level scans did not yield a calibrated slower trend;
+- problem 1584 is complete and remotely verified as submission `2069936240`.
+  Its live backend `question_id` is `1706`. The Accepted dense Prim method, an
+  independent set-based Prim formulation, and a Kruskal oracle matched all 465
+  distinct point subsets of sizes one through six from a 3-by-3 grid. They
+  passed all 13 cases and the legal 16/32/64-point collinear tiers. Correct
+  full-cut scanning completed every tier and failed only scaling at `+1.04`,
+  with an `11.97x` largest ratio. An earlier purported independent Prim draft
+  was discarded after calibration exposed its accidental cubic refresh loop;
+- problem 1585 is complete and remotely verified as submission `2069945934`.
+  Its live backend `question_id` is `1707`. The Accepted ten-position-list
+  greedy, an independent queue-front formulation, and exhaustive substring-sort
+  reachability matched all 66,429 source/target pairs of lengths one through
+  five over digits zero through two. They passed all 15 cases and the legal
+  125/500/2000-character descending-cycle tiers. Correct repeated search,
+  prefix checking, and removal completed every tier and failed only scaling at
+  `+0.95`, with a `28.20x` largest ratio. A draft 8,000-character top tier was
+  discarded because the slower implementation reached the Python step safety
+  cap;
+- problem 1586 is complete and remotely verified as submission `2069956982`.
+  Its live backend `question_id` is `1729`, and authenticated verification
+  confirmed the Premium-only `BSTIterator` interface. The Accepted lazy
+  inorder stack with cursor history and an independent eager inorder iterator
+  matched 873 BST insertion orders across 20,952 randomized valid operations.
+  They passed all 10 cases and the legal 8/32/128-node right-chain tiers.
+  Correct full-inorder recomputation on every move completed every tier and
+  failed only scaling at `+0.99`, with an `18.76x` largest ratio. Draft 512-
+  and 256-node top tiers were discarded because amplified defensive deep copies
+  of the skewed fixtures exceeded Python's recursion limit before measurement;
+- problem 1587 is complete and remotely verified as submission `2069967098`.
+  Its live backend `question_id` is `1734`. The Accepted join/group query and
+  an independent aggregate-first query matched all nine authored cases and 200
+  randomized signed-balance fixtures. They passed the legal 32/128/512-user
+  tiers, including exact-threshold accounts. Correct correlated scalar sums
+  completed every tier and failed only scaling at `+0.79`, with a `9.26x`
+  largest ratio;
+- problem 1588 is complete and remotely verified as submission `2069973851`.
+  Its live backend `question_id` is `1693`. The Accepted per-index contribution
+  count, an independent parity-state recurrence, and direct enumeration matched
+  all 10 authored cases and all 21,844 arrays of lengths one through seven over
+  values one through four. They passed the legal 6/25/100-element maximum-value
+  tiers. Correct running-sum enumeration completed every tier and failed only
+  scaling at `+1.11`, with a `31.72x` largest ratio. An earlier independent DP
+  draft was discarded after its redundant state bookkeeping measured `+0.17`,
+  just outside the same-class cutoff;
+- problem 1589 is complete and remotely verified as submission `2069981421`.
+  Its live backend `question_id` is `1695`. The Accepted difference-array
+  coverage method, an independent endpoint-event sweep, and direct range
+  increments matched all 11 authored cases and 1,394 brute-force permutation
+  contracts. They passed the legal 32/128/512-element tiers with the same
+  number of full-array requests. Correct direct range increments completed
+  every tier and failed only scaling at `+1.05`, with a `58.85x` largest ratio;
+- problem 1590 is complete and remotely verified as submission `2069987107`.
+  Its live backend `question_id` is `1694`. The Accepted forward prefix map, an
+  independent reverse suffix map, and full subarray enumeration matched all 11
+  authored cases and 32,790 exhaustive array/divisor contracts. They passed the
+  legal 32/128/512-element tiers where only removing the forbidden whole array
+  matches. Correct enumeration completed every tier and failed only scaling at
+  `+1.12`, with a `217.27x` largest ratio. Exhaustive checking corrected an
+  initially authored interior-removal fixture whose total was already divisible;
+- problem 1591 is complete and remotely verified as submission `2069996162`.
+  Its live backend `question_id` is `1696`. The Accepted dependency graph, an
+  independent DFS cycle detector, synchronous rectangle peeling, and explicit
+  bounding-rectangle render orders matched all 11 authored cases and 1,352
+  exhaustive small grids. They passed the legal 8/16/32-side nested-layer
+  tiers. Correct synchronous peeling completed every tier and failed only
+  scaling at `+0.89`, with a `3.98x` largest ratio;
+- problem 1592 is complete and remotely verified as submission `2070002890`.
+  Its live backend `question_id` is `1714`. The Accepted split/count/join
+  method, an independent length-minus-joined-words formulation, and explicit
+  repeated-prefix copying matched all 10 authored cases and 2,036 exhaustive
+  legal text shapes. They passed the legal 8/32/100-character tiers. Correct
+  repeated copying completed every tier and failed only scaling at `+0.27`,
+  with a `2.16x` largest ratio. A Python-level manual tokenizer draft was
+  discarded because its interpreter overhead did not calibrate as same-class;
+- problem 1593 is complete and remotely verified as submission `2070012003`.
+  Its live backend `question_id` is `1715`. The Accepted short-first
+  branch-and-bound search matched a brute-force boundary-mask oracle for all
+  9,840 strings over `abc` through length 8. It and an independent
+  branch-and-bound formulation passed the legal 3/6/12-character distinct-text
+  tiers. Correct exhaustive mask enumeration with pairwise uniqueness checks
+  completed every tier and failed only scaling at `+3.92`, with a `276.85x`
+  largest ratio;
+- problem 1594 is complete and remotely verified as submission `2070022007`.
+  Its live backend `question_id` is `1716`. The Accepted full-table min/max
+  product DP matched exhaustive path enumeration across 33,130 small matrices;
+  an independent rolling-row DP passed the legal 9/36/81-cell tiers. Correct
+  full path enumeration completed every tier and failed only scaling at
+  `+2.27`, with a `131.43x` largest ratio;
+- problem 1595 is complete and remotely verified as submission `2070026636`.
+  Its live backend `question_id` is `1717`. The Accepted memoized bitmask DP
+  matched exhaustive edge-subset enumeration on all 729 two-by-three matrices
+  with costs in $\{0,1,2\}$. An independent reverse-order memoized formulation
+  passed the legal 3/6/12-row tiers twice. Correct endpoint-assignment
+  enumeration completed every tier and failed only scaling at `+3.33`, with an
+  `85.59x` largest ratio;
+- problem 1596 is complete and remotely verified as Premium SQL submission
+  `2070033400`. Its live backend `question_id` is `1735`. The Accepted grouped
+  dense-rank query matched the official fixture and 500 randomized frequency
+  oracles. An independent aggregate/max-join query passed the legal
+  32/128/512-order tiers. Correct correlated recounting completed every tier
+  and failed only scaling at `+1.32`, with a `67.28x` largest ratio;
+- problem 1597 is complete and remotely verified as Premium submission
+  `2070039849`. Its live backend `question_id` is `1736`. The Accepted two-stack
+  expression-tree builder preserved LeetCode's platform `Node` declaration and
+  matched an independent shunting-yard oracle on the official inputs, targeted
+  parenthesized cases, and 5,184 exhaustive flat expressions. An independent
+  Pratt parser passed the legal 7/31/99-character tiers. Correct recursive
+  lowest-precedence rescanning completed every tier and failed only scaling at
+  `+0.86`, with a `14.52x` largest ratio;
+- problem 1598 is complete and remotely verified as submission `2070047085`.
+  Its live backend `question_id` is `1720`. The Accepted depth counter matched
+  a stack oracle on 87,380 exhaustive operation sequences. An independent
+  explicit stack passed the legal 32/128/512-operation tiers. Correct explicit
+  front shifting completed every tier and failed only scaling at `+1.17`, with
+  a `105.13x` largest ratio;
+- problem 1599 is complete and remotely verified as submission `2070052406`.
+  Its live backend `question_id` is `1721`. The Accepted cumulative simulation
+  matched an independent profit-history oracle on 23,430 arrival-and-cost
+  contracts. An independent marginal-profit simulation passed the legal
+  32/128/512-arrival tiers. Correct prefix resimulation completed every tier
+  and failed only scaling at `+1.01`, with a `63.41x` largest ratio;
+- problem 1600 is complete and remotely verified as submission `2070058534`.
+  Its live backend `question_id` is `1722`. The Accepted stateful class matched
+  the official trace and 1,000 randomized histories. An independent
+  adjacency/preorder design passed the legal 32/128/512-person traces. Correct
+  eager order rebuilding completed every tier and failed only scaling at
+  `+1.15`, with an `85.04x` largest ratio;
+- problem 1601 is complete and remotely verified as submission `2070066042`.
+  Its live backend `question_id` is `1723`. The Accepted branch-and-bound
+  search matched a subset oracle on the official examples and 5,000 randomized
+  request sets. An independent iterative bounded search passed the legal
+  3/6/12-request tiers. Correct full-mask balance rebuilding completed every
+  tier and failed only scaling at `+4.16`, with a `343.93x` largest ratio;
+- problem 1602 is complete and remotely verified as Premium submission
+  `2070072807`. Its live backend `question_id` is `1745`. The actual native
+  declaration is `Solution.findNearestRightNode`; the metadata's
+  `findNeartestRightNode` spelling is stale. The Accepted identity-based BFS
+  matched 5,000 randomized trees and targets. An independent frontier BFS
+  passed the legal 31/127/511-node tiers. Correct repeated root-to-node depth
+  searches completed every tier and failed only scaling at `+1.19`, with a
+  `244.20x` largest ratio;
+- problem 1603 is complete and remotely verified as submission `2070080564`.
+  Its live backend `question_id` is `1708`. The Accepted counter class matched
+  the official trace and 10,000 randomized parking histories. An independent
+  dictionary counter passed the legal 32/128/512-call tiers. Correct
+  individual-slot scanning completed every tier and failed only scaling at
+  `+1.28`, with a `106.69x` largest ratio;
+- problem 1604 is complete and remotely verified as submission `2070087650`.
+  Its live backend `question_id` is `1709`. The Accepted grouped-timestamp
+  method passed exact-60 and 61-minute boundary checks plus 4,800 randomized
+  brute-force comparisons. An independent global record sort passed the legal
+  64/256/512-record tiers. Correct per-name filtering completed every tier and
+  failed only scaling at `+1.05`, with a `124.00x` largest ratio;
+- problem 1605 is complete and remotely verified as submission `2070097822`.
+  Its live backend `question_id` is `1711`. The Accepted margin-greedy method
+  passed four boundary examples and 5,000 randomized matrix-margin checks. A
+  new `matrix_margins` semantic validator accepts every valid non-negative
+  integer matrix rather than one exact arrangement. An independent cumulative
+  interval construction passed the legal 64/256/1024-cell tiers. Correct
+  row-major repeated-margin summation completed every tier and failed only
+  scaling at `+0.93`, with a `23.70x` largest ratio;
+- problem 1606 is complete and remotely verified as submission `2070105431`.
+  Its live backend `question_id` is `1710`. The Accepted Fenwick-tree plus
+  busy-heap scheduler matched four fixed scenarios and 10,000 randomized
+  brute-force schedules. An independent segment tree passed the legal
+  64/256/1024-request saturation tiers. Correct circular linear scanning
+  completed every tier and failed only scaling at `+0.90`, with a `13.25x`
+  largest ratio;
+- problem 1607 is complete and remotely verified as Premium MySQL submission
+  `2070113289`. Its live backend `question_id` is `1749`. The Accepted
+  `NOT EXISTS` query passed the official fixture, no-order coverage,
+  alphabetical ordering, and both inclusive 2020 endpoints. The app-local
+  distinct-ID anti-join and independent conditional aggregation passed the
+  legal 32/128/512-row tiers. Correct correlated counting completed every tier
+  and failed only scaling at `+0.77`, with a `7.66x` largest ratio;
+- problem 1608 is complete and remotely verified as submission `2070120538`.
+  Its live backend `question_id` is `1730`. The Accepted sorting-boundary
+  method passed five targeted examples and 20,000 randomized brute-force
+  comparisons. An independent capped-frequency suffix count passed the legal
+  6/24/96-element tiers. Correct repeated candidate counting completed every
+  tier and failed only scaling at `+1.18`, with a `37.28x` largest ratio;
+- problem 1609 is complete and remotely verified as submission `2070128099`.
+  Its live backend `question_id` is `1731`. The Accepted level-order validator
+  passed four targeted trees and 10,000 randomized comparisons with an
+  independent DFS-level oracle. An independent DFS with per-depth state passed
+  the legal 31/127/511-node perfect-tree tiers. Correct all-pairs comparison
+  within each level completed every tier and failed only scaling at `+0.87`,
+  with a `23.93x` largest ratio;
+- problem 1610 is complete and remotely verified as submission `2070134095`.
+  Its live backend `question_id` is `1733`. The Accepted doubled-angle sliding
+  window passed six targeted scenarios and 10,000 randomized circular-angle
+  oracle checks. An independent sorted-angle binary-search window passed the
+  legal 32/128/512-point duplicate-ray tiers. Correct orientation-by-orientation
+  recounting completed every tier and failed only scaling at `+1.03`, with an
+  `81.05x` largest ratio;
+- problem 1611 is complete and remotely verified as submission `2070140470`.
+  Its live backend `question_id` is `1732`. The Accepted inverse-Gray suffix
+  XOR matched an independent legal-operation BFS for all 2,048 states below
+  2048 and the $10^9$ boundary. An independent highest-bit recurrence passed
+  the legal 2/8/30-bit tiers. Correct $O(b^2)$ suffix recomputation completed
+  every ordinary case and tier and failed only scaling at `+0.56`, with a
+  `4.97x` largest ratio;
+- problem 1612 is complete and remotely verified as Premium submission
+  `2070149283`. Its live backend `question_id` is `1750`. The Accepted signed
+  variable-frequency traversal passed both live samples, two leaf boundaries,
+  and 10,000 randomized basis-evaluation checks. An independent fixed-array
+  iterative traversal passed the legal 30/126/510-total-node tiers. Correct
+  unmatched-position scanning completed every tier and failed only scaling at
+  `+0.78`, with a `14.18x` largest ratio;
+- problem 1613 is complete and remotely verified as Premium MySQL submission
+  `2070158984`. Its live backend `question_id` is `1759`. The Accepted
+  recursive-range anti-join passed the official fixture plus no-gap,
+  missing-prefix, and mixed-gap checks. An independent materialized membership
+  query passed the legal 32/128/512-ID tiers. Correct correlated counting
+  completed every tier and failed only scaling at `+0.73`, with a `7.30x`
+  largest ratio;
+- the refreshed migration audit: 1613 locally complete, 1566 fully verified,
+  47 blocked, 1582 scaling benchmarks, 31 certificates, and frontend ID 1614
   next;
+- the dataset checker after problem 1613: 3985 documents, 2597 manually
+  complete, and 1388 still needing authoring;
+- the dataset checker after problem 1612: 3985 documents, 2596 manually
+  complete, and 1389 still needing authoring;
+- the dataset checker after problem 1611: 3985 documents, 2595 manually
+  complete, and 1390 still needing authoring;
+- the dataset checker after problem 1610: 3985 documents, 2594 manually
+  complete, and 1391 still needing authoring;
+- the dataset checker after problem 1609: 3985 documents, 2594 manually
+  complete, and 1391 still needing authoring;
+- the dataset checker after problem 1608: 3985 documents, 2593 manually
+  complete, and 1392 still needing authoring;
+- the dataset checker after problem 1607: 3985 documents, 2593 manually
+  complete, and 1392 still needing authoring;
+- the dataset checker after problem 1606: 3985 documents, 2592 manually
+  complete, and 1393 still needing authoring;
+- the dataset checker after problem 1605: 3985 documents, 2592 manually
+  complete, and 1393 still needing authoring;
+- the dataset checker after problem 1604: 3985 documents, 2592 manually
+  complete, and 1393 still needing authoring;
+- the dataset checker after problem 1603: 3985 documents, 2592 manually
+  complete, and 1393 still needing authoring;
+- the dataset checker after problem 1602: 3985 documents, 2591 manually
+  complete, and 1394 still needing authoring;
+- the dataset checker after problem 1600: 3985 documents, 2590 manually
+  complete, and 1395 still needing authoring;
+- the dataset checker after problem 1597: 3985 documents, 2589 manually
+  complete, and 1396 still needing authoring;
+- the dataset checker after problem 1596: 3985 documents, 2588 manually
+  complete, and 1397 still needing authoring;
+- the dataset checker after problem 1593: 3985 documents, 2587 manually
+  complete, and 1398 still needing authoring;
+- the dataset checker after problem 1592: 3985 documents, 2586 manually
+  complete, and 1399 still needing authoring;
+- the dataset checker after problem 1591: 3985 documents, 2585 manually
+  complete, and 1400 still needing authoring;
+- the dataset checker after problem 1590: 3985 documents, 2585 manually
+  complete, and 1400 still needing authoring;
+- the dataset checker after problem 1589: 3985 documents, 2585 manually
+  complete, and 1400 still needing authoring;
+- the dataset checker after problem 1588: 3985 documents, 2585 manually
+  complete, and 1400 still needing authoring;
+- the dataset checker after problem 1587: 3985 documents, 2585 manually
+  complete, and 1400 still needing authoring;
+- the dataset checker after problem 1586: 3985 documents, 2584 manually
+  complete, and 1401 still needing authoring;
+- the dataset checker after problem 1585: 3985 documents, 2583 manually
+  complete, and 1402 still needing authoring;
+- the dataset checker after problem 1584: 3985 documents, 2582 manually
+  complete, and 1403 still needing authoring;
+- the dataset checker after problem 1583: 3985 documents, 2582 manually
+  complete, and 1403 still needing authoring;
+- the dataset checker after problem 1582: 3985 documents, 2582 manually
+  complete, and 1403 still needing authoring;
+- the dataset checker after problem 1581: 3985 documents, 2582 manually
+  complete, and 1403 still needing authoring;
+- the dataset checker after problem 1580: 3985 documents, 2581 manually
+  complete, and 1404 still needing authoring;
+- the dataset checker after problem 1579: 3985 documents, 2580 manually
+  complete, and 1405 still needing authoring;
+- the dataset checker after problem 1578: 3985 documents, 2579 manually
+  complete, and 1406 still needing authoring;
+- the dataset checker after problem 1577: 3985 documents, 2579 manually
+  complete, and 1406 still needing authoring;
+- the dataset checker after problem 1576: 3985 documents, 2579 manually
+  complete, and 1406 still needing authoring;
+- the dataset checker after problem 1575: 3985 documents, 2578 manually
+  complete, and 1407 still needing authoring;
+- the dataset checker after problem 1574: 3985 documents, 2578 manually
+  complete, and 1407 still needing authoring;
+- the dataset checker after problem 1573: 3985 documents, 2578 manually
+  complete, and 1407 still needing authoring;
+- the dataset checker after problem 1572: 3985 documents, 2577 manually
+  complete, and 1408 still needing authoring;
+- the dataset checker after problem 1571: 3985 documents, 2577 manually
+  complete, and 1408 still needing authoring;
+- the dataset checker after problem 1570: 3985 documents, 2576 manually
+  complete, and 1409 still needing authoring;
+- the dataset checker after problem 1569: 3985 documents, 2575 manually
+  complete, and 1410 still needing authoring;
+- the dataset checker after problem 1568: 3985 documents, 2575 manually
+  complete, and 1410 still needing authoring;
+- the dataset checker after problem 1567: 3985 documents, 2575 manually
+  complete, and 1410 still needing authoring;
+- the dataset checker after problem 1566: 3985 documents, 2575 manually
+  complete, and 1410 still needing authoring;
+- the dataset checker after problem 1565: 3985 documents, 2575 manually
+  complete, and 1410 still needing authoring;
+- the dataset checker after problem 1564: 3985 documents, 2574 manually
+  complete, and 1411 still needing authoring;
+- the dataset checker after problem 1563: 3985 documents, 2573 manually
+  complete, and 1412 still needing authoring;
+- the dataset checker after problem 1562: 3985 documents, 2573 manually
+  complete, and 1412 still needing authoring;
+- the dataset checker after problem 1561: 3985 documents, 2573 manually
+  complete, and 1412 still needing authoring;
+- the dataset checker after problem 1560: 3985 documents, 2573 manually
+  complete, and 1412 still needing authoring;
+- the dataset checker after problem 1559: 3985 documents, 2573 manually
+  complete, and 1412 still needing authoring;
+- the dataset checker after problem 1558: 3985 documents, 2573 manually
+  complete, and 1412 still needing authoring;
+- the dataset checker after problem 1557: 3985 documents, 2573 manually
+  complete, and 1412 still needing authoring;
+- the dataset checker after problem 1556: 3985 documents, 2572 manually
+  complete, and 1413 still needing authoring;
+- the dataset checker after problem 1555: 3985 documents, 2571 manually
+  complete, and 1414 still needing authoring;
+- the dataset checker after problem 1554: 3985 documents, 2570 manually
+  complete, and 1415 still needing authoring;
+- the dataset checker after problem 1553: 3985 documents, 2569 manually
+  complete, and 1416 still needing authoring;
+- the dataset checker after problem 1552: 3985 documents, 2568 manually
+  complete, and 1417 still needing authoring;
+- the dataset checker after problem 1551: 3985 documents, 2568 manually
+  complete, and 1417 still needing authoring;
+- the dataset checker after problem 1550: 3985 documents, 2567 manually
+  complete, and 1418 still needing authoring;
+- the dataset checker after problem 1549: 3985 documents, 2567 manually
+  complete, and 1418 still needing authoring;
+- the dataset checker after problem 1548: 3985 documents, 2566 manually
+  complete, and 1419 still needing authoring;
+- the dataset checker after problem 1547: 3985 documents, 2565 manually
+  complete, and 1420 still needing authoring;
+- the dataset checker after problem 1546: 3985 documents, 2565 manually
+  complete, and 1420 still needing authoring;
+- the dataset checker after problem 1545: 3985 documents, 2565 manually
+  complete, and 1420 still needing authoring;
+- the dataset checker after problem 1544: 3985 documents, 2564 manually
+  complete, and 1421 still needing authoring;
+- the dataset checker after problem 1543: 3985 documents, 2563 manually
+  complete, and 1422 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1556 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the focused validated-case and dynamic-documentation suite after problem
+  1557 passed 117 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the focused validated-case and dynamic-documentation suite after problem
+  1558 passed 117 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the focused validated-case and dynamic-documentation suite after problem
+  1559 passed 117 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the focused validated-case and dynamic-documentation suite after problem
+  1560 passed 117 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the focused validated-case and dynamic-documentation suite after problem
+  1561 passed 117 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the focused validated-case and dynamic-documentation suite after problem
+  1562 passed 117 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the focused validated-case and dynamic-documentation suite after problem
+  1563 passed 117 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1564 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1565 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1566 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1567 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1568 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1569 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1570 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1571 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1572 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1573 passed 140 tests and 31 certificate-route subtests;
+  after the Goal-only repair, the dynamic-document suite passed 7 tests, with
+  only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1574 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1575 passed 140 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1576 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1577 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1578 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1579 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1580 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1581 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1582 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1583 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1584 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1585 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1586 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1587 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1588 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1589 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1590 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1591 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1592 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1543 passed 138 tests and 30 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1542: 3985 documents, 2562 manually
+  complete, and 1423 still needing authoring;
+- the dataset checker after problem 1541: 3985 documents, 2561 manually
+  complete, and 1424 still needing authoring;
+- the dataset checker after problem 1540: 3985 documents, 2560 manually
+  complete, and 1425 still needing authoring;
+- the dataset checker after problem 1539: 3985 documents, 2559 manually
+  complete, and 1426 still needing authoring;
+- the dataset checker after problem 1538: 3985 documents, 2559 manually
+  complete, and 1426 still needing authoring;
+- the dataset checker after problem 1537: 3985 documents, 2558 manually
+  complete, and 1427 still needing authoring;
+- the dataset checker after problem 1536: 3985 documents, 2558 manually
+  complete, and 1427 still needing authoring;
+- the dataset checker after problem 1535: 3985 documents, 2558 manually
+  complete, and 1427 still needing authoring;
+- the dataset checker after problem 1534: 3985 documents, 2558 manually
+  complete, and 1427 still needing authoring;
+- the dataset checker after problem 1533: 3985 documents, 2558 manually
+  complete, and 1427 still needing authoring;
+- the dataset checker after problem 1532: 3985 documents, 2557 manually
+  complete, and 1428 still needing authoring;
+- the dataset checker after problem 1531: 3985 documents, 2556 manually
+  complete, and 1429 still needing authoring;
+- the dataset checker after problem 1530: 3985 documents, 2555 manually
+  complete, and 1430 still needing authoring;
+- the dataset checker after problem 1529: 3985 documents, 2554 manually
+  complete, and 1431 still needing authoring;
+- the dataset checker after problem 1528: 3985 documents, 2553 manually
+  complete, and 1432 still needing authoring;
+- the dataset checker after problem 1527: 3985 documents, 2553 manually
+  complete, and 1432 still needing authoring;
+- the dataset checker after problem 1525: 3985 documents, 2552 manually
+  complete, and 1433 still needing authoring;
+- the dataset checker after problem 1524: 3985 documents, 2551 manually
+  complete, and 1434 still needing authoring;
+- the dataset checker after problem 1523: 3985 documents, 2551 manually
+  complete, and 1434 still needing authoring;
+- the dataset checker after problem 1522: 3985 documents, 2550 manually
+  complete, and 1435 still needing authoring;
+- the dataset checker after problem 1521: 3985 documents, 2549 manually
+  complete, and 1436 still needing authoring;
+- the dataset checker after problem 1520: 3985 documents, 2549 manually
+  complete, and 1436 still needing authoring;
+- the dataset checker after problem 1519: 3985 documents, 2548 manually
+  complete, and 1437 still needing authoring;
+- the dataset checker after problem 1518: 3985 documents, 2547 manually
+  complete, and 1438 still needing authoring;
+- the dataset checker after problem 1517: 3985 documents, 2546 manually
+  complete, and 1439 still needing authoring;
+- the dataset checker after problem 1516: 3985 documents, 2545 manually
+  complete, and 1440 still needing authoring;
+- the dataset checker after problem 1515: 3985 documents, 2544 manually
+  complete, and 1441 still needing authoring;
+- the dataset checker after problem 1513: 3985 documents, 2544 manually
+  complete, and 1441 still needing authoring;
+- the dataset checker after problem 1511: 3985 documents, 2543 manually
+  complete, and 1442 still needing authoring;
+- the dataset checker after problem 1510: 3985 documents, 2542 manually
+  complete, and 1443 still needing authoring;
+- the dataset checker after problem 1508: 3985 documents, 2541 manually
+  complete, and 1444 still needing authoring;
+- the dataset checker after problem 1507: 3985 documents, 2541 manually
+  complete, and 1444 still needing authoring;
+- the dataset checker after problem 1506: 3985 documents, 2540 manually
+  complete, and 1445 still needing authoring;
+- the dataset checker after problem 1505: 3985 documents, 2539 manually
+  complete, and 1446 still needing authoring;
+- the dataset checker after problem 1504: 3985 documents, 2538 manually
+  complete, and 1447 still needing authoring;
+- the dataset checker after problem 1503: 3985 documents, 2538 manually
+  complete, and 1447 still needing authoring;
+- the dataset checker after problem 1502: 3985 documents, 2538 manually
+  complete, and 1447 still needing authoring;
+- the dataset checker after problem 1501: 3985 documents, 2538 manually
+  complete, and 1447 still needing authoring;
 - the dataset checker after problem 1499: 3985 documents, 2536 manually
   complete, and 1449 still needing authoring;
 - the dataset checker after problem 1495: 3985 documents, 2535 manually
@@ -1512,7 +2604,37 @@ latest completed packages add this evidence:
   warning;
 - the combined certificate, validated-case, and dynamic-doc suite after
   problem 1291 passed 121 tests with 21 certificate-route subtests, with only the
-  existing Starlette `httpx` deprecation warning; and
+  existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1604 passed 141 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1605 passed 142 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1606 passed 142 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1607 passed 142 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1608 passed 142 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1609 passed 142 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1610 passed 142 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1611 passed 142 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1612 passed 142 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1613 passed 142 tests and 31 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning; and
 - `git diff --check` passed apart from non-failing line-ending notices.
 
 The earlier full-suite, Ruff, web-build, and Electron-build evidence still
@@ -1535,7 +2657,7 @@ Get-Content dsa\leetcode\_reports\two_sum_migration_progress.md
 The expected branch is `main`, and the expected committed migration checkpoint is
 `97717019379cb191b141940935075f9667ece6c4`. The refreshed first actionable
 package should be
-`dsa/leetcode/1500_design-a-file-sharing-system`. If
+`dsa/leetcode/1614_maximum-nesting-depth-of-the-parentheses`. If
 any of those facts differ, trust the live worktree and refreshed audit,
 investigate the drift, and preserve rather than discard changes.
 
@@ -1552,7 +2674,7 @@ For the next native candidate, replace the frontend ID in:
 
 ```powershell
 $env:ELECTRON_RUN_AS_NODE=$null
-npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1500
+npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1614
 ```
 
 ## Exact prompt for a new Codex session
@@ -1569,16 +2691,23 @@ Copy and paste this entire block into the new session:
 > `dsa/leetcode/_reports/ACTIVE_MIGRATION_HANDOFF.md`, and
 > `dsa/leetcode/_reports/two_sum_migration_progress.md` completely. Then run a
 > fresh migration audit and treat the live worktree and generated reports as
-> authoritative. Problems through frontend ID 1499 are locally complete;
-> 1452 packages are remotely verified. Problems 1413 through 1426 have
+> authoritative. Problems through frontend ID 1613 are locally complete;
+> 1566 packages are remotely verified. Problems 1413 through 1426 have
 > recorded Electron credential-decryption blockers, while 1463 through 1495
 > have recorded Chrome-not-running launch-policy blockers. The expected first
 > actionable package is
-> `dsa/leetcode/1500_design-a-file-sharing-system`,
+> `dsa/leetcode/1614_maximum-nesting-depth-of-the-parentheses`,
 > but follow
 > the refreshed audit if it differs.
 > Continue autonomously in numeric frontend-ID order and do not stop after
-> planning. If any of the original eighteen complexity blockers reappears,
+> planning. For each package, follow the early-verification order in
+> `LEETCODE_SUBMISSIONS.md`: confirm contract and native interface, minimally
+> sanity-check the exact native source, obtain remote Accepted evidence, then
+> use that accepted source to anchor the app-local adapter, comprehensive
+> cases, and complexity calibration. If rejection reveals misunderstood
+> semantics, revise the document, cases, expected outputs, both solution forms,
+> and affected benchmark together rather than patching only the submission.
+> If any of the original eighteen complexity blockers reappears,
 > follow the playbook's reviewed per-ID recovery path and do not stop at the
 > stale blocker record. For every problem, finish the source-faithful original
 > documentation, correctness cases, complexity verification through exactly

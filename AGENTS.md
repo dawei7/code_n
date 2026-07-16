@@ -105,6 +105,14 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   candidate must remain blocked until the exact source is remotely Accepted and
   its manifest is promoted to `verified`; never infer verification from local
   correctness alone.
+- During canonical migration, follow the early-verification authoring order in
+  `LEETCODE_SUBMISSIONS.md`: confirm contract and native interface, minimally
+  sanity-check the exact native source, obtain remote Accepted evidence, then
+  use that accepted source to anchor the app-local adapter, comprehensive
+  correctness cases, and complexity calibration. If a later rejection or
+  source change exposes a semantic misunderstanding, revise documentation,
+  cases, expected outputs, both solution forms, and affected benchmark claims
+  together, then rerun every gate.
 
 ## Documentation
 

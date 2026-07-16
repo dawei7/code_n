@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1544",
+  "cases": [
+    {
+      "id": "sample-official-cascade",
+      "name": "sample: official cascading removals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leEeetcode"
+      },
+      "expected": "leetcode",
+      "tags": [
+        "sample",
+        "official",
+        "cascade"
+      ]
+    },
+    {
+      "id": "sample-official-empty",
+      "name": "sample: official full cancellation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abBAcC"
+      },
+      "expected": "",
+      "tags": [
+        "sample",
+        "official",
+        "empty"
+      ]
+    },
+    {
+      "id": "sample-official-single",
+      "name": "sample: official single character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "s"
+      },
+      "expected": "s",
+      "tags": [
+        "sample",
+        "official",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-different-letters",
+      "name": "trial: opposite cases of different letters remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "mC"
+      },
+      "expected": "mC",
+      "tags": [
+        "trial",
+        "different-letters"
+      ]
+    },
+    {
+      "id": "trial-reverse-order",
+      "name": "trial: uppercase then lowercase cancels",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "Pp"
+      },
+      "expected": "",
+      "tags": [
+        "trial",
+        "uppercase-lowercase"
+      ]
+    },
+    {
+      "id": "trial-same-case",
+      "name": "trial: identical same-case neighbors remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaBB"
+      },
+      "expected": "aaBB",
+      "tags": [
+        "trial",
+        "same-case"
+      ]
+    },
+    {
+      "id": "real-left-cascade",
+      "name": "hidden: cancellation exposes pair to the left",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aAbB"
+      },
+      "expected": "",
+      "tags": [
+        "real",
+        "cascade"
+      ]
+    },
+    {
+      "id": "real-partial-cascade",
+      "name": "hidden: nested middle cancellation leaves outer text",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zabBAy"
+      },
+      "expected": "zy",
+      "tags": [
+        "real",
+        "nested",
+        "partial"
+      ]
+    },
+    {
+      "id": "real-alternating-survivors",
+      "name": "hidden: alternating unrelated cases survive",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aBcDeF"
+      },
+      "expected": "aBcDeF",
+      "tags": [
+        "real",
+        "no-cancellation"
+      ]
+    },
+    {
+      "id": "real-multiple-regimes",
+      "name": "hidden: separated cancellation runs reduce independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "xYyXmnNMq"
+      },
+      "expected": "q",
+      "tags": [
+        "real",
+        "multiple-cascades"
+      ]
+    }
+  ]
+}
+

@@ -1,15 +1,21 @@
-def solve(nums):
-    positive = 0
-    negative = 0
+def solve(nums: list[int]) -> int:
+    positive_length = 0
+    negative_length = 0
     best = 0
-    for num in nums:
-        if num == 0:
-            positive = 0
-            negative = 0
-        elif num > 0:
-            positive += 1
-            negative = negative + 1 if negative else 0
+
+    for value in nums:
+        if value == 0:
+            positive_length = 0
+            negative_length = 0
+        elif value > 0:
+            positive_length += 1
+            negative_length = negative_length + 1 if negative_length else 0
         else:
-            positive, negative = (negative + 1 if negative else 0), positive + 1
-        best = max(best, positive)
+            positive_length, negative_length = (
+                negative_length + 1 if negative_length else 0,
+                positive_length + 1,
+            )
+
+        best = max(best, positive_length)
+
     return best

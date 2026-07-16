@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1655",
+  "frontend_id": "1516",
+  "title_slug": "move-sub-tree-of-n-ary-tree",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.moveSubTree",
+  "verified_submission_id": "2069506271",
+  "verified_at": "2026-07-16T06:57:35.654011+00:00"
+}

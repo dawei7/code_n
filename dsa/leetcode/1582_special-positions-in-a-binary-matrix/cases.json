@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1582",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one special position",
+      "name": "sample: one column conflict leaves one special",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -28,7 +29,7 @@
       "expected": 1,
       "tags": [
         "sample",
-        "matrix"
+        "column-conflict"
       ]
     },
     {
@@ -57,13 +58,92 @@
       },
       "expected": 3,
       "tags": [
-        "sample"
+        "sample",
+        "identity"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: no ones",
+      "name": "sample: rectangular matrix with two specials",
       "kind": "sample",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "rectangular",
+        "row-conflict"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one-by-one matrix containing one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-matrix",
+        "special"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one-by-one matrix containing zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mat": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-matrix",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: no candidate ones",
+      "kind": "trial",
       "visible": true,
       "input": {
         "mat": [
@@ -79,29 +159,20 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
-        "edge"
+        "trial",
+        "all-zero"
       ]
     },
     {
-      "id": "real-row-with-two-ones",
-      "name": "hidden: row with two ones blocks both cells",
+      "id": "real-one-row-single",
+      "name": "hidden: one special in a single row",
       "kind": "real",
       "visible": false,
       "input": {
         "mat": [
           [
-            1,
-            0,
-            0
-          ],
-          [
             0,
             1,
-            1
-          ],
-          [
-            0,
             0,
             0
           ]
@@ -109,7 +180,184 @@
       },
       "expected": 1,
       "tags": [
-        "hidden"
+        "real",
+        "single-row"
+      ]
+    },
+    {
+      "id": "real-one-row-many",
+      "name": "hidden: multiple ones conflict in a single row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "single-row",
+        "row-conflict"
+      ]
+    },
+    {
+      "id": "real-one-column",
+      "name": "hidden: one special in a single column",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "single-column"
+      ]
+    },
+    {
+      "id": "real-column-conflict",
+      "name": "hidden: two rows share their only one column",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "column-conflict"
+      ]
+    },
+    {
+      "id": "real-mixed-conflicts",
+      "name": "hidden: isolated and conflicting ones coexist",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "mixed",
+        "rectangular"
+      ]
+    },
+    {
+      "id": "real-wide-identity",
+      "name": "hidden: separated coordinates remain special",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "rectangular",
+        "all-special"
+      ]
+    },
+    {
+      "id": "real-dense",
+      "name": "hidden: dense matrix has no special position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "dense",
+        "conflicts"
       ]
     }
   ]

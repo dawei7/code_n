@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1574",
   "cases": [
     {
@@ -21,6 +22,7 @@
       "expected": 3,
       "tags": [
         "sample",
+        "middle-removal",
         "two-pointers"
       ]
     },
@@ -41,12 +43,13 @@
       "expected": 4,
       "tags": [
         "sample",
-        "edge"
+        "strictly-decreasing",
+        "remove-n-minus-one"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: already sorted",
+      "name": "sample: already non-decreasing",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,12 +61,113 @@
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "sample",
+        "already-sorted",
+        "empty-removal"
       ]
     },
     {
-      "id": "real-remove-two-values",
-      "name": "hidden: remove a short middle segment",
+      "id": "trial-single",
+      "name": "trial: one element needs no removal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "trial: equal adjacent values are allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "duplicates",
+        "non-decreasing"
+      ]
+    },
+    {
+      "id": "trial-remove-suffix",
+      "name": "trial: remove only the final value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "suffix-removal"
+      ]
+    },
+    {
+      "id": "real-remove-prefix",
+      "name": "hidden: remove only the first value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          4,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "prefix-removal"
+      ]
+    },
+    {
+      "id": "real-equal-boundary-join",
+      "name": "hidden: equality permits a shorter join",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          2,
+          3,
+          0,
+          2,
+          2,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "duplicates",
+        "equal-boundary"
+      ]
+    },
+    {
+      "id": "real-short-middle",
+      "name": "hidden: remove two disruptive middle values",
       "kind": "real",
       "visible": false,
       "input": {
@@ -81,7 +185,98 @@
       },
       "expected": 2,
       "tags": [
-        "hidden"
+        "real",
+        "middle-removal",
+        "bridge"
+      ]
+    },
+    {
+      "id": "real-long-middle-dip",
+      "name": "hidden: remove a low run between ordered sides",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          3,
+          10,
+          0,
+          0,
+          0,
+          11,
+          12
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "middle-removal",
+        "long-dip"
+      ]
+    },
+    {
+      "id": "real-preserve-both-sides",
+      "name": "hidden: retain a prefix and suffix around two large values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          2,
+          100,
+          101,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "two-sided-join",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-descending-blocks",
+      "name": "hidden: descending duplicate blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          3,
+          3,
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "duplicates",
+        "descending-blocks"
+      ]
+    },
+    {
+      "id": "real-upper-bound-values",
+      "name": "hidden: maximum values remain sorted with equality",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "upper-bound",
+        "duplicates"
       ]
     }
   ]

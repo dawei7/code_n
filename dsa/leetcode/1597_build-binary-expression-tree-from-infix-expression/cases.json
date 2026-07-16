@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1597",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: multiplication before subtraction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "3*4-2*5"
+      },
+      "expected": [
+        "-",
+        "*",
+        "*",
+        "3",
+        "4",
+        "2",
+        "5"
+      ],
+      "tags": [
+        "sample",
+        "precedence"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: nested parenthesized multiplication",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "2-3/(5*2)+1"
+      },
+      "expected": [
+        "+",
+        "-",
+        "1",
+        "2",
+        "/",
+        null,
+        null,
+        null,
+        null,
+        "3",
+        "*",
+        null,
+        null,
+        "5",
+        "2"
+      ],
+      "tags": [
+        "sample",
+        "parentheses"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: repeated left-associative addition",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1+2+3+4+5"
+      },
+      "expected": [
+        "+",
+        "+",
+        "5",
+        "+",
+        "4",
+        null,
+        null,
+        "+",
+        "3",
+        null,
+        null,
+        "1",
+        "2"
+      ],
+      "tags": [
+        "sample",
+        "left-associative"
+      ]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "trial: one operand",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "7"
+      },
+      "expected": [
+        "7"
+      ],
+      "tags": [
+        "single-operand"
+      ]
+    },
+    {
+      "id": "trial-parentheses-change-root",
+      "name": "trial: parentheses override precedence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "(1+2)*3"
+      },
+      "expected": [
+        "*",
+        "+",
+        "3",
+        "1",
+        "2"
+      ],
+      "tags": [
+        "parentheses",
+        "precedence"
+      ]
+    },
+    {
+      "id": "real-subtraction-associativity",
+      "name": "hidden: subtraction associates left",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "8-4-2"
+      },
+      "expected": [
+        "-",
+        "-",
+        "2",
+        "8",
+        "4"
+      ],
+      "tags": [
+        "left-associative",
+        "subtraction"
+      ]
+    },
+    {
+      "id": "real-division-associativity",
+      "name": "hidden: division associates left",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "8/4/2"
+      },
+      "expected": [
+        "/",
+        "/",
+        "2",
+        "8",
+        "4"
+      ],
+      "tags": [
+        "left-associative",
+        "division"
+      ]
+    },
+    {
+      "id": "real-right-parenthesized",
+      "name": "hidden: parentheses force right grouping",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "8/(4/2)"
+      },
+      "expected": [
+        "/",
+        "8",
+        "/",
+        null,
+        null,
+        "4",
+        "2"
+      ],
+      "tags": [
+        "parentheses",
+        "right-grouping"
+      ]
+    },
+    {
+      "id": "real-mixed-precedence",
+      "name": "hidden: multiplication and division share precedence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "1+2*3/4-5"
+      },
+      "expected": [
+        "-",
+        "+",
+        "5",
+        "1",
+        "/",
+        null,
+        null,
+        null,
+        null,
+        "*",
+        "4",
+        "2",
+        "3"
+      ],
+      "tags": [
+        "mixed-operators",
+        "precedence"
+      ]
+    },
+    {
+      "id": "real-deep-parentheses",
+      "name": "hidden: several nested parenthesis levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(((1+2)*3)-4)"
+      },
+      "expected": [
+        "-",
+        "*",
+        "4",
+        "+",
+        "3",
+        null,
+        null,
+        "1",
+        "2"
+      ],
+      "tags": [
+        "nested-parentheses"
+      ]
+    },
+    {
+      "id": "real-two-parenthesized-sides",
+      "name": "hidden: independent parenthesized operands",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(1+2)*(3-4/5)"
+      },
+      "expected": [
+        "*",
+        "+",
+        "-",
+        "1",
+        "2",
+        "3",
+        "/",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "4",
+        "5"
+      ],
+      "tags": [
+        "parentheses",
+        "mixed-operators"
+      ]
+    },
+    {
+      "id": "real-parentheses-preserve-left-chain",
+      "name": "hidden: parenthesized left chain inside division",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(9-8+7)/(6*5)"
+      },
+      "expected": [
+        "/",
+        "+",
+        "*",
+        "-",
+        "7",
+        "6",
+        "5",
+        "9",
+        "8"
+      ],
+      "tags": [
+        "parentheses",
+        "left-associative"
+      ]
+    }
+  ]
+}
+

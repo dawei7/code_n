@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1510",
+  "cases": [
+    {"id":"sample-1","name":"sample: remove one stone","kind":"sample","visible":true,"input":{"n":1},"expected":true,"tags":["sample","base-win"]},
+    {"id":"sample-2","name":"sample: two stones is losing","kind":"sample","visible":true,"input":{"n":2},"expected":false,"tags":["sample","losing-state"]},
+    {"id":"sample-3","name":"sample: perfect square","kind":"sample","visible":true,"input":{"n":4},"expected":true,"tags":["sample","perfect-square"]},
+    {"id":"trial-three","name":"trial: move to the losing state two","kind":"trial","visible":true,"input":{"n":3},"expected":true,"tags":["trial","winning-move"]},
+    {"id":"trial-five","name":"trial: all moves give the opponent a win","kind":"trial","visible":true,"input":{"n":5},"expected":false,"tags":["trial","losing-state"]},
+    {"id":"trial-seven","name":"trial: odd losing state","kind":"trial","visible":true,"input":{"n":7},"expected":false,"tags":["trial","parity-trap"]},
+    {"id":"real-ten","name":"hidden: even losing state","kind":"real","visible":false,"input":{"n":10},"expected":false,"tags":["real","losing-state"]},
+    {"id":"real-seventeen","name":"hidden: one above a perfect square can lose","kind":"real","visible":false,"input":{"n":17},"expected":false,"tags":["real","perfect-square-neighbor"]},
+    {"id":"real-eighteen","name":"hidden: adjacent winning state","kind":"real","visible":false,"input":{"n":18},"expected":true,"tags":["real","winning-state"]},
+    {"id":"real-thirty-four","name":"hidden: larger losing state","kind":"real","visible":false,"input":{"n":34},"expected":false,"tags":["real","losing-state"]},
+    {"id":"real-large-nonsquare","name":"hidden: larger non-square state","kind":"real","visible":false,"input":{"n":999},"expected":true,"tags":["real","large-input"]},
+    {"id":"real-thousand","name":"hidden: four-digit pile size","kind":"real","visible":false,"input":{"n":1000},"expected":true,"tags":["real","large-input"]}
+  ]
+}

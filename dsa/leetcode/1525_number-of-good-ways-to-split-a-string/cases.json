@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1525",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two balanced boundaries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aacaba"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "repeated"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all letters distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "sample-all-one",
+      "name": "sample: every split preserves one distinct letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: no legal split in a one-character string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-two-different",
+      "name": "trial: two different letters balance immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-split",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-two-same",
+      "name": "trial: two equal letters balance immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aa"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-split",
+        "equal"
+      ]
+    },
+    {
+      "id": "real-odd-distinct",
+      "name": "hidden: odd number of unique letters cannot balance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcde"
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "all-distinct",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "real-skewed-frequency",
+      "name": "hidden: frequencies differ while distinct counts balance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaabcbc"
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "frequency-imbalance"
+      ]
+    },
+    {
+      "id": "real-returning-letter",
+      "name": "hidden: a letter disappears from the suffix late",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcaacbd"
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "right-removal",
+        "repeated"
+      ]
+    },
+    {
+      "id": "real-many-boundaries",
+      "name": "hidden: several repeated blocks create good splits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aabbccddeeff"
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "blocks",
+        "multiple-splits"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1703",
+  "frontend_id": "1564",
+  "title_slug": "put-boxes-into-the-warehouse-i",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxBoxesInWarehouse",
+  "verified_submission_id": "2069815797",
+  "verified_at": "2026-07-16T11:54:49.834177+00:00"
+}

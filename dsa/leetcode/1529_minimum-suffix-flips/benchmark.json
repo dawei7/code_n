@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1529",
+  "measurement_note": "Size is n, the target length. The legal 32/128/512 alternating tiers span 16x and force a necessary flip at every index. The remotely Accepted transition scan is O(n), and an independent adjacent-pair count also passes. A correct implementation that explicitly toggles each affected suffix performs O(n^2) work, completes every tier, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32-bit alternating target",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "target": "10101010101010101010101010101010"
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark",
+        "alternating",
+        "flip-every-index"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128-bit alternating target",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "target": "10101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010"
+      },
+      "expected": 128,
+      "tags": [
+        "benchmark",
+        "alternating",
+        "flip-every-index"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512-bit alternating target",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "target": "10101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010"
+      },
+      "expected": 512,
+      "tags": [
+        "benchmark",
+        "alternating",
+        "flip-every-index"
+      ]
+    }
+  ]
+}

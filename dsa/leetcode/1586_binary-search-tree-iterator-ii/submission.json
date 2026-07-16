@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1729",
+  "frontend_id": "1586",
+  "title_slug": "binary-search-tree-iterator-ii",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "BSTIterator",
+  "verified_submission_id": "2069956982",
+  "verified_at": "2026-07-16T14:12:05.366311+00:00"
+}

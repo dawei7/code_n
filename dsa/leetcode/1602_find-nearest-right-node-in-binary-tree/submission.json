@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1745",
+  "frontend_id": "1602",
+  "title_slug": "find-nearest-right-node-in-binary-tree",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findNearestRightNode",
+  "verified_submission_id": "2070072807",
+  "verified_at": "2026-07-16T15:44:27.844453+00:00"
+}

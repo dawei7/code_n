@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1660",
+  "frontend_id": "1556",
+  "title_slug": "thousand-separator",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.thousandSeparator",
+  "verified_submission_id": "2069772868",
+  "verified_at": "2026-07-16T11:07:36.414543+00:00"
+}

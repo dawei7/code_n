@@ -1,10 +1,14 @@
+"""Optimal app-local solution for LeetCode 1524."""
+
+
 def solve(arr):
-    mod = 1_000_000_007
-    counts = [1, 0]
+    even = 1
+    odd = 0
     parity = 0
-    answer = 0
     for value in arr:
         parity ^= value & 1
-        answer += counts[parity ^ 1]
-        counts[parity] += 1
-    return answer % mod
+        if parity:
+            odd += 1
+        else:
+            even += 1
+    return even * odd % 1_000_000_007

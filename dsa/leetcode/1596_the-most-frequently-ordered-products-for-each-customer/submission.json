@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1735",
+  "frontend_id": "1596",
+  "title_slug": "the-most-frequently-ordered-products-for-each-customer",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070033400",
+  "verified_at": "2026-07-16T15:13:54.447453+00:00"
+}

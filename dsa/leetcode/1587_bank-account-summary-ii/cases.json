@@ -1,0 +1,502 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1587",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official mixed balances",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "account": 900001,
+              "name": "Alice"
+            },
+            {
+              "account": 900002,
+              "name": "Bob"
+            },
+            {
+              "account": 900003,
+              "name": "Charlie"
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "account": 900001,
+              "amount": 7000,
+              "transacted_on": "2020-08-01"
+            },
+            {
+              "trans_id": 2,
+              "account": 900001,
+              "amount": 7000,
+              "transacted_on": "2020-09-01"
+            },
+            {
+              "trans_id": 3,
+              "account": 900001,
+              "amount": -3000,
+              "transacted_on": "2020-09-02"
+            },
+            {
+              "trans_id": 4,
+              "account": 900002,
+              "amount": 1000,
+              "transacted_on": "2020-09-12"
+            },
+            {
+              "trans_id": 5,
+              "account": 900003,
+              "amount": 6000,
+              "transacted_on": "2020-08-07"
+            },
+            {
+              "trans_id": 6,
+              "account": 900003,
+              "amount": 6000,
+              "transacted_on": "2020-09-07"
+            },
+            {
+              "trans_id": 7,
+              "account": 900003,
+              "amount": -4000,
+              "transacted_on": "2020-09-11"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "balance"
+        ],
+        "rows": [
+          [
+            "Alice",
+            11000
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "signed-sum"
+      ]
+    },
+    {
+      "id": "sample-several-qualify",
+      "name": "sample: several users have equal qualifying balances",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "account": 1,
+              "name": "Ann"
+            },
+            {
+              "account": 2,
+              "name": "Ben"
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "account": 1,
+              "amount": 15000,
+              "transacted_on": "2021-01-01"
+            },
+            {
+              "trans_id": 2,
+              "account": 1,
+              "amount": -4000,
+              "transacted_on": "2021-01-02"
+            },
+            {
+              "trans_id": 3,
+              "account": 2,
+              "amount": 9000,
+              "transacted_on": "2021-01-03"
+            },
+            {
+              "trans_id": 4,
+              "account": 2,
+              "amount": 2000,
+              "transacted_on": "2021-01-04"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "balance"
+        ],
+        "rows": [
+          [
+            "Ann",
+            11000
+          ],
+          [
+            "Ben",
+            11000
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "multiple-users"
+      ]
+    },
+    {
+      "id": "trial-strict-threshold",
+      "name": "trial: exactly ten thousand is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "account": 1,
+              "name": "Exact"
+            },
+            {
+              "account": 2,
+              "name": "Above"
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "account": 1,
+              "amount": 10000,
+              "transacted_on": "2022-01-01"
+            },
+            {
+              "trans_id": 2,
+              "account": 2,
+              "amount": 10001,
+              "transacted_on": "2022-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "balance"
+        ],
+        "rows": [
+          [
+            "Above",
+            10001
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "strict-threshold"
+      ]
+    },
+    {
+      "id": "trial-several-small-deposits",
+      "name": "trial: several small deposits qualify together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "account": 4,
+              "name": "Pieces"
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "account": 4,
+              "amount": 4000,
+              "transacted_on": "2020-01-01"
+            },
+            {
+              "trans_id": 2,
+              "account": 4,
+              "amount": 3500,
+              "transacted_on": "2020-01-02"
+            },
+            {
+              "trans_id": 3,
+              "account": 4,
+              "amount": 3000,
+              "transacted_on": "2020-01-03"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "balance"
+        ],
+        "rows": [
+          [
+            "Pieces",
+            10500
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "real-withdrawal-removes-qualification",
+      "name": "hidden: withdrawal lowers a large deposit to threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "account": 8,
+              "name": "Reduced"
+            },
+            {
+              "account": 9,
+              "name": "Safe"
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "account": 8,
+              "amount": 15000,
+              "transacted_on": "2020-02-01"
+            },
+            {
+              "trans_id": 2,
+              "account": 8,
+              "amount": -5000,
+              "transacted_on": "2020-02-02"
+            },
+            {
+              "trans_id": 3,
+              "account": 9,
+              "amount": 15000,
+              "transacted_on": "2020-02-03"
+            },
+            {
+              "trans_id": 4,
+              "account": 9,
+              "amount": -4999,
+              "transacted_on": "2020-02-04"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "balance"
+        ],
+        "rows": [
+          [
+            "Safe",
+            10001
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "negative-amount",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-user-without-transactions",
+      "name": "hidden: user without transactions remains at zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "account": 1,
+              "name": "Idle"
+            },
+            {
+              "account": 2,
+              "name": "Active"
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "account": 2,
+              "amount": 12000,
+              "transacted_on": "2020-03-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "balance"
+        ],
+        "rows": [
+          [
+            "Active",
+            12000
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "no-transactions"
+      ]
+    },
+    {
+      "id": "real-no-qualifying-users",
+      "name": "hidden: all balances stay below threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "account": 1,
+              "name": "Low"
+            },
+            {
+              "account": 2,
+              "name": "Negative"
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "account": 1,
+              "amount": 9999,
+              "transacted_on": "2020-04-01"
+            },
+            {
+              "trans_id": 2,
+              "account": 2,
+              "amount": -1,
+              "transacted_on": "2020-04-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "balance"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-date-order-irrelevant",
+      "name": "hidden: transaction date order does not change the sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "account": 3,
+              "name": "Timeline"
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 1,
+              "account": 3,
+              "amount": -2000,
+              "transacted_on": "2023-12-31"
+            },
+            {
+              "trans_id": 2,
+              "account": 3,
+              "amount": 13000,
+              "transacted_on": "2020-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "balance"
+        ],
+        "rows": [
+          [
+            "Timeline",
+            11000
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "date-irrelevant"
+      ]
+    },
+    {
+      "id": "real-large-signed-balance",
+      "name": "hidden: large positive and negative changes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "account": 100000,
+              "name": "Magnitude"
+            }
+          ],
+          "Transactions": [
+            {
+              "trans_id": 100,
+              "account": 100000,
+              "amount": 100000000,
+              "transacted_on": "2024-01-01"
+            },
+            {
+              "trans_id": 101,
+              "account": 100000,
+              "amount": -99989999,
+              "transacted_on": "2024-01-02"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "name",
+          "balance"
+        ],
+        "rows": [
+          [
+            "Magnitude",
+            10001
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    }
+  ]
+}

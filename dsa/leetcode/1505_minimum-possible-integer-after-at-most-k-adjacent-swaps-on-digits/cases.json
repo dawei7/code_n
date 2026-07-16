@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_1505",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: budget chooses a partial descending reorder",
+      "kind": "sample",
+      "visible": true,
+      "input": {"num": "4321", "k": 4},
+      "expected": "1342",
+      "tags": ["sample", "partial-budget"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: output may begin with zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"num": "100", "k": 1},
+      "expected": "010",
+      "tags": ["sample", "leading-zero"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: already minimal input spends no swaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {"num": "36789", "k": 1000},
+      "expected": "36789",
+      "tags": ["sample", "already-sorted"]
+    },
+    {
+      "id": "trial-two-zeros",
+      "name": "trial: earliest zero moves first while duplicates remain stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": "10200", "k": 1},
+      "expected": "01200",
+      "tags": ["trial", "duplicates", "leading-zero"]
+    },
+    {
+      "id": "trial-full-sort-budget",
+      "name": "trial: sufficient budget sorts every digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"num": "9876543210", "k": 45},
+      "expected": "0123456789",
+      "tags": ["trial", "full-inversion-budget"]
+    },
+    {
+      "id": "real-budget-exhausted-midway",
+      "name": "hidden: untouched suffix keeps its relative order",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "7650281", "k": 6},
+      "expected": "0276581",
+      "tags": ["hidden", "budget-exhaustion", "suffix-order"]
+    },
+    {
+      "id": "real-repeated-low-digits",
+      "name": "hidden: repeated occurrences are consumed from the front",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "22110", "k": 3},
+      "expected": "12120",
+      "tags": ["hidden", "duplicates", "queue-order"]
+    },
+    {
+      "id": "real-several-zero-moves",
+      "name": "hidden: several equal zeroes compete for the budget",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "909090", "k": 4},
+      "expected": "009909",
+      "tags": ["hidden", "multiple-zeroes"]
+    },
+    {
+      "id": "real-long-repeated-example",
+      "name": "hidden: long mixed string exercises rank updates",
+      "kind": "real",
+      "visible": false,
+      "input": {"num": "9438957234785635408", "k": 23},
+      "expected": "0345989723478563548",
+      "tags": ["hidden", "fenwick-ranks", "repeated-digits"]
+    }
+  ]
+}

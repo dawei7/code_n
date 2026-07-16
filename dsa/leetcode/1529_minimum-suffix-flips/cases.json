@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1529",
+  "cases": [
+    {"id": "sample-10111", "name": "sample: three run boundaries", "kind": "sample", "visible": true, "input": {"target": "10111"}, "expected": 3, "tags": ["sample", "official", "mixed-runs"]},
+    {"id": "sample-101", "name": "sample: every bit changes", "kind": "sample", "visible": true, "input": {"target": "101"}, "expected": 3, "tags": ["sample", "official", "alternating"]},
+    {"id": "sample-all-zero", "name": "sample: target already equals initial string", "kind": "sample", "visible": true, "input": {"target": "00000"}, "expected": 0, "tags": ["sample", "official", "zero-operations"]},
+    {"id": "trial-single-zero", "name": "trial: one zero", "kind": "trial", "visible": true, "input": {"target": "0"}, "expected": 0, "tags": ["trial", "minimum-length"]},
+    {"id": "trial-single-one", "name": "trial: one one", "kind": "trial", "visible": true, "input": {"target": "1"}, "expected": 1, "tags": ["trial", "minimum-length", "one-flip"]},
+    {"id": "trial-all-one", "name": "trial: one complete suffix flip", "kind": "trial", "visible": true, "input": {"target": "111111"}, "expected": 1, "tags": ["trial", "single-run"]},
+    {"id": "real-leading-zero", "name": "hidden: first transition occurs later", "kind": "real", "visible": false, "input": {"target": "000111"}, "expected": 1, "tags": ["real", "leading-zeros"]},
+    {"id": "real-trailing-zero", "name": "hidden: return to zero at the end", "kind": "real", "visible": false, "input": {"target": "111000"}, "expected": 2, "tags": ["real", "trailing-zeros"]},
+    {"id": "real-many-runs", "name": "hidden: several unequal run lengths", "kind": "real", "visible": false, "input": {"target": "0011100111101000"}, "expected": 6, "tags": ["real", "unequal-runs"]},
+    {"id": "real-long-alternating", "name": "hidden: every position forces a transition", "kind": "real", "visible": false, "input": {"target": "10101010101010101010"}, "expected": 20, "tags": ["real", "alternating", "many-flips"]}
+  ]
+}

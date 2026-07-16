@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1732",
+  "frontend_id": "1611",
+  "title_slug": "minimum-one-bit-operations-to-make-integers-zero",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumOneBitOperations",
+  "verified_submission_id": "2070140470",
+  "verified_at": "2026-07-16T16:33:31.076860+00:00"
+}

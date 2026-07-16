@@ -1,9 +1,7 @@
-def solve(piles):
-    piles = sorted(piles)
-    groups = len(piles) // 3
-    total = 0
-    index = len(piles) - 2
-    for _ in range(groups):
-        total += piles[index]
-        index -= 2
-    return total
+"""Optimal app-local solution for LeetCode 1561."""
+
+
+def solve(piles: list[int]) -> int:
+    """Sum every second pile in the sorted upper two-thirds."""
+    ordered = sorted(piles)
+    return sum(ordered[len(ordered) // 3 :: 2])

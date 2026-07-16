@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1685",
+  "frontend_id": "1563",
+  "title_slug": "stone-game-v",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.stoneGameV",
+  "verified_submission_id": "2069809632",
+  "verified_at": "2026-07-16T11:48:13.297835+00:00"
+}

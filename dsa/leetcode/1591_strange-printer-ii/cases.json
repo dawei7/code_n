@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1591",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: inner rectangle overwrites outer color",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "targetGrid": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: several dependency-compatible colors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "targetGrid": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            3,
+            3
+          ],
+          [
+            1,
+            1,
+            3,
+            4
+          ],
+          [
+            5,
+            5,
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "dependencies"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: checkerboard dependency cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "targetGrid": [
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "cycle"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single-cell grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "targetGrid": [
+          [
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-stripes",
+      "name": "trial: independent vertical stripes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "targetGrid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "real-solid",
+      "name": "hidden: one solid color",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "targetGrid": [
+          [
+            60,
+            60,
+            60
+          ],
+          [
+            60,
+            60,
+            60
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "single-color",
+        "label-boundary"
+      ]
+    },
+    {
+      "id": "real-quadrants",
+      "name": "hidden: four disjoint rectangular colors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "targetGrid": [
+          [
+            1,
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            1,
+            2,
+            2
+          ],
+          [
+            3,
+            3,
+            4,
+            4
+          ],
+          [
+            3,
+            3,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "disjoint"
+      ]
+    },
+    {
+      "id": "real-separated-printable",
+      "name": "hidden: one color surrounds a later rectangle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "targetGrid": [
+          [
+            1,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "overwrite"
+      ]
+    },
+    {
+      "id": "real-three-nested",
+      "name": "hidden: three nested rectangles",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "targetGrid": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            3,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    },
+    {
+      "id": "real-two-cycle",
+      "name": "hidden: two colors mutually depend",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "targetGrid": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "cycle"
+      ]
+    },
+    {
+      "id": "real-separated-cycle",
+      "name": "hidden: separated occurrences force a cycle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "targetGrid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "cycle",
+        "separated-cells"
+      ]
+    }
+  ]
+}

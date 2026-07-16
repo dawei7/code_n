@@ -5,98 +5,88 @@
 | Source | LeetCode |
 | Frontend ID | 1514 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Graph Theory, Heap (Priority Queue), Shortest Path |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [path-with-maximum-probability](https://leetcode.com/problems/path-with-maximum-probability/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/path-with-maximum-probability/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/path-with-maximum-probability/).
-
 ### Goal
-In an undirected graph whose edges have success probabilities, find the path
-from `start` to `end` with the largest product of edge probabilities.
+
+An undirected graph has $n$ nodes labeled from 0 through $n-1$. Each listed edge connects two different nodes and has a success probability between 0 and 1. The probability of successfully traversing an entire path is the product of the probabilities on its edges.
+
+Given distinct start and destination nodes, find the greatest success probability among all paths connecting them. Return zero when the destination is unreachable. Results within $10^{-5}$ of the exact maximum are accepted.
 
 ### Function Contract
 **Inputs**
 
-- `n`: the number of nodes labeled from `0` to `n - 1`.
-- `edges`: undirected edges.
-- `succProb`: success probability for each corresponding edge.
-- `start`: the starting node.
-- `end`: the destination node.
+Let $e$ be the number of edges.
+
+- `n`: The node count, satisfying $2 \leq n \leq 10^4$.
+- `edges`: A length-$e$ list of undirected endpoint pairs `[a, b]`. There are no self-loops and at most one edge between a pair of nodes.
+- `succ_prob`: A length-$e$ list where `succ_prob[i]` is the traversal probability of `edges[i]` and lies in $[0,1]$.
+- `start`, `end`: Distinct valid node labels. The native interface names them `start_node` and `end_node`.
 
 **Return value**
 
-The maximum success probability, or `0.0` if no path exists.
+Return the maximum product of edge probabilities along a path from `start` to `end`, or `0.0` if no such path exists.
 
 ### Examples
 **Example 1**
 
-- Input: `n = 3, edges = [[0, 1], [1, 2], [0, 2]], succProb = [0.5, 0.5, 0.2], start = 0, end = 2`
+- Input: `n = 3, edges = [[0, 1], [1, 2], [0, 2]], succ_prob = [0.5, 0.5, 0.2], start = 0, end = 2`
 - Output: `0.25`
+- Explanation: The two-edge path succeeds with probability $0.5\cdot0.5=0.25$, exceeding the direct edge's 0.2.
 
 **Example 2**
 
-- Input: `n = 3, edges = [[0, 1], [1, 2], [0, 2]], succProb = [0.5, 0.5, 0.3], start = 0, end = 2`
+- Input: `n = 3, edges = [[0, 1], [1, 2], [0, 2]], succ_prob = [0.5, 0.5, 0.3], start = 0, end = 2`
 - Output: `0.3`
 
 **Example 3**
 
-- Input: `n = 3, edges = [[0, 1]], succProb = [0.5], start = 0, end = 2`
+- Input: `n = 3, edges = [[0, 1]], succ_prob = [0.5], start = 0, end = 2`
 - Output: `0.0`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Build an adjacency list and run a Dijkstra-style search with a max-heap ordered
-by current path probability. When visiting an edge, multiply the current
-probability by the edge probability and relax the neighbor if that product is
-better than its best known value.
+- **Time:** $O((n+e)\log n)$
+- **Space:** $O(n+e)$
 
-### Complexity Analysis
-- **Time Complexity**: `O((n + e) log n)`, where `e` is the number of edges.
-- **Space Complexity**: `O(n + e)`.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-import heapq
-from collections import defaultdict
+#### General
 
+**Reverse Dijkstra's ordering objective**
 
-def solve(n, edges, succ_prob, start, end):
-    n = max(0, int(n))
-    graph = defaultdict(list)
-    for index, edge in enumerate(edges):
-        if not isinstance(edge, list) or len(edge) < 2:
-            continue
-        u, v = int(edge[0]) % max(1, n), int(edge[1]) % max(1, n)
-        probability = float(succ_prob[index]) if index < len(succ_prob) else 1.0
-        if probability > 1:
-            probability = probability / 100.0
-        probability = max(0.0, min(1.0, probability))
-        graph[u].append((v, probability))
-        graph[v].append((u, probability))
-    start = int(start) % max(1, n) if n else 0
-    end = int(end) % max(1, n) if n else 0
-    heap = [(-1.0, start)]
-    best = {start: 1.0}
-    while heap:
-        neg_prob, node = heapq.heappop(heap)
-        prob = -neg_prob
-        if node == end:
-            return prob
-        if prob < best.get(node, 0.0):
-            continue
-        for nxt, edge_prob in graph[node]:
-            candidate = prob * edge_prob
-            if candidate > best.get(nxt, 0.0):
-                best[nxt] = candidate
-                heapq.heappush(heap, (-candidate, nxt))
-    return 0.0
-```
+Ordinary Dijkstra finalizes the smallest additive distance. Here every edge probability lies in $[0,1]$, so extending a path can never increase its product. This gives an analogous greedy property: process the unfinished path with the largest current probability first.
+
+Build an undirected adjacency list and store `best[v]`, the greatest probability discovered so far for reaching node `v`. Initialize the start to 1, representing the empty product, and every other node to zero. A max-heap is simulated with negative probabilities.
+
+When a path to `node` is removed from the heap, multiply its probability by each incident edge probability. If that candidate improves the neighbor's best known product, record it and push a new heap entry. Ignore stale entries whose probability is below the current `best` value.
+
+**Why the first destination pop is optimal**
+
+Suppose the heap removes node $v$ with probability $p$. Any not-yet-processed path prefix has probability at most $p$. Extending such a prefix multiplies it by values no greater than 1, so it can never later produce a path to $v$ greater than $p$. Therefore $p$ is final when popped from a non-stale heap entry.
+
+The same reasoning applies to the destination: the first non-stale destination entry is the globally maximum path probability and may be returned immediately. If the heap empties first, no sequence of graph edges reaches the destination, so zero is correct.
+
+#### Complexity detail
+
+Constructing the adjacency list takes $O(n+e)$ time. Each successful relaxation adds a heap entry; with the standard adjacency-list Dijkstra bound, heap processing and edge scans take $O((n+e)\log n)$ time.
+
+The graph stores two adjacency entries per undirected edge, `best` stores one value per node, and the heap can retain $O(n+e)$ entries, giving $O(n+e)$ space.
+
+#### Alternatives and edge cases
+
+- **Negative logarithms:** transform each positive probability $p$ into weight $-\log p$ and run ordinary shortest-path Dijkstra. This is mathematically equivalent but must treat zero-probability edges separately.
+- **Bellman-Ford-style relaxation:** repeatedly relax every edge in both directions. It is correct and simple but can require $O(ne)$ time.
+- **Depth-first path enumeration:** tries every simple path and becomes exponential on dense cyclic graphs.
+- **Direct versus indirect path:** multiplying several larger edges may beat one lower-probability direct edge.
+- **Disconnected destination:** return `0.0` when the heap cannot reach it.
+- **Zero-probability edge:** it cannot improve a node whose best probability is already zero and cannot create a positive-probability route.
+- **Probability-one edges:** cycles of probability 1 do not cause repeated improvements because relaxation is strict.
+- **Stale heap entries:** skip an older lower-probability entry after a better route to the same node has been found.
+- **Undirected edges:** add both adjacency directions; omitting one changes reachability.
+- **Floating-point tolerance:** compare candidate products normally and rely on the stated output tolerance for representation error.
+
 </details>

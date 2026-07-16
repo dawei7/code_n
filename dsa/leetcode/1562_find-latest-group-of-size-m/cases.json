@@ -1,85 +1,17 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1562",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: latest singleton group",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          3,
-          5,
-          1,
-          2,
-          4
-        ],
-        "m": 1
-      },
-      "expected": 4,
-      "tags": [
-        "sample",
-        "intervals"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: size two never appears",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          3,
-          1,
-          5,
-          4,
-          2
-        ],
-        "m": 2
-      },
-      "expected": -1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: whole array size",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2,
-          3
-        ],
-        "m": 3
-      },
-      "expected": 3,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-group-size-two",
-      "name": "hidden: size-two group exists briefly",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          2,
-          1,
-          3,
-          5,
-          4
-        ],
-        "m": 2
-      },
-      "expected": 2,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-1", "name": "sample: latest isolated group at step four", "kind": "sample", "visible": true, "input": {"arr": [3,5,1,2,4], "m": 1}, "expected": 4, "tags": ["sample", "target-one", "merge"]},
+    {"id": "sample-2", "name": "sample: target length never appears", "kind": "sample", "visible": true, "input": {"arr": [3,1,5,4,2], "m": 2}, "expected": -1, "tags": ["sample", "absent", "merge"]},
+    {"id": "sample-3", "name": "sample: final group spans all positions", "kind": "sample", "visible": true, "input": {"arr": [1,2,3], "m": 3}, "expected": 3, "tags": ["sample", "full-length", "final-step"]},
+    {"id": "trial-single-position", "name": "trial: smallest permutation", "kind": "trial", "visible": true, "input": {"arr": [1], "m": 1}, "expected": 1, "tags": ["trial", "minimum-n", "boundary"]},
+    {"id": "trial-growing-prefix", "name": "trial: target appears during prefix growth", "kind": "trial", "visible": true, "input": {"arr": [1,2,3,4,5], "m": 3}, "expected": 3, "tags": ["trial", "prefix", "exact-length"]},
+    {"id": "trial-two-target-groups", "name": "trial: two isolated target groups later merge", "kind": "trial", "visible": true, "input": {"arr": [2,4,3,1,5], "m": 1}, "expected": 2, "tags": ["trial", "multiple-groups", "target-one"]},
+    {"id": "real-bridge-two-runs", "name": "hidden: bridge merges equal neighboring runs", "kind": "real", "visible": false, "input": {"arr": [2,1,5,4,3,6], "m": 2}, "expected": 4, "tags": ["real", "bridge", "two-runs"]},
+    {"id": "real-late-isolated", "name": "hidden: isolated group survives near the end", "kind": "real", "visible": false, "input": {"arr": [1,3,5,2,4], "m": 1}, "expected": 4, "tags": ["real", "target-one", "late"]},
+    {"id": "real-middle-target", "name": "hidden: interior run persists through another activation", "kind": "real", "visible": false, "input": {"arr": [4,3,2,6,1,5,7], "m": 3}, "expected": 4, "tags": ["real", "interior", "persistent-group"]},
+    {"id": "real-full-length-shuffled", "name": "hidden: shuffled permutation reaches full length last", "kind": "real", "visible": false, "input": {"arr": [4,1,6,2,5,3], "m": 6}, "expected": 6, "tags": ["real", "full-length", "shuffled"]},
+    {"id": "real-skip-target", "name": "hidden: merge jumps over requested length", "kind": "real", "visible": false, "input": {"arr": [2,4,1,5,3], "m": 3}, "expected": -1, "tags": ["real", "absent", "jump-over"]}
   ]
 }

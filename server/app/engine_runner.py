@@ -398,6 +398,112 @@ class _JudgeBinaryMatrix:
         return f"BinaryMatrix({rows}x{cols}, queries={self._query_count})"
 
 
+class _JudgeArrayReader:
+    """Hidden-array simulator for LeetCode 1533's sum-comparison API."""
+
+    def __init__(self, array: list[int], max_queries: int = 20):
+        if not isinstance(array, list) or not 2 <= len(array) <= 500_000:
+            raise ValueError("ArrayReader array length must be between 2 and 500000")
+        if any(not isinstance(value, int) or isinstance(value, bool) for value in array):
+            raise ValueError("ArrayReader values must be integers")
+        if any(not 1 <= value <= 100 for value in array):
+            raise ValueError("ArrayReader values must be between 1 and 100")
+        smallest = min(array)
+        larger = [index for index, value in enumerate(array) if value != smallest]
+        if len(larger) != 1 or array[larger[0]] <= smallest:
+            raise ValueError("ArrayReader requires exactly one value larger than all others")
+        if any(value != smallest for index, value in enumerate(array) if index != larger[0]):
+            raise ValueError("all non-maximum ArrayReader values must be equal")
+        if not isinstance(max_queries, int) or isinstance(max_queries, bool) or max_queries < 0:
+            raise ValueError("ArrayReader max_queries must be a non-negative integer")
+        prefix = [0]
+        for value in array:
+            prefix.append(prefix[-1] + value)
+        self.__prefix = tuple(prefix)
+        self._length = len(array)
+        self._max_queries = max_queries
+        self._query_count = 0
+
+    def compareSub(self, l: int, r: int, x: int, y: int) -> int:
+        if any(
+            not isinstance(value, int) or isinstance(value, bool)
+            for value in (l, r, x, y)
+        ):
+            raise ValueError("ArrayReader.compareSub indices must be integers")
+        if not (0 <= l <= r < self._length and 0 <= x <= y < self._length):
+            raise ValueError("ArrayReader.compareSub indices are outside the array")
+        self._query_count += 1
+        if self._query_count > self._max_queries:
+            raise RuntimeError(
+                f"ArrayReader.compareSub exceeded the {self._max_queries}-query limit"
+            )
+        left_sum = self.__prefix[r + 1] - self.__prefix[l]
+        right_sum = self.__prefix[y + 1] - self.__prefix[x]
+        return (left_sum > right_sum) - (left_sum < right_sum)
+
+    def length(self) -> int:
+        return self._length
+
+    @property
+    def query_count(self) -> int:
+        return self._query_count
+
+    def __repr__(self) -> str:
+        return f"ArrayReader(length={self._length}, queries={self._query_count})"
+
+
+class _JudgeMajorityReader:
+    """Hidden binary-array simulator for LeetCode 1538's query API."""
+
+    def __init__(self, array: list[int], max_queries: int | None = None):
+        if not isinstance(array, list) or not 5 <= len(array) <= 100_000:
+            raise ValueError("majority ArrayReader length must be between 5 and 100000")
+        if any(
+            not isinstance(value, int)
+            or isinstance(value, bool)
+            or value not in (0, 1)
+            for value in array
+        ):
+            raise ValueError("majority ArrayReader values must be 0 or 1")
+        if max_queries is None:
+            max_queries = 2 * len(array)
+        if not isinstance(max_queries, int) or isinstance(max_queries, bool) or max_queries < 0:
+            raise ValueError("majority ArrayReader max_queries must be a non-negative integer")
+        self.__array = tuple(array)
+        self._max_queries = max_queries
+        self._query_count = 0
+
+    def query(self, a: int, b: int, c: int, d: int) -> int:
+        if any(
+            not isinstance(value, int) or isinstance(value, bool)
+            for value in (a, b, c, d)
+        ):
+            raise ValueError("ArrayReader.query indices must be integers")
+        if not 0 <= a < b < c < d < len(self.__array):
+            raise ValueError("ArrayReader.query requires four increasing valid indices")
+        self._query_count += 1
+        if self._query_count > self._max_queries:
+            raise RuntimeError(
+                f"ArrayReader.query exceeded the {self._max_queries}-query limit"
+            )
+        ones = sum(self.__array[index] for index in (a, b, c, d))
+        if ones in (0, 4):
+            return 4
+        if ones == 2:
+            return 0
+        return 2
+
+    def length(self) -> int:
+        return len(self.__array)
+
+    @property
+    def query_count(self) -> int:
+        return self._query_count
+
+    def __repr__(self) -> str:
+        return f"ArrayReader(length={len(self.__array)}, queries={self._query_count})"
+
+
 class _JudgeMaster:
     """Hidden-word simulator for LeetCode's Master guessing interface."""
 
@@ -975,6 +1081,16 @@ def _reformatted_string_match(actual: Any, source: Any) -> bool:
         len(actual) == len(source)
         and Counter(actual) == Counter(source)
         and all(left.isdigit() != right.isdigit() for left, right in zip(actual, actual[1:]))
+    )
+
+
+def _question_mark_replacement_match(actual: Any, source: Any) -> bool:
+    if not isinstance(actual, str) or not isinstance(source, str) or len(actual) != len(source):
+        return False
+    return (
+        all("a" <= character <= "z" for character in actual)
+        and all(original == "?" or original == replacement for original, replacement in zip(source, actual))
+        and all(left != right for left, right in zip(actual, actual[1:]))
     )
 
 
@@ -1868,6 +1984,26 @@ def _reconstruct_two_row_matrix_match(actual: Any, upper: Any, lower: Any, colsu
     )
 
 
+def _matrix_margins_match(actual: Any, row_sums: Any, column_sums: Any) -> bool:
+    if not isinstance(row_sums, list) or not isinstance(column_sums, list):
+        return False
+    if not isinstance(actual, list) or len(actual) != len(row_sums):
+        return False
+    if not all(isinstance(row, list) and len(row) == len(column_sums) for row in actual):
+        return False
+    if not all(
+        isinstance(value, int) and not isinstance(value, bool) and value >= 0
+        for row in actual
+        for value in row
+    ):
+        return False
+    return (
+        [sum(row) for row in actual] == row_sums
+        and [sum(actual[row][column] for row in range(len(row_sums))) for column in range(len(column_sums))]
+        == column_sums
+    )
+
+
 def _group_people_match(actual: Any, group_sizes: Any) -> bool:
     if not isinstance(actual, list) or not isinstance(group_sizes, list):
         return False
@@ -2449,6 +2585,79 @@ def _master_guessed_match(actual: Any) -> bool:
     )
 
 
+def _majority_index_match(actual: Any, reader_fixture: Any) -> bool:
+    if not isinstance(actual, int) or isinstance(actual, bool):
+        return False
+    if not isinstance(reader_fixture, dict):
+        return False
+    values = reader_fixture.get("array")
+    if not isinstance(values, list):
+        return False
+    ones = sum(values)
+    zeros = len(values) - ones
+    if ones == zeros:
+        return actual == -1
+    majority = 1 if ones > zeros else 0
+    return 0 <= actual < len(values) and values[actual] == majority
+
+
+def _most_similar_path_match(
+    actual: Any,
+    n_value: Any,
+    roads_value: Any,
+    names_value: Any,
+    target_value: Any,
+) -> bool:
+    if not isinstance(n_value, int) or isinstance(n_value, bool) or n_value <= 0:
+        return False
+    if not isinstance(roads_value, list) or not isinstance(names_value, list):
+        return False
+    if not isinstance(target_value, list) or not isinstance(actual, list):
+        return False
+    if len(names_value) != n_value or len(actual) != len(target_value):
+        return False
+    if not target_value:
+        return actual == []
+
+    graph: list[list[int]] = [[] for _ in range(n_value)]
+    edges: set[tuple[int, int]] = set()
+    for road in roads_value:
+        if (
+            not isinstance(road, list)
+            or len(road) != 2
+            or not all(isinstance(city, int) and not isinstance(city, bool) for city in road)
+        ):
+            return False
+        left, right = road
+        if not (0 <= left < n_value and 0 <= right < n_value) or left == right:
+            return False
+        graph[left].append(right)
+        graph[right].append(left)
+        edges.add((min(left, right), max(left, right)))
+
+    if any(not isinstance(city, int) or isinstance(city, bool) or not 0 <= city < n_value for city in actual):
+        return False
+    if any((min(left, right), max(left, right)) not in edges for left, right in zip(actual, actual[1:])):
+        return False
+
+    infinity = len(target_value) + 1
+    previous = [int(names_value[city] != target_value[0]) for city in range(n_value)]
+    for wanted in target_value[1:]:
+        current = [infinity] * n_value
+        for city in range(n_value):
+            if graph[city]:
+                current[city] = int(names_value[city] != wanted) + min(
+                    previous[neighbor] for neighbor in graph[city]
+                )
+        previous = current
+
+    actual_cost = sum(
+        names_value[city] != wanted
+        for city, wanted in zip(actual, target_value)
+    )
+    return actual_cost == min(previous)
+
+
 def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> bool:
     validator = case.validator or {}
     kind = str(validator.get("kind") or "")
@@ -2702,6 +2911,11 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             actual,
             case.input.get(str(validator.get("string_param") or "s")),
         )
+    if kind == "question_mark_replacement":
+        return _question_mark_replacement_match(
+            actual,
+            case.input.get(str(validator.get("string_param") or "s")),
+        )
     if kind == "split_bst":
         return _split_bst_match(actual, expected)
     if kind == "reconstruct_two_row_matrix":
@@ -2711,6 +2925,12 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             case.input.get(str(validator.get("lower_param") or "lower")),
             case.input.get(str(validator.get("colsum_param") or "colsum")),
             expected,
+        )
+    if kind == "matrix_margins":
+        return _matrix_margins_match(
+            actual,
+            case.input.get(str(validator.get("row_sums_param") or "rowSum")),
+            case.input.get(str(validator.get("column_sums_param") or "colSum")),
         )
     if kind == "group_people":
         values_param = str(validator.get("values_param") or "group_sizes")
@@ -2816,6 +3036,17 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         return _fibonacci_split_match(actual, expected, case.input.get(digits_param))
     if kind == "master_guessed":
         return _master_guessed_match(actual)
+    if kind == "majority_index":
+        reader_param = str(validator.get("reader_param") or "reader")
+        return _majority_index_match(actual, case.input.get(reader_param))
+    if kind == "most_similar_path":
+        return _most_similar_path_match(
+            actual,
+            case.input.get(str(validator.get("n_param") or "n")),
+            case.input.get(str(validator.get("roads_param") or "roads")),
+            case.input.get(str(validator.get("names_param") or "names")),
+            case.input.get(str(validator.get("target_param") or "targetPath")),
+        )
     return actual == expected
 
 
@@ -2860,6 +3091,19 @@ def _prepare_validated_kwargs(
             kwargs[matrix_name] = _JudgeBinaryMatrix(
                 matrix_fixture["matrix"],
                 int(matrix_fixture.get("max_queries", 1000)),
+            )
+    reader_fixture = kwargs.get("reader")
+    if isinstance(reader_fixture, dict) and "array" in reader_fixture:
+        if reader_fixture.get("api") == "majority":
+            max_queries = reader_fixture.get("max_queries")
+            kwargs["reader"] = _JudgeMajorityReader(
+                reader_fixture["array"],
+                None if max_queries is None else int(max_queries),
+            )
+        else:
+            kwargs["reader"] = _JudgeArrayReader(
+                reader_fixture["array"],
+                int(reader_fixture.get("max_queries", 20)),
             )
     master_fixture = kwargs.get("master")
     if isinstance(master_fixture, dict) and "secret" in master_fixture:

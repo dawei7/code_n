@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1671",
+  "frontend_id": "1532",
+  "title_slug": "the-most-recent-three-orders",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2069600087",
+  "verified_at": "2026-07-16T08:32:55.842552+00:00"
+}

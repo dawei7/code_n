@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1526",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: mountain shape",
+      "name": "sample: symmetric mountain",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,12 +19,12 @@
       "expected": 3,
       "tags": [
         "sample",
-        "greedy"
+        "mountain"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: drop then rise",
+      "name": "sample: initial peak and final rise",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -36,12 +37,13 @@
       },
       "expected": 4,
       "tags": [
-        "sample"
+        "sample",
+        "valley"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: multiple rises",
+      "name": "sample: multiple unequal peaks",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -55,25 +57,151 @@
       },
       "expected": 7,
       "tags": [
-        "sample"
+        "sample",
+        "multiple-peaks"
       ]
     },
     {
-      "id": "real-flat-target",
-      "name": "hidden: flat target needs one layer",
+      "id": "trial-single",
+      "name": "trial: one target column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": [
+          100000
+        ]
+      },
+      "expected": 100000,
+      "tags": [
+        "trial",
+        "single",
+        "maximum-height"
+      ]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "trial: strictly increasing heights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: strictly decreasing heights",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "real-flat",
+      "name": "hidden: constant plateau",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "plateau"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: separated high peaks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": [
+          10,
+          1,
+          10,
+          1,
+          10,
+          1
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "real",
+        "sawtooth",
+        "peaks"
+      ]
+    },
+    {
+      "id": "real-late-mountain",
+      "name": "hidden: flat prefix followed by mountain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": [
+          2,
+          2,
+          2,
+          5,
+          9,
+          5,
+          2
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "plateau",
+        "mountain"
+      ]
+    },
+    {
+      "id": "real-boundary-mix",
+      "name": "hidden: minimum and maximum target values alternate",
       "kind": "real",
       "visible": false,
       "input": {
         "target": [
           1,
+          100000,
           1,
+          100000,
           1
         ]
       },
-      "expected": 1,
+      "expected": 199999,
       "tags": [
-        "hidden",
-        "edge"
+        "real",
+        "value-boundaries",
+        "sawtooth"
       ]
     }
   ]

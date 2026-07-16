@@ -1,83 +1,16 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1509",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: four values can all match",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          5,
-          3,
-          2,
-          4
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample",
-        "sorting"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: trim high values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          5,
-          0,
-          10,
-          14
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: duplicate middle values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          6,
-          6,
-          0,
-          1,
-          1,
-          4,
-          6
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-five-values",
-      "name": "hidden: five values leave closest pair",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          1,
-          5,
-          6,
-          14,
-          15
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: four values can all match","kind":"sample","visible":true,"input":{"nums":[5,3,2,4]},"expected":0,"tags":["sample","small-array"]},
+    {"id":"sample-2","name":"sample: five separated values","kind":"sample","visible":true,"input":{"nums":[1,5,0,10,14]},"expected":1,"tags":["sample","mixed-extremes"]},
+    {"id":"sample-3","name":"sample: three values can all match","kind":"sample","visible":true,"input":{"nums":[3,100,20]},"expected":0,"tags":["sample","small-array"]},
+    {"id":"trial-single","name":"trial: one value","kind":"trial","visible":true,"input":{"nums":[-7]},"expected":0,"tags":["trial","single-element"]},
+    {"id":"trial-five-closest","name":"trial: five values leave the closest pair","kind":"trial","visible":true,"input":{"nums":[1,5,6,14,15]},"expected":1,"tags":["trial","five-elements"]},
+    {"id":"trial-duplicates","name":"trial: duplicate extremes consume separate moves","kind":"trial","visible":true,"input":{"nums":[0,0,0,0,100,100,100,100]},"expected":100,"tags":["trial","duplicates"]},
+    {"id":"real-mixed-split","name":"hidden: best move split across both ends","kind":"real","visible":false,"input":{"nums":[-100,-50,1,2,3,60,200]},"expected":53,"tags":["real","negative-values","split-extremes"]},
+    {"id":"real-all-equal","name":"hidden: no moves needed","kind":"real","visible":false,"input":{"nums":[9,9,9,9,9,9]},"expected":0,"tags":["real","all-equal"]},
+    {"id":"real-boundary-values","name":"hidden: integer boundaries remain far apart after three moves","kind":"real","visible":false,"input":{"nums":[-1000000000,-999999999,-2,-1,0,1,999999999,1000000000]},"expected":1000000000,"tags":["real","boundary-values"]},
+    {"id":"real-high-only","name":"hidden: best to replace three largest values","kind":"real","visible":false,"input":{"nums":[1,2,3,4,100,1000,10000]},"expected":3,"tags":["real","high-extremes"]}
   ]
 }

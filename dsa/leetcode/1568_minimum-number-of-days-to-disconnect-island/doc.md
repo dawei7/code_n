@@ -5,97 +5,83 @@
 | Source | LeetCode |
 | Frontend ID | 1568 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Depth-First Search, Breadth-First Search, Matrix, Strongly Connected Component |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-number-of-days-to-disconnect-island](https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/).
-
 ### Goal
-Remove land cells one day at a time until the grid is no longer exactly one
-connected island. Find the minimum number of days needed.
+
+A binary grid represents land with `1` and water with `0`. Land cells belong to the same island when they are connected through shared horizontal or vertical sides. The grid is considered disconnected when it contains either no island or more than one island.
+
+On each day, you may choose one land cell and change it to water. Return the minimum number of days required to make the grid disconnected. If it is already disconnected, return `0`; changing at most two cells is always sufficient.
 
 ### Function Contract
 **Inputs**
 
-- `grid`: a binary matrix where `1` is land and `0` is water.
+- `grid`: An $R \times C$ binary matrix, where $1 \le R,C \le 30$. Each entry is `0` or `1`.
 
 **Return value**
 
-The fewest land removals required to make the island disconnected or empty.
+Return the minimum number of land cells that must be changed to water until the number of four-directionally connected islands is not exactly one. The answer is always `0`, `1`, or `2`.
 
 ### Examples
 **Example 1**
 
-- Input: `grid = [[0, 1, 1, 0], [0, 1, 1, 0], [0, 0, 0, 0]]`
+- Input: `grid = [[0,1,1,0],[0,1,1,0],[0,0,0,0]]`
 - Output: `2`
 
 **Example 2**
 
-- Input: `grid = [[1, 1]]`
+- Input: `grid = [[1,1]]`
 - Output: `2`
 
 **Example 3**
 
-- Input: `grid = [[1, 0, 1, 0]]`
+- Input: `grid = [[1,0,1,0]]`
 - Output: `0`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-First count islands. If the grid is already disconnected or has no island,
-return `0`. Otherwise, try removing each land cell and recounting islands; if
-any single removal disconnects the grid, return `1`. If not, the answer is `2`
-because any connected island can be disconnected by removing at most two cells.
+- **Time:** $O(RC)$
+- **Space:** $O(RC)$
 
-### Complexity Analysis
-- **Time Complexity**: `O((m * n)^2)` for testing every land cell with a grid traversal.
-- **Space Complexity**: `O(m * n)` for visited state during traversal.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(grid):
-    rows = len(grid)
-    cols = len(grid[0]) if rows else 0
+#### General
 
-    def is_land(value):
-        return value == 1
+**Interpret land as an undirected graph**
 
-    def island_count(skip=None):
-        seen = [[False] * cols for _ in range(rows)]
-        count = 0
-        for r in range(rows):
-            for c in range(cols):
-                if skip == (r, c) or seen[r][c] or not is_land(grid[r][c]):
-                    continue
-                count += 1
-                stack = [(r, c)]
-                seen[r][c] = True
-                while stack:
-                    cr, cc = stack.pop()
-                    for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        nr = cr + dr
-                        nc = cc + dc
-                        if nr < 0 or nr >= rows or nc < 0 or nc >= cols:
-                            continue
-                        if skip == (nr, nc) or seen[nr][nc] or not is_land(grid[nr][nc]):
-                            continue
-                        seen[nr][nc] = True
-                        stack.append((nr, nc))
-        return count
+Make each land cell a vertex and connect horizontally or vertically adjacent land cells. A depth-first traversal from one land cell reports whether every land vertex is reachable. If no land exists or the traversal reaches fewer vertices than the total land count, the grid already has zero or multiple islands, so the answer is `0`.
 
-    if island_count() != 1:
-        return 0
-    for r in range(rows):
-        for c in range(cols):
-            if is_land(grid[r][c]) and island_count((r, c)) != 1:
-                return 1
-    return 2
-```
+A grid containing exactly one land cell needs one day: removing that cell leaves zero islands. For a larger connected island, one removal succeeds precisely when its graph contains an articulation vertex, a vertex whose deletion increases the number of connected components.
+
+**Find articulation cells with discovery and low-link times**
+
+During DFS, assign every cell a discovery time. Its low-link value is the earliest discovery time reachable from its DFS subtree using tree edges and at most one back edge. After visiting a child, propagate the child's low-link value upward.
+
+A non-root cell is an articulation vertex when some child's low-link value is at least the cell's discovery time: that child subtree has no route to an ancestor that avoids the cell. The DFS root is an articulation vertex only when it has more than one DFS-tree child. If either condition occurs, one removal disconnects the island and the answer is `1`.
+
+**Why the remaining answer is two**
+
+If the connected island has at least two cells and no articulation vertex, no single removal works. Two removals are nevertheless sufficient. Consider a land cell on an extreme boundary of the island; it has at most two land neighbors in the four-directional grid. Removing those neighbors isolates that boundary cell, while the two-cell special case becomes empty after removing both cells. Therefore the remaining answer is `2`.
+
+#### Complexity detail
+
+Counting land and the DFS each inspect every cell and a constant number of grid edges, so the total time is $O(RC)$.
+
+The discovery and low-link matrices, along with the DFS stack, can contain $O(RC)$ entries, giving $O(RC)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Try every single removal:** first count islands, then temporarily remove each land cell and recount. This is simpler and remains acceptable for small grids, but its worst-case time is $O((RC)^2)$.
+- **Explicit adjacency graph:** map every land cell to an integer vertex and run standard articulation-point DFS. It has the same asymptotic bounds but stores edges that grid coordinates already provide implicitly.
+- **No land:** zero islands already satisfies the disconnected definition, so the answer is `0`.
+- **Multiple initial islands:** no removal is required, so the answer is `0`.
+- **One land cell:** removing it creates zero islands in one day.
+- **Two adjacent land cells:** removing either leaves one island, so both must be removed and the answer is `2`.
+- **Bridge cell:** a narrow connector is an articulation vertex and yields answer `1`.
+- **Dense rectangle or cycle:** these shapes have alternate paths around every single removed cell, so their answer is `2`.
+- **Diagonal contact:** diagonal cells are not adjacent and therefore form separate islands unless a horizontal or vertical path joins them.
+
 </details>

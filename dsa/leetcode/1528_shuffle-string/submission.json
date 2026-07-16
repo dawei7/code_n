@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1651",
+  "frontend_id": "1528",
+  "title_slug": "shuffle-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.restoreString",
+  "verified_submission_id": "2069574023",
+  "verified_at": "2026-07-16T08:06:48.929228+00:00"
+}

@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1576",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: placeholder at the beginning",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "?zs"
+      },
+      "expected": "azs",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "sample",
+        "left-endpoint"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: placeholder between fixed letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ubv?w"
+      },
+      "expected": "ubvaw",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "sample",
+        "interior-placeholder"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: separated and consecutive placeholders",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "j?qg??b"
+      },
+      "expected": "jaqgacb",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "sample",
+        "consecutive-placeholders"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single placeholder",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "?"
+      },
+      "expected": "a",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two",
+      "name": "trial: two adjacent placeholders",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "??"
+      },
+      "expected": "ab",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "trial",
+        "consecutive-placeholders"
+      ]
+    },
+    {
+      "id": "trial-between-ab",
+      "name": "trial: both common letters are forbidden",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a?b"
+      },
+      "expected": "acb",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "trial",
+        "two-forbidden-neighbors"
+      ]
+    },
+    {
+      "id": "real-same-boundaries",
+      "name": "hidden: equal fixed letters around two placeholders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "a??a"
+      },
+      "expected": "abca",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "real",
+        "same-boundaries",
+        "consecutive-placeholders"
+      ]
+    },
+    {
+      "id": "real-both-endpoints",
+      "name": "hidden: placeholders at both endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "?a?"
+      },
+      "expected": "bab",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "real",
+        "both-endpoints"
+      ]
+    },
+    {
+      "id": "real-same-single-boundary",
+      "name": "hidden: one placeholder between equal letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "z?z"
+      },
+      "expected": "zaz",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "real",
+        "same-boundaries"
+      ]
+    },
+    {
+      "id": "real-no-placeholders",
+      "name": "hidden: input is already complete",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": "abcdefghijklmnopqrstuvwxyz",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "real",
+        "no-placeholders"
+      ]
+    },
+    {
+      "id": "real-all-placeholders",
+      "name": "hidden: odd run of placeholders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "?????"
+      },
+      "expected": "ababa",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "real",
+        "all-placeholders"
+      ]
+    },
+    {
+      "id": "real-mixed-endpoints",
+      "name": "hidden: mixed fixed runs and endpoint placeholders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "?xy?z?"
+      },
+      "expected": "axyaza",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "real",
+        "mixed",
+        "endpoints"
+      ]
+    },
+    {
+      "id": "real-multiple-runs",
+      "name": "hidden: several consecutive placeholder runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "c??b??a"
+      },
+      "expected": "cacbaba",
+      "validator": {
+        "kind": "question_mark_replacement",
+        "string_param": "s"
+      },
+      "tags": [
+        "real",
+        "multiple-runs",
+        "consecutive-placeholders"
+      ]
+    }
+  ]
+}

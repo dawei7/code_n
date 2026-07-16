@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1712",
+  "frontend_id": "1565",
+  "title_slug": "unique-orders-and-customers-per-month",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2069823481",
+  "verified_at": "2026-07-16T12:03:03.360478+00:00"
+}

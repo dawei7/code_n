@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1537",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: switch at common values",
+      "id": "sample-multiple-switches",
+      "name": "sample: switch at two shared values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,12 +25,13 @@
       "expected": 30,
       "tags": [
         "sample",
-        "two-pointers"
+        "official",
+        "multiple-intersections"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: late large value",
+      "id": "sample-large-tail",
+      "name": "sample: second array has the profitable tail",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -48,12 +50,14 @@
       },
       "expected": 109,
       "tags": [
-        "sample"
+        "sample",
+        "official",
+        "tail-choice"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no common values",
+      "id": "sample-disjoint",
+      "name": "sample: disjoint arrays choose the larger total",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -75,12 +79,77 @@
       "expected": 40,
       "tags": [
         "sample",
-        "edge"
+        "official",
+        "no-intersection"
       ]
     },
     {
-      "id": "real-equal-prefix-sums",
-      "name": "hidden: equal segment sums before a crossing",
+      "id": "trial-minimum-disjoint",
+      "name": "trial: one value in each disjoint array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "no-intersection"
+      ]
+    },
+    {
+      "id": "trial-single-shared",
+      "name": "trial: both arrays contain only the shared value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          5
+        ],
+        "nums2": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "single-intersection"
+      ]
+    },
+    {
+      "id": "trial-all-shared",
+      "name": "trial: every value is shared and counted once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3
+        ],
+        "nums2": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "all-shared",
+        "deduplication"
+      ]
+    },
+    {
+      "id": "real-independent-segments",
+      "name": "hidden: different arrays win consecutive segments",
       "kind": "real",
       "visible": false,
       "input": {
@@ -88,18 +157,195 @@
           1,
           4,
           5,
-          8
+          8,
+          9,
+          11,
+          19
         ],
         "nums2": [
           2,
           3,
-          5,
-          9
+          4,
+          11,
+          12
         ]
       },
-      "expected": 19,
+      "expected": 61,
       "tags": [
-        "hidden"
+        "real",
+        "multiple-switches",
+        "segment-choice"
+      ]
+    },
+    {
+      "id": "real-no-shared-near-limit",
+      "name": "hidden: values near the element bound stay disjoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          9999998,
+          10000000
+        ],
+        "nums2": [
+          9999999
+        ]
+      },
+      "expected": 19999998,
+      "tags": [
+        "real",
+        "value-boundary",
+        "no-intersection"
+      ]
+    },
+    {
+      "id": "real-middle-and-tail-decisions",
+      "name": "hidden: best prefix and suffix come from different arrays",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          10,
+          20,
+          30,
+          100
+        ],
+        "nums2": [
+          2,
+          3,
+          20,
+          21,
+          30,
+          31,
+          32
+        ]
+      },
+      "expected": 182,
+      "tags": [
+        "real",
+        "multiple-intersections",
+        "tail-choice"
+      ]
+    },
+    {
+      "id": "real-modulo-final-total",
+      "name": "hidden: final score exceeds the modulus",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          9999900,
+          9999901,
+          9999902,
+          9999903,
+          9999904,
+          9999905,
+          9999906,
+          9999907,
+          9999908,
+          9999909,
+          9999910,
+          9999911,
+          9999912,
+          9999913,
+          9999914,
+          9999915,
+          9999916,
+          9999917,
+          9999918,
+          9999919,
+          9999920,
+          9999921,
+          9999922,
+          9999923,
+          9999924,
+          9999925,
+          9999926,
+          9999927,
+          9999928,
+          9999929,
+          9999930,
+          9999931,
+          9999932,
+          9999933,
+          9999934,
+          9999935,
+          9999936,
+          9999937,
+          9999938,
+          9999939,
+          9999940,
+          9999941,
+          9999942,
+          9999943,
+          9999944,
+          9999945,
+          9999946,
+          9999947,
+          9999948,
+          9999949,
+          9999950,
+          9999951,
+          9999952,
+          9999953,
+          9999954,
+          9999955,
+          9999956,
+          9999957,
+          9999958,
+          9999959,
+          9999960,
+          9999961,
+          9999962,
+          9999963,
+          9999964,
+          9999965,
+          9999966,
+          9999967,
+          9999968,
+          9999969,
+          9999970,
+          9999971,
+          9999972,
+          9999973,
+          9999974,
+          9999975,
+          9999976,
+          9999977,
+          9999978,
+          9999979,
+          9999980,
+          9999981,
+          9999982,
+          9999983,
+          9999984,
+          9999985,
+          9999986,
+          9999987,
+          9999988,
+          9999989,
+          9999990,
+          9999991,
+          9999992,
+          9999993,
+          9999994,
+          9999995,
+          9999996,
+          9999997,
+          9999998,
+          9999999,
+          10000000
+        ],
+        "nums2": [
+          1
+        ]
+      },
+      "expected": 9994943,
+      "tags": [
+        "real",
+        "modulo",
+        "large-score"
       ]
     }
   ]

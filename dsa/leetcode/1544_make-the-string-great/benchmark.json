@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1544",
+  "measurement_note": "Size is n, the string length. The legal 16/48/96 nested-cancellation tiers span 6x and remain within n <= 100. The remotely Accepted stack scan and an independent ASCII-case stack pass in O(n). A correct implementation that deletes one pair and restarts its scan completes all tiers and fails only the scaling verdict.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: nested cancellation across 16 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "aaaaaaaaAAAAAAAA"
+      },
+      "expected": "",
+      "tags": [
+        "benchmark",
+        "nested-cancellation",
+        "n-16"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: nested cancellation across 48 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAA"
+      },
+      "expected": "",
+      "tags": [
+        "benchmark",
+        "nested-cancellation",
+        "n-48"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: nested cancellation across 96 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      },
+      "expected": "",
+      "tags": [
+        "benchmark",
+        "nested-cancellation",
+        "n-96"
+      ]
+    }
+  ]
+}
+

@@ -5,84 +5,81 @@
 | Source | LeetCode |
 | Frontend ID | 1536 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Greedy, Matrix |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-swaps-to-arrange-a-binary-grid](https://leetcode.com/problems/minimum-swaps-to-arrange-a-binary-grid/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-swaps-to-arrange-a-binary-grid/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-swaps-to-arrange-a-binary-grid/).
-
 ### Goal
-Reorder the rows of a binary square grid using adjacent row swaps so every row
-has enough trailing zeros for the grid to be valid.
+
+Given an $n\times n$ binary grid, one step may swap two adjacent complete rows. A grid is valid when every cell strictly above the main diagonal is zero.
+
+Return the minimum number of adjacent-row swaps needed to produce a valid grid. If no ordering of the existing rows can satisfy the requirement, return `-1`; columns and the contents within each row cannot be rearranged.
 
 ### Function Contract
 **Inputs**
 
-- `grid`: an `n x n` matrix containing `0` and `1`.
+- `grid`: An $n\times n$ matrix of zeros and ones, where $1\leq n\leq200$.
 
 **Return value**
 
-The minimum number of adjacent row swaps, or `-1` if no valid ordering exists.
+Return the minimum adjacent-row swap count that makes every position $(i,j)$ with $j>i$ equal to zero, or `-1` if this is impossible.
 
 ### Examples
 **Example 1**
 
 - Input: `grid = [[0, 0, 1], [1, 1, 0], [1, 0, 0]]`
 - Output: `3`
+- Explanation: The row with two trailing zeros must move to the top, requiring two swaps, and the row with one trailing zero then moves to the middle.
 
 **Example 2**
 
-- Input: `grid = [[0, 1, 1, 0], [0, 1, 1, 0], [0, 1, 1, 0], [0, 1, 1, 0]]`
+- Input: four identical rows `[0, 1, 1, 0]`
 - Output: `-1`
+- Explanation: No row has the three trailing zeros required at the top.
 
 **Example 3**
 
 - Input: `grid = [[1, 0, 0], [1, 1, 0], [1, 1, 1]]`
 - Output: `0`
+- Explanation: The grid already has only zeros above its main diagonal.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-For each row, count trailing zeros. Row `i` needs at least `n - 1 - i` trailing
-zeros. Greedily find the first row at or below `i` that satisfies the need, then
-bubble it upward with adjacent swaps. If none exists, the answer is `-1`.
+- **Time:** $O(n^2)$
+- **Space:** $O(n)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)`.
-- **Space Complexity**: `O(n)`.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(grid):
-    n = len(grid)
-    trailing = []
-    for row in grid:
-        zeros = 0
-        for value in reversed(row[:n]):
-            if value == 0:
-                zeros += 1
-            else:
-                break
-        trailing.append(zeros)
+#### General
 
-    swaps = 0
-    for i in range(n):
-        need = n - i - 1
-        j = i
-        while j < n and trailing[j] < need:
-            j += 1
-        if j == n:
-            return -1
-        while j > i:
-            trailing[j], trailing[j - 1] = trailing[j - 1], trailing[j]
-            swaps += 1
-            j -= 1
-    return swaps
-```
+**Reduce each row to its trailing-zero capacity**
+
+At final row position `i`, all columns after `i` are above the diagonal and must be zero. Therefore, that row needs at least `n - i - 1` trailing zeros. The rest of its contents do not affect validity, so first record one trailing-zero count per row.
+
+**Choose the earliest feasible row greedily**
+
+Process target positions from top to bottom. Find the first row at or below the current position whose trailing-zero count meets the requirement, then move it upward by adjacent swaps. If no such row exists, no later rearrangement can fill this position and the answer is `-1`.
+
+Choosing the earliest feasible row is optimal. Any valid arrangement must bring some feasible remaining row to the current position. A row farther down costs at least as many swaps and passes over every row crossed by the earliest candidate; using the earliest candidate preserves all other rows in their relative order and cannot make a later requirement harder.
+
+The implementation moves only trailing-zero counts, not matrix rows. Adding the candidate's displacement gives exactly the number of adjacent swaps needed to perform the same stable row move.
+
+#### Complexity detail
+
+Counting trailing zeros inspects at most $n^2$ cells. For each of $n$ positions, searching for a feasible row and shifting the capacity list can take $O(n)$ time, for $O(n^2)$ total.
+
+The capacity list contains $n$ integers, giving $O(n)$ auxiliary space. The input grid need not be modified.
+
+#### Alternatives and edge cases
+
+- **Physical row bubbling:** produces the same minimum but copying full rows during each swap can cost $O(n^3)$ time.
+- **Try every row permutation:** guarantees a minimum but requires factorial time.
+- **Sort by trailing zeros:** unrestricted sorting does not directly account for the adjacent-swap cost or stable minimum movement.
+- **Single-cell grid:** there are no cells above the diagonal, so zero swaps are needed.
+- **Already valid:** every position immediately finds its current row and contributes zero.
+- **Impossible top row:** absence of any row with at least $n-1$ trailing zeros proves impossibility immediately.
+- **Extra trailing zeros:** a row may exceed its current requirement and remains feasible.
+- **Duplicate capacities:** rows with equal trailing-zero counts are interchangeable for validity; choosing the first minimizes movement.
+
 </details>

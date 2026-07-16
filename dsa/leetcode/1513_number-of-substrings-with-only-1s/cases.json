@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1513",
+  "cases": [
+    {"id":"sample-1","name":"sample: runs of two and three ones","kind":"sample","visible":true,"input":{"s":"0110111"},"expected":9,"tags":["sample","multiple-runs"]},
+    {"id":"sample-2","name":"sample: isolated ones","kind":"sample","visible":true,"input":{"s":"101"},"expected":2,"tags":["sample","isolated-ones"]},
+    {"id":"sample-3","name":"sample: six consecutive ones","kind":"sample","visible":true,"input":{"s":"111111"},"expected":21,"tags":["sample","all-ones"]},
+    {"id":"trial-one","name":"trial: one qualifying character","kind":"trial","visible":true,"input":{"s":"1"},"expected":1,"tags":["trial","single-character"]},
+    {"id":"trial-zero","name":"trial: one nonqualifying character","kind":"trial","visible":true,"input":{"s":"0"},"expected":0,"tags":["trial","single-character","all-zeros"]},
+    {"id":"trial-all-zeros","name":"trial: zeros contribute nothing","kind":"trial","visible":true,"input":{"s":"000000"},"expected":0,"tags":["trial","all-zeros"]},
+    {"id":"real-leading-trailing","name":"hidden: runs at both string boundaries","kind":"real","visible":false,"input":{"s":"1110011"},"expected":9,"tags":["real","boundary-runs"]},
+    {"id":"real-varied-runs","name":"hidden: several distinct run lengths","kind":"real","visible":false,"input":{"s":"1101110111101"},"expected":20,"tags":["real","multiple-runs"]},
+    {"id":"real-alternating","name":"hidden: every one is isolated","kind":"real","visible":false,"input":{"s":"10101010101"},"expected":6,"tags":["real","alternating"]},
+    {"id":"real-long-run","name":"hidden: one hundred consecutive ones","kind":"real","visible":false,"input":{"s":"1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"},"expected":5050,"tags":["real","long-run"]}
+  ]
+}

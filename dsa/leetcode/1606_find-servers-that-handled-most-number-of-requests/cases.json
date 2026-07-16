@@ -1,0 +1,418 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1606",
+  "cases": [
+    {
+      "id": "sample-busy-drop",
+      "name": "sample: wrap to server one then drop",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 3,
+        "arrival": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "load": [
+          5,
+          2,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "drop"
+      ]
+    },
+    {
+      "id": "sample-server-zero",
+      "name": "sample: server zero handles the fourth request",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 3,
+        "arrival": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "load": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "release"
+      ]
+    },
+    {
+      "id": "sample-all-tied",
+      "name": "sample: each server handles one request",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "k": 3,
+        "arrival": [
+          1,
+          2,
+          3
+        ],
+        "load": [
+          10,
+          12,
+          11
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "trial-exact-finish",
+      "name": "trial: finishing exactly at arrival is available",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 2,
+        "arrival": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "load": [
+          2,
+          100,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "finish-boundary"
+      ]
+    },
+    {
+      "id": "trial-single-server",
+      "name": "trial: one server drops overlapping work",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "k": 1,
+        "arrival": [
+          1,
+          2,
+          10,
+          11
+        ],
+        "load": [
+          5,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "single-server",
+        "drop"
+      ]
+    },
+    {
+      "id": "real-wrap-to-zero",
+      "name": "hidden: circular search wraps from the final server",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 4,
+        "arrival": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "load": [
+          100,
+          1,
+          100,
+          100,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "wraparound"
+      ]
+    },
+    {
+      "id": "real-multiple-drops",
+      "name": "hidden: a long busy interval drops several requests",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 2,
+        "arrival": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          20
+        ],
+        "load": [
+          10,
+          10,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "multiple-drops"
+      ]
+    },
+    {
+      "id": "real-round-robin-tie",
+      "name": "hidden: short jobs preserve round-robin balance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 5,
+        "arrival": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "load": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "round-robin",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-preferred-busy-next",
+      "name": "hidden: choose the first later available ID",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 5,
+        "arrival": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "load": [
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "next-available"
+      ]
+    },
+    {
+      "id": "real-release-several",
+      "name": "hidden: several servers release before one arrival",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 3,
+        "arrival": [
+          1,
+          2,
+          3,
+          10,
+          11,
+          12
+        ],
+        "load": [
+          5,
+          4,
+          3,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "multiple-releases"
+      ]
+    },
+    {
+      "id": "real-skewed-busiest",
+      "name": "hidden: one server wins after repeated wraparound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 3,
+        "arrival": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "load": [
+          20,
+          1,
+          20,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "skewed-counts",
+        "wraparound"
+      ]
+    },
+    {
+      "id": "real-large-times",
+      "name": "hidden: large times and durations retain exact comparisons",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "k": 2,
+        "arrival": [
+          999999990,
+          999999995,
+          1000000000
+        ],
+        "load": [
+          10,
+          5,
+          1
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "large-values",
+        "finish-boundary"
+      ]
+    }
+  ]
+}
+

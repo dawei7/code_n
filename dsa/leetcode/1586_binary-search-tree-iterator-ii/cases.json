@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1586",
+  "cases": [
+    {
+      "id": "sample-direction-changes",
+      "name": "sample: mixed forward and backward traversal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          7,
+          3,
+          15,
+          null,
+          null,
+          9,
+          20
+        ],
+        "operations": [
+          "BSTIterator",
+          "hasNext",
+          "next",
+          "hasPrev",
+          "next",
+          "hasPrev",
+          "prev",
+          "next",
+          "next",
+          "hasNext",
+          "next",
+          "next",
+          "hasNext",
+          "hasPrev",
+          "prev",
+          "prev"
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        3,
+        false,
+        7,
+        true,
+        3,
+        7,
+        9,
+        true,
+        15,
+        20,
+        false,
+        true,
+        15,
+        9
+      ],
+      "tags": [
+        "sample",
+        "direction-change"
+      ]
+    },
+    {
+      "id": "sample-balanced-revisit",
+      "name": "sample: revisit values in a balanced tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          2,
+          1,
+          3
+        ],
+        "operations": [
+          "BSTIterator",
+          "next",
+          "next",
+          "next",
+          "prev",
+          "next",
+          "hasNext",
+          "hasPrev"
+        ]
+      },
+      "expected": [
+        null,
+        1,
+        2,
+        3,
+        2,
+        3,
+        false,
+        true
+      ],
+      "tags": [
+        "sample",
+        "balanced"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single-node iterator",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ],
+        "operations": [
+          "BSTIterator",
+          "hasNext",
+          "next",
+          "hasPrev",
+          "hasNext"
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        1,
+        false,
+        false
+      ],
+      "tags": [
+        "trial",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-immediate-reversal",
+      "name": "trial: reverse immediately after two moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          4,
+          2,
+          6,
+          1,
+          3,
+          5,
+          7
+        ],
+        "operations": [
+          "BSTIterator",
+          "next",
+          "next",
+          "prev",
+          "hasPrev",
+          "next",
+          "next"
+        ]
+      },
+      "expected": [
+        null,
+        1,
+        2,
+        1,
+        false,
+        2,
+        3
+      ],
+      "tags": [
+        "trial",
+        "cache-revisit"
+      ]
+    },
+    {
+      "id": "real-full-balanced",
+      "name": "hidden: traverse and partially rewind balanced tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          4,
+          2,
+          6,
+          1,
+          3,
+          5,
+          7
+        ],
+        "operations": [
+          "BSTIterator",
+          "next",
+          "next",
+          "next",
+          "next",
+          "next",
+          "next",
+          "next",
+          "hasNext",
+          "hasPrev",
+          "prev",
+          "prev",
+          "prev",
+          "next"
+        ]
+      },
+      "expected": [
+        null,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        false,
+        true,
+        6,
+        5,
+        4,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "balanced",
+        "exhaustion"
+      ]
+    },
+    {
+      "id": "real-right-skewed",
+      "name": "hidden: right-skewed tree with reversals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          null,
+          2,
+          null,
+          3,
+          null,
+          4,
+          null,
+          5
+        ],
+        "operations": [
+          "BSTIterator",
+          "next",
+          "next",
+          "next",
+          "prev",
+          "prev",
+          "next",
+          "next",
+          "next",
+          "hasNext"
+        ]
+      },
+      "expected": [
+        null,
+        1,
+        2,
+        3,
+        2,
+        1,
+        2,
+        3,
+        4,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "right-skewed"
+      ]
+    },
+    {
+      "id": "real-left-skewed",
+      "name": "hidden: left-skewed tree in ascending iterator order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          5,
+          4,
+          null,
+          3,
+          null,
+          2,
+          null,
+          1
+        ],
+        "operations": [
+          "BSTIterator",
+          "hasNext",
+          "next",
+          "next",
+          "next",
+          "next",
+          "next",
+          "hasNext",
+          "prev",
+          "prev",
+          "hasPrev"
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        1,
+        2,
+        3,
+        4,
+        5,
+        false,
+        4,
+        3,
+        true
+      ],
+      "tags": [
+        "hidden",
+        "left-skewed"
+      ]
+    },
+    {
+      "id": "real-root-with-one-left",
+      "name": "hidden: two-node left child tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          2,
+          1
+        ],
+        "operations": [
+          "BSTIterator",
+          "next",
+          "hasPrev",
+          "next",
+          "hasPrev",
+          "prev",
+          "hasPrev"
+        ]
+      },
+      "expected": [
+        null,
+        1,
+        false,
+        2,
+        true,
+        1,
+        false
+      ],
+      "tags": [
+        "hidden",
+        "two-nodes"
+      ]
+    },
+    {
+      "id": "real-root-with-one-right",
+      "name": "hidden: two-node right child tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          null,
+          2
+        ],
+        "operations": [
+          "BSTIterator",
+          "hasNext",
+          "next",
+          "hasNext",
+          "next",
+          "hasNext",
+          "prev"
+        ]
+      },
+      "expected": [
+        null,
+        true,
+        1,
+        true,
+        2,
+        false,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "two-nodes"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: preserve large BST values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          500000,
+          1,
+          1000000
+        ],
+        "operations": [
+          "BSTIterator",
+          "next",
+          "next",
+          "prev",
+          "next",
+          "next",
+          "prev"
+        ]
+      },
+      "expected": [
+        null,
+        1,
+        500000,
+        1,
+        500000,
+        1000000,
+        500000
+      ],
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1678",
+  "frontend_id": "1573",
+  "title_slug": "number-of-ways-to-split-a-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numWays",
+  "verified_submission_id": "2069863817",
+  "verified_at": "2026-07-16T12:46:07.601631+00:00"
+}

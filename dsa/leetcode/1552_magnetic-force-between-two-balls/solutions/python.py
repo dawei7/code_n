@@ -1,27 +1,25 @@
 def solve(position, m):
-    points = sorted(set(position))
-    if m <= 1 or len(points) <= 1:
-        return 0
-    if m > len(points):
-        m = len(points)
+    points = sorted(position)
 
-    def can_place(distance):
-        count = 1
+    def feasible(distance):
+        placed = 1
         last = points[0]
         for point in points[1:]:
             if point - last >= distance:
-                count += 1
+                placed += 1
                 last = point
-                if count >= m:
+                if placed == m:
                     return True
         return False
 
-    low = 0
-    high = points[-1] - points[0]
-    while low < high:
-        mid = (low + high + 1) // 2
-        if can_place(mid):
-            low = mid
+    low = 1
+    high = (points[-1] - points[0]) // (m - 1)
+
+    while low <= high:
+        middle = (low + high) // 2
+        if feasible(middle):
+            low = middle + 1
         else:
-            high = mid - 1
-    return low
+            high = middle - 1
+
+    return high

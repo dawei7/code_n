@@ -1,18 +1,14 @@
-def solve(mat):
-    if not mat:
-        return 0
-    rows = len(mat)
-    cols = max((len(row) for row in mat), default=0)
-    row_count = [0] * rows
-    col_count = [0] * cols
-    for r, row in enumerate(mat):
-        for c, value in enumerate(row):
-            if value == 1:
-                row_count[r] += 1
-                col_count[c] += 1
+def solve(mat: list[list[int]]) -> int:
+    row_ones = [sum(row) for row in mat]
+    column_ones = [
+        sum(mat[row][column] for row in range(len(mat)))
+        for column in range(len(mat[0]))
+    ]
+
     total = 0
-    for r, row in enumerate(mat):
-        for c, value in enumerate(row):
-            if value == 1 and row_count[r] == 1 and col_count[c] == 1:
+    for row in range(len(mat)):
+        for column in range(len(mat[0])):
+            if mat[row][column] == 1 and row_ones[row] == 1 and column_ones[column] == 1:
                 total += 1
+
     return total

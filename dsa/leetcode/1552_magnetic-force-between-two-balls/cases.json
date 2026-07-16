@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1552",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: three balls in five baskets",
+      "id": "sample-three-balls",
+      "name": "sample: three balls across five baskets",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +20,13 @@
       "expected": 3,
       "tags": [
         "sample",
-        "binary-search"
+        "max-min-distance",
+        "three-balls"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: two farthest baskets",
+      "id": "sample-two-extremes",
+      "name": "sample: two balls choose extremes",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -40,12 +42,14 @@
       },
       "expected": 999999999,
       "tags": [
-        "sample"
+        "sample",
+        "max-min-distance",
+        "two-extremes"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: spaced baskets",
+      "id": "sample-irregular-gaps",
+      "name": "sample: irregular five-basket spacing",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -60,26 +64,201 @@
       },
       "expected": 7,
       "tags": [
-        "sample"
+        "sample",
+        "max-min-distance",
+        "irregular-gaps"
       ]
     },
     {
-      "id": "real-three-balls",
-      "name": "hidden: choose every other cluster",
+      "id": "trial-two-baskets",
+      "name": "trial: exactly two baskets",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "position": [
+          10,
+          25
+        ],
+        "m": 2
+      },
+      "expected": 15,
+      "tags": [
+        "trial",
+        "max-min-distance",
+        "two-baskets"
+      ]
+    },
+    {
+      "id": "trial-use-all",
+      "name": "trial: every basket must be used",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "position": [
+          1,
+          3,
+          8,
+          10
+        ],
+        "m": 4
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "max-min-distance",
+        "use-all"
+      ]
+    },
+    {
+      "id": "trial-unsorted",
+      "name": "trial: arbitrary input order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "position": [
+          20,
+          1,
+          11,
+          6
+        ],
+        "m": 3
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "max-min-distance",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-even-spacing",
+      "name": "hidden: evenly spaced positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "position": [
+          2,
+          7,
+          12,
+          17,
+          22,
+          27
+        ],
+        "m": 4
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "max-min-distance",
+        "even-spacing"
+      ]
+    },
+    {
+      "id": "real-cluster-and-outlier",
+      "name": "hidden: cluster plus distant outlier",
       "kind": "real",
       "visible": false,
       "input": {
         "position": [
           1,
-          10,
-          20,
-          30
+          2,
+          3,
+          4,
+          100
         ],
         "m": 3
       },
-      "expected": 10,
+      "expected": 3,
       "tags": [
-        "hidden"
+        "real",
+        "max-min-distance",
+        "cluster-and-outlier"
+      ]
+    },
+    {
+      "id": "real-large-coordinates",
+      "name": "hidden: large coordinate endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "position": [
+          1,
+          500000000,
+          1000000000
+        ],
+        "m": 3
+      },
+      "expected": 499999999,
+      "tags": [
+        "real",
+        "max-min-distance",
+        "large-coordinates"
+      ]
+    },
+    {
+      "id": "real-tight-bottleneck",
+      "name": "hidden: one tight gap when all baskets used",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "position": [
+          1,
+          100,
+          101,
+          200
+        ],
+        "m": 4
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "max-min-distance",
+        "tight-bottleneck"
+      ]
+    },
+    {
+      "id": "real-many-candidates",
+      "name": "hidden: multiple optimal placement choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "position": [
+          1,
+          4,
+          7,
+          10,
+          13
+        ],
+        "m": 3
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "max-min-distance",
+        "many-candidates"
+      ]
+    },
+    {
+      "id": "real-nonuniform-six",
+      "name": "hidden: nonuniform six-position instance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "position": [
+          3,
+          14,
+          18,
+          29,
+          44,
+          50
+        ],
+        "m": 4
+      },
+      "expected": 11,
+      "tags": [
+        "real",
+        "max-min-distance",
+        "nonuniform-six"
       ]
     }
   ]

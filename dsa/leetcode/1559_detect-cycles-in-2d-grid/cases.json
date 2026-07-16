@@ -1,134 +1,17 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1559",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: outer cycle of a values",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            "a",
-            "a",
-            "a",
-            "a"
-          ],
-          [
-            "a",
-            "b",
-            "b",
-            "a"
-          ],
-          [
-            "a",
-            "b",
-            "b",
-            "a"
-          ],
-          [
-            "a",
-            "a",
-            "a",
-            "a"
-          ]
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "sample",
-        "dfs"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: winding c cycle",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            "c",
-            "c",
-            "c",
-            "a"
-          ],
-          [
-            "c",
-            "d",
-            "c",
-            "c"
-          ],
-          [
-            "c",
-            "c",
-            "e",
-            "c"
-          ],
-          [
-            "f",
-            "c",
-            "c",
-            "c"
-          ]
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: no valid cycle",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            "a",
-            "b",
-            "b"
-          ],
-          [
-            "b",
-            "z",
-            "b"
-          ],
-          [
-            "b",
-            "b",
-            "a"
-          ]
-        ]
-      },
-      "expected": false,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-all-distinct",
-      "name": "hidden: all neighboring values differ",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "grid": [
-          [
-            "a",
-            "b"
-          ],
-          [
-            "c",
-            "d"
-          ]
-        ]
-      },
-      "expected": false,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-1", "name": "sample: nested rectangular cycles", "kind": "sample", "visible": true, "input": {"grid": [["a","a","a","a"],["a","b","b","a"],["a","b","b","a"],["a","a","a","a"]]}, "expected": true, "tags": ["sample", "cycle", "multiple-components"]},
+    {"id": "sample-2", "name": "sample: irregular c cycle", "kind": "sample", "visible": true, "input": {"grid": [["c","c","c","a"],["c","d","c","c"],["c","c","e","c"],["f","c","c","c"]]}, "expected": true, "tags": ["sample", "cycle", "irregular"]},
+    {"id": "sample-3", "name": "sample: connected path without cycle", "kind": "sample", "visible": true, "input": {"grid": [["a","b","b"],["b","z","b"],["b","b","a"]]}, "expected": false, "tags": ["sample", "acyclic", "path"]},
+    {"id": "trial-minimal-cycle", "name": "trial: two-by-two cycle", "kind": "trial", "visible": true, "input": {"grid": [["a","a"],["a","a"]]}, "expected": true, "tags": ["trial", "minimum-cycle", "two-by-two"]},
+    {"id": "trial-no-diagonal", "name": "trial: diagonal equality is not adjacency", "kind": "trial", "visible": true, "input": {"grid": [["a","b"],["b","a"]]}, "expected": false, "tags": ["trial", "diagonal", "acyclic"]},
+    {"id": "trial-stripes", "name": "trial: long row components are paths", "kind": "trial", "visible": true, "input": {"grid": [["a","a","a","a"],["b","b","b","b"],["a","a","a","a"]]}, "expected": false, "tags": ["trial", "stripes", "acyclic"]},
+    {"id": "real-boundary-ring", "name": "hidden: cycle follows outer boundary", "kind": "real", "visible": false, "input": {"grid": [["x","x","x","x","x"],["x","a","b","c","x"],["x","d","e","f","x"],["x","x","x","x","x"]]}, "expected": true, "tags": ["real", "boundary", "ring"]},
+    {"id": "real-single-component-tree", "name": "hidden: branching component without cycle", "kind": "real", "visible": false, "input": {"grid": [["a","b","a"],["a","a","a"],["c","a","d"]]}, "expected": false, "tags": ["real", "branching", "acyclic"]},
+    {"id": "real-cycle-late", "name": "hidden: cycle occurs in a later component", "kind": "real", "visible": false, "input": {"grid": [["a","b","c","d"],["e","x","x","f"],["g","x","x","h"],["i","j","k","l"]]}, "expected": true, "tags": ["real", "later-component", "two-by-two"]},
+    {"id": "real-three-sided-shape", "name": "hidden: open shape does not close", "kind": "real", "visible": false, "input": {"grid": [["q","q","q","q"],["q","a","b","c"],["q","d","e","f"]]}, "expected": false, "tags": ["real", "open-shape", "acyclic"]},
+    {"id": "real-multiple-cycles", "name": "hidden: dense component has several cycles", "kind": "real", "visible": false, "input": {"grid": [["m","m","m"],["m","m","m"],["m","m","m"]]}, "expected": true, "tags": ["real", "dense", "multiple-cycles"]}
   ]
 }

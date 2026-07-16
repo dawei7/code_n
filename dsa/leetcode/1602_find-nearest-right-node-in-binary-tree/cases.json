@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1602",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: nearest node crosses parent boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          null,
+          4,
+          5,
+          6
+        ],
+        "target_path": "LR"
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "sample",
+        "cross-parent"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: target is rightmost on its level",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          3,
+          null,
+          4,
+          2
+        ],
+        "target_path": "RL"
+      },
+      "expected": null,
+      "tags": [
+        "sample",
+        "rightmost"
+      ]
+    },
+    {
+      "id": "sample-single",
+      "name": "sample: root has no right neighbor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ],
+        "target_path": ""
+      },
+      "expected": null,
+      "tags": [
+        "sample",
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-perfect-tree",
+      "name": "trial: adjacent leaves in a perfect tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "target_path": "LR"
+      },
+      "expected": [
+        6
+      ],
+      "tags": [
+        "perfect-tree",
+        "leaves"
+      ]
+    },
+    {
+      "id": "trial-returned-subtree",
+      "name": "trial: right neighbor has descendants",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "target_path": "L"
+      },
+      "expected": [
+        3,
+        6,
+        7
+      ],
+      "tags": [
+        "subtree",
+        "internal-node"
+      ]
+    },
+    {
+      "id": "real-duplicate-values",
+      "name": "hidden: identity distinguishes equal-valued nodes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "target_path": "L"
+      },
+      "expected": [
+        2,
+        5,
+        6
+      ],
+      "tags": [
+        "duplicate-values",
+        "identity"
+      ]
+    },
+    {
+      "id": "real-sparse-cross-parent",
+      "name": "hidden: sparse level crosses between parents",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          null,
+          4,
+          null,
+          5
+        ],
+        "target_path": "LR"
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "sparse-tree",
+        "cross-parent"
+      ]
+    },
+    {
+      "id": "real-last-node-has-children",
+      "name": "hidden: next-level child is not a same-level neighbor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "target_path": "R"
+      },
+      "expected": null,
+      "tags": [
+        "rightmost",
+        "level-boundary"
+      ]
+    },
+    {
+      "id": "real-leftmost-level-one",
+      "name": "hidden: root left child neighbors root right child",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          9,
+          8,
+          7
+        ],
+        "target_path": "L"
+      },
+      "expected": [
+        7
+      ],
+      "tags": [
+        "level-one"
+      ]
+    },
+    {
+      "id": "real-deep-rightmost",
+      "name": "hidden: deep rightmost leaf returns null",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "target_path": "RR"
+      },
+      "expected": null,
+      "tags": [
+        "deep",
+        "rightmost"
+      ]
+    },
+    {
+      "id": "real-unbalanced-level",
+      "name": "hidden: neighbor follows breadth order in unbalanced tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          null,
+          null,
+          5,
+          6
+        ],
+        "target_path": "LL"
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "unbalanced",
+        "subtree"
+      ]
+    },
+    {
+      "id": "real-empty-path",
+      "name": "hidden: empty path selects root identity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          4,
+          4,
+          4
+        ],
+        "target_path": ""
+      },
+      "expected": null,
+      "tags": [
+        "root",
+        "duplicate-values"
+      ]
+    }
+  ]
+}

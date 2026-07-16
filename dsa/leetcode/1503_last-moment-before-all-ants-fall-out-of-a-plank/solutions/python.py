@@ -1,4 +1,14 @@
-def solve(n, left, right):
-    best_left = max(left) if left else 0
-    best_right = max((n - pos for pos in right), default=0)
-    return max(best_left, best_right)
+"""Optimal app-local solution for LeetCode 1503."""
+
+
+def solve(n: int, left: list[int], right: list[int]) -> int:
+    """Return the last endpoint-arrival time among all ant trajectories."""
+    answer = 0
+    for position in left:
+        if position > answer:
+            answer = position
+    for position in right:
+        distance = n - position
+        if distance > answer:
+            answer = distance
+    return answer

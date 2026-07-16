@@ -1,13 +1,15 @@
 def solve(nums, target):
     seen = {0}
     prefix = 0
-    count = 0
-    for num in nums:
-        prefix += num
+    answer = 0
+
+    for number in nums:
+        prefix += number
         if prefix - target in seen:
-            count += 1
+            answer += 1
             seen = {0}
             prefix = 0
         else:
             seen.add(prefix)
-    return count
+
+    return answer

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1659",
+  "frontend_id": "1537",
+  "title_slug": "get-the-maximum-score",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxSum",
+  "verified_submission_id": "2069645143",
+  "verified_at": "2026-07-16T09:11:40.854432+00:00"
+}

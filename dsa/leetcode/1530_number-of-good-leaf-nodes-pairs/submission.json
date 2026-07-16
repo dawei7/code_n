@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1653",
+  "frontend_id": "1530",
+  "title_slug": "number-of-good-leaf-nodes-pairs",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countPairs",
+  "verified_submission_id": "2069583223",
+  "verified_at": "2026-07-16T08:16:34.337707+00:00"
+}

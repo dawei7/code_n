@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1617",
+  "frontend_id": "1510",
+  "title_slug": "stone-game-iv",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.winnerSquareGame",
+  "verified_submission_id": "2069447412",
+  "verified_at": "2026-07-16T06:13:37.910137+00:00"
+}

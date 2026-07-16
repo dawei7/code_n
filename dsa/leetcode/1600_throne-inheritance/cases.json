@@ -1,0 +1,544 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1600",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official family with a deceased parent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "kingName": "king",
+        "operations": [
+          [
+            "birth",
+            [
+              "king",
+              "andy"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "king",
+              "bob"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "king",
+              "catherine"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "andy",
+              "matthew"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "bob",
+              "alex"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "bob",
+              "asha"
+            ]
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ],
+          [
+            "death",
+            [
+              "bob"
+            ]
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        [
+          "king",
+          "andy",
+          "matthew",
+          "bob",
+          "alex",
+          "asha",
+          "catherine"
+        ],
+        null,
+        [
+          "king",
+          "andy",
+          "matthew",
+          "alex",
+          "asha",
+          "catherine"
+        ]
+      ],
+      "tags": [
+        "sample",
+        "death",
+        "descendants"
+      ]
+    },
+    {
+      "id": "sample-no-births",
+      "name": "sample: king is the only family member",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "kingName": "king",
+        "operations": [
+          [
+            "getInheritanceOrder",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "king"
+        ]
+      ],
+      "tags": [
+        "sample",
+        "single-person"
+      ]
+    },
+    {
+      "id": "trial-sibling-order",
+      "name": "trial: siblings remain in birth order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "kingName": "root",
+        "operations": [
+          [
+            "birth",
+            [
+              "root",
+              "alice"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "root",
+              "betty"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "root",
+              "carol"
+            ]
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        [
+          "root",
+          "alice",
+          "betty",
+          "carol"
+        ]
+      ],
+      "tags": [
+        "siblings",
+        "birth-order"
+      ]
+    },
+    {
+      "id": "trial-dead-king",
+      "name": "trial: dead king is omitted but descendants remain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "kingName": "king",
+        "operations": [
+          [
+            "birth",
+            [
+              "king",
+              "heir"
+            ]
+          ],
+          [
+            "death",
+            [
+              "king"
+            ]
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        [
+          "heir"
+        ]
+      ],
+      "tags": [
+        "dead-king"
+      ]
+    },
+    {
+      "id": "real-deep-lineage",
+      "name": "hidden: one long descendant chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "kingName": "a",
+        "operations": [
+          [
+            "birth",
+            [
+              "a",
+              "b"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "b",
+              "c"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "c",
+              "d"
+            ]
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      ],
+      "tags": [
+        "deep-tree"
+      ]
+    },
+    {
+      "id": "real-dead-middle-ancestor",
+      "name": "hidden: dead middle ancestor keeps descendants connected",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "kingName": "a",
+        "operations": [
+          [
+            "birth",
+            [
+              "a",
+              "b"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "b",
+              "c"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "c",
+              "d"
+            ]
+          ],
+          [
+            "death",
+            [
+              "b"
+            ]
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        [
+          "a",
+          "c",
+          "d"
+        ]
+      ],
+      "tags": [
+        "death",
+        "descendants"
+      ]
+    },
+    {
+      "id": "real-branch-preorder",
+      "name": "hidden: descendants precede younger sibling branches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "kingName": "a",
+        "operations": [
+          [
+            "birth",
+            [
+              "a",
+              "b"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "a",
+              "c"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "b",
+              "d"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "d",
+              "e"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "c",
+              "f"
+            ]
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        [
+          "a",
+          "b",
+          "d",
+          "e",
+          "c",
+          "f"
+        ]
+      ],
+      "tags": [
+        "preorder",
+        "branches"
+      ]
+    },
+    {
+      "id": "real-several-deaths",
+      "name": "hidden: deaths in separate branches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "kingName": "a",
+        "operations": [
+          [
+            "birth",
+            [
+              "a",
+              "b"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "a",
+              "c"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "b",
+              "d"
+            ]
+          ],
+          [
+            "birth",
+            [
+              "c",
+              "e"
+            ]
+          ],
+          [
+            "death",
+            [
+              "b"
+            ]
+          ],
+          [
+            "death",
+            [
+              "e"
+            ]
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        [
+          "a",
+          "d",
+          "c"
+        ]
+      ],
+      "tags": [
+        "multiple-deaths"
+      ]
+    },
+    {
+      "id": "real-query-before-and-after-birth",
+      "name": "hidden: later birth updates subsequent query only",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "kingName": "a",
+        "operations": [
+          [
+            "getInheritanceOrder",
+            []
+          ],
+          [
+            "birth",
+            [
+              "a",
+              "b"
+            ]
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        [
+          "a"
+        ],
+        null,
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "tags": [
+        "multiple-queries"
+      ]
+    },
+    {
+      "id": "real-repeated-query",
+      "name": "hidden: repeated queries preserve state",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "kingName": "a",
+        "operations": [
+          [
+            "birth",
+            [
+              "a",
+              "b"
+            ]
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ],
+          [
+            "getInheritanceOrder",
+            []
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        [
+          "a",
+          "b"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "tags": [
+        "repeated-query"
+      ]
+    }
+  ]
+}
+

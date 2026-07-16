@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1540",
+  "cases": [
+    {
+      "id": "sample-distinct-shifts",
+      "name": "sample: distinct required moves fit the limit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "input",
+        "t": "ouput",
+        "k": 9
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "official",
+        "distinct-shifts"
+      ]
+    },
+    {
+      "id": "sample-colliding-shifts",
+      "name": "sample: three equal residues cannot share one move",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "bcd",
+        "k": 10
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "official",
+        "repeated-shift"
+      ]
+    },
+    {
+      "id": "sample-second-cycle",
+      "name": "sample: repeated shift uses move twenty-seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aab",
+        "t": "bbb",
+        "k": 27
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "official",
+        "second-cycle"
+      ]
+    },
+    {
+      "id": "trial-identical-zero-moves",
+      "name": "trial: unchanged strings need no moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "leetcode",
+        "t": "leetcode",
+        "k": 0
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "zero-moves",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "trial-length-mismatch",
+      "name": "trial: moves cannot change string length",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "t": "aa",
+        "k": 100
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "length-mismatch"
+      ]
+    },
+    {
+      "id": "trial-wraparound",
+      "name": "trial: z wraps to a in one step",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "t": "a",
+        "k": 1
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "wraparound",
+        "minimum-move"
+      ]
+    },
+    {
+      "id": "real-reverse-wrap-too-small",
+      "name": "hidden: a to z needs twenty-five steps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "a",
+        "t": "z",
+        "k": 24
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "wraparound",
+        "boundary-k"
+      ]
+    },
+    {
+      "id": "real-distinct-residues",
+      "name": "hidden: different residues may use adjacent moves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aa",
+        "t": "bc",
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "distinct-shifts",
+        "tight-k"
+      ]
+    },
+    {
+      "id": "real-second-cycle-too-late",
+      "name": "hidden: second equal residue first fits at move twenty-seven",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aa",
+        "t": "bb",
+        "k": 26
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "repeated-shift",
+        "cycle-boundary"
+      ]
+    },
+    {
+      "id": "real-third-cycle-too-late",
+      "name": "hidden: third equal residue first fits at move fifty-three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaa",
+        "t": "bbb",
+        "k": 52
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "repeated-shift",
+        "third-cycle"
+      ]
+    }
+  ]
+}

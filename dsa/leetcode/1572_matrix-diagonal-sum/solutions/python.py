@@ -1,9 +1,12 @@
-def solve(mat):
-    n = min(len(mat), len(mat[0]) if mat else 0)
+def solve(mat: list[list[int]]) -> int:
+    size = len(mat)
     total = 0
-    for i in range(n):
-        total += mat[i][i]
-        j = n - 1 - i
-        if j != i:
-            total += mat[i][j]
+
+    for index in range(size):
+        total += mat[index][index]
+        total += mat[index][size - 1 - index]
+
+    if size % 2 == 1:
+        total -= mat[size // 2][size // 2]
+
     return total

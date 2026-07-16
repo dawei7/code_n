@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1603",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official mixed capacities",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "big": 1,
+        "medium": 1,
+        "small": 0,
+        "carTypes": [
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "tags": [
+        "sample",
+        "exhaustion"
+      ]
+    },
+    {
+      "id": "sample-all-zero",
+      "name": "sample: no type has a space",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "big": 0,
+        "medium": 0,
+        "small": 0,
+        "carTypes": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "sample",
+        "zero-capacity"
+      ]
+    },
+    {
+      "id": "sample-small-only",
+      "name": "sample: two small slots then exhaustion",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "big": 0,
+        "medium": 0,
+        "small": 2,
+        "carTypes": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "sample",
+        "single-type"
+      ]
+    },
+    {
+      "id": "trial-one-each",
+      "name": "trial: one car of each type",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "big": 1,
+        "medium": 1,
+        "small": 1,
+        "carTypes": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "all-types"
+      ]
+    },
+    {
+      "id": "trial-empty-calls",
+      "name": "trial: no cars arrive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "big": 5,
+        "medium": 5,
+        "small": 5,
+        "carTypes": []
+      },
+      "expected": [],
+      "tags": [
+        "empty-sequence"
+      ]
+    },
+    {
+      "id": "real-independent-types",
+      "name": "hidden: exhausting big does not consume medium",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "big": 1,
+        "medium": 2,
+        "small": 0,
+        "carTypes": [
+          1,
+          1,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "independent-types"
+      ]
+    },
+    {
+      "id": "real-failures-preserve-state",
+      "name": "hidden: failed small arrivals leave big available",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "big": 1,
+        "medium": 0,
+        "small": 0,
+        "carTypes": [
+          3,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "failed-call"
+      ]
+    },
+    {
+      "id": "real-interleaved",
+      "name": "hidden: interleaved types use their own counters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "big": 2,
+        "medium": 1,
+        "small": 2,
+        "carTypes": [
+          3,
+          1,
+          2,
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "interleaved"
+      ]
+    },
+    {
+      "id": "real-medium-only",
+      "name": "hidden: only medium capacity exists",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "big": 0,
+        "medium": 3,
+        "small": 0,
+        "carTypes": [
+          2,
+          1,
+          2,
+          3,
+          2,
+          2
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        true,
+        false,
+        true,
+        false
+      ],
+      "tags": [
+        "single-type",
+        "mixed-calls"
+      ]
+    },
+    {
+      "id": "real-large-capacity-prefix",
+      "name": "hidden: several successful big arrivals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "big": 5,
+        "medium": 0,
+        "small": 0,
+        "carTypes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "capacity-boundary"
+      ]
+    },
+    {
+      "id": "real-zero-big-positive-others",
+      "name": "hidden: big fails while other types succeed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "big": 0,
+        "medium": 1,
+        "small": 1,
+        "carTypes": [
+          1,
+          2,
+          3,
+          1
+        ]
+      },
+      "expected": [
+        false,
+        true,
+        true,
+        false
+      ],
+      "tags": [
+        "zero-capacity",
+        "other-types"
+      ]
+    },
+    {
+      "id": "real-repeated-after-exhaustion",
+      "name": "hidden: repeated failures remain failures",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "big": 1,
+        "medium": 0,
+        "small": 0,
+        "carTypes": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "exhaustion",
+        "repeated-failure"
+      ]
+    }
+  ]
+}
+

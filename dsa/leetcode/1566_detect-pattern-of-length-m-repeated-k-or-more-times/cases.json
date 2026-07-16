@@ -1,95 +1,17 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1566",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: single value pattern repeats",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2,
-          4,
-          4,
-          4,
-          4
-        ],
-        "m": 1,
-        "k": 3
-      },
-      "expected": true,
-      "tags": [
-        "sample",
-        "array"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: length-two pattern repeats",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2,
-          1,
-          2,
-          1,
-          1,
-          1,
-          3
-        ],
-        "m": 2,
-        "k": 2
-      },
-      "expected": true,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: not enough repetitions",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "arr": [
-          1,
-          2,
-          1,
-          2,
-          1,
-          3
-        ],
-        "m": 2,
-        "k": 3
-      },
-      "expected": false,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-two-blocks",
-      "name": "hidden: two repeated length-two blocks",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "arr": [
-          1,
-          1,
-          1,
-          1
-        ],
-        "m": 2,
-        "k": 2
-      },
-      "expected": true,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-1", "name": "sample: one-value pattern repeats four times", "kind": "sample", "visible": true, "input": {"arr": [1,2,4,4,4,4], "m": 1, "k": 3}, "expected": true, "tags": ["sample", "pattern-one", "more-than-k"]},
+    {"id": "sample-2", "name": "sample: length-two pattern appears internally", "kind": "sample", "visible": true, "input": {"arr": [1,2,1,2,1,1,1,3], "m": 2, "k": 2}, "expected": true, "tags": ["sample", "length-two", "internal"]},
+    {"id": "sample-3", "name": "sample: third copy has a mismatch", "kind": "sample", "visible": true, "input": {"arr": [1,2,1,2,1,3], "m": 2, "k": 3}, "expected": false, "tags": ["sample", "near-match", "mismatch"]},
+    {"id": "trial-minimum-repeat", "name": "trial: two equal singleton copies", "kind": "trial", "visible": true, "input": {"arr": [7,7], "m": 1, "k": 2}, "expected": true, "tags": ["trial", "minimum-n", "pattern-one"]},
+    {"id": "trial-too-short", "name": "trial: required region is longer than array", "kind": "trial", "visible": true, "input": {"arr": [1,2,1], "m": 2, "k": 2}, "expected": false, "tags": ["trial", "insufficient-length", "boundary"]},
+    {"id": "trial-three-blocks", "name": "trial: three complete length-three copies", "kind": "trial", "visible": true, "input": {"arr": [1,2,3,1,2,3,1,2,3], "m": 3, "k": 3}, "expected": true, "tags": ["trial", "three-copies", "whole-array"]},
+    {"id": "real-late-pattern", "name": "hidden: valid pattern begins after unrelated prefix", "kind": "real", "visible": false, "input": {"arr": [9,8,1,2,1,2], "m": 2, "k": 2}, "expected": true, "tags": ["real", "late-start", "prefix-noise"]},
+    {"id": "real-reset-then-match", "name": "hidden: mismatch resets before later repetition", "kind": "real", "visible": false, "input": {"arr": [1,2,1,3,1,2,1,2], "m": 2, "k": 2}, "expected": true, "tags": ["real", "reset", "later-match"]},
+    {"id": "real-overlap-too-short", "name": "hidden: overlapping equal values do not make full blocks", "kind": "real", "visible": false, "input": {"arr": [1,1,1], "m": 2, "k": 2}, "expected": false, "tags": ["real", "overlap", "insufficient-length"]},
+    {"id": "real-more-than-required", "name": "hidden: five singleton copies satisfy four", "kind": "real", "visible": false, "input": {"arr": [3,3,3,3,3], "m": 1, "k": 4}, "expected": true, "tags": ["real", "more-than-k", "pattern-one"]},
+    {"id": "real-separated-copies", "name": "hidden: nonadjacent copies do not qualify", "kind": "real", "visible": false, "input": {"arr": [1,2,9,1,2,9,1,2], "m": 2, "k": 3}, "expected": false, "tags": ["real", "nonadjacent", "separator"]}
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1670",
+  "frontend_id": "1527",
+  "title_slug": "patients-with-a-condition",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2069565144",
+  "verified_at": "2026-07-16T07:56:37.030498+00:00"
+}

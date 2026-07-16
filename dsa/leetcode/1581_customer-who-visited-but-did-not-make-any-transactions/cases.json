@@ -1,0 +1,516 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1581",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official mixed visits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 23
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 9
+            },
+            {
+              "visit_id": 4,
+              "customer_id": 30
+            },
+            {
+              "visit_id": 5,
+              "customer_id": 54
+            },
+            {
+              "visit_id": 6,
+              "customer_id": 96
+            },
+            {
+              "visit_id": 7,
+              "customer_id": 54
+            },
+            {
+              "visit_id": 8,
+              "customer_id": 54
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 2,
+              "visit_id": 5,
+              "amount": 310
+            },
+            {
+              "transaction_id": 3,
+              "visit_id": 5,
+              "amount": 300
+            },
+            {
+              "transaction_id": 9,
+              "visit_id": 5,
+              "amount": 200
+            },
+            {
+              "transaction_id": 12,
+              "visit_id": 1,
+              "amount": 910
+            },
+            {
+              "transaction_id": 13,
+              "visit_id": 2,
+              "amount": 970
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            30,
+            1
+          ],
+          [
+            54,
+            2
+          ],
+          [
+            96,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "anti-join",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "sample-one-unmatched",
+      "name": "sample: one visit without a transaction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 7
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 8
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "visit_id": 2,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            7,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "single-visit"
+      ]
+    },
+    {
+      "id": "sample-none-unmatched",
+      "name": "sample: every visit has a transaction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 7
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "visit_id": 1,
+              "amount": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "sample",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-three-unmatched",
+      "name": "trial: three visits for one customer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 5
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 5
+            },
+            {
+              "visit_id": 3,
+              "customer_id": 5
+            },
+            {
+              "visit_id": 4,
+              "customer_id": 9
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "visit_id": 4,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            5,
+            3
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "multiple-visits",
+        "same-customer"
+      ]
+    },
+    {
+      "id": "trial-mixed-customer",
+      "name": "trial: one transactional and two unmatched visits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 5
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 5
+            },
+            {
+              "visit_id": 3,
+              "customer_id": 5
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 10,
+              "visit_id": 2,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "mixed-visits"
+      ]
+    },
+    {
+      "id": "real-multiple-transactions",
+      "name": "hidden: several transactions exclude one visit once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 4
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 4
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "visit_id": 1,
+              "amount": 2
+            },
+            {
+              "transaction_id": 2,
+              "visit_id": 1,
+              "amount": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            4,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "duplicate-match",
+        "one-to-many"
+      ]
+    },
+    {
+      "id": "real-two-customers",
+      "name": "hidden: independent customer aggregates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 2
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 3
+            },
+            {
+              "visit_id": 3,
+              "customer_id": 2
+            },
+            {
+              "visit_id": 4,
+              "customer_id": 4
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "visit_id": 4,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "multiple-customers"
+      ]
+    },
+    {
+      "id": "real-zero-amount",
+      "name": "hidden: zero amount is still a transaction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 8
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 8
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "visit_id": 1,
+              "amount": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            8,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "zero-amount",
+        "transaction-key"
+      ]
+    },
+    {
+      "id": "real-all-transactional",
+      "name": "hidden: multiple customers all transact",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 1
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 2
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "visit_id": 1,
+              "amount": 5
+            },
+            {
+              "transaction_id": 2,
+              "visit_id": 2,
+              "amount": 6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "real",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-nonconsecutive-ids",
+      "name": "hidden: visit identifiers need not be consecutive",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 10,
+              "customer_id": 9
+            },
+            {
+              "visit_id": 30,
+              "customer_id": 9
+            },
+            {
+              "visit_id": 50,
+              "customer_id": 10
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 7,
+              "visit_id": 30,
+              "amount": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            9,
+            1
+          ],
+          [
+            10,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "nonconsecutive-ids"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,556 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1565",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official monthly qualifying counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2020-09-15",
+              "customer_id": 1,
+              "invoice": 30
+            },
+            {
+              "order_id": 2,
+              "order_date": "2020-09-17",
+              "customer_id": 2,
+              "invoice": 90
+            },
+            {
+              "order_id": 3,
+              "order_date": "2020-10-06",
+              "customer_id": 3,
+              "invoice": 20
+            },
+            {
+              "order_id": 4,
+              "order_date": "2020-10-20",
+              "customer_id": 3,
+              "invoice": 21
+            },
+            {
+              "order_id": 5,
+              "order_date": "2020-11-10",
+              "customer_id": 1,
+              "invoice": 10
+            },
+            {
+              "order_id": 6,
+              "order_date": "2020-11-21",
+              "customer_id": 2,
+              "invoice": 15
+            },
+            {
+              "order_id": 7,
+              "order_date": "2020-12-01",
+              "customer_id": 4,
+              "invoice": 55
+            },
+            {
+              "order_id": 8,
+              "order_date": "2020-12-03",
+              "customer_id": 4,
+              "invoice": 77
+            },
+            {
+              "order_id": 9,
+              "order_date": "2021-01-07",
+              "customer_id": 3,
+              "invoice": 31
+            },
+            {
+              "order_id": 10,
+              "order_date": "2021-01-15",
+              "customer_id": 2,
+              "invoice": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "order_count",
+          "customer_count"
+        ],
+        "rows": [
+          [
+            "2020-09",
+            2,
+            2
+          ],
+          [
+            "2020-10",
+            1,
+            1
+          ],
+          [
+            "2020-12",
+            2,
+            1
+          ],
+          [
+            "2021-01",
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "strict-threshold",
+        "multiple-months"
+      ]
+    },
+    {
+      "id": "sample-repeated-customer",
+      "name": "sample: repeated customer counts once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2022-05-01",
+              "customer_id": 7,
+              "invoice": 21
+            },
+            {
+              "order_id": 2,
+              "order_date": "2022-05-10",
+              "customer_id": 7,
+              "invoice": 50
+            },
+            {
+              "order_id": 3,
+              "order_date": "2022-05-31",
+              "customer_id": 7,
+              "invoice": 99
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "order_count",
+          "customer_count"
+        ],
+        "rows": [
+          [
+            "2022-05",
+            3,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "distinct-customers",
+        "same-month"
+      ]
+    },
+    {
+      "id": "sample-no-qualifying",
+      "name": "sample: no invoice exceeds threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2023-01-01",
+              "customer_id": 1,
+              "invoice": 20
+            },
+            {
+              "order_id": 2,
+              "order_date": "2023-02-01",
+              "customer_id": 2,
+              "invoice": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "order_count",
+          "customer_count"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "sample",
+        "empty-result",
+        "threshold"
+      ]
+    },
+    {
+      "id": "trial-single-order",
+      "name": "trial: one qualifying order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 5,
+              "order_date": "2001-02-03",
+              "customer_id": 9,
+              "invoice": 21
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "order_count",
+          "customer_count"
+        ],
+        "rows": [
+          [
+            "2001-02",
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "single-order",
+        "minimum-qualifying"
+      ]
+    },
+    {
+      "id": "trial-equal-twenty-excluded",
+      "name": "trial: exact threshold is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2020-06-01",
+              "customer_id": 1,
+              "invoice": 20
+            },
+            {
+              "order_id": 2,
+              "order_date": "2020-06-02",
+              "customer_id": 2,
+              "invoice": 21
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "order_count",
+          "customer_count"
+        ],
+        "rows": [
+          [
+            "2020-06",
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "strict-threshold",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-same-month-number-different-years",
+      "name": "trial: year separates equal month numbers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2020-03-01",
+              "customer_id": 1,
+              "invoice": 30
+            },
+            {
+              "order_id": 2,
+              "order_date": "2021-03-01",
+              "customer_id": 1,
+              "invoice": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "order_count",
+          "customer_count"
+        ],
+        "rows": [
+          [
+            "2020-03",
+            1,
+            1
+          ],
+          [
+            "2021-03",
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "year-boundary",
+        "group-key"
+      ]
+    },
+    {
+      "id": "real-unsorted-months",
+      "name": "hidden: insertion order does not control grouping",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 4,
+              "order_date": "2024-12-31",
+              "customer_id": 2,
+              "invoice": 40
+            },
+            {
+              "order_id": 1,
+              "order_date": "2024-01-01",
+              "customer_id": 1,
+              "invoice": 30
+            },
+            {
+              "order_id": 3,
+              "order_date": "2024-12-01",
+              "customer_id": 1,
+              "invoice": 22
+            },
+            {
+              "order_id": 2,
+              "order_date": "2024-01-31",
+              "customer_id": 1,
+              "invoice": 35
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "order_count",
+          "customer_count"
+        ],
+        "rows": [
+          [
+            "2024-01",
+            2,
+            1
+          ],
+          [
+            "2024-12",
+            2,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "unsorted-input",
+        "multiple-months"
+      ]
+    },
+    {
+      "id": "real-customer-repeats-across-months",
+      "name": "hidden: customer is distinct within each month",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2022-08-01",
+              "customer_id": 5,
+              "invoice": 25
+            },
+            {
+              "order_id": 2,
+              "order_date": "2022-08-02",
+              "customer_id": 6,
+              "invoice": 25
+            },
+            {
+              "order_id": 3,
+              "order_date": "2022-09-01",
+              "customer_id": 5,
+              "invoice": 25
+            },
+            {
+              "order_id": 4,
+              "order_date": "2022-09-02",
+              "customer_id": 5,
+              "invoice": 25
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "order_count",
+          "customer_count"
+        ],
+        "rows": [
+          [
+            "2022-08",
+            2,
+            2
+          ],
+          [
+            "2022-09",
+            2,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "distinct-customers",
+        "cross-month"
+      ]
+    },
+    {
+      "id": "real-only-qualified-months",
+      "name": "hidden: nonqualifying-only month is absent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2019-10-10",
+              "customer_id": 1,
+              "invoice": 19
+            },
+            {
+              "order_id": 2,
+              "order_date": "2019-11-10",
+              "customer_id": 2,
+              "invoice": 100
+            },
+            {
+              "order_id": 3,
+              "order_date": "2019-12-10",
+              "customer_id": 3,
+              "invoice": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "order_count",
+          "customer_count"
+        ],
+        "rows": [
+          [
+            "2019-11",
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "omitted-months",
+        "filter-before-group"
+      ]
+    },
+    {
+      "id": "real-many-orders-two-customers",
+      "name": "hidden: order and customer counts diverge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2025-07-01",
+              "customer_id": 1,
+              "invoice": 21
+            },
+            {
+              "order_id": 2,
+              "order_date": "2025-07-02",
+              "customer_id": 1,
+              "invoice": 22
+            },
+            {
+              "order_id": 3,
+              "order_date": "2025-07-03",
+              "customer_id": 2,
+              "invoice": 23
+            },
+            {
+              "order_id": 4,
+              "order_date": "2025-07-04",
+              "customer_id": 2,
+              "invoice": 24
+            },
+            {
+              "order_id": 5,
+              "order_date": "2025-07-05",
+              "customer_id": 2,
+              "invoice": 25
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "order_count",
+          "customer_count"
+        ],
+        "rows": [
+          [
+            "2025-07",
+            5,
+            2
+          ]
+        ]
+      },
+      "tags": [
+        "real",
+        "aggregate-divergence",
+        "duplicates"
+      ]
+    }
+  ]
+}

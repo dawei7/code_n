@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1601",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: five requests form two balanced cycles",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "requests": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "cycles"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: self-transfer and reverse pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "requests": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "self-transfer"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: one four-building cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "requests": [
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "cycle"
+      ]
+    },
+    {
+      "id": "trial-single-self-transfer",
+      "name": "trial: one request stays in its building",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "requests": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-request",
+        "self-transfer"
+      ]
+    },
+    {
+      "id": "trial-single-unbalanced",
+      "name": "trial: one cross-building request",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "requests": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single-request",
+        "unbalanced"
+      ]
+    },
+    {
+      "id": "real-duplicate-direction",
+      "name": "hidden: duplicate direction has one reverse request",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "requests": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "duplicates",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "real-cycle-plus-extra",
+      "name": "hidden: three-cycle with one unbalanced chord",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "requests": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "cycle",
+        "extra-request"
+      ]
+    },
+    {
+      "id": "real-all-self-transfers",
+      "name": "hidden: every request is independently balanced",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "requests": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "self-transfer",
+        "all-achievable"
+      ]
+    },
+    {
+      "id": "real-separate-unbalanced-edge",
+      "name": "hidden: balanced pair beside an unusable edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "requests": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "disconnected",
+        "unbalanced"
+      ]
+    },
+    {
+      "id": "real-repeated-balanced-pairs",
+      "name": "hidden: two copies in each direction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "requests": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "duplicates",
+        "all-achievable"
+      ]
+    },
+    {
+      "id": "real-long-cycle-plus-chord",
+      "name": "hidden: five-cycle excludes one chord",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "requests": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "long-cycle",
+        "extra-request"
+      ]
+    },
+    {
+      "id": "real-two-independent-cycles",
+      "name": "hidden: independent cycles are both selected",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "requests": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "multiple-cycles",
+        "self-transfer"
+      ]
+    }
+  ]
+}
+

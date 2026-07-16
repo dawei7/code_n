@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1627",
+  "frontend_id": "1503",
+  "title_slug": "last-moment-before-all-ants-fall-out-of-a-plank",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getLastMoment",
+  "verified_submission_id": "2069396697",
+  "verified_at": "2026-07-16T05:35:05.947883+00:00"
+}

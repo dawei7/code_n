@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1531",
+  "cases": [
+    {"id": "sample-separate-runs", "name": "sample: delete two separating singleton runs", "kind": "sample", "visible": true, "input": {"s": "aaabcccd", "k": 2}, "expected": 4, "tags": ["sample", "official", "run-selection"]},
+    {"id": "sample-merge-a-runs", "name": "sample: delete middle run to merge equal ends", "kind": "sample", "visible": true, "input": {"s": "aabbaa", "k": 2}, "expected": 2, "tags": ["sample", "official", "merge-runs"]},
+    {"id": "sample-eleven", "name": "sample: two-digit count without deletions", "kind": "sample", "visible": true, "input": {"s": "aaaaaaaaaaa", "k": 0}, "expected": 3, "tags": ["sample", "official", "two-digit-count"]},
+    {"id": "trial-delete-all", "name": "trial: delete the complete string", "kind": "trial", "visible": true, "input": {"s": "abc", "k": 3}, "expected": 0, "tags": ["trial", "empty-result"]},
+    {"id": "trial-distinct", "name": "trial: remove two singleton runs", "kind": "trial", "visible": true, "input": {"s": "abcde", "k": 2}, "expected": 3, "tags": ["trial", "all-distinct"]},
+    {"id": "trial-merge-through-one", "name": "trial: one deletion merges two a runs", "kind": "trial", "visible": true, "input": {"s": "aaabaaa", "k": 1}, "expected": 2, "tags": ["trial", "merge-runs", "single-deletion"]},
+    {"id": "real-ten-to-nine", "name": "hidden: deleting at count ten crosses a digit threshold", "kind": "real", "visible": false, "input": {"s": "aaaaaaaaaa", "k": 1}, "expected": 2, "tags": ["real", "threshold-10"]},
+    {"id": "real-hundred-to-ninety-nine", "name": "hidden: deleting at count one hundred crosses a digit threshold", "kind": "real", "visible": false, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "k": 1}, "expected": 3, "tags": ["real", "threshold-100", "maximum-length"]},
+    {"id": "real-one-middle-remains", "name": "hidden: insufficient budget leaves a middle singleton", "kind": "real", "visible": false, "input": {"s": "aaabbaa", "k": 1}, "expected": 5, "tags": ["real", "partial-middle-deletion"]},
+    {"id": "real-threshold-or-tail", "name": "hidden: either deletion keeps the same optimum length", "kind": "real", "visible": false, "input": {"s": "aaaaaaaaaab", "k": 1}, "expected": 3, "tags": ["real", "threshold-10", "alternative-optima"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1663",
+  "frontend_id": "1559",
+  "title_slug": "detect-cycles-in-2d-grid",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.containsCycle",
+  "verified_submission_id": "2069788767",
+  "verified_at": "2026-07-16T11:25:00.071252+00:00"
+}

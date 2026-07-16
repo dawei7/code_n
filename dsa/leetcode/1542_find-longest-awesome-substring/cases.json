@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1542",
+  "cases": [
+    {
+      "id": "sample-interior-optimum",
+      "name": "sample: longest awesome substring is internal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "3242415"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "official",
+        "interior"
+      ]
+    },
+    {
+      "id": "sample-all-distinct",
+      "name": "sample: distinct digits allow only one character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "12345678"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "official",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "sample-whole-string",
+      "name": "sample: whole string has all even counts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "213123"
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "official",
+        "whole-string"
+      ]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "trial: one digit is always awesome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-one-odd-count",
+      "name": "trial: one repeated digit with odd length is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00000"
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "one-odd",
+        "whole-string"
+      ]
+    },
+    {
+      "id": "trial-even-pair",
+      "name": "trial: two equal digits form an even palindrome multiset",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "all-even"
+      ]
+    },
+    {
+      "id": "real-ten-distinct",
+      "name": "hidden: all ten digits remain incompatible beyond one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0123456789"
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "all-distinct",
+        "ten-digits"
+      ]
+    },
+    {
+      "id": "real-all-even",
+      "name": "hidden: five digit pairs make the whole string valid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "1122334455"
+      },
+      "expected": 10,
+      "tags": [
+        "real",
+        "all-even",
+        "whole-string"
+      ]
+    },
+    {
+      "id": "real-short-interior",
+      "name": "hidden: a repeated digit produces a short internal optimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0123400"
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "interior",
+        "one-odd"
+      ]
+    },
+    {
+      "id": "real-symmetric-counts",
+      "name": "hidden: mixed symmetric counts use the entire string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "00123443210"
+      },
+      "expected": 11,
+      "tags": [
+        "real",
+        "one-odd",
+        "whole-string"
+      ]
+    }
+  ]
+}

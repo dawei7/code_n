@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1686",
+  "frontend_id": "1543",
+  "title_slug": "fix-product-name-format",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2069695334",
+  "verified_at": "2026-07-16T09:54:53.236882+00:00"
+}

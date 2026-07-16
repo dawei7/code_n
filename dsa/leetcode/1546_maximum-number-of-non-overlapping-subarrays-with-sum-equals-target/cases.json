@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1546",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-repeated-pairs",
       "name": "sample: repeated pairs",
       "kind": "sample",
       "visible": true,
@@ -19,12 +20,13 @@
       "expected": 2,
       "tags": [
         "sample",
-        "prefix-sum"
+        "non-overlap",
+        "repeated-pairs"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: negative values",
+      "id": "sample-negative-values",
+      "name": "sample: negative values create multiple candidates",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,12 +43,14 @@
       },
       "expected": 2,
       "tags": [
-        "sample"
+        "sample",
+        "non-overlap",
+        "negative-values"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: three non-overlapping choices",
+      "id": "sample-three-windows",
+      "name": "sample: three disjoint target sums",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -64,27 +68,208 @@
       },
       "expected": 3,
       "tags": [
-        "sample"
+        "sample",
+        "non-overlap",
+        "three-windows"
       ]
     },
     {
-      "id": "real-zero-target",
-      "name": "hidden: zero-sum windows reset the prefix set",
+      "id": "trial-single-match",
+      "name": "trial: one element equals target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "target": 5
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "non-overlap",
+        "single-match"
+      ]
+    },
+    {
+      "id": "trial-no-match",
+      "name": "trial: no target-sum subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "target": 10
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "non-overlap",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-zero-target",
+      "name": "trial: individual zeroes maximize count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          -1,
+          0
+        ],
+        "target": 0
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "non-overlap",
+        "zero-target"
+      ]
+    },
+    {
+      "id": "real-overlap-choice",
+      "name": "hidden: earliest finish beats overlapping longer choice",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
           1,
-          -1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1
+        ],
+        "target": 3
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "non-overlap",
+        "overlap-choice"
+      ]
+    },
+    {
+      "id": "real-negative-target",
+      "name": "hidden: negative target and mixed signs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -2,
           1,
           -1,
-          1
+          -2,
+          2,
+          -2
+        ],
+        "target": -2
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "non-overlap",
+        "negative-target"
+      ]
+    },
+    {
+      "id": "real-prefix-repeat",
+      "name": "hidden: repeated prefix sums across cancellations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          -2,
+          2,
+          -2,
+          2,
+          -2
+        ],
+        "target": 0
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "non-overlap",
+        "prefix-repeat"
+      ]
+    },
+    {
+      "id": "real-all-positive-singletons",
+      "name": "hidden: every element is an interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "target": 4
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "non-overlap",
+        "all-positive-singletons"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: large magnitudes cancel exactly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10000,
+          -10000,
+          10000,
+          -9999,
+          -1
         ],
         "target": 0
       },
       "expected": 2,
       "tags": [
-        "hidden"
+        "real",
+        "non-overlap",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-disjoint-with-gaps",
+      "name": "hidden: unused gaps between selected intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          1,
+          2,
+          9,
+          -4,
+          7,
+          3,
+          10
+        ],
+        "target": 10
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "non-overlap",
+        "disjoint-with-gaps"
       ]
     }
   ]

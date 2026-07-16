@@ -5,29 +5,29 @@
 | Source | LeetCode |
 | Frontend ID | 1575 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Dynamic Programming, Memoization |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-all-possible-routes](https://leetcode.com/problems/count-all-possible-routes/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-all-possible-routes/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-all-possible-routes/).
-
 ### Goal
-Count routes that start at `start`, may visit cities repeatedly, and end at
-`finish` without spending more than the available fuel.
+
+There are $N$ cities on a number line. City `i` is located at coordinate `locations[i]`, and every coordinate is distinct. A journey begins at the city indexed by `start` with a fixed amount of `fuel`, and its destination is the city indexed by `finish`.
+
+From the current city `i`, a route may move to any different city `j`. That move consumes exactly $\lvert\texttt{locations[i]}-\texttt{locations[j]}\rvert$ units of fuel. Fuel may never become negative, cities may be visited repeatedly, and a route may continue traveling after visiting `finish`.
+
+Count every route that is at `finish` after zero or more moves without spending more than the available fuel. Stopping at different visits produces different valid routes; in particular, the empty route counts when `start == finish`. Return the total modulo $1{,}000{,}000{,}007$.
 
 ### Function Contract
 **Inputs**
 
-- `locations`: city positions on a line.
-- `start`: the starting city index.
-- `finish`: the destination city index.
-- `fuel`: the starting fuel amount.
+- `locations`: An array of $N$ distinct integer coordinates, where $2 \le N \le 100$ and $1 \le \texttt{locations[i]} \le 10^9$.
+- `start`: The zero-based index of the starting city, where $0 \le \texttt{start} < N$.
+- `finish`: The zero-based index of the destination city, where $0 \le \texttt{finish} < N$.
+- `fuel`: The initial fuel amount, where $1 \le \texttt{fuel} \le 200$.
 
 **Return value**
 
-The number of valid routes modulo `1_000_000_007`.
+Return the number of valid routes from `start` to `finish`, modulo $1{,}000{,}000{,}007$.
 
 ### Examples
 **Example 1**
@@ -45,48 +45,46 @@ The number of valid routes modulo `1_000_000_007`.
 - Input: `locations = [5, 2, 1], start = 0, finish = 2, fuel = 3`
 - Output: `0`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Use memoized dynamic programming on `(city, remaining_fuel)`. Each state counts
-one route immediately if `city == finish`, then tries moving to every other city
-whose distance cost fits in the remaining fuel.
+- **Time:** $O(N^2F)$
+- **Space:** $O(NF)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n^2 * fuel)`.
-- **Space Complexity**: `O(n * fuel)`.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-from functools import lru_cache
+#### General
 
+**Make remaining fuel part of the state**
 
-def solve(locations, start, finish, fuel):
-    mod = 10**9 + 7
-    n = len(locations)
-    if n == 0:
-        return 0
-    start %= n
-    finish %= n
-    fuel = max(0, fuel)
+The same city can be revisited with different amounts of fuel, and those situations permit different future moves. Define `count_from(city, remaining)` as the number of valid routes that begin in that state and eventually choose to stop at `finish`.
 
-    @lru_cache(maxsize=None)
-    def dp(city, remaining):
-        total = 1 if city == finish else 0
-        for nxt in range(n):
-            if nxt == city:
-                continue
-            cost = abs(locations[city] - locations[nxt])
-            if cost == 0:
-                continue
-            if cost <= remaining:
-                total += dp(nxt, remaining - cost)
-        return total % mod
+A state contributes one route immediately when `city == finish`: stop without making another move. This does not end the recurrence, because routes that leave `finish` and return later must also be counted.
 
-    return dp(start, fuel)
-```
+**Spend fuel on every possible next city**
+
+For each `next_city != city`, compute the move cost as the absolute coordinate difference. Distinct coordinates guarantee that this cost is positive. If it does not exceed `remaining`, add the routes from `count_from(next_city, remaining - cost)`.
+
+Every recursive transition strictly decreases the remaining fuel, so the state graph is acyclic even though routes may revisit cities. Memoizing by `(city, remaining)` evaluates each reachable state once and applies the modulus to keep counts bounded.
+
+Every valid route has a unique first move, unless it stops immediately at `finish`. The recurrence partitions routes into exactly those disjoint choices. Conversely, every allowed transition preserves nonnegative fuel and every counted stopping state is at `finish`, so no invalid route is included.
+
+#### Complexity detail
+
+There are at most $N(F+1)$ city-and-fuel states. Each state considers $N-1$ possible next cities, giving $O(N^2F)$ time.
+
+The memo table stores at most $O(NF)$ results. The recursion depth is at most $F$ because every move costs at least one unit, so its stack does not exceed the same asymptotic space bound.
+
+#### Alternatives and edge cases
+
+- **Bottom-up dynamic programming:** evaluate remaining fuel from zero through $F$ and fill the same recurrence iteratively. It has the same $O(N^2F)$ time and $O(NF)$ space bounds.
+- **Recursion without memoization:** enumerate route prefixes directly. It is correct but repeatedly solves identical states and can take exponential time.
+- **Sort cities and restrict moves:** a route may jump between any pair of cities, so sorting alone does not remove the need to consider both directions and all affordable destinations.
+- **Start equals finish:** count the zero-move route immediately, plus every affordable route that leaves and later returns.
+- **Reach finish multiple times:** each visit offers a distinct stopping point, while continuing after a visit may create further valid routes.
+- **Insufficient fuel:** if no sequence can reach `finish`, the answer is zero.
+- **Exact fuel use:** ending with zero remaining fuel is valid.
+- **Distinct coordinates:** every move has positive cost, which prevents zero-cost cycles and makes the fuel-state recurrence well founded.
+- **Modulo arithmetic:** reduce accumulated counts modulo $1{,}000{,}000{,}007$ at each state.
+
 </details>

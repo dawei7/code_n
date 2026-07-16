@@ -1,25 +1,33 @@
-def solve(grid):
+"""Optimal app-local solution for LeetCode 1559."""
+
+
+def solve(grid: list[list[str]]) -> bool:
+    """Detect a non-parent edge in a same-letter grid component."""
     rows = len(grid)
-    cols = len(grid[0]) if rows else 0
-    seen = [[False] * cols for _ in range(rows)]
+    columns = len(grid[0])
+    seen = [[False] * columns for _ in range(rows)]
 
-    def dfs(r, c, pr, pc, value):
-        seen[r][c] = True
-        for dr, dc in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            nr = r + dr
-            nc = c + dc
-            if nr < 0 or nr >= rows or nc < 0 or nc >= cols:
+    for start_row in range(rows):
+        for start_column in range(columns):
+            if seen[start_row][start_column]:
                 continue
-            if grid[nr][nc] != value:
-                continue
-            if nr == pr and nc == pc:
-                continue
-            if seen[nr][nc] or dfs(nr, nc, r, c, value):
-                return True
-        return False
 
-    for r in range(rows):
-        for c in range(cols):
-            if not seen[r][c] and dfs(r, c, -1, -1, grid[r][c]):
-                return True
+            seen[start_row][start_column] = True
+            stack = [(start_row, start_column, -1, -1)]
+            while stack:
+                row, column, parent_row, parent_column = stack.pop()
+                for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                    next_row = row + row_step
+                    next_column = column + column_step
+                    if not (0 <= next_row < rows and 0 <= next_column < columns):
+                        continue
+                    if grid[next_row][next_column] != grid[row][column]:
+                        continue
+                    if (next_row, next_column) == (parent_row, parent_column):
+                        continue
+                    if seen[next_row][next_column]:
+                        return True
+                    seen[next_row][next_column] = True
+                    stack.append((next_row, next_column, row, column))
+
     return False

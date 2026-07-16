@@ -1,44 +1,35 @@
+"""Optimal app-local solution for LeetCode 1515."""
+
 import math
 
 
 def solve(positions):
-    points = []
-    for index, point in enumerate(positions):
-        if isinstance(point, list) and len(point) >= 2:
-            points.append((float(point[0]), float(point[1])))
-        else:
-            points.append((float(index), float(point)))
-    if not points:
-        return 0.0
+    """Return the geometric median's minimum total distance."""
+    min_x = min(point[0] for point in positions)
+    max_x = max(point[0] for point in positions)
+    min_y = min(point[1] for point in positions)
+    max_y = max(point[1] for point in positions)
 
-    def total(cx, cy):
-        return sum(math.hypot(px - cx, py - cy) for px, py in points)
+    def total(x, y):
+        return sum(math.hypot(px - x, py - y) for px, py in positions)
 
-    min_x = min(px for px, _ in points)
-    max_x = max(px for px, _ in points)
-    min_y = min(py for _, py in points)
-    max_y = max(py for _, py in points)
-
-    def best_for_x(cx):
-        lo, hi = min_y, max_y
-        for _ in range(80):
-            third = (hi - lo) / 3.0
-            y1 = lo + third
-            y2 = hi - third
-            if total(cx, y1) < total(cx, y2):
-                hi = y2
+    def best_at_x(x):
+        low, high = min_y, max_y
+        for _ in range(45):
+            first = (2 * low + high) / 3
+            second = (low + 2 * high) / 3
+            if total(x, first) <= total(x, second):
+                high = second
             else:
-                lo = y1
-        cy = (lo + hi) / 2.0
-        return total(cx, cy)
+                low = first
+        return total(x, (low + high) / 2)
 
-    lo, hi = min_x, max_x
-    for _ in range(80):
-        third = (hi - lo) / 3.0
-        x1 = lo + third
-        x2 = hi - third
-        if best_for_x(x1) < best_for_x(x2):
-            hi = x2
+    low, high = min_x, max_x
+    for _ in range(45):
+        first = (2 * low + high) / 3
+        second = (low + 2 * high) / 3
+        if best_at_x(first) <= best_at_x(second):
+            high = second
         else:
-            lo = x1
-    return best_for_x((lo + hi) / 2.0)
+            low = first
+    return best_at_x((low + high) / 2)

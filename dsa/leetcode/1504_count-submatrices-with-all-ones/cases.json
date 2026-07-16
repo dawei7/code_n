@@ -3,112 +3,84 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: three by three matrix",
+      "name": "sample: mixed three-by-three matrix",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "mat": [
-          [
-            1,
-            0,
-            1
-          ],
-          [
-            1,
-            1,
-            0
-          ],
-          [
-            1,
-            1,
-            0
-          ]
-        ]
-      },
+      "input": {"mat": [[1,0,1],[1,1,0],[1,1,0]]},
       "expected": 13,
-      "tags": [
-        "sample",
-        "matrix"
-      ]
+      "tags": ["sample", "mixed-shapes"]
     },
     {
       "id": "sample-2",
-      "name": "sample: mixed rectangular matrix",
+      "name": "sample: overlapping blocks of ones",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "mat": [
-          [
-            0,
-            1,
-            1,
-            0
-          ],
-          [
-            0,
-            1,
-            1,
-            1
-          ],
-          [
-            1,
-            1,
-            1,
-            0
-          ]
-        ]
-      },
+      "input": {"mat": [[0,1,1,0],[0,1,1,1],[1,1,1,0]]},
       "expected": 24,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "overlap"]
     },
     {
       "id": "sample-3",
-      "name": "sample: two by two all ones",
+      "name": "sample: all-one rectangular matrix",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "mat": [
-          [
-            1,
-            1
-          ],
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 9,
-      "tags": [
-        "sample",
-        "edge"
-      ]
+      "input": {"mat": [[1,1,1],[1,1,1]]},
+      "expected": 18,
+      "tags": ["sample", "all-ones", "rectangular"]
     },
     {
-      "id": "real-two-row-mixed",
-      "name": "hidden: two rows with separated columns",
+      "id": "trial-single-one",
+      "name": "trial: one cell contributes one rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"mat": [[1]]},
+      "expected": 1,
+      "tags": ["trial", "single-cell"]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: no rectangle survives in an all-zero matrix",
+      "kind": "trial",
+      "visible": true,
+      "input": {"mat": [[0,0,0],[0,0,0]]},
+      "expected": 0,
+      "tags": ["trial", "all-zero"]
+    },
+    {
+      "id": "real-single-row-runs",
+      "name": "hidden: zeros separate horizontal runs",
       "kind": "real",
       "visible": false,
-      "input": {
-        "mat": [
-          [
-            1,
-            0,
-            1
-          ],
-          [
-            1,
-            1,
-            1
-          ]
-        ]
-      },
+      "input": {"mat": [[1,1,0,1,1,1,0,1]]},
       "expected": 10,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "single-row", "triangular-runs"]
+    },
+    {
+      "id": "real-single-column-run",
+      "name": "hidden: vertical run uses the same interval count",
+      "kind": "real",
+      "visible": false,
+      "input": {"mat": [[1],[1],[1],[0],[1],[1]]},
+      "expected": 9,
+      "tags": ["hidden", "single-column"]
+    },
+    {
+      "id": "real-diagonal-isolated",
+      "name": "hidden: diagonal ones do not combine into rectangles",
+      "kind": "real",
+      "visible": false,
+      "input": {"mat": [[1,0,0],[0,1,0],[0,0,1]]},
+      "expected": 3,
+      "tags": ["hidden", "isolated-ones"]
+    },
+    {
+      "id": "real-four-by-four-all-ones",
+      "name": "hidden: closed-form dense count",
+      "kind": "real",
+      "visible": false,
+      "input": {"mat": [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]},
+      "expected": 100,
+      "tags": ["hidden", "all-ones", "closed-form"]
     }
   ]
 }

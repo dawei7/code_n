@@ -1,88 +1,96 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1528",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: restore leetcode",
+      "id": "sample-codeleet",
+      "name": "sample: codeleet becomes leetcode",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "s": "codeleet",
-        "indices": [
-          4,
-          5,
-          6,
-          7,
-          0,
-          2,
-          1,
-          3
-        ]
-      },
+      "input": {"s": "codeleet", "indices": [4, 5, 6, 7, 0, 2, 1, 3]},
       "expected": "leetcode",
-      "tags": [
-        "sample",
-        "string"
-      ]
+      "tags": ["sample", "official", "mixed-permutation"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: already ordered",
+      "id": "sample-identity",
+      "name": "sample: identity permutation",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "s": "abc",
-        "indices": [
-          0,
-          1,
-          2
-        ]
-      },
+      "input": {"s": "abc", "indices": [0, 1, 2]},
       "expected": "abc",
-      "tags": [
-        "sample",
-        "edge"
-      ]
+      "tags": ["sample", "official", "identity"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: restore nihao",
+      "id": "sample-nihao",
+      "name": "sample: aiohn becomes nihao",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "s": "aiohn",
-        "indices": [
-          3,
-          1,
-          4,
-          2,
-          0
-        ]
-      },
+      "input": {"s": "aiohn", "indices": [3, 1, 4, 2, 0]},
       "expected": "nihao",
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "official", "cycle"]
     },
     {
-      "id": "real-reverse-order",
-      "name": "hidden: reverse by target indices",
+      "id": "trial-single",
+      "name": "trial: one character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "z", "indices": [0]},
+      "expected": "z",
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-reverse",
+      "name": "trial: complete reversal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcdef", "indices": [5, 4, 3, 2, 1, 0]},
+      "expected": "fedcba",
+      "tags": ["trial", "reverse-permutation"]
+    },
+    {
+      "id": "trial-repeated-characters",
+      "name": "trial: repeated character values still move by position",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aabbcc", "indices": [2, 5, 0, 4, 1, 3]},
+      "expected": "bcacba",
+      "tags": ["trial", "repeated-characters", "position-semantics"]
+    },
+    {
+      "id": "real-rotation",
+      "name": "hidden: one cyclic rotation",
       "kind": "real",
       "visible": false,
-      "input": {
-        "s": "abcde",
-        "indices": [
-          4,
-          3,
-          2,
-          1,
-          0
-        ]
-      },
-      "expected": "edcba",
-      "tags": [
-        "hidden"
-      ]
+      "input": {"s": "rotation", "indices": [1, 2, 3, 4, 5, 6, 7, 0]},
+      "expected": "nrotatio",
+      "tags": ["real", "single-cycle", "rotation"]
+    },
+    {
+      "id": "real-disjoint-swaps",
+      "name": "hidden: several disjoint swaps",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefgh", "indices": [1, 0, 3, 2, 5, 4, 7, 6]},
+      "expected": "badcfehg",
+      "tags": ["real", "disjoint-cycles"]
+    },
+    {
+      "id": "real-mixed-fixed-points",
+      "name": "hidden: fixed points among moved characters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "algorithm", "indices": [0, 3, 1, 2, 4, 8, 6, 5, 7]},
+      "expected": "agolrhtmi",
+      "tags": ["real", "fixed-points", "mixed-cycles"]
+    },
+    {
+      "id": "real-alphabet-reverse",
+      "name": "hidden: reverse the lowercase alphabet",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyz", "indices": [25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]},
+      "expected": "zyxwvutsrqponmlkjihgfedcba",
+      "tags": ["real", "longer-input", "reverse-permutation"]
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1681",
+  "frontend_id": "1538",
+  "title_slug": "guess-the-majority-in-a-hidden-array",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.guessMajority",
+  "verified_submission_id": "2069658953",
+  "verified_at": "2026-07-16T09:23:18.753001+00:00"
+}

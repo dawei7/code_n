@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1511",
+  "cases": [
+    {
+      "id":"sample-official","name":"sample: only Winston qualifies","kind":"sample","visible":true,
+      "input":{"tables":{"Customers":[{"customer_id":1,"name":"Winston","country":"USA"},{"customer_id":2,"name":"Jonathan","country":"Peru"},{"customer_id":3,"name":"Moustafa","country":"Egypt"}],"Product":[{"product_id":10,"description":"LC Phone","price":300},{"product_id":20,"description":"LC T-Shirt","price":10},{"product_id":30,"description":"LC Book","price":45},{"product_id":40,"description":"LC Keychain","price":2}],"Orders":[{"order_id":1,"customer_id":1,"product_id":10,"order_date":"2020-06-10","quantity":1},{"order_id":2,"customer_id":1,"product_id":20,"order_date":"2020-07-01","quantity":1},{"order_id":3,"customer_id":1,"product_id":30,"order_date":"2020-07-08","quantity":2},{"order_id":4,"customer_id":2,"product_id":10,"order_date":"2020-06-15","quantity":2},{"order_id":5,"customer_id":2,"product_id":40,"order_date":"2020-07-01","quantity":10},{"order_id":6,"customer_id":3,"product_id":20,"order_date":"2020-06-24","quantity":2},{"order_id":7,"customer_id":3,"product_id":30,"order_date":"2020-06-25","quantity":2},{"order_id":9,"customer_id":3,"product_id":30,"order_date":"2020-05-08","quantity":3}]}},
+      "expected":{"columns":["customer_id","name"],"rows":[[1,"Winston"]]},"tags":["sample","conditional-aggregation"]
+    },
+    {
+      "id":"sample-boundaries","name":"sample: inclusive June and July boundaries","kind":"sample","visible":true,
+      "input":{"tables":{"Customers":[{"customer_id":1,"name":"Boundary","country":"CH"}],"Product":[{"product_id":1,"description":"Exact","price":100}],"Orders":[{"order_id":1,"customer_id":1,"product_id":1,"order_date":"2020-06-01","quantity":1},{"order_id":2,"customer_id":1,"product_id":1,"order_date":"2020-07-31","quantity":1},{"order_id":3,"customer_id":1,"product_id":1,"order_date":"2020-08-01","quantity":99}]}},
+      "expected":{"columns":["customer_id","name"],"rows":[[1,"Boundary"]]},"tags":["sample","date-boundaries","exact-threshold"]
+    },
+    {
+      "id":"trial-combined-orders","name":"trial: several orders combine to each threshold","kind":"trial","visible":true,
+      "input":{"tables":{"Customers":[{"customer_id":7,"name":"Combined","country":"CA"}],"Product":[{"product_id":1,"description":"A","price":30},{"product_id":2,"description":"B","price":20}],"Orders":[{"order_id":1,"customer_id":7,"product_id":1,"order_date":"2020-06-05","quantity":2},{"order_id":2,"customer_id":7,"product_id":2,"order_date":"2020-06-30","quantity":2},{"order_id":3,"customer_id":7,"product_id":1,"order_date":"2020-07-01","quantity":2},{"order_id":4,"customer_id":7,"product_id":2,"order_date":"2020-07-15","quantity":2}]}},
+      "expected":{"columns":["customer_id","name"],"rows":[[7,"Combined"]]},"tags":["trial","multiple-orders","quantity"]
+    },
+    {
+      "id":"trial-combined-threshold-trap","name":"trial: combined 200 does not satisfy both months","kind":"trial","visible":true,
+      "input":{"tables":{"Customers":[{"customer_id":2,"name":"Unbalanced","country":"US"}],"Product":[{"product_id":1,"description":"Unit","price":1}],"Orders":[{"order_id":1,"customer_id":2,"product_id":1,"order_date":"2020-06-20","quantity":199},{"order_id":2,"customer_id":2,"product_id":1,"order_date":"2020-07-20","quantity":1}]}},
+      "expected":{"columns":["customer_id","name"],"rows":[]},"tags":["trial","independent-thresholds"]
+    },
+    {
+      "id":"real-missing-month","name":"hidden: customer with only June spending fails","kind":"real","visible":false,
+      "input":{"tables":{"Customers":[{"customer_id":1,"name":"June Only","country":"UK"},{"customer_id":2,"name":"Both","country":"UK"}],"Product":[{"product_id":1,"description":"P","price":100}],"Orders":[{"order_id":1,"customer_id":1,"product_id":1,"order_date":"2020-06-10","quantity":5},{"order_id":2,"customer_id":2,"product_id":1,"order_date":"2020-06-10","quantity":1},{"order_id":3,"customer_id":2,"product_id":1,"order_date":"2020-07-10","quantity":1}]}},
+      "expected":{"columns":["customer_id","name"],"rows":[[2,"Both"]]},"tags":["real","missing-month"]
+    },
+    {
+      "id":"real-duplicate-names","name":"hidden: customer identity is not the name","kind":"real","visible":false,
+      "input":{"tables":{"Customers":[{"customer_id":1,"name":"Same","country":"A"},{"customer_id":2,"name":"Same","country":"B"}],"Product":[{"product_id":1,"description":"P","price":50}],"Orders":[{"order_id":1,"customer_id":1,"product_id":1,"order_date":"2020-06-01","quantity":2},{"order_id":2,"customer_id":1,"product_id":1,"order_date":"2020-07-01","quantity":2},{"order_id":3,"customer_id":2,"product_id":1,"order_date":"2020-06-01","quantity":2}]}},
+      "expected":{"columns":["customer_id","name"],"rows":[[1,"Same"]]},"tags":["real","duplicate-names","grouping"]
+    }
+  ]
+}

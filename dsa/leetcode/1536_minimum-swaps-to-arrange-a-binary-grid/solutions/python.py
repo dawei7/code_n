@@ -1,25 +1,23 @@
 def solve(grid):
     n = len(grid)
-    trailing = []
+    trailing_zeros = []
     for row in grid:
         zeros = 0
-        for value in reversed(row[:n]):
-            if value == 0:
-                zeros += 1
-            else:
+        for value in reversed(row):
+            if value == 1:
                 break
-        trailing.append(zeros)
+            zeros += 1
+        trailing_zeros.append(zeros)
 
     swaps = 0
-    for i in range(n):
-        need = n - i - 1
-        j = i
-        while j < n and trailing[j] < need:
-            j += 1
-        if j == n:
+    for position in range(n):
+        required = n - position - 1
+        candidate = position
+        while candidate < n and trailing_zeros[candidate] < required:
+            candidate += 1
+        if candidate == n:
             return -1
-        while j > i:
-            trailing[j], trailing[j - 1] = trailing[j - 1], trailing[j]
-            swaps += 1
-            j -= 1
+        swaps += candidate - position
+        chosen = trailing_zeros.pop(candidate)
+        trailing_zeros.insert(position, chosen)
     return swaps

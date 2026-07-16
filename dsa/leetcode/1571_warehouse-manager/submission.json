@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1718",
+  "frontend_id": "1571",
+  "title_slug": "warehouse-manager",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2069854873",
+  "verified_at": "2026-07-16T12:36:33.647998+00:00"
+}

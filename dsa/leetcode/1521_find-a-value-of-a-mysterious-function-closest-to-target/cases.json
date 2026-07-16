@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1521",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: closest value is two away",
+      "name": "sample: closest values lie on both sides of target",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +20,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "bitwise-and"
+        "mixed-ands"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: large repeated values",
+      "name": "sample: every AND remains the repeated value",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -37,12 +38,13 @@
       },
       "expected": 999999,
       "tags": [
-        "sample"
+        "sample",
+        "repeated"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: exact zero from a subarray",
+      "name": "sample: adjacent powers collapse to zero",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,25 +60,150 @@
       "expected": 0,
       "tags": [
         "sample",
-        "edge"
+        "zero",
+        "powers-of-two"
       ]
     },
     {
-      "id": "real-small-values",
-      "name": "hidden: closest is one away",
+      "id": "trial-single",
+      "name": "trial: one-element array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          42
+        ],
+        "target": 100
+      },
+      "expected": 58,
+      "tags": [
+        "trial",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-exact-singleton",
+      "name": "trial: target equals an array value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          31,
+          14,
+          7
+        ],
+        "target": 14
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "exact",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-exact-combination",
+      "name": "trial: target appears only after AND",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "arr": [
+          15,
+          10,
+          14
+        ],
+        "target": 10
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "exact",
+        "combined"
+      ]
+    },
+    {
+      "id": "real-target-above",
+      "name": "hidden: target exceeds every reachable value",
       "kind": "real",
       "visible": false,
       "input": {
         "arr": [
-          8,
-          4,
-          2
+          5,
+          12,
+          9,
+          3
         ],
-        "target": 3
+        "target": 10000000
       },
-      "expected": 1,
+      "expected": 9999988,
       "tags": [
-        "hidden"
+        "real",
+        "large-target"
+      ]
+    },
+    {
+      "id": "real-no-zero",
+      "name": "hidden: positive common bits prevent zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          7,
+          15,
+          23,
+          31
+        ],
+        "target": 0
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "common-bits",
+        "zero-target"
+      ]
+    },
+    {
+      "id": "real-bit-transitions",
+      "name": "hidden: several distinct AND states survive",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1023,
+          991,
+          959,
+          895,
+          767,
+          511
+        ],
+        "target": 700
+      },
+      "expected": 61,
+      "tags": [
+        "real",
+        "bit-transitions"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating masks create duplicates and collapses",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          43690,
+          21845,
+          43690,
+          21845,
+          65535
+        ],
+        "target": 12345
+      },
+      "expected": 9500,
+      "tags": [
+        "real",
+        "alternating",
+        "deduplication"
       ]
     }
   ]

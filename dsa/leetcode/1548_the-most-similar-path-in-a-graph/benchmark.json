@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1548",
+  "measurement_note": "Size is m, the targetPath length. The legal 3/6/12 triangle-walk tiers span 4x; each city has two possible next cities, while the repeating A/B/C target has an exact optimal walk. The remotely Accepted layered graph DP is O(m(n+e)), and an independent full-table relaxation also passes. A correct exhaustive walk enumerator explores 3 * 2^(m-1) routes, completes every tier, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: enumerate triangle walks for target length 3",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "n": 3,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "names": [
+          "A",
+          "B",
+          "C"
+        ],
+        "targetPath": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "benchmark",
+        "triangle-walks",
+        "m-3"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: enumerate triangle walks for target length 6",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "n": 3,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "names": [
+          "A",
+          "B",
+          "C"
+        ],
+        "targetPath": [
+          "A",
+          "B",
+          "C",
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "benchmark",
+        "triangle-walks",
+        "m-6"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: enumerate triangle walks for target length 12",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "n": 3,
+        "roads": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "names": [
+          "A",
+          "B",
+          "C"
+        ],
+        "targetPath": [
+          "A",
+          "B",
+          "C",
+          "A",
+          "B",
+          "C",
+          "A",
+          "B",
+          "C",
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        0,
+        1,
+        2,
+        0,
+        1,
+        2,
+        0,
+        1,
+        2
+      ],
+      "validator": {
+        "kind": "most_similar_path"
+      },
+      "tags": [
+        "benchmark",
+        "triangle-walks",
+        "m-12"
+      ]
+    }
+  ]
+}

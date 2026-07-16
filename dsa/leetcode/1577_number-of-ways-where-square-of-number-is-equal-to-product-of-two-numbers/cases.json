@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1577",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one triplet from nums1 square",
+      "name": "sample: one type-1 triplet",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -21,12 +22,12 @@
       "expected": 1,
       "tags": [
         "sample",
-        "counting"
+        "type-1"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: duplicate ones",
+      "name": "sample: duplicate ones create nine index triplets",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -42,12 +43,14 @@
       },
       "expected": 9,
       "tags": [
-        "sample"
+        "sample",
+        "duplicates",
+        "both-directions"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: duplicates and one match",
+      "name": "sample: repeated sevens create two triplets",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -66,12 +69,101 @@
       },
       "expected": 2,
       "tags": [
-        "sample"
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-4",
+      "name": "sample: no square matches a pair product",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          4,
+          7,
+          9,
+          11,
+          23
+        ],
+        "nums2": [
+          3,
+          5,
+          1024,
+          12,
+          18
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-singletons",
+      "name": "trial: neither array contains a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-type-1-only",
+      "name": "trial: square from first array matches second pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2
+        ],
+        "nums2": [
+          1,
+          4
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "type-1",
+        "one-sided"
+      ]
+    },
+    {
+      "id": "real-type-2-only",
+      "name": "hidden: square from second array matches first pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          4
+        ],
+        "nums2": [
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "type-2",
+        "one-sided"
       ]
     },
     {
       "id": "real-two-directions",
-      "name": "hidden: matches from both directions",
+      "name": "hidden: different matches occur in both directions",
       "kind": "real",
       "visible": false,
       "input": {
@@ -88,7 +180,119 @@
       },
       "expected": 2,
       "tags": [
-        "hidden"
+        "real",
+        "both-directions"
+      ]
+    },
+    {
+      "id": "real-duplicate-twos",
+      "name": "hidden: duplicate twos preserve index multiplicity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          2,
+          2
+        ],
+        "nums2": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "duplicates",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: products require wide integer arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          100000
+        ],
+        "nums2": [
+          100000,
+          100000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "upper-bound",
+        "wide-product"
+      ]
+    },
+    {
+      "id": "real-no-pair-first",
+      "name": "hidden: first singleton can only supply a square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          6
+        ],
+        "nums2": [
+          2,
+          3,
+          12
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "singleton",
+        "type-1"
+      ]
+    },
+    {
+      "id": "real-repeated-factor-products",
+      "name": "hidden: different pairs share one product",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          6,
+          6
+        ],
+        "nums2": [
+          2,
+          3,
+          6,
+          12
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "duplicate-squares",
+        "shared-products"
+      ]
+    },
+    {
+      "id": "real-no-match-small",
+      "name": "hidden: small arrays without a matching equality",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          2,
+          3
+        ],
+        "nums2": [
+          5,
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "no-match"
       ]
     }
   ]

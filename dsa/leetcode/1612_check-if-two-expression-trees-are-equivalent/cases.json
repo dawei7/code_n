@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1612",
+  "cases": [
+    {
+      "id": "sample-reassociated",
+      "name": "sample: association and operand order differ",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root1": [
+          "+",
+          "a",
+          "+",
+          null,
+          null,
+          "b",
+          "c"
+        ],
+        "root2": [
+          "+",
+          "+",
+          "a",
+          "b",
+          "c"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "association",
+        "commutation"
+      ]
+    },
+    {
+      "id": "sample-different-variable",
+      "name": "sample: one variable differs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root1": [
+          "+",
+          "a",
+          "+",
+          null,
+          null,
+          "b",
+          "c"
+        ],
+        "root2": [
+          "+",
+          "+",
+          "a",
+          "b",
+          "d"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "different-variable"
+      ]
+    },
+    {
+      "id": "sample-multiplicity",
+      "name": "sample: repeated variable changes the expression",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root1": [
+          "+",
+          "a",
+          "a"
+        ],
+        "root2": [
+          "+",
+          "a",
+          "b"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "multiplicity"
+      ]
+    },
+    {
+      "id": "trial-single-equal",
+      "name": "trial: identical leaf expressions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root1": [
+          "z"
+        ],
+        "root2": [
+          "z"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "single-leaf"
+      ]
+    },
+    {
+      "id": "trial-single-different",
+      "name": "trial: different leaf expressions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root1": [
+          "a"
+        ],
+        "root2": [
+          "b"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "single-leaf",
+        "different-variable"
+      ]
+    },
+    {
+      "id": "real-commuted-pair",
+      "name": "hidden: two operands are swapped",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          "+",
+          "a",
+          "b"
+        ],
+        "root2": [
+          "+",
+          "b",
+          "a"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "commutation"
+      ]
+    },
+    {
+      "id": "real-balanced-reordered",
+      "name": "hidden: perfect trees reorder all leaves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          "+",
+          "+",
+          "+",
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "root2": [
+          "+",
+          "+",
+          "+",
+          "d",
+          "b",
+          "a",
+          "c"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "balanced-tree",
+        "reordering"
+      ]
+    },
+    {
+      "id": "real-shape-different",
+      "name": "hidden: skewed and balanced grouping are equivalent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          "+",
+          "a",
+          "+",
+          null,
+          null,
+          "b",
+          "+",
+          null,
+          null,
+          "c",
+          "d"
+        ],
+        "root2": [
+          "+",
+          "+",
+          "+",
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "shape",
+        "association"
+      ]
+    },
+    {
+      "id": "real-set-equal-counts-differ",
+      "name": "hidden: equal variable sets have different coefficients",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          "+",
+          "+",
+          "b",
+          "a",
+          "a"
+        ],
+        "root2": [
+          "+",
+          "a",
+          "b"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "multiplicity",
+        "same-set"
+      ]
+    },
+    {
+      "id": "real-duplicate-equivalent",
+      "name": "hidden: duplicate coefficients match after reordering",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          "+",
+          "+",
+          "+",
+          "a",
+          "a",
+          "b",
+          "c"
+        ],
+        "root2": [
+          "+",
+          "+",
+          "+",
+          "c",
+          "a",
+          "b",
+          "a"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "multiplicity",
+        "reordering"
+      ]
+    },
+    {
+      "id": "real-one-extra-leaf",
+      "name": "hidden: one expression has an additional term",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          "+",
+          "a",
+          "b"
+        ],
+        "root2": [
+          "+",
+          "+",
+          "b",
+          "a",
+          "c"
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "different-size",
+        "extra-term"
+      ]
+    },
+    {
+      "id": "real-many-variables",
+      "name": "hidden: several distinct coefficients all match",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root1": [
+          "+",
+          "+",
+          "e",
+          "+",
+          "+",
+          null,
+          null,
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "root2": [
+          "+",
+          "+",
+          "a",
+          "+",
+          "+",
+          null,
+          null,
+          "e",
+          "c",
+          "d",
+          "b"
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "many-variables",
+        "reordering"
+      ]
+    }
+  ]
+}

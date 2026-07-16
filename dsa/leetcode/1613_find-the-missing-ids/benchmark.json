@@ -1,0 +1,2435 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1613",
+  "measurement_note": "Size is m, the maximum customer ID. Each tier contains every even ID through m, so c=m/2 and all odd IDs are missing. The Accepted recursive anti-join and an independent materialized NOT IN query take O((m+c) log(c+1)) portable time. A correct correlated count query rescans all c customer rows for each of m generated candidates, completes all 32/128/512 tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: odd IDs missing through 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 2,
+              "customer_name": "Customer2"
+            },
+            {
+              "customer_id": 4,
+              "customer_name": "Customer4"
+            },
+            {
+              "customer_id": 6,
+              "customer_name": "Customer6"
+            },
+            {
+              "customer_id": 8,
+              "customer_name": "Customer8"
+            },
+            {
+              "customer_id": 10,
+              "customer_name": "Customer10"
+            },
+            {
+              "customer_id": 12,
+              "customer_name": "Customer12"
+            },
+            {
+              "customer_id": 14,
+              "customer_name": "Customer14"
+            },
+            {
+              "customer_id": 16,
+              "customer_name": "Customer16"
+            },
+            {
+              "customer_id": 18,
+              "customer_name": "Customer18"
+            },
+            {
+              "customer_id": 20,
+              "customer_name": "Customer20"
+            },
+            {
+              "customer_id": 22,
+              "customer_name": "Customer22"
+            },
+            {
+              "customer_id": 24,
+              "customer_name": "Customer24"
+            },
+            {
+              "customer_id": 26,
+              "customer_name": "Customer26"
+            },
+            {
+              "customer_id": 28,
+              "customer_name": "Customer28"
+            },
+            {
+              "customer_id": 30,
+              "customer_name": "Customer30"
+            },
+            {
+              "customer_id": 32,
+              "customer_name": "Customer32"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ids"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            9
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            15
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            21
+          ],
+          [
+            23
+          ],
+          [
+            25
+          ],
+          [
+            27
+          ],
+          [
+            29
+          ],
+          [
+            31
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "alternating"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: odd IDs missing through 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 2,
+              "customer_name": "Customer2"
+            },
+            {
+              "customer_id": 4,
+              "customer_name": "Customer4"
+            },
+            {
+              "customer_id": 6,
+              "customer_name": "Customer6"
+            },
+            {
+              "customer_id": 8,
+              "customer_name": "Customer8"
+            },
+            {
+              "customer_id": 10,
+              "customer_name": "Customer10"
+            },
+            {
+              "customer_id": 12,
+              "customer_name": "Customer12"
+            },
+            {
+              "customer_id": 14,
+              "customer_name": "Customer14"
+            },
+            {
+              "customer_id": 16,
+              "customer_name": "Customer16"
+            },
+            {
+              "customer_id": 18,
+              "customer_name": "Customer18"
+            },
+            {
+              "customer_id": 20,
+              "customer_name": "Customer20"
+            },
+            {
+              "customer_id": 22,
+              "customer_name": "Customer22"
+            },
+            {
+              "customer_id": 24,
+              "customer_name": "Customer24"
+            },
+            {
+              "customer_id": 26,
+              "customer_name": "Customer26"
+            },
+            {
+              "customer_id": 28,
+              "customer_name": "Customer28"
+            },
+            {
+              "customer_id": 30,
+              "customer_name": "Customer30"
+            },
+            {
+              "customer_id": 32,
+              "customer_name": "Customer32"
+            },
+            {
+              "customer_id": 34,
+              "customer_name": "Customer34"
+            },
+            {
+              "customer_id": 36,
+              "customer_name": "Customer36"
+            },
+            {
+              "customer_id": 38,
+              "customer_name": "Customer38"
+            },
+            {
+              "customer_id": 40,
+              "customer_name": "Customer40"
+            },
+            {
+              "customer_id": 42,
+              "customer_name": "Customer42"
+            },
+            {
+              "customer_id": 44,
+              "customer_name": "Customer44"
+            },
+            {
+              "customer_id": 46,
+              "customer_name": "Customer46"
+            },
+            {
+              "customer_id": 48,
+              "customer_name": "Customer48"
+            },
+            {
+              "customer_id": 50,
+              "customer_name": "Customer50"
+            },
+            {
+              "customer_id": 52,
+              "customer_name": "Customer52"
+            },
+            {
+              "customer_id": 54,
+              "customer_name": "Customer54"
+            },
+            {
+              "customer_id": 56,
+              "customer_name": "Customer56"
+            },
+            {
+              "customer_id": 58,
+              "customer_name": "Customer58"
+            },
+            {
+              "customer_id": 60,
+              "customer_name": "Customer60"
+            },
+            {
+              "customer_id": 62,
+              "customer_name": "Customer62"
+            },
+            {
+              "customer_id": 64,
+              "customer_name": "Customer64"
+            },
+            {
+              "customer_id": 66,
+              "customer_name": "Customer66"
+            },
+            {
+              "customer_id": 68,
+              "customer_name": "Customer68"
+            },
+            {
+              "customer_id": 70,
+              "customer_name": "Customer70"
+            },
+            {
+              "customer_id": 72,
+              "customer_name": "Customer72"
+            },
+            {
+              "customer_id": 74,
+              "customer_name": "Customer74"
+            },
+            {
+              "customer_id": 76,
+              "customer_name": "Customer76"
+            },
+            {
+              "customer_id": 78,
+              "customer_name": "Customer78"
+            },
+            {
+              "customer_id": 80,
+              "customer_name": "Customer80"
+            },
+            {
+              "customer_id": 82,
+              "customer_name": "Customer82"
+            },
+            {
+              "customer_id": 84,
+              "customer_name": "Customer84"
+            },
+            {
+              "customer_id": 86,
+              "customer_name": "Customer86"
+            },
+            {
+              "customer_id": 88,
+              "customer_name": "Customer88"
+            },
+            {
+              "customer_id": 90,
+              "customer_name": "Customer90"
+            },
+            {
+              "customer_id": 92,
+              "customer_name": "Customer92"
+            },
+            {
+              "customer_id": 94,
+              "customer_name": "Customer94"
+            },
+            {
+              "customer_id": 96,
+              "customer_name": "Customer96"
+            },
+            {
+              "customer_id": 98,
+              "customer_name": "Customer98"
+            },
+            {
+              "customer_id": 100,
+              "customer_name": "Customer100"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Customer102"
+            },
+            {
+              "customer_id": 104,
+              "customer_name": "Customer104"
+            },
+            {
+              "customer_id": 106,
+              "customer_name": "Customer106"
+            },
+            {
+              "customer_id": 108,
+              "customer_name": "Customer108"
+            },
+            {
+              "customer_id": 110,
+              "customer_name": "Customer110"
+            },
+            {
+              "customer_id": 112,
+              "customer_name": "Customer112"
+            },
+            {
+              "customer_id": 114,
+              "customer_name": "Customer114"
+            },
+            {
+              "customer_id": 116,
+              "customer_name": "Customer116"
+            },
+            {
+              "customer_id": 118,
+              "customer_name": "Customer118"
+            },
+            {
+              "customer_id": 120,
+              "customer_name": "Customer120"
+            },
+            {
+              "customer_id": 122,
+              "customer_name": "Customer122"
+            },
+            {
+              "customer_id": 124,
+              "customer_name": "Customer124"
+            },
+            {
+              "customer_id": 126,
+              "customer_name": "Customer126"
+            },
+            {
+              "customer_id": 128,
+              "customer_name": "Customer128"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ids"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            9
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            15
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            21
+          ],
+          [
+            23
+          ],
+          [
+            25
+          ],
+          [
+            27
+          ],
+          [
+            29
+          ],
+          [
+            31
+          ],
+          [
+            33
+          ],
+          [
+            35
+          ],
+          [
+            37
+          ],
+          [
+            39
+          ],
+          [
+            41
+          ],
+          [
+            43
+          ],
+          [
+            45
+          ],
+          [
+            47
+          ],
+          [
+            49
+          ],
+          [
+            51
+          ],
+          [
+            53
+          ],
+          [
+            55
+          ],
+          [
+            57
+          ],
+          [
+            59
+          ],
+          [
+            61
+          ],
+          [
+            63
+          ],
+          [
+            65
+          ],
+          [
+            67
+          ],
+          [
+            69
+          ],
+          [
+            71
+          ],
+          [
+            73
+          ],
+          [
+            75
+          ],
+          [
+            77
+          ],
+          [
+            79
+          ],
+          [
+            81
+          ],
+          [
+            83
+          ],
+          [
+            85
+          ],
+          [
+            87
+          ],
+          [
+            89
+          ],
+          [
+            91
+          ],
+          [
+            93
+          ],
+          [
+            95
+          ],
+          [
+            97
+          ],
+          [
+            99
+          ],
+          [
+            101
+          ],
+          [
+            103
+          ],
+          [
+            105
+          ],
+          [
+            107
+          ],
+          [
+            109
+          ],
+          [
+            111
+          ],
+          [
+            113
+          ],
+          [
+            115
+          ],
+          [
+            117
+          ],
+          [
+            119
+          ],
+          [
+            121
+          ],
+          [
+            123
+          ],
+          [
+            125
+          ],
+          [
+            127
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "alternating"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: odd IDs missing through 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 2,
+              "customer_name": "Customer2"
+            },
+            {
+              "customer_id": 4,
+              "customer_name": "Customer4"
+            },
+            {
+              "customer_id": 6,
+              "customer_name": "Customer6"
+            },
+            {
+              "customer_id": 8,
+              "customer_name": "Customer8"
+            },
+            {
+              "customer_id": 10,
+              "customer_name": "Customer10"
+            },
+            {
+              "customer_id": 12,
+              "customer_name": "Customer12"
+            },
+            {
+              "customer_id": 14,
+              "customer_name": "Customer14"
+            },
+            {
+              "customer_id": 16,
+              "customer_name": "Customer16"
+            },
+            {
+              "customer_id": 18,
+              "customer_name": "Customer18"
+            },
+            {
+              "customer_id": 20,
+              "customer_name": "Customer20"
+            },
+            {
+              "customer_id": 22,
+              "customer_name": "Customer22"
+            },
+            {
+              "customer_id": 24,
+              "customer_name": "Customer24"
+            },
+            {
+              "customer_id": 26,
+              "customer_name": "Customer26"
+            },
+            {
+              "customer_id": 28,
+              "customer_name": "Customer28"
+            },
+            {
+              "customer_id": 30,
+              "customer_name": "Customer30"
+            },
+            {
+              "customer_id": 32,
+              "customer_name": "Customer32"
+            },
+            {
+              "customer_id": 34,
+              "customer_name": "Customer34"
+            },
+            {
+              "customer_id": 36,
+              "customer_name": "Customer36"
+            },
+            {
+              "customer_id": 38,
+              "customer_name": "Customer38"
+            },
+            {
+              "customer_id": 40,
+              "customer_name": "Customer40"
+            },
+            {
+              "customer_id": 42,
+              "customer_name": "Customer42"
+            },
+            {
+              "customer_id": 44,
+              "customer_name": "Customer44"
+            },
+            {
+              "customer_id": 46,
+              "customer_name": "Customer46"
+            },
+            {
+              "customer_id": 48,
+              "customer_name": "Customer48"
+            },
+            {
+              "customer_id": 50,
+              "customer_name": "Customer50"
+            },
+            {
+              "customer_id": 52,
+              "customer_name": "Customer52"
+            },
+            {
+              "customer_id": 54,
+              "customer_name": "Customer54"
+            },
+            {
+              "customer_id": 56,
+              "customer_name": "Customer56"
+            },
+            {
+              "customer_id": 58,
+              "customer_name": "Customer58"
+            },
+            {
+              "customer_id": 60,
+              "customer_name": "Customer60"
+            },
+            {
+              "customer_id": 62,
+              "customer_name": "Customer62"
+            },
+            {
+              "customer_id": 64,
+              "customer_name": "Customer64"
+            },
+            {
+              "customer_id": 66,
+              "customer_name": "Customer66"
+            },
+            {
+              "customer_id": 68,
+              "customer_name": "Customer68"
+            },
+            {
+              "customer_id": 70,
+              "customer_name": "Customer70"
+            },
+            {
+              "customer_id": 72,
+              "customer_name": "Customer72"
+            },
+            {
+              "customer_id": 74,
+              "customer_name": "Customer74"
+            },
+            {
+              "customer_id": 76,
+              "customer_name": "Customer76"
+            },
+            {
+              "customer_id": 78,
+              "customer_name": "Customer78"
+            },
+            {
+              "customer_id": 80,
+              "customer_name": "Customer80"
+            },
+            {
+              "customer_id": 82,
+              "customer_name": "Customer82"
+            },
+            {
+              "customer_id": 84,
+              "customer_name": "Customer84"
+            },
+            {
+              "customer_id": 86,
+              "customer_name": "Customer86"
+            },
+            {
+              "customer_id": 88,
+              "customer_name": "Customer88"
+            },
+            {
+              "customer_id": 90,
+              "customer_name": "Customer90"
+            },
+            {
+              "customer_id": 92,
+              "customer_name": "Customer92"
+            },
+            {
+              "customer_id": 94,
+              "customer_name": "Customer94"
+            },
+            {
+              "customer_id": 96,
+              "customer_name": "Customer96"
+            },
+            {
+              "customer_id": 98,
+              "customer_name": "Customer98"
+            },
+            {
+              "customer_id": 100,
+              "customer_name": "Customer100"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Customer102"
+            },
+            {
+              "customer_id": 104,
+              "customer_name": "Customer104"
+            },
+            {
+              "customer_id": 106,
+              "customer_name": "Customer106"
+            },
+            {
+              "customer_id": 108,
+              "customer_name": "Customer108"
+            },
+            {
+              "customer_id": 110,
+              "customer_name": "Customer110"
+            },
+            {
+              "customer_id": 112,
+              "customer_name": "Customer112"
+            },
+            {
+              "customer_id": 114,
+              "customer_name": "Customer114"
+            },
+            {
+              "customer_id": 116,
+              "customer_name": "Customer116"
+            },
+            {
+              "customer_id": 118,
+              "customer_name": "Customer118"
+            },
+            {
+              "customer_id": 120,
+              "customer_name": "Customer120"
+            },
+            {
+              "customer_id": 122,
+              "customer_name": "Customer122"
+            },
+            {
+              "customer_id": 124,
+              "customer_name": "Customer124"
+            },
+            {
+              "customer_id": 126,
+              "customer_name": "Customer126"
+            },
+            {
+              "customer_id": 128,
+              "customer_name": "Customer128"
+            },
+            {
+              "customer_id": 130,
+              "customer_name": "Customer130"
+            },
+            {
+              "customer_id": 132,
+              "customer_name": "Customer132"
+            },
+            {
+              "customer_id": 134,
+              "customer_name": "Customer134"
+            },
+            {
+              "customer_id": 136,
+              "customer_name": "Customer136"
+            },
+            {
+              "customer_id": 138,
+              "customer_name": "Customer138"
+            },
+            {
+              "customer_id": 140,
+              "customer_name": "Customer140"
+            },
+            {
+              "customer_id": 142,
+              "customer_name": "Customer142"
+            },
+            {
+              "customer_id": 144,
+              "customer_name": "Customer144"
+            },
+            {
+              "customer_id": 146,
+              "customer_name": "Customer146"
+            },
+            {
+              "customer_id": 148,
+              "customer_name": "Customer148"
+            },
+            {
+              "customer_id": 150,
+              "customer_name": "Customer150"
+            },
+            {
+              "customer_id": 152,
+              "customer_name": "Customer152"
+            },
+            {
+              "customer_id": 154,
+              "customer_name": "Customer154"
+            },
+            {
+              "customer_id": 156,
+              "customer_name": "Customer156"
+            },
+            {
+              "customer_id": 158,
+              "customer_name": "Customer158"
+            },
+            {
+              "customer_id": 160,
+              "customer_name": "Customer160"
+            },
+            {
+              "customer_id": 162,
+              "customer_name": "Customer162"
+            },
+            {
+              "customer_id": 164,
+              "customer_name": "Customer164"
+            },
+            {
+              "customer_id": 166,
+              "customer_name": "Customer166"
+            },
+            {
+              "customer_id": 168,
+              "customer_name": "Customer168"
+            },
+            {
+              "customer_id": 170,
+              "customer_name": "Customer170"
+            },
+            {
+              "customer_id": 172,
+              "customer_name": "Customer172"
+            },
+            {
+              "customer_id": 174,
+              "customer_name": "Customer174"
+            },
+            {
+              "customer_id": 176,
+              "customer_name": "Customer176"
+            },
+            {
+              "customer_id": 178,
+              "customer_name": "Customer178"
+            },
+            {
+              "customer_id": 180,
+              "customer_name": "Customer180"
+            },
+            {
+              "customer_id": 182,
+              "customer_name": "Customer182"
+            },
+            {
+              "customer_id": 184,
+              "customer_name": "Customer184"
+            },
+            {
+              "customer_id": 186,
+              "customer_name": "Customer186"
+            },
+            {
+              "customer_id": 188,
+              "customer_name": "Customer188"
+            },
+            {
+              "customer_id": 190,
+              "customer_name": "Customer190"
+            },
+            {
+              "customer_id": 192,
+              "customer_name": "Customer192"
+            },
+            {
+              "customer_id": 194,
+              "customer_name": "Customer194"
+            },
+            {
+              "customer_id": 196,
+              "customer_name": "Customer196"
+            },
+            {
+              "customer_id": 198,
+              "customer_name": "Customer198"
+            },
+            {
+              "customer_id": 200,
+              "customer_name": "Customer200"
+            },
+            {
+              "customer_id": 202,
+              "customer_name": "Customer202"
+            },
+            {
+              "customer_id": 204,
+              "customer_name": "Customer204"
+            },
+            {
+              "customer_id": 206,
+              "customer_name": "Customer206"
+            },
+            {
+              "customer_id": 208,
+              "customer_name": "Customer208"
+            },
+            {
+              "customer_id": 210,
+              "customer_name": "Customer210"
+            },
+            {
+              "customer_id": 212,
+              "customer_name": "Customer212"
+            },
+            {
+              "customer_id": 214,
+              "customer_name": "Customer214"
+            },
+            {
+              "customer_id": 216,
+              "customer_name": "Customer216"
+            },
+            {
+              "customer_id": 218,
+              "customer_name": "Customer218"
+            },
+            {
+              "customer_id": 220,
+              "customer_name": "Customer220"
+            },
+            {
+              "customer_id": 222,
+              "customer_name": "Customer222"
+            },
+            {
+              "customer_id": 224,
+              "customer_name": "Customer224"
+            },
+            {
+              "customer_id": 226,
+              "customer_name": "Customer226"
+            },
+            {
+              "customer_id": 228,
+              "customer_name": "Customer228"
+            },
+            {
+              "customer_id": 230,
+              "customer_name": "Customer230"
+            },
+            {
+              "customer_id": 232,
+              "customer_name": "Customer232"
+            },
+            {
+              "customer_id": 234,
+              "customer_name": "Customer234"
+            },
+            {
+              "customer_id": 236,
+              "customer_name": "Customer236"
+            },
+            {
+              "customer_id": 238,
+              "customer_name": "Customer238"
+            },
+            {
+              "customer_id": 240,
+              "customer_name": "Customer240"
+            },
+            {
+              "customer_id": 242,
+              "customer_name": "Customer242"
+            },
+            {
+              "customer_id": 244,
+              "customer_name": "Customer244"
+            },
+            {
+              "customer_id": 246,
+              "customer_name": "Customer246"
+            },
+            {
+              "customer_id": 248,
+              "customer_name": "Customer248"
+            },
+            {
+              "customer_id": 250,
+              "customer_name": "Customer250"
+            },
+            {
+              "customer_id": 252,
+              "customer_name": "Customer252"
+            },
+            {
+              "customer_id": 254,
+              "customer_name": "Customer254"
+            },
+            {
+              "customer_id": 256,
+              "customer_name": "Customer256"
+            },
+            {
+              "customer_id": 258,
+              "customer_name": "Customer258"
+            },
+            {
+              "customer_id": 260,
+              "customer_name": "Customer260"
+            },
+            {
+              "customer_id": 262,
+              "customer_name": "Customer262"
+            },
+            {
+              "customer_id": 264,
+              "customer_name": "Customer264"
+            },
+            {
+              "customer_id": 266,
+              "customer_name": "Customer266"
+            },
+            {
+              "customer_id": 268,
+              "customer_name": "Customer268"
+            },
+            {
+              "customer_id": 270,
+              "customer_name": "Customer270"
+            },
+            {
+              "customer_id": 272,
+              "customer_name": "Customer272"
+            },
+            {
+              "customer_id": 274,
+              "customer_name": "Customer274"
+            },
+            {
+              "customer_id": 276,
+              "customer_name": "Customer276"
+            },
+            {
+              "customer_id": 278,
+              "customer_name": "Customer278"
+            },
+            {
+              "customer_id": 280,
+              "customer_name": "Customer280"
+            },
+            {
+              "customer_id": 282,
+              "customer_name": "Customer282"
+            },
+            {
+              "customer_id": 284,
+              "customer_name": "Customer284"
+            },
+            {
+              "customer_id": 286,
+              "customer_name": "Customer286"
+            },
+            {
+              "customer_id": 288,
+              "customer_name": "Customer288"
+            },
+            {
+              "customer_id": 290,
+              "customer_name": "Customer290"
+            },
+            {
+              "customer_id": 292,
+              "customer_name": "Customer292"
+            },
+            {
+              "customer_id": 294,
+              "customer_name": "Customer294"
+            },
+            {
+              "customer_id": 296,
+              "customer_name": "Customer296"
+            },
+            {
+              "customer_id": 298,
+              "customer_name": "Customer298"
+            },
+            {
+              "customer_id": 300,
+              "customer_name": "Customer300"
+            },
+            {
+              "customer_id": 302,
+              "customer_name": "Customer302"
+            },
+            {
+              "customer_id": 304,
+              "customer_name": "Customer304"
+            },
+            {
+              "customer_id": 306,
+              "customer_name": "Customer306"
+            },
+            {
+              "customer_id": 308,
+              "customer_name": "Customer308"
+            },
+            {
+              "customer_id": 310,
+              "customer_name": "Customer310"
+            },
+            {
+              "customer_id": 312,
+              "customer_name": "Customer312"
+            },
+            {
+              "customer_id": 314,
+              "customer_name": "Customer314"
+            },
+            {
+              "customer_id": 316,
+              "customer_name": "Customer316"
+            },
+            {
+              "customer_id": 318,
+              "customer_name": "Customer318"
+            },
+            {
+              "customer_id": 320,
+              "customer_name": "Customer320"
+            },
+            {
+              "customer_id": 322,
+              "customer_name": "Customer322"
+            },
+            {
+              "customer_id": 324,
+              "customer_name": "Customer324"
+            },
+            {
+              "customer_id": 326,
+              "customer_name": "Customer326"
+            },
+            {
+              "customer_id": 328,
+              "customer_name": "Customer328"
+            },
+            {
+              "customer_id": 330,
+              "customer_name": "Customer330"
+            },
+            {
+              "customer_id": 332,
+              "customer_name": "Customer332"
+            },
+            {
+              "customer_id": 334,
+              "customer_name": "Customer334"
+            },
+            {
+              "customer_id": 336,
+              "customer_name": "Customer336"
+            },
+            {
+              "customer_id": 338,
+              "customer_name": "Customer338"
+            },
+            {
+              "customer_id": 340,
+              "customer_name": "Customer340"
+            },
+            {
+              "customer_id": 342,
+              "customer_name": "Customer342"
+            },
+            {
+              "customer_id": 344,
+              "customer_name": "Customer344"
+            },
+            {
+              "customer_id": 346,
+              "customer_name": "Customer346"
+            },
+            {
+              "customer_id": 348,
+              "customer_name": "Customer348"
+            },
+            {
+              "customer_id": 350,
+              "customer_name": "Customer350"
+            },
+            {
+              "customer_id": 352,
+              "customer_name": "Customer352"
+            },
+            {
+              "customer_id": 354,
+              "customer_name": "Customer354"
+            },
+            {
+              "customer_id": 356,
+              "customer_name": "Customer356"
+            },
+            {
+              "customer_id": 358,
+              "customer_name": "Customer358"
+            },
+            {
+              "customer_id": 360,
+              "customer_name": "Customer360"
+            },
+            {
+              "customer_id": 362,
+              "customer_name": "Customer362"
+            },
+            {
+              "customer_id": 364,
+              "customer_name": "Customer364"
+            },
+            {
+              "customer_id": 366,
+              "customer_name": "Customer366"
+            },
+            {
+              "customer_id": 368,
+              "customer_name": "Customer368"
+            },
+            {
+              "customer_id": 370,
+              "customer_name": "Customer370"
+            },
+            {
+              "customer_id": 372,
+              "customer_name": "Customer372"
+            },
+            {
+              "customer_id": 374,
+              "customer_name": "Customer374"
+            },
+            {
+              "customer_id": 376,
+              "customer_name": "Customer376"
+            },
+            {
+              "customer_id": 378,
+              "customer_name": "Customer378"
+            },
+            {
+              "customer_id": 380,
+              "customer_name": "Customer380"
+            },
+            {
+              "customer_id": 382,
+              "customer_name": "Customer382"
+            },
+            {
+              "customer_id": 384,
+              "customer_name": "Customer384"
+            },
+            {
+              "customer_id": 386,
+              "customer_name": "Customer386"
+            },
+            {
+              "customer_id": 388,
+              "customer_name": "Customer388"
+            },
+            {
+              "customer_id": 390,
+              "customer_name": "Customer390"
+            },
+            {
+              "customer_id": 392,
+              "customer_name": "Customer392"
+            },
+            {
+              "customer_id": 394,
+              "customer_name": "Customer394"
+            },
+            {
+              "customer_id": 396,
+              "customer_name": "Customer396"
+            },
+            {
+              "customer_id": 398,
+              "customer_name": "Customer398"
+            },
+            {
+              "customer_id": 400,
+              "customer_name": "Customer400"
+            },
+            {
+              "customer_id": 402,
+              "customer_name": "Customer402"
+            },
+            {
+              "customer_id": 404,
+              "customer_name": "Customer404"
+            },
+            {
+              "customer_id": 406,
+              "customer_name": "Customer406"
+            },
+            {
+              "customer_id": 408,
+              "customer_name": "Customer408"
+            },
+            {
+              "customer_id": 410,
+              "customer_name": "Customer410"
+            },
+            {
+              "customer_id": 412,
+              "customer_name": "Customer412"
+            },
+            {
+              "customer_id": 414,
+              "customer_name": "Customer414"
+            },
+            {
+              "customer_id": 416,
+              "customer_name": "Customer416"
+            },
+            {
+              "customer_id": 418,
+              "customer_name": "Customer418"
+            },
+            {
+              "customer_id": 420,
+              "customer_name": "Customer420"
+            },
+            {
+              "customer_id": 422,
+              "customer_name": "Customer422"
+            },
+            {
+              "customer_id": 424,
+              "customer_name": "Customer424"
+            },
+            {
+              "customer_id": 426,
+              "customer_name": "Customer426"
+            },
+            {
+              "customer_id": 428,
+              "customer_name": "Customer428"
+            },
+            {
+              "customer_id": 430,
+              "customer_name": "Customer430"
+            },
+            {
+              "customer_id": 432,
+              "customer_name": "Customer432"
+            },
+            {
+              "customer_id": 434,
+              "customer_name": "Customer434"
+            },
+            {
+              "customer_id": 436,
+              "customer_name": "Customer436"
+            },
+            {
+              "customer_id": 438,
+              "customer_name": "Customer438"
+            },
+            {
+              "customer_id": 440,
+              "customer_name": "Customer440"
+            },
+            {
+              "customer_id": 442,
+              "customer_name": "Customer442"
+            },
+            {
+              "customer_id": 444,
+              "customer_name": "Customer444"
+            },
+            {
+              "customer_id": 446,
+              "customer_name": "Customer446"
+            },
+            {
+              "customer_id": 448,
+              "customer_name": "Customer448"
+            },
+            {
+              "customer_id": 450,
+              "customer_name": "Customer450"
+            },
+            {
+              "customer_id": 452,
+              "customer_name": "Customer452"
+            },
+            {
+              "customer_id": 454,
+              "customer_name": "Customer454"
+            },
+            {
+              "customer_id": 456,
+              "customer_name": "Customer456"
+            },
+            {
+              "customer_id": 458,
+              "customer_name": "Customer458"
+            },
+            {
+              "customer_id": 460,
+              "customer_name": "Customer460"
+            },
+            {
+              "customer_id": 462,
+              "customer_name": "Customer462"
+            },
+            {
+              "customer_id": 464,
+              "customer_name": "Customer464"
+            },
+            {
+              "customer_id": 466,
+              "customer_name": "Customer466"
+            },
+            {
+              "customer_id": 468,
+              "customer_name": "Customer468"
+            },
+            {
+              "customer_id": 470,
+              "customer_name": "Customer470"
+            },
+            {
+              "customer_id": 472,
+              "customer_name": "Customer472"
+            },
+            {
+              "customer_id": 474,
+              "customer_name": "Customer474"
+            },
+            {
+              "customer_id": 476,
+              "customer_name": "Customer476"
+            },
+            {
+              "customer_id": 478,
+              "customer_name": "Customer478"
+            },
+            {
+              "customer_id": 480,
+              "customer_name": "Customer480"
+            },
+            {
+              "customer_id": 482,
+              "customer_name": "Customer482"
+            },
+            {
+              "customer_id": 484,
+              "customer_name": "Customer484"
+            },
+            {
+              "customer_id": 486,
+              "customer_name": "Customer486"
+            },
+            {
+              "customer_id": 488,
+              "customer_name": "Customer488"
+            },
+            {
+              "customer_id": 490,
+              "customer_name": "Customer490"
+            },
+            {
+              "customer_id": 492,
+              "customer_name": "Customer492"
+            },
+            {
+              "customer_id": 494,
+              "customer_name": "Customer494"
+            },
+            {
+              "customer_id": 496,
+              "customer_name": "Customer496"
+            },
+            {
+              "customer_id": 498,
+              "customer_name": "Customer498"
+            },
+            {
+              "customer_id": 500,
+              "customer_name": "Customer500"
+            },
+            {
+              "customer_id": 502,
+              "customer_name": "Customer502"
+            },
+            {
+              "customer_id": 504,
+              "customer_name": "Customer504"
+            },
+            {
+              "customer_id": 506,
+              "customer_name": "Customer506"
+            },
+            {
+              "customer_id": 508,
+              "customer_name": "Customer508"
+            },
+            {
+              "customer_id": 510,
+              "customer_name": "Customer510"
+            },
+            {
+              "customer_id": 512,
+              "customer_name": "Customer512"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ids"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            9
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            15
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            21
+          ],
+          [
+            23
+          ],
+          [
+            25
+          ],
+          [
+            27
+          ],
+          [
+            29
+          ],
+          [
+            31
+          ],
+          [
+            33
+          ],
+          [
+            35
+          ],
+          [
+            37
+          ],
+          [
+            39
+          ],
+          [
+            41
+          ],
+          [
+            43
+          ],
+          [
+            45
+          ],
+          [
+            47
+          ],
+          [
+            49
+          ],
+          [
+            51
+          ],
+          [
+            53
+          ],
+          [
+            55
+          ],
+          [
+            57
+          ],
+          [
+            59
+          ],
+          [
+            61
+          ],
+          [
+            63
+          ],
+          [
+            65
+          ],
+          [
+            67
+          ],
+          [
+            69
+          ],
+          [
+            71
+          ],
+          [
+            73
+          ],
+          [
+            75
+          ],
+          [
+            77
+          ],
+          [
+            79
+          ],
+          [
+            81
+          ],
+          [
+            83
+          ],
+          [
+            85
+          ],
+          [
+            87
+          ],
+          [
+            89
+          ],
+          [
+            91
+          ],
+          [
+            93
+          ],
+          [
+            95
+          ],
+          [
+            97
+          ],
+          [
+            99
+          ],
+          [
+            101
+          ],
+          [
+            103
+          ],
+          [
+            105
+          ],
+          [
+            107
+          ],
+          [
+            109
+          ],
+          [
+            111
+          ],
+          [
+            113
+          ],
+          [
+            115
+          ],
+          [
+            117
+          ],
+          [
+            119
+          ],
+          [
+            121
+          ],
+          [
+            123
+          ],
+          [
+            125
+          ],
+          [
+            127
+          ],
+          [
+            129
+          ],
+          [
+            131
+          ],
+          [
+            133
+          ],
+          [
+            135
+          ],
+          [
+            137
+          ],
+          [
+            139
+          ],
+          [
+            141
+          ],
+          [
+            143
+          ],
+          [
+            145
+          ],
+          [
+            147
+          ],
+          [
+            149
+          ],
+          [
+            151
+          ],
+          [
+            153
+          ],
+          [
+            155
+          ],
+          [
+            157
+          ],
+          [
+            159
+          ],
+          [
+            161
+          ],
+          [
+            163
+          ],
+          [
+            165
+          ],
+          [
+            167
+          ],
+          [
+            169
+          ],
+          [
+            171
+          ],
+          [
+            173
+          ],
+          [
+            175
+          ],
+          [
+            177
+          ],
+          [
+            179
+          ],
+          [
+            181
+          ],
+          [
+            183
+          ],
+          [
+            185
+          ],
+          [
+            187
+          ],
+          [
+            189
+          ],
+          [
+            191
+          ],
+          [
+            193
+          ],
+          [
+            195
+          ],
+          [
+            197
+          ],
+          [
+            199
+          ],
+          [
+            201
+          ],
+          [
+            203
+          ],
+          [
+            205
+          ],
+          [
+            207
+          ],
+          [
+            209
+          ],
+          [
+            211
+          ],
+          [
+            213
+          ],
+          [
+            215
+          ],
+          [
+            217
+          ],
+          [
+            219
+          ],
+          [
+            221
+          ],
+          [
+            223
+          ],
+          [
+            225
+          ],
+          [
+            227
+          ],
+          [
+            229
+          ],
+          [
+            231
+          ],
+          [
+            233
+          ],
+          [
+            235
+          ],
+          [
+            237
+          ],
+          [
+            239
+          ],
+          [
+            241
+          ],
+          [
+            243
+          ],
+          [
+            245
+          ],
+          [
+            247
+          ],
+          [
+            249
+          ],
+          [
+            251
+          ],
+          [
+            253
+          ],
+          [
+            255
+          ],
+          [
+            257
+          ],
+          [
+            259
+          ],
+          [
+            261
+          ],
+          [
+            263
+          ],
+          [
+            265
+          ],
+          [
+            267
+          ],
+          [
+            269
+          ],
+          [
+            271
+          ],
+          [
+            273
+          ],
+          [
+            275
+          ],
+          [
+            277
+          ],
+          [
+            279
+          ],
+          [
+            281
+          ],
+          [
+            283
+          ],
+          [
+            285
+          ],
+          [
+            287
+          ],
+          [
+            289
+          ],
+          [
+            291
+          ],
+          [
+            293
+          ],
+          [
+            295
+          ],
+          [
+            297
+          ],
+          [
+            299
+          ],
+          [
+            301
+          ],
+          [
+            303
+          ],
+          [
+            305
+          ],
+          [
+            307
+          ],
+          [
+            309
+          ],
+          [
+            311
+          ],
+          [
+            313
+          ],
+          [
+            315
+          ],
+          [
+            317
+          ],
+          [
+            319
+          ],
+          [
+            321
+          ],
+          [
+            323
+          ],
+          [
+            325
+          ],
+          [
+            327
+          ],
+          [
+            329
+          ],
+          [
+            331
+          ],
+          [
+            333
+          ],
+          [
+            335
+          ],
+          [
+            337
+          ],
+          [
+            339
+          ],
+          [
+            341
+          ],
+          [
+            343
+          ],
+          [
+            345
+          ],
+          [
+            347
+          ],
+          [
+            349
+          ],
+          [
+            351
+          ],
+          [
+            353
+          ],
+          [
+            355
+          ],
+          [
+            357
+          ],
+          [
+            359
+          ],
+          [
+            361
+          ],
+          [
+            363
+          ],
+          [
+            365
+          ],
+          [
+            367
+          ],
+          [
+            369
+          ],
+          [
+            371
+          ],
+          [
+            373
+          ],
+          [
+            375
+          ],
+          [
+            377
+          ],
+          [
+            379
+          ],
+          [
+            381
+          ],
+          [
+            383
+          ],
+          [
+            385
+          ],
+          [
+            387
+          ],
+          [
+            389
+          ],
+          [
+            391
+          ],
+          [
+            393
+          ],
+          [
+            395
+          ],
+          [
+            397
+          ],
+          [
+            399
+          ],
+          [
+            401
+          ],
+          [
+            403
+          ],
+          [
+            405
+          ],
+          [
+            407
+          ],
+          [
+            409
+          ],
+          [
+            411
+          ],
+          [
+            413
+          ],
+          [
+            415
+          ],
+          [
+            417
+          ],
+          [
+            419
+          ],
+          [
+            421
+          ],
+          [
+            423
+          ],
+          [
+            425
+          ],
+          [
+            427
+          ],
+          [
+            429
+          ],
+          [
+            431
+          ],
+          [
+            433
+          ],
+          [
+            435
+          ],
+          [
+            437
+          ],
+          [
+            439
+          ],
+          [
+            441
+          ],
+          [
+            443
+          ],
+          [
+            445
+          ],
+          [
+            447
+          ],
+          [
+            449
+          ],
+          [
+            451
+          ],
+          [
+            453
+          ],
+          [
+            455
+          ],
+          [
+            457
+          ],
+          [
+            459
+          ],
+          [
+            461
+          ],
+          [
+            463
+          ],
+          [
+            465
+          ],
+          [
+            467
+          ],
+          [
+            469
+          ],
+          [
+            471
+          ],
+          [
+            473
+          ],
+          [
+            475
+          ],
+          [
+            477
+          ],
+          [
+            479
+          ],
+          [
+            481
+          ],
+          [
+            483
+          ],
+          [
+            485
+          ],
+          [
+            487
+          ],
+          [
+            489
+          ],
+          [
+            491
+          ],
+          [
+            493
+          ],
+          [
+            495
+          ],
+          [
+            497
+          ],
+          [
+            499
+          ],
+          [
+            501
+          ],
+          [
+            503
+          ],
+          [
+            505
+          ],
+          [
+            507
+          ],
+          [
+            509
+          ],
+          [
+            511
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "alternating"
+      ]
+    }
+  ]
+}
+

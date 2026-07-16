@@ -1,17 +1,14 @@
-def solve(colors, needed_time):
-    if not colors:
-        return 0
-    times = list(needed_time) + [0] * max(0, len(colors) - len(needed_time))
+def solve(colors: str, needed_time: list[int]) -> int:
     total = 0
-    group_sum = times[0]
-    group_max = times[0]
-    for i in range(1, len(colors)):
-        if colors[i] == colors[i - 1]:
-            group_sum += times[i]
-            group_max = max(group_max, times[i])
+    previous_color = ""
+    kept_time = 0
+
+    for color, removal_time in zip(colors, needed_time):
+        if color == previous_color:
+            total += min(kept_time, removal_time)
+            kept_time = max(kept_time, removal_time)
         else:
-            total += group_sum - group_max
-            group_sum = times[i]
-            group_max = times[i]
-    total += group_sum - group_max
+            previous_color = color
+            kept_time = removal_time
+
     return total

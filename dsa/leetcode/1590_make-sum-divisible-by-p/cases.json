@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1590",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: remove one interior value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          2
+        ],
+        "p": 6
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-removal"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: remove a two-value suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          3,
+          5,
+          2
+        ],
+        "p": 9
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "suffix"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: total already divisible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "p": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "empty-removal"
+      ]
+    },
+    {
+      "id": "trial-impossible-whole-only",
+      "name": "trial: only removing whole array would work",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "p": 7
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-prefix",
+      "name": "trial: shortest valid removal is a prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          3
+        ],
+        "p": 3
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "prefix"
+      ]
+    },
+    {
+      "id": "real-suffix",
+      "name": "hidden: shortest valid removal is a suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          1,
+          1
+        ],
+        "p": 3
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "suffix"
+      ]
+    },
+    {
+      "id": "real-interior",
+      "name": "hidden: shortest valid removal is interior",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          4
+        ],
+        "p": 5
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-single-divisible",
+      "name": "hidden: single element already divisible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5
+        ],
+        "p": 5
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "single"
+      ]
+    },
+    {
+      "id": "real-single-impossible",
+      "name": "hidden: single element cannot be removed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5
+        ],
+        "p": 7
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "single",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-divisor-one",
+      "name": "hidden: every sum is divisible by one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          999999999,
+          1,
+          7
+        ],
+        "p": 1
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "divisor-boundary"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: large values require a two-element suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          1
+        ],
+        "p": 1000000000
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1599",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: backlog remains after final arrival",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "customers": [
+          8,
+          3
+        ],
+        "boardingCost": 5,
+        "runningCost": 6
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "backlog"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: large queue drains over seven rotations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "customers": [
+          10,
+          9,
+          6
+        ],
+        "boardingCost": 6,
+        "runningCost": 4
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "backlog"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: service is never profitable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "customers": [
+          3,
+          4,
+          0,
+          5,
+          1
+        ],
+        "boardingCost": 1,
+        "runningCost": 92
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "no-profit"
+      ]
+    },
+    {
+      "id": "trial-one-profitable-rotation",
+      "name": "trial: one full profitable gondola",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "customers": [
+          4
+        ],
+        "boardingCost": 5,
+        "runningCost": 6
+      },
+      "expected": 1,
+      "tags": [
+        "single-arrival",
+        "profit"
+      ]
+    },
+    {
+      "id": "trial-no-customers",
+      "name": "trial: no customer ever boards",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "customers": [
+          0
+        ],
+        "boardingCost": 10,
+        "runningCost": 1
+      },
+      "expected": -1,
+      "tags": [
+        "zero-arrivals",
+        "no-profit"
+      ]
+    },
+    {
+      "id": "real-zero-profit-not-valid",
+      "name": "hidden: best profit is exactly zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": [
+          4
+        ],
+        "boardingCost": 2,
+        "runningCost": 8
+      },
+      "expected": -1,
+      "tags": [
+        "zero-profit",
+        "strict-positive"
+      ]
+    },
+    {
+      "id": "real-earliest-tied-maximum",
+      "name": "hidden: equal maximum keeps earliest rotation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": [
+          0,
+          5
+        ],
+        "boardingCost": 1,
+        "runningCost": 1
+      },
+      "expected": 2,
+      "tags": [
+        "tie",
+        "earliest"
+      ]
+    },
+    {
+      "id": "real-profitable-first-then-drain-loss",
+      "name": "hidden: stopping before queue fully drains is optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": [
+          5
+        ],
+        "boardingCost": 3,
+        "runningCost": 10
+      },
+      "expected": 1,
+      "tags": [
+        "early-stop",
+        "backlog"
+      ]
+    },
+    {
+      "id": "real-delayed-arrival",
+      "name": "hidden: empty rotations precede a profitable backlog",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": [
+          0,
+          0,
+          8
+        ],
+        "boardingCost": 5,
+        "runningCost": 6
+      },
+      "expected": 4,
+      "tags": [
+        "delayed-arrival",
+        "backlog"
+      ]
+    },
+    {
+      "id": "real-small-steady-arrivals",
+      "name": "hidden: one customer arrives each rotation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "boardingCost": 10,
+        "runningCost": 5
+      },
+      "expected": 4,
+      "tags": [
+        "steady-arrivals"
+      ]
+    },
+    {
+      "id": "real-empty-middle-rotation",
+      "name": "hidden: empty middle rotation still costs money",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": [
+          4,
+          0,
+          4
+        ],
+        "boardingCost": 3,
+        "runningCost": 5
+      },
+      "expected": 3,
+      "tags": [
+        "empty-rotation",
+        "profit"
+      ]
+    },
+    {
+      "id": "real-backlog-beats-later-empty-rotations",
+      "name": "hidden: queue drains before scheduled zeros end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": [
+          6,
+          0,
+          0
+        ],
+        "boardingCost": 4,
+        "runningCost": 5
+      },
+      "expected": 2,
+      "tags": [
+        "backlog",
+        "scheduled-zero"
+      ]
+    }
+  ]
+}
+

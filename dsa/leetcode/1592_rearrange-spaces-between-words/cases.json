@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1592",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: spaces divide evenly",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "  this   is  a sentence "
+      },
+      "expected": "this   is   a   sentence",
+      "tags": [
+        "sample",
+        "even-division"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one trailing remainder",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": " practice   makes   perfect"
+      },
+      "expected": "practice   makes   perfect ",
+      "tags": [
+        "sample",
+        "remainder"
+      ]
+    },
+    {
+      "id": "sample-single-word",
+      "name": "sample: all spaces follow one word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "text": "  hello"
+      },
+      "expected": "hello  ",
+      "tags": [
+        "sample",
+        "single-word"
+      ]
+    },
+    {
+      "id": "trial-no-spaces",
+      "name": "trial: one word without spaces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "word"
+      },
+      "expected": "word",
+      "tags": [
+        "trial",
+        "single-word"
+      ]
+    },
+    {
+      "id": "trial-one-gap",
+      "name": "trial: two words already evenly separated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "text": "a b"
+      },
+      "expected": "a b",
+      "tags": [
+        "trial",
+        "two-words"
+      ]
+    },
+    {
+      "id": "real-leading-and-trailing",
+      "name": "hidden: all spaces move into one gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": " a  b "
+      },
+      "expected": "a    b",
+      "tags": [
+        "hidden",
+        "leading",
+        "trailing"
+      ]
+    },
+    {
+      "id": "real-three-words-even",
+      "name": "hidden: six spaces divide across two gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": "  a b  c "
+      },
+      "expected": "a   b   c",
+      "tags": [
+        "hidden",
+        "even-division"
+      ]
+    },
+    {
+      "id": "real-three-words-remainder",
+      "name": "hidden: five spaces leave one trailing",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": " a b c  "
+      },
+      "expected": "a  b  c ",
+      "tags": [
+        "hidden",
+        "remainder"
+      ]
+    },
+    {
+      "id": "real-trailing-single-word",
+      "name": "hidden: existing trailing spaces stay after sole word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": "alone   "
+      },
+      "expected": "alone   ",
+      "tags": [
+        "hidden",
+        "single-word"
+      ]
+    },
+    {
+      "id": "real-long-words",
+      "name": "hidden: preserve multi-letter word order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "text": "  alpha beta   gamma  "
+      },
+      "expected": "alpha    beta    gamma",
+      "tags": [
+        "hidden",
+        "word-order"
+      ]
+    }
+  ]
+}

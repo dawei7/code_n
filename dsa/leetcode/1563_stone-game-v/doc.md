@@ -5,38 +5,35 @@
 | Source | LeetCode |
 | Frontend ID | 1563 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Math, Dynamic Programming, Game Theory |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [stone-game-v](https://leetcode.com/problems/stone-game-v/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/stone-game-v/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/stone-game-v/).
-
 ### Goal
-Split the row of stones repeatedly to maximize Alice's score. At each split, Bob
-removes the side with the larger sum; if both sums are equal, Alice may choose
-which side remains. Alice gains the sum of the side that remains after each
-split.
+
+Several stones form a row, and `stoneValue[i]` is the positive value of stone `i`. During each round, Alice splits the current row into two nonempty contiguous rows. Bob compares their total values and discards the row with the larger sum. Alice gains the sum of the row that remains, and play continues using that row.
+
+When the two sums are equal, Bob lets Alice choose which side to discard. The game ends when only one stone remains. Starting from score zero, return the maximum total score Alice can obtain by choosing every split optimally.
 
 ### Function Contract
 **Inputs**
 
-- `stoneValue`: the values of the stones in order.
+- `stoneValue`: An array of $N$ positive integers, where $1 \le N \le 500$ and $1 \le \texttt{stoneValue[i]} \le 10^6$.
+- Stone order is fixed; each split divides the current contiguous interval between two adjacent stones.
 
 **Return value**
 
-The maximum score Alice can guarantee.
+Return Alice's maximum attainable total score under Bob's prescribed discard rule.
 
 ### Examples
 **Example 1**
 
-- Input: `stoneValue = [6, 2, 3, 4, 5, 5]`
+- Input: `stoneValue = [6,2,3,4,5,5]`
 - Output: `18`
 
 **Example 2**
 
-- Input: `stoneValue = [7, 7, 7, 7, 7, 7, 7]`
+- Input: `stoneValue = [7,7,7,7,7,7,7]`
 - Output: `28`
 
 **Example 3**
@@ -44,75 +41,49 @@ The maximum score Alice can guarantee.
 - Input: `stoneValue = [4]`
 - Output: `0`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Use prefix sums and interval dynamic programming. For every interval, try each
-split point, compare the left and right sums, and recurse only into the side that
-could remain. If the sums are equal, take the better of the two recursive
-choices.
+- **Time:** $O(N^2)$
+- **Space:** $O(N^2)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n^3)` for the direct interval DP.
-- **Space Complexity**: `O(n^2)`.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(stone_value):
-    n = len(stone_value)
-    if n <= 1:
-        return 0
-    prefix = [0]
-    for value in stone_value:
-        prefix.append(prefix[-1] + value)
+#### General
 
-    def interval_sum(left, right):
-        return prefix[right + 1] - prefix[left]
+**Write the interval recurrence**
 
-    dp = [[0] * n for _ in range(n)]
-    best_left = [[0] * n for _ in range(n)]
-    best_right = [[0] * n for _ in range(n)]
-    for index, value in enumerate(stone_value):
-        best_left[index][index] = value
-        best_right[index][index] = value
+Let $F(i,j)$ be the best future score when stones $i$ through $j$ remain, and let $S(i,j)$ be their sum from a prefix-sum array. Splitting after $k$ creates sums $S(i,k)$ and $S(k+1,j)$. If the left sum is smaller, the transition is $S(i,k)+F(i,k)$; if the right sum is smaller, it is $S(k+1,j)+F(k+1,j)$. When they are equal, Alice chooses the larger of those two continuations. A one-stone interval has score zero.
 
-    for length in range(2, n + 1):
-        for left in range(n - length + 1):
-            right = left + length - 1
-            total = interval_sum(left, right)
-            best = 0
+Trying every $k$ for every interval is cubic. The optimization groups all splits that retain the left side and all splits that retain the right side.
 
-            lo, hi = left, right - 1
-            last_left_not_greater = left - 1
-            while lo <= hi:
-                mid = (lo + hi) // 2
-                if 2 * interval_sum(left, mid) <= total:
-                    last_left_not_greater = mid
-                    lo = mid + 1
-                else:
-                    hi = mid - 1
-            if last_left_not_greater >= left:
-                best = max(best, best_left[left][last_left_not_greater])
+**Precompute the best legal continuation on each side**
 
-            lo, hi = left, right - 1
-            first_left_not_less = right
-            while lo <= hi:
-                mid = (lo + hi) // 2
-                if 2 * interval_sum(left, mid) >= total:
-                    first_left_not_less = mid
-                    hi = mid - 1
-                else:
-                    lo = mid + 1
-            if first_left_not_less <= right - 1:
-                best = max(best, best_right[first_left_not_less + 1][right])
+Define $L(i,k)$ as the maximum of $F(i,x)+S(i,x)$ over $i \le x \le k$. Define $R(k,j)$ symmetrically as the maximum of $F(x,j)+S(x,j)$ over $k \le x \le j$. These tables answer the best left-retaining or right-retaining transition over a whole range in constant time.
 
-            dp[left][right] = best
-            best_left[left][right] = max(best_left[left][right - 1], best + total)
-            best_right[left][right] = max(best_right[left + 1][right], best + total)
-    return dp[0][n - 1]
-```
+For fixed $(i,j)$, positive stone values make $S(i,k)$ strictly increase with $k$. Therefore all splits satisfying $2S(i,k) \le S(i,j)$ form a prefix, while all satisfying $2S(i,k) \ge S(i,j)$ form a suffix. Find the first crossing where the left sum is at least half the total. The appropriate entry of $L$ covers every legal left-retaining split, and the corresponding entry of $R$ covers every legal right-retaining split. At exact equality, both sides are included, matching Alice's choice.
+
+**Move the crossing monotonically**
+
+Process left endpoints from right to left and right endpoints from left to right. For a fixed `left`, extending `right` only increases the interval total, so the first half-sum crossing never moves left. A single pointer advances at most $N$ times across all intervals sharing that left endpoint. After computing $F(i,j)$, update $L(i,j)$ from $L(i,j-1)$ and update $R(i,j)$ from $R(i+1,j)$, making the value available to larger intervals.
+
+This order guarantees that every shorter subinterval and every needed range maximum has already been computed. The resulting transition examines no individual split repeatedly and is equivalent to the full recurrence.
+
+#### Complexity detail
+
+There are $O(N^2)$ intervals. Each interval performs constant work, while each crossing pointer advances only $O(N)$ times for its fixed left endpoint. Total time is $O(N^2)$.
+
+The score, left-maximum, and right-maximum tables each contain $N^2$ entries, and the prefix sums contain $N+1$, so space is $O(N^2)$.
+
+#### Alternatives and edge cases
+
+- **Direct interval DP:** enumerate every split for every interval. It follows the recurrence directly but takes $O(N^3)$ time.
+- **Binary-search crossing:** locate the half-sum boundary separately for every interval and use the same range maxima. This is simpler to derive but costs $O(N^2\log N)$ time.
+- **Top-down memoization:** cache interval results while trying splits. It removes repeated states but still performs cubic split work in the worst case.
+- **One stone:** no legal split exists, so the score is zero.
+- **Equal split sums:** both remaining sides are legal, and the transition must choose the continuation with the larger future score.
+- **No crossing before the last stone:** every legal split keeps the left side, so the left range maximum covers all split points.
+- **Large values:** prefix sums may exceed a 32-bit integer even though each stone is bounded, so implementations in fixed-width languages should use a wide integer type.
+- **Repeated values:** positivity, rather than distinctness, supplies the monotone sum property.
+
 </details>

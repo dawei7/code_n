@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1531",
+  "measurement_note": "Size is n, the string length, while k=floor(n/4). The legal 8/16/32 interleaved tiers span 4x. The remotely Accepted first-run dynamic program uses O(n^2 k) time and O(nk) space, and an independent memoized formulation also passes. A correct implementation that rescans every candidate segment in Python adds a principal interval-length factor, completes every tier, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8-character interleaved string with 2 deletions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "abcdeabc",
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "interleaved-runs",
+        "proportional-budget"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16-character interleaved string with 4 deletions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "abcdeabcdeabcdea",
+        "k": 4
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "interleaved-runs",
+        "proportional-budget"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32-character interleaved string with 8 deletions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "abcdeabcdeabcdeabcdeabcdeabcdeab",
+        "k": 8
+      },
+      "expected": 23,
+      "tags": [
+        "benchmark",
+        "interleaved-runs",
+        "proportional-budget"
+      ]
+    }
+  ]
+}

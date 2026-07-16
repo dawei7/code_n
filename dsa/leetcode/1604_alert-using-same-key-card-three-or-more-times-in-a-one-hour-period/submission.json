@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1709",
+  "frontend_id": "1604",
+  "title_slug": "alert-using-same-key-card-three-or-more-times-in-a-one-hour-period",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.alertNames",
+  "verified_submission_id": "2070087650",
+  "verified_at": "2026-07-16T15:55:34.406754+00:00"
+}

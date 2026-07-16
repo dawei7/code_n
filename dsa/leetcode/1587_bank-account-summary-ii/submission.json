@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1734",
+  "frontend_id": "1587",
+  "title_slug": "bank-account-summary-ii",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2069967098",
+  "verified_at": "2026-07-16T14:20:18.944316+00:00"
+}

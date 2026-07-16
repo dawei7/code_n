@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1530",
+  "cases": [
+    {"id": "sample-one-pair", "name": "sample: uneven tree with one boundary pair", "kind": "sample", "visible": true, "input": {"root": [1, 2, 3, null, 4], "distance": 3}, "expected": 1, "tags": ["sample", "official", "exact-boundary"]},
+    {"id": "sample-sibling-pairs", "name": "sample: two qualifying sibling pairs", "kind": "sample", "visible": true, "input": {"root": [1, 2, 3, 4, 5, 6, 7], "distance": 3}, "expected": 2, "tags": ["sample", "official", "balanced"]},
+    {"id": "sample-deep-one", "name": "sample: one qualifying pair in an irregular tree", "kind": "sample", "visible": true, "input": {"root": [7, 1, 4, 6, null, 5, 3, null, null, null, null, null, 2], "distance": 3}, "expected": 1, "tags": ["sample", "official", "irregular"]},
+    {"id": "trial-single-node", "name": "trial: one leaf cannot form a pair", "kind": "trial", "visible": true, "input": {"root": [1], "distance": 10}, "expected": 0, "tags": ["trial", "single-node"]},
+    {"id": "trial-chain", "name": "trial: a chain has only one leaf", "kind": "trial", "visible": true, "input": {"root": [1, 2, null, 3, null, 4], "distance": 10}, "expected": 0, "tags": ["trial", "skewed", "single-leaf"]},
+    {"id": "trial-distance-one", "name": "trial: distinct leaves cannot be one edge apart", "kind": "trial", "visible": true, "input": {"root": [1, 2, 3], "distance": 1}, "expected": 0, "tags": ["trial", "minimum-distance"]},
+    {"id": "real-exact-two", "name": "hidden: sibling leaves meet distance two exactly", "kind": "real", "visible": false, "input": {"root": [9, 5, 5], "distance": 2}, "expected": 1, "tags": ["real", "exact-boundary", "repeated-values"]},
+    {"id": "real-cross-subtree", "name": "hidden: all four leaves qualify at distance four", "kind": "real", "visible": false, "input": {"root": [1, 2, 3, 4, 5, 6, 7], "distance": 4}, "expected": 6, "tags": ["real", "cross-subtree", "all-pairs"]},
+    {"id": "real-unbalanced", "name": "hidden: mixed leaf depths separate qualifying pairs", "kind": "real", "visible": false, "input": {"root": [1, 2, 3, 4, null, null, 5, 6, 7, null, null, 8, 9], "distance": 4}, "expected": 3, "tags": ["real", "mixed-depths", "irregular"]},
+    {"id": "real-two-distant", "name": "hidden: two leaves exceed the limit", "kind": "real", "visible": false, "input": {"root": [1, 2, 3, 4, null, null, 5], "distance": 3}, "expected": 0, "tags": ["real", "too-distant", "two-leaves"]}
+  ]
+}

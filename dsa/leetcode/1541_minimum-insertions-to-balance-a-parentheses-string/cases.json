@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1541",
+  "cases": [
+    {
+      "id": "sample-incomplete-final-pair",
+      "name": "sample: final closing pair lacks one character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "(()))"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "official",
+        "incomplete-pair"
+      ]
+    },
+    {
+      "id": "sample-already-balanced",
+      "name": "sample: one complete opening and closing token",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "())"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "official",
+        "already-balanced"
+      ]
+    },
+    {
+      "id": "sample-prefix-and-suffix-repairs",
+      "name": "sample: unmatched prefix pair and final opening",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "))())("
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "official",
+        "both-boundaries"
+      ]
+    },
+    {
+      "id": "trial-single-opening",
+      "name": "trial: one opening needs two closes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "("
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "open"
+      ]
+    },
+    {
+      "id": "trial-single-closing",
+      "name": "trial: one close needs an opening and partner close",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": ")"
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "close"
+      ]
+    },
+    {
+      "id": "trial-closing-token",
+      "name": "trial: a closing pair needs one inserted opening",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "))"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "closing-pair"
+      ]
+    },
+    {
+      "id": "real-consecutive-openings",
+      "name": "hidden: two openings need four final closes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(("
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "open-run"
+      ]
+    },
+    {
+      "id": "real-interrupted-closing-pair",
+      "name": "hidden: new opening interrupts a closing pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "(()"
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "odd-requirement",
+        "interrupted-pair"
+      ]
+    },
+    {
+      "id": "real-extra-close-after-balanced-prefix",
+      "name": "hidden: balanced unit followed by an extra close",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "()))"
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "excess-close"
+      ]
+    },
+    {
+      "id": "real-nested-looking-pattern",
+      "name": "hidden: ordinary nesting syntax differs from double-close balance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "((()))"
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "semantic-trap",
+        "nested"
+      ]
+    }
+  ]
+}

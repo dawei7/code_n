@@ -1,87 +1,17 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1561",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: two rounds",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "piles": [
-          2,
-          4,
-          1,
-          2,
-          7,
-          8
-        ]
-      },
-      "expected": 9,
-      "tags": [
-        "sample",
-        "greedy"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: one round",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "piles": [
-          2,
-          4,
-          5
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: three rounds",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "piles": [
-          9,
-          8,
-          7,
-          6,
-          5,
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "expected": 18,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-six-piles",
-      "name": "hidden: ascending six piles",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "piles": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      },
-      "expected": 8,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-1", "name": "sample: two optimally regrouped triples", "kind": "sample", "visible": true, "input": {"piles": [2,4,1,2,7,8]}, "expected": 9, "tags": ["sample", "greedy", "two-groups"]},
+    {"id": "sample-2", "name": "sample: one triple", "kind": "sample", "visible": true, "input": {"piles": [2,4,5]}, "expected": 4, "tags": ["sample", "single-group", "median"]},
+    {"id": "sample-3", "name": "sample: three groups", "kind": "sample", "visible": true, "input": {"piles": [9,8,7,6,5,1,2,3,4]}, "expected": 18, "tags": ["sample", "greedy", "three-groups"]},
+    {"id": "trial-consecutive-six", "name": "trial: consecutive values in two groups", "kind": "trial", "visible": true, "input": {"piles": [1,2,3,4,5,6]}, "expected": 8, "tags": ["trial", "consecutive", "two-groups"]},
+    {"id": "trial-all-equal", "name": "trial: all pile sizes equal", "kind": "trial", "visible": true, "input": {"piles": [5,5,5,5,5,5]}, "expected": 10, "tags": ["trial", "duplicates", "all-equal"]},
+    {"id": "trial-large-outliers", "name": "trial: large piles cannot all go to you", "kind": "trial", "visible": true, "input": {"piles": [1,1,1,100,100,100]}, "expected": 101, "tags": ["trial", "outliers", "duplicates"]},
+    {"id": "real-consecutive-twelve", "name": "hidden: four consecutive groups", "kind": "real", "visible": false, "input": {"piles": [12,11,10,9,8,7,6,5,4,3,2,1]}, "expected": 32, "tags": ["real", "consecutive", "four-groups"]},
+    {"id": "real-duplicates-across-ranks", "name": "hidden: duplicates cross player boundaries", "kind": "real", "visible": false, "input": {"piles": [2,2,2,3,3,3,9,9,9]}, "expected": 15, "tags": ["real", "duplicates", "three-groups"]},
+    {"id": "real-one-large", "name": "hidden: one pile is much larger", "kind": "real", "visible": false, "input": {"piles": [1,2,3,4,5,100]}, "expected": 8, "tags": ["real", "outlier", "two-groups"]},
+    {"id": "real-unsorted-mixed", "name": "hidden: arbitrary order and uneven gaps", "kind": "real", "visible": false, "input": {"piles": [14,1,9,3,20,6,11,2,8]}, "expected": 29, "tags": ["real", "unsorted", "three-groups"]},
+    {"id": "real-upper-values", "name": "hidden: values near the source maximum", "kind": "real", "visible": false, "input": {"piles": [9995,9996,9997,9998,9999,10000]}, "expected": 19996, "tags": ["real", "upper-bound", "two-groups"]}
   ]
 }

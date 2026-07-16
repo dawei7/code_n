@@ -5,51 +5,88 @@
 | Source | LeetCode |
 | Frontend ID | 1530 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Tree, Depth-First Search, Binary Tree |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-good-leaf-nodes-pairs](https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given the root of a binary tree and an integer `distance`, consider every unordered pair of two different leaf nodes. A pair is good when the length of the shortest path between its leaves, measured in tree edges, is at most `distance`.
+
+Return the number of good leaf-node pairs. Internal node values do not affect which pairs qualify; only the tree structure and the path-length limit matter.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `root`: The root of a nonempty binary tree containing between 1 and $2^{10}$ nodes.
+- Each node value lies between 1 and 100, inclusive.
+- `distance`: An integer from 1 through 10.
 
 **Return value**
 
-TODO
+Return the number of unordered pairs of distinct leaves whose shortest connecting path contains at most `distance` edges.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [1, 2, 3, null, 4], distance = 3`
+- Output: `1`
+- Explanation: Leaves 3 and 4 are three edges apart, so their only pair is good.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [1, 2, 3, 4, 5, 6, 7], distance = 3`
+- Output: `2`
+- Explanation: The sibling pairs `(4, 5)` and `(6, 7)` have distance 2; cross-subtree leaf pairs have distance 4.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [7, 1, 4, 6, null, 5, 3, null, null, null, null, null, 2], distance = 3`
+- Output: `1`
+- Explanation: Only the pair formed by leaves 2 and 5 meets the limit.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(nD^2)$
+- **Space:** $O(hD)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Summarize leaves by their distance from each subtree root**
+
+Let $D$ be `distance` and $h$ be the tree height. After processing a node, keep a histogram whose entry at index $d$ is the number of leaves exactly $d$ edges below that node. Distances beyond $D$ can be discarded because moving upward can only make their paths longer.
+
+A leaf contributes one count at distance zero. For an internal node, each child histogram shifts right by one when propagated to the parent: a leaf $d$ edges below a child is $d+1$ edges below the current node.
+
+**Count each pair at its lowest common ancestor**
+
+A leaf from the left subtree at child-relative distance $a$ and a leaf from the right subtree at distance $b$ have path length $a+b+2$. If that sum is at most $D$, their histogram buckets contribute the product of their counts.
+
+These are precisely the pairs whose lowest common ancestor is the current node. A pair is never counted below that node because its leaves occupy different child subtrees, and it is not counted above because both leaves then belong to the same child side. Thus every good pair is counted exactly once.
+
+**Use iterative postorder for the full legal depth**
+
+The verified implementation performs postorder traversal with an explicit stack. A first visit schedules the node after its children; the second visit combines the completed child histograms. Removing child entries after combination keeps only histograms still needed by the traversal and avoids Python recursion-depth dependence on a legal 1,024-node chain.
+
+#### Complexity detail
+
+At each of $n$ nodes, combining two histograms considers at most $D^2$ distance-bucket pairs, giving $O(nD^2)$ time. Since $D \leq 10$, this is linear in the number of nodes for the source domain.
+
+The explicit traversal stack and live histograms follow the active tree frontier. With child histograms released after their parent is processed, the auxiliary bound is $O(hD)$; the worst-case height is $O(n)$ for a skewed tree.
+
+#### Alternatives and edge cases
+
+- **All-pairs leaf traversal:** compute a path for every leaf pair or run a graph search from every leaf. It is correct but can cost $O(n^2)$ time.
+- **Recursive postorder:** the same histogram recurrence is concise recursively, but a maximally skewed legal tree can approach Python's recursion limit.
+- **Store every leaf depth:** merging full depth lists is conceptually simple but can repeatedly copy large collections; bounded histograms aggregate equal distances.
+- **Single node:** the root is the only leaf, so there is no pair and the answer is 0.
+- **One leaf:** any chain has no pair regardless of the distance limit.
+- **Sibling leaves:** their distance is 2 and they qualify exactly when `distance >= 2`.
+- **Exact boundary:** a path whose length equals `distance` is good because the comparison is inclusive.
+- **Repeated node values:** leaves are distinct nodes, not distinct values, so equal values do not merge pairs.
+- **Distant leaves:** once a histogram distance reaches $D$, it need not be propagated farther upward.
+
+</details>

@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1601",
+  "measurement_note": "Size is M, the number of transfer requests. The legal 3/6/12-request tiers contain only self-transfers, so acceptance-first branch-and-bound establishes the optimum M immediately. The Accepted search and an independent nonzero-balance search share O(N2^M) worst-case complexity and prune every non-improving branch. Correct mask enumeration rebuilds balances for all 2^M subsets, adds an M factor, completes every tier, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3 self-transfer requests",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "n": 1,
+        "requests": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "self-transfer"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 self-transfer requests",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "n": 1,
+        "requests": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "self-transfer"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 12 self-transfer requests",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "n": 1,
+        "requests": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "self-transfer"
+      ]
+    }
+  ]
+}
+

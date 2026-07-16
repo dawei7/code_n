@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1684",
+  "frontend_id": "1562",
+  "title_slug": "find-latest-group-of-size-m",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findLatestStep",
+  "verified_submission_id": "2069803480",
+  "verified_at": "2026-07-16T11:41:26.693015+00:00"
+}

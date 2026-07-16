@@ -1,13 +1,12 @@
-def solve(arr, m, k):
-    if m <= 0 or k <= 0:
-        return False
-    total = m * k
-    for start in range(0, len(arr) - total + 1):
-        ok = True
-        for offset in range(m, total):
-            if arr[start + offset] != arr[start + offset - m]:
-                ok = False
-                break
-        if ok:
-            return True
+def solve(arr: list[int], m: int, k: int) -> bool:
+    equal_offset_run = 0
+
+    for index in range(len(arr) - m):
+        if arr[index] == arr[index + m]:
+            equal_offset_run += 1
+            if equal_offset_run == m * (k - 1):
+                return True
+        else:
+            equal_offset_run = 0
+
     return False

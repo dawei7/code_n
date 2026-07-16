@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1595",
+  "cases": [
+    {"id":"sample-1","name":"sample: two diagonal connections","kind":"sample","visible":true,"input":{"cost":[[15,96],[36,2]]},"expected":17,"tags":["sample","diagonal"]},
+    {"id":"sample-2","name":"sample: one first-group point uses two edges","kind":"sample","visible":true,"input":{"cost":[[1,3,5],[4,1,1],[1,5,3]]},"expected":4,"tags":["sample","multiple-edges"]},
+    {"id":"sample-3","name":"sample: rectangular cost matrix","kind":"sample","visible":true,"input":{"cost":[[2,5,1],[3,4,7],[8,1,2],[6,2,4],[3,8,8]]},"expected":10,"tags":["sample","rectangular"]},
+    {"id":"trial-single-zero","name":"trial: one zero-cost connection","kind":"trial","visible":true,"input":{"cost":[[0]]},"expected":0,"tags":["single-point","zero"]},
+    {"id":"trial-single-positive","name":"trial: one positive connection","kind":"trial","visible":true,"input":{"cost":[[7]]},"expected":7,"tags":["single-point"]},
+    {"id":"real-zero-diagonal","name":"hidden: zero-cost diagonal covers both groups","kind":"real","visible":false,"input":{"cost":[[0,5],[5,0]]},"expected":0,"tags":["zero","diagonal"]},
+    {"id":"real-uncovered-column-repair","name":"hidden: expensive column needs one repair edge","kind":"real","visible":false,"input":{"cost":[[1,100],[1,100],[1,100]]},"expected":102,"tags":["column-repair","multiple-edges"]},
+    {"id":"real-rectangular-choice","name":"hidden: four first-group points and two endpoints","kind":"real","visible":false,"input":{"cost":[[5,1],[2,6],[4,3],[1,8]]},"expected":7,"tags":["rectangular","assignment"]},
+    {"id":"real-zero-perfect-coverage","name":"hidden: three zero-cost columns","kind":"real","visible":false,"input":{"cost":[[0,100,100],[100,0,100],[100,100,0]]},"expected":0,"tags":["zero","full-coverage"]},
+    {"id":"real-all-ties","name":"hidden: every edge has equal cost","kind":"real","visible":false,"input":{"cost":[[2,2],[2,2],[2,2]]},"expected":6,"tags":["ties","rectangular"]},
+    {"id":"real-all-zero","name":"hidden: all connections are free","kind":"real","visible":false,"input":{"cost":[[0,0],[0,0]]},"expected":0,"tags":["zero","ties"]},
+    {"id":"real-extra-row-mixed-costs","name":"hidden: mixed costs with more rows than columns","kind":"real","visible":false,"input":{"cost":[[5,9,1],[10,3,8],[4,7,6],[2,11,12]]},"expected":10,"tags":["rectangular","mixed-costs"]}
+  ]
+}

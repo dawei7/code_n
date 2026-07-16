@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1533",
+  "cases": [
+    {"id": "sample-eight", "name": "sample: exception inside an even-length array", "kind": "sample", "visible": true, "input": {"reader": {"array": [7, 7, 7, 7, 10, 7, 7, 7], "max_queries": 20}}, "expected": 4, "tags": ["sample", "official", "even-length"]},
+    {"id": "sample-three", "name": "sample: exception is the odd unpaired endpoint", "kind": "sample", "visible": true, "input": {"reader": {"array": [6, 6, 12], "max_queries": 20}}, "expected": 2, "tags": ["sample", "official", "odd-leftover"]},
+    {"id": "sample-two", "name": "sample: minimum length with larger right value", "kind": "sample", "visible": true, "input": {"reader": {"array": [9, 12], "max_queries": 20}}, "expected": 1, "tags": ["sample", "minimum-length", "right-half"]},
+    {"id": "trial-two-left", "name": "trial: minimum length with larger left value", "kind": "trial", "visible": true, "input": {"reader": {"array": [5, 2], "max_queries": 20}}, "expected": 0, "tags": ["trial", "minimum-length", "left-half"]},
+    {"id": "trial-middle", "name": "trial: exception at the middle of an odd array", "kind": "trial", "visible": true, "input": {"reader": {"array": [3, 3, 3, 9, 3, 3, 3], "max_queries": 20}}, "expected": 3, "tags": ["trial", "middle", "odd-length"]},
+    {"id": "trial-last-even", "name": "trial: exception at final index of an even array", "kind": "trial", "visible": true, "input": {"reader": {"array": [1, 1, 1, 1, 1, 1, 1, 4], "max_queries": 20}}, "expected": 7, "tags": ["trial", "last-index", "even-length"]},
+    {"id": "real-first-long", "name": "hidden: exception at first index", "kind": "real", "visible": false, "input": {"reader": {"array": [100, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4], "max_queries": 20}}, "expected": 0, "tags": ["real", "first-index", "odd-length"]},
+    {"id": "real-leftover-deep", "name": "hidden: repeated odd splits expose an unpaired candidate", "kind": "real", "visible": false, "input": {"reader": {"array": [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9], "max_queries": 20}}, "expected": 14, "tags": ["real", "odd-leftover", "last-index"]},
+    {"id": "real-small-excess", "name": "hidden: exceptional value differs by only one", "kind": "real", "visible": false, "input": {"reader": {"array": [99, 99, 99, 100, 99, 99, 99, 99, 99, 99], "max_queries": 20}}, "expected": 3, "tags": ["real", "small-excess", "interior"]},
+    {"id": "real-query-budget", "name": "hidden: larger power-of-two array stays below query cap", "kind": "real", "visible": false, "input": {"reader": {"array": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 7], "max_queries": 5}}, "expected": 31, "tags": ["real", "exact-query-budget", "power-of-two"]}
+  ]
+}

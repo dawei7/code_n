@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1573",
+  "cases": [
+    {"id": "sample-1", "name": "sample: two boundary gaps each offer choices", "kind": "sample", "visible": true, "input": {"s": "10101"}, "expected": 4, "tags": ["sample", "three-ones", "boundary-gaps"]},
+    {"id": "sample-2", "name": "sample: total ones not divisible by three", "kind": "sample", "visible": true, "input": {"s": "1001"}, "expected": 0, "tags": ["sample", "impossible-total", "two-ones"]},
+    {"id": "sample-3", "name": "sample: choose two of three gaps", "kind": "sample", "visible": true, "input": {"s": "0000"}, "expected": 3, "tags": ["sample", "all-zero", "combinations"]},
+    {"id": "trial-three-ones", "name": "trial: adjacent ones force both cuts", "kind": "trial", "visible": true, "input": {"s": "111"}, "expected": 1, "tags": ["trial", "minimum-length", "forced-cuts"]},
+    {"id": "trial-three-zeros", "name": "trial: only one split of length three", "kind": "trial", "visible": true, "input": {"s": "000"}, "expected": 1, "tags": ["trial", "minimum-length", "all-zero"]},
+    {"id": "trial-one-one", "name": "trial: one total one cannot be divided", "kind": "trial", "visible": true, "input": {"s": "10001"}, "expected": 0, "tags": ["trial", "impossible-total", "one-one"]},
+    {"id": "real-wide-three-gaps", "name": "hidden: three choices at each one boundary", "kind": "real", "visible": false, "input": {"s": "1001001"}, "expected": 9, "tags": ["real", "three-ones", "boundary-zeros"]},
+    {"id": "real-leading-trailing-zeros", "name": "hidden: exterior zeros do not change boundary gaps", "kind": "real", "visible": false, "input": {"s": "010010010"}, "expected": 9, "tags": ["real", "leading-zero", "trailing-zero"]},
+    {"id": "real-six-ones", "name": "hidden: two ones belong to each part", "kind": "real", "visible": false, "input": {"s": "110110110"}, "expected": 4, "tags": ["real", "six-ones", "two-per-part"]},
+    {"id": "real-nine-ones", "name": "hidden: three ones per part with long zero gaps", "kind": "real", "visible": false, "input": {"s": "111000111000111"}, "expected": 16, "tags": ["real", "nine-ones", "boundary-zeros"]},
+    {"id": "real-alternating", "name": "hidden: alternating three-one string", "kind": "real", "visible": false, "input": {"s": "101010"}, "expected": 4, "tags": ["real", "alternating", "three-ones"]},
+    {"id": "real-hundred-zeros", "name": "hidden: larger all-zero combination count", "kind": "real", "visible": false, "input": {"s": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"}, "expected": 4851, "tags": ["real", "all-zero", "combinations"]}
+  ]
+}

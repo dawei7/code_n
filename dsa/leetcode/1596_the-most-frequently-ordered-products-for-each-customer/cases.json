@@ -1,0 +1,793 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1596",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official frequencies and a three-way tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "name": "Alice"
+            },
+            {
+              "customer_id": 2,
+              "name": "Bob"
+            },
+            {
+              "customer_id": 3,
+              "name": "Tom"
+            },
+            {
+              "customer_id": 4,
+              "name": "Jerry"
+            },
+            {
+              "customer_id": 5,
+              "name": "John"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2020-07-31",
+              "customer_id": 1,
+              "product_id": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2020-07-30",
+              "customer_id": 2,
+              "product_id": 2
+            },
+            {
+              "order_id": 3,
+              "order_date": "2020-08-29",
+              "customer_id": 3,
+              "product_id": 3
+            },
+            {
+              "order_id": 4,
+              "order_date": "2020-07-29",
+              "customer_id": 4,
+              "product_id": 1
+            },
+            {
+              "order_id": 5,
+              "order_date": "2020-06-10",
+              "customer_id": 1,
+              "product_id": 2
+            },
+            {
+              "order_id": 6,
+              "order_date": "2020-08-01",
+              "customer_id": 2,
+              "product_id": 1
+            },
+            {
+              "order_id": 7,
+              "order_date": "2020-08-01",
+              "customer_id": 3,
+              "product_id": 3
+            },
+            {
+              "order_id": 8,
+              "order_date": "2020-08-03",
+              "customer_id": 1,
+              "product_id": 2
+            },
+            {
+              "order_id": 9,
+              "order_date": "2020-08-07",
+              "customer_id": 2,
+              "product_id": 3
+            },
+            {
+              "order_id": 10,
+              "order_date": "2020-07-15",
+              "customer_id": 1,
+              "product_id": 2
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "keyboard",
+              "price": 120
+            },
+            {
+              "product_id": 2,
+              "product_name": "mouse",
+              "price": 80
+            },
+            {
+              "product_id": 3,
+              "product_name": "screen",
+              "price": 600
+            },
+            {
+              "product_id": 4,
+              "product_name": "hard disk",
+              "price": 450
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "product_id",
+          "product_name"
+        ],
+        "rows": [
+          [
+            1,
+            2,
+            "mouse"
+          ],
+          [
+            2,
+            1,
+            "keyboard"
+          ],
+          [
+            2,
+            2,
+            "mouse"
+          ],
+          [
+            2,
+            3,
+            "screen"
+          ],
+          [
+            3,
+            3,
+            "screen"
+          ],
+          [
+            4,
+            1,
+            "keyboard"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "ties",
+        "no-orders"
+      ]
+    },
+    {
+      "id": "sample-two-way-tie",
+      "name": "sample: two products tie at the maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "name": "Ada"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2021-01-01",
+              "customer_id": 1,
+              "product_id": 10
+            },
+            {
+              "order_id": 2,
+              "order_date": "2021-01-02",
+              "customer_id": 1,
+              "product_id": 20
+            },
+            {
+              "order_id": 3,
+              "order_date": "2021-01-03",
+              "customer_id": 1,
+              "product_id": 10
+            },
+            {
+              "order_id": 4,
+              "order_date": "2021-01-04",
+              "customer_id": 1,
+              "product_id": 20
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 10,
+              "product_name": "pen",
+              "price": 2
+            },
+            {
+              "product_id": 20,
+              "product_name": "book",
+              "price": 8
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "product_id",
+          "product_name"
+        ],
+        "rows": [
+          [
+            1,
+            10,
+            "pen"
+          ],
+          [
+            1,
+            20,
+            "book"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "two-way-tie"
+      ]
+    },
+    {
+      "id": "trial-single-order",
+      "name": "trial: one customer and one order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 7,
+              "name": "Lin"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2022-03-01",
+              "customer_id": 7,
+              "product_id": 4
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 4,
+              "product_name": "cable",
+              "price": 12
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "product_id",
+          "product_name"
+        ],
+        "rows": [
+          [
+            7,
+            4,
+            "cable"
+          ]
+        ]
+      },
+      "tags": [
+        "single-order"
+      ]
+    },
+    {
+      "id": "trial-unordered-products",
+      "name": "trial: lower product id is not the winner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 2,
+              "name": "Bea"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2020-01-01",
+              "customer_id": 2,
+              "product_id": 3
+            },
+            {
+              "order_id": 2,
+              "order_date": "2020-01-02",
+              "customer_id": 2,
+              "product_id": 9
+            },
+            {
+              "order_id": 3,
+              "order_date": "2020-01-03",
+              "customer_id": 2,
+              "product_id": 9
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 3,
+              "product_name": "alpha",
+              "price": 99
+            },
+            {
+              "product_id": 9,
+              "product_name": "omega",
+              "price": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "product_id",
+          "product_name"
+        ],
+        "rows": [
+          [
+            2,
+            9,
+            "omega"
+          ]
+        ]
+      },
+      "tags": [
+        "frequency",
+        "no-id-tiebreak"
+      ]
+    },
+    {
+      "id": "real-customer-without-orders",
+      "name": "hidden: customers without orders are excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "name": "Active"
+            },
+            {
+              "customer_id": 2,
+              "name": "Idle"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2020-01-01",
+              "customer_id": 1,
+              "product_id": 1
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "item",
+              "price": 5
+            },
+            {
+              "product_id": 2,
+              "product_name": "unused",
+              "price": 9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "product_id",
+          "product_name"
+        ],
+        "rows": [
+          [
+            1,
+            1,
+            "item"
+          ]
+        ]
+      },
+      "tags": [
+        "no-orders",
+        "unused-product"
+      ]
+    },
+    {
+      "id": "real-dates-irrelevant",
+      "name": "hidden: dates do not partition frequencies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "name": "A"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2019-01-01",
+              "customer_id": 1,
+              "product_id": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2025-12-31",
+              "customer_id": 1,
+              "product_id": 1
+            },
+            {
+              "order_id": 3,
+              "order_date": "2022-06-15",
+              "customer_id": 1,
+              "product_id": 2
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "old-new",
+              "price": 50
+            },
+            {
+              "product_id": 2,
+              "product_name": "middle",
+              "price": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "product_id",
+          "product_name"
+        ],
+        "rows": [
+          [
+            1,
+            1,
+            "old-new"
+          ]
+        ]
+      },
+      "tags": [
+        "dates",
+        "all-time-frequency"
+      ]
+    },
+    {
+      "id": "real-prices-irrelevant",
+      "name": "hidden: price does not affect order frequency",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "name": "A"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2020-01-01",
+              "customer_id": 1,
+              "product_id": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2020-01-02",
+              "customer_id": 1,
+              "product_id": 1
+            },
+            {
+              "order_id": 3,
+              "order_date": "2020-01-03",
+              "customer_id": 1,
+              "product_id": 2
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "cheap",
+              "price": 1
+            },
+            {
+              "product_id": 2,
+              "product_name": "expensive",
+              "price": 1000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "product_id",
+          "product_name"
+        ],
+        "rows": [
+          [
+            1,
+            1,
+            "cheap"
+          ]
+        ]
+      },
+      "tags": [
+        "price",
+        "frequency"
+      ]
+    },
+    {
+      "id": "real-independent-customers",
+      "name": "hidden: maxima are partitioned by customer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "name": "A"
+            },
+            {
+              "customer_id": 2,
+              "name": "B"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2020-01-01",
+              "customer_id": 1,
+              "product_id": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2020-01-02",
+              "customer_id": 1,
+              "product_id": 1
+            },
+            {
+              "order_id": 3,
+              "order_date": "2020-01-03",
+              "customer_id": 1,
+              "product_id": 2
+            },
+            {
+              "order_id": 4,
+              "order_date": "2020-01-04",
+              "customer_id": 2,
+              "product_id": 2
+            },
+            {
+              "order_id": 5,
+              "order_date": "2020-01-05",
+              "customer_id": 2,
+              "product_id": 2
+            },
+            {
+              "order_id": 6,
+              "order_date": "2020-01-06",
+              "customer_id": 2,
+              "product_id": 1
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "one",
+              "price": 1
+            },
+            {
+              "product_id": 2,
+              "product_name": "two",
+              "price": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "product_id",
+          "product_name"
+        ],
+        "rows": [
+          [
+            1,
+            1,
+            "one"
+          ],
+          [
+            2,
+            2,
+            "two"
+          ]
+        ]
+      },
+      "tags": [
+        "partition",
+        "customers"
+      ]
+    },
+    {
+      "id": "real-all-products-tied",
+      "name": "hidden: all observed products tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 5,
+              "name": "Tie"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2020-01-01",
+              "customer_id": 5,
+              "product_id": 1
+            },
+            {
+              "order_id": 2,
+              "order_date": "2020-01-02",
+              "customer_id": 5,
+              "product_id": 2
+            },
+            {
+              "order_id": 3,
+              "order_date": "2020-01-03",
+              "customer_id": 5,
+              "product_id": 3
+            },
+            {
+              "order_id": 4,
+              "order_date": "2020-01-04",
+              "customer_id": 5,
+              "product_id": 4
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "p1",
+              "price": 1
+            },
+            {
+              "product_id": 2,
+              "product_name": "p2",
+              "price": 2
+            },
+            {
+              "product_id": 3,
+              "product_name": "p3",
+              "price": 3
+            },
+            {
+              "product_id": 4,
+              "product_name": "p4",
+              "price": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "product_id",
+          "product_name"
+        ],
+        "rows": [
+          [
+            5,
+            1,
+            "p1"
+          ],
+          [
+            5,
+            2,
+            "p2"
+          ],
+          [
+            5,
+            3,
+            "p3"
+          ],
+          [
+            5,
+            4,
+            "p4"
+          ]
+        ]
+      },
+      "tags": [
+        "all-tied",
+        "ties"
+      ]
+    },
+    {
+      "id": "real-product-name-lookup",
+      "name": "hidden: output name comes from Products",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 3,
+              "name": "C"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "order_date": "2020-01-01",
+              "customer_id": 3,
+              "product_id": 42
+            },
+            {
+              "order_id": 2,
+              "order_date": "2020-01-02",
+              "customer_id": 3,
+              "product_id": 42
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 42,
+              "product_name": "descriptive name",
+              "price": 77
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "product_id",
+          "product_name"
+        ],
+        "rows": [
+          [
+            3,
+            42,
+            "descriptive name"
+          ]
+        ]
+      },
+      "tags": [
+        "join",
+        "product-name"
+      ]
+    }
+  ]
+}
+

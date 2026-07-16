@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1731",
+  "frontend_id": "1609",
+  "title_slug": "even-odd-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isEvenOddTree",
+  "verified_submission_id": "2070128099",
+  "verified_at": "2026-07-16T16:24:41.793230+00:00"
+}

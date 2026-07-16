@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1527",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official mixed patient table",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Patients": [
+        {"patient_id": 1, "patient_name": "Daniel", "conditions": "YFEV COUGH"},
+        {"patient_id": 2, "patient_name": "Alice", "conditions": ""},
+        {"patient_id": 3, "patient_name": "Bob", "conditions": "DIAB100 MYOP"},
+        {"patient_id": 4, "patient_name": "George", "conditions": "ACNE DIAB100"},
+        {"patient_id": 5, "patient_name": "Alain", "conditions": "DIAB201"}
+      ]}},
+      "expected": {"columns": ["patient_id", "patient_name", "conditions"], "rows": [
+        [3, "Bob", "DIAB100 MYOP"], [4, "George", "ACNE DIAB100"]
+      ]},
+      "tags": ["sample", "official", "mixed"]
+    },
+    {
+      "id": "sample-prefix-suffix",
+      "name": "sample: DIAB1 permits code suffixes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Patients": [
+        {"patient_id": 10, "patient_name": "Exact", "conditions": "DIAB1"},
+        {"patient_id": 11, "patient_name": "LetterSuffix", "conditions": "DIAB1A"},
+        {"patient_id": 12, "patient_name": "DigitSuffix", "conditions": "DIAB1999"},
+        {"patient_id": 13, "patient_name": "Other", "conditions": "DIAB2"}
+      ]}},
+      "expected": {"columns": ["patient_id", "patient_name", "conditions"], "rows": [
+        [10, "Exact", "DIAB1"], [11, "LetterSuffix", "DIAB1A"], [12, "DigitSuffix", "DIAB1999"]
+      ]},
+      "tags": ["sample", "prefix", "suffix"]
+    },
+    {
+      "id": "sample-later-token",
+      "name": "sample: qualifying code after another condition",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Patients": [
+        {"patient_id": 21, "patient_name": "Middle", "conditions": "ACNE DIAB123 FLU"},
+        {"patient_id": 20, "patient_name": "Last", "conditions": "COUGH DIAB100"},
+        {"patient_id": 22, "patient_name": "Absent", "conditions": "ACNE FLU"}
+      ]}},
+      "expected": {"columns": ["patient_id", "patient_name", "conditions"], "rows": [
+        [20, "Last", "COUGH DIAB100"], [21, "Middle", "ACNE DIAB123 FLU"]
+      ]},
+      "tags": ["sample", "later-token", "ordering"]
+    },
+    {
+      "id": "trial-substring-lookalikes",
+      "name": "trial: substring is not a token prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Patients": [
+        {"patient_id": 30, "patient_name": "LeadingExtra", "conditions": "XDIAB100"},
+        {"patient_id": 31, "patient_name": "LaterExtra", "conditions": "ACNE XDIAB100"},
+        {"patient_id": 32, "patient_name": "Valid", "conditions": "ACNE DIAB100"}
+      ]}},
+      "expected": {"columns": ["patient_id", "patient_name", "conditions"], "rows": [
+        [32, "Valid", "ACNE DIAB100"]
+      ]},
+      "tags": ["trial", "token-boundary", "lookalike"]
+    },
+    {
+      "id": "trial-empty-and-unrelated",
+      "name": "trial: no qualifying condition",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Patients": [
+        {"patient_id": 40, "patient_name": "Empty", "conditions": ""},
+        {"patient_id": 41, "patient_name": "Cold", "conditions": "COUGH"},
+        {"patient_id": 42, "patient_name": "OtherDiabetes", "conditions": "DIAB201"}
+      ]}},
+      "expected": {"columns": ["patient_id", "patient_name", "conditions"], "rows": []},
+      "tags": ["trial", "empty-result", "empty-conditions"]
+    },
+    {
+      "id": "trial-similar-prefixes",
+      "name": "trial: DIAB1 must be the exact leading prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Patients": [
+        {"patient_id": 50, "patient_name": "Short", "conditions": "DIAB"},
+        {"patient_id": 51, "patient_name": "Zero", "conditions": "DIAB0"},
+        {"patient_id": 52, "patient_name": "WrongDigit", "conditions": "DIAB2100"},
+        {"patient_id": 53, "patient_name": "Match", "conditions": "DIAB10"}
+      ]}},
+      "expected": {"columns": ["patient_id", "patient_name", "conditions"], "rows": [[53, "Match", "DIAB10"]]},
+      "tags": ["trial", "exact-prefix", "near-miss"]
+    },
+    {
+      "id": "real-multiple-matches",
+      "name": "hidden: multiple qualifying tokens still return one patient",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Patients": [
+        {"patient_id": 60, "patient_name": "Repeated", "conditions": "DIAB100 ACNE DIAB199"},
+        {"patient_id": 61, "patient_name": "Single", "conditions": "FLU DIAB111"}
+      ]}},
+      "expected": {"columns": ["patient_id", "patient_name", "conditions"], "rows": [
+        [60, "Repeated", "DIAB100 ACNE DIAB199"], [61, "Single", "FLU DIAB111"]
+      ]},
+      "tags": ["real", "multiple-matches", "one-row"]
+    },
+    {
+      "id": "real-id-order",
+      "name": "hidden: deterministic output follows patient id",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Patients": [
+        {"patient_id": 73, "patient_name": "Third", "conditions": "DIAB103"},
+        {"patient_id": 71, "patient_name": "First", "conditions": "DIAB101"},
+        {"patient_id": 72, "patient_name": "Second", "conditions": "DIAB102"}
+      ]}},
+      "expected": {"columns": ["patient_id", "patient_name", "conditions"], "rows": [
+        [71, "First", "DIAB101"], [72, "Second", "DIAB102"], [73, "Third", "DIAB103"]
+      ]},
+      "tags": ["real", "ordering", "all-match"]
+    },
+    {
+      "id": "real-late-near-miss",
+      "name": "hidden: long row with a late near miss",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Patients": [
+        {"patient_id": 80, "patient_name": "Near", "conditions": "A B C D E F G H I J XDIAB100"},
+        {"patient_id": 81, "patient_name": "Late", "conditions": "A B C D E F G H I J DIAB100"}
+      ]}},
+      "expected": {"columns": ["patient_id", "patient_name", "conditions"], "rows": [
+        [81, "Late", "A B C D E F G H I J DIAB100"]
+      ]},
+      "tags": ["real", "late-token", "near-miss"]
+    },
+    {
+      "id": "real-single-row",
+      "name": "hidden: one qualifying patient",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Patients": [
+        {"patient_id": 99, "patient_name": "Solo", "conditions": "DIAB100"}
+      ]}},
+      "expected": {"columns": ["patient_id", "patient_name", "conditions"], "rows": [[99, "Solo", "DIAB100"]]},
+      "tags": ["real", "single-row", "leading-token"]
+    }
+  ]
+}

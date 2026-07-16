@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1700",
+  "frontend_id": "1578",
+  "title_slug": "minimum-time-to-make-rope-colorful",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minCost",
+  "verified_submission_id": "2069896899",
+  "verified_at": "2026-07-16T13:19:15.871580+00:00"
+}

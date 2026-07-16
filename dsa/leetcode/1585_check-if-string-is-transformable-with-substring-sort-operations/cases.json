@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1585",
+  "cases": [
+    {"id":"sample-1","name":"sample: overlapping sorts succeed","kind":"sample","visible":true,"input":{"s":"84532","t":"34852"},"expected":true,"tags":["sample"]},
+    {"id":"sample-2","name":"sample: two ascending sorts succeed","kind":"sample","visible":true,"input":{"s":"34521","t":"23415"},"expected":true,"tags":["sample"]},
+    {"id":"sample-3","name":"sample: larger digit cannot cross smaller digit","kind":"sample","visible":true,"input":{"s":"12345","t":"12435"},"expected":false,"tags":["sample"]},
+    {"id":"single-equal","name":"single matching digit","kind":"real","visible":false,"input":{"s":"1","t":"1"},"expected":true,"tags":["edge","single"]},
+    {"id":"single-different","name":"single mismatched digit","kind":"real","visible":false,"input":{"s":"1","t":"2"},"expected":false,"tags":["edge","count-mismatch"]},
+    {"id":"two-sortable","name":"trial: smaller digit moves left","kind":"trial","visible":true,"input":{"s":"21","t":"12"},"expected":true,"tags":["edge","ascending-sort"]},
+    {"id":"two-blocked","name":"larger digit cannot move left","kind":"real","visible":false,"input":{"s":"12","t":"21"},"expected":false,"tags":["edge","smaller-blocker"]},
+    {"id":"duplicates-sortable","name":"repeated digits sort globally","kind":"real","visible":false,"input":{"s":"2211","t":"1122"},"expected":true,"tags":["duplicates"]},
+    {"id":"duplicate-blocker","name":"unused zero blocks a later digit","kind":"real","visible":false,"input":{"s":"0302","t":"0320"},"expected":false,"tags":["duplicates","smaller-blocker"]},
+    {"id":"duplicate-movement","name":"duplicate zeros move around larger digits","kind":"real","visible":false,"input":{"s":"0302","t":"0032"},"expected":true,"tags":["duplicates"]},
+    {"id":"count-mismatch","name":"equal lengths but different digit counts","kind":"real","visible":false,"input":{"s":"123","t":"122"},"expected":false,"tags":["count-mismatch"]},
+    {"id":"descending-to-ascending","name":"sort the entire descending string","kind":"real","visible":false,"input":{"s":"9876543210","t":"0123456789"},"expected":true,"tags":["global-sort"]},
+    {"id":"many-duplicates","name":"interleaved nines and zeros sort globally","kind":"real","visible":false,"input":{"s":"909090","t":"000999"},"expected":true,"tags":["duplicates","global-sort"]},
+    {"id":"partial-order","name":"several larger digits move around one","kind":"real","visible":false,"input":{"s":"4321","t":"2341"},"expected":true,"tags":["greedy"]},
+    {"id":"alternative-reachable-target","name":"non-globally-sorted reachable target","kind":"real","visible":false,"input":{"s":"84532","t":"34825"},"expected":true,"tags":["overlapping-operations"]}
+  ]
+}

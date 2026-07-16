@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1578",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: remove one from repeated a group",
+      "name": "sample: remove cheaper balloon from an a run",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,7 +20,7 @@
       "expected": 3,
       "tags": [
         "sample",
-        "greedy"
+        "interior-run"
       ]
     },
     {
@@ -38,12 +39,12 @@
       "expected": 0,
       "tags": [
         "sample",
-        "edge"
+        "all-distinct"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: two repeated groups",
+      "name": "sample: resolve two separated a runs",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,14 +59,32 @@
       },
       "expected": 2,
       "tags": [
-        "sample"
+        "sample",
+        "multiple-runs"
       ]
     },
     {
-      "id": "real-single-long-group",
-      "name": "hidden: keep the most expensive balloon",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single",
+      "name": "trial: one balloon requires no removal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": "a",
+        "needed_time": [
+          100
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-all-same",
+      "name": "trial: keep the most expensive balloon",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "colors": "aaaa",
         "needed_time": [
@@ -77,7 +96,183 @@
       },
       "expected": 6,
       "tags": [
-        "hidden"
+        "trial",
+        "single-run",
+        "keep-maximum"
+      ]
+    },
+    {
+      "id": "trial-run-at-start",
+      "name": "trial: repeated run begins the rope",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "colors": "aab",
+        "needed_time": [
+          5,
+          1,
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "prefix-run"
+      ]
+    },
+    {
+      "id": "real-run-at-end",
+      "name": "hidden: repeated run ends the rope",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": "abb",
+        "needed_time": [
+          10,
+          5,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "suffix-run"
+      ]
+    },
+    {
+      "id": "real-two-long-runs",
+      "name": "hidden: optimize two length-three runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": "aaabbb",
+        "needed_time": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "real",
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "real-tied-times",
+      "name": "hidden: all removal times in a run are tied",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": "bbb",
+        "needed_time": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "ties",
+        "single-run"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating colors need no work",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": "abababab",
+        "needed_time": [
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "alternating",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "real-middle-maximum",
+      "name": "hidden: retain a maximum inside a long run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": "ccccc",
+        "needed_time": [
+          1,
+          9,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "real",
+        "middle-maximum",
+        "single-run"
+      ]
+    },
+    {
+      "id": "real-many-groups",
+      "name": "hidden: singleton colors separate repeated groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": "aabbccdde",
+        "needed_time": [
+          8,
+          1,
+          7,
+          2,
+          6,
+          3,
+          5,
+          4,
+          9
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "real",
+        "many-groups"
+      ]
+    },
+    {
+      "id": "real-large-times",
+      "name": "hidden: large removal times accumulate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "colors": "zzzyy",
+        "needed_time": [
+          10000,
+          9999,
+          9998,
+          10000,
+          1
+        ]
+      },
+      "expected": 19998,
+      "tags": [
+        "real",
+        "upper-bound-times",
+        "multiple-runs"
       ]
     }
   ]

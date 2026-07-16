@@ -1,106 +1,18 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1568",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: solid two by two island",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            0,
-            1,
-            1,
-            0
-          ],
-          [
-            0,
-            1,
-            1,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "graph"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: two land cells in a line",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: already disconnected",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            1,
-            0
-          ]
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "real-solid-square",
-      "name": "hidden: three by three solid island",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "grid": [
-          [
-            1,
-            1,
-            1
-          ],
-          [
-            1,
-            1,
-            1
-          ],
-          [
-            1,
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id": "sample-1", "name": "sample: solid two-by-two island needs two removals", "kind": "sample", "visible": true, "input": {"grid": [[0,1,1,0],[0,1,1,0],[0,0,0,0]]}, "expected": 2, "tags": ["sample", "dense-island", "two-days"]},
+    {"id": "sample-2", "name": "sample: two adjacent cells must both be removed", "kind": "sample", "visible": true, "input": {"grid": [[1,1]]}, "expected": 2, "tags": ["sample", "two-cells", "two-days"]},
+    {"id": "sample-3", "name": "sample: two islands are already disconnected", "kind": "sample", "visible": true, "input": {"grid": [[1,0,1,0]]}, "expected": 0, "tags": ["sample", "multiple-islands", "already-disconnected"]},
+    {"id": "trial-all-water", "name": "trial: empty grid has zero islands", "kind": "trial", "visible": true, "input": {"grid": [[0,0],[0,0]]}, "expected": 0, "tags": ["trial", "all-water", "zero-islands"]},
+    {"id": "trial-single-land", "name": "trial: one cell disappears in one day", "kind": "trial", "visible": true, "input": {"grid": [[1]]}, "expected": 1, "tags": ["trial", "single-land", "one-day"]},
+    {"id": "trial-straight-bridge", "name": "trial: middle cell is an articulation point", "kind": "trial", "visible": true, "input": {"grid": [[1,1,1]]}, "expected": 1, "tags": ["trial", "bridge", "articulation"]},
+    {"id": "real-l-shaped-articulation", "name": "hidden: corner joins two arms", "kind": "real", "visible": false, "input": {"grid": [[1,1],[1,0]]}, "expected": 1, "tags": ["real", "articulation", "l-shape"]},
+    {"id": "real-diagonal-islands", "name": "hidden: diagonal contact does not connect land", "kind": "real", "visible": false, "input": {"grid": [[1,0],[0,1]]}, "expected": 0, "tags": ["real", "diagonal", "multiple-islands"]},
+    {"id": "real-ring-cycle", "name": "hidden: ring has alternate routes around every cell", "kind": "real", "visible": false, "input": {"grid": [[1,1,1],[1,0,1],[1,1,1]]}, "expected": 2, "tags": ["real", "cycle", "no-articulation"]},
+    {"id": "real-zigzag-bridge", "name": "hidden: narrow zigzag path has articulation cells", "kind": "real", "visible": false, "input": {"grid": [[1,1,0],[0,1,1]]}, "expected": 1, "tags": ["real", "path", "articulation"]},
+    {"id": "real-island-plus-singleton", "name": "hidden: main island plus isolated land is already disconnected", "kind": "real", "visible": false, "input": {"grid": [[1,1,0],[1,1,0],[0,0,1]]}, "expected": 0, "tags": ["real", "multiple-islands", "singleton-island"]},
+    {"id": "real-solid-rectangle", "name": "hidden: solid rectangle has no articulation cell", "kind": "real", "visible": false, "input": {"grid": [[1,1,1],[1,1,1]]}, "expected": 2, "tags": ["real", "dense-island", "no-articulation"]}
   ]
 }

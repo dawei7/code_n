@@ -1,26 +1,22 @@
 from functools import lru_cache
 
 
-def solve(locations, start, finish, fuel):
-    mod = 10**9 + 7
-    n = len(locations)
-    if n == 0:
-        return 0
-    start %= n
-    finish %= n
-    fuel = max(0, fuel)
+def solve(locations: list[int], start: int, finish: int, fuel: int) -> int:
+    modulus = 1_000_000_007
+    city_count = len(locations)
 
     @lru_cache(maxsize=None)
-    def dp(city, remaining):
+    def count_from(city: int, remaining: int) -> int:
         total = 1 if city == finish else 0
-        for nxt in range(n):
-            if nxt == city:
-                continue
-            cost = abs(locations[city] - locations[nxt])
-            if cost == 0:
-                continue
-            if cost <= remaining:
-                total += dp(nxt, remaining - cost)
-        return total % mod
 
-    return dp(start, fuel)
+        for next_city in range(city_count):
+            if next_city == city:
+                continue
+
+            cost = abs(locations[city] - locations[next_city])
+            if cost <= remaining:
+                total += count_from(next_city, remaining - cost)
+
+        return total % modulus
+
+    return count_from(start, fuel)

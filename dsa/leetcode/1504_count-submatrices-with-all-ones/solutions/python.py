@@ -1,26 +1,27 @@
-def solve(mat):
-    if not mat:
-        return 0
-    grid = []
-    width = 0
-    for row in mat:
-        values = list(row) if isinstance(row, (list, str)) else [row]
-        width = max(width, len(values))
-        grid.append(values)
-    heights = [0] * width
+"""Optimal app-local solution for LeetCode 1504."""
+
+
+def solve(mat: list[list[int]]) -> int:
+    """Count contiguous rectangular submatrices containing only ones."""
+    columns = len(mat[0])
+    heights = [0] * columns
     answer = 0
-    for row in grid:
-        row = row + [0] * (width - len(row))
-        stack = []
-        row_sum = 0
-        for col, value in enumerate(row):
-            heights[col] = heights[col] + 1 if value in (1, "1", "A", True) else 0
-            count = 1
-            while stack and stack[-1][0] >= heights[col]:
-                height, previous_count = stack.pop()
-                row_sum -= height * previous_count
-                count += previous_count
-            stack.append((heights[col], count))
-            row_sum += heights[col] * count
-            answer += row_sum
+
+    for row in mat:
+        stack: list[tuple[int, int]] = []
+        ending_here = 0
+
+        for column, value in enumerate(row):
+            heights[column] = heights[column] + 1 if value else 0
+            width = 1
+
+            while stack and stack[-1][0] >= heights[column]:
+                height, previous_width = stack.pop()
+                ending_here -= height * previous_width
+                width += previous_width
+
+            stack.append((heights[column], width))
+            ending_here += heights[column] * width
+            answer += ending_here
+
     return answer

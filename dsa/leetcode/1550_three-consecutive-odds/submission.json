@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1293",
+  "frontend_id": "1550",
+  "title_slug": "three-consecutive-odds",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.threeConsecutiveOdds",
+  "verified_submission_id": "2069738369",
+  "verified_at": "2026-07-16T10:32:08.434710+00:00"
+}

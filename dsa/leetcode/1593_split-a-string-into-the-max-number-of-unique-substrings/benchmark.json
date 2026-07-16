@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1593",
+  "measurement_note": "Size is N, the string length. The 3/6/12 legal tiers use distinct characters, so the Accepted short-first branch-and-bound search establishes the maximum N immediately and prunes every remaining branch. An independent branch-and-bound implementation has the same scaling. A correct exhaustive boundary-mask implementation performs O(N^2 2^N) work by rebuilding every partition and pairwise-checking its pieces, completes all three tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: three distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": { "s": "abc" },
+      "expected": 3,
+      "tags": ["benchmark", "scale-small", "all-distinct"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: six distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": { "s": "abcdef" },
+      "expected": 6,
+      "tags": ["benchmark", "scale-medium", "all-distinct"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: twelve distinct characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": { "s": "abcdefghijkl" },
+      "expected": 12,
+      "tags": ["benchmark", "scale-large", "all-distinct"]
+    }
+  ]
+}

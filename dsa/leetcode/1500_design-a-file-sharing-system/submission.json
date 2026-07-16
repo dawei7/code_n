@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1640",
+  "frontend_id": "1500",
+  "title_slug": "design-a-file-sharing-system",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "FileSharing",
+  "verified_submission_id": "2069377610",
+  "verified_at": "2026-07-16T05:20:10.417955+00:00"
+}

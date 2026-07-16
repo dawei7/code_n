@@ -1,33 +1,212 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1568",
+  "measurement_note": "Size is A=R*C, the grid area. The legal 4x4, 6x6, and 8x8 solid islands span 4x in area and have no articulation cell, so every single-removal attempt of the slower method must be tested before returning 2. The remotely Accepted low-link DFS and an independent explicit-graph articulation implementation are O(A). A correct implementation that removes each land cell and recounts islands is O(A^2), completes every tier, and is rejected only by scaling.",
   "cases": [
     {
-      "id": "benchmark-bridge-cell",
-      "name": "benchmark: removing one bridge disconnects the island",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: solid 4x4 island",
       "kind": "benchmark",
       "visible": false,
+      "size": 16,
       "input": {
         "grid": [
           [
             1,
             1,
-            0
-          ],
-          [
-            0,
             1,
-            0
+            1
           ],
           [
-            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
             1,
             1
           ]
         ]
       },
-      "expected": 1,
+      "expected": 2,
       "tags": [
-        "benchmark"
+        "benchmark",
+        "solid-square",
+        "no-articulation",
+        "cells-16"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: solid 6x6 island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "solid-square",
+        "no-articulation",
+        "cells-36"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: solid 8x8 island",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "solid-square",
+        "no-articulation",
+        "cells-64"
       ]
     }
   ]

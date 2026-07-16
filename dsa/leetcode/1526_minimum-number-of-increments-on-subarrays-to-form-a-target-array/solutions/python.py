@@ -1,8 +1,9 @@
+"""Optimal app-local solution for LeetCode 1526."""
+
+
 def solve(target):
-    if not target:
-        return 0
-    total = max(0, target[0])
-    for i in range(1, len(target)):
-        if target[i] > target[i - 1]:
-            total += target[i] - target[i - 1]
-    return total
+    answer = target[0]
+    for previous, current in zip(target, target[1:]):
+        if current > previous:
+            answer += current - previous
+    return answer

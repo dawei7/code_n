@@ -1,0 +1,609 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1501",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: Peru alone exceeds the global average",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 3,
+              "name": "Jonathan",
+              "phone_number": "051-1234567"
+            },
+            {
+              "id": 12,
+              "name": "Elvis",
+              "phone_number": "051-7654321"
+            },
+            {
+              "id": 1,
+              "name": "Moncef",
+              "phone_number": "212-1234567"
+            },
+            {
+              "id": 2,
+              "name": "Maroua",
+              "phone_number": "212-6523651"
+            },
+            {
+              "id": 7,
+              "name": "Meir",
+              "phone_number": "972-1234567"
+            },
+            {
+              "id": 9,
+              "name": "Rachel",
+              "phone_number": "972-0011100"
+            }
+          ],
+          "Country": [
+            {
+              "name": "Peru",
+              "country_code": "051"
+            },
+            {
+              "name": "Israel",
+              "country_code": "972"
+            },
+            {
+              "name": "Morocco",
+              "country_code": "212"
+            },
+            {
+              "name": "Germany",
+              "country_code": "049"
+            },
+            {
+              "name": "Ethiopia",
+              "country_code": "251"
+            }
+          ],
+          "Calls": [
+            {
+              "caller_id": 1,
+              "callee_id": 9,
+              "duration": 33
+            },
+            {
+              "caller_id": 2,
+              "callee_id": 9,
+              "duration": 4
+            },
+            {
+              "caller_id": 1,
+              "callee_id": 2,
+              "duration": 59
+            },
+            {
+              "caller_id": 3,
+              "callee_id": 12,
+              "duration": 102
+            },
+            {
+              "caller_id": 3,
+              "callee_id": 12,
+              "duration": 330
+            },
+            {
+              "caller_id": 12,
+              "callee_id": 3,
+              "duration": 5
+            },
+            {
+              "caller_id": 7,
+              "callee_id": 9,
+              "duration": 13
+            },
+            {
+              "caller_id": 7,
+              "callee_id": 1,
+              "duration": 3
+            },
+            {
+              "caller_id": 9,
+              "callee_id": 7,
+              "duration": 1
+            },
+            {
+              "caller_id": 1,
+              "callee_id": 7,
+              "duration": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country"
+        ],
+        "rows": [
+          [
+            "Peru"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "endpoint-average",
+        "strict-comparison"
+      ]
+    },
+    {
+      "id": "sample-international-and-domestic",
+      "name": "sample: endpoint weighting across two countries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 1,
+              "name": "A",
+              "phone_number": "001-0000001"
+            },
+            {
+              "id": 2,
+              "name": "B",
+              "phone_number": "002-0000002"
+            },
+            {
+              "id": 3,
+              "name": "C",
+              "phone_number": "002-0000003"
+            }
+          ],
+          "Country": [
+            {
+              "name": "Alpha",
+              "country_code": "001"
+            },
+            {
+              "name": "Beta",
+              "country_code": "002"
+            }
+          ],
+          "Calls": [
+            {
+              "caller_id": 1,
+              "callee_id": 2,
+              "duration": 10
+            },
+            {
+              "caller_id": 2,
+              "callee_id": 3,
+              "duration": 30
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country"
+        ],
+        "rows": [
+          [
+            "Beta"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "international",
+        "domestic"
+      ]
+    },
+    {
+      "id": "sample-strict-equality",
+      "name": "sample: equality and unused countries are excluded",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 1,
+              "name": "A",
+              "phone_number": "001-0000001"
+            },
+            {
+              "id": 2,
+              "name": "B",
+              "phone_number": "002-0000002"
+            }
+          ],
+          "Country": [
+            {
+              "name": "Alpha",
+              "country_code": "001"
+            },
+            {
+              "name": "Beta",
+              "country_code": "002"
+            },
+            {
+              "name": "Unused",
+              "country_code": "003"
+            }
+          ],
+          "Calls": [
+            {
+              "caller_id": 1,
+              "callee_id": 2,
+              "duration": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "sample",
+        "equality",
+        "unused-country"
+      ]
+    },
+    {
+      "id": "trial-domestic-counts-twice",
+      "name": "trial: a domestic call contributes two endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 1,
+              "name": "A1",
+              "phone_number": "001-0000001"
+            },
+            {
+              "id": 2,
+              "name": "A2",
+              "phone_number": "001-0000002"
+            },
+            {
+              "id": 3,
+              "name": "B",
+              "phone_number": "002-0000003"
+            }
+          ],
+          "Country": [
+            {
+              "name": "Alpha",
+              "country_code": "001"
+            },
+            {
+              "name": "Beta",
+              "country_code": "002"
+            }
+          ],
+          "Calls": [
+            {
+              "caller_id": 1,
+              "callee_id": 2,
+              "duration": 100
+            },
+            {
+              "caller_id": 1,
+              "callee_id": 3,
+              "duration": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country"
+        ],
+        "rows": [
+          [
+            "Alpha"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "domestic-call",
+        "endpoint-multiplicity"
+      ]
+    },
+    {
+      "id": "trial-duplicate-calls-remain",
+      "name": "trial: duplicate call rows retain multiplicity",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 1,
+              "name": "A",
+              "phone_number": "001-0000001"
+            },
+            {
+              "id": 2,
+              "name": "B",
+              "phone_number": "002-0000002"
+            },
+            {
+              "id": 3,
+              "name": "C",
+              "phone_number": "003-0000003"
+            }
+          ],
+          "Country": [
+            {
+              "name": "Alpha",
+              "country_code": "001"
+            },
+            {
+              "name": "Beta",
+              "country_code": "002"
+            },
+            {
+              "name": "Gamma",
+              "country_code": "003"
+            }
+          ],
+          "Calls": [
+            {
+              "caller_id": 1,
+              "callee_id": 2,
+              "duration": 10
+            },
+            {
+              "caller_id": 1,
+              "callee_id": 2,
+              "duration": 10
+            },
+            {
+              "caller_id": 1,
+              "callee_id": 3,
+              "duration": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country"
+        ],
+        "rows": [
+          [
+            "Gamma"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicate-calls",
+        "union-all"
+      ]
+    },
+    {
+      "id": "real-two-high-countries",
+      "name": "hidden: both endpoints of a long international call qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 1,
+              "name": "A",
+              "phone_number": "007-0000001"
+            },
+            {
+              "id": 2,
+              "name": "B",
+              "phone_number": "008-0000002"
+            },
+            {
+              "id": 3,
+              "name": "C",
+              "phone_number": "009-0000003"
+            },
+            {
+              "id": 4,
+              "name": "D",
+              "phone_number": "010-0000004"
+            }
+          ],
+          "Country": [
+            {
+              "name": "Aland",
+              "country_code": "007"
+            },
+            {
+              "name": "Borduria",
+              "country_code": "008"
+            },
+            {
+              "name": "Cyrenia",
+              "country_code": "009"
+            },
+            {
+              "name": "Dinotopia",
+              "country_code": "010"
+            }
+          ],
+          "Calls": [
+            {
+              "caller_id": 1,
+              "callee_id": 2,
+              "duration": 100
+            },
+            {
+              "caller_id": 3,
+              "callee_id": 4,
+              "duration": 10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country"
+        ],
+        "rows": [
+          [
+            "Aland"
+          ],
+          [
+            "Borduria"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiple-results",
+        "international"
+      ]
+    },
+    {
+      "id": "real-caller-callee-symmetry",
+      "name": "hidden: caller direction does not change country membership",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 1,
+              "name": "Low",
+              "phone_number": "001-0000001"
+            },
+            {
+              "id": 2,
+              "name": "High1",
+              "phone_number": "002-0000002"
+            },
+            {
+              "id": 3,
+              "name": "High2",
+              "phone_number": "002-0000003"
+            }
+          ],
+          "Country": [
+            {
+              "name": "Lowland",
+              "country_code": "001"
+            },
+            {
+              "name": "Highland",
+              "country_code": "002"
+            }
+          ],
+          "Calls": [
+            {
+              "caller_id": 2,
+              "callee_id": 1,
+              "duration": 5
+            },
+            {
+              "caller_id": 1,
+              "callee_id": 3,
+              "duration": 95
+            },
+            {
+              "caller_id": 3,
+              "callee_id": 2,
+              "duration": 95
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country"
+        ],
+        "rows": [
+          [
+            "Highland"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "caller-callee-symmetry",
+        "domestic"
+      ]
+    },
+    {
+      "id": "real-leading-zero-code",
+      "name": "hidden: country codes remain fixed-width strings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Person": [
+            {
+              "id": 1,
+              "name": "Zero",
+              "phone_number": "000-0000001"
+            },
+            {
+              "id": 2,
+              "name": "One",
+              "phone_number": "001-0000002"
+            },
+            {
+              "id": 3,
+              "name": "Nine",
+              "phone_number": "999-0000003"
+            }
+          ],
+          "Country": [
+            {
+              "name": "Zero",
+              "country_code": "000"
+            },
+            {
+              "name": "One",
+              "country_code": "001"
+            },
+            {
+              "name": "Nine",
+              "country_code": "999"
+            }
+          ],
+          "Calls": [
+            {
+              "caller_id": 1,
+              "callee_id": 2,
+              "duration": 80
+            },
+            {
+              "caller_id": 2,
+              "callee_id": 3,
+              "duration": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "country"
+        ],
+        "rows": [
+          [
+            "Zero"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "leading-zero",
+        "prefix"
+      ]
+    }
+  ]
+}

@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_1547",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: four cuts",
+      "id": "sample-four-cuts",
+      "name": "sample: official four-cut stick",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,12 +19,13 @@
       "expected": 16,
       "tags": [
         "sample",
-        "interval-dp"
+        "interval-dp",
+        "four-cuts"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: five cuts",
+      "id": "sample-five-unsorted",
+      "name": "sample: official unsorted cuts",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -38,12 +40,14 @@
       },
       "expected": 22,
       "tags": [
-        "sample"
+        "sample",
+        "interval-dp",
+        "five-unsorted"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: two cuts",
+      "id": "sample-two-cuts",
+      "name": "sample: two required positions",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -56,25 +60,198 @@
       "expected": 8,
       "tags": [
         "sample",
-        "edge"
+        "interval-dp",
+        "two-cuts"
       ]
     },
     {
-      "id": "real-three-cuts",
-      "name": "hidden: middle cut first is optimal",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-single-cut",
+      "name": "trial: one cut costs the whole stick",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "cuts": [
+          37
+        ]
+      },
+      "expected": 100,
+      "tags": [
+        "trial",
+        "interval-dp",
+        "single-cut"
+      ]
+    },
+    {
+      "id": "trial-even-spacing",
+      "name": "trial: evenly spaced marks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 12,
+        "cuts": [
+          3,
+          6,
+          9
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "trial",
+        "interval-dp",
+        "even-spacing"
+      ]
+    },
+    {
+      "id": "trial-near-endpoints",
+      "name": "trial: marks adjacent to both endpoints",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "n": 10,
         "cuts": [
+          1,
+          9
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "trial",
+        "interval-dp",
+        "near-endpoints"
+      ]
+    },
+    {
+      "id": "real-cluster-left",
+      "name": "hidden: cuts clustered near the left end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 50,
+        "cuts": [
+          1,
           2,
+          3,
+          10
+        ]
+      },
+      "expected": 65,
+      "tags": [
+        "real",
+        "interval-dp",
+        "cluster-left"
+      ]
+    },
+    {
+      "id": "real-cluster-right",
+      "name": "hidden: cuts clustered near the right end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 50,
+        "cuts": [
+          40,
+          47,
+          48,
+          49
+        ]
+      },
+      "expected": 65,
+      "tags": [
+        "real",
+        "interval-dp",
+        "cluster-right"
+      ]
+    },
+    {
+      "id": "real-unsorted-asymmetric",
+      "name": "hidden: arbitrary input order and uneven gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 30,
+        "cuts": [
+          24,
+          2,
+          17,
+          5,
+          29,
+          11
+        ]
+      },
+      "expected": 82,
+      "tags": [
+        "real",
+        "interval-dp",
+        "unsorted-asymmetric"
+      ]
+    },
+    {
+      "id": "real-many-consecutive",
+      "name": "hidden: consecutive interior marks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 15,
+        "cuts": [
+          2,
+          3,
           4,
+          5,
+          6,
           7
         ]
       },
-      "expected": 20,
+      "expected": 33,
       "tags": [
-        "hidden"
+        "real",
+        "interval-dp",
+        "many-consecutive"
+      ]
+    },
+    {
+      "id": "real-large-coordinate",
+      "name": "hidden: large stick coordinates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000000,
+        "cuts": [
+          1,
+          250000,
+          500001,
+          999999
+        ]
+      },
+      "expected": 2250000,
+      "tags": [
+        "real",
+        "interval-dp",
+        "large-coordinate"
+      ]
+    },
+    {
+      "id": "real-balanced-seven",
+      "name": "hidden: balanced collection of seven cuts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 80,
+        "cuts": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70
+        ]
+      },
+      "expected": 240,
+      "tags": [
+        "real",
+        "interval-dp",
+        "balanced-seven"
       ]
     }
   ]

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1633",
+  "frontend_id": "1526",
+  "title_slug": "minimum-number-of-increments-on-subarrays-to-form-a-target-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minNumberOperations",
+  "verified_submission_id": "2069559814",
+  "verified_at": "2026-07-16T07:50:25.859091+00:00"
+}

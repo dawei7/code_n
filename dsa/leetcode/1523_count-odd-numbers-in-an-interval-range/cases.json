@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1523",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: both endpoints odd",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "low": 3,
+        "high": 7
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "odd-endpoints"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: both endpoints even",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "low": 8,
+        "high": 10
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "even-endpoints"
+      ]
+    },
+    {
+      "id": "sample-single-even",
+      "name": "sample: one even value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "low": 4,
+        "high": 4
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single-value",
+        "even"
+      ]
+    },
+    {
+      "id": "trial-single-odd",
+      "name": "trial: one odd value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 5,
+        "high": 5
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-value",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-start-zero",
+      "name": "trial: interval begins at zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 0,
+        "high": 9
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "zero-boundary"
+      ]
+    },
+    {
+      "id": "trial-even-odd",
+      "name": "trial: even lower and odd upper endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "low": 2,
+        "high": 3
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "mixed-parity"
+      ]
+    },
+    {
+      "id": "real-odd-even",
+      "name": "hidden: odd lower and even upper endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "low": 11,
+        "high": 20
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "mixed-parity"
+      ]
+    },
+    {
+      "id": "real-zero-only",
+      "name": "hidden: zero alone is not odd",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "low": 0,
+        "high": 0
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "zero",
+        "single-value"
+      ]
+    },
+    {
+      "id": "real-maximum-single",
+      "name": "hidden: maximum endpoint alone",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "low": 1000000000,
+        "high": 1000000000
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "maximum",
+        "single-value"
+      ]
+    },
+    {
+      "id": "real-near-maximum",
+      "name": "hidden: wide interval ending at maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "low": 999999991,
+        "high": 1000000000
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "maximum",
+        "odd-lower"
+      ]
+    }
+  ]
+}

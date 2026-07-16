@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1610",
+  "cases": [
+    {
+      "id": "sample-all-three",
+      "name": "sample: three points fit in ninety degrees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "angle": 90,
+        "location": [
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "inclusive-sector"
+      ]
+    },
+    {
+      "id": "sample-with-location",
+      "name": "sample: coincident point is always visible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "angle": 90,
+        "location": [
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "coincident"
+      ]
+    },
+    {
+      "id": "sample-narrow",
+      "name": "sample: narrow sector sees only one direction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "angle": 13,
+        "location": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "narrow-angle"
+      ]
+    },
+    {
+      "id": "trial-zero-angle-ray",
+      "name": "trial: zero degrees includes duplicate collinear points",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "angle": 0,
+        "location": [
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "zero-angle",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-only-coincident",
+      "name": "trial: every point is at the observer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            4,
+            4
+          ]
+        ],
+        "angle": 0,
+        "location": [
+          4,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "coincident",
+        "zero-angle"
+      ]
+    },
+    {
+      "id": "real-wrap-west",
+      "name": "hidden: best sector crosses the angular cut",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "angle": 90,
+        "location": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "wraparound",
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "real-opposite-rays",
+      "name": "hidden: sub-straight angle cannot cover opposite rays",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "angle": 179,
+        "location": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "opposite-directions",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-boundary-inclusive",
+      "name": "hidden: both ninety-degree boundaries count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            1
+          ]
+        ],
+        "angle": 90,
+        "location": [
+          1,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "real-coincident-plus-best",
+      "name": "hidden: coincident copies augment only the best sector",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "angle": 45,
+        "location": [
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "coincident",
+        "optimization"
+      ]
+    },
+    {
+      "id": "real-nearly-full",
+      "name": "hidden: 359 degrees covers four cardinal directions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "angle": 359,
+        "location": [
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "nearly-full-circle",
+        "all-visible"
+      ]
+    },
+    {
+      "id": "real-same-coordinate-many",
+      "name": "hidden: repeated coordinates all count separately",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            5
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "angle": 1,
+        "location": [
+          0,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "duplicates",
+        "same-ray"
+      ]
+    },
+    {
+      "id": "real-single-direction",
+      "name": "hidden: one directional point is visible for any width",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            100,
+            100
+          ]
+        ],
+        "angle": 0,
+        "location": [
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "single-point",
+        "coordinate-boundary"
+      ]
+    }
+  ]
+}

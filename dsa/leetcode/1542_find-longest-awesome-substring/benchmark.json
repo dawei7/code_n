@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1542",
+  "measurement_note": "Size is n, the digit-string length. The legal 20/80/320 repeated-decimal-cycle tiers span 16x and give every digit an even count, so the full string is the answer while every endpoint remains relevant. The remotely Accepted ten-bit prefix-mask scan is O(n), and an independent earliest-mask map must also pass. A correct incremental parity scan over every substring completes every tier and must be rejected only by its O(n^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 20 digits in repeated decimal cycles",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "s": "01234567890123456789"
+      },
+      "expected": 20,
+      "tags": [
+        "benchmark",
+        "all-even",
+        "all-substrings"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 80 digits in repeated decimal cycles",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 80,
+      "input": {
+        "s": "01234567890123456789012345678901234567890123456789012345678901234567890123456789"
+      },
+      "expected": 80,
+      "tags": [
+        "benchmark",
+        "all-even",
+        "all-substrings"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 320 digits in repeated decimal cycles",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 320,
+      "input": {
+        "s": "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"
+      },
+      "expected": 320,
+      "tags": [
+        "benchmark",
+        "all-even",
+        "all-substrings"
+      ]
+    }
+  ]
+}

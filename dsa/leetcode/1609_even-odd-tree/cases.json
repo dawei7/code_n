@@ -1,0 +1,254 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1609",
+  "cases": [
+    {
+      "id": "sample-valid",
+      "name": "sample: all four levels satisfy alternating rules",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          10,
+          4,
+          3,
+          null,
+          7,
+          9,
+          12,
+          8,
+          6,
+          null,
+          null,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-duplicate-even-level",
+      "name": "sample: duplicate odd values break strict increase",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          4,
+          2,
+          3,
+          3,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "sample-wrong-odd-level-parity",
+      "name": "sample: odd-indexed level contains odd values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          9,
+          1,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "parity"
+      ]
+    },
+    {
+      "id": "trial-single-valid",
+      "name": "trial: one odd root is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: one even root violates level zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "single-node",
+        "root-parity"
+      ]
+    },
+    {
+      "id": "real-odd-level-equality",
+      "name": "hidden: equal even values are not strictly decreasing",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          4,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "strict-order",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-odd-level-increases",
+      "name": "hidden: even values increase on an odd level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "wrong-direction"
+      ]
+    },
+    {
+      "id": "real-even-level-decreases",
+      "name": "hidden: odd values decrease on an even level",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          10,
+          8,
+          9,
+          7,
+          5,
+          3
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "wrong-direction",
+        "deep-level"
+      ]
+    },
+    {
+      "id": "real-sparse-valid",
+      "name": "hidden: sparse children preserve left-to-right order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          10,
+          4,
+          null,
+          3,
+          7,
+          9
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sparse-tree",
+        "valid"
+      ]
+    },
+    {
+      "id": "real-valid-chain",
+      "name": "hidden: one-node levels alternate parity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          10,
+          null,
+          3,
+          null,
+          8
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "skewed-tree",
+        "valid"
+      ]
+    },
+    {
+      "id": "real-deep-parity-violation",
+      "name": "hidden: only a deep node has the wrong parity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          10,
+          4,
+          3,
+          null,
+          7,
+          9,
+          12,
+          8,
+          5,
+          null,
+          null,
+          2
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "deep-level",
+        "parity"
+      ]
+    },
+    {
+      "id": "real-order-valid-parity-invalid",
+      "name": "hidden: proper direction still fails wrong parity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          11,
+          9
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "parity",
+        "ordering"
+      ]
+    }
+  ]
+}
+

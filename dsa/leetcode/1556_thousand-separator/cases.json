@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1556",
+  "cases": [
+    {"id": "sample-1", "name": "sample: three digits need no separator", "kind": "sample", "visible": true, "input": {"n": 987}, "expected": "987", "tags": ["sample", "no-separator"]},
+    {"id": "sample-2", "name": "sample: first thousands separator", "kind": "sample", "visible": true, "input": {"n": 1234}, "expected": "1.234", "tags": ["sample", "one-separator"]},
+    {"id": "trial-zero", "name": "trial: zero remains one digit", "kind": "trial", "visible": true, "input": {"n": 0}, "expected": "0", "tags": ["trial", "lower-bound", "zero"]},
+    {"id": "trial-exact-transition", "name": "trial: exact one-thousand transition", "kind": "trial", "visible": true, "input": {"n": 1000}, "expected": "1.000", "tags": ["trial", "transition", "zeros"]},
+    {"id": "trial-two-groups", "name": "trial: two complete groups", "kind": "trial", "visible": true, "input": {"n": 123456}, "expected": "123.456", "tags": ["trial", "one-separator"]},
+    {"id": "trial-three-groups", "name": "trial: three groups", "kind": "trial", "visible": true, "input": {"n": 123456789}, "expected": "123.456.789", "tags": ["trial", "two-separators"]},
+    {"id": "real-one-digit", "name": "hidden: one-digit positive value", "kind": "real", "visible": false, "input": {"n": 7}, "expected": "7", "tags": ["real", "one-digit"]},
+    {"id": "real-before-transition", "name": "hidden: last value without a separator", "kind": "real", "visible": false, "input": {"n": 999}, "expected": "999", "tags": ["real", "transition"]},
+    {"id": "real-after-transition", "name": "hidden: value just above one thousand", "kind": "real", "visible": false, "input": {"n": 1001}, "expected": "1.001", "tags": ["real", "transition", "zeros"]},
+    {"id": "real-million-transition", "name": "hidden: exact one million", "kind": "real", "visible": false, "input": {"n": 1000000}, "expected": "1.000.000", "tags": ["real", "transition", "two-separators"]},
+    {"id": "real-internal-zeros", "name": "hidden: zeros retained inside groups", "kind": "real", "visible": false, "input": {"n": 1000001}, "expected": "1.000.001", "tags": ["real", "zeros", "padding"]},
+    {"id": "real-upper-bound", "name": "hidden: maximum permitted integer", "kind": "real", "visible": false, "input": {"n": 2147483647}, "expected": "2.147.483.647", "tags": ["real", "upper-bound", "three-separators"]}
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1604",
+  "cases": [
+    {
+      "id": "sample-daniel",
+      "name": "sample: one employee alerts at the inclusive boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "keyName": [
+          "daniel",
+          "daniel",
+          "daniel",
+          "luis",
+          "luis",
+          "luis",
+          "luis"
+        ],
+        "keyTime": [
+          "10:00",
+          "10:40",
+          "11:00",
+          "09:00",
+          "11:00",
+          "13:00",
+          "15:00"
+        ]
+      },
+      "expected": [
+        "daniel"
+      ],
+      "tags": [
+        "sample",
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "sample-bob",
+      "name": "sample: unsorted records alert only Bob",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "keyName": [
+          "alice",
+          "alice",
+          "alice",
+          "bob",
+          "bob",
+          "bob",
+          "bob"
+        ],
+        "keyTime": [
+          "12:01",
+          "12:00",
+          "18:00",
+          "21:00",
+          "21:20",
+          "21:30",
+          "23:00"
+        ]
+      },
+      "expected": [
+        "bob"
+      ],
+      "tags": [
+        "sample",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "trial-exact-hour",
+      "name": "trial: exactly sixty minutes is one hour",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "keyName": [
+          "amy",
+          "amy",
+          "amy"
+        ],
+        "keyTime": [
+          "10:00",
+          "10:30",
+          "11:00"
+        ]
+      },
+      "expected": [
+        "amy"
+      ],
+      "tags": [
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "trial-sixty-one-minutes",
+      "name": "trial: sixty-one-minute span does not alert",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "keyName": [
+          "amy",
+          "amy",
+          "amy"
+        ],
+        "keyTime": [
+          "10:00",
+          "10:30",
+          "11:01"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "exclusive-outside-boundary"
+      ]
+    },
+    {
+      "id": "trial-fewer-than-three",
+      "name": "trial: two uses cannot alert",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "keyName": [
+          "solo",
+          "solo"
+        ],
+        "keyTime": [
+          "00:00",
+          "23:59"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "minimum-count"
+      ]
+    },
+    {
+      "id": "real-midnight-does-not-wrap",
+      "name": "hidden: a single day does not wrap through midnight",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keyName": [
+          "night",
+          "night",
+          "night"
+        ],
+        "keyTime": [
+          "23:58",
+          "23:59",
+          "00:01"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "single-day",
+        "midnight"
+      ]
+    },
+    {
+      "id": "real-input-order",
+      "name": "hidden: chronological order differs from input order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keyName": [
+          "zoe",
+          "zoe",
+          "zoe",
+          "zoe"
+        ],
+        "keyTime": [
+          "15:00",
+          "09:59",
+          "10:58",
+          "10:00"
+        ]
+      },
+      "expected": [
+        "zoe"
+      ],
+      "tags": [
+        "sorting",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-multiple-sorted",
+      "name": "hidden: several alerts must be alphabetically sorted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keyName": [
+          "zoe",
+          "amy",
+          "zoe",
+          "mia",
+          "amy",
+          "zoe",
+          "mia",
+          "amy",
+          "mia"
+        ],
+        "keyTime": [
+          "08:30",
+          "15:00",
+          "08:00",
+          "12:59",
+          "14:30",
+          "08:59",
+          "12:00",
+          "14:59",
+          "12:30"
+        ]
+      },
+      "expected": [
+        "amy",
+        "mia",
+        "zoe"
+      ],
+      "tags": [
+        "multiple-alerts",
+        "output-order"
+      ]
+    },
+    {
+      "id": "real-four-reported-once",
+      "name": "hidden: four qualifying uses report one unique name",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keyName": [
+          "bob",
+          "bob",
+          "bob",
+          "bob"
+        ],
+        "keyTime": [
+          "06:00",
+          "06:20",
+          "06:40",
+          "07:00"
+        ]
+      },
+      "expected": [
+        "bob"
+      ],
+      "tags": [
+        "unique-output",
+        "more-than-three"
+      ]
+    },
+    {
+      "id": "real-distinct-name-pairs",
+      "name": "hidden: equal timestamps for different names remain independent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keyName": [
+          "ann",
+          "bob",
+          "ann",
+          "bob",
+          "ann",
+          "bob"
+        ],
+        "keyTime": [
+          "09:00",
+          "09:00",
+          "09:30",
+          "10:01",
+          "10:00",
+          "11:02"
+        ]
+      },
+      "expected": [
+        "ann"
+      ],
+      "tags": [
+        "grouping",
+        "same-time"
+      ]
+    },
+    {
+      "id": "real-later-window",
+      "name": "hidden: qualifying triple occurs after earlier distant uses",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keyName": [
+          "kai",
+          "kai",
+          "kai",
+          "kai",
+          "kai"
+        ],
+        "keyTime": [
+          "00:00",
+          "05:00",
+          "10:00",
+          "10:20",
+          "11:00"
+        ]
+      },
+      "expected": [
+        "kai"
+      ],
+      "tags": [
+        "later-window",
+        "consecutive-triple"
+      ]
+    },
+    {
+      "id": "real-no-alerts-many-groups",
+      "name": "hidden: several employees remain below the threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "keyName": [
+          "a",
+          "b",
+          "c",
+          "a",
+          "b",
+          "c"
+        ],
+        "keyTime": [
+          "00:00",
+          "04:00",
+          "08:00",
+          "23:59",
+          "12:00",
+          "16:00"
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "multiple-groups",
+        "no-alert"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1523",
+  "measurement_note": "Size is W = high - low + 1, the inclusive interval width. The legal 1000/4000/16000 tiers span 16x and begin at the even value 500,000,000. The accepted prefix-count formula and an independent endpoint-parity formula pass in O(1). Correct direct enumeration completes every tier and is rejected only by O(W) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 1000-integer inclusive interval",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "low": 500000000,
+        "high": 500000999
+      },
+      "expected": 500,
+      "tags": [
+        "benchmark",
+        "interval-width",
+        "even-lower"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 4000-integer inclusive interval",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4000,
+      "input": {
+        "low": 500000000,
+        "high": 500003999
+      },
+      "expected": 2000,
+      "tags": [
+        "benchmark",
+        "interval-width",
+        "even-lower"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16000-integer inclusive interval",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16000,
+      "input": {
+        "low": 500000000,
+        "high": 500015999
+      },
+      "expected": 8000,
+      "tags": [
+        "benchmark",
+        "interval-width",
+        "even-lower"
+      ]
+    }
+  ]
+}

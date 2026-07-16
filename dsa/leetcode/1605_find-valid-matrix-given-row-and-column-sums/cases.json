@@ -1,0 +1,479 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1605",
+  "cases": [
+    {
+      "id": "sample-two-by-two",
+      "name": "sample: two by two with multiple valid answers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rowSum": [
+          3,
+          8
+        ],
+        "colSum": [
+          4,
+          7
+        ]
+      },
+      "expected": [
+        [
+          3,
+          0
+        ],
+        [
+          1,
+          7
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "sample",
+        "multiple-answers"
+      ]
+    },
+    {
+      "id": "sample-three-by-three",
+      "name": "sample: three by three margins",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "rowSum": [
+          5,
+          7,
+          10
+        ],
+        "colSum": [
+          8,
+          6,
+          8
+        ]
+      },
+      "expected": [
+        [
+          5,
+          0,
+          0
+        ],
+        [
+          3,
+          4,
+          0
+        ],
+        [
+          0,
+          2,
+          8
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "sample",
+        "square"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: one cell carries the total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rowSum": [
+          9
+        ],
+        "colSum": [
+          9
+        ]
+      },
+      "expected": [
+        [
+          9
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "single-cell"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: all margins are zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rowSum": [
+          0,
+          0
+        ],
+        "colSum": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "zero-margins"
+      ]
+    },
+    {
+      "id": "trial-single-row",
+      "name": "trial: one row equals the column margins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rowSum": [
+          10
+        ],
+        "colSum": [
+          1,
+          0,
+          4,
+          5
+        ]
+      },
+      "expected": [
+        [
+          1,
+          0,
+          4,
+          5
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "single-row",
+        "zero-column"
+      ]
+    },
+    {
+      "id": "real-single-column",
+      "name": "hidden: one column equals the row margins",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rowSum": [
+          0,
+          3,
+          7,
+          0
+        ],
+        "colSum": [
+          10
+        ]
+      },
+      "expected": [
+        [
+          0
+        ],
+        [
+          3
+        ],
+        [
+          7
+        ],
+        [
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "single-column",
+        "zero-row"
+      ]
+    },
+    {
+      "id": "real-rectangular-wide",
+      "name": "hidden: more columns than rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rowSum": [
+          6,
+          9
+        ],
+        "colSum": [
+          2,
+          0,
+          4,
+          3,
+          6
+        ]
+      },
+      "expected": [
+        [
+          2,
+          0,
+          4,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          3,
+          6
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "rectangular",
+        "zero-column"
+      ]
+    },
+    {
+      "id": "real-rectangular-tall",
+      "name": "hidden: more rows than columns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rowSum": [
+          1,
+          0,
+          4,
+          8,
+          2
+        ],
+        "colSum": [
+          7,
+          8
+        ]
+      },
+      "expected": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "rectangular",
+        "zero-row"
+      ]
+    },
+    {
+      "id": "real-equal-advances-both",
+      "name": "hidden: equal active margins finish together",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rowSum": [
+          4,
+          6,
+          5
+        ],
+        "colSum": [
+          4,
+          6,
+          5
+        ]
+      },
+      "expected": [
+        [
+          4,
+          0,
+          0
+        ],
+        [
+          0,
+          6,
+          0
+        ],
+        [
+          0,
+          0,
+          5
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "equal-margins",
+        "diagonal"
+      ]
+    },
+    {
+      "id": "real-zero-prefixes",
+      "name": "hidden: leading and interior zero margins",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rowSum": [
+          0,
+          5,
+          0,
+          7
+        ],
+        "colSum": [
+          0,
+          3,
+          0,
+          9,
+          0
+        ]
+      },
+      "expected": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          3,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          7,
+          0
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "zero-margins",
+        "pointer-advance"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: large allowed margin values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rowSum": [
+          100000000,
+          100000000
+        ],
+        "colSum": [
+          50000000,
+          100000000,
+          50000000
+        ]
+      },
+      "expected": [
+        [
+          50000000,
+          50000000,
+          0
+        ],
+        [
+          0,
+          50000000,
+          50000000
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-many-valid",
+      "name": "hidden: balanced margins admit many arrangements",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rowSum": [
+          7,
+          7,
+          7
+        ],
+        "colSum": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": [
+        [
+          7,
+          0,
+          0
+        ],
+        [
+          0,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          7
+        ]
+      ],
+      "validator": {
+        "kind": "matrix_margins"
+      },
+      "tags": [
+        "multiple-answers",
+        "semantic-validator"
+      ]
+    }
+  ]
+}
+

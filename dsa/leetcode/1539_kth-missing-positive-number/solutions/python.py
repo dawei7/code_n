@@ -1,16 +1,13 @@
 def solve(arr, k):
-    positives = sorted({x for x in arr if x > 0})
-    missing = max(1, k)
-    current = 1
-    for value in positives:
-        if value < current:
-            continue
-        if value == current:
-            current += 1
-            continue
-        gap = value - current
-        if missing <= gap:
-            return current + missing - 1
-        missing -= gap
-        current = value + 1
-    return current + missing - 1
+    left = 0
+    right = len(arr)
+
+    while left < right:
+        middle = (left + right) // 2
+        missing = arr[middle] - middle - 1
+        if missing < k:
+            left = middle + 1
+        else:
+            right = middle
+
+    return left + k

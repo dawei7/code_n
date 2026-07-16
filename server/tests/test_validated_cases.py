@@ -46,10 +46,12 @@ from server.app.engine_runner import (
     _lcp_string_match,
     _largest_divisible_subset_match,
     _linked_list_random_draws_match,
+    _matrix_margins_match,
     _minimum_unique_rows_matrix_match,
     _minimum_subsequence_match,
     _minimum_unique_abbreviation_match,
     _master_guessed_match,
+    _most_similar_path_match,
     _next_right_pointers_match,
     _neither_min_nor_max_match,
     _ordered_unordered_groups_match,
@@ -66,6 +68,7 @@ from server.app.engine_runner import (
     _random_flip_matrix_trace_match,
     _queue_reconstruction_match,
     _quad_tree_match,
+    _question_mark_replacement_match,
     _rearranged_k_distance_match,
     _robot_room_cleaner_match,
     _sudoku_solution_match,
@@ -112,6 +115,17 @@ def solve(nums: list[int], target: int) -> list[int]:
 
 
 class ValidatedCasesTest(conftest._Base):
+    def test_most_similar_path_validator_accepts_any_optimal_tie(self) -> None:
+        roads = [[0, 1], [1, 2], [2, 3], [3, 0]]
+        names = ["A", "B", "A", "B"]
+        target = ["A", "B", "A"]
+
+        self.assertTrue(_most_similar_path_match([0, 1, 2], 4, roads, names, target))
+        self.assertTrue(_most_similar_path_match([2, 3, 0], 4, roads, names, target))
+        self.assertFalse(_most_similar_path_match([1, 2, 1], 4, roads, names, target))
+        self.assertFalse(_most_similar_path_match([0, 2, 1], 4, roads, names, target))
+        self.assertFalse(_most_similar_path_match([0, 1], 4, roads, names, target))
+
     def test_master_validator_requires_secret_within_guess_budget(self) -> None:
         words = ["acckzz", "ccbazz", "eiowzz", "abcczz"]
         master = _JudgeMaster("acckzz", words, 2)
@@ -1169,6 +1183,13 @@ def solve(n):
         self.assertFalse(_minimum_unique_rows_matrix_match([[1, 3, 4, 2], [1, 3], [1], []], nums))
         self.assertFalse(_minimum_unique_rows_matrix_match([[1, 1], [3, 4, 2], [1, 3]], nums))
 
+    def test_matrix_margins_validator_accepts_any_non_negative_integer_solution(self) -> None:
+        self.assertTrue(_matrix_margins_match([[3, 0], [1, 7]], [3, 8], [4, 7]))
+        self.assertTrue(_matrix_margins_match([[1, 2], [3, 5]], [3, 8], [4, 7]))
+        self.assertFalse(_matrix_margins_match([[3, 0], [1, 6]], [3, 8], [4, 7]))
+        self.assertFalse(_matrix_margins_match([[3, -1], [1, 8]], [2, 9], [4, 7]))
+        self.assertFalse(_matrix_margins_match([[True, 2], [3, 5]], [3, 8], [4, 7]))
+
     def test_float_close_validator_accepts_small_probability_drift(self) -> None:
         self.assertTrue(_float_close_match(0.6666666667, 0.66667, 1e-4))
         self.assertFalse(_float_close_match(0.65, 0.66667, 1e-4))
@@ -1206,6 +1227,14 @@ def solve(n):
         self.assertTrue(_custom_sorted_string_match("xdccbaa", "cba", "abcdaxc"))
         self.assertFalse(_custom_sorted_string_match("acbaxcd", "cba", "abcdaxc"))
         self.assertFalse(_custom_sorted_string_match("dccbaay", "cba", "abcdaxc"))
+
+    def test_question_mark_replacement_validator_accepts_any_valid_completion(self) -> None:
+        self.assertTrue(_question_mark_replacement_match("azs", "?zs"))
+        self.assertTrue(_question_mark_replacement_match("bzs", "?zs"))
+        self.assertTrue(_question_mark_replacement_match("acba", "a??a"))
+        self.assertFalse(_question_mark_replacement_match("aas", "?zs"))
+        self.assertFalse(_question_mark_replacement_match("aza", "?zs"))
+        self.assertFalse(_question_mark_replacement_match("az?", "?zs"))
 
     def test_gray_code_validator_checks_cycle_and_domain(self) -> None:
         self.assertTrue(_gray_code_match([0, 1, 3, 2], 2))

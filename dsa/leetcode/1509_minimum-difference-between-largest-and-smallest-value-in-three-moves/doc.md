@@ -5,66 +5,86 @@
 | Source | LeetCode |
 | Frontend ID | 1509 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Greedy, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-difference-between-largest-and-smallest-value-in-three-moves](https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/).
-
 ### Goal
-Change at most three array elements to any values so the difference between the
-largest and smallest remaining values is as small as possible.
+
+You are given an integer array `nums`. In one move, choose one element and replace it with any integer value. You may perform at most three such moves.
+
+Minimize the difference between the largest and smallest array values after those changes, and return that minimum difference. A move may place a changed element anywhere inside the final surviving value range, so only values that remain as unavoidable extremes determine the answer.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: an integer array.
+Let $n$ be the length of `nums`.
+
+- `nums`: An integer array of length $n$, where $1 \leq n \leq 10^5$ and each value lies between $-10^9$ and $10^9$, inclusive.
+- Each of at most three moves may replace one chosen occurrence with any integer; equal values at different indices remain separate elements.
 
 **Return value**
 
-The minimum possible `max(nums) - min(nums)` after at most three changes.
+Return the minimum possible value of $\max(\texttt{nums})-\min(\texttt{nums})$ after at most three moves.
 
 ### Examples
 **Example 1**
 
 - Input: `nums = [5, 3, 2, 4]`
 - Output: `0`
+- Explanation: All but one of the four values can be changed to match the remaining value.
 
 **Example 2**
 
 - Input: `nums = [1, 5, 0, 10, 14]`
 - Output: `1`
+- Explanation: Three extreme values can be moved inside the interval from 0 to 1.
 
 **Example 3**
 
-- Input: `nums = [6, 6, 0, 1, 1, 4, 6]`
-- Output: `2`
+- Input: `nums = [3, 100, 20]`
+- Output: `0`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-If the array has four or fewer values, all extremes can be neutralized, so the
-answer is `0`. Otherwise sort the array and try the four ways to spend three
-moves across the smallest and largest ends: change three largest, two largest
-and one smallest, one largest and two smallest, or three smallest. Take the
-minimum remaining spread.
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`.
-- **Space Complexity**: `O(1)` extra space if sorting in place.
-
-### Reference Implementations
 <details>
-<summary>python</summary>
+<summary>Approach</summary>
 
-```python
-def solve(nums):
-    if len(nums) <= 4:
-        return 0
-    nums = sorted(nums)
-    return min(nums[-4 + i] - nums[i] for i in range(4))
-```
+#### General
+
+**Only the four values at each end can matter**
+
+Suppose the array were sorted. Changing an interior value cannot reduce the current range while both the same minimum and maximum remain. Every useful move therefore eliminates one current extreme by moving it inside the eventual retained interval.
+
+With three moves, there are exactly four distributions between the two ends: remove zero smallest and three largest values, one smallest and two largest, two smallest and one largest, or three smallest and zero largest. For distribution $i$, where $i$ smallest values are changed, the surviving endpoints are the value of rank $i$ from the bottom and rank $3-i$ from the top.
+
+Consequently, the answer depends only on the four smallest and four largest values. Obtain those constant-size groups in one scan with bounded heaps, sort the four largest into ascending order, and pair corresponding positions. The four differences are precisely the four possible surviving ranges.
+
+**Why no other edits can do better**
+
+Take any solution using at most three changes and look at its final minimum and maximum among unchanged elements. Every original value outside that interval must have been changed. If $i$ of those values lie below the interval, at most $3-i$ can lie above it. Expanding the retained interval until it reaches the $i$-th smallest and the corresponding high extreme cannot increase the number of required changes, and its width is one of the four candidates considered.
+
+Thus every feasible result is at least one candidate width, while each candidate is achievable by moving its excluded extremes anywhere inside the retained interval. Taking their minimum is exact. When $n \leq 4$, at most three changes can make every occurrence equal to the one value left unchanged, so the answer is zero.
+
+#### Complexity detail
+
+Selecting four smallest and four largest elements with fixed-size heaps processes each of the $n$ inputs once. Heap operations cost $O(\log 4)=O(1)$, and comparing the four paired extremes is constant work, so total time is $O(n)$.
+
+Only eight selected values and constant loop state are retained. Since the heap capacity does not grow with $n$, auxiliary space is $O(1)$.
+
+#### Alternatives and edge cases
+
+- **Sort the whole array:** sorting and checking the same four endpoint pairs is concise and correct in $O(n\log n)$ time, but it orders far more values than the answer needs.
+- **Quadratic retained-interval enumeration:** examine every sorted pair and accept intervals with at most three outside values. This is correct but wastes $O(n^2)$ comparisons on only four feasible endpoint distributions.
+- **Four or fewer elements:** return zero because three changes can make all values equal to one unchanged occurrence.
+- **Exactly five elements:** four moves would be needed to force equality in general; the answer is the smallest gap between two values that can remain unchanged.
+- **Duplicate extremes:** occurrences, not distinct values, consume moves; fixed-size selection naturally preserves duplicates.
+- **Negative values:** ordering and subtraction work unchanged across zero.
+- **Already equal:** every candidate width is zero.
+- **Use fewer than three moves:** the phrase “at most” is covered because a candidate may already have the optimal range without requiring every allowed change.
+- **Input preservation:** bounded selection need not reorder or mutate `nums`.
+
 </details>

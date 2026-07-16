@@ -1,9 +1,15 @@
+"""Optimal app-local solution for LeetCode 1521."""
+
+
 def solve(arr, target):
-    current = set()
+    previous = set()
     answer = float("inf")
     for value in arr:
-        current = {value & previous for previous in current}
-        current.add(value)
+        current = {value}
+        current.update(candidate & value for candidate in previous)
         for candidate in current:
             answer = min(answer, abs(candidate - target))
-    return int(answer if answer != float("inf") else 0)
+        if answer == 0:
+            return 0
+        previous = current
+    return int(answer)
