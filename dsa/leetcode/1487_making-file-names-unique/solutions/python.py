@@ -1,19 +1,22 @@
 def solve(names):
-    if not isinstance(names, list):
-        names = [names]
-    used = {}
-    result = []
+    next_suffix = {}
+    assigned = []
+
     for name in names:
-        name = str(name)
-        if name not in used:
-            used[name] = 1
-            result.append(name)
+        if name not in next_suffix:
+            next_suffix[name] = 1
+            assigned.append(name)
             continue
-        suffix = used[name]
-        while f"{name}({suffix})" in used:
+
+        suffix = next_suffix[name]
+        candidate = f"{name}({suffix})"
+
+        while candidate in next_suffix:
             suffix += 1
-        used[name] = suffix + 1
-        unique = f"{name}({suffix})"
-        used[unique] = 1
-        result.append(unique)
-    return result
+            candidate = f"{name}({suffix})"
+
+        next_suffix[name] = suffix + 1
+        next_suffix[candidate] = 1
+        assigned.append(candidate)
+
+    return assigned

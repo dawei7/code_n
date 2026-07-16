@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1484",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official dates with duplicate Mask",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activities": [
+            {
+              "sell_date": "2020-05-30",
+              "product": "Headphone"
+            },
+            {
+              "sell_date": "2020-06-01",
+              "product": "Pencil"
+            },
+            {
+              "sell_date": "2020-06-02",
+              "product": "Mask"
+            },
+            {
+              "sell_date": "2020-05-30",
+              "product": "Basketball"
+            },
+            {
+              "sell_date": "2020-06-01",
+              "product": "Bible"
+            },
+            {
+              "sell_date": "2020-06-02",
+              "product": "Mask"
+            },
+            {
+              "sell_date": "2020-05-30",
+              "product": "T-Shirt"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sell_date",
+          "num_sold",
+          "products"
+        ],
+        "rows": [
+          [
+            "2020-05-30",
+            3,
+            "Basketball,Headphone,T-Shirt"
+          ],
+          [
+            "2020-06-01",
+            2,
+            "Bible,Pencil"
+          ],
+          [
+            "2020-06-02",
+            1,
+            "Mask"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "distinct",
+        "ordered-concatenation"
+      ]
+    },
+    {
+      "id": "trial-duplicates-and-order",
+      "name": "trial: duplicate products and unsorted names",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Activities": [
+            {
+              "sell_date": "2021-01-02",
+              "product": "Pen"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "Zebra"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "Apple"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "Zebra"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "Banana"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "Pen"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sell_date",
+          "num_sold",
+          "products"
+        ],
+        "rows": [
+          [
+            "2021-01-01",
+            3,
+            "Apple,Banana,Zebra"
+          ],
+          [
+            "2021-01-02",
+            1,
+            "Pen"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-one-date-one-product",
+      "name": "hidden: one distinct pair repeated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Activities": [
+            {
+              "sell_date": "2022-12-31",
+              "product": "Clock"
+            },
+            {
+              "sell_date": "2022-12-31",
+              "product": "Clock"
+            },
+            {
+              "sell_date": "2022-12-31",
+              "product": "Clock"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sell_date",
+          "num_sold",
+          "products"
+        ],
+        "rows": [
+          [
+            "2022-12-31",
+            1,
+            "Clock"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "single-product",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-same-product-different-dates",
+      "name": "hidden: product contributes independently by date",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Activities": [
+            {
+              "sell_date": "2020-03-03",
+              "product": "Book"
+            },
+            {
+              "sell_date": "2020-03-01",
+              "product": "Book"
+            },
+            {
+              "sell_date": "2020-03-02",
+              "product": "Cable"
+            },
+            {
+              "sell_date": "2020-03-02",
+              "product": "Book"
+            },
+            {
+              "sell_date": "2020-03-01",
+              "product": "Book"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sell_date",
+          "num_sold",
+          "products"
+        ],
+        "rows": [
+          [
+            "2020-03-01",
+            1,
+            "Book"
+          ],
+          [
+            "2020-03-02",
+            2,
+            "Book,Cable"
+          ],
+          [
+            "2020-03-03",
+            1,
+            "Book"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "date-grouping",
+        "input-order"
+      ]
+    },
+    {
+      "id": "real-lexicographic-numbers",
+      "name": "hidden: lexicographic rather than numeric-looking order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Activities": [
+            {
+              "sell_date": "2024-04-04",
+              "product": "B2"
+            },
+            {
+              "sell_date": "2024-04-04",
+              "product": "A"
+            },
+            {
+              "sell_date": "2024-04-04",
+              "product": "B10"
+            },
+            {
+              "sell_date": "2024-04-04",
+              "product": "AA"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sell_date",
+          "num_sold",
+          "products"
+        ],
+        "rows": [
+          [
+            "2024-04-04",
+            4,
+            "A,AA,B10,B2"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "lexicographic-order"
+      ]
+    }
+  ]
+}

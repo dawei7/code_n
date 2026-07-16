@@ -1,8 +1,8 @@
 {
   "total_docs": 3985,
   "counts": {
-    "manual_complete": 2527,
-    "needs_authoring": 1458
+    "manual_complete": 2531,
+    "needs_authoring": 1454
   },
   "entries": [
     {
@@ -10381,29 +10381,29 @@
     },
     {
       "path": "dsa/leetcode/1483_kth-ancestor-of-a-tree-node/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1484_group-sold-products-by-the-date/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1485_clone-binary-tree-with-random-pointer/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1486_xor-operation-in-an-array/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },

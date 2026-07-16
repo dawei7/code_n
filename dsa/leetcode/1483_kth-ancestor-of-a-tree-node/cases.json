@@ -1,0 +1,376 @@
+{
+  "challenge_id": "lc_1483",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: parent grandparent and missing ancestor",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2
+        ],
+        "operations": [
+          [
+            "getKthAncestor",
+            [
+              3,
+              1
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              5,
+              2
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              6,
+              3
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "design",
+        "binary-lifting"
+      ]
+    },
+    {
+      "id": "trial-chain-distances",
+      "name": "trial: several distances on a chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "parent": [
+          -1,
+          0,
+          1,
+          2,
+          3
+        ],
+        "operations": [
+          [
+            "getKthAncestor",
+            [
+              4,
+              1
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              4,
+              4
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              3,
+              4
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              2,
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        0,
+        -1,
+        0
+      ],
+      "tags": [
+        "trial",
+        "chain",
+        "depth-boundary"
+      ]
+    },
+    {
+      "id": "real-star-tree",
+      "name": "hidden: star leaves have only one ancestor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "parent": [
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "operations": [
+          [
+            "getKthAncestor",
+            [
+              5,
+              1
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              5,
+              2
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        -1,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "star",
+        "root"
+      ]
+    },
+    {
+      "id": "real-balanced-tree",
+      "name": "hidden: composed jumps in balanced tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 15,
+        "parent": [
+          -1,
+          0,
+          0,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          5,
+          6,
+          6
+        ],
+        "operations": [
+          [
+            "getKthAncestor",
+            [
+              14,
+              1
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              14,
+              2
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              14,
+              3
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              10,
+              2
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        2,
+        0,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "balanced",
+        "composed-jumps"
+      ]
+    },
+    {
+      "id": "real-single-node",
+      "name": "hidden: single-node tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "parent": [
+          -1
+        ],
+        "operations": [
+          [
+            "getKthAncestor",
+            [
+              0,
+              1
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "boundary",
+        "single-node"
+      ]
+    },
+    {
+      "id": "real-power-of-two-jumps",
+      "name": "hidden: exact power-of-two ancestors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 9,
+        "parent": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "operations": [
+          [
+            "getKthAncestor",
+            [
+              8,
+              2
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              8,
+              4
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              8,
+              8
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              7,
+              8
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        4,
+        0,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "chain",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "real-repeated-independent-queries",
+      "name": "hidden: queries do not mutate tree state",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "parent": [
+          -1,
+          0,
+          1,
+          2
+        ],
+        "operations": [
+          [
+            "getKthAncestor",
+            [
+              3,
+              2
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              3,
+              2
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              2,
+              1
+            ]
+          ],
+          [
+            "getKthAncestor",
+            [
+              3,
+              3
+            ]
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "repeated",
+        "state"
+      ]
+    }
+  ]
+}

@@ -2,12 +2,13 @@ from collections import Counter
 
 
 def solve(arr, k):
-    freq = Counter(arr)
-    counts = sorted(freq[value] for value in freq)
-    remaining = len(counts)
-    for count in counts:
-        if k < count:
+    frequencies = sorted(Counter(arr).values())
+    remaining = len(frequencies)
+
+    for frequency in frequencies:
+        if frequency > k:
             break
-        k -= count
+        k -= frequency
         remaining -= 1
+
     return remaining

@@ -1,0 +1,430 @@
+{
+  "challenge_id": "lc_1485",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: sparse tree with root back-pointer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nodes": [
+          [
+            1,
+            null
+          ],
+          null,
+          [
+            4,
+            3
+          ],
+          [
+            7,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          null
+        ],
+        null,
+        [
+          4,
+          3
+        ],
+        [
+          7,
+          0
+        ]
+      ],
+      "tags": [
+        "sample",
+        "sparse",
+        "back-pointer"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: duplicate values and self pointer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nodes": [
+          [
+            1,
+            4
+          ],
+          null,
+          [
+            1,
+            0
+          ],
+          null,
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          4
+        ],
+        null,
+        [
+          1,
+          0
+        ],
+        null,
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "tags": [
+        "sample",
+        "duplicate-values",
+        "self-reference"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: symmetric random targets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nodes": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            6,
+            1
+          ],
+          [
+            7,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          0
+        ]
+      ],
+      "tags": [
+        "sample",
+        "cross-subtree",
+        "cycle"
+      ]
+    },
+    {
+      "id": "trial-single-self",
+      "name": "trial: one node points to itself",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nodes": [
+          [
+            42,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          42,
+          0
+        ]
+      ],
+      "tags": [
+        "trial",
+        "single-node",
+        "self-reference"
+      ]
+    },
+    {
+      "id": "real-empty",
+      "name": "hidden: empty tree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": []
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "boundary",
+        "empty"
+      ]
+    },
+    {
+      "id": "real-sparse-cross-links",
+      "name": "hidden: sparse tree with cross-level random links",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": [
+          [
+            10,
+            4
+          ],
+          [
+            20,
+            0
+          ],
+          null,
+          [
+            30,
+            1
+          ],
+          [
+            40,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          10,
+          4
+        ],
+        [
+          20,
+          0
+        ],
+        null,
+        [
+          30,
+          1
+        ],
+        [
+          40,
+          4
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "sparse",
+        "cross-level"
+      ]
+    },
+    {
+      "id": "real-duplicate-identities",
+      "name": "hidden: equal values retain distinct identities",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": [
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "duplicate-values",
+        "identity"
+      ]
+    },
+    {
+      "id": "real-all-null-random",
+      "name": "hidden: complete tree without random edges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": [
+          [
+            1,
+            null
+          ],
+          [
+            2,
+            null
+          ],
+          [
+            3,
+            null
+          ],
+          [
+            4,
+            null
+          ],
+          [
+            5,
+            null
+          ],
+          [
+            6,
+            null
+          ],
+          [
+            7,
+            null
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          null
+        ],
+        [
+          2,
+          null
+        ],
+        [
+          3,
+          null
+        ],
+        [
+          4,
+          null
+        ],
+        [
+          5,
+          null
+        ],
+        [
+          6,
+          null
+        ],
+        [
+          7,
+          null
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "null-random",
+        "complete-tree"
+      ]
+    },
+    {
+      "id": "real-random-cycle",
+      "name": "hidden: random-only cycle across branches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": [
+          [
+            100,
+            2
+          ],
+          [
+            200,
+            4
+          ],
+          [
+            300,
+            1
+          ],
+          null,
+          [
+            400,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        [
+          100,
+          2
+        ],
+        [
+          200,
+          4
+        ],
+        [
+          300,
+          1
+        ],
+        null,
+        [
+          400,
+          0
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "cycle",
+        "cross-subtree"
+      ]
+    }
+  ]
+}

@@ -794,6 +794,20 @@ def _unordered_nested_list_matches(actual: Any, expected: Any) -> bool:
     return normalize(actual) == normalize(expected)
 
 
+def _ordered_groups_unordered_items_match(actual: Any, expected: Any) -> bool:
+    if (
+        not isinstance(actual, list)
+        or not isinstance(expected, list)
+        or len(actual) != len(expected)
+    ):
+        return False
+
+    return all(
+        _unordered_list_matches(actual_group, expected_group)
+        for actual_group, expected_group in zip(actual, expected, strict=True)
+    )
+
+
 def _duplicate_subtrees_match(actual: Any, expected: Any) -> bool:
     if not isinstance(actual, list) or not isinstance(expected, list):
         return False
@@ -2454,6 +2468,8 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         return _unordered_list_matches(actual, expected)
     if kind == "unordered_nested_list":
         return _unordered_nested_list_matches(actual, expected)
+    if kind == "ordered_groups_unordered_items":
+        return _ordered_groups_unordered_items_match(actual, expected)
     if kind == "duplicate_subtrees":
         return _duplicate_subtrees_match(actual, expected)
     if kind == "beautiful_arrangement_ii":

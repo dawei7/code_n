@@ -20,7 +20,8 @@
       "expected": 3,
       "tags": [
         "sample",
-        "binary-search"
+        "binary-search",
+        "k-one"
       ]
     },
     {
@@ -42,12 +43,13 @@
       "expected": -1,
       "tags": [
         "sample",
-        "edge"
+        "impossible",
+        "capacity"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: adjacency matters",
+      "name": "sample: late flower joins adjacent runs",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -65,22 +67,23 @@
       },
       "expected": 12,
       "tags": [
-        "sample"
+        "sample",
+        "adjacency"
       ]
     },
     {
-      "id": "real-two-adjacent-bouquets",
-      "name": "hidden: two adjacent bouquets become possible",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-separated-runs",
+      "name": "trial: two bouquets across separate runs",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "bloom_day": [
-          1,
           2,
           4,
-          9,
+          2,
+          5,
+          6,
           3,
-          4,
           1
         ],
         "m": 2,
@@ -88,7 +91,163 @@
       },
       "expected": 4,
       "tags": [
-        "hidden"
+        "trial",
+        "adjacency",
+        "binary-search"
+      ]
+    },
+    {
+      "id": "real-single-flower",
+      "name": "hidden: one flower makes one bouquet",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bloom_day": [
+          999999999
+        ],
+        "m": 1,
+        "k": 1
+      },
+      "expected": 999999999,
+      "tags": [
+        "hidden",
+        "boundary",
+        "single"
+      ]
+    },
+    {
+      "id": "real-all-same-day",
+      "name": "hidden: equal bloom days and exact capacity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bloom_day": [
+          6,
+          6,
+          6,
+          6
+        ],
+        "m": 2,
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "equal-days",
+        "exact-capacity"
+      ]
+    },
+    {
+      "id": "real-impossible-large-m",
+      "name": "hidden: bouquet count exceeds garden capacity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bloom_day": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "m": 1000000,
+        "k": 1
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "impossible",
+        "large-m"
+      ]
+    },
+    {
+      "id": "real-adjacency-barriers",
+      "name": "hidden: early flowers are isolated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bloom_day": [
+          1,
+          10,
+          1,
+          10,
+          1,
+          10
+        ],
+        "m": 2,
+        "k": 2
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "adjacency",
+        "barriers"
+      ]
+    },
+    {
+      "id": "real-k-one-order-statistic",
+      "name": "hidden: one-flower bouquets reach threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bloom_day": [
+          5,
+          1,
+          4,
+          2,
+          3
+        ],
+        "m": 3,
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "k-one",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-max-day-gap",
+      "name": "hidden: answer at maximum legal day",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bloom_day": [
+          1,
+          1000000000
+        ],
+        "m": 1,
+        "k": 2
+      },
+      "expected": 1000000000,
+      "tags": [
+        "hidden",
+        "maximum-day",
+        "wide-range"
+      ]
+    },
+    {
+      "id": "real-nonoverlapping-groups",
+      "name": "hidden: long run yields floor length over k groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "bloom_day": [
+          3,
+          3,
+          3,
+          3,
+          9
+        ],
+        "m": 2,
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "non-overlap",
+        "long-run"
       ]
     }
   ]

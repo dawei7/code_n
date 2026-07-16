@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: no dry days needed",
+      "name": "sample: no repeated lake",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -25,12 +25,12 @@
       },
       "tags": [
         "sample",
-        "greedy"
+        "no-dry-needed"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: dry two lakes",
+      "name": "sample: two valid dry orders",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -55,12 +55,14 @@
         "kind": "avoid_flood"
       },
       "tags": [
-        "sample"
+        "sample",
+        "multiple-valid",
+        "deadlines"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: impossible schedule",
+      "name": "sample: one dry day cannot save two lakes",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -78,35 +80,202 @@
       },
       "tags": [
         "sample",
-        "edge"
+        "impossible"
       ]
     },
     {
-      "id": "real-one-extra-dry-day",
-      "name": "hidden: one dry day can be arbitrary",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-earliest-deadline",
+      "name": "trial: urgent lake must be dried first",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "rains": [
           1,
           2,
           0,
+          1,
           0,
-          1
+          2
         ]
       },
       "expected": [
         -1,
         -1,
         1,
-        1,
+        -1,
+        2,
         -1
       ],
       "validator": {
         "kind": "avoid_flood"
       },
       "tags": [
-        "hidden"
+        "trial",
+        "earliest-deadline"
+      ]
+    },
+    {
+      "id": "real-single-repeat",
+      "name": "hidden: one lake dried between rains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rains": [
+          5,
+          0,
+          5
+        ]
+      },
+      "expected": [
+        -1,
+        5,
+        -1
+      ],
+      "validator": {
+        "kind": "avoid_flood"
+      },
+      "tags": [
+        "hidden",
+        "single-lake"
+      ]
+    },
+    {
+      "id": "real-dry-too-early",
+      "name": "hidden: early dry day cannot prevent later repeat",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rains": [
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "avoid_flood"
+      },
+      "tags": [
+        "hidden",
+        "impossible",
+        "dry-too-early"
+      ]
+    },
+    {
+      "id": "real-all-dry",
+      "name": "hidden: every day is unconstrained drying",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rains": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "validator": {
+        "kind": "avoid_flood"
+      },
+      "tags": [
+        "hidden",
+        "all-zero",
+        "arbitrary"
+      ]
+    },
+    {
+      "id": "real-refill-stale-deadline",
+      "name": "hidden: lake is dried refilled and scheduled again",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rains": [
+          1,
+          0,
+          1,
+          2,
+          0,
+          1,
+          0,
+          2
+        ]
+      },
+      "expected": [
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        2,
+        -1
+      ],
+      "validator": {
+        "kind": "avoid_flood"
+      },
+      "tags": [
+        "hidden",
+        "refill",
+        "stale-heap"
+      ]
+    },
+    {
+      "id": "real-large-identifiers",
+      "name": "hidden: large sparse lake identifiers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rains": [
+          1000000000,
+          7,
+          0,
+          1000000000,
+          0,
+          7
+        ]
+      },
+      "expected": [
+        -1,
+        -1,
+        1000000000,
+        -1,
+        7,
+        -1
+      ],
+      "validator": {
+        "kind": "avoid_flood"
+      },
+      "tags": [
+        "hidden",
+        "maximum-lake",
+        "sparse-ids"
+      ]
+    },
+    {
+      "id": "real-adjacent-repeat",
+      "name": "hidden: consecutive rain on same lake floods",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rains": [
+          9,
+          9
+        ]
+      },
+      "expected": [],
+      "validator": {
+        "kind": "avoid_flood"
+      },
+      "tags": [
+        "hidden",
+        "impossible",
+        "adjacent-repeat"
       ]
     }
   ]

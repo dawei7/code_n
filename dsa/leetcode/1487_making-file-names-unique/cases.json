@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: already unique names",
+      "name": "sample: already unique literal names",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -22,12 +22,13 @@
       ],
       "tags": [
         "sample",
-        "hash-map"
+        "all-unique",
+        "literal-parentheses"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: suffix collision",
+      "name": "sample: preoccupied first suffix",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -45,33 +46,63 @@
         "avalon"
       ],
       "tags": [
-        "sample"
+        "sample",
+        "suffix-collision"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: repeated base name",
+      "name": "sample: consecutive preoccupied suffixes",
       "kind": "sample",
       "visible": true,
       "input": {
         "names": [
           "onepiece",
           "onepiece(1)",
+          "onepiece(2)",
+          "onepiece(3)",
           "onepiece"
         ]
       },
       "expected": [
         "onepiece",
         "onepiece(1)",
-        "onepiece(2)"
+        "onepiece(2)",
+        "onepiece(3)",
+        "onepiece(4)"
       ],
       "tags": [
-        "sample"
+        "sample",
+        "suffix-scan"
+      ]
+    },
+    {
+      "id": "trial-repeated-base",
+      "name": "trial: repeated base advances next suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "names": [
+          "a",
+          "a",
+          "a",
+          "a"
+        ]
+      },
+      "expected": [
+        "a",
+        "a(1)",
+        "a(2)",
+        "a(3)"
+      ],
+      "tags": [
+        "trial",
+        "repeated-base"
       ]
     },
     {
       "id": "real-existing-suffix-reused",
-      "name": "hidden: requested suffix already exists",
+      "name": "hidden: duplicate literal suffix becomes nested",
       "kind": "real",
       "visible": false,
       "input": {
@@ -89,7 +120,101 @@
         "kaido(1)(1)"
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "nested-suffix"
+      ]
+    },
+    {
+      "id": "real-gap-before-preoccupied",
+      "name": "hidden: choose free suffix before occupied larger suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "names": [
+          "x",
+          "x(2)",
+          "x",
+          "x"
+        ]
+      },
+      "expected": [
+        "x",
+        "x(2)",
+        "x(1)",
+        "x(3)"
+      ],
+      "tags": [
+        "hidden",
+        "suffix-gap",
+        "preoccupied"
+      ]
+    },
+    {
+      "id": "real-parenthesized-literal",
+      "name": "hidden: parenthesized request is independent base",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "names": [
+          "a(1)",
+          "a(1)",
+          "a",
+          "a"
+        ]
+      },
+      "expected": [
+        "a(1)",
+        "a(1)(1)",
+        "a",
+        "a(2)"
+      ],
+      "tags": [
+        "hidden",
+        "literal-parentheses",
+        "nested-suffix"
+      ]
+    },
+    {
+      "id": "real-generated-then-requested",
+      "name": "hidden: later request collides with generated name",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "names": [
+          "doc",
+          "doc",
+          "doc(1)"
+        ]
+      },
+      "expected": [
+        "doc",
+        "doc(1)",
+        "doc(1)(1)"
+      ],
+      "tags": [
+        "hidden",
+        "generated-name",
+        "nested-suffix"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: suffix a maximum-length requested name",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "names": [
+          "abcdefghijklmnopqrst",
+          "abcdefghijklmnopqrst"
+        ]
+      },
+      "expected": [
+        "abcdefghijklmnopqrst",
+        "abcdefghijklmnopqrst(1)"
+      ],
+      "tags": [
+        "hidden",
+        "maximum-length"
       ]
     }
   ]

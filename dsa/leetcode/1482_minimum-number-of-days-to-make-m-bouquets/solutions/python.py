@@ -1,25 +1,33 @@
 def solve(bloom_day, m, k):
-    need = int(m) * int(k)
-    if need > len(bloom_day):
+    flower_count = len(bloom_day)
+    if m * k > flower_count:
         return -1
 
     def can_make(day):
-        bouquets = adjacent = 0
+        bouquets = 0
+        adjacent = 0
+
         for bloom in bloom_day:
             if bloom <= day:
                 adjacent += 1
                 if adjacent == k:
                     bouquets += 1
+                    if bouquets == m:
+                        return True
                     adjacent = 0
             else:
                 adjacent = 0
-        return bouquets >= m
 
-    left, right = min(bloom_day), max(bloom_day)
+        return False
+
+    left = min(bloom_day)
+    right = max(bloom_day)
+
     while left < right:
-        mid = (left + right) // 2
-        if can_make(mid):
-            right = mid
+        middle = left + (right - left) // 2
+        if can_make(middle):
+            right = middle
         else:
-            left = mid + 1
+            left = middle + 1
+
     return left

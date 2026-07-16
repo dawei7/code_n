@@ -90,6 +90,7 @@ from server.app.engine_runner import (
     _JudgeMaster,
     _unique_bsts_match,
     _unordered_nested_list_matches,
+    _ordered_groups_unordered_items_match,
     _validated_case_matches,
     _vps_split_match,
     _wiggle_sort_matches,
@@ -1222,6 +1223,12 @@ def solve(n):
         expected = [[], [1], [2], [1, 2]]
         self.assertTrue(_unordered_nested_list_matches([[2, 1], [2], [], [1]], expected))
         self.assertFalse(_unordered_nested_list_matches([[2, 1], [2], [], [2]], expected))
+
+    def test_ordered_groups_validator_preserves_categories(self) -> None:
+        expected = [[0, 1], [2, 3, 4]]
+        self.assertTrue(_ordered_groups_unordered_items_match([[1, 0], [4, 2, 3]], expected))
+        self.assertFalse(_ordered_groups_unordered_items_match([[4, 2, 3], [1, 0]], expected))
+        self.assertFalse(_ordered_groups_unordered_items_match([[0, 1], [2, 3]], expected))
 
     def test_ordered_unordered_groups_validator_preserves_round_order(self) -> None:
         expected = [[4, 5, 3], [2], [1]]

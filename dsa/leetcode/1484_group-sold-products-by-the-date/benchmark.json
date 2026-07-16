@@ -1,0 +1,3619 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1484",
+  "measurement_note": "Size is G, the number of sale dates; the legal 8/32/128 tiers span 16x and contain four rows per date, including one duplicate among three distinct products. Deduplication, one global product ordering, and grouped aggregation process the relation in O(R + P log P) time. A correct correlated-subquery formulation rescans all R rows for every date, grows as O(GR), completes normally at G = 128, and is rejected by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 dates with duplicate activities",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "Activities": [
+            {
+              "sell_date": "2021-01-01",
+              "product": "gamma000"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "alpha000"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "beta000"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "beta000"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "gamma001"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "alpha001"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "beta001"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "beta001"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "gamma002"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "alpha002"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "beta002"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "beta002"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "gamma003"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "alpha003"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "beta003"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "beta003"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "gamma004"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "alpha004"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "beta004"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "beta004"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "gamma005"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "alpha005"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "beta005"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "beta005"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "gamma006"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "alpha006"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "beta006"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "beta006"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "gamma007"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "alpha007"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "beta007"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "beta007"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sell_date",
+          "num_sold",
+          "products"
+        ],
+        "rows": [
+          [
+            "2021-01-01",
+            3,
+            "alpha000,beta000,gamma000"
+          ],
+          [
+            "2021-01-02",
+            3,
+            "alpha001,beta001,gamma001"
+          ],
+          [
+            "2021-01-03",
+            3,
+            "alpha002,beta002,gamma002"
+          ],
+          [
+            "2021-01-04",
+            3,
+            "alpha003,beta003,gamma003"
+          ],
+          [
+            "2021-01-05",
+            3,
+            "alpha004,beta004,gamma004"
+          ],
+          [
+            "2021-01-06",
+            3,
+            "alpha005,beta005,gamma005"
+          ],
+          [
+            "2021-01-07",
+            3,
+            "alpha006,beta006,gamma006"
+          ],
+          [
+            "2021-01-08",
+            3,
+            "alpha007,beta007,gamma007"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "duplicates",
+        "grouping"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 dates with duplicate activities",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Activities": [
+            {
+              "sell_date": "2021-01-01",
+              "product": "gamma000"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "alpha000"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "beta000"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "beta000"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "gamma001"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "alpha001"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "beta001"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "beta001"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "gamma002"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "alpha002"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "beta002"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "beta002"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "gamma003"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "alpha003"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "beta003"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "beta003"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "gamma004"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "alpha004"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "beta004"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "beta004"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "gamma005"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "alpha005"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "beta005"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "beta005"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "gamma006"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "alpha006"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "beta006"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "beta006"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "gamma007"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "alpha007"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "beta007"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "beta007"
+            },
+            {
+              "sell_date": "2021-01-09",
+              "product": "gamma008"
+            },
+            {
+              "sell_date": "2021-01-09",
+              "product": "alpha008"
+            },
+            {
+              "sell_date": "2021-01-09",
+              "product": "beta008"
+            },
+            {
+              "sell_date": "2021-01-09",
+              "product": "beta008"
+            },
+            {
+              "sell_date": "2021-01-10",
+              "product": "gamma009"
+            },
+            {
+              "sell_date": "2021-01-10",
+              "product": "alpha009"
+            },
+            {
+              "sell_date": "2021-01-10",
+              "product": "beta009"
+            },
+            {
+              "sell_date": "2021-01-10",
+              "product": "beta009"
+            },
+            {
+              "sell_date": "2021-01-11",
+              "product": "gamma010"
+            },
+            {
+              "sell_date": "2021-01-11",
+              "product": "alpha010"
+            },
+            {
+              "sell_date": "2021-01-11",
+              "product": "beta010"
+            },
+            {
+              "sell_date": "2021-01-11",
+              "product": "beta010"
+            },
+            {
+              "sell_date": "2021-01-12",
+              "product": "gamma011"
+            },
+            {
+              "sell_date": "2021-01-12",
+              "product": "alpha011"
+            },
+            {
+              "sell_date": "2021-01-12",
+              "product": "beta011"
+            },
+            {
+              "sell_date": "2021-01-12",
+              "product": "beta011"
+            },
+            {
+              "sell_date": "2021-01-13",
+              "product": "gamma012"
+            },
+            {
+              "sell_date": "2021-01-13",
+              "product": "alpha012"
+            },
+            {
+              "sell_date": "2021-01-13",
+              "product": "beta012"
+            },
+            {
+              "sell_date": "2021-01-13",
+              "product": "beta012"
+            },
+            {
+              "sell_date": "2021-01-14",
+              "product": "gamma013"
+            },
+            {
+              "sell_date": "2021-01-14",
+              "product": "alpha013"
+            },
+            {
+              "sell_date": "2021-01-14",
+              "product": "beta013"
+            },
+            {
+              "sell_date": "2021-01-14",
+              "product": "beta013"
+            },
+            {
+              "sell_date": "2021-01-15",
+              "product": "gamma014"
+            },
+            {
+              "sell_date": "2021-01-15",
+              "product": "alpha014"
+            },
+            {
+              "sell_date": "2021-01-15",
+              "product": "beta014"
+            },
+            {
+              "sell_date": "2021-01-15",
+              "product": "beta014"
+            },
+            {
+              "sell_date": "2021-01-16",
+              "product": "gamma015"
+            },
+            {
+              "sell_date": "2021-01-16",
+              "product": "alpha015"
+            },
+            {
+              "sell_date": "2021-01-16",
+              "product": "beta015"
+            },
+            {
+              "sell_date": "2021-01-16",
+              "product": "beta015"
+            },
+            {
+              "sell_date": "2021-01-17",
+              "product": "gamma016"
+            },
+            {
+              "sell_date": "2021-01-17",
+              "product": "alpha016"
+            },
+            {
+              "sell_date": "2021-01-17",
+              "product": "beta016"
+            },
+            {
+              "sell_date": "2021-01-17",
+              "product": "beta016"
+            },
+            {
+              "sell_date": "2021-01-18",
+              "product": "gamma017"
+            },
+            {
+              "sell_date": "2021-01-18",
+              "product": "alpha017"
+            },
+            {
+              "sell_date": "2021-01-18",
+              "product": "beta017"
+            },
+            {
+              "sell_date": "2021-01-18",
+              "product": "beta017"
+            },
+            {
+              "sell_date": "2021-01-19",
+              "product": "gamma018"
+            },
+            {
+              "sell_date": "2021-01-19",
+              "product": "alpha018"
+            },
+            {
+              "sell_date": "2021-01-19",
+              "product": "beta018"
+            },
+            {
+              "sell_date": "2021-01-19",
+              "product": "beta018"
+            },
+            {
+              "sell_date": "2021-01-20",
+              "product": "gamma019"
+            },
+            {
+              "sell_date": "2021-01-20",
+              "product": "alpha019"
+            },
+            {
+              "sell_date": "2021-01-20",
+              "product": "beta019"
+            },
+            {
+              "sell_date": "2021-01-20",
+              "product": "beta019"
+            },
+            {
+              "sell_date": "2021-01-21",
+              "product": "gamma020"
+            },
+            {
+              "sell_date": "2021-01-21",
+              "product": "alpha020"
+            },
+            {
+              "sell_date": "2021-01-21",
+              "product": "beta020"
+            },
+            {
+              "sell_date": "2021-01-21",
+              "product": "beta020"
+            },
+            {
+              "sell_date": "2021-01-22",
+              "product": "gamma021"
+            },
+            {
+              "sell_date": "2021-01-22",
+              "product": "alpha021"
+            },
+            {
+              "sell_date": "2021-01-22",
+              "product": "beta021"
+            },
+            {
+              "sell_date": "2021-01-22",
+              "product": "beta021"
+            },
+            {
+              "sell_date": "2021-01-23",
+              "product": "gamma022"
+            },
+            {
+              "sell_date": "2021-01-23",
+              "product": "alpha022"
+            },
+            {
+              "sell_date": "2021-01-23",
+              "product": "beta022"
+            },
+            {
+              "sell_date": "2021-01-23",
+              "product": "beta022"
+            },
+            {
+              "sell_date": "2021-01-24",
+              "product": "gamma023"
+            },
+            {
+              "sell_date": "2021-01-24",
+              "product": "alpha023"
+            },
+            {
+              "sell_date": "2021-01-24",
+              "product": "beta023"
+            },
+            {
+              "sell_date": "2021-01-24",
+              "product": "beta023"
+            },
+            {
+              "sell_date": "2021-01-25",
+              "product": "gamma024"
+            },
+            {
+              "sell_date": "2021-01-25",
+              "product": "alpha024"
+            },
+            {
+              "sell_date": "2021-01-25",
+              "product": "beta024"
+            },
+            {
+              "sell_date": "2021-01-25",
+              "product": "beta024"
+            },
+            {
+              "sell_date": "2021-01-26",
+              "product": "gamma025"
+            },
+            {
+              "sell_date": "2021-01-26",
+              "product": "alpha025"
+            },
+            {
+              "sell_date": "2021-01-26",
+              "product": "beta025"
+            },
+            {
+              "sell_date": "2021-01-26",
+              "product": "beta025"
+            },
+            {
+              "sell_date": "2021-01-27",
+              "product": "gamma026"
+            },
+            {
+              "sell_date": "2021-01-27",
+              "product": "alpha026"
+            },
+            {
+              "sell_date": "2021-01-27",
+              "product": "beta026"
+            },
+            {
+              "sell_date": "2021-01-27",
+              "product": "beta026"
+            },
+            {
+              "sell_date": "2021-01-28",
+              "product": "gamma027"
+            },
+            {
+              "sell_date": "2021-01-28",
+              "product": "alpha027"
+            },
+            {
+              "sell_date": "2021-01-28",
+              "product": "beta027"
+            },
+            {
+              "sell_date": "2021-01-28",
+              "product": "beta027"
+            },
+            {
+              "sell_date": "2021-01-29",
+              "product": "gamma028"
+            },
+            {
+              "sell_date": "2021-01-29",
+              "product": "alpha028"
+            },
+            {
+              "sell_date": "2021-01-29",
+              "product": "beta028"
+            },
+            {
+              "sell_date": "2021-01-29",
+              "product": "beta028"
+            },
+            {
+              "sell_date": "2021-01-30",
+              "product": "gamma029"
+            },
+            {
+              "sell_date": "2021-01-30",
+              "product": "alpha029"
+            },
+            {
+              "sell_date": "2021-01-30",
+              "product": "beta029"
+            },
+            {
+              "sell_date": "2021-01-30",
+              "product": "beta029"
+            },
+            {
+              "sell_date": "2021-01-31",
+              "product": "gamma030"
+            },
+            {
+              "sell_date": "2021-01-31",
+              "product": "alpha030"
+            },
+            {
+              "sell_date": "2021-01-31",
+              "product": "beta030"
+            },
+            {
+              "sell_date": "2021-01-31",
+              "product": "beta030"
+            },
+            {
+              "sell_date": "2021-02-01",
+              "product": "gamma031"
+            },
+            {
+              "sell_date": "2021-02-01",
+              "product": "alpha031"
+            },
+            {
+              "sell_date": "2021-02-01",
+              "product": "beta031"
+            },
+            {
+              "sell_date": "2021-02-01",
+              "product": "beta031"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sell_date",
+          "num_sold",
+          "products"
+        ],
+        "rows": [
+          [
+            "2021-01-01",
+            3,
+            "alpha000,beta000,gamma000"
+          ],
+          [
+            "2021-01-02",
+            3,
+            "alpha001,beta001,gamma001"
+          ],
+          [
+            "2021-01-03",
+            3,
+            "alpha002,beta002,gamma002"
+          ],
+          [
+            "2021-01-04",
+            3,
+            "alpha003,beta003,gamma003"
+          ],
+          [
+            "2021-01-05",
+            3,
+            "alpha004,beta004,gamma004"
+          ],
+          [
+            "2021-01-06",
+            3,
+            "alpha005,beta005,gamma005"
+          ],
+          [
+            "2021-01-07",
+            3,
+            "alpha006,beta006,gamma006"
+          ],
+          [
+            "2021-01-08",
+            3,
+            "alpha007,beta007,gamma007"
+          ],
+          [
+            "2021-01-09",
+            3,
+            "alpha008,beta008,gamma008"
+          ],
+          [
+            "2021-01-10",
+            3,
+            "alpha009,beta009,gamma009"
+          ],
+          [
+            "2021-01-11",
+            3,
+            "alpha010,beta010,gamma010"
+          ],
+          [
+            "2021-01-12",
+            3,
+            "alpha011,beta011,gamma011"
+          ],
+          [
+            "2021-01-13",
+            3,
+            "alpha012,beta012,gamma012"
+          ],
+          [
+            "2021-01-14",
+            3,
+            "alpha013,beta013,gamma013"
+          ],
+          [
+            "2021-01-15",
+            3,
+            "alpha014,beta014,gamma014"
+          ],
+          [
+            "2021-01-16",
+            3,
+            "alpha015,beta015,gamma015"
+          ],
+          [
+            "2021-01-17",
+            3,
+            "alpha016,beta016,gamma016"
+          ],
+          [
+            "2021-01-18",
+            3,
+            "alpha017,beta017,gamma017"
+          ],
+          [
+            "2021-01-19",
+            3,
+            "alpha018,beta018,gamma018"
+          ],
+          [
+            "2021-01-20",
+            3,
+            "alpha019,beta019,gamma019"
+          ],
+          [
+            "2021-01-21",
+            3,
+            "alpha020,beta020,gamma020"
+          ],
+          [
+            "2021-01-22",
+            3,
+            "alpha021,beta021,gamma021"
+          ],
+          [
+            "2021-01-23",
+            3,
+            "alpha022,beta022,gamma022"
+          ],
+          [
+            "2021-01-24",
+            3,
+            "alpha023,beta023,gamma023"
+          ],
+          [
+            "2021-01-25",
+            3,
+            "alpha024,beta024,gamma024"
+          ],
+          [
+            "2021-01-26",
+            3,
+            "alpha025,beta025,gamma025"
+          ],
+          [
+            "2021-01-27",
+            3,
+            "alpha026,beta026,gamma026"
+          ],
+          [
+            "2021-01-28",
+            3,
+            "alpha027,beta027,gamma027"
+          ],
+          [
+            "2021-01-29",
+            3,
+            "alpha028,beta028,gamma028"
+          ],
+          [
+            "2021-01-30",
+            3,
+            "alpha029,beta029,gamma029"
+          ],
+          [
+            "2021-01-31",
+            3,
+            "alpha030,beta030,gamma030"
+          ],
+          [
+            "2021-02-01",
+            3,
+            "alpha031,beta031,gamma031"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "duplicates",
+        "grouping"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128 dates with duplicate activities",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Activities": [
+            {
+              "sell_date": "2021-01-01",
+              "product": "gamma000"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "alpha000"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "beta000"
+            },
+            {
+              "sell_date": "2021-01-01",
+              "product": "beta000"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "gamma001"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "alpha001"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "beta001"
+            },
+            {
+              "sell_date": "2021-01-02",
+              "product": "beta001"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "gamma002"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "alpha002"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "beta002"
+            },
+            {
+              "sell_date": "2021-01-03",
+              "product": "beta002"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "gamma003"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "alpha003"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "beta003"
+            },
+            {
+              "sell_date": "2021-01-04",
+              "product": "beta003"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "gamma004"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "alpha004"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "beta004"
+            },
+            {
+              "sell_date": "2021-01-05",
+              "product": "beta004"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "gamma005"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "alpha005"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "beta005"
+            },
+            {
+              "sell_date": "2021-01-06",
+              "product": "beta005"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "gamma006"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "alpha006"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "beta006"
+            },
+            {
+              "sell_date": "2021-01-07",
+              "product": "beta006"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "gamma007"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "alpha007"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "beta007"
+            },
+            {
+              "sell_date": "2021-01-08",
+              "product": "beta007"
+            },
+            {
+              "sell_date": "2021-01-09",
+              "product": "gamma008"
+            },
+            {
+              "sell_date": "2021-01-09",
+              "product": "alpha008"
+            },
+            {
+              "sell_date": "2021-01-09",
+              "product": "beta008"
+            },
+            {
+              "sell_date": "2021-01-09",
+              "product": "beta008"
+            },
+            {
+              "sell_date": "2021-01-10",
+              "product": "gamma009"
+            },
+            {
+              "sell_date": "2021-01-10",
+              "product": "alpha009"
+            },
+            {
+              "sell_date": "2021-01-10",
+              "product": "beta009"
+            },
+            {
+              "sell_date": "2021-01-10",
+              "product": "beta009"
+            },
+            {
+              "sell_date": "2021-01-11",
+              "product": "gamma010"
+            },
+            {
+              "sell_date": "2021-01-11",
+              "product": "alpha010"
+            },
+            {
+              "sell_date": "2021-01-11",
+              "product": "beta010"
+            },
+            {
+              "sell_date": "2021-01-11",
+              "product": "beta010"
+            },
+            {
+              "sell_date": "2021-01-12",
+              "product": "gamma011"
+            },
+            {
+              "sell_date": "2021-01-12",
+              "product": "alpha011"
+            },
+            {
+              "sell_date": "2021-01-12",
+              "product": "beta011"
+            },
+            {
+              "sell_date": "2021-01-12",
+              "product": "beta011"
+            },
+            {
+              "sell_date": "2021-01-13",
+              "product": "gamma012"
+            },
+            {
+              "sell_date": "2021-01-13",
+              "product": "alpha012"
+            },
+            {
+              "sell_date": "2021-01-13",
+              "product": "beta012"
+            },
+            {
+              "sell_date": "2021-01-13",
+              "product": "beta012"
+            },
+            {
+              "sell_date": "2021-01-14",
+              "product": "gamma013"
+            },
+            {
+              "sell_date": "2021-01-14",
+              "product": "alpha013"
+            },
+            {
+              "sell_date": "2021-01-14",
+              "product": "beta013"
+            },
+            {
+              "sell_date": "2021-01-14",
+              "product": "beta013"
+            },
+            {
+              "sell_date": "2021-01-15",
+              "product": "gamma014"
+            },
+            {
+              "sell_date": "2021-01-15",
+              "product": "alpha014"
+            },
+            {
+              "sell_date": "2021-01-15",
+              "product": "beta014"
+            },
+            {
+              "sell_date": "2021-01-15",
+              "product": "beta014"
+            },
+            {
+              "sell_date": "2021-01-16",
+              "product": "gamma015"
+            },
+            {
+              "sell_date": "2021-01-16",
+              "product": "alpha015"
+            },
+            {
+              "sell_date": "2021-01-16",
+              "product": "beta015"
+            },
+            {
+              "sell_date": "2021-01-16",
+              "product": "beta015"
+            },
+            {
+              "sell_date": "2021-01-17",
+              "product": "gamma016"
+            },
+            {
+              "sell_date": "2021-01-17",
+              "product": "alpha016"
+            },
+            {
+              "sell_date": "2021-01-17",
+              "product": "beta016"
+            },
+            {
+              "sell_date": "2021-01-17",
+              "product": "beta016"
+            },
+            {
+              "sell_date": "2021-01-18",
+              "product": "gamma017"
+            },
+            {
+              "sell_date": "2021-01-18",
+              "product": "alpha017"
+            },
+            {
+              "sell_date": "2021-01-18",
+              "product": "beta017"
+            },
+            {
+              "sell_date": "2021-01-18",
+              "product": "beta017"
+            },
+            {
+              "sell_date": "2021-01-19",
+              "product": "gamma018"
+            },
+            {
+              "sell_date": "2021-01-19",
+              "product": "alpha018"
+            },
+            {
+              "sell_date": "2021-01-19",
+              "product": "beta018"
+            },
+            {
+              "sell_date": "2021-01-19",
+              "product": "beta018"
+            },
+            {
+              "sell_date": "2021-01-20",
+              "product": "gamma019"
+            },
+            {
+              "sell_date": "2021-01-20",
+              "product": "alpha019"
+            },
+            {
+              "sell_date": "2021-01-20",
+              "product": "beta019"
+            },
+            {
+              "sell_date": "2021-01-20",
+              "product": "beta019"
+            },
+            {
+              "sell_date": "2021-01-21",
+              "product": "gamma020"
+            },
+            {
+              "sell_date": "2021-01-21",
+              "product": "alpha020"
+            },
+            {
+              "sell_date": "2021-01-21",
+              "product": "beta020"
+            },
+            {
+              "sell_date": "2021-01-21",
+              "product": "beta020"
+            },
+            {
+              "sell_date": "2021-01-22",
+              "product": "gamma021"
+            },
+            {
+              "sell_date": "2021-01-22",
+              "product": "alpha021"
+            },
+            {
+              "sell_date": "2021-01-22",
+              "product": "beta021"
+            },
+            {
+              "sell_date": "2021-01-22",
+              "product": "beta021"
+            },
+            {
+              "sell_date": "2021-01-23",
+              "product": "gamma022"
+            },
+            {
+              "sell_date": "2021-01-23",
+              "product": "alpha022"
+            },
+            {
+              "sell_date": "2021-01-23",
+              "product": "beta022"
+            },
+            {
+              "sell_date": "2021-01-23",
+              "product": "beta022"
+            },
+            {
+              "sell_date": "2021-01-24",
+              "product": "gamma023"
+            },
+            {
+              "sell_date": "2021-01-24",
+              "product": "alpha023"
+            },
+            {
+              "sell_date": "2021-01-24",
+              "product": "beta023"
+            },
+            {
+              "sell_date": "2021-01-24",
+              "product": "beta023"
+            },
+            {
+              "sell_date": "2021-01-25",
+              "product": "gamma024"
+            },
+            {
+              "sell_date": "2021-01-25",
+              "product": "alpha024"
+            },
+            {
+              "sell_date": "2021-01-25",
+              "product": "beta024"
+            },
+            {
+              "sell_date": "2021-01-25",
+              "product": "beta024"
+            },
+            {
+              "sell_date": "2021-01-26",
+              "product": "gamma025"
+            },
+            {
+              "sell_date": "2021-01-26",
+              "product": "alpha025"
+            },
+            {
+              "sell_date": "2021-01-26",
+              "product": "beta025"
+            },
+            {
+              "sell_date": "2021-01-26",
+              "product": "beta025"
+            },
+            {
+              "sell_date": "2021-01-27",
+              "product": "gamma026"
+            },
+            {
+              "sell_date": "2021-01-27",
+              "product": "alpha026"
+            },
+            {
+              "sell_date": "2021-01-27",
+              "product": "beta026"
+            },
+            {
+              "sell_date": "2021-01-27",
+              "product": "beta026"
+            },
+            {
+              "sell_date": "2021-01-28",
+              "product": "gamma027"
+            },
+            {
+              "sell_date": "2021-01-28",
+              "product": "alpha027"
+            },
+            {
+              "sell_date": "2021-01-28",
+              "product": "beta027"
+            },
+            {
+              "sell_date": "2021-01-28",
+              "product": "beta027"
+            },
+            {
+              "sell_date": "2021-01-29",
+              "product": "gamma028"
+            },
+            {
+              "sell_date": "2021-01-29",
+              "product": "alpha028"
+            },
+            {
+              "sell_date": "2021-01-29",
+              "product": "beta028"
+            },
+            {
+              "sell_date": "2021-01-29",
+              "product": "beta028"
+            },
+            {
+              "sell_date": "2021-01-30",
+              "product": "gamma029"
+            },
+            {
+              "sell_date": "2021-01-30",
+              "product": "alpha029"
+            },
+            {
+              "sell_date": "2021-01-30",
+              "product": "beta029"
+            },
+            {
+              "sell_date": "2021-01-30",
+              "product": "beta029"
+            },
+            {
+              "sell_date": "2021-01-31",
+              "product": "gamma030"
+            },
+            {
+              "sell_date": "2021-01-31",
+              "product": "alpha030"
+            },
+            {
+              "sell_date": "2021-01-31",
+              "product": "beta030"
+            },
+            {
+              "sell_date": "2021-01-31",
+              "product": "beta030"
+            },
+            {
+              "sell_date": "2021-02-01",
+              "product": "gamma031"
+            },
+            {
+              "sell_date": "2021-02-01",
+              "product": "alpha031"
+            },
+            {
+              "sell_date": "2021-02-01",
+              "product": "beta031"
+            },
+            {
+              "sell_date": "2021-02-01",
+              "product": "beta031"
+            },
+            {
+              "sell_date": "2021-02-02",
+              "product": "gamma032"
+            },
+            {
+              "sell_date": "2021-02-02",
+              "product": "alpha032"
+            },
+            {
+              "sell_date": "2021-02-02",
+              "product": "beta032"
+            },
+            {
+              "sell_date": "2021-02-02",
+              "product": "beta032"
+            },
+            {
+              "sell_date": "2021-02-03",
+              "product": "gamma033"
+            },
+            {
+              "sell_date": "2021-02-03",
+              "product": "alpha033"
+            },
+            {
+              "sell_date": "2021-02-03",
+              "product": "beta033"
+            },
+            {
+              "sell_date": "2021-02-03",
+              "product": "beta033"
+            },
+            {
+              "sell_date": "2021-02-04",
+              "product": "gamma034"
+            },
+            {
+              "sell_date": "2021-02-04",
+              "product": "alpha034"
+            },
+            {
+              "sell_date": "2021-02-04",
+              "product": "beta034"
+            },
+            {
+              "sell_date": "2021-02-04",
+              "product": "beta034"
+            },
+            {
+              "sell_date": "2021-02-05",
+              "product": "gamma035"
+            },
+            {
+              "sell_date": "2021-02-05",
+              "product": "alpha035"
+            },
+            {
+              "sell_date": "2021-02-05",
+              "product": "beta035"
+            },
+            {
+              "sell_date": "2021-02-05",
+              "product": "beta035"
+            },
+            {
+              "sell_date": "2021-02-06",
+              "product": "gamma036"
+            },
+            {
+              "sell_date": "2021-02-06",
+              "product": "alpha036"
+            },
+            {
+              "sell_date": "2021-02-06",
+              "product": "beta036"
+            },
+            {
+              "sell_date": "2021-02-06",
+              "product": "beta036"
+            },
+            {
+              "sell_date": "2021-02-07",
+              "product": "gamma037"
+            },
+            {
+              "sell_date": "2021-02-07",
+              "product": "alpha037"
+            },
+            {
+              "sell_date": "2021-02-07",
+              "product": "beta037"
+            },
+            {
+              "sell_date": "2021-02-07",
+              "product": "beta037"
+            },
+            {
+              "sell_date": "2021-02-08",
+              "product": "gamma038"
+            },
+            {
+              "sell_date": "2021-02-08",
+              "product": "alpha038"
+            },
+            {
+              "sell_date": "2021-02-08",
+              "product": "beta038"
+            },
+            {
+              "sell_date": "2021-02-08",
+              "product": "beta038"
+            },
+            {
+              "sell_date": "2021-02-09",
+              "product": "gamma039"
+            },
+            {
+              "sell_date": "2021-02-09",
+              "product": "alpha039"
+            },
+            {
+              "sell_date": "2021-02-09",
+              "product": "beta039"
+            },
+            {
+              "sell_date": "2021-02-09",
+              "product": "beta039"
+            },
+            {
+              "sell_date": "2021-02-10",
+              "product": "gamma040"
+            },
+            {
+              "sell_date": "2021-02-10",
+              "product": "alpha040"
+            },
+            {
+              "sell_date": "2021-02-10",
+              "product": "beta040"
+            },
+            {
+              "sell_date": "2021-02-10",
+              "product": "beta040"
+            },
+            {
+              "sell_date": "2021-02-11",
+              "product": "gamma041"
+            },
+            {
+              "sell_date": "2021-02-11",
+              "product": "alpha041"
+            },
+            {
+              "sell_date": "2021-02-11",
+              "product": "beta041"
+            },
+            {
+              "sell_date": "2021-02-11",
+              "product": "beta041"
+            },
+            {
+              "sell_date": "2021-02-12",
+              "product": "gamma042"
+            },
+            {
+              "sell_date": "2021-02-12",
+              "product": "alpha042"
+            },
+            {
+              "sell_date": "2021-02-12",
+              "product": "beta042"
+            },
+            {
+              "sell_date": "2021-02-12",
+              "product": "beta042"
+            },
+            {
+              "sell_date": "2021-02-13",
+              "product": "gamma043"
+            },
+            {
+              "sell_date": "2021-02-13",
+              "product": "alpha043"
+            },
+            {
+              "sell_date": "2021-02-13",
+              "product": "beta043"
+            },
+            {
+              "sell_date": "2021-02-13",
+              "product": "beta043"
+            },
+            {
+              "sell_date": "2021-02-14",
+              "product": "gamma044"
+            },
+            {
+              "sell_date": "2021-02-14",
+              "product": "alpha044"
+            },
+            {
+              "sell_date": "2021-02-14",
+              "product": "beta044"
+            },
+            {
+              "sell_date": "2021-02-14",
+              "product": "beta044"
+            },
+            {
+              "sell_date": "2021-02-15",
+              "product": "gamma045"
+            },
+            {
+              "sell_date": "2021-02-15",
+              "product": "alpha045"
+            },
+            {
+              "sell_date": "2021-02-15",
+              "product": "beta045"
+            },
+            {
+              "sell_date": "2021-02-15",
+              "product": "beta045"
+            },
+            {
+              "sell_date": "2021-02-16",
+              "product": "gamma046"
+            },
+            {
+              "sell_date": "2021-02-16",
+              "product": "alpha046"
+            },
+            {
+              "sell_date": "2021-02-16",
+              "product": "beta046"
+            },
+            {
+              "sell_date": "2021-02-16",
+              "product": "beta046"
+            },
+            {
+              "sell_date": "2021-02-17",
+              "product": "gamma047"
+            },
+            {
+              "sell_date": "2021-02-17",
+              "product": "alpha047"
+            },
+            {
+              "sell_date": "2021-02-17",
+              "product": "beta047"
+            },
+            {
+              "sell_date": "2021-02-17",
+              "product": "beta047"
+            },
+            {
+              "sell_date": "2021-02-18",
+              "product": "gamma048"
+            },
+            {
+              "sell_date": "2021-02-18",
+              "product": "alpha048"
+            },
+            {
+              "sell_date": "2021-02-18",
+              "product": "beta048"
+            },
+            {
+              "sell_date": "2021-02-18",
+              "product": "beta048"
+            },
+            {
+              "sell_date": "2021-02-19",
+              "product": "gamma049"
+            },
+            {
+              "sell_date": "2021-02-19",
+              "product": "alpha049"
+            },
+            {
+              "sell_date": "2021-02-19",
+              "product": "beta049"
+            },
+            {
+              "sell_date": "2021-02-19",
+              "product": "beta049"
+            },
+            {
+              "sell_date": "2021-02-20",
+              "product": "gamma050"
+            },
+            {
+              "sell_date": "2021-02-20",
+              "product": "alpha050"
+            },
+            {
+              "sell_date": "2021-02-20",
+              "product": "beta050"
+            },
+            {
+              "sell_date": "2021-02-20",
+              "product": "beta050"
+            },
+            {
+              "sell_date": "2021-02-21",
+              "product": "gamma051"
+            },
+            {
+              "sell_date": "2021-02-21",
+              "product": "alpha051"
+            },
+            {
+              "sell_date": "2021-02-21",
+              "product": "beta051"
+            },
+            {
+              "sell_date": "2021-02-21",
+              "product": "beta051"
+            },
+            {
+              "sell_date": "2021-02-22",
+              "product": "gamma052"
+            },
+            {
+              "sell_date": "2021-02-22",
+              "product": "alpha052"
+            },
+            {
+              "sell_date": "2021-02-22",
+              "product": "beta052"
+            },
+            {
+              "sell_date": "2021-02-22",
+              "product": "beta052"
+            },
+            {
+              "sell_date": "2021-02-23",
+              "product": "gamma053"
+            },
+            {
+              "sell_date": "2021-02-23",
+              "product": "alpha053"
+            },
+            {
+              "sell_date": "2021-02-23",
+              "product": "beta053"
+            },
+            {
+              "sell_date": "2021-02-23",
+              "product": "beta053"
+            },
+            {
+              "sell_date": "2021-02-24",
+              "product": "gamma054"
+            },
+            {
+              "sell_date": "2021-02-24",
+              "product": "alpha054"
+            },
+            {
+              "sell_date": "2021-02-24",
+              "product": "beta054"
+            },
+            {
+              "sell_date": "2021-02-24",
+              "product": "beta054"
+            },
+            {
+              "sell_date": "2021-02-25",
+              "product": "gamma055"
+            },
+            {
+              "sell_date": "2021-02-25",
+              "product": "alpha055"
+            },
+            {
+              "sell_date": "2021-02-25",
+              "product": "beta055"
+            },
+            {
+              "sell_date": "2021-02-25",
+              "product": "beta055"
+            },
+            {
+              "sell_date": "2021-02-26",
+              "product": "gamma056"
+            },
+            {
+              "sell_date": "2021-02-26",
+              "product": "alpha056"
+            },
+            {
+              "sell_date": "2021-02-26",
+              "product": "beta056"
+            },
+            {
+              "sell_date": "2021-02-26",
+              "product": "beta056"
+            },
+            {
+              "sell_date": "2021-02-27",
+              "product": "gamma057"
+            },
+            {
+              "sell_date": "2021-02-27",
+              "product": "alpha057"
+            },
+            {
+              "sell_date": "2021-02-27",
+              "product": "beta057"
+            },
+            {
+              "sell_date": "2021-02-27",
+              "product": "beta057"
+            },
+            {
+              "sell_date": "2021-02-28",
+              "product": "gamma058"
+            },
+            {
+              "sell_date": "2021-02-28",
+              "product": "alpha058"
+            },
+            {
+              "sell_date": "2021-02-28",
+              "product": "beta058"
+            },
+            {
+              "sell_date": "2021-02-28",
+              "product": "beta058"
+            },
+            {
+              "sell_date": "2021-03-01",
+              "product": "gamma059"
+            },
+            {
+              "sell_date": "2021-03-01",
+              "product": "alpha059"
+            },
+            {
+              "sell_date": "2021-03-01",
+              "product": "beta059"
+            },
+            {
+              "sell_date": "2021-03-01",
+              "product": "beta059"
+            },
+            {
+              "sell_date": "2021-03-02",
+              "product": "gamma060"
+            },
+            {
+              "sell_date": "2021-03-02",
+              "product": "alpha060"
+            },
+            {
+              "sell_date": "2021-03-02",
+              "product": "beta060"
+            },
+            {
+              "sell_date": "2021-03-02",
+              "product": "beta060"
+            },
+            {
+              "sell_date": "2021-03-03",
+              "product": "gamma061"
+            },
+            {
+              "sell_date": "2021-03-03",
+              "product": "alpha061"
+            },
+            {
+              "sell_date": "2021-03-03",
+              "product": "beta061"
+            },
+            {
+              "sell_date": "2021-03-03",
+              "product": "beta061"
+            },
+            {
+              "sell_date": "2021-03-04",
+              "product": "gamma062"
+            },
+            {
+              "sell_date": "2021-03-04",
+              "product": "alpha062"
+            },
+            {
+              "sell_date": "2021-03-04",
+              "product": "beta062"
+            },
+            {
+              "sell_date": "2021-03-04",
+              "product": "beta062"
+            },
+            {
+              "sell_date": "2021-03-05",
+              "product": "gamma063"
+            },
+            {
+              "sell_date": "2021-03-05",
+              "product": "alpha063"
+            },
+            {
+              "sell_date": "2021-03-05",
+              "product": "beta063"
+            },
+            {
+              "sell_date": "2021-03-05",
+              "product": "beta063"
+            },
+            {
+              "sell_date": "2021-03-06",
+              "product": "gamma064"
+            },
+            {
+              "sell_date": "2021-03-06",
+              "product": "alpha064"
+            },
+            {
+              "sell_date": "2021-03-06",
+              "product": "beta064"
+            },
+            {
+              "sell_date": "2021-03-06",
+              "product": "beta064"
+            },
+            {
+              "sell_date": "2021-03-07",
+              "product": "gamma065"
+            },
+            {
+              "sell_date": "2021-03-07",
+              "product": "alpha065"
+            },
+            {
+              "sell_date": "2021-03-07",
+              "product": "beta065"
+            },
+            {
+              "sell_date": "2021-03-07",
+              "product": "beta065"
+            },
+            {
+              "sell_date": "2021-03-08",
+              "product": "gamma066"
+            },
+            {
+              "sell_date": "2021-03-08",
+              "product": "alpha066"
+            },
+            {
+              "sell_date": "2021-03-08",
+              "product": "beta066"
+            },
+            {
+              "sell_date": "2021-03-08",
+              "product": "beta066"
+            },
+            {
+              "sell_date": "2021-03-09",
+              "product": "gamma067"
+            },
+            {
+              "sell_date": "2021-03-09",
+              "product": "alpha067"
+            },
+            {
+              "sell_date": "2021-03-09",
+              "product": "beta067"
+            },
+            {
+              "sell_date": "2021-03-09",
+              "product": "beta067"
+            },
+            {
+              "sell_date": "2021-03-10",
+              "product": "gamma068"
+            },
+            {
+              "sell_date": "2021-03-10",
+              "product": "alpha068"
+            },
+            {
+              "sell_date": "2021-03-10",
+              "product": "beta068"
+            },
+            {
+              "sell_date": "2021-03-10",
+              "product": "beta068"
+            },
+            {
+              "sell_date": "2021-03-11",
+              "product": "gamma069"
+            },
+            {
+              "sell_date": "2021-03-11",
+              "product": "alpha069"
+            },
+            {
+              "sell_date": "2021-03-11",
+              "product": "beta069"
+            },
+            {
+              "sell_date": "2021-03-11",
+              "product": "beta069"
+            },
+            {
+              "sell_date": "2021-03-12",
+              "product": "gamma070"
+            },
+            {
+              "sell_date": "2021-03-12",
+              "product": "alpha070"
+            },
+            {
+              "sell_date": "2021-03-12",
+              "product": "beta070"
+            },
+            {
+              "sell_date": "2021-03-12",
+              "product": "beta070"
+            },
+            {
+              "sell_date": "2021-03-13",
+              "product": "gamma071"
+            },
+            {
+              "sell_date": "2021-03-13",
+              "product": "alpha071"
+            },
+            {
+              "sell_date": "2021-03-13",
+              "product": "beta071"
+            },
+            {
+              "sell_date": "2021-03-13",
+              "product": "beta071"
+            },
+            {
+              "sell_date": "2021-03-14",
+              "product": "gamma072"
+            },
+            {
+              "sell_date": "2021-03-14",
+              "product": "alpha072"
+            },
+            {
+              "sell_date": "2021-03-14",
+              "product": "beta072"
+            },
+            {
+              "sell_date": "2021-03-14",
+              "product": "beta072"
+            },
+            {
+              "sell_date": "2021-03-15",
+              "product": "gamma073"
+            },
+            {
+              "sell_date": "2021-03-15",
+              "product": "alpha073"
+            },
+            {
+              "sell_date": "2021-03-15",
+              "product": "beta073"
+            },
+            {
+              "sell_date": "2021-03-15",
+              "product": "beta073"
+            },
+            {
+              "sell_date": "2021-03-16",
+              "product": "gamma074"
+            },
+            {
+              "sell_date": "2021-03-16",
+              "product": "alpha074"
+            },
+            {
+              "sell_date": "2021-03-16",
+              "product": "beta074"
+            },
+            {
+              "sell_date": "2021-03-16",
+              "product": "beta074"
+            },
+            {
+              "sell_date": "2021-03-17",
+              "product": "gamma075"
+            },
+            {
+              "sell_date": "2021-03-17",
+              "product": "alpha075"
+            },
+            {
+              "sell_date": "2021-03-17",
+              "product": "beta075"
+            },
+            {
+              "sell_date": "2021-03-17",
+              "product": "beta075"
+            },
+            {
+              "sell_date": "2021-03-18",
+              "product": "gamma076"
+            },
+            {
+              "sell_date": "2021-03-18",
+              "product": "alpha076"
+            },
+            {
+              "sell_date": "2021-03-18",
+              "product": "beta076"
+            },
+            {
+              "sell_date": "2021-03-18",
+              "product": "beta076"
+            },
+            {
+              "sell_date": "2021-03-19",
+              "product": "gamma077"
+            },
+            {
+              "sell_date": "2021-03-19",
+              "product": "alpha077"
+            },
+            {
+              "sell_date": "2021-03-19",
+              "product": "beta077"
+            },
+            {
+              "sell_date": "2021-03-19",
+              "product": "beta077"
+            },
+            {
+              "sell_date": "2021-03-20",
+              "product": "gamma078"
+            },
+            {
+              "sell_date": "2021-03-20",
+              "product": "alpha078"
+            },
+            {
+              "sell_date": "2021-03-20",
+              "product": "beta078"
+            },
+            {
+              "sell_date": "2021-03-20",
+              "product": "beta078"
+            },
+            {
+              "sell_date": "2021-03-21",
+              "product": "gamma079"
+            },
+            {
+              "sell_date": "2021-03-21",
+              "product": "alpha079"
+            },
+            {
+              "sell_date": "2021-03-21",
+              "product": "beta079"
+            },
+            {
+              "sell_date": "2021-03-21",
+              "product": "beta079"
+            },
+            {
+              "sell_date": "2021-03-22",
+              "product": "gamma080"
+            },
+            {
+              "sell_date": "2021-03-22",
+              "product": "alpha080"
+            },
+            {
+              "sell_date": "2021-03-22",
+              "product": "beta080"
+            },
+            {
+              "sell_date": "2021-03-22",
+              "product": "beta080"
+            },
+            {
+              "sell_date": "2021-03-23",
+              "product": "gamma081"
+            },
+            {
+              "sell_date": "2021-03-23",
+              "product": "alpha081"
+            },
+            {
+              "sell_date": "2021-03-23",
+              "product": "beta081"
+            },
+            {
+              "sell_date": "2021-03-23",
+              "product": "beta081"
+            },
+            {
+              "sell_date": "2021-03-24",
+              "product": "gamma082"
+            },
+            {
+              "sell_date": "2021-03-24",
+              "product": "alpha082"
+            },
+            {
+              "sell_date": "2021-03-24",
+              "product": "beta082"
+            },
+            {
+              "sell_date": "2021-03-24",
+              "product": "beta082"
+            },
+            {
+              "sell_date": "2021-03-25",
+              "product": "gamma083"
+            },
+            {
+              "sell_date": "2021-03-25",
+              "product": "alpha083"
+            },
+            {
+              "sell_date": "2021-03-25",
+              "product": "beta083"
+            },
+            {
+              "sell_date": "2021-03-25",
+              "product": "beta083"
+            },
+            {
+              "sell_date": "2021-03-26",
+              "product": "gamma084"
+            },
+            {
+              "sell_date": "2021-03-26",
+              "product": "alpha084"
+            },
+            {
+              "sell_date": "2021-03-26",
+              "product": "beta084"
+            },
+            {
+              "sell_date": "2021-03-26",
+              "product": "beta084"
+            },
+            {
+              "sell_date": "2021-03-27",
+              "product": "gamma085"
+            },
+            {
+              "sell_date": "2021-03-27",
+              "product": "alpha085"
+            },
+            {
+              "sell_date": "2021-03-27",
+              "product": "beta085"
+            },
+            {
+              "sell_date": "2021-03-27",
+              "product": "beta085"
+            },
+            {
+              "sell_date": "2021-03-28",
+              "product": "gamma086"
+            },
+            {
+              "sell_date": "2021-03-28",
+              "product": "alpha086"
+            },
+            {
+              "sell_date": "2021-03-28",
+              "product": "beta086"
+            },
+            {
+              "sell_date": "2021-03-28",
+              "product": "beta086"
+            },
+            {
+              "sell_date": "2021-03-29",
+              "product": "gamma087"
+            },
+            {
+              "sell_date": "2021-03-29",
+              "product": "alpha087"
+            },
+            {
+              "sell_date": "2021-03-29",
+              "product": "beta087"
+            },
+            {
+              "sell_date": "2021-03-29",
+              "product": "beta087"
+            },
+            {
+              "sell_date": "2021-03-30",
+              "product": "gamma088"
+            },
+            {
+              "sell_date": "2021-03-30",
+              "product": "alpha088"
+            },
+            {
+              "sell_date": "2021-03-30",
+              "product": "beta088"
+            },
+            {
+              "sell_date": "2021-03-30",
+              "product": "beta088"
+            },
+            {
+              "sell_date": "2021-03-31",
+              "product": "gamma089"
+            },
+            {
+              "sell_date": "2021-03-31",
+              "product": "alpha089"
+            },
+            {
+              "sell_date": "2021-03-31",
+              "product": "beta089"
+            },
+            {
+              "sell_date": "2021-03-31",
+              "product": "beta089"
+            },
+            {
+              "sell_date": "2021-04-01",
+              "product": "gamma090"
+            },
+            {
+              "sell_date": "2021-04-01",
+              "product": "alpha090"
+            },
+            {
+              "sell_date": "2021-04-01",
+              "product": "beta090"
+            },
+            {
+              "sell_date": "2021-04-01",
+              "product": "beta090"
+            },
+            {
+              "sell_date": "2021-04-02",
+              "product": "gamma091"
+            },
+            {
+              "sell_date": "2021-04-02",
+              "product": "alpha091"
+            },
+            {
+              "sell_date": "2021-04-02",
+              "product": "beta091"
+            },
+            {
+              "sell_date": "2021-04-02",
+              "product": "beta091"
+            },
+            {
+              "sell_date": "2021-04-03",
+              "product": "gamma092"
+            },
+            {
+              "sell_date": "2021-04-03",
+              "product": "alpha092"
+            },
+            {
+              "sell_date": "2021-04-03",
+              "product": "beta092"
+            },
+            {
+              "sell_date": "2021-04-03",
+              "product": "beta092"
+            },
+            {
+              "sell_date": "2021-04-04",
+              "product": "gamma093"
+            },
+            {
+              "sell_date": "2021-04-04",
+              "product": "alpha093"
+            },
+            {
+              "sell_date": "2021-04-04",
+              "product": "beta093"
+            },
+            {
+              "sell_date": "2021-04-04",
+              "product": "beta093"
+            },
+            {
+              "sell_date": "2021-04-05",
+              "product": "gamma094"
+            },
+            {
+              "sell_date": "2021-04-05",
+              "product": "alpha094"
+            },
+            {
+              "sell_date": "2021-04-05",
+              "product": "beta094"
+            },
+            {
+              "sell_date": "2021-04-05",
+              "product": "beta094"
+            },
+            {
+              "sell_date": "2021-04-06",
+              "product": "gamma095"
+            },
+            {
+              "sell_date": "2021-04-06",
+              "product": "alpha095"
+            },
+            {
+              "sell_date": "2021-04-06",
+              "product": "beta095"
+            },
+            {
+              "sell_date": "2021-04-06",
+              "product": "beta095"
+            },
+            {
+              "sell_date": "2021-04-07",
+              "product": "gamma096"
+            },
+            {
+              "sell_date": "2021-04-07",
+              "product": "alpha096"
+            },
+            {
+              "sell_date": "2021-04-07",
+              "product": "beta096"
+            },
+            {
+              "sell_date": "2021-04-07",
+              "product": "beta096"
+            },
+            {
+              "sell_date": "2021-04-08",
+              "product": "gamma097"
+            },
+            {
+              "sell_date": "2021-04-08",
+              "product": "alpha097"
+            },
+            {
+              "sell_date": "2021-04-08",
+              "product": "beta097"
+            },
+            {
+              "sell_date": "2021-04-08",
+              "product": "beta097"
+            },
+            {
+              "sell_date": "2021-04-09",
+              "product": "gamma098"
+            },
+            {
+              "sell_date": "2021-04-09",
+              "product": "alpha098"
+            },
+            {
+              "sell_date": "2021-04-09",
+              "product": "beta098"
+            },
+            {
+              "sell_date": "2021-04-09",
+              "product": "beta098"
+            },
+            {
+              "sell_date": "2021-04-10",
+              "product": "gamma099"
+            },
+            {
+              "sell_date": "2021-04-10",
+              "product": "alpha099"
+            },
+            {
+              "sell_date": "2021-04-10",
+              "product": "beta099"
+            },
+            {
+              "sell_date": "2021-04-10",
+              "product": "beta099"
+            },
+            {
+              "sell_date": "2021-04-11",
+              "product": "gamma100"
+            },
+            {
+              "sell_date": "2021-04-11",
+              "product": "alpha100"
+            },
+            {
+              "sell_date": "2021-04-11",
+              "product": "beta100"
+            },
+            {
+              "sell_date": "2021-04-11",
+              "product": "beta100"
+            },
+            {
+              "sell_date": "2021-04-12",
+              "product": "gamma101"
+            },
+            {
+              "sell_date": "2021-04-12",
+              "product": "alpha101"
+            },
+            {
+              "sell_date": "2021-04-12",
+              "product": "beta101"
+            },
+            {
+              "sell_date": "2021-04-12",
+              "product": "beta101"
+            },
+            {
+              "sell_date": "2021-04-13",
+              "product": "gamma102"
+            },
+            {
+              "sell_date": "2021-04-13",
+              "product": "alpha102"
+            },
+            {
+              "sell_date": "2021-04-13",
+              "product": "beta102"
+            },
+            {
+              "sell_date": "2021-04-13",
+              "product": "beta102"
+            },
+            {
+              "sell_date": "2021-04-14",
+              "product": "gamma103"
+            },
+            {
+              "sell_date": "2021-04-14",
+              "product": "alpha103"
+            },
+            {
+              "sell_date": "2021-04-14",
+              "product": "beta103"
+            },
+            {
+              "sell_date": "2021-04-14",
+              "product": "beta103"
+            },
+            {
+              "sell_date": "2021-04-15",
+              "product": "gamma104"
+            },
+            {
+              "sell_date": "2021-04-15",
+              "product": "alpha104"
+            },
+            {
+              "sell_date": "2021-04-15",
+              "product": "beta104"
+            },
+            {
+              "sell_date": "2021-04-15",
+              "product": "beta104"
+            },
+            {
+              "sell_date": "2021-04-16",
+              "product": "gamma105"
+            },
+            {
+              "sell_date": "2021-04-16",
+              "product": "alpha105"
+            },
+            {
+              "sell_date": "2021-04-16",
+              "product": "beta105"
+            },
+            {
+              "sell_date": "2021-04-16",
+              "product": "beta105"
+            },
+            {
+              "sell_date": "2021-04-17",
+              "product": "gamma106"
+            },
+            {
+              "sell_date": "2021-04-17",
+              "product": "alpha106"
+            },
+            {
+              "sell_date": "2021-04-17",
+              "product": "beta106"
+            },
+            {
+              "sell_date": "2021-04-17",
+              "product": "beta106"
+            },
+            {
+              "sell_date": "2021-04-18",
+              "product": "gamma107"
+            },
+            {
+              "sell_date": "2021-04-18",
+              "product": "alpha107"
+            },
+            {
+              "sell_date": "2021-04-18",
+              "product": "beta107"
+            },
+            {
+              "sell_date": "2021-04-18",
+              "product": "beta107"
+            },
+            {
+              "sell_date": "2021-04-19",
+              "product": "gamma108"
+            },
+            {
+              "sell_date": "2021-04-19",
+              "product": "alpha108"
+            },
+            {
+              "sell_date": "2021-04-19",
+              "product": "beta108"
+            },
+            {
+              "sell_date": "2021-04-19",
+              "product": "beta108"
+            },
+            {
+              "sell_date": "2021-04-20",
+              "product": "gamma109"
+            },
+            {
+              "sell_date": "2021-04-20",
+              "product": "alpha109"
+            },
+            {
+              "sell_date": "2021-04-20",
+              "product": "beta109"
+            },
+            {
+              "sell_date": "2021-04-20",
+              "product": "beta109"
+            },
+            {
+              "sell_date": "2021-04-21",
+              "product": "gamma110"
+            },
+            {
+              "sell_date": "2021-04-21",
+              "product": "alpha110"
+            },
+            {
+              "sell_date": "2021-04-21",
+              "product": "beta110"
+            },
+            {
+              "sell_date": "2021-04-21",
+              "product": "beta110"
+            },
+            {
+              "sell_date": "2021-04-22",
+              "product": "gamma111"
+            },
+            {
+              "sell_date": "2021-04-22",
+              "product": "alpha111"
+            },
+            {
+              "sell_date": "2021-04-22",
+              "product": "beta111"
+            },
+            {
+              "sell_date": "2021-04-22",
+              "product": "beta111"
+            },
+            {
+              "sell_date": "2021-04-23",
+              "product": "gamma112"
+            },
+            {
+              "sell_date": "2021-04-23",
+              "product": "alpha112"
+            },
+            {
+              "sell_date": "2021-04-23",
+              "product": "beta112"
+            },
+            {
+              "sell_date": "2021-04-23",
+              "product": "beta112"
+            },
+            {
+              "sell_date": "2021-04-24",
+              "product": "gamma113"
+            },
+            {
+              "sell_date": "2021-04-24",
+              "product": "alpha113"
+            },
+            {
+              "sell_date": "2021-04-24",
+              "product": "beta113"
+            },
+            {
+              "sell_date": "2021-04-24",
+              "product": "beta113"
+            },
+            {
+              "sell_date": "2021-04-25",
+              "product": "gamma114"
+            },
+            {
+              "sell_date": "2021-04-25",
+              "product": "alpha114"
+            },
+            {
+              "sell_date": "2021-04-25",
+              "product": "beta114"
+            },
+            {
+              "sell_date": "2021-04-25",
+              "product": "beta114"
+            },
+            {
+              "sell_date": "2021-04-26",
+              "product": "gamma115"
+            },
+            {
+              "sell_date": "2021-04-26",
+              "product": "alpha115"
+            },
+            {
+              "sell_date": "2021-04-26",
+              "product": "beta115"
+            },
+            {
+              "sell_date": "2021-04-26",
+              "product": "beta115"
+            },
+            {
+              "sell_date": "2021-04-27",
+              "product": "gamma116"
+            },
+            {
+              "sell_date": "2021-04-27",
+              "product": "alpha116"
+            },
+            {
+              "sell_date": "2021-04-27",
+              "product": "beta116"
+            },
+            {
+              "sell_date": "2021-04-27",
+              "product": "beta116"
+            },
+            {
+              "sell_date": "2021-04-28",
+              "product": "gamma117"
+            },
+            {
+              "sell_date": "2021-04-28",
+              "product": "alpha117"
+            },
+            {
+              "sell_date": "2021-04-28",
+              "product": "beta117"
+            },
+            {
+              "sell_date": "2021-04-28",
+              "product": "beta117"
+            },
+            {
+              "sell_date": "2021-04-29",
+              "product": "gamma118"
+            },
+            {
+              "sell_date": "2021-04-29",
+              "product": "alpha118"
+            },
+            {
+              "sell_date": "2021-04-29",
+              "product": "beta118"
+            },
+            {
+              "sell_date": "2021-04-29",
+              "product": "beta118"
+            },
+            {
+              "sell_date": "2021-04-30",
+              "product": "gamma119"
+            },
+            {
+              "sell_date": "2021-04-30",
+              "product": "alpha119"
+            },
+            {
+              "sell_date": "2021-04-30",
+              "product": "beta119"
+            },
+            {
+              "sell_date": "2021-04-30",
+              "product": "beta119"
+            },
+            {
+              "sell_date": "2021-05-01",
+              "product": "gamma120"
+            },
+            {
+              "sell_date": "2021-05-01",
+              "product": "alpha120"
+            },
+            {
+              "sell_date": "2021-05-01",
+              "product": "beta120"
+            },
+            {
+              "sell_date": "2021-05-01",
+              "product": "beta120"
+            },
+            {
+              "sell_date": "2021-05-02",
+              "product": "gamma121"
+            },
+            {
+              "sell_date": "2021-05-02",
+              "product": "alpha121"
+            },
+            {
+              "sell_date": "2021-05-02",
+              "product": "beta121"
+            },
+            {
+              "sell_date": "2021-05-02",
+              "product": "beta121"
+            },
+            {
+              "sell_date": "2021-05-03",
+              "product": "gamma122"
+            },
+            {
+              "sell_date": "2021-05-03",
+              "product": "alpha122"
+            },
+            {
+              "sell_date": "2021-05-03",
+              "product": "beta122"
+            },
+            {
+              "sell_date": "2021-05-03",
+              "product": "beta122"
+            },
+            {
+              "sell_date": "2021-05-04",
+              "product": "gamma123"
+            },
+            {
+              "sell_date": "2021-05-04",
+              "product": "alpha123"
+            },
+            {
+              "sell_date": "2021-05-04",
+              "product": "beta123"
+            },
+            {
+              "sell_date": "2021-05-04",
+              "product": "beta123"
+            },
+            {
+              "sell_date": "2021-05-05",
+              "product": "gamma124"
+            },
+            {
+              "sell_date": "2021-05-05",
+              "product": "alpha124"
+            },
+            {
+              "sell_date": "2021-05-05",
+              "product": "beta124"
+            },
+            {
+              "sell_date": "2021-05-05",
+              "product": "beta124"
+            },
+            {
+              "sell_date": "2021-05-06",
+              "product": "gamma125"
+            },
+            {
+              "sell_date": "2021-05-06",
+              "product": "alpha125"
+            },
+            {
+              "sell_date": "2021-05-06",
+              "product": "beta125"
+            },
+            {
+              "sell_date": "2021-05-06",
+              "product": "beta125"
+            },
+            {
+              "sell_date": "2021-05-07",
+              "product": "gamma126"
+            },
+            {
+              "sell_date": "2021-05-07",
+              "product": "alpha126"
+            },
+            {
+              "sell_date": "2021-05-07",
+              "product": "beta126"
+            },
+            {
+              "sell_date": "2021-05-07",
+              "product": "beta126"
+            },
+            {
+              "sell_date": "2021-05-08",
+              "product": "gamma127"
+            },
+            {
+              "sell_date": "2021-05-08",
+              "product": "alpha127"
+            },
+            {
+              "sell_date": "2021-05-08",
+              "product": "beta127"
+            },
+            {
+              "sell_date": "2021-05-08",
+              "product": "beta127"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "sell_date",
+          "num_sold",
+          "products"
+        ],
+        "rows": [
+          [
+            "2021-01-01",
+            3,
+            "alpha000,beta000,gamma000"
+          ],
+          [
+            "2021-01-02",
+            3,
+            "alpha001,beta001,gamma001"
+          ],
+          [
+            "2021-01-03",
+            3,
+            "alpha002,beta002,gamma002"
+          ],
+          [
+            "2021-01-04",
+            3,
+            "alpha003,beta003,gamma003"
+          ],
+          [
+            "2021-01-05",
+            3,
+            "alpha004,beta004,gamma004"
+          ],
+          [
+            "2021-01-06",
+            3,
+            "alpha005,beta005,gamma005"
+          ],
+          [
+            "2021-01-07",
+            3,
+            "alpha006,beta006,gamma006"
+          ],
+          [
+            "2021-01-08",
+            3,
+            "alpha007,beta007,gamma007"
+          ],
+          [
+            "2021-01-09",
+            3,
+            "alpha008,beta008,gamma008"
+          ],
+          [
+            "2021-01-10",
+            3,
+            "alpha009,beta009,gamma009"
+          ],
+          [
+            "2021-01-11",
+            3,
+            "alpha010,beta010,gamma010"
+          ],
+          [
+            "2021-01-12",
+            3,
+            "alpha011,beta011,gamma011"
+          ],
+          [
+            "2021-01-13",
+            3,
+            "alpha012,beta012,gamma012"
+          ],
+          [
+            "2021-01-14",
+            3,
+            "alpha013,beta013,gamma013"
+          ],
+          [
+            "2021-01-15",
+            3,
+            "alpha014,beta014,gamma014"
+          ],
+          [
+            "2021-01-16",
+            3,
+            "alpha015,beta015,gamma015"
+          ],
+          [
+            "2021-01-17",
+            3,
+            "alpha016,beta016,gamma016"
+          ],
+          [
+            "2021-01-18",
+            3,
+            "alpha017,beta017,gamma017"
+          ],
+          [
+            "2021-01-19",
+            3,
+            "alpha018,beta018,gamma018"
+          ],
+          [
+            "2021-01-20",
+            3,
+            "alpha019,beta019,gamma019"
+          ],
+          [
+            "2021-01-21",
+            3,
+            "alpha020,beta020,gamma020"
+          ],
+          [
+            "2021-01-22",
+            3,
+            "alpha021,beta021,gamma021"
+          ],
+          [
+            "2021-01-23",
+            3,
+            "alpha022,beta022,gamma022"
+          ],
+          [
+            "2021-01-24",
+            3,
+            "alpha023,beta023,gamma023"
+          ],
+          [
+            "2021-01-25",
+            3,
+            "alpha024,beta024,gamma024"
+          ],
+          [
+            "2021-01-26",
+            3,
+            "alpha025,beta025,gamma025"
+          ],
+          [
+            "2021-01-27",
+            3,
+            "alpha026,beta026,gamma026"
+          ],
+          [
+            "2021-01-28",
+            3,
+            "alpha027,beta027,gamma027"
+          ],
+          [
+            "2021-01-29",
+            3,
+            "alpha028,beta028,gamma028"
+          ],
+          [
+            "2021-01-30",
+            3,
+            "alpha029,beta029,gamma029"
+          ],
+          [
+            "2021-01-31",
+            3,
+            "alpha030,beta030,gamma030"
+          ],
+          [
+            "2021-02-01",
+            3,
+            "alpha031,beta031,gamma031"
+          ],
+          [
+            "2021-02-02",
+            3,
+            "alpha032,beta032,gamma032"
+          ],
+          [
+            "2021-02-03",
+            3,
+            "alpha033,beta033,gamma033"
+          ],
+          [
+            "2021-02-04",
+            3,
+            "alpha034,beta034,gamma034"
+          ],
+          [
+            "2021-02-05",
+            3,
+            "alpha035,beta035,gamma035"
+          ],
+          [
+            "2021-02-06",
+            3,
+            "alpha036,beta036,gamma036"
+          ],
+          [
+            "2021-02-07",
+            3,
+            "alpha037,beta037,gamma037"
+          ],
+          [
+            "2021-02-08",
+            3,
+            "alpha038,beta038,gamma038"
+          ],
+          [
+            "2021-02-09",
+            3,
+            "alpha039,beta039,gamma039"
+          ],
+          [
+            "2021-02-10",
+            3,
+            "alpha040,beta040,gamma040"
+          ],
+          [
+            "2021-02-11",
+            3,
+            "alpha041,beta041,gamma041"
+          ],
+          [
+            "2021-02-12",
+            3,
+            "alpha042,beta042,gamma042"
+          ],
+          [
+            "2021-02-13",
+            3,
+            "alpha043,beta043,gamma043"
+          ],
+          [
+            "2021-02-14",
+            3,
+            "alpha044,beta044,gamma044"
+          ],
+          [
+            "2021-02-15",
+            3,
+            "alpha045,beta045,gamma045"
+          ],
+          [
+            "2021-02-16",
+            3,
+            "alpha046,beta046,gamma046"
+          ],
+          [
+            "2021-02-17",
+            3,
+            "alpha047,beta047,gamma047"
+          ],
+          [
+            "2021-02-18",
+            3,
+            "alpha048,beta048,gamma048"
+          ],
+          [
+            "2021-02-19",
+            3,
+            "alpha049,beta049,gamma049"
+          ],
+          [
+            "2021-02-20",
+            3,
+            "alpha050,beta050,gamma050"
+          ],
+          [
+            "2021-02-21",
+            3,
+            "alpha051,beta051,gamma051"
+          ],
+          [
+            "2021-02-22",
+            3,
+            "alpha052,beta052,gamma052"
+          ],
+          [
+            "2021-02-23",
+            3,
+            "alpha053,beta053,gamma053"
+          ],
+          [
+            "2021-02-24",
+            3,
+            "alpha054,beta054,gamma054"
+          ],
+          [
+            "2021-02-25",
+            3,
+            "alpha055,beta055,gamma055"
+          ],
+          [
+            "2021-02-26",
+            3,
+            "alpha056,beta056,gamma056"
+          ],
+          [
+            "2021-02-27",
+            3,
+            "alpha057,beta057,gamma057"
+          ],
+          [
+            "2021-02-28",
+            3,
+            "alpha058,beta058,gamma058"
+          ],
+          [
+            "2021-03-01",
+            3,
+            "alpha059,beta059,gamma059"
+          ],
+          [
+            "2021-03-02",
+            3,
+            "alpha060,beta060,gamma060"
+          ],
+          [
+            "2021-03-03",
+            3,
+            "alpha061,beta061,gamma061"
+          ],
+          [
+            "2021-03-04",
+            3,
+            "alpha062,beta062,gamma062"
+          ],
+          [
+            "2021-03-05",
+            3,
+            "alpha063,beta063,gamma063"
+          ],
+          [
+            "2021-03-06",
+            3,
+            "alpha064,beta064,gamma064"
+          ],
+          [
+            "2021-03-07",
+            3,
+            "alpha065,beta065,gamma065"
+          ],
+          [
+            "2021-03-08",
+            3,
+            "alpha066,beta066,gamma066"
+          ],
+          [
+            "2021-03-09",
+            3,
+            "alpha067,beta067,gamma067"
+          ],
+          [
+            "2021-03-10",
+            3,
+            "alpha068,beta068,gamma068"
+          ],
+          [
+            "2021-03-11",
+            3,
+            "alpha069,beta069,gamma069"
+          ],
+          [
+            "2021-03-12",
+            3,
+            "alpha070,beta070,gamma070"
+          ],
+          [
+            "2021-03-13",
+            3,
+            "alpha071,beta071,gamma071"
+          ],
+          [
+            "2021-03-14",
+            3,
+            "alpha072,beta072,gamma072"
+          ],
+          [
+            "2021-03-15",
+            3,
+            "alpha073,beta073,gamma073"
+          ],
+          [
+            "2021-03-16",
+            3,
+            "alpha074,beta074,gamma074"
+          ],
+          [
+            "2021-03-17",
+            3,
+            "alpha075,beta075,gamma075"
+          ],
+          [
+            "2021-03-18",
+            3,
+            "alpha076,beta076,gamma076"
+          ],
+          [
+            "2021-03-19",
+            3,
+            "alpha077,beta077,gamma077"
+          ],
+          [
+            "2021-03-20",
+            3,
+            "alpha078,beta078,gamma078"
+          ],
+          [
+            "2021-03-21",
+            3,
+            "alpha079,beta079,gamma079"
+          ],
+          [
+            "2021-03-22",
+            3,
+            "alpha080,beta080,gamma080"
+          ],
+          [
+            "2021-03-23",
+            3,
+            "alpha081,beta081,gamma081"
+          ],
+          [
+            "2021-03-24",
+            3,
+            "alpha082,beta082,gamma082"
+          ],
+          [
+            "2021-03-25",
+            3,
+            "alpha083,beta083,gamma083"
+          ],
+          [
+            "2021-03-26",
+            3,
+            "alpha084,beta084,gamma084"
+          ],
+          [
+            "2021-03-27",
+            3,
+            "alpha085,beta085,gamma085"
+          ],
+          [
+            "2021-03-28",
+            3,
+            "alpha086,beta086,gamma086"
+          ],
+          [
+            "2021-03-29",
+            3,
+            "alpha087,beta087,gamma087"
+          ],
+          [
+            "2021-03-30",
+            3,
+            "alpha088,beta088,gamma088"
+          ],
+          [
+            "2021-03-31",
+            3,
+            "alpha089,beta089,gamma089"
+          ],
+          [
+            "2021-04-01",
+            3,
+            "alpha090,beta090,gamma090"
+          ],
+          [
+            "2021-04-02",
+            3,
+            "alpha091,beta091,gamma091"
+          ],
+          [
+            "2021-04-03",
+            3,
+            "alpha092,beta092,gamma092"
+          ],
+          [
+            "2021-04-04",
+            3,
+            "alpha093,beta093,gamma093"
+          ],
+          [
+            "2021-04-05",
+            3,
+            "alpha094,beta094,gamma094"
+          ],
+          [
+            "2021-04-06",
+            3,
+            "alpha095,beta095,gamma095"
+          ],
+          [
+            "2021-04-07",
+            3,
+            "alpha096,beta096,gamma096"
+          ],
+          [
+            "2021-04-08",
+            3,
+            "alpha097,beta097,gamma097"
+          ],
+          [
+            "2021-04-09",
+            3,
+            "alpha098,beta098,gamma098"
+          ],
+          [
+            "2021-04-10",
+            3,
+            "alpha099,beta099,gamma099"
+          ],
+          [
+            "2021-04-11",
+            3,
+            "alpha100,beta100,gamma100"
+          ],
+          [
+            "2021-04-12",
+            3,
+            "alpha101,beta101,gamma101"
+          ],
+          [
+            "2021-04-13",
+            3,
+            "alpha102,beta102,gamma102"
+          ],
+          [
+            "2021-04-14",
+            3,
+            "alpha103,beta103,gamma103"
+          ],
+          [
+            "2021-04-15",
+            3,
+            "alpha104,beta104,gamma104"
+          ],
+          [
+            "2021-04-16",
+            3,
+            "alpha105,beta105,gamma105"
+          ],
+          [
+            "2021-04-17",
+            3,
+            "alpha106,beta106,gamma106"
+          ],
+          [
+            "2021-04-18",
+            3,
+            "alpha107,beta107,gamma107"
+          ],
+          [
+            "2021-04-19",
+            3,
+            "alpha108,beta108,gamma108"
+          ],
+          [
+            "2021-04-20",
+            3,
+            "alpha109,beta109,gamma109"
+          ],
+          [
+            "2021-04-21",
+            3,
+            "alpha110,beta110,gamma110"
+          ],
+          [
+            "2021-04-22",
+            3,
+            "alpha111,beta111,gamma111"
+          ],
+          [
+            "2021-04-23",
+            3,
+            "alpha112,beta112,gamma112"
+          ],
+          [
+            "2021-04-24",
+            3,
+            "alpha113,beta113,gamma113"
+          ],
+          [
+            "2021-04-25",
+            3,
+            "alpha114,beta114,gamma114"
+          ],
+          [
+            "2021-04-26",
+            3,
+            "alpha115,beta115,gamma115"
+          ],
+          [
+            "2021-04-27",
+            3,
+            "alpha116,beta116,gamma116"
+          ],
+          [
+            "2021-04-28",
+            3,
+            "alpha117,beta117,gamma117"
+          ],
+          [
+            "2021-04-29",
+            3,
+            "alpha118,beta118,gamma118"
+          ],
+          [
+            "2021-04-30",
+            3,
+            "alpha119,beta119,gamma119"
+          ],
+          [
+            "2021-05-01",
+            3,
+            "alpha120,beta120,gamma120"
+          ],
+          [
+            "2021-05-02",
+            3,
+            "alpha121,beta121,gamma121"
+          ],
+          [
+            "2021-05-03",
+            3,
+            "alpha122,beta122,gamma122"
+          ],
+          [
+            "2021-05-04",
+            3,
+            "alpha123,beta123,gamma123"
+          ],
+          [
+            "2021-05-05",
+            3,
+            "alpha124,beta124,gamma124"
+          ],
+          [
+            "2021-05-06",
+            3,
+            "alpha125,beta125,gamma125"
+          ],
+          [
+            "2021-05-07",
+            3,
+            "alpha126,beta126,gamma126"
+          ],
+          [
+            "2021-05-08",
+            3,
+            "alpha127,beta127,gamma127"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "duplicates",
+        "grouping"
+      ]
+    }
+  ]
+}

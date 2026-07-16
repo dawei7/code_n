@@ -34,16 +34,17 @@ the problem-specific reason and continue to the next numeric frontend ID.
 
 - Repository: `C:\dawei7\code_n`
 - Current local branch: `main`
-- Base commit before the 1471-1480 migration batch:
-  `d9e4834f2f331432f4e78bf95d31e8aa290d53fa`.
-- This handoff accompanies the completed local package batch for frontend IDs
-  1471 through 1480 plus refreshed generated reports. The live `HEAD` after
-  commit and push is authoritative; preserve any later local changes unless
-  inspection proves they are unrelated.
+- Current committed migration checkpoint:
+  `37755dd2dc09ea27ed3a94c02d0edcddde63aada`, which completes and delivers
+  frontend IDs 1471 through 1480.
+- The worktree contains the completed local package changes for frontend IDs
+  1481 through 1489 plus refreshed generated reports and the focused ordered-group
+  validator regression. Preserve them and any later local
+  changes unless inspection proves they are unrelated.
 - The four-digit directory migration remains based on
   `1fc55b6e7ff0e808e207376bc663ea60cb2cb798`.
-- `main` and `origin/main` were at checkpoint `d9e4834f` before this batch of
-  package changes.
+- `main` and `origin/main` are at checkpoint `37755dd2` before the uncommitted
+  frontend ID 1481-1489 package changes.
 - The current commit-and-push authorization is consumed by this checkpoint.
   Do not commit, push, merge, or release without a new explicit user request.
 
@@ -224,24 +225,24 @@ For each package in ascending numeric frontend-ID order:
 
 ## Current authoritative checkpoint
 
-The refreshed migration audit after completing local package work through 1480 reports:
+The refreshed migration audit after completing local package work through 1489 reports:
 
 - 3985 canonical packages;
-- 1480 locally complete;
+- 1489 locally complete;
 - 1448 packages fully complete and remotely verified;
-- 1454 completed three-tier scaling benchmarks;
+- 1463 completed three-tier scaling benchmarks;
 - 26 strictly validated complexity certificates;
-- 1480 packages with complete complexity verification;
-- 32 recorded remote-verification blockers. Frontend IDs 1413 through 1426
+- 1489 packages with complete complexity verification;
+- 41 recorded remote-verification blockers. Frontend IDs 1413 through 1426
   are locally complete but Electron `safeStorage.decryptString` fails with
-  Windows error `0x8009000B`. Frontend IDs 1463 through 1480 are locally
+  Windows error `0x8009000B`. Frontend IDs 1463 through 1489 are locally
   complete but Chrome was not running; the Chrome-control policy requires an
   explicit confirmation before launching it, while the user instructed the
   migration to record blockers rather than request input;
-- frontend ID 1481, Least Number of Unique Integers after K Removals,
+- frontend ID 1490, Clone N-ary Tree,
   as the first actionable incomplete package.
 
-There are 2505 locally incomplete packages after this checkpoint. The thirty-two
+There are 2496 locally incomplete packages after this checkpoint. The forty-one
 recorded blockers affect only remote Accepted verification; per the user's
 instruction, record the exact failure for each affected package and continue
 numerically without waiting for user input. Use the generated report for the
@@ -1309,8 +1310,71 @@ latest completed packages add this evidence:
   quadratic prefix-recomputation candidate completed normally, returned every
   expected running sum, and failed only scaling at `+1.44` and `132.50x`. It
   has the same Chrome launch blocker;
-- the refreshed migration audit: 1480 locally complete, 1448 fully verified,
-  32 blocked, 1454 scaling benchmarks, 26 certificates, and frontend ID 1481
+- problem 1481 is locally complete. Its frequency-counting and ascending-cost
+  greedy implementation passed all samples, the visible trial, hidden boundary
+  cases, and the 32/128/512 benchmark tiers at `+0.01` with a `1.01x`
+  largest-tier ratio. The correct repeated-frequency-count candidate completed
+  normally, returned every optimum, and failed only scaling at `+1.48` and
+  `470.80x`. It has the same Chrome launch blocker;
+- problem 1482 is locally complete. Its monotone-feasibility binary search
+  passed all samples, the visible adjacency trial, hidden boundary cases, and
+  the legal 8/32/128 tiers at `-0.00` with a `0.99x` largest-tier ratio. The
+  correct candidate that scans sorted distinct bloom days completed normally,
+  returned every minimum day, and failed only scaling at `+0.81` and `12.00x`.
+  The smaller tiers avoid a safety-cap failure while retaining a 16x span. It
+  has the same Chrome launch blocker;
+- problem 1483 is locally complete. Its binary-lifting table and stateful
+  operation wrapper passed the official sequence, visible chain trial, hidden
+  tree-shape cases, and the legal 8/32/128 tiers at `-0.08` with a `0.74x`
+  largest-tier ratio. Correct direct parent walking completed normally,
+  returned every query answer, and failed only scaling at `+0.67`. It has the
+  same Chrome launch blocker;
+- problem 1484 is locally complete. Its SQLite distinct-pair aggregation and
+  separate native MySQL ordered `GROUP_CONCAT` artifact cover duplicate sale
+  rows, independent date groups, and lexicographic product order. The grouped
+  query passed all five correctness cases and the legal 8/32/128 tiers at
+  `+0.01` with a `0.99x` largest-tier ratio. Correct correlated subqueries
+  completed normally, returned every expected relation, and failed only
+  scaling at `+0.61` and `8.69x`. It has the same Chrome launch blocker;
+- problem 1485 is locally complete. Its documented app contract explicitly
+  distinguishes encoded relationship equivalence from native object identity.
+  The linear encoded clone passed all official, visible, hidden, and legal
+  16/64/256 tiers at `-0.04` with a `0.89x` largest-tier ratio. Correct linear
+  target-index searching completed normally, returned every relationship, and
+  failed only scaling at `+1.32` and `53.05x`. The separate native artifact
+  performs an identity-map `Node` to `NodeCopy` graph clone. It has the same
+  Chrome launch blocker;
+- problem 1486 is locally complete. Its constant-time parity split and
+  four-case prefix-XOR formula passed all cases and the legal 64/256/1000 tiers
+  at `+0.00` with a `0.99x` largest-tier ratio. Direct linear XOR accumulation
+  completed normally, returned every result, and failed only scaling at
+  `+0.51`. It has the same Chrome launch blocker;
+- problem 1487 is locally complete. Its next-suffix hash-map invariant covers
+  literal parenthesized names, preoccupied gaps, generated-name collisions,
+  and nested suffixes. It passed all cases and the legal 16/64/256 tiers at
+  `+0.00` with a `1.00x` largest-tier ratio. Correct suffix searching that
+  restarts at one completed normally, returned every exact assigned name, and
+  failed only scaling at `+1.18` and `39.34x`. It has the same Chrome launch
+  blocker;
+- problem 1488 is locally complete. Its future-occurrence queues, live-deadline
+  map, and earliest-deadline heap correctly handle alternate valid schedules,
+  stale heap entries after refill, unusable early dry days, and impossible
+  sequences. It passed all cases and the legal 64/256/1024 tiers at `-0.00`
+  with a `0.93x` largest-tier ratio. Correct linear dry-day scanning completed
+  normally, produced valid schedules for every feasible case, and failed only
+  scaling at `+0.75`. It has the same Chrome launch blocker;
+- problem 1489 is locally complete. Its equal-weight component contraction and
+  Tarjan multigraph bridge classification run in $O(E \log E)$ and correctly
+  handle cheaper internal paths, parallel contracted edges, mixed bridge/cycle
+  groups, and original edge indices. A new
+  `ordered_groups_unordered_items` validator preserves the critical versus
+  pseudo-critical category positions while accepting any index order within
+  each category, with focused regression coverage. The reference passed all
+  cases and the legal 8/32/128 tiers at `-0.00` with a `0.98x` largest-tier
+  ratio. Correct exclude/force Kruskal completed normally and failed only
+  scaling at `+1.08` and `48.76x`. It has the same Chrome launch blocker;
+- the refreshed migration audit: 1489 locally complete, 1448 fully verified,
+  41 blocked, 1463 scaling benchmarks, 26 certificates, and frontend ID 1490
   next;
 - the dataset checker after problem 1478: 3985 documents, 2526 manually
   complete, and 1459 still needing authoring;
@@ -1385,9 +1449,9 @@ Get-Content dsa\leetcode\_reports\two_sum_migration_progress.md
 ```
 
 The expected branch is `main`, and the expected committed migration checkpoint is
-`d9e4834f2f331432f4e78bf95d31e8aa290d53fa`. The refreshed first actionable
+`37755dd2dc09ea27ed3a94c02d0edcddde63aada`. The refreshed first actionable
 package should be
-`dsa/leetcode/1481_least-number-of-unique-integers-after-k-removals`. If
+`dsa/leetcode/1490_clone-n-ary-tree`. If
 any of those facts differ, trust the live worktree and refreshed audit,
 investigate the drift, and preserve rather than discard changes.
 
@@ -1404,7 +1468,7 @@ For the next native candidate, replace the frontend ID in:
 
 ```powershell
 $env:ELECTRON_RUN_AS_NODE=$null
-npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1481
+npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1490
 ```
 
 ## Exact prompt for a new Codex session
@@ -1421,12 +1485,12 @@ Copy and paste this entire block into the new session:
 > `dsa/leetcode/_reports/ACTIVE_MIGRATION_HANDOFF.md`, and
 > `dsa/leetcode/_reports/two_sum_migration_progress.md` completely. Then run a
 > fresh migration audit and treat the live worktree and generated reports as
-> authoritative. Problems through frontend ID 1480 are locally complete;
+> authoritative. Problems through frontend ID 1489 are locally complete;
 > 1448 packages are remotely verified. Problems 1413 through 1426 have
-> recorded Electron credential-decryption blockers, while 1463 through 1480
+> recorded Electron credential-decryption blockers, while 1463 through 1489
 > have recorded Chrome-not-running launch-policy blockers. The expected first
 > actionable package is
-> `dsa/leetcode/1481_least-number-of-unique-integers-after-k-removals`,
+> `dsa/leetcode/1490_clone-n-ary-tree`,
 > but follow
 > the refreshed audit if it differs.
 > Continue autonomously in numeric frontend-ID order and do not stop after
