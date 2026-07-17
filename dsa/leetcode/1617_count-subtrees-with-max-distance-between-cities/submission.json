@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1740",
+  "frontend_id": "1617",
+  "title_slug": "count-subtrees-with-max-distance-between-cities",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countSubgraphsForEachDiameter",
+  "verified_submission_id": "2070422535",
+  "verified_at": "2026-07-16T21:40:39.013468+00:00"
+}

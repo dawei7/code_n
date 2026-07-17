@@ -6,6 +6,9 @@
   "title": "Maximum Number of Vowels in a Substring of Given Length",
   "difficulty": "Medium",
   "acceptance_rate": 62.28642145937282,
+  "frequency": 32.2,
+  "elo_rating": 1263.2728668041,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

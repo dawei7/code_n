@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1789",
+  "cases": [
+    {
+      "id": "sample-mixed-memberships",
+      "name": "sample: single and multiple department employees",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Employee": [
+        {"employee_id": 1, "department_id": 1, "primary_flag": "N"},
+        {"employee_id": 2, "department_id": 1, "primary_flag": "Y"},
+        {"employee_id": 2, "department_id": 2, "primary_flag": "N"},
+        {"employee_id": 3, "department_id": 3, "primary_flag": "N"},
+        {"employee_id": 4, "department_id": 2, "primary_flag": "N"},
+        {"employee_id": 4, "department_id": 3, "primary_flag": "Y"},
+        {"employee_id": 4, "department_id": 4, "primary_flag": "N"}
+      ]}},
+      "expected": {"columns": ["employee_id", "department_id"], "rows": [[1,1],[2,1],[3,3],[4,3]]},
+      "tags": ["sample", "mixed-memberships"]
+    },
+    {
+      "id": "trial-single-membership",
+      "name": "one N row is implicitly the primary department",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Employee": [
+        {"employee_id": 7, "department_id": 42, "primary_flag": "N"}
+      ]}},
+      "expected": {"columns": ["employee_id", "department_id"], "rows": [[7,42]]},
+      "tags": ["single-membership", "implicit-primary"]
+    },
+    {
+      "id": "trial-primary-not-largest",
+      "name": "explicit primary is not the largest department id",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Employee": [
+        {"employee_id": 5, "department_id": 90, "primary_flag": "N"},
+        {"employee_id": 5, "department_id": 3, "primary_flag": "Y"},
+        {"employee_id": 5, "department_id": 40, "primary_flag": "N"}
+      ]}},
+      "expected": {"columns": ["employee_id", "department_id"], "rows": [[5,3]]},
+      "tags": ["explicit-primary", "conditional-aggregate"]
+    },
+    {
+      "id": "real-all-single",
+      "name": "hidden: every employee has one implicit primary",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Employee": [
+        {"employee_id": 3, "department_id": 30, "primary_flag": "N"},
+        {"employee_id": 1, "department_id": 10, "primary_flag": "N"},
+        {"employee_id": 8, "department_id": 80, "primary_flag": "N"}
+      ]}},
+      "expected": {"columns": ["employee_id", "department_id"], "rows": [[1,10],[3,30],[8,80]]},
+      "tags": ["all-single", "ordering"]
+    },
+    {
+      "id": "real-primary-last",
+      "name": "hidden: explicit primary appears after nonprimary rows",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Employee": [
+        {"employee_id": 11, "department_id": 1, "primary_flag": "N"},
+        {"employee_id": 11, "department_id": 2, "primary_flag": "N"},
+        {"employee_id": 11, "department_id": 7, "primary_flag": "Y"}
+      ]}},
+      "expected": {"columns": ["employee_id", "department_id"], "rows": [[11,7]]},
+      "tags": ["primary-last", "row-order"]
+    },
+    {
+      "id": "real-primary-first",
+      "name": "hidden: explicit primary appears before nonprimary rows",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Employee": [
+        {"employee_id": 12, "department_id": 8, "primary_flag": "Y"},
+        {"employee_id": 12, "department_id": 2, "primary_flag": "N"},
+        {"employee_id": 12, "department_id": 9, "primary_flag": "N"}
+      ]}},
+      "expected": {"columns": ["employee_id", "department_id"], "rows": [[12,8]]},
+      "tags": ["primary-first", "row-order"]
+    },
+    {
+      "id": "real-interleaved-employees",
+      "name": "hidden: membership rows for employees are interleaved",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Employee": [
+        {"employee_id": 20, "department_id": 5, "primary_flag": "N"},
+        {"employee_id": 10, "department_id": 6, "primary_flag": "Y"},
+        {"employee_id": 20, "department_id": 4, "primary_flag": "Y"},
+        {"employee_id": 30, "department_id": 9, "primary_flag": "N"},
+        {"employee_id": 10, "department_id": 7, "primary_flag": "N"}
+      ]}},
+      "expected": {"columns": ["employee_id", "department_id"], "rows": [[10,6],[20,4],[30,9]]},
+      "tags": ["interleaved", "mixed-memberships"]
+    }
+  ]
+}

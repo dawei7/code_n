@@ -6,6 +6,9 @@
   "title": "Construct the Lexicographically Largest Valid Sequence",
   "difficulty": "Medium",
   "acceptance_rate": 72.65115267507612,
+  "frequency": 29.7,
+  "elo_rating": 2080.0425875741,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

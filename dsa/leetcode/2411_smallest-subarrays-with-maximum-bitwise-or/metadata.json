@@ -6,6 +6,9 @@
   "title": "Smallest Subarrays With Maximum Bitwise OR",
   "difficulty": "Medium",
   "acceptance_rate": 61.94471897628691,
+  "frequency": 36.2,
+  "elo_rating": 1938.0586460002,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

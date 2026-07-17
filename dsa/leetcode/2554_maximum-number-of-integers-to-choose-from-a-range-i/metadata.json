@@ -6,6 +6,9 @@
   "title": "Maximum Number of Integers to Choose From a Range I",
   "difficulty": "Medium",
   "acceptance_rate": 68.02111992875204,
+  "frequency": 24.5,
+  "elo_rating": 1333.2008827592,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Users That Actively Request Confirmation Messages",
   "difficulty": "Easy",
   "acceptance_rate": 56.86138422980528,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1233.499166,
   "category": "database",
   "category_title": "Database",
   "topics": [

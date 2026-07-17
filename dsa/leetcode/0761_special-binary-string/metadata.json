@@ -6,6 +6,9 @@
   "title": "Special Binary String",
   "difficulty": "Hard",
   "acceptance_rate": 79.38391446872346,
+  "frequency": 73.9,
+  "elo_rating": 2292.1434666805,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

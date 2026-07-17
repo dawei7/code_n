@@ -6,6 +6,9 @@
   "title": "Redundant Connection",
   "difficulty": "Medium",
   "acceptance_rate": 67.86406558246546,
+  "frequency": 37.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1400.928851,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

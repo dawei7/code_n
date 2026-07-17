@@ -6,6 +6,9 @@
   "title": "Minimize the Difference Between Target and Chosen Elements",
   "difficulty": "Medium",
   "acceptance_rate": 37.08680164633358,
+  "frequency": 25.3,
+  "elo_rating": 2009.7322365973,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

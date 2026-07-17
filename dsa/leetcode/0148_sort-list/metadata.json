@@ -6,6 +6,9 @@
   "title": "Sort List",
   "difficulty": "Medium",
   "acceptance_rate": 64.819784478476,
+  "frequency": 58.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1423.492181,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

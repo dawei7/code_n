@@ -6,6 +6,9 @@
   "title": "Maximum Sum With Exactly K Elements ",
   "difficulty": "Easy",
   "acceptance_rate": 80.18872789150726,
+  "frequency": 33.2,
+  "elo_rating": 1213.4070467355,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

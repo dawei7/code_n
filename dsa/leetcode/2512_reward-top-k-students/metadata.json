@@ -6,6 +6,9 @@
   "title": "Reward Top K Students",
   "difficulty": "Medium",
   "acceptance_rate": 47.21940146944627,
+  "frequency": 60.8,
+  "elo_rating": 1636.7472106213,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

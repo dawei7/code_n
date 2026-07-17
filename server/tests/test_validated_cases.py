@@ -9,6 +9,7 @@ from unittest.mock import patch
 from challenges.registry import CHALLENGE_REGISTRY
 from server.app.engine_runner import (
     _accounts_merge_match,
+    _adjacent_path_match,
     _alternating_groups_subsequence_match,
     _all_one_trace_match,
     _anagram_mapping_match,
@@ -59,6 +60,7 @@ from server.app.engine_runner import (
     _pancake_sort_match,
     _peak_index_match,
     _parent_tree_node_from_fixture,
+    _parent_tree_pair_from_fixtures,
     _pre_post_tree_match,
     _phone_directory_trace_match,
     _prepare_validated_kwargs,
@@ -86,9 +88,11 @@ from server.app.engine_runner import (
     _returns_tree,
     _tree_param_names,
     _tree_from_level_order,
+    _tree_root_and_targets_from_fixtures,
     _three_equal_binary_parts_match,
     _JudgeSea,
     _JudgeBinaryMatrix,
+    _JudgeFontInfo,
     _JudgePoint,
     _JudgeMaster,
     _unique_bsts_match,
@@ -115,6 +119,43 @@ def solve(nums: list[int], target: int) -> list[int]:
 
 
 class ValidatedCasesTest(conftest._Base):
+    def test_adjacent_path_validator_accepts_either_valid_orientation(self) -> None:
+        pairs = [[2, 1], [3, 4], [3, 2]]
+        case = ValidatedCase(
+            id="adjacent-path",
+            name="adjacent path",
+            kind="sample",
+            input={"adjacentPairs": pairs},
+            expected=[1, 2, 3, 4],
+            validator={"kind": "adjacent_path"},
+        )
+
+        self.assertTrue(_adjacent_path_match([1, 2, 3, 4], pairs))
+        self.assertTrue(_validated_case_matches(case, [4, 3, 2, 1], case.expected))
+        self.assertFalse(_adjacent_path_match([1, 2, 4, 3], pairs))
+        self.assertFalse(_adjacent_path_match([1, 2, 3, 3], pairs))
+        self.assertFalse(_adjacent_path_match([1, 2, 3], pairs))
+
+    def test_shared_tree_target_fixture_preserves_node_identity(self) -> None:
+        root, targets = _tree_root_and_targets_from_fixtures(
+            {"tree": [3, 5, 1, 6, 2, 0, 8, None, None, 7, 4]},
+            {"same_tree_as": "root", "target_indices": [9, 10]},
+        )
+
+        self.assertEqual([node.val for node in targets], [7, 4])
+        self.assertIs(root.left.right.left, targets[0])
+        self.assertIs(root.left.right.right, targets[1])
+
+    def test_parent_tree_pair_fixture_shares_ancestor_objects(self) -> None:
+        p, q = _parent_tree_pair_from_fixtures(
+            {"tree": [3, 5, 1, 6, 2, 0, 8, None, None, 7, 4], "target_index": 1},
+            {"same_tree_as": "p", "target_index": 10},
+        )
+
+        self.assertEqual(p.val, 5)
+        self.assertEqual(q.val, 4)
+        self.assertIs(q.parent.parent, p)
+
     def test_most_similar_path_validator_accepts_any_optimal_tie(self) -> None:
         roads = [[0, 1], [1, 2], [2, 3], [3, 0]]
         names = ["A", "B", "A", "B"]
@@ -342,6 +383,30 @@ ORDER BY activity.player_id;
         with self.assertRaisesRegex(ValueError, "non-decreasing"):
             _JudgeBinaryMatrix([[1, 0]])
 
+    def test_font_info_fixture_exposes_metrics_and_enforces_the_budget(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {
+                "fontInfo": {
+                    "heights": {"6": 8, "10": 13},
+                    "uniform_widths": {"6": 4},
+                    "widths": {"10": {"a": 7, "b": 8}},
+                    "max_queries": 3,
+                }
+            },
+            (),
+            (),
+        )
+        font_info = kwargs["fontInfo"]
+        self.assertIsInstance(font_info, _JudgeFontInfo)
+        self.assertEqual(font_info.getHeight(10), 13)
+        self.assertEqual(font_info.getWidth(6, "z"), 4)
+        self.assertEqual(font_info.getWidth(10, "b"), 8)
+        self.assertEqual(font_info.query_count, 3)
+        with self.assertRaisesRegex(RuntimeError, "3-query limit"):
+            font_info.getHeight(6)
+        with self.assertRaisesRegex(ValueError, "same fonts"):
+            _JudgeFontInfo({"6": 8}, uniform_widths={"10": 4})
+
     def test_immutable_list_fixture_exposes_only_judge_methods_and_captures_prints(self) -> None:
         head = _immutable_list_node_from_values([1, 2, 3])
 
@@ -467,6 +532,45 @@ ORDER BY activity.player_id;
         self.assertTrue(all(case["return_value_repr"] == "" for case in hidden_results))
         self.assertTrue(all(case["expected_repr"] is None for case in hidden_results))
         self.assertTrue(all(case["message"] == "" for case in hidden_results))
+
+    def test_unordered_table_validator_preserves_columns_and_row_multiplicity(self) -> None:
+        expected = {
+            "columns": ["date_id", "make_name", "count"],
+            "rows": [["2020-01-01", "a", 2], ["2020-01-02", "b", 1]],
+        }
+        case = ValidatedCase(
+            id="unordered-table",
+            name="unordered table",
+            kind="sample",
+            input={},
+            expected=expected,
+            validator={"kind": "unordered_table"},
+        )
+
+        self.assertTrue(
+            _validated_case_matches(
+                case,
+                {
+                    "columns": ["date_id", "make_name", "count"],
+                    "rows": [["2020-01-02", "b", 1], ["2020-01-01", "a", 2]],
+                },
+                expected,
+            )
+        )
+        self.assertFalse(
+            _validated_case_matches(
+                case,
+                {"columns": ["make_name", "date_id", "count"], "rows": expected["rows"]},
+                expected,
+            )
+        )
+        self.assertFalse(
+            _validated_case_matches(
+                case,
+                {"columns": expected["columns"], "rows": expected["rows"][:1]},
+                expected,
+            )
+        )
 
     def test_runtime_benchmark_alternates_order_and_normalizes_amplification(self) -> None:
         case = ValidatedCase(

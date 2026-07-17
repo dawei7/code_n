@@ -6,6 +6,9 @@
   "title": "Shortest Path in a Grid with Obstacles Elimination",
   "difficulty": "Hard",
   "acceptance_rate": 46.501242896268685,
+  "frequency": 60.5,
+  "elo_rating": 1967.3284576938,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

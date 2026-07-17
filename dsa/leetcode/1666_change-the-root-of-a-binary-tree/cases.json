@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1666",
+  "cases": [
+    {"id":"sample-deep-left-leaf","name":"sample: reroot at leaf seven","kind":"sample","visible":true,"input":{"root":{"tree":[3,5,1,6,2,0,8,null,null,7,4]},"leaf":{"same_tree_as":"root","target_index":9}},"expected":[7,2,null,5,4,3,6,null,null,null,1,null,null,0,8],"tags":["sample","deep-path"]},
+    {"id":"sample-right-subtree-leaf","name":"sample: reroot at leaf zero","kind":"sample","visible":true,"input":{"root":{"tree":[3,5,1,6,2,0,8,null,null,7,4]},"leaf":{"same_tree_as":"root","target_index":5}},"expected":[0,1,null,3,8,5,null,null,null,6,2,null,null,7,4],"tags":["sample","right-subtree"]},
+    {"id":"trial-two-node-left","name":"trial: left child becomes root of two-node tree","kind":"trial","visible":true,"input":{"root":{"tree":[1,2]},"leaf":{"same_tree_as":"root","target_index":1}},"expected":[2,1],"tags":["minimum","left-child"]},
+    {"id":"trial-two-node-right","name":"trial: right child becomes root of two-node tree","kind":"trial","visible":true,"input":{"root":{"tree":[1,null,2]},"leaf":{"same_tree_as":"root","target_index":2}},"expected":[2,1],"tags":["minimum","right-child"]},
+    {"id":"real-preserve-sibling","name":"hidden: sibling subtree remains on reversed path node","kind":"real","visible":false,"input":{"root":{"tree":[1,2,3,4,5]},"leaf":{"same_tree_as":"root","target_index":3}},"expected":[4,2,null,1,5,null,3],"tags":["off-path-subtree"]},
+    {"id":"real-move-left-child","name":"hidden: path node left child moves to its right","kind":"real","visible":false,"input":{"root":{"tree":[1,2,3,4,5]},"leaf":{"same_tree_as":"root","target_index":4}},"expected":[5,2,null,1,4,null,3],"tags":["left-to-right-move"]},
+    {"id":"real-root-right-leaf","name":"hidden: direct right leaf preserves left subtree","kind":"real","visible":false,"input":{"root":{"tree":[10,5,15,2,7]},"leaf":{"same_tree_as":"root","target_index":2}},"expected":[15,10,null,5,null,2,7],"tags":["direct-child","preserve-subtree"]},
+    {"id":"real-negative-values","name":"hidden: negative values do not affect pointer changes","kind":"real","visible":false,"input":{"root":{"tree":[-1,-2,-3,-4]},"leaf":{"same_tree_as":"root","target_index":3}},"expected":[-4,-2,null,-1,null,null,-3],"tags":["negative-values"]},
+    {"id":"real-three-node-chain","name":"hidden: reverse a three-node left chain","kind":"real","visible":false,"input":{"root":{"tree":[1,2,null,3]},"leaf":{"same_tree_as":"root","target_index":3}},"expected":[3,2,null,1],"tags":["chain"]},
+    {"id":"real-value-boundaries","name":"hidden: boundary values survive a direct reroot","kind":"real","visible":false,"input":{"root":{"tree":[-1000000000,1000000000]},"leaf":{"same_tree_as":"root","target_index":1}},"expected":[1000000000,-1000000000],"tags":["value-boundaries"]}
+  ]
+}

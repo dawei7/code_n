@@ -19,8 +19,18 @@ export function failChallenge(challenge_id: string): Promise<ProgressOut> {
   return apiPut<ProgressOut>('/progress', { fail: challenge_id });
 }
 
-export function resetProgress(): Promise<ProgressOut> {
-  return apiPut<ProgressOut>('/progress', { reset: true });
+export type ProgressResetScope = 'all' | 'coden' | 'leetcode';
+
+export function resetProgress(
+  scope: ProgressResetScope,
+  challenge_ids: string[],
+  confirmation: string,
+): Promise<ProgressOut> {
+  return apiPost<ProgressOut>('/progress/reset', {
+    scope,
+    challenge_ids,
+    confirmation,
+  });
 }
 
 export interface ProgressSettingsUpdate {

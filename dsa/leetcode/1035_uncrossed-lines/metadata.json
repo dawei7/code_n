@@ -6,6 +6,9 @@
   "title": "Uncrossed Lines",
   "difficulty": "Medium",
   "acceptance_rate": 65.39211399301024,
+  "frequency": 25.6,
+  "elo_rating": 1805.5947071171,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

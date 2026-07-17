@@ -6,6 +6,9 @@
   "title": "Find Duplicate Subtrees",
   "difficulty": "Medium",
   "acceptance_rate": 60.777884936666574,
+  "frequency": 42.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1458.590694,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

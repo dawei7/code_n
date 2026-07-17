@@ -6,6 +6,9 @@
   "title": "N-th Tribonacci Number",
   "difficulty": "Easy",
   "acceptance_rate": 63.13511345476155,
+  "frequency": 42.2,
+  "elo_rating": 1142.8650731632,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

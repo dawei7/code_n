@@ -6,6 +6,9 @@
   "title": "Max Number of K-Sum Pairs",
   "difficulty": "Medium",
   "acceptance_rate": 57.184574390811285,
+  "frequency": 41.2,
+  "elo_rating": 1345.737168609,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

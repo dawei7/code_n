@@ -6,6 +6,9 @@
   "title": " Minimum Discards to Balance Inventory",
   "difficulty": "Medium",
   "acceptance_rate": 35.35128464425895,
+  "frequency": 0.0,
+  "elo_rating": 1638.8790725205,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

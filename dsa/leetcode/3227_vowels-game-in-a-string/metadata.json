@@ -6,6 +6,9 @@
   "title": "Vowels Game in a String",
   "difficulty": "Medium",
   "acceptance_rate": 77.10024318605312,
+  "frequency": 25.0,
+  "elo_rating": 1451.8103068349,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,47 @@
+{
+  "updated_at": "2026-07-17T22:07:34.558425Z",
+  "model_version": "difficulty-acceptance-v1",
+  "frequency_refreshed": true,
+  "canonical_problem_count": 3991,
+  "frequency_count": 3991,
+  "real_elo_count": 2537,
+  "estimated_elo_count": 1454,
+  "changed_metadata_files": 3991,
+  "zerotrac_revision": "81cd5930dac1d5bf6bf6d3b2af3fefb2f5c92e4d",
+  "zerotrac_updated_at": "2026-07-17T07:12:21Z",
+  "estimate_model": {
+    "Easy": {
+      "difficulty": "Easy",
+      "real_minimum": 1084.131947,
+      "real_maximum": 1648.354038,
+      "base": 1217.114004,
+      "minimum": 1165.831407,
+      "maximum": 1311.349532,
+      "calibration_offset": -40.274814,
+      "real_rating_count": 601,
+      "acceptance_count": 954
+    },
+    "Medium": {
+      "difficulty": "Medium",
+      "real_minimum": 1180.354316,
+      "real_maximum": 2556.995592,
+      "base": 1529.527164,
+      "minimum": 1366.334745,
+      "maximum": 1833.32347,
+      "calibration_offset": -46.727896,
+      "real_rating_count": 1272,
+      "acceptance_count": 2084
+    },
+    "Hard": {
+      "difficulty": "Hard",
+      "real_minimum": 1640.897604,
+      "real_maximum": 3773.759615,
+      "base": 2131.791716,
+      "minimum": 1935.950103,
+      "maximum": 2456.571409,
+      "calibration_offset": -16.45883,
+      "real_rating_count": 664,
+      "acceptance_count": 953
+    }
+  }
+}

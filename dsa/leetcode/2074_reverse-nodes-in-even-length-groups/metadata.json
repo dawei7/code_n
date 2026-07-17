@@ -6,6 +6,9 @@
   "title": "Reverse Nodes in Even Length Groups",
   "difficulty": "Medium",
   "acceptance_rate": 64.65709137163451,
+  "frequency": 39.7,
+  "elo_rating": 1685.3599641299,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Delete Nodes From Linked List Present in Array",
   "difficulty": "Medium",
   "acceptance_rate": 69.38300678411802,
+  "frequency": 27.5,
+  "elo_rating": 1341.7231008143,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

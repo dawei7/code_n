@@ -6,6 +6,9 @@
   "title": "Find Nearest Point That Has the Same X or Y Coordinate",
   "difficulty": "Easy",
   "acceptance_rate": 70.05782922759636,
+  "frequency": 0.0,
+  "elo_rating": 1259.5707438932,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Nth Highest Salary",
   "difficulty": "Medium",
   "acceptance_rate": 39.51031066904686,
+  "frequency": 63.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1706.380514,
   "category": "database",
   "category_title": "Database",
   "topics": [

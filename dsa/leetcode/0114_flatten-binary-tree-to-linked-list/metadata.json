@@ -6,6 +6,9 @@
   "title": "Flatten Binary Tree to Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 71.04628381821682,
+  "frequency": 41.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1379.14897,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

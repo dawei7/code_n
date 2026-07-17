@@ -6,6 +6,9 @@
   "title": "Kth Missing Positive Number",
   "difficulty": "Easy",
   "acceptance_rate": 63.665337084602335,
+  "frequency": 65.4,
+  "elo_rating": 1295.4970938463,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Amount of Time to Fill Cups",
   "difficulty": "Easy",
   "acceptance_rate": 60.47522706728079,
+  "frequency": 0.0,
+  "elo_rating": 1360.421258727,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

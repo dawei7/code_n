@@ -6,6 +6,9 @@
   "title": "Customers Who Bought All Products",
   "difficulty": "Medium",
   "acceptance_rate": 64.18091771763126,
+  "frequency": 46.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1428.662944,
   "category": "database",
   "category_title": "Database",
   "topics": [

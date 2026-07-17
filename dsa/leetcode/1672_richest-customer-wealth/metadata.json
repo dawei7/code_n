@@ -6,6 +6,9 @@
   "title": "Richest Customer Wealth",
   "difficulty": "Easy",
   "acceptance_rate": 88.76374368731948,
+  "frequency": 36.9,
+  "elo_rating": 1182.6489068544,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

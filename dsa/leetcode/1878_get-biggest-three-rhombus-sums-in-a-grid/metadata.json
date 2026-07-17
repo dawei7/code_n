@@ -6,6 +6,9 @@
   "title": "Get Biggest Three Rhombus Sums in a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 71.34405679383454,
+  "frequency": 66.9,
+  "elo_rating": 1897.5516652727,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

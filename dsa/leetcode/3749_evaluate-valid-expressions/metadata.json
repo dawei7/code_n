@@ -6,6 +6,9 @@
   "title": "Evaluate Valid Expressions",
   "difficulty": "Hard",
   "acceptance_rate": 69.78319783197831,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1945.822919,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

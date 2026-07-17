@@ -6,6 +6,9 @@
   "title": "Number of Substrings With Only 1s",
   "difficulty": "Medium",
   "acceptance_rate": 57.39433265234833,
+  "frequency": 33.7,
+  "elo_rating": 1351.4184681108,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

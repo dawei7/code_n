@@ -1,0 +1,42 @@
+{
+  "challenge_id": "lc_3991",
+  "source": "leetcode",
+  "frontend_id": "3991",
+  "slug": "sort-array-using-prefix-reversals",
+  "title": "Sort Array Using Prefix Reversals",
+  "difficulty": "Medium",
+  "acceptance_rate": 67.3202614379085,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1404.689406,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/sort-array-using-prefix-reversals/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Merge Triplets to Form Target Triplet",
   "difficulty": "Medium",
   "acceptance_rate": 69.19392659360396,
+  "frequency": 15.7,
+  "elo_rating": 1635.6879273926,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

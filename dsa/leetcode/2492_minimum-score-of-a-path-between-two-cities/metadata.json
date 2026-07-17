@@ -6,6 +6,9 @@
   "title": "Minimum Score of a Path Between Two Cities",
   "difficulty": "Medium",
   "acceptance_rate": 66.17129602327456,
+  "frequency": 45.2,
+  "elo_rating": 1679.5737760149,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

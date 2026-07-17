@@ -6,6 +6,9 @@
   "title": "Select K Disjoint Special Substrings",
   "difficulty": "Medium",
   "acceptance_rate": 19.406972084947242,
+  "frequency": 0.0,
+  "elo_rating": 2220.5047767138,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -8,48 +8,67 @@
 | Category | Algorithms |
 | Topics | Two Pointers, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [split-two-strings-to-make-palindrome](https://leetcode.com/problems/split-two-strings-to-make-palindrome/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/split-two-strings-to-make-palindrome/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/split-two-strings-to-make-palindrome/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Two lowercase strings `a` and `b` have the same length. Choose one split index and divide both strings at that same position into a prefix and a suffix. The split may occur before the first character or after the last, so either piece is allowed to be empty.
+
+Determine whether some shared split makes either `a_prefix + b_suffix` or `b_prefix + a_suffix` a palindrome. The prefix and suffix used in one candidate must come from different input strings, and their boundary must be the same index in both strings. Return whether at least one of the two possible source directions can succeed.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `a`: a lowercase English string of length $n$.
+- `b`: another lowercase English string of the same length $n$, where $1 \le n \le 10^5$.
 
 **Return value**
 
-TODO
+Return `true` if a common split index forms a palindrome in either cross-string direction; otherwise return `false`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `a = "x", b = "y"`
+- Output: `true`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `a = "xbdef", b = "xecab"`
+- Output: `false`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `a = "ulacfd", b = "jizalu"`
+- Output: `true`
 
----
+### Required Complexity
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Match the forced cross-string exterior.** First consider candidates formed from a prefix of `a` and a suffix of `b`. Place `left` at the start and `right` at the end. While `a[left] == b[right]`, those characters can serve as the next mirrored outer pair of such a candidate. Move both pointers inward. This comparison does not require choosing the exact split yet: every successful `a`-prefix/`b`-suffix palindrome must use these sources on its exterior until the pointers meet or a cross-string mismatch appears.
+
+**Reduce the unresolved center to one source.** Suppose the first mismatch occurs between indices `left` and `right`. The split boundary cannot make those unequal cross-source characters mirror one another. To remain viable, it must place the whole unresolved interval on one side of the boundary. Consequently, either `a[left:right + 1]` itself must be a palindrome or the corresponding interval of `b` must be a palindrome. A direct inward check of those two intervals determines whether this source direction can work.
+
+**Check both prefix directions.** Repeat the same reasoning with `b` supplying the prefix and `a` supplying the suffix. If either directional check succeeds, its matching exterior plus its palindromic center gives a valid split. If both fail, each possible source direction has a forced mismatch and neither available center is palindromic, so no common split can form a palindrome.
+
+#### Complexity detail
+
+Each directional cross-check moves its pointers inward at most $n/2$ times, and its center checks together take $O(n)$ time. Running both directions therefore remains $O(n)$. Only pointer and Boolean state is stored, so auxiliary space is $O(1)$; no concatenated candidate string is created.
+
+#### Alternatives and edge cases
+
+- **Enumerate every split:** Construct both cross-string candidates for all $n+1$ split positions and compare each with its reverse. This is straightforward but takes $O(n^2)$ time and creates temporary strings.
+- **Rolling hashes:** Forward and reverse hashes can test every candidate more quickly, but they require extra storage and collision handling for a task solvable deterministically with two pointers.
+- A one-character string is always a palindrome, regardless of which source supplies it.
+- Splits at index 0 and index $n$ are legal; therefore, either input already being a palindrome is sufficient.
+- The two source directions are distinct. A split may work for `a_prefix + b_suffix` while every `b_prefix + a_suffix` choice fails.
+- Equal-length inputs are essential because the same split index must partition both strings.
+- When the cross pointers meet or pass without a mismatch, the candidate exterior already proves success.
+
+</details>

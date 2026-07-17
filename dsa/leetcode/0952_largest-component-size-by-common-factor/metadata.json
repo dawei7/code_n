@@ -6,6 +6,9 @@
   "title": "Largest Component Size by Common Factor",
   "difficulty": "Hard",
   "acceptance_rate": 43.409661931888856,
+  "frequency": 0.0,
+  "elo_rating": 2272.1122260637,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

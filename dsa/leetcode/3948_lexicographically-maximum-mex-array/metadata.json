@@ -6,6 +6,9 @@
   "title": "Lexicographically Maximum MEX Array",
   "difficulty": "Hard",
   "acceptance_rate": 57.204396910279264,
+  "frequency": 59.8,
+  "elo_rating": 2122.2230904777,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

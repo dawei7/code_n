@@ -6,6 +6,9 @@
   "title": "Add Edges to Make Degrees of All Nodes Even",
   "difficulty": "Hard",
   "acceptance_rate": 36.567520754942365,
+  "frequency": 19.1,
+  "elo_rating": 2060.0720834082,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

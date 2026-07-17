@@ -6,6 +6,9 @@
   "title": "Maximum Path Score in a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 53.71660896356764,
+  "frequency": 75.5,
+  "elo_rating": 1804.017515039,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

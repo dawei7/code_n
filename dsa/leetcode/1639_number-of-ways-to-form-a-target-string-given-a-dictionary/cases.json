@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1639",
+  "cases": [
+    {"id":"sample-six-ways","name":"sample: column multiplicities create six constructions","kind":"sample","visible":true,"input":{"words":["acca","bbbb","caca"],"target":"aba"},"expected":6,"tags":["sample","column-counts"]},
+    {"id":"sample-four-ways","name":"sample: several increasing column sequences form the target","kind":"sample","visible":true,"input":{"words":["abba","baab"],"target":"bab"},"expected":4,"tags":["sample","increasing-columns"]},
+    {"id":"trial-single-word","name":"trial: one word supplies its full target in order","kind":"trial","visible":true,"input":{"words":["abcd"],"target":"abcd"},"expected":1,"tags":["single-word"]},
+    {"id":"trial-missing-character","name":"trial: an absent target character gives zero ways","kind":"trial","visible":true,"input":{"words":["a"],"target":"b"},"expected":0,"tags":["missing-character"]},
+    {"id":"trial-identical-words","name":"trial: identical dictionary rows count as distinct choices","kind":"trial","visible":true,"input":{"words":["abc","abc"],"target":"ac"},"expected":4,"tags":["duplicate-words","multiplicity"]},
+    {"id":"real-column-order-impossible","name":"hidden: available characters occur in the wrong column order","kind":"real","visible":false,"input":{"words":["abc","def"],"target":"ad"},"expected":0,"tags":["column-order"]},
+    {"id":"real-repeated-character","name":"hidden: repeated columns and rows multiply combinations","kind":"real","visible":false,"input":{"words":["aaa","aaa"],"target":"aa"},"expected":12,"tags":["repeated-character","combinations"]},
+    {"id":"real-shared-word-allowed","name":"hidden: the same word may supply multiple target positions","kind":"real","visible":false,"input":{"words":["xyz","xyz","xyz"],"target":"xz"},"expected":9,"tags":["same-word-allowed","duplicate-words"]},
+    {"id":"real-target-too-long","name":"hidden: target longer than every word cannot be formed","kind":"real","visible":false,"input":{"words":["abc"],"target":"abcd"},"expected":0,"tags":["target-too-long"]},
+    {"id":"real-skipped-columns","name":"hidden: valid constructions may skip different source columns","kind":"real","visible":false,"input":{"words":["abab","baba"],"target":"aa"},"expected":6,"tags":["skipped-columns","multiple-sequences"]}
+  ]
+}

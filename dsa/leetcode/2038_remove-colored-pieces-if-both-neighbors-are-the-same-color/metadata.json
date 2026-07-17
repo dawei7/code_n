@@ -6,6 +6,9 @@
   "title": "Remove Colored Pieces if Both Neighbors are the Same Color",
   "difficulty": "Medium",
   "acceptance_rate": 63.12539319251091,
+  "frequency": 34.4,
+  "elo_rating": 1467.7383709213,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

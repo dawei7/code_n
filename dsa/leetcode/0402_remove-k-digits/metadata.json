@@ -6,6 +6,9 @@
   "title": "Remove K Digits",
   "difficulty": "Medium",
   "acceptance_rate": 37.18969600496953,
+  "frequency": 61.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1727.382275,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

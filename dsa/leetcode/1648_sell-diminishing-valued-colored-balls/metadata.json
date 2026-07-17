@@ -6,6 +6,9 @@
   "title": "Sell Diminishing-Valued Colored Balls",
   "difficulty": "Medium",
   "acceptance_rate": 30.262918367877667,
+  "frequency": 80.5,
+  "elo_rating": 2050.2553211463,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

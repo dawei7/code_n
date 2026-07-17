@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1738",
+  "cases": [
+    {
+      "id": "sample-official-one",
+      "name": "sample: largest coordinate value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"matrix": [[5,2],[1,6]], "k": 1},
+      "expected": 7,
+      "tags": ["sample", "largest-rank"]
+    },
+    {
+      "id": "sample-official-two",
+      "name": "sample: second largest coordinate value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"matrix": [[5,2],[1,6]], "k": 2},
+      "expected": 5,
+      "tags": ["sample", "second-rank"]
+    },
+    {
+      "id": "sample-official-three",
+      "name": "sample: third largest coordinate value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"matrix": [[5,2],[1,6]], "k": 3},
+      "expected": 4,
+      "tags": ["sample", "third-rank"]
+    },
+    {
+      "id": "trial-smallest-coordinate",
+      "name": "trial: final rank returns the smallest value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"matrix": [[5,2],[1,6]], "k": 4},
+      "expected": 0,
+      "tags": ["smallest-rank", "heap-full"]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: one cell is its own prefix XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {"matrix": [[1000000]], "k": 1},
+      "expected": 1000000,
+      "tags": ["single-cell", "value-boundary"]
+    },
+    {
+      "id": "real-one-row",
+      "name": "hidden: one row reduces to running XOR values",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": [[1,2,3]], "k": 2},
+      "expected": 1,
+      "tags": ["single-row", "running-xor"]
+    },
+    {
+      "id": "real-one-column",
+      "name": "hidden: one column reduces to running XOR values",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": [[1],[2],[3]], "k": 3},
+      "expected": 0,
+      "tags": ["single-column", "running-xor"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: duplicate zero values occupy every rank",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": [[0,0],[0,0]], "k": 3},
+      "expected": 0,
+      "tags": ["duplicates", "zero-values"]
+    },
+    {
+      "id": "real-three-by-three",
+      "name": "hidden: interior prefixes combine four recurrence terms",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": [[1,2,3],[4,5,6],[7,8,9]], "k": 4},
+      "expected": 3,
+      "tags": ["interior-prefix", "square-matrix"]
+    },
+    {
+      "id": "real-duplicate-nonzero",
+      "name": "hidden: repeated nonzero prefixes retain separate ranks",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": [[7,0,0,0]], "k": 3},
+      "expected": 7,
+      "tags": ["duplicates", "nonzero-prefix"]
+    }
+  ]
+}

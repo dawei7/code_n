@@ -6,6 +6,9 @@
   "title": "Check if Every Row and Column Contains All Numbers",
   "difficulty": "Easy",
   "acceptance_rate": 54.2761260790787,
+  "frequency": 38.1,
+  "elo_rating": 1264.2868345638,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

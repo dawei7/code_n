@@ -6,6 +6,9 @@
   "title": "Length of the Longest Subsequence That Sums to Target",
   "difficulty": "Medium",
   "acceptance_rate": 40.04519637218406,
+  "frequency": 24.8,
+  "elo_rating": 1658.8190087768,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

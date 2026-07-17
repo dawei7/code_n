@@ -6,6 +6,9 @@
   "title": "Longest Semi-Repeating Subarray",
   "difficulty": "Medium",
   "acceptance_rate": 63.40766152086906,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1435.400605,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

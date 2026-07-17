@@ -6,6 +6,9 @@
   "title": "Removing Stars From a String",
   "difficulty": "Medium",
   "acceptance_rate": 79.57266364360473,
+  "frequency": 1.8,
+  "elo_rating": 1347.8521638635,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Merge Adjacent Equal Elements",
   "difficulty": "Medium",
   "acceptance_rate": 42.51033722319214,
+  "frequency": 45.8,
+  "elo_rating": 1428.6483320166,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

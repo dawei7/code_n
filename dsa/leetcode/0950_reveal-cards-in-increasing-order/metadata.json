@@ -6,6 +6,9 @@
   "title": "Reveal Cards In Increasing Order",
   "difficulty": "Medium",
   "acceptance_rate": 83.68761775931205,
+  "frequency": 18.1,
+  "elo_rating": 1686.4493679523,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

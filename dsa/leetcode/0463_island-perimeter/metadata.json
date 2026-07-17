@@ -6,6 +6,9 @@
   "title": "Island Perimeter",
   "difficulty": "Easy",
   "acceptance_rate": 74.47430862019534,
+  "frequency": 45.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1168.928863,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

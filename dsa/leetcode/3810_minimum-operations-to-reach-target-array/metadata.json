@@ -6,6 +6,9 @@
   "title": "Minimum Operations to Reach Target Array",
   "difficulty": "Medium",
   "acceptance_rate": 63.90675439244967,
+  "frequency": 33.5,
+  "elo_rating": 1492.2307525794,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

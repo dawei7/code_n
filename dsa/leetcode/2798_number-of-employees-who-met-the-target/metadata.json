@@ -6,6 +6,9 @@
   "title": "Number of Employees Who Met the Target",
   "difficulty": "Easy",
   "acceptance_rate": 87.90177797802656,
+  "frequency": 27.8,
+  "elo_rating": 1142.0341823205,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

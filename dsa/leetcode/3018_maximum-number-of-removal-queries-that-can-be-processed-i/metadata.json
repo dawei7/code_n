@@ -6,6 +6,9 @@
   "title": "Maximum Number of Removal Queries That Can Be Processed I",
   "difficulty": "Hard",
   "acceptance_rate": 44.91017964071856,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2154.906882,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

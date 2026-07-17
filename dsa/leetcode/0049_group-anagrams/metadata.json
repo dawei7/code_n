@@ -6,6 +6,9 @@
   "title": "Group Anagrams",
   "difficulty": "Medium",
   "acceptance_rate": 72.87698231103678,
+  "frequency": 90.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1368.807443,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

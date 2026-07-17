@@ -6,6 +6,9 @@
   "title": "Minimum Distance Between BST Nodes",
   "difficulty": "Easy",
   "acceptance_rate": 61.5644814131035,
+  "frequency": 26.1,
+  "elo_rating": 1303.3201984827,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

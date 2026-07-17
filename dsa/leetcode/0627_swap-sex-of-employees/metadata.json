@@ -6,6 +6,9 @@
   "title": "Swap Sex of Employees",
   "difficulty": "Easy",
   "acceptance_rate": 84.75356424547836,
+  "frequency": 35.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

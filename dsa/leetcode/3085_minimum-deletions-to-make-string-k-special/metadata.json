@@ -6,6 +6,9 @@
   "title": "Minimum Deletions to Make String K-Special",
   "difficulty": "Medium",
   "acceptance_rate": 67.14791002597028,
+  "frequency": 38.9,
+  "elo_rating": 1764.7072848367,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

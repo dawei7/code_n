@@ -6,6 +6,9 @@
   "title": "Rotating the Box",
   "difficulty": "Medium",
   "acceptance_rate": 82.47916231908965,
+  "frequency": 71.4,
+  "elo_rating": 1536.7018543075,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

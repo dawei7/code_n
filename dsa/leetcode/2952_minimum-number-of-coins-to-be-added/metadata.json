@@ -6,6 +6,9 @@
   "title": "Minimum Number of Coins to be Added",
   "difficulty": "Medium",
   "acceptance_rate": 58.41826591047025,
+  "frequency": 0.0,
+  "elo_rating": 1784.3506628869,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

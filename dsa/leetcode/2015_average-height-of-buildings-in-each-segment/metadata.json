@@ -6,6 +6,9 @@
   "title": "Average Height of Buildings in Each Segment",
   "difficulty": "Medium",
   "acceptance_rate": 58.713080168776365,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1473.632915,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

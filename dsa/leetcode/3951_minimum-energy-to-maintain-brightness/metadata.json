@@ -6,6 +6,9 @@
   "title": "Minimum Energy to Maintain Brightness",
   "difficulty": "Medium",
   "acceptance_rate": 54.059637912673054,
+  "frequency": 0.0,
+  "elo_rating": 1529.9171164552,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

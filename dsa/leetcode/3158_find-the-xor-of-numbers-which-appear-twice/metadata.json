@@ -6,6 +6,9 @@
   "title": "Find the XOR of Numbers Which Appear Twice",
   "difficulty": "Easy",
   "acceptance_rate": 79.15384319458336,
+  "frequency": 13.9,
+  "elo_rating": 1172.0410939015,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

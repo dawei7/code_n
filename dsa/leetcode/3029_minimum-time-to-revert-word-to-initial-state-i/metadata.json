@@ -6,6 +6,9 @@
   "title": "Minimum Time to Revert Word to Initial State I",
   "difficulty": "Medium",
   "acceptance_rate": 42.70548720001393,
+  "frequency": 0.0,
+  "elo_rating": 1659.6231386056,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

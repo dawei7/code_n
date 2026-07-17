@@ -6,6 +6,9 @@
   "title": "Smallest Range Covering Elements from K Lists",
   "difficulty": "Hard",
   "acceptance_rate": 70.2311219449034,
+  "frequency": 53.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1942.942895,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

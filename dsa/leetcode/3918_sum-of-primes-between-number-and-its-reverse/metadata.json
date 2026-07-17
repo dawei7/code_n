@@ -6,6 +6,9 @@
   "title": "Sum of Primes Between Number and Its Reverse",
   "difficulty": "Medium",
   "acceptance_rate": 76.27069584346417,
+  "frequency": 14.6,
+  "elo_rating": 1301.1804118587,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

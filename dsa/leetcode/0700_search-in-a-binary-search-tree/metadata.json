@@ -6,6 +6,9 @@
   "title": "Search in a Binary Search Tree",
   "difficulty": "Easy",
   "acceptance_rate": 82.87456558412228,
+  "frequency": 35.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

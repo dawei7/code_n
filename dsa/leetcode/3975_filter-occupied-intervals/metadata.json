@@ -6,6 +6,9 @@
   "title": "Filter Occupied Intervals",
   "difficulty": "Medium",
   "acceptance_rate": 46.18904431951889,
+  "frequency": 0.0,
+  "elo_rating": 1533.1878282832,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

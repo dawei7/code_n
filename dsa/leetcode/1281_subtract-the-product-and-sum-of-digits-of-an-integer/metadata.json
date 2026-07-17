@@ -6,6 +6,9 @@
   "title": "Subtract the Product and Sum of Digits of an Integer",
   "difficulty": "Easy",
   "acceptance_rate": 86.58350135151002,
+  "frequency": 40.8,
+  "elo_rating": 1141.2363999461,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

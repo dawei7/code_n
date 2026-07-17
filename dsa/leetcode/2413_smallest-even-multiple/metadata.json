@@ -6,6 +6,9 @@
   "title": "Smallest Even Multiple",
   "difficulty": "Easy",
   "acceptance_rate": 88.41716498694623,
+  "frequency": 36.4,
+  "elo_rating": 1144.9508874557,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

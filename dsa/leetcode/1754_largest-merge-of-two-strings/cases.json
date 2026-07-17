@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1754",
+  "cases": [
+    {
+      "id": "sample-deep-prefix-choice",
+      "name": "sample: suffix comparison resolves repeated letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word1": "cabaa", "word2": "bcaaa"},
+      "expected": "cbcabaaaaa",
+      "tags": ["sample", "suffix-comparison"]
+    },
+    {
+      "id": "sample-equal-first-character",
+      "name": "sample: later character decides the first source",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word1": "abcabc", "word2": "abdcaba"},
+      "expected": "abdcabcabcaba",
+      "tags": ["sample", "equal-prefix"]
+    },
+    {
+      "id": "trial-larger-first-word",
+      "name": "trial: first word dominates immediately",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word1": "zz", "word2": "a"},
+      "expected": "zza",
+      "tags": ["leading-character", "short-input"]
+    },
+    {
+      "id": "trial-identical-words",
+      "name": "trial: identical remaining suffixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word1": "ab", "word2": "ab"},
+      "expected": "abab",
+      "tags": ["identical", "equal-suffix"]
+    },
+    {
+      "id": "real-deep-tie",
+      "name": "hidden: last character resolves a long shared prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"word1": "aaaz", "word2": "aaay"},
+      "expected": "aaazaaay",
+      "tags": ["deep-tie", "suffix-comparison"]
+    },
+    {
+      "id": "real-single-character-first-word",
+      "name": "hidden: second word supplies the larger prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"word1": "g", "word2": "xyz"},
+      "expected": "xyzg",
+      "tags": ["single-character", "second-word"]
+    },
+    {
+      "id": "real-disjoint-ordering",
+      "name": "hidden: every character of the second word comes first",
+      "kind": "real",
+      "visible": false,
+      "input": {"word1": "abc", "word2": "xyz"},
+      "expected": "xyzabc",
+      "tags": ["disjoint-alphabet", "exhaustion"]
+    },
+    {
+      "id": "real-long-equal-prefix",
+      "name": "hidden: competing suffixes differ only at the end",
+      "kind": "real",
+      "visible": false,
+      "input": {"word1": "aaaaab", "word2": "aaaaac"},
+      "expected": "aaaaacaaaaab",
+      "tags": ["repeated-characters", "deep-tie"]
+    }
+  ]
+}

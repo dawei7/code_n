@@ -6,6 +6,9 @@
   "title": "Students Report By Geography",
   "difficulty": "Hard",
   "acceptance_rate": 63.5383991635192,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1976.680316,
   "category": "database",
   "category_title": "Database",
   "topics": [

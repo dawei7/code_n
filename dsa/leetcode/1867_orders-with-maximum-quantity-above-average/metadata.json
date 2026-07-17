@@ -6,6 +6,9 @@
   "title": "Orders With Maximum Quantity Above Average",
   "difficulty": "Medium",
   "acceptance_rate": 70.61022500712048,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1381.812696,
   "category": "database",
   "category_title": "Database",
   "topics": [

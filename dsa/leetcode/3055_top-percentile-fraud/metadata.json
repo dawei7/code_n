@@ -6,6 +6,9 @@
   "title": "Top Percentile Fraud",
   "difficulty": "Medium",
   "acceptance_rate": 57.349794238683124,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1485.278642,
   "category": "database",
   "category_title": "Database",
   "topics": [

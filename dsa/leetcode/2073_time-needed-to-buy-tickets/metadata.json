@@ -6,6 +6,9 @@
   "title": "Time Needed to Buy Tickets",
   "difficulty": "Easy",
   "acceptance_rate": 72.89783765057732,
+  "frequency": 41.1,
+  "elo_rating": 1325.3607218257,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

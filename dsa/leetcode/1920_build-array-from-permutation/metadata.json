@@ -6,6 +6,9 @@
   "title": "Build Array from Permutation",
   "difficulty": "Easy",
   "acceptance_rate": 91.1003224617558,
+  "frequency": 45.1,
+  "elo_rating": 1160.4439395369,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

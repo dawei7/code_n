@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1891",
+  "frontend_id": "1782",
+  "title_slug": "count-pairs-of-nodes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countPairs",
+  "verified_submission_id": "2071130104",
+  "verified_at": "2026-07-17T13:08:28.729852+00:00"
+}

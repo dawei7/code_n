@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1832",
+  "frontend_id": "1713",
+  "title_slug": "minimum-operations-to-make-a-subsequence",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minOperations",
+  "verified_submission_id": "2070695004",
+  "verified_at": "2026-07-17T05:51:20.156403+00:00"
+}

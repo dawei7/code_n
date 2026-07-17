@@ -6,6 +6,9 @@
   "title": "Number of Nodes in the Sub-Tree With the Same Label",
   "difficulty": "Medium",
   "acceptance_rate": 55.52900924932587,
+  "frequency": 0.0,
+  "elo_rating": 1808.787108831,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

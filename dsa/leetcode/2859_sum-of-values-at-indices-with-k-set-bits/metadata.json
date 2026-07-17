@@ -6,6 +6,9 @@
   "title": "Sum of Values at Indices With K Set Bits",
   "difficulty": "Easy",
   "acceptance_rate": 86.21864647420729,
+  "frequency": 0.0,
+  "elo_rating": 1218.1083231462,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

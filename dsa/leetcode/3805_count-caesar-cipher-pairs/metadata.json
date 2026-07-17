@@ -6,6 +6,9 @@
   "title": "Count Caesar Cipher Pairs",
   "difficulty": "Medium",
   "acceptance_rate": 51.40216939415699,
+  "frequency": 49.0,
+  "elo_rating": 1624.2918903909,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Zigzag Grid Traversal With Skip",
   "difficulty": "Easy",
   "acceptance_rate": 65.46768444524015,
+  "frequency": 35.7,
+  "elo_rating": 1290.1726293694,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

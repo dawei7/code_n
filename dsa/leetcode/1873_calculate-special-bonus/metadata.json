@@ -6,6 +6,9 @@
   "title": "Calculate Special Bonus",
   "difficulty": "Easy",
   "acceptance_rate": 57.06697540946853,
+  "frequency": 3.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1232.708102,
   "category": "database",
   "category_title": "Database",
   "topics": [

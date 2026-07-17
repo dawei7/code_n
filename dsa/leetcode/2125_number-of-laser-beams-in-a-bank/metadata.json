@@ -6,6 +6,9 @@
   "title": "Number of Laser Beams in a Bank",
   "difficulty": "Medium",
   "acceptance_rate": 87.00187064225385,
+  "frequency": 37.7,
+  "elo_rating": 1280.2203734882,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

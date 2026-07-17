@@ -6,6 +6,9 @@
   "title": "Sum in a Matrix",
   "difficulty": "Medium",
   "acceptance_rate": 60.89106551321465,
+  "frequency": 31.7,
+  "elo_rating": 1333.0179956774,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

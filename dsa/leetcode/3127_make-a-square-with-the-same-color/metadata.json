@@ -6,6 +6,9 @@
   "title": "Make a Square with the Same Color",
   "difficulty": "Easy",
   "acceptance_rate": 52.99603566383645,
+  "frequency": 0.0,
+  "elo_rating": 1337.7302269037,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

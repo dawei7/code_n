@@ -6,6 +6,9 @@
   "title": "Second Degree Follower",
   "difficulty": "Medium",
   "acceptance_rate": 40.90040632284197,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1695.296252,
   "category": "database",
   "category_title": "Database",
   "topics": [

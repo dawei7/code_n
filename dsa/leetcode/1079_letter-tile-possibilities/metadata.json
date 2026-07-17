@@ -6,6 +6,9 @@
   "title": "Letter Tile Possibilities",
   "difficulty": "Medium",
   "acceptance_rate": 83.53745252824228,
+  "frequency": 14.3,
+  "elo_rating": 1740.5014205942,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

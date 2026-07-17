@@ -6,6 +6,9 @@
   "title": "Valid Palindrome",
   "difficulty": "Easy",
   "acceptance_rate": 53.70321809135364,
+  "frequency": 81.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1241.80534,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

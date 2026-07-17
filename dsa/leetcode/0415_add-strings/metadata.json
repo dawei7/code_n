@@ -6,6 +6,9 @@
   "title": "Add Strings",
   "difficulty": "Easy",
   "acceptance_rate": 52.19111406374988,
+  "frequency": 45.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1244.969597,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

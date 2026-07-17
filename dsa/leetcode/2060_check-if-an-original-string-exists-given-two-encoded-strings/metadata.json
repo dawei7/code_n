@@ -6,6 +6,9 @@
   "title": "Check if an Original String Exists Given Two Encoded Strings",
   "difficulty": "Hard",
   "acceptance_rate": 43.49486493484077,
+  "frequency": 0.0,
+  "elo_rating": 2803.7652028979,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

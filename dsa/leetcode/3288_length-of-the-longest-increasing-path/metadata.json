@@ -6,6 +6,9 @@
   "title": "Length of the Longest Increasing Path",
   "difficulty": "Hard",
   "acceptance_rate": 19.741767654336652,
+  "frequency": 0.0,
+  "elo_rating": 2449.5767504741,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

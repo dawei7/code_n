@@ -6,6 +6,9 @@
   "title": "Block Placement Queries",
   "difficulty": "Hard",
   "acceptance_rate": 41.47106119345308,
+  "frequency": 76.6,
+  "elo_rating": 2513.0284514744,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

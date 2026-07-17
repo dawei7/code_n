@@ -6,6 +6,9 @@
   "title": "Pow(x, n)",
   "difficulty": "Medium",
   "acceptance_rate": 38.919374871517306,
+  "frequency": 75.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1711.047572,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

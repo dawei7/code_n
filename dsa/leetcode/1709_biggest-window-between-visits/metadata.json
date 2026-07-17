@@ -6,6 +6,9 @@
   "title": "Biggest Window Between Visits",
   "difficulty": "Medium",
   "acceptance_rate": 69.72290729725809,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1387.453529,
   "category": "database",
   "category_title": "Database",
   "topics": [

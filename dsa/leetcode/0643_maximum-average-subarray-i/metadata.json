@@ -6,6 +6,9 @@
   "title": "Maximum Average Subarray I",
   "difficulty": "Easy",
   "acceptance_rate": 48.32933308670159,
+  "frequency": 63.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1253.275772,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "LRU Cache",
   "difficulty": "Medium",
   "acceptance_rate": 47.62173425308403,
+  "frequency": 99.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1625.873764,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

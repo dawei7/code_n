@@ -6,6 +6,9 @@
   "title": "Letter Case Permutation",
   "difficulty": "Medium",
   "acceptance_rate": 75.92347107603759,
+  "frequency": 38.4,
+  "elo_rating": 1341.5076441361,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

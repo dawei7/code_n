@@ -6,6 +6,9 @@
   "title": "Check if the Rectangle Corner Is Reachable",
   "difficulty": "Hard",
   "acceptance_rate": 25.171463563992653,
+  "frequency": 57.3,
+  "elo_rating": 3773.7596150919,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

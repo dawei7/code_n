@@ -6,6 +6,9 @@
   "title": "Orderly Queue",
   "difficulty": "Hard",
   "acceptance_rate": 67.10551896292955,
+  "frequency": 0.0,
+  "elo_rating": 2096.6098086765,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

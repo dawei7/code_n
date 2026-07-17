@@ -6,6 +6,9 @@
   "title": "Move Pieces to Obtain a String",
   "difficulty": "Medium",
   "acceptance_rate": 56.63157111499684,
+  "frequency": 57.9,
+  "elo_rating": 1693.4495728383,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

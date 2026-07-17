@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1223",
+  "frontend_id": "1627",
+  "title_slug": "graph-connectivity-with-threshold",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.areConnected",
+  "verified_submission_id": "2070440204",
+  "verified_at": "2026-07-16T22:37:37.845602+00:00"
+}

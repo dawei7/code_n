@@ -6,6 +6,9 @@
   "title": "Minimum Number of Increments on Subarrays to Form a Target Array",
   "difficulty": "Hard",
   "acceptance_rate": 78.22596769033909,
+  "frequency": 36.2,
+  "elo_rating": 1872.0350138774,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Subarray Length With Distinct Sum At Least K",
   "difficulty": "Medium",
   "acceptance_rate": 31.9474994062187,
+  "frequency": 39.7,
+  "elo_rating": 1504.5241924054,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

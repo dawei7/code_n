@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1932",
+  "frontend_id": "1783",
+  "title_slug": "grand-slam-titles",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2071137876",
+  "verified_at": "2026-07-17T13:16:58.492753+00:00"
+}

@@ -6,6 +6,9 @@
   "title": "Maximum OR",
   "difficulty": "Medium",
   "acceptance_rate": 43.39301121656601,
+  "frequency": 73.8,
+  "elo_rating": 1912.1926699881,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

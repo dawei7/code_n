@@ -6,6 +6,9 @@
   "title": "Flip Game",
   "difficulty": "Easy",
   "acceptance_rate": 65.06192291678572,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1206.009684,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

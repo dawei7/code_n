@@ -6,6 +6,9 @@
   "title": "Maximize the Number of Partitions After Operations",
   "difficulty": "Hard",
   "acceptance_rate": 53.39649849506905,
+  "frequency": 0.0,
+  "elo_rating": 3039.3003256659,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

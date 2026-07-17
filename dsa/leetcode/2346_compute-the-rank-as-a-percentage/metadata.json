@@ -6,6 +6,9 @@
   "title": "Compute the Rank as a Percentage",
   "difficulty": "Medium",
   "acceptance_rate": 33.93230440777476,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1745.467125,
   "category": "database",
   "category_title": "Database",
   "topics": [

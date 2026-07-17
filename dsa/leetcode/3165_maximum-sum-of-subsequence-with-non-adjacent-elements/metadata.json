@@ -6,6 +6,9 @@
   "title": "Maximum Sum of Subsequence With Non-adjacent Elements",
   "difficulty": "Hard",
   "acceptance_rate": 15.84961106309421,
+  "frequency": 0.0,
+  "elo_rating": 2697.6486586982,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

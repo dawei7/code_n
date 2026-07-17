@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1654",
+  "cases": [
+    {"id":"sample-forward-only","name":"sample: three forward jumps reach home","kind":"sample","visible":true,"input":{"forbidden":[14,4,18,1,15],"a":3,"b":15,"x":9},"expected":3,"tags":["sample","forward-only"]},
+    {"id":"sample-unreachable","name":"sample: blocked state graph cannot reach target","kind":"sample","visible":true,"input":{"forbidden":[8,3,16,6,12,20],"a":15,"b":13,"x":11},"expected":-1,"tags":["sample","unreachable"]},
+    {"id":"sample-overshoot","name":"sample: one forward overshoot and backward jump","kind":"sample","visible":true,"input":{"forbidden":[1,6,2,14,5,17,4],"a":16,"b":9,"x":7},"expected":2,"tags":["sample","overshoot"]},
+    {"id":"trial-already-home","name":"trial: starting position is already home","kind":"trial","visible":true,"input":{"forbidden":[5],"a":2,"b":1,"x":0},"expected":0,"tags":["zero-target"]},
+    {"id":"trial-direct-forward","name":"trial: two direct forward jumps","kind":"trial","visible":true,"input":{"forbidden":[10],"a":4,"b":3,"x":8},"expected":2,"tags":["forward-only"]},
+    {"id":"real-overshoot-by-two","name":"hidden: a short overshoot returns home","kind":"real","visible":false,"input":{"forbidden":[10],"a":5,"b":2,"x":3},"expected":2,"tags":["overshoot"]},
+    {"id":"real-direction-state","name":"hidden: route requires revisiting coordinates with direction state","kind":"real","visible":false,"input":{"forbidden":[100],"a":4,"b":3,"x":6},"expected":5,"tags":["direction-state"]},
+    {"id":"real-detour-around-block","name":"hidden: forbidden landing forces a longer route","kind":"real","visible":false,"input":{"forbidden":[4],"a":3,"b":2,"x":7},"expected":4,"tags":["forbidden","detour"]},
+    {"id":"real-blocked-first-jump","name":"hidden: blocked first landing makes target unreachable","kind":"real","visible":false,"input":{"forbidden":[2],"a":2,"b":1,"x":4},"expected":-1,"tags":["forbidden","unreachable"]},
+    {"id":"real-gcd-unreachable","name":"hidden: jump-length divisibility prevents target alignment","kind":"real","visible":false,"input":{"forbidden":[100],"a":7,"b":4,"x":1},"expected":-1,"tags":["unreachable","alignment"]}
+  ]
+}

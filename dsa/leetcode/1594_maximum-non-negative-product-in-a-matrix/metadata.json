@@ -6,6 +6,9 @@
   "title": "Maximum Non Negative Product in a Matrix",
   "difficulty": "Medium",
   "acceptance_rate": 51.625870261907394,
+  "frequency": 64.8,
+  "elo_rating": 1807.4618172386,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

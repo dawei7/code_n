@@ -6,6 +6,9 @@
   "title": "Scramble String",
   "difficulty": "Hard",
   "acceptance_rate": 44.956759235921446,
+  "frequency": 39.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 2154.224572,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

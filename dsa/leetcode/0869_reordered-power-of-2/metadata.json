@@ -6,6 +6,9 @@
   "title": "Reordered Power of 2",
   "difficulty": "Medium",
   "acceptance_rate": 65.90382941067325,
+  "frequency": 20.1,
+  "elo_rating": 1504.8237159326,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

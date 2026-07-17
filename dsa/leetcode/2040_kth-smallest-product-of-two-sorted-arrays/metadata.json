@@ -6,6 +6,9 @@
   "title": "Kth Smallest Product of Two Sorted Arrays",
   "difficulty": "Hard",
   "acceptance_rate": 48.747076703843526,
+  "frequency": 37.6,
+  "elo_rating": 2517.6829964848,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

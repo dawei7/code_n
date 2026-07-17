@@ -6,6 +6,9 @@
   "title": "Count Monobit Integers",
   "difficulty": "Easy",
   "acceptance_rate": 66.57840686941674,
+  "frequency": 39.3,
+  "elo_rating": 1190.8529051552,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

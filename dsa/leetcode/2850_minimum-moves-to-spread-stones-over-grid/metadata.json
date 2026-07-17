@@ -6,6 +6,9 @@
   "title": "Minimum Moves to Spread Stones Over Grid",
   "difficulty": "Medium",
   "acceptance_rate": 45.84320209739167,
+  "frequency": 0.0,
+  "elo_rating": 2001.4515854273,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

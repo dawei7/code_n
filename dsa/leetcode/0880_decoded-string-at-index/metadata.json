@@ -6,6 +6,9 @@
   "title": "Decoded String at Index",
   "difficulty": "Medium",
   "acceptance_rate": 37.3872396260456,
+  "frequency": 34.7,
+  "elo_rating": 2010.5524756946,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

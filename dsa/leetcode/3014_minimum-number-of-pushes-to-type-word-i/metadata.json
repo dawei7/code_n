@@ -6,6 +6,9 @@
   "title": "Minimum Number of Pushes to Type Word I",
   "difficulty": "Easy",
   "acceptance_rate": 67.32080935868613,
+  "frequency": 26.3,
+  "elo_rating": 1324.2140587436,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

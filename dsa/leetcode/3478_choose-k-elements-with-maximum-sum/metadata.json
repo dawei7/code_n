@@ -6,6 +6,9 @@
   "title": "Choose K Elements With Maximum Sum",
   "difficulty": "Medium",
   "acceptance_rate": 34.12698412698413,
+  "frequency": 0.0,
+  "elo_rating": 1753.278205425,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

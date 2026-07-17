@@ -6,6 +6,9 @@
   "title": "Random Pick Index",
   "difficulty": "Medium",
   "acceptance_rate": 65.07576170834155,
+  "frequency": 28.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1421.768593,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Consecutive Cards to Pick Up",
   "difficulty": "Medium",
   "acceptance_rate": 53.90742659156793,
+  "frequency": 0.0,
+  "elo_rating": 1364.6787168645,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Capitalize the Title",
   "difficulty": "Easy",
   "acceptance_rate": 68.29191231337013,
+  "frequency": 7.5,
+  "elo_rating": 1274.881752217,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

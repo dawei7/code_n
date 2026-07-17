@@ -6,6 +6,9 @@
   "title": "Find Edges in Shortest Paths",
   "difficulty": "Hard",
   "acceptance_rate": 46.91850281183738,
+  "frequency": 41.6,
+  "elo_rating": 2093.0316157073,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

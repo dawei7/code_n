@@ -6,6 +6,9 @@
   "title": "Unique Substrings in Wraparound String",
   "difficulty": "Medium",
   "acceptance_rate": 43.38857729443444,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1671.66927,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

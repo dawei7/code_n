@@ -6,6 +6,9 @@
   "title": "Maximum Number of Jumps to Reach the Last Index",
   "difficulty": "Medium",
   "acceptance_rate": 51.01102561631956,
+  "frequency": 58.7,
+  "elo_rating": 1533.47383662,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

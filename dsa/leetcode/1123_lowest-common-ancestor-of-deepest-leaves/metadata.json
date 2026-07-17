@@ -6,6 +6,9 @@
   "title": "Lowest Common Ancestor of Deepest Leaves",
   "difficulty": "Medium",
   "acceptance_rate": 79.48281293373131,
+  "frequency": 0.0,
+  "elo_rating": 1607.0005715974,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

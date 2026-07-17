@@ -6,6 +6,9 @@
   "title": "Divide Array in Sets of K Consecutive Numbers",
   "difficulty": "Medium",
   "acceptance_rate": 59.44913073635693,
+  "frequency": 32.9,
+  "elo_rating": 1490.2370387981,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

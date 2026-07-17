@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1682",
+  "cases": [
+    {"id":"sample-baab","name":"sample: choose baab around its middle pair","kind":"sample","visible":true,"input":{"s":"bbabab"},"expected":4,"tags":["sample","subsequence"]},
+    {"id":"sample-dccd","name":"sample: skip interior letters to choose dccd","kind":"sample","visible":true,"input":{"s":"dcbccacdb"},"expected":4,"tags":["sample","subsequence"]},
+    {"id":"trial-single-letter","name":"trial: odd singleton cannot be good","kind":"trial","visible":true,"input":{"s":"a"},"expected":0,"tags":["minimum","even-length"]},
+    {"id":"trial-middle-pair","name":"trial: equal pair is a valid center","kind":"trial","visible":true,"input":{"s":"aa"},"expected":2,"tags":["center-pair"]},
+    {"id":"trial-all-equal","name":"trial: equal neighbors forbid using all four","kind":"trial","visible":true,"input":{"s":"aaaa"},"expected":2,"tags":["neighbor-rule"]},
+    {"id":"real-whole-abba","name":"hidden: complete four-character good palindrome","kind":"real","visible":false,"input":{"s":"abba"},"expected":4,"tags":["whole-string"]},
+    {"id":"real-whole-six","name":"hidden: alternating layers around one equal center","kind":"real","visible":false,"input":{"s":"abaaba"},"expected":6,"tags":["whole-string","several-layers"]},
+    {"id":"real-odd-source","name":"hidden: odd source still yields an even subsequence","kind":"real","visible":false,"input":{"s":"abcba"},"expected":4,"tags":["odd-source","skip-center"]},
+    {"id":"real-statement-contrast","name":"hidden: longer source with only a four-letter optimum","kind":"real","visible":false,"input":{"s":"abcabcabb"},"expected":4,"tags":["neighbor-rule","competing-pairs"]},
+    {"id":"real-many-layers","name":"hidden: fourteen-character good palindrome","kind":"real","visible":false,"input":{"s":"abcdefggfedcba"},"expected":14,"tags":["many-letters","whole-string"]}
+  ]
+}

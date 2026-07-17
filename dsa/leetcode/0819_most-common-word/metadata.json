@@ -6,6 +6,9 @@
   "title": "Most Common Word",
   "difficulty": "Easy",
   "acceptance_rate": 45.2230482175597,
+  "frequency": 33.0,
+  "elo_rating": 1297.5338328524,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

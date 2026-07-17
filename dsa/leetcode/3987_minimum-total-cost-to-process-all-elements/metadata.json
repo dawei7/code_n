@@ -1,0 +1,42 @@
+{
+  "challenge_id": "lc_3987",
+  "source": "leetcode",
+  "frontend_id": "3987",
+  "slug": "minimum-total-cost-to-process-all-elements",
+  "title": "Minimum Total Cost to Process All Elements",
+  "difficulty": "Medium",
+  "acceptance_rate": 24.538835743902837,
+  "frequency": 2.3,
+  "elo_rating": 1549.6115401529,
+  "estimated_elo_rating": null,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/minimum-total-cost-to-process-all-elements/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

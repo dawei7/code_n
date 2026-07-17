@@ -6,6 +6,9 @@
   "title": "Count Special Integers",
   "difficulty": "Hard",
   "acceptance_rate": 44.10625345877144,
+  "frequency": 35.7,
+  "elo_rating": 2120.4466386371,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

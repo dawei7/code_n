@@ -6,6 +6,9 @@
   "title": "Maximum Width Ramp",
   "difficulty": "Medium",
   "acceptance_rate": 55.916766774447915,
+  "frequency": 41.4,
+  "elo_rating": 1607.80608595,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

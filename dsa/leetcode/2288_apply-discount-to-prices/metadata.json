@@ -6,6 +6,9 @@
   "title": "Apply Discount to Prices",
   "difficulty": "Medium",
   "acceptance_rate": 34.3772168817149,
+  "frequency": 40.7,
+  "elo_rating": 1577.1141767118,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

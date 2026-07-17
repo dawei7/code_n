@@ -6,6 +6,9 @@
   "title": "Evaluate the Bracket Pairs of a String",
   "difficulty": "Medium",
   "acceptance_rate": 69.73289460950353,
+  "frequency": 28.4,
+  "elo_rating": 1481.960807786,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

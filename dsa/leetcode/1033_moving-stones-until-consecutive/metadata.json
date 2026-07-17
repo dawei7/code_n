@@ -6,6 +6,9 @@
   "title": "Moving Stones Until Consecutive",
   "difficulty": "Medium",
   "acceptance_rate": 52.54451978243052,
+  "frequency": 0.0,
+  "elo_rating": 1421.2624065513,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

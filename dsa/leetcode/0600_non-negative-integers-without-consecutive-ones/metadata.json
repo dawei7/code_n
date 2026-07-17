@@ -6,6 +6,9 @@
   "title": "Non-negative Integers without Consecutive Ones",
   "difficulty": "Hard",
   "acceptance_rate": 42.83315284774864,
+  "frequency": 42.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 2183.563914,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Unequal Triplets in Array",
   "difficulty": "Easy",
   "acceptance_rate": 73.47241391109945,
+  "frequency": 0.0,
+  "elo_rating": 1255.5461825223,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

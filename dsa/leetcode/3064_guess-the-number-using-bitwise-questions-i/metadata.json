@@ -6,6 +6,9 @@
   "title": "Guess the Number Using Bitwise Questions I",
   "difficulty": "Medium",
   "acceptance_rate": 88.84373845585519,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Reaching Points",
   "difficulty": "Hard",
   "acceptance_rate": 34.4802885296151,
+  "frequency": 38.2,
+  "elo_rating": 1897.3309169423,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

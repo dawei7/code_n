@@ -6,6 +6,9 @@
   "title": "Convert 1D Array Into 2D Array",
   "difficulty": "Easy",
   "acceptance_rate": 72.3335992802458,
+  "frequency": 45.0,
+  "elo_rating": 1307.3265298181,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Largest Element in an Array after Merge Operations",
   "difficulty": "Medium",
   "acceptance_rate": 48.11481633618382,
+  "frequency": 0.0,
+  "elo_rating": 1484.8385256564,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

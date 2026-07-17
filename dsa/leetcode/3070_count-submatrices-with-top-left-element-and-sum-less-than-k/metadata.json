@@ -6,6 +6,9 @@
   "title": "Count Submatrices with Top-Left Element and Sum Less Than k",
   "difficulty": "Medium",
   "acceptance_rate": 74.86400048734427,
+  "frequency": 68.3,
+  "elo_rating": 1498.6899053656,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

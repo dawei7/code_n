@@ -6,6 +6,9 @@
   "title": "Select Cells in Grid With Maximum Score",
   "difficulty": "Hard",
   "acceptance_rate": 15.930801708784298,
+  "frequency": 0.0,
+  "elo_rating": 2402.6213260468,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

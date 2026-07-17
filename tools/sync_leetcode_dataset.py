@@ -23,6 +23,8 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 LEETCODE_ROOT = REPO_ROOT / "dsa" / "leetcode"
 INDEX_PATH = LEETCODE_ROOT / "index.json"
 SUBSETS_PATH = LEETCODE_ROOT / "subsets.json"
@@ -261,6 +263,12 @@ def metadata_for_question(question: dict[str, Any]) -> dict[str, Any]:
         "title": question["title"],
         "difficulty": question["difficulty"],
         "acceptance_rate": question["acceptance_rate"],
+        # Mutable metrics are refreshed by tools/update_leetcode_metrics.py.
+        # Keep explicit nulls in newly scaffolded packages so the metadata
+        # contract is uniform before the first authenticated refresh.
+        "frequency": question.get("frequency"),
+        "elo_rating": question.get("elo_rating"),
+        "estimated_elo_rating": question.get("estimated_elo_rating"),
         "category": question["category"],
         "category_title": question["category_title"],
         "topics": question["topics"],
@@ -275,14 +283,18 @@ def metadata_for_question(question: dict[str, Any]) -> dict[str, Any]:
 
 def render_doc(question: dict[str, Any], template: str) -> str:
     topics = ", ".join(tag["name"] for tag in question.get("topics", [])) or "Uncategorized"
-    return template.format(
-        title=question["title"],
-        frontend_id=question.get("frontend_id") or "unknown",
-        difficulty=question.get("difficulty") or "unknown",
-        topics=topics,
-        slug=question["slug"],
-        url=question["url"],
-    )
+    replacements = {
+        "{title}": str(question["title"]),
+        "{frontend_id}": str(question.get("frontend_id") or "unknown"),
+        "{difficulty}": str(question.get("difficulty") or "unknown"),
+        "{topics}": topics,
+        "{slug}": str(question["slug"]),
+        "{url}": str(question["url"]),
+    }
+    rendered = template
+    for placeholder, value in replacements.items():
+        rendered = rendered.replace(placeholder, value)
+    return rendered
 
 
 def write_package(question: dict[str, Any], metadata: dict[str, Any], *, scaffold_docs: bool) -> str:
@@ -321,6 +333,9 @@ def write_package(question: dict[str, Any], metadata: dict[str, Any], *, scaffol
         ):
             metadata["subsets"] = sorted(set(metadata["subsets"]) | {"neetcode_250"})
             metadata["tags"] = sorted(set(metadata["tags"]) | {"subset:neetcode_250"})
+    for field in ("frequency", "elo_rating", "estimated_elo_rating"):
+        if field in existing:
+            metadata[field] = existing[field]
     metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     doc_path = directory / "doc.md"
@@ -332,6 +347,30 @@ def write_package(question: dict[str, Any], metadata: dict[str, Any], *, scaffol
 
 
 def write_index(questions: list[dict[str, Any]]) -> None:
+    existing_metrics: dict[str, dict[str, Any]] = {}
+    if INDEX_PATH.is_file():
+        try:
+            existing_payload = json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            existing_payload = {}
+        for existing_question in existing_payload.get("questions", []):
+            if not isinstance(existing_question, dict):
+                continue
+            frontend_id = str(existing_question.get("frontend_id") or "")
+            if frontend_id:
+                existing_metrics[frontend_id] = existing_question
+
+    normalized_questions: list[dict[str, Any]] = []
+    for question in questions:
+        normalized = dict(question)
+        existing = existing_metrics.get(str(question.get("frontend_id") or ""), {})
+        for field in ("frequency", "elo_rating", "estimated_elo_rating"):
+            if normalized.get(field) is None and field in existing:
+                normalized[field] = existing[field]
+            else:
+                normalized.setdefault(field, None)
+        normalized_questions.append(normalized)
+
     INDEX_PATH.write_text(
         json.dumps(
             {
@@ -340,8 +379,8 @@ def write_index(questions: list[dict[str, Any]]) -> None:
                     "Metadata only. Do not copy LeetCode problem statements, "
                     "editorials, or solution text into this dataset."
                 ),
-                "count": len(questions),
-                "questions": questions,
+                "count": len(normalized_questions),
+                "questions": normalized_questions,
             },
             indent=2,
             ensure_ascii=False,
@@ -439,6 +478,13 @@ def sync_problemset(args: argparse.Namespace) -> dict[str, Any]:
         doc_statuses[write_package(question, metadata, scaffold_docs=not args.no_scaffold)] += 1
     write_index(questions)
     write_subsets(questions)
+    from tools.update_leetcode_metrics import update_metrics
+
+    metrics_report = update_metrics(
+        upstream_questions=None,
+        refresh_frequency=False,
+        dry_run=False,
+    )
     categories = Counter(question["category"] for question in questions)
     report = {
         "mode": "problemset",
@@ -446,6 +492,99 @@ def sync_problemset(args: argparse.Namespace) -> dict[str, Any]:
         "categories": dict(sorted(categories.items())),
         "doc_statuses": dict(sorted(doc_statuses.items())),
         "subsets_path": str(SUBSETS_PATH.relative_to(REPO_ROOT)).replace("\\", "/"),
+        "estimated_elo_count": metrics_report["estimated_elo_count"],
+        "frequency_count": metrics_report["frequency_count"],
+    }
+    write_report(report)
+    return report
+
+
+def sync_new_problems(args: argparse.Namespace) -> dict[str, Any]:
+    """Import only frontend ids absent from the canonical index.
+
+    Existing package metadata and documents are not rewritten. The official
+    problem list is used only to identify and scaffold genuinely new ids.
+    """
+    LEETCODE_ROOT.mkdir(parents=True, exist_ok=True)
+    upstream_questions = fetch_questions(page_size=args.page_size)
+    existing_questions = load_questions_from_index()
+    existing_by_id = {
+        str(question.get("frontend_id") or ""): question
+        for question in existing_questions
+        if isinstance(question, dict) and question.get("frontend_id")
+    }
+
+    for question in upstream_questions:
+        frontend_id = str(question.get("frontend_id") or "")
+        existing = existing_by_id.get(frontend_id)
+        if existing is None:
+            continue
+        if str(existing.get("slug") or "") != str(question.get("slug") or ""):
+            raise RuntimeError(
+                f"LeetCode identity changed for frontend id {frontend_id}: "
+                f"{existing.get('slug')!r} != {question.get('slug')!r}"
+            )
+
+    new_questions = [
+        question
+        for question in upstream_questions
+        if str(question.get("frontend_id") or "") not in existing_by_id
+    ]
+    if not new_questions:
+        report = {
+            "mode": "new_problems",
+            "upstream_total": len(upstream_questions),
+            "previous_total": len(existing_questions),
+            "new_problem_count": 0,
+            "new_frontend_ids": [],
+            "doc_statuses": {},
+            "canonical_total": len(existing_questions),
+            "estimated_elo_count": sum(
+                isinstance(question.get("estimated_elo_rating"), (int, float))
+                for question in existing_questions
+            ),
+            "frequency_count": sum(
+                isinstance(question.get("frequency"), (int, float))
+                for question in existing_questions
+            ),
+            "next_step": "No new LeetCode frontend ids were published.",
+        }
+        write_report(report)
+        return report
+
+    doc_statuses = Counter()
+    for question in new_questions:
+        metadata = metadata_for_question(question)
+        doc_statuses[write_package(question, metadata, scaffold_docs=True)] += 1
+
+    merged_questions = [dict(question) for question in existing_questions]
+    merged_questions.extend(new_questions)
+    merged_questions.sort(key=sort_key)
+    write_index(merged_questions)
+    write_subsets(merged_questions)
+
+    from tools.update_leetcode_metrics import update_metrics
+
+    metrics_report = update_metrics(
+        upstream_questions=None,
+        refresh_frequency=False,
+        dry_run=False,
+    )
+
+    report = {
+        "mode": "new_problems",
+        "upstream_total": len(upstream_questions),
+        "previous_total": len(existing_questions),
+        "new_problem_count": len(new_questions),
+        "new_frontend_ids": [str(question["frontend_id"]) for question in new_questions],
+        "doc_statuses": dict(sorted(doc_statuses.items())),
+        "canonical_total": len(merged_questions),
+        "estimated_elo_count": metrics_report["estimated_elo_count"],
+        "frequency_count": metrics_report["frequency_count"],
+        "next_step": (
+            "Run tools/update_leetcode_metrics.py with a valid Premium LeetCode "
+            "session to refresh Frequency for the expanded corpus."
+        ),
     }
     write_report(report)
     return report
@@ -861,6 +1000,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--page-size", type=int, default=100)
     parser.add_argument("--no-scaffold", action="store_true")
+    parser.add_argument(
+        "--new-problems-only",
+        action="store_true",
+        help="Scaffold only frontend ids not already present in the canonical index.",
+    )
     parser.add_argument("--company-tags", action="store_true", help="Enrich existing packages with company tags.")
     parser.add_argument("--company-batch-size", type=int, default=20)
     parser.add_argument("--company-delay", type=float, default=0.05)
@@ -873,7 +1017,18 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--keep-going", action="store_true")
     args = parser.parse_args(argv)
 
-    if args.study_plans:
+    selected_modes = sum(
+        bool(mode)
+        for mode in (args.new_problems_only, args.study_plans, args.company_tags)
+    )
+    if selected_modes > 1:
+        parser.error("--new-problems-only, --study-plans, and --company-tags are mutually exclusive")
+    if args.new_problems_only and args.no_scaffold:
+        parser.error("--new-problems-only always creates the base doc template")
+
+    if args.new_problems_only:
+        report = sync_new_problems(args)
+    elif args.study_plans:
         report = sync_study_plans(args)
     elif args.company_tags:
         report = enrich_company_tags(args)

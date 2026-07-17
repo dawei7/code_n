@@ -6,6 +6,9 @@
   "title": "Two Sum II - Input Array Is Sorted",
   "difficulty": "Medium",
   "acceptance_rate": 65.39113729763308,
+  "frequency": 69.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1419.104867,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

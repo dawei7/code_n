@@ -6,6 +6,9 @@
   "title": "Paint House III",
   "difficulty": "Hard",
   "acceptance_rate": 61.26018387024441,
+  "frequency": 0.0,
+  "elo_rating": 2056.335494216,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

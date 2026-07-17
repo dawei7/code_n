@@ -6,6 +6,9 @@
   "title": "Replace the Substring for Balanced String",
   "difficulty": "Medium",
   "acceptance_rate": 41.09949387320192,
+  "frequency": 29.5,
+  "elo_rating": 1877.8983358307,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

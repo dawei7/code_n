@@ -6,6 +6,9 @@
   "title": "Longest Common Subsequence",
   "difficulty": "Medium",
   "acceptance_rate": 59.32577301929337,
+  "frequency": 59.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1468.932221,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

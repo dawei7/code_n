@@ -6,6 +6,9 @@
   "title": "Queries Quality and Percentage",
   "difficulty": "Easy",
   "acceptance_rate": 53.75285186308716,
+  "frequency": 34.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1241.607574,
   "category": "database",
   "category_title": "Database",
   "topics": [

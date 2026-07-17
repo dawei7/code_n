@@ -6,6 +6,9 @@
   "title": "Largest Positive Integer That Exists With Its Negative",
   "difficulty": "Easy",
   "acceptance_rate": 74.56857824033995,
+  "frequency": 22.6,
+  "elo_rating": 1167.647122501,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

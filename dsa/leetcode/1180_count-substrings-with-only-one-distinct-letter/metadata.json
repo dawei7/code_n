@@ -6,6 +6,9 @@
   "title": "Count Substrings with Only One Distinct Letter",
   "difficulty": "Easy",
   "acceptance_rate": 80.97019706327038,
+  "frequency": 0.0,
+  "elo_rating": 1315.4085759361,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

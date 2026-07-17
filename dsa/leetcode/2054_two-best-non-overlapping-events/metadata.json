@@ -6,6 +6,9 @@
   "title": "Two Best Non-Overlapping Events",
   "difficulty": "Medium",
   "acceptance_rate": 63.97312955041219,
+  "frequency": 61.9,
+  "elo_rating": 1883.3541964032,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

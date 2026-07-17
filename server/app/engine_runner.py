@@ -398,6 +398,112 @@ class _JudgeBinaryMatrix:
         return f"BinaryMatrix({rows}x{cols}, queries={self._query_count})"
 
 
+class _JudgeFontInfo:
+    """Font-metric interface used by LeetCode 1618."""
+
+    def __init__(
+        self,
+        heights: dict[str, int],
+        widths: dict[str, dict[str, int]] | None = None,
+        uniform_widths: dict[str, int] | None = None,
+        max_queries: int = 100_000,
+    ):
+        if not isinstance(heights, dict) or not heights:
+            raise ValueError("font info heights must be a nonempty mapping")
+        if not isinstance(widths, dict):
+            widths = {}
+        if not isinstance(uniform_widths, dict):
+            uniform_widths = {}
+        if not isinstance(max_queries, int) or isinstance(max_queries, bool) or max_queries < 0:
+            raise ValueError("font info max_queries must be a non-negative integer")
+
+        self._heights = self._parse_metric_map(heights, "height")
+        self._uniform_widths = self._parse_metric_map(uniform_widths, "uniform width")
+        self._widths: dict[int, dict[str, int]] = {}
+        for raw_font, raw_metrics in widths.items():
+            font = self._parse_font(raw_font)
+            if not isinstance(raw_metrics, dict):
+                raise ValueError("font-specific widths must be character mappings")
+            parsed: dict[str, int] = {}
+            for character, value in raw_metrics.items():
+                if not isinstance(character, str) or len(character) != 1 or not character.islower():
+                    raise ValueError("font width keys must be lowercase characters")
+                parsed[character] = self._parse_metric(value, "width")
+            self._widths[font] = parsed
+
+        available_width_fonts = set(self._uniform_widths) | set(self._widths)
+        if set(self._heights) != available_width_fonts:
+            raise ValueError("font info must define height and width metrics for the same fonts")
+        ordered_fonts = sorted(self._heights)
+        if any(
+            self._heights[left] > self._heights[right]
+            for left, right in zip(ordered_fonts, ordered_fonts[1:])
+        ):
+            raise ValueError("font heights must be non-decreasing by font size")
+
+        self._max_queries = max_queries
+        self._query_count = 0
+
+    @staticmethod
+    def _parse_font(value: object) -> int:
+        try:
+            font = int(value)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("font sizes must be positive integers") from exc
+        if isinstance(value, bool) or font <= 0 or str(font) != str(value):
+            raise ValueError("font sizes must be positive integers")
+        return font
+
+    @staticmethod
+    def _parse_metric(value: object, name: str) -> int:
+        if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+            raise ValueError(f"font {name} values must be non-negative integers")
+        return value
+
+    @classmethod
+    def _parse_metric_map(cls, values: dict[str, int], name: str) -> dict[int, int]:
+        return {
+            cls._parse_font(font): cls._parse_metric(value, name)
+            for font, value in values.items()
+        }
+
+    def _record_query(self) -> None:
+        self._query_count += 1
+        if self._query_count > self._max_queries:
+            raise RuntimeError(
+                f"FontInfo exceeded the {self._max_queries}-query limit"
+            )
+
+    def getWidth(self, fontSize: int, ch: str) -> int:
+        if not isinstance(fontSize, int) or isinstance(fontSize, bool):
+            raise ValueError("FontInfo fontSize must be an integer")
+        if not isinstance(ch, str) or len(ch) != 1 or not ch.islower():
+            raise ValueError("FontInfo ch must be one lowercase character")
+        self._record_query()
+        if fontSize not in self._heights:
+            raise ValueError("FontInfo fontSize has no authored metrics")
+        if ch in self._widths.get(fontSize, {}):
+            return self._widths[fontSize][ch]
+        if fontSize in self._uniform_widths:
+            return self._uniform_widths[fontSize]
+        raise ValueError("FontInfo character has no authored width")
+
+    def getHeight(self, fontSize: int) -> int:
+        if not isinstance(fontSize, int) or isinstance(fontSize, bool):
+            raise ValueError("FontInfo fontSize must be an integer")
+        self._record_query()
+        if fontSize not in self._heights:
+            raise ValueError("FontInfo fontSize has no authored metrics")
+        return self._heights[fontSize]
+
+    @property
+    def query_count(self) -> int:
+        return self._query_count
+
+    def __repr__(self) -> str:
+        return f"FontInfo(fonts={len(self._heights)}, queries={self._query_count})"
+
+
 class _JudgeArrayReader:
     """Hidden-array simulator for LeetCode 1533's sum-comparison API."""
 
@@ -725,15 +831,9 @@ def _quad_tree_from_fixture(fixture: Any) -> Any:
     return _JudgeQuadNode(True, False, *converted)
 
 
-def _parent_tree_node_from_fixture(fixture: Any) -> Any:
-    if not isinstance(fixture, dict) or "tree" not in fixture:
-        return fixture
-    values = fixture.get("tree")
-    target_index = fixture.get("target_index")
+def _parent_tree_nodes_from_values(values: Any) -> list[Any]:
     if not isinstance(values, list) or not values:
         raise ValueError("parent-tree fixture requires a nonempty level-order tree")
-    if not isinstance(target_index, int) or not 0 <= target_index < len(values):
-        raise ValueError("parent-tree fixture target_index is outside the level-order tree")
 
     nodes = [None if value is None else _JudgeTreeNode(value) for value in values]
     child_index = 1
@@ -751,10 +851,112 @@ def _parent_tree_node_from_fixture(fixture: Any) -> Any:
                 node.right.parent = node
             child_index += 1
 
+    return nodes
+
+
+def _parent_tree_node_from_fixture(fixture: Any) -> Any:
+    if not isinstance(fixture, dict) or "tree" not in fixture:
+        return fixture
+    values = fixture.get("tree")
+    target_index = fixture.get("target_index")
+    nodes = _parent_tree_nodes_from_values(values)
+    if not isinstance(target_index, int) or not 0 <= target_index < len(nodes):
+        raise ValueError("parent-tree fixture target_index is outside the level-order tree")
+
     target = nodes[target_index]
     if target is None:
         raise ValueError("parent-tree fixture target_index must select a node")
     return target
+
+
+def _parent_tree_pair_from_fixtures(p_fixture: Any, q_fixture: Any) -> tuple[Any, Any] | None:
+    if (
+        not isinstance(p_fixture, dict)
+        or "tree" not in p_fixture
+        or not isinstance(q_fixture, dict)
+        or q_fixture.get("same_tree_as") != "p"
+    ):
+        return None
+
+    nodes = _parent_tree_nodes_from_values(p_fixture.get("tree"))
+    targets: list[Any] = []
+    for fixture in (p_fixture, q_fixture):
+        target_index = fixture.get("target_index")
+        if not isinstance(target_index, int) or not 0 <= target_index < len(nodes):
+            raise ValueError("parent-tree fixture target_index is outside the level-order tree")
+        target = nodes[target_index]
+        if target is None:
+            raise ValueError("parent-tree fixture target_index must select a node")
+        targets.append(target)
+    return targets[0], targets[1]
+
+
+def _parent_tree_root_and_leaf_from_fixtures(
+    root_fixture: Any,
+    leaf_fixture: Any,
+) -> tuple[Any, Any] | None:
+    if (
+        not isinstance(root_fixture, dict)
+        or "tree" not in root_fixture
+        or not isinstance(leaf_fixture, dict)
+        or leaf_fixture.get("same_tree_as") != "root"
+    ):
+        return None
+
+    nodes = _parent_tree_nodes_from_values(root_fixture.get("tree"))
+    target_index = leaf_fixture.get("target_index")
+    if not isinstance(target_index, int) or not 0 <= target_index < len(nodes):
+        raise ValueError("parent-tree leaf target_index is outside the level-order tree")
+    leaf = nodes[target_index]
+    if leaf is None:
+        raise ValueError("parent-tree leaf target_index must select a node")
+    if leaf.left is not None or leaf.right is not None:
+        raise ValueError("parent-tree leaf target_index must select a leaf node")
+    return nodes[0], leaf
+
+
+def _tree_root_and_targets_from_fixtures(
+    root_fixture: Any,
+    targets_fixture: Any,
+) -> tuple[Any, list[Any]] | None:
+    if (
+        not isinstance(root_fixture, dict)
+        or "tree" not in root_fixture
+        or not isinstance(targets_fixture, dict)
+        or targets_fixture.get("same_tree_as") != "root"
+    ):
+        return None
+
+    nodes = [
+        None if value is None else _JudgeTreeNode(value)
+        for value in root_fixture.get("tree", [])
+    ]
+    if not nodes or nodes[0] is None:
+        raise ValueError("shared-tree fixture requires a nonempty tree")
+
+    child_index = 1
+    for node in nodes:
+        if node is None:
+            continue
+        if child_index < len(nodes):
+            node.left = nodes[child_index]
+            child_index += 1
+        if child_index < len(nodes):
+            node.right = nodes[child_index]
+            child_index += 1
+
+    target_indices = targets_fixture.get("target_indices")
+    if not isinstance(target_indices, list) or not target_indices:
+        raise ValueError("shared-tree fixture requires nonempty target_indices")
+    targets: list[Any] = []
+    for target_index in target_indices:
+        if not isinstance(target_index, int) or not 0 <= target_index < len(nodes):
+            raise ValueError("shared-tree target_index is outside the level-order tree")
+        target = nodes[target_index]
+        if target is None:
+            raise ValueError("shared-tree target_index must select a node")
+        targets.append(target)
+    return nodes[0], targets
 
 
 def _cloned_tree_triplet_from_fixture(fixture: Any) -> tuple[Any, Any, Any]:
@@ -882,6 +1084,14 @@ def _unordered_list_matches(actual: Any, expected: Any) -> bool:
             return repr(value)
 
     return sorted(actual, key=key) == sorted(expected, key=key)
+
+
+def _unordered_table_matches(actual: Any, expected: Any) -> bool:
+    if not isinstance(actual, dict) or not isinstance(expected, dict):
+        return False
+    if actual.get("columns") != expected.get("columns"):
+        return False
+    return _unordered_list_matches(actual.get("rows"), expected.get("rows"))
 
 
 def _unordered_nested_list_matches(actual: Any, expected: Any) -> bool:
@@ -2658,6 +2868,39 @@ def _most_similar_path_match(
     return actual_cost == min(previous)
 
 
+def _adjacent_path_match(actual: Any, pairs: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(pairs, list):
+        return False
+    if len(actual) != len(pairs) + 1:
+        return False
+    if any(not isinstance(value, int) or isinstance(value, bool) for value in actual):
+        return False
+    if len(set(actual)) != len(actual):
+        return False
+
+    vertices: set[int] = set()
+    edges: Counter[frozenset[int]] = Counter()
+    for pair in pairs:
+        if (
+            not isinstance(pair, list)
+            or len(pair) != 2
+            or any(not isinstance(value, int) or isinstance(value, bool) for value in pair)
+            or pair[0] == pair[1]
+        ):
+            return False
+        vertices.update(pair)
+        edges[frozenset(pair)] += 1
+
+    if set(actual) != vertices:
+        return False
+    for left, right in zip(actual, actual[1:]):
+        edge = frozenset((left, right))
+        if edges[edge] == 0:
+            return False
+        edges[edge] -= 1
+    return all(count == 0 for count in edges.values())
+
+
 def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> bool:
     validator = case.validator or {}
     kind = str(validator.get("kind") or "")
@@ -2675,8 +2918,15 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         )
     if kind == "unordered_list":
         return _unordered_list_matches(actual, expected)
+    if kind == "unordered_table":
+        return _unordered_table_matches(actual, expected)
     if kind == "unordered_nested_list":
         return _unordered_nested_list_matches(actual, expected)
+    if kind == "adjacent_path":
+        return _adjacent_path_match(
+            actual,
+            case.input.get(str(validator.get("pairs_param") or "adjacentPairs")),
+        )
     if kind == "ordered_groups_unordered_items":
         return _ordered_groups_unordered_items_match(actual, expected)
     if kind == "duplicate_subtrees":
@@ -3055,6 +3305,21 @@ def _prepare_validated_kwargs(
     tree_param_names: list[str] | tuple[str, ...],
     list_node_param_names: list[str] | tuple[str, ...] = (),
 ) -> dict[str, Any]:
+    parent_pair = _parent_tree_pair_from_fixtures(kwargs.get("p"), kwargs.get("q"))
+    if parent_pair is not None:
+        kwargs["p"], kwargs["q"] = parent_pair
+    root_leaf_pair = _parent_tree_root_and_leaf_from_fixtures(
+        kwargs.get("root"),
+        kwargs.get("leaf"),
+    )
+    if root_leaf_pair is not None:
+        kwargs["root"], kwargs["leaf"] = root_leaf_pair
+    root_targets_pair = _tree_root_and_targets_from_fixtures(
+        kwargs.get("root"),
+        kwargs.get("nodes"),
+    )
+    if root_targets_pair is not None:
+        kwargs["root"], kwargs["nodes"] = root_targets_pair
     original_fixture = kwargs.get("original")
     if (
         isinstance(original_fixture, dict)
@@ -3092,6 +3357,14 @@ def _prepare_validated_kwargs(
                 matrix_fixture["matrix"],
                 int(matrix_fixture.get("max_queries", 1000)),
             )
+    font_info_fixture = kwargs.get("fontInfo")
+    if isinstance(font_info_fixture, dict) and "heights" in font_info_fixture:
+        kwargs["fontInfo"] = _JudgeFontInfo(
+            font_info_fixture["heights"],
+            font_info_fixture.get("widths"),
+            font_info_fixture.get("uniform_widths"),
+            int(font_info_fixture.get("max_queries", 100_000)),
+        )
     reader_fixture = kwargs.get("reader")
     if isinstance(reader_fixture, dict) and "array" in reader_fixture:
         if reader_fixture.get("api") == "majority":

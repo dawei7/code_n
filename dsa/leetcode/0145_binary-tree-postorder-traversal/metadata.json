@@ -6,6 +6,9 @@
   "title": "Binary Tree Postorder Traversal",
   "difficulty": "Easy",
   "acceptance_rate": 78.51403862447775,
+  "frequency": 18.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

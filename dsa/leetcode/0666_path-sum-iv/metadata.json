@@ -6,6 +6,9 @@
   "title": "Path Sum IV",
   "difficulty": "Medium",
   "acceptance_rate": 62.89081289081289,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1439.47454,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1767",
+  "cases": [
+    {
+      "id": "sample-mixed-completion",
+      "name": "sample: partially, never, and fully executed tasks",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "Tasks": [
+          {"task_id": 1, "subtasks_count": 3},
+          {"task_id": 2, "subtasks_count": 2},
+          {"task_id": 3, "subtasks_count": 4}
+        ],
+        "Executed": [
+          {"task_id": 1, "subtask_id": 2},
+          {"task_id": 3, "subtask_id": 1},
+          {"task_id": 3, "subtask_id": 2},
+          {"task_id": 3, "subtask_id": 3},
+          {"task_id": 3, "subtask_id": 4}
+        ]
+      }},
+      "expected": {"columns": ["task_id", "subtask_id"], "rows": [[1,1],[1,3],[2,1],[2,2]]},
+      "tags": ["sample", "mixed-completion"]
+    },
+    {
+      "id": "trial-single-missing",
+      "name": "trial: one task has one missing subtask",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Tasks": [{"task_id": 8, "subtasks_count": 1}],
+        "Executed": []
+      }},
+      "expected": {"columns": ["task_id", "subtask_id"], "rows": [[8,1]]},
+      "tags": ["single-task", "empty-executed"]
+    },
+    {
+      "id": "trial-fully-executed",
+      "name": "trial: a complete task produces no rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Tasks": [{"task_id": 5, "subtasks_count": 3}],
+        "Executed": [
+          {"task_id": 5, "subtask_id": 1},
+          {"task_id": 5, "subtask_id": 2},
+          {"task_id": 5, "subtask_id": 3}
+        ]
+      }},
+      "expected": {"columns": ["task_id", "subtask_id"], "rows": []},
+      "tags": ["empty-result", "fully-executed"]
+    },
+    {
+      "id": "real-noncontiguous-gaps",
+      "name": "hidden: missing subtasks form several gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Tasks": [{"task_id": 10, "subtasks_count": 6}],
+        "Executed": [
+          {"task_id": 10, "subtask_id": 2},
+          {"task_id": 10, "subtask_id": 4},
+          {"task_id": 10, "subtask_id": 6}
+        ]
+      }},
+      "expected": {"columns": ["task_id", "subtask_id"], "rows": [[10,1],[10,3],[10,5]]},
+      "tags": ["gaps", "alternating"]
+    },
+    {
+      "id": "real-independent-ranges",
+      "name": "hidden: subtask numbering restarts for each task",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Tasks": [
+          {"task_id": 4, "subtasks_count": 2},
+          {"task_id": 9, "subtasks_count": 3}
+        ],
+        "Executed": [
+          {"task_id": 4, "subtask_id": 1},
+          {"task_id": 9, "subtask_id": 2}
+        ]
+      }},
+      "expected": {"columns": ["task_id", "subtask_id"], "rows": [[4,2],[9,1],[9,3]]},
+      "tags": ["multiple-tasks", "independent-ranges"]
+    },
+    {
+      "id": "real-unsorted-source",
+      "name": "hidden: output order is independent of table row order",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Tasks": [
+          {"task_id": 20, "subtasks_count": 2},
+          {"task_id": 3, "subtasks_count": 3}
+        ],
+        "Executed": [
+          {"task_id": 20, "subtask_id": 2},
+          {"task_id": 3, "subtask_id": 1}
+        ]
+      }},
+      "expected": {"columns": ["task_id", "subtask_id"], "rows": [[3,2],[3,3],[20,1]]},
+      "tags": ["ordering", "unsorted-input"]
+    },
+    {
+      "id": "real-one-missing-at-end",
+      "name": "hidden: only the final identifier is absent",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Tasks": [{"task_id": 42, "subtasks_count": 5}],
+        "Executed": [
+          {"task_id": 42, "subtask_id": 1},
+          {"task_id": 42, "subtask_id": 2},
+          {"task_id": 42, "subtask_id": 3},
+          {"task_id": 42, "subtask_id": 4}
+        ]
+      }},
+      "expected": {"columns": ["task_id", "subtask_id"], "rows": [[42,5]]},
+      "tags": ["boundary", "final-subtask"]
+    }
+  ]
+}

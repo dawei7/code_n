@@ -6,6 +6,9 @@
   "title": "List the Products Ordered in a Period",
   "difficulty": "Easy",
   "acceptance_rate": 71.82406204078859,
+  "frequency": 8.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1178.322435,
   "category": "database",
   "category_title": "Database",
   "topics": [

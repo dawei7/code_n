@@ -6,6 +6,9 @@
   "title": "Maximum Product of the Length of Two Palindromic Subsequences",
   "difficulty": "Medium",
   "acceptance_rate": 62.721515038063146,
+  "frequency": 0.0,
+  "elo_rating": 1869.402439128,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

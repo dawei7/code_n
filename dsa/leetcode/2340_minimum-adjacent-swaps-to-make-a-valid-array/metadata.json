@@ -6,6 +6,9 @@
   "title": "Minimum Adjacent Swaps to Make a Valid Array",
   "difficulty": "Medium",
   "acceptance_rate": 72.25800743231287,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1372.411309,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

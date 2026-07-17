@@ -6,6 +6,9 @@
   "title": "Cheapest Flights Within K Stops",
   "difficulty": "Medium",
   "acceptance_rate": 42.157997159838004,
+  "frequency": 54.5,
+  "elo_rating": 1786.4753467293,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

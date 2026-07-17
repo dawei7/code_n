@@ -6,6 +6,9 @@
   "title": "Lexicographically Smallest Generated String",
   "difficulty": "Hard",
   "acceptance_rate": 53.52988218611132,
+  "frequency": 75.1,
+  "elo_rating": 2605.3698165497,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

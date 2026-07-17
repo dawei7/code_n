@@ -6,6 +6,9 @@
   "title": "H-Index",
   "difficulty": "Medium",
   "acceptance_rate": 41.61461533488282,
+  "frequency": 53.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1688.879047,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

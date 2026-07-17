@@ -6,6 +6,9 @@
   "title": "Occurrences After Bigram",
   "difficulty": "Easy",
   "acceptance_rate": 63.97365200291533,
+  "frequency": 0.0,
+  "elo_rating": 1274.7596170193,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

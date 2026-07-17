@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1803",
+  "cases": [
+    {"id":"example-all-six-pairs","name":"sample: every pair lies in range","kind":"sample","visible":true,"input":{"nums":[1,4,2,7],"low":2,"high":6},"expected":6,"tags":["example","inclusive-range"]},
+    {"id":"example-eight-pairs","name":"sample: eight of ten pairs qualify","kind":"sample","visible":true,"input":{"nums":[9,8,4,2,1],"low":5,"high":14},"expected":8,"tags":["example","mixed-prefixes"]},
+    {"id":"example-both-boundaries","name":"pair XOR values hit both boundaries","kind":"sample","visible":true,"input":{"nums":[1,2,3],"low":1,"high":2},"expected":2,"tags":["example","boundary-values"]},
+    {"id":"trial-exact-xor","name":"range contains one exact XOR value","kind":"trial","visible":true,"input":{"nums":[1,2,3,4],"low":3,"high":3},"expected":1,"tags":["exact-range","inclusive"]},
+    {"id":"trial-duplicate-zero-xor","name":"duplicate pairs fall below positive low","kind":"trial","visible":true,"input":{"nums":[5,5,5],"low":1,"high":10},"expected":0,"tags":["duplicates","zero-xor"]},
+    {"id":"real-all-pairs-fit","name":"broad range contains every pair","kind":"real","visible":false,"input":{"nums":[1,2,4,8],"low":1,"high":15},"expected":6,"tags":["all-pairs","broad-range"]},
+    {"id":"real-duplicate-multiplicity","name":"duplicate values contribute separate pairs","kind":"real","visible":false,"input":{"nums":[7,7,1,2],"low":5,"high":6},"expected":4,"tags":["duplicates","multiplicity"]},
+    {"id":"real-single-value","name":"single value has no index pair","kind":"real","visible":false,"input":{"nums":[20000],"low":1,"high":20000},"expected":0,"tags":["singleton","maximum-value"]}
+  ]
+}

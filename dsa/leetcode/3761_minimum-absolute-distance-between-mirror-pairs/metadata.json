@@ -6,6 +6,9 @@
   "title": "Minimum Absolute Distance Between Mirror Pairs",
   "difficulty": "Medium",
   "acceptance_rate": 59.18053881403947,
+  "frequency": 75.1,
+  "elo_rating": 1668.9941164204,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

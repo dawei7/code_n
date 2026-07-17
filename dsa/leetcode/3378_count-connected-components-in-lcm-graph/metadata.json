@@ -6,6 +6,9 @@
   "title": "Count Connected Components in LCM Graph",
   "difficulty": "Hard",
   "acceptance_rate": 31.520321669202346,
+  "frequency": 0.0,
+  "elo_rating": 2532.0192714689,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Reorganize String",
   "difficulty": "Medium",
   "acceptance_rate": 57.29705559444492,
+  "frequency": 79.4,
+  "elo_rating": 1681.3263732456,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

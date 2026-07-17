@@ -6,6 +6,9 @@
   "title": "Valid Word",
   "difficulty": "Easy",
   "acceptance_rate": 50.89578394975306,
+  "frequency": 11.3,
+  "elo_rating": 1249.6592240732,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

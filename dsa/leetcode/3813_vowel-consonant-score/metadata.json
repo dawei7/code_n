@@ -6,6 +6,9 @@
   "title": "Vowel-Consonant Score",
   "difficulty": "Easy",
   "acceptance_rate": 53.82752898694414,
+  "frequency": 23.2,
+  "elo_rating": 1216.4439953203,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

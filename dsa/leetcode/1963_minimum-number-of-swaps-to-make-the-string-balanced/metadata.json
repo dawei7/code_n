@@ -6,6 +6,9 @@
   "title": "Minimum Number of Swaps to Make the String Balanced",
   "difficulty": "Medium",
   "acceptance_rate": 78.02178940239864,
+  "frequency": 52.3,
+  "elo_rating": 1688.9209684568,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

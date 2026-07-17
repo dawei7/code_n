@@ -6,6 +6,9 @@
   "title": "Convert a Number to Hexadecimal",
   "difficulty": "Easy",
   "acceptance_rate": 54.44195630940754,
+  "frequency": 34.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1238.641084,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

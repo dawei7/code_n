@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1769",
+  "cases": [
+    {
+      "id": "sample-two-leading-balls",
+      "name": "sample: two balls occupy the leading boxes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"boxes": "110"},
+      "expected": [1,1,3],
+      "tags": ["sample", "two-balls"]
+    },
+    {
+      "id": "sample-spaced-balls",
+      "name": "sample: three balls have asymmetric distances",
+      "kind": "sample",
+      "visible": true,
+      "input": {"boxes": "001011"},
+      "expected": [11,8,5,4,3,4],
+      "tags": ["sample", "multiple-balls"]
+    },
+    {
+      "id": "trial-no-balls",
+      "name": "trial: an empty single box costs zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"boxes": "0"},
+      "expected": [0],
+      "tags": ["minimum-length", "no-balls"]
+    },
+    {
+      "id": "trial-single-ball",
+      "name": "trial: a ball already at the only target costs zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"boxes": "1"},
+      "expected": [0],
+      "tags": ["minimum-length", "single-ball"]
+    },
+    {
+      "id": "real-all-balls",
+      "name": "hidden: every box initially contains one ball",
+      "kind": "real",
+      "visible": false,
+      "input": {"boxes": "1111"},
+      "expected": [6,4,4,6],
+      "tags": ["all-balls", "symmetric"]
+    },
+    {
+      "id": "real-endpoint-balls",
+      "name": "hidden: endpoint balls give a constant total distance",
+      "kind": "real",
+      "visible": false,
+      "input": {"boxes": "10001"},
+      "expected": [4,4,4,4,4],
+      "tags": ["endpoints", "symmetric"]
+    },
+    {
+      "id": "real-centered-ball",
+      "name": "hidden: one centered ball creates absolute distances",
+      "kind": "real",
+      "visible": false,
+      "input": {"boxes": "00100"},
+      "expected": [2,1,0,1,2],
+      "tags": ["single-ball", "center"]
+    },
+    {
+      "id": "real-asymmetric-pair",
+      "name": "hidden: an asymmetric pair distinguishes both sweeps",
+      "kind": "real",
+      "visible": false,
+      "input": {"boxes": "0101"},
+      "expected": [4,2,2,2],
+      "tags": ["two-balls", "asymmetric"]
+    }
+  ]
+}

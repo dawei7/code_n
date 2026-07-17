@@ -6,6 +6,9 @@
   "title": "Android Unlock Patterns",
   "difficulty": "Medium",
   "acceptance_rate": 53.88719803379729,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1533.99106,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

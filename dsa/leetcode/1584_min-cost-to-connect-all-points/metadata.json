@@ -6,6 +6,9 @@
   "title": "Min Cost to Connect All Points",
   "difficulty": "Medium",
   "acceptance_rate": 71.24740821564806,
+  "frequency": 41.5,
+  "elo_rating": 1857.6431822094,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

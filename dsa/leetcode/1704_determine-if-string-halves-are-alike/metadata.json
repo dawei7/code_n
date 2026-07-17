@@ -6,6 +6,9 @@
   "title": "Determine if String Halves Are Alike",
   "difficulty": "Easy",
   "acceptance_rate": 78.83249690437708,
+  "frequency": 8.7,
+  "elo_rating": 1207.7224406285,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

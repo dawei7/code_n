@@ -6,6 +6,9 @@
   "title": "Snapshot Array",
   "difficulty": "Medium",
   "acceptance_rate": 36.75767225139233,
+  "frequency": 74.7,
+  "elo_rating": 1770.8924569497,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

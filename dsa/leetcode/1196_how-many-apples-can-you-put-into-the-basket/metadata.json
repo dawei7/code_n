@@ -6,6 +6,9 @@
   "title": "How Many Apples Can You Put into the Basket",
   "difficulty": "Easy",
   "acceptance_rate": 67.1588678528462,
+  "frequency": 0.0,
+  "elo_rating": 1248.8026990632,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

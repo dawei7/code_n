@@ -6,6 +6,9 @@
   "title": "Number of Single Divisor Triplets",
   "difficulty": "Medium",
   "acceptance_rate": 54.99159663865546,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1519.114812,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Insert Delete GetRandom O(1)",
   "difficulty": "Medium",
   "acceptance_rate": 55.428773197778355,
+  "frequency": 86.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1513.28099,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Split Concatenated Strings",
   "difficulty": "Medium",
   "acceptance_rate": 43.59209395588656,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1669.627433,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

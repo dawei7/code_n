@@ -6,6 +6,9 @@
   "title": "4Sum II",
   "difficulty": "Medium",
   "acceptance_rate": 58.05791922235321,
+  "frequency": 20.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1478.176918,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

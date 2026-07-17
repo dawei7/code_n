@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1683",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Any tweet can independently cross the strict character limit, so exact filtering has a linear worst-case inspection lower bound; one character-length predicate per bounded-width row matches it.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "In a worst-case table with no invalid tweet, changing only the final uninspected row to a 16-character value changes the required result, so every one of the R rows must be inspected. A single scan evaluates the bounded VARCHAR(50) content length once per row and therefore takes O(R) time."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"An adversary may place the only over-limit content in any row; skipping one row cannot distinguish the valid-only table from the table that must return that row's ID."},
+    {"kind":"upper_bound_proof","evidence":"The query performs one bounded character-count comparison per tweet during a single filter scan and emits qualifying IDs without a required sort."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover the public sample, exact 15/16-character boundaries, empty results, all-invalid tables, spaces, exclamation marks, identifier gaps, and mixed lengths."}
+  ]
+}

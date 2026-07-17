@@ -6,6 +6,9 @@
   "title": "Widest Vertical Area Between Two Points Containing No Points",
   "difficulty": "Easy",
   "acceptance_rate": 87.12256455373998,
+  "frequency": 32.7,
+  "elo_rating": 1486.764933431,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

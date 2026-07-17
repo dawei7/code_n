@@ -6,6 +6,9 @@
   "title": "Compare Sums of Bitonic Parts",
   "difficulty": "Medium",
   "acceptance_rate": 53.50216414183453,
+  "frequency": 0.0,
+  "elo_rating": 1408.9521530586,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

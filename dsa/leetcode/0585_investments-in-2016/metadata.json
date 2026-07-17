@@ -6,6 +6,9 @@
   "title": "Investments in 2016",
   "difficulty": "Medium",
   "acceptance_rate": 51.36077128367334,
+  "frequency": 33.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1571.910906,
   "category": "database",
   "category_title": "Database",
   "topics": [

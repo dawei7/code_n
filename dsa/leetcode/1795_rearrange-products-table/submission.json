@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1948",
+  "frontend_id": "1795",
+  "title_slug": "rearrange-products-table",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2071212915",
+  "verified_at": "2026-07-17T14:32:14.714035+00:00"
+}

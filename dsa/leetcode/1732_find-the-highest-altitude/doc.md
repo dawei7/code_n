@@ -8,48 +8,76 @@
 | Category | Algorithms |
 | Topics | Array, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-highest-altitude](https://leetcode.com/problems/find-the-highest-altitude/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-highest-altitude/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-highest-altitude/).
 
 ### Goal
-Starting at altitude `0`, apply each net gain in order and find the highest altitude reached.
+
+A biker travels through $n + 1$ points whose altitudes may differ. Point $0$ is the start of the trip and has altitude $0$.
+
+The length-$n$ integer array `gain` describes the route: `gain[i]` is the net altitude change from point $i$ to point $i + 1$. Apply these changes in route order and return the highest altitude attained at any point, including the initial altitude of $0$.
 
 ### Function Contract
+
 **Inputs**
 
-- `gain`: a list of altitude changes between consecutive points.
+- `gain`: an integer list of length $n$, where `gain[i]` is the net altitude change along one route segment.
+- The contract guarantees $1 \le n \le 100$ and $-100 \le \texttt{gain[i]} \le 100$.
 
 **Return value**
 
-Return the maximum running altitude.
+- Return the maximum altitude among all $n + 1$ route points, with the starting altitude included.
 
 ### Examples
+
 **Example 1**
 
 - Input: `gain = [-5,1,5,0,-7]`
 - Output: `1`
+- Explanation: The point altitudes are `0,-5,-4,1,1,-6`, whose maximum is $1$.
 
 **Example 2**
 
 - Input: `gain = [-4,-3,-2,-1,4,3,2]`
 - Output: `0`
+- Explanation: Every later altitude is below the initial altitude.
 
 **Example 3**
 
 - Input: `gain = [3,-1,2,-2]`
 - Output: `4`
+- Explanation: The altitudes are `0,3,2,4,2`, so the peak occurs before the trip ends.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Maintain a running altitude initialized to `0` and a best altitude initialized to `0`. Add each gain to the running altitude and update the best value.
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Interpret altitude as a prefix sum**
+
+After processing the first $i$ gains, the current altitude is the sum of those $i$ values. There is no need to materialize every prefix sum: keep one running altitude and add each gain as its segment is traversed.
+
+**Include the starting point in the maximum**
+
+Initialize the best altitude to $0$, not to the first gain. After every update, compare the new running altitude with the best value. This ensures the answer remains $0$ when the entire route stays below its starting height, while still capturing a peak at any later point.
+
+#### Complexity detail
+
+The scan performs one addition and one maximum comparison for each of the $n$ gains, taking $O(n)$ time. The running altitude and best altitude are the only additional values, so auxiliary space is $O(1)$.
+
+#### Alternatives and edge cases
+
+- **Build every prefix sum:** Storing all $n + 1$ altitudes and taking their maximum is correct but uses $O(n)$ extra space unnecessarily.
+- **Recompute each prefix:** Summing `gain[:i]` separately for every point is correct but takes $O(n^2)$ time.
+- **All negative gains:** The starting altitude $0$ is the answer because every later point is lower.
+- **Zero gains:** Repeated equal altitudes remain valid candidates for the maximum.
+- **Peak before the endpoint:** Tracking only the final altitude misses routes that climb and then descend.
+- **Single segment:** Compare that one resulting altitude with the starting altitude.
+
+</details>

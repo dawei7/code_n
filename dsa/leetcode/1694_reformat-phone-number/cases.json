@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1694",
+  "cases": [
+    {"id":"sample-two-triples","name":"sample: mixed separators become two triples","kind":"sample","visible":true,"input":{"number":"1-23-45 6"},"expected":"123-456","tags":["sample","three-suffix"]},
+    {"id":"sample-four-suffix","name":"sample: four trailing digits split evenly","kind":"sample","visible":true,"input":{"number":"123 4-567"},"expected":"123-45-67","tags":["sample","four-suffix"]},
+    {"id":"sample-two-suffix","name":"sample: two trailing digits stay together","kind":"sample","visible":true,"input":{"number":"123 4-5678"},"expected":"123-456-78","tags":["sample","two-suffix"]},
+    {"id":"trial-minimum","name":"trial: minimum two-digit input","kind":"trial","visible":true,"input":{"number":"12"},"expected":"12","tags":["minimum","two-suffix"]},
+    {"id":"trial-three-digits","name":"trial: one complete three-digit block","kind":"trial","visible":true,"input":{"number":"123"},"expected":"123","tags":["three-suffix","no-separator"]},
+    {"id":"trial-four-digits","name":"trial: four digits become two pairs","kind":"trial","visible":true,"input":{"number":"1234"},"expected":"12-34","tags":["four-suffix","boundary"]},
+    {"id":"real-five-digits","name":"hidden: five digits reserve a final pair","kind":"real","visible":false,"input":{"number":"12345"},"expected":"123-45","tags":["greedy-boundary","two-suffix"]},
+    {"id":"real-ten-digits","name":"hidden: ten digits end with two pairs","kind":"real","visible":false,"input":{"number":"1234567890"},"expected":"123-456-78-90","tags":["four-suffix","multiple-blocks"]},
+    {"id":"real-adjacent-separators","name":"hidden: leading trailing and adjacent separators","kind":"real","visible":false,"input":{"number":"--17-5  229-35-39475 "},"expected":"175-229-353-94-75","tags":["separator-cleanup","four-suffix"]},
+    {"id":"real-zeroes","name":"hidden: zero digits retain their positions","kind":"real","visible":false,"input":{"number":"0 00-00 0"},"expected":"000-000","tags":["zeroes","three-suffix"]}
+  ]
+}

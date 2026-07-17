@@ -6,6 +6,9 @@
   "title": "Number of Spaces Cleaning Robot Cleaned",
   "difficulty": "Medium",
   "acceptance_rate": 64.58891758857645,
+  "frequency": 69.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1425.842528,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

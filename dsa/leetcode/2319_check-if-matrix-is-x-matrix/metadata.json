@@ -6,6 +6,9 @@
   "title": "Check if Matrix Is X-Matrix",
   "difficulty": "Easy",
   "acceptance_rate": 66.89498106383705,
+  "frequency": 33.8,
+  "elo_rating": 1200.9464053417,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

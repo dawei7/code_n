@@ -6,6 +6,9 @@
   "title": "Count of Matches in Tournament",
   "difficulty": "Easy",
   "acceptance_rate": 86.51582540339263,
+  "frequency": 18.9,
+  "elo_rating": 1203.1408035909,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

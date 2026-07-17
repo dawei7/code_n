@@ -6,6 +6,9 @@
   "title": "Median of Two Sorted Arrays",
   "difficulty": "Hard",
   "acceptance_rate": 46.955177017141025,
+  "frequency": 95.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 2116.015196,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count Substrings Starting and Ending with Given Character",
   "difficulty": "Medium",
   "acceptance_rate": 50.318605508452265,
+  "frequency": 25.8,
+  "elo_rating": 1323.7856529722,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

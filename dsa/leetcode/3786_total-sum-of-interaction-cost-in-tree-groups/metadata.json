@@ -6,6 +6,9 @@
   "title": "Total Sum of Interaction Cost in Tree Groups",
   "difficulty": "Hard",
   "acceptance_rate": 54.422439918246525,
+  "frequency": 50.9,
+  "elo_rating": 2139.3332541502,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

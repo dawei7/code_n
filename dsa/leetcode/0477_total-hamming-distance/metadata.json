@@ -6,6 +6,9 @@
   "title": "Total Hamming Distance",
   "difficulty": "Medium",
   "acceptance_rate": 55.04882769977397,
+  "frequency": 45.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1518.823121,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

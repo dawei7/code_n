@@ -6,6 +6,9 @@
   "title": "01 Matrix",
   "difficulty": "Medium",
   "acceptance_rate": 54.34173183443137,
+  "frequency": 49.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1528.157237,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

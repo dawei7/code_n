@@ -6,6 +6,9 @@
   "title": "Rearrange Array to Maximize Prefix Score",
   "difficulty": "Medium",
   "acceptance_rate": 42.939929623790086,
+  "frequency": 31.2,
+  "elo_rating": 1336.7830451625,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

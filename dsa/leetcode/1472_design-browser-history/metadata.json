@@ -6,6 +6,9 @@
   "title": "Design Browser History",
   "difficulty": "Medium",
   "acceptance_rate": 78.37292863075331,
+  "frequency": 66.1,
+  "elo_rating": 1453.7818053022,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

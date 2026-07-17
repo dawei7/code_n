@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1744",
+  "measurement_note": "Size is n+q. Each tier has n=q=K singleton candy types and K identical queries for the final type. Prefix preprocessing answers them in O(n+q), while correctly summing all earlier types for every query completes all tiers and is rejected by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 types and 4 final-type queries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "candiesCount": [1,1,1,1],
+        "queries": [[3,3,1],[3,3,1],[3,3,1],[3,3,1]]
+      },
+      "expected": [true,true,true,true],
+      "tags": ["benchmark","scaling","singleton-types"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 types and 16 final-type queries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "candiesCount": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "queries": [[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1],[15,15,1]]
+      },
+      "expected": [true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
+      "tags": ["benchmark","scaling","singleton-types"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 types and 64 final-type queries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "candiesCount": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "queries": [[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1],[63,63,1]]
+      },
+      "expected": [true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],
+      "tags": ["benchmark","scaling","singleton-types"]
+    }
+  ]
+}

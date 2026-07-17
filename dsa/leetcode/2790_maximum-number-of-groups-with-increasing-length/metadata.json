@@ -6,6 +6,9 @@
   "title": "Maximum Number of Groups With Increasing Length",
   "difficulty": "Hard",
   "acceptance_rate": 23.238044615716824,
+  "frequency": 0.0,
+  "elo_rating": 2619.7016189999,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

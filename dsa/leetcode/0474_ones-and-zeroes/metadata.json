@@ -6,6 +6,9 @@
   "title": "Ones and Zeroes",
   "difficulty": "Medium",
   "acceptance_rate": 53.52281119286737,
+  "frequency": 35.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1539.2415,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

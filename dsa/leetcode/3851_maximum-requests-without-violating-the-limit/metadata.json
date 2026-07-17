@@ -6,6 +6,9 @@
   "title": "Maximum Requests Without Violating the Limit",
   "difficulty": "Medium",
   "acceptance_rate": 63.96148555708391,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1431.48336,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

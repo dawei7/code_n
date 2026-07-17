@@ -6,6 +6,9 @@
   "title": "Market Analysis III",
   "difficulty": "Medium",
   "acceptance_rate": 42.339503741630566,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1681.295078,
   "category": "database",
   "category_title": "Database",
   "topics": [

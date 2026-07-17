@@ -6,6 +6,9 @@
   "title": "Check if There is a Valid Path in a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 64.48572485295347,
+  "frequency": 64.5,
+  "elo_rating": 1745.6490739887,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

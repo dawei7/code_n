@@ -6,6 +6,9 @@
   "title": "As Far from Land as Possible",
   "difficulty": "Medium",
   "acceptance_rate": 52.384518660789546,
+  "frequency": 32.0,
+  "elo_rating": 1666.346990979,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

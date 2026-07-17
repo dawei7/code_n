@@ -6,6 +6,9 @@
   "title": "Confirmation Rate",
   "difficulty": "Medium",
   "acceptance_rate": 62.2141772196354,
+  "frequency": 48.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1445.742131,
   "category": "database",
   "category_title": "Database",
   "topics": [

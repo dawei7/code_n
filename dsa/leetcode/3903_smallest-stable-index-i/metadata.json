@@ -6,6 +6,9 @@
   "title": "Smallest Stable Index I",
   "difficulty": "Easy",
   "acceptance_rate": 68.50298496183783,
+  "frequency": 39.9,
+  "elo_rating": 1234.7518772931,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1702",
+  "cases": [
+    {"id":"sample-mixed","name":"sample: mixed string consolidates five zeros","kind":"sample","visible":true,"input":{"binary":"000110"},"expected":"111011","tags":["sample","mixed"]},
+    {"id":"sample-no-operation","name":"sample: zero followed by one cannot change","kind":"sample","visible":true,"input":{"binary":"01"},"expected":"01","tags":["sample","unchanged"]},
+    {"id":"trial-leading-ones","name":"trial: leading ones precede an all-zero suffix","kind":"trial","visible":true,"input":{"binary":"11000"},"expected":"11110","tags":["leading-ones","zero-suffix"]},
+    {"id":"trial-single-one","name":"trial: one-character all-one string","kind":"trial","visible":true,"input":{"binary":"1"},"expected":"1","tags":["minimum","all-ones"]},
+    {"id":"trial-single-zero","name":"trial: one unavoidable zero remains unchanged","kind":"trial","visible":true,"input":{"binary":"0"},"expected":"0","tags":["minimum","single-zero"]},
+    {"id":"trial-two-zeros","name":"trial: one operation transforms two zeros","kind":"trial","visible":true,"input":{"binary":"00"},"expected":"10","tags":["direct-operation","all-zeros"]},
+    {"id":"real-all-zeros","name":"hidden: all zeros leave one zero at the end","kind":"real","visible":false,"input":{"binary":"000000"},"expected":"111110","tags":["all-zeros","survivor-position"]},
+    {"id":"real-separated-zeros","name":"hidden: separated zeros consolidate to the calculated index","kind":"real","visible":false,"input":{"binary":"01010"},"expected":"11011","tags":["separated-zeros","greedy"]},
+    {"id":"real-interior-pair","name":"hidden: leading and trailing ones surround two zeros","kind":"real","visible":false,"input":{"binary":"1001"},"expected":"1101","tags":["interior-zeros","leading-ones"]},
+    {"id":"real-all-ones","name":"hidden: a longer all-one string is already maximum","kind":"real","visible":false,"input":{"binary":"11111111"},"expected":"11111111","tags":["all-ones","unchanged"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Maximum Number of Darts Inside of a Circular Dartboard",
   "difficulty": "Hard",
   "acceptance_rate": 41.09482719262201,
+  "frequency": 38.9,
+  "elo_rating": 2201.8209584221,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

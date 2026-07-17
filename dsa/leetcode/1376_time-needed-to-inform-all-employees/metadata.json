@@ -6,6 +6,9 @@
   "title": "Time Needed to Inform All Employees",
   "difficulty": "Medium",
   "acceptance_rate": 60.54129808444637,
+  "frequency": 37.9,
+  "elo_rating": 1561.0553908973,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

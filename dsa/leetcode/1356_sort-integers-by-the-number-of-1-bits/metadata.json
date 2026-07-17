@@ -6,6 +6,9 @@
   "title": "Sort Integers by The Number of 1 Bits",
   "difficulty": "Easy",
   "acceptance_rate": 82.38844458885053,
+  "frequency": 64.0,
+  "elo_rating": 1257.7082143289,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

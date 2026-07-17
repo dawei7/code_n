@@ -6,6 +6,9 @@
   "title": "Count Valid Word Occurrences",
   "difficulty": "Medium",
   "acceptance_rate": 48.25753726287263,
+  "frequency": 0.0,
+  "elo_rating": 1608.2817385559,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

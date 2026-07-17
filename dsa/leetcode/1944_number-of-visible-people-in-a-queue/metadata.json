@@ -6,6 +6,9 @@
   "title": "Number of Visible People in a Queue",
   "difficulty": "Hard",
   "acceptance_rate": 73.28502935947854,
+  "frequency": 71.0,
+  "elo_rating": 2104.9526046945,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

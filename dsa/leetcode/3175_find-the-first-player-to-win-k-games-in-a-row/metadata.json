@@ -6,6 +6,9 @@
   "title": "Find The First Player to win K Games in a Row",
   "difficulty": "Medium",
   "acceptance_rate": 40.40029973610191,
+  "frequency": 0.0,
+  "elo_rating": 1488.4453801606,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

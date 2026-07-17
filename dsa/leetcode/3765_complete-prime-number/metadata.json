@@ -6,6 +6,9 @@
   "title": "Complete Prime Number",
   "difficulty": "Medium",
   "acceptance_rate": 36.67692541509936,
+  "frequency": 16.0,
+  "elo_rating": 1378.316399102,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

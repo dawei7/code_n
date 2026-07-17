@@ -6,6 +6,9 @@
   "title": "Largest Triangle Area",
   "difficulty": "Easy",
   "acceptance_rate": 71.72125251284125,
+  "frequency": 4.6,
+  "elo_rating": 1542.5630367445,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count the Number of K-Free Subsets",
   "difficulty": "Medium",
   "acceptance_rate": 47.329520457545094,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1628.790675,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find the Difference",
   "difficulty": "Easy",
   "acceptance_rate": 60.47957461382324,
+  "frequency": 33.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1223.413097,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

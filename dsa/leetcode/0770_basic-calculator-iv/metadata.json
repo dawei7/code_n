@@ -6,6 +6,9 @@
   "title": "Basic Calculator IV",
   "difficulty": "Hard",
   "acceptance_rate": 49.901374863838434,
+  "frequency": 0.0,
+  "elo_rating": 2863.1378294349,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

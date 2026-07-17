@@ -6,6 +6,9 @@
   "title": "Largest Rectangle in Histogram",
   "difficulty": "Hard",
   "acceptance_rate": 50.316714340956814,
+  "frequency": 80.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 2084.886921,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

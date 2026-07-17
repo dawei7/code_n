@@ -6,6 +6,9 @@
   "title": "Classes With at Least 5 Students",
   "difficulty": "Easy",
   "acceptance_rate": 64.23503074986338,
+  "frequency": 20.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1210.953835,
   "category": "database",
   "category_title": "Database",
   "topics": [

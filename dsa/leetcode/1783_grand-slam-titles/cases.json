@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1783",
+  "cases": [
+    {
+      "id": "sample-three-years",
+      "name": "sample: two champions and one player without a title",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "Players": [
+          {"player_id": 1, "player_name": "Nadal"},
+          {"player_id": 2, "player_name": "Federer"},
+          {"player_id": 3, "player_name": "Novak"}
+        ],
+        "Championships": [
+          {"year": 2018, "Wimbledon": 1, "Fr_open": 1, "US_open": 1, "Au_open": 1},
+          {"year": 2019, "Wimbledon": 1, "Fr_open": 1, "US_open": 2, "Au_open": 2},
+          {"year": 2020, "Wimbledon": 2, "Fr_open": 1, "US_open": 2, "Au_open": 2}
+        ]
+      }},
+      "expected": {"columns": ["player_id", "player_name", "grand_slams_count"], "rows": [[1,"Nadal",7],[2,"Federer",5]]},
+      "tags": ["sample", "nonwinner", "multiple-years"]
+    },
+    {
+      "id": "trial-clean-sweep",
+      "name": "one player wins all four tournaments in a year",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Players": [
+          {"player_id": 7, "player_name": "Serena"},
+          {"player_id": 8, "player_name": "Venus"}
+        ],
+        "Championships": [
+          {"year": 2021, "Wimbledon": 7, "Fr_open": 7, "US_open": 7, "Au_open": 7}
+        ]
+      }},
+      "expected": {"columns": ["player_id", "player_name", "grand_slams_count"], "rows": [[7,"Serena",4]]},
+      "tags": ["single-year", "clean-sweep"]
+    },
+    {
+      "id": "trial-four-winners",
+      "name": "each tournament has a different champion",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Players": [
+          {"player_id": 1, "player_name": "A"},
+          {"player_id": 2, "player_name": "B"},
+          {"player_id": 3, "player_name": "C"},
+          {"player_id": 4, "player_name": "D"}
+        ],
+        "Championships": [
+          {"year": 2024, "Wimbledon": 1, "Fr_open": 2, "US_open": 3, "Au_open": 4}
+        ]
+      }},
+      "expected": {"columns": ["player_id", "player_name", "grand_slams_count"], "rows": [[1,"A",1],[2,"B",1],[3,"C",1],[4,"D",1]]},
+      "tags": ["all-columns", "distinct-winners"]
+    },
+    {
+      "id": "real-balanced-totals",
+      "name": "hidden: tied totals remain separate player rows",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Players": [
+          {"player_id": 10, "player_name": "Alpha"},
+          {"player_id": 20, "player_name": "Beta"},
+          {"player_id": 30, "player_name": "Gamma"}
+        ],
+        "Championships": [
+          {"year": 2020, "Wimbledon": 10, "Fr_open": 20, "US_open": 30, "Au_open": 10},
+          {"year": 2021, "Wimbledon": 20, "Fr_open": 20, "US_open": 10, "Au_open": 30}
+        ]
+      }},
+      "expected": {"columns": ["player_id", "player_name", "grand_slams_count"], "rows": [[10,"Alpha",3],[20,"Beta",3],[30,"Gamma",2]]},
+      "tags": ["tied-counts", "multiple-years"]
+    },
+    {
+      "id": "real-last-column-only",
+      "name": "hidden: eventual winner appears only in Australian Open",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Players": [
+          {"player_id": 4, "player_name": "Fourth"},
+          {"player_id": 9, "player_name": "Ninth"}
+        ],
+        "Championships": [
+          {"year": 2015, "Wimbledon": 4, "Fr_open": 4, "US_open": 4, "Au_open": 9}
+        ]
+      }},
+      "expected": {"columns": ["player_id", "player_name", "grand_slams_count"], "rows": [[4,"Fourth",3],[9,"Ninth",1]]},
+      "tags": ["au-open", "column-coverage"]
+    },
+    {
+      "id": "real-noncontiguous-ids",
+      "name": "hidden: identifiers need not be contiguous or input-sorted",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Players": [
+          {"player_id": 100, "player_name": "Hundred"},
+          {"player_id": 2, "player_name": "Two"},
+          {"player_id": 55, "player_name": "FiftyFive"}
+        ],
+        "Championships": [
+          {"year": 1999, "Wimbledon": 100, "Fr_open": 2, "US_open": 100, "Au_open": 2},
+          {"year": 2000, "Wimbledon": 55, "Fr_open": 100, "US_open": 55, "Au_open": 100}
+        ]
+      }},
+      "expected": {"columns": ["player_id", "player_name", "grand_slams_count"], "rows": [[2,"Two",2],[55,"FiftyFive",2],[100,"Hundred",4]]},
+      "tags": ["noncontiguous-ids", "ordering"]
+    },
+    {
+      "id": "real-repeated-champion",
+      "name": "hidden: title count accumulates across every column and year",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Players": [
+          {"player_id": 6, "player_name": "Repeat"},
+          {"player_id": 11, "player_name": "Other"},
+          {"player_id": 12, "player_name": "Never"}
+        ],
+        "Championships": [
+          {"year": 2010, "Wimbledon": 6, "Fr_open": 11, "US_open": 6, "Au_open": 6},
+          {"year": 2011, "Wimbledon": 6, "Fr_open": 6, "US_open": 11, "Au_open": 6},
+          {"year": 2012, "Wimbledon": 11, "Fr_open": 6, "US_open": 6, "Au_open": 11}
+        ]
+      }},
+      "expected": {"columns": ["player_id", "player_name", "grand_slams_count"], "rows": [[6,"Repeat",8],[11,"Other",4]]},
+      "tags": ["accumulation", "nonwinner"]
+    }
+  ]
+}

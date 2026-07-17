@@ -6,6 +6,9 @@
   "title": "Odd Even Jump",
   "difficulty": "Hard",
   "acceptance_rate": 41.32769102489323,
+  "frequency": 45.4,
+  "elo_rating": 2079.1911227043,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

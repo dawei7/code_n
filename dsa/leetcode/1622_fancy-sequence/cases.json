@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1622",
+  "cases": [
+    {"id":"sample-official","name":"sample: official mixed operation trace","kind":"sample","visible":true,"input":{"operations":["Fancy","append","addAll","append","multAll","getIndex","addAll","append","multAll","getIndex","getIndex","getIndex"],"arguments":[[],[2],[3],[7],[2],[0],[3],[10],[2],[0],[1],[2]]},"expected":[null,null,null,null,null,10,null,null,null,26,34,20],"tags":["sample","mixed-operations"]},
+    {"id":"sample-empty-query","name":"sample: querying an empty sequence returns minus one","kind":"sample","visible":true,"input":{"operations":["Fancy","getIndex"],"arguments":[[],[0]]},"expected":[null,-1],"tags":["sample","empty-sequence"]},
+    {"id":"sample-prior-add","name":"sample: addition before append does not affect the new value","kind":"sample","visible":true,"input":{"operations":["Fancy","addAll","append","getIndex"],"arguments":[[],[5],[2],[0]]},"expected":[null,null,null,2],"tags":["sample","empty-update"]},
+    {"id":"trial-prior-multiply","name":"trial: multiplication before append does not affect the new value","kind":"trial","visible":true,"input":{"operations":["Fancy","multAll","append","getIndex"],"arguments":[[],[7],[3],[0]]},"expected":[null,null,null,3],"tags":["empty-update","append-normalization"]},
+    {"id":"trial-boundary-index","name":"trial: index equal to length is out of range","kind":"trial","visible":true,"input":{"operations":["Fancy","append","getIndex","getIndex"],"arguments":[[],[9],[0],[1]]},"expected":[null,null,9,-1],"tags":["index-boundary"]},
+    {"id":"trial-two-values","name":"trial: later append avoids earlier addition","kind":"trial","visible":true,"input":{"operations":["Fancy","append","addAll","append","getIndex","getIndex"],"arguments":[[],[1],[4],[2],[0],[1]]},"expected":[null,null,null,null,5,2],"tags":["append-normalization","addition"]},
+    {"id":"real-multiple-products","name":"hidden: chained multiplication composes globally","kind":"real","visible":false,"input":{"operations":["Fancy","append","multAll","multAll","addAll","getIndex"],"arguments":[[],[5],[3],[4],[2],[0]]},"expected":[null,null,null,null,null,62],"tags":["multiplication","composition"]},
+    {"id":"real-modulo-wrap","name":"hidden: repeated large multipliers wrap modulo the prime","kind":"real","visible":false,"input":{"operations":["Fancy","append","multAll","multAll","multAll","multAll","multAll","getIndex"],"arguments":[[],[100],[100],[100],[100],[100],[100],[0]]},"expected":[null,null,null,null,null,null,null,999993007],"tags":["modulo","multiplication"]},
+    {"id":"real-interleaved-appends","name":"hidden: each append cancels a different accumulated transform","kind":"real","visible":false,"input":{"operations":["Fancy","append","addAll","append","multAll","append","addAll","getIndex","getIndex","getIndex"],"arguments":[[],[2],[3],[7],[5],[11],[4],[0],[1],[2]]},"expected":[null,null,null,null,null,null,null,29,39,15],"tags":["interleaved","append-normalization"]},
+    {"id":"real-large-index","name":"hidden: a far outside index returns minus one without mutation","kind":"real","visible":false,"input":{"operations":["Fancy","append","addAll","getIndex","getIndex"],"arguments":[[],[8],[2],[100000],[0]]},"expected":[null,null,null,-1,10],"tags":["index-boundary","large-index"]}
+  ]
+}

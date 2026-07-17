@@ -6,6 +6,9 @@
   "title": "Beautiful Pairs",
   "difficulty": "Hard",
   "acceptance_rate": 48.95879486043421,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2098.464176,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

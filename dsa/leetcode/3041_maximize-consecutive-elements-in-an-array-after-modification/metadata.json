@@ -6,6 +6,9 @@
   "title": "Maximize Consecutive Elements in an Array After Modification",
   "difficulty": "Hard",
   "acceptance_rate": 34.09627664227192,
+  "frequency": 0.0,
+  "elo_rating": 2231.1942136357,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1636",
+  "cases": [
+    {"id":"sample-distinct-frequencies","name":"sample: blocks are ordered by increasing frequency","kind":"sample","visible":true,"input":{"nums":[1,1,2,2,2,3]},"expected":[3,1,1,2,2,2],"tags":["sample","frequency-order"]},
+    {"id":"sample-tied-frequencies","name":"sample: larger value wins an equal-frequency tie","kind":"sample","visible":true,"input":{"nums":[2,3,1,3,2]},"expected":[1,3,3,2,2],"tags":["sample","tie-break"]},
+    {"id":"sample-negative-values","name":"sample: negative and positive values share the same ordering rule","kind":"sample","visible":true,"input":{"nums":[-1,1,-6,4,5,-6,1,4,1]},"expected":[5,-1,4,4,-6,-6,1,1,1],"tags":["sample","negative-values"]},
+    {"id":"trial-singleton","name":"trial: a singleton is unchanged","kind":"trial","visible":true,"input":{"nums":[7]},"expected":[7],"tags":["minimum-length"]},
+    {"id":"trial-all-equal","name":"trial: one repeated value forms the only block","kind":"trial","visible":true,"input":{"nums":[-4,-4,-4,-4]},"expected":[-4,-4,-4,-4],"tags":["all-equal"]},
+    {"id":"trial-all-distinct","name":"trial: distinct values are returned in decreasing order","kind":"trial","visible":true,"input":{"nums":[0,-3,8,2,-10]},"expected":[8,2,0,-3,-10],"tags":["all-distinct","tie-break"]},
+    {"id":"real-frequency-ties","name":"hidden: several multi-element blocks have tied frequencies","kind":"real","visible":false,"input":{"nums":[5,5,-2,-2,9,9,1,1,1,7,7,7]},"expected":[9,9,5,5,-2,-2,7,7,7,1,1,1],"tags":["multiple-ties","negative-values"]},
+    {"id":"real-value-boundaries","name":"hidden: both value boundaries participate in ties","kind":"real","visible":false,"input":{"nums":[-100,100,0,-100,100,50]},"expected":[50,0,100,100,-100,-100],"tags":["value-boundaries","tie-break"]},
+    {"id":"real-input-order-irrelevant","name":"hidden: interleaved copies must form frequency blocks","kind":"real","visible":false,"input":{"nums":[3,1,2,3,2,1,3,4,2,5,1,5]},"expected":[4,5,5,3,3,3,2,2,2,1,1,1],"tags":["interleaved","frequency-blocks"]},
+    {"id":"real-zero-and-negatives","name":"hidden: zero is ordered numerically among equal frequencies","kind":"real","visible":false,"input":{"nums":[0,-1,-1,0,-2,-3,-3,-2,-2]},"expected":[0,0,-1,-1,-3,-3,-2,-2,-2],"tags":["zero","negative-values"]}
+  ]
+}

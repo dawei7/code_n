@@ -6,6 +6,9 @@
   "title": "Maximum Product of Two Digits",
   "difficulty": "Easy",
   "acceptance_rate": 69.33361771331832,
+  "frequency": 30.8,
+  "elo_rating": 1199.2274387994,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

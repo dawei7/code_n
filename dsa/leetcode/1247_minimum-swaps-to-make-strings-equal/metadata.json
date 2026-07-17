@@ -6,6 +6,9 @@
   "title": "Minimum Swaps to Make Strings Equal",
   "difficulty": "Medium",
   "acceptance_rate": 65.52327443877677,
+  "frequency": 27.4,
+  "elo_rating": 1597.0215918551,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

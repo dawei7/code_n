@@ -6,6 +6,9 @@
   "title": "Delete N Nodes After M Nodes of a Linked List",
   "difficulty": "Easy",
   "acceptance_rate": 74.4252470736665,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1169.036486,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

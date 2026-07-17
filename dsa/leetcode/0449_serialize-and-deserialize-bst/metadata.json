@@ -6,6 +6,9 @@
   "title": "Serialize and Deserialize BST",
   "difficulty": "Medium",
   "acceptance_rate": 59.78688238275976,
+  "frequency": 41.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1465.641735,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

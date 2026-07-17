@@ -6,6 +6,9 @@
   "title": "Minimum Increment to Make Array Unique",
   "difficulty": "Medium",
   "acceptance_rate": 60.72071431428584,
+  "frequency": 54.8,
+  "elo_rating": 1448.1207963663,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

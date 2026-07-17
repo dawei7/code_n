@@ -6,6 +6,9 @@
   "title": "Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree",
   "difficulty": "Hard",
   "acceptance_rate": 66.61822295709686,
+  "frequency": 44.5,
+  "elo_rating": 2571.552028121,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Distance to Type a Word Using Two Fingers",
   "difficulty": "Hard",
   "acceptance_rate": 72.30966753442051,
+  "frequency": 66.2,
+  "elo_rating": 2027.7304121046,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

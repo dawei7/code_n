@@ -6,6 +6,9 @@
   "title": "Best Time to Buy and Sell Stock IV",
   "difficulty": "Hard",
   "acceptance_rate": 50.617317611325404,
+  "frequency": 53.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 2079.949738,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

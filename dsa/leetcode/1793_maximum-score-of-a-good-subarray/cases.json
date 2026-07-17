@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1793",
+  "cases": [
+    {
+      "id": "example-interior-index",
+      "name": "optimal interval extends across both sides of k",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 4, 3, 7, 4, 5], "k": 3},
+      "expected": 15,
+      "tags": ["example", "interior-k"]
+    },
+    {
+      "id": "example-left-boundary-index",
+      "name": "optimal interval starts at boundary k",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [5, 5, 4, 5, 4, 1, 1, 1], "k": 0},
+      "expected": 20,
+      "tags": ["example", "boundary-k"]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "single element is the only good subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [9], "k": 0},
+      "expected": 9,
+      "tags": ["minimum-length", "singleton"]
+    },
+    {
+      "id": "real-equal-middle-values",
+      "name": "hidden: equal neighboring values may expand in either order",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 3, 3, 1], "k": 1},
+      "expected": 6,
+      "tags": ["tie", "interior-k"]
+    },
+    {
+      "id": "real-right-boundary-index",
+      "name": "hidden: expansion proceeds only left from the final index",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 4], "k": 3},
+      "expected": 6,
+      "tags": ["right-boundary", "one-sided"]
+    },
+    {
+      "id": "real-flat-plateau",
+      "name": "hidden: the whole equal plateau is optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 5, 5], "k": 1},
+      "expected": 15,
+      "tags": ["plateau", "whole-array"]
+    },
+    {
+      "id": "real-deep-valley-at-k",
+      "name": "hidden: low required element fixes every minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100, 1, 100], "k": 1},
+      "expected": 3,
+      "tags": ["minimum-at-k", "whole-array"]
+    },
+    {
+      "id": "real-local-plateau-beats-whole-array",
+      "name": "hidden: adding a low endpoint would reduce the best score",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 10, 10, 10, 1], "k": 2},
+      "expected": 30,
+      "tags": ["local-optimum", "plateau"]
+    },
+    {
+      "id": "real-asymmetric-neighbors",
+      "name": "hidden: larger right neighbor is consumed before a low left boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 5, 4, 3, 10, 9], "k": 4},
+      "expected": 18,
+      "tags": ["asymmetric", "greedy-direction"]
+    }
+  ]
+}

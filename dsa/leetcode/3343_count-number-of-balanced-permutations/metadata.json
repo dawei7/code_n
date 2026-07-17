@@ -6,6 +6,9 @@
   "title": "Count Number of Balanced Permutations",
   "difficulty": "Hard",
   "acceptance_rate": 49.01946261778381,
+  "frequency": 0.0,
+  "elo_rating": 2614.911779573,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

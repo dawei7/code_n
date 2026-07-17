@@ -6,6 +6,9 @@
   "title": "Find Total Time Spent by Each Employee",
   "difficulty": "Easy",
   "acceptance_rate": 86.36158417893436,
+  "frequency": 22.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

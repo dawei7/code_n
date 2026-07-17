@@ -6,6 +6,9 @@
   "title": "Watering Plants",
   "difficulty": "Medium",
   "acceptance_rate": 79.97488659373974,
+  "frequency": 48.6,
+  "elo_rating": 1320.6485731562,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

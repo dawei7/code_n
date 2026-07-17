@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1885",
+  "frontend_id": "1759",
+  "title_slug": "count-number-of-homogenous-substrings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countHomogenous",
+  "verified_submission_id": "2071020056",
+  "verified_at": "2026-07-17T10:56:02.400929+00:00"
+}

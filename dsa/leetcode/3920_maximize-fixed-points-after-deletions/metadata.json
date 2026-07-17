@@ -6,6 +6,9 @@
   "title": "Maximize Fixed Points After Deletions",
   "difficulty": "Hard",
   "acceptance_rate": 19.671625419894426,
+  "frequency": 61.0,
+  "elo_rating": 2263.6224926573,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

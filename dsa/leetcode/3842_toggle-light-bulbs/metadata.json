@@ -6,6 +6,9 @@
   "title": "Toggle Light Bulbs",
   "difficulty": "Easy",
   "acceptance_rate": 72.00665824819194,
+  "frequency": 26.8,
+  "elo_rating": 1160.9529516199,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

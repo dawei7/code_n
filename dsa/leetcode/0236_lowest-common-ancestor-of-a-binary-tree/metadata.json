@@ -6,6 +6,9 @@
   "title": "Lowest Common Ancestor of a Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 69.66765371388959,
+  "frequency": 71.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1387.923598,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

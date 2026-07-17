@@ -6,6 +6,9 @@
   "title": "Count Prime-Gap Balanced Subarrays",
   "difficulty": "Medium",
   "acceptance_rate": 23.68816945480804,
+  "frequency": 49.6,
+  "elo_rating": 2235.2155688741,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

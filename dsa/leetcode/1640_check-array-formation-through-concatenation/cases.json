@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1640",
+  "cases": [
+    {"id":"sample-singletons-reordered","name":"sample: singleton pieces can be reordered","kind":"sample","visible":true,"input":{"arr":[15,88],"pieces":[[88],[15]]},"expected":true,"tags":["sample","piece-order"]},
+    {"id":"sample-internal-order-wrong","name":"sample: values inside a piece cannot be reversed","kind":"sample","visible":true,"input":{"arr":[49,18,16],"pieces":[[16,18,49]]},"expected":false,"tags":["sample","internal-order"]},
+    {"id":"sample-mixed-piece-lengths","name":"sample: singleton and multi-value pieces concatenate","kind":"sample","visible":true,"input":{"arr":[91,4,64,78],"pieces":[[78],[4,64],[91]]},"expected":true,"tags":["sample","mixed-lengths"]},
+    {"id":"trial-single-value","name":"trial: one matching singleton forms the target","kind":"trial","visible":true,"input":{"arr":[85],"pieces":[[85]]},"expected":true,"tags":["minimum-length"]},
+    {"id":"trial-one-whole-piece","name":"trial: one piece already equals the target","kind":"trial","visible":true,"input":{"arr":[1,2,3,4],"pieces":[[1,2,3,4]]},"expected":true,"tags":["single-piece"]},
+    {"id":"real-middle-mismatch","name":"hidden: a piece starts correctly but disagrees in its middle","kind":"real","visible":false,"input":{"arr":[10,20,30,40],"pieces":[[10,30],[20],[40]]},"expected":false,"tags":["internal-mismatch"]},
+    {"id":"real-missing-start","name":"hidden: no piece starts with the next target value","kind":"real","visible":false,"input":{"arr":[1,2,3],"pieces":[[1],[3,2]]},"expected":false,"tags":["missing-start"]},
+    {"id":"real-all-singletons","name":"hidden: many singleton pieces arrive in reverse collection order","kind":"real","visible":false,"input":{"arr":[1,2,3,4,5,6],"pieces":[[6],[5],[4],[3],[2],[1]]},"expected":true,"tags":["all-singletons","reverse-piece-order"]},
+    {"id":"real-boundary-values","name":"hidden: minimum and maximum values occur in separate pieces","kind":"real","visible":false,"input":{"arr":[100,1,50,25],"pieces":[[50,25],[100,1]]},"expected":true,"tags":["value-boundaries"]},
+    {"id":"real-boundary-crossing","name":"hidden: correct values grouped across the wrong piece boundary fail","kind":"real","visible":false,"input":{"arr":[7,8,9,10],"pieces":[[7,8,10],[9]]},"expected":false,"tags":["piece-boundary","internal-mismatch"]}
+  ]
+}

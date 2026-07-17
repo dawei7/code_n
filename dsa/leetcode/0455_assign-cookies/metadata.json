@@ -6,6 +6,9 @@
   "title": "Assign Cookies",
   "difficulty": "Easy",
   "acceptance_rate": 55.23389011538301,
+  "frequency": 55.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1236.663423,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

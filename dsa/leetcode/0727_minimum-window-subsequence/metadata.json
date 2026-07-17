@@ -6,6 +6,9 @@
   "title": "Minimum Window Subsequence",
   "difficulty": "Hard",
   "acceptance_rate": 43.846482477350705,
+  "frequency": 49.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 2171.964639,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

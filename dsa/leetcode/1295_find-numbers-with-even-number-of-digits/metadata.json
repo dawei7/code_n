@@ -6,6 +6,9 @@
   "title": "Find Numbers with Even Number of Digits",
   "difficulty": "Easy",
   "acceptance_rate": 79.86069567622133,
+  "frequency": 48.7,
+  "elo_rating": 1139.6630206282,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

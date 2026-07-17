@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1797",
+  "cases": [
+    {
+      "id": "example-generate-renew-and-expire",
+      "name": "sample: missing and expired renewals are ignored",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": ["AuthenticationManager", "renew", "generate", "countUnexpiredTokens", "generate", "renew", "renew", "countUnexpiredTokens"],
+        "arguments": [[5], ["aaa", 1], ["aaa", 2], [6], ["bbb", 7], ["aaa", 8], ["bbb", 10], [15]]
+      },
+      "expected": [null, null, null, 1, null, null, null, 0],
+      "tags": ["example", "all-methods", "expiration-boundary"]
+    },
+    {
+      "id": "trial-expires-before-same-time-action",
+      "name": "token is expired before a count or renewal at its expiry time",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["AuthenticationManager", "generate", "countUnexpiredTokens", "renew", "countUnexpiredTokens"],
+        "arguments": [[5], ["abc", 1], [6], ["abc", 7], [8]]
+      },
+      "expected": [null, null, 0, null, 0],
+      "tags": ["exact-expiry", "ignored-renewal"]
+    },
+    {
+      "id": "trial-renew-before-expiration",
+      "name": "a valid renewal replaces the old expiry",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["AuthenticationManager", "generate", "renew", "countUnexpiredTokens", "countUnexpiredTokens", "countUnexpiredTokens"],
+        "arguments": [[5], ["abc", 1], ["abc", 5], [6], [9], [10]]
+      },
+      "expected": [null, null, null, 1, 1, 0],
+      "tags": ["renewal", "extended-expiry"]
+    },
+    {
+      "id": "real-renewal-changes-expiry-order",
+      "name": "hidden: renewed oldest token moves behind newer token",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["AuthenticationManager", "generate", "generate", "renew", "countUnexpiredTokens", "countUnexpiredTokens", "countUnexpiredTokens"],
+        "arguments": [[10], ["a", 1], ["b", 2], ["a", 3], [11], [12], [13]]
+      },
+      "expected": [null, null, null, null, 2, 1, 0],
+      "tags": ["ordering", "renewal", "multiple-expirations"]
+    },
+    {
+      "id": "real-nonexistent-renewals",
+      "name": "hidden: repeated renewals of absent IDs change nothing",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["AuthenticationManager", "renew", "renew", "countUnexpiredTokens"],
+        "arguments": [[100], ["a", 1], ["b", 2], [3]]
+      },
+      "expected": [null, null, null, 0],
+      "tags": ["missing-token", "empty-manager"]
+    },
+    {
+      "id": "real-several-expire-together",
+      "name": "hidden: cleanup removes every prefix token already expired",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["AuthenticationManager", "generate", "generate", "generate", "countUnexpiredTokens"],
+        "arguments": [[3], ["a", 1], ["b", 2], ["c", 3], [6]]
+      },
+      "expected": [null, null, null, null, 0],
+      "tags": ["bulk-cleanup", "all-expired"]
+    },
+    {
+      "id": "real-partial-prefix-expiration",
+      "name": "hidden: only later tokens survive a count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["AuthenticationManager", "generate", "generate", "generate", "countUnexpiredTokens", "countUnexpiredTokens"],
+        "arguments": [[5], ["aa", 1], ["bb", 4], ["cc", 7], [8], [12]]
+      },
+      "expected": [null, null, null, null, 2, 0],
+      "tags": ["partial-cleanup", "ordered-expirations"]
+    },
+    {
+      "id": "real-large-time-to-live",
+      "name": "hidden: large TTL keeps tokens active at distant times",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["AuthenticationManager", "generate", "generate", "countUnexpiredTokens", "renew", "countUnexpiredTokens"],
+        "arguments": [[100000000], ["abcde", 1], ["vwxyz", 2], [99999999], ["abcde", 100000000], [100000001]]
+      },
+      "expected": [null, null, null, 2, null, 2],
+      "tags": ["maximum-ttl", "large-time", "renewal"]
+    }
+  ]
+}

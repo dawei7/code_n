@@ -6,6 +6,9 @@
   "title": "Grid Illumination",
   "difficulty": "Hard",
   "acceptance_rate": 39.59547383309759,
+  "frequency": 0.0,
+  "elo_rating": 1873.0367582475,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

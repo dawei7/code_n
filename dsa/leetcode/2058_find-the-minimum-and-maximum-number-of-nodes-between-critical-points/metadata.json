@@ -6,6 +6,9 @@
   "title": "Find the Minimum and Maximum Number of Nodes Between Critical Points",
   "difficulty": "Medium",
   "acceptance_rate": 69.46443299485436,
+  "frequency": 42.2,
+  "elo_rating": 1310.9129840277,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

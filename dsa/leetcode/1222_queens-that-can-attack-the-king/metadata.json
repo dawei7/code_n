@@ -6,6 +6,9 @@
   "title": "Queens That Can Attack the King",
   "difficulty": "Medium",
   "acceptance_rate": 72.8209543914227,
+  "frequency": 27.7,
+  "elo_rating": 1391.7243180131,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

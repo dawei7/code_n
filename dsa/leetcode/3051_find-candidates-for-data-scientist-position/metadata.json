@@ -6,6 +6,9 @@
   "title": "Find Candidates for Data Scientist Position",
   "difficulty": "Easy",
   "acceptance_rate": 75.49824150058618,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.915405,
   "category": "database",
   "category_title": "Database",
   "topics": [

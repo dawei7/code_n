@@ -6,6 +6,9 @@
   "title": "Longest Absolute File Path",
   "difficulty": "Medium",
   "acceptance_rate": 49.60239309324335,
+  "frequency": 53.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1597.288034,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

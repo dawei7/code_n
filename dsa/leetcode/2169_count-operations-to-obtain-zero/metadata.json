@@ -6,6 +6,9 @@
   "title": "Count Operations to Obtain Zero",
   "difficulty": "Easy",
   "acceptance_rate": 79.81355299947639,
+  "frequency": 24.0,
+  "elo_rating": 1199.8592887103,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

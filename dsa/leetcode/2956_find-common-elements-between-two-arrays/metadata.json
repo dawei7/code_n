@@ -6,6 +6,9 @@
   "title": "Find Common Elements Between Two Arrays",
   "difficulty": "Easy",
   "acceptance_rate": 84.62533873275888,
+  "frequency": 42.5,
+  "elo_rating": 1214.542864891,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "How Many Numbers Are Smaller Than the Current Number",
   "difficulty": "Easy",
   "acceptance_rate": 87.45166933259455,
+  "frequency": 48.7,
+  "elo_rating": 1152.1377893605,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Fizz Buzz",
   "difficulty": "Easy",
   "acceptance_rate": 75.66136976347654,
+  "frequency": 82.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

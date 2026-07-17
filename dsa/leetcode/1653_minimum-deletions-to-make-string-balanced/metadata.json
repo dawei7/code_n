@@ -6,6 +6,9 @@
   "title": "Minimum Deletions to Make String Balanced",
   "difficulty": "Medium",
   "acceptance_rate": 68.19463461988467,
+  "frequency": 90.3,
+  "elo_rating": 1793.8027487553,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

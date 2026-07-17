@@ -6,6 +6,9 @@
   "title": "Movie Rating",
   "difficulty": "Medium",
   "acceptance_rate": 43.786206704842385,
+  "frequency": 49.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1666.710521,
   "category": "database",
   "category_title": "Database",
   "topics": [

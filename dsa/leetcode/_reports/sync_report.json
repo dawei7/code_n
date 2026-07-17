@@ -1,9 +1,21 @@
 {
-  "mode": "study_plans",
-  "requested": 18,
-  "synced_plans": 18,
-  "synced_sections": 172,
-  "memberships": 931,
-  "updated_metadata_files": 931,
-  "errors": []
+  "mode": "new_problems",
+  "upstream_total": 3991,
+  "previous_total": 3985,
+  "new_problem_count": 6,
+  "new_frontend_ids": [
+    "3986",
+    "3987",
+    "3988",
+    "3989",
+    "3990",
+    "3991"
+  ],
+  "doc_statuses": {
+    "created": 6
+  },
+  "canonical_total": 3991,
+  "estimated_elo_count": 1458,
+  "frequency_count": 0,
+  "next_step": "Run tools/update_leetcode_metrics.py with a valid Premium LeetCode session to refresh Frequency for the expanded corpus."
 }

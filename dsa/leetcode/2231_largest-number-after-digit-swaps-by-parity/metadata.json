@@ -6,6 +6,9 @@
   "title": "Largest Number After Digit Swaps by Parity",
   "difficulty": "Easy",
   "acceptance_rate": 65.55677475500397,
+  "frequency": 25.0,
+  "elo_rating": 1365.2269076492,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Students Unable to Eat Lunch",
   "difficulty": "Easy",
   "acceptance_rate": 79.77618349091298,
+  "frequency": 41.3,
+  "elo_rating": 1404.1839222,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

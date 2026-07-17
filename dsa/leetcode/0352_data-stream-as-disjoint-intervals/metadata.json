@@ -6,6 +6,9 @@
   "title": "Data Stream as Disjoint Intervals",
   "difficulty": "Hard",
   "acceptance_rate": 60.320015313402706,
+  "frequency": 36.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 2002.189097,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

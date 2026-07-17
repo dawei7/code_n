@@ -6,6 +6,9 @@
   "title": "Stable Subarrays With Equal Boundary and Interior Sum",
   "difficulty": "Medium",
   "acceptance_rate": 26.477642760702093,
+  "frequency": 0.0,
+  "elo_rating": 1908.8920524591,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

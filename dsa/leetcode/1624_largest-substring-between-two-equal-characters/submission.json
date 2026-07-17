@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1746",
+  "frontend_id": "1624",
+  "title_slug": "largest-substring-between-two-equal-characters",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxLengthBetweenEqualCharacters",
+  "verified_submission_id": "2070436094",
+  "verified_at": "2026-07-16T22:23:52.143519+00:00"
+}

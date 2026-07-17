@@ -6,6 +6,9 @@
   "title": "Minimum Number of People to Teach",
   "difficulty": "Medium",
   "acceptance_rate": 67.29877820052515,
+  "frequency": 41.6,
+  "elo_rating": 1983.70440706,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

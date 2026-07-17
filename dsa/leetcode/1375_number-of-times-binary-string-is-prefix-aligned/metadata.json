@@ -6,6 +6,9 @@
   "title": "Number of Times Binary String Is Prefix-Aligned",
   "difficulty": "Medium",
   "acceptance_rate": 66.14423118582384,
+  "frequency": 0.0,
+  "elo_rating": 1438.8988489545,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

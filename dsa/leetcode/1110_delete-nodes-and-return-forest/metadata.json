@@ -6,6 +6,9 @@
   "title": "Delete Nodes And Return Forest",
   "difficulty": "Medium",
   "acceptance_rate": 72.48140709368496,
+  "frequency": 52.3,
+  "elo_rating": 1511.3725353467,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

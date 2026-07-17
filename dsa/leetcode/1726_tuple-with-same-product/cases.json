@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1726",
+  "cases": [
+    {
+      "id": "sample-one",
+      "name": "sample: one equal-product pair collision",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2,3,4,6]},
+      "expected": 8,
+      "tags": ["sample", "single-collision"]
+    },
+    {
+      "id": "sample-two",
+      "name": "sample: two equal-product pair collisions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,2,4,5,10]},
+      "expected": 16,
+      "tags": ["sample", "multiple-products"]
+    },
+    {
+      "id": "trial-no-collision",
+      "name": "trial: distinct prime-like values have no matching products",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2,3,5,7]},
+      "expected": 0,
+      "tags": ["zero-answer", "no-collision"]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value cannot form a tuple",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1]},
+      "expected": 0,
+      "tags": ["minimum-length", "fewer-than-four"]
+    },
+    {
+      "id": "trial-three-values",
+      "name": "trial: three values cannot form four distinct elements",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2,3,4]},
+      "expected": 0,
+      "tags": ["fewer-than-four", "distinctness"]
+    },
+    {
+      "id": "trial-three-pairs-one-product",
+      "name": "trial: one product shared by three unordered pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1,2,3,4,6,12]},
+      "expected": 40,
+      "tags": ["three-pair-collision", "multiple-products"]
+    },
+    {
+      "id": "real-geometric-values",
+      "name": "hidden: powers of two create several pair collisions",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,2,4,8,16]},
+      "expected": 24,
+      "tags": ["powers-of-two", "overlapping-products"]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "hidden: maximum legal value participates in a collision",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,2,5000,10000]},
+      "expected": 8,
+      "tags": ["maximum-value", "large-product"]
+    },
+    {
+      "id": "real-order-invariance",
+      "name": "hidden: input order does not change pair collisions",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10,6,4,3,2,1]},
+      "expected": 16,
+      "tags": ["unsorted-input", "order-invariance"]
+    },
+    {
+      "id": "real-several-frequencies",
+      "name": "hidden: consecutive values produce many product frequencies",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,2,3,4,5,6,7,8,9,10]},
+      "expected": 72,
+      "tags": ["dense-products", "multiple-collisions"]
+    }
+  ]
+}

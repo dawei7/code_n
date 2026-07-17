@@ -6,6 +6,9 @@
   "title": "Maximum Length of a Concatenated String with Unique Characters",
   "difficulty": "Medium",
   "acceptance_rate": 54.826419844600935,
+  "frequency": 44.8,
+  "elo_rating": 1719.945199874,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

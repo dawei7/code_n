@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1818",
+  "frontend_id": "1717",
+  "title_slug": "maximum-score-from-removing-substrings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maximumGain",
+  "verified_submission_id": "2070722736",
+  "verified_at": "2026-07-17T06:12:24.392452+00:00"
+}

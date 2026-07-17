@@ -6,6 +6,9 @@
   "title": "Count Number of Nice Subarrays",
   "difficulty": "Medium",
   "acceptance_rate": 75.41954860765662,
+  "frequency": 47.8,
+  "elo_rating": 1623.9443250479,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

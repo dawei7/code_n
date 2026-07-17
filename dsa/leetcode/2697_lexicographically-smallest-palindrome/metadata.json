@@ -6,6 +6,9 @@
   "title": "Lexicographically Smallest Palindrome",
   "difficulty": "Easy",
   "acceptance_rate": 81.46396000997903,
+  "frequency": 23.9,
+  "elo_rating": 1303.7347742929,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

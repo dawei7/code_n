@@ -6,6 +6,9 @@
   "title": "Bag of Tokens",
   "difficulty": "Medium",
   "acceptance_rate": 59.718930013178586,
+  "frequency": 26.9,
+  "elo_rating": 1762.3115124143,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1726",
+  "frontend_id": "1620",
+  "title_slug": "coordinate-with-maximum-network-quality",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.bestCoordinate",
+  "verified_submission_id": "2070428621",
+  "verified_at": "2026-07-16T21:58:45.876165+00:00"
+}

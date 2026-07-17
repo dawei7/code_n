@@ -6,6 +6,9 @@
   "title": "Find Subtree Sizes After Changes",
   "difficulty": "Medium",
   "acceptance_rate": 53.835655568603805,
+  "frequency": 0.0,
+  "elo_rating": 2045.9921455749,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

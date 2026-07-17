@@ -6,6 +6,9 @@
   "title": "Buy Two Chocolates",
   "difficulty": "Easy",
   "acceptance_rate": 68.34778401335655,
+  "frequency": 11.2,
+  "elo_rating": 1207.7491943483,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Sorted GCD Pair Queries",
   "difficulty": "Hard",
   "acceptance_rate": 23.328241999776477,
+  "frequency": 0.5,
+  "elo_rating": 2532.6258688719,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

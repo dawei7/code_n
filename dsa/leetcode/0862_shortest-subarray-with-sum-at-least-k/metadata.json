@@ -6,6 +6,9 @@
   "title": "Shortest Subarray with Sum at Least K",
   "difficulty": "Hard",
   "acceptance_rate": 32.894337929445435,
+  "frequency": 52.5,
+  "elo_rating": 2306.8472649456,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

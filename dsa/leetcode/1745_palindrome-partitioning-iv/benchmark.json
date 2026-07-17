@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1745",
+  "measurement_note": "Size is n, the string length. Uniform strings make every substring palindrome. The O(n^2) interval table is fully populated, while a correct exhaustive implementation that explicitly scans all three substrings for every cut pair completes all tiers and is rejected by cubic scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: uniform length 8","kind":"benchmark","visible":false,"size":8,"input":{"s":"aaaaaaaa"},"expected":true,"tags":["benchmark","scaling","uniform"]},
+    {"id":"benchmark-scale-2","name":"benchmark: uniform length 20","kind":"benchmark","visible":false,"size":20,"input":{"s":"aaaaaaaaaaaaaaaaaaaa"},"expected":true,"tags":["benchmark","scaling","uniform"]},
+    {"id":"benchmark-scale-3","name":"benchmark: uniform length 40","kind":"benchmark","visible":false,"size":40,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":true,"tags":["benchmark","scaling","uniform"]}
+  ]
+}

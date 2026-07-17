@@ -6,6 +6,9 @@
   "title": "Shortest Uncommon Substring in an Array",
   "difficulty": "Medium",
   "acceptance_rate": 51.099833037394326,
+  "frequency": 77.6,
+  "elo_rating": 1635.1802054842,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

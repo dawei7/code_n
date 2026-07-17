@@ -6,6 +6,9 @@
   "title": "Tree Node",
   "difficulty": "Medium",
   "acceptance_rate": 76.02571708919974,
+  "frequency": 34.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "database",
   "category_title": "Database",
   "topics": [

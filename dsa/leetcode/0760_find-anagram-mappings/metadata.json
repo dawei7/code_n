@@ -6,6 +6,9 @@
   "title": "Find Anagram Mappings",
   "difficulty": "Easy",
   "acceptance_rate": 83.97821214954658,
+  "frequency": 0.0,
+  "elo_rating": 1172.5106645463,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

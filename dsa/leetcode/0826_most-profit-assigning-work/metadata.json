@@ -6,6 +6,9 @@
   "title": "Most Profit Assigning Work",
   "difficulty": "Medium",
   "acceptance_rate": 56.25655385133306,
+  "frequency": 43.7,
+  "elo_rating": 1708.812923679,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

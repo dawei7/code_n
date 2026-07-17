@@ -6,6 +6,9 @@
   "title": "Maximum Size of a Set After Removals",
   "difficulty": "Medium",
   "acceptance_rate": 46.681699606490696,
+  "frequency": 0.0,
+  "elo_rating": 1917.4314822412,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

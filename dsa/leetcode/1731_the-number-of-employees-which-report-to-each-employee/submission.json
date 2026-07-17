@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1882",
+  "frontend_id": "1731",
+  "title_slug": "the-number-of-employees-which-report-to-each-employee",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070852487",
+  "verified_at": "2026-07-17T08:16:27.883756+00:00"
+}

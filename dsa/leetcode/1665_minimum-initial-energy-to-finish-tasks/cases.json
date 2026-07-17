@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1665",
+  "cases": [
+    {"id":"sample-three-tasks","name":"sample: descending gaps allow eight initial energy","kind":"sample","visible":true,"input":{"tasks":[[1,2],[2,4],[4,8]]},"expected":8,"tags":["sample","ordering"]},
+    {"id":"sample-mixed-costs","name":"sample: five mixed tasks require thirty-two","kind":"sample","visible":true,"input":{"tasks":[[1,3],[2,4],[10,11],[10,12],[8,9]]},"expected":32,"tags":["sample","mixed"]},
+    {"id":"sample-increasing-costs","name":"sample: six aligned tasks require twenty-seven","kind":"sample","visible":true,"input":{"tasks":[[1,7],[2,8],[3,9],[4,10],[5,11],[6,12]]},"expected":27,"tags":["sample","equal-gaps"]},
+    {"id":"trial-single-tight","name":"trial: one task with equal cost and threshold","kind":"trial","visible":true,"input":{"tasks":[[5,5]]},"expected":5,"tags":["minimum","tight"]},
+    {"id":"trial-single-large-gap","name":"trial: one task preserves a large unused reserve","kind":"trial","visible":true,"input":{"tasks":[[1,100]]},"expected":100,"tags":["single-task","large-gap"]},
+    {"id":"real-all-tight","name":"hidden: tight tasks require the sum of costs","kind":"real","visible":false,"input":{"tasks":[[2,2],[3,3]]},"expected":5,"tags":["tight-tasks"]},
+    {"id":"real-gap-order","name":"hidden: largest reserved gap must be scheduled early","kind":"real","visible":false,"input":{"tasks":[[3,10],[1,2],[2,8]]},"expected":11,"tags":["gap-order"]},
+    {"id":"real-unused-energy","name":"hidden: high-gap small task dominates the reserve","kind":"real","visible":false,"input":{"tasks":[[5,9],[4,4],[1,10]]},"expected":10,"tags":["large-gap"]},
+    {"id":"real-equal-pairs","name":"hidden: identical tasks may appear in any order","kind":"real","visible":false,"input":{"tasks":[[1,2],[1,2],[1,2]]},"expected":4,"tags":["duplicates","equal-gaps"]},
+    {"id":"real-four-gaps","name":"hidden: four distinct gaps combine to thirteen","kind":"real","visible":false,"input":{"tasks":[[4,7],[2,9],[6,6],[1,8]]},"expected":13,"tags":["mixed-gaps"]}
+  ]
+}

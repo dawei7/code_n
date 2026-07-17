@@ -6,6 +6,9 @@
   "title": "Print in Order",
   "difficulty": "Easy",
   "acceptance_rate": 73.16919507879636,
+  "frequency": 53.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1174.09479,
   "category": "concurrency",
   "category_title": "Concurrency",
   "topics": [
@@ -15,7 +18,9 @@
     }
   ],
   "url": "https://leetcode.com/problems/print-in-order/",
-  "supported_languages": ["python"],
+  "supported_languages": [
+    "python"
+  ],
   "primary_language": "python",
   "runnable_in_coden": true,
   "subsets": [

@@ -6,6 +6,9 @@
   "title": "Longest Palindromic Path in Graph",
   "difficulty": "Hard",
   "acceptance_rate": 22.513119704476825,
+  "frequency": 50.9,
+  "elo_rating": 2463.3702712563,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

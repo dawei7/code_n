@@ -6,6 +6,9 @@
   "title": "Count Good Nodes in Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 73.90841797323321,
+  "frequency": 39.7,
+  "elo_rating": 1360.2184128413,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

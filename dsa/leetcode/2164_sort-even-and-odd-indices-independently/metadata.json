@@ -6,6 +6,9 @@
   "title": "Sort Even and Odd Indices Independently",
   "difficulty": "Easy",
   "acceptance_rate": 63.50494479373816,
+  "frequency": 39.0,
+  "elo_rating": 1252.8406166148,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

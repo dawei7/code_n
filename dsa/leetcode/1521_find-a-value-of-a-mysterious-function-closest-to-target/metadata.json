@@ -6,6 +6,9 @@
   "title": "Find a Value of a Mysterious Function Closest to Target",
   "difficulty": "Hard",
   "acceptance_rate": 47.41486779082737,
+  "frequency": 0.0,
+  "elo_rating": 2383.7724811656,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1697",
+  "cases": [
+    {"id":"sample-parallel-edge","name":"sample: strict limit and parallel edges","kind":"sample","visible":true,"input":{"n":3,"edgeList":[[0,1,2],[1,2,4],[2,0,8],[1,0,16]],"queries":[[0,1,2],[0,2,5]]},"expected":[false,true],"tags":["sample","strict-limit","parallel-edges"]},
+    {"id":"sample-chain","name":"sample: chain eligibility changes by limit","kind":"sample","visible":true,"input":{"n":5,"edgeList":[[0,1,10],[1,2,5],[2,3,9],[3,4,13]],"queries":[[0,4,14],[1,4,13]]},"expected":[true,false],"tags":["sample","chain"]},
+    {"id":"trial-equality-boundary","name":"trial: edge equal to limit remains excluded","kind":"trial","visible":true,"input":{"n":2,"edgeList":[[0,1,5]],"queries":[[0,1,5],[0,1,6]]},"expected":[false,true],"tags":["strict-limit","boundary"]},
+    {"id":"trial-lighter-parallel-edge","name":"trial: lighter parallel edge establishes connectivity","kind":"trial","visible":true,"input":{"n":2,"edgeList":[[0,1,10],[0,1,3]],"queries":[[0,1,4],[0,1,3]]},"expected":[true,false],"tags":["parallel-edges","strict-limit"]},
+    {"id":"real-indirect-beats-heavy","name":"hidden: light indirect path bypasses a heavy direct edge","kind":"real","visible":false,"input":{"n":4,"edgeList":[[0,3,100],[0,1,4],[1,2,4],[2,3,4]],"queries":[[0,3,5],[0,3,4],[0,3,101]]},"expected":[true,false,true],"tags":["indirect-path","strict-limit"]},
+    {"id":"real-disconnected","name":"hidden: separate components remain disconnected","kind":"real","visible":false,"input":{"n":5,"edgeList":[[0,1,1],[1,2,2],[3,4,1]],"queries":[[0,4,100],[0,2,3],[3,4,1],[3,4,2]]},"expected":[false,true,false,true],"tags":["disconnected","query-order"]},
+    {"id":"real-unsorted-limits","name":"hidden: answers restore the original unsorted query order","kind":"real","visible":false,"input":{"n":4,"edgeList":[[0,1,2],[1,2,5],[2,3,7]],"queries":[[0,3,8],[0,2,5],[1,3,8],[0,1,2],[0,2,6]]},"expected":[true,false,true,false,true],"tags":["query-order","repeated-sweep"]}
+  ]
+}

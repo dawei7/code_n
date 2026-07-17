@@ -6,6 +6,9 @@
   "title": "Unique Word Abbreviation",
   "difficulty": "Medium",
   "acceptance_rate": 27.90973350309523,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1756.215943,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Delete Operation for Two Strings",
   "difficulty": "Medium",
   "acceptance_rate": 65.89185911886403,
+  "frequency": 28.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1414.874242,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

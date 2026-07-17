@@ -6,6 +6,9 @@
   "title": "Minimum Cost to Reach Destination in Time",
   "difficulty": "Hard",
   "acceptance_rate": 41.914171103792846,
+  "frequency": 56.9,
+  "elo_rating": 2413.3969129689,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

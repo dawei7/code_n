@@ -6,6 +6,9 @@
   "title": "Longest Univalue Path",
   "difficulty": "Medium",
   "acceptance_rate": 44.11386674237831,
+  "frequency": 6.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1663.501919,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

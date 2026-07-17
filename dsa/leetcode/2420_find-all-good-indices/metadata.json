@@ -6,6 +6,9 @@
   "title": "Find All Good Indices",
   "difficulty": "Medium",
   "acceptance_rate": 41.08349078156065,
+  "frequency": 0.0,
+  "elo_rating": 1695.0815222626,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

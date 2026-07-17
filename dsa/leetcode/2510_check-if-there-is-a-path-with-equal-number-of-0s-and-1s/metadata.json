@@ -6,6 +6,9 @@
   "title": "Check if There is a Path With Equal Number of 0's And 1's",
   "difficulty": "Medium",
   "acceptance_rate": 52.15354002182425,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1558.493114,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

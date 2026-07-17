@@ -6,6 +6,9 @@
   "title": "Smallest Subsequence of Distinct Characters",
   "difficulty": "Medium",
   "acceptance_rate": 63.68575381764175,
+  "frequency": 49.0,
+  "elo_rating": 2184.5241011615,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

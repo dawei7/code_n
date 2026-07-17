@@ -6,6 +6,9 @@
   "title": "Count Subtrees With Max Distance Between Cities",
   "difficulty": "Hard",
   "acceptance_rate": 67.2876760255401,
+  "frequency": 0.0,
+  "elo_rating": 2308.6545905335,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

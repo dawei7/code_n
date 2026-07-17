@@ -6,6 +6,9 @@
   "title": "Split Linked List in Parts",
   "difficulty": "Medium",
   "acceptance_rate": 70.61896178944117,
+  "frequency": 41.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1381.499316,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

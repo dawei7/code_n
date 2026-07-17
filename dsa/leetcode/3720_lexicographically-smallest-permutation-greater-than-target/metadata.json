@@ -6,6 +6,9 @@
   "title": "Lexicographically Smallest Permutation Greater Than Target",
   "difficulty": "Medium",
   "acceptance_rate": 26.893831578091326,
+  "frequency": 0.0,
+  "elo_rating": 1958.1499109036,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

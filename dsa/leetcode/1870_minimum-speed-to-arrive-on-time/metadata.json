@@ -6,6 +6,9 @@
   "title": "Minimum Speed to Arrive on Time",
   "difficulty": "Medium",
   "acceptance_rate": 47.938294993234095,
+  "frequency": 7.4,
+  "elo_rating": 1675.761234741,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

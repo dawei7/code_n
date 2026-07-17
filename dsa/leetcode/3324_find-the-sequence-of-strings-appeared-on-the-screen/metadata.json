@@ -6,6 +6,9 @@
   "title": "Find the Sequence of Strings Appeared on the Screen",
   "difficulty": "Medium",
   "acceptance_rate": 80.47368807878877,
+  "frequency": 0.0,
+  "elo_rating": 1293.5035781966,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

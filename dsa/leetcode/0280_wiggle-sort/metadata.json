@@ -6,6 +6,9 @@
   "title": "Wiggle Sort",
   "difficulty": "Medium",
   "acceptance_rate": 68.4700227458049,
+  "frequency": 45.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1397.324986,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

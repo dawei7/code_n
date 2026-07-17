@@ -6,6 +6,9 @@
   "title": "Rectangle Area",
   "difficulty": "Medium",
   "acceptance_rate": 49.81213814187544,
+  "frequency": 56.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1594.371122,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

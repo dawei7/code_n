@@ -6,6 +6,9 @@
   "title": "First Missing Positive",
   "difficulty": "Hard",
   "acceptance_rate": 43.20399231387906,
+  "frequency": 70.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 2181.516983,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

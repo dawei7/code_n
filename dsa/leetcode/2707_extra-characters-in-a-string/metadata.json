@@ -6,6 +6,9 @@
   "title": "Extra Characters in a String",
   "difficulty": "Medium",
   "acceptance_rate": 57.43634597249565,
+  "frequency": 20.1,
+  "elo_rating": 1735.8505509901,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

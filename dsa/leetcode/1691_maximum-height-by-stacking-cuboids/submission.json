@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1367",
+  "frontend_id": "1691",
+  "title_slug": "maximum-height-by-stacking-cuboids",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxHeight",
+  "verified_submission_id": "2070574865",
+  "verified_at": "2026-07-17T04:08:09.977909+00:00"
+}

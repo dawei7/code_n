@@ -6,6 +6,9 @@
   "title": "Friends With No Mutual Friends",
   "difficulty": "Medium",
   "acceptance_rate": 48.93487522824102,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1608.663988,
   "category": "database",
   "category_title": "Database",
   "topics": [

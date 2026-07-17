@@ -1,9 +1,22 @@
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useAppStore } from '../store/useAppStore';
-import type { ChallengeSummary } from '../types/api';
+import type {
+  ChallengeSummary,
+  CustomProblemSet,
+  CustomProblemTreeNode,
+} from '../types/api';
 import { challengesForAlgorithmSet, getAlgorithmSetLabel } from '../lib/algorithmSets';
+import { collectCustomChallengeIds } from '../lib/customProblemSets';
 import { buildUnlockedCareerSequence, resolveCareerSequenceOrder } from '../lib/careerUnlocks';
+import {
+  calculateDirectEloAverage,
+  calculateDirectFrequencyAverage,
+  compareFrequencyPriority,
+  eloDisplayForChallenge,
+  type EloAverage,
+  type FrequencyAverage,
+} from '../lib/challengeMetrics';
 import {
   buildPdfBundleFilename,
   exportChallengePdfBundle,
@@ -15,6 +28,11 @@ import {
   type DownloadProgress,
   type PracticeExportEntry,
 } from '../api/practiceExport';
+import {
+  resetProgress,
+  type ProgressResetScope,
+} from '../api/progress';
+import { CustomProblemSetBuilder } from './CustomProblemSetBuilder';
 
 const CATEGORY_DISPLAY_NAMES: Record<string, string> = {
   neetcode_arrays: 'Arrays & Hashing',
@@ -141,6 +159,21 @@ type ChallengeNumber = {
   filename: string;
 };
 
+const ELO_HEAT_GREEN_LIMIT = 1200;
+const ELO_HEAT_RED_LIMIT = 2400;
+const ELO_HEAT_COLORS: ReadonlyArray<readonly [number, number, number]> = [
+  [26, 152, 80],
+  [102, 189, 99],
+  [166, 217, 106],
+  [217, 239, 139],
+  [255, 255, 191],
+  [254, 224, 139],
+  [253, 174, 97],
+  [244, 109, 67],
+  [215, 48, 39],
+];
+const ELO_HEAT_SCALE_DESCRIPTION = 'Heat color is clamped: Elo 1200 and below is green; Elo 2400 and above is red.';
+
 type DownloadState = {
   label: string;
   loaded: number;
@@ -155,21 +188,50 @@ type NavigationGroup = {
   label: string;
   challenges: ChallengeSummary[];
   children: NavigationGroup[];
+  orderedItems?: NavigationItem[];
   emptyMessage?: string;
   order?: number;
 };
+
+type NavigationItem =
+  | { type: 'group'; group: NavigationGroup }
+  | { type: 'problem'; challenge: ChallengeSummary; placementId: string };
 
 type SubmissionNotice = {
   status: 'active' | 'done' | 'error';
   message: string;
 };
 
+type ProgressResetRequest = {
+  scope: ProgressResetScope;
+  challengeIds: string[];
+  targetLabel: string;
+};
+
+const RESET_SCOPE_COPY: Record<ProgressResetScope, { label: string; description: string }> = {
+  all: {
+    label: 'All progress',
+    description: 'Delete personal solutions and clear cOde(n) completions plus LeetCode acceptances.',
+  },
+  coden: {
+    label: 'cOde(n) completions',
+    description: 'Delete personal solutions and clear local completion marks plus result history.',
+  },
+  leetcode: {
+    label: 'LeetCode acceptances',
+    description: 'Clear stored Accepted submission marks only.',
+  },
+};
+
 function isLeetcodeUniverse(activeSet: string): boolean {
   return activeSet === 'leetcode'
+    || activeSet === 'elo'
+    || activeSet === 'frequency'
     || activeSet === 'leetcode_company'
     || activeSet === 'leetcode_studyplan'
     || activeSet === 'neetcode'
-    || activeSet === 'algomaster';
+    || activeSet === 'algomaster'
+    || activeSet === 'custom';
 }
 
 function stringField(value: unknown): string {
@@ -299,6 +361,28 @@ function sortByLeetcodeId(items: ChallengeSummary[]): ChallengeSummary[] {
   });
 }
 
+function sortByEloAscending(items: ChallengeSummary[]): ChallengeSummary[] {
+  return [...items].sort((left, right) => {
+    if (left.elo_rating !== null && right.elo_rating !== null) {
+      const byElo = left.elo_rating - right.elo_rating;
+      if (byElo !== 0) return byElo;
+    } else if (left.elo_rating !== null) {
+      return -1;
+    } else if (right.elo_rating !== null) {
+      return 1;
+    }
+    return leetcodeProblemOrder(left) - leetcodeProblemOrder(right);
+  });
+}
+
+function sortByFrequencyDescending(items: ChallengeSummary[]): ChallengeSummary[] {
+  return [...items].sort((left, right) => {
+    const byFrequencyAndElo = compareFrequencyPriority(left, right);
+    if (byFrequencyAndElo !== 0) return byFrequencyAndElo;
+    return leetcodeProblemOrder(left) - leetcodeProblemOrder(right);
+  });
+}
+
 function sortByDifficultyThenId(items: ChallengeSummary[]): ChallengeSummary[] {
   const tierOrder: Record<string, number> = { Easy: 0, Medium: 1, Hard: 2 };
   return [...items].sort((left, right) => {
@@ -311,9 +395,6 @@ function sortByDifficultyThenId(items: ChallengeSummary[]): ChallengeSummary[] {
       return -1;
     } else if (right.elo_rating !== null) {
       return 1;
-    } else if (left.difficulty_estimate !== null && right.difficulty_estimate !== null) {
-      const byEstimate = left.difficulty_estimate - right.difficulty_estimate;
-      if (byEstimate !== 0) return byEstimate;
     }
     return leetcodeProblemOrder(left) - leetcodeProblemOrder(right);
   });
@@ -321,26 +402,38 @@ function sortByDifficultyThenId(items: ChallengeSummary[]): ChallengeSummary[] {
 
 function formatChallengeTitle(
   challenge: ChallengeSummary,
-  activeSet: string,
   number?: ChallengeNumber,
 ): string {
-  if (number) return `${number.display}. ${challenge.name}`;
-  if (!isLeetcodeUniverse(activeSet)) return challenge.name;
-  const match = /^lc_(\d+)$/.exec(challenge.id);
-  return match ? `${match[1]}. ${challenge.name}` : challenge.name;
+  return number ? `${number.display}. ${challenge.name}` : challenge.name;
 }
 
-function formatDifficultyLine(challenge: ChallengeSummary, activeSet: string): string {
-  if (isLeetcodeUniverse(activeSet)) {
-    if (challenge.elo_rating !== null) {
-      return `${challenge.difficulty_label} · Elo ${Math.round(challenge.elo_rating)}`;
-    }
-    const estimate = challenge.difficulty_estimate === null
-      ? ''
-      : ` · Legacy estimate ${challenge.difficulty_estimate}/10`;
-    return `${challenge.difficulty_label}${estimate}`;
-  }
-  return challenge.required_complexity;
+function eloHeatColor(value: number): string {
+  const position = Math.max(
+    0,
+    Math.min(
+      1,
+      (value - ELO_HEAT_GREEN_LIMIT) / (ELO_HEAT_RED_LIMIT - ELO_HEAT_GREEN_LIMIT),
+    ),
+  );
+  const scaled = position * (ELO_HEAT_COLORS.length - 1);
+  const lowerIndex = Math.floor(scaled);
+  const upperIndex = Math.min(lowerIndex + 1, ELO_HEAT_COLORS.length - 1);
+  const mix = scaled - lowerIndex;
+  const lower = ELO_HEAT_COLORS[lowerIndex]!;
+  const upper = ELO_HEAT_COLORS[upperIndex]!;
+  const channel = (index: number) => Math.round(lower[index]! + (upper[index]! - lower[index]!) * mix);
+  return `rgb(${channel(0)} ${channel(1)} ${channel(2)})`;
+}
+
+function eloAverageTitle(average: EloAverage): string {
+  const estimateDetail = average.estimatedCount === 0
+    ? 'All inputs are real contest Elo ratings.'
+    : `${average.estimatedCount} ${average.estimatedCount === 1 ? 'problem uses' : 'problems use'} an official-difficulty and acceptance-rate Elo estimate.`;
+  return `Direct mean: sum of ${average.problemCount} individual problem Elo values divided by ${average.problemCount} unique problems. ${estimateDetail} Child-group averages are not used. ${ELO_HEAT_SCALE_DESCRIPTION}`;
+}
+
+function frequencyAverageTitle(average: FrequencyAverage): string {
+  return `Direct mean: sum of ${average.problemCount} individual LeetCode Frequency values divided by ${average.problemCount} unique problems. Zero-frequency problems are included. Child-group averages are not used.`;
 }
 
 function uniqueChallengeIds(challenges: ChallengeSummary[]): Set<string> {
@@ -382,6 +475,8 @@ function progressHeading(
   challenges: ChallengeSummary[],
   completed: Set<string>,
   submitted: Set<string>,
+  eloAverage: EloAverage | null,
+  frequencyAverage: FrequencyAverage | null,
   countClassName = "ml-1 text-coden-muted",
 ) {
   const solved = isFullySolved(challenges, completed);
@@ -398,6 +493,23 @@ function progressHeading(
       <span className="truncate">{label}</span>
       <span className={countClassName}>({progressLabel(challenges, completed)}</span>
       <span className="text-coden-accent opacity-80">· LC {submissionProgressLabel(challenges, submitted)})</span>
+      {eloAverage !== null && (
+        <span
+          className="shrink-0 font-mono"
+          style={{ color: eloHeatColor(eloAverage.value) }}
+          title={eloAverageTitle(eloAverage)}
+        >
+          · Avg Elo{eloAverage.estimatedCount > 0 ? ' ~' : ' '}{Math.round(eloAverage.value)}
+        </span>
+      )}
+      {frequencyAverage !== null && (
+        <span
+          className="shrink-0 font-mono text-coden-accent"
+          title={frequencyAverageTitle(frequencyAverage)}
+        >
+          · Avg Freq {frequencyAverage.value.toFixed(1)}%
+        </span>
+      )}
     </span>
   );
 }
@@ -505,6 +617,88 @@ function buildCategoryGroups(challenges: ChallengeSummary[]): NavigationGroup[] 
     }
   }
   return sortLeetcodeCategoryNodes(root.children);
+}
+
+function buildEloGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
+  const root = makeGroup('root', 'root');
+  for (const challenge of challenges) {
+    if (challenge.elo_rating === null) continue;
+    addChallengeToTopicGroups(root, challenge, 'elo');
+  }
+  sortLeetcodeTopicNodes(root.children);
+  for (const topicNode of root.children) {
+    topicNode.challenges = sortByEloAscending(topicNode.challenges);
+  }
+  return root.children;
+}
+
+function buildFrequencyGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
+  const root = makeGroup('root', 'root');
+  for (const challenge of challenges) {
+    if (challenge.frequency === null) continue;
+    addChallengeToTopicGroups(root, challenge, 'frequency');
+  }
+  sortLeetcodeTopicNodes(root.children);
+  for (const topicNode of root.children) {
+    topicNode.challenges = sortByFrequencyDescending(topicNode.challenges);
+  }
+  return root.children;
+}
+
+function buildCustomGroups(
+  challenges: ChallengeSummary[],
+  customSets: CustomProblemSet[],
+): NavigationGroup[] {
+  const challengeById = new Map(challenges.map((challenge) => [challenge.id, challenge]));
+
+  const convertNodes = (
+    nodes: CustomProblemTreeNode[],
+  ): {
+    challenges: ChallengeSummary[];
+    children: NavigationGroup[];
+    orderedItems: NavigationItem[];
+  } => {
+    const directChallenges: ChallengeSummary[] = [];
+    const children: NavigationGroup[] = [];
+    const orderedItems: NavigationItem[] = [];
+    for (const node of nodes) {
+      if (node.type === 'problem') {
+        const challenge = challengeById.get(node.challenge_id);
+        if (challenge) {
+          directChallenges.push(challenge);
+          orderedItems.push({ type: 'problem', challenge, placementId: node.id });
+        }
+        continue;
+      }
+      const converted = convertNodes(node.children);
+      if (converted.challenges.length === 0 && converted.children.length === 0) continue;
+      const child: NavigationGroup = {
+        id: `custom-group:${node.id}`,
+        label: node.name,
+        challenges: converted.challenges,
+        children: converted.children,
+        orderedItems: converted.orderedItems,
+      };
+      children.push(child);
+      orderedItems.push({ type: 'group', group: child });
+    }
+    return { challenges: directChallenges, children, orderedItems };
+  };
+
+  return customSets.map((set) => {
+    const converted = convertNodes(set.nodes);
+    const isEmpty = converted.challenges.length === 0 && converted.children.length === 0;
+    return {
+      id: `custom-set:${set.id}`,
+      label: set.name,
+      challenges: converted.challenges,
+      children: converted.children,
+      orderedItems: converted.orderedItems,
+      emptyMessage: isEmpty
+        ? 'No problems in this set match the current filters. Open the builder to add or organize problems.'
+        : undefined,
+    };
+  });
 }
 
 function buildCompanyGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
@@ -752,9 +946,16 @@ function buildCareerUnlockMap(
 function buildNavigationGroups(
   challenges: ChallengeSummary[],
   activeSet: string,
+  customSets: CustomProblemSet[] = [],
 ): NavigationGroup[] {
   if (activeSet === 'leetcode') {
     return buildCategoryGroups(challenges);
+  }
+  if (activeSet === 'elo') {
+    return buildEloGroups(challenges);
+  }
+  if (activeSet === 'frequency') {
+    return buildFrequencyGroups(challenges);
   }
   if (activeSet === 'leetcode_company') {
     return buildCompanyGroups(challenges);
@@ -768,6 +969,9 @@ function buildNavigationGroups(
   if (activeSet === 'algomaster') {
     return buildAlgomasterGroups(challenges);
   }
+  if (activeSet === 'custom') {
+    return buildCustomGroups(challenges, customSets);
+  }
   return groupChallengesByLabel(challenges, (challenge) => formatCategory(challenge.category), 'category');
 }
 
@@ -780,6 +984,13 @@ function collectGroupChallenges(group: NavigationGroup): ChallengeSummary[] {
 }
 
 function collectGroupChallengesInSetOrder(group: NavigationGroup): ChallengeSummary[] {
+  if (group.orderedItems) {
+    return group.orderedItems.flatMap((item) => (
+      item.type === 'problem'
+        ? [item.challenge]
+        : collectGroupChallengesInSetOrder(item.group)
+    ));
+  }
   const result = group.children.flatMap(collectGroupChallengesInSetOrder);
   result.push(...group.challenges);
   return result;
@@ -818,20 +1029,30 @@ function pdfTocProblem(challenge: ChallengeSummary): PdfTocNode {
     label: challenge.name,
     difficultyLabel: challenge.difficulty_label,
     eloRating: challenge.elo_rating,
+    estimatedEloRating: challenge.estimated_elo_rating,
+    frequency: challenge.frequency,
   };
 }
 
 function pdfTocGroup(group: NavigationGroup): PdfTocNode {
+  const children = group.orderedItems
+    ? group.orderedItems.flatMap((item): PdfTocNode[] => {
+        if (item.type === 'problem') return [pdfTocProblem(item.challenge)];
+        return collectGroupChallenges(item.group).length > 0
+          ? [pdfTocGroup(item.group)]
+          : [];
+      })
+    : [
+        ...group.children
+          .filter((child) => collectGroupChallenges(child).length > 0)
+          .map(pdfTocGroup),
+        ...group.challenges.map(pdfTocProblem),
+      ];
   return {
     kind: 'group',
     id: group.id,
     label: group.label,
-    children: [
-      ...group.children
-        .filter((child) => collectGroupChallenges(child).length > 0)
-        .map(pdfTocGroup),
-      ...group.challenges.map(pdfTocProblem),
-    ],
+    children,
   };
 }
 
@@ -864,65 +1085,43 @@ function numericLeetcodeId(challenge: ChallengeSummary): number | null {
   return match ? Number(match[1]) : null;
 }
 
-function numberingContextsForChallenge(_challenge: ChallengeSummary, activeSet: string): string[] {
-  return [activeSet];
-}
-
 function numberingContextForDisplay(
   _challenge: ChallengeSummary,
   activeSet: string,
-  _categoryContext?: string,
+  categoryContext?: string,
 ): string {
-  return activeSet;
+  return categoryContext || activeSet;
 }
 
 function buildChallengeNumberMap(
+  navigationGroups: NavigationGroup[],
   challenges: ChallengeSummary[],
   activeSet: string,
 ): Map<string, ChallengeNumber> {
-  const insertionOrder = new Map(challenges.map((challenge, index) => [challenge.id, index]));
-  const byContext = new Map<string, Map<string, ChallengeSummary>>();
-  for (const challenge of challenges) {
-    for (const context of numberingContextsForChallenge(challenge, activeSet)) {
-      const contextItems = byContext.get(context) ?? new Map<string, ChallengeSummary>();
-      if (!contextItems.has(challenge.id)) {
-        contextItems.set(challenge.id, challenge);
-      }
-      byContext.set(context, contextItems);
-    }
-  }
-
   const numbers = new Map<string, ChallengeNumber>();
-  for (const [context, contextItems] of byContext) {
-    const ordered = Array.from(contextItems.values());
-    ordered.sort((left, right) => {
-      if (isLeetcodeUniverse(activeSet)) {
-        const leftId = numericLeetcodeId(left);
-        const rightId = numericLeetcodeId(right);
-        if (leftId !== null && rightId !== null && leftId !== rightId) return leftId - rightId;
-        if (leftId !== null && rightId === null) return -1;
-        if (leftId === null && rightId !== null) return 1;
-      }
-      return (insertionOrder.get(left.id) ?? 0) - (insertionOrder.get(right.id) ?? 0);
-    });
-
-    const largestLeetcodeId = isLeetcodeUniverse(activeSet)
-      ? Math.max(...ordered.map((challenge) => numericLeetcodeId(challenge) ?? 0), 0)
-      : 0;
-    const width = Math.max(
-      3,
-      String(isLeetcodeUniverse(activeSet) ? largestLeetcodeId : ordered.length).length,
-    );
-
+  const addContext = (context: string, contextChallenges: ChallengeSummary[]) => {
+    const ordered = uniqueChallengesInOrder(contextChallenges);
+    const width = Math.max(3, String(ordered.length).length);
     ordered.forEach((challenge, index) => {
-      const leetcodeId = isLeetcodeUniverse(activeSet) ? numericLeetcodeId(challenge) : null;
-      const rawNumber = leetcodeId ?? index + 1;
+      const rawNumber = index + 1;
       numbers.set(numberKey(context, challenge.id), {
         display: String(rawNumber),
         filename: String(rawNumber).padStart(width, '0'),
       });
     });
-  }
+  };
+
+  const visitGroup = (group: NavigationGroup, parentPath: string[]) => {
+    const path = [...parentPath, group.label];
+    addContext(path.join('/'), group.challenges);
+    group.children.forEach((child) => visitGroup(child, path));
+  };
+  navigationGroups.forEach((group) => visitGroup(group, []));
+
+  addContext(
+    activeSet,
+    challengesInSetOrder(navigationGroups, challenges, activeSet),
+  );
   return numbers;
 }
 
@@ -1100,6 +1299,310 @@ function PdfMenuButton({
   );
 }
 
+function ResetIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4 4.5v4h4" />
+      <path d="M4.35 8.5A6 6 0 1 1 5.8 14.8" />
+    </svg>
+  );
+}
+
+type ResetMenuButtonProps = {
+  disabled?: boolean;
+  className: string;
+  iconClassName?: string;
+  label?: string;
+  title: string;
+  ariaLabel: string;
+  onSelect: (scope: ProgressResetScope) => void;
+};
+
+function ResetMenuButton({
+  disabled = false,
+  className,
+  iconClassName = 'h-4 w-4',
+  label,
+  title,
+  ariaLabel,
+  onSelect,
+}: ResetMenuButtonProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const [menuPosition, setMenuPosition] = useState<{ left: number; top: number } | null>(null);
+
+  useEffect(() => {
+    if (!menuPosition) return undefined;
+
+    const closeIfOutside = (event: PointerEvent) => {
+      const target = event.target as Node | null;
+      if (target && (buttonRef.current?.contains(target) || menuRef.current?.contains(target))) return;
+      setMenuPosition(null);
+    };
+    const close = () => setMenuPosition(null);
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        close();
+        buttonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('pointerdown', closeIfOutside);
+    document.addEventListener('keydown', closeOnEscape);
+    window.addEventListener('resize', close);
+    window.addEventListener('scroll', close, true);
+    return () => {
+      document.removeEventListener('pointerdown', closeIfOutside);
+      document.removeEventListener('keydown', closeOnEscape);
+      window.removeEventListener('resize', close);
+      window.removeEventListener('scroll', close, true);
+    };
+  }, [menuPosition]);
+
+  const toggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    if (disabled) return;
+    if (menuPosition) {
+      setMenuPosition(null);
+      return;
+    }
+    const rect = buttonRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const menuWidth = 256;
+    const menuHeight = 174;
+    const left = Math.max(8, Math.min(rect.right - menuWidth, window.innerWidth - menuWidth - 8));
+    const below = rect.bottom + 4;
+    const top = below + menuHeight <= window.innerHeight - 8
+      ? below
+      : Math.max(8, rect.top - menuHeight - 4);
+    setMenuPosition({ left, top });
+  };
+
+  const choose = (event: React.MouseEvent, scope: ProgressResetScope) => {
+    event.stopPropagation();
+    setMenuPosition(null);
+    onSelect(scope);
+  };
+
+  return (
+    <>
+      <button
+        ref={buttonRef}
+        type="button"
+        onClick={toggleMenu}
+        disabled={disabled}
+        className={className}
+        title={title}
+        aria-label={ariaLabel}
+        aria-haspopup="menu"
+        aria-expanded={menuPosition !== null}
+      >
+        <ResetIcon className={iconClassName} />
+        {label && <span>{label}</span>}
+      </button>
+      {menuPosition && createPortal(
+        <div
+          ref={menuRef}
+          role="menu"
+          aria-label="Reset progress options"
+          className="fixed z-[300] w-64 overflow-hidden rounded border border-rose-500/35 bg-coden-surface shadow-2xl"
+          style={menuPosition}
+          onClick={(event) => event.stopPropagation()}
+        >
+          {(Object.keys(RESET_SCOPE_COPY) as ProgressResetScope[]).map((scope, index) => {
+            const copy = RESET_SCOPE_COPY[scope];
+            return (
+              <button
+                key={scope}
+                type="button"
+                role="menuitem"
+                className={[
+                  'block w-full px-3 py-2 text-left hover:bg-rose-500/10 focus:bg-rose-500/10 focus:outline-none',
+                  index > 0 ? 'border-t border-coden-border' : '',
+                ].join(' ')}
+                onClick={(event) => choose(event, scope)}
+              >
+                <span className="block text-xs font-semibold text-rose-300">{copy.label}</span>
+                <span className="block text-[10px] leading-4 text-coden-muted">{copy.description}</span>
+              </button>
+            );
+          })}
+        </div>,
+        document.body,
+      )}
+    </>
+  );
+}
+
+function ResetProgressDialog({
+  request,
+  busy,
+  error,
+  onCancel,
+  onConfirm,
+}: {
+  request: ProgressResetRequest;
+  busy: boolean;
+  error: string | null;
+  onCancel: () => void;
+  onConfirm: (confirmation: string) => void;
+}) {
+  const [confirmation, setConfirmation] = useState('');
+  const [clipboardBlocked, setClipboardBlocked] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const copy = RESET_SCOPE_COPY[request.scope];
+  const deletesSolutions = request.scope === 'all' || request.scope === 'coden';
+  const problemLabel = request.challengeIds.length === 1 ? '1 problem' : `${request.challengeIds.length} problems`;
+  const confirmed = confirmation === 'RESET';
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && !busy) onCancel();
+    };
+    document.addEventListener('keydown', closeOnEscape);
+    return () => document.removeEventListener('keydown', closeOnEscape);
+  }, [busy, onCancel]);
+
+  const blockClipboard = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    setClipboardBlocked(true);
+  };
+
+  const handleBeforeInput = (event: React.FormEvent<HTMLInputElement>) => {
+    const inputType = (event.nativeEvent as InputEvent).inputType;
+    if (inputType === 'insertFromPaste' || inputType === 'insertFromDrop') {
+      blockClipboard(event);
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if ((event.ctrlKey || event.metaKey) && ['c', 'v', 'x'].includes(event.key.toLowerCase())) {
+      blockClipboard(event);
+    }
+  };
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[400] flex items-center justify-center bg-black/70 p-4"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget && !busy) onCancel();
+      }}
+    >
+      <form
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="reset-progress-title"
+        className="w-full max-w-md rounded-xl border border-rose-500/45 bg-coden-surface p-5 shadow-2xl"
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (confirmed && !busy) onConfirm(confirmation);
+        }}
+      >
+        <div className="flex items-start gap-3">
+          <div className="mt-0.5 rounded-full bg-rose-500/15 p-2 text-rose-300">
+            <ResetIcon className="h-5 w-5" />
+          </div>
+          <div className="min-w-0">
+            <h2 id="reset-progress-title" className="text-lg font-bold text-coden-text">
+              Reset {copy.label}?
+            </h2>
+            <p className="mt-1 text-sm text-coden-muted">
+              {problemLabel} in <span className="font-semibold text-coden-text">{request.targetLabel}</span>
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-4 rounded-lg border border-rose-500/25 bg-rose-500/[0.08] p-3">
+          <p className="text-sm text-rose-100">{copy.description}</p>
+          <p className="mt-2 text-xs leading-5 text-coden-muted">
+            {deletesSolutions
+              ? 'Every personal solution version for these problems will be permanently deleted. Profile settings and packaged reference solutions will not be changed.'
+              : 'Personal solution files and profile settings will not be changed.'}
+            {' '}This reset cannot be undone.
+          </p>
+        </div>
+
+        <label htmlFor="reset-progress-confirmation" className="mt-5 block text-sm text-coden-text">
+          Type the word below by hand to continue:
+        </label>
+        <div className="select-none py-3 text-center font-mono text-3xl font-black tracking-[0.35em] text-rose-300">
+          RESET
+        </div>
+        <input
+          ref={inputRef}
+          id="reset-progress-confirmation"
+          type="text"
+          value={confirmation}
+          disabled={busy}
+          autoComplete="off"
+          spellCheck={false}
+          aria-describedby="reset-progress-input-help"
+          onChange={(event) => {
+            setConfirmation(event.target.value);
+            setClipboardBlocked(false);
+          }}
+          onBeforeInput={handleBeforeInput}
+          onKeyDown={handleKeyDown}
+          onPaste={blockClipboard}
+          onCopy={blockClipboard}
+          onCut={blockClipboard}
+          onDrop={blockClipboard}
+          className="w-full rounded border border-coden-border bg-coden-bg px-3 py-2 text-center font-mono text-xl font-bold tracking-[0.25em] text-coden-text outline-none transition-colors focus:border-rose-400 disabled:opacity-60"
+          placeholder="Type RESET"
+        />
+        <p
+          id="reset-progress-input-help"
+          className={`mt-2 text-center text-xs ${clipboardBlocked ? 'text-amber-300' : 'text-coden-muted'}`}
+          aria-live="polite"
+        >
+          {clipboardBlocked
+            ? 'Clipboard actions and drag-and-drop are disabled. Type RESET manually.'
+            : 'The confirmation is case-sensitive. Pasting is disabled.'}
+        </p>
+
+        {error && (
+          <div className="mt-3 rounded border border-amber-500/35 bg-amber-500/10 px-3 py-2 text-xs text-amber-200">
+            {error}
+          </div>
+        )}
+
+        <div className="mt-5 flex justify-end gap-2">
+          <button
+            type="button"
+            disabled={busy}
+            onClick={onCancel}
+            className="rounded border border-coden-border px-3 py-2 text-sm text-coden-muted hover:bg-coden-border hover:text-coden-text disabled:opacity-50"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={!confirmed || busy}
+            className="rounded bg-rose-600 px-3 py-2 text-sm font-bold text-white hover:bg-rose-500 disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            {busy ? 'Resetting...' : `Reset ${copy.label}`}
+          </button>
+        </div>
+      </form>
+    </div>,
+    document.body,
+  );
+}
+
 function StatusTick({ complete, color }: { complete: boolean; color: string }) {
   return (
     <span
@@ -1143,9 +1646,9 @@ function formatBytes(value: number): string {
  * Each row shows the human title (e.g. "Bubble Sort") as the
  * primary label, full-width. The complexity class sits in a
  * tooltip / on a second line below the title for narrow panes.
- * LeetCode rows prefix the human title with their numeric problem id;
- * other datasets keep showing only the human title. The internal machine
- * id remains available in the detail panel header and tooltip.
+ * LeetCode rows show their canonical problem id on the metadata line;
+ * other datasets keep showing their required complexity. The internal
+ * machine id remains available in the detail panel header and tooltip.
  * The engine runner and verifier handle every spec the
  * registry exposes, so all challenges are clickable.
  */
@@ -1157,10 +1660,15 @@ export function ChallengeList() {
   const currentId = useAppStore((s) => s.currentDetail?.id ?? null);
   const selectChallenge = useAppStore((s) => s.selectChallenge);
   const loadProgress = useAppStore((s) => s.loadProgress);
+  const clearSolutionStateAfterReset = useAppStore((s) => s.clearSolutionStateAfterReset);
   const completed = useAppStore((s) => s.progress?.completed ?? []);
   const leetcodeSubmissions = useAppStore((s) => s.progress?.leetcode_submissions ?? {});
   const activeSet = useAppStore((s) => s.activeSet);
   const language = useAppStore((s) => s.language);
+  const customProblemSets = useAppStore((s) => s.customProblemSets);
+  const customProblemSetsLoading = useAppStore((s) => s.customProblemSetsLoading);
+  const customProblemSetsError = useAppStore((s) => s.customProblemSetsError);
+  const saveCustomProblemSets = useAppStore((s) => s.saveCustomProblemSets);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState('all');
@@ -1169,6 +1677,11 @@ export function ChallengeList() {
   const [pdfExporting, setPdfExporting] = useState(false);
   const [submittingChallengeId, setSubmittingChallengeId] = useState<string | null>(null);
   const [submissionNotice, setSubmissionNotice] = useState<SubmissionNotice | null>(null);
+  const [resetRequest, setResetRequest] = useState<ProgressResetRequest | null>(null);
+  const [resetting, setResetting] = useState(false);
+  const [resetError, setResetError] = useState<string | null>(null);
+  const [resetNotice, setResetNotice] = useState<SubmissionNotice | null>(null);
+  const [showCustomBuilder, setShowCustomBuilder] = useState(false);
   const completedSet = useMemo(() => new Set(completed), [completed]);
   const submittedSet = useMemo(() => new Set(Object.keys(leetcodeSubmissions)), [leetcodeSubmissions]);
 
@@ -1177,9 +1690,17 @@ export function ChallengeList() {
   };
 
 
-  const filteredChallenges = useMemo(() => {
-    let baseList = challengesForAlgorithmSet(challenges, activeSet);
+  const activeSetChallenges = useMemo(
+    () => {
+      if (activeSet !== 'custom') return challengesForAlgorithmSet(challenges, activeSet);
+      const customIds = collectCustomChallengeIds(customProblemSets);
+      return challenges.filter((challenge) => customIds.has(challenge.id));
+    },
+    [challenges, activeSet, customProblemSets],
+  );
 
+  const filteredChallenges = useMemo(() => {
+    let baseList = activeSetChallenges;
     if (isLeetcodeUniverse(activeSet) && difficultyFilter !== 'all') {
       baseList = baseList.filter((challenge) => challenge.difficulty_label === difficultyFilter);
     }
@@ -1206,18 +1727,32 @@ export function ChallengeList() {
         Math.round(c.elo_rating).toString() === lowerQ
         || `elo ${Math.round(c.elo_rating)}`.includes(lowerQ)
       )) ||
-      (c.difficulty_estimate !== null && (
-        c.difficulty_estimate.toString() === lowerQ
-        || `estimated ${c.difficulty_estimate}`.includes(lowerQ)
-        || `legacy ${c.difficulty_estimate}`.includes(lowerQ)
+      (c.estimated_elo_rating !== null && (
+        Math.round(c.estimated_elo_rating).toString() === lowerQ
+        || `est elo ${Math.round(c.estimated_elo_rating)}`.includes(lowerQ)
+      )) ||
+      (c.frequency !== null && (
+        c.frequency.toFixed(1) === lowerQ
+        || `freq ${c.frequency.toFixed(1)}`.includes(lowerQ)
+        || `frequency ${c.frequency.toFixed(1)}`.includes(lowerQ)
       )) ||
       c.difficulty_label.toLowerCase().includes(lowerQ)
     );
-  }, [challenges, searchQuery, activeSet, difficultyFilter]);
+  }, [activeSetChallenges, searchQuery, activeSet, difficultyFilter]);
+
+  const filteredEloAverage = useMemo(
+    () => calculateDirectEloAverage(filteredChallenges),
+    [filteredChallenges],
+  );
+
+  const filteredFrequencyAverage = useMemo(
+    () => calculateDirectFrequencyAverage(filteredChallenges),
+    [filteredChallenges],
+  );
 
   const navigationGroups = useMemo(
-    () => buildNavigationGroups(filteredChallenges, activeSet),
-    [filteredChallenges, activeSet],
+    () => buildNavigationGroups(filteredChallenges, activeSet, customProblemSets),
+    [filteredChallenges, activeSet, customProblemSets],
   );
 
   const shownChallengesForPdf = useMemo(
@@ -1236,8 +1771,12 @@ export function ChallengeList() {
   );
 
   const challengeNumbers = useMemo(
-    () => buildChallengeNumberMap(challenges, activeSet),
-    [challenges, activeSet],
+    () => buildChallengeNumberMap(
+      buildNavigationGroups(activeSetChallenges, activeSet, customProblemSets),
+      activeSetChallenges,
+      activeSet,
+    ),
+    [activeSetChallenges, activeSet, customProblemSets],
   );
 
   const numberForChallenge = (challenge: ChallengeSummary, categoryContext?: string) => {
@@ -1264,6 +1803,13 @@ export function ChallengeList() {
   };
 
   const entriesForGroup = (group: NavigationGroup, path: string[]): PracticeExportEntry[] => {
+    if (group.orderedItems) {
+      return group.orderedItems.flatMap((item): PracticeExportEntry[] => (
+        item.type === 'problem'
+          ? [exportEntryForPath(item.challenge, path)]
+          : entriesForGroup(item.group, [...path, item.group.label])
+      ));
+    }
     const direct = group.challenges.map((challenge) => exportEntryForPath(challenge, path));
     const nested = group.children.flatMap((child) => entriesForGroup(child, [...path, child.label]));
     return [...direct, ...nested];
@@ -1424,6 +1970,45 @@ export function ChallengeList() {
     }
   };
 
+  const requestProgressReset = (
+    scope: ProgressResetScope,
+    scopedChallenges: ChallengeSummary[],
+    targetLabel: string,
+  ) => {
+    const challengeIds = uniqueChallengesInOrder(scopedChallenges).map((challenge) => challenge.id);
+    if (challengeIds.length === 0) return;
+    setResetError(null);
+    setResetRequest({ scope, challengeIds, targetLabel });
+  };
+
+  const confirmProgressReset = async (confirmation: string) => {
+    if (!resetRequest || resetting) return;
+    const request = resetRequest;
+    setResetting(true);
+    setResetError(null);
+    try {
+      await resetProgress(request.scope, request.challengeIds, confirmation);
+      if (request.scope === 'all' || request.scope === 'coden') {
+        clearSolutionStateAfterReset(request.challengeIds);
+      }
+      await loadProgress();
+      const copy = RESET_SCOPE_COPY[request.scope];
+      const count = request.challengeIds.length;
+      setResetRequest(null);
+      setResetNotice({
+        status: 'done',
+        message: request.scope === 'leetcode'
+          ? `${copy.label} cleared for ${count} ${count === 1 ? 'problem' : 'problems'} in ${request.targetLabel}.`
+          : `${copy.label} cleared and personal solutions deleted for ${count} ${count === 1 ? 'problem' : 'problems'} in ${request.targetLabel}.`,
+      });
+      window.setTimeout(() => setResetNotice(null), 4000);
+    } catch {
+      setResetError('Reset did not complete. Check the selected problems before retrying.');
+    } finally {
+      setResetting(false);
+    }
+  };
+
   const handleLeetCodeSubmit = async (event: React.MouseEvent, challenge: ChallengeSummary) => {
     event.stopPropagation();
     if (!completed.includes(challenge.id)) {
@@ -1473,8 +2058,20 @@ export function ChallengeList() {
           : `Send the reviewed ${c.leetcode_submission_language || 'platform-native'} solution to LeetCode`;
     const contextUnlocked = groupId ? careerUnlocks.get(groupId)?.has(c.id) : undefined;
     const isLocked = contextUnlocked === undefined ? !c.unlocked : !contextUnlocked;
-    const displayTitle = formatChallengeTitle(c, activeSet, numberForChallenge(c, categoryContext));
-    const difficultyDisplay = formatDifficultyLine(c, activeSet);
+    const displayTitle = formatChallengeTitle(c, numberForChallenge(c, categoryContext));
+    const leetcodeId = numericLeetcodeId(c);
+    const eloDisplay = isLeetcodeUniverse(activeSet)
+      ? eloDisplayForChallenge(c)
+      : null;
+    const ratingTitle = eloDisplay === null
+      ? 'Official LeetCode difficulty'
+      : eloDisplay.estimated
+        ? `Stored estimated Elo, not a contest rating. It is recalculated from official difficulty, acceptance percentile, real-Elo bands, and the calibrated legacy cohort by tools/update_leetcode_metrics.py. ${ELO_HEAT_SCALE_DESCRIPTION}`
+        : `Contest Elo from ZeroTrac; displayed as a rounded whole number. ${ELO_HEAT_SCALE_DESCRIPTION}`;
+    const frequencyTitle = c.frequency === null
+      ? 'LeetCode Frequency is unavailable until the authenticated Premium metadata updater succeeds.'
+      : `LeetCode Frequency ${c.frequency.toFixed(1)} / 100. This is LeetCode's mutable relative-frequency attribute, not the acceptance rate or a guaranteed interview probability.`;
+    const metricTitle = `${ratingTitle} ${frequencyTitle}`;
 
     return (
       <li key={c.id} className="flex items-stretch gap-1">
@@ -1510,15 +2107,38 @@ export function ChallengeList() {
                 'text-[11px] font-mono truncate mt-0.5',
                 isCurrent
                   ? 'text-slate-600 dark:text-coden-muted'
-                  : 'text-coden-muted opacity-80',
+                  : 'text-coden-muted',
               ].join(' ')}
-              title={c.elo_rating !== null
-                ? 'Contest Elo from ZeroTrac; displayed as a rounded whole number'
-                : c.difficulty_estimate !== null
-                  ? 'Legacy Weekly Contest 1-62 fallback, estimated from the acceptance-rate percentile within the official LeetCode difficulty tier'
-                  : 'Official LeetCode difficulty'}
+              title={isLeetcodeUniverse(activeSet)
+                ? metricTitle
+                : c.required_complexity}
             >
-              {difficultyDisplay}
+              {isLeetcodeUniverse(activeSet) ? (
+                <>
+                  {leetcodeId !== null && (
+                    <>
+                      <span className="opacity-80">LC {leetcodeId}</span>
+                      <span className="opacity-60" aria-hidden="true"> · </span>
+                    </>
+                  )}
+                  <span className="opacity-80">{c.difficulty_label}</span>
+                  {eloDisplay !== null && (
+                    <>
+                      <span className="opacity-60" aria-hidden="true"> · </span>
+                      <span
+                        className="font-semibold"
+                        style={{ color: eloHeatColor(eloDisplay.value) }}
+                      >
+                        {eloDisplay.estimated ? 'Est. Elo' : 'Elo'} {Math.round(eloDisplay.value)}
+                      </span>
+                    </>
+                  )}
+                  <span className="opacity-60" aria-hidden="true"> · </span>
+                  <span className="opacity-80">
+                    Freq {c.frequency === null ? '—' : `${c.frequency.toFixed(1)}%`}
+                  </span>
+                </>
+              ) : c.required_complexity}
             </div>
           </div>
         </button>
@@ -1560,6 +2180,17 @@ export function ChallengeList() {
             includeSolution,
           )}
         />
+        <ResetMenuButton
+          disabled={resetting}
+          className="w-7 rounded text-coden-muted hover:text-rose-300 hover:bg-rose-500/10 shrink-0 inline-flex items-center justify-center disabled:cursor-wait disabled:opacity-40"
+          title={`Reset tracked progress for ${c.name}`}
+          ariaLabel={`Reset progress for ${c.name}`}
+          onSelect={(scope) => requestProgressReset(
+            scope,
+            [c],
+            `LeetCode ${c.leetcode_frontend_id || c.id.replace(/^lc_/, '')} - ${c.name}`,
+          )}
+        />
       </li>
     );
   };
@@ -1568,6 +2199,8 @@ export function ChallengeList() {
     const path = [...parentPath, group.label];
     const context = path.join('/');
     const groupChallenges = collectGroupChallenges(group);
+    const groupEloAverage = calculateDirectEloAverage(groupChallenges);
+    const groupFrequencyAverage = calculateDirectFrequencyAverage(groupChallenges);
     const isCollapsed = group.emptyMessage ? false : !searchQuery.trim() && !expanded[group.id];
     const groupEntries = entriesForGroup(group, path);
     const leftPadding = depth === 0 ? '' : depth === 1 ? 'ml-3' : 'ml-5';
@@ -1580,7 +2213,15 @@ export function ChallengeList() {
               onClick={() => toggleCategory(group.id)}
               className="flex-1 min-w-0 flex items-center justify-between px-2 py-1.5 text-xs leading-5 text-coden-muted font-semibold hover:text-coden-text transition-colors group select-none"
             >
-              {progressHeading(group.label, groupChallenges, completedSet, submittedSet, "ml-1 opacity-60")}
+              {progressHeading(
+                group.label,
+                groupChallenges,
+                completedSet,
+                submittedSet,
+                groupEloAverage,
+                groupFrequencyAverage,
+                "ml-1 opacity-60",
+              )}
               <span
                 className="transform transition-transform duration-200 group-hover:text-coden-accent text-[10px]"
               >
@@ -1610,6 +2251,17 @@ export function ChallengeList() {
                     includeSolution,
                   )}
                 />
+                <ResetMenuButton
+                  disabled={resetting}
+                  className="w-7 h-7 rounded text-coden-muted hover:text-rose-300 hover:bg-rose-500/10 shrink-0 inline-flex items-center justify-center disabled:cursor-wait disabled:opacity-40"
+                  title={`Reset tracked progress for ${group.label}`}
+                  ariaLabel={`Reset progress for ${group.label}`}
+                  onSelect={(scope) => requestProgressReset(
+                    scope,
+                    collectGroupChallengesInSetOrder(group),
+                    path.join(' / '),
+                  )}
+                />
               </>
             )}
           </div>
@@ -1622,12 +2274,24 @@ export function ChallengeList() {
 
           {!isCollapsed && (
             <div className="mt-1">
-              {group.children.map((child) => renderGroup(child, depth + 1, path))}
-              {group.challenges.length > 0 && (
-                <ul className="space-y-0.5">
-                  {group.challenges.map((challenge) => renderChallengeRow(challenge, context, group.id))}
-                </ul>
-              )}
+              {group.orderedItems
+                ? group.orderedItems.map((item) => item.type === 'group'
+                    ? renderGroup(item.group, depth + 1, path)
+                    : (
+                        <ul key={`${group.id}:${item.placementId}`} className="space-y-0.5">
+                          {renderChallengeRow(item.challenge, context, group.id)}
+                        </ul>
+                      ))
+                : (
+                    <>
+                      {group.children.map((child) => renderGroup(child, depth + 1, path))}
+                      {group.challenges.length > 0 && (
+                        <ul className="space-y-0.5">
+                          {group.challenges.map((challenge) => renderChallengeRow(challenge, context, group.id))}
+                        </ul>
+                      )}
+                    </>
+                  )}
             </div>
           )}
         </div>
@@ -1669,8 +2333,41 @@ export function ChallengeList() {
           {filteredChallenges.length !== challenges.length && (
             <> · {filteredChallenges.length} of {challenges.length} shown</>
           )}
+          {filteredEloAverage !== null && (
+            <>
+              {' · '}
+              <span
+                className="font-semibold"
+                style={{ color: eloHeatColor(filteredEloAverage.value) }}
+                title={eloAverageTitle(filteredEloAverage)}
+              >
+                Avg Elo{filteredEloAverage.estimatedCount > 0 ? ' ~' : ' '}
+                {Math.round(filteredEloAverage.value)}
+              </span>
+            </>
+          )}
+          {filteredFrequencyAverage !== null && (
+            <>
+              {' · '}
+              <span
+                className="font-semibold text-coden-accent"
+                title={frequencyAverageTitle(filteredFrequencyAverage)}
+              >
+                Avg Freq {filteredFrequencyAverage.value.toFixed(1)}%
+              </span>
+            </>
+          )}
         </div>
         <div className="mt-2 flex justify-end gap-1 text-[11px]">
+          {activeSet === 'custom' && (
+            <button
+              type="button"
+              onClick={() => setShowCustomBuilder(true)}
+              className="mr-auto h-7 rounded border border-coden-accent/50 bg-coden-accent/10 px-2.5 font-semibold text-coden-accent hover:bg-coden-accent/20"
+            >
+              Edit personal sets
+            </button>
+          )}
           <button
             type="button"
             onClick={(event) => handleDownloadBundle(
@@ -1696,6 +2393,19 @@ export function ChallengeList() {
               `${getAlgorithmSetLabel(activeSet)} - currently shown`,
               shownTocForPdf,
               includeSolution,
+            )}
+          />
+          <ResetMenuButton
+            className="h-7 px-2 rounded border border-rose-500/25 text-coden-muted hover:text-rose-300 hover:bg-rose-500/10 inline-flex items-center gap-1 disabled:cursor-wait disabled:opacity-40"
+            disabled={challengesLoading || filteredChallenges.length === 0 || resetting}
+            title="Reset tracked progress for all currently shown problems"
+            ariaLabel="Reset progress for all currently shown problems"
+            iconClassName="h-3.5 w-3.5"
+            label="all"
+            onSelect={(scope) => requestProgressReset(
+              scope,
+              shownChallengesForPdf,
+              `${getAlgorithmSetLabel(activeSet)} - currently shown`,
             )}
           />
         </div>
@@ -1762,6 +2472,16 @@ export function ChallengeList() {
             {submissionNotice.message}
           </div>
         )}
+        {resetNotice && (
+          <div className="mt-2 rounded border border-rose-500/30 bg-rose-500/10 px-2 py-1.5 text-[11px] text-rose-200">
+            {resetNotice.message}
+          </div>
+        )}
+        {activeSet === 'custom' && customProblemSetsError && (
+          <div className="mt-2 rounded border border-amber-500/40 bg-amber-500/10 px-2 py-1.5 text-[11px] text-amber-300">
+            {customProblemSetsError}
+          </div>
+        )}
 
         {!challengesLoading && challengesError && (
           <div className="flex flex-col items-center justify-center gap-3 p-8 text-center text-coden-muted">
@@ -1779,13 +2499,51 @@ export function ChallengeList() {
 
         {!challengesLoading && !challengesError && navigationGroups.map((group) => renderGroup(group))}
 
-        {!challengesLoading && !challengesError && navigationGroups.length === 0 && (
+        {!challengesLoading && !challengesError && navigationGroups.length === 0 && activeSet === 'custom' && (
+          <div className="flex flex-col items-center justify-center p-8 text-center text-coden-muted">
+            <span className="text-sm font-semibold text-coden-text">Your Personal view is ready</span>
+            <span className="mt-2 text-xs leading-5">
+              Create a personal problem set, then drag LeetCode problems into up to three folder levels.
+            </span>
+            <button
+              type="button"
+              onClick={() => setShowCustomBuilder(true)}
+              className="mt-4 rounded bg-coden-accent px-3 py-2 text-xs font-semibold text-[var(--coden-accent-contrast)] hover:brightness-110"
+            >
+              Create the first set
+            </button>
+          </div>
+        )}
+
+        {!challengesLoading && !challengesError && navigationGroups.length === 0 && activeSet !== 'custom' && (
           <div className="flex flex-col items-center justify-center p-8 text-coden-muted space-y-2">
             <span className="text-sm">No algorithms found</span>
             <span className="text-xs">Try a name, id, or category.</span>
           </div>
         )}
       </div>
+      {resetRequest && (
+        <ResetProgressDialog
+          request={resetRequest}
+          busy={resetting}
+          error={resetError}
+          onCancel={() => {
+            if (resetting) return;
+            setResetError(null);
+            setResetRequest(null);
+          }}
+          onConfirm={(confirmation) => void confirmProgressReset(confirmation)}
+        />
+      )}
+      {showCustomBuilder && (
+        <CustomProblemSetBuilder
+          savedSets={customProblemSets}
+          challenges={challenges}
+          saving={customProblemSetsLoading}
+          onClose={() => setShowCustomBuilder(false)}
+          onSave={saveCustomProblemSets}
+        />
+      )}
     </div>
   );
 }

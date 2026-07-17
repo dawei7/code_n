@@ -6,6 +6,9 @@
   "title": "Sequential Digits",
   "difficulty": "Medium",
   "acceptance_rate": 65.36408403106336,
+  "frequency": 48.1,
+  "elo_rating": 1373.8113453501,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

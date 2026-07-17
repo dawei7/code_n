@@ -6,6 +6,9 @@
   "title": "K Empty Slots",
   "difficulty": "Hard",
   "acceptance_rate": 38.00821805386142,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2265.441148,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

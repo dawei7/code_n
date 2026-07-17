@@ -6,6 +6,9 @@
   "title": "Maximize Cyclic Partition Score",
   "difficulty": "Hard",
   "acceptance_rate": 14.090066865383067,
+  "frequency": 71.4,
+  "elo_rating": 3124.5016688063,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

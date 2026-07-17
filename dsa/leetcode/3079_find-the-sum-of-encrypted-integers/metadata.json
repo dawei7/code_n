@@ -6,6 +6,9 @@
   "title": "Find the Sum of Encrypted Integers",
   "difficulty": "Easy",
   "acceptance_rate": 75.16269232557059,
+  "frequency": 23.4,
+  "elo_rating": 1190.626520458,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

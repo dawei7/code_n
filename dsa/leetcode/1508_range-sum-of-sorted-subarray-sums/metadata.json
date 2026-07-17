@@ -6,6 +6,9 @@
   "title": "Range Sum of Sorted Subarray Sums",
   "difficulty": "Medium",
   "acceptance_rate": 63.02426820115087,
+  "frequency": 0.0,
+  "elo_rating": 1402.0863615706,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

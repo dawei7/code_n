@@ -6,6 +6,9 @@
   "title": "Design Bounded Blocking Queue",
   "difficulty": "Medium",
   "acceptance_rate": 73.85199867855962,
+  "frequency": 64.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "concurrency",
   "category_title": "Concurrency",
   "topics": [
@@ -15,7 +18,9 @@
     }
   ],
   "url": "https://leetcode.com/problems/design-bounded-blocking-queue/",
-  "supported_languages": ["python"],
+  "supported_languages": [
+    "python"
+  ],
   "primary_language": "python",
   "runnable_in_coden": true,
   "subsets": [

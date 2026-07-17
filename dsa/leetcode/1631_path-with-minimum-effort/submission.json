@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1753",
+  "frontend_id": "1631",
+  "title_slug": "path-with-minimum-effort",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumEffortPath",
+  "verified_submission_id": "2070445755",
+  "verified_at": "2026-07-16T22:58:07.874710+00:00"
+}

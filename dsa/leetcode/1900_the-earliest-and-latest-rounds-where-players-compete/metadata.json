@@ -6,6 +6,9 @@
   "title": "The Earliest and Latest Rounds Where Players Compete",
   "difficulty": "Hard",
   "acceptance_rate": 72.21696480092325,
+  "frequency": 0.0,
+  "elo_rating": 2454.7653333657,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

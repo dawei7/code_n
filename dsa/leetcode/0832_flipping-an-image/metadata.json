@@ -6,6 +6,9 @@
   "title": "Flipping an Image",
   "difficulty": "Easy",
   "acceptance_rate": 83.84023655646395,
+  "frequency": 37.2,
+  "elo_rating": 1243.1009943284,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Weighted Word Mapping",
   "difficulty": "Easy",
   "acceptance_rate": 90.61568422655961,
+  "frequency": 52.3,
+  "elo_rating": 1240.5761017553,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

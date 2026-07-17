@@ -6,6 +6,9 @@
   "title": "Page Recommendations",
   "difficulty": "Medium",
   "acceptance_rate": 65.47156586716086,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1418.321418,
   "category": "database",
   "category_title": "Database",
   "topics": [

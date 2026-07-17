@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1795",
+  "cases": [
+    {
+      "id": "example-full-and-sparse-products",
+      "name": "sample: one product is in every store and one skips store2",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Products": [
+        {"product_id": 0, "store1": 95, "store2": 100, "store3": 105},
+        {"product_id": 1, "store1": 70, "store2": null, "store3": 80}
+      ]}},
+      "expected": {
+        "columns": ["product_id", "store", "price"],
+        "rows": [[0, "store1", 95], [1, "store1", 70], [0, "store2", 100], [0, "store3", 105], [1, "store3", 80]]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["sample", "null-filtering", "all-stores"]
+    },
+    {
+      "id": "trial-only-store2",
+      "name": "one product is available only in store2",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Products": [
+        {"product_id": 7, "store1": null, "store2": 42, "store3": null}
+      ]}},
+      "expected": {"columns": ["product_id", "store", "price"], "rows": [[7, "store2", 42]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["single-output", "store2"]
+    },
+    {
+      "id": "trial-all-null",
+      "name": "a product unavailable everywhere emits no row",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Products": [
+        {"product_id": 8, "store1": null, "store2": null, "store3": null}
+      ]}},
+      "expected": {"columns": ["product_id", "store", "price"], "rows": []},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["all-null", "empty-output"]
+    },
+    {
+      "id": "real-equal-prices-in-all-stores",
+      "name": "hidden: equal prices remain three distinct store rows",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Products": [
+        {"product_id": 11, "store1": 50, "store2": 50, "store3": 50}
+      ]}},
+      "expected": {
+        "columns": ["product_id", "store", "price"],
+        "rows": [[11, "store1", 50], [11, "store2", 50], [11, "store3", 50]]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["equal-prices", "union-all"]
+    },
+    {
+      "id": "real-zero-and-negative-prices",
+      "name": "hidden: non-null integer values are retained regardless of sign",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Products": [
+        {"product_id": 3, "store1": 0, "store2": -5, "store3": null}
+      ]}},
+      "expected": {
+        "columns": ["product_id", "store", "price"],
+        "rows": [[3, "store1", 0], [3, "store2", -5]]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["zero", "negative", "null-semantics"]
+    },
+    {
+      "id": "real-nonconsecutive-product-ids",
+      "name": "hidden: identifiers and sparse stores are independent",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Products": [
+        {"product_id": 100, "store1": null, "store2": 8, "store3": 9},
+        {"product_id": 2, "store1": 4, "store2": null, "store3": null},
+        {"product_id": 47, "store1": null, "store2": null, "store3": 6}
+      ]}},
+      "expected": {
+        "columns": ["product_id", "store", "price"],
+        "rows": [[2, "store1", 4], [100, "store2", 8], [47, "store3", 6], [100, "store3", 9]]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["sparse", "nonconsecutive-ids", "any-order"]
+    },
+    {
+      "id": "real-each-store-represented-separately",
+      "name": "hidden: separate products cover the three branch labels",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Products": [
+        {"product_id": 1, "store1": 10, "store2": null, "store3": null},
+        {"product_id": 2, "store1": null, "store2": 20, "store3": null},
+        {"product_id": 3, "store1": null, "store2": null, "store3": 30}
+      ]}},
+      "expected": {
+        "columns": ["product_id", "store", "price"],
+        "rows": [[1, "store1", 10], [2, "store2", 20], [3, "store3", 30]]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["branch-coverage", "store-labels"]
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Maximum Total from Optimal Activation Order",
   "difficulty": "Medium",
   "acceptance_rate": 33.459766499528186,
+  "frequency": 0.0,
+  "elo_rating": 2018.8785710598,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Music Playlists",
   "difficulty": "Hard",
   "acceptance_rate": 60.089860715890374,
+  "frequency": 54.6,
+  "elo_rating": 2399.5729141925,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

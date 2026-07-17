@@ -6,6 +6,9 @@
   "title": "Reverse Integer",
   "difficulty": "Medium",
   "acceptance_rate": 32.115298591093946,
+  "frequency": 88.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1753.634476,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

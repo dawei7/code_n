@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1778",
+  "frontend_id": "1659",
+  "title_slug": "maximize-grid-happiness",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getMaxGridHappiness",
+  "verified_submission_id": "2070485157",
+  "verified_at": "2026-07-17T01:18:11.348788+00:00"
+}

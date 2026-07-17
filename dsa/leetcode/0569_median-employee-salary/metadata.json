@@ -6,6 +6,9 @@
   "title": "Median Employee Salary",
   "difficulty": "Hard",
   "acceptance_rate": 65.86243278630175,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1963.103061,
   "category": "database",
   "category_title": "Database",
   "topics": [

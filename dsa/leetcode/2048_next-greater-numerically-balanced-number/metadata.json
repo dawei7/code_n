@@ -6,6 +6,9 @@
   "title": "Next Greater Numerically Balanced Number",
   "difficulty": "Medium",
   "acceptance_rate": 63.0943024387955,
+  "frequency": 0.0,
+  "elo_rating": 1734.0550202798,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Smallest Absent Positive Greater Than Average",
   "difficulty": "Easy",
   "acceptance_rate": 34.46395151947242,
+  "frequency": 0.0,
+  "elo_rating": 1306.0704191448,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

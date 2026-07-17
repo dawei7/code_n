@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1709",
+  "cases": [
+    {
+      "id":"sample-official","name":"sample: internal and terminal windows for three users","kind":"sample","visible":true,
+      "input":{"tables":{"UserVisits":[
+        {"user_id":1,"visit_date":"2020-11-28"},{"user_id":1,"visit_date":"2020-10-20"},{"user_id":1,"visit_date":"2020-12-03"},
+        {"user_id":2,"visit_date":"2020-10-05"},{"user_id":2,"visit_date":"2020-12-09"},{"user_id":3,"visit_date":"2020-11-11"}
+      ]}},
+      "expected":{"columns":["user_id","biggest_window"],"rows":[[1,39],[2,65],[3,51]]},
+      "validator":{"kind":"unordered_table"},"tags":["sample","unsorted-dates","terminal-window"]
+    },
+    {
+      "id":"trial-single-final-day","name":"trial: a visit on the final day has a one-day window","kind":"trial","visible":true,
+      "input":{"tables":{"UserVisits":[{"user_id":7,"visit_date":"2020-12-31"}]}},
+      "expected":{"columns":["user_id","biggest_window"],"rows":[[7,1]]},
+      "validator":{"kind":"unordered_table"},"tags":["single-visit","one-day-gap"]
+    },
+    {
+      "id":"trial-year-span","name":"trial: an internal near-year gap is the maximum","kind":"trial","visible":true,
+      "input":{"tables":{"UserVisits":[{"user_id":4,"visit_date":"2020-12-31"},{"user_id":4,"visit_date":"2020-01-01"}]}},
+      "expected":{"columns":["user_id","biggest_window"],"rows":[[4,365]]},
+      "validator":{"kind":"unordered_table"},"tags":["year-boundary","internal-window"]
+    },
+    {
+      "id":"real-terminal-wins","name":"hidden: the terminal window exceeds short internal gaps","kind":"real","visible":false,
+      "input":{"tables":{"UserVisits":[
+        {"user_id":10,"visit_date":"2020-01-03"},{"user_id":10,"visit_date":"2020-01-01"},{"user_id":10,"visit_date":"2020-01-02"}
+      ]}},
+      "expected":{"columns":["user_id","biggest_window"],"rows":[[10,364]]},
+      "validator":{"kind":"unordered_table"},"tags":["terminal-window","consecutive-visits"]
+    },
+    {
+      "id":"real-leap-day-users","name":"hidden: leap-day arithmetic and user partitions stay independent","kind":"real","visible":false,
+      "input":{"tables":{"UserVisits":[
+        {"user_id":8,"visit_date":"2020-03-01"},{"user_id":9,"visit_date":"2020-06-30"},
+        {"user_id":8,"visit_date":"2020-02-28"},{"user_id":8,"visit_date":"2020-02-29"},{"user_id":9,"visit_date":"2020-01-01"}
+      ]}},
+      "expected":{"columns":["user_id","biggest_window"],"rows":[[8,306],[9,185]]},
+      "validator":{"kind":"unordered_table"},"tags":["leap-day","multiple-users","partition"]
+    }
+  ]
+}

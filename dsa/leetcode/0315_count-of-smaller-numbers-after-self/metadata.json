@@ -6,6 +6,9 @@
   "title": "Count of Smaller Numbers After Self",
   "difficulty": "Hard",
   "acceptance_rate": 43.78313419465336,
+  "frequency": 61.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 2172.64695,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

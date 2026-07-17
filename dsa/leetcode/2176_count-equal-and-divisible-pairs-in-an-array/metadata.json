@@ -6,6 +6,9 @@
   "title": "Count Equal and Divisible Pairs in an Array",
   "difficulty": "Easy",
   "acceptance_rate": 83.82883165610116,
+  "frequency": 32.4,
+  "elo_rating": 1215.7827321325,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

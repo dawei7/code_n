@@ -6,6 +6,9 @@
   "title": "Minimum Fuel Cost to Report to the Capital",
   "difficulty": "Medium",
   "acceptance_rate": 65.3930891362131,
+  "frequency": 50.4,
+  "elo_rating": 2011.9703133514,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

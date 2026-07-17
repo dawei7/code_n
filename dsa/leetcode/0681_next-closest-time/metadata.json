@@ -6,6 +6,9 @@
   "title": "Next Closest Time",
   "difficulty": "Medium",
   "acceptance_rate": 47.01005412543342,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1632.58266,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

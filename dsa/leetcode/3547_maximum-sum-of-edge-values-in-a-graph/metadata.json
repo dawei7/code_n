@@ -6,6 +6,9 @@
   "title": "Maximum Sum of Edge Values in a Graph",
   "difficulty": "Hard",
   "acceptance_rate": 36.997152472171884,
+  "frequency": 0.0,
+  "elo_rating": 2343.9866471772,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

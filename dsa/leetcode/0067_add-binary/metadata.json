@@ -6,6 +6,9 @@
   "title": "Add Binary",
   "difficulty": "Easy",
   "acceptance_rate": 58.24465517985671,
+  "frequency": 77.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1230.137143,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

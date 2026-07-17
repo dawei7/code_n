@@ -6,6 +6,9 @@
   "title": "Shortest Distance to Target Color",
   "difficulty": "Medium",
   "acceptance_rate": 56.53959504447962,
+  "frequency": 0.0,
+  "elo_rating": 1626.6740430119,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

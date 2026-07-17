@@ -6,6 +6,9 @@
   "title": "Contains Duplicate",
   "difficulty": "Easy",
   "acceptance_rate": 64.50779712083134,
+  "frequency": 78.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1208.580642,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

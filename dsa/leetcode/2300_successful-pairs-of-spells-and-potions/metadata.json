@@ -6,6 +6,9 @@
   "title": "Successful Pairs of Spells and Potions",
   "difficulty": "Medium",
   "acceptance_rate": 49.69565310635678,
+  "frequency": 18.5,
+  "elo_rating": 1476.9062320302,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

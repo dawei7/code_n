@@ -6,6 +6,9 @@
   "title": "Number of People Aware of a Secret",
   "difficulty": "Medium",
   "acceptance_rate": 60.62988410283514,
+  "frequency": 50.7,
+  "elo_rating": 1893.5143805402,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

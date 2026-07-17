@@ -6,6 +6,9 @@
   "title": "Excel Sheet Column Number",
   "difficulty": "Easy",
   "acceptance_rate": 68.03062406377256,
+  "frequency": 48.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1193.945954,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Shortest Distance from All Buildings",
   "difficulty": "Hard",
   "acceptance_rate": 44.95707347419224,
+  "frequency": 67.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 2153.542262,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

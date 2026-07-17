@@ -6,6 +6,9 @@
   "title": "Sum of Mutated Array Closest to Target",
   "difficulty": "Medium",
   "acceptance_rate": 46.437402692554265,
+  "frequency": 0.0,
+  "elo_rating": 1606.9895296459,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

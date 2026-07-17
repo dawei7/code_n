@@ -6,6 +6,9 @@
   "title": "Determine if Two Events Have Conflict",
   "difficulty": "Easy",
   "acceptance_rate": 53.463056198122196,
+  "frequency": 0.0,
+  "elo_rating": 1322.3886921778,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

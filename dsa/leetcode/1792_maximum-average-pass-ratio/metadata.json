@@ -6,6 +6,9 @@
   "title": "Maximum Average Pass Ratio",
   "difficulty": "Medium",
   "acceptance_rate": 74.09201308949291,
+  "frequency": 0.0,
+  "elo_rating": 1817.9978644712,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

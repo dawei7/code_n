@@ -6,6 +6,9 @@
   "title": "Count Integers With Even Digit Sum",
   "difficulty": "Easy",
   "acceptance_rate": 70.59647881575009,
+  "frequency": 22.3,
+  "elo_rating": 1257.1166915286,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

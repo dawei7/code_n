@@ -6,6 +6,9 @@
   "title": "Swim in Rising Water",
   "difficulty": "Hard",
   "acceptance_rate": 68.01530056519465,
+  "frequency": 58.7,
+  "elo_rating": 2096.6201393558,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

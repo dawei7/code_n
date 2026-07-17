@@ -6,6 +6,9 @@
   "title": "Maximum Profit From Trading Stocks",
   "difficulty": "Medium",
   "acceptance_rate": 48.26228981471565,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1617.414721,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

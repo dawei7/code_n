@@ -6,6 +6,9 @@
   "title": "First Unique Character in a String",
   "difficulty": "Easy",
   "acceptance_rate": 65.80150446276967,
+  "frequency": 74.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1203.240959,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

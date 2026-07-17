@@ -6,6 +6,9 @@
   "title": "Invert Binary Tree",
   "difficulty": "Easy",
   "acceptance_rate": 80.21599357585559,
+  "frequency": 50.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

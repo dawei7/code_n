@@ -6,6 +6,9 @@
   "title": "Smallest Missing Non-negative Integer After Operations",
   "difficulty": "Medium",
   "acceptance_rate": 55.94302292353815,
+  "frequency": 25.5,
+  "elo_rating": 1845.6611654401,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

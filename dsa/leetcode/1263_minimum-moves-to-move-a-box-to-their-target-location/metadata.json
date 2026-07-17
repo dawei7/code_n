@@ -6,6 +6,9 @@
   "title": "Minimum Moves to Move a Box to Their Target Location",
   "difficulty": "Hard",
   "acceptance_rate": 49.859124899102966,
+  "frequency": 0.0,
+  "elo_rating": 2297.105362516,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

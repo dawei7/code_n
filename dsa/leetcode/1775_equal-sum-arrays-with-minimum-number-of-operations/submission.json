@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1901",
+  "frontend_id": "1775",
+  "title_slug": "equal-sum-arrays-with-minimum-number-of-operations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minOperations",
+  "verified_submission_id": "2071097113",
+  "verified_at": "2026-07-17T12:30:18.416658+00:00"
+}

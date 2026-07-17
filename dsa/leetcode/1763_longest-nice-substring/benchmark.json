@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1763",
+  "measurement_note": "Size is n, the string length. All-lowercase strings force the accepted divide-and-conquer implementation to remove one unpaired character per recursive level, exercising its O(n^2) worst case. A correct all-substring checker rebuilds a set for every candidate, completes every tier, and is rejected by O(n^3) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 unpaired lowercase letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"s": "aaaaaaaaaaaaaaaa"},
+      "expected": "",
+      "tags": ["benchmark", "scaling", "no-nice-substring"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 unpaired lowercase letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": "",
+      "tags": ["benchmark", "scaling", "no-nice-substring"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 unpaired lowercase letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": "",
+      "tags": ["benchmark", "scaling", "no-nice-substring"]
+    }
+  ]
+}

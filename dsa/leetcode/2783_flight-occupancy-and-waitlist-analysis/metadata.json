@@ -6,6 +6,9 @@
   "title": "Flight Occupancy and Waitlist Analysis",
   "difficulty": "Medium",
   "acceptance_rate": 38.87258222322571,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1711.630955,
   "category": "database",
   "category_title": "Database",
   "topics": [

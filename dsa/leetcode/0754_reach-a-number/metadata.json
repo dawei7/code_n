@@ -6,6 +6,9 @@
   "title": "Reach a Number",
   "difficulty": "Medium",
   "acceptance_rate": 45.320419378251614,
+  "frequency": 35.4,
+  "elo_rating": 1880.3261182293,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

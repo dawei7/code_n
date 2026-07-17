@@ -6,6 +6,9 @@
   "title": "Find Top Performing Driver",
   "difficulty": "Medium",
   "acceptance_rate": 49.00865176640231,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1607.497223,
   "category": "database",
   "category_title": "Database",
   "topics": [

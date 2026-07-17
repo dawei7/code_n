@@ -6,6 +6,9 @@
   "title": "Longest Valid Parentheses",
   "difficulty": "Hard",
   "acceptance_rate": 39.12411594007983,
+  "frequency": 76.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 2249.065701,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

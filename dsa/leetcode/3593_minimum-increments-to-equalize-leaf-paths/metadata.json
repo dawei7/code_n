@@ -6,6 +6,9 @@
   "title": "Minimum Increments to Equalize Leaf Paths",
   "difficulty": "Medium",
   "acceptance_rate": 41.36798088410992,
+  "frequency": 0.0,
+  "elo_rating": 1959.1438732568,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

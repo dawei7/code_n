@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1763",
+  "cases": [
+    {
+      "id": "sample-inner-nice-substring",
+      "name": "sample: unpaired boundary letters are excluded",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "YazaAay"},
+      "expected": "aAa",
+      "tags": ["sample", "inner-substring"]
+    },
+    {
+      "id": "sample-whole-string",
+      "name": "sample: complete string is nice",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "Bb"},
+      "expected": "Bb",
+      "tags": ["sample", "whole-string"]
+    },
+    {
+      "id": "sample-no-answer",
+      "name": "sample: one unpaired character",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "c"},
+      "expected": "",
+      "tags": ["sample", "empty-answer", "minimum-length"]
+    },
+    {
+      "id": "trial-earliest-tie",
+      "name": "trial: equal-length nice sides choose the left one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "dDzeE"},
+      "expected": "dD",
+      "tags": ["tie", "earliest"]
+    },
+    {
+      "id": "trial-several-pairs",
+      "name": "trial: repeated cases make the whole string nice",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abABB"},
+      "expected": "abABB",
+      "tags": ["multiple-letters", "repeated-characters"]
+    },
+    {
+      "id": "real-unpaired-suffix",
+      "name": "hidden: unpaired suffix is split away",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcABCx"},
+      "expected": "abcABC",
+      "tags": ["unpaired-suffix", "multiple-letters"]
+    },
+    {
+      "id": "real-repeated-one-letter",
+      "name": "hidden: multiplicity does not change paired presence",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaA"},
+      "expected": "aaA",
+      "tags": ["duplicates", "whole-string"]
+    },
+    {
+      "id": "real-unpaired-final-letter",
+      "name": "hidden: longest nice prefix uses two letter pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abBAc"},
+      "expected": "abBA",
+      "tags": ["nice-prefix", "unpaired-suffix"]
+    }
+  ]
+}

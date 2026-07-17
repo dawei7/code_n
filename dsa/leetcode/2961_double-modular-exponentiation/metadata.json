@@ -6,6 +6,9 @@
   "title": "Double Modular Exponentiation",
   "difficulty": "Medium",
   "acceptance_rate": 48.24807806031934,
+  "frequency": 0.0,
+  "elo_rating": 1450.6986543984,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

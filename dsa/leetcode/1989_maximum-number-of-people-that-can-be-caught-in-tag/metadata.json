@@ -6,6 +6,9 @@
   "title": "Maximum Number of People That Can Be Caught in Tag",
   "difficulty": "Medium",
   "acceptance_rate": 49.600278067431354,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1597.579725,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

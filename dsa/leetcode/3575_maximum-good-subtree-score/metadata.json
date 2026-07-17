@@ -6,6 +6,9 @@
   "title": "Maximum Good Subtree Score",
   "difficulty": "Hard",
   "acceptance_rate": 45.65020799421233,
+  "frequency": 41.4,
+  "elo_rating": 2359.6837796886,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

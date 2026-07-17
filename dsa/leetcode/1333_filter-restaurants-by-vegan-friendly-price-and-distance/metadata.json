@@ -6,6 +6,9 @@
   "title": "Filter Restaurants by Vegan-Friendly, Price and Distance",
   "difficulty": "Medium",
   "acceptance_rate": 64.35978017915063,
+  "frequency": 0.0,
+  "elo_rating": 1423.1058649921,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

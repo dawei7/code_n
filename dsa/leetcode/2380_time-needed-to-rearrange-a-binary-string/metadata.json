@@ -6,6 +6,9 @@
   "title": "Time Needed to Rearrange a Binary String",
   "difficulty": "Medium",
   "acceptance_rate": 53.382337523152735,
+  "frequency": 76.5,
+  "elo_rating": 1481.1046340847,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

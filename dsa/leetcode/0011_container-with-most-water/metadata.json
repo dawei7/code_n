@@ -6,6 +6,9 @@
   "title": "Container With Most Water",
   "difficulty": "Medium",
   "acceptance_rate": 60.334378254107776,
+  "frequency": 93.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1461.254421,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

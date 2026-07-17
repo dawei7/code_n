@@ -6,6 +6,9 @@
   "title": "Resulting String After Adjacent Removals",
   "difficulty": "Medium",
   "acceptance_rate": 57.105442176870746,
+  "frequency": 30.5,
+  "elo_rating": 1397.240044812,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximize Points After Choosing K Tasks",
   "difficulty": "Medium",
   "acceptance_rate": 60.28237754924176,
+  "frequency": 0.0,
+  "elo_rating": 1703.8928183911,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

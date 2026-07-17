@@ -6,6 +6,9 @@
   "title": "Trionic Array I",
   "difficulty": "Easy",
   "acceptance_rate": 49.528746114298634,
+  "frequency": 88.2,
+  "elo_rating": 1263.9483086714,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

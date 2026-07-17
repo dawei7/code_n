@@ -6,6 +6,9 @@
   "title": "Magical String",
   "difficulty": "Medium",
   "acceptance_rate": 55.712911151176584,
+  "frequency": 25.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1509.780696,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

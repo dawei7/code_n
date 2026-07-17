@@ -6,6 +6,9 @@
   "title": "Ant on the Boundary",
   "difficulty": "Easy",
   "acceptance_rate": 74.61303850552802,
+  "frequency": 17.9,
+  "elo_rating": 1115.8258444602,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

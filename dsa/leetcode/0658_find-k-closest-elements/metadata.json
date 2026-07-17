@@ -6,6 +6,9 @@
   "title": "Find K Closest Elements",
   "difficulty": "Medium",
   "acceptance_rate": 49.85518148886007,
+  "frequency": 71.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1593.496049,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

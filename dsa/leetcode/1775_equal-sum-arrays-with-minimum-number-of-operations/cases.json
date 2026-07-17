@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1775",
+  "cases": [
+    {
+      "id": "example-1",
+      "name": "three changes close a mixed gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [1, 2, 3, 4, 5, 6], "nums2": [1, 1, 2, 2, 2, 2]},
+      "expected": 3,
+      "tags": ["example", "mixed-gains"]
+    },
+    {
+      "id": "example-2",
+      "name": "length ranges make equality impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [1, 1, 1, 1, 1, 1, 1], "nums2": [6]},
+      "expected": -1,
+      "tags": ["example", "impossible"]
+    },
+    {
+      "id": "example-3",
+      "name": "higher first sum needs three changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [6, 6], "nums2": [1]},
+      "expected": 3,
+      "tags": ["example", "swap-roles"]
+    },
+    {
+      "id": "already-equal",
+      "name": "different values with equal sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1, 2, 3], "nums2": [2, 2, 2]},
+      "expected": 0,
+      "tags": ["equal-sums", "zero-operations"]
+    },
+    {
+      "id": "single-operation",
+      "name": "one maximum gain closes the gap",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1], "nums2": [6]},
+      "expected": 1,
+      "tags": ["single-element", "maximum-gain"]
+    },
+    {
+      "id": "reverse-impossible",
+      "name": "one element cannot match seven",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1], "nums2": [6, 6, 6, 6, 6, 6, 6]},
+      "expected": -1,
+      "tags": ["impossible", "reverse-lengths"]
+    },
+    {
+      "id": "two-maximum-gains",
+      "name": "two operations each contribute five",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1, 1], "nums2": [6, 6]},
+      "expected": 2,
+      "tags": ["maximum-gain", "multiple-operations"]
+    }
+  ]
+}

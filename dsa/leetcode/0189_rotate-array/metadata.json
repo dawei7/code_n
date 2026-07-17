@@ -6,6 +6,9 @@
   "title": "Rotate Array",
   "difficulty": "Medium",
   "acceptance_rate": 45.18963544221023,
+  "frequency": 75.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1653.001039,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

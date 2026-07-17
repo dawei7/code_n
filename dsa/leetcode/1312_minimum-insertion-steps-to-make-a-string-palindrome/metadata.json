@@ -6,6 +6,9 @@
   "title": "Minimum Insertion Steps to Make a String Palindrome",
   "difficulty": "Hard",
   "acceptance_rate": 74.17433833924439,
+  "frequency": 35.4,
+  "elo_rating": 1786.688543054,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

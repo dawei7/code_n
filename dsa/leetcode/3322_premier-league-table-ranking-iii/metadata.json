@@ -6,6 +6,9 @@
   "title": "Premier League Table Ranking III",
   "difficulty": "Medium",
   "acceptance_rate": 70.60140754958412,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1381.969386,
   "category": "database",
   "category_title": "Database",
   "topics": [

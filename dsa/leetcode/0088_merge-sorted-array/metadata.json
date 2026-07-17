@@ -6,6 +6,9 @@
   "title": "Merge Sorted Array",
   "difficulty": "Easy",
   "acceptance_rate": 55.19308544631449,
+  "frequency": 83.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1236.861189,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

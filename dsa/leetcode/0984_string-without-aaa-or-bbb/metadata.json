@@ -6,6 +6,9 @@
   "title": "String Without AAA or BBB",
   "difficulty": "Medium",
   "acceptance_rate": 45.47259931434866,
+  "frequency": 17.7,
+  "elo_rating": 1474.0150725665,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

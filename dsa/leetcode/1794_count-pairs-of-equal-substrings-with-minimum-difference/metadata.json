@@ -6,6 +6,9 @@
   "title": "Count Pairs of Equal Substrings With Minimum Difference",
   "difficulty": "Medium",
   "acceptance_rate": 64.03041825095058,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1430.543222,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1705",
+  "cases": [
+    {"id":"sample-overlapping","name":"sample: overlapping batches require expiration priority","kind":"sample","visible":true,"input":{"apples":[1,2,3,5,2],"days":[3,2,1,4,2]},"expected":7,"tags":["sample","overlap"]},
+    {"id":"sample-production-gap","name":"sample: eating resumes after two idle production days","kind":"sample","visible":true,"input":{"apples":[3,0,0,0,0,2],"days":[3,0,0,0,0,2]},"expected":5,"tags":["sample","gap"]},
+    {"id":"trial-short-large-batch","name":"trial: most of a large one-day batch rots","kind":"trial","visible":true,"input":{"apples":[2,1,10],"days":[2,10,1]},"expected":4,"tags":["short-lived","long-lived"]},
+    {"id":"trial-no-apples","name":"trial: no batch ever produces an apple","kind":"trial","visible":true,"input":{"apples":[0],"days":[0]},"expected":0,"tags":["minimum","empty"]},
+    {"id":"trial-single-day","name":"trial: one-day lifetime permits one apple","kind":"trial","visible":true,"input":{"apples":[5],"days":[1]},"expected":1,"tags":["single-day","expiration"]},
+    {"id":"trial-after-input","name":"trial: a lone batch is consumed after production ends","kind":"trial","visible":true,"input":{"apples":[5],"days":[3]},"expected":3,"tags":["post-input","batch-limit"]},
+    {"id":"real-urgent-before-durable","name":"hidden: urgent batch must precede a durable batch","kind":"real","visible":false,"input":{"apples":[2,1,0],"days":[2,5,0]},"expected":3,"tags":["priority","exchange"]},
+    {"id":"real-late-gap","name":"hidden: a later batch arrives after all earlier fruit rots","kind":"real","visible":false,"input":{"apples":[1,0,0,2],"days":[2,0,0,2]},"expected":3,"tags":["idle-gap","late-batch"]},
+    {"id":"real-multiple-expirations","name":"hidden: several batch expirations interleave","kind":"real","visible":false,"input":{"apples":[3,1,2],"days":[3,1,3]},"expected":5,"tags":["multiple-batches","exclusive-expiration"]},
+    {"id":"real-zero-between-overlaps","name":"hidden: old fruit is eaten on a zero-production day","kind":"real","visible":false,"input":{"apples":[2,0,2,0],"days":[4,0,2,0]},"expected":4,"tags":["zero-day","overlap"]}
+  ]
+}

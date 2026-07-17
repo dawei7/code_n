@@ -6,6 +6,9 @@
   "title": "Count Total Number of Colored Cells",
   "difficulty": "Medium",
   "acceptance_rate": 66.1103503826017,
+  "frequency": 31.0,
+  "elo_rating": 1356.4450869217,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

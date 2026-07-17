@@ -6,6 +6,9 @@
   "title": "Walking Robot Simulation",
   "difficulty": "Medium",
   "acceptance_rate": 64.66414557904511,
+  "frequency": 70.8,
+  "elo_rating": 1846.3568350016,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

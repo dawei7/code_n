@@ -6,6 +6,9 @@
   "title": "Count Strictly Increasing Subarrays",
   "difficulty": "Medium",
   "acceptance_rate": 71.11772205694858,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1378.52221,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

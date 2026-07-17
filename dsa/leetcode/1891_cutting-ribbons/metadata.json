@@ -6,6 +6,9 @@
   "title": "Cutting Ribbons",
   "difficulty": "Medium",
   "acceptance_rate": 53.062713714516605,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1545.367014,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

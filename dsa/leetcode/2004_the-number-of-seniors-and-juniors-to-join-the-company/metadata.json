@@ -6,6 +6,9 @@
   "title": "The Number of Seniors and Juniors to Join the Company",
   "difficulty": "Hard",
   "acceptance_rate": 46.443776609065864,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2127.614471,
   "category": "database",
   "category_title": "Database",
   "topics": [

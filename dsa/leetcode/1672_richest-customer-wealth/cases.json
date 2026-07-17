@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1672",
+  "cases": [
+    {"id":"sample-tied-richest","name":"sample: two customers tie at six","kind":"sample","visible":true,"input":{"accounts":[[1,2,3],[3,2,1]]},"expected":6,"tags":["sample","tie"]},
+    {"id":"sample-middle-richest","name":"sample: middle customer has ten","kind":"sample","visible":true,"input":{"accounts":[[1,5],[7,3],[3,5]]},"expected":10,"tags":["sample","middle-row"]},
+    {"id":"sample-first-richest","name":"sample: first customer has seventeen","kind":"sample","visible":true,"input":{"accounts":[[2,8,7],[7,1,3],[1,9,5]]},"expected":17,"tags":["sample","first-row"]},
+    {"id":"trial-single-cell","name":"trial: one customer with one bank","kind":"trial","visible":true,"input":{"accounts":[[100]]},"expected":100,"tags":["minimum-dimensions"]},
+    {"id":"trial-rectangular","name":"trial: more banks than customers","kind":"trial","visible":true,"input":{"accounts":[[4,1,2,3],[2,2,2,5]]},"expected":11,"tags":["rectangular","last-row"]},
+    {"id":"real-last-richest","name":"hidden: final customer overtakes earlier rows","kind":"real","visible":false,"input":{"accounts":[[9,1],[5,5],[6,7]]},"expected":13,"tags":["last-row"]},
+    {"id":"real-all-tie","name":"hidden: different distributions share maximum wealth","kind":"real","visible":false,"input":{"accounts":[[1,4,5],[2,3,5],[8,1,1]]},"expected":10,"tags":["tie","distributions"]},
+    {"id":"real-single-bank","name":"hidden: one bank per customer","kind":"real","visible":false,"input":{"accounts":[[1],[99],[42],[7]]},"expected":99,"tags":["single-column"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Web Crawler Multithreaded",
   "difficulty": "Medium",
   "acceptance_rate": 51.2686071019365,
+  "frequency": 39.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1573.07767,
   "category": "concurrency",
   "category_title": "Concurrency",
   "topics": [
@@ -23,7 +26,9 @@
     }
   ],
   "url": "https://leetcode.com/problems/web-crawler-multithreaded/",
-  "supported_languages": ["python"],
+  "supported_languages": [
+    "python"
+  ],
   "primary_language": "python",
   "runnable_in_coden": true,
   "subsets": [

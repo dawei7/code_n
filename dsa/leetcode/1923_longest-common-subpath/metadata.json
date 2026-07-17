@@ -6,6 +6,9 @@
   "title": "Longest Common Subpath",
   "difficulty": "Hard",
   "acceptance_rate": 29.9902547682027,
+  "frequency": 0.0,
+  "elo_rating": 2661.0670044656,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Number of Consecutive Values You Can Make",
   "difficulty": "Medium",
   "acceptance_rate": 64.24927713392417,
+  "frequency": 0.0,
+  "elo_rating": 1931.0849921121,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

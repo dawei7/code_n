@@ -6,6 +6,9 @@
   "title": "Smallest Integer Divisible by K",
   "difficulty": "Medium",
   "acceptance_rate": 54.2188954347087,
+  "frequency": 46.4,
+  "elo_rating": 1874.6468976233,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

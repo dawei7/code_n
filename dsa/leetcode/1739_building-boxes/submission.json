@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1861",
+  "frontend_id": "1739",
+  "title_slug": "building-boxes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumBoxes",
+  "verified_submission_id": "2070897279",
+  "verified_at": "2026-07-17T08:59:58.298070+00:00"
+}

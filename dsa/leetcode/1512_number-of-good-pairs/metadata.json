@@ -6,6 +6,9 @@
   "title": "Number of Good Pairs",
   "difficulty": "Easy",
   "acceptance_rate": 89.86783001183487,
+  "frequency": 48.6,
+  "elo_rating": 1160.8899403409,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

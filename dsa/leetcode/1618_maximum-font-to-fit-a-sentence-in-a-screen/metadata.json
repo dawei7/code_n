@@ -6,6 +6,9 @@
   "title": "Maximum Font to Fit a Sentence in a Screen",
   "difficulty": "Medium",
   "acceptance_rate": 62.05627351545886,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1446.52558,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

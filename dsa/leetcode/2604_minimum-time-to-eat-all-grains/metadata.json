@@ -6,6 +6,9 @@
   "title": "Minimum Time to Eat All Grains",
   "difficulty": "Hard",
   "acceptance_rate": 40.93650230578219,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2219.726359,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

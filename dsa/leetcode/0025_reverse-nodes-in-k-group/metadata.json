@@ -6,6 +6,9 @@
   "title": "Reverse Nodes in k-Group",
   "difficulty": "Hard",
   "acceptance_rate": 66.54676945625481,
+  "frequency": 69.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1960.634469,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

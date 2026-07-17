@@ -6,6 +6,9 @@
   "title": "Sum Multiples",
   "difficulty": "Easy",
   "acceptance_rate": 86.08038486187753,
+  "frequency": 32.7,
+  "elo_rating": 1182.3093772964,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Create Maximum Number",
   "difficulty": "Hard",
   "acceptance_rate": 35.85610632126184,
+  "frequency": 54.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 2287.957387,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

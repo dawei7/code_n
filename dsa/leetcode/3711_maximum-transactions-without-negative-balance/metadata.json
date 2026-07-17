@@ -6,6 +6,9 @@
   "title": "Maximum Transactions Without Negative Balance",
   "difficulty": "Medium",
   "acceptance_rate": 46.12676056338028,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1643.958614,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

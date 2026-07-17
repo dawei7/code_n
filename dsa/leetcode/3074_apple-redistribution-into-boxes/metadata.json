@@ -6,6 +6,9 @@
   "title": "Apple Redistribution into Boxes",
   "difficulty": "Easy",
   "acceptance_rate": 78.59199736719414,
+  "frequency": 42.9,
+  "elo_rating": 1197.5462481787,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

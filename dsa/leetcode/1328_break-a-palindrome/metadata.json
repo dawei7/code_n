@@ -6,6 +6,9 @@
   "title": "Break a Palindrome",
   "difficulty": "Medium",
   "acceptance_rate": 51.60978245487643,
+  "frequency": 50.1,
+  "elo_rating": 1473.864993045,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

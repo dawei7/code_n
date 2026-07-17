@@ -6,6 +6,9 @@
   "title": "Merge Intervals",
   "difficulty": "Medium",
   "acceptance_rate": 52.231659321890746,
+  "frequency": 95.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1558.201423,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

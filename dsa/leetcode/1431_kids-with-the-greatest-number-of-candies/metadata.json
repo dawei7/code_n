@@ -6,6 +6,9 @@
   "title": "Kids With the Greatest Number of Candies",
   "difficulty": "Easy",
   "acceptance_rate": 88.02416592036619,
+  "frequency": 40.0,
+  "elo_rating": 1176.4547272896,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

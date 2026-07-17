@@ -6,6 +6,9 @@
   "title": "Length of Longest V-Shaped Diagonal Segment",
   "difficulty": "Hard",
   "acceptance_rate": 56.172531214528945,
+  "frequency": 44.7,
+  "elo_rating": 2530.6462600383,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

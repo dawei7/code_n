@@ -6,6 +6,9 @@
   "title": "Maximum Subsequence Score",
   "difficulty": "Medium",
   "acceptance_rate": 54.82042831326552,
+  "frequency": 21.1,
+  "elo_rating": 2056.2598215101,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

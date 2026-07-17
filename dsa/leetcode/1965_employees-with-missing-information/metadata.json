@@ -6,6 +6,9 @@
   "title": "Employees With Missing Information",
   "difficulty": "Easy",
   "acceptance_rate": 73.30400238199711,
+  "frequency": 24.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1173.556673,
   "category": "database",
   "category_title": "Database",
   "topics": [

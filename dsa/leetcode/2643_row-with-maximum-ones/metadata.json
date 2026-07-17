@@ -6,6 +6,9 @@
   "title": "Row With Maximum Ones",
   "difficulty": "Easy",
   "acceptance_rate": 74.23224484835859,
+  "frequency": 32.9,
+  "elo_rating": 1174.3019990918,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

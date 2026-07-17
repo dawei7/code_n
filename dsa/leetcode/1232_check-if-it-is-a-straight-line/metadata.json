@@ -6,6 +6,9 @@
   "title": "Check If It Is a Straight Line",
   "difficulty": "Easy",
   "acceptance_rate": 40.155893908613734,
+  "frequency": 6.4,
+  "elo_rating": 1247.3198836387,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

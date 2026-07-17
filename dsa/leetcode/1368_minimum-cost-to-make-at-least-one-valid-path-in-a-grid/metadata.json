@@ -6,6 +6,9 @@
   "title": "Minimum Cost to Make at Least One Valid Path in a Grid",
   "difficulty": "Hard",
   "acceptance_rate": 71.07235964025995,
+  "frequency": 34.3,
+  "elo_rating": 2068.806637566,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

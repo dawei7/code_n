@@ -6,6 +6,9 @@
   "title": "Bitwise OR of All Subsequence Sums",
   "difficulty": "Medium",
   "acceptance_rate": 64.13105413105413,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1428.976324,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Zero-Filled Subarrays",
   "difficulty": "Medium",
   "acceptance_rate": 70.08695691010432,
+  "frequency": 15.2,
+  "elo_rating": 1315.8569286597,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

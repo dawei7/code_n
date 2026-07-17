@@ -6,6 +6,9 @@
   "title": "Valid Subarrays With Exactly One Peak",
   "difficulty": "Medium",
   "acceptance_rate": 67.4718196457327,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1403.749267,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "  Count Symmetric Integers",
   "difficulty": "Easy",
   "acceptance_rate": 83.03159551120129,
+  "frequency": 49.4,
+  "elo_rating": 1269.8118442786,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

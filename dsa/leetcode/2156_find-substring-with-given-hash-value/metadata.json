@@ -6,6 +6,9 @@
   "title": "Find Substring With Given Hash Value",
   "difficulty": "Hard",
   "acceptance_rate": 26.492143392646767,
+  "frequency": 0.0,
+  "elo_rating": 2062.9876807625,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

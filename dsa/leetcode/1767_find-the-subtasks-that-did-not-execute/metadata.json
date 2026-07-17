@@ -6,6 +6,9 @@
   "title": "Find the Subtasks That Did Not Execute",
   "difficulty": "Hard",
   "acceptance_rate": 78.43596347459612,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1939.075434,
   "category": "database",
   "category_title": "Database",
   "topics": [

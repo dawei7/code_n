@@ -6,6 +6,9 @@
   "title": "Destination City",
   "difficulty": "Easy",
   "acceptance_rate": 79.55617397979992,
+  "frequency": 21.6,
+  "elo_rating": 1192.3167969426,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

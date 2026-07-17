@@ -6,6 +6,9 @@
   "title": "Count Submatrices With Equal Frequency of X and Y",
   "difficulty": "Medium",
   "acceptance_rate": 69.66987886528116,
+  "frequency": 68.8,
+  "elo_rating": 1672.7732068421,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

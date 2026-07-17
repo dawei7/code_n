@@ -6,6 +6,9 @@
   "title": "Add Two Numbers",
   "difficulty": "Medium",
   "acceptance_rate": 48.799259398587324,
+  "frequency": 96.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1610.997517,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

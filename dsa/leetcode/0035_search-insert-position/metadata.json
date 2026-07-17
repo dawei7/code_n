@@ -6,6 +6,9 @@
   "title": "Search Insert Position",
   "difficulty": "Easy",
   "acceptance_rate": 51.62398730917354,
+  "frequency": 71.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1245.958428,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

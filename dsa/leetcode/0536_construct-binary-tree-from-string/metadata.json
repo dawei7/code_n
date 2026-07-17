@@ -6,6 +6,9 @@
   "title": "Construct Binary Tree from String",
   "difficulty": "Medium",
   "acceptance_rate": 58.69302844086567,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1473.946294,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

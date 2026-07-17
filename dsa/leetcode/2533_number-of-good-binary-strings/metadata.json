@@ -6,6 +6,9 @@
   "title": "Number of Good Binary Strings",
   "difficulty": "Medium",
   "acceptance_rate": 52.97735721527543,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1546.825469,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

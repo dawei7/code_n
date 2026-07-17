@@ -6,6 +6,9 @@
   "title": "Replace Question Marks in String to Minimize Its Value",
   "difficulty": "Medium",
   "acceptance_rate": 29.357695145817956,
+  "frequency": 0.0,
+  "elo_rating": 1904.6714229335,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

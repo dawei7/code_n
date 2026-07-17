@@ -6,6 +6,9 @@
   "title": "Maximum Score of Non-overlapping Intervals",
   "difficulty": "Hard",
   "acceptance_rate": 31.815006287550652,
+  "frequency": 0.0,
+  "elo_rating": 2723.2974277194,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Paths in Matrix Whose Sum Is Divisible by K",
   "difficulty": "Hard",
   "acceptance_rate": 58.74750997389956,
+  "frequency": 30.0,
+  "elo_rating": 1951.5918682146,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

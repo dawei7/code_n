@@ -6,6 +6,9 @@
   "title": "Count All Valid Pickup and Delivery Options",
   "difficulty": "Hard",
   "acceptance_rate": 64.8861977359213,
+  "frequency": 28.4,
+  "elo_rating": 1722.8129701098,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

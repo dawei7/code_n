@@ -6,6 +6,9 @@
   "title": "Maximum Total Sum of K Selected Elements",
   "difficulty": "Medium",
   "acceptance_rate": 49.35746548762644,
+  "frequency": 5.6,
+  "elo_rating": 1262.8839092977,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

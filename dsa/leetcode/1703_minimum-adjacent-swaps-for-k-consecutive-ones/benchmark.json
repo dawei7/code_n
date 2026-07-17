@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1703",
+  "measurement_note": "Size is n, the binary-array length. Every tier alternates one and zero and asks to group a growing even number of ones, leaving many candidate occurrence windows. The adjusted-position prefix-sum method and an independent rolling-cost method take O(n) time. A correct implementation that directly sums all k median distances for every occurrence window takes O(nk), completes all 8/32/126-element tiers, and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: length 8 alternating array, k 2","kind":"benchmark","visible":false,"size":8,"input":{"nums":[1,0,1,0,1,0,1,0],"k":2},"expected":1,"tags":["benchmark","scaling","alternating"]},
+    {"id":"benchmark-scale-2","name":"benchmark: length 32 alternating array, k 8","kind":"benchmark","visible":false,"size":32,"input":{"nums":[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],"k":8},"expected":16,"tags":["benchmark","scaling","alternating"]},
+    {"id":"benchmark-scale-3","name":"benchmark: length 126 alternating array, k 32","kind":"benchmark","visible":false,"size":126,"input":{"nums":[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],"k":32},"expected":256,"tags":["benchmark","scaling","alternating"]}
+  ]
+}

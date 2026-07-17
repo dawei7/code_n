@@ -6,6 +6,9 @@
   "title": "Subarrays with K Different Integers",
   "difficulty": "Hard",
   "acceptance_rate": 68.53552020041624,
+  "frequency": 69.8,
+  "elo_rating": 2210.3503183571,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

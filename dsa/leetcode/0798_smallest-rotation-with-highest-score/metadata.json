@@ -6,6 +6,9 @@
   "title": "Smallest Rotation with Highest Score",
   "difficulty": "Hard",
   "acceptance_rate": 54.294930619282,
+  "frequency": 47.0,
+  "elo_rating": 2129.7051442916,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

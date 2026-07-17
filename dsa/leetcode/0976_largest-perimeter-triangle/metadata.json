@@ -6,6 +6,9 @@
   "title": "Largest Perimeter Triangle",
   "difficulty": "Easy",
   "acceptance_rate": 62.30384164306759,
+  "frequency": 40.8,
+  "elo_rating": 1340.5559417151,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Replace Employee ID With The Unique Identifier",
   "difficulty": "Easy",
   "acceptance_rate": 83.63464361990125,
+  "frequency": 45.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

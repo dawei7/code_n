@@ -6,6 +6,9 @@
   "title": "Maximum Value of K Coins From Piles",
   "difficulty": "Hard",
   "acceptance_rate": 60.494646619145186,
+  "frequency": 0.0,
+  "elo_rating": 2157.5814371481,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

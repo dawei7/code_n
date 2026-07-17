@@ -6,6 +6,9 @@
   "title": "Sum of Absolute Differences in a Sorted Array",
   "difficulty": "Medium",
   "acceptance_rate": 68.42452305618022,
+  "frequency": 56.9,
+  "elo_rating": 1495.715740828,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

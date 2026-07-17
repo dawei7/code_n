@@ -6,6 +6,9 @@
   "title": "Minimum Subarrays in a Valid Split",
   "difficulty": "Medium",
   "acceptance_rate": 64.83655409066282,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1423.335491,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

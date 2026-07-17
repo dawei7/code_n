@@ -6,6 +6,9 @@
   "title": "Next Greater Element II",
   "difficulty": "Medium",
   "acceptance_rate": 68.70477005992441,
+  "frequency": 70.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1395.444708,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

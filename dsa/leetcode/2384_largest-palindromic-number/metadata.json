@@ -6,6 +6,9 @@
   "title": "Largest Palindromic Number",
   "difficulty": "Medium",
   "acceptance_rate": 37.25366099983168,
+  "frequency": 63.6,
+  "elo_rating": 1636.47322627,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

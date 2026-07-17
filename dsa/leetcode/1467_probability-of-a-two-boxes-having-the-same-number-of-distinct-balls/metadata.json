@@ -6,6 +6,9 @@
   "title": "Probability of a Two Boxes Having The Same Number of Distinct Balls",
   "difficulty": "Hard",
   "acceptance_rate": 61.33819708175095,
+  "frequency": 0.0,
+  "elo_rating": 2356.5811122453,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

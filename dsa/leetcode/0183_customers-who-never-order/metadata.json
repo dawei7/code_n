@@ -6,6 +6,9 @@
   "title": "Customers Who Never Order",
   "difficulty": "Easy",
   "acceptance_rate": 71.9863361055273,
+  "frequency": 58.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1177.926903,
   "category": "database",
   "category_title": "Database",
   "topics": [

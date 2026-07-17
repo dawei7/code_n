@@ -6,6 +6,9 @@
   "title": "Product of the Last K Numbers",
   "difficulty": "Medium",
   "acceptance_rate": 62.9502788954457,
+  "frequency": 39.4,
+  "elo_rating": 1473.7057465272,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

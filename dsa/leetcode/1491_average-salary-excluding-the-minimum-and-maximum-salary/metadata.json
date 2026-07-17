@@ -6,6 +6,9 @@
   "title": "Average Salary Excluding the Minimum and Maximum Salary",
   "difficulty": "Easy",
   "acceptance_rate": 63.55663634510523,
+  "frequency": 0.0,
+  "elo_rating": 1201.3497763919,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

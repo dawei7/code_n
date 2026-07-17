@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1728",
+  "cases": [
+    {
+      "id": "sample-one",
+      "name": "sample: walls isolate Cat from Mouse's route",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": ["####F","#C...","M...."], "catJump": 1, "mouseJump": 2},
+      "expected": true,
+      "tags": ["sample", "walls", "mouse-win"]
+    },
+    {
+      "id": "sample-two",
+      "name": "sample: Mouse jumps over Cat to food",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": ["M.C...F"], "catJump": 1, "mouseJump": 4},
+      "expected": true,
+      "tags": ["sample", "jump-over-cat", "immediate-food"]
+    },
+    {
+      "id": "sample-three",
+      "name": "sample: shorter Mouse jump permits Cat counterplay",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": ["M.C...F"], "catJump": 1, "mouseJump": 3},
+      "expected": false,
+      "tags": ["sample", "cat-win", "jump-boundary"]
+    },
+    {
+      "id": "trial-immediate-food",
+      "name": "trial: Mouse reaches adjacent food before Cat moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": ["MF","C."], "catJump": 1, "mouseJump": 1},
+      "expected": true,
+      "tags": ["mouse-first", "terminal-food"]
+    },
+    {
+      "id": "trial-cat-reaches-food",
+      "name": "trial: Cat can reach food before Mouse",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": ["MC.F"], "catJump": 2, "mouseJump": 1},
+      "expected": false,
+      "tags": ["cat-food", "cat-win"]
+    },
+    {
+      "id": "trial-wall-blocks-large-jump",
+      "name": "trial: maximum jumps cannot cross a wall",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": ["M#F","C#."], "catJump": 8, "mouseJump": 8},
+      "expected": false,
+      "tags": ["wall-blocking", "maximum-jump"]
+    },
+    {
+      "id": "real-complex-wall-loss",
+      "name": "hidden: Cat prevents a route through separated corridors",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": ["C...#","...#F","....#","M...."], "catJump": 2, "mouseJump": 5},
+      "expected": false,
+      "tags": ["corridors", "cat-strategy"]
+    },
+    {
+      "id": "real-complex-wall-win",
+      "name": "hidden: Mouse forces a route around paired walls",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": ["M...",".##.","C..F"], "catJump": 1, "mouseJump": 2},
+      "expected": true,
+      "tags": ["maze", "mouse-strategy"]
+    },
+    {
+      "id": "real-adjacent-counterplay",
+      "name": "hidden: nearby Cat defeats a one-step Mouse",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": ["M.F","..C"], "catJump": 1, "mouseJump": 1},
+      "expected": false,
+      "tags": ["optimal-counterplay", "short-jumps"]
+    },
+    {
+      "id": "real-maximum-jumps",
+      "name": "hidden: maximum jump limits remain a Cat win",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          "M..",
+          "...",
+          "C.F"
+        ],
+        "catJump": 8,
+        "mouseJump": 8
+      },
+      "expected": false,
+      "tags": ["maximum-jump", "open-board"]
+    }
+  ]
+}

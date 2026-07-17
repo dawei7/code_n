@@ -6,6 +6,9 @@
   "title": "Toss Strange Coins",
   "difficulty": "Medium",
   "acceptance_rate": 58.10669456066946,
+  "frequency": 0.0,
+  "elo_rating": 1808.5754920785,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

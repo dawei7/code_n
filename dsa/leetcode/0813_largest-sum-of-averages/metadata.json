@@ -6,6 +6,9 @@
   "title": "Largest Sum of Averages",
   "difficulty": "Medium",
   "acceptance_rate": 55.2130139125838,
+  "frequency": 53.0,
+  "elo_rating": 1936.6613414859,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

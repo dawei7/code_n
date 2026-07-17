@@ -6,6 +6,9 @@
   "title": "Users With Two Purchases Within Seven Days",
   "difficulty": "Medium",
   "acceptance_rate": 47.03417028506702,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1631.999278,
   "category": "database",
   "category_title": "Database",
   "topics": [

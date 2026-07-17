@@ -6,6 +6,9 @@
   "title": "Find if Digit Game Can Be Won",
   "difficulty": "Easy",
   "acceptance_rate": 81.70789821231637,
+  "frequency": 9.0,
+  "elo_rating": 1163.3636455472,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

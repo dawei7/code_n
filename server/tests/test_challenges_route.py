@@ -20,9 +20,16 @@ class ChallengesRouteTest(conftest._Base):
 
     def test_leetcode_views_share_the_canonical_base(self) -> None:
         canonical_ids = None
-        for active_set in ("leetcode", "leetcode_company", "leetcode_studyplan"):
+        for active_set in (
+            "leetcode",
+            "elo",
+            "frequency",
+            "leetcode_company",
+            "leetcode_studyplan",
+        ):
             progress = self.client.put("/api/progress", json={"active_set": active_set})
             self.assertEqual(progress.status_code, 200, progress.text)
+            self.assertEqual(progress.json()["active_set"], active_set)
             response = self.client.get("/api/challenges")
             self.assertEqual(response.status_code, 200, response.text)
             ids = [item["id"] for item in response.json()]
@@ -93,6 +100,8 @@ class ChallengesRouteTest(conftest._Base):
         self.assertTrue(detail["optimal_source"])
         self.assertEqual(detail["difficulty_label"], "Easy")
         self.assertIsNone(detail["elo_rating"])
+        self.assertIsNotNone(detail["estimated_elo_rating"])
+        self.assertEqual(detail["frequency"], 100.0)
         self.assertIsNone(detail["difficulty_estimate"])
         self.assertNotIn("difficulty", detail)
 
@@ -107,6 +116,7 @@ class ChallengesRouteTest(conftest._Base):
         detail = response.json()
         self.assertEqual(detail["difficulty_label"], "Medium")
         self.assertAlmostEqual(detail["elo_rating"], 1746.135917977)
+        self.assertIsNone(detail["estimated_elo_rating"])
         self.assertIsNone(detail["difficulty_estimate"])
 
     def test_legacy_contest_problem_uses_acceptance_estimate_fallback(self) -> None:
@@ -115,6 +125,7 @@ class ChallengesRouteTest(conftest._Base):
         detail = response.json()
         self.assertEqual(detail["difficulty_label"], "Easy")
         self.assertIsNone(detail["elo_rating"])
+        self.assertIsNotNone(detail["estimated_elo_rating"])
         self.assertIsNotNone(detail["difficulty_estimate"])
 
     def test_unrated_non_contest_problem_has_no_numeric_fallback(self) -> None:
@@ -123,6 +134,7 @@ class ChallengesRouteTest(conftest._Base):
         detail = response.json()
         self.assertEqual(detail["difficulty_label"], "Medium")
         self.assertIsNone(detail["elo_rating"])
+        self.assertIsNotNone(detail["estimated_elo_rating"])
         self.assertIsNone(detail["difficulty_estimate"])
 
     def test_registry_specs_generate_contract_inputs(self) -> None:

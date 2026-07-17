@@ -6,6 +6,9 @@
   "title": "Find Subarray With Bitwise OR Closest to K",
   "difficulty": "Hard",
   "acceptance_rate": 31.32653852115951,
+  "frequency": 0.0,
+  "elo_rating": 2162.6859814587,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Largest Magic Square",
   "difficulty": "Medium",
   "acceptance_rate": 75.27192174627274,
+  "frequency": 86.6,
+  "elo_rating": 1781.3664141686,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

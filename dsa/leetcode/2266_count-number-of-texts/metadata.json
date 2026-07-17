@@ -6,6 +6,9 @@
   "title": "Count Number of Texts",
   "difficulty": "Medium",
   "acceptance_rate": 50.39233787214401,
+  "frequency": 0.0,
+  "elo_rating": 1856.8610192187,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

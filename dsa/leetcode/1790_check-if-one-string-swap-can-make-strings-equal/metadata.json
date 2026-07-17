@@ -6,6 +6,9 @@
   "title": "Check if One String Swap Can Make Strings Equal",
   "difficulty": "Easy",
   "acceptance_rate": 49.53274862475659,
+  "frequency": 16.3,
+  "elo_rating": 1300.8009461582,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

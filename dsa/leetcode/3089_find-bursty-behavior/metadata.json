@@ -6,6 +6,9 @@
   "title": "Find Bursty Behavior",
   "difficulty": "Medium",
   "acceptance_rate": 38.16503004543456,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1716.589704,
   "category": "database",
   "category_title": "Database",
   "topics": [

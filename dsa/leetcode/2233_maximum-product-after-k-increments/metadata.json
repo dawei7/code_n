@@ -6,6 +6,9 @@
   "title": "Maximum Product After K Increments",
   "difficulty": "Medium",
   "acceptance_rate": 44.10172807303554,
+  "frequency": 21.1,
+  "elo_rating": 1685.5389350949,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

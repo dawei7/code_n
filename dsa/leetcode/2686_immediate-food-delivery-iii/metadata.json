@@ -6,6 +6,9 @@
   "title": "Immediate Food Delivery III",
   "difficulty": "Medium",
   "acceptance_rate": 70.45665275846082,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1382.752835,
   "category": "database",
   "category_title": "Database",
   "topics": [

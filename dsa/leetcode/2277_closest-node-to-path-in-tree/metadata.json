@@ -6,6 +6,9 @@
   "title": "Closest Node to Path in Tree",
   "difficulty": "Hard",
   "acceptance_rate": 62.54137550570063,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1982.028931,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

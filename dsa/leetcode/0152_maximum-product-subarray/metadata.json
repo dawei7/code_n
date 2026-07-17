@@ -6,6 +6,9 @@
   "title": "Maximum Product Subarray",
   "difficulty": "Medium",
   "acceptance_rate": 36.642854446083575,
+  "frequency": 71.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1730.882569,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

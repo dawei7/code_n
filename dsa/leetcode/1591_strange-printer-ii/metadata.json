@@ -6,6 +6,9 @@
   "title": "Strange Printer II",
   "difficulty": "Hard",
   "acceptance_rate": 61.08774681017891,
+  "frequency": 0.0,
+  "elo_rating": 2290.9040038639,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1914",
+  "frontend_id": "1767",
+  "title_slug": "find-the-subtasks-that-did-not-execute",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2071061981",
+  "verified_at": "2026-07-17T11:46:25.125634+00:00"
+}

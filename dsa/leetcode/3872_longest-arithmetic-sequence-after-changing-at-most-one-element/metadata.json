@@ -6,6 +6,9 @@
   "title": "Longest Arithmetic Sequence After Changing At Most One Element",
   "difficulty": "Medium",
   "acceptance_rate": 21.526812220510315,
+  "frequency": 73.3,
+  "elo_rating": 2042.0488515965,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

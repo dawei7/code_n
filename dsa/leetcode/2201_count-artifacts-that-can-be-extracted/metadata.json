@@ -6,6 +6,9 @@
   "title": "Count Artifacts That Can Be Extracted",
   "difficulty": "Medium",
   "acceptance_rate": 57.38057286383616,
+  "frequency": 0.0,
+  "elo_rating": 1525.2146106195,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

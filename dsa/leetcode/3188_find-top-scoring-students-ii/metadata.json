@@ -6,6 +6,9 @@
   "title": "Find Top Scoring Students II",
   "difficulty": "Hard",
   "acceptance_rate": 39.74712271032582,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2240.195667,
   "category": "database",
   "category_title": "Database",
   "topics": [

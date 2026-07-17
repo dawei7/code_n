@@ -6,6 +6,9 @@
   "title": "Numbers With Same Consecutive Differences",
   "difficulty": "Medium",
   "acceptance_rate": 59.270855543959264,
+  "frequency": 29.3,
+  "elo_rating": 1432.9593207076,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

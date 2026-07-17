@@ -6,6 +6,9 @@
   "title": "Count Vowel Substrings of a String",
   "difficulty": "Easy",
   "acceptance_rate": 73.31394291946918,
+  "frequency": 63.3,
+  "elo_rating": 1458.356493039,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

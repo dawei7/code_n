@@ -6,6 +6,9 @@
   "title": "The k-th Lexicographical String of All Happy Strings of Length n",
   "difficulty": "Medium",
   "acceptance_rate": 87.13806985162074,
+  "frequency": 70.6,
+  "elo_rating": 1575.6324598387,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

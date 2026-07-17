@@ -6,6 +6,9 @@
   "title": "Climbing Stairs",
   "difficulty": "Easy",
   "acceptance_rate": 54.186019238646885,
+  "frequency": 84.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1239.629914,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

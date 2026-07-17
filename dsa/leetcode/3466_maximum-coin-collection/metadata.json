@@ -6,6 +6,9 @@
   "title": "Maximum Coin Collection ",
   "difficulty": "Medium",
   "acceptance_rate": 52.97596337275849,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1547.11716,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

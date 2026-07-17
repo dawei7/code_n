@@ -6,6 +6,9 @@
   "title": "Valid Triangle Number",
   "difficulty": "Medium",
   "acceptance_rate": 57.00952686056002,
+  "frequency": 59.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1489.654009,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

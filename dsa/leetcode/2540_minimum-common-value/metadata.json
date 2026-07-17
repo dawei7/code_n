@@ -6,6 +6,9 @@
   "title": "Minimum Common Value",
   "difficulty": "Easy",
   "acceptance_rate": 60.78529731828976,
+  "frequency": 56.8,
+  "elo_rating": 1249.7515196656,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

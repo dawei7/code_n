@@ -6,6 +6,9 @@
   "title": "Strong Friendship",
   "difficulty": "Medium",
   "acceptance_rate": 54.67871742462953,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1525.240326,
   "category": "database",
   "category_title": "Database",
   "topics": [

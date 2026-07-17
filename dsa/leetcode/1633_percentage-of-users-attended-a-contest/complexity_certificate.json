@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1633",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(u+r+c\\log c)",
+  "summary": "Exact attendance percentages require accounting for every user and registration, and the mandated order requires sorting the c contest rows; hash aggregation followed by sorting matches those input and comparison-order lower bounds.",
+  "optimality": {
+    "symbol": "u+r+c log c",
+    "lower_bound": "Omega(u+r+c log c)",
+    "upper_bound": "O(u+r+c log c)",
+    "argument": "A correct result depends on the total user count and every registration row, requiring Omega(u+r) input work. For arbitrary contest percentages and IDs, producing c rows in the required two-key order has an Omega(c log c) comparison lower bound. Hash aggregation scans Register once and sorting the c groups meets the combined bound."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Changing any Users row can change the denominator, changing any Register row can change a contest numerator, and arbitrary contest percentages require comparison sorting of c output groups."},
+    {"kind":"upper_bound_proof","evidence":"The scalar user count and grouped registration counts take O(u+r) scan work with hash aggregation, followed by O(c log c) ordering and O(c) projection."},
+    {"kind":"boundary_property_cases","evidence":"Regression compares query output with an independent counter oracle across full attendance, unregistered users, one-sixth and two-thirds rounding, shared users, and percentage ties ordered by contest ID."}
+  ]
+}

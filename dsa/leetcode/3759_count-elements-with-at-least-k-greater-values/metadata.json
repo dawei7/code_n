@@ -6,6 +6,9 @@
   "title": "Count Elements With at Least K Greater Values",
   "difficulty": "Medium",
   "acceptance_rate": 31.76524277198353,
+  "frequency": 0.0,
+  "elo_rating": 1372.7471551838,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

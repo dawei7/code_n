@@ -6,6 +6,9 @@
   "title": "Asteroid Collision",
   "difficulty": "Medium",
   "acceptance_rate": 48.34883585609244,
+  "frequency": 73.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1616.539648,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "The Earliest Moment When Everyone Become Friends",
   "difficulty": "Medium",
   "acceptance_rate": 66.11398216474772,
+  "frequency": 82.9,
+  "elo_rating": 1558.4971807039,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Calculate Amount Paid in Taxes",
   "difficulty": "Easy",
   "acceptance_rate": 69.49945221294192,
+  "frequency": 33.7,
+  "elo_rating": 1283.6412252736,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

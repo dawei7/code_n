@@ -6,6 +6,9 @@
   "title": "Car Fleet",
   "difficulty": "Medium",
   "acceptance_rate": 55.349961960656444,
+  "frequency": 55.5,
+  "elo_rating": 1678.1133886034,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

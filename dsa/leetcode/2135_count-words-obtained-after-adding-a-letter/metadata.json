@@ -6,6 +6,9 @@
   "title": "Count Words Obtained After Adding a Letter",
   "difficulty": "Medium",
   "acceptance_rate": 44.14449428052226,
+  "frequency": 0.0,
+  "elo_rating": 1828.2700238306,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Length of Last Word",
   "difficulty": "Easy",
   "acceptance_rate": 59.163273625189646,
+  "frequency": 61.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1227.76395,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

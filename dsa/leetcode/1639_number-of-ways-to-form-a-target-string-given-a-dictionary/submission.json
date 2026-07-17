@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1744",
+  "frontend_id": "1639",
+  "title_slug": "number-of-ways-to-form-a-target-string-given-a-dictionary",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numWays",
+  "verified_submission_id": "2070456829",
+  "verified_at": "2026-07-16T23:40:41.478524+00:00"
+}

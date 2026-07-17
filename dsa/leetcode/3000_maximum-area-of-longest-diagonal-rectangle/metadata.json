@@ -6,6 +6,9 @@
   "title": "Maximum Area of Longest Diagonal Rectangle",
   "difficulty": "Easy",
   "acceptance_rate": 45.93634052032623,
+  "frequency": 24.8,
+  "elo_rating": 1249.7770522505,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Best Poker Hand",
   "difficulty": "Easy",
   "acceptance_rate": 61.863480162449235,
+  "frequency": 53.1,
+  "elo_rating": 1241.5645130241,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

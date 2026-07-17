@@ -6,6 +6,9 @@
   "title": "Highest Grade For Each Student",
   "difficulty": "Medium",
   "acceptance_rate": 71.19636764192258,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1377.895451,
   "category": "database",
   "category_title": "Database",
   "topics": [

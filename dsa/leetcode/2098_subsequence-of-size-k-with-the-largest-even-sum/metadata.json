@@ -6,6 +6,9 @@
   "title": "Subsequence of Size K With the Largest Even Sum",
   "difficulty": "Medium",
   "acceptance_rate": 35.61910249945977,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1737.299773,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

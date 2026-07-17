@@ -6,6 +6,9 @@
   "title": "Create Target Array in the Given Order",
   "difficulty": "Easy",
   "acceptance_rate": 86.52664704745129,
+  "frequency": 35.6,
+  "elo_rating": 1208.0417047337,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

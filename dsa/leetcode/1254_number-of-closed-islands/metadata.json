@@ -6,6 +6,9 @@
   "title": "Number of Closed Islands",
   "difficulty": "Medium",
   "acceptance_rate": 67.18824053870158,
+  "frequency": 27.5,
+  "elo_rating": 1658.7495899767,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

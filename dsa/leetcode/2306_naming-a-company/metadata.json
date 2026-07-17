@@ -6,6 +6,9 @@
   "title": "Naming a Company",
   "difficulty": "Hard",
   "acceptance_rate": 46.55338814097823,
+  "frequency": 0.0,
+  "elo_rating": 2305.4498281454,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

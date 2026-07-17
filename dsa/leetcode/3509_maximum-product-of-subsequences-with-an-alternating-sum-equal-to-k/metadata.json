@@ -6,6 +6,9 @@
   "title": "Maximum Product of Subsequences With an Alternating Sum Equal to K",
   "difficulty": "Hard",
   "acceptance_rate": 13.583200973617442,
+  "frequency": 0.0,
+  "elo_rating": 2702.6772838353,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

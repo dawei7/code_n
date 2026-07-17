@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1747",
+  "measurement_note": "Size is R, the session-row count. Every row belongs to one account, alternates between two IP addresses, starts at a unique minute, and remains active through the common final timestamp. The canonical pairwise self-join is O(R^2); a correct candidate with an additional correlated full-table aggregate completes all tiers and is rejected by cubic scaling.",
+  "cases": [
+    {
+      "id":"benchmark-scale-1","name":"benchmark: 4 mutually overlapping sessions","kind":"benchmark","visible":false,"size":4,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:00:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"b","login":"2026-01-01 00:01:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:02:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"b","login":"2026-01-01 00:03:00","logout":"2026-01-01 23:59:59"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[[1]]},"tags":["benchmark","scaling","dense-overlap"]
+    },
+    {
+      "id":"benchmark-scale-2","name":"benchmark: 12 mutually overlapping sessions","kind":"benchmark","visible":false,"size":12,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:00:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"b","login":"2026-01-01 00:01:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:02:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"b","login":"2026-01-01 00:03:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:04:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"b","login":"2026-01-01 00:05:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:06:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"b","login":"2026-01-01 00:07:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:08:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"b","login":"2026-01-01 00:09:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:10:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"b","login":"2026-01-01 00:11:00","logout":"2026-01-01 23:59:59"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[[1]]},"tags":["benchmark","scaling","dense-overlap"]
+    },
+    {
+      "id":"benchmark-scale-3","name":"benchmark: 36 mutually overlapping sessions","kind":"benchmark","visible":false,"size":36,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:00:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:01:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:02:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:03:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:04:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:05:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:06:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:07:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:08:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:09:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:10:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:11:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:12:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:13:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:14:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:15:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:16:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:17:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:18:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:19:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:20:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:21:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:22:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:23:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:24:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:25:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:26:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:27:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:28:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:29:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:30:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:31:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:32:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:33:00","logout":"2026-01-01 23:59:59"},
+        {"account_id":1,"ip_address":"a","login":"2026-01-01 00:34:00","logout":"2026-01-01 23:59:59"},{"account_id":1,"ip_address":"b","login":"2026-01-01 00:35:00","logout":"2026-01-01 23:59:59"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[[1]]},"tags":["benchmark","scaling","dense-overlap"]
+    }
+  ]
+}

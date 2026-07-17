@@ -6,6 +6,9 @@
   "title": "Eat Pizzas!",
   "difficulty": "Medium",
   "acceptance_rate": 33.576974599747686,
+  "frequency": 0.0,
+  "elo_rating": 1704.1007546159,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

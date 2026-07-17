@@ -6,6 +6,9 @@
   "title": "Boats to Save People",
   "difficulty": "Medium",
   "acceptance_rate": 62.03186741277046,
+  "frequency": 66.6,
+  "elo_rating": 1529.7617243868,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

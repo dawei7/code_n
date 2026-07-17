@@ -6,6 +6,9 @@
   "title": "Server Utilization Time",
   "difficulty": "Medium",
   "acceptance_rate": 60.76360682372055,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1458.747384,
   "category": "database",
   "category_title": "Database",
   "topics": [

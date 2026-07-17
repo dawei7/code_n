@@ -6,6 +6,9 @@
   "title": "Integer to Roman",
   "difficulty": "Medium",
   "acceptance_rate": 71.19510744377155,
+  "frequency": 71.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1378.052141,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

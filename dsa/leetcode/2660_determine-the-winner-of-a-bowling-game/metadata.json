@@ -6,6 +6,9 @@
   "title": "Determine the Winner of a Bowling Game",
   "difficulty": "Easy",
   "acceptance_rate": 37.83554168640842,
+  "frequency": 0.0,
+  "elo_rating": 1324.1714505166,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

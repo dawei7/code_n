@@ -6,6 +6,9 @@
   "title": "K Highest Ranked Items Within a Price Range",
   "difficulty": "Medium",
   "acceptance_rate": 46.93800640663275,
+  "frequency": 0.0,
+  "elo_rating": 1836.5345744332,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

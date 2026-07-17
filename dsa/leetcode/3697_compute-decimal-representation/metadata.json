@@ -6,6 +6,9 @@
   "title": "Compute Decimal Representation",
   "difficulty": "Easy",
   "acceptance_rate": 64.88165894241389,
+  "frequency": 0.0,
+  "elo_rating": 1250.7682878113,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

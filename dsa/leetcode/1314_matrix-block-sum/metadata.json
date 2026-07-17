@@ -6,6 +6,9 @@
   "title": "Matrix Block Sum",
   "difficulty": "Medium",
   "acceptance_rate": 76.68552789242445,
+  "frequency": 43.1,
+  "elo_rating": 1483.8137189709,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

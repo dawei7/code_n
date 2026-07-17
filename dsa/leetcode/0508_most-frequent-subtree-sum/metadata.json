@@ -6,6 +6,9 @@
   "title": "Most Frequent Subtree Sum",
   "difficulty": "Medium",
   "acceptance_rate": 69.4145740196211,
+  "frequency": 31.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1389.960565,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

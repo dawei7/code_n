@@ -6,6 +6,9 @@
   "title": "Swapping Nodes in a Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 69.58765680599932,
+  "frequency": 45.9,
+  "elo_rating": 1386.9203620297,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

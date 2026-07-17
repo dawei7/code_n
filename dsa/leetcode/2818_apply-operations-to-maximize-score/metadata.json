@@ -6,6 +6,9 @@
   "title": "Apply Operations to Maximize Score",
   "difficulty": "Hard",
   "acceptance_rate": 53.64838736794911,
+  "frequency": 0.0,
+  "elo_rating": 2396.6770372863,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

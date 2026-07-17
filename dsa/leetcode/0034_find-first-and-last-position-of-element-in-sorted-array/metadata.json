@@ -6,6 +6,9 @@
   "title": "Find First and Last Position of Element in Sorted Array",
   "difficulty": "Medium",
   "acceptance_rate": 49.223124791137565,
+  "frequency": 75.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1602.830165,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

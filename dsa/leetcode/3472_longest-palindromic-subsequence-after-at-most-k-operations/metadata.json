@@ -6,6 +6,9 @@
   "title": "Longest Palindromic Subsequence After at Most K Operations",
   "difficulty": "Medium",
   "acceptance_rate": 37.94120468060618,
+  "frequency": 0.0,
+  "elo_rating": 1883.8499315734,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

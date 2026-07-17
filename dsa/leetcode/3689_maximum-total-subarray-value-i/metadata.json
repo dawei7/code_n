@@ -6,6 +6,9 @@
   "title": "Maximum Total Subarray Value I",
   "difficulty": "Medium",
   "acceptance_rate": 71.91850539797547,
+  "frequency": 82.3,
+  "elo_rating": 1370.6850302415,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

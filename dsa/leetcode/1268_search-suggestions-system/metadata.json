@@ -6,6 +6,9 @@
   "title": "Search Suggestions System",
   "difficulty": "Medium",
   "acceptance_rate": 65.1955863250138,
+  "frequency": 61.0,
+  "elo_rating": 1573.4042963622,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

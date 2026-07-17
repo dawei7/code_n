@@ -6,6 +6,9 @@
   "title": "Maximum Score After Splitting a String",
   "difficulty": "Easy",
   "acceptance_rate": 65.06282282033776,
+  "frequency": 12.6,
+  "elo_rating": 1237.7565585875,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Smallest String Starting From Leaf",
   "difficulty": "Medium",
   "acceptance_rate": 61.30493205235613,
+  "frequency": 32.9,
+  "elo_rating": 1429.1878389249,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

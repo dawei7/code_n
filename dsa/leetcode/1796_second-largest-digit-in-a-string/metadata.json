@@ -6,6 +6,9 @@
   "title": "Second Largest Digit in a String",
   "difficulty": "Easy",
   "acceptance_rate": 54.83235105733281,
+  "frequency": 39.6,
+  "elo_rating": 1341.8397242604,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

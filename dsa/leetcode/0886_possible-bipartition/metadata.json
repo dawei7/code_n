@@ -6,6 +6,9 @@
   "title": "Possible Bipartition",
   "difficulty": "Medium",
   "acceptance_rate": 52.796818159771064,
+  "frequency": 54.8,
+  "elo_rating": 1794.5827898448,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Valid Arrangement of Pairs",
   "difficulty": "Hard",
   "acceptance_rate": 66.63039535727239,
+  "frequency": 31.5,
+  "elo_rating": 2650.8996457642,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

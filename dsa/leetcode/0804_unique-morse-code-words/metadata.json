@@ -6,6 +6,9 @@
   "title": "Unique Morse Code Words",
   "difficulty": "Easy",
   "acceptance_rate": 83.66757019176309,
+  "frequency": 4.5,
+  "elo_rating": 1307.5663523368,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

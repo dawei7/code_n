@@ -6,6 +6,9 @@
   "title": "Plus One",
   "difficulty": "Easy",
   "acceptance_rate": 50.183572861792335,
+  "frequency": 67.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1249.715983,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

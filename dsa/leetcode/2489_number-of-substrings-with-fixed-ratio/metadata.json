@@ -6,6 +6,9 @@
   "title": "Number of Substrings With Fixed Ratio",
   "difficulty": "Medium",
   "acceptance_rate": 57.17517776341305,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1487.32048,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

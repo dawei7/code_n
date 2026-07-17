@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1791",
+  "cases": [
+    {
+      "id": "example-center-two",
+      "name": "center appears in mixed endpoint positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"edges": [[1, 2], [2, 3], [4, 2]]},
+      "expected": 2,
+      "tags": ["example", "mixed-orientation"]
+    },
+    {
+      "id": "example-center-one",
+      "name": "center is the first endpoint of most edges",
+      "kind": "sample",
+      "visible": true,
+      "input": {"edges": [[1, 2], [5, 1], [1, 3], [1, 4]]},
+      "expected": 1,
+      "tags": ["example", "center-one"]
+    },
+    {
+      "id": "trial-minimum-center-second",
+      "name": "minimum star with center second in both edges",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [[1, 3], [2, 3]]},
+      "expected": 3,
+      "tags": ["minimum-size", "second-endpoint"]
+    },
+    {
+      "id": "real-center-first-both",
+      "name": "hidden: center is first in the decisive edges",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[4, 1], [4, 2], [4, 3]]},
+      "expected": 4,
+      "tags": ["first-endpoint", "orientation"]
+    },
+    {
+      "id": "real-center-first-then-second",
+      "name": "hidden: center changes endpoint position",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[6, 1], [2, 6], [6, 3], [4, 6], [6, 5]]},
+      "expected": 6,
+      "tags": ["mixed-orientation", "maximum-label"]
+    },
+    {
+      "id": "real-center-second-both-with-later-first",
+      "name": "hidden: decisive edges place the center second",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[1, 5], [2, 5], [5, 3], [4, 5]]},
+      "expected": 5,
+      "tags": ["second-endpoint", "later-orientation"]
+    },
+    {
+      "id": "real-minimum-center-first-then-second",
+      "name": "hidden: two-edge star with opposite orientations",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[2, 1], [3, 2]]},
+      "expected": 2,
+      "tags": ["minimum-size", "mixed-orientation"]
+    },
+    {
+      "id": "real-shuffled-leaf-labels",
+      "name": "hidden: edge and label order do not matter",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[7, 3], [5, 7], [7, 1], [6, 7], [2, 7], [7, 4]]},
+      "expected": 7,
+      "tags": ["shuffled", "maximum-label"]
+    }
+  ]
+}

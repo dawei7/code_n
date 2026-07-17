@@ -6,6 +6,9 @@
   "title": "Find the Length of the Longest Common Prefix",
   "difficulty": "Medium",
   "acceptance_rate": 62.30129616043042,
+  "frequency": 84.1,
+  "elo_rating": 1688.6445178061,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

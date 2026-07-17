@@ -6,6 +6,9 @@
   "title": "Network Recovery Pathways",
   "difficulty": "Hard",
   "acceptance_rate": 50.90076698971402,
+  "frequency": 51.8,
+  "elo_rating": 1998.0432529701,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1834",
+  "frontend_id": "1733",
+  "title_slug": "minimum-number-of-people-to-teach",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumTeachings",
+  "verified_submission_id": "2070861157",
+  "verified_at": "2026-07-17T08:25:52.273106+00:00"
+}

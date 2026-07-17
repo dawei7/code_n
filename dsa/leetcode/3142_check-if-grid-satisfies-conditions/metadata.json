@@ -6,6 +6,9 @@
   "title": "Check if Grid Satisfies Conditions",
   "difficulty": "Easy",
   "acceptance_rate": 45.716591721434334,
+  "frequency": 0.0,
+  "elo_rating": 1303.0117274575,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

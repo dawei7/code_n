@@ -6,6 +6,9 @@
   "title": "Drop Type 1 Orders for Customers With Type 0 Orders",
   "difficulty": "Medium",
   "acceptance_rate": 86.66977394546726,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "database",
   "category_title": "Database",
   "topics": [

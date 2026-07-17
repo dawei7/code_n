@@ -6,6 +6,9 @@
   "title": "3Sum With Multiplicity",
   "difficulty": "Medium",
   "acceptance_rate": 46.34784641723168,
+  "frequency": 36.8,
+  "elo_rating": 1710.9105378431,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

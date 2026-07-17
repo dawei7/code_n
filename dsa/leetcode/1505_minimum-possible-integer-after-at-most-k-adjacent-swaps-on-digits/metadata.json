@@ -6,6 +6,9 @@
   "title": "Minimum Possible Integer After at Most K Adjacent Swaps On Digits",
   "difficulty": "Hard",
   "acceptance_rate": 41.6289592760181,
+  "frequency": 0.0,
+  "elo_rating": 2336.5210003185,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

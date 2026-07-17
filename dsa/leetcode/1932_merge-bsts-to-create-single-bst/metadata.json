@@ -6,6 +6,9 @@
   "title": "Merge BSTs to Create Single BST",
   "difficulty": "Hard",
   "acceptance_rate": 39.511737518876124,
+  "frequency": 38.5,
+  "elo_rating": 2483.9435767299,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

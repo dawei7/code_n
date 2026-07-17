@@ -6,6 +6,9 @@
   "title": "Lexicographically Smallest Palindromic Permutation Greater Than Target",
   "difficulty": "Hard",
   "acceptance_rate": 25.51261639407536,
+  "frequency": 0.0,
+  "elo_rating": 2330.0340161395,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

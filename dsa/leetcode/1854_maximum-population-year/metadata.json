@@ -6,6 +6,9 @@
   "title": "Maximum Population Year",
   "difficulty": "Easy",
   "acceptance_rate": 64.30704005121181,
+  "frequency": 57.8,
+  "elo_rating": 1370.4186698287,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

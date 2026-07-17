@@ -6,6 +6,9 @@
   "title": "Length of Longest Fibonacci Subsequence",
   "difficulty": "Medium",
   "acceptance_rate": 57.5480950137626,
+  "frequency": 0.0,
+  "elo_rating": 1911.1959516695,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

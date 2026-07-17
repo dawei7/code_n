@@ -6,6 +6,9 @@
   "title": "Matrix Cells in Distance Order",
   "difficulty": "Easy",
   "acceptance_rate": 74.38525342239512,
+  "frequency": 22.6,
+  "elo_rating": 1585.5793143983,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

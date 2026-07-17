@@ -6,6 +6,9 @@
   "title": "Maximum Total Damage With Spell Casting",
   "difficulty": "Medium",
   "acceptance_rate": 45.09981815845524,
+  "frequency": 48.4,
+  "elo_rating": 1840.513952935,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

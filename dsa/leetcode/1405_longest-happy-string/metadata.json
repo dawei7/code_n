@@ -6,6 +6,9 @@
   "title": "Longest Happy String",
   "difficulty": "Medium",
   "acceptance_rate": 65.5021038527538,
+  "frequency": 21.9,
+  "elo_rating": 1820.58557644,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Distinct Islands",
   "difficulty": "Medium",
   "acceptance_rate": 62.888338957630296,
+  "frequency": 57.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1439.63123,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

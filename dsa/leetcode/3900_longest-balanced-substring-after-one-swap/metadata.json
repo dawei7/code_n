@@ -6,6 +6,9 @@
   "title": "Longest Balanced Substring After One Swap",
   "difficulty": "Medium",
   "acceptance_rate": 13.821848739495799,
+  "frequency": 71.2,
+  "elo_rating": 2134.9861022118,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

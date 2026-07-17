@@ -6,6 +6,9 @@
   "title": "Number of Integers With Popcount-Depth Equal to K I",
   "difficulty": "Hard",
   "acceptance_rate": 23.11927476387109,
+  "frequency": 0.0,
+  "elo_rating": 2330.6377193585,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1681",
+  "cases": [
+    {"id":"sample-two-groups","name":"sample: duplicates must be separated","kind":"sample","visible":true,"input":{"nums":[1,2,1,4],"k":2},"expected":4,"tags":["sample","duplicates"]},
+    {"id":"sample-four-groups","name":"sample: optimize four pairs","kind":"sample","visible":true,"input":{"nums":[6,3,8,1,3,1,2,2],"k":4},"expected":6,"tags":["sample","multiple-groups"]},
+    {"id":"sample-impossible","name":"sample: one value occurs more than k times","kind":"sample","visible":true,"input":{"nums":[5,3,3,6,3,3],"k":3},"expected":-1,"tags":["sample","impossible","frequency"]},
+    {"id":"trial-one-subset","name":"trial: one distinct subset spans the full range","kind":"trial","visible":true,"input":{"nums":[1,2,3,4],"k":1},"expected":3,"tags":["one-group"]},
+    {"id":"trial-singletons","name":"trial: singleton subsets all cost zero","kind":"trial","visible":true,"input":{"nums":[5,5,5,5],"k":4},"expected":0,"tags":["singleton-groups","duplicates"]},
+    {"id":"real-exact-frequency-limit","name":"hidden: each duplicate value appears once per group","kind":"real","visible":false,"input":{"nums":[1,1,1,2,2,2],"k":3},"expected":3,"tags":["frequency-equals-k"]},
+    {"id":"real-balanced-duplicates","name":"hidden: two copies of four values form four pairs","kind":"real","visible":false,"input":{"nums":[1,2,3,4,1,2,3,4],"k":4},"expected":4,"tags":["balanced-duplicates"]},
+    {"id":"real-nontrivial-triplets","name":"hidden: choose two minimum-range triplets","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,6],"k":2},"expected":4,"tags":["triplets","optimization"]},
+    {"id":"real-crossed-ranges","name":"hidden: locally narrow choices can affect later groups","kind":"real","visible":false,"input":{"nums":[1,2,4,7,1,3,5,8],"k":2},"expected":10,"tags":["global-optimization","duplicates"]},
+    {"id":"real-minimum-impossible","name":"hidden: frequency excess is impossible in two groups","kind":"real","visible":false,"input":{"nums":[1,1,1,2],"k":2},"expected":-1,"tags":["impossible","pigeonhole"]}
+  ]
+}

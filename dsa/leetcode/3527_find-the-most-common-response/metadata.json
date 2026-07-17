@@ -6,6 +6,9 @@
   "title": "Find the Most Common Response",
   "difficulty": "Medium",
   "acceptance_rate": 74.90078033629234,
+  "frequency": 26.8,
+  "elo_rating": 1282.1781962721,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

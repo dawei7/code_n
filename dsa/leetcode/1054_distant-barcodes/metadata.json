@@ -6,6 +6,9 @@
   "title": "Distant Barcodes",
   "difficulty": "Medium",
   "acceptance_rate": 49.170234657638815,
+  "frequency": 0.0,
+  "elo_rating": 1701.5735371897,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

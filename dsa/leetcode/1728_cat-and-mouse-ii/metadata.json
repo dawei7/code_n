@@ -6,6 +6,9 @@
   "title": "Cat and Mouse II",
   "difficulty": "Hard",
   "acceptance_rate": 40.37065890360408,
+  "frequency": 40.5,
+  "elo_rating": 2849.4841858619,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

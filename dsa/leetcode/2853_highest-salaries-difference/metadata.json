@@ -6,6 +6,9 @@
   "title": "Highest Salaries Difference",
   "difficulty": "Easy",
   "acceptance_rate": 73.37450477744115,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1173.126179,
   "category": "database",
   "category_title": "Database",
   "topics": [

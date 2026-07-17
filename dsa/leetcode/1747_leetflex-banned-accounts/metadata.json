@@ -6,6 +6,9 @@
   "title": "Leetflex Banned Accounts",
   "difficulty": "Medium",
   "acceptance_rate": 61.748698767044665,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1449.659376,
   "category": "database",
   "category_title": "Database",
   "topics": [

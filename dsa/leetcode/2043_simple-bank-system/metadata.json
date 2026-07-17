@@ -6,6 +6,9 @@
   "title": "Simple Bank System",
   "difficulty": "Medium",
   "acceptance_rate": 69.6660323146386,
+  "frequency": 68.3,
+  "elo_rating": 1356.1920189231,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

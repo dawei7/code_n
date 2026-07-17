@@ -6,6 +6,9 @@
   "title": "Maximum Rows Covered by Columns",
   "difficulty": "Medium",
   "acceptance_rate": 58.19484159565131,
+  "frequency": 0.0,
+  "elo_rating": 1718.8256321624,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

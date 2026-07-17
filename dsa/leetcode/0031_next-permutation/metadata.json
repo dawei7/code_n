@@ -6,6 +6,9 @@
   "title": "Next Permutation",
   "difficulty": "Medium",
   "acceptance_rate": 45.61405378879469,
+  "frequency": 85.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1649.209054,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

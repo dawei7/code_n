@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1732",
+  "cases": [
+    {
+      "id": "sample-official-one",
+      "name": "sample: peak after mixed gains",
+      "kind": "sample",
+      "visible": true,
+      "input": {"gain": [-5, 1, 5, 0, -7]},
+      "expected": 1,
+      "tags": ["sample", "mixed-signs"]
+    },
+    {
+      "id": "sample-official-two",
+      "name": "sample: starting altitude remains highest",
+      "kind": "sample",
+      "visible": true,
+      "input": {"gain": [-4, -3, -2, -1, 4, 3, 2]},
+      "expected": 0,
+      "tags": ["sample", "starting-point"]
+    },
+    {
+      "id": "trial-interior-peak",
+      "name": "trial: highest point occurs before the endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"gain": [3, -1, 2, -2]},
+      "expected": 4,
+      "tags": ["interior-peak", "prefix-sum"]
+    },
+    {
+      "id": "trial-single-climb",
+      "name": "trial: one positive segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {"gain": [100]},
+      "expected": 100,
+      "tags": ["single-segment", "positive-boundary"]
+    },
+    {
+      "id": "trial-single-descent",
+      "name": "trial: one negative segment leaves zero highest",
+      "kind": "trial",
+      "visible": true,
+      "input": {"gain": [-100]},
+      "expected": 0,
+      "tags": ["single-segment", "negative-boundary"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: every point stays at the starting altitude",
+      "kind": "real",
+      "visible": false,
+      "input": {"gain": [0, 0, 0, 0, 0]},
+      "expected": 0,
+      "tags": ["zero-gains", "equal-altitudes"]
+    },
+    {
+      "id": "real-deep-valley",
+      "name": "hidden: later recovery does not exceed the start",
+      "kind": "real",
+      "visible": false,
+      "input": {"gain": [-100, -100, 50, 50, 100]},
+      "expected": 0,
+      "tags": ["recovery", "starting-point"]
+    },
+    {
+      "id": "real-repeated-peak",
+      "name": "hidden: zero gain repeats the maximum altitude",
+      "kind": "real",
+      "visible": false,
+      "input": {"gain": [5, 0, -2, 2, -5]},
+      "expected": 5,
+      "tags": ["repeated-peak", "zero-gain"]
+    },
+    {
+      "id": "real-final-peak",
+      "name": "hidden: maximum occurs at the final point",
+      "kind": "real",
+      "visible": false,
+      "input": {"gain": [-3, 1, 1, 1, 10]},
+      "expected": 10,
+      "tags": ["final-peak", "mixed-signs"]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: one hundred legal gains are scanned",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "gain": [100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100, 100, -100]
+      },
+      "expected": 100,
+      "tags": ["maximum-length", "value-boundaries"]
+    }
+  ]
+}

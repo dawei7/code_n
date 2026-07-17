@@ -6,6 +6,9 @@
   "title": "Minimum Capacity Box",
   "difficulty": "Easy",
   "acceptance_rate": 72.81911919591194,
+  "frequency": 19.4,
+  "elo_rating": 1154.1609831093,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

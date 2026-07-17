@@ -6,6 +6,9 @@
   "title": "Maximum Points You Can Obtain from Cards",
   "difficulty": "Medium",
   "acceptance_rate": 57.982457339247475,
+  "frequency": 52.4,
+  "elo_rating": 1573.824807946,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

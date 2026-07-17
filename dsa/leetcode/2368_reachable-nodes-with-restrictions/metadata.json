@@ -6,6 +6,9 @@
   "title": "Reachable Nodes With Restrictions",
   "difficulty": "Medium",
   "acceptance_rate": 60.554445353468964,
+  "frequency": 0.0,
+  "elo_rating": 1476.9118898539,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

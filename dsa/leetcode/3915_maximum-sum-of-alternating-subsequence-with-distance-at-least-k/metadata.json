@@ -6,6 +6,9 @@
   "title": "Maximum Sum of Alternating Subsequence With Distance at Least K",
   "difficulty": "Hard",
   "acceptance_rate": 32.21500721500721,
+  "frequency": 0.0,
+  "elo_rating": 2288.0173330168,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

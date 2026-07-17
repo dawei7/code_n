@@ -6,6 +6,9 @@
   "title": "Three Equal Parts",
   "difficulty": "Hard",
   "acceptance_rate": 41.47071497618299,
+  "frequency": 0.0,
+  "elo_rating": 1994.3618892548,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

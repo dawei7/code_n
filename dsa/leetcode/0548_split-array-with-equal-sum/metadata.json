@@ -6,6 +6,9 @@
   "title": "Split Array with Equal Sum",
   "difficulty": "Hard",
   "acceptance_rate": 50.07576059651502,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2086.532649,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

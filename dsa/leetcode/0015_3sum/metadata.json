@@ -6,6 +6,9 @@
   "title": "3Sum",
   "difficulty": "Medium",
   "acceptance_rate": 39.39234331728236,
+  "frequency": 91.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1707.255588,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

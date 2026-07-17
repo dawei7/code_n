@@ -6,6 +6,9 @@
   "title": "GCD of Odd and Even Sums",
   "difficulty": "Easy",
   "acceptance_rate": 85.11829158834189,
+  "frequency": 2.8,
+  "elo_rating": 1220.0626125523,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

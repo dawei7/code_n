@@ -6,6 +6,9 @@
   "title": "Maximize Subarray Sum After Removing All Occurrences of One Element",
   "difficulty": "Hard",
   "acceptance_rate": 23.40723202755058,
+  "frequency": 0.0,
+  "elo_rating": 2843.655465882,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

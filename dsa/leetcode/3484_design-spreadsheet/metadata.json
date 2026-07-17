@@ -6,6 +6,9 @@
   "title": "Design Spreadsheet",
   "difficulty": "Medium",
   "acceptance_rate": 73.94895574836524,
+  "frequency": 61.1,
+  "elo_rating": 1523.7317629862,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

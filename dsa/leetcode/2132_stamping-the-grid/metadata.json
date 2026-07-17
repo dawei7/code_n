@@ -6,6 +6,9 @@
   "title": "Stamping the Grid",
   "difficulty": "Hard",
   "acceptance_rate": 35.558403885721994,
+  "frequency": 39.7,
+  "elo_rating": 2364.3930657709,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

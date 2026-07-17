@@ -6,6 +6,9 @@
   "title": "Binary Tree Pruning",
   "difficulty": "Medium",
   "acceptance_rate": 72.51946640611759,
+  "frequency": 31.1,
+  "elo_rating": 1380.1541980647,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

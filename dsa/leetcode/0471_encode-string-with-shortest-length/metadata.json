@@ -6,6 +6,9 @@
   "title": "Encode String with Shortest Length",
   "difficulty": "Hard",
   "acceptance_rate": 50.60013825174386,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2080.36117,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

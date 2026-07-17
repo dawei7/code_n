@@ -6,6 +6,9 @@
   "title": "Diet Plan Performance",
   "difficulty": "Easy",
   "acceptance_rate": 56.07677035076109,
+  "frequency": 0.0,
+  "elo_rating": 1397.7743198793,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

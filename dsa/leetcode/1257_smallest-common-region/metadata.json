@@ -6,6 +6,9 @@
   "title": "Smallest Common Region",
   "difficulty": "Medium",
   "acceptance_rate": 68.32535208778782,
+  "frequency": 53.4,
+  "elo_rating": 1654.0793660142,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

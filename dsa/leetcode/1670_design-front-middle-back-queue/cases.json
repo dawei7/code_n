@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1670",
+  "cases": [
+    {"id":"sample-all-positions","name":"sample: exercise every queue position","kind":"sample","visible":true,"input":{"operations":["FrontMiddleBackQueue","pushFront","pushBack","pushMiddle","pushMiddle","popFront","popMiddle","popMiddle","popBack","popFront"],"arguments":[[],[1],[2],[3],[4],[],[],[],[],[]]},"expected":[null,null,null,null,null,1,3,4,2,-1],"tags":["sample","all-methods"]},
+    {"id":"trial-three-back-pushes","name":"trial: frontmost middle changes with parity","kind":"trial","visible":true,"input":{"operations":["FrontMiddleBackQueue","pushBack","pushBack","pushBack","popMiddle","popMiddle","popMiddle"],"arguments":[[],[1],[2],[3],[],[],[]]},"expected":[null,null,null,null,2,1,3],"tags":["middle","parity"]},
+    {"id":"trial-empty-pops","name":"trial: every empty pop returns minus one","kind":"trial","visible":true,"input":{"operations":["FrontMiddleBackQueue","popFront","popMiddle","popBack"],"arguments":[[],[],[],[]]},"expected":[null,-1,-1,-1],"tags":["empty","all-pops"]},
+    {"id":"real-even-middle-push","name":"hidden: middle push uses frontmost insertion position","kind":"real","visible":false,"input":{"operations":["FrontMiddleBackQueue","pushBack","pushBack","pushMiddle","popFront","popFront","popFront"],"arguments":[[],[1],[2],[3],[],[],[]]},"expected":[null,null,null,null,1,3,2],"tags":["even-middle","insertion"]},
+    {"id":"real-even-middle-pop","name":"hidden: middle pop uses frontmost middle","kind":"real","visible":false,"input":{"operations":["FrontMiddleBackQueue","pushBack","pushBack","pushBack","pushBack","popMiddle","popFront","popFront","popFront"],"arguments":[[],[1],[2],[3],[4],[],[],[],[]]},"expected":[null,null,null,null,null,2,1,3,4],"tags":["even-middle","removal"]},
+    {"id":"real-singletons","name":"hidden: each position handles a singleton","kind":"real","visible":false,"input":{"operations":["FrontMiddleBackQueue","pushFront","popBack","pushMiddle","popFront","pushBack","popMiddle"],"arguments":[[],[5],[],[6],[],[7],[]]},"expected":[null,null,5,null,6,null,7],"tags":["singleton","cross-position"]},
+    {"id":"real-duplicate-values","name":"hidden: duplicate values remain distinct entries","kind":"real","visible":false,"input":{"operations":["FrontMiddleBackQueue","pushFront","pushMiddle","pushBack","popFront","popMiddle","popBack"],"arguments":[[],[8],[8],[8],[],[],[]]},"expected":[null,null,null,null,8,8,8],"tags":["duplicates"]},
+    {"id":"real-alternating-parity","name":"hidden: alternating methods rebalance after every mutation","kind":"real","visible":false,"input":{"operations":["FrontMiddleBackQueue","pushBack","pushFront","pushMiddle","popBack","pushBack","popMiddle","popFront","popBack"],"arguments":[[],[1],[2],[3],[],[4],[],[],[]]},"expected":[null,null,null,null,1,null,3,2,4],"tags":["alternating","rebalance"]}
+  ]
+}

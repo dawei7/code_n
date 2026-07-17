@@ -6,6 +6,9 @@
   "title": "Find the Winning Player in Coin Game",
   "difficulty": "Easy",
   "acceptance_rate": 53.60585090213329,
+  "frequency": 32.3,
+  "elo_rating": 1269.9581395809,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Gas Station",
   "difficulty": "Medium",
   "acceptance_rate": 48.28487553092769,
+  "frequency": 70.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1617.12303,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

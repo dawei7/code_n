@@ -6,6 +6,9 @@
   "title": "Rotate List",
   "difficulty": "Medium",
   "acceptance_rate": 42.856990921132784,
+  "frequency": 71.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1677.211402,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

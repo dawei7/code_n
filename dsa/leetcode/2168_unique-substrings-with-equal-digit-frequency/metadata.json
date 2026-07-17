@@ -6,6 +6,9 @@
   "title": "Unique Substrings With Equal Digit Frequency",
   "difficulty": "Medium",
   "acceptance_rate": 64.54096362353243,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1426.312597,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

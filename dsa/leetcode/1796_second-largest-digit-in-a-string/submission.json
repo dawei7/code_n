@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1904",
+  "frontend_id": "1796",
+  "title_slug": "second-largest-digit-in-a-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.secondHighest",
+  "verified_submission_id": "2071218601",
+  "verified_at": "2026-07-17T14:37:38.782394+00:00"
+}

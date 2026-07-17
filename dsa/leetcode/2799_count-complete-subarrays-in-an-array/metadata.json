@@ -6,6 +6,9 @@
   "title": "Count Complete Subarrays in an Array",
   "difficulty": "Medium",
   "acceptance_rate": 76.04157154349575,
+  "frequency": 15.0,
+  "elo_rating": 1397.9519549403,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

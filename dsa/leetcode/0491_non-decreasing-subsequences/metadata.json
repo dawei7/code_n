@@ -6,6 +6,9 @@
   "title": "Non-decreasing Subsequences",
   "difficulty": "Medium",
   "acceptance_rate": 62.86388025816115,
+  "frequency": 41.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1440.101299,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Cost Good Caption",
   "difficulty": "Hard",
   "acceptance_rate": 21.096822191518758,
+  "frequency": 0.0,
+  "elo_rating": 2764.5966131386,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

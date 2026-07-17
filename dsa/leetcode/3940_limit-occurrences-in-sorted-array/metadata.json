@@ -6,6 +6,9 @@
   "title": "Limit Occurrences in Sorted Array",
   "difficulty": "Easy",
   "acceptance_rate": 73.41142515006833,
+  "frequency": 23.2,
+  "elo_rating": 1201.9392007469,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

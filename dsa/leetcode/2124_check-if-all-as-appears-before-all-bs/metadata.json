@@ -6,6 +6,9 @@
   "title": "Check if All A's Appears Before All B's",
   "difficulty": "Easy",
   "acceptance_rate": 73.35985318965614,
+  "frequency": 15.7,
+  "elo_rating": 1201.7686271329,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

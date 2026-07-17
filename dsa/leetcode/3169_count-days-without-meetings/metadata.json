@@ -6,6 +6,9 @@
   "title": "Count Days Without Meetings",
   "difficulty": "Medium",
   "acceptance_rate": 48.21259654265548,
+  "frequency": 30.0,
+  "elo_rating": 1483.48867803,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

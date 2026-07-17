@@ -6,6 +6,9 @@
   "title": "Kth Largest Sum in a Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 58.98044222548291,
+  "frequency": 32.3,
+  "elo_rating": 1374.3527967199,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

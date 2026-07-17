@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1704",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Any character in either half may independently change from a consonant to a vowel and alter whether the two counts match, so a complete linear inspection matches the decision problem's lower bound.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "On a balanced consonant-only baseline, changing any single uninspected position to a vowel makes exactly one half's count larger. A correct worst-case algorithm must therefore inspect every position. The signed-balance scan performs constant work per character and meets this Omega(n) adversarial inspection lower bound with O(n) time."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"An adversary can place the only count-changing vowel at any input position, including the final position inspected in either half."},
+    {"kind":"upper_bound_proof","evidence":"One midpoint-aware pass performs one fixed-set membership test and at most one counter update per character."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover length two, no-vowel equality, repeated vowels, unequal counts in either direction, midpoint placement, and every required letter case behavior."}
+  ]
+}

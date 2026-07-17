@@ -6,6 +6,9 @@
   "title": "Maximize Expression of Three Elements",
   "difficulty": "Easy",
   "acceptance_rate": 72.91115511950294,
+  "frequency": 0.0,
+  "elo_rating": 1218.425100913,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

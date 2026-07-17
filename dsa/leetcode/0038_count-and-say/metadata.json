@@ -6,6 +6,9 @@
   "title": "Count and Say",
   "difficulty": "Medium",
   "acceptance_rate": 63.25403235633045,
+  "frequency": 64.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1436.654123,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

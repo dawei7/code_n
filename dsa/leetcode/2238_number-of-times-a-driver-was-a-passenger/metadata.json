@@ -6,6 +6,9 @@
   "title": "Number of Times a Driver Was a Passenger",
   "difficulty": "Medium",
   "acceptance_rate": 71.78739766807244,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1375.231725,
   "category": "database",
   "category_title": "Database",
   "topics": [

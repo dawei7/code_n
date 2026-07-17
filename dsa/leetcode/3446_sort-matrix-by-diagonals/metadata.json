@@ -6,6 +6,9 @@
   "title": "Sort Matrix by Diagonals",
   "difficulty": "Medium",
   "acceptance_rate": 84.68207012517905,
+  "frequency": 18.5,
+  "elo_rating": 1372.8281350959,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

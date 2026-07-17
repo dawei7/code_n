@@ -6,6 +6,9 @@
   "title": "Choose Edges to Maximize Score in a Tree",
   "difficulty": "Medium",
   "acceptance_rate": 56.845620344207546,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1492.862611,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

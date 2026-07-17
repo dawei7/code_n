@@ -6,6 +6,9 @@
   "title": "Recover Binary Search Tree",
   "difficulty": "Medium",
   "acceptance_rate": 60.16959514124402,
+  "frequency": 45.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1462.507939,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

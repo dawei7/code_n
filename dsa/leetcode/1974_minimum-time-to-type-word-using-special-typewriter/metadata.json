@@ -6,6 +6,9 @@
   "title": "Minimum Time to Type Word Using Special Typewriter",
   "difficulty": "Easy",
   "acceptance_rate": 78.86976765417447,
+  "frequency": 0.0,
+  "elo_rating": 1364.154859918,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

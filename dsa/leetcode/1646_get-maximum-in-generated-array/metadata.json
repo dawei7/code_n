@@ -6,6 +6,9 @@
   "title": "Get Maximum in Generated Array",
   "difficulty": "Easy",
   "acceptance_rate": 51.56154392148225,
+  "frequency": 35.6,
+  "elo_rating": 1301.4027057843,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

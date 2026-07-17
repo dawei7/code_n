@@ -6,6 +6,9 @@
   "title": "Check if There is a Valid Partition For The Array",
   "difficulty": "Medium",
   "acceptance_rate": 52.4690734152652,
+  "frequency": 27.1,
+  "elo_rating": 1779.7001728541,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

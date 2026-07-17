@@ -6,6 +6,9 @@
   "title": "Arithmetic Slices",
   "difficulty": "Medium",
   "acceptance_rate": 64.83844133024104,
+  "frequency": 41.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1423.178801,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count Collisions of Monkeys on a Polygon",
   "difficulty": "Medium",
   "acceptance_rate": 30.24962491030464,
+  "frequency": 0.0,
+  "elo_rating": 1662.7075394144,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

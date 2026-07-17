@@ -6,6 +6,9 @@
   "title": "Number of Valid Clock Times",
   "difficulty": "Easy",
   "acceptance_rate": 48.19491921402749,
+  "frequency": 32.1,
+  "elo_rating": 1426.9800910361,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

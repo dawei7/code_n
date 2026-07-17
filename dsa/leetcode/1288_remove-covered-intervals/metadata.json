@@ -6,6 +6,9 @@
   "title": "Remove Covered Intervals",
   "difficulty": "Medium",
   "acceptance_rate": 59.97574076479211,
+  "frequency": 65.7,
+  "elo_rating": 1375.0234414965,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

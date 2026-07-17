@@ -6,6 +6,9 @@
   "title": "Convert Binary Search Tree to Sorted Doubly Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 65.63464389147671,
+  "frequency": 49.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1417.067899,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

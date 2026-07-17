@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1673",
+  "cases": [
+    {"id":"sample-two-values","name":"sample: later two begins with smaller value","kind":"sample","visible":true,"input":{"nums":[3,5,2,6],"k":2},"expected":[2,6],"tags":["sample","greedy-pop"]},
+    {"id":"sample-four-values","name":"sample: retain duplicate threes","kind":"sample","visible":true,"input":{"nums":[2,4,3,3,5,4,9,6],"k":4},"expected":[2,3,3,4],"tags":["sample","duplicates"]},
+    {"id":"trial-single-choice","name":"trial: one choice takes earliest minimum","kind":"trial","visible":true,"input":{"nums":[4,1,3,1,2],"k":1},"expected":[1],"tags":["k-one","equal-minima"]},
+    {"id":"trial-full-length","name":"trial: full-length request preserves input","kind":"trial","visible":true,"input":{"nums":[5,2,8,1],"k":4},"expected":[5,2,8,1],"tags":["k-n","no-removals"]},
+    {"id":"real-descending","name":"hidden: descending input keeps final suffix","kind":"real","visible":false,"input":{"nums":[9,8,7,6,5,4],"k":3},"expected":[6,5,4],"tags":["descending","full-budget"]},
+    {"id":"real-ascending","name":"hidden: ascending input trims trailing values","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5],"k":3},"expected":[1,2,3],"tags":["ascending","trailing-removals"]},
+    {"id":"real-equal-values","name":"hidden: equal values retain stable positions","kind":"real","visible":false,"input":{"nums":[2,2,1,2,1],"k":3},"expected":[1,2,1],"tags":["duplicates","strict-pop"]},
+    {"id":"real-late-small-value","name":"hidden: save enough suffix values after late minimum","kind":"real","visible":false,"input":{"nums":[9,1,2,5,8,3],"k":3},"expected":[1,2,3],"tags":["feasibility","late-value"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Minimize Maximum Value in a Grid",
   "difficulty": "Hard",
   "acceptance_rate": 70.09328530525538,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1944.177191,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

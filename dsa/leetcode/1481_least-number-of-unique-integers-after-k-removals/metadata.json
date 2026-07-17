@@ -6,6 +6,9 @@
   "title": "Least Number of Unique Integers after K Removals",
   "difficulty": "Medium",
   "acceptance_rate": 63.87329887236981,
+  "frequency": 38.0,
+  "elo_rating": 1284.3625733813,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

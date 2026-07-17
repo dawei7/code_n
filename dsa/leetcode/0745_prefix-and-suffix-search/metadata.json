@@ -6,6 +6,9 @@
   "title": "Prefix and Suffix Search",
   "difficulty": "Hard",
   "acceptance_rate": 41.00081004750819,
+  "frequency": 27.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 2219.044049,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Sum Obtained of Any Permutation",
   "difficulty": "Medium",
   "acceptance_rate": 41.17283784872325,
+  "frequency": 32.7,
+  "elo_rating": 1871.3112059413,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

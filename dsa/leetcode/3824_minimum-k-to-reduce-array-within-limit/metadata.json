@@ -6,6 +6,9 @@
   "title": "Minimum K to Reduce Array Within Limit",
   "difficulty": "Medium",
   "acceptance_rate": 41.03173241852487,
+  "frequency": 37.5,
+  "elo_rating": 1531.0213602106,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

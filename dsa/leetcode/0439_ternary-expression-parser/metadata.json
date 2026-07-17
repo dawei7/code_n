@@ -6,6 +6,9 @@
   "title": "Ternary Expression Parser",
   "difficulty": "Medium",
   "acceptance_rate": 62.68295031454616,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1441.981576,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

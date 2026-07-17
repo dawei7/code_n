@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1712",
+  "cases": [
+    {"id":"sample-equal-three","name":"sample: the only split has three equal sums","kind":"sample","visible":true,"input":{"nums":[1,1,1]},"expected":1,"tags":["sample","equality"]},
+    {"id":"sample-three-ways","name":"sample: three different boundary pairs are valid","kind":"sample","visible":true,"input":{"nums":[1,2,2,2,5,0]},"expected":3,"tags":["sample","multiple-splits"]},
+    {"id":"sample-decreasing-sums","name":"sample: the only split violates both inequalities","kind":"sample","visible":true,"input":{"nums":[3,2,1]},"expected":0,"tags":["sample","no-split"]},
+    {"id":"trial-minimum-zero","name":"trial: three zeros have one legal boundary pair","kind":"trial","visible":true,"input":{"nums":[0,0,0]},"expected":1,"tags":["zero","minimum-length"]},
+    {"id":"trial-four-zeros","name":"trial: every cut pair in four zeros is valid","kind":"trial","visible":true,"input":{"nums":[0,0,0,0]},"expected":3,"tags":["zero","duplicate-prefix"]},
+    {"id":"trial-four-ones","name":"trial: only the balanced earliest cuts work","kind":"trial","visible":true,"input":{"nums":[1,1,1,1]},"expected":1,"tags":["equality","boundaries"]},
+    {"id":"real-leading-zero","name":"hidden: a zero left sum admits multiple middle boundaries","kind":"real","visible":false,"input":{"nums":[0,1,0,1]},"expected":2,"tags":["leading-zero","multiple-splits"]},
+    {"id":"real-zero-plateaus","name":"hidden: zero plateaus create distinct cuts with equal sums","kind":"real","visible":false,"input":{"nums":[1,0,1,0,1]},"expected":4,"tags":["zero","duplicate-prefix"]},
+    {"id":"real-late-balance","name":"hidden: several left cuts share one balanced middle end","kind":"real","visible":false,"input":{"nums":[10,0,0,0,10,10]},"expected":4,"tags":["zero","equality","moving-pointers"]},
+    {"id":"real-maximum-values","name":"hidden: maximum legal values preserve exact arithmetic","kind":"real","visible":false,"input":{"nums":[10000,10000,10000]},"expected":1,"tags":["maximum-value","minimum-length"]}
+  ]
+}

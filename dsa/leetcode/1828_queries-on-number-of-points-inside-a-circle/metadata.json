@@ -6,6 +6,9 @@
   "title": "Queries on Number of Points Inside a Circle",
   "difficulty": "Medium",
   "acceptance_rate": 86.8655896349731,
+  "frequency": 43.6,
+  "elo_rating": 1380.0192844155,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

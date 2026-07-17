@@ -6,6 +6,9 @@
   "title": "Smallest String With Swaps",
   "difficulty": "Medium",
   "acceptance_rate": 60.78586846394431,
+  "frequency": 44.5,
+  "elo_rating": 1855.4479039876,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

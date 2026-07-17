@@ -6,6 +6,9 @@
   "title": "Rotate Function",
   "difficulty": "Medium",
   "acceptance_rate": 54.22910523995682,
+  "frequency": 79.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1529.615693,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

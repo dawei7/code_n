@@ -6,6 +6,9 @@
   "title": "Online Stock Span",
   "difficulty": "Medium",
   "acceptance_rate": 69.37650552642334,
+  "frequency": 60.0,
+  "elo_rating": 1708.8735585776,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

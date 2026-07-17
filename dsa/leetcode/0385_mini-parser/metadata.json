@@ -6,6 +6,9 @@
   "title": "Mini Parser",
   "difficulty": "Medium",
   "acceptance_rate": 42.92352904817294,
+  "frequency": 19.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1676.62802,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Kth Smallest Element in a Sorted Matrix",
   "difficulty": "Medium",
   "acceptance_rate": 64.79682578819376,
+  "frequency": 48.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1423.80556,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

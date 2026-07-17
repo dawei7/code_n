@@ -6,6 +6,9 @@
   "title": "Exam Room",
   "difficulty": "Medium",
   "acceptance_rate": 43.63531494037084,
+  "frequency": 55.3,
+  "elo_rating": 2067.0643721733,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

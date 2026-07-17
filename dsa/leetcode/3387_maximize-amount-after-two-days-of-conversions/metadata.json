@@ -6,6 +6,9 @@
   "title": "Maximize Amount After Two Days of Conversions",
   "difficulty": "Medium",
   "acceptance_rate": 61.74295667053718,
+  "frequency": 0.0,
+  "elo_rating": 1787.5923894417,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

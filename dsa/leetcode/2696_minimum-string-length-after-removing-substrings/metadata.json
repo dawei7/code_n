@@ -6,6 +6,9 @@
   "title": "Minimum String Length After Removing Substrings",
   "difficulty": "Easy",
   "acceptance_rate": 77.20163457913236,
+  "frequency": 46.2,
+  "elo_rating": 1282.3870247003,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

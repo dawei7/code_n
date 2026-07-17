@@ -6,6 +6,9 @@
   "title": "Design Movie Rental System",
   "difficulty": "Hard",
   "acceptance_rate": 62.17132093875869,
+  "frequency": 55.1,
+  "elo_rating": 2181.7821188042,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

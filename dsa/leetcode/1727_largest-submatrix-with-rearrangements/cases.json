@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1727",
+  "cases": [
+    {
+      "id": "sample-one",
+      "name": "sample: two height-two columns form area four",
+      "kind": "sample",
+      "visible": true,
+      "input": {"matrix": [[0,0,1],[1,1,1],[1,0,1]]},
+      "expected": 4,
+      "tags": ["sample", "column-rearrangement"]
+    },
+    {
+      "id": "sample-two",
+      "name": "sample: one row groups three ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {"matrix": [[1,0,1,0,1]]},
+      "expected": 3,
+      "tags": ["sample", "single-row"]
+    },
+    {
+      "id": "sample-three",
+      "name": "sample: complete columns must move together",
+      "kind": "sample",
+      "visible": true,
+      "input": {"matrix": [[1,1,0],[1,0,1]]},
+      "expected": 2,
+      "tags": ["sample", "column-integrity"]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {"matrix": [[0]]},
+      "expected": 0,
+      "tags": ["minimum-area", "all-zero"]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one one cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {"matrix": [[1]]},
+      "expected": 1,
+      "tags": ["minimum-area", "all-one"]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: the entire matrix is available",
+      "kind": "trial",
+      "visible": true,
+      "input": {"matrix": [[1,1,1],[1,1,1]]},
+      "expected": 6,
+      "tags": ["all-one", "whole-matrix"]
+    },
+    {
+      "id": "real-single-column-runs",
+      "name": "hidden: rearrangement cannot bridge a zero in one column",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": [[1],[1],[0],[1],[1],[1]]},
+      "expected": 3,
+      "tags": ["single-column", "height-reset"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: a larger all-zero matrix has area zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": [[0,0,0,0],[0,0,0,0],[0,0,0,0]]},
+      "expected": 0,
+      "tags": ["all-zero", "multiple-rows"]
+    },
+    {
+      "id": "real-staggered-heights",
+      "name": "hidden: staggered runs require ordering by current height",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": [[1,0,1,1],[1,1,1,0],[1,1,0,1],[1,1,1,1]]},
+      "expected": 6,
+      "tags": ["staggered-runs", "height-order"]
+    },
+    {
+      "id": "real-best-before-last-row",
+      "name": "hidden: the maximum rectangle ends before the final row",
+      "kind": "real",
+      "visible": false,
+      "input": {"matrix": [[1,1,1,0],[1,1,1,1],[1,1,1,0],[0,0,0,1]]},
+      "expected": 9,
+      "tags": ["earlier-bottom-row", "final-reset"]
+    }
+  ]
+}

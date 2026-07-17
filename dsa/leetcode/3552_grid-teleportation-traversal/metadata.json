@@ -6,6 +6,9 @@
   "title": "Grid Teleportation Traversal",
   "difficulty": "Medium",
   "acceptance_rate": 23.84442033219264,
+  "frequency": 58.6,
+  "elo_rating": 2036.0285748447,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

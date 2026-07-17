@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1701",
+  "cases": [
+    {"id":"sample-continuous-backlog","name":"sample: all later customers wait behind earlier work","kind":"sample","visible":true,"input":{"customers":[[1,2],[2,5],[4,3]]},"expected":5.0,"tags":["sample","backlog"]},
+    {"id":"sample-idle-gap","name":"sample: chef becomes idle before the final arrival","kind":"sample","visible":true,"input":{"customers":[[5,2],[5,4],[10,3],[20,1]]},"expected":3.25,"tags":["sample","idle-gap"]},
+    {"id":"trial-growing-work","name":"trial: later preparation creates a longer final wait","kind":"trial","visible":true,"input":{"customers":[[1,1],[2,2],[3,3]]},"expected":2.3333333333333335,"tags":["mixed-load","fraction"]},
+    {"id":"trial-single","name":"trial: one customer waits exactly their preparation time","kind":"trial","visible":true,"input":{"customers":[[7,5]]},"expected":5.0,"tags":["minimum","single"]},
+    {"id":"trial-separated","name":"trial: two orders are separated by a complete idle interval","kind":"trial","visible":true,"input":{"customers":[[1,2],[10,3]]},"expected":2.5,"tags":["idle-gap","immediate-start"]},
+    {"id":"trial-same-arrival","name":"trial: simultaneous arrivals preserve input order","kind":"trial","visible":true,"input":{"customers":[[5,2],[5,4],[5,1]]},"expected":5.0,"tags":["same-arrival","queue-order"]},
+    {"id":"real-one-unit-orders","name":"hidden: steady arrivals keep one-unit orders idle-free","kind":"real","visible":false,"input":{"customers":[[1,1],[2,1],[3,1],[4,1],[5,1]]},"expected":1.0,"tags":["exact-boundary","no-backlog"]},
+    {"id":"real-backlog-clears","name":"hidden: a long gap clears an earlier backlog","kind":"real","visible":false,"input":{"customers":[[1,10],[2,1],[20,2],[20,3]]},"expected":6.75,"tags":["backlog","idle-reset"]},
+    {"id":"real-large-values","name":"hidden: maximum arrival and preparation values remain valid","kind":"real","visible":false,"input":{"customers":[[10000,10000]]},"expected":10000.0,"tags":["maximum-value","single"]},
+    {"id":"real-fractional","name":"hidden: result requires a non-integer average","kind":"real","visible":false,"input":{"customers":[[2,3],[3,1],[10,2]]},"expected":2.6666666666666665,"tags":["fraction","idle-gap"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Counting Bits",
   "difficulty": "Easy",
   "acceptance_rate": 80.72515566388952,
+  "frequency": 31.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

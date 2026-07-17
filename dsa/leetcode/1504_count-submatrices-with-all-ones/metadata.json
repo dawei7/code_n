@@ -6,6 +6,9 @@
   "title": "Count Submatrices With All Ones",
   "difficulty": "Medium",
   "acceptance_rate": 71.02662029359085,
+  "frequency": 0.0,
+  "elo_rating": 1845.0428731248,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

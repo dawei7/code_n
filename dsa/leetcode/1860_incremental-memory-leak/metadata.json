@@ -6,6 +6,9 @@
   "title": "Incremental Memory Leak",
   "difficulty": "Medium",
   "acceptance_rate": 72.84930988844772,
+  "frequency": 0.0,
+  "elo_rating": 1387.2941868867,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

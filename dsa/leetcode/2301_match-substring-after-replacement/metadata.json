@@ -6,6 +6,9 @@
   "title": "Match Substring After Replacement",
   "difficulty": "Hard",
   "acceptance_rate": 43.530468491466934,
+  "frequency": 0.0,
+  "elo_rating": 1860.5166780235,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

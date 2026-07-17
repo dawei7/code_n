@@ -6,6 +6,9 @@
   "title": "The Number of Full Rounds You Have Played",
   "difficulty": "Medium",
   "acceptance_rate": 43.44792150102765,
+  "frequency": 44.9,
+  "elo_rating": 1498.1542511841,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

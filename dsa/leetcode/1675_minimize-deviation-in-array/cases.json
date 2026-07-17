@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1675",
+  "cases": [
+    {"id":"sample-four-values","name":"sample: normalize odds and reduce four","kind":"sample","visible":true,"input":{"nums":[1,2,3,4]},"expected":1,"tags":["sample","mixed-parity"]},
+    {"id":"sample-five-values","name":"sample: several chains achieve deviation three","kind":"sample","visible":true,"input":{"nums":[4,1,5,20,3]},"expected":3,"tags":["sample","several-reductions"]},
+    {"id":"sample-even-values","name":"sample: even chains achieve deviation three","kind":"sample","visible":true,"input":{"nums":[2,10,8]},"expected":3,"tags":["sample","even"]},
+    {"id":"trial-equal-values","name":"trial: equal values have zero deviation","kind":"trial","visible":true,"input":{"nums":[7,7]},"expected":0,"tags":["duplicates","zero"]},
+    {"id":"trial-powers-of-two","name":"trial: powers of two can all become two","kind":"trial","visible":true,"input":{"nums":[8,4,2]},"expected":0,"tags":["powers-of-two","common-value"]},
+    {"id":"real-two-odds","name":"hidden: odd values may stay or double once","kind":"real","visible":false,"input":{"nums":[3,5]},"expected":1,"tags":["odd","doubling"]},
+    {"id":"real-duplicate-maxima","name":"hidden: every maximum occurrence must be processed","kind":"real","visible":false,"input":{"nums":[1,4,4,4]},"expected":0,"tags":["duplicate-maxima"]},
+    {"id":"real-best-before-bottom","name":"hidden: best range occurs before every chain bottoms out","kind":"real","visible":false,"input":{"nums":[3,8,10]},"expected":2,"tags":["intermediate-range","stop-condition"]}
+  ]
+}

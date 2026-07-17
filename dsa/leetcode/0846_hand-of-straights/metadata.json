@@ -6,6 +6,9 @@
   "title": "Hand of Straights",
   "difficulty": "Medium",
   "acceptance_rate": 58.1823838024285,
+  "frequency": 26.9,
+  "elo_rating": 1565.2483424929,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

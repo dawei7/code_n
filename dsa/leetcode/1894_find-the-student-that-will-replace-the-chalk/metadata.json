@@ -6,6 +6,9 @@
   "title": "Find the Student that Will Replace the Chalk",
   "difficulty": "Medium",
   "acceptance_rate": 53.178590167852,
+  "frequency": 0.0,
+  "elo_rating": 1355.5386161215,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

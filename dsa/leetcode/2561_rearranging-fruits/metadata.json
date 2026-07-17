@@ -6,6 +6,9 @@
   "title": "Rearranging Fruits",
   "difficulty": "Hard",
   "acceptance_rate": 57.292178832349016,
+  "frequency": 54.4,
+  "elo_rating": 2221.793185714,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

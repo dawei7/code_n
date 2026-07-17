@@ -6,6 +6,9 @@
   "title": "Integers With Multiple Sum of Two Cubes",
   "difficulty": "Medium",
   "acceptance_rate": 55.50813595633618,
+  "frequency": 43.2,
+  "elo_rating": 1534.419464685,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

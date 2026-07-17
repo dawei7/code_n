@@ -6,6 +6,9 @@
   "title": "Reorder Data in Log Files",
   "difficulty": "Medium",
   "acceptance_rate": 56.792603565296396,
+  "frequency": 28.9,
+  "elo_rating": 1387.3672639293,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

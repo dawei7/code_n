@@ -6,6 +6,9 @@
   "title": "Sum Root to Leaf Numbers",
   "difficulty": "Medium",
   "acceptance_rate": 70.11160388612821,
+  "frequency": 55.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1384.789802,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

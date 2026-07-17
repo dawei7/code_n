@@ -6,6 +6,9 @@
   "title": "Invalid Transactions",
   "difficulty": "Medium",
   "acceptance_rate": 32.38116522641239,
+  "frequency": 71.3,
+  "elo_rating": 1658.6836278802,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

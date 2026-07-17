@@ -6,6 +6,9 @@
   "title": "Number of Senior Citizens",
   "difficulty": "Easy",
   "acceptance_rate": 81.23565909157226,
+  "frequency": 0.0,
+  "elo_rating": 1198.8420836551,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

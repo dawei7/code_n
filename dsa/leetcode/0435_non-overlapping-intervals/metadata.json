@@ -6,6 +6,9 @@
   "title": "Non-overlapping Intervals",
   "difficulty": "Medium",
   "acceptance_rate": 57.3544746564544,
+  "frequency": 65.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1484.986951,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

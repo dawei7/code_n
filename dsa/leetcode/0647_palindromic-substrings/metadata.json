@@ -6,6 +6,9 @@
   "title": "Palindromic Substrings",
   "difficulty": "Medium",
   "acceptance_rate": 72.97722105670775,
+  "frequency": 71.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1368.494064,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

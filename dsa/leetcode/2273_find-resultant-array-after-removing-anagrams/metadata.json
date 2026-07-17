@@ -6,6 +6,9 @@
   "title": "Find Resultant Array After Removing Anagrams",
   "difficulty": "Easy",
   "acceptance_rate": 69.98107780555381,
+  "frequency": 35.9,
+  "elo_rating": 1294.5800368625,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

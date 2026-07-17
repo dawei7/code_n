@@ -6,6 +6,9 @@
   "title": "Path Crossing",
   "difficulty": "Easy",
   "acceptance_rate": 62.65798882118938,
+  "frequency": 46.0,
+  "elo_rating": 1508.099765827,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Sum of Subarray Minimums",
   "difficulty": "Medium",
   "acceptance_rate": 38.81137154422919,
+  "frequency": 68.8,
+  "elo_rating": 1975.5726300727,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

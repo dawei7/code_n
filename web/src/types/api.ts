@@ -59,6 +59,8 @@ export interface ChallengeSummary {
   categories: string[];
   difficulty_label: string;
   elo_rating: number | null;
+  estimated_elo_rating: number | null;
+  frequency: number | null;
   difficulty_estimate: number | null;
   acceptance_rate: number | null;
   required_complexity: string;
@@ -217,6 +219,33 @@ export interface ProgressOut {
   pane_font_scales: Record<string, number>;
   pane_sizes: Record<string, number>;
   accent_colors: { light: string; dark: string };
+}
+
+export interface CustomProblemNode {
+  type: 'problem';
+  id: string;
+  challenge_id: string;
+}
+
+export interface CustomProblemGroup {
+  type: 'group';
+  id: string;
+  name: string;
+  children: CustomProblemTreeNode[];
+}
+
+export type CustomProblemTreeNode = CustomProblemNode | CustomProblemGroup;
+
+export interface CustomProblemSet {
+  id: string;
+  name: string;
+  description: string;
+  nodes: CustomProblemTreeNode[];
+}
+
+export interface CustomProblemSetsOut {
+  version: number;
+  sets: CustomProblemSet[];
 }
 
 export interface SolutionGet {

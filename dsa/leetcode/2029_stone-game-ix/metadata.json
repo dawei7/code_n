@@ -6,6 +6,9 @@
   "title": "Stone Game IX",
   "difficulty": "Medium",
   "acceptance_rate": 30.450541152781273,
+  "frequency": 0.0,
+  "elo_rating": 2277.3595662538,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

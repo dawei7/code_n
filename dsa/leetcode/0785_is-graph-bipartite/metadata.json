@@ -6,6 +6,9 @@
   "title": "Is Graph Bipartite?",
   "difficulty": "Medium",
   "acceptance_rate": 59.54028063174567,
+  "frequency": 46.7,
+  "elo_rating": 1624.9775945043,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

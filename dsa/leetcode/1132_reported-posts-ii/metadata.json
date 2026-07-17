@@ -6,6 +6,9 @@
   "title": "Reported Posts II",
   "difficulty": "Medium",
   "acceptance_rate": 32.02681176785689,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1754.217859,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1696",
+  "cases": [
+    {"id":"sample-two-step","name":"sample: two-step window crosses mixed values","kind":"sample","visible":true,"input":{"nums":[1,-1,-2,4,-7,3],"k":2},"expected":7,"tags":["sample","negative-values"]},
+    {"id":"sample-three-step","name":"sample: three-step jumps skip early losses","kind":"sample","visible":true,"input":{"nums":[10,-5,-2,4,0,3],"k":3},"expected":17,"tags":["sample","skip-negative"]},
+    {"id":"sample-forced-losses","name":"sample: destination path has zero best score","kind":"sample","visible":true,"input":{"nums":[1,-5,-20,4,-1,3,-6,-3],"k":2},"expected":0,"tags":["sample","forced-loss"]},
+    {"id":"trial-single-negative","name":"trial: single negative start is already the destination","kind":"trial","visible":true,"input":{"nums":[-7],"k":100},"expected":-7,"tags":["minimum","negative"]},
+    {"id":"trial-unit-jumps","name":"trial: jump length one visits every value","kind":"trial","visible":true,"input":{"nums":[1,-2,3],"k":1},"expected":2,"tags":["k-one","forced-path"]},
+    {"id":"trial-direct-jump","name":"trial: direct jump skips a severe loss","kind":"trial","visible":true,"input":{"nums":[1,-100,10],"k":2},"expected":11,"tags":["direct-jump","skip-negative"]},
+    {"id":"real-all-negative","name":"hidden: choose the least costly reachable predecessors","kind":"real","visible":false,"input":{"nums":[-1,-2,-3,-4],"k":2},"expected":-7,"tags":["all-negative","forced-loss"]},
+    {"id":"real-large-window","name":"hidden: large jump limit still visits positive intermediates","kind":"real","visible":false,"input":{"nums":[5,-10,4,3,-2,8],"k":10},"expected":20,"tags":["large-k","positive-intermediates"]},
+    {"id":"real-equal-scores","name":"hidden: equal candidate scores favor the newer index","kind":"real","visible":false,"input":{"nums":[2,-1,1,-1,1,2],"k":2},"expected":6,"tags":["equal-candidates","deque-tie"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Bus Routes",
   "difficulty": "Hard",
   "acceptance_rate": 47.38997497790535,
+  "frequency": 79.8,
+  "elo_rating": 1964.3793590858,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Burst Balloons",
   "difficulty": "Hard",
   "acceptance_rate": 63.872468369256374,
+  "frequency": 64.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1975.034588,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

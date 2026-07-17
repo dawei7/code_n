@@ -6,6 +6,9 @@
   "title": "Compute Alternating Sum",
   "difficulty": "Easy",
   "acceptance_rate": 90.1534035380544,
+  "frequency": 21.5,
+  "elo_rating": 1228.2540685683,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Smooth Descent Periods of a Stock",
   "difficulty": "Medium",
   "acceptance_rate": 67.72306350443529,
+  "frequency": 40.3,
+  "elo_rating": 1408.427592417,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

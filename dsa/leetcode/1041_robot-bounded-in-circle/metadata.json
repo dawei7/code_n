@@ -6,6 +6,9 @@
   "title": "Robot Bounded In Circle",
   "difficulty": "Medium",
   "acceptance_rate": 56.582835689371805,
+  "frequency": 26.3,
+  "elo_rating": 1521.1768537583,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Sum of Digits of String After Convert",
   "difficulty": "Easy",
   "acceptance_rate": 74.84179552841525,
+  "frequency": 20.2,
+  "elo_rating": 1254.8626139269,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

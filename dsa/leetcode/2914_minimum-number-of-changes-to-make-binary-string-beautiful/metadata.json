@@ -6,6 +6,9 @@
   "title": "Minimum Number of Changes to Make Binary String Beautiful",
   "difficulty": "Medium",
   "acceptance_rate": 76.39600244069301,
+  "frequency": 46.1,
+  "elo_rating": 1479.6908339113,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

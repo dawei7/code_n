@@ -6,6 +6,9 @@
   "title": "Number of Submatrices That Sum to Target",
   "difficulty": "Hard",
   "acceptance_rate": 74.6408058294042,
+  "frequency": 30.1,
+  "elo_rating": 2189.3802630548,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

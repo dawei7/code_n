@@ -6,6 +6,9 @@
   "title": "Find the Score Difference in a Game",
   "difficulty": "Medium",
   "acceptance_rate": 72.5677440417891,
+  "frequency": 0.0,
+  "elo_rating": 1223.4978877568,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

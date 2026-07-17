@@ -6,6 +6,9 @@
   "title": "The Number of Beautiful Subsets",
   "difficulty": "Medium",
   "acceptance_rate": 50.93032824357685,
+  "frequency": 25.0,
+  "elo_rating": 2023.4303440211,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

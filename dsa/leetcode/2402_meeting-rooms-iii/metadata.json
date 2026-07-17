@@ -6,6 +6,9 @@
   "title": "Meeting Rooms III",
   "difficulty": "Hard",
   "acceptance_rate": 51.42867816492076,
+  "frequency": 59.0,
+  "elo_rating": 2092.8943149547,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

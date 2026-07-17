@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1774",
+  "cases": [
+    {
+      "id": "example-1",
+      "name": "exact target from one topping",
+      "kind": "sample",
+      "visible": true,
+      "input": {"baseCosts": [1, 7], "toppingCosts": [3, 4], "target": 10},
+      "expected": 10,
+      "tags": ["example", "exact"]
+    },
+    {
+      "id": "example-2",
+      "name": "closest total below target",
+      "kind": "sample",
+      "visible": true,
+      "input": {"baseCosts": [2, 3], "toppingCosts": [4, 5, 100], "target": 18},
+      "expected": 17,
+      "tags": ["example", "below-target"]
+    },
+    {
+      "id": "example-3",
+      "name": "equal distance chooses lower total",
+      "kind": "sample",
+      "visible": true,
+      "input": {"baseCosts": [3, 10], "toppingCosts": [2, 5], "target": 9},
+      "expected": 8,
+      "tags": ["example", "tie-break"]
+    },
+    {
+      "id": "tie-around-target",
+      "name": "one topping creates symmetric totals",
+      "kind": "trial",
+      "visible": true,
+      "input": {"baseCosts": [5], "toppingCosts": [2], "target": 6},
+      "expected": 5,
+      "tags": ["tie-break", "zero-toppings"]
+    },
+    {
+      "id": "base-above-target",
+      "name": "only base already exceeds target",
+      "kind": "real",
+      "visible": false,
+      "input": {"baseCosts": [10], "toppingCosts": [1], "target": 1},
+      "expected": 10,
+      "tags": ["above-target", "zero-toppings"]
+    },
+    {
+      "id": "second-base-exact",
+      "name": "another base reaches target without toppings",
+      "kind": "real",
+      "visible": false,
+      "input": {"baseCosts": [8, 9], "toppingCosts": [5, 6], "target": 9},
+      "expected": 9,
+      "tags": ["multiple-bases", "exact"]
+    },
+    {
+      "id": "two-of-each",
+      "name": "uses two portions of duplicate-cost toppings",
+      "kind": "real",
+      "visible": false,
+      "input": {"baseCosts": [1], "toppingCosts": [1, 1], "target": 5},
+      "expected": 5,
+      "tags": ["two-portions", "duplicate-costs"]
+    }
+  ]
+}

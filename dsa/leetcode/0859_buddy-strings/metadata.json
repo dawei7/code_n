@@ -6,6 +6,9 @@
   "title": "Buddy Strings",
   "difficulty": "Easy",
   "acceptance_rate": 34.09333763646379,
+  "frequency": 23.1,
+  "elo_rating": 1341.2659819842,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

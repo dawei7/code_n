@@ -6,6 +6,9 @@
   "title": "Prime Number of Set Bits in Binary Representation",
   "difficulty": "Easy",
   "acceptance_rate": 78.8951828630826,
+  "frequency": 51.9,
+  "elo_rating": 1383.4424411643,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

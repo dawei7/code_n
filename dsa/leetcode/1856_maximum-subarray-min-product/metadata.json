@@ -6,6 +6,9 @@
   "title": "Maximum Subarray Min-Product",
   "difficulty": "Medium",
   "acceptance_rate": 40.562937699389735,
+  "frequency": 55.7,
+  "elo_rating": 2051.0879431258,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

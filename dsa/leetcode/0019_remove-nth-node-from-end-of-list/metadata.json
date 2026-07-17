@@ -6,6 +6,9 @@
   "title": "Remove Nth Node From End of List",
   "difficulty": "Medium",
   "acceptance_rate": 52.00245514862631,
+  "frequency": 62.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1561.701717,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

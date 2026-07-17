@@ -6,6 +6,9 @@
   "title": "Max Stack",
   "difficulty": "Hard",
   "acceptance_rate": 45.96848591288733,
+  "frequency": 93.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 2137.166815,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Range Module",
   "difficulty": "Hard",
   "acceptance_rate": 45.24983785851931,
+  "frequency": 64.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2149.4484,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

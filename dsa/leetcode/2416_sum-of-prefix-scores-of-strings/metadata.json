@@ -6,6 +6,9 @@
   "title": "Sum of Prefix Scores of Strings",
   "difficulty": "Hard",
   "acceptance_rate": 60.85161495213946,
+  "frequency": 29.0,
+  "elo_rating": 1725.1995150882,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Distance Between a Pair of Values",
   "difficulty": "Medium",
   "acceptance_rate": 61.30293542649674,
+  "frequency": 63.4,
+  "elo_rating": 1514.8181710611,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

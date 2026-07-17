@@ -6,6 +6,9 @@
   "title": "Put Boxes Into the Warehouse I",
   "difficulty": "Medium",
   "acceptance_rate": 67.74674485637611,
+  "frequency": 49.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1401.86899,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

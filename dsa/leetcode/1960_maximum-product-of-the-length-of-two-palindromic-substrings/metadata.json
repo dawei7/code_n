@@ -6,6 +6,9 @@
   "title": "Maximum Product of the Length of Two Palindromic Substrings",
   "difficulty": "Hard",
   "acceptance_rate": 31.375332741792366,
+  "frequency": 0.0,
+  "elo_rating": 2690.5859406179,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

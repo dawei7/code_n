@@ -6,6 +6,9 @@
   "title": "Pascal's Triangle",
   "difficulty": "Easy",
   "acceptance_rate": 79.13630614661963,
+  "frequency": 82.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

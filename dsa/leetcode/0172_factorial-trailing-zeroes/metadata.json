@@ -6,6 +6,9 @@
   "title": "Factorial Trailing Zeroes",
   "difficulty": "Medium",
   "acceptance_rate": 46.9637725730979,
+  "frequency": 43.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1633.166042,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

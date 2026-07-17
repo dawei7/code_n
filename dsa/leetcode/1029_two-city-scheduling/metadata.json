@@ -6,6 +6,9 @@
   "title": "Two City Scheduling",
   "difficulty": "Medium",
   "acceptance_rate": 68.6774132730015,
+  "frequency": 52.3,
+  "elo_rating": 1348.0079390256,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Fruit Into Baskets",
   "difficulty": "Medium",
   "acceptance_rate": 51.65136860180334,
+  "frequency": 76.7,
+  "elo_rating": 1516.4104902196,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

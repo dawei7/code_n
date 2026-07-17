@@ -6,6 +6,9 @@
   "title": "Earliest Possible Day of Full Bloom",
   "difficulty": "Hard",
   "acceptance_rate": 71.20771367870567,
+  "frequency": 25.0,
+  "elo_rating": 2033.4597721985,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count Paths With the Given XOR Value",
   "difficulty": "Medium",
   "acceptance_rate": 40.80117864269596,
+  "frequency": 0.0,
+  "elo_rating": 1573.0069130568,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

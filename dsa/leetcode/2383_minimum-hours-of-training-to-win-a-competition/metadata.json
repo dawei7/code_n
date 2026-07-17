@@ -6,6 +6,9 @@
   "title": "Minimum Hours of Training to Win a Competition",
   "difficulty": "Easy",
   "acceptance_rate": 42.692319750854345,
+  "frequency": 0.0,
+  "elo_rating": 1413.4238697034,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find K Pairs with Smallest Sums",
   "difficulty": "Medium",
   "acceptance_rate": 42.087144423318314,
+  "frequency": 54.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1684.211989,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

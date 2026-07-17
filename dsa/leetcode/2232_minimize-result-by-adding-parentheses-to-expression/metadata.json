@@ -6,6 +6,9 @@
   "title": "Minimize Result by Adding Parentheses to Expression",
   "difficulty": "Medium",
   "acceptance_rate": 68.31210973990855,
+  "frequency": 60.3,
+  "elo_rating": 1611.8434720083,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

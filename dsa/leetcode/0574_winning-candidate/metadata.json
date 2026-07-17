@@ -6,6 +6,9 @@
   "title": "Winning Candidate",
   "difficulty": "Medium",
   "acceptance_rate": 62.77623152807573,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1441.198127,
   "category": "database",
   "category_title": "Database",
   "topics": [

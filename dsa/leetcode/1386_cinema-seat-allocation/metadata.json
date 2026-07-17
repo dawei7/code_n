@@ -6,6 +6,9 @@
   "title": "Cinema Seat Allocation",
   "difficulty": "Medium",
   "acceptance_rate": 44.74188525571925,
+  "frequency": 22.8,
+  "elo_rating": 1636.6877598712,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

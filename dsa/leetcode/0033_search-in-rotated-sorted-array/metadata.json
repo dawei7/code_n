@@ -6,6 +6,9 @@
   "title": "Search in Rotated Sorted Array",
   "difficulty": "Medium",
   "acceptance_rate": 45.18165339664956,
+  "frequency": 81.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1653.29273,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Graph Connectivity With Threshold",
   "difficulty": "Hard",
   "acceptance_rate": 49.67917478882391,
+  "frequency": 0.0,
+  "elo_rating": 2221.3538766773,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

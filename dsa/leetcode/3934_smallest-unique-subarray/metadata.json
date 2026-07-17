@@ -6,6 +6,9 @@
   "title": "Smallest Unique Subarray",
   "difficulty": "Hard",
   "acceptance_rate": 40.71737471381328,
+  "frequency": 49.5,
+  "elo_rating": 2162.530467026,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

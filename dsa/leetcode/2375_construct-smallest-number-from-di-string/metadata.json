@@ -6,6 +6,9 @@
   "title": "Construct Smallest Number From DI String",
   "difficulty": "Medium",
   "acceptance_rate": 85.54558953367044,
+  "frequency": 35.9,
+  "elo_rating": 1641.9424376927,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

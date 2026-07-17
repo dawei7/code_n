@@ -6,6 +6,9 @@
   "title": "Longest Line of Consecutive One in Matrix",
   "difficulty": "Medium",
   "acceptance_rate": 50.62207432608614,
+  "frequency": 47.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1582.120095,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

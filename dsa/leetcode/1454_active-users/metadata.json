@@ -6,6 +6,9 @@
   "title": "Active Users",
   "difficulty": "Medium",
   "acceptance_rate": 36.59335303256466,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1731.17426,
   "category": "database",
   "category_title": "Database",
   "topics": [

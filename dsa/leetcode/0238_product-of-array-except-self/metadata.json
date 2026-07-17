@@ -6,6 +6,9 @@
   "title": "Product of Array Except Self",
   "difficulty": "Medium",
   "acceptance_rate": 69.04325722229471,
+  "frequency": 76.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1392.624292,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

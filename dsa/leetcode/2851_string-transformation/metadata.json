@@ -6,6 +6,9 @@
   "title": "String Transformation",
   "difficulty": "Hard",
   "acceptance_rate": 27.488384391644317,
+  "frequency": 51.4,
+  "elo_rating": 2857.6543956169,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

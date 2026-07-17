@@ -6,6 +6,9 @@
   "title": "Sort Integers by The Power Value",
   "difficulty": "Medium",
   "acceptance_rate": 71.79944888303496,
+  "frequency": 52.2,
+  "elo_rating": 1506.8958220609,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

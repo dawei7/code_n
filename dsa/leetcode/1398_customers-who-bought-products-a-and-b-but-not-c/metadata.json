@@ -6,6 +6,9 @@
   "title": "Customers Who Bought Products A and B but Not C",
   "difficulty": "Medium",
   "acceptance_rate": 71.47536955898613,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1376.328553,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Number of Refueling Stops",
   "difficulty": "Hard",
   "acceptance_rate": 41.62775085744974,
+  "frequency": 57.0,
+  "elo_rating": 2074.4120526679,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

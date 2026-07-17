@@ -6,6 +6,9 @@
   "title": "Find the Number of K-Even Arrays",
   "difficulty": "Medium",
   "acceptance_rate": 61.152416356877325,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1455.143519,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

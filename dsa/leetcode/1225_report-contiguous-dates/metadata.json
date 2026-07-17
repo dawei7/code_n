@@ -6,6 +6,9 @@
   "title": "Report Contiguous Dates",
   "difficulty": "Hard",
   "acceptance_rate": 57.07942103657503,
+  "frequency": 39.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 2025.640719,
   "category": "database",
   "category_title": "Database",
   "topics": [

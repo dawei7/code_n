@@ -6,6 +6,9 @@
   "title": "Freedom Trail",
   "difficulty": "Hard",
   "acceptance_rate": 59.441466854724965,
+  "frequency": 20.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 2009.594872,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1766",
+  "frontend_id": "1671",
+  "title_slug": "minimum-number-of-removals-to-make-mountain-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumMountainRemovals",
+  "verified_submission_id": "2070511293",
+  "verified_at": "2026-07-17T02:25:55.440047+00:00"
+}

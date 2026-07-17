@@ -6,6 +6,9 @@
   "title": "Flood Fill",
   "difficulty": "Easy",
   "acceptance_rate": 68.53842074683223,
+  "frequency": 52.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1191.374995,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

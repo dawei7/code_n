@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1802",
+  "measurement_note": "Size is n, while maxSum is n squared, so increasing size also increases the binary-search range. Each target is central. The arithmetic solution takes O(log maxSum) time without constructing an array. A correct implementation that explicitly builds both minimum slopes for every binary-search candidate completes all tiers and is rejected only by its additional O(n) factor.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: central target in length 32","kind":"benchmark","visible":false,"size":32,"input":{"n":32,"index":16,"maxSum":1024},"expected":40,"tags":["benchmark","binary-search","central"]},
+    {"id":"benchmark-scale-2","name":"benchmark: central target in length 128","kind":"benchmark","visible":false,"size":128,"input":{"n":128,"index":64,"maxSum":16384},"expected":160,"tags":["benchmark","binary-search","central"]},
+    {"id":"benchmark-scale-3","name":"benchmark: central target in length 512","kind":"benchmark","visible":false,"size":512,"input":{"n":512,"index":256,"maxSum":262144},"expected":640,"tags":["benchmark","binary-search","central"]}
+  ]
+}

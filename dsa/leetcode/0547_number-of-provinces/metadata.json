@@ -6,6 +6,9 @@
   "title": "Number of Provinces",
   "difficulty": "Medium",
   "acceptance_rate": 70.67163905674678,
+  "frequency": 56.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1381.029247,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

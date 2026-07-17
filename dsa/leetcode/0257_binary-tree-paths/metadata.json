@@ -6,6 +6,9 @@
   "title": "Binary Tree Paths",
   "difficulty": "Easy",
   "acceptance_rate": 68.93030368603277,
+  "frequency": 50.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1188.804036,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

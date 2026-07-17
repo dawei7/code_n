@@ -6,6 +6,9 @@
   "title": "Check If a Word Occurs As a Prefix of Any Word in a Sentence",
   "difficulty": "Easy",
   "acceptance_rate": 68.77409472179671,
+  "frequency": 0.0,
+  "elo_rating": 1125.575238274,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

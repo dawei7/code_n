@@ -6,6 +6,9 @@
   "title": "Count the Number of Good Partitions",
   "difficulty": "Hard",
   "acceptance_rate": 49.97291277914886,
+  "frequency": 0.0,
+  "elo_rating": 1984.9685663849,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

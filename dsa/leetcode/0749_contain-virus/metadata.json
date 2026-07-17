@@ -6,6 +6,9 @@
   "title": "Contain Virus",
   "difficulty": "Hard",
   "acceptance_rate": 55.11416687887276,
+  "frequency": 34.0,
+  "elo_rating": 2277.0238076464,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

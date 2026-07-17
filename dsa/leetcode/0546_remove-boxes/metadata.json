@@ -6,6 +6,9 @@
   "title": "Remove Boxes",
   "difficulty": "Hard",
   "acceptance_rate": 49.50403619881646,
+  "frequency": 65.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 2093.938424,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

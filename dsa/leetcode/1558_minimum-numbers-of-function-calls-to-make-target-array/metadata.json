@@ -6,6 +6,9 @@
   "title": "Minimum Numbers of Function Calls to Make Target Array",
   "difficulty": "Medium",
   "acceptance_rate": 62.8475346942642,
+  "frequency": 0.0,
+  "elo_rating": 1637.0082208814,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

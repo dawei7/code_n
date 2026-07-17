@@ -6,6 +6,9 @@
   "title": "Length of the Longest Alphabetical Continuous Substring",
   "difficulty": "Medium",
   "acceptance_rate": 60.9626632300857,
+  "frequency": 0.0,
+  "elo_rating": 1221.8477681772,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

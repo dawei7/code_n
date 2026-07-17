@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1750",
+  "cases": [
+    {
+      "id": "sample-no-operation",
+      "name": "sample: different endpoint characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "ca"},
+      "expected": 2,
+      "tags": ["sample", "different-ends"]
+    },
+    {
+      "id": "sample-empty-result",
+      "name": "sample: nested runs disappear completely",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "cabaabac"},
+      "expected": 0,
+      "tags": ["sample", "empty-result", "multiple-rounds"]
+    },
+    {
+      "id": "sample-nonempty-center",
+      "name": "sample: deletion stops at different inner endpoints",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aabccabba"},
+      "expected": 3,
+      "tags": ["sample", "unequal-runs"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: prefix and suffix cannot overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "b"},
+      "expected": 1,
+      "tags": ["minimum-length", "nonoverlap"]
+    },
+    {
+      "id": "trial-uniform-string",
+      "name": "trial: one uniform run",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaaaaa"},
+      "expected": 0,
+      "tags": ["uniform", "empty-result"]
+    },
+    {
+      "id": "real-unequal-boundary-runs",
+      "name": "hidden: boundary runs have different lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaabccca"},
+      "expected": 4,
+      "tags": ["unequal-runs", "inner-stop"]
+    },
+    {
+      "id": "real-one-middle-character",
+      "name": "hidden: nested layers leave one middle character",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcba"},
+      "expected": 1,
+      "tags": ["single-center", "multiple-rounds"]
+    },
+    {
+      "id": "real-deep-nesting",
+      "name": "hidden: several single-character boundary layers",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcacba"},
+      "expected": 1,
+      "tags": ["deep-nesting", "single-center"]
+    }
+  ]
+}

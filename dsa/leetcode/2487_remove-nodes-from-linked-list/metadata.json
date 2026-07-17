@@ -6,6 +6,9 @@
   "title": "Remove Nodes From Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 75.03092750378896,
+  "frequency": 44.8,
+  "elo_rating": 1454.5942017003,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

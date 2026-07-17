@@ -6,6 +6,9 @@
   "title": "Armstrong Number",
   "difficulty": "Easy",
   "acceptance_rate": 77.85068691250903,
+  "frequency": 0.0,
+  "elo_rating": 1231.4004525633,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Make a Positive Array",
   "difficulty": "Medium",
   "acceptance_rate": 36.29139072847682,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1733.216098,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

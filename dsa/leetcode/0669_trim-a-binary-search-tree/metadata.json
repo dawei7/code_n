@@ -6,6 +6,9 @@
   "title": "Trim a Binary Search Tree",
   "difficulty": "Medium",
   "acceptance_rate": 66.76604909390882,
+  "frequency": 25.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1409.860169,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

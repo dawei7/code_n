@@ -6,6 +6,9 @@
   "title": "Maximum Sum of M Non-Overlapping Subarrays I",
   "difficulty": "Hard",
   "acceptance_rate": 26.137486007769805,
+  "frequency": 33.1,
+  "elo_rating": 2060.7171353186,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

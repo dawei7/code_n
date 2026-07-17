@@ -6,6 +6,9 @@
   "title": "Maximum Number of Moves in a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 58.7580239654953,
+  "frequency": 0.0,
+  "elo_rating": 1625.9636825798,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

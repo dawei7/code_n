@@ -6,6 +6,9 @@
   "title": "Longest Common Prefix",
   "difficulty": "Easy",
   "acceptance_rate": 47.878799009592655,
+  "frequency": 96.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1254.462368,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

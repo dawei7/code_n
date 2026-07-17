@@ -6,6 +6,9 @@
   "title": "Power of Three",
   "difficulty": "Easy",
   "acceptance_rate": 51.263129149491235,
+  "frequency": 32.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1246.749492,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

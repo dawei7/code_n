@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1658",
+  "cases": [
+    {"id":"sample-right-only","name":"sample: two removals from the right","kind":"sample","visible":true,"input":{"nums":[1,1,4,2,3],"x":5},"expected":2,"tags":["sample","right-end"]},
+    {"id":"sample-impossible-small-target","name":"sample: target is below every available end","kind":"sample","visible":true,"input":{"nums":[5,6,7,8,9],"x":4},"expected":-1,"tags":["sample","impossible"]},
+    {"id":"sample-both-ends","name":"sample: removals combine a prefix and suffix","kind":"sample","visible":true,"input":{"nums":[3,2,20,1,1,3],"x":10},"expected":5,"tags":["sample","both-ends"]},
+    {"id":"trial-single-exact","name":"trial: one element exactly equals x","kind":"trial","visible":true,"input":{"nums":[5],"x":5},"expected":1,"tags":["minimum-length","whole-array"]},
+    {"id":"trial-single-impossible","name":"trial: singleton cannot form a smaller target","kind":"trial","visible":true,"input":{"nums":[5],"x":4},"expected":-1,"tags":["minimum-length","impossible"]},
+    {"id":"real-whole-array","name":"hidden: total equals x and the kept middle is empty","kind":"real","visible":false,"input":{"nums":[2,3,1],"x":6},"expected":3,"tags":["whole-array","empty-middle"]},
+    {"id":"real-x-exceeds-total","name":"hidden: x exceeds the sum of all elements","kind":"real","visible":false,"input":{"nums":[1,2,3],"x":7},"expected":-1,"tags":["target-too-large"]},
+    {"id":"real-one-from-each-end","name":"hidden: the optimum removes one value from each end","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5],"x":6},"expected":2,"tags":["both-ends","longest-middle"]},
+    {"id":"real-keep-long-middle","name":"hidden: two large ends form the target","kind":"real","visible":false,"input":{"nums":[5,1,1,1,5],"x":10},"expected":2,"tags":["both-ends","long-middle"]},
+    {"id":"real-multiple-target-windows","name":"hidden: longest matching middle determines the minimum","kind":"real","visible":false,"input":{"nums":[1,2,1,1,1,3,2],"x":5},"expected":2,"tags":["multiple-windows","minimum"]},
+    {"id":"real-left-only","name":"hidden: the best sequence removes only a prefix","kind":"real","visible":false,"input":{"nums":[1,2,3,4],"x":3},"expected":2,"tags":["left-end"]},
+    {"id":"real-large-blocker","name":"hidden: a large interior value separates possible end sums","kind":"real","visible":false,"input":{"nums":[1,1,1,10,1,1,1],"x":12},"expected":-1,"tags":["interior-blocker","impossible"]}
+  ]
+}

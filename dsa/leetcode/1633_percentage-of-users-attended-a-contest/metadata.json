@@ -6,6 +6,9 @@
   "title": "Percentage of Users Attended a Contest",
   "difficulty": "Easy",
   "acceptance_rate": 60.60584140384321,
+  "frequency": 26.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1223.017565,
   "category": "database",
   "category_title": "Database",
   "topics": [

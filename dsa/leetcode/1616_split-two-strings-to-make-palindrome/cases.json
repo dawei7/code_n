@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1616",
+  "cases": [
+    {"id":"sample-single-character","name":"sample: either one-character result is palindromic","kind":"sample","visible":true,"input":{"a":"x","b":"y"},"expected":true,"tags":["sample","minimum-length"]},
+    {"id":"sample-impossible","name":"sample: no shared split forms a palindrome","kind":"sample","visible":true,"input":{"a":"xbdef","b":"xecab"},"expected":false,"tags":["sample","impossible"]},
+    {"id":"sample-cross-palindrome","name":"sample: first prefix and second suffix combine","kind":"sample","visible":true,"input":{"a":"ulacfd","b":"jizalu"},"expected":true,"tags":["sample","cross-string"]},
+    {"id":"trial-other-example","name":"trial: second prefix and first suffix combine","kind":"trial","visible":true,"input":{"a":"abdef","b":"fecab"},"expected":true,"tags":["reverse-direction","cross-string"]},
+    {"id":"trial-first-string-palindrome","name":"trial: an endpoint split keeps the first palindrome","kind":"trial","visible":true,"input":{"a":"racecar","b":"abcdefg"},"expected":true,"tags":["endpoint-split","existing-palindrome"]},
+    {"id":"trial-direction-matters","name":"trial: only the first prefix direction succeeds","kind":"trial","visible":true,"input":{"a":"aab","b":"caa"},"expected":true,"tags":["directionality","interior-split"]},
+    {"id":"real-short-false","name":"hidden: distinct two-character strings cannot combine","kind":"real","visible":false,"input":{"a":"ab","b":"cd"},"expected":false,"tags":["short","impossible"]},
+    {"id":"real-central-fallback-a","name":"hidden: cross exterior leaves a palindromic center in first source","kind":"real","visible":false,"input":{"a":"abcbaq","b":"zabcba"},"expected":true,"tags":["palindromic-center","first-source"]},
+    {"id":"real-near-palindromes-false","name":"hidden: both inputs fail only at their central pair","kind":"real","visible":false,"input":{"a":"aaabcaaa","b":"aaadeaaa"},"expected":false,"tags":["near-palindrome","central-mismatch"]},
+    {"id":"real-even-cross","name":"hidden: an even-length cross palindrome uses the middle split","kind":"real","visible":false,"input":{"a":"abcdzz","b":"qqdcba"},"expected":true,"tags":["even-length","middle-split"]},
+    {"id":"real-identical-nonpalindrome","name":"hidden: identical nonpalindromes do not gain a new arrangement","kind":"real","visible":false,"input":{"a":"abcdef","b":"abcdef"},"expected":false,"tags":["identical-inputs","impossible"]}
+  ]
+}

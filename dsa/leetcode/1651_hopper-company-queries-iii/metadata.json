@@ -6,6 +6,9 @@
   "title": "Hopper Company Queries III",
   "difficulty": "Hard",
   "acceptance_rate": 65.31851093395743,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1966.805949,
   "category": "database",
   "category_title": "Database",
   "topics": [

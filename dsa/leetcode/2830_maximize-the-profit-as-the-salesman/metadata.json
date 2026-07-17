@@ -6,6 +6,9 @@
   "title": "Maximize the Profit as the Salesman",
   "difficulty": "Medium",
   "acceptance_rate": 38.51765229981067,
+  "frequency": 23.6,
+  "elo_rating": 1851.2677996923,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

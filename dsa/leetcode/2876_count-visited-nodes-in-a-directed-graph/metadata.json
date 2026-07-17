@@ -6,6 +6,9 @@
   "title": "Count Visited Nodes in a Directed Graph",
   "difficulty": "Hard",
   "acceptance_rate": 31.10426748790145,
+  "frequency": 0.0,
+  "elo_rating": 2209.8785430371,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

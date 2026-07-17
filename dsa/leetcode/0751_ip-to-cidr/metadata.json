@@ -6,6 +6,9 @@
   "title": "IP to CIDR",
   "difficulty": "Medium",
   "acceptance_rate": 53.74822639129749,
+  "frequency": 75.4,
+  "elo_rating": 2025.0377429311,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

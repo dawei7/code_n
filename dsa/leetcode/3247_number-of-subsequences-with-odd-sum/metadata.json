@@ -6,6 +6,9 @@
   "title": "Number of Subsequences with Odd Sum",
   "difficulty": "Medium",
   "acceptance_rate": 47.258267057346174,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1629.665749,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find Right Interval",
   "difficulty": "Medium",
   "acceptance_rate": 56.102427331960435,
+  "frequency": 39.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1503.363492,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Split a String Into the Max Number of Unique Substrings",
   "difficulty": "Medium",
   "acceptance_rate": 68.7188042596211,
+  "frequency": 21.8,
+  "elo_rating": 1739.5831401172,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

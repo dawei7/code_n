@@ -6,6 +6,9 @@
   "title": "Minimum Edge Reversals So Every Node Is Reachable",
   "difficulty": "Hard",
   "acceptance_rate": 59.9741723409251,
+  "frequency": 94.0,
+  "elo_rating": 2294.8289305714,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

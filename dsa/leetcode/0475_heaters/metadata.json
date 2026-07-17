@@ -6,6 +6,9 @@
   "title": "Heaters",
   "difficulty": "Medium",
   "acceptance_rate": 42.187757993151294,
+  "frequency": 66.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1683.045224,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

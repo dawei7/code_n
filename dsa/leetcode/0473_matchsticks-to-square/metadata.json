@@ -6,6 +6,9 @@
   "title": "Matchsticks to Square",
   "difficulty": "Medium",
   "acceptance_rate": 42.038715729981426,
+  "frequency": 23.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1684.50368,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

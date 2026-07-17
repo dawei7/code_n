@@ -6,6 +6,9 @@
   "title": "Build the Equation",
   "difficulty": "Hard",
   "acceptance_rate": 57.29135729135729,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2023.583559,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Moving Average from Data Stream",
   "difficulty": "Easy",
   "acceptance_rate": 80.22465965526878,
+  "frequency": 74.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

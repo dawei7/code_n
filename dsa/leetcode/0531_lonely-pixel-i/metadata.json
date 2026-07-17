@@ -6,6 +6,9 @@
   "title": "Lonely Pixel I",
   "difficulty": "Medium",
   "acceptance_rate": 62.705018517801605,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1441.668197,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Longest Winning Streak",
   "difficulty": "Hard",
   "acceptance_rate": 54.42465753424658,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2045.389453,
   "category": "database",
   "category_title": "Database",
   "topics": [

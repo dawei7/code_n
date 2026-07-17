@@ -6,6 +6,9 @@
   "title": "Check for Contradictions in Equations",
   "difficulty": "Hard",
   "acceptance_rate": 44.005248482860424,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2170.600019,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

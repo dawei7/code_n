@@ -6,6 +6,9 @@
   "title": "Merge Close Characters",
   "difficulty": "Medium",
   "acceptance_rate": 54.797772129186605,
+  "frequency": 40.4,
+  "elo_rating": 1471.9513024584,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

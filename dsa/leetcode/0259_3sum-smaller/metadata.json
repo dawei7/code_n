@@ -6,6 +6,9 @@
   "title": "3Sum Smaller",
   "difficulty": "Medium",
   "acceptance_rate": 51.37347177392313,
+  "frequency": 48.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1571.619215,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

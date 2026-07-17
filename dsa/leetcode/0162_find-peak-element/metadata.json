@@ -6,6 +6,9 @@
   "title": "Find Peak Element",
   "difficulty": "Medium",
   "acceptance_rate": 47.05341888440137,
+  "frequency": 76.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1631.707586,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

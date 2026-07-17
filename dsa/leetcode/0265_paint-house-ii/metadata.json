@@ -6,6 +6,9 @@
   "title": "Paint House II",
   "difficulty": "Hard",
   "acceptance_rate": 57.19719570405728,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2024.817855,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

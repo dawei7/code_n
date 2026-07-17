@@ -6,6 +6,9 @@
   "title": "Count Subarrays With Majority Element II",
   "difficulty": "Hard",
   "acceptance_rate": 64.94615351611104,
+  "frequency": 71.3,
+  "elo_rating": 2089.8733559225,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

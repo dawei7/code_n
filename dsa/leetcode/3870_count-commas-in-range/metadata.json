@@ -6,6 +6,9 @@
   "title": "Count Commas in Range",
   "difficulty": "Easy",
   "acceptance_rate": 69.18458014207373,
+  "frequency": 17.6,
+  "elo_rating": 1149.480126418,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

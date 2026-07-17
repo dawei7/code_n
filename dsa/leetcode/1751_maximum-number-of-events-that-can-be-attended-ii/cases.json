@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1751",
+  "cases": [
+    {
+      "id": "sample-compatible-pair",
+      "name": "sample: two compatible events",
+      "kind": "sample",
+      "visible": true,
+      "input": {"events": [[1, 2, 4], [3, 4, 3], [2, 3, 1]], "k": 2},
+      "expected": 7,
+      "tags": ["sample", "compatible-pair"]
+    },
+    {
+      "id": "sample-fewer-than-k",
+      "name": "sample: one valuable overlapping event",
+      "kind": "sample",
+      "visible": true,
+      "input": {"events": [[1, 2, 4], [3, 4, 3], [2, 3, 10]], "k": 2},
+      "expected": 10,
+      "tags": ["sample", "at-most-k"]
+    },
+    {
+      "id": "sample-count-limit",
+      "name": "sample: all compatible but count is limited",
+      "kind": "sample",
+      "visible": true,
+      "input": {"events": [[1, 1, 1], [2, 2, 2], [3, 3, 3], [4, 4, 4]], "k": 3},
+      "expected": 9,
+      "tags": ["sample", "count-limit"]
+    },
+    {
+      "id": "trial-inclusive-endpoints",
+      "name": "trial: equal start and end day still overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"events": [[1, 2, 5], [2, 3, 100], [3, 4, 6]], "k": 2},
+      "expected": 100,
+      "tags": ["inclusive-end", "semantic-boundary"]
+    },
+    {
+      "id": "trial-single-choice",
+      "name": "trial: k equals one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"events": [[1, 10, 7], [2, 2, 20], [11, 12, 9]], "k": 1},
+      "expected": 20,
+      "tags": ["k-one", "maximum-single"]
+    },
+    {
+      "id": "real-unsorted-chain",
+      "name": "hidden: input order differs from chronological order",
+      "kind": "real",
+      "visible": false,
+      "input": {"events": [[7, 8, 9], [1, 2, 5], [5, 6, 8], [3, 4, 6]], "k": 3},
+      "expected": 23,
+      "tags": ["unsorted", "compatible-chain"]
+    },
+    {
+      "id": "real-identical-intervals",
+      "name": "hidden: choose one of several identical intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {"events": [[4, 9, 3], [4, 9, 15], [4, 9, 8], [10, 10, 7]], "k": 3},
+      "expected": 22,
+      "tags": ["identical-intervals", "at-most-k"]
+    },
+    {
+      "id": "real-large-days",
+      "name": "hidden: adjacent large day values are compatible",
+      "kind": "real",
+      "visible": false,
+      "input": {"events": [[999999999, 999999999, 8], [1000000000, 1000000000, 9], [1, 1000000000, 12]], "k": 2},
+      "expected": 17,
+      "tags": ["day-boundary", "strict-transition"]
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Text Justification",
   "difficulty": "Hard",
   "acceptance_rate": 51.49099534366401,
+  "frequency": 75.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 2072.955394,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

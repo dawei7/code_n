@@ -6,6 +6,9 @@
   "title": "Maximum Deletions on a String",
   "difficulty": "Hard",
   "acceptance_rate": 36.16643901245642,
+  "frequency": 0.0,
+  "elo_rating": 2101.867342004,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

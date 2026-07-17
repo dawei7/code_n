@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1791",
+  "frontend_id": "1672",
+  "title_slug": "richest-customer-wealth",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maximumWealth",
+  "verified_submission_id": "2070513725",
+  "verified_at": "2026-07-17T02:31:21.495060+00:00"
+}

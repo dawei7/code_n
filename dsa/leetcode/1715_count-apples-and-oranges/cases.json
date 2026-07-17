@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1715",
+  "cases": [
+    {
+      "id":"sample-official","name":"sample: direct fruit and repeated chest references","kind":"sample","visible":true,
+      "input":{"tables":{
+        "Boxes":[
+          {"box_id":2,"chest_id":null,"apple_count":6,"orange_count":15},{"box_id":18,"chest_id":14,"apple_count":4,"orange_count":15},
+          {"box_id":19,"chest_id":3,"apple_count":8,"orange_count":4},{"box_id":12,"chest_id":2,"apple_count":19,"orange_count":20},
+          {"box_id":20,"chest_id":6,"apple_count":12,"orange_count":9},{"box_id":8,"chest_id":6,"apple_count":9,"orange_count":9},
+          {"box_id":3,"chest_id":14,"apple_count":16,"orange_count":7}
+        ],
+        "Chests":[
+          {"chest_id":6,"apple_count":5,"orange_count":6},{"chest_id":14,"apple_count":20,"orange_count":10},
+          {"chest_id":2,"apple_count":8,"orange_count":8},{"chest_id":3,"apple_count":19,"orange_count":4},
+          {"chest_id":16,"apple_count":19,"orange_count":19}
+        ]
+      }},
+      "expected":{"columns":["apple_count","orange_count"],"rows":[[151,123]]},
+      "validator":{"kind":"unordered_table"},"tags":["sample","left-join","repeated-chest"]
+    },
+    {
+      "id":"trial-no-chest","name":"trial: a box without a chest keeps its direct fruit","kind":"trial","visible":true,
+      "input":{"tables":{"Boxes":[{"box_id":1,"chest_id":null,"apple_count":4,"orange_count":6}],"Chests":[]}},
+      "expected":{"columns":["apple_count","orange_count"],"rows":[[4,6]]},
+      "validator":{"kind":"unordered_table"},"tags":["null-chest","direct-fruit"]
+    },
+    {
+      "id":"trial-single-chest","name":"trial: one chest augments one box","kind":"trial","visible":true,
+      "input":{"tables":{"Boxes":[{"box_id":5,"chest_id":9,"apple_count":2,"orange_count":3}],"Chests":[{"chest_id":9,"apple_count":7,"orange_count":11}]}},
+      "expected":{"columns":["apple_count","orange_count"],"rows":[[9,14]]},
+      "validator":{"kind":"unordered_table"},"tags":["single-join","both-fruits"]
+    },
+    {
+      "id":"real-repeated-chest","name":"hidden: one chest identifier contributes for every box occurrence","kind":"real","visible":false,
+      "input":{"tables":{
+        "Boxes":[{"box_id":1,"chest_id":4,"apple_count":1,"orange_count":2},{"box_id":2,"chest_id":4,"apple_count":3,"orange_count":4}],
+        "Chests":[{"chest_id":4,"apple_count":10,"orange_count":20}]
+      }},
+      "expected":{"columns":["apple_count","orange_count"],"rows":[[24,46]]},
+      "validator":{"kind":"unordered_table"},"tags":["repeated-chest","multiplicity"]
+    },
+    {
+      "id":"real-unreferenced-chest","name":"hidden: unreferenced chests do not enter the total","kind":"real","visible":false,
+      "input":{"tables":{
+        "Boxes":[{"box_id":7,"chest_id":2,"apple_count":0,"orange_count":5},{"box_id":8,"chest_id":null,"apple_count":6,"orange_count":0}],
+        "Chests":[{"chest_id":2,"apple_count":3,"orange_count":4},{"chest_id":99,"apple_count":1000,"orange_count":1000}]
+      }},
+      "expected":{"columns":["apple_count","orange_count"],"rows":[[9,9]]},
+      "validator":{"kind":"unordered_table"},"tags":["unreferenced-chest","zero-count","null-chest"]
+    }
+  ]
+}

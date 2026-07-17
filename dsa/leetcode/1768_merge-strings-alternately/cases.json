@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1768",
+  "cases": [
+    {
+      "id": "sample-equal-lengths",
+      "name": "sample: equal-length words alternate completely",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word1": "abc", "word2": "pqr"},
+      "expected": "apbqcr",
+      "tags": ["sample", "equal-length"]
+    },
+    {
+      "id": "sample-second-longer",
+      "name": "sample: the second word contributes the suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word1": "ab", "word2": "pqrs"},
+      "expected": "apbqrs",
+      "tags": ["sample", "second-longer"]
+    },
+    {
+      "id": "sample-first-longer",
+      "name": "sample: the first word contributes the suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word1": "abcd", "word2": "pq"},
+      "expected": "apbqcd",
+      "tags": ["sample", "first-longer"]
+    },
+    {
+      "id": "trial-single-characters",
+      "name": "trial: one character from each word",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word1": "a", "word2": "z"},
+      "expected": "az",
+      "tags": ["minimum-length", "equal-length"]
+    },
+    {
+      "id": "trial-one-versus-many",
+      "name": "trial: alternation ends after one pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word1": "x", "word2": "abcd"},
+      "expected": "xabcd",
+      "tags": ["minimum-first", "second-longer"]
+    },
+    {
+      "id": "real-repeated-letters",
+      "name": "hidden: repeated values retain positional multiplicity",
+      "kind": "real",
+      "visible": false,
+      "input": {"word1": "aaaa", "word2": "bbb"},
+      "expected": "abababa",
+      "tags": ["repeated-letters", "first-longer"]
+    },
+    {
+      "id": "real-distinct-suffix",
+      "name": "hidden: a long first suffix remains contiguous",
+      "kind": "real",
+      "visible": false,
+      "input": {"word1": "leetcode", "word2": "go"},
+      "expected": "lgeoetcode",
+      "tags": ["suffix", "first-longer"]
+    },
+    {
+      "id": "real-alphabetic",
+      "name": "hidden: all characters preserve their source order",
+      "kind": "real",
+      "visible": false,
+      "input": {"word1": "acegi", "word2": "bdfh"},
+      "expected": "abcdefghi",
+      "tags": ["ordering", "first-longer"]
+    }
+  ]
+}

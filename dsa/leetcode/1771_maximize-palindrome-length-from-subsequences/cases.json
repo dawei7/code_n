@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1771",
+  "cases": [
+    {
+      "id": "sample-length-five",
+      "name": "sample: different-length subsequences form an odd palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word1": "cacb", "word2": "cbba"},
+      "expected": 5,
+      "tags": ["sample", "odd-length"]
+    },
+    {
+      "id": "sample-shared-center",
+      "name": "sample: a length-three palindrome crosses the boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word1": "ab", "word2": "ab"},
+      "expected": 3,
+      "tags": ["sample", "cross-boundary"]
+    },
+    {
+      "id": "sample-no-shared-character",
+      "name": "sample: disjoint alphabets cannot form a palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {"word1": "aa", "word2": "bb"},
+      "expected": 0,
+      "tags": ["sample", "no-solution"]
+    },
+    {
+      "id": "trial-single-match",
+      "name": "trial: one character from each word forms a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word1": "a", "word2": "a"},
+      "expected": 2,
+      "tags": ["minimum-length", "even-length"]
+    },
+    {
+      "id": "trial-single-mismatch",
+      "name": "trial: different singleton characters cannot qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"word1": "a", "word2": "b"},
+      "expected": 0,
+      "tags": ["minimum-length", "no-solution"]
+    },
+    {
+      "id": "real-full-concatenation",
+      "name": "hidden: the complete concatenation is already palindromic",
+      "kind": "real",
+      "visible": false,
+      "input": {"word1": "ab", "word2": "ba"},
+      "expected": 4,
+      "tags": ["full-length", "even-length"]
+    },
+    {
+      "id": "real-center-from-first",
+      "name": "hidden: an odd center can come from the first word",
+      "kind": "real",
+      "visible": false,
+      "input": {"word1": "abc", "word2": "a"},
+      "expected": 3,
+      "tags": ["odd-length", "subsequence"]
+    },
+    {
+      "id": "real-internal-palindrome-invalid",
+      "name": "hidden: a palindrome inside one word alone does not qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {"word1": "racecar", "word2": "xyz"},
+      "expected": 0,
+      "tags": ["cross-boundary-required", "unrestricted-lps-trap"]
+    }
+  ]
+}

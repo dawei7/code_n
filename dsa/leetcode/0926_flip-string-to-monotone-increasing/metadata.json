@@ -6,6 +6,9 @@
   "title": "Flip String to Monotone Increasing",
   "difficulty": "Medium",
   "acceptance_rate": 61.914830550340874,
+  "frequency": 37.5,
+  "elo_rating": 1601.511760532,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

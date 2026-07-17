@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1635",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(d+r+a)",
+  "summary": "The calendar has exactly twelve months, so generating and ordering it is constant work. Exact active-driver and accepted-ride counts require accounting for all d driver, r ride, and a acceptance rows, matching the query's linear input processing.",
+  "optimality": {
+    "symbol": "d+r+a",
+    "lower_bound": "Omega(d+r+a)",
+    "upper_bound": "O(d+r+a)",
+    "argument": "Any driver row can change one or more active counts, any ride row can determine the month of an accepted ride, and any acceptance row can change an accepted count. Thus exact results require Omega(d+r+a) input work. The query scans and groups those relations with a fixed twelve-month spine in O(d+r+a) time."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Changing one Drivers, Rides, or AcceptedRides row can alter at least one required monthly output, so all three input relations must be accounted for."},
+    {"kind":"upper_bound_proof","evidence":"The twelve-month recursive CTE is constant-size; one join/group scan computes accepted rides and twelve fixed cutoff counts compute active drivers, giving O(d+r+a) total work."},
+    {"kind":"boundary_property_cases","evidence":"Regression compares SQL with an independent calendar oracle for pre-2020, month-boundary, late-2020, future-driver, rejected-ride, out-of-year, and multi-ride fixtures."}
+  ]
+}

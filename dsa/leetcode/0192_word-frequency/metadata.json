@@ -6,6 +6,9 @@
   "title": "Word Frequency",
   "difficulty": "Medium",
   "acceptance_rate": 29.450988709196203,
+  "frequency": 43.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1756.215943,
   "category": "shell",
   "category_title": "Shell",
   "topics": [

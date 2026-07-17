@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1710",
+  "cases": [
+    {"id":"sample-partial-low-type","name":"sample: fill remaining slot from the lowest-value type","kind":"sample","visible":true,"input":{"boxTypes":[[1,3],[2,2],[3,1]],"truckSize":4},"expected":8,"tags":["sample","partial-type"]},
+    {"id":"sample-four-types","name":"sample: several types fill a ten-box truck","kind":"sample","visible":true,"input":{"boxTypes":[[5,10],[2,5],[4,7],[3,9]],"truckSize":10},"expected":91,"tags":["sample","greedy-order"]},
+    {"id":"trial-partial-final-type","name":"trial: only part of the second type fits","kind":"trial","visible":true,"input":{"boxTypes":[[2,4],[3,2]],"truckSize":3},"expected":10,"tags":["partial-type","capacity"]},
+    {"id":"trial-capacity-exceeds-supply","name":"trial: every available box fits","kind":"trial","visible":true,"input":{"boxTypes":[[2,5],[1,9]],"truckSize":10},"expected":19,"tags":["excess-capacity","all-boxes"]},
+    {"id":"trial-one-slot","name":"trial: one slot selects the highest-value box","kind":"trial","visible":true,"input":{"boxTypes":[[1000,1],[1,1000],[5,8]],"truckSize":1},"expected":1000,"tags":["one-slot","large-count"]},
+    {"id":"trial-equal-values","name":"trial: equal-value types may be combined in any order","kind":"trial","visible":true,"input":{"boxTypes":[[2,7],[4,7],[1,2]],"truckSize":5},"expected":35,"tags":["equal-values","ties"]},
+    {"id":"real-unsorted-values","name":"hidden: input order does not determine loading priority","kind":"real","visible":false,"input":{"boxTypes":[[5,2],[1,20],[4,3],[2,10]],"truckSize":4},"expected":43,"tags":["unsorted","greedy-order"]},
+    {"id":"real-exact-capacity-boundary","name":"hidden: capacity ends exactly after a type","kind":"real","visible":false,"input":{"boxTypes":[[3,9],[2,8],[10,1]],"truckSize":5},"expected":43,"tags":["exact-boundary","stop"]},
+    {"id":"real-single-type-partial","name":"hidden: a single abundant type is partially loaded","kind":"real","visible":false,"input":{"boxTypes":[[1000,1000]],"truckSize":999},"expected":999000,"tags":["single-type","maximum-values"]},
+    {"id":"real-do-not-expand","name":"hidden: large counts are aggregated by multiplication","kind":"real","visible":false,"input":{"boxTypes":[[1000,999],[1000,1000],[1000,998]],"truckSize":2500},"expected":2498000,"tags":["large-counts","partial-type"]}
+  ]
+}

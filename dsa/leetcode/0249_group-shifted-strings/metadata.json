@@ -6,6 +6,9 @@
   "title": "Group Shifted Strings",
   "difficulty": "Medium",
   "acceptance_rate": 67.83482123824385,
+  "frequency": 72.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1401.24223,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

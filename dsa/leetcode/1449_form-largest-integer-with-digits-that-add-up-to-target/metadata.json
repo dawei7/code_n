@@ -6,6 +6,9 @@
   "title": "Form Largest Integer With Digits That Add up to Target",
   "difficulty": "Hard",
   "acceptance_rate": 49.878183370468314,
+  "frequency": 0.0,
+  "elo_rating": 1927.4000816649,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

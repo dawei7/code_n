@@ -6,6 +6,9 @@
   "title": "Repeated Substring Pattern",
   "difficulty": "Easy",
   "acceptance_rate": 48.48082322941869,
+  "frequency": 53.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1252.88024,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

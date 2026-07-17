@@ -6,6 +6,9 @@
   "title": "Find Kth Largest XOR Coordinate Value",
   "difficulty": "Medium",
   "acceptance_rate": 64.37356510331256,
+  "frequency": 28.7,
+  "elo_rating": 1671.4657554194,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

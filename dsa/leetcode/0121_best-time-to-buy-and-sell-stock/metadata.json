@@ -6,6 +6,9 @@
   "title": "Best Time to Buy and Sell Stock",
   "difficulty": "Easy",
   "acceptance_rate": 57.03021963021507,
+  "frequency": 98.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1232.905868,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find Kth Character in Expanded String",
   "difficulty": "Medium",
   "acceptance_rate": 57.04081632653061,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1489.362318,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

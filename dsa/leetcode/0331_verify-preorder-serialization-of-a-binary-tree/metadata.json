@@ -6,6 +6,9 @@
   "title": "Verify Preorder Serialization of a Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 47.523301450546526,
+  "frequency": 23.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1627.040528,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

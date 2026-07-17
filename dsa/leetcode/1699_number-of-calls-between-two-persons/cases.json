@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1699",
+  "cases": [
+    {
+      "id":"sample-official","name":"sample: opposite directions and duplicate calls","kind":"sample","visible":true,
+      "input":{"tables":{"Calls":[
+        {"from_id":1,"to_id":2,"duration":59},{"from_id":2,"to_id":1,"duration":11},{"from_id":1,"to_id":3,"duration":20},
+        {"from_id":3,"to_id":4,"duration":100},{"from_id":3,"to_id":4,"duration":200},{"from_id":3,"to_id":4,"duration":200},{"from_id":4,"to_id":3,"duration":499}
+      ]}},
+      "expected":{"columns":["person1","person2","call_count","total_duration"],"rows":[[1,2,2,70],[1,3,1,20],[3,4,4,999]]},
+      "validator":{"kind":"unordered_table"},"tags":["sample","opposite-directions","duplicates"]
+    },
+    {
+      "id":"trial-single-reverse","name":"trial: one reverse-ordered call","kind":"trial","visible":true,
+      "input":{"tables":{"Calls":[{"from_id":7,"to_id":2,"duration":30}]}},
+      "expected":{"columns":["person1","person2","call_count","total_duration"],"rows":[[2,7,1,30]]},
+      "validator":{"kind":"unordered_table"},"tags":["single-call","canonical-order"]
+    },
+    {
+      "id":"trial-exact-duplicates","name":"trial: exact duplicate rows all count","kind":"trial","visible":true,
+      "input":{"tables":{"Calls":[{"from_id":5,"to_id":9,"duration":12},{"from_id":5,"to_id":9,"duration":12},{"from_id":5,"to_id":9,"duration":12}]}},
+      "expected":{"columns":["person1","person2","call_count","total_duration"],"rows":[[5,9,3,36]]},
+      "validator":{"kind":"unordered_table"},"tags":["duplicates","count-all-rows"]
+    },
+    {
+      "id":"real-shared-person","name":"hidden: one person has several pair groups","kind":"real","visible":false,
+      "input":{"tables":{"Calls":[
+        {"from_id":1,"to_id":2,"duration":5},{"from_id":1,"to_id":3,"duration":7},{"from_id":4,"to_id":1,"duration":9},
+        {"from_id":2,"to_id":1,"duration":6},{"from_id":3,"to_id":1,"duration":8}
+      ]}},
+      "expected":{"columns":["person1","person2","call_count","total_duration"],"rows":[[1,2,2,11],[1,3,2,15],[1,4,1,9]]},
+      "validator":{"kind":"unordered_table"},"tags":["multiple-pairs","opposite-directions"]
+    },
+    {
+      "id":"real-separate-pairs","name":"hidden: unrelated pairs remain separate","kind":"real","visible":false,
+      "input":{"tables":{"Calls":[
+        {"from_id":10,"to_id":20,"duration":1},{"from_id":30,"to_id":40,"duration":100},{"from_id":40,"to_id":30,"duration":50},
+        {"from_id":20,"to_id":10,"duration":2},{"from_id":9,"to_id":8,"duration":4}
+      ]}},
+      "expected":{"columns":["person1","person2","call_count","total_duration"],"rows":[[10,20,2,3],[30,40,2,150],[8,9,1,4]]},
+      "validator":{"kind":"unordered_table"},"tags":["separate-pairs","canonical-order"]
+    }
+  ]
+}

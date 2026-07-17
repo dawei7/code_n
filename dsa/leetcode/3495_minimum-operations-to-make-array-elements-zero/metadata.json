@@ -6,6 +6,9 @@
   "title": "Minimum Operations to Make Array Elements Zero",
   "difficulty": "Hard",
   "acceptance_rate": 60.34293334545647,
+  "frequency": 0.0,
+  "elo_rating": 2205.6094494046,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

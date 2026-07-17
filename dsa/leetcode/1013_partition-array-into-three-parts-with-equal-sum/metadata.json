@@ -6,6 +6,9 @@
   "title": "Partition Array Into Three Parts With Equal Sum",
   "difficulty": "Easy",
   "acceptance_rate": 42.91964571550528,
+  "frequency": 12.7,
+  "elo_rating": 1378.7570411077,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Winner of the Linked List Game",
   "difficulty": "Easy",
   "acceptance_rate": 77.53343050890425,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Design Skiplist",
   "difficulty": "Hard",
   "acceptance_rate": 59.84070257536178,
+  "frequency": 71.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 2005.891985,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

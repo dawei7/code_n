@@ -6,6 +6,9 @@
   "title": "The Airport With the Most Traffic",
   "difficulty": "Medium",
   "acceptance_rate": 71.79607109448082,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1375.075035,
   "category": "database",
   "category_title": "Database",
   "topics": [

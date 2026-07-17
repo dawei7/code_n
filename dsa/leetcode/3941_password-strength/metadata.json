@@ -6,6 +6,9 @@
   "title": "Password Strength",
   "difficulty": "Medium",
   "acceptance_rate": 75.0754444663124,
+  "frequency": 0.0,
+  "elo_rating": 1284.339107181,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

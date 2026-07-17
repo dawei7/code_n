@@ -6,6 +6,9 @@
   "title": "String to Integer (atoi)",
   "difficulty": "Medium",
   "acceptance_rate": 21.276077451013222,
+  "frequency": 61.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1756.215943,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

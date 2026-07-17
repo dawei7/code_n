@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1644",
+  "cases": [
+    {"id":"sample-opposite-subtrees","name":"sample: targets meet at the root","kind":"sample","visible":true,"input":{"root":[3,5,1,6,2,0,8,null,null,7,4],"p":5,"q":1},"expected":3,"tags":["sample","split-subtrees"]},
+    {"id":"sample-ancestor-target","name":"sample: one target is the ancestor","kind":"sample","visible":true,"input":{"root":[3,5,1,6,2,0,8,null,null,7,4],"p":5,"q":4},"expected":5,"tags":["sample","ancestor-target"]},
+    {"id":"sample-missing-target","name":"sample: one absent target requires null","kind":"sample","visible":true,"input":{"root":[3,5,1,6,2,0,8,null,null,7,4],"p":5,"q":10},"expected":null,"tags":["sample","missing-target"]},
+    {"id":"trial-two-node-tree","name":"trial: root is one target in a two-node tree","kind":"trial","visible":true,"input":{"root":[1,2],"p":1,"q":2},"expected":1,"tags":["minimum-both-present","ancestor-target"]},
+    {"id":"trial-both-absent","name":"trial: neither target belongs to the tree","kind":"trial","visible":true,"input":{"root":[1],"p":2,"q":3},"expected":null,"tags":["both-absent","singleton-tree"]},
+    {"id":"real-same-left-subtree","name":"hidden: targets meet below the root in the left subtree","kind":"real","visible":false,"input":{"root":[10,4,15,2,7,12,20,1,3,6,8],"p":6,"q":8},"expected":7,"tags":["same-subtree"]},
+    {"id":"real-same-right-subtree","name":"hidden: targets meet below the root in the right subtree","kind":"real","visible":false,"input":{"root":[10,4,15,2,7,12,20,null,null,6,8,11,13,18,25],"p":11,"q":13},"expected":12,"tags":["same-subtree"]},
+    {"id":"real-negative-values","name":"hidden: unique negative values preserve the same ancestry rules","kind":"real","visible":false,"input":{"root":[-5,-10,4,-12,-7,1,8],"p":-12,"q":-7},"expected":-10,"tags":["negative-values"]},
+    {"id":"real-one-absent-deep","name":"hidden: a deep present target cannot be returned when the other is absent","kind":"real","visible":false,"input":{"root":[1,2,null,3,null,4,null,5],"p":5,"q":99},"expected":null,"tags":["skewed-tree","missing-target"]},
+    {"id":"real-value-boundaries","name":"hidden: boundary node values in opposite subtrees","kind":"real","visible":false,"input":{"root":[0,-1000000000,1000000000],"p":-1000000000,"q":1000000000},"expected":0,"tags":["value-boundaries"]}
+  ]
+}

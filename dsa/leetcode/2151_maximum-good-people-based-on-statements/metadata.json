@@ -6,6 +6,9 @@
   "title": "Maximum Good People Based on Statements",
   "difficulty": "Hard",
   "acceptance_rate": 52.6268522676246,
+  "frequency": 0.0,
+  "elo_rating": 1979.9454101467,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

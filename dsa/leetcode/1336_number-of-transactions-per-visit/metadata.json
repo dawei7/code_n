@@ -6,6 +6,9 @@
   "title": "Number of Transactions per Visit",
   "difficulty": "Hard",
   "acceptance_rate": 47.892571837367356,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2108.749975,
   "category": "database",
   "category_title": "Database",
   "topics": [

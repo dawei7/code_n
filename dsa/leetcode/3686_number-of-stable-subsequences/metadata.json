@@ -6,6 +6,9 @@
   "title": "Number of Stable Subsequences",
   "difficulty": "Hard",
   "acceptance_rate": 60.19309946307755,
+  "frequency": 0.0,
+  "elo_rating": 1969.2668024554,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Leetcodify Similar Friends",
   "difficulty": "Hard",
   "acceptance_rate": 43.33858781323042,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2178.787742,
   "category": "database",
   "category_title": "Database",
   "topics": [

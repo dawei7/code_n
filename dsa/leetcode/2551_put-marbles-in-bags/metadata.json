@@ -6,6 +6,9 @@
   "title": "Put Marbles in Bags",
   "difficulty": "Hard",
   "acceptance_rate": 72.09192874217734,
+  "frequency": 56.9,
+  "elo_rating": 2042.4005521254,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

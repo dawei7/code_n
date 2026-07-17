@@ -6,6 +6,9 @@
   "title": "Evaluate Reverse Polish Notation",
   "difficulty": "Medium",
   "acceptance_rate": 58.1399719226597,
+  "frequency": 61.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1477.39347,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

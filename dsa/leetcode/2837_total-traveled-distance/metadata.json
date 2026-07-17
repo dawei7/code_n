@@ -6,6 +6,9 @@
   "title": "Total Traveled Distance",
   "difficulty": "Easy",
   "acceptance_rate": 77.1712791735748,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

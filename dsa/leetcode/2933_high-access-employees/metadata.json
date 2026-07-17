@@ -6,6 +6,9 @@
   "title": "High-Access Employees",
   "difficulty": "Medium",
   "acceptance_rate": 47.654868498610604,
+  "frequency": 38.9,
+  "elo_rating": 1536.5893223179,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Sudoku Solver",
   "difficulty": "Hard",
   "acceptance_rate": 65.61285840226037,
+  "frequency": 62.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1963.925925,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find if Path Exists in Graph",
   "difficulty": "Easy",
   "acceptance_rate": 55.42500711872494,
+  "frequency": 51.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1236.070125,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

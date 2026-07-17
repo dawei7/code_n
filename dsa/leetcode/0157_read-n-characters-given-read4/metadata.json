@@ -6,6 +6,9 @@
   "title": "Read N Characters Given Read4",
   "difficulty": "Easy",
   "acceptance_rate": 42.58167793037265,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

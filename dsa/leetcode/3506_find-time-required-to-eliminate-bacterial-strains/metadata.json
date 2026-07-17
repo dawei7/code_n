@@ -6,6 +6,9 @@
   "title": "Find Time Required to Eliminate Bacterial Strains",
   "difficulty": "Hard",
   "acceptance_rate": 61.46067415730337,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1992.726162,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Number of Non-overlapping Palindrome Substrings",
   "difficulty": "Hard",
   "acceptance_rate": 44.882782539100276,
+  "frequency": 45.3,
+  "elo_rating": 2013.4354344791,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

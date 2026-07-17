@@ -6,6 +6,9 @@
   "title": "Insert Interval",
   "difficulty": "Medium",
   "acceptance_rate": 45.511665576749216,
+  "frequency": 59.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1650.375818,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

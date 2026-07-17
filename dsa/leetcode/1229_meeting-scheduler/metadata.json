@@ -6,6 +6,9 @@
   "title": "Meeting Scheduler",
   "difficulty": "Medium",
   "acceptance_rate": 55.2153706348176,
+  "frequency": 67.9,
+  "elo_rating": 1541.2260256298,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Subarrays With AND Value of K",
   "difficulty": "Hard",
   "acceptance_rate": 35.62832562534189,
+  "frequency": 0.0,
+  "elo_rating": 2050.4096030445,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

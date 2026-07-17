@@ -6,6 +6,9 @@
   "title": "Merge Two Sorted Lists",
   "difficulty": "Easy",
   "acceptance_rate": 68.52121509758375,
+  "frequency": 81.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1191.572761,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

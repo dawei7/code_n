@@ -6,6 +6,9 @@
   "title": "Allocate Mailboxes",
   "difficulty": "Hard",
   "acceptance_rate": 56.74316406249999,
+  "frequency": 65.4,
+  "elo_rating": 2190.1757477854,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

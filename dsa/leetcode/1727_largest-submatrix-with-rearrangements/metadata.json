@@ -6,6 +6,9 @@
   "title": "Largest Submatrix With Rearrangements",
   "difficulty": "Medium",
   "acceptance_rate": 80.18970462436471,
+  "frequency": 84.3,
+  "elo_rating": 1926.7059583253,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

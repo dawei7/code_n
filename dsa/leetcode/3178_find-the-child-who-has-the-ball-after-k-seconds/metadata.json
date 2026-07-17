@@ -6,6 +6,9 @@
   "title": "Find the Child Who Has the Ball After K Seconds",
   "difficulty": "Easy",
   "acceptance_rate": 62.153824224158996,
+  "frequency": 0.0,
+  "elo_rating": 1255.54117313,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

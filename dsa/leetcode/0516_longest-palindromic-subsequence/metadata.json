@@ -6,6 +6,9 @@
   "title": "Longest Palindromic Subsequence",
   "difficulty": "Medium",
   "acceptance_rate": 65.65685815902998,
+  "frequency": 61.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1416.75452,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

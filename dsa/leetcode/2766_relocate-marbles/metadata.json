@@ -6,6 +6,9 @@
   "title": "Relocate Marbles",
   "difficulty": "Medium",
   "acceptance_rate": 51.69888461080458,
+  "frequency": 0.0,
+  "elo_rating": 1613.2485081262,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

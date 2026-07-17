@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1747",
+  "cases": [
+    {
+      "id":"sample-overlapping-addresses","name":"sample: one account overlaps across addresses","kind":"sample","visible":true,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":1,"ip_address":"10.0.0.1","login":"2021-02-01 09:00:00","logout":"2021-02-01 10:00:00"},
+        {"account_id":1,"ip_address":"10.0.0.2","login":"2021-02-01 09:30:00","logout":"2021-02-01 11:00:00"},
+        {"account_id":2,"ip_address":"10.0.0.3","login":"2021-02-01 08:00:00","logout":"2021-02-01 08:30:00"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[[1]]},"tags":["sample","partial-overlap"]
+    },
+    {
+      "id":"trial-sequential-addresses","name":"trial: different addresses used sequentially","kind":"trial","visible":true,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":2,"ip_address":"a","login":"2022-01-01 09:00:00","logout":"2022-01-01 10:00:00"},
+        {"account_id":2,"ip_address":"b","login":"2022-01-01 10:00:01","logout":"2022-01-01 11:00:00"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[]},"tags":["nonoverlap","empty-result"]
+    },
+    {
+      "id":"trial-same-address-overlap","name":"trial: same-address overlap is allowed","kind":"trial","visible":true,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":3,"ip_address":"same","login":"2022-03-01 09:00:00","logout":"2022-03-01 12:00:00"},
+        {"account_id":3,"ip_address":"same","login":"2022-03-01 10:00:00","logout":"2022-03-01 11:00:00"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[]},"tags":["same-address","empty-result"]
+    },
+    {
+      "id":"real-shared-endpoint","name":"hidden: different addresses meet at one timestamp","kind":"real","visible":false,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":4,"ip_address":"left","login":"2023-01-01 08:00:00","logout":"2023-01-01 09:00:00"},
+        {"account_id":4,"ip_address":"right","login":"2023-01-01 09:00:00","logout":"2023-01-01 10:00:00"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[[4]]},"tags":["endpoint-overlap","closed-interval"]
+    },
+    {
+      "id":"real-contained-session","name":"hidden: one different-address session is contained","kind":"real","visible":false,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":5,"ip_address":"outer","login":"2023-02-01 08:00:00","logout":"2023-02-01 18:00:00"},
+        {"account_id":5,"ip_address":"inner","login":"2023-02-01 12:00:00","logout":"2023-02-01 12:05:00"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[[5]]},"tags":["containment"]
+    },
+    {
+      "id":"real-several-accounts","name":"hidden: only violating accounts are returned","kind":"real","visible":false,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":8,"ip_address":"a","login":"2024-01-01 09:00:00","logout":"2024-01-01 12:00:00"},
+        {"account_id":8,"ip_address":"b","login":"2024-01-01 10:00:00","logout":"2024-01-01 11:00:00"},
+        {"account_id":6,"ip_address":"a","login":"2024-01-01 08:00:00","logout":"2024-01-01 09:00:00"},
+        {"account_id":6,"ip_address":"b","login":"2024-01-01 10:00:00","logout":"2024-01-01 11:00:00"},
+        {"account_id":7,"ip_address":"same","login":"2024-01-01 08:00:00","logout":"2024-01-01 11:00:00"},
+        {"account_id":7,"ip_address":"same","login":"2024-01-01 09:00:00","logout":"2024-01-01 10:00:00"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[[8]]},"tags":["multiple-accounts","ordering"]
+    },
+    {
+      "id":"real-distinct-days","name":"hidden: different days cannot overlap","kind":"real","visible":false,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":9,"ip_address":"a","login":"2024-05-01 09:00:00","logout":"2024-05-01 17:00:00"},
+        {"account_id":9,"ip_address":"b","login":"2024-05-02 09:00:00","logout":"2024-05-02 17:00:00"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[]},"tags":["different-days","empty-result"]
+    },
+    {
+      "id":"real-deduplicate-violations","name":"hidden: several conflicts yield one account row","kind":"real","visible":false,
+      "input":{"tables":{"LogInfo":[
+        {"account_id":10,"ip_address":"a","login":"2025-01-01 08:00:00","logout":"2025-01-01 18:00:00"},
+        {"account_id":10,"ip_address":"b","login":"2025-01-01 09:00:00","logout":"2025-01-01 10:00:00"},
+        {"account_id":10,"ip_address":"c","login":"2025-01-01 11:00:00","logout":"2025-01-01 12:00:00"},
+        {"account_id":10,"ip_address":"d","login":"2025-01-01 13:00:00","logout":"2025-01-01 14:00:00"}
+      ]}},
+      "expected":{"columns":["account_id"],"rows":[[10]]},"tags":["deduplication","multiple-conflicts"]
+    }
+  ]
+}

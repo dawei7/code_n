@@ -6,6 +6,9 @@
   "title": "Count the Number of Arrays with K Matching Adjacent Elements",
   "difficulty": "Hard",
   "acceptance_rate": 58.2365660968467,
+  "frequency": 0.0,
+  "elo_rating": 2309.7881448766,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

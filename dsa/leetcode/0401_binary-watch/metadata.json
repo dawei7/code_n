@@ -6,6 +6,9 @@
   "title": "Binary Watch",
   "difficulty": "Easy",
   "acceptance_rate": 65.77920039311502,
+  "frequency": 54.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1203.834257,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

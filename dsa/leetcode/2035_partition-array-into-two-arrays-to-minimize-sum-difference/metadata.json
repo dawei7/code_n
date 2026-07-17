@@ -6,6 +6,9 @@
   "title": "Partition Array Into Two Arrays to Minimize Sum Difference",
   "difficulty": "Hard",
   "acceptance_rate": 23.842254361115252,
+  "frequency": 58.5,
+  "elo_rating": 2489.6652421066,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

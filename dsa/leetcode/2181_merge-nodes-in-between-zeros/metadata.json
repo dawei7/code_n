@@ -6,6 +6,9 @@
   "title": "Merge Nodes in Between Zeros",
   "difficulty": "Medium",
   "acceptance_rate": 89.68453534632256,
+  "frequency": 22.3,
+  "elo_rating": 1333.192050397,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

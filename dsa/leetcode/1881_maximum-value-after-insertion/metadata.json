@@ -6,6 +6,9 @@
   "title": "Maximum Value after Insertion",
   "difficulty": "Medium",
   "acceptance_rate": 39.55280098616628,
+  "frequency": 0.0,
+  "elo_rating": 1381.2168789318,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

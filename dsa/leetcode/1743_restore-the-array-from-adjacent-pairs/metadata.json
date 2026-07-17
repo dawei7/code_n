@@ -6,6 +6,9 @@
   "title": "Restore the Array From Adjacent Pairs",
   "difficulty": "Medium",
   "acceptance_rate": 75.09035066449594,
+  "frequency": 80.9,
+  "elo_rating": 1579.2309881035,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Smallest Missing Multiple of K",
   "difficulty": "Easy",
   "acceptance_rate": 63.342705563542445,
+  "frequency": 0.0,
+  "elo_rating": 1227.6337833819,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

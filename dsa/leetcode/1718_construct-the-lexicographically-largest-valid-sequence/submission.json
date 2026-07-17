@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1819",
+  "frontend_id": "1718",
+  "title_slug": "construct-the-lexicographically-largest-valid-sequence",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.constructDistancedSequence",
+  "verified_submission_id": "2070730501",
+  "verified_at": "2026-07-17T06:18:10.887539+00:00"
+}

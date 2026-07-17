@@ -6,6 +6,9 @@
   "title": "Maximum Spending After Buying Items",
   "difficulty": "Hard",
   "acceptance_rate": 61.37234282280478,
+  "frequency": 0.0,
+  "elo_rating": 1822.3170524016,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

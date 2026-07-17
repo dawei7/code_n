@@ -6,6 +6,9 @@
   "title": "Smallest Number With All Set Bits",
   "difficulty": "Easy",
   "acceptance_rate": 80.31991275106789,
+  "frequency": 0.0,
+  "elo_rating": 1198.5574489527,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

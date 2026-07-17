@@ -6,6 +6,9 @@
   "title": "Find the Closest Palindrome",
   "difficulty": "Hard",
   "acceptance_rate": 32.02442184347444,
+  "frequency": 59.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 2326.166763,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

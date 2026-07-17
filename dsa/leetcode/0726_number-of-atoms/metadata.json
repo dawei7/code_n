@@ -6,6 +6,9 @@
   "title": "Number of Atoms",
   "difficulty": "Hard",
   "acceptance_rate": 65.18230521479093,
+  "frequency": 68.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1967.628812,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

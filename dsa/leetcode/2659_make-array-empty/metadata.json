@@ -6,6 +6,9 @@
   "title": "Make Array Empty",
   "difficulty": "Hard",
   "acceptance_rate": 27.20615947881333,
+  "frequency": 35.0,
+  "elo_rating": 2281.8816902545,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

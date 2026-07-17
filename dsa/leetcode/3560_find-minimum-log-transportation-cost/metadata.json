@@ -6,6 +6,9 @@
   "title": "Find Minimum Log Transportation Cost",
   "difficulty": "Easy",
   "acceptance_rate": 42.53035471065529,
+  "frequency": 0.0,
+  "elo_rating": 1339.175221673,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

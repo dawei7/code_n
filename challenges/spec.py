@@ -98,6 +98,8 @@ class AlgorithmSpec:
     # LeetCode problems have a ZeroTrac rating.
     difficulty_label: str = ""
     elo_rating: Optional[float] = None
+    estimated_elo_rating: Optional[float] = None
+    frequency: Optional[float] = None
     difficulty_estimate: Optional[int] = None
     acceptance_rate: Optional[float] = None
     # All source-native topic memberships. ``category`` remains the primary

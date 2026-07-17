@@ -6,6 +6,9 @@
   "title": "Minimum Number of Operations to Move All Balls to Each Box",
   "difficulty": "Medium",
   "acceptance_rate": 90.14852120440719,
+  "frequency": 25.6,
+  "elo_rating": 1294.7724244077,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

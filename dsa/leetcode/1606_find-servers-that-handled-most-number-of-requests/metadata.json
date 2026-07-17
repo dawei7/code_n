@@ -6,6 +6,9 @@
   "title": "Find Servers That Handled Most Number of Requests",
   "difficulty": "Hard",
   "acceptance_rate": 45.53914102954615,
+  "frequency": 40.8,
+  "elo_rating": 2275.7337818748,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

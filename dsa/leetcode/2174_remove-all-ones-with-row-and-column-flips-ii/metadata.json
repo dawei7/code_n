@@ -6,6 +6,9 @@
   "title": "Remove All Ones With Row and Column Flips II",
   "difficulty": "Medium",
   "acceptance_rate": 67.4203373945642,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1404.219336,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

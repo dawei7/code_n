@@ -6,6 +6,9 @@
   "title": "Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values",
   "difficulty": "Medium",
   "acceptance_rate": 63.48066187798875,
+  "frequency": 0.0,
+  "elo_rating": 1319.4417036875,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Divide Two Integers",
   "difficulty": "Medium",
   "acceptance_rate": 20.00671127189672,
+  "frequency": 58.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1756.215943,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

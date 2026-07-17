@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1719",
+  "cases": [
+    {"id":"sample-unique","name":"sample: unique three-node reconstruction","kind":"sample","visible":true,"input":{"pairs":[[1,2],[2,3]]},"expected":1,"tags":["sample","unique"]},
+    {"id":"sample-multiple","name":"sample: mutually comparable chain nodes","kind":"sample","visible":true,"input":{"pairs":[[1,2],[2,3],[1,3]]},"expected":2,"tags":["sample","multiple"]},
+    {"id":"sample-impossible","name":"sample: no universal root candidate","kind":"sample","visible":true,"input":{"pairs":[[1,2],[2,3],[2,4],[1,5]]},"expected":0,"tags":["sample","impossible"]},
+    {"id":"trial-single-pair","name":"trial: either endpoint can root two nodes","kind":"trial","visible":true,"input":{"pairs":[[1,2]]},"expected":2,"tags":["minimum","multiple"]},
+    {"id":"trial-star","name":"trial: universal center with incomparable leaves","kind":"trial","visible":true,"input":{"pairs":[[1,2],[1,3],[1,4],[1,5]]},"expected":1,"tags":["star","unique"]},
+    {"id":"trial-partial-ambiguity","name":"trial: one equal-degree parent relation","kind":"trial","visible":true,"input":{"pairs":[[1,2],[1,3],[1,4],[1,5],[2,3]]},"expected":2,"tags":["equal-degree","multiple"]},
+    {"id":"real-disconnected","name":"hidden: disconnected comparability components","kind":"real","visible":false,"input":{"pairs":[[1,4],[1,5],[2,3]]},"expected":0,"tags":["no-root","disconnected"]},
+    {"id":"real-containment-failure","name":"hidden: universal node but incompatible nested neighborhoods","kind":"real","visible":false,"input":{"pairs":[[1,2],[1,3],[1,4],[1,5],[2,3],[2,5],[3,4]]},"expected":0,"tags":["containment","impossible"]},
+    {"id":"real-unique-six-node-star","name":"hidden: larger forced star","kind":"real","visible":false,"input":{"pairs":[[10,20],[10,30],[10,40],[10,50],[10,60]]},"expected":1,"tags":["nonconsecutive-values","unique"]},
+    {"id":"real-complete-five","name":"hidden: complete comparability graph has many chains","kind":"real","visible":false,"input":{"pairs":[[1,2],[1,3],[1,4],[1,5],[2,3],[2,4],[2,5],[3,4],[3,5],[4,5]]},"expected":2,"tags":["dense","multiple"]}
+  ]
+}

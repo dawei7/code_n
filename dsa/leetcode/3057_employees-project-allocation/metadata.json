@@ -6,6 +6,9 @@
   "title": "Employees Project Allocation",
   "difficulty": "Hard",
   "acceptance_rate": 67.49740394600208,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1954.46299,
   "category": "database",
   "category_title": "Database",
   "topics": [

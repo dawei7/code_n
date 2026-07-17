@@ -6,6 +6,9 @@
   "title": "Max Sum of Rectangle No Larger Than K",
   "difficulty": "Hard",
   "acceptance_rate": 45.70111116672506,
+  "frequency": 50.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 2141.942987,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

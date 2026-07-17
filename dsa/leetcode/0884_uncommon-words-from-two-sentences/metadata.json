@@ -6,6 +6,9 @@
   "title": "Uncommon Words from Two Sentences",
   "difficulty": "Easy",
   "acceptance_rate": 75.75525216084509,
+  "frequency": 31.7,
+  "elo_rating": 1259.409726189,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Palindrome Permutation",
   "difficulty": "Easy",
   "acceptance_rate": 68.69213941957125,
+  "frequency": 30.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1190.781697,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

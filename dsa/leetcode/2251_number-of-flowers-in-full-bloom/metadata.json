@@ -6,6 +6,9 @@
   "title": "Number of Flowers in Full Bloom",
   "difficulty": "Hard",
   "acceptance_rate": 57.98719635548575,
+  "frequency": 63.1,
+  "elo_rating": 2022.3137128296,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

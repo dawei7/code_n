@@ -6,6 +6,9 @@
   "title": "Trim Trailing Vowels",
   "difficulty": "Easy",
   "acceptance_rate": 77.52895241876779,
+  "frequency": 0.0,
+  "elo_rating": 1139.5275072,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

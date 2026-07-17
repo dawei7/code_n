@@ -6,6 +6,9 @@
   "title": "Champagne Tower",
   "difficulty": "Medium",
   "acceptance_rate": 64.1198878928304,
+  "frequency": 90.9,
+  "elo_rating": 1855.5957296285,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

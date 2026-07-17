@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1786",
+  "frontend_id": "1684",
+  "title_slug": "count-the-number-of-consistent-strings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countConsistentStrings",
+  "verified_submission_id": "2070549698",
+  "verified_at": "2026-07-17T03:39:03.001878+00:00"
+}

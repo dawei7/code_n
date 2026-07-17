@@ -6,6 +6,9 @@
   "title": "Set Mismatch",
   "difficulty": "Easy",
   "acceptance_rate": 43.44058052651634,
+  "frequency": 67.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1260.593116,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

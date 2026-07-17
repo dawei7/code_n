@@ -6,6 +6,9 @@
   "title": "Employees With Deductions",
   "difficulty": "Medium",
   "acceptance_rate": 42.913563529677276,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1676.919711,
   "category": "database",
   "category_title": "Database",
   "topics": [

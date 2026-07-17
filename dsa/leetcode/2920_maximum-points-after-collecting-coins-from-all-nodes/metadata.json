@@ -6,6 +6,9 @@
   "title": "Maximum Points After Collecting Coins From All Nodes",
   "difficulty": "Hard",
   "acceptance_rate": 36.8332646658004,
+  "frequency": 0.0,
+  "elo_rating": 2350.7421492104,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

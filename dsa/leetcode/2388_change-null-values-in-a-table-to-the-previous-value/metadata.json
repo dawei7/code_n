@@ -6,6 +6,9 @@
   "title": "Change Null Values in a Table to the Previous Value",
   "difficulty": "Medium",
   "acceptance_rate": 51.596688350088705,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1568.993995,
   "category": "database",
   "category_title": "Database",
   "topics": [

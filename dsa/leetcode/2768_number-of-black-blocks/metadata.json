@@ -6,6 +6,9 @@
   "title": "Number of Black Blocks",
   "difficulty": "Medium",
   "acceptance_rate": 41.97998730538028,
+  "frequency": 0.0,
+  "elo_rating": 2175.7874705227,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

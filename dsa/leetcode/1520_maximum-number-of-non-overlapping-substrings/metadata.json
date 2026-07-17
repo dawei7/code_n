@@ -6,6 +6,9 @@
   "title": "Maximum Number of Non-Overlapping Substrings",
   "difficulty": "Hard",
   "acceptance_rate": 43.14589520068972,
+  "frequency": 0.0,
+  "elo_rating": 2362.6480880348,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

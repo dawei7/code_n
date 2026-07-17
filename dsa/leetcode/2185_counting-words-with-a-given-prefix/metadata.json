@@ -6,6 +6,9 @@
   "title": "Counting Words With a Given Prefix",
   "difficulty": "Easy",
   "acceptance_rate": 84.43215502125652,
+  "frequency": 0.0,
+  "elo_rating": 1167.1241589729,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

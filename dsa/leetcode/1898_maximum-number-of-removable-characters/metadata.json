@@ -6,6 +6,9 @@
   "title": "Maximum Number of Removable Characters",
   "difficulty": "Medium",
   "acceptance_rate": 47.42698935305939,
+  "frequency": 27.1,
+  "elo_rating": 1912.8440554296,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

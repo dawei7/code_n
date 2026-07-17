@@ -6,6 +6,9 @@
   "title": "Transform Array by Parity",
   "difficulty": "Easy",
   "acceptance_rate": 89.83770243707274,
+  "frequency": 0.0,
+  "elo_rating": 1165.8314068327,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

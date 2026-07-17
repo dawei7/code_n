@@ -6,6 +6,9 @@
   "title": "Convert Integer to the Sum of Two No-Zero Integers",
   "difficulty": "Easy",
   "acceptance_rate": 59.199167792216514,
+  "frequency": 26.7,
+  "elo_rating": 1277.8260125315,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

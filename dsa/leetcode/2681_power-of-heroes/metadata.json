@@ -6,6 +6,9 @@
   "title": "Power of Heroes",
   "difficulty": "Hard",
   "acceptance_rate": 31.84441476676524,
+  "frequency": 0.0,
+  "elo_rating": 2060.0818824378,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "3Sum Closest",
   "difficulty": "Medium",
   "acceptance_rate": 48.85562852709779,
+  "frequency": 69.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1610.122443,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

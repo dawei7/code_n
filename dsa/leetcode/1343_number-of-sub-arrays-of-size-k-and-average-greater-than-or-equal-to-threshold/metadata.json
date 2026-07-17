@@ -6,6 +6,9 @@
   "title": "Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold",
   "difficulty": "Medium",
   "acceptance_rate": 73.36316731599453,
+  "frequency": 34.9,
+  "elo_rating": 1317.1729927899,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

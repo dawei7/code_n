@@ -6,6 +6,9 @@
   "title": "Cells with Odd Values in a Matrix",
   "difficulty": "Easy",
   "acceptance_rate": 79.8232028531853,
+  "frequency": 17.6,
+  "elo_rating": 1283.4980318021,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

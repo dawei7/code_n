@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1800",
+  "frontend_id": "1680",
+  "title_slug": "concatenation-of-consecutive-binary-numbers",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.concatenatedBinary",
+  "verified_submission_id": "2070535209",
+  "verified_at": "2026-07-17T03:14:51.506791+00:00"
+}

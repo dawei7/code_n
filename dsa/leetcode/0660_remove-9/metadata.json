@@ -6,6 +6,9 @@
   "title": "Remove 9",
   "difficulty": "Hard",
   "acceptance_rate": 57.49190611088628,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2022.349263,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

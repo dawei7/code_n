@@ -6,6 +6,9 @@
   "title": "Longest Substring with At Most Two Distinct Characters",
   "difficulty": "Medium",
   "acceptance_rate": 57.112377266940776,
+  "frequency": 55.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1488.487244,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

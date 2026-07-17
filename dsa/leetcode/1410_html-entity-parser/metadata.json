@@ -6,6 +6,9 @@
   "title": "HTML Entity Parser",
   "difficulty": "Medium",
   "acceptance_rate": 50.12826060081592,
+  "frequency": 32.1,
+  "elo_rating": 1405.4005354401,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

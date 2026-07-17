@@ -6,6 +6,9 @@
   "title": "Brick Wall",
   "difficulty": "Medium",
   "acceptance_rate": 56.08069386940369,
+  "frequency": 51.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1503.946874,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Product of Three Elements After One Replacement",
   "difficulty": "Medium",
   "acceptance_rate": 47.76147809791521,
+  "frequency": 0.0,
+  "elo_rating": 1529.058042147,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

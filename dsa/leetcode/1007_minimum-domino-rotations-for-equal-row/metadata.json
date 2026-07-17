@@ -6,6 +6,9 @@
   "title": "Minimum Domino Rotations For Equal Row",
   "difficulty": "Medium",
   "acceptance_rate": 56.497510161707524,
+  "frequency": 0.0,
+  "elo_rating": 1541.348438509,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

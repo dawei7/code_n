@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1785",
+  "frontend_id": "1645",
+  "title_slug": "hopper-company-queries-ii",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070463718",
+  "verified_at": "2026-07-17T00:06:28.288994+00:00"
+}

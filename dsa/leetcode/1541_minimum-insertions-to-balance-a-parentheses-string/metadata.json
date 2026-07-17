@@ -6,6 +6,9 @@
   "title": "Minimum Insertions to Balance a Parentheses String",
   "difficulty": "Medium",
   "acceptance_rate": 53.61502644832284,
+  "frequency": 47.7,
+  "elo_rating": 1759.0197295594,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

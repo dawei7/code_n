@@ -6,6 +6,9 @@
   "title": "Similar RGB Color",
   "difficulty": "Easy",
   "acceptance_rate": 67.96843605012238,
+  "frequency": 0.0,
+  "elo_rating": 1563.9451046163,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Product of Two Integers With No Common Bits",
   "difficulty": "Medium",
   "acceptance_rate": 15.296500303143665,
+  "frequency": 35.0,
+  "elo_rating": 2233.8134907095,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

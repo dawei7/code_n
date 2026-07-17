@@ -6,6 +6,9 @@
   "title": "Candy",
   "difficulty": "Hard",
   "acceptance_rate": 48.74090118862812,
+  "frequency": 71.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 2100.521336,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

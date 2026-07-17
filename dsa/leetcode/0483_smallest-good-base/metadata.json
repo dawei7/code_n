@@ -6,6 +6,9 @@
   "title": "Smallest Good Base",
   "difficulty": "Hard",
   "acceptance_rate": 46.60291968731823,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2122.838299,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

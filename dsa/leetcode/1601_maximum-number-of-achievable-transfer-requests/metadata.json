@@ -6,6 +6,9 @@
   "title": "Maximum Number of Achievable Transfer Requests",
   "difficulty": "Hard",
   "acceptance_rate": 64.76081665093638,
+  "frequency": 0.0,
+  "elo_rating": 2118.7923652824,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

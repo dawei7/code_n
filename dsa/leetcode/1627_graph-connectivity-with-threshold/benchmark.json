@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1627",
+  "measurement_note": "Size is n, the number of cities. Threshold 1 makes the divisor-multiple sweep traverse its harmonic workload, while each tier asks a representative connected query. The Accepted divisor-sieve union-find and an independent smallest-prime-factor union take O(n log n) time under the required bound. A correct implementation that checks every city pair with gcd takes O(n^2), completes all 40/160/640 tiers, and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: divisor sweep across 40 cities","kind":"benchmark","visible":false,"size":40,"input":{"n":40,"threshold":1,"queries":[[20,40]]},"expected":[true],"tags":["benchmark","scale-small","harmonic-sweep"]},
+    {"id":"benchmark-scale-2","name":"benchmark: divisor sweep across 160 cities","kind":"benchmark","visible":false,"size":160,"input":{"n":160,"threshold":1,"queries":[[80,160]]},"expected":[true],"tags":["benchmark","scale-medium","harmonic-sweep"]},
+    {"id":"benchmark-scale-3","name":"benchmark: divisor sweep across 640 cities","kind":"benchmark","visible":false,"size":640,"input":{"n":640,"threshold":1,"queries":[[320,640]]},"expected":[true],"tags":["benchmark","scale-large","harmonic-sweep"]}
+  ]
+}

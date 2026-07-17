@@ -6,6 +6,9 @@
   "title": "Shuffle String",
   "difficulty": "Easy",
   "acceptance_rate": 85.48139527038424,
+  "frequency": 25.6,
+  "elo_rating": 1193.1328299324,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

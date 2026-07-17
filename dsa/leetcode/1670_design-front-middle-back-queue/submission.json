@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1767",
+  "frontend_id": "1670",
+  "title_slug": "design-front-middle-back-queue",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "FrontMiddleBackQueue",
+  "verified_submission_id": "2070509163",
+  "verified_at": "2026-07-17T02:20:55.313428+00:00"
+}

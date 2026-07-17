@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1638",
+  "measurement_note": "Size is mn, the number of character-position pairs. Both strings have equal length L; s is all 'a' and t differs only at its final character. The sparse mismatch lets a correct start-pair extension algorithm scan to the end for nearly every pair, exercising O(mn min(m,n)) work. The Accepted rolling dynamic program and an independent left/right formulation take O(mn) time. The slower implementation completes all L=8/24/64 tiers and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: one mismatch across 64 position pairs","kind":"benchmark","visible":false,"size":64,"input":{"s":"aaaaaaaa","t":"aaaaaaab"},"expected":36},
+    {"id":"benchmark-scale-2","name":"benchmark: one mismatch across 576 position pairs","kind":"benchmark","visible":false,"size":576,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaa","t":"aaaaaaaaaaaaaaaaaaaaaaab"},"expected":300},
+    {"id":"benchmark-scale-3","name":"benchmark: one mismatch across 4096 position pairs","kind":"benchmark","visible":false,"size":4096,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","t":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"},"expected":2080}
+  ]
+}

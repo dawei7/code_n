@@ -6,6 +6,9 @@
   "title": "Maximum Candies You Can Get from Boxes",
   "difficulty": "Hard",
   "acceptance_rate": 67.21597123102305,
+  "frequency": 60.1,
+  "elo_rating": 1824.829446341,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

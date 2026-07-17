@@ -6,6 +6,9 @@
   "title": "Find Product Recommendation Pairs",
   "difficulty": "Medium",
   "acceptance_rate": 61.96155943293348,
+  "frequency": 37.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1447.465719,
   "category": "database",
   "category_title": "Database",
   "topics": [

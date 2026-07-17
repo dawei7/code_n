@@ -6,6 +6,9 @@
   "title": "Make The String Great",
   "difficulty": "Easy",
   "acceptance_rate": 68.61496812790637,
+  "frequency": 28.0,
+  "elo_rating": 1344.226133202,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

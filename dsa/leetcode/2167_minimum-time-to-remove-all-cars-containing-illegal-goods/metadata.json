@@ -6,6 +6,9 @@
   "title": "Minimum Time to Remove All Cars Containing Illegal Goods",
   "difficulty": "Hard",
   "acceptance_rate": 42.069577851319714,
+  "frequency": 0.0,
+  "elo_rating": 2219.3465296423,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

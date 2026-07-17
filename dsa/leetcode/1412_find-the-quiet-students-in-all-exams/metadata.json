@@ -6,6 +6,9 @@
   "title": "Find the Quiet Students in All Exams",
   "difficulty": "Hard",
   "acceptance_rate": 58.07739557739558,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2017.41208,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1785",
+  "cases": [
+    {
+      "id": "example-negative-goal",
+      "name": "two negative additions reach the goal",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,-1,1], "limit": 3, "goal": -4},
+      "expected": 2,
+      "tags": ["example", "negative-gap"]
+    },
+    {
+      "id": "example-one-addition",
+      "name": "one bounded value cancels the current sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,-10,9,1], "limit": 100, "goal": 0},
+      "expected": 1,
+      "tags": ["example", "one-addition"]
+    },
+    {
+      "id": "trial-already-at-goal",
+      "name": "no addition is needed when sums match",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4,-7,3], "limit": 5, "goal": 0},
+      "expected": 0,
+      "tags": ["zero-gap", "minimum-answer"]
+    },
+    {
+      "id": "trial-ceiling-required",
+      "name": "positive gap is not divisible by the limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5], "limit": 3, "goal": 12},
+      "expected": 3,
+      "tags": ["ceiling", "positive-gap"]
+    },
+    {
+      "id": "real-exact-multiple",
+      "name": "hidden: gap is an exact multiple of the limit",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-5], "limit": 3, "goal": 4},
+      "expected": 3,
+      "tags": ["exact-multiple", "positive-gap"]
+    },
+    {
+      "id": "real-unit-limit",
+      "name": "hidden: unit limit requires one element per unit of gap",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2,-5,1], "limit": 1, "goal": 3},
+      "expected": 5,
+      "tags": ["unit-limit", "ceiling"]
+    },
+    {
+      "id": "real-negative-correction",
+      "name": "hidden: additions must reduce a sum above the goal",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8,7,-2], "limit": 4, "goal": 0},
+      "expected": 4,
+      "tags": ["negative-gap", "partial-final"]
+    },
+    {
+      "id": "real-large-boundary",
+      "name": "hidden: large values require wide integer arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000], "limit": 1000000, "goal": -1000000000},
+      "expected": 1001,
+      "tags": ["large-values", "overflow-boundary"]
+    }
+  ]
+}

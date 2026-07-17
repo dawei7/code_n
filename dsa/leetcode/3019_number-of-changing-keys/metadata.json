@@ -6,6 +6,9 @@
   "title": "Number of Changing Keys",
   "difficulty": "Easy",
   "acceptance_rate": 80.82693346270378,
+  "frequency": 33.3,
+  "elo_rating": 1175.5552151972,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

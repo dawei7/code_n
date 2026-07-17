@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1777",
+  "cases": [
+    {
+      "id": "sample-sparse-products",
+      "name": "sample: complete and sparse product prices",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Products": [
+        {"product_id": 0, "store": "store1", "price": 95},
+        {"product_id": 0, "store": "store3", "price": 105},
+        {"product_id": 0, "store": "store2", "price": 100},
+        {"product_id": 1, "store": "store1", "price": 70},
+        {"product_id": 1, "store": "store3", "price": 80}
+      ]}},
+      "expected": {"columns": ["product_id", "store1", "store2", "store3"], "rows": [[0,95,100,105],[1,70,null,80]]},
+      "tags": ["sample", "pivot", "sparse"]
+    },
+    {
+      "id": "trial-store2-only",
+      "name": "one product exists only in store2",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Products": [
+        {"product_id": 7, "store": "store2", "price": 44}
+      ]}},
+      "expected": {"columns": ["product_id", "store1", "store2", "store3"], "rows": [[7,null,44,null]]},
+      "tags": ["single-row", "nulls"]
+    },
+    {
+      "id": "trial-all-stores",
+      "name": "one product has all three prices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Products": [
+        {"product_id": 3, "store": "store1", "price": 11},
+        {"product_id": 3, "store": "store2", "price": 22},
+        {"product_id": 3, "store": "store3", "price": 33}
+      ]}},
+      "expected": {"columns": ["product_id", "store1", "store2", "store3"], "rows": [[3,11,22,33]]},
+      "tags": ["dense", "all-stores"]
+    },
+    {
+      "id": "real-unsorted-products",
+      "name": "hidden: source order differs from product order",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Products": [
+        {"product_id": 9, "store": "store3", "price": 90},
+        {"product_id": 2, "store": "store2", "price": 20},
+        {"product_id": 9, "store": "store1", "price": 10}
+      ]}},
+      "expected": {"columns": ["product_id", "store1", "store2", "store3"], "rows": [[2,null,20,null],[9,10,null,90]]},
+      "tags": ["ordering", "multiple-products"]
+    },
+    {
+      "id": "real-store1-only",
+      "name": "hidden: first store is the only populated column",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Products": [
+        {"product_id": 15, "store": "store1", "price": 1}
+      ]}},
+      "expected": {"columns": ["product_id", "store1", "store2", "store3"], "rows": [[15,1,null,null]]},
+      "tags": ["store1", "boundary"]
+    },
+    {
+      "id": "real-store3-only",
+      "name": "hidden: last store is the only populated column",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Products": [
+        {"product_id": 21, "store": "store3", "price": 999}
+      ]}},
+      "expected": {"columns": ["product_id", "store1", "store2", "store3"], "rows": [[21,null,null,999]]},
+      "tags": ["store3", "boundary"]
+    },
+    {
+      "id": "real-interleaved-groups",
+      "name": "hidden: product rows are interleaved",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Products": [
+        {"product_id": 5, "store": "store2", "price": 52},
+        {"product_id": 4, "store": "store3", "price": 43},
+        {"product_id": 5, "store": "store1", "price": 51},
+        {"product_id": 4, "store": "store1", "price": 41}
+      ]}},
+      "expected": {"columns": ["product_id", "store1", "store2", "store3"], "rows": [[4,41,null,43],[5,51,52,null]]},
+      "tags": ["interleaved", "grouping"]
+    }
+  ]
+}

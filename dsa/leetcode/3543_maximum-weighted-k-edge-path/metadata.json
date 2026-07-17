@@ -6,6 +6,9 @@
   "title": "Maximum Weighted K-Edge Path",
   "difficulty": "Medium",
   "acceptance_rate": 20.240133765788997,
+  "frequency": 0.0,
+  "elo_rating": 2110.1503337723,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

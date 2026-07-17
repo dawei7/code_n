@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1766",
+  "cases": [
+    {
+      "id": "sample-skip-equal-parent",
+      "name": "sample: nearest compatible ancestor may be above the parent",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2,3,3,2], "edges": [[0,1],[1,2],[1,3]]},
+      "expected": [-1,0,0,1],
+      "tags": ["sample", "closest-ancestor"]
+    },
+    {
+      "id": "sample-mixed-branches",
+      "name": "sample: coprimality differs across branches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [5,6,10,2,3,6,15], "edges": [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]},
+      "expected": [-1,0,-1,0,0,0,-1],
+      "tags": ["sample", "branches"]
+    },
+    {
+      "id": "trial-single-root",
+      "name": "trial: a root has no proper ancestors",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7], "edges": []},
+      "expected": [-1],
+      "tags": ["single-node", "root"]
+    },
+    {
+      "id": "trial-chain-with-late-coprime",
+      "name": "trial: several non-coprime ancestors precede a match",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [6,10,15,7], "edges": [[0,1],[1,2],[2,3]]},
+      "expected": [-1,-1,-1,2],
+      "tags": ["chain", "gcd"]
+    },
+    {
+      "id": "real-one-is-universal",
+      "name": "hidden: value one remains compatible beyond an equal parent",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,50,50], "edges": [[0,1],[1,2]]},
+      "expected": [-1,0,0],
+      "tags": ["value-one", "equal-values"]
+    },
+    {
+      "id": "real-sibling-restoration",
+      "name": "hidden: completed sibling state cannot leak across branches",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2,3,4,9,8], "edges": [[0,1],[1,2],[0,3],[3,4]]},
+      "expected": [-1,0,1,0,3],
+      "tags": ["backtracking", "siblings"]
+    },
+    {
+      "id": "real-closest-compatible",
+      "name": "hidden: choose the deepest compatible ancestor",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5,6,10,7], "edges": [[0,1],[1,2],[2,3]]},
+      "expected": [-1,0,-1,2],
+      "tags": ["closest", "chain"]
+    }
+  ]
+}

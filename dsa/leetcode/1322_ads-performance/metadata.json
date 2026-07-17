@@ -6,6 +6,9 @@
   "title": "Ads Performance",
   "difficulty": "Easy",
   "acceptance_rate": 58.455766063501414,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1229.543845,
   "category": "database",
   "category_title": "Database",
   "topics": [

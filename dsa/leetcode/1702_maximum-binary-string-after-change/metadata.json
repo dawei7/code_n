@@ -6,6 +6,9 @@
   "title": "Maximum Binary String After Change",
   "difficulty": "Medium",
   "acceptance_rate": 47.810237329042636,
+  "frequency": 34.0,
+  "elo_rating": 1825.4207082682,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

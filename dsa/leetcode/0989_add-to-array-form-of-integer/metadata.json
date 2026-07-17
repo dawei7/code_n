@@ -6,6 +6,9 @@
   "title": "Add to Array-Form of Integer",
   "difficulty": "Easy",
   "acceptance_rate": 45.59560385448507,
+  "frequency": 33.0,
+  "elo_rating": 1234.7692637513,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

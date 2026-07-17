@@ -6,6 +6,9 @@
   "title": "Delete Node in a Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 84.10931830551067,
+  "frequency": 54.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

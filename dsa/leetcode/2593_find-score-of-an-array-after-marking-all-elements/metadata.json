@@ -6,6 +6,9 @@
   "title": "Find Score of an Array After Marking All Elements",
   "difficulty": "Medium",
   "acceptance_rate": 64.53584749274762,
+  "frequency": 43.8,
+  "elo_rating": 1665.1885910815,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Ransom Note",
   "difficulty": "Easy",
   "acceptance_rate": 66.14933134850047,
+  "frequency": 57.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1202.054362,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

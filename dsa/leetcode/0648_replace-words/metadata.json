@@ -6,6 +6,9 @@
   "title": "Replace Words",
   "difficulty": "Medium",
   "acceptance_rate": 68.84285928862619,
+  "frequency": 27.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1393.87781,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

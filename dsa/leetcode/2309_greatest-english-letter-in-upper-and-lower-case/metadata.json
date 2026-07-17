@@ -6,6 +6,9 @@
   "title": "Greatest English Letter in Upper and Lower Case",
   "difficulty": "Easy",
   "acceptance_rate": 72.68526329602759,
+  "frequency": 0.0,
+  "elo_rating": 1242.8939284628,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

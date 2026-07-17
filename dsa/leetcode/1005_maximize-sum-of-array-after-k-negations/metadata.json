@@ -6,6 +6,9 @@
   "title": "Maximize Sum Of Array After K Negations",
   "difficulty": "Easy",
   "acceptance_rate": 54.052448949863106,
+  "frequency": 39.8,
+  "elo_rating": 1274.6742564805,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximize Area of Square Hole in Grid",
   "difficulty": "Medium",
   "acceptance_rate": 61.9712294341211,
+  "frequency": 50.4,
+  "elo_rating": 1677.4559378473,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Partition Array into Disjoint Intervals",
   "difficulty": "Medium",
   "acceptance_rate": 49.51251267168896,
+  "frequency": 0.0,
+  "elo_rating": 1500.8381829812,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

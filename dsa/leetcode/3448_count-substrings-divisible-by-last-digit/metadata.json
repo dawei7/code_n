@@ -6,6 +6,9 @@
   "title": "Count Substrings Divisible By Last Digit",
   "difficulty": "Hard",
   "acceptance_rate": 23.583648078204845,
+  "frequency": 0.0,
+  "elo_rating": 2386.8250706801,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

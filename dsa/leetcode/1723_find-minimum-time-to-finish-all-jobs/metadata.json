@@ -6,6 +6,9 @@
   "title": "Find Minimum Time to Finish All Jobs",
   "difficulty": "Hard",
   "acceptance_rate": 45.9944108057755,
+  "frequency": 31.5,
+  "elo_rating": 2284.4463940346,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

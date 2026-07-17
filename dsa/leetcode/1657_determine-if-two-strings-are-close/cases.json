@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1657",
+  "cases": [
+    {"id":"sample-permutation","name":"sample: position swaps reorder a permutation","kind":"sample","visible":true,"input":{"word1":"abc","word2":"bca"},"expected":true,"tags":["sample","permutation"]},
+    {"id":"sample-length-mismatch","name":"sample: operations cannot change string length","kind":"sample","visible":true,"input":{"word1":"a","word2":"aa"},"expected":false,"tags":["sample","length"]},
+    {"id":"sample-frequency-relabel","name":"sample: global exchanges reassign occurrence counts","kind":"sample","visible":true,"input":{"word1":"cabbba","word2":"abbccc"},"expected":true,"tags":["sample","frequency-relabel"]},
+    {"id":"trial-single-equal","name":"trial: identical singleton strings are close","kind":"trial","visible":true,"input":{"word1":"z","word2":"z"},"expected":true,"tags":["minimum-length"]},
+    {"id":"trial-different-support","name":"trial: equal frequency shapes with different characters fail","kind":"trial","visible":true,"input":{"word1":"aabb","word2":"ccdd"},"expected":false,"tags":["character-support"]},
+    {"id":"real-different-frequencies","name":"hidden: matching support with different count multisets fails","kind":"real","visible":false,"input":{"word1":"aabbccc","word2":"abbcccc"},"expected":false,"tags":["frequency-multiset"]},
+    {"id":"real-count-permutation","name":"hidden: three counts are reassigned among the same letters","kind":"real","visible":false,"input":{"word1":"aaabbbbcc","word2":"bbbccccaa"},"expected":true,"tags":["frequency-relabel"]},
+    {"id":"real-missing-character","name":"hidden: one absent source character prevents transformation","kind":"real","visible":false,"input":{"word1":"abbzzca","word2":"babzzzx"},"expected":false,"tags":["character-support"]},
+    {"id":"real-identical","name":"hidden: identical strings require no operations","kind":"real","visible":false,"input":{"word1":"leetcode","word2":"leetcode"},"expected":true,"tags":["identical"]},
+    {"id":"real-all-singletons","name":"hidden: distinct-letter permutations share all singleton counts","kind":"real","visible":false,"input":{"word1":"qwertyuiop","word2":"poiuytrewq"},"expected":true,"tags":["all-singletons","permutation"]}
+  ]
+}

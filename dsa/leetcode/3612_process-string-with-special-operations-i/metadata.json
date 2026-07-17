@@ -6,6 +6,9 @@
   "title": "Process String with Special Operations I",
   "difficulty": "Medium",
   "acceptance_rate": 71.433242261048,
+  "frequency": 75.4,
+  "elo_rating": 1185.9709727214,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

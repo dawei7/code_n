@@ -6,6 +6,9 @@
   "title": "Sort the Olympic Table",
   "difficulty": "Easy",
   "acceptance_rate": 79.50203164173944,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

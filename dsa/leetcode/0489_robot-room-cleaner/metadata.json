@@ -6,6 +6,9 @@
   "title": "Robot Room Cleaner",
   "difficulty": "Hard",
   "acceptance_rate": 78.01767901917471,
+  "frequency": 86.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1939.075434,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

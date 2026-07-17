@@ -6,6 +6,9 @@
   "title": "Sparse Matrix Multiplication",
   "difficulty": "Medium",
   "acceptance_rate": 69.32388124735395,
+  "frequency": 65.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1390.587324,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

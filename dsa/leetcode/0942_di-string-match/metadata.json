@@ -6,6 +6,9 @@
   "title": "DI String Match",
   "difficulty": "Easy",
   "acceptance_rate": 81.16522834741292,
+  "frequency": 36.6,
+  "elo_rating": 1444.2068009303,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

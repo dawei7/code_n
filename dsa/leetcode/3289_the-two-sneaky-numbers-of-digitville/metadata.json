@@ -6,6 +6,9 @@
   "title": "The Two Sneaky Numbers of Digitville",
   "difficulty": "Easy",
   "acceptance_rate": 89.78875543783388,
+  "frequency": 7.6,
+  "elo_rating": 1163.7681706816,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

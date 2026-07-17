@@ -6,6 +6,9 @@
   "title": "The Category of Each Member in the Store",
   "difficulty": "Medium",
   "acceptance_rate": 70.41859874229817,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1382.909525,
   "category": "database",
   "category_title": "Database",
   "topics": [

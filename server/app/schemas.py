@@ -58,6 +58,8 @@ class ChallengeSummary(BaseModel):
     categories: list[str] = Field(default_factory=list)
     difficulty_label: str = ""
     elo_rating: float | None = None
+    estimated_elo_rating: float | None = None
+    frequency: float | None = None
     difficulty_estimate: int | None = None
     acceptance_rate: float | None = None
     required_complexity: str
@@ -299,6 +301,25 @@ class ProgressUpdate(BaseModel):
     pane_sizes: Optional[dict[str, float]] = None
     accent_colors: Optional[dict[str, str]] = None
     active_set: Optional[str] = None
+
+
+class ProgressResetRequest(BaseModel):
+    """A deliberately confirmed reset for one or more challenge ids."""
+
+    scope: Literal["all", "coden", "leetcode"]
+    challenge_ids: list[str] = Field(min_length=1, max_length=5000)
+    confirmation: str
+
+
+class CustomProblemSetsUpdate(BaseModel):
+    """Complete replacement payload for the active profile's custom sets."""
+
+    sets: list[dict] = Field(default_factory=list, max_length=40)
+
+
+class CustomProblemSetsOut(BaseModel):
+    version: int = 1
+    sets: list[dict] = Field(default_factory=list)
 
 
 # ----------------------------------------------------------------------------

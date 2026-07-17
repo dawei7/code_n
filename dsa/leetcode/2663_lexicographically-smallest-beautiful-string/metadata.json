@@ -6,6 +6,9 @@
   "title": "Lexicographically Smallest Beautiful String",
   "difficulty": "Hard",
   "acceptance_rate": 38.4473702162494,
+  "frequency": 0.0,
+  "elo_rating": 2415.7434855724,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

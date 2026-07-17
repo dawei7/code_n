@@ -6,6 +6,9 @@
   "title": "Decode String",
   "difficulty": "Medium",
   "acceptance_rate": 62.85360812145526,
+  "frequency": 86.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1440.257989,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

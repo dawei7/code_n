@@ -6,6 +6,9 @@
   "title": "Number of Ways to Paint N × 3 Grid",
   "difficulty": "Hard",
   "acceptance_rate": 80.56433886191859,
+  "frequency": 49.4,
+  "elo_rating": 1844.6289439644,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

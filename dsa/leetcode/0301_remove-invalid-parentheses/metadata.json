@@ -6,6 +6,9 @@
   "title": "Remove Invalid Parentheses",
   "difficulty": "Hard",
   "acceptance_rate": 50.02276044557611,
+  "frequency": 46.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2087.766945,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

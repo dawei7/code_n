@@ -6,6 +6,9 @@
   "title": "Smallest Sufficient Team",
   "difficulty": "Hard",
   "acceptance_rate": 55.70525945005834,
+  "frequency": 25.5,
+  "elo_rating": 2250.9318291559,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Escape a Large Maze",
   "difficulty": "Hard",
   "acceptance_rate": 36.79089544772386,
+  "frequency": 0.0,
+  "elo_rating": 2164.8287157213,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

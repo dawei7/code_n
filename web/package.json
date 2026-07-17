@@ -9,7 +9,9 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
-    "test:career": "node scripts/test-career-unlocks.mjs"
+    "test:career": "node scripts/test-career-unlocks.mjs",
+    "test:metrics": "node scripts/test-challenge-metrics.mjs",
+    "test:custom-sets": "node scripts/test-custom-problem-sets.mjs"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.3.0",

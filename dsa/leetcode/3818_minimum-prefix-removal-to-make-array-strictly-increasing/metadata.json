@@ -6,6 +6,9 @@
   "title": "Minimum Prefix Removal to Make Array Strictly Increasing",
   "difficulty": "Medium",
   "acceptance_rate": 74.01396963486553,
+  "frequency": 40.5,
+  "elo_rating": 1206.1460383757,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

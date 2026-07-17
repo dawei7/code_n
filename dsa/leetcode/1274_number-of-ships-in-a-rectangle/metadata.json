@@ -6,6 +6,9 @@
   "title": "Number of Ships in a Rectangle",
   "difficulty": "Hard",
   "acceptance_rate": 68.83241194741262,
+  "frequency": 91.1,
+  "elo_rating": 1997.1824403719,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

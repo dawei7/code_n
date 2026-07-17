@@ -6,6 +6,9 @@
   "title": "Maximum Bags With Full Capacity of Rocks",
   "difficulty": "Medium",
   "acceptance_rate": 68.17559189939186,
+  "frequency": 29.2,
+  "elo_rating": 1249.2572200035,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

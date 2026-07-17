@@ -6,6 +6,9 @@
   "title": "Find Building Where Alice and Bob Can Meet",
   "difficulty": "Hard",
   "acceptance_rate": 52.43480512926083,
+  "frequency": 42.3,
+  "elo_rating": 2327.4743300299,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

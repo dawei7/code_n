@@ -6,6 +6,9 @@
   "title": "Year on Year Growth Rate",
   "difficulty": "Hard",
   "acceptance_rate": 51.674576271186446,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2069.252507,
   "category": "database",
   "category_title": "Database",
   "topics": [

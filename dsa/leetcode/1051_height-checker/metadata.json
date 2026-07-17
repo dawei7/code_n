@@ -6,6 +6,9 @@
   "title": "Height Checker",
   "difficulty": "Easy",
   "acceptance_rate": 81.83157295032196,
+  "frequency": 34.7,
+  "elo_rating": 1303.0179795942,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

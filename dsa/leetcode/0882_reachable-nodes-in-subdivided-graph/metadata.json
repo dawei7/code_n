@@ -6,6 +6,9 @@
   "title": "Reachable Nodes In Subdivided Graph",
   "difficulty": "Hard",
   "acceptance_rate": 52.42456896551724,
+  "frequency": 30.8,
+  "elo_rating": 2328.4294689238,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find the String with LCP",
   "difficulty": "Hard",
   "acceptance_rate": 63.11922093252017,
+  "frequency": 74.6,
+  "elo_rating": 2681.7054310332,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

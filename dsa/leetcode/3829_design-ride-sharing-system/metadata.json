@@ -6,6 +6,9 @@
   "title": "Design Ride Sharing System",
   "difficulty": "Medium",
   "acceptance_rate": 63.299096138044376,
+  "frequency": 59.1,
+  "elo_rating": 1593.9561579617,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

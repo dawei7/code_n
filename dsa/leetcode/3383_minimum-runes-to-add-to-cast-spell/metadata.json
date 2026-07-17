@@ -6,6 +6,9 @@
   "title": "Minimum Runes to Add to Cast Spell",
   "difficulty": "Hard",
   "acceptance_rate": 44.729802033172824,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2159.683054,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Single-Threaded CPU",
   "difficulty": "Medium",
   "acceptance_rate": 47.80527681353443,
+  "frequency": 57.3,
+  "elo_rating": 1797.7466000366,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

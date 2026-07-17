@@ -6,6 +6,9 @@
   "title": "Sender With Largest Word Count",
   "difficulty": "Medium",
   "acceptance_rate": 59.97545853784552,
+  "frequency": 0.0,
+  "elo_rating": 1346.9594471871,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

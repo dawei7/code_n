@@ -6,6 +6,9 @@
   "title": "Check Completeness of a Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 59.309781573001075,
+  "frequency": 18.9,
+  "elo_rating": 1702.8035923458,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

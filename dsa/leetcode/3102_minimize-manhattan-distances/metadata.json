@@ -6,6 +6,9 @@
   "title": "Minimize Manhattan Distances",
   "difficulty": "Hard",
   "acceptance_rate": 32.585206131864865,
+  "frequency": 0.0,
+  "elo_rating": 2215.7283064325,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

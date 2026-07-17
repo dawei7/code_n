@@ -6,6 +6,9 @@
   "title": "First Unique Number",
   "difficulty": "Medium",
   "acceptance_rate": 57.75185146604365,
+  "frequency": 84.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1480.840645,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

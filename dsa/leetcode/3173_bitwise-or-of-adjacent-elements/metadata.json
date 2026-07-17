@@ -6,6 +6,9 @@
   "title": "Bitwise OR of Adjacent Elements",
   "difficulty": "Easy",
   "acceptance_rate": 94.74414089585356,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

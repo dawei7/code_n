@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1942",
+  "frontend_id": "1789",
+  "title_slug": "primary-department-for-each-employee",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2071174477",
+  "verified_at": "2026-07-17T13:54:28.449698+00:00"
+}

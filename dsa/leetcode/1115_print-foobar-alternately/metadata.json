@@ -6,6 +6,9 @@
   "title": "Print FooBar Alternately",
   "difficulty": "Medium",
   "acceptance_rate": 72.77141105334258,
+  "frequency": 23.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1369.747582,
   "category": "concurrency",
   "category_title": "Concurrency",
   "topics": [
@@ -15,7 +18,9 @@
     }
   ],
   "url": "https://leetcode.com/problems/print-foobar-alternately/",
-  "supported_languages": ["python"],
+  "supported_languages": [
+    "python"
+  ],
   "primary_language": "python",
   "runnable_in_coden": true,
   "subsets": [

@@ -6,6 +6,9 @@
   "title": "Distinct Points Reachable After Substring Removal",
   "difficulty": "Medium",
   "acceptance_rate": 54.20293538344241,
+  "frequency": 0.0,
+  "elo_rating": 1739.3005043887,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

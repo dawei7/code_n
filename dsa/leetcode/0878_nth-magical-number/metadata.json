@@ -6,6 +6,9 @@
   "title": "Nth Magical Number",
   "difficulty": "Hard",
   "acceptance_rate": 36.85546598783765,
+  "frequency": 67.1,
+  "elo_rating": 1896.7975214446,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

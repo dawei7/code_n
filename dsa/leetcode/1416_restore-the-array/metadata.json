@@ -6,6 +6,9 @@
   "title": "Restore The Array",
   "difficulty": "Hard",
   "acceptance_rate": 46.74672916765169,
+  "frequency": 0.0,
+  "elo_rating": 1919.6391896894,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Stickers to Spell Word",
   "difficulty": "Hard",
   "acceptance_rate": 50.989562717443384,
+  "frequency": 28.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2076.24685,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

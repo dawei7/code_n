@@ -6,6 +6,9 @@
   "title": "All Ancestors of a Node in a Directed Acyclic Graph",
   "difficulty": "Medium",
   "acceptance_rate": 62.24362816884309,
+  "frequency": 17.5,
+  "elo_rating": 1787.8550568757,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find the Town Judge",
   "difficulty": "Easy",
   "acceptance_rate": 50.9036866707375,
+  "frequency": 39.4,
+  "elo_rating": 1201.6117337798,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

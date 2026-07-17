@@ -6,6 +6,9 @@
   "title": "Count Pairs Whose Sum is Less than Target",
   "difficulty": "Easy",
   "acceptance_rate": 87.7933054552126,
+  "frequency": 28.9,
+  "elo_rating": 1165.8838207286,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

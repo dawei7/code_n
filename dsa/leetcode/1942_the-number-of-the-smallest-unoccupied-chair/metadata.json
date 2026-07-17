@@ -6,6 +6,9 @@
   "title": "The Number of the Smallest Unoccupied Chair",
   "difficulty": "Medium",
   "acceptance_rate": 60.318013970663465,
+  "frequency": 0.0,
+  "elo_rating": 1695.2832486322,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

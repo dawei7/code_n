@@ -6,6 +6,9 @@
   "title": "Smallest Greater Multiple Made of Two Digits",
   "difficulty": "Medium",
   "acceptance_rate": 47.96154530888374,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1621.498397,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

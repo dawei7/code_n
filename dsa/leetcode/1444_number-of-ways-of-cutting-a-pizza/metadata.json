@@ -6,6 +6,9 @@
   "title": "Number of Ways of Cutting a Pizza",
   "difficulty": "Hard",
   "acceptance_rate": 61.596495691162914,
+  "frequency": 31.7,
+  "elo_rating": 2126.6864346508,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

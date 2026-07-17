@@ -6,6 +6,9 @@
   "title": "Selling Pieces of Wood",
   "difficulty": "Hard",
   "acceptance_rate": 53.124897044773164,
+  "frequency": 0.0,
+  "elo_rating": 2363.0240184484,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

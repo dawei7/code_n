@@ -6,6 +6,9 @@
   "title": "Maximum Points Activated with One Addition",
   "difficulty": "Hard",
   "acceptance_rate": 44.462487820721016,
+  "frequency": 47.4,
+  "elo_rating": 2198.1107944821,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

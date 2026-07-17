@@ -6,6 +6,9 @@
   "title": "Number of Excellent Pairs",
   "difficulty": "Hard",
   "acceptance_rate": 49.315493103270136,
+  "frequency": 0.0,
+  "elo_rating": 2075.9046975409,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

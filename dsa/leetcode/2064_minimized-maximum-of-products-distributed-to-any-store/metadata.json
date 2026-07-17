@@ -6,6 +6,9 @@
   "title": "Minimized Maximum of Products Distributed to Any Store",
   "difficulty": "Medium",
   "acceptance_rate": 63.17841225119318,
+  "frequency": 44.7,
+  "elo_rating": 1885.9015646531,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Remove Linked List Elements",
   "difficulty": "Easy",
   "acceptance_rate": 54.83545814001022,
+  "frequency": 51.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1237.058955,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

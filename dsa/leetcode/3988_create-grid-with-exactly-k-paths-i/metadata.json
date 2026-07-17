@@ -1,0 +1,42 @@
+{
+  "challenge_id": "lc_3988",
+  "source": "leetcode",
+  "frontend_id": "3988",
+  "slug": "create-grid-with-exactly-k-paths-i",
+  "title": "Create Grid With Exactly K Paths I",
+  "difficulty": "Medium",
+  "acceptance_rate": 32.43831342119309,
+  "frequency": 1.4,
+  "elo_rating": 2054.6741405769,
+  "estimated_elo_rating": null,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/create-grid-with-exactly-k-paths-i/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

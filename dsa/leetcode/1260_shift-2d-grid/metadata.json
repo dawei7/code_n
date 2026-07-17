@@ -6,6 +6,9 @@
   "title": "Shift 2D Grid",
   "difficulty": "Easy",
   "acceptance_rate": 68.12964177369737,
+  "frequency": 0.0,
+  "elo_rating": 1337.3722299775,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

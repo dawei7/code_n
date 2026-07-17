@@ -6,6 +6,9 @@
   "title": "Serialize and Deserialize N-ary Tree",
   "difficulty": "Hard",
   "acceptance_rate": 68.8719427009861,
+  "frequency": 78.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1949.525806,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

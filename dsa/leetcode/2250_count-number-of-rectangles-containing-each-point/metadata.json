@@ -6,6 +6,9 @@
   "title": "Count Number of Rectangles Containing Each Point",
   "difficulty": "Medium",
   "acceptance_rate": 37.746621835944936,
+  "frequency": 0.0,
+  "elo_rating": 1997.7013718153,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Snake in Matrix",
   "difficulty": "Easy",
   "acceptance_rate": 82.37927491560254,
+  "frequency": 34.4,
+  "elo_rating": 1171.7635387886,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

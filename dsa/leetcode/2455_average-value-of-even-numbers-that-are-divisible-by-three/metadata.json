@@ -6,6 +6,9 @@
   "title": "Average Value of Even Numbers That Are Divisible by Three",
   "difficulty": "Easy",
   "acceptance_rate": 63.44886133424229,
+  "frequency": 17.3,
+  "elo_rating": 1151.2537511408,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

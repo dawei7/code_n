@@ -6,6 +6,9 @@
   "title": "Gray Code",
   "difficulty": "Medium",
   "acceptance_rate": 65.31251207341828,
+  "frequency": 35.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1419.888316,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

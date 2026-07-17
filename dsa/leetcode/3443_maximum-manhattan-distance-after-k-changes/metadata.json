@@ -6,6 +6,9 @@
   "title": "Maximum Manhattan Distance After K Changes",
   "difficulty": "Medium",
   "acceptance_rate": 54.17325601827447,
+  "frequency": 36.2,
+  "elo_rating": 1855.9197348195,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

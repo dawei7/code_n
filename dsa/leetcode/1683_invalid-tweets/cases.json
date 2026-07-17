@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1683",
+  "cases": [
+    {"id":"sample-one-invalid","name":"sample: retain only the longer tweet","kind":"sample","visible":true,"input":{"tables":{"Tweets":[{"tweet_id":1,"content":"Let us Code"},{"tweet_id":2,"content":"More than fifteen chars are here!"}]}},"expected":{"columns":["tweet_id"],"rows":[[2]]},"tags":["sample","mixed-validity"]},
+    {"id":"trial-strict-boundary","name":"trial: fifteen is valid and sixteen is invalid","kind":"trial","visible":true,"input":{"tables":{"Tweets":[{"tweet_id":7,"content":"123456789012345"},{"tweet_id":8,"content":"1234567890123456"}]}},"expected":{"columns":["tweet_id"],"rows":[[8]]},"tags":["strict-boundary"]},
+    {"id":"trial-no-invalid","name":"trial: no row exceeds the threshold","kind":"trial","visible":true,"input":{"tables":{"Tweets":[{"tweet_id":3,"content":"a"},{"tweet_id":4,"content":"exactly fifteen"}]}},"expected":{"columns":["tweet_id"],"rows":[]},"tags":["empty-result","valid-only"]},
+    {"id":"real-space-counts","name":"hidden: spaces contribute to content length","kind":"real","visible":false,"input":{"tables":{"Tweets":[{"tweet_id":11,"content":"a a a a a a a a"},{"tweet_id":12,"content":"a a a a a a a a "}]}},"expected":{"columns":["tweet_id"],"rows":[[12]]},"tags":["spaces","boundary"]},
+    {"id":"real-exclamation-counts","name":"hidden: punctuation contributes to content length","kind":"real","visible":false,"input":{"tables":{"Tweets":[{"tweet_id":20,"content":"!!!!!!!!!!!!!!!"},{"tweet_id":21,"content":"!!!!!!!!!!!!!!!!"}]}},"expected":{"columns":["tweet_id"],"rows":[[21]]},"tags":["punctuation","boundary"]},
+    {"id":"real-all-invalid","name":"hidden: retain every row when all are too long","kind":"real","visible":false,"input":{"tables":{"Tweets":[{"tweet_id":100,"content":"abcdefghijklmnop"},{"tweet_id":5,"content":"This tweet is far too long!"},{"tweet_id":42,"content":"00000000000000000"}]}},"expected":{"columns":["tweet_id"],"rows":[[100],[5],[42]]},"tags":["all-invalid","identifier-gaps"]},
+    {"id":"real-mixed-lengths","name":"hidden: several valid and invalid lengths coexist","kind":"real","visible":false,"input":{"tables":{"Tweets":[{"tweet_id":31,"content":"short"},{"tweet_id":32,"content":"12345678901234567890"},{"tweet_id":33,"content":"hello world!"},{"tweet_id":34,"content":"letters and spaces count"},{"tweet_id":35,"content":"123456789012345"}]}},"expected":{"columns":["tweet_id"],"rows":[[32],[34]]},"tags":["mixed-validity","several-rows"]}
+  ]
+}

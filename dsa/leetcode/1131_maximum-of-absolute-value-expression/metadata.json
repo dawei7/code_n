@@ -6,6 +6,9 @@
   "title": "Maximum of Absolute Value Expression",
   "difficulty": "Medium",
   "acceptance_rate": 48.69584163346614,
+  "frequency": 26.3,
+  "elo_rating": 2059.4040623264,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

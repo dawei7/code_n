@@ -6,6 +6,9 @@
   "title": "Minimum Absolute Difference in BST",
   "difficulty": "Easy",
   "acceptance_rate": 59.51671242469221,
+  "frequency": 40.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1226.181822,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

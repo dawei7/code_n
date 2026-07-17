@@ -6,6 +6,9 @@
   "title": "Largest Combination With Bitwise AND Greater Than Zero",
   "difficulty": "Medium",
   "acceptance_rate": 80.76201095601738,
+  "frequency": 0.0,
+  "elo_rating": 1642.1446933109,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

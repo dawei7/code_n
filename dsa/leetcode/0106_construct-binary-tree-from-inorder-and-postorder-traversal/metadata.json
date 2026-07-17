@@ -6,6 +6,9 @@
   "title": "Construct Binary Tree from Inorder and Postorder Traversal",
   "difficulty": "Medium",
   "acceptance_rate": 69.04659671657907,
+  "frequency": 32.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1392.467602,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

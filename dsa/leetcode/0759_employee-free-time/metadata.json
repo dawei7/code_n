@@ -6,6 +6,9 @@
   "title": "Employee Free Time",
   "difficulty": "Hard",
   "acceptance_rate": 72.95247603833866,
+  "frequency": 61.9,
+  "elo_rating": 1710.1120861153,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

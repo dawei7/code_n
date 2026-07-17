@@ -6,6 +6,9 @@
   "title": "Maximum Absolute Sum of Any Subarray",
   "difficulty": "Medium",
   "acceptance_rate": 70.86879570150263,
+  "frequency": 31.0,
+  "elo_rating": 1541.6176288991,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

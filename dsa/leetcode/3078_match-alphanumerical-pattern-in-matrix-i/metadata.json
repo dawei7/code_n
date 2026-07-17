@@ -6,6 +6,9 @@
   "title": "Match Alphanumerical Pattern in Matrix I",
   "difficulty": "Medium",
   "acceptance_rate": 65.28964862298196,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1420.045005,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1758",
+  "cases": [
+    {
+      "id": "sample-change-last",
+      "name": "sample: one final change completes alternation",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "0100"},
+      "expected": 1,
+      "tags": ["sample", "one-change"]
+    },
+    {
+      "id": "sample-already-alternating",
+      "name": "sample: two characters already alternate",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "10"},
+      "expected": 0,
+      "tags": ["sample", "already-alternating"]
+    },
+    {
+      "id": "sample-all-ones",
+      "name": "sample: equal target costs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "1111"},
+      "expected": 2,
+      "tags": ["sample", "uniform", "equal-cost"]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: a single character is alternating",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "0"},
+      "expected": 0,
+      "tags": ["minimum-length", "already-alternating"]
+    },
+    {
+      "id": "trial-odd-uniform",
+      "name": "trial: odd uniform string favors one target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "000"},
+      "expected": 1,
+      "tags": ["odd-length", "uniform"]
+    },
+    {
+      "id": "real-zero-starting-target",
+      "name": "hidden: zero-starting target is closer",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "10010100"},
+      "expected": 3,
+      "tags": ["zero-starting", "mixed"]
+    },
+    {
+      "id": "real-one-starting-target",
+      "name": "hidden: complementary target is closer",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "110010"},
+      "expected": 2,
+      "tags": ["one-starting", "complement"]
+    },
+    {
+      "id": "real-late-mismatch",
+      "name": "hidden: one late mismatch breaks a long alternating prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "101011"},
+      "expected": 1,
+      "tags": ["long-prefix", "one-change"]
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Remove Max Number of Edges to Keep Graph Fully Traversable",
   "difficulty": "Hard",
   "acceptance_rate": 70.14766064377169,
+  "frequency": 0.0,
+  "elo_rating": 2131.7917160422,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

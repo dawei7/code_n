@@ -6,6 +6,9 @@
   "title": "Maximum Matrix Sum",
   "difficulty": "Medium",
   "acceptance_rate": 67.52866098153272,
+  "frequency": 37.6,
+  "elo_rating": 1648.0880791614,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

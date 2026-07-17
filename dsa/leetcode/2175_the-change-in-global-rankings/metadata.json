@@ -6,6 +6,9 @@
   "title": "The Change in Global Rankings",
   "difficulty": "Medium",
   "acceptance_rate": 60.96595407759303,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1456.240348,
   "category": "database",
   "category_title": "Database",
   "topics": [

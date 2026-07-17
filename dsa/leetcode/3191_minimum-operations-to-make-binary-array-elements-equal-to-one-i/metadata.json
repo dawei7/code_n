@@ -6,6 +6,9 @@
   "title": "Minimum Operations to Make Binary Array Elements Equal to One I",
   "difficulty": "Medium",
   "acceptance_rate": 80.42645782208876,
+  "frequency": 38.8,
+  "elo_rating": 1311.979717243,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

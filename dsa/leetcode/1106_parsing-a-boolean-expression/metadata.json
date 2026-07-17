@@ -6,6 +6,9 @@
   "title": "Parsing A Boolean Expression",
   "difficulty": "Hard",
   "acceptance_rate": 69.82862714899551,
+  "frequency": 19.3,
+  "elo_rating": 1880.4226853663,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

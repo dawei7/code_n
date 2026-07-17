@@ -6,6 +6,9 @@
   "title": "Big Countries",
   "difficulty": "Easy",
   "acceptance_rate": 68.60439787392679,
+  "frequency": 55.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1191.177229,
   "category": "database",
   "category_title": "Database",
   "topics": [

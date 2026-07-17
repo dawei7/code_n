@@ -6,6 +6,9 @@
   "title": "Count Non-Decreasing Subarrays After K Operations",
   "difficulty": "Hard",
   "acceptance_rate": 24.92397854812849,
+  "frequency": 0.0,
+  "elo_rating": 2854.6879585019,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

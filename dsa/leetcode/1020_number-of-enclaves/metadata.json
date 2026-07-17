@@ -6,6 +6,9 @@
   "title": "Number of Enclaves",
   "difficulty": "Medium",
   "acceptance_rate": 72.00256447579531,
+  "frequency": 18.1,
+  "elo_rating": 1615.4767730477,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

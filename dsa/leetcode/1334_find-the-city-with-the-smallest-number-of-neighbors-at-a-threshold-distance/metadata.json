@@ -6,6 +6,9 @@
   "title": "Find the City With the Smallest Number of Neighbors at a Threshold Distance",
   "difficulty": "Medium",
   "acceptance_rate": 73.25218656102275,
+  "frequency": 18.9,
+  "elo_rating": 1854.9547783559,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

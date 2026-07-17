@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1793",
+  "frontend_id": "1674",
+  "title_slug": "minimum-moves-to-make-array-complementary",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minMoves",
+  "verified_submission_id": "2070517474",
+  "verified_at": "2026-07-17T02:39:46.063730+00:00"
+}

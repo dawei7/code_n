@@ -6,6 +6,9 @@
   "title": "Advantage Shuffle",
   "difficulty": "Medium",
   "acceptance_rate": 54.74059075905442,
+  "frequency": 58.6,
+  "elo_rating": 1648.341757882,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

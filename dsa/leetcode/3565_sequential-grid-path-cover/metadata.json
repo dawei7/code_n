@@ -6,6 +6,9 @@
   "title": "Sequential Grid Path Cover",
   "difficulty": "Medium",
   "acceptance_rate": 59.9320882852292,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1464.074837,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

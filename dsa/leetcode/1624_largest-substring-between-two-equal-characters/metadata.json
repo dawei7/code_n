@@ -6,6 +6,9 @@
   "title": "Largest Substring Between Two Equal Characters",
   "difficulty": "Easy",
   "acceptance_rate": 68.34282874141333,
+  "frequency": 0.0,
+  "elo_rating": 1281.9771427903,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

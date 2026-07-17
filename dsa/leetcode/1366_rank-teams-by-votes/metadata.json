@@ -6,6 +6,9 @@
   "title": "Rank Teams by Votes",
   "difficulty": "Medium",
   "acceptance_rate": 59.99551654567088,
+  "frequency": 60.8,
+  "elo_rating": 1626.3266982141,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

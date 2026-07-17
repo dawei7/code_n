@@ -6,6 +6,9 @@
   "title": "Count Array Pairs Divisible by K",
   "difficulty": "Hard",
   "acceptance_rate": 30.806998750223176,
+  "frequency": 23.0,
+  "elo_rating": 2246.0452639352,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

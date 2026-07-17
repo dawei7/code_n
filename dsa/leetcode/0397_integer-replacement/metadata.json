@@ -6,6 +6,9 @@
   "title": "Integer Replacement",
   "difficulty": "Medium",
   "acceptance_rate": 37.70328841881473,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1722.715217,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

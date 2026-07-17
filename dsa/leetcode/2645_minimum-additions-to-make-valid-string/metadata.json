@@ -6,6 +6,9 @@
   "title": "Minimum Additions to Make Valid String",
   "difficulty": "Medium",
   "acceptance_rate": 51.15076826673282,
+  "frequency": 28.0,
+  "elo_rating": 1477.7669322402,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

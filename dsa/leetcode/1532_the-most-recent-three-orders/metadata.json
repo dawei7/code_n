@@ -6,6 +6,9 @@
   "title": "The Most Recent Three Orders",
   "difficulty": "Medium",
   "acceptance_rate": 69.21828934284667,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1391.057394,
   "category": "database",
   "category_title": "Database",
   "topics": [

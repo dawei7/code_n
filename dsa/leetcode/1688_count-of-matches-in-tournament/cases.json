@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1688",
+  "cases": [
+    {"id":"sample-seven","name":"sample: odd and even rounds from seven teams","kind":"sample","visible":true,"input":{"n":7},"expected":6,"tags":["sample","odd-start"]},
+    {"id":"sample-fourteen","name":"sample: mixed round parities from fourteen teams","kind":"sample","visible":true,"input":{"n":14},"expected":13,"tags":["sample","even-start"]},
+    {"id":"trial-one-team","name":"trial: champion exists without a match","kind":"trial","visible":true,"input":{"n":1},"expected":0,"tags":["minimum","zero-matches"]},
+    {"id":"trial-final-only","name":"trial: two teams play one final","kind":"trial","visible":true,"input":{"n":2},"expected":1,"tags":["single-match"]},
+    {"id":"real-one-bye","name":"hidden: three teams require one bye round","kind":"real","visible":false,"input":{"n":3},"expected":2,"tags":["bye","small"]},
+    {"id":"real-power-of-two","name":"hidden: complete bracket of sixteen teams","kind":"real","visible":false,"input":{"n":16},"expected":15,"tags":["power-of-two","even-rounds"]},
+    {"id":"real-several-byes","name":"hidden: repeated odd rounds preserve elimination count","kind":"real","visible":false,"input":{"n":31},"expected":30,"tags":["odd","byes"]},
+    {"id":"real-near-maximum","name":"hidden: one below the upper bound","kind":"real","visible":false,"input":{"n":199},"expected":198,"tags":["large","odd"]},
+    {"id":"real-maximum","name":"hidden: maximum legal team count","kind":"real","visible":false,"input":{"n":200},"expected":199,"tags":["maximum","even"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Valid Sudoku",
   "difficulty": "Medium",
   "acceptance_rate": 64.72703827104543,
+  "frequency": 70.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1424.43232,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

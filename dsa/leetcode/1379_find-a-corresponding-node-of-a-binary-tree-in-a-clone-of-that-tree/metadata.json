@@ -6,6 +6,9 @@
   "title": "Find a Corresponding Node of a Binary Tree in a Clone of That Tree",
   "difficulty": "Easy",
   "acceptance_rate": 85.86963134688231,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1706",
+  "cases": [
+    {"id":"sample-mixed-box","name":"sample: only the first ball exits the mixed box","kind":"sample","visible":true,"input":{"grid":[[1,1,1,-1,-1],[1,1,1,-1,-1],[-1,-1,-1,1,1],[1,1,1,1,-1],[-1,-1,-1,-1,-1]]},"expected":[1,-1,-1,-1,-1],"tags":["sample","mixed-paths"]},
+    {"id":"sample-single-left","name":"sample: one left board hits the wall","kind":"sample","visible":true,"input":{"grid":[[-1]]},"expected":[-1],"tags":["sample","single-column"]},
+    {"id":"sample-alternating-rows","name":"sample: alternating rows return five balls to their starts","kind":"sample","visible":true,"input":{"grid":[[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1],[1,1,1,1,1,1],[-1,-1,-1,-1,-1,-1]]},"expected":[0,1,2,3,4,-1],"tags":["sample","alternating"]},
+    {"id":"trial-right-wall","name":"trial: rightmost ball hits the wall in one row","kind":"trial","visible":true,"input":{"grid":[[1,1]]},"expected":[1,-1],"tags":["right-wall","one-row"]},
+    {"id":"trial-left-wall","name":"trial: leftmost ball hits the wall in one row","kind":"trial","visible":true,"input":{"grid":[[-1,-1]]},"expected":[-1,0],"tags":["left-wall","one-row"]},
+    {"id":"trial-v-shape","name":"trial: opposing boards trap both neighboring balls","kind":"trial","visible":true,"input":{"grid":[[1,-1]]},"expected":[-1,-1],"tags":["v-shape","immediate-trap"]},
+    {"id":"real-outward-pair","name":"hidden: outward boards send both balls into walls","kind":"real","visible":false,"input":{"grid":[[-1,1]]},"expected":[-1,-1],"tags":["walls","outward"]},
+    {"id":"real-late-trap","name":"hidden: successful first move leads into a later V","kind":"real","visible":false,"input":{"grid":[[1,1,1],[-1,1,-1]]},"expected":[-1,-1,-1],"tags":["late-trap","two-rows"]},
+    {"id":"real-zigzag","name":"hidden: compatible slopes produce shifted exits","kind":"real","visible":false,"input":{"grid":[[1,1,1,1],[-1,-1,1,1],[-1,-1,-1,-1]]},"expected":[-1,2,-1,-1],"tags":["zigzag","mixed-exits"]},
+    {"id":"real-single-right","name":"hidden: one right board also hits its only wall","kind":"real","visible":false,"input":{"grid":[[1]]},"expected":[-1],"tags":["single-column","right-wall"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Minimum Deletions to Make Character Frequencies Unique",
   "difficulty": "Medium",
   "acceptance_rate": 61.51559305066095,
+  "frequency": 44.9,
+  "elo_rating": 1509.5432131875,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1649",
+  "cases": [
+    {"id":"sample-final-middle","name":"sample: final value inserts between two sides","kind":"sample","visible":true,"input":{"instructions":[1,5,6,2]},"expected":1,"tags":["sample","middle-insertion"]},
+    {"id":"sample-two-costly-suffixes","name":"sample: two descending suffix insertions contribute three","kind":"sample","visible":true,"input":{"instructions":[1,2,3,6,5,4]},"expected":3,"tags":["sample","strict-counts"]},
+    {"id":"sample-duplicates","name":"sample: duplicates are excluded from both strict sides","kind":"sample","visible":true,"input":{"instructions":[1,3,3,3,2,4,2,1,2]},"expected":4,"tags":["sample","duplicates"]},
+    {"id":"trial-single","name":"trial: one instruction has zero cost","kind":"trial","visible":true,"input":{"instructions":[1]},"expected":0,"tags":["minimum-length"]},
+    {"id":"trial-all-equal","name":"trial: all equal values always cost zero","kind":"trial","visible":true,"input":{"instructions":[2,2,2]},"expected":0,"tags":["duplicates"]},
+    {"id":"real-three-value-middle","name":"hidden: third value has one element on each side","kind":"real","visible":false,"input":{"instructions":[3,1,2]},"expected":1,"tags":["middle-insertion"]},
+    {"id":"real-descending-interleave","name":"hidden: interleaved extremes create several balanced ranks","kind":"real","visible":false,"input":{"instructions":[5,1,4,2,3]},"expected":4,"tags":["interleaved"]},
+    {"id":"real-equal-boundary","name":"hidden: equal existing value is excluded from rank cost","kind":"real","visible":false,"input":{"instructions":[2,1,3,2]},"expected":1,"tags":["strict","duplicate-boundary"]},
+    {"id":"real-repeated-maximum","name":"hidden: repeated maximums coexist with interior insertions","kind":"real","visible":false,"input":{"instructions":[4,1,4,2,4,3]},"expected":3,"tags":["duplicates","maximum"]},
+    {"id":"real-repeated-low-values","name":"hidden: repeated low and middle values preserve strict ranks","kind":"real","visible":false,"input":{"instructions":[3,3,1,2,2,4,1]},"expected":2,"tags":["duplicates","strict-counts"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Rotting Oranges",
   "difficulty": "Medium",
   "acceptance_rate": 58.987332732559125,
+  "frequency": 81.8,
+  "elo_rating": 1432.9051050881,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

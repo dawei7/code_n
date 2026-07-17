@@ -6,6 +6,9 @@
   "title": "Number of Good Ways to Split a String",
   "difficulty": "Medium",
   "acceptance_rate": 68.50336405054492,
+  "frequency": 25.5,
+  "elo_rating": 1499.7136257352,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

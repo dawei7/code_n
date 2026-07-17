@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1800",
+  "cases": [
+    {"id":"example-separated-runs","name":"sample: best run follows a decrease","kind":"sample","visible":true,"input":{"nums":[10,20,30,5,10,50]},"expected":65,"tags":["example","multiple-runs"]},
+    {"id":"example-entire-array","name":"sample: entire array is ascending","kind":"sample","visible":true,"input":{"nums":[10,20,30,40,50]},"expected":150,"tags":["example","full-run"]},
+    {"id":"example-final-run","name":"sample: final run has the best sum","kind":"sample","visible":true,"input":{"nums":[12,17,15,13,10,11,12]},"expected":33,"tags":["example","final-run"]},
+    {"id":"trial-single-value","name":"single element is a valid subarray","kind":"trial","visible":true,"input":{"nums":[5]},"expected":5,"tags":["boundary","singleton"]},
+    {"id":"trial-equality-breaks-run","name":"equal neighbors split ascending runs","kind":"trial","visible":true,"input":{"nums":[1,1,2,3]},"expected":6,"tags":["strictness","duplicates"]},
+    {"id":"real-largest-singleton","name":"early singleton exceeds later run","kind":"real","visible":false,"input":{"nums":[100,1,2,3,4]},"expected":100,"tags":["singleton","positive-values"]},
+    {"id":"real-middle-and-final-runs","name":"late run wins after several decreases","kind":"real","visible":false,"input":{"nums":[3,2,1,2,3]},"expected":6,"tags":["multiple-runs","final-run"]},
+    {"id":"real-equal-middle-values","name":"equality starts a more valuable run","kind":"real","visible":false,"input":{"nums":[10,20,20,30]},"expected":50,"tags":["strictness","middle-boundary"]}
+  ]
+}

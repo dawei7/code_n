@@ -6,6 +6,9 @@
   "title": "Number of Prefix Connected Groups",
   "difficulty": "Medium",
   "acceptance_rate": 60.739219712525674,
+  "frequency": 0.0,
+  "elo_rating": 1401.7975403221,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

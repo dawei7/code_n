@@ -6,6 +6,9 @@
   "title": "Coupon Code Validator",
   "difficulty": "Easy",
   "acceptance_rate": 64.76299112801014,
+  "frequency": 36.2,
+  "elo_rating": 1312.3577370916,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Best Position for a Service Centre",
   "difficulty": "Hard",
   "acceptance_rate": 35.442677257912266,
+  "frequency": 0.0,
+  "elo_rating": 2156.9515428364,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

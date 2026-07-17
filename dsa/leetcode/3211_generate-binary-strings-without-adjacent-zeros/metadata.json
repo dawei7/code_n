@@ -6,6 +6,9 @@
   "title": "Generate Binary Strings Without Adjacent Zeros",
   "difficulty": "Medium",
   "acceptance_rate": 88.53036341396047,
+  "frequency": 8.5,
+  "elo_rating": 1352.5455214631,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

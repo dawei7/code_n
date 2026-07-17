@@ -6,6 +6,9 @@
   "title": "Find Users With Valid E-Mails",
   "difficulty": "Easy",
   "acceptance_rate": 35.60382296448032,
+  "frequency": 18.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "database",
   "category_title": "Database",
   "topics": [

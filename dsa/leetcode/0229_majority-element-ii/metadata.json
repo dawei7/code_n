@@ -6,6 +6,9 @@
   "title": "Majority Element II",
   "difficulty": "Medium",
   "acceptance_rate": 56.452913183017515,
+  "frequency": 61.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1498.404743,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

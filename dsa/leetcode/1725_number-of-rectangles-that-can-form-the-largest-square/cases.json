@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1725",
+  "cases": [
+    {
+      "id": "sample-one",
+      "name": "sample: three rectangles attain side five",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rectangles": [[5,8],[3,9],[5,12],[16,5]]},
+      "expected": 3,
+      "tags": ["sample", "tied-maximum"]
+    },
+    {
+      "id": "sample-two",
+      "name": "sample: three rectangles attain side three",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rectangles": [[2,3],[3,7],[4,3],[3,7]]},
+      "expected": 3,
+      "tags": ["sample", "mixed-orientation"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one narrow rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rectangles": [[100,1]]},
+      "expected": 1,
+      "tags": ["single-rectangle", "minimum-count"]
+    },
+    {
+      "id": "trial-all-tied",
+      "name": "trial: every rectangle has the same limiting side",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rectangles": [[5,9],[8,5],[5,6],[12,5]]},
+      "expected": 4,
+      "tags": ["all-tied", "orientation"]
+    },
+    {
+      "id": "trial-late-best",
+      "name": "trial: later rectangles repeatedly replace the best side",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rectangles": [[9,2],[8,3],[7,4],[6,5]]},
+      "expected": 1,
+      "tags": ["increasing-minima", "count-reset"]
+    },
+    {
+      "id": "trial-orientation",
+      "name": "trial: swapping dimensions leaves the limiting side unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rectangles": [[11,4],[4,19],[7,6],[6,13]]},
+      "expected": 2,
+      "tags": ["orientation", "tied-maximum"]
+    },
+    {
+      "id": "real-maximum-dimensions",
+      "name": "hidden: two rectangles attain the largest legal limiting side",
+      "kind": "real",
+      "visible": false,
+      "input": {"rectangles": [[1000000000,999999999],[999999999,1000000000],[1000000000,1]]},
+      "expected": 2,
+      "tags": ["maximum-values", "large-integers"]
+    },
+    {
+      "id": "real-best-at-start-and-end",
+      "name": "hidden: equal maxima surround smaller rectangles",
+      "kind": "real",
+      "visible": false,
+      "input": {"rectangles": [[20,9],[8,100],[7,30],[9,11]]},
+      "expected": 2,
+      "tags": ["noncontiguous-tie", "smaller-middle"]
+    },
+    {
+      "id": "real-width-limits",
+      "name": "hidden: widths determine every attainable square",
+      "kind": "real",
+      "visible": false,
+      "input": {"rectangles": [[50,2],[60,8],[70,4],[80,8],[90,3]]},
+      "expected": 2,
+      "tags": ["width-limited", "tied-maximum"]
+    },
+    {
+      "id": "real-length-limits",
+      "name": "hidden: lengths determine every attainable square",
+      "kind": "real",
+      "visible": false,
+      "input": {"rectangles": [[2,50],[8,60],[4,70],[8,80],[3,90]]},
+      "expected": 2,
+      "tags": ["length-limited", "tied-maximum"]
+    }
+  ]
+}

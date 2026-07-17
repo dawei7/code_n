@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1743",
+  "frontend_id": "1638",
+  "title_slug": "count-substrings-that-differ-by-one-character",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countSubstrings",
+  "verified_submission_id": "2070455729",
+  "verified_at": "2026-07-16T23:36:31.357149+00:00"
+}

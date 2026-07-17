@@ -6,6 +6,9 @@
   "title": "Palindrome Number",
   "difficulty": "Easy",
   "acceptance_rate": 60.67635260623185,
+  "frequency": 97.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1222.622033,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

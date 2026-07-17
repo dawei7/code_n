@@ -6,6 +6,9 @@
   "title": "The Number of Employees Which Report to Each Employee",
   "difficulty": "Easy",
   "acceptance_rate": 53.49714437508302,
+  "frequency": 35.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1242.398639,
   "category": "database",
   "category_title": "Database",
   "topics": [

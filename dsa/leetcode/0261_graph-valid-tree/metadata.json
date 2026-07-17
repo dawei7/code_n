@@ -6,6 +6,9 @@
   "title": "Graph Valid Tree",
   "difficulty": "Medium",
   "acceptance_rate": 50.05951577815032,
+  "frequency": 29.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1590.870829,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

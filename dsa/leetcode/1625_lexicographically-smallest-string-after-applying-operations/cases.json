@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1625",
+  "cases": [
+    {"id":"sample-sequence","name":"sample: additions and even rotations combine","kind":"sample","visible":true,"input":{"s":"5525","a":9,"b":2},"expected":"2050","tags":["sample","even-rotation"]},
+    {"id":"sample-odd-rotation","name":"sample: odd rotation lets both positions change","kind":"sample","visible":true,"input":{"s":"74","a":5,"b":1},"expected":"24","tags":["sample","odd-rotation"]},
+    {"id":"sample-already-smallest","name":"sample: original string is already minimal","kind":"sample","visible":true,"input":{"s":"0011","a":4,"b":2},"expected":"0011","tags":["sample","unchanged"]},
+    {"id":"trial-two-digits","name":"trial: two digits can both become zero","kind":"trial","visible":true,"input":{"s":"10","a":9,"b":1},"expected":"00","tags":["minimum-length","wraparound"]},
+    {"id":"trial-even-rotation","name":"trial: even rotation preserves index parity","kind":"trial","visible":true,"input":{"s":"1234","a":1,"b":2},"expected":"1032","tags":["even-rotation","parity"]},
+    {"id":"trial-all-zero","name":"trial: no operation improves all zeros","kind":"trial","visible":true,"input":{"s":"0000","a":7,"b":1},"expected":"0000","tags":["all-zero","cycle"]},
+    {"id":"real-noncoprime-add","name":"hidden: addition visits only one modular residue cycle","kind":"real","visible":false,"input":{"s":"135790","a":2,"b":3},"expected":"114377","tags":["gcd-cycle","odd-rotation"]},
+    {"id":"real-large-rotation","name":"hidden: rotation amount near the string length","kind":"real","visible":false,"input":{"s":"31415926","a":5,"b":7},"expected":"04718696","tags":["large-rotation","two-step-add-cycle"]},
+    {"id":"real-even-step","name":"hidden: even rotation restricts changes to original odd positions","kind":"real","visible":false,"input":{"s":"8642","a":8,"b":2},"expected":"4084","tags":["even-rotation","restricted-parity"]},
+    {"id":"real-mixed","name":"hidden: broad reachable graph has a non-obvious minimum","kind":"real","visible":false,"input":{"s":"43987654","a":5,"b":3},"expected":"04934826","tags":["mixed","state-graph"]}
+  ]
+}

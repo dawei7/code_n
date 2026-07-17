@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1643",
+  "cases": [
+    {"id":"sample-first-path","name":"sample: first path uses every horizontal move first","kind":"sample","visible":true,"input":{"destination":[2,3],"k":1},"expected":"HHHVV","tags":["sample","first-rank"]},
+    {"id":"sample-second-path","name":"sample: second lexicographic instruction","kind":"sample","visible":true,"input":{"destination":[2,3],"k":2},"expected":"HHVHV","tags":["sample","rank-two"]},
+    {"id":"sample-third-path","name":"sample: third lexicographic instruction","kind":"sample","visible":true,"input":{"destination":[2,3],"k":3},"expected":"HHVVH","tags":["sample","rank-three"]},
+    {"id":"trial-smallest-grid-first","name":"trial: first path on a one-by-one grid","kind":"trial","visible":true,"input":{"destination":[1,1],"k":1},"expected":"HV","tags":["minimum-destination","first-rank"]},
+    {"id":"trial-smallest-grid-last","name":"trial: maximum rank on a one-by-one grid","kind":"trial","visible":true,"input":{"destination":[1,1],"k":2},"expected":"VH","tags":["minimum-destination","maximum-rank"]},
+    {"id":"real-wide-grid","name":"hidden: horizontal-heavy destination and interior rank","kind":"real","visible":false,"input":{"destination":[1,3],"k":3},"expected":"HVHH","tags":["wide-grid"]},
+    {"id":"real-tall-grid","name":"hidden: vertical-heavy destination and interior rank","kind":"real","visible":false,"input":{"destination":[3,1],"k":3},"expected":"VVHV","tags":["tall-grid"]},
+    {"id":"real-balanced-middle-rank","name":"hidden: balanced grid chooses across several rank blocks","kind":"real","visible":false,"input":{"destination":[3,3],"k":10},"expected":"HVVVHH","tags":["balanced-grid","interior-rank"]},
+    {"id":"real-maximum-rank","name":"hidden: maximum rank places all vertical moves first","kind":"real","visible":false,"input":{"destination":[5,4],"k":126},"expected":"VVVVVHHHH","tags":["maximum-rank"]},
+    {"id":"real-maximum-destination-first","name":"hidden: maximum destination with the first rank","kind":"real","visible":false,"input":{"destination":[15,15],"k":1},"expected":"HHHHHHHHHHHHHHHVVVVVVVVVVVVVVV","tags":["destination-boundary","first-rank"]}
+  ]
+}

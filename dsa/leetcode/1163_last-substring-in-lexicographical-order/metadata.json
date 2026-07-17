@@ -6,6 +6,9 @@
   "title": "Last Substring in Lexicographical Order",
   "difficulty": "Hard",
   "acceptance_rate": 35.12372576454128,
+  "frequency": 65.9,
+  "elo_rating": 1864.0948676111,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

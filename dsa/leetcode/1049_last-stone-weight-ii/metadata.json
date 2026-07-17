@@ -6,6 +6,9 @@
   "title": "Last Stone Weight II",
   "difficulty": "Medium",
   "acceptance_rate": 60.21310014008575,
+  "frequency": 49.6,
+  "elo_rating": 2092.4861692502,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

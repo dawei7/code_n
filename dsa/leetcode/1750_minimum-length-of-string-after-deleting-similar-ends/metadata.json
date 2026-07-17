@@ -6,6 +6,9 @@
   "title": "Minimum Length of String After Deleting Similar Ends",
   "difficulty": "Medium",
   "acceptance_rate": 56.148679091929075,
+  "frequency": 14.2,
+  "elo_rating": 1501.6846714598,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

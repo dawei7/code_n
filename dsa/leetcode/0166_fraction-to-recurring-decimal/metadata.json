@@ -6,6 +6,9 @@
   "title": "Fraction to Recurring Decimal",
   "difficulty": "Medium",
   "acceptance_rate": 31.073091547063918,
+  "frequency": 54.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1756.215943,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

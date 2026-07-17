@@ -6,6 +6,9 @@
   "title": "Count Negative Numbers in a Sorted Matrix",
   "difficulty": "Easy",
   "acceptance_rate": 79.66269748363473,
+  "frequency": 46.8,
+  "elo_rating": 1139.4248492279,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

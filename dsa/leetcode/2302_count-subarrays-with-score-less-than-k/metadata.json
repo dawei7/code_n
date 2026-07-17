@@ -6,6 +6,9 @@
   "title": "Count Subarrays With Score Less Than K",
   "difficulty": "Hard",
   "acceptance_rate": 62.232270347453586,
+  "frequency": 25.9,
+  "elo_rating": 1808.3407696613,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

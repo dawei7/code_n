@@ -6,6 +6,9 @@
   "title": "Count Distinct Subarrays Divisible by K in Sorted Array",
   "difficulty": "Hard",
   "acceptance_rate": 28.131472309770373,
+  "frequency": 0.0,
+  "elo_rating": 2248.0468276972,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

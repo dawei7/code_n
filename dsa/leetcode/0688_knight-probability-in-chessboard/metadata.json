@@ -6,6 +6,9 @@
   "title": "Knight Probability in Chessboard",
   "difficulty": "Medium",
   "acceptance_rate": 57.14442049713797,
+  "frequency": 60.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1487.612171,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

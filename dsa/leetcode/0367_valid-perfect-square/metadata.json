@@ -6,6 +6,9 @@
   "title": "Valid Perfect Square",
   "difficulty": "Easy",
   "acceptance_rate": 45.064781686141515,
+  "frequency": 43.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1258.219923,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

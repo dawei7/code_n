@@ -6,6 +6,9 @@
   "title": "Collect Coins in a Tree",
   "difficulty": "Hard",
   "acceptance_rate": 39.46385789212407,
+  "frequency": 58.9,
+  "elo_rating": 2711.8717381409,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

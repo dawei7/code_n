@@ -6,6 +6,9 @@
   "title": "Check If All 1's Are at Least Length K Places Away",
   "difficulty": "Easy",
   "acceptance_rate": 64.28868988704956,
+  "frequency": 38.2,
+  "elo_rating": 1193.2687290573,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

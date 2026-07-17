@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1744",
+  "cases": [
+    {"id":"sample-official-one","name":"sample: early, unreachable, and delayed favorites","kind":"sample","visible":true,"input":{"candiesCount":[7,4,5,3,8],"queries":[[0,2,2],[4,2,4],[2,13,1000000000]]},"expected":[true,false,true],"tags":["sample","mixed-feasibility"]},
+    {"id":"sample-official-two","name":"sample: independent caps and days","kind":"sample","visible":true,"input":{"candiesCount":[5,2,6,4,1],"queries":[[3,1,2],[4,10,3],[3,10,100],[4,100,30],[1,3,1]]},"expected":[false,true,true,false,false],"tags":["sample","boundary-conditions"]},
+    {"id":"trial-day-zero-transition","name":"trial: cross into the next type on day zero","kind":"trial","visible":true,"input":{"candiesCount":[2,2],"queries":[[1,0,3]]},"expected":[true],"tags":["day-zero","same-day-transition"]},
+    {"id":"trial-single-type","name":"trial: first and last feasible days for one type","kind":"trial","visible":true,"input":{"candiesCount":[3],"queries":[[0,0,1],[0,2,1],[0,3,10]]},"expected":[true,true,false],"tags":["single-type","latest-day"]},
+    {"id":"real-earliest-boundary","name":"hidden: maximum consumption must pass the earlier prefix","kind":"real","visible":false,"input":{"candiesCount":[5,5],"queries":[[1,1,3],[1,1,2]]},"expected":[true,false],"tags":["earliest-day","strict-boundary"]},
+    {"id":"real-latest-boundary","name":"hidden: minimum consumption may equal the type endpoint","kind":"real","visible":false,"input":{"candiesCount":[5,7],"queries":[[0,4,100],[0,5,100],[1,11,1],[1,12,100]]},"expected":[true,false,true,false],"tags":["latest-day","inclusive-boundary"]},
+    {"id":"real-one-per-day","name":"hidden: cap one fixes the exact candy position","kind":"real","visible":false,"input":{"candiesCount":[2,3,1],"queries":[[0,1,1],[1,2,1],[1,4,1],[2,5,1]]},"expected":[true,true,true,true],"tags":["daily-cap-one","exact-schedule"]},
+    {"id":"real-huge-day-cap","name":"hidden: large products use wide integer arithmetic","kind":"real","visible":false,"input":{"candiesCount":[100000,100000],"queries":[[1,99999,1000000000],[1,1000000000,1000000000]]},"expected":[true,false],"tags":["large-values","overflow-safety"]},
+    {"id":"real-many-types-one-each","name":"hidden: prefix positions across singleton types","kind":"real","visible":false,"input":{"candiesCount":[1,1,1,1,1],"queries":[[4,0,5],[4,0,4],[2,2,1],[1,2,100]]},"expected":[true,false,true,false],"tags":["singleton-types","same-day-transition"]},
+    {"id":"real-middle-window","name":"hidden: both overlap inequalities matter independently","kind":"real","visible":false,"input":{"candiesCount":[4,6,3],"queries":[[1,2,2],[1,9,1],[1,10,100],[2,3,3]]},"expected":[true,true,false,true],"tags":["interval-overlap","middle-type"]}
+  ]
+}

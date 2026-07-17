@@ -6,6 +6,9 @@
   "title": "Maximum Points Tourist Can Earn",
   "difficulty": "Medium",
   "acceptance_rate": 47.90495193179757,
+  "frequency": 0.0,
+  "elo_rating": 1827.6996661361,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

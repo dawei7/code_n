@@ -6,6 +6,9 @@
   "title": "Map of Highest Peak",
   "difficulty": "Medium",
   "acceptance_rate": 76.01065382370112,
+  "frequency": 0.0,
+  "elo_rating": 1782.9801784101,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

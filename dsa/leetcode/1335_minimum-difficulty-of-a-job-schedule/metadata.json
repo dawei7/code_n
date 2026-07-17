@@ -6,6 +6,9 @@
   "title": "Minimum Difficulty of a Job Schedule",
   "difficulty": "Hard",
   "acceptance_rate": 59.773247800358575,
+  "frequency": 48.6,
+  "elo_rating": 2034.9420578559,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

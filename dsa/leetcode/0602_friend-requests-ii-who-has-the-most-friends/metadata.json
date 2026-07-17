@@ -6,6 +6,9 @@
   "title": "Friend Requests II: Who Has the Most Friends",
   "difficulty": "Medium",
   "acceptance_rate": 63.01320832739694,
+  "frequency": 50.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1438.534401,
   "category": "database",
   "category_title": "Database",
   "topics": [

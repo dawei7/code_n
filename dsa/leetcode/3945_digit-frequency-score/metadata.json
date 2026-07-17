@@ -6,6 +6,9 @@
   "title": "Digit Frequency Score",
   "difficulty": "Easy",
   "acceptance_rate": 91.50680740400794,
+  "frequency": 22.8,
+  "elo_rating": 1201.2169110885,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

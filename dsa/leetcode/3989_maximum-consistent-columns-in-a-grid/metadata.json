@@ -1,0 +1,42 @@
+{
+  "challenge_id": "lc_3989",
+  "source": "leetcode",
+  "frontend_id": "3989",
+  "slug": "maximum-consistent-columns-in-a-grid",
+  "title": "Maximum Consistent Columns in a Grid",
+  "difficulty": "Hard",
+  "acceptance_rate": 68.07216278581917,
+  "frequency": 0.0,
+  "elo_rating": 2013.6413901055,
+  "estimated_elo_rating": null,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/maximum-consistent-columns-in-a-grid/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

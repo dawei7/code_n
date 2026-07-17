@@ -6,6 +6,9 @@
   "title": "Minimum Money Required Before Transactions",
   "difficulty": "Hard",
   "acceptance_rate": 42.25887177013296,
+  "frequency": 40.5,
+  "elo_rating": 2092.0222850837,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

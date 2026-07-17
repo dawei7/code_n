@@ -6,6 +6,9 @@
   "title": "Count Subarrays With Median K",
   "difficulty": "Hard",
   "acceptance_rate": 49.03937866194305,
+  "frequency": 63.9,
+  "elo_rating": 1998.889914712,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

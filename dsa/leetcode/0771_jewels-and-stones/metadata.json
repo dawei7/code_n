@@ -6,6 +6,9 @@
   "title": "Jewels and Stones",
   "difficulty": "Easy",
   "acceptance_rate": 89.60711224433744,
+  "frequency": 51.3,
+  "elo_rating": 1164.8182315157,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

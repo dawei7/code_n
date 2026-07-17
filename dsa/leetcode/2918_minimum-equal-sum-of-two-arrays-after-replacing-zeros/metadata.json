@@ -6,6 +6,9 @@
   "title": "Minimum Equal Sum of Two Arrays After Replacing Zeros",
   "difficulty": "Medium",
   "acceptance_rate": 50.181230153656905,
+  "frequency": 39.7,
+  "elo_rating": 1526.2429110307,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Factor Combinations",
   "difficulty": "Medium",
   "acceptance_rate": 50.55889356567312,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1583.28686,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

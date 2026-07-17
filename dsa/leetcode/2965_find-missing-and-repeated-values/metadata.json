@@ -6,6 +6,9 @@
   "title": "Find Missing and Repeated Values",
   "difficulty": "Easy",
   "acceptance_rate": 83.11508281465512,
+  "frequency": 67.4,
+  "elo_rating": 1244.8064626533,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

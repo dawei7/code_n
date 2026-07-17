@@ -6,6 +6,9 @@
   "title": "Integer to English Words",
   "difficulty": "Hard",
   "acceptance_rate": 35.08853553574067,
+  "frequency": 75.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 2298.192041,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

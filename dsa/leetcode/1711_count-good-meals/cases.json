@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1711",
+  "cases": [
+    {"id":"sample-distinct-values","name":"sample: four pairs across several target powers","kind":"sample","visible":true,"input":{"deliciousness":[1,3,5,7,9]},"expected":4,"tags":["sample","multiple-powers"]},
+    {"id":"sample-duplicate-groups","name":"sample: duplicate values create combinatorial pairs","kind":"sample","visible":true,"input":{"deliciousness":[1,1,1,3,3,3,7]},"expected":15,"tags":["sample","duplicates"]},
+    {"id":"trial-zero-and-ones","name":"trial: zeros pair with ones but not with each other","kind":"trial","visible":true,"input":{"deliciousness":[0,0,1,1]},"expected":5,"tags":["zero","duplicates"]},
+    {"id":"trial-single-item","name":"trial: one item cannot form a meal","kind":"trial","visible":true,"input":{"deliciousness":[8]},"expected":0,"tags":["single-item","no-pair"]},
+    {"id":"trial-all-zero","name":"trial: zero is not a power of two","kind":"trial","visible":true,"input":{"deliciousness":[0,0,0]},"expected":0,"tags":["zero","no-pair"]},
+    {"id":"trial-maximum-pair","name":"trial: two maximum values reach the highest target power","kind":"trial","visible":true,"input":{"deliciousness":[1048576,1048576]},"expected":1,"tags":["maximum-value","highest-power"]},
+    {"id":"real-zero-with-powers","name":"hidden: zero pairs independently with positive powers","kind":"real","visible":false,"input":{"deliciousness":[0,1,2,3]},"expected":3,"tags":["zero","multiple-powers"]},
+    {"id":"real-no-good-sum","name":"hidden: no pair sum is a power of two","kind":"real","visible":false,"input":{"deliciousness":[5,10,20]},"expected":0,"tags":["no-pair","sparse"]},
+    {"id":"real-mixed-duplicates","name":"hidden: repeated complements count previous indices","kind":"real","visible":false,"input":{"deliciousness":[2,2,6,6,14]},"expected":7,"tags":["duplicates","complements"]},
+    {"id":"real-combinations","name":"hidden: a duplicate group contributes every index combination","kind":"real","visible":false,"input":{"deliciousness":[1,1,1,1,1,1,1,1,1,1]},"expected":45,"tags":["duplicates","combinations"]}
+  ]
+}

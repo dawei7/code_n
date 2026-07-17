@@ -6,6 +6,9 @@
   "title": "Day of the Year",
   "difficulty": "Easy",
   "acceptance_rate": 49.88740376658224,
+  "frequency": 20.9,
+  "elo_rating": 1199.4427635582,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

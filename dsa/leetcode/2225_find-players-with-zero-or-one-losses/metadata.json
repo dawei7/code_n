@@ -6,6 +6,9 @@
   "title": "Find Players With Zero or One Losses",
   "difficulty": "Medium",
   "acceptance_rate": 72.39768583134483,
+  "frequency": 31.1,
+  "elo_rating": 1316.2046992429,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

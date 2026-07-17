@@ -6,6 +6,9 @@
   "title": "Minimum Time to Transport All Individuals",
   "difficulty": "Hard",
   "acceptance_rate": 28.7180296810862,
+  "frequency": 0.0,
+  "elo_rating": 2604.0450098035,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

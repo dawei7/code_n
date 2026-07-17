@@ -6,6 +6,9 @@
   "title": "Rectangle Overlap",
   "difficulty": "Easy",
   "acceptance_rate": 46.84955379946516,
+  "frequency": 35.6,
+  "elo_rating": 1442.9468304752,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

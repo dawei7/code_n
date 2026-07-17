@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1726",
+  "measurement_note": "Size is n, the number of distinct input values. The product-frequency method examines all unordered pairs in O(n^2) time. A correct ordered-triple implementation derives the fourth value through set membership, completes all 10/20/40 tiers, and is rejected only by O(n^3) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: count products among 10 consecutive values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      },
+      "expected": 72,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dense-products",
+        "distinct-values"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: count products among 20 consecutive values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ]
+      },
+      "expected": 536,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dense-products",
+        "distinct-values"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: count products among 40 consecutive values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40
+        ]
+      },
+      "expected": 3432,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dense-products",
+        "distinct-values"
+      ]
+    }
+  ]
+}

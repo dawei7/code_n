@@ -6,6 +6,9 @@
   "title": "Minimum Time Visiting All Points",
   "difficulty": "Easy",
   "acceptance_rate": 84.80122681047703,
+  "frequency": 44.4,
+  "elo_rating": 1302.7005460171,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

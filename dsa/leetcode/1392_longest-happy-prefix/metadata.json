@@ -6,6 +6,9 @@
   "title": "Longest Happy Prefix",
   "difficulty": "Hard",
   "acceptance_rate": 53.56008580530835,
+  "frequency": 47.3,
+  "elo_rating": 1876.146019008,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

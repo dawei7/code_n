@@ -6,6 +6,9 @@
   "title": "Maximum Sum of Distinct Subarrays With Length K",
   "difficulty": "Medium",
   "acceptance_rate": 43.2131465111343,
+  "frequency": 54.8,
+  "elo_rating": 1552.8935571247,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

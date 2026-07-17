@@ -6,6 +6,9 @@
   "title": "Height of Binary Tree After Subtree Removal Queries",
   "difficulty": "Hard",
   "acceptance_rate": 54.92028985507247,
+  "frequency": 37.3,
+  "elo_rating": 2298.6242048519,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

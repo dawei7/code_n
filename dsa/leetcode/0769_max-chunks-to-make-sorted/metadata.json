@@ -6,6 +6,9 @@
   "title": "Max Chunks To Make Sorted",
   "difficulty": "Medium",
   "acceptance_rate": 64.2054246047993,
+  "frequency": 39.8,
+  "elo_rating": 1566.2526716951,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

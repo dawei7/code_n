@@ -6,6 +6,9 @@
   "title": "Subsequence Sum After Capping Elements",
   "difficulty": "Medium",
   "acceptance_rate": 25.437278281434768,
+  "frequency": 36.2,
+  "elo_rating": 2073.3665301195,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

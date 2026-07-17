@@ -6,6 +6,9 @@
   "title": "Remove Digit From Number to Maximize Result",
   "difficulty": "Easy",
   "acceptance_rate": 48.61161303645576,
+  "frequency": 31.8,
+  "elo_rating": 1331.5287857686,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

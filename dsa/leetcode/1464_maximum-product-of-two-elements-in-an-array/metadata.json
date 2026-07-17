@@ -6,6 +6,9 @@
   "title": "Maximum Product of Two Elements in an Array",
   "difficulty": "Easy",
   "acceptance_rate": 83.63926102255238,
+  "frequency": 28.4,
+  "elo_rating": 1121.0677596555,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

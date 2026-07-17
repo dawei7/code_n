@@ -6,6 +6,9 @@
   "title": "Find N Unique Integers Sum up to Zero",
   "difficulty": "Easy",
   "acceptance_rate": 78.41338621657668,
+  "frequency": 36.8,
+  "elo_rating": 1167.1331831913,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

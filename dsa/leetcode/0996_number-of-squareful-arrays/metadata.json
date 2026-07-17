@@ -6,6 +6,9 @@
   "title": "Number of Squareful Arrays",
   "difficulty": "Hard",
   "acceptance_rate": 51.60213015615128,
+  "frequency": 0.0,
+  "elo_rating": 1932.3730795204,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

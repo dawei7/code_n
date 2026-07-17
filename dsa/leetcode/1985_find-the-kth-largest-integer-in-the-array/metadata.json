@@ -6,6 +6,9 @@
   "title": "Find the Kth Largest Integer in the Array",
   "difficulty": "Medium",
   "acceptance_rate": 48.137173222850194,
+  "frequency": 0.0,
+  "elo_rating": 1414.4351202231,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

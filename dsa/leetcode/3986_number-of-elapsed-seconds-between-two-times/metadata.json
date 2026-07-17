@@ -1,0 +1,42 @@
+{
+  "challenge_id": "lc_3986",
+  "source": "leetcode",
+  "frontend_id": "3986",
+  "slug": "number-of-elapsed-seconds-between-two-times",
+  "title": "Number of Elapsed Seconds Between Two Times",
+  "difficulty": "Easy",
+  "acceptance_rate": 81.76398386813958,
+  "frequency": 1.0,
+  "elo_rating": 1205.3197977948,
+  "estimated_elo_rating": null,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/number-of-elapsed-seconds-between-two-times/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

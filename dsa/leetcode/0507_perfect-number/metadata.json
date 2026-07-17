@@ -6,6 +6,9 @@
   "title": "Perfect Number",
   "difficulty": "Easy",
   "acceptance_rate": 49.29277577706559,
+  "frequency": 55.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1251.298111,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

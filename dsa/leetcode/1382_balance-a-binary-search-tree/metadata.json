@@ -6,6 +6,9 @@
   "title": "Balance a Binary Search Tree",
   "difficulty": "Medium",
   "acceptance_rate": 86.29451209789096,
+  "frequency": 70.9,
+  "elo_rating": 1540.5750839091,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

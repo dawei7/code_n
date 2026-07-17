@@ -6,6 +6,9 @@
   "title": "Word Search",
   "difficulty": "Medium",
   "acceptance_rate": 47.67473117532558,
+  "frequency": 72.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1624.706999,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find Indices of Stable Mountains",
   "difficulty": "Easy",
   "acceptance_rate": 87.12250372578242,
+  "frequency": 26.9,
+  "elo_rating": 1166.1536951597,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

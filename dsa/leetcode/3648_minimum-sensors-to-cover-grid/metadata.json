@@ -6,6 +6,9 @@
   "title": "Minimum Sensors to Cover Grid",
   "difficulty": "Medium",
   "acceptance_rate": 68.78579478804885,
+  "frequency": 0.0,
+  "elo_rating": 1395.9815411672,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

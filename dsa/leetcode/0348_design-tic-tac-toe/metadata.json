@@ -6,6 +6,9 @@
   "title": "Design Tic-Tac-Toe",
   "difficulty": "Medium",
   "acceptance_rate": 58.75446920008925,
+  "frequency": 74.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1473.319535,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

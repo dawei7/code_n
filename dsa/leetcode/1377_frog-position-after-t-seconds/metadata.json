@@ -6,6 +6,9 @@
   "title": "Frog Position After T Seconds",
   "difficulty": "Hard",
   "acceptance_rate": 38.6952195544019,
+  "frequency": 36.2,
+  "elo_rating": 1823.8779711373,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

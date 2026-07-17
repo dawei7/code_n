@@ -6,6 +6,9 @@
   "title": "Sliding Window Maximum",
   "difficulty": "Hard",
   "acceptance_rate": 48.958114576975085,
+  "frequency": 79.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 2098.875608,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

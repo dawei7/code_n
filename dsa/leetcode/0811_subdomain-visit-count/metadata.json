@@ -6,6 +6,9 @@
   "title": "Subdomain Visit Count",
   "difficulty": "Medium",
   "acceptance_rate": 77.17798186468264,
+  "frequency": 38.8,
+  "elo_rating": 1377.6120218199,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

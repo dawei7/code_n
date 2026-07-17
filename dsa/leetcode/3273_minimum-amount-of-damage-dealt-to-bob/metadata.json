@@ -6,6 +6,9 @@
   "title": "Minimum Amount of Damage Dealt to Bob",
   "difficulty": "Hard",
   "acceptance_rate": 40.02383661086733,
+  "frequency": 0.0,
+  "elo_rating": 2012.8694334235,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

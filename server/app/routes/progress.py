@@ -7,17 +7,19 @@ with the API contract.
 """
 from __future__ import annotations
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from engine.progress import normalize_accent_colors
 from server.app import progress_store
 from server.app.challenge_sets import normalize_algorithm_set
 from server.app.schemas import (
     ProgressOut,
+    ProgressResetRequest,
     ProgressUpdate,
     VerifyLeetCodeRequest,
     VerifyLeetCodeResponse,
 )
+from server.app.user_solutions import delete_user_solutions
 
 
 router = APIRouter()
@@ -93,6 +95,34 @@ def update_progress(body: ProgressUpdate) -> ProgressOut:
         if changed:
             progress_store.save(progress)
     return _to_out(progress)
+
+
+@router.post("/progress/reset")
+def reset_progress(body: ProgressResetRequest) -> ProgressOut:
+    """Reset selected progress after an exact, case-sensitive confirmation."""
+
+    if body.confirmation != "RESET":
+        raise HTTPException(
+            status_code=400,
+            detail="Type RESET exactly to confirm this action.",
+        )
+
+    challenge_ids = list(dict.fromkeys(challenge_id.strip() for challenge_id in body.challenge_ids))
+    if any(not challenge_id or len(challenge_id) > 128 for challenge_id in challenge_ids):
+        raise HTTPException(status_code=400, detail="Invalid challenge id in reset request.")
+
+    if body.scope in {"all", "coden"}:
+        try:
+            delete_user_solutions(challenge_ids)
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except (OSError, RuntimeError) as exc:
+            raise HTTPException(
+                status_code=409,
+                detail="The selected personal solutions could not be deleted safely.",
+            ) from exc
+
+    return _to_out(progress_store.reset(challenge_ids, body.scope))
 
 
 @router.post("/progress/verify-leetcode")

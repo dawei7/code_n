@@ -6,6 +6,9 @@
   "title": "Replace Non-Coprime Numbers in Array",
   "difficulty": "Hard",
   "acceptance_rate": 57.6384841102592,
+  "frequency": 30.8,
+  "elo_rating": 2057.4788263111,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

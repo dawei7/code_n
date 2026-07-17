@@ -6,6 +6,9 @@
   "title": "Maximum Median Sum of Subsequences of Size 3",
   "difficulty": "Medium",
   "acceptance_rate": 65.11696651546812,
+  "frequency": 35.6,
+  "elo_rating": 1262.1554079997,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

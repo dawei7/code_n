@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1753",
+  "measurement_note": "Size is S, the total stone count. Every tier has three equal piles, so a correct max-heap simulation performs exactly S/2 scoring turns. The accepted arithmetic formula is O(1); the per-turn simulation completes all legal tiers and is rejected by linear scaling in S.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 24 balanced stones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"a": 8, "b": 8, "c": 8},
+      "expected": 12,
+      "tags": ["benchmark", "scaling", "balanced"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 192 balanced stones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": {"a": 64, "b": 64, "c": 64},
+      "expected": 96,
+      "tags": ["benchmark", "scaling", "balanced"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 1536 balanced stones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1536,
+      "input": {"a": 512, "b": 512, "c": 512},
+      "expected": 768,
+      "tags": ["benchmark", "scaling", "balanced"]
+    }
+  ]
+}

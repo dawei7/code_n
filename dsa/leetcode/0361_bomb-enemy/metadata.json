@@ -6,6 +6,9 @@
   "title": "Bomb Enemy",
   "difficulty": "Medium",
   "acceptance_rate": 52.83934442139486,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1549.450689,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

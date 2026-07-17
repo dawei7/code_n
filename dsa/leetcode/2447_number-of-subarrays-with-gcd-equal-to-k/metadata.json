@@ -6,6 +6,9 @@
   "title": "Number of Subarrays With GCD Equal to K",
   "difficulty": "Medium",
   "acceptance_rate": 52.9146104381636,
+  "frequency": 0.0,
+  "elo_rating": 1602.7742849665,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

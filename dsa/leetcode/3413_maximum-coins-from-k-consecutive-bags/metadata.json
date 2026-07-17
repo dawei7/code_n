@@ -6,6 +6,9 @@
   "title": "Maximum Coins From K Consecutive Bags",
   "difficulty": "Medium",
   "acceptance_rate": 25.58549679694997,
+  "frequency": 72.5,
+  "elo_rating": 2373.8124052261,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Robot Return to Origin",
   "difficulty": "Easy",
   "acceptance_rate": 78.15500592147217,
+  "frequency": 60.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

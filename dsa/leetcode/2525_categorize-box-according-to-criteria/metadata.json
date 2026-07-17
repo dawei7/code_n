@@ -6,6 +6,9 @@
   "title": "Categorize Box According to Criteria",
   "difficulty": "Easy",
   "acceptance_rate": 39.34261103992772,
+  "frequency": 25.7,
+  "elo_rating": 1301.4167433184,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

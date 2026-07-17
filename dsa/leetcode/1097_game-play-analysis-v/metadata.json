@@ -6,6 +6,9 @@
   "title": "Game Play Analysis V",
   "difficulty": "Hard",
   "acceptance_rate": 50.35899006397169,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2083.652625,
   "category": "database",
   "category_title": "Database",
   "topics": [

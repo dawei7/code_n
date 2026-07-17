@@ -6,6 +6,9 @@
   "title": "Sort an Array",
   "difficulty": "Medium",
   "acceptance_rate": 55.92283630773702,
+  "frequency": 72.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1505.697021,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

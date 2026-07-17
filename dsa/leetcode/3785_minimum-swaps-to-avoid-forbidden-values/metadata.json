@@ -6,6 +6,9 @@
   "title": "Minimum Swaps to Avoid Forbidden Values",
   "difficulty": "Hard",
   "acceptance_rate": 30.921292202049628,
+  "frequency": 0.0,
+  "elo_rating": 2051.519347574,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

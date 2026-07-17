@@ -6,6 +6,9 @@
   "title": "Find Books with No Available Copies",
   "difficulty": "Easy",
   "acceptance_rate": 54.25058073865695,
+  "frequency": 29.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1239.432148,
   "category": "database",
   "category_title": "Database",
   "topics": [

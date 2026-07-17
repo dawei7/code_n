@@ -6,6 +6,9 @@
   "title": "Average Waiting Time",
   "difficulty": "Medium",
   "acceptance_rate": 73.07858914952547,
+  "frequency": 26.0,
+  "elo_rating": 1436.3892315914,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

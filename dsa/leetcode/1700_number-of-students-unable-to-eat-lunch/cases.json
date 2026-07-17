@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1700",
+  "cases": [
+    {"id":"sample-all-eat","name":"sample: rotations let every student eat","kind":"sample","visible":true,"input":{"students":[1,1,0,0],"sandwiches":[0,1,0,1]},"expected":0,"tags":["sample","all-served"]},
+    {"id":"sample-three-remain","name":"sample: circular sandwich blocks three square preferences","kind":"sample","visible":true,"input":{"students":[1,1,1,0,0,1],"sandwiches":[1,0,0,0,1,1]},"expected":3,"tags":["sample","partial-service"]},
+    {"id":"sample-rotation","name":"sample: square preference rotates through circular students","kind":"sample","visible":true,"input":{"students":[0,0,1],"sandwiches":[1,0,0]},"expected":0,"tags":["sample","rotation"]},
+    {"id":"trial-single-match","name":"trial: one student receives the matching sandwich","kind":"trial","visible":true,"input":{"students":[0],"sandwiches":[0]},"expected":0,"tags":["minimum","match"]},
+    {"id":"trial-single-mismatch","name":"trial: one student refuses the only sandwich","kind":"trial","visible":true,"input":{"students":[0],"sandwiches":[1]},"expected":1,"tags":["minimum","immediate-stop"]},
+    {"id":"trial-immediate-stop","name":"trial: nobody wants the first sandwich","kind":"trial","visible":true,"input":{"students":[0,0,0],"sandwiches":[1,0,0]},"expected":3,"tags":["immediate-stop","all-same"]},
+    {"id":"real-partial-two","name":"hidden: service stops after both circular students eat","kind":"real","visible":false,"input":{"students":[0,1,1,0],"sandwiches":[0,0,0,1]},"expected":2,"tags":["partial-service","depleted-type"]},
+    {"id":"real-equal-counts","name":"hidden: equal type counts succeed despite opposite blocks","kind":"real","visible":false,"input":{"students":[1,1,1,0,0,0],"sandwiches":[0,0,0,1,1,1]},"expected":0,"tags":["rotation","balanced"]},
+    {"id":"real-late-block","name":"hidden: unavailable square type blocks the last student","kind":"real","visible":false,"input":{"students":[0,0,0,1],"sandwiches":[0,0,0,0]},"expected":1,"tags":["late-stop","one-remains"]},
+    {"id":"real-order-sensitive-stop","name":"hidden: fixed sandwich order stops before a later useful type","kind":"real","visible":false,"input":{"students":[0,1,0,1,0],"sandwiches":[0,0,0,0,1]},"expected":2,"tags":["stack-order","unreachable-suffix"]}
+  ]
+}

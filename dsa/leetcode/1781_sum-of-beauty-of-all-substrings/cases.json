@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1781",
+  "cases": [
+    {
+      "id": "example-five",
+      "name": "five substrings contribute one",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aabcb"},
+      "expected": 5,
+      "tags": ["example", "mixed-frequencies"]
+    },
+    {
+      "id": "example-seventeen",
+      "name": "longer mixed example",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aabcbaa"},
+      "expected": 17,
+      "tags": ["example", "mixed-frequencies"]
+    },
+    {
+      "id": "uniform-string",
+      "name": "all substrings have one distinct letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aaaa"},
+      "expected": 0,
+      "tags": ["uniform", "zero-beauty"]
+    },
+    {
+      "id": "trial-distinct-letters",
+      "name": "all frequencies remain equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abc"},
+      "expected": 0,
+      "tags": ["distinct", "zero-beauty"]
+    },
+    {
+      "id": "real-single-character",
+      "name": "hidden: minimum input length",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "z"},
+      "expected": 0,
+      "tags": ["minimum", "single"]
+    },
+    {
+      "id": "real-late-minimum",
+      "name": "hidden: positive minimum excludes absent letters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaab"},
+      "expected": 3,
+      "tags": ["positive-minimum", "two-letters"]
+    },
+    {
+      "id": "real-overlapping-patterns",
+      "name": "hidden: overlapping substrings reuse counts",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abaacc"},
+      "expected": 12,
+      "tags": ["overlap", "three-letters"]
+    },
+    {
+      "id": "real-balanced-and-unbalanced",
+      "name": "hidden: balanced prefixes and unbalanced extensions",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abbca"},
+      "expected": 5,
+      "tags": ["balance", "extension"]
+    }
+  ]
+}

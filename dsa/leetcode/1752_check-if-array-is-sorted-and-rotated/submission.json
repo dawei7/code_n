@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1878",
+  "frontend_id": "1752",
+  "title_slug": "check-if-array-is-sorted-and-rotated",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.check",
+  "verified_submission_id": "2070980627",
+  "verified_at": "2026-07-17T10:15:05.810930+00:00"
+}

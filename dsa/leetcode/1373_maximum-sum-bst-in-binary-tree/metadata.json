@@ -6,6 +6,9 @@
   "title": "Maximum Sum BST in Binary Tree",
   "difficulty": "Hard",
   "acceptance_rate": 48.0224338377052,
+  "frequency": 49.3,
+  "elo_rating": 1913.6704728453,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

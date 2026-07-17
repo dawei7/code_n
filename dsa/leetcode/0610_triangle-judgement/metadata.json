@@ -6,6 +6,9 @@
   "title": "Triangle Judgement",
   "difficulty": "Easy",
   "acceptance_rate": 74.92275334833957,
+  "frequency": 57.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1167.745004,
   "category": "database",
   "category_title": "Database",
   "topics": [

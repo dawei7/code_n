@@ -6,6 +6,9 @@
   "title": "Reducing Dishes",
   "difficulty": "Hard",
   "acceptance_rate": 76.7669245961084,
+  "frequency": 57.2,
+  "elo_rating": 1679.2607152001,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

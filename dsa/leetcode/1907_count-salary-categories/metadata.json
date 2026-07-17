@@ -6,6 +6,9 @@
   "title": "Count Salary Categories",
   "difficulty": "Medium",
   "acceptance_rate": 64.76986708073785,
+  "frequency": 28.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1424.11894,
   "category": "database",
   "category_title": "Database",
   "topics": [

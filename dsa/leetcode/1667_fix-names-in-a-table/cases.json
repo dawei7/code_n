@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1667",
+  "cases": [
+    {"id":"sample-mixed-case","name":"sample: normalize two mixed-case names","kind":"sample","visible":true,"input":{"tables":{"Users":[{"user_id":1,"name":"aLice"},{"user_id":2,"name":"bOB"}]}},"expected":{"columns":["user_id","name"],"rows":[[1,"Alice"],[2,"Bob"]]},"tags":["sample","mixed-case"]},
+    {"id":"trial-single-characters","name":"trial: one-character names have empty suffixes","kind":"trial","visible":true,"input":{"tables":{"Users":[{"user_id":4,"name":"z"},{"user_id":3,"name":"Q"}]}},"expected":{"columns":["user_id","name"],"rows":[[3,"Q"],[4,"Z"]]},"tags":["single-character","ordering"]},
+    {"id":"trial-already-normalized","name":"trial: normalized names remain unchanged","kind":"trial","visible":true,"input":{"tables":{"Users":[{"user_id":12,"name":"Grace"},{"user_id":8,"name":"Ada"}]}},"expected":{"columns":["user_id","name"],"rows":[[8,"Ada"],[12,"Grace"]]},"tags":["idempotence","ordering"]},
+    {"id":"real-all-uppercase","name":"hidden: lowercase an all-uppercase suffix","kind":"real","visible":false,"input":{"tables":{"Users":[{"user_id":20,"name":"ALAN"},{"user_id":2,"name":"TURING"}]}},"expected":{"columns":["user_id","name"],"rows":[[2,"Turing"],[20,"Alan"]]},"tags":["uppercase","suffix"]},
+    {"id":"real-all-lowercase","name":"hidden: uppercase initials of lowercase names","kind":"real","visible":false,"input":{"tables":{"Users":[{"user_id":99,"name":"linus"},{"user_id":7,"name":"margaret"}]}},"expected":{"columns":["user_id","name"],"rows":[[7,"Margaret"],[99,"Linus"]]},"tags":["lowercase","identifier-gaps"]},
+    {"id":"real-varied-internal-case","name":"hidden: every suffix character is lowercased","kind":"real","visible":false,"input":{"tables":{"Users":[{"user_id":31,"name":"gRaCE"},{"user_id":15,"name":"dOnALd"},{"user_id":80,"name":"kEN"}]}},"expected":{"columns":["user_id","name"],"rows":[[15,"Donald"],[31,"Grace"],[80,"Ken"]]},"tags":["mixed-case","complete-suffix","ordering"]}
+  ]
+}

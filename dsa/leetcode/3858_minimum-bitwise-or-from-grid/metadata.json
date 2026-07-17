@@ -6,6 +6,9 @@
   "title": "Minimum Bitwise OR From Grid",
   "difficulty": "Medium",
   "acceptance_rate": 27.33327062364782,
+  "frequency": 66.5,
+  "elo_rating": 1947.355455517,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

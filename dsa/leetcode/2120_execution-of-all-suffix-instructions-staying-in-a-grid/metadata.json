@@ -6,6 +6,9 @@
   "title": "Execution of All Suffix Instructions Staying in a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 82.19996267031668,
+  "frequency": 0.0,
+  "elo_rating": 1379.8787648129,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

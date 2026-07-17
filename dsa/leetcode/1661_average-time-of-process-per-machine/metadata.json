@@ -6,6 +6,9 @@
   "title": "Average Time of Process per Machine",
   "difficulty": "Easy",
   "acceptance_rate": 66.8301972415358,
+  "frequency": 60.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1198.494573,
   "category": "database",
   "category_title": "Database",
   "topics": [

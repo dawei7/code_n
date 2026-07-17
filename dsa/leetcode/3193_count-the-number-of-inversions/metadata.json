@@ -6,6 +6,9 @@
   "title": "Count the Number of Inversions",
   "difficulty": "Hard",
   "acceptance_rate": 31.596718383748186,
+  "frequency": 47.0,
+  "elo_rating": 2266.3248398876,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

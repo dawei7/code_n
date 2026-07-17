@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1721",
+  "cases": [
+    {"id":"sample-five","name":"sample: swap symmetric interior values","kind":"sample","visible":true,"input":{"head":[1,2,3,4,5],"k":2},"expected":[1,4,3,2,5],"tags":["sample","interior"]},
+    {"id":"sample-ten","name":"sample: swap adjacent middle values","kind":"sample","visible":true,"input":{"head":[7,9,6,6,7,8,3,0,9,5],"k":5},"expected":[7,9,6,6,8,7,3,0,9,5],"tags":["sample","adjacent"]},
+    {"id":"trial-single","name":"trial: one node names the same position twice","kind":"trial","visible":true,"input":{"head":[1],"k":1},"expected":[1],"tags":["minimum","same-node"]},
+    {"id":"trial-two-endpoints","name":"trial: two-node list swaps endpoints","kind":"trial","visible":true,"input":{"head":[1,2],"k":1},"expected":[2,1],"tags":["endpoints","two-nodes"]},
+    {"id":"trial-odd-middle","name":"trial: odd middle node swaps with itself","kind":"trial","visible":true,"input":{"head":[10,20,30,40,50],"k":3},"expected":[10,20,30,40,50],"tags":["middle","same-node"]},
+    {"id":"trial-last-position","name":"trial: k equal to n also swaps endpoints","kind":"trial","visible":true,"input":{"head":[3,6,9,12],"k":4},"expected":[12,6,9,3],"tags":["k-equals-n","endpoints"]},
+    {"id":"real-even-middle","name":"hidden: central values in an even list are adjacent","kind":"real","visible":false,"input":{"head":[1,2,3,4,5,6],"k":3},"expected":[1,2,4,3,5,6],"tags":["even-length","adjacent"]},
+    {"id":"real-duplicates","name":"hidden: duplicate values do not identify positions","kind":"real","visible":false,"input":{"head":[5,1,5,2,5,3,5],"k":2},"expected":[5,3,5,2,5,1,5],"tags":["duplicates","positional"]},
+    {"id":"real-zero-values","name":"hidden: zero-valued nodes swap normally","kind":"real","visible":false,"input":{"head":[0,1,2,3,4,0],"k":2},"expected":[0,4,2,3,1,0],"tags":["zero-values","interior"]},
+    {"id":"real-longer","name":"hidden: longer list preserves every link order","kind":"real","visible":false,"input":{"head":[1,2,3,4,5,6,7,8,9,10,11],"k":4},"expected":[1,2,3,8,5,6,7,4,9,10,11],"tags":["longer-list","pointer-gap"]}
+  ]
+}

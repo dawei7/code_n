@@ -6,6 +6,9 @@
   "title": "Customer Purchasing Behavior Analysis",
   "difficulty": "Medium",
   "acceptance_rate": 36.55045024243824,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1731.465951,
   "category": "database",
   "category_title": "Database",
   "topics": [

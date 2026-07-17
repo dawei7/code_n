@@ -6,6 +6,9 @@
   "title": "Remove Comments",
   "difficulty": "Medium",
   "acceptance_rate": 40.2648322821901,
+  "frequency": 42.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1700.255001,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

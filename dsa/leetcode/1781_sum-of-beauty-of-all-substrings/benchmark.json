@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1781",
+  "measurement_note": "Size is n(n+1)/2, the number of nonempty substrings. The fixed-alphabet incremental counter performs constant work per substring, O(size), equivalent to O(n^2). A correct implementation that recounts every character of every substring with explicit loops completes all tiers and is rejected by O(n^3), or O(size^(3/2)), scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 36 substrings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {
+        "s": "abcdeabc"
+      },
+      "expected": 6,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "mixed-alphabet"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 528 substrings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 528,
+      "input": {
+        "s": "abcdeabcdeabcdeabcdeabcdeabcdeab"
+      },
+      "expected": 313,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "mixed-alphabet"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 8256 substrings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8256,
+      "input": {
+        "s": "abcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabcdeabc"
+      },
+      "expected": 6150,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "mixed-alphabet"
+      ]
+    }
+  ]
+}

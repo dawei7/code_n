@@ -6,6 +6,9 @@
   "title": "Find Circular Gift Exchange Chains",
   "difficulty": "Hard",
   "acceptance_rate": 50.78590785907859,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2078.30401,
   "category": "database",
   "category_title": "Database",
   "topics": [

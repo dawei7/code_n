@@ -6,6 +6,9 @@
   "title": "Loud and Rich",
   "difficulty": "Medium",
   "acceptance_rate": 63.78770058963288,
+  "frequency": 25.0,
+  "elo_rating": 1783.2337340478,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

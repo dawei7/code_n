@@ -6,6 +6,9 @@
   "title": "Count Common Words With One Occurrence",
   "difficulty": "Easy",
   "acceptance_rate": 73.56828476472778,
+  "frequency": 10.0,
+  "elo_rating": 1307.4608905199,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

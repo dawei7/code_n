@@ -6,6 +6,9 @@
   "title": "Domino and Tromino Tiling",
   "difficulty": "Medium",
   "acceptance_rate": 51.313383595318264,
+  "frequency": 47.0,
+  "elo_rating": 1830.1493771696,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

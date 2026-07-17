@@ -6,6 +6,9 @@
   "title": "Maximum Number of Ones",
   "difficulty": "Hard",
   "acceptance_rate": 70.69355276245591,
+  "frequency": 0.0,
+  "elo_rating": 2366.7099607655,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

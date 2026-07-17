@@ -6,6 +6,9 @@
   "title": "Find Common Characters",
   "difficulty": "Easy",
   "acceptance_rate": 74.75149884848206,
+  "frequency": 59.8,
+  "elo_rating": 1279.7669712099,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

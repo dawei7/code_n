@@ -6,6 +6,9 @@
   "title": "Sales Analysis III",
   "difficulty": "Easy",
   "acceptance_rate": 47.8497506197411,
+  "frequency": 20.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1254.660134,
   "category": "database",
   "category_title": "Database",
   "topics": [

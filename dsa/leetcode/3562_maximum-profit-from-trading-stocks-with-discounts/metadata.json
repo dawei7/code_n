@@ -6,6 +6,9 @@
   "title": "Maximum Profit from Trading Stocks with Discounts",
   "difficulty": "Hard",
   "acceptance_rate": 56.486800597708786,
+  "frequency": 0.0,
+  "elo_rating": 2458.2853259799,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

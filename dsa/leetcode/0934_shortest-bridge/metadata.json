@@ -6,6 +6,9 @@
   "title": "Shortest Bridge",
   "difficulty": "Medium",
   "acceptance_rate": 59.60773220577277,
+  "frequency": 58.6,
+  "elo_rating": 1825.770486008,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

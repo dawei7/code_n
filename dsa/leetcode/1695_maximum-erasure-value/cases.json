@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1695",
+  "cases": [
+    {"id":"sample-overlapping-four","name":"sample: duplicate four chooses the later window","kind":"sample","visible":true,"input":{"nums":[4,2,4,5,6]},"expected":17,"tags":["sample","duplicate"]},
+    {"id":"sample-repeated-pattern","name":"sample: repeated short pattern has two optimal windows","kind":"sample","visible":true,"input":{"nums":[5,2,1,2,5,2,1,2,5]},"expected":8,"tags":["sample","repeated-pattern"]},
+    {"id":"trial-all-distinct","name":"trial: entire increasing array is optimal","kind":"trial","visible":true,"input":{"nums":[1,2,3,4]},"expected":10,"tags":["all-distinct","whole-array"]},
+    {"id":"trial-single","name":"trial: one maximum-valued element","kind":"trial","visible":true,"input":{"nums":[10000]},"expected":10000,"tags":["minimum","maximum-value"]},
+    {"id":"trial-all-equal","name":"trial: all equal values permit one element","kind":"trial","visible":true,"input":{"nums":[5,5,5,5]},"expected":5,"tags":["all-equal","duplicates"]},
+    {"id":"real-repeating-cycle","name":"hidden: later cycle extends past earlier repeats","kind":"real","visible":false,"input":{"nums":[1,2,3,1,2,3,4]},"expected":10,"tags":["cycle","left-boundary"]},
+    {"id":"real-high-duplicate","name":"hidden: duplicate high value remains inside best suffix","kind":"real","visible":false,"input":{"nums":[100,1,2,100,3,4]},"expected":110,"tags":["duplicate","positive-values"]},
+    {"id":"real-late-maximum","name":"hidden: late maximum extends the post-duplicate window","kind":"real","visible":false,"input":{"nums":[100,1,2,100,1000]},"expected":1103,"tags":["maximum-value","duplicate"]},
+    {"id":"real-adjacent-duplicates","name":"hidden: adjacent repeats reset to the later copy","kind":"real","visible":false,"input":{"nums":[8,8,1,2,3,2,4]},"expected":14,"tags":["adjacent-duplicate","multiple-shrinks"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Find Subsequence of Length K With the Largest Sum",
   "difficulty": "Easy",
   "acceptance_rate": 57.288242375852235,
+  "frequency": 27.9,
+  "elo_rating": 1447.0268321102,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1820",
+  "frontend_id": "1719",
+  "title_slug": "number-of-ways-to-reconstruct-a-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.checkWays",
+  "verified_submission_id": "2070743972",
+  "verified_at": "2026-07-17T06:27:56.750408+00:00"
+}

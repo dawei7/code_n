@@ -6,6 +6,9 @@
   "title": "Can I Win",
   "difficulty": "Medium",
   "acceptance_rate": 31.506588934991008,
+  "frequency": 29.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1756.215943,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

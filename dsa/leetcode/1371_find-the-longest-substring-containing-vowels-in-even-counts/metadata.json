@@ -6,6 +6,9 @@
   "title": "Find the Longest Substring Containing Vowels in Even Counts",
   "difficulty": "Medium",
   "acceptance_rate": 75.5945819908428,
+  "frequency": 0.0,
+  "elo_rating": 2040.539289037,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

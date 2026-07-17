@@ -6,6 +6,9 @@
   "title": "Maximize Distance to Closest Person",
   "difficulty": "Medium",
   "acceptance_rate": 49.8724849284747,
+  "frequency": 69.8,
+  "elo_rating": 1382.7178688716,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

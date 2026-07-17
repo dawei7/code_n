@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1805",
+  "frontend_id": "1703",
+  "title_slug": "minimum-adjacent-swaps-for-k-consecutive-ones",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minMoves",
+  "verified_submission_id": "2070631481",
+  "verified_at": "2026-07-17T04:58:22.471334+00:00"
+}

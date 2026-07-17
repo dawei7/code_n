@@ -6,6 +6,9 @@
   "title": "Sort Characters By Frequency",
   "difficulty": "Medium",
   "acceptance_rate": 75.52082483112575,
+  "frequency": 62.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

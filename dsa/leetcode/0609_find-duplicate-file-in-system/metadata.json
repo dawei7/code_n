@@ -6,6 +6,9 @@
   "title": "Find Duplicate File in System",
   "difficulty": "Medium",
   "acceptance_rate": 67.50403206099409,
+  "frequency": 55.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1403.592577,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Sort the Matrix Diagonally",
   "difficulty": "Medium",
   "acceptance_rate": 83.21619868254707,
+  "frequency": 40.5,
+  "elo_rating": 1548.4678056182,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Substrings Containing All Three Characters",
   "difficulty": "Medium",
   "acceptance_rate": 74.38835808319905,
+  "frequency": 66.5,
+  "elo_rating": 1646.1943237127,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

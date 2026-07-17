@@ -6,6 +6,9 @@
   "title": "Check If a String Can Break Another String",
   "difficulty": "Medium",
   "acceptance_rate": 71.17939448712156,
+  "frequency": 0.0,
+  "elo_rating": 1436.1125054038,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

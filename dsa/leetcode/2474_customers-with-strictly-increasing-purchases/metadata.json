@@ -6,6 +6,9 @@
   "title": "Customers With Strictly Increasing Purchases",
   "difficulty": "Hard",
   "acceptance_rate": 50.36454957874271,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2083.241193,
   "category": "database",
   "category_title": "Database",
   "topics": [

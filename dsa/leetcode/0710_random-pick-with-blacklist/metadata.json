@@ -6,6 +6,9 @@
   "title": "Random Pick with Blacklist",
   "difficulty": "Hard",
   "acceptance_rate": 35.146459798147525,
+  "frequency": 27.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 2296.14511,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Cost Path with Edge Reversals",
   "difficulty": "Medium",
   "acceptance_rate": 61.78364680445446,
+  "frequency": 77.4,
+  "elo_rating": 1853.6535583817,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

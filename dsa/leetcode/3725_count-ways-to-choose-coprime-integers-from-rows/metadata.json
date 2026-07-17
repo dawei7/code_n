@@ -6,6 +6,9 @@
   "title": "Count Ways to Choose Coprime Integers from Rows",
   "difficulty": "Hard",
   "acceptance_rate": 48.540661696633045,
+  "frequency": 0.0,
+  "elo_rating": 1981.8184570058,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

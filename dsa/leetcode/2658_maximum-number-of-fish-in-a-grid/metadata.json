@@ -6,6 +6,9 @@
   "title": "Maximum Number of Fish in a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 70.31532504266012,
+  "frequency": 19.1,
+  "elo_rating": 1489.7210915287,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

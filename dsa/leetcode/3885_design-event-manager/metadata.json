@@ -6,6 +6,9 @@
   "title": "Design Event Manager",
   "difficulty": "Medium",
   "acceptance_rate": 50.92808015623673,
+  "frequency": 25.5,
+  "elo_rating": 1548.0314387523,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

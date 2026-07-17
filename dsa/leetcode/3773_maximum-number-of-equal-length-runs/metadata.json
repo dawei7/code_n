@@ -6,6 +6,9 @@
   "title": "Maximum Number of Equal Length Runs",
   "difficulty": "Medium",
   "acceptance_rate": 84.12371134020619,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

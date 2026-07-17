@@ -6,6 +6,9 @@
   "title": "Split Message Based on Limit",
   "difficulty": "Hard",
   "acceptance_rate": 42.158335898039354,
+  "frequency": 31.7,
+  "elo_rating": 2381.6019709166,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

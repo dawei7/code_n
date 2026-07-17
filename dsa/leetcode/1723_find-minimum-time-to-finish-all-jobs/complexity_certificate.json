@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1723",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(k^n)",
+  "summary": "The source contract limits the complete workload domain to at most twelve jobs and twelve workers, while symmetry-pruned branch-and-bound has input-dependent non-monotone search work; those bounds cannot support an honest exponential runtime-scaling verdict.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 12,
+    "unit": "jobs",
+    "source_constraint": "jobs contains from 1 through 12 durations and k is from 1 through n"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "At each of at most n recursion levels the current job is assigned to one of k workers; pruning removes repeated equal-load and empty-worker states without excluding a distinct workload multiset, so the complete labeled search is bounded by k^n assignments."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares the reference with exhaustive labeled worker assignments on 1,008 canonical instances through six jobs, and authored boundary fixtures cover one worker, k equal to n, exact balancing, duplicate durations, twelve jobs, and the maximum duration."
+    }
+  ]
+}

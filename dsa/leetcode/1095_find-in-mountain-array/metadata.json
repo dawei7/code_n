@@ -6,6 +6,9 @@
   "title": "Find in Mountain Array",
   "difficulty": "Hard",
   "acceptance_rate": 41.844548043222865,
+  "frequency": 60.0,
+  "elo_rating": 1827.090740222,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

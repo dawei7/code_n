@@ -6,6 +6,9 @@
   "title": "Online Election",
   "difficulty": "Medium",
   "acceptance_rate": 52.96584939862656,
+  "frequency": 25.3,
+  "elo_rating": 2000.8021428612,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

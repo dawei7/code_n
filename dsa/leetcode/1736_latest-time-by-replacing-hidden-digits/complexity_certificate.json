@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1736",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The source contract always contains exactly four digit positions, so runtime scaling cannot represent increasing legal work; exhaustive pattern evidence replaces artificial tiers.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 4,
+    "unit": "time digit positions",
+    "source_constraint": "time always has the fixed five-character hh:mm format"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference makes at most four digit replacements with fixed hour and minute validity comparisons."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "Regression generates every valid-completable hidden pattern from all 1,440 times and all 16 digit masks, then compares the reference with a reverse chronological oracle."
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Delete Duplicate Emails",
   "difficulty": "Easy",
   "acceptance_rate": 66.29390558744534,
+  "frequency": 60.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1201.461064,
   "category": "database",
   "category_title": "Database",
   "topics": [

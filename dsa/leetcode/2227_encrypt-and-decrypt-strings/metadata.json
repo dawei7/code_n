@@ -6,6 +6,9 @@
   "title": "Encrypt and Decrypt Strings",
   "difficulty": "Hard",
   "acceptance_rate": 38.66424449668733,
+  "frequency": 56.6,
+  "elo_rating": 1944.5673996888,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

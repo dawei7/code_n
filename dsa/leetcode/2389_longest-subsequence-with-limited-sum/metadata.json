@@ -6,6 +6,9 @@
   "title": "Longest Subsequence With Limited Sum",
   "difficulty": "Easy",
   "acceptance_rate": 73.67915300322751,
+  "frequency": 47.3,
+  "elo_rating": 1387.7347071166,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

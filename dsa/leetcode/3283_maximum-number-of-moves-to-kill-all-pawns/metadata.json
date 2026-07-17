@@ -6,6 +6,9 @@
   "title": "Maximum Number of Moves to Kill All Pawns",
   "difficulty": "Hard",
   "acceptance_rate": 34.19129329520178,
+  "frequency": 0.0,
+  "elo_rating": 2473.2589317118,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Value at a Given Index in a Bounded Array",
   "difficulty": "Medium",
   "acceptance_rate": 38.87478958953775,
+  "frequency": 43.3,
+  "elo_rating": 1929.3184180196,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

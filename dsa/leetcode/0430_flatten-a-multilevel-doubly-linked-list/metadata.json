@@ -6,6 +6,9 @@
   "title": "Flatten a Multilevel Doubly Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 63.093152994228355,
+  "frequency": 68.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1438.064332,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

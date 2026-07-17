@@ -6,6 +6,9 @@
   "title": "Check if Numbers Are Ascending in a Sentence",
   "difficulty": "Easy",
   "acceptance_rate": 73.43789818080182,
+  "frequency": 19.6,
+  "elo_rating": 1257.264923599,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

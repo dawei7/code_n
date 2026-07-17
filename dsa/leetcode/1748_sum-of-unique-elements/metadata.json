@@ -6,6 +6,9 @@
   "title": "Sum of Unique Elements",
   "difficulty": "Easy",
   "acceptance_rate": 80.09943635010103,
+  "frequency": 27.8,
+  "elo_rating": 1228.4824438011,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

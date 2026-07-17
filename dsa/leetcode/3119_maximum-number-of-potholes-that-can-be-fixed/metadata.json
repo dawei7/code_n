@@ -6,6 +6,9 @@
   "title": "Maximum Number of Potholes That Can Be Fixed",
   "difficulty": "Medium",
   "acceptance_rate": 53.4655983721226,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1540.991647,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

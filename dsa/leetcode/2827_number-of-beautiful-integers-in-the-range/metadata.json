@@ -6,6 +6,9 @@
   "title": "Number of Beautiful Integers in the Range",
   "difficulty": "Hard",
   "acceptance_rate": 22.992319795609976,
+  "frequency": 40.7,
+  "elo_rating": 2324.1192580053,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

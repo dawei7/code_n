@@ -6,6 +6,9 @@
   "title": "Jump Game III",
   "difficulty": "Medium",
   "acceptance_rate": 70.33860308135512,
+  "frequency": 49.8,
+  "elo_rating": 1396.5448074496,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

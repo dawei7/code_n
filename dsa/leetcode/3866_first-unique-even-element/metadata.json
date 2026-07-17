@@ -6,6 +6,9 @@
   "title": "First Unique Even Element",
   "difficulty": "Easy",
   "acceptance_rate": 66.27006087437742,
+  "frequency": 6.1,
+  "elo_rating": 1209.4414891571,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

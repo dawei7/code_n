@@ -6,6 +6,9 @@
   "title": "Self Crossing",
   "difficulty": "Hard",
   "acceptance_rate": 35.31998496357924,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2294.09818,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Shortest Distance to a Character",
   "difficulty": "Easy",
   "acceptance_rate": 72.87268055449634,
+  "frequency": 28.2,
+  "elo_rating": 1266.3368046515,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

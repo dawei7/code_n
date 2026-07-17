@@ -6,6 +6,9 @@
   "title": "Rising Temperature",
   "difficulty": "Easy",
   "acceptance_rate": 51.59162077919181,
+  "frequency": 66.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1246.156194,
   "category": "database",
   "category_title": "Database",
   "topics": [

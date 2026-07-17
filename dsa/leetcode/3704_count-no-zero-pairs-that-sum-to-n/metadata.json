@@ -6,6 +6,9 @@
   "title": "Count No-Zero Pairs That Sum to N",
   "difficulty": "Hard",
   "acceptance_rate": 15.0267279125366,
+  "frequency": 0.0,
+  "elo_rating": 2419.2873599122,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

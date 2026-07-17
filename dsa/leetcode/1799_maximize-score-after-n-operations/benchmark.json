@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1799",
+  "measurement_note": "Size is m, the even number of array positions. The tiers retain overlapping divisibility so the memoized search explores the complete reachable mask state space. The reviewed implementation precomputes pair GCDs and takes O(m^2 * 2^m) time. A correct memoized implementation that constructs each remaining tuple in O(m) per transition completes all tiers but is rejected by its additional polynomial factor.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: two positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {"nums": [6,10]},
+      "expected": 2,
+      "tags": ["benchmark","bitmask","gcd"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: eight positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [6,10,15,21,35,14,22,33]},
+      "expected": 78,
+      "tags": ["benchmark","bitmask","gcd"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: twelve positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"nums": [6,10,15,21,35,14,22,33,26,39,55,65]},
+      "expected": 189,
+      "tags": ["benchmark","bitmask","gcd","large-state-space"]
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Tasks Count in the Weekend",
   "difficulty": "Medium",
   "acceptance_rate": 81.74527895145296,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1662",
+  "cases": [
+    {"id":"sample-different-boundaries","name":"sample: different fragment boundaries represent abc","kind":"sample","visible":true,"input":{"word1":["ab","c"],"word2":["a","bc"]},"expected":true,"tags":["sample","boundaries"]},
+    {"id":"sample-middle-mismatch","name":"sample: mismatch occurs across fragment boundaries","kind":"sample","visible":true,"input":{"word1":["a","cb"],"word2":["ab","c"]},"expected":false,"tags":["sample","mismatch"]},
+    {"id":"sample-single-fragment","name":"sample: many fragments equal one fragment","kind":"sample","visible":true,"input":{"word1":["abc","d","defg"],"word2":["abcddefg"]},"expected":true,"tags":["sample","single-fragment"]},
+    {"id":"trial-single-character","name":"trial: equal singleton arrays","kind":"trial","visible":true,"input":{"word1":["z"],"word2":["z"]},"expected":true,"tags":["minimum"]},
+    {"id":"trial-extra-character","name":"trial: equal prefix but second string is longer","kind":"trial","visible":true,"input":{"word1":["abc"],"word2":["ab","cd"]},"expected":false,"tags":["length-mismatch"]},
+    {"id":"real-character-fragments","name":"hidden: every character is a separate fragment","kind":"real","visible":false,"input":{"word1":["c","o","d","e","n"],"word2":["co","den"]},"expected":true,"tags":["many-fragments"]},
+    {"id":"real-last-character-mismatch","name":"hidden: only the final character differs","kind":"real","visible":false,"input":{"word1":["long","prefix","a"],"word2":["longpre","fixb"]},"expected":false,"tags":["late-mismatch"]},
+    {"id":"real-first-character-mismatch","name":"hidden: first character differs","kind":"real","visible":false,"input":{"word1":["x","same"],"word2":["y","same"]},"expected":false,"tags":["early-mismatch"]},
+    {"id":"real-fragment-count-irrelevant","name":"hidden: unequal fragment counts preserve equality","kind":"real","visible":false,"input":{"word1":["aa","bb","cc","dd"],"word2":["aabbccdd"]},"expected":true,"tags":["fragment-count"]},
+    {"id":"real-repeated-letters","name":"hidden: repeated letters cross every boundary","kind":"real","visible":false,"input":{"word1":["aaa","a","aa"],"word2":["a","aaaaa"]},"expected":true,"tags":["repeated-letters"]}
+  ]
+}

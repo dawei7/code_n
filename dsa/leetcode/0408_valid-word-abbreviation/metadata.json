@@ -6,6 +6,9 @@
   "title": "Valid Word Abbreviation",
   "difficulty": "Easy",
   "acceptance_rate": 37.04530327363324,
+  "frequency": 91.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

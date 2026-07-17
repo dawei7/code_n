@@ -6,6 +6,9 @@
   "title": "String Matching in an Array",
   "difficulty": "Easy",
   "acceptance_rate": 69.81495696483692,
+  "frequency": 17.5,
+  "elo_rating": 1223.3861903833,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

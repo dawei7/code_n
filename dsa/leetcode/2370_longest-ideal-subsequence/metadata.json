@@ -6,6 +6,9 @@
   "title": "Longest Ideal Subsequence",
   "difficulty": "Medium",
   "acceptance_rate": 46.63102993856377,
+  "frequency": 24.5,
+  "elo_rating": 1834.868034709,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

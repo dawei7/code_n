@@ -6,6 +6,9 @@
   "title": "Where Will the Ball Fall",
   "difficulty": "Medium",
   "acceptance_rate": 72.3371400533005,
+  "frequency": 0.0,
+  "elo_rating": 1764.9170564773,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

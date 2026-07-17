@@ -6,6 +6,9 @@
   "title": "The Score of Students Solving Math Expression",
   "difficulty": "Hard",
   "acceptance_rate": 34.503320716989215,
+  "frequency": 0.0,
+  "elo_rating": 2583.9006314254,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

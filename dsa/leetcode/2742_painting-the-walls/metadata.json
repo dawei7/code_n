@@ -6,6 +6,9 @@
   "title": "Painting the Walls",
   "difficulty": "Hard",
   "acceptance_rate": 49.168880998057745,
+  "frequency": 50.2,
+  "elo_rating": 2424.6761561972,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

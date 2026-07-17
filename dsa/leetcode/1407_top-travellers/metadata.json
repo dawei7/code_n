@@ -6,6 +6,9 @@
   "title": "Top Travellers",
   "difficulty": "Easy",
   "acceptance_rate": 57.46714210316285,
+  "frequency": 10.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1231.719271,
   "category": "database",
   "category_title": "Database",
   "topics": [

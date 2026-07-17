@@ -6,6 +6,9 @@
   "title": "Maximum Difference by Remapping a Digit",
   "difficulty": "Easy",
   "acceptance_rate": 75.62948285004605,
+  "frequency": 0.0,
+  "elo_rating": 1396.1044458638,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

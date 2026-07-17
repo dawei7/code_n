@@ -6,6 +6,9 @@
   "title": "Fair Distribution of Cookies",
   "difficulty": "Medium",
   "acceptance_rate": 69.98976435393847,
+  "frequency": 31.9,
+  "elo_rating": 1886.7040111218,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

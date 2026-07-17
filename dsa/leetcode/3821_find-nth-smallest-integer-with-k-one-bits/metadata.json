@@ -6,6 +6,9 @@
   "title": "Find Nth Smallest Integer With K One Bits",
   "difficulty": "Hard",
   "acceptance_rate": 35.26551458756034,
+  "frequency": 68.3,
+  "elo_rating": 2069.1534510743,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

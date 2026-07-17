@@ -6,6 +6,9 @@
   "title": "Minimum Time to Kill All Monsters",
   "difficulty": "Hard",
   "acceptance_rate": 57.71651183697932,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2021.114967,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

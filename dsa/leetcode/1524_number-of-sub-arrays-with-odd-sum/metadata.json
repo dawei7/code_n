@@ -6,6 +6,9 @@
   "title": "Number of Sub-arrays With Odd Sum",
   "difficulty": "Medium",
   "acceptance_rate": 55.68035163190872,
+  "frequency": 30.5,
+  "elo_rating": 1610.569398159,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

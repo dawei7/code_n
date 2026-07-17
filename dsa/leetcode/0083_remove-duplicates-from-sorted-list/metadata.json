@@ -6,6 +6,9 @@
   "title": "Remove Duplicates from Sorted List",
   "difficulty": "Easy",
   "acceptance_rate": 57.02894306859619,
+  "frequency": 64.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1233.103634,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

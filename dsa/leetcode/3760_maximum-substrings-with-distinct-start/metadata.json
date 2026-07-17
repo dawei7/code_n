@@ -6,6 +6,9 @@
   "title": "Maximum Substrings With Distinct Start",
   "difficulty": "Medium",
   "acceptance_rate": 91.41325074913617,
+  "frequency": 26.0,
+  "elo_rating": 1364.0551746266,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

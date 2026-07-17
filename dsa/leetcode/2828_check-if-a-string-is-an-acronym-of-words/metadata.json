@@ -6,6 +6,9 @@
   "title": "Check if a String Is an Acronym of Words",
   "difficulty": "Easy",
   "acceptance_rate": 83.07741603106192,
+  "frequency": 0.0,
+  "elo_rating": 1151.9713084499,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Patching Array",
   "difficulty": "Hard",
   "acceptance_rate": 54.40678656181658,
+  "frequency": 32.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 2046.212317,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

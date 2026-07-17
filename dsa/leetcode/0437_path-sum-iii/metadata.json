@@ -6,6 +6,9 @@
   "title": "Path Sum III",
   "difficulty": "Medium",
   "acceptance_rate": 46.50280048114879,
+  "frequency": 54.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1636.958027,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

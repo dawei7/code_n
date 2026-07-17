@@ -6,6 +6,9 @@
   "title": "Minimum Cost to Move Chips to The Same Position",
   "difficulty": "Easy",
   "acceptance_rate": 73.04012816919673,
+  "frequency": 39.7,
+  "elo_rating": 1407.5442381391,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

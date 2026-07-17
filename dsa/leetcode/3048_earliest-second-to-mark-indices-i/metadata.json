@@ -6,6 +6,9 @@
   "title": "Earliest Second to Mark Indices I",
   "difficulty": "Medium",
   "acceptance_rate": 37.19594377767794,
+  "frequency": 0.0,
+  "elo_rating": 2262.5641910108,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

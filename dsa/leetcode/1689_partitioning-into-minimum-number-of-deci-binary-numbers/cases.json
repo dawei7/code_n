@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1689",
+  "cases": [
+    {"id":"sample-thirty-two","name":"sample: digit three needs three layers","kind":"sample","visible":true,"input":{"n":"32"},"expected":3,"tags":["sample","construction"]},
+    {"id":"sample-five-digits","name":"sample: leading eight is the maximum","kind":"sample","visible":true,"input":{"n":"82734"},"expected":8,"tags":["sample","leading-maximum"]},
+    {"id":"sample-long-nine","name":"sample: a long value contains digit nine","kind":"sample","visible":true,"input":{"n":"27346209830709182346"},"expected":9,"tags":["sample","long","nine"]},
+    {"id":"trial-single-one","name":"trial: one is already deci-binary","kind":"trial","visible":true,"input":{"n":"1"},"expected":1,"tags":["minimum","deci-binary"]},
+    {"id":"trial-power-ten","name":"trial: ten is already deci-binary","kind":"trial","visible":true,"input":{"n":"10"},"expected":1,"tags":["zero-digit","deci-binary"]},
+    {"id":"real-all-ones","name":"hidden: every position needs one layer","kind":"real","visible":false,"input":{"n":"11111111111111111111"},"expected":1,"tags":["all-ones","long"]},
+    {"id":"real-uniform-twos","name":"hidden: two identical layers suffice","kind":"real","visible":false,"input":{"n":"222222"},"expected":2,"tags":["uniform-digit"]},
+    {"id":"real-nine-at-ends","name":"hidden: zero between maximum digits does not matter","kind":"real","visible":false,"input":{"n":"909"},"expected":9,"tags":["nine","zero-digit"]},
+    {"id":"real-internal-maximum","name":"hidden: maximum occurs only inside the string","kind":"real","visible":false,"input":{"n":"12345654321"},"expected":6,"tags":["internal-maximum"]},
+    {"id":"real-long-sparse-nine","name":"hidden: far-right maximum in a large decimal value","kind":"real","visible":false,"input":{"n":"10000000000000000000000000000000000000000000009"},"expected":9,"tags":["long","far-right-maximum"]}
+  ]
+}

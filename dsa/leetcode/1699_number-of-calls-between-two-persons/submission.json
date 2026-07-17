@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1842",
+  "frontend_id": "1699",
+  "title_slug": "number-of-calls-between-two-persons",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070610422",
+  "verified_at": "2026-07-17T04:40:29.840457+00:00"
+}

@@ -6,6 +6,9 @@
   "title": "Reconstruct Itinerary",
   "difficulty": "Hard",
   "acceptance_rate": 44.73067116559841,
+  "frequency": 65.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 2159.000744,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

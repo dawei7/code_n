@@ -6,6 +6,9 @@
   "title": "Koko Eating Bananas",
   "difficulty": "Medium",
   "acceptance_rate": 50.20884534784631,
+  "frequency": 89.7,
+  "elo_rating": 1765.5654059263,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count Residue Prefixes",
   "difficulty": "Easy",
   "acceptance_rate": 65.77959834499443,
+  "frequency": 0.0,
+  "elo_rating": 1248.1930285148,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Separate the Digits in an Array",
   "difficulty": "Easy",
   "acceptance_rate": 85.79334979714235,
+  "frequency": 62.7,
+  "elo_rating": 1216.612918849,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

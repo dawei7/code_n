@@ -6,6 +6,9 @@
   "title": "Second Day Verification",
   "difficulty": "Easy",
   "acceptance_rate": 66.81825837965303,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1198.890105,
   "category": "database",
   "category_title": "Database",
   "topics": [

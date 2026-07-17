@@ -6,6 +6,9 @@
   "title": "Strong Password Checker",
   "difficulty": "Hard",
   "acceptance_rate": 16.012522738364613,
+  "frequency": 49.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 2407.63461,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

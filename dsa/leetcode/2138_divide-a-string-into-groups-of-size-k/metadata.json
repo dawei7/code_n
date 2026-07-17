@@ -6,6 +6,9 @@
   "title": "Divide a String Into Groups of Size k",
   "difficulty": "Easy",
   "acceptance_rate": 76.94385265914462,
+  "frequency": 0.0,
+  "elo_rating": 1273.046473797,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

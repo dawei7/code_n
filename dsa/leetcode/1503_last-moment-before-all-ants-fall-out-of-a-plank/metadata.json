@@ -6,6 +6,9 @@
   "title": "Last Moment Before All Ants Fall Out of a Plank",
   "difficulty": "Medium",
   "acceptance_rate": 68.16567645561025,
+  "frequency": 31.9,
+  "elo_rating": 1618.6016480451,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

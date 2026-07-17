@@ -6,6 +6,9 @@
   "title": "Minimize the Maximum Adjacent Element Difference",
   "difficulty": "Hard",
   "acceptance_rate": 19.92501056189269,
+  "frequency": 0.0,
+  "elo_rating": 3077.2342981036,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

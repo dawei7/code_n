@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1690",
+  "cases": [
+    {"id":"sample-five-stones","name":"sample: five-stone optimal play","kind":"sample","visible":true,"input":{"stones":[5,3,1,4,2]},"expected":6,"tags":["sample","odd-length"]},
+    {"id":"sample-eight-stones","name":"sample: varied eight-stone row","kind":"sample","visible":true,"input":{"stones":[7,90,5,1,100,10,10,2]},"expected":122,"tags":["sample","even-length"]},
+    {"id":"trial-two-ascending","name":"trial: two stones leave the larger score","kind":"trial","visible":true,"input":{"stones":[1,2]},"expected":2,"tags":["minimum","endpoint-choice"]},
+    {"id":"trial-two-equal","name":"trial: equal minimum-length endpoints","kind":"trial","visible":true,"input":{"stones":[5,5]},"expected":5,"tags":["minimum","equal-values"]},
+    {"id":"trial-three-equal","name":"trial: all-equal odd-length row","kind":"trial","visible":true,"input":{"stones":[4,4,4]},"expected":4,"tags":["equal-values","odd-length"]},
+    {"id":"real-increasing","name":"hidden: strictly increasing endpoint values","kind":"real","visible":false,"input":{"stones":[1,2,3,4]},"expected":6,"tags":["increasing","even-length"]},
+    {"id":"real-alternating-peaks","name":"hidden: repeated peaks defeat simple endpoint greed","kind":"real","visible":false,"input":{"stones":[10,1,10,1,10]},"expected":2,"tags":["alternating","greedy-trap"]},
+    {"id":"real-boundary-values","name":"hidden: maximum values at separated endpoints","kind":"real","visible":false,"input":{"stones":[1000,1,2,3,1000,4]},"expected":2002,"tags":["maximum-value","varied"]},
+    {"id":"real-varied","name":"hidden: several competing interval choices","kind":"real","visible":false,"input":{"stones":[8,2,9,1,7,3]},"expected":24,"tags":["varied","even-length"]}
+  ]
+}

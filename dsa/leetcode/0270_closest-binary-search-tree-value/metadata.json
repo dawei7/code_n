@@ -6,6 +6,9 @@
   "title": "Closest Binary Search Tree Value",
   "difficulty": "Easy",
   "acceptance_rate": 49.16234680956171,
+  "frequency": 44.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1251.89141,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Swap Adjacent in LR String",
   "difficulty": "Medium",
   "acceptance_rate": 38.23148671887753,
+  "frequency": 57.9,
+  "elo_rating": 1938.6883365596,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

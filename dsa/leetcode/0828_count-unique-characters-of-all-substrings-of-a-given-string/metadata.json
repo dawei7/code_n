@@ -6,6 +6,9 @@
   "title": "Count Unique Characters of All Substrings of a Given String",
   "difficulty": "Hard",
   "acceptance_rate": 53.75642683657698,
+  "frequency": 0.0,
+  "elo_rating": 2034.4067304341,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

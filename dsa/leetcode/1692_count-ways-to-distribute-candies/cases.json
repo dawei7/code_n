@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1692",
+  "cases": [
+    {"id":"sample-three-two","name":"sample: three candies into two bags","kind":"sample","visible":true,"input":{"n":3,"k":2},"expected":3,"tags":["sample","partition"]},
+    {"id":"sample-four-two","name":"sample: four candies into two bags","kind":"sample","visible":true,"input":{"n":4,"k":2},"expected":7,"tags":["sample","partition"]},
+    {"id":"sample-modulo","name":"sample: large count requires the modulus","kind":"sample","visible":true,"input":{"n":20,"k":5},"expected":206085257,"tags":["sample","modulo"]},
+    {"id":"trial-one-candy","name":"trial: one candy in one bag","kind":"trial","visible":true,"input":{"n":1,"k":1},"expected":1,"tags":["minimum","boundary"]},
+    {"id":"trial-one-bag","name":"trial: every candy belongs to one bag","kind":"trial","visible":true,"input":{"n":8,"k":1},"expected":1,"tags":["one-bag","boundary"]},
+    {"id":"trial-all-singletons","name":"trial: one bag per candy","kind":"trial","visible":true,"input":{"n":8,"k":8},"expected":1,"tags":["all-singletons","boundary"]},
+    {"id":"real-five-three","name":"hidden: mixed singleton and larger groups","kind":"real","visible":false,"input":{"n":5,"k":3},"expected":25,"tags":["varied","stirling"]},
+    {"id":"real-eight-three","name":"hidden: larger three-bag partition count","kind":"real","visible":false,"input":{"n":8,"k":3},"expected":966,"tags":["varied","stirling"]},
+    {"id":"real-ten-two","name":"hidden: two unlabeled bags avoid symmetric double counting","kind":"real","visible":false,"input":{"n":10,"k":2},"expected":511,"tags":["unlabeled-bags","symmetry"]},
+    {"id":"real-ten-five","name":"hidden: balanced candy and bag counts","kind":"real","visible":false,"input":{"n":10,"k":5},"expected":42525,"tags":["varied","stirling"]}
+  ]
+}

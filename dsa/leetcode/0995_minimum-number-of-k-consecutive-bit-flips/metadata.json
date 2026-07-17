@@ -6,6 +6,9 @@
   "title": "Minimum Number of K Consecutive Bit Flips",
   "difficulty": "Hard",
   "acceptance_rate": 62.3604417713846,
+  "frequency": 54.4,
+  "elo_rating": 1835.4868365659,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

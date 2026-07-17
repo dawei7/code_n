@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1739",
+  "measurement_note": "Size is H, the height of an exact complete corner stack. The input is the Hth tetrahedral number. Binary search is logarithmic in n, while the correct incremental construction completes all legal tiers and grows linearly with H.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: complete height-10 stack",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {"n": 220},
+      "expected": 55,
+      "tags": ["benchmark", "scaling", "tetrahedral-boundary"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: complete height-100 stack",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"n": 171700},
+      "expected": 5050,
+      "tags": ["benchmark", "scaling", "tetrahedral-boundary"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: complete height-1000 stack",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {"n": 167167000},
+      "expected": 500500,
+      "tags": ["benchmark", "scaling", "tetrahedral-boundary"]
+    }
+  ]
+}

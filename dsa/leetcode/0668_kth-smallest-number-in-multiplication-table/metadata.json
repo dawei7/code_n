@@ -6,6 +6,9 @@
   "title": "Kth Smallest Number in Multiplication Table",
   "difficulty": "Hard",
   "acceptance_rate": 54.393209593739556,
+  "frequency": 12.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 2046.623749,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

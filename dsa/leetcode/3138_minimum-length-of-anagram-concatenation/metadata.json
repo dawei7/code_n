@@ -6,6 +6,9 @@
   "title": "Minimum Length of Anagram Concatenation",
   "difficulty": "Medium",
   "acceptance_rate": 39.88899725976499,
+  "frequency": 35.0,
+  "elo_rating": 1979.493040606,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

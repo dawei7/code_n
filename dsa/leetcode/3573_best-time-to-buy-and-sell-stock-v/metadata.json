@@ -6,6 +6,9 @@
   "title": "Best Time to Buy and Sell Stock V",
   "difficulty": "Medium",
   "acceptance_rate": 60.599893501396885,
+  "frequency": 40.3,
+  "elo_rating": 1777.1347057233,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

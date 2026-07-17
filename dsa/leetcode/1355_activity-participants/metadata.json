@@ -6,6 +6,9 @@
   "title": "Activity Participants",
   "difficulty": "Medium",
   "acceptance_rate": 72.04849263377623,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1373.038068,
   "category": "database",
   "category_title": "Database",
   "topics": [

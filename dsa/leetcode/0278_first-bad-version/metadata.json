@@ -6,6 +6,9 @@
   "title": "First Bad Version",
   "difficulty": "Easy",
   "acceptance_rate": 47.325816269050286,
+  "frequency": 63.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1255.055666,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

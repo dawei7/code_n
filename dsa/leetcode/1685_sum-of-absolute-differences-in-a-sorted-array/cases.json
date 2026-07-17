@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1685",
+  "cases": [
+    {"id":"sample-three-values","name":"sample: three increasing values","kind":"sample","visible":true,"input":{"nums":[2,3,5]},"expected":[4,3,5],"tags":["sample","increasing"]},
+    {"id":"sample-five-values","name":"sample: five spaced values","kind":"sample","visible":true,"input":{"nums":[1,4,6,8,10]},"expected":[24,15,13,15,21],"tags":["sample","increasing"]},
+    {"id":"trial-all-equal","name":"trial: all absolute differences are zero","kind":"trial","visible":true,"input":{"nums":[1,1,1]},"expected":[0,0,0],"tags":["duplicates","zero-distances"]},
+    {"id":"trial-two-extremes","name":"trial: two elements receive the same distance","kind":"trial","visible":true,"input":{"nums":[1,10000]},"expected":[9999,9999],"tags":["minimum-length","value-boundary"]},
+    {"id":"real-adjacent-duplicates","name":"hidden: duplicate middle values have equal totals","kind":"real","visible":false,"input":{"nums":[1,2,2,3]},"expected":[4,2,2,4],"tags":["duplicates","middle"]},
+    {"id":"real-several-runs","name":"hidden: several duplicate runs","kind":"real","visible":false,"input":{"nums":[1,1,2,2,2,7]},"expected":[9,9,7,7,7,27],"tags":["duplicates","runs"]},
+    {"id":"real-even-spacing","name":"hidden: evenly spaced values form symmetric totals","kind":"real","visible":false,"input":{"nums":[2,4,6,8,10,12]},"expected":[30,22,18,18,22,30],"tags":["symmetry","even-spacing"]},
+    {"id":"real-large-duplicates","name":"hidden: large equal endpoints and one smaller value","kind":"real","visible":false,"input":{"nums":[1,10000,10000,10000]},"expected":[29997,9999,9999,9999],"tags":["large-values","duplicates"]},
+    {"id":"real-consecutive-seven","name":"hidden: consecutive values around a center","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,6,7]},"expected":[21,16,13,12,13,16,21],"tags":["consecutive","odd-length"]}
+  ]
+}

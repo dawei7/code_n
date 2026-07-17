@@ -6,6 +6,9 @@
   "title": "Set Matrix Zeroes",
   "difficulty": "Medium",
   "acceptance_rate": 63.26646577863243,
+  "frequency": 72.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1436.497434,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

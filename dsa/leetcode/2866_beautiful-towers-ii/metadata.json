@@ -6,6 +6,9 @@
   "title": "Beautiful Towers II",
   "difficulty": "Medium",
   "acceptance_rate": 36.737170596393895,
+  "frequency": 31.7,
+  "elo_rating": 2071.6322841217,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

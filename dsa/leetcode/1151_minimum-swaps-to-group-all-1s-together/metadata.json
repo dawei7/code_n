@@ -6,6 +6,9 @@
   "title": "Minimum Swaps to Group All 1's Together",
   "difficulty": "Medium",
   "acceptance_rate": 61.2674751384628,
+  "frequency": 46.7,
+  "elo_rating": 1508.1169489285,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

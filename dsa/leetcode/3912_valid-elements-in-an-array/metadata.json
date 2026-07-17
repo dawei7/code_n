@@ -6,6 +6,9 @@
   "title": "Valid Elements in an Array",
   "difficulty": "Easy",
   "acceptance_rate": 57.3152846625407,
+  "frequency": 32.5,
+  "elo_rating": 1273.3478695172,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

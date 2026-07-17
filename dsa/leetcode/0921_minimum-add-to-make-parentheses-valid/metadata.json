@@ -6,6 +6,9 @@
   "title": "Minimum Add to Make Parentheses Valid",
   "difficulty": "Medium",
   "acceptance_rate": 74.34191295330152,
+  "frequency": 53.5,
+  "elo_rating": 1242.4710735813,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

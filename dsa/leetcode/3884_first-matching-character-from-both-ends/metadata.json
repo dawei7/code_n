@@ -6,6 +6,9 @@
   "title": "First Matching Character From Both Ends",
   "difficulty": "Easy",
   "acceptance_rate": 82.12714350180505,
+  "frequency": 0.0,
+  "elo_rating": 1161.1147504109,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

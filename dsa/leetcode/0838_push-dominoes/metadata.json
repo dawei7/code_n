@@ -6,6 +6,9 @@
   "title": "Push Dominoes",
   "difficulty": "Medium",
   "acceptance_rate": 63.02574838220782,
+  "frequency": 35.3,
+  "elo_rating": 1638.1281256708,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Segments in a String",
   "difficulty": "Easy",
   "acceptance_rate": 37.470139222835606,
+  "frequency": 22.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

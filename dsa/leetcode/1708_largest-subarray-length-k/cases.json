@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1708",
+  "cases": [
+    {"id":"sample-middle-start","name":"sample: best window begins in the middle","kind":"sample","visible":true,"input":{"nums":[1,4,5,2,3],"k":3},"expected":[5,2,3],"tags":["sample","middle-start"]},
+    {"id":"sample-two-candidates","name":"sample: compare the two legal four-element starts","kind":"sample","visible":true,"input":{"nums":[1,4,5,2,3],"k":4},"expected":[4,5,2,3],"tags":["sample","legal-prefix"]},
+    {"id":"sample-single-element","name":"sample: one-element windows choose the maximum value","kind":"sample","visible":true,"input":{"nums":[1,4,5,2,3],"k":1},"expected":[5],"tags":["sample","k-one"]},
+    {"id":"trial-entire-array","name":"trial: the entire array is the only candidate","kind":"trial","visible":true,"input":{"nums":[8,1,6,3],"k":4},"expected":[8,1,6,3],"tags":["full-length","single-candidate"]},
+    {"id":"trial-first-start","name":"trial: the first legal start has the greatest value","kind":"trial","visible":true,"input":{"nums":[9,2,7,4,1],"k":3},"expected":[9,2,7],"tags":["first-start","greedy"]},
+    {"id":"trial-last-start","name":"trial: the final legal start has the greatest value","kind":"trial","visible":true,"input":{"nums":[2,1,8,4,3],"k":3},"expected":[8,4,3],"tags":["last-start","boundary"]},
+    {"id":"real-late-global-maximum","name":"hidden: a late global maximum cannot start a full window","kind":"real","visible":false,"input":{"nums":[7,2,1,10],"k":3},"expected":[7,2,1],"tags":["legal-prefix","late-maximum"]},
+    {"id":"real-relative-order","name":"hidden: only relative value order controls the start","kind":"real","visible":false,"input":{"nums":[8,2,5,1],"k":2},"expected":[8,2],"tags":["relative-order","value-gaps"]},
+    {"id":"real-large-values","name":"hidden: magnitude does not change lexicographic selection","kind":"real","visible":false,"input":{"nums":[1000000000,3,999999999,4],"k":2},"expected":[1000000000,3],"tags":["large-values","first-start"]},
+    {"id":"real-preserve-contiguity","name":"hidden: result preserves the elements after the best start","kind":"real","visible":false,"input":{"nums":[3,9,1,8,7,6],"k":4},"expected":[9,1,8,7],"tags":["contiguity","order"]}
+  ]
+}

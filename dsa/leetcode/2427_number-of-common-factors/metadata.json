@@ -6,6 +6,9 @@
   "title": "Number of Common Factors",
   "difficulty": "Easy",
   "acceptance_rate": 80.18225591062125,
+  "frequency": 11.5,
+  "elo_rating": 1172.0548998046,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

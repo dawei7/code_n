@@ -6,6 +6,9 @@
   "title": "Subarray Product Less Than K",
   "difficulty": "Medium",
   "acceptance_rate": 54.630833288639515,
+  "frequency": 65.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1525.532017,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

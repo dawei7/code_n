@@ -6,6 +6,9 @@
   "title": "Subsets",
   "difficulty": "Medium",
   "acceptance_rate": 82.53062751578703,
+  "frequency": 72.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

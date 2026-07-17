@@ -6,6 +6,9 @@
   "title": "Count Number of Maximum Bitwise-OR Subsets",
   "difficulty": "Medium",
   "acceptance_rate": 89.50531767514227,
+  "frequency": 0.0,
+  "elo_rating": 1567.6884942977,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

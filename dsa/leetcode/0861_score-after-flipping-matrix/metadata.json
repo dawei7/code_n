@@ -6,6 +6,9 @@
   "title": "Score After Flipping Matrix",
   "difficulty": "Medium",
   "acceptance_rate": 80.28055412741912,
+  "frequency": 43.9,
+  "elo_rating": 1818.0024504436,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1646",
+  "cases": [
+    {"id":"sample-seven","name":"sample: generated array through index seven","kind":"sample","visible":true,"input":{"n":7},"expected":3,"tags":["sample","odd-index"]},
+    {"id":"sample-two","name":"sample: first copied even entry","kind":"sample","visible":true,"input":{"n":2},"expected":1,"tags":["sample","even-index"]},
+    {"id":"sample-three","name":"sample: first summed odd entry","kind":"sample","visible":true,"input":{"n":3},"expected":2,"tags":["sample","odd-index"]},
+    {"id":"trial-zero","name":"trial: zero creates the singleton array","kind":"trial","visible":true,"input":{"n":0},"expected":0,"tags":["minimum-input"]},
+    {"id":"trial-one","name":"trial: initialized index one is the maximum","kind":"trial","visible":true,"input":{"n":1},"expected":1,"tags":["initialization"]},
+    {"id":"real-four","name":"hidden: final copied value does not exceed the earlier maximum","kind":"real","visible":false,"input":{"n":4},"expected":2,"tags":["maximum-before-end"]},
+    {"id":"real-ten","name":"hidden: several even and odd recurrence steps","kind":"real","visible":false,"input":{"n":10},"expected":4,"tags":["mixed-parity"]},
+    {"id":"real-fifty","name":"hidden: midpoint of the legal domain","kind":"real","visible":false,"input":{"n":50},"expected":13,"tags":["interior-domain"]},
+    {"id":"real-near-maximum","name":"hidden: input immediately below the upper boundary","kind":"real","visible":false,"input":{"n":99},"expected":21,"tags":["upper-boundary"]},
+    {"id":"real-maximum","name":"hidden: maximum legal generated index","kind":"real","visible":false,"input":{"n":100},"expected":21,"tags":["maximum-input"]}
+  ]
+}

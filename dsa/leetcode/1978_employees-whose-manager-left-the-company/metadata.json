@@ -6,6 +6,9 @@
   "title": "Employees Whose Manager Left the Company",
   "difficulty": "Easy",
   "acceptance_rate": 48.763872380435856,
+  "frequency": 32.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1252.286942,
   "category": "database",
   "category_title": "Database",
   "topics": [

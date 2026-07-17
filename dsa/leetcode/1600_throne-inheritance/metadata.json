@@ -6,6 +6,9 @@
   "title": "Throne Inheritance",
   "difficulty": "Medium",
   "acceptance_rate": 67.44654651292959,
+  "frequency": 38.4,
+  "elo_rating": 1768.623896829,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

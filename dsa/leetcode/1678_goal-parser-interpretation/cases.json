@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1678",
+  "cases": [
+    {"id":"sample-goal","name":"sample: decode all three token kinds","kind":"sample","visible":true,"input":{"command":"G()(al)"},"expected":"Goal","tags":["sample","all-tokens"]},
+    {"id":"sample-repeated-o","name":"sample: repeated empty-parenthesis tokens","kind":"sample","visible":true,"input":{"command":"G()()()()(al)"},"expected":"Gooooal","tags":["sample","repetition"]},
+    {"id":"sample-mixed-order","name":"sample: mixed tokens begin with al","kind":"sample","visible":true,"input":{"command":"(al)G(al)()()G"},"expected":"alGalooG","tags":["sample","mixed-order"]},
+    {"id":"trial-single-g","name":"trial: minimum G command","kind":"trial","visible":true,"input":{"command":"G"},"expected":"G","tags":["minimum","g-token"]},
+    {"id":"trial-single-o","name":"trial: minimum empty-parenthesis command","kind":"trial","visible":true,"input":{"command":"()"},"expected":"o","tags":["minimum","o-token"]},
+    {"id":"trial-single-al","name":"trial: minimum al command","kind":"trial","visible":true,"input":{"command":"(al)"},"expected":"al","tags":["minimum","al-token"]},
+    {"id":"real-only-o","name":"hidden: decode adjacent empty-parenthesis tokens","kind":"real","visible":false,"input":{"command":"()()()()()"},"expected":"ooooo","tags":["single-kind","adjacent"]},
+    {"id":"real-only-al","name":"hidden: decode adjacent al tokens","kind":"real","visible":false,"input":{"command":"(al)(al)(al)"},"expected":"alalal","tags":["single-kind","adjacent"]},
+    {"id":"real-alternating","name":"hidden: alternate every token branch","kind":"real","visible":false,"input":{"command":"G()(al)G(al)()G"},"expected":"GoalGaloG","tags":["branch-changes"]},
+    {"id":"real-long-valid","name":"hidden: preserve a longer mixed sequence","kind":"real","visible":false,"input":{"command":"(al)()GG()(al)()G(al)"},"expected":"aloGGoaloGal","tags":["long","mixed-order"]}
+  ]
+}

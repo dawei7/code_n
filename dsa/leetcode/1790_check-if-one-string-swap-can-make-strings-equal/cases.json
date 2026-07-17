@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1790",
+  "cases": [
+    {
+      "id": "example-endpoint-swap",
+      "name": "swapping two mismatched endpoints makes the strings equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "bank", "s2": "kanb"},
+      "expected": true,
+      "tags": ["example", "two-mismatches"]
+    },
+    {
+      "id": "example-many-mismatches",
+      "name": "several mismatches cannot be repaired by one swap",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "attack", "s2": "defend"},
+      "expected": false,
+      "tags": ["example", "many-mismatches"]
+    },
+    {
+      "id": "example-already-equal",
+      "name": "no swap is needed for equal strings",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s1": "kelb", "s2": "kelb"},
+      "expected": true,
+      "tags": ["example", "zero-swaps"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "equal minimum-length strings",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s1": "a", "s2": "a"},
+      "expected": true,
+      "tags": ["minimum-length", "equal"]
+    },
+    {
+      "id": "real-one-mismatch",
+      "name": "hidden: one mismatch cannot be fixed by a swap",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "abcd", "s2": "abce"},
+      "expected": false,
+      "tags": ["one-mismatch", "frequency-difference"]
+    },
+    {
+      "id": "real-wrong-cross-pair",
+      "name": "hidden: two mismatches do not automatically form a swap",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "ab", "s2": "cd"},
+      "expected": false,
+      "tags": ["two-mismatches", "cross-check"]
+    },
+    {
+      "id": "real-adjacent-swap",
+      "name": "hidden: adjacent reversed characters are repairable",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "aaacb", "s2": "aaabc"},
+      "expected": true,
+      "tags": ["adjacent-swap", "repeated-characters"]
+    },
+    {
+      "id": "real-three-mismatches",
+      "name": "hidden: exactly three mismatches are impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "abcx", "s2": "bcax"},
+      "expected": false,
+      "tags": ["three-mismatches", "early-exit"]
+    },
+    {
+      "id": "real-same-multiset-four-mismatches",
+      "name": "hidden: matching character counts are not sufficient",
+      "kind": "real",
+      "visible": false,
+      "input": {"s1": "abcd", "s2": "badc"},
+      "expected": false,
+      "tags": ["four-mismatches", "same-multiset"]
+    }
+  ]
+}

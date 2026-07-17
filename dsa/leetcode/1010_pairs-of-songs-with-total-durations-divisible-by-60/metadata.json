@@ -6,6 +6,9 @@
   "title": "Pairs of Songs With Total Durations Divisible by 60",
   "difficulty": "Medium",
   "acceptance_rate": 53.48835323256391,
+  "frequency": 44.4,
+  "elo_rating": 1377.1913915125,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

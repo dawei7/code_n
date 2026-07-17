@@ -6,6 +6,9 @@
   "title": "Number of Increasing Paths in a Grid",
   "difficulty": "Hard",
   "acceptance_rate": 57.35047020244451,
+  "frequency": 25.2,
+  "elo_rating": 2001.2074132383,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

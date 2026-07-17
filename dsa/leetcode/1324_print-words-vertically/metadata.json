@@ -6,6 +6,9 @@
   "title": "Print Words Vertically",
   "difficulty": "Medium",
   "acceptance_rate": 67.80168925753591,
+  "frequency": 26.8,
+  "elo_rating": 1328.7281033317,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

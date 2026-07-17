@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1799",
+  "frontend_id": "1681",
+  "title_slug": "minimum-incompatibility",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumIncompatibility",
+  "verified_submission_id": "2070538578",
+  "verified_at": "2026-07-17T03:21:06.832588+00:00"
+}

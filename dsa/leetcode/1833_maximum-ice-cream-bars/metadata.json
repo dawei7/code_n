@@ -6,6 +6,9 @@
   "title": "Maximum Ice Cream Bars",
   "difficulty": "Medium",
   "acceptance_rate": 77.23573503963573,
+  "frequency": 65.1,
+  "elo_rating": 1252.7479413966,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

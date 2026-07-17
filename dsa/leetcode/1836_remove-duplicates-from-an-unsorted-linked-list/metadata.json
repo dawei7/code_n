@@ -6,6 +6,9 @@
   "title": "Remove Duplicates From an Unsorted Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 75.72475310608475,
+  "frequency": 49.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

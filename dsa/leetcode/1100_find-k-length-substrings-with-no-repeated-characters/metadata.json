@@ -6,6 +6,9 @@
   "title": "Find K-Length Substrings With No Repeated Characters",
   "difficulty": "Medium",
   "acceptance_rate": 76.51390395094457,
+  "frequency": 0.0,
+  "elo_rating": 1348.670191438,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

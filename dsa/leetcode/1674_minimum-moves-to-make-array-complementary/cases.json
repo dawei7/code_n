@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1674",
+  "cases": [
+    {"id":"sample-one-move","name":"sample: one replacement aligns two pairs","kind":"sample","visible":true,"input":{"nums":[1,2,4,3],"limit":4},"expected":1,"tags":["sample","one-move"]},
+    {"id":"sample-two-moves","name":"sample: conflicting boundary pairs need two moves","kind":"sample","visible":true,"input":{"nums":[1,2,2,1],"limit":2},"expected":2,"tags":["sample","two-moves"]},
+    {"id":"sample-already-complementary","name":"sample: mirrored sums already agree","kind":"sample","visible":true,"input":{"nums":[1,2,1,2],"limit":2},"expected":0,"tags":["sample","zero-moves"]},
+    {"id":"trial-single-pair","name":"trial: one mirrored pair is always complementary","kind":"trial","visible":true,"input":{"nums":[3,1],"limit":5},"expected":0,"tags":["minimum-length"]},
+    {"id":"trial-equal-pairs","name":"trial: duplicate pair sums remain unchanged","kind":"trial","visible":true,"input":{"nums":[2,2,2,2,2,2],"limit":3},"expected":0,"tags":["duplicates","equal-values"]},
+    {"id":"real-boundary-sums","name":"hidden: targets may use minimum and maximum sums","kind":"real","visible":false,"input":{"nums":[1,4,4,1],"limit":4},"expected":2,"tags":["sum-two","sum-two-limit"]},
+    {"id":"real-one-change-overlap","name":"hidden: one replacement aligns the exceptional pair","kind":"real","visible":false,"input":{"nums":[1,1,1,1,1,2],"limit":5},"expected":1,"tags":["interval-overlap"]},
+    {"id":"real-mixed-costs","name":"hidden: optimum combines zero and one-change pairs","kind":"real","visible":false,"input":{"nums":[1,1,1,1,1,1,2,3],"limit":5},"expected":2,"tags":["mixed-costs","target-choice"]}
+  ]
+}

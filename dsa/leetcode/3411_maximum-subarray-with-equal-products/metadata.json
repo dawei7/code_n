@@ -6,6 +6,9 @@
   "title": "Maximum Subarray With Equal Products",
   "difficulty": "Easy",
   "acceptance_rate": 47.01257371064865,
+  "frequency": 0.0,
+  "elo_rating": 1443.185430222,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

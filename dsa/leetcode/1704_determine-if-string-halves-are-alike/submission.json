@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1823",
+  "frontend_id": "1704",
+  "title_slug": "determine-if-string-halves-are-alike",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.halvesAreAlike",
+  "verified_submission_id": "2070637960",
+  "verified_at": "2026-07-17T05:03:30.601482+00:00"
+}

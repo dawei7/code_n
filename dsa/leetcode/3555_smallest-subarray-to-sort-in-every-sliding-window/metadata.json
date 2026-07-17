@@ -6,6 +6,9 @@
   "title": "Smallest Subarray to Sort in Every Sliding Window",
   "difficulty": "Medium",
   "acceptance_rate": 58.60597439544808,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1474.416363,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

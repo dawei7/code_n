@@ -6,6 +6,9 @@
   "title": "Most Stones Removed with Same Row or Column",
   "difficulty": "Medium",
   "acceptance_rate": 63.22677288050792,
+  "frequency": 54.5,
+  "elo_rating": 2034.6759416871,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Stock Price Fluctuation ",
   "difficulty": "Medium",
   "acceptance_rate": 49.140678130768485,
+  "frequency": 49.7,
+  "elo_rating": 1831.9395911303,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

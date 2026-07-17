@@ -6,6 +6,9 @@
   "title": "Encode Number",
   "difficulty": "Medium",
   "acceptance_rate": 70.34504946513312,
+  "frequency": 0.0,
+  "elo_rating": 1561.2655635205,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

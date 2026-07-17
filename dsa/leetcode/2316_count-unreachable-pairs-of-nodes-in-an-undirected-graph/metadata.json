@@ -6,6 +6,9 @@
   "title": "Count Unreachable Pairs of Nodes in an Undirected Graph",
   "difficulty": "Medium",
   "acceptance_rate": 50.08175357368344,
+  "frequency": 34.9,
+  "elo_rating": 1604.0695445163,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Goal Parser Interpretation",
   "difficulty": "Easy",
   "acceptance_rate": 88.14696054542712,
+  "frequency": 0.0,
+  "elo_rating": 1221.9872943569,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1763",
+  "frontend_id": "1623",
+  "title_slug": "all-valid-triplets-that-can-represent-a-country",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070433861",
+  "verified_at": "2026-07-16T22:16:21.327529+00:00"
+}

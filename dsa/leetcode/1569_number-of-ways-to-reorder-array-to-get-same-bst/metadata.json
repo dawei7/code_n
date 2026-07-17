@@ -6,6 +6,9 @@
   "title": "Number of Ways to Reorder Array to Get Same BST",
   "difficulty": "Hard",
   "acceptance_rate": 54.15773373217297,
+  "frequency": 42.4,
+  "elo_rating": 2288.2117442123,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

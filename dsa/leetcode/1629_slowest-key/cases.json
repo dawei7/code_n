@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1629",
+  "cases": [
+    {"id":"sample-tied-duration","name":"sample: lexicographically larger key wins a duration tie","kind":"sample","visible":true,"input":{"releaseTimes":[9,29,49,50],"keysPressed":"cbcd"},"expected":"c","tags":["sample","tie-break"]},
+    {"id":"sample-last-longest","name":"sample: final press has the unique longest duration","kind":"sample","visible":true,"input":{"releaseTimes":[12,23,36,46,62],"keysPressed":"spuda"},"expected":"a","tags":["sample","last-press"]},
+    {"id":"sample-all-tied","name":"sample: all equal durations choose the largest key","kind":"sample","visible":true,"input":{"releaseTimes":[1,3,5],"keysPressed":"abc"},"expected":"c","tags":["sample","all-tied"]},
+    {"id":"trial-first-longest","name":"trial: first press duration starts at time zero","kind":"trial","visible":true,"input":{"releaseTimes":[10,11],"keysPressed":"az"},"expected":"a","tags":["first-press","start-time"]},
+    {"id":"trial-two-way-tie","name":"trial: two presses tie and larger letter wins","kind":"trial","visible":true,"input":{"releaseTimes":[4,8],"keysPressed":"az"},"expected":"z","tags":["minimum-length","tie-break"]},
+    {"id":"trial-repeated-key","name":"trial: repeated key presses may have different durations","kind":"trial","visible":true,"input":{"releaseTimes":[2,9,10,20],"keysPressed":"aaaa"},"expected":"a","tags":["repeated-key","different-durations"]},
+    {"id":"real-large-times","name":"hidden: differences near the time bound remain exact","kind":"real","visible":false,"input":{"releaseTimes":[999999990,999999995,1000000000],"keysPressed":"xyz"},"expected":"x","tags":["time-boundary","first-press"]},
+    {"id":"real-tie-not-last","name":"hidden: largest tied key is not the final press","kind":"real","visible":false,"input":{"releaseTimes":[3,10,17,20],"keysPressed":"bzca"},"expected":"z","tags":["tie-break","position"]},
+    {"id":"real-short-final","name":"hidden: short final press does not replace the maximum","kind":"real","visible":false,"input":{"releaseTimes":[1,11,20,21],"keysPressed":"lmno"},"expected":"m","tags":["middle-maximum","short-final"]},
+    {"id":"real-many-ties","name":"hidden: several equal maxima resolve by character only","kind":"real","visible":false,"input":{"releaseTimes":[5,10,12,17,22],"keysPressed":"qazby"},"expected":"y","tags":["multiple-ties","lexicographic"]}
+  ]
+}

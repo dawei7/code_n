@@ -6,6 +6,9 @@
   "title": "Number of Unique Subjects Taught by Each Teacher",
   "difficulty": "Easy",
   "acceptance_rate": 89.26789818125242,
+  "frequency": 30.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

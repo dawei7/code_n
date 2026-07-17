@@ -6,6 +6,9 @@
   "title": "Power of Two",
   "difficulty": "Easy",
   "acceptance_rate": 50.260455087596725,
+  "frequency": 66.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1249.518217,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

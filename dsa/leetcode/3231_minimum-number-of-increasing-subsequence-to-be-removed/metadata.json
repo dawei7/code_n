@@ -6,6 +6,9 @@
   "title": "Minimum Number of Increasing Subsequence to Be Removed",
   "difficulty": "Hard",
   "acceptance_rate": 47.24467303453343,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2113.687158,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

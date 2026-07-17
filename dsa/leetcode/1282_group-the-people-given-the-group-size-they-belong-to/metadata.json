@@ -6,6 +6,9 @@
   "title": "Group the People Given the Group Size They Belong To",
   "difficulty": "Medium",
   "acceptance_rate": 87.52719137573756,
+  "frequency": 0.0,
+  "elo_rating": 1267.223591366,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

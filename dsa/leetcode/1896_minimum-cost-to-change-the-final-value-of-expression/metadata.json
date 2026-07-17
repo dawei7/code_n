@@ -6,6 +6,9 @@
   "title": "Minimum Cost to Change the Final Value of Expression",
   "difficulty": "Hard",
   "acceptance_rate": 49.8823955129365,
+  "frequency": 0.0,
+  "elo_rating": 2531.6452775023,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

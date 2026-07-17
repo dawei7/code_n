@@ -6,6 +6,9 @@
   "title": "Find Students Who Improved",
   "difficulty": "Medium",
   "acceptance_rate": 49.197911873443026,
+  "frequency": 20.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1603.705238,
   "category": "database",
   "category_title": "Database",
   "topics": [

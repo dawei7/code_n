@@ -6,6 +6,9 @@
   "title": "Student Attendance Record I",
   "difficulty": "Easy",
   "acceptance_rate": 50.32350179874131,
+  "frequency": 11.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1249.122685,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

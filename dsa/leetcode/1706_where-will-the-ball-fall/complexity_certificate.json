@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1706",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(mn)",
+  "summary": "There are n requested ball outcomes and each may depend on a board in every one of m rows, giving a worst-case matrix-transition lower bound matched by direct simulation.",
+  "optimality": {
+    "symbol": "mn",
+    "lower_bound": "Omega(mn)",
+    "upper_bound": "O(mn)",
+    "argument": "Families of compatible alternating rows let Theta(n) balls traverse Theta(m) transitions. Changing a board on one such path can turn a successful transition into a wall or V trap and alter its reported output. A correct worst-case algorithm must resolve Theta(mn) path-relevant board relationships. Simulating each ball through each reachable row performs O(1) work per relationship and matches the Omega(mn) bound."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Compatible row families keep Theta(n) distinct ball paths alive across Theta(m) rows, and an adversarial board change on a path can alter the corresponding exit."},
+    {"kind":"upper_bound_proof","evidence":"Each of n balls examines at most m rows and performs constant-time wall and adjacent-direction checks per row."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover both walls, both single-column directions, immediate and late V traps, alternating rows, shifted exits, and mixed successful and stuck paths."}
+  ]
+}

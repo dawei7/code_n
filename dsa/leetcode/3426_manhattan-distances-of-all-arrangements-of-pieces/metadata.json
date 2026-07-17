@@ -6,6 +6,9 @@
   "title": "Manhattan Distances of All Arrangements of Pieces",
   "difficulty": "Hard",
   "acceptance_rate": 35.663287791978846,
+  "frequency": 0.0,
+  "elo_rating": 2443.188673632,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

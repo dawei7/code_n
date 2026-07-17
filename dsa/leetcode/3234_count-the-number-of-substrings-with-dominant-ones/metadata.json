@@ -6,6 +6,9 @@
   "title": "Count the Number of Substrings With Dominant Ones",
   "difficulty": "Medium",
   "acceptance_rate": 41.96037485993684,
+  "frequency": 0.0,
+  "elo_rating": 2556.9955924939,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

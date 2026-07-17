@@ -6,6 +6,9 @@
   "title": "Minimum Number of Days to Disconnect Island",
   "difficulty": "Hard",
   "acceptance_rate": 58.73352619736419,
+  "frequency": 0.0,
+  "elo_rating": 2208.5532172086,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

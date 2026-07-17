@@ -6,6 +6,9 @@
   "title": "Equal Row and Column Pairs",
   "difficulty": "Medium",
   "acceptance_rate": 71.04642617830149,
+  "frequency": 8.5,
+  "elo_rating": 1286.3841359213,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Append Characters to String to Make Subsequence",
   "difficulty": "Medium",
   "acceptance_rate": 73.08961722121498,
+  "frequency": 20.4,
+  "elo_rating": 1362.7144100401,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Long Pressed Name",
   "difficulty": "Easy",
   "acceptance_rate": 32.990570408615625,
+  "frequency": 32.6,
+  "elo_rating": 1271.3313760514,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "The kth Factor of n",
   "difficulty": "Medium",
   "acceptance_rate": 70.46601522643434,
+  "frequency": 17.2,
+  "elo_rating": 1231.999241335,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

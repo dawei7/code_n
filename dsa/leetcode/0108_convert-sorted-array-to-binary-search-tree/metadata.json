@@ -6,6 +6,9 @@
   "title": "Convert Sorted Array to Binary Search Tree",
   "difficulty": "Easy",
   "acceptance_rate": 75.77360735758614,
+  "frequency": 45.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

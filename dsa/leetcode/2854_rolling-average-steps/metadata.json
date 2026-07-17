@@ -6,6 +6,9 @@
   "title": "Rolling Average Steps",
   "difficulty": "Medium",
   "acceptance_rate": 68.81810561609389,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1394.347879,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Department Top Three Salaries",
   "difficulty": "Hard",
   "acceptance_rate": 60.93621080745047,
+  "frequency": 54.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1999.309073,
   "category": "database",
   "category_title": "Database",
   "topics": [

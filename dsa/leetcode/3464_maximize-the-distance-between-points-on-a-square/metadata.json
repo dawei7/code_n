@@ -6,6 +6,9 @@
   "title": "Maximize the Distance Between Points on a Square",
   "difficulty": "Hard",
   "acceptance_rate": 51.1129408281834,
+  "frequency": 75.8,
+  "elo_rating": 2805.990278358,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

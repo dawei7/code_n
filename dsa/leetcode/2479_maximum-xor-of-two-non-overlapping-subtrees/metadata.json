@@ -6,6 +6,9 @@
   "title": "Maximum XOR of Two Non-Overlapping Subtrees",
   "difficulty": "Hard",
   "acceptance_rate": 52.22863135815417,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2065.549619,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

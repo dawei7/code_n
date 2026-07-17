@@ -6,6 +6,9 @@
   "title": "Stone Game",
   "difficulty": "Medium",
   "acceptance_rate": 73.44803903696386,
+  "frequency": 33.3,
+  "elo_rating": 1590.0463215721,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

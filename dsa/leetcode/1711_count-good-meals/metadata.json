@@ -6,6 +6,9 @@
   "title": "Count Good Meals",
   "difficulty": "Medium",
   "acceptance_rate": 32.940463602124346,
+  "frequency": 47.0,
+  "elo_rating": 1797.8728515982,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

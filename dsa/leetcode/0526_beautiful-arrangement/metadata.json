@@ -6,6 +6,9 @@
   "title": "Beautiful Arrangement",
   "difficulty": "Medium",
   "acceptance_rate": 64.86041343107868,
+  "frequency": 56.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1423.022112,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

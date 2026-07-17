@@ -6,6 +6,9 @@
   "title": "Snakes and Ladders",
   "difficulty": "Medium",
   "acceptance_rate": 48.17696489849919,
+  "frequency": 47.0,
+  "elo_rating": 2019.5399647546,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

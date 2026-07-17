@@ -6,6 +6,9 @@
   "title": "Best Time to Buy and Sell Stock with Cooldown",
   "difficulty": "Medium",
   "acceptance_rate": 62.366499202470415,
+  "frequency": 46.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1444.488613,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

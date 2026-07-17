@@ -6,6 +6,9 @@
   "title": "Find Valid Emails",
   "difficulty": "Easy",
   "acceptance_rate": 43.418046830382636,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1260.790882,
   "category": "database",
   "category_title": "Database",
   "topics": [

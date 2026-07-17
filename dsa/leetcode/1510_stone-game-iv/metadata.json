@@ -6,6 +6,9 @@
   "title": "Stone Game IV",
   "difficulty": "Hard",
   "acceptance_rate": 59.6379592527795,
+  "frequency": 0.0,
+  "elo_rating": 1786.9268132617,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

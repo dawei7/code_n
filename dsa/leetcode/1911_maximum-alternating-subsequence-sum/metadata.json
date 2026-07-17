@@ -6,6 +6,9 @@
   "title": "Maximum Alternating Subsequence Sum",
   "difficulty": "Medium",
   "acceptance_rate": 59.194368802342915,
+  "frequency": 0.0,
+  "elo_rating": 1785.6872758693,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Shortest String That Contains Three Strings",
   "difficulty": "Medium",
   "acceptance_rate": 32.02110649184522,
+  "frequency": 0.0,
+  "elo_rating": 1855.561153694,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

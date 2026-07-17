@@ -6,6 +6,9 @@
   "title": "X of a Kind in a Deck of Cards",
   "difficulty": "Easy",
   "acceptance_rate": 30.365801650625702,
+  "frequency": 22.1,
+  "elo_rating": 1370.6144908238,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

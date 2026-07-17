@@ -6,6 +6,9 @@
   "title": "Shortest Path in Binary Matrix",
   "difficulty": "Medium",
   "acceptance_rate": 51.8134825145761,
+  "frequency": 59.5,
+  "elo_rating": 1658.3474650806,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

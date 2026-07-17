@@ -6,6 +6,9 @@
   "title": "Minimum Time to Visit a Cell In a Grid",
   "difficulty": "Hard",
   "acceptance_rate": 56.16146601044295,
+  "frequency": 23.4,
+  "elo_rating": 2381.625583289,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

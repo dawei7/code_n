@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1783",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(C + K)",
+  "summary": "Every one of the four winner cells in each of C championship rows can alter a title count, and K reported champions must be emitted; normalization, indexed player lookup, and aggregation match this linear bound.",
+  "optimality": {
+    "symbol": "C + K",
+    "lower_bound": "Omega(C + K)",
+    "upper_bound": "O(C + K)",
+    "argument": "An exact result must inspect all four winner cells of every championship row because changing any one can change two player counts, which is Omega(C) work for a fixed four tournaments. It must also emit K champion rows. UNION ALL creates exactly 4C winner rows, primary-key player lookups and hash aggregation take constant expected work per normalized row, and emitting the K groups gives O(C + K) total logical time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Every championship winner cell can independently change the required count, and the query must return every one of the K distinct winning players."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Four fixed UNION ALL branches produce 4C rows; each receives one primary-key player lookup and one constant expected-time group update before K rows are emitted."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover all four tournament columns, clean sweeps, distinct winners, tied totals, repeated winners across years, noncontiguous identifiers, unsorted players, and exclusion of players with no titles."
+    }
+  ]
+}

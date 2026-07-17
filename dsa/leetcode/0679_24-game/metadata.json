@@ -6,6 +6,9 @@
   "title": "24 Game",
   "difficulty": "Hard",
   "acceptance_rate": 59.560609406049906,
+  "frequency": 62.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 2007.949145,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

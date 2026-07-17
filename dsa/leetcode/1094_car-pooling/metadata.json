@@ -6,6 +6,9 @@
   "title": "Car Pooling",
   "difficulty": "Medium",
   "acceptance_rate": 56.42897417333658,
+  "frequency": 59.6,
+  "elo_rating": 1441.4290319373,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

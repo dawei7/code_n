@@ -6,6 +6,9 @@
   "title": "The Dining Philosophers",
   "difficulty": "Medium",
   "acceptance_rate": 53.70651354224398,
+  "frequency": 50.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1536.61628,
   "category": "concurrency",
   "category_title": "Concurrency",
   "topics": [
@@ -15,7 +18,9 @@
     }
   ],
   "url": "https://leetcode.com/problems/the-dining-philosophers/",
-  "supported_languages": ["python"],
+  "supported_languages": [
+    "python"
+  ],
   "primary_language": "python",
   "runnable_in_coden": true,
   "subsets": [

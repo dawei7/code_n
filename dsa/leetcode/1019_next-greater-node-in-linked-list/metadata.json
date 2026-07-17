@@ -6,6 +6,9 @@
   "title": "Next Greater Node In Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 64.5116493938753,
+  "frequency": 47.7,
+  "elo_rating": 1570.8347522104,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

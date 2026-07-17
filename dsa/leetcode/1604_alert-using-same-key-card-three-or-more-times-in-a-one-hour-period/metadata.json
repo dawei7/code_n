@@ -6,6 +6,9 @@
   "title": "Alert Using Same Key-Card Three or More Times in a One Hour Period",
   "difficulty": "Medium",
   "acceptance_rate": 46.32112521691479,
+  "frequency": 35.4,
+  "elo_rating": 1606.2185826486,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

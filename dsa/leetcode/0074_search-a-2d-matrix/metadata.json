@@ -6,6 +6,9 @@
   "title": "Search a 2D Matrix",
   "difficulty": "Medium",
   "acceptance_rate": 54.26619231521668,
+  "frequency": 62.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1529.324002,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

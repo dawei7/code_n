@@ -6,6 +6,9 @@
   "title": "K-th Largest Perfect Subtree Size in Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 62.37740850239576,
+  "frequency": 0.0,
+  "elo_rating": 1603.252304506,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

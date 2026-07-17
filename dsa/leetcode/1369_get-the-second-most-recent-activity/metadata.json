@@ -6,6 +6,9 @@
   "title": "Get the Second Most Recent Activity",
   "difficulty": "Hard",
   "acceptance_rate": 67.34611706678746,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1954.874422,
   "category": "database",
   "category_title": "Database",
   "topics": [

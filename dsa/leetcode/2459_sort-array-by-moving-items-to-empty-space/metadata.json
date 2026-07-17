@@ -6,6 +6,9 @@
   "title": "Sort Array by Moving Items to Empty Space",
   "difficulty": "Hard",
   "acceptance_rate": 45.69417403025311,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2142.625297,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

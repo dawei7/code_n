@@ -6,6 +6,9 @@
   "title": "Minimum Obstacle Removal to Reach Corner",
   "difficulty": "Hard",
   "acceptance_rate": 70.87231930767601,
+  "frequency": 23.6,
+  "elo_rating": 2137.5633267453,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

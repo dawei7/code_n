@@ -6,6 +6,9 @@
   "title": "Multiply Two Polynomials",
   "difficulty": "Hard",
   "acceptance_rate": 58.392101551480955,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2015.35492,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

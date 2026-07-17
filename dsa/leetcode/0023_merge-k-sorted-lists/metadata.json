@@ -6,6 +6,9 @@
   "title": "Merge k Sorted Lists",
   "difficulty": "Hard",
   "acceptance_rate": 59.930960265255266,
+  "frequency": 79.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 2005.069121,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

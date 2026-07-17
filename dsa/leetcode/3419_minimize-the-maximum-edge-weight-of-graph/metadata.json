@@ -6,6 +6,9 @@
   "title": "Minimize the Maximum Edge Weight of Graph",
   "difficulty": "Medium",
   "acceptance_rate": 45.08552810209069,
+  "frequency": 49.9,
+  "elo_rating": 2243.2051062979,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

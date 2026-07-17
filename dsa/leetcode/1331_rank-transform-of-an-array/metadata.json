@@ -6,6 +6,9 @@
   "title": "Rank Transform of an Array",
   "difficulty": "Easy",
   "acceptance_rate": 70.9476637531024,
+  "frequency": 53.6,
+  "elo_rating": 1355.9817184778,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

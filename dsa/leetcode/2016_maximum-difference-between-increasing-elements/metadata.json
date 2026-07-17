@@ -6,6 +6,9 @@
   "title": "Maximum Difference Between Increasing Elements",
   "difficulty": "Easy",
   "acceptance_rate": 66.63201663201663,
+  "frequency": 16.3,
+  "elo_rating": 1246.0141927368,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number Complement",
   "difficulty": "Easy",
   "acceptance_rate": 70.48012036002427,
+  "frequency": 3.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1182.673288,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

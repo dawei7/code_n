@@ -6,6 +6,9 @@
   "title": "Count Items Matching a Rule",
   "difficulty": "Easy",
   "acceptance_rate": 85.39858302444517,
+  "frequency": 0.0,
+  "elo_rating": 1174.8589329736,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

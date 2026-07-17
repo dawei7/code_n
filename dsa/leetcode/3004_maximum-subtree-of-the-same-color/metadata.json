@@ -6,6 +6,9 @@
   "title": "Maximum Subtree of the Same Color",
   "difficulty": "Medium",
   "acceptance_rate": 58.71412169919633,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1473.476225,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

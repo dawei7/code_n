@@ -6,6 +6,9 @@
   "title": "Semi-Ordered Permutation",
   "difficulty": "Easy",
   "acceptance_rate": 64.3812045003309,
+  "frequency": 0.0,
+  "elo_rating": 1295.75504698,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

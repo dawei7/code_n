@@ -6,6 +6,9 @@
   "title": "Evaluate Division",
   "difficulty": "Medium",
   "acceptance_rate": 64.37615319866063,
+  "frequency": 66.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1427.252736,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

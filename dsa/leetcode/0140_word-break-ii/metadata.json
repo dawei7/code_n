@@ -6,6 +6,9 @@
   "title": "Word Break II",
   "difficulty": "Hard",
   "acceptance_rate": 55.79037204674353,
+  "frequency": 74.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 2036.749382,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

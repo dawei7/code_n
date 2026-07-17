@@ -6,6 +6,9 @@
   "title": "Number of Sets of K Non-Overlapping Line Segments",
   "difficulty": "Medium",
   "acceptance_rate": 46.0811130246851,
+  "frequency": 0.0,
+  "elo_rating": 2198.3290662783,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Direction Assignments with Exactly K Visible People",
   "difficulty": "Medium",
   "acceptance_rate": 36.3533695952798,
+  "frequency": 0.0,
+  "elo_rating": 1760.7597743663,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

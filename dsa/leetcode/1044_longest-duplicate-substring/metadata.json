@@ -6,6 +6,9 @@
   "title": "Longest Duplicate Substring",
   "difficulty": "Hard",
   "acceptance_rate": 31.26314504956536,
+  "frequency": 69.4,
+  "elo_rating": 2428.7985254341,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

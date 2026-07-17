@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1746",
+  "cases": [
+    {"id":"sample-official-one","name":"sample: square a negative inside the best subarray","kind":"sample","visible":true,"input":{"nums":[2,-1,-4,-3]},"expected":17,"tags":["sample","negative-square"]},
+    {"id":"sample-official-two","name":"sample: connect positive runs by squaring minus one","kind":"sample","visible":true,"input":{"nums":[1,-1,1,1,-1,-1,1]},"expected":4,"tags":["sample","connected-runs"]},
+    {"id":"trial-single-negative","name":"trial: one negative element","kind":"trial","visible":true,"input":{"nums":[-5]},"expected":25,"tags":["single-element","negative"]},
+    {"id":"trial-single-zero","name":"trial: squaring zero preserves zero","kind":"trial","visible":true,"input":{"nums":[0]},"expected":0,"tags":["single-element","zero"]},
+    {"id":"real-all-negative","name":"hidden: best square stands alone among negatives","kind":"real","visible":false,"input":{"nums":[-2,-3,-1]},"expected":9,"tags":["all-negative","single-element-optimum"]},
+    {"id":"real-positive-context","name":"hidden: useful prefix joins a squared positive","kind":"real","visible":false,"input":{"nums":[3,-2,5,-1]},"expected":26,"tags":["positive-square","prefix-extension"]},
+    {"id":"real-square-middle","name":"hidden: square an interior positive value","kind":"real","visible":false,"input":{"nums":[-1,2,3,-2]},"expected":11,"tags":["interior-operation","positive-square"]},
+    {"id":"real-zero-neighbors","name":"hidden: zeros surround the squared negative","kind":"real","visible":false,"input":{"nums":[0,-2,0]},"expected":4,"tags":["zero","negative-square"]},
+    {"id":"real-all-positive","name":"hidden: square the largest endpoint and keep the prefix","kind":"real","visible":false,"input":{"nums":[1,2,3]},"expected":12,"tags":["all-positive","endpoint-operation"]},
+    {"id":"real-value-boundaries","name":"hidden: maximum magnitudes require wide sums","kind":"real","visible":false,"input":{"nums":[10000,-10000]},"expected":100010000,"tags":["value-boundary","large-sum"]}
+  ]
+}

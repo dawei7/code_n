@@ -6,6 +6,9 @@
   "title": "Minimum Number of Operations to Make Array XOR Equal to K",
   "difficulty": "Medium",
   "acceptance_rate": 85.48398086698191,
+  "frequency": 0.0,
+  "elo_rating": 1524.5856276651,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

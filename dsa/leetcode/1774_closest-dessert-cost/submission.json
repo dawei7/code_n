@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1900",
+  "frontend_id": "1774",
+  "title_slug": "closest-dessert-cost",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.closestCost",
+  "verified_submission_id": "2071091089",
+  "verified_at": "2026-07-17T12:22:54.440666+00:00"
+}

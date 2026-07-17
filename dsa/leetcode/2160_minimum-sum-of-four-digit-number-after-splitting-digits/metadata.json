@@ -6,6 +6,9 @@
   "title": "Minimum Sum of Four Digit Number After Splitting Digits",
   "difficulty": "Easy",
   "acceptance_rate": 86.33937465617984,
+  "frequency": 22.9,
+  "elo_rating": 1314.2912238536,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

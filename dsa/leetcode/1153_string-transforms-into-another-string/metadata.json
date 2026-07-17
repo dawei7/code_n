@@ -6,6 +6,9 @@
   "title": "String Transforms Into Another String",
   "difficulty": "Hard",
   "acceptance_rate": 34.63723637654877,
+  "frequency": 0.0,
+  "elo_rating": 1949.0920823355,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

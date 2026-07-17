@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1718",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n!)",
+  "summary": "The source contract restricts n to the twenty integers from 1 through 20, and descending backtracking has highly non-monotone first-solution work across that small domain, so it cannot support an honest factorial runtime-scaling verdict.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 20,
+    "unit": "distinct values to place",
+    "source_constraint": "n is an integer from 1 through 20 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each recursion fixes the first empty position and consumes one unused value; a value above one has only the forced paired position index plus value, so recursion depth is at most n and the search tree is bounded by descending permutations of the n values."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression independently enumerates every valid sequence and proves lexicographic maximality for all n through 7, then verifies multiplicities, exact index distances, output length, and value range for every legal n through the maximum 20; the exact native source also has remote Accepted evidence."
+    }
+  ]
+}

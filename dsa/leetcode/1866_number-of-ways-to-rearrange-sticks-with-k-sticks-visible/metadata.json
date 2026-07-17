@@ -6,6 +6,9 @@
   "title": "Number of Ways to Rearrange Sticks With K Sticks Visible",
   "difficulty": "Hard",
   "acceptance_rate": 61.91104363192872,
+  "frequency": 0.0,
+  "elo_rating": 2333.0621537307,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

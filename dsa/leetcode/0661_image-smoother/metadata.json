@@ -6,6 +6,9 @@
   "title": "Image Smoother",
   "difficulty": "Easy",
   "acceptance_rate": 69.42641683450994,
+  "frequency": 33.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1186.826376,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

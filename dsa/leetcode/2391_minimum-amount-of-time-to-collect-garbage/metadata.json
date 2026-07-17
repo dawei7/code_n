@@ -6,6 +6,9 @@
   "title": "Minimum Amount of Time to Collect Garbage",
   "difficulty": "Medium",
   "acceptance_rate": 85.05766383121305,
+  "frequency": 41.5,
+  "elo_rating": 1455.8516200241,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

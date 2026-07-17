@@ -6,6 +6,9 @@
   "title": "Smallest Index With Digit Sum Equal to Index",
   "difficulty": "Easy",
   "acceptance_rate": 80.40861751531972,
+  "frequency": 18.1,
+  "elo_rating": 1200.1921874908,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

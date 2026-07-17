@@ -6,6 +6,9 @@
   "title": "Time Based Key-Value Store",
   "difficulty": "Medium",
   "acceptance_rate": 50.026974546673195,
+  "frequency": 83.8,
+  "elo_rating": 1574.7542247682,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

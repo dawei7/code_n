@@ -6,6 +6,9 @@
   "title": "Smallest Pair With Different Frequencies",
   "difficulty": "Easy",
   "acceptance_rate": 69.41649542974562,
+  "frequency": 33.5,
+  "elo_rating": 1287.4101648258,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

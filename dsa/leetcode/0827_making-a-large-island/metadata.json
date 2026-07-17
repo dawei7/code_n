@@ -6,6 +6,9 @@
   "title": "Making A Large Island",
   "difficulty": "Hard",
   "acceptance_rate": 56.88078890613767,
+  "frequency": 69.2,
+  "elo_rating": 1933.9571917853,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

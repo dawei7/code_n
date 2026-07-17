@@ -6,6 +6,9 @@
   "title": "Reorder List",
   "difficulty": "Medium",
   "acceptance_rate": 65.64109233315364,
+  "frequency": 73.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1416.91121,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count Ways to Group Overlapping Ranges",
   "difficulty": "Medium",
   "acceptance_rate": 39.292881032011465,
+  "frequency": 0.0,
+  "elo_rating": 1631.5850830561,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

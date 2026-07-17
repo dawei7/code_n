@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1784",
+  "cases": [
+    {
+      "id": "example-two-segments",
+      "name": "two isolated one segments",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "1001"},
+      "expected": false,
+      "tags": ["example", "two-segments"]
+    },
+    {
+      "id": "example-one-segment",
+      "name": "one segment followed by zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "110"},
+      "expected": true,
+      "tags": ["example", "single-segment"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "minimum-length string",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "1"},
+      "expected": true,
+      "tags": ["minimum-length", "single-segment"]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "the entire string is one segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "11111"},
+      "expected": true,
+      "tags": ["all-ones", "single-segment"]
+    },
+    {
+      "id": "real-trailing-zeros",
+      "name": "hidden: zeros after the segment do not create another segment",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "100000"},
+      "expected": true,
+      "tags": ["trailing-zeros", "single-segment"]
+    },
+    {
+      "id": "real-immediate-restart",
+      "name": "hidden: one zero separates two segments",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "101"},
+      "expected": false,
+      "tags": ["transition", "two-segments"]
+    },
+    {
+      "id": "real-long-gap",
+      "name": "hidden: a long zero gap still separates segments",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "1000001"},
+      "expected": false,
+      "tags": ["long-gap", "two-segments"]
+    },
+    {
+      "id": "real-many-segments",
+      "name": "hidden: several restarts remain invalid",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "1010101"},
+      "expected": false,
+      "tags": ["multiple-segments", "alternating"]
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Design a Todo List",
   "difficulty": "Medium",
   "acceptance_rate": 59.848182181382334,
+  "frequency": 59.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1465.014976,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

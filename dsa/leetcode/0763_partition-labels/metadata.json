@@ -6,6 +6,9 @@
   "title": "Partition Labels",
   "difficulty": "Medium",
   "acceptance_rate": 81.95514156442736,
+  "frequency": 47.4,
+  "elo_rating": 1443.0697629277,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

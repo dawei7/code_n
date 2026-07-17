@@ -6,6 +6,9 @@
   "title": "Number of Subsequences That Satisfy the Given Sum Condition",
   "difficulty": "Medium",
   "acceptance_rate": 49.10810883651806,
+  "frequency": 40.3,
+  "elo_rating": 2276.4233585631,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

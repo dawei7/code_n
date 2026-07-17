@@ -6,6 +6,9 @@
   "title": "Maximum Height by Stacking Cuboids ",
   "difficulty": "Hard",
   "acceptance_rate": 62.27621822033898,
+  "frequency": 19.9,
+  "elo_rating": 2171.716066664,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

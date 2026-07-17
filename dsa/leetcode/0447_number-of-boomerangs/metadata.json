@@ -6,6 +6,9 @@
   "title": "Number of Boomerangs",
   "difficulty": "Medium",
   "acceptance_rate": 57.75319555608649,
+  "frequency": 26.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1480.683955,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

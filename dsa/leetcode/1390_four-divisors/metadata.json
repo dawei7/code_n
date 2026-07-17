@@ -6,6 +6,9 @@
   "title": "Four Divisors",
   "difficulty": "Medium",
   "acceptance_rate": 56.54260049303781,
+  "frequency": 12.7,
+  "elo_rating": 1478.3848028264,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

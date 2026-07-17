@@ -6,6 +6,9 @@
   "title": "Repeated DNA Sequences",
   "difficulty": "Medium",
   "acceptance_rate": 53.576995410232556,
+  "frequency": 49.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1538.074735,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

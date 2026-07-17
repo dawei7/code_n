@@ -6,6 +6,9 @@
   "title": "Market Analysis I",
   "difficulty": "Medium",
   "acceptance_rate": 57.531085229238684,
+  "frequency": 42.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1481.780784,
   "category": "database",
   "category_title": "Database",
   "topics": [

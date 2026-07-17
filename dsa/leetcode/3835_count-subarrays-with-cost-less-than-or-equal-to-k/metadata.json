@@ -6,6 +6,9 @@
   "title": "Count Subarrays With Cost Less Than or Equal to K",
   "difficulty": "Medium",
   "acceptance_rate": 46.20631857958642,
+  "frequency": 31.2,
+  "elo_rating": 1759.0629543156,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

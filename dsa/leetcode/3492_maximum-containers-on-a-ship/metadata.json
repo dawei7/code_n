@@ -6,6 +6,9 @@
   "title": "Maximum Containers on a Ship",
   "difficulty": "Easy",
   "acceptance_rate": 75.48803820868038,
+  "frequency": 0.0,
+  "elo_rating": 1140.4039121717,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Rotate String",
   "difficulty": "Easy",
   "acceptance_rate": 66.8645763750299,
+  "frequency": 71.8,
+  "elo_rating": 1167.0749837258,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Determine Color of a Chessboard Square",
   "difficulty": "Easy",
   "acceptance_rate": 79.96347952431752,
+  "frequency": 0.0,
+  "elo_rating": 1328.513147726,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

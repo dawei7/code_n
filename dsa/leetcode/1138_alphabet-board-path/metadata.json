@@ -6,6 +6,9 @@
   "title": "Alphabet Board Path",
   "difficulty": "Medium",
   "acceptance_rate": 51.9229775135694,
+  "frequency": 34.5,
+  "elo_rating": 1410.5239927267,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find the Winner of an Array Game",
   "difficulty": "Medium",
   "acceptance_rate": 56.87052086852915,
+  "frequency": 47.9,
+  "elo_rating": 1433.0795554833,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

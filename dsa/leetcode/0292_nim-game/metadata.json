@@ -6,6 +6,9 @@
   "title": "Nim Game",
   "difficulty": "Easy",
   "acceptance_rate": 60.068396658280264,
+  "frequency": 33.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1224.995225,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

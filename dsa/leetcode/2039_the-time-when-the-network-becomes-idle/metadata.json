@@ -6,6 +6,9 @@
   "title": "The Time When the Network Becomes Idle",
   "difficulty": "Medium",
   "acceptance_rate": 55.851804506129156,
+  "frequency": 0.0,
+  "elo_rating": 1865.3441063734,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Word Abbreviation",
   "difficulty": "Hard",
   "acceptance_rate": 62.77010859561937,
+  "frequency": 40.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1980.794635,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

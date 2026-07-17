@@ -6,6 +6,9 @@
   "title": "Parallel Courses",
   "difficulty": "Medium",
   "acceptance_rate": 62.3110175005238,
+  "frequency": 67.0,
+  "elo_rating": 1710.0787625377,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

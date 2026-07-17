@@ -6,6 +6,9 @@
   "title": "Circular Array Loop",
   "difficulty": "Medium",
   "acceptance_rate": 37.79262313982749,
+  "frequency": 50.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1721.840144,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

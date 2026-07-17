@@ -6,6 +6,9 @@
   "title": "Stepping Numbers",
   "difficulty": "Medium",
   "acceptance_rate": 48.57750372102913,
+  "frequency": 64.3,
+  "elo_rating": 1674.5365205597,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

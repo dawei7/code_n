@@ -2,10 +2,13 @@ import type { ChallengeSummary } from '../types/api';
 
 export type AlgorithmSetId =
   | 'leetcode'
+  | 'elo'
+  | 'frequency'
   | 'leetcode_company'
   | 'leetcode_studyplan'
   | 'neetcode'
-  | 'algomaster';
+  | 'algomaster'
+  | 'custom';
 
 export interface AlgorithmSetOption {
   id: AlgorithmSetId;
@@ -23,6 +26,22 @@ export const ALGORITHM_SETS: AlgorithmSetOption[] = [
     shortLabel: 'All Problems',
     category: 'LeetCode',
     description: 'The canonical LeetCode corpus, grouped by category and topic.',
+    hasCareerPath: false,
+  },
+  {
+    id: 'elo',
+    label: 'Elo',
+    shortLabel: 'Elo',
+    category: 'LeetCode',
+    description: 'Rated LeetCode problems grouped by topic and ordered from lowest to highest Elo.',
+    hasCareerPath: false,
+  },
+  {
+    id: 'frequency',
+    label: 'Frequency',
+    shortLabel: 'Frequency',
+    category: 'LeetCode',
+    description: 'LeetCode problems grouped by topic and ordered from highest to lowest Frequency.',
     hasCareerPath: false,
   },
   {
@@ -57,6 +76,14 @@ export const ALGORITHM_SETS: AlgorithmSetOption[] = [
     description: 'AlgoMaster 600, 300, 150, and 75 mapped onto canonical LeetCode problems.',
     hasCareerPath: false,
   },
+  {
+    id: 'custom',
+    label: 'Personal',
+    shortLabel: 'Personal',
+    category: 'Personal',
+    description: 'Your profile-specific top-level problem sets and learning paths.',
+    hasCareerPath: false,
+  },
 ];
 
 export function normalizeAlgorithmSet(value: string | null | undefined): AlgorithmSetId {
@@ -82,6 +109,10 @@ export function challengeIsInAlgorithmSet(
   value: string | null | undefined,
 ): boolean {
   switch (normalizeAlgorithmSet(value)) {
+    case 'elo':
+      return challenge.elo_rating !== null;
+    case 'frequency':
+      return challenge.frequency !== null;
     case 'leetcode_company':
       return challenge.leetcode_company_tags.length > 0;
     case 'leetcode_studyplan':
@@ -90,6 +121,8 @@ export function challengeIsInAlgorithmSet(
       return hasExternalMembership(challenge, 'neetcode');
     case 'algomaster':
       return hasExternalMembership(challenge, 'algomaster');
+    case 'custom':
+      return false;
     default:
       return true;
   }

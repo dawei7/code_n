@@ -6,6 +6,9 @@
   "title": "Largest 3-Same-Digit Number in String",
   "difficulty": "Easy",
   "acceptance_rate": 72.66189581839694,
+  "frequency": 33.6,
+  "elo_rating": 1308.948547975,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

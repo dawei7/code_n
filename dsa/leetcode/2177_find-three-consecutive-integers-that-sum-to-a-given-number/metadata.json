@@ -6,6 +6,9 @@
   "title": "Find Three Consecutive Integers That Sum to a Given Number",
   "difficulty": "Medium",
   "acceptance_rate": 65.33834161771351,
+  "frequency": 0.0,
+  "elo_rating": 1257.1556875655,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

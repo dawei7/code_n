@@ -6,6 +6,9 @@
   "title": "Sum of Square Numbers",
   "difficulty": "Medium",
   "acceptance_rate": 36.92479121378254,
+  "frequency": 30.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1729.424113,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

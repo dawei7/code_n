@@ -6,6 +6,9 @@
   "title": "Count Zero Request Servers",
   "difficulty": "Medium",
   "acceptance_rate": 36.17310832879695,
+  "frequency": 30.8,
+  "elo_rating": 2405.3375364501,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

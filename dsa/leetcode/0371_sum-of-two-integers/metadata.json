@@ -6,6 +6,9 @@
   "title": "Sum of Two Integers",
   "difficulty": "Medium",
   "acceptance_rate": 55.76720741411783,
+  "frequency": 61.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1508.613932,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

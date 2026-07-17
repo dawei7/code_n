@@ -6,6 +6,9 @@
   "title": "The K Weakest Rows in a Matrix",
   "difficulty": "Easy",
   "acceptance_rate": 74.4186288665519,
+  "frequency": 7.4,
+  "elo_rating": 1224.7606792444,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

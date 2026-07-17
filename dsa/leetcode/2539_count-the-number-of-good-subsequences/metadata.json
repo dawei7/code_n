@@ -6,6 +6,9 @@
   "title": "Count the Number of Good Subsequences",
   "difficulty": "Medium",
   "acceptance_rate": 48.46519170624348,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1615.081192,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

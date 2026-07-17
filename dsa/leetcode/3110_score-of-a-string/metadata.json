@@ -6,6 +6,9 @@
   "title": "Score of a String",
   "difficulty": "Easy",
   "acceptance_rate": 91.3610128096496,
+  "frequency": 29.3,
+  "elo_rating": 1152.2642983255,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Magic Squares In Grid",
   "difficulty": "Medium",
   "acceptance_rate": 55.210116424106474,
+  "frequency": 46.0,
+  "elo_rating": 1425.9672522649,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

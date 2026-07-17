@@ -29,6 +29,8 @@ class ComplexityClass(Enum):
     O_N2 = "O(n²)"
     O_N3 = "O(n³)"
     O_2N = "O(2ⁿ)"
+    O_N_FACTORIAL = "O(n!)"
+    O_KN = "O(k^n)"
     UNKNOWN = "O(?)"
 
 
@@ -43,6 +45,8 @@ _CLASSES_IN_ORDER: tuple[ComplexityClass, ...] = (
     ComplexityClass.O_N2,
     ComplexityClass.O_N3,
     ComplexityClass.O_2N,
+    ComplexityClass.O_N_FACTORIAL,
+    ComplexityClass.O_KN,
 )
 
 
@@ -62,6 +66,11 @@ def get_complexity_factor(n: int, complexity_class: ComplexityClass) -> float:
         return float(n * n * n)
     elif complexity_class == ComplexityClass.O_2N:
         return float(2 ** min(n, 25))
+    elif complexity_class == ComplexityClass.O_N_FACTORIAL:
+        return float(math.factorial(min(n, 10)))
+    elif complexity_class == ComplexityClass.O_KN:
+        capped = min(n, 8)
+        return float(capped**capped)
     return 1.0
 
 
@@ -89,6 +98,8 @@ def limit_for(n: int, max_class: ComplexityClass) -> int:
         ComplexityClass.O_N2: n * n * 12 + 10,
         ComplexityClass.O_N3: n * n * n * 12 + 10,
         ComplexityClass.O_2N: 2 ** min(n, 25) + 10,
+        ComplexityClass.O_N_FACTORIAL: math.factorial(min(n, 10)) + 10,
+        ComplexityClass.O_KN: min(n, 8) ** min(n, 8) + 10,
     }
     return limits.get(max_class, 10**12)
 
@@ -144,10 +155,9 @@ def classify_ast_ops(
                 limit = limit_for_run(n, cls, C_ref)
             if ast_ops <= limit:
                 return cls
-        return ComplexityClass.O_2N
+        return ComplexityClass.O_KN
 
     for cls in _CLASSES_IN_ORDER:
         if ast_ops <= limit_for(n, cls):
             return cls
-    return ComplexityClass.O_2N
-
+    return ComplexityClass.O_KN

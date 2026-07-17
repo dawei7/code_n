@@ -6,6 +6,9 @@
   "title": "Number of Even and Odd Bits",
   "difficulty": "Easy",
   "acceptance_rate": 73.64148225743092,
+  "frequency": 0.0,
+  "elo_rating": 1206.5675296817,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

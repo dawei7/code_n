@@ -6,6 +6,9 @@
   "title": "Count Number of Pairs With Absolute Difference K",
   "difficulty": "Easy",
   "acceptance_rate": 85.438796844528,
+  "frequency": 32.9,
+  "elo_rating": 1271.7726574892,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

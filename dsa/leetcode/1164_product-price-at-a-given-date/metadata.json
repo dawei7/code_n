@@ -6,6 +6,9 @@
   "title": "Product Price at a Given Date",
   "difficulty": "Medium",
   "acceptance_rate": 58.095126069918535,
+  "frequency": 60.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1477.863539,
   "category": "database",
   "category_title": "Database",
   "topics": [

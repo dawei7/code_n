@@ -6,6 +6,9 @@
   "title": "Open the Lock",
   "difficulty": "Medium",
   "acceptance_rate": 61.424029725667204,
+  "frequency": 66.2,
+  "elo_rating": 1877.5624603804,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

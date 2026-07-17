@@ -6,6 +6,9 @@
   "title": "Sort Vowels by Frequency",
   "difficulty": "Medium",
   "acceptance_rate": 62.917800009220414,
+  "frequency": 39.7,
+  "elo_rating": 1524.6509354074,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Design Auction System",
   "difficulty": "Medium",
   "acceptance_rate": 41.85163116341427,
+  "frequency": 64.6,
+  "elo_rating": 1853.8452529101,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

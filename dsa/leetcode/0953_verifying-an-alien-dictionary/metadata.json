@@ -6,6 +6,9 @@
   "title": "Verifying an Alien Dictionary",
   "difficulty": "Easy",
   "acceptance_rate": 56.041605845663156,
+  "frequency": 51.0,
+  "elo_rating": 1299.6035132992,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

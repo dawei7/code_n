@@ -6,6 +6,9 @@
   "title": "Minimum Cost to Repair Edges to Traverse a Graph",
   "difficulty": "Medium",
   "acceptance_rate": 54.67889908256881,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1524.948635,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find the Number of Subsequences With Equal GCD",
   "difficulty": "Hard",
   "acceptance_rate": 32.12212172676646,
+  "frequency": 7.5,
+  "elo_rating": 2402.5406421988,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

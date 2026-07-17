@@ -6,6 +6,9 @@
   "title": "First Letter Capitalization",
   "difficulty": "Hard",
   "acceptance_rate": 87.23809523809524,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1939.075434,
   "category": "database",
   "category_title": "Database",
   "topics": [

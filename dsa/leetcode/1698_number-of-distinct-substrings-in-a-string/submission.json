@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1838",
+  "frontend_id": "1698",
+  "title_slug": "number-of-distinct-substrings-in-a-string",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countDistinct",
+  "verified_submission_id": "2070606052",
+  "verified_at": "2026-07-17T04:36:27.883772+00:00"
+}

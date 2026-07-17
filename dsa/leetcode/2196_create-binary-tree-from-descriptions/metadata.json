@@ -6,6 +6,9 @@
   "title": "Create Binary Tree From Descriptions",
   "difficulty": "Medium",
   "acceptance_rate": 83.92278533271616,
+  "frequency": 62.4,
+  "elo_rating": 1643.5283095007,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

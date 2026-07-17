@@ -6,6 +6,9 @@
   "title": "Add Two Integers",
   "difficulty": "Easy",
   "acceptance_rate": 88.01995728110896,
+  "frequency": 69.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

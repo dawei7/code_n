@@ -6,6 +6,9 @@
   "title": "Optimal Account Balancing",
   "difficulty": "Hard",
   "acceptance_rate": 50.53663736139937,
+  "frequency": 71.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 2081.184034,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

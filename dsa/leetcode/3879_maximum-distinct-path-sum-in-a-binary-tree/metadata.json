@@ -6,6 +6,9 @@
   "title": "Maximum Distinct Path Sum in a Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 51.87165775401069,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1563.743554,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

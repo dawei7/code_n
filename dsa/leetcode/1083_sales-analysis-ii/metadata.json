@@ -6,6 +6,9 @@
   "title": "Sales Analysis II",
   "difficulty": "Easy",
   "acceptance_rate": 50.140157807308974,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1249.913749,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Rank Scores",
   "difficulty": "Medium",
   "acceptance_rate": 68.13549511613292,
+  "frequency": 64.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1399.675332,
   "category": "database",
   "category_title": "Database",
   "topics": [

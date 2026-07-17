@@ -6,6 +6,9 @@
   "title": "Flatten Nested List Iterator",
   "difficulty": "Medium",
   "acceptance_rate": 65.765205941743,
+  "frequency": 64.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1415.344312,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

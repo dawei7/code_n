@@ -6,6 +6,9 @@
   "title": "Finding Pairs With a Certain Sum",
   "difficulty": "Medium",
   "acceptance_rate": 61.558214500355135,
+  "frequency": 40.3,
+  "elo_rating": 1680.82425993,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

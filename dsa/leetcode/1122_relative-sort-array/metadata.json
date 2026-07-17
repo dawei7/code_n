@@ -6,6 +6,9 @@
   "title": "Relative Sort Array",
   "difficulty": "Easy",
   "acceptance_rate": 75.30713222721516,
+  "frequency": 36.7,
+  "elo_rating": 1188.6311093158,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Rabbits in Forest",
   "difficulty": "Medium",
   "acceptance_rate": 58.04506265436308,
+  "frequency": 32.8,
+  "elo_rating": 1453.1833769825,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

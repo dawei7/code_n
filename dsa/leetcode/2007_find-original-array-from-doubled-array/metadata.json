@@ -6,6 +6,9 @@
   "title": "Find Original Array From Doubled Array",
   "difficulty": "Medium",
   "acceptance_rate": 40.84979955109825,
+  "frequency": 23.1,
+  "elo_rating": 1557.017055582,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

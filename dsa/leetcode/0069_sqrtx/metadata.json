@@ -6,6 +6,9 @@
   "title": "Sqrt(x)",
   "difficulty": "Easy",
   "acceptance_rate": 42.03310383890891,
+  "frequency": 69.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

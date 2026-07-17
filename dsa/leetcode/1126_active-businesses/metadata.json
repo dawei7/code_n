@@ -6,6 +6,9 @@
   "title": "Active Businesses",
   "difficulty": "Medium",
   "acceptance_rate": 66.00622945146219,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1413.934104,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Apply Operations to Maximize Frequency Score",
   "difficulty": "Hard",
   "acceptance_rate": 39.32467916712896,
+  "frequency": 45.5,
+  "elo_rating": 2444.2791027022,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

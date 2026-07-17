@@ -6,6 +6,9 @@
   "title": "Wildcard Matching",
   "difficulty": "Hard",
   "acceptance_rate": 32.29277831681365,
+  "frequency": 57.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 2322.072901,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

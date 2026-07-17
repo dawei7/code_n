@@ -6,6 +6,9 @@
   "title": "Maximum Nesting Depth of the Parentheses",
   "difficulty": "Easy",
   "acceptance_rate": 84.98332621781695,
+  "frequency": 31.1,
+  "elo_rating": 1322.8302750313,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

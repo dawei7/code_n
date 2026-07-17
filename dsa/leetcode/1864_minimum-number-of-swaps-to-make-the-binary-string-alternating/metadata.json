@@ -6,6 +6,9 @@
   "title": "Minimum Number of Swaps to Make the Binary String Alternating",
   "difficulty": "Medium",
   "acceptance_rate": 44.026498316901666,
+  "frequency": 0.0,
+  "elo_rating": 1600.5573262373,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

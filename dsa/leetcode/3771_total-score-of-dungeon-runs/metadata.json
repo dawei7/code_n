@@ -6,6 +6,9 @@
   "title": "Total Score of Dungeon Runs",
   "difficulty": "Medium",
   "acceptance_rate": 31.110026415527734,
+  "frequency": 39.7,
+  "elo_rating": 1981.4460440375,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

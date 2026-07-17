@@ -6,6 +6,9 @@
   "title": "Patients With a Condition",
   "difficulty": "Easy",
   "acceptance_rate": 39.01887817963864,
+  "frequency": 10.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "database",
   "category_title": "Database",
   "topics": [

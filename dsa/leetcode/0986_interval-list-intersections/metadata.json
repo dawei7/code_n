@@ -6,6 +6,9 @@
   "title": "Interval List Intersections",
   "difficulty": "Medium",
   "acceptance_rate": 73.09076705901265,
+  "frequency": 68.4,
+  "elo_rating": 1541.6944600975,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

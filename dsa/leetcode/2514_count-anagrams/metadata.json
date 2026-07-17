@@ -6,6 +6,9 @@
   "title": "Count Anagrams",
   "difficulty": "Hard",
   "acceptance_rate": 38.011499929448284,
+  "frequency": 0.0,
+  "elo_rating": 2069.7848729824,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

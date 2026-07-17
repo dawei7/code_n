@@ -6,6 +6,9 @@
   "title": "Maximum GCD-Sum of a Subarray",
   "difficulty": "Hard",
   "acceptance_rate": 38.93996755002704,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2253.159563,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

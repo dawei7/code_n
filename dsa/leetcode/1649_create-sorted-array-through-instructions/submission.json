@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1772",
+  "frontend_id": "1649",
+  "title_slug": "create-sorted-array-through-instructions",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.createSortedArray",
+  "verified_submission_id": "2070469385",
+  "verified_at": "2026-07-17T00:26:58.371540+00:00"
+}

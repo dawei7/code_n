@@ -6,6 +6,9 @@
   "title": "Design A Leaderboard",
   "difficulty": "Medium",
   "acceptance_rate": 68.07369166919729,
+  "frequency": 81.8,
+  "elo_rating": 1354.1247827015,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

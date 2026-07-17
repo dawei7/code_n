@@ -6,6 +6,9 @@
   "title": "Reconstruct Original Digits from English",
   "difficulty": "Medium",
   "acceptance_rate": 53.040544058988324,
+  "frequency": 37.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1545.950396,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Shuffle an Array",
   "difficulty": "Medium",
   "acceptance_rate": 59.82222248834626,
+  "frequency": 56.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1465.328355,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

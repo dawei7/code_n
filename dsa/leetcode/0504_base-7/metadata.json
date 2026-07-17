@@ -6,6 +6,9 @@
   "title": "Base 7",
   "difficulty": "Easy",
   "acceptance_rate": 54.824356509951976,
+  "frequency": 48.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1237.454487,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

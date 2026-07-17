@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1737",
+  "frontend_id": "1614",
+  "title_slug": "maximum-nesting-depth-of-the-parentheses",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxDepth",
+  "verified_submission_id": "2070418055",
+  "verified_at": "2026-07-16T21:28:10.867599+00:00"
+}

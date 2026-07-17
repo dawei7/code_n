@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1883",
+  "frontend_id": "1740",
+  "title_slug": "find-distance-in-a-binary-tree",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findDistance",
+  "verified_submission_id": "2070903370",
+  "verified_at": "2026-07-17T09:05:16.029952+00:00"
+}

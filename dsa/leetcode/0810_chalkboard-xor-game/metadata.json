@@ -6,6 +6,9 @@
   "title": "Chalkboard XOR Game",
   "difficulty": "Hard",
   "acceptance_rate": 66.75416423617862,
+  "frequency": 0.0,
+  "elo_rating": 2341.4506355884,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

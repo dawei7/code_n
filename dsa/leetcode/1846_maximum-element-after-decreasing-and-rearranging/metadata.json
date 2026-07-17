@@ -6,6 +6,9 @@
   "title": "Maximum Element After Decreasing and Rearranging",
   "difficulty": "Medium",
   "acceptance_rate": 69.15093113500065,
+  "frequency": 64.9,
+  "elo_rating": 1454.3901912166,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

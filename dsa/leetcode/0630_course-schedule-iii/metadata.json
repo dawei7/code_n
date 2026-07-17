@@ -6,6 +6,9 @@
   "title": "Course Schedule III",
   "difficulty": "Hard",
   "acceptance_rate": 41.850608452462126,
+  "frequency": 44.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 2199.257051,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

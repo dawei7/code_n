@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1760",
+  "frontend_id": "1640",
+  "title_slug": "check-array-formation-through-concatenation",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.canFormArray",
+  "verified_submission_id": "2070457824",
+  "verified_at": "2026-07-16T23:44:42.858645+00:00"
+}

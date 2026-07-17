@@ -6,6 +6,9 @@
   "title": "Leetcodify Friends Recommendations",
   "difficulty": "Hard",
   "acceptance_rate": 28.814894153225808,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2358.235346,
   "category": "database",
   "category_title": "Database",
   "topics": [

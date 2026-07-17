@@ -6,6 +6,9 @@
   "title": "Find All Numbers Disappeared in an Array",
   "difficulty": "Easy",
   "acceptance_rate": 64.37102251266738,
+  "frequency": 60.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1209.965005,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

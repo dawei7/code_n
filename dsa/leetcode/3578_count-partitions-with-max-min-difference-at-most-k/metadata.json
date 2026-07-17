@@ -6,6 +6,9 @@
   "title": "Count Partitions With Max-Min Difference at Most K",
   "difficulty": "Medium",
   "acceptance_rate": 58.495728894423884,
+  "frequency": 30.5,
+  "elo_rating": 2032.797382526,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

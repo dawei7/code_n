@@ -6,6 +6,9 @@
   "title": "Sum Game",
   "difficulty": "Medium",
   "acceptance_rate": 49.44168734491315,
+  "frequency": 0.0,
+  "elo_rating": 2004.5346526204,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

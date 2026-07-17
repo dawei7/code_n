@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1638",
+  "cases": [
+    {"id":"sample-overlapping-choices","name":"sample: repeated letters create six positional choices","kind":"sample","visible":true,"input":{"s":"aba","t":"baba"},"expected":6,"tags":["sample","overlapping-substrings"]},
+    {"id":"sample-two-lengths","name":"sample: valid pairs have lengths one and two","kind":"sample","visible":true,"input":{"s":"ab","t":"bb"},"expected":3,"tags":["sample","multiple-lengths"]},
+    {"id":"trial-equal-singletons","name":"trial: equal singleton strings have no mismatch","kind":"trial","visible":true,"input":{"s":"a","t":"a"},"expected":0,"tags":["minimum-length","zero-differences"]},
+    {"id":"trial-different-singletons","name":"trial: different singleton strings form one valid pair","kind":"trial","visible":true,"input":{"s":"a","t":"b"},"expected":1,"tags":["minimum-length","one-difference"]},
+    {"id":"trial-all-positions-differ","name":"trial: every equal-length extension beyond one has too many differences","kind":"trial","visible":true,"input":{"s":"aaa","t":"bbb"},"expected":9,"tags":["repeated-characters","second-mismatch"]},
+    {"id":"real-identical-strings","name":"hidden: identical full strings still differ across shifted substring choices","kind":"real","visible":false,"input":{"s":"abcd","t":"abcd"},"expected":12,"tags":["identical-inputs","different-offsets"]},
+    {"id":"real-all-distinct-alphabets","name":"hidden: only length-one pairs survive when every aligned character differs","kind":"real","visible":false,"input":{"s":"abc","t":"def"},"expected":9,"tags":["all-different"]},
+    {"id":"real-repeated-runs","name":"hidden: one mismatch can be extended through matching runs on both sides","kind":"real","visible":false,"input":{"s":"aaab","t":"abaa"},"expected":13,"tags":["matching-runs","mismatch-center"]},
+    {"id":"real-unequal-lengths","name":"hidden: a singleton is compared with every position in a longer string","kind":"real","visible":false,"input":{"s":"x","t":"abcd"},"expected":4,"tags":["unequal-lengths"]},
+    {"id":"real-two-mismatch-boundaries","name":"hidden: extensions stop when a second boundary mismatch appears","kind":"real","visible":false,"input":{"s":"abca","t":"zbcx"},"expected":18,"tags":["second-mismatch","boundary-mismatches"]}
+  ]
+}

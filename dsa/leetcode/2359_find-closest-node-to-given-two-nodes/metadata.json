@@ -6,6 +6,9 @@
   "title": "Find Closest Node to Given Two Nodes",
   "difficulty": "Medium",
   "acceptance_rate": 53.0660274569623,
+  "frequency": 39.9,
+  "elo_rating": 1714.992763701,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

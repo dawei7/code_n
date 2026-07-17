@@ -6,6 +6,9 @@
   "title": "Smallest K-Length Subsequence With Occurrences of a Letter",
   "difficulty": "Hard",
   "acceptance_rate": 39.995231770035076,
+  "frequency": 0.0,
+  "elo_rating": 2561.7794931859,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

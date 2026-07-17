@@ -6,6 +6,9 @@
   "title": "Trips and Users",
   "difficulty": "Hard",
   "acceptance_rate": 38.619862704252455,
+  "frequency": 38.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2259.982666,
   "category": "database",
   "category_title": "Database",
   "topics": [

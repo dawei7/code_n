@@ -6,6 +6,9 @@
   "title": "Maximum Employees to Be Invited to a Meeting",
   "difficulty": "Hard",
   "acceptance_rate": 61.831610044313145,
+  "frequency": 28.0,
+  "elo_rating": 2449.1323757838,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

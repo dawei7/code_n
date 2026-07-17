@@ -6,6 +6,9 @@
   "title": "Lexicographically Smallest String After Applying Operations",
   "difficulty": "Medium",
   "acceptance_rate": 79.31185423639165,
+  "frequency": 37.6,
+  "elo_rating": 1992.0032292739,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

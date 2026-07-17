@@ -6,6 +6,9 @@
   "title": "Maximum White Tiles Covered by a Carpet",
   "difficulty": "Medium",
   "acceptance_rate": 36.07399465523035,
+  "frequency": 30.1,
+  "elo_rating": 2021.7790710467,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count Mentions Per User",
   "difficulty": "Medium",
   "acceptance_rate": 50.797012596143134,
+  "frequency": 38.2,
+  "elo_rating": 1745.073572838,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

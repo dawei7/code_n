@@ -6,6 +6,9 @@
   "title": "Minimum Time Takes to Reach Destination Without Drowning",
   "difficulty": "Hard",
   "acceptance_rate": 54.208084824387015,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2047.858045,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

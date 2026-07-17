@@ -6,6 +6,9 @@
   "title": "Surrounded Regions",
   "difficulty": "Medium",
   "acceptance_rate": 45.72868207349234,
+  "frequency": 57.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1647.750598,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

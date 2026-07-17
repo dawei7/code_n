@@ -6,6 +6,9 @@
   "title": "Minimum Space Wasted From Packaging",
   "difficulty": "Hard",
   "acceptance_rate": 33.6369289293683,
+  "frequency": 0.0,
+  "elo_rating": 2214.4798747386,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

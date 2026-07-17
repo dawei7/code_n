@@ -6,6 +6,9 @@
   "title": "Maximum Number of Items From Sale I",
   "difficulty": "Medium",
   "acceptance_rate": 37.25416577272402,
+  "frequency": 59.7,
+  "elo_rating": 1728.0374911688,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

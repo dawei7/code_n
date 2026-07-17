@@ -6,6 +6,9 @@
   "title": "Array With Elements Not Equal to Average of Neighbors",
   "difficulty": "Medium",
   "acceptance_rate": 50.902840059790734,
+  "frequency": 35.4,
+  "elo_rating": 1499.3290269267,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

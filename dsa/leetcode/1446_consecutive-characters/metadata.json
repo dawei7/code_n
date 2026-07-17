@@ -6,6 +6,9 @@
   "title": "Consecutive Characters",
   "difficulty": "Easy",
   "acceptance_rate": 60.3969599771181,
+  "frequency": 29.1,
+  "elo_rating": 1165.4768151611,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

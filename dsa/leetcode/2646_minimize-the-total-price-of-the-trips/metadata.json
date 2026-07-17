@@ -6,6 +6,9 @@
   "title": "Minimize the Total Price of the Trips",
   "difficulty": "Hard",
   "acceptance_rate": 48.570557550301466,
+  "frequency": 0.0,
+  "elo_rating": 2238.2830745228,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

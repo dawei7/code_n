@@ -6,6 +6,9 @@
   "title": "Convert the Temperature",
   "difficulty": "Easy",
   "acceptance_rate": 90.3025681308663,
+  "frequency": 8.6,
+  "elo_rating": 1153.427255962,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

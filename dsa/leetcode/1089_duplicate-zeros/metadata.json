@@ -6,6 +6,9 @@
   "title": "Duplicate Zeros",
   "difficulty": "Easy",
   "acceptance_rate": 53.76904697480928,
+  "frequency": 40.4,
+  "elo_rating": 1262.5890311992,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

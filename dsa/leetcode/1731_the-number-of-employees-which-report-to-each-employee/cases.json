@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1731",
+  "cases": [
+    {
+      "id": "sample-official-one",
+      "name": "sample: one manager with two direct reports",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {"employee_id": 9, "name": "Hercy", "reports_to": null, "age": 43},
+            {"employee_id": 6, "name": "Alice", "reports_to": 9, "age": 41},
+            {"employee_id": 4, "name": "Bob", "reports_to": 9, "age": 36},
+            {"employee_id": 2, "name": "Winston", "reports_to": null, "age": 37}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["employee_id", "name", "reports_count", "average_age"],
+        "rows": [[9, "Hercy", 2, 39]]
+      },
+      "tags": ["sample", "round-half-up", "single-manager"]
+    },
+    {
+      "id": "sample-official-two",
+      "name": "sample: several levels of managers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {"employee_id": 1, "name": "Michael", "reports_to": null, "age": 45},
+            {"employee_id": 2, "name": "Alice", "reports_to": 1, "age": 38},
+            {"employee_id": 3, "name": "Bob", "reports_to": 1, "age": 42},
+            {"employee_id": 4, "name": "Charlie", "reports_to": 2, "age": 34},
+            {"employee_id": 5, "name": "David", "reports_to": 2, "age": 40},
+            {"employee_id": 6, "name": "Eve", "reports_to": 3, "age": 37},
+            {"employee_id": 7, "name": "Frank", "reports_to": null, "age": 50},
+            {"employee_id": 8, "name": "Grace", "reports_to": null, "age": 48}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["employee_id", "name", "reports_count", "average_age"],
+        "rows": [[1, "Michael", 2, 40], [2, "Alice", 2, 37], [3, "Bob", 1, 37]]
+      },
+      "tags": ["sample", "multiple-managers", "hierarchy"]
+    },
+    {
+      "id": "trial-single-report",
+      "name": "trial: one direct report preserves its age",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {"employee_id": 10, "name": "Lead", "reports_to": null, "age": 61},
+            {"employee_id": 11, "name": "Solo", "reports_to": 10, "age": 27}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["employee_id", "name", "reports_count", "average_age"],
+        "rows": [[10, "Lead", 1, 27]]
+      },
+      "tags": ["single-report", "manager-age-excluded"]
+    },
+    {
+      "id": "trial-direct-only",
+      "name": "trial: grandchildren are excluded from a manager aggregate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Employees": [
+            {"employee_id": 10, "name": "Root", "reports_to": null, "age": 70},
+            {"employee_id": 20, "name": "Middle", "reports_to": 10, "age": 40},
+            {"employee_id": 30, "name": "Leaf", "reports_to": 20, "age": 20}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["employee_id", "name", "reports_count", "average_age"],
+        "rows": [[10, "Root", 1, 40], [20, "Middle", 1, 20]]
+      },
+      "tags": ["direct-reports-only", "manager-also-report"]
+    },
+    {
+      "id": "real-no-managers",
+      "name": "hidden: employees without reports produce an empty result",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employees": [
+            {"employee_id": 8, "name": "Independent", "reports_to": null, "age": 31},
+            {"employee_id": 3, "name": "Separate", "reports_to": null, "age": 46}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["employee_id", "name", "reports_count", "average_age"],
+        "rows": []
+      },
+      "tags": ["empty-result", "null-reports-to"]
+    },
+    {
+      "id": "real-order-independent",
+      "name": "hidden: manager output is sorted independently of input order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employees": [
+            {"employee_id": 41, "name": "ReportB", "reports_to": 40, "age": 51},
+            {"employee_id": 9, "name": "ManagerNine", "reports_to": null, "age": 60},
+            {"employee_id": 42, "name": "ReportC", "reports_to": 9, "age": 19},
+            {"employee_id": 40, "name": "ManagerForty", "reports_to": null, "age": 50},
+            {"employee_id": 43, "name": "ReportD", "reports_to": 40, "age": 52}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["employee_id", "name", "reports_count", "average_age"],
+        "rows": [[9, "ManagerNine", 1, 19], [40, "ManagerForty", 2, 52]]
+      },
+      "tags": ["ordering", "unsorted-input", "separate-groups"]
+    },
+    {
+      "id": "real-round-down",
+      "name": "hidden: non-half average rounds to the nearest lower integer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employees": [
+            {"employee_id": 100, "name": "Manager", "reports_to": null, "age": 18},
+            {"employee_id": 101, "name": "A", "reports_to": 100, "age": 20},
+            {"employee_id": 102, "name": "B", "reports_to": 100, "age": 21},
+            {"employee_id": 103, "name": "C", "reports_to": 100, "age": 21}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["employee_id", "name", "reports_count", "average_age"],
+        "rows": [[100, "Manager", 3, 21]]
+      },
+      "tags": ["rounding", "three-reports"]
+    },
+    {
+      "id": "real-manager-reports-upward",
+      "name": "hidden: a manager may also report to another manager",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Employees": [
+            {"employee_id": 5, "name": "Director", "reports_to": null, "age": 55},
+            {"employee_id": 7, "name": "Supervisor", "reports_to": 5, "age": 35},
+            {"employee_id": 8, "name": "JuniorA", "reports_to": 7, "age": 24},
+            {"employee_id": 9, "name": "JuniorB", "reports_to": 7, "age": 26}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["employee_id", "name", "reports_count", "average_age"],
+        "rows": [[5, "Director", 1, 35], [7, "Supervisor", 2, 25]]
+      },
+      "tags": ["manager-also-report", "role-aliases"]
+    }
+  ]
+}

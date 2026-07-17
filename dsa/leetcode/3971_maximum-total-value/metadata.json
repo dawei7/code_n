@@ -6,6 +6,9 @@
   "title": "Maximum Total Value",
   "difficulty": "Hard",
   "acceptance_rate": 30.250291558266802,
+  "frequency": 38.2,
+  "elo_rating": 2194.7888816521,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

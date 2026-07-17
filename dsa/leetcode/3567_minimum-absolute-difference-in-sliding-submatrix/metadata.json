@@ -6,6 +6,9 @@
   "title": "Minimum Absolute Difference in Sliding Submatrix",
   "difficulty": "Medium",
   "acceptance_rate": 78.7571453388814,
+  "frequency": 78.0,
+  "elo_rating": 1568.2500590119,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count the Hidden Sequences",
   "difficulty": "Medium",
   "acceptance_rate": 56.72552020282771,
+  "frequency": 25.3,
+  "elo_rating": 1614.4877804672,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

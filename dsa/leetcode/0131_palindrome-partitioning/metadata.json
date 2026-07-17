@@ -6,6 +6,9 @@
   "title": "Palindrome Partitioning",
   "difficulty": "Medium",
   "acceptance_rate": 74.28807735533712,
+  "frequency": 73.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

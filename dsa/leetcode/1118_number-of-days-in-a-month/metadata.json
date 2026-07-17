@@ -6,6 +6,9 @@
   "title": "Number of Days in a Month",
   "difficulty": "Easy",
   "acceptance_rate": 59.40432229553847,
+  "frequency": 0.0,
+  "elo_rating": 1227.3485530532,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

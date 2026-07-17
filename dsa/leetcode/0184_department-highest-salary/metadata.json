@@ -6,6 +6,9 @@
   "title": "Department Highest Salary",
   "difficulty": "Medium",
   "acceptance_rate": 58.58018723168353,
+  "frequency": 54.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1474.729743,
   "category": "database",
   "category_title": "Database",
   "topics": [

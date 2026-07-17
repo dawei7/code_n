@@ -6,6 +6,9 @@
   "title": "Remove All Adjacent Duplicates in String II",
   "difficulty": "Medium",
   "acceptance_rate": 61.535840296462474,
+  "frequency": 77.1,
+  "elo_rating": 1541.5405749918,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Largest Divisible Subset",
   "difficulty": "Medium",
   "acceptance_rate": 49.85560247033217,
+  "frequency": 50.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1593.204358,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

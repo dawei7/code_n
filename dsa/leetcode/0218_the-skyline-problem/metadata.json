@@ -6,6 +6,9 @@
   "title": "The Skyline Problem",
   "difficulty": "Hard",
   "acceptance_rate": 45.54594252755332,
+  "frequency": 56.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 2144.672228,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

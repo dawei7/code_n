@@ -6,6 +6,9 @@
   "title": "Restaurant Growth",
   "difficulty": "Medium",
   "acceptance_rate": 59.15578184835885,
+  "frequency": 51.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1470.342429,
   "category": "database",
   "category_title": "Database",
   "topics": [

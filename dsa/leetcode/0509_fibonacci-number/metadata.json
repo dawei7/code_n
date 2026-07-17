@@ -6,6 +6,9 @@
   "title": "Fibonacci Number",
   "difficulty": "Easy",
   "acceptance_rate": 74.32640381847897,
+  "frequency": 75.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1170.005098,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Time to Finish the Race",
   "difficulty": "Hard",
   "acceptance_rate": 43.458120118502556,
+  "frequency": 70.3,
+  "elo_rating": 2315.0547336936,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

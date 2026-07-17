@@ -6,6 +6,9 @@
   "title": "Maximize the Minimum Powered City",
   "difficulty": "Hard",
   "acceptance_rate": 61.55207393041317,
+  "frequency": 59.2,
+  "elo_rating": 2235.5784618885,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

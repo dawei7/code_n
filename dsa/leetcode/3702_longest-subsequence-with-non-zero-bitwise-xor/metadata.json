@@ -6,6 +6,9 @@
   "title": "Longest Subsequence With Non-Zero Bitwise XOR",
   "difficulty": "Medium",
   "acceptance_rate": 37.50797775346462,
+  "frequency": 0.0,
+  "elo_rating": 1489.4925546669,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

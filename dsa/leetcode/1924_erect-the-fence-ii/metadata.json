@@ -6,6 +6,9 @@
   "title": "Erect the Fence II",
   "difficulty": "Hard",
   "acceptance_rate": 51.53035624686403,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2072.13253,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

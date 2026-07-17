@@ -6,6 +6,9 @@
   "title": "Find Bottom Left Tree Value",
   "difficulty": "Medium",
   "acceptance_rate": 72.42740560409221,
+  "frequency": 32.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1371.31448,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

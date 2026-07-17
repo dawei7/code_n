@@ -6,6 +6,9 @@
   "title": "Construct Binary Search Tree from Preorder Traversal",
   "difficulty": "Medium",
   "acceptance_rate": 84.40450119304793,
+  "frequency": 55.6,
+  "elo_rating": 1562.9802666517,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Third Maximum Number",
   "difficulty": "Easy",
   "acceptance_rate": 39.76604626180243,
+  "frequency": 50.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

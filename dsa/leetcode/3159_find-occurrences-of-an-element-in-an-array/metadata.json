@@ -6,6 +6,9 @@
   "title": "Find Occurrences of an Element in an Array",
   "difficulty": "Medium",
   "acceptance_rate": 73.5836894501874,
+  "frequency": 23.2,
+  "elo_rating": 1262.9248376352,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

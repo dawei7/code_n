@@ -6,6 +6,9 @@
   "title": "Decode Ways",
   "difficulty": "Medium",
   "acceptance_rate": 38.20054110388077,
+  "frequency": 55.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1716.298013,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

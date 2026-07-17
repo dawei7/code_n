@@ -6,6 +6,9 @@
   "title": "Longest Subsequence Repeated k Times",
   "difficulty": "Hard",
   "acceptance_rate": 71.13927919838761,
+  "frequency": 0.0,
+  "elo_rating": 2558.3297484354,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

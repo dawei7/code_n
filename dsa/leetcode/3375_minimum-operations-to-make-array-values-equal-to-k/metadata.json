@@ -6,6 +6,9 @@
   "title": "Minimum Operations to Make Array Values Equal to K",
   "difficulty": "Easy",
   "acceptance_rate": 73.21747864524481,
+  "frequency": 0.0,
+  "elo_rating": 1382.8392346741,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

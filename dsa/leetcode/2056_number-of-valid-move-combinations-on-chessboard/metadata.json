@@ -6,6 +6,9 @@
   "title": "Number of Valid Move Combinations On Chessboard",
   "difficulty": "Hard",
   "acceptance_rate": 49.06237092110698,
+  "frequency": 0.0,
+  "elo_rating": 2610.9906730644,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

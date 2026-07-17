@@ -6,6 +6,9 @@
   "title": "Largest Even Number",
   "difficulty": "Easy",
   "acceptance_rate": 69.2649348052727,
+  "frequency": 33.0,
+  "elo_rating": 1365.0489201345,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

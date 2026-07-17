@@ -6,6 +6,9 @@
   "title": "Super Ugly Number",
   "difficulty": "Medium",
   "acceptance_rate": 46.28874860540327,
+  "frequency": 42.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1640.750011,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

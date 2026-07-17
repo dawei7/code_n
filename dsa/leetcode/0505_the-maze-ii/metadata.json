@@ -6,6 +6,9 @@
   "title": "The Maze II",
   "difficulty": "Medium",
   "acceptance_rate": 55.14652899638022,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1517.364666,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

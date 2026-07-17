@@ -6,6 +6,9 @@
   "title": "Customer Placing the Largest Number of Orders",
   "difficulty": "Easy",
   "acceptance_rate": 64.53199289073169,
+  "frequency": 40.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1208.382876,
   "category": "database",
   "category_title": "Database",
   "topics": [

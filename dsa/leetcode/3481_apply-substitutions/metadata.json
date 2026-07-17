@@ -6,6 +6,9 @@
   "title": "Apply Substitutions",
   "difficulty": "Medium",
   "acceptance_rate": 77.81317342827695,
+  "frequency": 69.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

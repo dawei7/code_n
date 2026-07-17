@@ -6,6 +6,9 @@
   "title": "Battleships in a Board",
   "difficulty": "Medium",
   "acceptance_rate": 77.62761958814774,
+  "frequency": 59.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

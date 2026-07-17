@@ -6,6 +6,9 @@
   "title": "Take K of Each Character From Left and Right",
   "difficulty": "Medium",
   "acceptance_rate": 51.49668454562655,
+  "frequency": 26.7,
+  "elo_rating": 1947.8832856412,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

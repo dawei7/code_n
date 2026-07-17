@@ -6,6 +6,9 @@
   "title": "Count Pairs of Connectable Servers in a Weighted Tree Network",
   "difficulty": "Medium",
   "acceptance_rate": 56.13330259821516,
+  "frequency": 0.0,
+  "elo_rating": 1908.9411092109,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

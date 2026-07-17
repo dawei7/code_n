@@ -6,6 +6,9 @@
   "title": "Count Indices With Opposite Parity",
   "difficulty": "Easy",
   "acceptance_rate": 81.85566200722475,
+  "frequency": 14.0,
+  "elo_rating": 1198.8640761901,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

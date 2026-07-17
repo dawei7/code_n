@@ -6,6 +6,9 @@
   "title": "Flower Planting With No Adjacent",
   "difficulty": "Medium",
   "acceptance_rate": 53.87948249973458,
+  "frequency": 0.0,
+  "elo_rating": 1712.4010133221,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

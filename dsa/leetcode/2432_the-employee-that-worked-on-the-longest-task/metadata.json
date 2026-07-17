@@ -6,6 +6,9 @@
   "title": "The Employee That Worked on the Longest Task",
   "difficulty": "Easy",
   "acceptance_rate": 51.87649659237429,
+  "frequency": 0.0,
+  "elo_rating": 1266.7001363197,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

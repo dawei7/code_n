@@ -6,6 +6,9 @@
   "title": "Line Reflection",
   "difficulty": "Medium",
   "acceptance_rate": 36.39456047078238,
+  "frequency": 52.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1732.341024,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

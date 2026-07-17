@@ -6,6 +6,9 @@
   "title": "Maximum Total Beauty of the Gardens",
   "difficulty": "Hard",
   "acceptance_rate": 30.2129221732746,
+  "frequency": 0.0,
+  "elo_rating": 2561.508149216,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Build Array Where You Can Find The Maximum Exactly K Comparisons",
   "difficulty": "Hard",
   "acceptance_rate": 65.50045419668922,
+  "frequency": 21.8,
+  "elo_rating": 2175.6850426027,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

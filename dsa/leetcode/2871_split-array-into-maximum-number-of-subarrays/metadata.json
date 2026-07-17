@@ -6,6 +6,9 @@
   "title": "Split Array Into Maximum Number of Subarrays",
   "difficulty": "Medium",
   "acceptance_rate": 42.61978361669242,
+  "frequency": 0.0,
+  "elo_rating": 1749.5115037045,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

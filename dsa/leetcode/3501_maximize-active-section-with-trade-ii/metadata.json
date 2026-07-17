@@ -6,6 +6,9 @@
   "title": "Maximize Active Section with Trade II",
   "difficulty": "Hard",
   "acceptance_rate": 21.440668397877385,
+  "frequency": 0.0,
+  "elo_rating": 2940.548809489,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

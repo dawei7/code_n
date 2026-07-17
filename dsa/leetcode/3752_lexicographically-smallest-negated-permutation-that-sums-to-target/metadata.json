@@ -6,6 +6,9 @@
   "title": "Lexicographically Smallest Negated Permutation that Sums to Target",
   "difficulty": "Medium",
   "acceptance_rate": 31.436728637906615,
+  "frequency": 38.2,
+  "elo_rating": 1827.3300819992,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Simplify Path",
   "difficulty": "Medium",
   "acceptance_rate": 50.88647257747976,
+  "frequency": 64.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1579.203184,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

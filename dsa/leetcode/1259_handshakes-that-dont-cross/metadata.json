@@ -6,6 +6,9 @@
   "title": "Handshakes That Don't Cross",
   "difficulty": "Hard",
   "acceptance_rate": 61.513496398321855,
+  "frequency": 0.0,
+  "elo_rating": 1951.3509259668,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

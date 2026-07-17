@@ -6,6 +6,9 @@
   "title": "Shortest Path Visiting All Nodes",
   "difficulty": "Hard",
   "acceptance_rate": 66.10732263111353,
+  "frequency": 49.8,
+  "elo_rating": 2200.6623666057,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Best Time to Buy and Sell Stock using Strategy",
   "difficulty": "Medium",
   "acceptance_rate": 59.73877499882543,
+  "frequency": 32.5,
+  "elo_rating": 1556.7777620299,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

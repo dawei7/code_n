@@ -6,6 +6,9 @@
   "title": "Number of Unique Categories",
   "difficulty": "Medium",
   "acceptance_rate": 83.9514652014652,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

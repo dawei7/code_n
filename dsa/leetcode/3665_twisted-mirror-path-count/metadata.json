@@ -6,6 +6,9 @@
   "title": "Twisted Mirror Path Count",
   "difficulty": "Medium",
   "acceptance_rate": 47.597146611601275,
+  "frequency": 0.0,
+  "elo_rating": 1883.0162485547,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

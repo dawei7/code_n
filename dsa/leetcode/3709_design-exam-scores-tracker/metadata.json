@@ -6,6 +6,9 @@
   "title": "Design Exam Scores Tracker",
   "difficulty": "Medium",
   "acceptance_rate": 44.31492706321188,
+  "frequency": 0.0,
+  "elo_rating": 1647.51871302,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Calls Between Two Persons",
   "difficulty": "Medium",
   "acceptance_rate": 80.83794702977704,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "database",
   "category_title": "Database",
   "topics": [

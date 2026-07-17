@@ -6,6 +6,9 @@
   "title": "Partition Array According to Given Pivot",
   "difficulty": "Medium",
   "acceptance_rate": 90.75850235382111,
+  "frequency": 58.4,
+  "elo_rating": 1337.6115578703,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

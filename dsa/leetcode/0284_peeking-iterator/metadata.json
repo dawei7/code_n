@@ -6,6 +6,9 @@
   "title": "Peeking Iterator",
   "difficulty": "Medium",
   "acceptance_rate": 61.65497524447853,
+  "frequency": 14.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1450.599515,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

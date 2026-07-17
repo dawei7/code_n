@@ -6,6 +6,9 @@
   "title": "Minimum Moves to Equal Array Elements",
   "difficulty": "Medium",
   "acceptance_rate": 58.87172574305129,
+  "frequency": 32.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1472.222706,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

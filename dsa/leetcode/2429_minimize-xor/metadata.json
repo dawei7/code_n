@@ -6,6 +6,9 @@
   "title": "Minimize XOR",
   "difficulty": "Medium",
   "acceptance_rate": 62.40003197200673,
+  "frequency": 37.6,
+  "elo_rating": 1532.3349133769,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

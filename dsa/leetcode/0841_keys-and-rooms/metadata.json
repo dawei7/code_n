@@ -6,6 +6,9 @@
   "title": "Keys and Rooms",
   "difficulty": "Medium",
   "acceptance_rate": 75.95555422891512,
+  "frequency": 46.2,
+  "elo_rating": 1412.2790156634,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

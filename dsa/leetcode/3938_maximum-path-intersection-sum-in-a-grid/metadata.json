@@ -6,6 +6,9 @@
   "title": "Maximum Path Intersection Sum in a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 25.709050350541744,
+  "frequency": 42.9,
+  "elo_rating": 2251.9378859552,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

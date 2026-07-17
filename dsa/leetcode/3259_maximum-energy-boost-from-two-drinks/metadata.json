@@ -6,6 +6,9 @@
   "title": "Maximum Energy Boost From Two Drinks",
   "difficulty": "Medium",
   "acceptance_rate": 50.218213960169045,
+  "frequency": 0.0,
+  "elo_rating": 1483.544502742,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

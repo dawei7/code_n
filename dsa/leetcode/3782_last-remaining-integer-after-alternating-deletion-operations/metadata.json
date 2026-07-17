@@ -6,6 +6,9 @@
   "title": "Last Remaining Integer After Alternating Deletion Operations",
   "difficulty": "Hard",
   "acceptance_rate": 48.80622211503678,
+  "frequency": 0.0,
+  "elo_rating": 2074.3323025363,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find Smallest Letter Greater Than Target",
   "difficulty": "Easy",
   "acceptance_rate": 59.3949114588342,
+  "frequency": 59.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1226.972886,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

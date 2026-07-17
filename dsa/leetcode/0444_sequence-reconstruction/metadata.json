@@ -6,6 +6,9 @@
   "title": "Sequence Reconstruction",
   "difficulty": "Medium",
   "acceptance_rate": 30.966531122927744,
+  "frequency": 57.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1756.215943,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

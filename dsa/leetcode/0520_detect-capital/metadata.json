@@ -6,6 +6,9 @@
   "title": "Detect Capital",
   "difficulty": "Easy",
   "acceptance_rate": 56.80740717484214,
+  "frequency": 19.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1234.092464,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

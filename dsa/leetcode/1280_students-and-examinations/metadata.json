@@ -6,6 +6,9 @@
   "title": "Students and Examinations",
   "difficulty": "Easy",
   "acceptance_rate": 61.44981588543706,
+  "frequency": 57.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1219.853308,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Article Views II",
   "difficulty": "Medium",
   "acceptance_rate": 47.31646419504417,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1629.082366,
   "category": "database",
   "category_title": "Database",
   "topics": [

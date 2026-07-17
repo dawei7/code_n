@@ -6,6 +6,9 @@
   "title": "Special Permutations",
   "difficulty": "Medium",
   "acceptance_rate": 29.722938354599744,
+  "frequency": 50.4,
+  "elo_rating": 2020.7095306378,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Balanced Shipments",
   "difficulty": "Medium",
   "acceptance_rate": 61.53599817006919,
+  "frequency": 0.0,
+  "elo_rating": 1463.2825992167,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Total Reward Using Operations I",
   "difficulty": "Medium",
   "acceptance_rate": 31.06395114419739,
+  "frequency": 0.0,
+  "elo_rating": 1848.5480405143,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

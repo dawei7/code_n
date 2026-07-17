@@ -6,6 +6,9 @@
   "title": "People Whose List of Favorite Companies Is Not a Subset of Another List",
   "difficulty": "Medium",
   "acceptance_rate": 60.730239536098985,
+  "frequency": 0.0,
+  "elo_rating": 1562.9186033202,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

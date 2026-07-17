@@ -6,6 +6,9 @@
   "title": "Race Car",
   "difficulty": "Hard",
   "acceptance_rate": 44.90916999813576,
+  "frequency": 49.2,
+  "elo_rating": 2391.8086687918,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

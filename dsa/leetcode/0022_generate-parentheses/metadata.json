@@ -6,6 +6,9 @@
   "title": "Generate Parentheses",
   "difficulty": "Medium",
   "acceptance_rate": 78.86877280049586,
+  "frequency": 89.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

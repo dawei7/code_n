@@ -6,6 +6,9 @@
   "title": "Count Number of Bad Pairs",
   "difficulty": "Medium",
   "acceptance_rate": 54.15141712965889,
+  "frequency": 28.9,
+  "elo_rating": 1622.2389577197,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

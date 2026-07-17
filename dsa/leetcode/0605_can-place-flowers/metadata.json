@@ -6,6 +6,9 @@
   "title": "Can Place Flowers",
   "difficulty": "Easy",
   "acceptance_rate": 29.204901405134915,
+  "frequency": 61.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

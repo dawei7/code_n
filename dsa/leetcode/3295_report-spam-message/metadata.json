@@ -6,6 +6,9 @@
   "title": "Report Spam Message",
   "difficulty": "Medium",
   "acceptance_rate": 48.74138273896328,
+  "frequency": 27.7,
+  "elo_rating": 1198.9144299059,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

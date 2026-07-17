@@ -6,6 +6,9 @@
   "title": "Maximum Length of Pair Chain",
   "difficulty": "Medium",
   "acceptance_rate": 61.95242158959067,
+  "frequency": 45.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1447.622409,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

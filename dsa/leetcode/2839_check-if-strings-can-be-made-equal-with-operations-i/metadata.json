@@ -6,6 +6,9 @@
   "title": "Check if Strings Can be Made Equal With Operations I",
   "difficulty": "Easy",
   "acceptance_rate": 61.90926470285938,
+  "frequency": 67.3,
+  "elo_rating": 1285.1547123119,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1850",
+  "frontend_id": "1750",
+  "title_slug": "minimum-length-of-string-after-deleting-similar-ends",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumLength",
+  "verified_submission_id": "2070964996",
+  "verified_at": "2026-07-17T10:00:43.114138+00:00"
+}

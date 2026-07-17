@@ -6,6 +6,9 @@
   "title": "Find Good Days to Rob the Bank",
   "difficulty": "Medium",
   "acceptance_rate": 51.86449077046097,
+  "frequency": 46.9,
+  "elo_rating": 1702.4962514406,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

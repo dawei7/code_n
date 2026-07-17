@@ -6,6 +6,9 @@
   "title": "Maximum Enemy Forts That Can Be Captured",
   "difficulty": "Easy",
   "acceptance_rate": 41.60589011599639,
+  "frequency": 0.0,
+  "elo_rating": 1450.0534545623,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

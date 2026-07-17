@@ -6,6 +6,9 @@
   "title": "Maximum Frequency After Subarray Operation",
   "difficulty": "Medium",
   "acceptance_rate": 31.40918843115868,
+  "frequency": 65.1,
+  "elo_rating": 2093.9055608233,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

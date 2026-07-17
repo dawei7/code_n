@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1806",
+  "cases": [
+    {"id":"example-minimum-length","name":"sample: length two is already fixed","kind":"sample","visible":true,"input":{"n":2},"expected":1,"tags":["example","minimum-size"]},
+    {"id":"example-length-four","name":"sample: length four returns in two steps","kind":"sample","visible":true,"input":{"n":4},"expected":2,"tags":["example","short-cycle"]},
+    {"id":"example-length-six","name":"sample: length six returns in four steps","kind":"sample","visible":true,"input":{"n":6},"expected":4,"tags":["example","cycle"]},
+    {"id":"trial-power-of-two","name":"length eight has a three-step cycle","kind":"trial","visible":true,"input":{"n":8},"expected":3,"tags":["power-of-two","modular-order"]},
+    {"id":"trial-length-twelve","name":"length twelve uses a long internal cycle","kind":"trial","visible":true,"input":{"n":12},"expected":10,"tags":["long-cycle","simulation"]},
+    {"id":"real-length-fourteen","name":"order reaches n minus two","kind":"real","visible":false,"input":{"n":14},"expected":12,"tags":["long-cycle","boundary-pattern"]},
+    {"id":"real-length-one-hundred","name":"larger composite length","kind":"real","visible":false,"input":{"n":100},"expected":30,"tags":["composite","larger-input"]},
+    {"id":"real-maximum-length","name":"maximum legal even length","kind":"real","visible":false,"input":{"n":1000},"expected":36,"tags":["maximum-size","large-input"]}
+  ]
+}

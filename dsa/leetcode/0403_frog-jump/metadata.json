@@ -6,6 +6,9 @@
   "title": "Frog Jump",
   "difficulty": "Hard",
   "acceptance_rate": 47.42553414999174,
+  "frequency": 53.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 2112.041431,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

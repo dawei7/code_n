@@ -6,6 +6,9 @@
   "title": "All Paths From Source to Target",
   "difficulty": "Medium",
   "acceptance_rate": 83.69894198608463,
+  "frequency": 39.5,
+  "elo_rating": 1382.5129151601,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

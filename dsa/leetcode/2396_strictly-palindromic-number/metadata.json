@@ -6,6 +6,9 @@
   "title": "Strictly Palindromic Number",
   "difficulty": "Medium",
   "acceptance_rate": 90.35314015858764,
+  "frequency": 38.4,
+  "elo_rating": 1328.5499677186,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

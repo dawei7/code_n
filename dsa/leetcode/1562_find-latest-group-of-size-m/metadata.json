@@ -6,6 +6,9 @@
   "title": "Find Latest Group of Size M",
   "difficulty": "Medium",
   "acceptance_rate": 43.96762693901147,
+  "frequency": 0.0,
+  "elo_rating": 1928.2304187946,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

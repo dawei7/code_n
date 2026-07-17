@@ -6,6 +6,9 @@
   "title": "Reported Posts",
   "difficulty": "Easy",
   "acceptance_rate": 64.8003322850531,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1207.19628,
   "category": "database",
   "category_title": "Database",
   "topics": [

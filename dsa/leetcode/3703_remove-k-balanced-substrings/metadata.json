@@ -6,6 +6,9 @@
   "title": "Remove K-Balanced Substrings",
   "difficulty": "Medium",
   "acceptance_rate": 32.934730056406124,
+  "frequency": 0.0,
+  "elo_rating": 1802.0481850881,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Word Squares II",
   "difficulty": "Medium",
   "acceptance_rate": 55.164538850979525,
+  "frequency": 35.6,
+  "elo_rating": 1606.0736676327,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Distance to a Cycle in Undirected Graph",
   "difficulty": "Hard",
   "acceptance_rate": 73.88566368198367,
+  "frequency": 63.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1939.075434,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

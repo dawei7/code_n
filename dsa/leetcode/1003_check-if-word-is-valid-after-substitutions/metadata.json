@@ -6,6 +6,9 @@
   "title": "Check If Word Is Valid After Substitutions",
   "difficulty": "Medium",
   "acceptance_rate": 61.27622316394075,
+  "frequency": 36.5,
+  "elo_rating": 1426.7144554733,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

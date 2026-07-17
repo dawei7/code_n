@@ -6,6 +6,9 @@
   "title": "Nth Digit",
   "difficulty": "Medium",
   "acceptance_rate": 38.520837754632375,
+  "frequency": 57.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1714.256175,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

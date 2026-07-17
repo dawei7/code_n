@@ -6,6 +6,9 @@
   "title": "Friend Requests I: Overall Acceptance Rate",
   "difficulty": "Easy",
   "acceptance_rate": 41.046159622650364,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "database",
   "category_title": "Database",
   "topics": [

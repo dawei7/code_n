@@ -6,6 +6,9 @@
   "title": "Elimination Game",
   "difficulty": "Medium",
   "acceptance_rate": 46.30535343788695,
+  "frequency": 56.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1640.45832,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

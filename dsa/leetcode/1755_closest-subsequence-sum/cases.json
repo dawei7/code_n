@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1755",
+  "cases": [
+    {
+      "id": "sample-exact-target",
+      "name": "sample: a subsequence reaches the goal",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [5, -7, 3, 5], "goal": 6},
+      "expected": 0,
+      "tags": ["sample", "exact-match"]
+    },
+    {
+      "id": "sample-off-by-one",
+      "name": "sample: closest sum differs by one",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [7, -9, 15, -2], "goal": -5},
+      "expected": 1,
+      "tags": ["sample", "negative-goal"]
+    },
+    {
+      "id": "sample-empty-subsequence",
+      "name": "sample: empty subsequence is optimal",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3], "goal": -7},
+      "expected": 7,
+      "tags": ["sample", "empty-subsequence"]
+    },
+    {
+      "id": "trial-zero-goal",
+      "name": "trial: zero goal is matched by choosing nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [8, -3], "goal": 0},
+      "expected": 0,
+      "tags": ["zero-goal", "empty-subsequence"]
+    },
+    {
+      "id": "trial-duplicate-values",
+      "name": "trial: duplicate subset sums surround the goal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 4, 4, 4], "goal": 6},
+      "expected": 2,
+      "tags": ["duplicates", "neighbor-check"]
+    },
+    {
+      "id": "real-negative-only",
+      "name": "hidden: negative values approach a negative goal",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-8, -3, -2], "goal": -6},
+      "expected": 1,
+      "tags": ["negative-values", "negative-goal"]
+    },
+    {
+      "id": "real-cross-half-match",
+      "name": "hidden: exact result combines choices from both halves",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [23, -17, 7, 12, -5, 9], "goal": 18},
+      "expected": 0,
+      "tags": ["meet-in-the-middle", "exact-match"]
+    },
+    {
+      "id": "real-goal-boundary",
+      "name": "hidden: empty subsequence wins at the negative goal boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10000000], "goal": -1000000000},
+      "expected": 1000000000,
+      "tags": ["goal-boundary", "value-boundary", "empty-subsequence"]
+    }
+  ]
+}

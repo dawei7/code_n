@@ -6,6 +6,9 @@
   "title": "Employee Task Duration and Concurrent Tasks",
   "difficulty": "Hard",
   "acceptance_rate": 39.57765667574932,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2242.242598,
   "category": "database",
   "category_title": "Database",
   "topics": [

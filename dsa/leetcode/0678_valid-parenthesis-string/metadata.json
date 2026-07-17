@@ -6,6 +6,9 @@
   "title": "Valid Parenthesis String",
   "difficulty": "Medium",
   "acceptance_rate": 40.275297235208114,
+  "frequency": 66.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1699.96331,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

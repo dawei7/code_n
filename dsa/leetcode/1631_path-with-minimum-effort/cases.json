@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1631",
+  "cases": [
+    {"id":"sample-detour","name":"sample: detour limits the maximum height change","kind":"sample","visible":true,"input":{"heights":[[1,2,2],[3,8,2],[5,3,5]]},"expected":2,"tags":["sample","detour"]},
+    {"id":"sample-gradual-route","name":"sample: gradual top and right route has effort one","kind":"sample","visible":true,"input":{"heights":[[1,2,3],[3,8,4],[5,3,5]]},"expected":1,"tags":["sample","gradual-route"]},
+    {"id":"sample-zero-route","name":"sample: winding equal-height route has zero effort","kind":"sample","visible":true,"input":{"heights":[[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]},"expected":0,"tags":["sample","zero-effort"]},
+    {"id":"trial-single-cell","name":"trial: start already equals destination","kind":"trial","visible":true,"input":{"heights":[[999999]]},"expected":0,"tags":["single-cell","boundary"]},
+    {"id":"trial-single-row","name":"trial: one row has a forced route","kind":"trial","visible":true,"input":{"heights":[[1,10,6,7]]},"expected":9,"tags":["single-row","forced-path"]},
+    {"id":"trial-single-column","name":"trial: one column has a forced route","kind":"trial","visible":true,"input":{"heights":[[8],[3],[4],[20]]},"expected":16,"tags":["single-column","forced-path"]},
+    {"id":"real-high-wall-detour","name":"hidden: low perimeter avoids a high interior wall","kind":"real","visible":false,"input":{"heights":[[1,1,1,1],[1,100,100,1],[1,1,1,1]]},"expected":0,"tags":["wall","perimeter-detour"]},
+    {"id":"real-unavoidable-edge","name":"hidden: every route crosses the same height boundary","kind":"real","visible":false,"input":{"heights":[[1,1,50],[1,1,50],[1,1,50]]},"expected":49,"tags":["unavoidable-boundary","bottleneck"]},
+    {"id":"real-nonmonotone","name":"hidden: optimal minimax path need not minimize total difference","kind":"real","visible":false,"input":{"heights":[[1,100,1],[2,99,2],[3,4,5]]},"expected":1,"tags":["nonmonotone-cost","minimax"]},
+    {"id":"real-value-boundaries","name":"hidden: extreme heights permit a smaller intermediate route","kind":"real","visible":false,"input":{"heights":[[1,1000000],[500000,750000]]},"expected":499999,"tags":["height-boundaries","intermediate-route"]}
+  ]
+}

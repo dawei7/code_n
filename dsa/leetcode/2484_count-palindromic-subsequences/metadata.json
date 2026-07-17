@@ -6,6 +6,9 @@
   "title": "Count Palindromic Subsequences",
   "difficulty": "Hard",
   "acceptance_rate": 41.414510994841024,
+  "frequency": 58.7,
+  "elo_rating": 2223.1762282199,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

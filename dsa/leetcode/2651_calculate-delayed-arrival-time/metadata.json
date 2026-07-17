@@ -6,6 +6,9 @@
   "title": "Calculate Delayed Arrival Time",
   "difficulty": "Easy",
   "acceptance_rate": 75.46143075356414,
+  "frequency": 26.0,
+  "elo_rating": 1168.6157473032,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

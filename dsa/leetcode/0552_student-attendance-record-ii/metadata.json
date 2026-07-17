@@ -6,6 +6,9 @@
   "title": "Student Attendance Record II",
   "difficulty": "Hard",
   "acceptance_rate": 56.72042632770427,
+  "frequency": 28.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 2028.520743,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

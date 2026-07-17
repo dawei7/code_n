@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1617",
+  "cases": [
+    {"id":"sample-branched-four","name":"sample: three edges and four diameter-two subtrees","kind":"sample","visible":true,"input":{"n":4,"edges":[[1,2],[2,3],[2,4]]},"expected":[3,4,0],"tags":["sample","branched"]},
+    {"id":"sample-minimum-tree","name":"sample: one edge forms the only subtree","kind":"sample","visible":true,"input":{"n":2,"edges":[[1,2]]},"expected":[1],"tags":["sample","minimum-n"]},
+    {"id":"sample-three-path","name":"sample: path intervals by diameter","kind":"sample","visible":true,"input":{"n":3,"edges":[[1,2],[2,3]]},"expected":[2,1],"tags":["sample","path"]},
+    {"id":"trial-four-path","name":"trial: every connected subset is an interval","kind":"trial","visible":true,"input":{"n":4,"edges":[[1,2],[2,3],[3,4]]},"expected":[3,2,1],"tags":["path","all-diameters"]},
+    {"id":"trial-five-star","name":"trial: leaf selections dominate diameter two","kind":"trial","visible":true,"input":{"n":5,"edges":[[1,2],[1,3],[1,4],[1,5]]},"expected":[4,11,0,0],"tags":["star","diameter-two"]},
+    {"id":"real-six-path","name":"hidden: longer path has descending interval counts","kind":"real","visible":false,"input":{"n":6,"edges":[[1,2],[2,3],[3,4],[4,5],[5,6]]},"expected":[5,4,3,2,1],"tags":["path","all-diameters"]},
+    {"id":"real-balanced-seven","name":"hidden: balanced binary tree mixes diameters","kind":"real","visible":false,"input":{"n":7,"edges":[[1,2],[1,3],[2,4],[2,5],[3,6],[3,7]]},"expected":[6,9,6,9,0,0],"tags":["balanced-tree","branching"]},
+    {"id":"real-broom","name":"hidden: path handle ends in a branching hub","kind":"real","visible":false,"input":{"n":7,"edges":[[1,2],[2,3],[3,4],[4,5],[4,6],[4,7]]},"expected":[6,13,8,7,0,0],"tags":["broom","mixed-shape"]},
+    {"id":"real-label-order","name":"hidden: edge order and labels do not affect counts","kind":"real","visible":false,"input":{"n":5,"edges":[[5,2],[3,1],[2,3],[4,3]]},"expected":[4,5,3,0],"tags":["edge-order","labels"]}
+  ]
+}

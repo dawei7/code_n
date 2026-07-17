@@ -6,6 +6,9 @@
   "title": "Maximum Points in an Archery Competition",
   "difficulty": "Medium",
   "acceptance_rate": 52.233122336267115,
+  "frequency": 40.5,
+  "elo_rating": 1868.9864493463,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

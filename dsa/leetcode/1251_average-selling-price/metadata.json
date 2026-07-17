@@ -6,6 +6,9 @@
   "title": "Average Selling Price",
   "difficulty": "Easy",
   "acceptance_rate": 37.50778276179291,
+  "frequency": 51.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "database",
   "category_title": "Database",
   "topics": [

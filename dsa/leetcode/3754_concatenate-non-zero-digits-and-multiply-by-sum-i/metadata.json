@@ -6,6 +6,9 @@
   "title": "Concatenate Non-Zero Digits and Multiply by Sum I",
   "difficulty": "Easy",
   "acceptance_rate": 66.2765984687476,
+  "frequency": 49.9,
+  "elo_rating": 1247.9346797909,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

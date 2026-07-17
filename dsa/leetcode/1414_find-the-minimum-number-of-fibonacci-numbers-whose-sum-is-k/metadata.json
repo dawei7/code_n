@@ -6,6 +6,9 @@
   "title": "Find the Minimum Number of Fibonacci Numbers Whose Sum Is K",
   "difficulty": "Medium",
   "acceptance_rate": 65.02261233223109,
+  "frequency": 0.0,
+  "elo_rating": 1465.7023558248,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count Numbers with Unique Digits",
   "difficulty": "Medium",
   "acceptance_rate": 55.897144381862795,
+  "frequency": 43.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1506.280403,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

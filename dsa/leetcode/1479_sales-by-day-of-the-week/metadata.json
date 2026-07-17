@@ -6,6 +6,9 @@
   "title": "Sales by Day of the Week",
   "difficulty": "Hard",
   "acceptance_rate": 76.3197799485136,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1939.075434,
   "category": "database",
   "category_title": "Database",
   "topics": [

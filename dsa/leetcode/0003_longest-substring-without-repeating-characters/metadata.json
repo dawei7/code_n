@@ -6,6 +6,9 @@
   "title": "Longest Substring Without Repeating Characters",
   "difficulty": "Medium",
   "acceptance_rate": 39.40364412596059,
+  "frequency": 97.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1706.963897,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

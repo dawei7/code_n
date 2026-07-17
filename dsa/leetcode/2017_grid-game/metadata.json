@@ -6,6 +6,9 @@
   "title": "Grid Game",
   "difficulty": "Medium",
   "acceptance_rate": 60.861681357052476,
+  "frequency": 0.0,
+  "elo_rating": 1718.9772466681,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

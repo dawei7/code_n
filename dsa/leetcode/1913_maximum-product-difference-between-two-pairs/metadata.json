@@ -6,6 +6,9 @@
   "title": "Maximum Product Difference Between Two Pairs",
   "difficulty": "Easy",
   "acceptance_rate": 83.08027160162172,
+  "frequency": 22.2,
+  "elo_rating": 1144.6237559885,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

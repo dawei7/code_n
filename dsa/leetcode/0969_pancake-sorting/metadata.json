@@ -6,6 +6,9 @@
   "title": "Pancake Sorting",
   "difficulty": "Medium",
   "acceptance_rate": 71.89912888536924,
+  "frequency": 23.2,
+  "elo_rating": 1590.5791055102,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Convex Polygon",
   "difficulty": "Medium",
   "acceptance_rate": 40.29876373626374,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1699.671618,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

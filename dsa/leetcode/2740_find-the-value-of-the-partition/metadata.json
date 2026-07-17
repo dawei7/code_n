@@ -6,6 +6,9 @@
   "title": "Find the Value of the Partition",
   "difficulty": "Medium",
   "acceptance_rate": 65.05263810719877,
+  "frequency": 0.0,
+  "elo_rating": 1301.9276849391,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Cut Off Trees for Golf Event",
   "difficulty": "Hard",
   "acceptance_rate": 36.568119036724454,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2279.769664,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

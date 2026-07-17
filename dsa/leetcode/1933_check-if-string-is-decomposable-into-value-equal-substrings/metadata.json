@@ -6,6 +6,9 @@
   "title": "Check if String Is Decomposable Into Value-Equal Substrings",
   "difficulty": "Easy",
   "acceptance_rate": 50.99400441779741,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1247.540556,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count Bowl Subarrays",
   "difficulty": "Medium",
   "acceptance_rate": 48.52062699836232,
+  "frequency": 42.9,
+  "elo_rating": 1847.5451577224,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

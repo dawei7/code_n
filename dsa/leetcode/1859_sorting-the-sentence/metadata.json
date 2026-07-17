@@ -6,6 +6,9 @@
   "title": "Sorting the Sentence",
   "difficulty": "Easy",
   "acceptance_rate": 84.1260367144394,
+  "frequency": 19.9,
+  "elo_rating": 1290.0361853035,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

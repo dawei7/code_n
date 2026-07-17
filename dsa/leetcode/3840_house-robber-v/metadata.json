@@ -6,6 +6,9 @@
   "title": "House Robber V",
   "difficulty": "Medium",
   "acceptance_rate": 53.91965005180154,
+  "frequency": 26.3,
+  "elo_rating": 1618.9800584534,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

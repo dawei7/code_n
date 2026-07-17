@@ -6,6 +6,9 @@
   "title": "Mice and Cheese",
   "difficulty": "Medium",
   "acceptance_rate": 48.93679282091299,
+  "frequency": 27.1,
+  "elo_rating": 1663.456591933,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Convert Binary Number in a Linked List to Integer",
   "difficulty": "Easy",
   "acceptance_rate": 82.37912550628936,
+  "frequency": 19.3,
+  "elo_rating": 1151.3534799042,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

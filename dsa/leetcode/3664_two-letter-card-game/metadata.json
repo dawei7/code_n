@@ -6,6 +6,9 @@
   "title": "Two-Letter Card Game",
   "difficulty": "Medium",
   "acceptance_rate": 12.90159059162799,
+  "frequency": 42.7,
+  "elo_rating": 2157.9393136944,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

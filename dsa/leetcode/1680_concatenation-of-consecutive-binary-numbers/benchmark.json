@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1680",
+  "measurement_note": "Size is n, the inclusive endpoint. The Accepted recurrence and an independent bit_length-based recurrence perform one modular append per integer in O(n) time. A correct implementation that updates once per binary digit takes O(n log n), completes the 32/512/8192 tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: concatenate through 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 32
+      },
+      "expected": 260766625,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "bit-length-growth"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: concatenate through 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "n": 512
+      },
+      "expected": 744366160,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "bit-length-growth"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: concatenate through 8192",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8192,
+      "input": {
+        "n": 8192
+      },
+      "expected": 853721666,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "bit-length-growth"
+      ]
+    }
+  ]
+}
+

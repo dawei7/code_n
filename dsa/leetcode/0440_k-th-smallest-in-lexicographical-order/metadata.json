@@ -6,6 +6,9 @@
   "title": "K-th Smallest in Lexicographical Order",
   "difficulty": "Hard",
   "acceptance_rate": 46.400305837759575,
+  "frequency": 31.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 2128.979092,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

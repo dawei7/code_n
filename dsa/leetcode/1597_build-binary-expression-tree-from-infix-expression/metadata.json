@@ -6,6 +6,9 @@
   "title": "Build Binary Expression Tree From Infix Expression",
   "difficulty": "Hard",
   "acceptance_rate": 62.86050618010594,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1980.383203,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

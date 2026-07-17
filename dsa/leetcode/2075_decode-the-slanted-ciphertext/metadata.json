@@ -6,6 +6,9 @@
   "title": "Decode the Slanted Ciphertext",
   "difficulty": "Medium",
   "acceptance_rate": 67.59551796542318,
+  "frequency": 37.0,
+  "elo_rating": 1759.2287478055,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

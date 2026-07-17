@@ -6,6 +6,9 @@
   "title": "Find Center of Star Graph",
   "difficulty": "Easy",
   "acceptance_rate": 86.61008187436808,
+  "frequency": 34.2,
+  "elo_rating": 1286.7934718934,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

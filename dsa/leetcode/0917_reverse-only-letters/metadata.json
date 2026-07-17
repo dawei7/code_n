@@ -6,6 +6,9 @@
   "title": "Reverse Only Letters",
   "difficulty": "Easy",
   "acceptance_rate": 68.70847483025432,
+  "frequency": 13.9,
+  "elo_rating": 1228.630993648,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

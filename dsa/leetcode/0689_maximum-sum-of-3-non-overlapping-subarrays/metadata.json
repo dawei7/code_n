@@ -6,6 +6,9 @@
   "title": "Maximum Sum of 3 Non-Overlapping Subarrays",
   "difficulty": "Hard",
   "acceptance_rate": 59.88614757637506,
+  "frequency": 61.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 2005.480553,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

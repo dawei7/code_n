@@ -6,6 +6,9 @@
   "title": "Design a Text Editor",
   "difficulty": "Hard",
   "acceptance_rate": 51.11101044191262,
+  "frequency": 71.8,
+  "elo_rating": 1911.8282317986,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

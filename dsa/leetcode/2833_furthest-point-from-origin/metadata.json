@@ -6,6 +6,9 @@
   "title": "Furthest Point From Origin",
   "difficulty": "Easy",
   "acceptance_rate": 77.12700776092657,
+  "frequency": 62.9,
+  "elo_rating": 1294.2819324126,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

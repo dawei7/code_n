@@ -6,6 +6,9 @@
   "title": "Number of Digit One",
   "difficulty": "Hard",
   "acceptance_rate": 39.17483397772668,
+  "frequency": 60.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 2248.383391,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

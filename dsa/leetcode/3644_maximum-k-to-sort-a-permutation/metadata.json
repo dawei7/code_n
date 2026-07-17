@@ -6,6 +6,9 @@
   "title": "Maximum K to Sort a Permutation",
   "difficulty": "Medium",
   "acceptance_rate": 37.53185496490366,
+  "frequency": 48.1,
+  "elo_rating": 1775.4474231706,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

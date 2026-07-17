@@ -6,6 +6,9 @@
   "title": "License Key Formatting",
   "difficulty": "Easy",
   "acceptance_rate": 46.23203225174137,
+  "frequency": 3.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1256.242263,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

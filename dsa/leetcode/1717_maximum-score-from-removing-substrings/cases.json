@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1717",
+  "cases": [
+    {"id":"sample-ba-priority","name":"sample: ba removals have priority","kind":"sample","visible":true,"input":{"s":"cdbcbbaaabab","x":4,"y":5},"expected":19,"tags":["sample","ba-first"]},
+    {"id":"sample-ab-priority","name":"sample: separators split ab-priority regions","kind":"sample","visible":true,"input":{"s":"aabbaaxybbaabb","x":5,"y":4},"expected":20,"tags":["sample","ab-first","separators"]},
+    {"id":"trial-single-character","name":"trial: a single character cannot be removed","kind":"trial","visible":true,"input":{"s":"a","x":8,"y":3},"expected":0,"tags":["minimum","no-pair"]},
+    {"id":"trial-one-ab","name":"trial: one high-value ab pair","kind":"trial","visible":true,"input":{"s":"ab","x":6,"y":2},"expected":6,"tags":["single-removal","ab"]},
+    {"id":"trial-one-ba","name":"trial: one lower-value ba pair","kind":"trial","visible":true,"input":{"s":"ba","x":6,"y":2},"expected":2,"tags":["single-removal","ba"]},
+    {"id":"trial-tied-scores","name":"trial: equal scores make either order optimal","kind":"trial","visible":true,"input":{"s":"abab","x":5,"y":5},"expected":10,"tags":["equal-scores","multiple-removals"]},
+    {"id":"real-both-orders","name":"hidden: both priority directions leave the other pair","kind":"real","visible":false,"input":{"s":"abba","x":10,"y":1},"expected":11,"tags":["competing-pairs","ab-first"]},
+    {"id":"real-separator","name":"hidden: a separator prevents cross-region matching","kind":"real","visible":false,"input":{"s":"abxcba","x":7,"y":4},"expected":11,"tags":["separator","independent-regions"]},
+    {"id":"real-ba-priority-chain","name":"hidden: ba priority changes a dense region","kind":"real","visible":false,"input":{"s":"bbaaab","x":3,"y":8},"expected":19,"tags":["ba-first","dense-region"]},
+    {"id":"real-grouped-maximum-removals","name":"hidden: grouped letters create pairs at one boundary","kind":"real","visible":false,"input":{"s":"aaaaabbbbb","x":9,"y":1},"expected":45,"tags":["grouped-letters","repeated-created-pairs"]}
+  ]
+}

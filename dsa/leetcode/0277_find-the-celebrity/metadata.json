@@ -6,6 +6,9 @@
   "title": "Find the Celebrity",
   "difficulty": "Medium",
   "acceptance_rate": 49.0342341965256,
+  "frequency": 78.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1607.205532,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

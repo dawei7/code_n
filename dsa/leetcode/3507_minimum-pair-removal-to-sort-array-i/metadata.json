@@ -6,6 +6,9 @@
   "title": "Minimum Pair Removal to Sort Array I",
   "difficulty": "Easy",
   "acceptance_rate": 65.19534796087902,
+  "frequency": 90.2,
+  "elo_rating": 1348.7475033007,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

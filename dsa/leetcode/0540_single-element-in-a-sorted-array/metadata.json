@@ -6,6 +6,9 @@
   "title": "Single Element in a Sorted Array",
   "difficulty": "Medium",
   "acceptance_rate": 59.32265150175445,
+  "frequency": 77.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1469.088911,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

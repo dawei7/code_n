@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1257",
+  "frontend_id": "1632",
+  "title_slug": "rank-transform-of-a-matrix",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.matrixRankTransform",
+  "verified_submission_id": "2070447017",
+  "verified_at": "2026-07-16T23:02:44.226051+00:00"
+}

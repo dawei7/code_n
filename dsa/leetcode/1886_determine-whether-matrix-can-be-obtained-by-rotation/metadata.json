@@ -6,6 +6,9 @@
   "title": "Determine Whether Matrix Can Be Obtained By Rotation",
   "difficulty": "Easy",
   "acceptance_rate": 68.37815262863575,
+  "frequency": 58.1,
+  "elo_rating": 1407.0629410799,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

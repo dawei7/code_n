@@ -6,6 +6,9 @@
   "title": "Count Sub Islands",
   "difficulty": "Medium",
   "acceptance_rate": 73.052559271344,
+  "frequency": 21.5,
+  "elo_rating": 1678.7231378948,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1737",
+  "cases": [
+    {
+      "id": "sample-official-one",
+      "name": "sample: ordering and shared-letter conditions tie",
+      "kind": "sample",
+      "visible": true,
+      "input": {"a": "aba", "b": "caa"},
+      "expected": 2,
+      "tags": ["sample", "condition-tie"]
+    },
+    {
+      "id": "sample-official-two",
+      "name": "sample: raise every character of the second string",
+      "kind": "sample",
+      "visible": true,
+      "input": {"a": "dabadd", "b": "cda"},
+      "expected": 3,
+      "tags": ["sample", "strict-order"]
+    },
+    {
+      "id": "trial-already-first-order",
+      "name": "trial: first string is already strictly smaller",
+      "kind": "trial",
+      "visible": true,
+      "input": {"a": "aaaa", "b": "bbbb"},
+      "expected": 0,
+      "tags": ["already-valid", "first-direction"]
+    },
+    {
+      "id": "trial-already-second-order",
+      "name": "trial: second string is already strictly smaller",
+      "kind": "trial",
+      "visible": true,
+      "input": {"a": "zzzz", "b": "aaaa"},
+      "expected": 0,
+      "tags": ["already-valid", "second-direction"]
+    },
+    {
+      "id": "real-single-shared-letter",
+      "name": "hidden: both strings already use one distinct letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": "aaa", "b": "aaa"},
+      "expected": 0,
+      "tags": ["third-condition", "already-valid"]
+    },
+    {
+      "id": "real-identical-distributions",
+      "name": "hidden: identical mixed strings require one side to change",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": "abc", "b": "abc"},
+      "expected": 3,
+      "tags": ["identical-strings", "strict-boundary"]
+    },
+    {
+      "id": "real-opposite-extremes",
+      "name": "hidden: alternating extremes favor a shared letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": "az", "b": "za"},
+      "expected": 2,
+      "tags": ["alphabet-extremes", "third-condition"]
+    },
+    {
+      "id": "real-single-characters",
+      "name": "hidden: two ordered single characters need no changes",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": "a", "b": "z"},
+      "expected": 0,
+      "tags": ["single-character", "already-valid"]
+    },
+    {
+      "id": "real-full-alphabet",
+      "name": "hidden: identical full alphabets split at a boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": "abcdefghijklmnopqrstuvwxyz", "b": "abcdefghijklmnopqrstuvwxyz"},
+      "expected": 26,
+      "tags": ["full-alphabet", "identical-distributions"]
+    },
+    {
+      "id": "real-majority-letter",
+      "name": "hidden: converting both strings to the majority letter wins",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": "aaaz", "b": "aaya"},
+      "expected": 2,
+      "tags": ["third-condition", "majority-letter"]
+    }
+  ]
+}

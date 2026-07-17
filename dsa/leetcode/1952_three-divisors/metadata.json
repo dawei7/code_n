@@ -6,6 +6,9 @@
   "title": "Three Divisors",
   "difficulty": "Easy",
   "acceptance_rate": 64.50113808801214,
+  "frequency": 25.1,
+  "elo_rating": 1203.7504950404,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

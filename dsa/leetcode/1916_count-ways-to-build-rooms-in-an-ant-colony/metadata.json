@@ -6,6 +6,9 @@
   "title": "Count Ways to Build Rooms in an Ant Colony",
   "difficulty": "Hard",
   "acceptance_rate": 51.80044345898004,
+  "frequency": 0.0,
+  "elo_rating": 2486.2339675701,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

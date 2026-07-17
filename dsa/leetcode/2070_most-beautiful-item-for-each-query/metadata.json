@@ -6,6 +6,9 @@
   "title": "Most Beautiful Item for Each Query",
   "difficulty": "Medium",
   "acceptance_rate": 62.013703130132804,
+  "frequency": 30.5,
+  "elo_rating": 1724.1545485476,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

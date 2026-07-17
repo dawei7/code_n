@@ -6,6 +6,9 @@
   "title": "Check if Grid can be Cut into Sections",
   "difficulty": "Medium",
   "acceptance_rate": 68.26089040111181,
+  "frequency": 0.0,
+  "elo_rating": 1916.1432350156,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

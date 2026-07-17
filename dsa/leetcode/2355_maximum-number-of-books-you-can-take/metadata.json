@@ -6,6 +6,9 @@
   "title": "Maximum Number of Books You Can Take",
   "difficulty": "Hard",
   "acceptance_rate": 39.476761180941246,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2243.607219,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

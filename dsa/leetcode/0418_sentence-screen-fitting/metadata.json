@@ -6,6 +6,9 @@
   "title": "Sentence Screen Fitting",
   "difficulty": "Medium",
   "acceptance_rate": 36.41620653633786,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1731.757642,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

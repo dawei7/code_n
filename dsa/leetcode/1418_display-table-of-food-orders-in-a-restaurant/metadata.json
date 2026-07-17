@@ -6,6 +6,9 @@
   "title": "Display Table of Food Orders in a Restaurant",
   "difficulty": "Medium",
   "acceptance_rate": 76.49243301521383,
+  "frequency": 0.0,
+  "elo_rating": 1485.135401269,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

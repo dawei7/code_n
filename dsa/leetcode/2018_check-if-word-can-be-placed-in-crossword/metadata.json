@@ -6,6 +6,9 @@
   "title": "Check if Word Can Be Placed In Crossword",
   "difficulty": "Medium",
   "acceptance_rate": 50.89304329696296,
+  "frequency": 0.0,
+  "elo_rating": 1929.897343316,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

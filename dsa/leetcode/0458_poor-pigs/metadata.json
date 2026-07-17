@@ -6,6 +6,9 @@
   "title": "Poor Pigs",
   "difficulty": "Hard",
   "acceptance_rate": 59.12597075491499,
+  "frequency": 36.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 2011.2406,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

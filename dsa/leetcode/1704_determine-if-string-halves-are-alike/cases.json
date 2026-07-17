@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1704",
+  "cases": [
+    {"id":"sample-book","name":"sample: each half has one vowel","kind":"sample","visible":true,"input":{"s":"book"},"expected":true,"tags":["sample","equal-counts"]},
+    {"id":"sample-textbook","name":"sample: repeated o makes the second half different","kind":"sample","visible":true,"input":{"s":"textbook"},"expected":false,"tags":["sample","repeated-vowel"]},
+    {"id":"trial-uppercase","name":"trial: uppercase and lowercase vowel pairs match","kind":"trial","visible":true,"input":{"s":"AAee"},"expected":true,"tags":["uppercase","all-vowels"]},
+    {"id":"trial-no-vowels","name":"trial: two consonant-only halves are alike","kind":"trial","visible":true,"input":{"s":"bcDF"},"expected":true,"tags":["no-vowels","mixed-case"]},
+    {"id":"trial-minimum-false","name":"trial: minimum string has a vowel only in the first half","kind":"trial","visible":true,"input":{"s":"Ab"},"expected":false,"tags":["minimum","uppercase"]},
+    {"id":"trial-minimum-true","name":"trial: minimum string has one vowel in each half","kind":"trial","visible":true,"input":{"s":"Uo"},"expected":true,"tags":["minimum","vowels"]},
+    {"id":"real-balanced-mixed","name":"hidden: separated mixed-case vowels balance across halves","kind":"real","visible":false,"input":{"s":"AbCdEfGh"},"expected":true,"tags":["mixed-case","balanced"]},
+    {"id":"real-first-heavy","name":"hidden: first half contains three distinct vowels","kind":"real","visible":false,"input":{"s":"aeiXYZ"},"expected":false,"tags":["first-half-heavy","distinct-vowels"]},
+    {"id":"real-second-heavy","name":"hidden: second half contains repeated uppercase vowels","kind":"real","visible":false,"input":{"s":"zzzzAAAA"},"expected":false,"tags":["second-half-heavy","repeated-vowel"]},
+    {"id":"real-unequal-subtle","name":"hidden: one repeated vowel separates otherwise similar halves","kind":"real","visible":false,"input":{"s":"racecarX"},"expected":false,"tags":["repeated-vowel","midpoint"]}
+  ]
+}

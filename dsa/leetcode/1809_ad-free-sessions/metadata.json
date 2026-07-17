@@ -6,6 +6,9 @@
   "title": "Ad-Free Sessions",
   "difficulty": "Easy",
   "acceptance_rate": 59.064344833723936,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1228.159482,
   "category": "database",
   "category_title": "Database",
   "topics": [

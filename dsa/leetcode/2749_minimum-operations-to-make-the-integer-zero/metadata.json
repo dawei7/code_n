@@ -6,6 +6,9 @@
   "title": "Minimum Operations to Make the Integer Zero",
   "difficulty": "Medium",
   "acceptance_rate": 58.18202437655935,
+  "frequency": 42.4,
+  "elo_rating": 2132.06233459,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

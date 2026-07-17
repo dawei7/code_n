@@ -6,6 +6,9 @@
   "title": "Dungeon Game",
   "difficulty": "Hard",
   "acceptance_rate": 41.63666068338403,
+  "frequency": 52.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 2206.080153,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

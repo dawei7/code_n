@@ -6,6 +6,9 @@
   "title": "Valid Number",
   "difficulty": "Hard",
   "acceptance_rate": 23.170488725656256,
+  "frequency": 40.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 2401.903204,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

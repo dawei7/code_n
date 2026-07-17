@@ -6,6 +6,9 @@
   "title": "Cyclically Rotating a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 74.09823043996293,
+  "frequency": 83.1,
+  "elo_rating": 1766.2506177612,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Camelcase Matching",
   "difficulty": "Medium",
   "acceptance_rate": 65.58619134900954,
+  "frequency": 0.0,
+  "elo_rating": 1537.1387686755,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

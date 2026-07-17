@@ -6,6 +6,9 @@
   "title": "Second Highest Salary",
   "difficulty": "Medium",
   "acceptance_rate": 47.49732374215881,
+  "frequency": 89.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1627.33222,
   "category": "database",
   "category_title": "Database",
   "topics": [

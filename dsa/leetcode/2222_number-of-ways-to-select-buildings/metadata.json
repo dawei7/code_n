@@ -6,6 +6,9 @@
   "title": "Number of Ways to Select Buildings",
   "difficulty": "Medium",
   "acceptance_rate": 50.9725528116632,
+  "frequency": 0.0,
+  "elo_rating": 1656.5588918365,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

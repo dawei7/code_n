@@ -6,6 +6,9 @@
   "title": "Employees Earning More Than Their Managers",
   "difficulty": "Easy",
   "acceptance_rate": 73.48634815436192,
+  "frequency": 84.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1172.480438,
   "category": "database",
   "category_title": "Database",
   "topics": [

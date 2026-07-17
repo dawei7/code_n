@@ -6,6 +6,9 @@
   "title": "Insufficient Nodes in Root to Leaf Paths",
   "difficulty": "Medium",
   "acceptance_rate": 55.333156919820055,
+  "frequency": 35.9,
+  "elo_rating": 1804.5783242151,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

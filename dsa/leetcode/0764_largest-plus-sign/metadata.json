@@ -6,6 +6,9 @@
   "title": "Largest Plus Sign",
   "difficulty": "Medium",
   "acceptance_rate": 49.30889986865971,
+  "frequency": 0.0,
+  "elo_rating": 1753.4775753993,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

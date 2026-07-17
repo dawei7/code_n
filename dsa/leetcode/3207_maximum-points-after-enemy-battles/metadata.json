@@ -6,6 +6,9 @@
   "title": "Maximum Points After Enemy Battles",
   "difficulty": "Medium",
   "acceptance_rate": 33.481758733436585,
+  "frequency": 0.0,
+  "elo_rating": 1591.3005653292,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

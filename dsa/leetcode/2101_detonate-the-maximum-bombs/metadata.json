@@ -6,6 +6,9 @@
   "title": "Detonate the Maximum Bombs",
   "difficulty": "Medium",
   "acceptance_rate": 50.27392705090955,
+  "frequency": 48.1,
+  "elo_rating": 1880.0511044074,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

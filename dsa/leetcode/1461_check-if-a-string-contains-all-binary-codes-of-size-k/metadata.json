@@ -6,6 +6,9 @@
   "title": "Check If a String Contains All Binary Codes of Size K",
   "difficulty": "Medium",
   "acceptance_rate": 61.58792045402113,
+  "frequency": 74.2,
+  "elo_rating": 1504.0178888667,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

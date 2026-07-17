@@ -6,6 +6,9 @@
   "title": "Parse Lisp Expression",
   "difficulty": "Hard",
   "acceptance_rate": 53.761090632930156,
+  "frequency": 73.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 2053.20666,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

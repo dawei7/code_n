@@ -6,6 +6,9 @@
   "title": "Truncate Sentence",
   "difficulty": "Easy",
   "acceptance_rate": 86.98440941605263,
+  "frequency": 0.0,
+  "elo_rating": 1235.6114196155,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

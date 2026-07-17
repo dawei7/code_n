@@ -6,6 +6,9 @@
   "title": "Maximize the Topmost Element After K Moves",
   "difficulty": "Medium",
   "acceptance_rate": 24.126756594503863,
+  "frequency": 0.0,
+  "elo_rating": 1716.9721777,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

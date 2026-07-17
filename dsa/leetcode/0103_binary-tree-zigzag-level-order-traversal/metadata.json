@@ -6,6 +6,9 @@
   "title": "Binary Tree Zigzag Level Order Traversal",
   "difficulty": "Medium",
   "acceptance_rate": 64.02560547184663,
+  "frequency": 53.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1430.856601,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

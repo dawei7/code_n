@@ -6,6 +6,9 @@
   "title": "Relative Ranks",
   "difficulty": "Easy",
   "acceptance_rate": 74.87038832742307,
+  "frequency": 40.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1167.852628,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

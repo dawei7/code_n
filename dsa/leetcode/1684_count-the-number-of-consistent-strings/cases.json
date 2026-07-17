@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1684",
+  "cases": [
+    {"id":"sample-two-consistent","name":"sample: two words use only a and b","kind":"sample","visible":true,"input":{"allowed":"ab","words":["ad","bd","aaab","baa","badab"]},"expected":2,"tags":["sample","mixed"]},
+    {"id":"sample-all-consistent","name":"sample: every combination stays allowed","kind":"sample","visible":true,"input":{"allowed":"abc","words":["a","b","c","ab","ac","bc","abc"]},"expected":7,"tags":["sample","all-consistent"]},
+    {"id":"sample-four-consistent","name":"sample: filter words containing b","kind":"sample","visible":true,"input":{"allowed":"cad","words":["cc","acd","b","ba","bac","bad","ac","d"]},"expected":4,"tags":["sample","mixed"]},
+    {"id":"trial-single-allowed","name":"trial: one allowed letter may repeat","kind":"trial","visible":true,"input":{"allowed":"x","words":["x","xx","xxxxxxxxxx","xy","y"]},"expected":3,"tags":["single-letter","repetition"]},
+    {"id":"trial-duplicates-count","name":"trial: duplicate array entries count separately","kind":"trial","visible":true,"input":{"allowed":"ab","words":["ab","ab","ba","c"]},"expected":3,"tags":["duplicates","multiplicity"]},
+    {"id":"real-forbidden-at-ends","name":"hidden: forbidden letters at either end reject","kind":"real","visible":false,"input":{"allowed":"mno","words":["pmmmm","mmmmmp","mom","noon","onom"]},"expected":3,"tags":["early-reject","late-reject"]},
+    {"id":"real-full-alphabet","name":"hidden: the full alphabet permits every word","kind":"real","visible":false,"input":{"allowed":"abcdefghijklmnopqrstuvwxyz","words":["leetcode","consistent","z","alphabet","zzzzzzzzzz"]},"expected":5,"tags":["full-alphabet","all-consistent"]},
+    {"id":"real-one-invalid-among-many","name":"hidden: one internal forbidden character invalidates a word","kind":"real","visible":false,"input":{"allowed":"ace","words":["aceace","aaaa","cece","acbe","e","cacaca"]},"expected":5,"tags":["internal-forbidden","mixed"]},
+    {"id":"real-none-consistent","name":"hidden: every word contains a forbidden letter","kind":"real","visible":false,"input":{"allowed":"q","words":["a","qa","aq","qqqqqqqqqx"]},"expected":0,"tags":["none-consistent"]}
+  ]
+}

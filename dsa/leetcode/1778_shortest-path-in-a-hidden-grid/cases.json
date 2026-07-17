@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1778",
+  "cases": [
+    {
+      "id": "example-adjacent-target",
+      "name": "target is one move from the start",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[-1,2]]},
+      "expected": 1,
+      "tags": ["example", "adjacent"]
+    },
+    {
+      "id": "example-four-move-path",
+      "name": "path crosses a middle corridor",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[0,0,-1],[1,1,1],[2,0,0]]},
+      "expected": 4,
+      "tags": ["example", "corridor"]
+    },
+    {
+      "id": "example-unreachable",
+      "name": "blocked cells isolate the target",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[-1,0],[0,2]]},
+      "expected": -1,
+      "tags": ["example", "unreachable"]
+    },
+    {
+      "id": "trial-open-grid",
+      "name": "shortest route across an open square",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,2],[1,-1,1],[1,1,1]]},
+      "expected": 2,
+      "tags": ["open-grid", "multiple-paths"]
+    },
+    {
+      "id": "real-winding-corridor",
+      "name": "hidden: only a winding route reaches the target",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[-1,1,0,2],[0,1,0,1],[0,1,1,1]]},
+      "expected": 7,
+      "tags": ["detour", "winding"]
+    },
+    {
+      "id": "real-cycle",
+      "name": "hidden: open cycle does not repeat cells",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[-1,1,1],[1,0,1],[1,1,2]]},
+      "expected": 4,
+      "tags": ["cycle", "visited"]
+    },
+    {
+      "id": "real-target-in-separate-component",
+      "name": "hidden: target is present but disconnected",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[-1,1,0],[1,1,0],[0,0,2]]},
+      "expected": -1,
+      "tags": ["disconnected", "target-present"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1893",
+  "frontend_id": "1746",
+  "title_slug": "maximum-subarray-sum-after-one-operation",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxSumAfterOperation",
+  "verified_submission_id": "2070939079",
+  "verified_at": "2026-07-17T09:37:03.563377+00:00"
+}

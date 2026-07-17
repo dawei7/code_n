@@ -6,6 +6,9 @@
   "title": "Divisor Game",
   "difficulty": "Easy",
   "acceptance_rate": 72.08970851858146,
+  "frequency": 28.0,
+  "elo_rating": 1435.3564963722,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

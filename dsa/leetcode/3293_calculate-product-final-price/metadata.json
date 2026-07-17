@@ -6,6 +6,9 @@
   "title": "Calculate Product Final Price",
   "difficulty": "Medium",
   "acceptance_rate": 78.92004153686398,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "database",
   "category_title": "Database",
   "topics": [

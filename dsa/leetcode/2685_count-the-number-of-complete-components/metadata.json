@@ -6,6 +6,9 @@
   "title": "Count the Number of Complete Components",
   "difficulty": "Medium",
   "acceptance_rate": 77.65368107512255,
+  "frequency": 36.2,
+  "elo_rating": 1769.4344566771,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

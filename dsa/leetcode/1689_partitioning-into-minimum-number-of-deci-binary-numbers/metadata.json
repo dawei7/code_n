@@ -6,6 +6,9 @@
   "title": "Partitioning Into Minimum Number Of Deci-Binary Numbers",
   "difficulty": "Medium",
   "acceptance_rate": 90.46830573674528,
+  "frequency": 62.2,
+  "elo_rating": 1355.3825442341,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

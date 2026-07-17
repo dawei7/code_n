@@ -297,6 +297,7 @@ export function CodenTab() {
   const switchVersion = useAppStore((s) => s.switchVersion);
   const renameVersion = useAppStore((s) => s.renameVersion);
   const resetVersion = useAppStore((s) => s.resetVersion);
+  const solutionResetRevision = useAppStore((s) => s.solutionResetRevision);
 
   const saveSource = useAppStore((s) => s.saveSource);
   const setCodeLanguage = useAppStore((s) => s.setCodeLanguage);
@@ -366,6 +367,13 @@ export function CodenTab() {
   useEffect(() => {
     setEditorValue(source);
   }, [source]);
+
+  useEffect(() => {
+    if (saveTimeout.current) {
+      window.clearTimeout(saveTimeout.current);
+      saveTimeout.current = null;
+    }
+  }, [solutionResetRevision]);
 
   useEffect(() => {
     setBreakpoints([]);

@@ -6,6 +6,9 @@
   "title": "Minimum Operations to Write the Letter Y on a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 64.65704718837378,
+  "frequency": 36.8,
+  "elo_rating": 1689.7833547546,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

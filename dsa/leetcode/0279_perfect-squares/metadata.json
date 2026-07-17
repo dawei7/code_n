@@ -6,6 +6,9 @@
   "title": "Perfect Squares",
   "difficulty": "Medium",
   "acceptance_rate": 56.68526058224928,
+  "frequency": 60.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1495.19614,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

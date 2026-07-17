@@ -6,6 +6,9 @@
   "title": "Find Minimum in Rotated Sorted Array",
   "difficulty": "Medium",
   "acceptance_rate": 54.9406768641895,
+  "frequency": 58.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1520.573268,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

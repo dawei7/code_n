@@ -6,6 +6,9 @@
   "title": "Missing Ranges",
   "difficulty": "Easy",
   "acceptance_rate": 35.67131361473926,
+  "frequency": 34.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

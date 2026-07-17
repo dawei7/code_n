@@ -6,6 +6,9 @@
   "title": "Find Winner on a Tic Tac Toe Game",
   "difficulty": "Easy",
   "acceptance_rate": 54.66038262458135,
+  "frequency": 52.9,
+  "elo_rating": 1336.9494482313,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

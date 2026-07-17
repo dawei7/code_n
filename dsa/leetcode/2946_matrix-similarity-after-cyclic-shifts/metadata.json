@@ -6,6 +6,9 @@
   "title": "Matrix Similarity After Cyclic Shifts",
   "difficulty": "Easy",
   "acceptance_rate": 74.37189887374971,
+  "frequency": 65.2,
+  "elo_rating": 1405.8442434352,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

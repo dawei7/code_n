@@ -6,6 +6,9 @@
   "title": "Jump Game VI",
   "difficulty": "Medium",
   "acceptance_rate": 46.51862464183381,
+  "frequency": 47.0,
+  "elo_rating": 1954.2533254344,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

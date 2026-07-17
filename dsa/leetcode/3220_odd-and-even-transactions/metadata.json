@@ -6,6 +6,9 @@
   "title": "Odd and Even Transactions",
   "difficulty": "Medium",
   "acceptance_rate": 68.3662140234008,
+  "frequency": 23.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1397.951745,
   "category": "database",
   "category_title": "Database",
   "topics": [

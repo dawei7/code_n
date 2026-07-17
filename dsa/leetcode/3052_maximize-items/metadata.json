@@ -6,6 +6,9 @@
   "title": "Maximize Items",
   "difficulty": "Hard",
   "acceptance_rate": 74.79958173579645,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1939.075434,
   "category": "database",
   "category_title": "Database",
   "topics": [

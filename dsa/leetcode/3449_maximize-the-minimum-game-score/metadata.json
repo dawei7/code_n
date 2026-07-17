@@ -6,6 +6,9 @@
   "title": "Maximize the Minimum Game Score",
   "difficulty": "Hard",
   "acceptance_rate": 26.567744214803042,
+  "frequency": 0.0,
+  "elo_rating": 2748.125042961,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

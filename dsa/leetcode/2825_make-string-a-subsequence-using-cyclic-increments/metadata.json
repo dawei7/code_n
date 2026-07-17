@@ -6,6 +6,9 @@
   "title": "Make String a Subsequence Using Cyclic Increments",
   "difficulty": "Medium",
   "acceptance_rate": 65.73227048268467,
+  "frequency": 0.0,
+  "elo_rating": 1414.6100987673,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

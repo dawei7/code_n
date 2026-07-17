@@ -6,6 +6,9 @@
   "title": "Minimum Partition Score",
   "difficulty": "Hard",
   "acceptance_rate": 33.843951324266285,
+  "frequency": 51.4,
+  "elo_rating": 2345.1150536403,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

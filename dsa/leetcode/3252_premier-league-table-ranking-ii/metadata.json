@@ -6,6 +6,9 @@
   "title": "Premier League Table Ranking II",
   "difficulty": "Medium",
   "acceptance_rate": 55.822882006654716,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1508.03055,
   "category": "database",
   "category_title": "Database",
   "topics": [

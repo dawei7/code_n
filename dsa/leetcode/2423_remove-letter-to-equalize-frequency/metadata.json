@@ -6,6 +6,9 @@
   "title": "Remove Letter To Equalize Frequency",
   "difficulty": "Easy",
   "acceptance_rate": 19.46732374136351,
+  "frequency": 42.0,
+  "elo_rating": 1648.3540381514,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

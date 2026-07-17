@@ -6,6 +6,9 @@
   "title": "Maximum Score Words Formed by Letters",
   "difficulty": "Hard",
   "acceptance_rate": 81.4961514359696,
+  "frequency": 31.1,
+  "elo_rating": 1881.6810367589,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

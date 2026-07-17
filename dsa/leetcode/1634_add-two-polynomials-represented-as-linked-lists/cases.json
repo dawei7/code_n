@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1634",
+  "cases": [
+    {"id":"sample-disjoint-powers","name":"sample: terms with different powers are interleaved","kind":"sample","visible":true,"input":{"poly1":[[1,1]],"poly2":[[1,0]]},"expected":[[1,1],[1,0]],"tags":["sample","disjoint-powers"]},
+    {"id":"sample-cancellation","name":"sample: equal powers add and a zero term is omitted","kind":"sample","visible":true,"input":{"poly1":[[2,2],[4,1],[3,0]],"poly2":[[3,2],[-4,1],[-1,0]]},"expected":[[5,2],[2,0]],"tags":["sample","cancellation"]},
+    {"id":"sample-zero-polynomial","name":"sample: complete cancellation returns an empty polynomial","kind":"sample","visible":true,"input":{"poly1":[[1,2]],"poly2":[[-1,2]]},"expected":[],"tags":["sample","zero-result"]},
+    {"id":"trial-empty-first","name":"trial: adding an empty first polynomial copies the second","kind":"trial","visible":true,"input":{"poly1":[],"poly2":[[7,4],[-2,0]]},"expected":[[7,4],[-2,0]],"tags":["empty-input","remaining-tail"]},
+    {"id":"trial-empty-both","name":"trial: two empty polynomials sum to empty","kind":"trial","visible":true,"input":{"poly1":[],"poly2":[]},"expected":[],"tags":["empty-input","zero-result"]},
+    {"id":"trial-mixed-signs","name":"trial: coefficients with different signs combine without cancellation","kind":"trial","visible":true,"input":{"poly1":[[-5,8],[3,3]],"poly2":[[2,8],[-7,2]]},"expected":[[-3,8],[3,3],[-7,2]],"tags":["negative-coefficients","equal-power"]},
+    {"id":"real-alternating-powers","name":"hidden: alternating powers exercise both merge branches","kind":"real","visible":false,"input":{"poly1":[[1,9],[2,5],[3,1]],"poly2":[[4,8],[5,6],[6,0]]},"expected":[[1,9],[4,8],[5,6],[2,5],[3,1],[6,0]],"tags":["alternating-powers","merge"]},
+    {"id":"real-partial-cancellations","name":"hidden: several equal powers cancel while others survive","kind":"real","visible":false,"input":{"poly1":[[10,10],[5,7],[-3,4],[8,1]],"poly2":[[-10,10],[2,8],[-5,7],[3,4],[1,0]]},"expected":[[2,8],[8,1],[1,0]],"tags":["multiple-cancellations","remaining-terms"]},
+    {"id":"real-coefficient-boundaries","name":"hidden: large opposite coefficients leave a small nonzero term","kind":"real","visible":false,"input":{"poly1":[[1000000000,1000000000],[-1000000000,0]],"poly2":[[-999999999,1000000000],[999999999,0]]},"expected":[[1,1000000000],[-1,0]],"tags":["coefficient-boundaries","power-boundaries"]},
+    {"id":"real-long-tail","name":"hidden: exhausted first list leaves the full second tail","kind":"real","visible":false,"input":{"poly1":[[2,20]],"poly2":[[3,20],[4,15],[5,10],[6,5],[7,0]]},"expected":[[5,20],[4,15],[5,10],[6,5],[7,0]],"tags":["remaining-tail","equal-leading-power"]}
+  ]
+}

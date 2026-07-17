@@ -6,6 +6,9 @@
   "title": "Number of Pairs Satisfying Inequality",
   "difficulty": "Hard",
   "acceptance_rate": 47.563217841877794,
+  "frequency": 40.0,
+  "elo_rating": 2030.1021023033,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

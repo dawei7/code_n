@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1755",
+  "measurement_note": "Size is n, the number of array elements. The goal is one above the sum of each all-one array, so no exact-match shortcut applies. The accepted meet-in-the-middle method scales with 2^(n/2); a correct full subset enumeration completes every tier and is rejected by its 2^n scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 elements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"nums": [1, 1, 1, 1], "goal": 5},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "unreachable-goal"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 elements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1], "goal": 9},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "unreachable-goal"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 elements",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "goal": 17},
+      "expected": 1,
+      "tags": ["benchmark", "scaling", "unreachable-goal"]
+    }
+  ]
+}

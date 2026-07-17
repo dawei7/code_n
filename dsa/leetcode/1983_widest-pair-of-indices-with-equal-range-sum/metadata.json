@@ -6,6 +6,9 @@
   "title": "Widest Pair of Indices With Equal Range Sum",
   "difficulty": "Medium",
   "acceptance_rate": 54.08861135890574,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1531.657531,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

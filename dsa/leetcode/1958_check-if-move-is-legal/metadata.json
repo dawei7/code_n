@@ -6,6 +6,9 @@
   "title": "Check if Move is Legal",
   "difficulty": "Medium",
   "acceptance_rate": 50.21115090607794,
+  "frequency": 0.0,
+  "elo_rating": 1658.5967147757,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

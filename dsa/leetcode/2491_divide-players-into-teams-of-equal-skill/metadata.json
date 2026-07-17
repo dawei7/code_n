@@ -6,6 +6,9 @@
   "title": "Divide Players Into Teams of Equal Skill",
   "difficulty": "Medium",
   "acceptance_rate": 68.93507171842982,
+  "frequency": 53.0,
+  "elo_rating": 1323.1893756783,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

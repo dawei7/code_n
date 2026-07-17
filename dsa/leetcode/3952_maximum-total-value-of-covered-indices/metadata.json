@@ -6,6 +6,9 @@
   "title": "Maximum Total Value of Covered Indices",
   "difficulty": "Medium",
   "acceptance_rate": 28.131242908056446,
+  "frequency": 0.0,
+  "elo_rating": 1762.5072028268,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

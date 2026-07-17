@@ -6,6 +6,9 @@
   "title": "Project Employees I",
   "difficulty": "Easy",
   "acceptance_rate": 66.96436382588625,
+  "frequency": 42.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1197.307977,
   "category": "database",
   "category_title": "Database",
   "topics": [

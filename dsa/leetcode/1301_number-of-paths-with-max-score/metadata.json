@@ -6,6 +6,9 @@
   "title": "Number of Paths with Max Score",
   "difficulty": "Hard",
   "acceptance_rate": 64.42133717001286,
+  "frequency": 55.2,
+  "elo_rating": 1853.0880092558,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

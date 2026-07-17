@@ -6,6 +6,9 @@
   "title": "The Latest Time to Catch a Bus",
   "difficulty": "Medium",
   "acceptance_rate": 30.088597116700676,
+  "frequency": 52.5,
+  "elo_rating": 1840.9122452886,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Partition Equal Subset Sum",
   "difficulty": "Medium",
   "acceptance_rate": 49.69452426478209,
+  "frequency": 64.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1596.121269,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

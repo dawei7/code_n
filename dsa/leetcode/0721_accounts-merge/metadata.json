@@ -6,6 +6,9 @@
   "title": "Accounts Merge",
   "difficulty": "Medium",
   "acceptance_rate": 61.62331437214787,
+  "frequency": 70.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1451.069584,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

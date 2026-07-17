@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1911",
+  "frontend_id": "1785",
+  "title_slug": "minimum-elements-to-add-to-form-a-given-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minElements",
+  "verified_submission_id": "2071147155",
+  "verified_at": "2026-07-17T13:26:37.392332+00:00"
+}

@@ -6,6 +6,9 @@
   "title": "Available Captures for Rook",
   "difficulty": "Easy",
   "acceptance_rate": 71.91425365458343,
+  "frequency": 38.1,
+  "elo_rating": 1317.9521104466,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

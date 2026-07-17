@@ -6,6 +6,9 @@
   "title": "Consecutive Available Seats",
   "difficulty": "Easy",
   "acceptance_rate": 64.93554327808472,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1206.20745,
   "category": "database",
   "category_title": "Database",
   "topics": [

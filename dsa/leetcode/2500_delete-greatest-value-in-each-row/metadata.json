@@ -6,6 +6,9 @@
   "title": "Delete Greatest Value in Each Row",
   "difficulty": "Easy",
   "acceptance_rate": 80.02641359284124,
+  "frequency": 18.1,
+  "elo_rating": 1309.7266159448,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

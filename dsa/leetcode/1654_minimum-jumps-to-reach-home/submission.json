@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1757",
+  "frontend_id": "1654",
+  "title_slug": "minimum-jumps-to-reach-home",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumJumps",
+  "verified_submission_id": "2070476587",
+  "verified_at": "2026-07-17T00:51:33.780755+00:00"
+}

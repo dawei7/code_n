@@ -6,6 +6,9 @@
   "title": "Binary Tree Maximum Path Sum",
   "difficulty": "Hard",
   "acceptance_rate": 42.49107001844438,
+  "frequency": 63.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 2190.387017,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Min Stack",
   "difficulty": "Medium",
   "acceptance_rate": 58.37376849047732,
+  "frequency": 68.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1475.826572,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

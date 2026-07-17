@@ -6,6 +6,9 @@
   "title": "Reverse Prefix of Word",
   "difficulty": "Easy",
   "acceptance_rate": 86.50137680409762,
+  "frequency": 11.1,
+  "elo_rating": 1199.4477805501,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

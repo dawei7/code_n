@@ -6,6 +6,9 @@
   "title": "Lexicographically Smallest String After Substring Operation",
   "difficulty": "Medium",
   "acceptance_rate": 35.14208182843166,
+  "frequency": 42.4,
+  "elo_rating": 1405.123188264,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

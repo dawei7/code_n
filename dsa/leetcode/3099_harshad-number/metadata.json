@@ -6,6 +6,9 @@
   "title": "Harshad Number",
   "difficulty": "Easy",
   "acceptance_rate": 83.415177941467,
+  "frequency": 13.3,
+  "elo_rating": 1100.5332505219,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

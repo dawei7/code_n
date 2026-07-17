@@ -6,6 +6,9 @@
   "title": "Shortest Distance to Target String in a Circular Array",
   "difficulty": "Easy",
   "acceptance_rate": 65.22236221942228,
+  "frequency": 64.8,
+  "elo_rating": 1367.0197235097,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

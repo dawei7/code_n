@@ -6,6 +6,9 @@
   "title": "Team Scores in Football Tournament",
   "difficulty": "Medium",
   "acceptance_rate": 55.781752071706414,
+  "frequency": 38.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1508.322241,
   "category": "database",
   "category_title": "Database",
   "topics": [

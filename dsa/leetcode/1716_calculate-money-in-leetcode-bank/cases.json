@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1716",
+  "cases": [
+    {"id":"sample-four-days","name":"sample: first four increasing deposits","kind":"sample","visible":true,"input":{"n":4},"expected":10,"tags":["sample","partial-week"]},
+    {"id":"sample-ten-days","name":"sample: one week and three days","kind":"sample","visible":true,"input":{"n":10},"expected":37,"tags":["sample","complete-week","partial-week"]},
+    {"id":"sample-twenty-days","name":"sample: two weeks and six days","kind":"sample","visible":true,"input":{"n":20},"expected":96,"tags":["sample","multiple-weeks"]},
+    {"id":"trial-first-day","name":"trial: the first Monday deposits one dollar","kind":"trial","visible":true,"input":{"n":1},"expected":1,"tags":["minimum","monday"]},
+    {"id":"trial-exact-week","name":"trial: the first complete week totals twenty-eight","kind":"trial","visible":true,"input":{"n":7},"expected":28,"tags":["week-boundary","no-remainder"]},
+    {"id":"trial-second-monday","name":"trial: the second Monday starts at two dollars","kind":"trial","visible":true,"input":{"n":8},"expected":30,"tags":["monday","week-transition"]},
+    {"id":"real-two-weeks","name":"hidden: two exact weeks use consecutive weekly totals","kind":"real","visible":false,"input":{"n":14},"expected":63,"tags":["week-boundary","multiple-weeks"]},
+    {"id":"real-three-weeks","name":"hidden: three complete weeks form an arithmetic progression","kind":"real","visible":false,"input":{"n":21},"expected":105,"tags":["complete-weeks","arithmetic-progression"]},
+    {"id":"real-hundred-days","name":"hidden: a longer partial schedule uses the same formula","kind":"real","visible":false,"input":{"n":100},"expected":1060,"tags":["large-input","partial-week"]},
+    {"id":"real-maximum","name":"hidden: maximum legal day count","kind":"real","visible":false,"input":{"n":1000},"expected":74926,"tags":["maximum-input","closed-form"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Task Scheduler",
   "difficulty": "Medium",
   "acceptance_rate": 63.36945391574057,
+  "frequency": 74.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1435.713985,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

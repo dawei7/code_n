@@ -6,6 +6,9 @@
   "title": "Visit Array Positions to Maximize Score",
   "difficulty": "Medium",
   "acceptance_rate": 37.83744366823691,
+  "frequency": 33.0,
+  "elo_rating": 1732.5146472785,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

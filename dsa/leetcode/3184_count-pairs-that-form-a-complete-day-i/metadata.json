@@ -6,6 +6,9 @@
   "title": "Count Pairs That Form a Complete Day I",
   "difficulty": "Easy",
   "acceptance_rate": 78.27959574105793,
+  "frequency": 0.0,
+  "elo_rating": 1149.5496338421,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

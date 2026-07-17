@@ -6,6 +6,9 @@
   "title": "Three Consecutive Odds",
   "difficulty": "Easy",
   "acceptance_rate": 69.27028400446449,
+  "frequency": 0.0,
+  "elo_rating": 1221.6801628274,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

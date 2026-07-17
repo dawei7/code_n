@@ -6,6 +6,9 @@
   "title": "House Robber III",
   "difficulty": "Medium",
   "acceptance_rate": 56.071768252381794,
+  "frequency": 51.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1504.238565,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

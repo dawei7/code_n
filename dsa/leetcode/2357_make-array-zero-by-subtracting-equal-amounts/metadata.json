@@ -6,6 +6,9 @@
   "title": "Make Array Zero by Subtracting Equal Amounts",
   "difficulty": "Easy",
   "acceptance_rate": 73.85895747719506,
+  "frequency": 12.7,
+  "elo_rating": 1225.3923012413,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

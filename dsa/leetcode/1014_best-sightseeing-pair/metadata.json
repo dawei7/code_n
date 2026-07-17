@@ -6,6 +6,9 @@
   "title": "Best Sightseeing Pair",
   "difficulty": "Medium",
   "acceptance_rate": 62.70371976947907,
+  "frequency": 34.2,
+  "elo_rating": 1730.3052054913,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

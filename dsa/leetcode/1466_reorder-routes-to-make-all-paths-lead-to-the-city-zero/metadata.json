@@ -6,6 +6,9 @@
   "title": "Reorder Routes to Make All Paths Lead to the City Zero",
   "difficulty": "Medium",
   "acceptance_rate": 65.9606063772496,
+  "frequency": 31.9,
+  "elo_rating": 1633.6202302555,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

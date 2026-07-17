@@ -6,6 +6,9 @@
   "title": "Check if All Characters Have Equal Number of Occurrences",
   "difficulty": "Easy",
   "acceptance_rate": 79.62208516169555,
+  "frequency": 0.0,
+  "elo_rating": 1242.6172898768,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

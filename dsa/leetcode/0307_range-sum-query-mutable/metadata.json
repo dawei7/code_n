@@ -6,6 +6,9 @@
   "title": "Range Sum Query - Mutable",
   "difficulty": "Medium",
   "acceptance_rate": 43.33360750123376,
+  "frequency": 35.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1672.252653,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

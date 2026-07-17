@@ -6,6 +6,9 @@
   "title": "Predict the Winner",
   "difficulty": "Medium",
   "acceptance_rate": 56.33493064888013,
+  "frequency": 50.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1500.738272,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

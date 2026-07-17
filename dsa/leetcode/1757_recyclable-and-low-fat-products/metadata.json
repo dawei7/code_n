@@ -6,6 +6,9 @@
   "title": "Recyclable and Low Fat Products",
   "difficulty": "Easy",
   "acceptance_rate": 88.62300516070749,
+  "frequency": 84.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

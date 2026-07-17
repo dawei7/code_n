@@ -6,6 +6,9 @@
   "title": "Maximum Gap",
   "difficulty": "Medium",
   "acceptance_rate": 52.43178108667087,
+  "frequency": 48.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1554.992821,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

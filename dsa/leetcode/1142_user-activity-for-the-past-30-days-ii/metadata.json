@@ -6,6 +6,9 @@
   "title": "User Activity for the Past 30 Days II",
   "difficulty": "Easy",
   "acceptance_rate": 35.62901876077332,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "database",
   "category_title": "Database",
   "topics": [

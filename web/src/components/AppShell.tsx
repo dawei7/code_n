@@ -37,8 +37,10 @@ import { TabBar } from './TabBar';
 import { Workspace } from './Workspace';
 import { ProfileModal } from './ProfileModal';
 import { InfoModal } from './InfoModal';
+import { EloGuideModal } from './EloGuideModal';
 import { BrandWordmark } from './BrandWordmark';
 import { ALGORITHM_SETS, challengesForAlgorithmSet } from '../lib/algorithmSets';
+import { collectCustomChallengeIds } from '../lib/customProblemSets';
 import {
   ACCENT_PRESETS,
   DEFAULT_ACCENT_COLORS,
@@ -56,10 +58,12 @@ export function AppShell() {
   const loadChallenges = useAppStore((s) => s.loadChallenges);
   const loadProgress = useAppStore((s) => s.loadProgress);
   const loadProfiles = useAppStore((s) => s.loadProfiles);
+  const challenges = useAppStore((s) => s.challenges);
   const baseFontSize = useAppStore((s) => s.baseFontSize);
   const theme = useAppStore((s) => s.theme);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showEloGuide, setShowEloGuide] = useState(false);
 
   const sidebarWidth = useAppStore((s) => s.sidebarWidth);
   const setSidebarWidth = useAppStore((s) => s.setSidebarWidth);
@@ -133,7 +137,11 @@ export function AppShell() {
 
   return (
     <div className="h-full flex flex-col bg-coden-bg text-coden-text">
-      <TopHeader onOpenProfiles={() => setShowProfileModal(true)} onOpenInfo={() => setShowInfoModal(true)} />
+      <TopHeader
+        onOpenProfiles={() => setShowProfileModal(true)}
+        onOpenInfo={() => setShowInfoModal(true)}
+        onOpenEloGuide={() => setShowEloGuide(true)}
+      />
       <div className="flex-1 flex overflow-hidden">
         {!sidebarCollapsed && sidebarPosition === 'left' && (
           <aside 
@@ -184,12 +192,21 @@ export function AppShell() {
       <UpdateToast />
       {showProfileModal && <ProfileModal onClose={() => setShowProfileModal(false)} />}
       {showInfoModal && <InfoModal onClose={() => setShowInfoModal(false)} />}
+      {showEloGuide && <EloGuideModal challenges={challenges} onClose={() => setShowEloGuide(false)} />}
     </div>
   );
 }
 
 
-function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void; onOpenInfo: () => void }) {
+function TopHeader({
+  onOpenProfiles,
+  onOpenInfo,
+  onOpenEloGuide,
+}: {
+  onOpenProfiles: () => void;
+  onOpenInfo: () => void;
+  onOpenEloGuide: () => void;
+}) {
   const challenges = useAppStore((s) => s.challenges);
   const updater = useUpdater();
   const theme = useAppStore((s) => s.theme);
@@ -201,9 +218,14 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
   const activeProfile = useAppStore((s) => s.activeProfile);
   const activeSet = useAppStore((s) => s.activeSet);
   const setActiveSet = useAppStore((s) => s.setActiveSet);
+  const customProblemSets = useAppStore((s) => s.customProblemSets);
   const visibleChallengeCount = useMemo(
-    () => challengesForAlgorithmSet(challenges, activeSet).length,
-    [challenges, activeSet],
+    () => {
+      if (activeSet !== 'custom') return challengesForAlgorithmSet(challenges, activeSet).length;
+      const challengeIds = collectCustomChallengeIds(customProblemSets);
+      return challenges.filter((challenge) => challengeIds.has(challenge.id)).length;
+    },
+    [challenges, activeSet, customProblemSets],
   );
 
   const sidebarCollapsed = useAppStore((s) => s.sidebarCollapsed);
@@ -271,12 +293,8 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
             aria-label="Select algorithm set"
           >
             {Array.from(new Set(ALGORITHM_SETS.map((s) => s.category))).map((category) => (
-              <optgroup
-                key={category}
-                label={category}
-                className="bg-coden-surface text-coden-text font-bold"
-              >
-                {ALGORITHM_SETS.filter((s) => s.category === category).map((setOption) => (
+              category === 'Personal'
+                ? ALGORITHM_SETS.filter((s) => s.category === category).map((setOption) => (
                   <option
                     key={setOption.id}
                     value={setOption.id}
@@ -284,11 +302,39 @@ function TopHeader({ onOpenProfiles, onOpenInfo }: { onOpenProfiles: () => void;
                   >
                     {setOption.label}
                   </option>
-                ))}
-              </optgroup>
+                ))
+                : (
+                  <optgroup
+                    key={category}
+                    label={category}
+                    className="bg-coden-surface text-coden-text font-bold"
+                  >
+                    {ALGORITHM_SETS.filter((s) => s.category === category).map((setOption) => (
+                      <option
+                        key={setOption.id}
+                        value={setOption.id}
+                        className="bg-coden-surface text-coden-text font-normal"
+                      >
+                        {setOption.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                )
             ))}
           </select>
         </div>
+        {activeSet === 'elo' && (
+          <button
+            type="button"
+            onClick={onOpenEloGuide}
+            className="inline-flex h-6 shrink-0 items-center gap-1 rounded border border-coden-border bg-coden-bg px-2 text-[10px] font-semibold text-coden-muted transition-colors hover:border-coden-accent hover:text-coden-accent"
+            title="Understand Elo ratings and interview practice targets"
+            aria-label="Open Elo difficulty and interview practice guide"
+          >
+            <span aria-hidden="true" className="font-serif font-bold">i</span>
+            Elo guide
+          </button>
+        )}
         <div className="ml-2 flex items-center gap-1 rounded bg-coden-bg border border-coden-border px-1 py-0.5 shrink-0">
           <button
             type="button"
@@ -572,14 +618,19 @@ function AccentColorPicker() {
 function TransportBar() {
   const detail = useAppStore((s) => s.currentDetail);
   const runResult = useAppStore((s) => s.runResult);
+  const eloDisplay = detail
+    ? detail.elo_rating !== null
+      ? `Elo ${Math.round(detail.elo_rating)}`
+      : detail.estimated_elo_rating !== null
+        ? `Est. Elo ${Math.round(detail.estimated_elo_rating)}`
+        : ''
+    : '';
   const difficultyDisplay = detail
-    ? `${detail.difficulty_label}${
-      detail.elo_rating !== null
-        ? ` · Elo ${Math.round(detail.elo_rating)}`
-        : detail.difficulty_estimate !== null
-          ? ` · Estimated ${detail.difficulty_estimate}/10`
-          : ''
-    }`
+    ? [
+        detail.difficulty_label,
+        eloDisplay,
+        `Freq ${detail.frequency === null ? '—' : `${detail.frequency.toFixed(1)}%`}`,
+      ].filter(Boolean).join(' · ')
     : '';
 
   return (

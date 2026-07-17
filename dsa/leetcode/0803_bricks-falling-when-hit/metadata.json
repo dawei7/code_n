@@ -6,6 +6,9 @@
   "title": "Bricks Falling When Hit",
   "difficulty": "Hard",
   "acceptance_rate": 37.46459261237375,
+  "frequency": 0.0,
+  "elo_rating": 2765.2533837781,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Convert BST to Greater Tree",
   "difficulty": "Medium",
   "acceptance_rate": 71.76262562115993,
+  "frequency": 8.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1375.701794,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

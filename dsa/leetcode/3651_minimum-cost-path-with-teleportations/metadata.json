@@ -6,6 +6,9 @@
   "title": "Minimum Cost Path with Teleportations",
   "difficulty": "Hard",
   "acceptance_rate": 45.39402699456444,
+  "frequency": 94.1,
+  "elo_rating": 2411.2349692232,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

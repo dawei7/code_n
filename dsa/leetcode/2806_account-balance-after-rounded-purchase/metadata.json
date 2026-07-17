@@ -6,6 +6,9 @@
   "title": "Account Balance After Rounded Purchase",
   "difficulty": "Easy",
   "acceptance_rate": 56.75040141790455,
+  "frequency": 0.0,
+  "elo_rating": 1214.703724776,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Groups of Strings",
   "difficulty": "Hard",
   "acceptance_rate": 28.00378429517502,
+  "frequency": 0.0,
+  "elo_rating": 2499.3282271507,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

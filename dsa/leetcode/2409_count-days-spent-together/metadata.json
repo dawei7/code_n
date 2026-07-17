@@ -6,6 +6,9 @@
   "title": "Count Days Spent Together",
   "difficulty": "Easy",
   "acceptance_rate": 48.20282803709898,
+  "frequency": 0.0,
+  "elo_rating": 1562.0956544608,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

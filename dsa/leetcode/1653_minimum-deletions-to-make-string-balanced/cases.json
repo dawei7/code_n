@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1653",
+  "cases": [
+    {"id":"sample-mixed","name":"sample: two deletions resolve separated conflicts","kind":"sample","visible":true,"input":{"s":"aababbab"},"expected":2,"tags":["sample","mixed"]},
+    {"id":"sample-leading-bs","name":"sample: deleting two leading b characters is optimal","kind":"sample","visible":true,"input":{"s":"bbaaaaabb"},"expected":2,"tags":["sample","leading-b"]},
+    {"id":"trial-single-a","name":"trial: one a is already balanced","kind":"trial","visible":true,"input":{"s":"a"},"expected":0,"tags":["minimum-length"]},
+    {"id":"trial-single-b","name":"trial: one b is already balanced","kind":"trial","visible":true,"input":{"s":"b"},"expected":0,"tags":["minimum-length"]},
+    {"id":"trial-one-inversion","name":"trial: one of two inverted characters must be deleted","kind":"trial","visible":true,"input":{"s":"ba"},"expected":1,"tags":["single-conflict"]},
+    {"id":"real-already-balanced","name":"hidden: all a characters precede all b characters","kind":"real","visible":false,"input":{"s":"aaabbb"},"expected":0,"tags":["already-balanced"]},
+    {"id":"real-alternating","name":"hidden: alternating characters require three deletions","kind":"real","visible":false,"input":{"s":"abababab"},"expected":3,"tags":["alternating"]},
+    {"id":"real-delete-suffix","name":"hidden: deleting two trailing a characters beats deleting b block","kind":"real","visible":false,"input":{"s":"abbbaa"},"expected":2,"tags":["delete-suffix"]},
+    {"id":"real-delete-prefix","name":"hidden: one leading b is the only necessary deletion","kind":"real","visible":false,"input":{"s":"baaab"},"expected":1,"tags":["delete-prefix"]},
+    {"id":"real-multiple-choice-points","name":"hidden: several recurrence choices combine across the string","kind":"real","visible":false,"input":{"s":"bbabaaab"},"expected":3,"tags":["dynamic-programming","mixed"]}
+  ]
+}

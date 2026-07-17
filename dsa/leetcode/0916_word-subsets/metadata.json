@@ -6,6 +6,9 @@
   "title": "Word Subsets",
   "difficulty": "Medium",
   "acceptance_rate": 55.963160519071295,
+  "frequency": 0.0,
+  "elo_rating": 1624.4737611923,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

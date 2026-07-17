@@ -6,6 +6,9 @@
   "title": "Synonymous Sentences",
   "difficulty": "Medium",
   "acceptance_rate": 57.440413916417796,
+  "frequency": 33.0,
+  "elo_rating": 1847.2077654978,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

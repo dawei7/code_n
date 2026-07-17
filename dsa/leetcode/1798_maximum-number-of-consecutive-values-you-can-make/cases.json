@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1798",
+  "cases": [
+    {"id":"example-gap-at-two","name":"sample: one is covered but two is missing","kind":"sample","visible":true,"input":{"coins":[1,3]},"expected":2,"tags":["example","gap"]},
+    {"id":"example-full-eight","name":"sample: duplicates bridge through seven","kind":"sample","visible":true,"input":{"coins":[1,1,1,4]},"expected":8,"tags":["example","duplicates"]},
+    {"id":"example-unsorted-twenty","name":"sample: unsorted coins cover through nineteen","kind":"sample","visible":true,"input":{"coins":[1,4,10,3,1]},"expected":20,"tags":["example","unsorted"]},
+    {"id":"trial-no-one","name":"smallest coin is too large","kind":"trial","visible":true,"input":{"coins":[2]},"expected":1,"tags":["boundary","first-gap"]},
+    {"id":"trial-single-one","name":"single unit coin","kind":"trial","visible":true,"input":{"coins":[1]},"expected":2,"tags":["boundary","singleton"]},
+    {"id":"hidden-duplicates-and-powers","name":"duplicates repeatedly extend the prefix","kind":"real","visible":false,"input":{"coins":[1,2,2,5,10]},"expected":21,"tags":["duplicates","full-coverage"]},
+    {"id":"hidden-late-gap","name":"coverage stops before a late large coin","kind":"real","visible":false,"input":{"coins":[9,3,1,1]},"expected":6,"tags":["unsorted","late-gap"]},
+    {"id":"hidden-many-unit-coins","name":"many identical unit coins","kind":"real","visible":false,"input":{"coins":[1,1,1,1,1,1,1,1,1,1]},"expected":11,"tags":["duplicates","all-used"]}
+  ]
+}

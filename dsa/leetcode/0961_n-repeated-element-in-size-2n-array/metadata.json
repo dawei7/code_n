@@ -6,6 +6,9 @@
   "title": "N-Repeated Element in Size 2N Array",
   "difficulty": "Easy",
   "acceptance_rate": 79.97216687858551,
+  "frequency": 48.6,
+  "elo_rating": 1161.6227767245,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Equalize Strings by Adding or Removing Characters at Ends",
   "difficulty": "Medium",
   "acceptance_rate": 56.43122676579926,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1498.988125,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "N-Queens II",
   "difficulty": "Hard",
   "acceptance_rate": 78.94869994750458,
+  "frequency": 37.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1939.075434,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Beautiful Partitions",
   "difficulty": "Hard",
   "acceptance_rate": 33.16823269478233,
+  "frequency": 0.0,
+  "elo_rating": 2344.3664724791,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

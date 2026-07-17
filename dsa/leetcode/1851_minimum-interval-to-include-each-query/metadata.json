@@ -6,6 +6,9 @@
   "title": "Minimum Interval to Include Each Query",
   "difficulty": "Hard",
   "acceptance_rate": 54.64417226735732,
+  "frequency": 47.6,
+  "elo_rating": 2286.1378742318,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

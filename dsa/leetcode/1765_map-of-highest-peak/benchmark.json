@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1765",
+  "measurement_note": "Size is A, the number of cells in a one-row map. Alternating water and land supplies A/2 sources. Multi-source BFS is O(A); a correct implementation that minimizes Manhattan distance over every water source for every cell completes all tiers and is rejected by O(A^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 alternating cells",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "isWater": [[
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0
+        ]]
+      },
+      "expected": [[
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1
+      ]],
+      "tags": ["benchmark", "scaling", "many-sources"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 alternating cells",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "isWater": [[
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0
+        ]]
+      },
+      "expected": [[
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1
+      ]],
+      "tags": ["benchmark", "scaling", "many-sources"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128 alternating cells",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "isWater": [[
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,
+          1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0
+        ]]
+      },
+      "expected": [[
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,
+        0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1
+      ]],
+      "tags": ["benchmark", "scaling", "many-sources"]
+    }
+  ]
+}

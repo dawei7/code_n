@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1806",
+  "measurement_note": "Size is n, the even permutation length. Power-of-two lengths make the representative cycle lengths 5, 7, and 9 while increasing n by 16x. Tracking one index takes O(k) time and O(1) space. Correct full-array permutation simulation completes all tiers and is rejected only by its additional O(n) work per transformation.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: length 32 permutation","kind":"benchmark","visible":false,"size":32,"input":{"n":32},"expected":5,"tags":["benchmark","power-of-two","cycle"]},
+    {"id":"benchmark-scale-2","name":"benchmark: length 128 permutation","kind":"benchmark","visible":false,"size":128,"input":{"n":128},"expected":7,"tags":["benchmark","power-of-two","cycle"]},
+    {"id":"benchmark-scale-3","name":"benchmark: length 512 permutation","kind":"benchmark","visible":false,"size":512,"input":{"n":512},"expected":9,"tags":["benchmark","power-of-two","cycle"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Image Overlap",
   "difficulty": "Medium",
   "acceptance_rate": 64.09786520702025,
+  "frequency": 30.5,
+  "elo_rating": 1969.9845549158,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

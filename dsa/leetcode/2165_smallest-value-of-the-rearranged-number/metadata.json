@@ -6,6 +6,9 @@
   "title": "Smallest Value of the Rearranged Number",
   "difficulty": "Medium",
   "acceptance_rate": 53.66123898804028,
+  "frequency": 0.0,
+  "elo_rating": 1361.5824742947,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

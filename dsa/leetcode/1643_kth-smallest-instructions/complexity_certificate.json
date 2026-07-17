@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1643",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(r+c)",
+  "summary": "The source contract limits both destination coordinates to 15, so every result has at most 30 characters and the legal path-length domain is too small for an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "r+c",
+    "maximum": 30,
+    "unit": "instruction characters",
+    "source_constraint": "row and column are each integers from 1 through 15"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference performs at most 30 unranking decisions with binomial coefficients over at most 29 remaining moves and emits exactly r+c characters."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression exhausts every rank for all grids through 4 by 4 against independently enumerated paths and checks both extreme ranks at the 15 by 15 boundary."
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Minimum Flips to Make a OR b Equal to c",
   "difficulty": "Medium",
   "acceptance_rate": 72.02346622130854,
+  "frequency": 29.3,
+  "elo_rating": 1382.760607823,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

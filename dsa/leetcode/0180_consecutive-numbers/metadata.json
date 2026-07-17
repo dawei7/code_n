@@ -6,6 +6,9 @@
   "title": "Consecutive Numbers",
   "difficulty": "Medium",
   "acceptance_rate": 48.72732127952829,
+  "frequency": 60.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1612.164281,
   "category": "database",
   "category_title": "Database",
   "topics": [

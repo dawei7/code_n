@@ -6,6 +6,9 @@
   "title": "Finding the Users Active Minutes",
   "difficulty": "Medium",
   "acceptance_rate": 80.8741262676857,
+  "frequency": 0.0,
+  "elo_rating": 1360.3005775112,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

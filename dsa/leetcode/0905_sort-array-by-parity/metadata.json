@@ -6,6 +6,9 @@
   "title": "Sort Array By Parity",
   "difficulty": "Easy",
   "acceptance_rate": 76.58811824213765,
+  "frequency": 44.1,
+  "elo_rating": 1178.4942541235,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

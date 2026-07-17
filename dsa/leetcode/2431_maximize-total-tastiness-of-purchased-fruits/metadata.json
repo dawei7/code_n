@@ -6,6 +6,9 @@
   "title": "Maximize Total Tastiness of Purchased Fruits",
   "difficulty": "Medium",
   "acceptance_rate": 64.6102871568318,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1425.685838,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

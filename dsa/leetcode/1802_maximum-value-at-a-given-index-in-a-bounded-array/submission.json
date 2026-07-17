@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1929",
+  "frontend_id": "1802",
+  "title_slug": "maximum-value-at-a-given-index-in-a-bounded-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxValue",
+  "verified_submission_id": "2071256889",
+  "verified_at": "2026-07-17T15:15:09.923907+00:00"
+}

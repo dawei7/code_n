@@ -6,6 +6,9 @@
   "title": "Longest Team Pass Streak",
   "difficulty": "Hard",
   "acceptance_rate": 40.388136213841086,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2229.278703,
   "category": "database",
   "category_title": "Database",
   "topics": [

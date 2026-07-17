@@ -6,6 +6,9 @@
   "title": "Count Unhappy Friends",
   "difficulty": "Medium",
   "acceptance_rate": 62.64248979375431,
+  "frequency": 60.8,
+  "elo_rating": 1658.3305547865,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

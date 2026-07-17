@@ -6,6 +6,9 @@
   "title": "Most Visited Sector in  a Circular Track",
   "difficulty": "Easy",
   "acceptance_rate": 60.0965584444346,
+  "frequency": 0.0,
+  "elo_rating": 1443.2353621969,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

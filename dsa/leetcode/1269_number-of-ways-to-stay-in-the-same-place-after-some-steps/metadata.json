@@ -6,6 +6,9 @@
   "title": "Number of Ways to Stay in the Same Place After Some Steps",
   "difficulty": "Hard",
   "acceptance_rate": 50.1470925345763,
+  "frequency": 0.0,
+  "elo_rating": 1854.0126399812,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

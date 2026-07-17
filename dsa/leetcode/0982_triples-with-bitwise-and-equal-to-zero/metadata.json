@@ -6,6 +6,9 @@
   "title": "Triples with Bitwise AND Equal To Zero",
   "difficulty": "Hard",
   "acceptance_rate": 60.15674946132171,
+  "frequency": 0.0,
+  "elo_rating": 2084.9697035674,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Check if All the Integers in a Range Are Covered",
   "difficulty": "Easy",
   "acceptance_rate": 51.19689220374296,
+  "frequency": 28.0,
+  "elo_rating": 1307.3797385769,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

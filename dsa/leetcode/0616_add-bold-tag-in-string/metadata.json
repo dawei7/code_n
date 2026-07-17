@@ -6,6 +6,9 @@
   "title": "Add Bold Tag in String",
   "difficulty": "Medium",
   "acceptance_rate": 51.44490144757224,
+  "frequency": 63.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1570.744141,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

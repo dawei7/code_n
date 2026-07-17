@@ -6,6 +6,9 @@
   "title": "Longest Strictly Increasing Subsequence With Non-Zero Bitwise AND",
   "difficulty": "Medium",
   "acceptance_rate": 50.583504523799114,
+  "frequency": 65.9,
+  "elo_rating": 1845.77150935,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

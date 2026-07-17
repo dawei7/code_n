@@ -6,6 +6,9 @@
   "title": "Minimum Time Difference",
   "difficulty": "Medium",
   "acceptance_rate": 62.638577188315715,
+  "frequency": 49.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1442.451646,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Operations to Reduce an Integer to 0",
   "difficulty": "Medium",
   "acceptance_rate": 62.82522802740532,
+  "frequency": 86.3,
+  "elo_rating": 1649.2000410344,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

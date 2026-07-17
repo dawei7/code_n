@@ -6,6 +6,9 @@
   "title": "Delete Node in a BST",
   "difficulty": "Medium",
   "acceptance_rate": 54.97757852984687,
+  "frequency": 43.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1519.406503,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

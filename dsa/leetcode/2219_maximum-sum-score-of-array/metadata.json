@@ -6,6 +6,9 @@
   "title": "Maximum Sum Score of Array",
   "difficulty": "Medium",
   "acceptance_rate": 62.80025284450063,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1440.728058,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

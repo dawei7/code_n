@@ -6,6 +6,9 @@
   "title": "Delete the Middle Node of a Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 60.943092779461224,
+  "frequency": 54.1,
+  "elo_rating": 1324.3520304377,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

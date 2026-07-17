@@ -6,6 +6,9 @@
   "title": "Finding the Topic of Each Post",
   "difficulty": "Hard",
   "acceptance_rate": 50.53064958828911,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2081.595465,
   "category": "database",
   "category_title": "Database",
   "topics": [

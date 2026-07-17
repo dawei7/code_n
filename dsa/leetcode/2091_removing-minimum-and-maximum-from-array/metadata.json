@@ -6,6 +6,9 @@
   "title": "Removing Minimum and Maximum From Array",
   "difficulty": "Medium",
   "acceptance_rate": 56.63102134215007,
+  "frequency": 20.4,
+  "elo_rating": 1384.0226911434,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

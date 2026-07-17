@@ -6,6 +6,9 @@
   "title": "Count the Number of Computer Unlocking Permutations",
   "difficulty": "Medium",
   "acceptance_rate": 58.94225935189955,
+  "frequency": 36.2,
+  "elo_rating": 1749.7304862181,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

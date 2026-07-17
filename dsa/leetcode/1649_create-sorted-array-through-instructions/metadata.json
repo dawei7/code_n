@@ -6,6 +6,9 @@
   "title": "Create Sorted Array through Instructions",
   "difficulty": "Hard",
   "acceptance_rate": 42.09039904179537,
+  "frequency": 38.3,
+  "elo_rating": 2207.8565809952,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

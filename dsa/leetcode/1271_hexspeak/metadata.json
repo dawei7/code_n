@@ -6,6 +6,9 @@
   "title": "Hexspeak",
   "difficulty": "Easy",
   "acceptance_rate": 58.36749085459915,
+  "frequency": 0.0,
+  "elo_rating": 1384.4078082338,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

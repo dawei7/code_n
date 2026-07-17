@@ -6,6 +6,9 @@
   "title": "Maximum Value of Concatenated Binary Segments",
   "difficulty": "Hard",
   "acceptance_rate": 26.838088388076404,
+  "frequency": 31.7,
+  "elo_rating": 1998.3906211301,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

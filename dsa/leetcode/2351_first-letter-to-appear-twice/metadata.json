@@ -6,6 +6,9 @@
   "title": "First Letter to Appear Twice",
   "difficulty": "Easy",
   "acceptance_rate": 75.04917345212097,
+  "frequency": 8.6,
+  "elo_rating": 1155.4545579447,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

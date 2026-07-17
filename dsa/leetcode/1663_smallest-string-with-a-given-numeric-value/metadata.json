@@ -6,6 +6,9 @@
   "title": "Smallest String With A Given Numeric Value",
   "difficulty": "Medium",
   "acceptance_rate": 67.5185166396104,
+  "frequency": 0.0,
+  "elo_rating": 1460.5903088359,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

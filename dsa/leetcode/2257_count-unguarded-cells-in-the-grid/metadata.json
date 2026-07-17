@@ -6,6 +6,9 @@
   "title": "Count Unguarded Cells in the Grid",
   "difficulty": "Medium",
   "acceptance_rate": 68.94869755881697,
+  "frequency": 53.4,
+  "elo_rating": 1708.7056764058,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

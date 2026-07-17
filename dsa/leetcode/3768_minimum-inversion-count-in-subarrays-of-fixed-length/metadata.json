@@ -6,6 +6,9 @@
   "title": "Minimum Inversion Count in Subarrays of Fixed Length",
   "difficulty": "Hard",
   "acceptance_rate": 42.781647850108094,
+  "frequency": 33.5,
+  "elo_rating": 2157.7545069067,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Number Game",
   "difficulty": "Easy",
   "acceptance_rate": 85.60846729777622,
+  "frequency": 33.4,
+  "elo_rating": 1184.8359383057,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

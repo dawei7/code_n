@@ -6,6 +6,9 @@
   "title": "Maximize Score After Pair Deletions",
   "difficulty": "Medium",
   "acceptance_rate": 52.360174533915114,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1556.159585,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

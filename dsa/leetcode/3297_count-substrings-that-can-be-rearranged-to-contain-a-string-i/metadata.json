@@ -6,6 +6,9 @@
   "title": "Count Substrings That Can Be Rearranged to Contain a String I",
   "difficulty": "Medium",
   "acceptance_rate": 43.374029326506,
+  "frequency": 0.0,
+  "elo_rating": 1847.3433772442,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

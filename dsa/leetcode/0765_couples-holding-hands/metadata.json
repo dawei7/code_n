@@ -6,6 +6,9 @@
   "title": "Couples Holding Hands",
   "difficulty": "Hard",
   "acceptance_rate": 59.51485520872508,
+  "frequency": 61.5,
+  "elo_rating": 1999.1208076854,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

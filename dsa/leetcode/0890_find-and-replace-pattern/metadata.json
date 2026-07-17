@@ -6,6 +6,9 @@
   "title": "Find and Replace Pattern",
   "difficulty": "Medium",
   "acceptance_rate": 77.05663907472503,
+  "frequency": 23.9,
+  "elo_rating": 1414.4918812526,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

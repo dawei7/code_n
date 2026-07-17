@@ -6,6 +6,9 @@
   "title": "Number Of Rectangles That Can Form The Largest Square",
   "difficulty": "Easy",
   "acceptance_rate": 79.4948020827703,
+  "frequency": 0.0,
+  "elo_rating": 1229.4850365142,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

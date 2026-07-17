@@ -6,6 +6,9 @@
   "title": "Max Sum of a Pair With Equal Sum of Digits",
   "difficulty": "Medium",
   "acceptance_rate": 65.93677842672211,
+  "frequency": 29.3,
+  "elo_rating": 1308.9617729374,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

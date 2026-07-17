@@ -6,6 +6,9 @@
   "title": "Next Palindrome Using Same Digits",
   "difficulty": "Hard",
   "acceptance_rate": 54.34583714547118,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2047.035181,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

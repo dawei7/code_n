@@ -6,6 +6,9 @@
   "title": "Managers with at Least 5 Direct Reports",
   "difficulty": "Medium",
   "acceptance_rate": 49.17889810678579,
+  "frequency": 65.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1603.99693,
   "category": "database",
   "category_title": "Database",
   "topics": [

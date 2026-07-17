@@ -6,6 +6,9 @@
   "title": "Fair Candy Swap",
   "difficulty": "Easy",
   "acceptance_rate": 65.26012390533721,
+  "frequency": 44.8,
+  "elo_rating": 1334.0564009231,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

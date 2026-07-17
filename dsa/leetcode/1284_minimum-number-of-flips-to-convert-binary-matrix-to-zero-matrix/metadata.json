@@ -6,6 +6,9 @@
   "title": "Minimum Number of Flips to Convert Binary Matrix to Zero Matrix",
   "difficulty": "Hard",
   "acceptance_rate": 72.86555358708684,
+  "frequency": 0.0,
+  "elo_rating": 1810.7690062079,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

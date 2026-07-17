@@ -6,6 +6,9 @@
   "title": "Jump Game IV",
   "difficulty": "Hard",
   "acceptance_rate": 51.046611339009374,
+  "frequency": 75.0,
+  "elo_rating": 1809.8192888474,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

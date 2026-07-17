@@ -6,6 +6,9 @@
   "title": "Validate Stack Sequences",
   "difficulty": "Medium",
   "acceptance_rate": 70.5247512075457,
+  "frequency": 29.3,
+  "elo_rating": 1461.9157715206,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

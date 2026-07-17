@@ -6,6 +6,9 @@
   "title": "Maximum Number That Sum of the Prices Is Less Than or Equal to K",
   "difficulty": "Medium",
   "acceptance_rate": 38.9731655461702,
+  "frequency": 37.5,
+  "elo_rating": 2258.0069047781,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

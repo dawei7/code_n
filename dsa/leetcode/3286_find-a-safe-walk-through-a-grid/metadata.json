@@ -6,6 +6,9 @@
   "title": "Find a Safe Walk Through a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 55.216753769222095,
+  "frequency": 51.9,
+  "elo_rating": 1607.8207466026,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

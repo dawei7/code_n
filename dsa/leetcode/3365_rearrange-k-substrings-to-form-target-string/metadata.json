@@ -6,6 +6,9 @@
   "title": "Rearrange K Substrings to Form Target String",
   "difficulty": "Medium",
   "acceptance_rate": 56.911576590981774,
+  "frequency": 0.0,
+  "elo_rating": 1513.5126466994,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

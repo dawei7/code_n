@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1671",
+  "cases": [
+    {"id":"sample-already-mountain","name":"sample: three elements already form a mountain","kind":"sample","visible":true,"input":{"nums":[1,3,1]},"expected":0,"tags":["sample","minimum-length"]},
+    {"id":"sample-remove-three","name":"sample: retain a five-element mountain","kind":"sample","visible":true,"input":{"nums":[2,1,1,5,6,2,3,1]},"expected":3,"tags":["sample","subsequence"]},
+    {"id":"trial-duplicate-peak","name":"trial: one equal peak value must be removed","kind":"trial","visible":true,"input":{"nums":[1,2,3,4,4,3,2,1]},"expected":1,"tags":["duplicate-peak","strict"]},
+    {"id":"trial-interleaved-rise","name":"trial: discard an interrupted early rise","kind":"trial","visible":true,"input":{"nums":[1,2,1,2,3,2,1]},"expected":2,"tags":["interleaved","subsequence"]},
+    {"id":"real-discard-endpoints","name":"hidden: optimal mountain discards both endpoints","kind":"real","visible":false,"input":{"nums":[9,1,2,3,2,1,8]},"expected":2,"tags":["prefix","suffix"]},
+    {"id":"real-flat-regions","name":"hidden: duplicates on both slopes cannot extend them","kind":"real","visible":false,"input":{"nums":[1,1,2,2,5,5,4,4,3,3]},"expected":5,"tags":["duplicates","both-slopes"]},
+    {"id":"real-late-peak","name":"hidden: longest mountain uses a late peak","kind":"real","visible":false,"input":{"nums":[5,4,1,2,3,4,7,6,2]},"expected":2,"tags":["late-peak","discard-prefix"]},
+    {"id":"real-several-peaks","name":"hidden: choose the peak with longest combined sides","kind":"real","visible":false,"input":{"nums":[1,4,2,3,5,3,2,4,1]},"expected":2,"tags":["multiple-peaks","global-optimum"]}
+  ]
+}

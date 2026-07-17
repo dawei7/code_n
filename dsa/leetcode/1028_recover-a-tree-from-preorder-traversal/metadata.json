@@ -6,6 +6,9 @@
   "title": "Recover a Tree From Preorder Traversal",
   "difficulty": "Hard",
   "acceptance_rate": 83.24699467096295,
+  "frequency": 55.3,
+  "elo_rating": 1797.4917663632,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

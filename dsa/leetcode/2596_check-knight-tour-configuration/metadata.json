@@ -6,6 +6,9 @@
   "title": "Check Knight Tour Configuration",
   "difficulty": "Medium",
   "acceptance_rate": 61.62496106323331,
+  "frequency": 12.1,
+  "elo_rating": 1448.1865030721,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

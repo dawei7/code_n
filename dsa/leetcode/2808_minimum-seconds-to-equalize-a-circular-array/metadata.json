@@ -6,6 +6,9 @@
   "title": "Minimum Seconds to Equalize a Circular Array",
   "difficulty": "Medium",
   "acceptance_rate": 28.854358943323145,
+  "frequency": 0.0,
+  "elo_rating": 1875.4217845362,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

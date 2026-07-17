@@ -6,6 +6,9 @@
   "title": "Minimize Max Distance to Gas Station",
   "difficulty": "Hard",
   "acceptance_rate": 54.03153313833202,
+  "frequency": 0.0,
+  "elo_rating": 2084.2010769193,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

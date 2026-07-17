@@ -6,6 +6,9 @@
   "title": "Maximum Size Subarray Sum Equals k",
   "difficulty": "Medium",
   "acceptance_rate": 50.907399747239864,
+  "frequency": 42.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1578.03642,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

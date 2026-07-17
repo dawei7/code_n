@@ -6,6 +6,9 @@
   "title": "Number of Matching Subsequences",
   "difficulty": "Medium",
   "acceptance_rate": 50.60426700884668,
+  "frequency": 46.4,
+  "elo_rating": 1695.3076664977,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

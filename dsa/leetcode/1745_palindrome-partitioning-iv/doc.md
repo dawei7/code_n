@@ -8,48 +8,92 @@
 | Category | Algorithms |
 | Topics | String, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [palindrome-partitioning-iv](https://leetcode.com/problems/palindrome-partitioning-iv/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/palindrome-partitioning-iv/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/palindrome-partitioning-iv/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a lowercase English string `s`, determine whether two cut positions can divide it into exactly three nonempty contiguous substrings such that every substring is a palindrome.
+
+The characters must remain in their original order, every character must belong to exactly one of the three pieces, and a one-character piece counts as a palindrome. Return only whether such a partition exists.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: a lowercase English string with $3 \le n \le 2000$, where $n=\lvert s\rvert$.
 
 **Return value**
 
-TODO
+- Return `true` if `s` can be partitioned into exactly three nonempty palindromic substrings; otherwise return `false`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcbdd"`
+- Output: `true`
+- Explanation: `"a"`, `"bcb"`, and `"dd"` are all palindromes.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "bcbddxy"`
+- Output: `false`
+- Explanation: No placement of two cuts makes all three resulting pieces palindromic.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "racecarannakayak"`
+- Output: `true`
+- Explanation: The string splits as `"racecar"`, `"anna"`, and `"kayak"`.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(n^2)$
+- **Space:** $O(n^2)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Precompute every palindromic interval**
+
+Let `palindrome[left][right]` indicate whether the inclusive substring from `left` through `right` is a palindrome. It is true when the endpoint characters match and the enclosed interval is empty, one character, or already known to be palindromic:
+
+$$
+\texttt{palindrome[left][right]}
+=
+(s_{\textit{left}}=s_{\textit{right}})
+\land
+(\textit{right}-\textit{left}<2
+\lor
+\texttt{palindrome[left+1][right-1]}).
+$$
+
+Fill left endpoints from right to left so every enclosed state is available before it is needed.
+
+**Represent a partition by two cut endpoints**
+
+Let the first piece end at `first` and the second end at `second`. Nonempty pieces require $0 \le \textit{first} < \textit{second} < n-1$. The three table lookups are then `[0, first]`, `[first + 1, second]`, and `[second + 1, n - 1]`.
+
+**Accept only when all three intervals agree**
+
+Enumerate legal cut pairs and return true when all three corresponding states are true. The table entries exactly encode the palindrome definition, and every possible three-piece partition has one unique pair of cut endpoints, so this search finds a valid partition if and only if one exists.
+
+#### Complexity detail
+
+There are $O(n^2)$ substring intervals, each filled in constant time. There are also $O(n^2)$ legal cut pairs, each checked with three constant-time table accesses. Total time is $O(n^2)$ and the table occupies $O(n^2)$ space.
+
+#### Alternatives and edge cases
+
+- **Check each substring for every cut pair:** Directly scanning the three pieces repeatedly is simple but can take $O(n^3)$ time.
+- **Center expansion:** Palindromic prefixes, middle intervals, and suffixes can be derived with center expansion and less storage, but coordinating the two cuts is more intricate.
+- **Length three:** Cutting between every character creates three one-character palindromes, so every length-three input succeeds.
+- **One-character pieces:** Either endpoint piece or the middle piece may have length one.
+- **Exactly three pieces:** A string that is itself a palindrome still needs two legal nonempty cuts.
+- **Repeated characters:** Many intervals may be palindromes; the algorithm may return after finding any one valid cut pair.
+- **No valid first prefix:** If no proper prefix ending before the final two characters is palindromic, no partition can succeed.
+
+</details>

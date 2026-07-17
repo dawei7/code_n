@@ -6,6 +6,9 @@
   "title": "Partition to K Equal Sum Subsets",
   "difficulty": "Medium",
   "acceptance_rate": 38.754020903192284,
+  "frequency": 53.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1712.797719,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

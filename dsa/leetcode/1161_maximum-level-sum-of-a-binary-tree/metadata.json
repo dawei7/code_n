@@ -6,6 +6,9 @@
   "title": "Maximum Level Sum of a Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 70.01211796092556,
+  "frequency": 41.4,
+  "elo_rating": 1249.9086403595,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count Non Decreasing Arrays With Given Digit Sums",
   "difficulty": "Hard",
   "acceptance_rate": 41.58807996982271,
+  "frequency": 48.8,
+  "elo_rating": 2172.4115085517,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

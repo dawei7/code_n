@@ -6,6 +6,9 @@
   "title": "Maximum Length Substring With Two Occurrences",
   "difficulty": "Easy",
   "acceptance_rate": 65.8007425013259,
+  "frequency": 28.4,
+  "elo_rating": 1329.4732452623,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

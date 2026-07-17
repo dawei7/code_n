@@ -6,6 +6,9 @@
   "title": "Reschedule Meetings for Maximum Free Time I",
   "difficulty": "Medium",
   "acceptance_rate": 54.001776277374056,
+  "frequency": 59.2,
+  "elo_rating": 1728.8495630128,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

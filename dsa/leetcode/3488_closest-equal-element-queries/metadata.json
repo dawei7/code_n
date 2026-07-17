@@ -6,6 +6,9 @@
   "title": "Closest Equal Element Queries",
   "difficulty": "Medium",
   "acceptance_rate": 51.47230168921767,
+  "frequency": 79.7,
+  "elo_rating": 1699.1071481616,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

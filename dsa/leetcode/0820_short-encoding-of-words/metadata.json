@@ -6,6 +6,9 @@
   "title": "Short Encoding of Words",
   "difficulty": "Medium",
   "acceptance_rate": 60.90319573977142,
+  "frequency": 29.7,
+  "elo_rating": 1632.0191837349,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

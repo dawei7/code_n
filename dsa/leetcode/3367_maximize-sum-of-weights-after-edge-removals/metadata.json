@@ -6,6 +6,9 @@
   "title": "Maximize Sum of Weights after Edge Removals",
   "difficulty": "Hard",
   "acceptance_rate": 31.414756921446553,
+  "frequency": 0.0,
+  "elo_rating": 2601.7404336762,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

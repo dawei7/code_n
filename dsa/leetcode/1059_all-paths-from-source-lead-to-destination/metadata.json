@@ -6,6 +6,9 @@
   "title": "All Paths from Source Lead to Destination",
   "difficulty": "Medium",
   "acceptance_rate": 37.31574976090123,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1725.92382,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

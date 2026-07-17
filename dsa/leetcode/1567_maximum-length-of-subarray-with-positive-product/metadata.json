@@ -6,6 +6,9 @@
   "title": "Maximum Length of Subarray With Positive Product",
   "difficulty": "Medium",
   "acceptance_rate": 44.723811488743756,
+  "frequency": 37.3,
+  "elo_rating": 1710.3243520032,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

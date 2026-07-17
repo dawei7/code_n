@@ -6,6 +6,9 @@
   "title": "User Purchase Platform",
   "difficulty": "Hard",
   "acceptance_rate": 46.24247005199386,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2133.072953,
   "category": "database",
   "category_title": "Database",
   "topics": [

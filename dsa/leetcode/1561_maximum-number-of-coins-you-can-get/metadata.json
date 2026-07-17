@@ -6,6 +6,9 @@
   "title": "Maximum Number of Coins You Can Get",
   "difficulty": "Medium",
   "acceptance_rate": 84.83984759657133,
+  "frequency": 0.0,
+  "elo_rating": 1405.5786892723,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

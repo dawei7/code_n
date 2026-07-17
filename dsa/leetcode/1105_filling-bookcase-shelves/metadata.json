@@ -6,6 +6,9 @@
   "title": "Filling Bookcase Shelves",
   "difficulty": "Medium",
   "acceptance_rate": 68.62429571452962,
+  "frequency": 20.1,
+  "elo_rating": 2014.2979320644,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

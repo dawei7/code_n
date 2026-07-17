@@ -6,6 +6,9 @@
   "title": "Reformat Department Table",
   "difficulty": "Easy",
   "acceptance_rate": 76.35150869299233,
+  "frequency": 32.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

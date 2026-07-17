@@ -6,6 +6,9 @@
   "title": "Maximize Win From Two Segments",
   "difficulty": "Medium",
   "acceptance_rate": 37.990717241694675,
+  "frequency": 0.0,
+  "elo_rating": 2080.7845644831,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

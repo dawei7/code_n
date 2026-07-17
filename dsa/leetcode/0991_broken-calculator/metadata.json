@@ -6,6 +6,9 @@
   "title": "Broken Calculator",
   "difficulty": "Medium",
   "acceptance_rate": 56.24873741341462,
+  "frequency": 28.5,
+  "elo_rating": 1909.4189035523,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

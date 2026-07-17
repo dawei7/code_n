@@ -6,6 +6,9 @@
   "title": "Super Pow",
   "difficulty": "Medium",
   "acceptance_rate": 37.12726692475267,
+  "frequency": 35.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1727.965658,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

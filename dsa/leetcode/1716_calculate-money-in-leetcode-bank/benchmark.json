@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1716",
+  "measurement_note": "Size is n, the number of saving days. The closed form and an independent arithmetic-series formula take O(1) time. A correct day-by-day simulation completes all legal 10/100/1000 tiers and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 10 saving days","kind":"benchmark","visible":false,"size":10,"input":{"n":10},"expected":37,"tags":["benchmark","scaling","partial-week"]},
+    {"id":"benchmark-scale-2","name":"benchmark: 100 saving days","kind":"benchmark","visible":false,"size":100,"input":{"n":100},"expected":1060,"tags":["benchmark","scaling","partial-week"]},
+    {"id":"benchmark-scale-3","name":"benchmark: 1000 saving days","kind":"benchmark","visible":false,"size":1000,"input":{"n":1000},"expected":74926,"tags":["benchmark","scaling","maximum-input"]}
+  ]
+}

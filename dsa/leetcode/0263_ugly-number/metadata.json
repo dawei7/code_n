@@ -6,6 +6,9 @@
   "title": "Ugly Number",
   "difficulty": "Easy",
   "acceptance_rate": 43.772695875669804,
+  "frequency": 57.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1260.39535,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

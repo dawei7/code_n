@@ -6,6 +6,9 @@
   "title": "Minimum Element After Replacement With Digit Sum",
   "difficulty": "Easy",
   "acceptance_rate": 89.5954559250748,
+  "frequency": 63.1,
+  "elo_rating": 1181.1856499253,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

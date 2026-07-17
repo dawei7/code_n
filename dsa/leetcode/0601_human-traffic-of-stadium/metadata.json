@@ -6,6 +6,9 @@
   "title": "Human Traffic of Stadium",
   "difficulty": "Hard",
   "acceptance_rate": 51.61151495923969,
+  "frequency": 31.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 2070.075371,
   "category": "database",
   "category_title": "Database",
   "topics": [

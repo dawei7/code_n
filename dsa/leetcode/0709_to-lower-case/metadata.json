@@ -6,6 +6,9 @@
   "title": "To Lower Case",
   "difficulty": "Easy",
   "acceptance_rate": 84.974141962973,
+  "frequency": 27.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

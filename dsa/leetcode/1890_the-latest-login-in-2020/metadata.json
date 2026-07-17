@@ -6,6 +6,9 @@
   "title": "The Latest Login in 2020",
   "difficulty": "Easy",
   "acceptance_rate": 76.97148138234745,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

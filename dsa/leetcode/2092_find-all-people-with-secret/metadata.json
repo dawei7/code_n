@@ -6,6 +6,9 @@
   "title": "Find All People With Secret",
   "difficulty": "Hard",
   "acceptance_rate": 48.40208005832365,
+  "frequency": 49.7,
+  "elo_rating": 2003.5794613668,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

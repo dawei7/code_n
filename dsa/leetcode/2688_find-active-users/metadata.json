@@ -6,6 +6,9 @@
   "title": "Find Active Users",
   "difficulty": "Medium",
   "acceptance_rate": 45.12432432432432,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1654.167803,
   "category": "database",
   "category_title": "Database",
   "topics": [

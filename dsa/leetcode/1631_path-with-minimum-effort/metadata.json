@@ -6,6 +6,9 @@
   "title": "Path With Minimum Effort",
   "difficulty": "Medium",
   "acceptance_rate": 63.59748989388908,
+  "frequency": 44.3,
+  "elo_rating": 1947.5013967785,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

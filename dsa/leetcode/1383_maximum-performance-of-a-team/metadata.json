@@ -6,6 +6,9 @@
   "title": "Maximum Performance of a Team",
   "difficulty": "Hard",
   "acceptance_rate": 47.81251865178503,
+  "frequency": 28.4,
+  "elo_rating": 2091.3820373571,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

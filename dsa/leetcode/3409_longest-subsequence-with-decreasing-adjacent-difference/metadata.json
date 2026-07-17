@@ -6,6 +6,9 @@
   "title": "Longest Subsequence With Decreasing Adjacent Difference",
   "difficulty": "Medium",
   "acceptance_rate": 16.99997730007037,
+  "frequency": 0.0,
+  "elo_rating": 2500.1329352544,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

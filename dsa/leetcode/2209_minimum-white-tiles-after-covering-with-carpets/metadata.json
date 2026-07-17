@@ -6,6 +6,9 @@
   "title": "Minimum White Tiles After Covering With Carpets",
   "difficulty": "Hard",
   "acceptance_rate": 39.08539015071607,
+  "frequency": 0.0,
+  "elo_rating": 2105.8582288624,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

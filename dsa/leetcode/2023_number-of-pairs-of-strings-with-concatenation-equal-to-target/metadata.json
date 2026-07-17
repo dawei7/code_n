@@ -6,6 +6,9 @@
   "title": "Number of Pairs of Strings With Concatenation Equal to Target",
   "difficulty": "Medium",
   "acceptance_rate": 75.49487420616953,
+  "frequency": 36.8,
+  "elo_rating": 1341.3713970313,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

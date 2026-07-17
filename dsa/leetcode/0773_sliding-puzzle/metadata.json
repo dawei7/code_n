@@ -6,6 +6,9 @@
   "title": "Sliding Puzzle",
   "difficulty": "Hard",
   "acceptance_rate": 74.49692381884874,
+  "frequency": 40.2,
+  "elo_rating": 1815.1286459024,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

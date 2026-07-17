@@ -6,6 +6,9 @@
   "title": "Minimize Connected Groups by Inserting Interval",
   "difficulty": "Medium",
   "acceptance_rate": 50.146914789422134,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1589.120682,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1741",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Every visit row can change one employee-day total, so exact output has a linear inspection lower bound; one grouped scan matches that bound.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "An uninspected visit can be the only row for an employee-day pair or can change an existing pair's total duration. Every one of the R rows must therefore be considered. Computing one duration and updating one hash aggregate per row takes constant expected work, for O(R) total time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Changing the in_time, out_time, emp_id, or event_day of any uninspected row can alter a returned group or total."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The query scans each row once, computes one subtraction, and updates exactly one employee-day sum."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover the public sample, one visit, repeated visits, separate employees and dates, unsorted groups, minute boundaries, and one-minute intervals."
+    }
+  ]
+}

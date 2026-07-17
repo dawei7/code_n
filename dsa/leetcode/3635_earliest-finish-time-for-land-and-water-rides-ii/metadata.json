@@ -6,6 +6,9 @@
   "title": "Earliest Finish Time for Land and Water Rides II",
   "difficulty": "Medium",
   "acceptance_rate": 64.30737939964408,
+  "frequency": 85.8,
+  "elo_rating": 1869.6387617474,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

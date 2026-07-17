@@ -6,6 +6,9 @@
   "title": "Distribute Money to Maximum Children",
   "difficulty": "Easy",
   "acceptance_rate": 20.636175896939996,
+  "frequency": 44.0,
+  "elo_rating": 1530.6451141787,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

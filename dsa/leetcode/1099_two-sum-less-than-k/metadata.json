@@ -6,6 +6,9 @@
   "title": "Two Sum Less Than K",
   "difficulty": "Easy",
   "acceptance_rate": 62.145591962533864,
+  "frequency": 49.5,
+  "elo_rating": 1245.2741257148,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1728",
+  "frontend_id": "1622",
+  "title_slug": "fancy-sequence",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Fancy",
+  "verified_submission_id": "2070431808",
+  "verified_at": "2026-07-16T22:09:32.112428+00:00"
+}

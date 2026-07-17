@@ -6,6 +6,9 @@
   "title": "Maximum Coins Heroes Can Collect",
   "difficulty": "Medium",
   "acceptance_rate": 68.79548065875144,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1394.504569,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

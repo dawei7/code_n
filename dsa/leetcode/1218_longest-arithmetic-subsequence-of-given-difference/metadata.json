@@ -6,6 +6,9 @@
   "title": "Longest Arithmetic Subsequence of Given Difference",
   "difficulty": "Medium",
   "acceptance_rate": 54.33040990234497,
+  "frequency": 20.6,
+  "elo_rating": 1597.1931473887,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

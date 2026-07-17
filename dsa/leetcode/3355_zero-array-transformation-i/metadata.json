@@ -6,6 +6,9 @@
   "title": "Zero Array Transformation I",
   "difficulty": "Medium",
   "acceptance_rate": 54.592878516064836,
+  "frequency": 37.0,
+  "elo_rating": 1591.445677589,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Remove Trailing Zeros From a String",
   "difficulty": "Easy",
   "acceptance_rate": 79.75891390472509,
+  "frequency": 20.6,
+  "elo_rating": 1164.5575871589,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

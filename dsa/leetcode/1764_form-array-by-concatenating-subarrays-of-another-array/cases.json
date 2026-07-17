@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1764",
+  "cases": [
+    {
+      "id": "sample-gaps-between-groups",
+      "name": "sample: groups match with unused values before them",
+      "kind": "sample",
+      "visible": true,
+      "input": {"groups": [[1,-1,-1],[3,-2,0]], "nums": [1,-1,0,1,-1,-1,3,-2,0]},
+      "expected": true,
+      "tags": ["sample", "gaps", "ordered-matches"]
+    },
+    {
+      "id": "sample-reversed-order",
+      "name": "sample: occurrences appear in the wrong order",
+      "kind": "sample",
+      "visible": true,
+      "input": {"groups": [[10,-2],[1,2,3,4]], "nums": [1,2,3,4,10,-2]},
+      "expected": false,
+      "tags": ["sample", "order"]
+    },
+    {
+      "id": "sample-overlap-required",
+      "name": "sample: only overlapping placements exist",
+      "kind": "sample",
+      "visible": true,
+      "input": {"groups": [[1,2,3],[3,4]], "nums": [7,7,1,2,3,4,7,7]},
+      "expected": false,
+      "tags": ["sample", "overlap"]
+    },
+    {
+      "id": "trial-back-to-back",
+      "name": "trial: groups concatenate exactly",
+      "kind": "trial",
+      "visible": true,
+      "input": {"groups": [[1,2],[3]], "nums": [1,2,3]},
+      "expected": true,
+      "tags": ["exact-concatenation", "no-gaps"]
+    },
+    {
+      "id": "trial-single-element-gaps",
+      "name": "trial: singleton groups permit intervening values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"groups": [[1],[2]], "nums": [1,9,9,2]},
+      "expected": true,
+      "tags": ["singletons", "gaps"]
+    },
+    {
+      "id": "real-repeated-prefix",
+      "name": "hidden: long repeated prefix resolves at its final value",
+      "kind": "real",
+      "visible": false,
+      "input": {"groups": [[1,1,2]], "nums": [1,1,1,1,2]},
+      "expected": true,
+      "tags": ["repeated-prefix", "kmp-fallback"]
+    },
+    {
+      "id": "real-boundary-values",
+      "name": "hidden: signed boundary values match exactly",
+      "kind": "real",
+      "visible": false,
+      "input": {"groups": [[-10000000,10000000],[0]], "nums": [5,-10000000,10000000,8,0]},
+      "expected": true,
+      "tags": ["value-boundaries", "negative-values"]
+    },
+    {
+      "id": "real-later-group-missing",
+      "name": "hidden: an early match cannot compensate for a missing later group",
+      "kind": "real",
+      "visible": false,
+      "input": {"groups": [[2,3],[4,5]], "nums": [2,3,9,4,6,5]},
+      "expected": false,
+      "tags": ["later-failure", "partial-match"]
+    }
+  ]
+}

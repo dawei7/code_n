@@ -6,6 +6,9 @@
   "title": "Movement of Robots",
   "difficulty": "Medium",
   "acceptance_rate": 28.10684738602359,
+  "frequency": 42.0,
+  "elo_rating": 1922.9521758079,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

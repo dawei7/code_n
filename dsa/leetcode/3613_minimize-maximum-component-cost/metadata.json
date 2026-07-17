@@ -6,6 +6,9 @@
   "title": "Minimize Maximum Component Cost",
   "difficulty": "Medium",
   "acceptance_rate": 43.70717760072525,
+  "frequency": 0.0,
+  "elo_rating": 1641.5473375118,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1770",
+  "cases": [
+    {
+      "id": "sample-all-from-right",
+      "name": "sample: every optimal pick comes from the right",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,2,3], "multipliers": [3,2,1]},
+      "expected": 14,
+      "tags": ["sample", "right-picks"]
+    },
+    {
+      "id": "sample-mixed-signs",
+      "name": "sample: signs require choices from both ends",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [-5,-3,-3,-2,7,1], "multipliers": [-10,-5,3,4,6]},
+      "expected": 102,
+      "tags": ["sample", "mixed-signs"]
+    },
+    {
+      "id": "trial-single-operation",
+      "name": "trial: one negative multiplier chooses the only value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5], "multipliers": [-2]},
+      "expected": -10,
+      "tags": ["single-operation", "negative-score"]
+    },
+    {
+      "id": "trial-unused-middle",
+      "name": "trial: one operation ignores interior values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1,2,3,4], "multipliers": [2]},
+      "expected": 8,
+      "tags": ["n-greater-than-m", "endpoints"]
+    },
+    {
+      "id": "real-all-negative-score",
+      "name": "hidden: exactly m operations can force a negative result",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-1,-2,-3], "multipliers": [1,1]},
+      "expected": -3,
+      "tags": ["negative-values", "exact-operations"]
+    },
+    {
+      "id": "real-negative-products-benefit",
+      "name": "hidden: negative multipliers favor negative endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-5,100,-4], "multipliers": [-2,-3]},
+      "expected": 23,
+      "tags": ["negative-multipliers", "unused-middle"]
+    },
+    {
+      "id": "real-state-interactions",
+      "name": "hidden: the best first pick depends on later multipliers",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3,-2,5,-1], "multipliers": [2,-3,4]},
+      "expected": 32,
+      "tags": ["dynamic-programming", "mixed-signs"]
+    },
+    {
+      "id": "real-zero-multipliers",
+      "name": "hidden: zero multipliers still consume endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [9,-7,5], "multipliers": [0,0]},
+      "expected": 0,
+      "tags": ["zero", "exact-operations"]
+    }
+  ]
+}

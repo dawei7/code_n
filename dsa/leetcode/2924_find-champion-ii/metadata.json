@@ -6,6 +6,9 @@
   "title": "Find Champion II",
   "difficulty": "Medium",
   "acceptance_rate": 70.37766527664508,
+  "frequency": 0.0,
+  "elo_rating": 1430.3094955812,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

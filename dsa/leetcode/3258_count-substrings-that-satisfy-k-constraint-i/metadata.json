@@ -6,6 +6,9 @@
   "title": "Count Substrings That Satisfy K-Constraint I",
   "difficulty": "Easy",
   "acceptance_rate": 79.2451840486775,
+  "frequency": 0.0,
+  "elo_rating": 1258.2038096998,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

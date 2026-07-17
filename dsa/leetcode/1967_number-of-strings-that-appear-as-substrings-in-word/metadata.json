@@ -6,6 +6,9 @@
   "title": "Number of Strings That Appear as Substrings in Word",
   "difficulty": "Easy",
   "acceptance_rate": 86.13050934356382,
+  "frequency": 66.7,
+  "elo_rating": 1231.8671440198,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

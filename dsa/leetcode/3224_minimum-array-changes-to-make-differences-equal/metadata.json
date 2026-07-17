@@ -6,6 +6,9 @@
   "title": "Minimum Array Changes to Make Differences Equal",
   "difficulty": "Medium",
   "acceptance_rate": 24.790790070544805,
+  "frequency": 0.0,
+  "elo_rating": 1996.0986736442,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

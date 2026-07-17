@@ -6,6 +6,9 @@
   "title": "Minimum Sideway Jumps",
   "difficulty": "Medium",
   "acceptance_rate": 51.80701213242854,
+  "frequency": 36.7,
+  "elo_rating": 1778.4880620629,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

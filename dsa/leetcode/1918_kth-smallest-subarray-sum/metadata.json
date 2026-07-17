@@ -6,6 +6,9 @@
   "title": "Kth Smallest Subarray Sum",
   "difficulty": "Medium",
   "acceptance_rate": 53.42635111268103,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1541.575029,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

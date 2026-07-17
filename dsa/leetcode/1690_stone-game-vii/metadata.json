@@ -6,6 +6,9 @@
   "title": "Stone Game VII",
   "difficulty": "Medium",
   "acceptance_rate": 58.826850854846754,
+  "frequency": 0.0,
+  "elo_rating": 1951.2096212775,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

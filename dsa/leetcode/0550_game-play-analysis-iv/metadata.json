@@ -6,6 +6,9 @@
   "title": "Game Play Analysis IV",
   "difficulty": "Medium",
   "acceptance_rate": 41.65105060966564,
+  "frequency": 49.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1688.587356,
   "category": "database",
   "category_title": "Database",
   "topics": [

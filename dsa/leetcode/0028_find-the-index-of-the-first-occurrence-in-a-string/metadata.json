@@ -6,6 +6,9 @@
   "title": "Find the Index of the First Occurrence in a String",
   "difficulty": "Easy",
   "acceptance_rate": 46.9135522120924,
+  "frequency": 72.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1255.451199,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find the Index of the Large Integer",
   "difficulty": "Medium",
   "acceptance_rate": 56.56046276742265,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1496.654596,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

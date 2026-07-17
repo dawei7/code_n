@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1693",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Every sales row can introduce a new date-and-make group, lead, or partner, so exact grouped distinct counts have a linear inspection lower bound; one hash-aggregation scan matches it.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "Changing any uninspected row can create a new output group or increase either distinct count, so every one of the R rows must be considered in the worst case. Hashing each row into its date-and-make group and inserting its two bounded identifiers into group-local sets takes expected O(1) work per row and O(R) total time."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"An adversary can make the final uninspected row the only row for a new group, the only new lead, or the only new partner, changing the required table."},
+    {"kind":"upper_bound_proof","evidence":"A single hash-aggregation pass maintains two distinct identifier sets per date-and-make key and emits one row per key without a required sort."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover the public sample, exact duplicate rows, one lead with several partners, one partner with several leads, separate makes on one date, and one make on separate dates."}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Minimum Number of Visited Cells in a Grid",
   "difficulty": "Hard",
   "acceptance_rate": 23.94703778873103,
+  "frequency": 0.0,
+  "elo_rating": 2581.9961985753,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Sum of an Hourglass",
   "difficulty": "Medium",
   "acceptance_rate": 76.42730411102094,
+  "frequency": 19.9,
+  "elo_rating": 1289.945159062,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

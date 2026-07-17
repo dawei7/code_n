@@ -6,6 +6,9 @@
   "title": "Beautiful Towers I",
   "difficulty": "Medium",
   "acceptance_rate": 44.72966775377089,
+  "frequency": 35.9,
+  "elo_rating": 1519.2070276362,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

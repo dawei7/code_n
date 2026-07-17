@@ -6,6 +6,9 @@
   "title": "The Maze",
   "difficulty": "Medium",
   "acceptance_rate": 60.467451761312915,
+  "frequency": 48.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1460.470972,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

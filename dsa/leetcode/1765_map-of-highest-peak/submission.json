@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1876",
+  "frontend_id": "1765",
+  "title_slug": "map-of-highest-peak",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.highestPeak",
+  "verified_submission_id": "2071052641",
+  "verified_at": "2026-07-17T11:34:30.224779+00:00"
+}

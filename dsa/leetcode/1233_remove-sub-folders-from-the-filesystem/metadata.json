@@ -6,6 +6,9 @@
   "title": "Remove Sub-Folders from the Filesystem",
   "difficulty": "Medium",
   "acceptance_rate": 78.59673324430226,
+  "frequency": 57.5,
+  "elo_rating": 1544.8261365027,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

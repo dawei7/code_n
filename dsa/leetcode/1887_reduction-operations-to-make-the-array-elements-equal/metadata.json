@@ -6,6 +6,9 @@
   "title": "Reduction Operations to Make the Array Elements Equal",
   "difficulty": "Medium",
   "acceptance_rate": 72.59909073445604,
+  "frequency": 32.1,
+  "elo_rating": 1427.7906804882,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

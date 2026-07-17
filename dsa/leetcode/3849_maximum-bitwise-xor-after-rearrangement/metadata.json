@@ -6,6 +6,9 @@
   "title": "Maximum Bitwise XOR After Rearrangement",
   "difficulty": "Medium",
   "acceptance_rate": 71.46214928533615,
+  "frequency": 36.8,
+  "elo_rating": 1556.4396462723,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

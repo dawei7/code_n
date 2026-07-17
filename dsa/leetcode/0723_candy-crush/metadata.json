@@ -6,6 +6,9 @@
   "title": "Candy Crush",
   "difficulty": "Medium",
   "acceptance_rate": 77.61102906597803,
+  "frequency": 86.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

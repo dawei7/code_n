@@ -6,6 +6,9 @@
   "title": "Number of Subarrays That Match a Pattern I",
   "difficulty": "Medium",
   "acceptance_rate": 68.75825258968588,
+  "frequency": 0.0,
+  "elo_rating": 1383.775103528,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

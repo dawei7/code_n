@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1628",
+  "cases": [
+    {"id":"sample-mixed","name":"sample: mixed postfix expression builds and evaluates","kind":"sample","visible":true,"input":{"postfix":["3","4","+","2","*","7","/"]},"expected":2,"tags":["sample","mixed-operators"]},
+    {"id":"sample-nested-subtraction","name":"sample: operand order is preserved under nested subtraction","kind":"sample","visible":true,"input":{"postfix":["4","5","2","7","+","-","*"]},"expected":-16,"tags":["sample","operand-order"]},
+    {"id":"sample-single-value","name":"sample: one operand forms a leaf expression tree","kind":"sample","visible":true,"input":{"postfix":["42"]},"expected":42,"tags":["sample","single-node"]},
+    {"id":"trial-subtraction-order","name":"trial: right operand is popped before left operand","kind":"trial","visible":true,"input":{"postfix":["8","3","-"]},"expected":5,"tags":["subtraction","operand-order"]},
+    {"id":"trial-negative-division","name":"trial: division truncates a negative quotient toward zero","kind":"trial","visible":true,"input":{"postfix":["5","8","-","2","/"]},"expected":-1,"tags":["division","truncation"]},
+    {"id":"trial-right-subtree","name":"trial: multiplication is confined to the right subtree","kind":"trial","visible":true,"input":{"postfix":["2","3","4","*","+"]},"expected":14,"tags":["tree-shape","precedence"]},
+    {"id":"real-large-leaves","name":"hidden: large operand leaves multiply exactly","kind":"real","visible":false,"input":{"postfix":["100","100","*"]},"expected":10000,"tags":["large-operands","multiplication"]},
+    {"id":"real-deep-left","name":"hidden: left-deep tree evaluates repeated additions","kind":"real","visible":false,"input":{"postfix":["1","2","+","3","+","4","+","5","+"]},"expected":15,"tags":["deep-tree","addition"]},
+    {"id":"real-deep-right","name":"hidden: delayed operators form a right-sensitive expression","kind":"real","visible":false,"input":{"postfix":["20","2","3","4","+","*","-"]},"expected":6,"tags":["deep-tree","delayed-operators"]},
+    {"id":"real-all-operators","name":"hidden: all four operators compose in one valid tree","kind":"real","visible":false,"input":{"postfix":["18","6","/","7","2","-","*","4","+"]},"expected":19,"tags":["all-operators","mixed"]}
+  ]
+}

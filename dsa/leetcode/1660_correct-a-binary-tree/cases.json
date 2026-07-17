@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1660",
+  "cases": [
+    {"id":"sample-invalid-left-child","name":"sample: invalid leaf is the root's left child","kind":"sample","visible":true,"input":{"root":[1,2,3],"fromNode":2,"toNode":3},"expected":[1,null,3],"tags":["sample","leaf"]},
+    {"id":"sample-remove-subtree","name":"sample: invalid node has a genuine left descendant","kind":"sample","visible":true,"input":{"root":[8,3,1,7,null,9,4,2,null,null,null,5,6],"fromNode":7,"toNode":4},"expected":[8,3,1,null,null,9,4,null,null,5,6],"tags":["sample","subtree"]},
+    {"id":"trial-sibling-leaves","name":"trial: sibling leaf points rightward","kind":"trial","visible":true,"input":{"root":[10,20,30],"fromNode":20,"toNode":30},"expected":[10,null,30],"tags":["leaf","siblings"]},
+    {"id":"trial-negative-values","name":"trial: endpoint values may be negative","kind":"trial","visible":true,"input":{"root":[0,-5,7],"fromNode":-5,"toNode":7},"expected":[0,null,7],"tags":["negative-values"]},
+    {"id":"real-cross-parent-target","name":"hidden: target lies under a different parent","kind":"real","visible":false,"input":{"root":[1,2,3,4,5,6,7],"fromNode":5,"toNode":6},"expected":[1,2,3,4,null,6,7],"tags":["same-depth","different-parent"]},
+    {"id":"real-far-right-target","name":"hidden: target is several positions to the right","kind":"real","visible":false,"input":{"root":[1,2,3,4,5,6,7],"fromNode":4,"toNode":7},"expected":[1,2,3,null,5,6,7],"tags":["far-target","leaf"]},
+    {"id":"real-left-subtree-removed","name":"hidden: invalid node carries a deeper left chain","kind":"real","visible":false,"input":{"root":[1,2,3,4,null,6,7,8],"fromNode":4,"toNode":6},"expected":[1,2,3,null,null,6,7],"tags":["descendant-removal"]},
+    {"id":"real-right-subtree-preserved","name":"hidden: the erroneous target's descendants remain","kind":"real","visible":false,"input":{"root":[1,2,3,4,5,6,7,null,null,null,null,8,9],"fromNode":5,"toNode":6},"expected":[1,2,3,4,null,6,7,null,null,8,9],"tags":["target-subtree"]},
+    {"id":"real-value-boundaries","name":"hidden: endpoint values reach numeric boundaries","kind":"real","visible":false,"input":{"root":[0,-1000000000,1000000000],"fromNode":-1000000000,"toNode":1000000000},"expected":[0,null,1000000000],"tags":["value-boundaries"]},
+    {"id":"real-internal-source","name":"hidden: internal invalid node loses multiple descendants","kind":"real","visible":false,"input":{"root":[1,2,3,4,null,6,7,8,null,null,null,12,13],"fromNode":4,"toNode":6},"expected":[1,2,3,null,null,6,7,null,null,12,13],"tags":["internal-node","subtree"]}
+  ]
+}

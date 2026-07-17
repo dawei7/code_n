@@ -6,6 +6,9 @@
   "title": "Minimum Relative Loss After Buying Chocolates",
   "difficulty": "Hard",
   "acceptance_rate": 46.89480354879594,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2118.062127,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Recent Calls",
   "difficulty": "Easy",
   "acceptance_rate": 78.67374513784279,
+  "frequency": 62.2,
+  "elo_rating": 1337.8472367494,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

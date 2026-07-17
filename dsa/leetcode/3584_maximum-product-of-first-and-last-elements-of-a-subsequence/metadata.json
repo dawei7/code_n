@@ -6,6 +6,9 @@
   "title": "Maximum Product of First and Last Elements of a Subsequence",
   "difficulty": "Medium",
   "acceptance_rate": 31.72742456979114,
+  "frequency": 54.9,
+  "elo_rating": 1763.3147781307,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

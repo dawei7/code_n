@@ -6,6 +6,9 @@
   "title": "Number of Ways to Arrive at Destination",
   "difficulty": "Medium",
   "acceptance_rate": 37.58571150487606,
+  "frequency": 20.8,
+  "elo_rating": 2094.592426537,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Binary Tree Upside Down",
   "difficulty": "Medium",
   "acceptance_rate": 65.52536696321913,
+  "frequency": 49.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1417.851348,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

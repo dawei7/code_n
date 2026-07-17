@@ -6,6 +6,9 @@
   "title": "Minimum Sum After Divisible Sum Deletions",
   "difficulty": "Medium",
   "acceptance_rate": 46.46920207868413,
+  "frequency": 0.0,
+  "elo_rating": 2038.7608654182,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

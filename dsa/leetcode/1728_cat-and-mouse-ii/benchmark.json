@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1728",
+  "measurement_note": "Size is V, the number of non-wall cells. Retrograde propagation stores 2V^2 turn states and follows each legal game edge once. A correct implementation that discovers every predecessor and verifies reachability through explicit scans completes the 4/12/24-cell tiers and is rejected only by its extra work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: four-cell corridor game",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "grid": ["M.CF"],
+        "catJump": 1,
+        "mouseJump": 3
+      },
+      "expected": true,
+      "tags": ["benchmark", "scaling", "game-states", "corridor"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: twelve-cell open game",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "grid": ["M...","....","C..F"],
+        "catJump": 1,
+        "mouseJump": 3
+      },
+      "expected": true,
+      "tags": ["benchmark", "scaling", "game-states", "open-grid"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: twenty-four-cell open game",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "grid": [
+          "M.......",
+          "........",
+          "C......F"
+        ],
+        "catJump": 1,
+        "mouseJump": 3
+      },
+      "expected": true,
+      "tags": ["benchmark", "scaling", "game-states", "open-grid"]
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Furthest Building You Can Reach",
   "difficulty": "Medium",
   "acceptance_rate": 50.99718311941799,
+  "frequency": 56.6,
+  "elo_rating": 1962.2005269503,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

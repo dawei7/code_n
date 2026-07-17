@@ -6,6 +6,9 @@
   "title": "Design Memory Allocator",
   "difficulty": "Medium",
   "acceptance_rate": 50.35781358110112,
+  "frequency": 83.9,
+  "elo_rating": 1745.5352025872,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

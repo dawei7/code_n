@@ -6,6 +6,9 @@
   "title": "Find Lucky Integer in an Array",
   "difficulty": "Easy",
   "acceptance_rate": 75.59032938841486,
+  "frequency": 15.9,
+  "elo_rating": 1118.1080334618,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

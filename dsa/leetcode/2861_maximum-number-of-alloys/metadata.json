@@ -6,6 +6,9 @@
   "title": "Maximum Number of Alloys",
   "difficulty": "Medium",
   "acceptance_rate": 41.27788058829259,
+  "frequency": 77.5,
+  "elo_rating": 1981.3072959787,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

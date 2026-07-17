@@ -6,6 +6,9 @@
   "title": "User Activities within Time Bounds",
   "difficulty": "Hard",
   "acceptance_rate": 41.85892116182573,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2198.57474,
   "category": "database",
   "category_title": "Database",
   "topics": [

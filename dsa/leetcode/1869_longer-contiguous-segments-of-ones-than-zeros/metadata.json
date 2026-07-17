@@ -6,6 +6,9 @@
   "title": "Longer Contiguous Segments of Ones than Zeros",
   "difficulty": "Easy",
   "acceptance_rate": 62.64631742976305,
+  "frequency": 0.0,
+  "elo_rating": 1204.9864820183,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

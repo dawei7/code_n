@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1735",
+  "cases": [
+    {
+      "id": "sample-official-one",
+      "name": "sample: composite, unit, and large-length queries",
+      "kind": "sample",
+      "visible": true,
+      "input": {"queries": [[2,6],[5,1],[73,660]]},
+      "expected": [4,1,50734910],
+      "tags": ["sample", "mixed-queries", "modulo"]
+    },
+    {
+      "id": "sample-official-two",
+      "name": "sample: short arrays and small products",
+      "kind": "sample",
+      "visible": true,
+      "input": {"queries": [[1,1],[2,2],[3,3],[4,4],[5,5]]},
+      "expected": [1,2,3,10,5],
+      "tags": ["sample", "prime-products", "prime-power"]
+    },
+    {
+      "id": "trial-prime-powers",
+      "name": "trial: distribute repeated prime exponents",
+      "kind": "trial",
+      "visible": true,
+      "input": {"queries": [[4,8],[3,12],[2,36]]},
+      "expected": [20,18,9],
+      "tags": ["stars-and-bars", "several-primes"]
+    },
+    {
+      "id": "trial-length-one",
+      "name": "trial: one position uniquely contains each product",
+      "kind": "trial",
+      "visible": true,
+      "input": {"queries": [[1,1],[1,2],[1,9999],[1,10000]]},
+      "expected": [1,1,1,1],
+      "tags": ["length-one", "product-boundary"]
+    },
+    {
+      "id": "real-large-prime",
+      "name": "hidden: large prime has one exponent",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": [[7,9973]]},
+      "expected": [7],
+      "tags": ["prime-target", "trial-division"]
+    },
+    {
+      "id": "real-max-exponent",
+      "name": "hidden: largest power of two within the product bound",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": [[5,8192]]},
+      "expected": [2380],
+      "tags": ["exponent-thirteen", "stars-and-bars"]
+    },
+    {
+      "id": "real-three-primes",
+      "name": "hidden: three independent prime exponents",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": [[4,360],[10,72]]},
+      "expected": [800,12100],
+      "tags": ["composite", "independent-exponents"]
+    },
+    {
+      "id": "real-semiprime",
+      "name": "hidden: product of two large primes",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": [[2,9991]]},
+      "expected": [4],
+      "tags": ["semiprime", "large-factors"]
+    },
+    {
+      "id": "real-modulo-boundary",
+      "name": "hidden: maximum length and product require modular reduction",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": [[10000,10000]]},
+      "expected": [418224726],
+      "tags": ["maximum-bounds", "modulo"]
+    },
+    {
+      "id": "real-repeated-query",
+      "name": "hidden: repeated queries retain repeated answers",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": [[3,4],[3,4],[3,4],[6,1]]},
+      "expected": [6,6,6,1],
+      "tags": ["repeated-queries", "product-one"]
+    }
+  ]
+}

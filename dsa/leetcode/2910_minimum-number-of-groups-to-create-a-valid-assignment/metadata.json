@@ -6,6 +6,9 @@
   "title": "Minimum Number of Groups to Create a Valid Assignment",
   "difficulty": "Medium",
   "acceptance_rate": 25.380756003513525,
+  "frequency": 67.4,
+  "elo_rating": 2132.1944636902,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

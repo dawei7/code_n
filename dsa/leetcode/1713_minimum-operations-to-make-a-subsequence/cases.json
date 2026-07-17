@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1713",
+  "cases": [
+    {"id":"sample-one-retained","name":"sample: only one target value is retained","kind":"sample","visible":true,"input":{"target":[5,1,3],"arr":[9,4,2,3,4]},"expected":2,"tags":["sample","irrelevant-values"]},
+    {"id":"sample-duplicates-and-order","name":"sample: duplicates still retain three ordered targets","kind":"sample","visible":true,"input":{"target":[6,4,8,1,3,2],"arr":[4,7,6,2,3,8,6,1]},"expected":3,"tags":["sample","duplicates","lis"]},
+    {"id":"trial-already-subsequence","name":"trial: target already equals the array","kind":"trial","visible":true,"input":{"target":[1,2,3],"arr":[1,2,3]},"expected":0,"tags":["already-valid","zero-operations"]},
+    {"id":"trial-no-matches","name":"trial: every target value must be inserted","kind":"trial","visible":true,"input":{"target":[2,4,6],"arr":[1,3,5]},"expected":3,"tags":["no-matches","all-inserted"]},
+    {"id":"trial-repeated-one-value","name":"trial: repeated copies cannot replace a missing target value","kind":"trial","visible":true,"input":{"target":[1,2],"arr":[1,1,1]},"expected":1,"tags":["duplicates","strict-increase"]},
+    {"id":"trial-reverse-order","name":"trial: a reversed target retains at most one value","kind":"trial","visible":true,"input":{"target":[1,2,3,4],"arr":[4,3,2,1]},"expected":3,"tags":["reverse-order","lis"]},
+    {"id":"real-irrelevant-interleaving","name":"hidden: unrelated values do not disrupt a subsequence","kind":"real","visible":false,"input":{"target":[10,20,30],"arr":[99,10,88,20,77,30,66]},"expected":0,"tags":["irrelevant-values","already-valid"]},
+    {"id":"real-use-later-duplicate","name":"hidden: a later duplicate enables a longer ordered match","kind":"real","visible":false,"input":{"target":[5,6,7],"arr":[6,5,6,7]},"expected":0,"tags":["duplicates","later-occurrence"]},
+    {"id":"real-single-present","name":"hidden: one target value already occurs","kind":"real","visible":false,"input":{"target":[1000000000],"arr":[1,1000000000,1]},"expected":0,"tags":["single-target","maximum-value"]},
+    {"id":"real-single-absent","name":"hidden: one absent target requires one insertion","kind":"real","visible":false,"input":{"target":[42],"arr":[41,43]},"expected":1,"tags":["single-target","absent"]}
+  ]
+}

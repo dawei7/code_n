@@ -6,6 +6,9 @@
   "title": "Maximum Segment Sum After Removals",
   "difficulty": "Hard",
   "acceptance_rate": 49.91306363741741,
+  "frequency": 0.0,
+  "elo_rating": 2136.3013259524,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

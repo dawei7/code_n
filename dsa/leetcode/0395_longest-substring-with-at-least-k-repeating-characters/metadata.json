@@ -6,6 +6,9 @@
   "title": "Longest Substring with At Least K Repeating Characters",
   "difficulty": "Medium",
   "acceptance_rate": 46.42136500317083,
+  "frequency": 60.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1638.124791,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

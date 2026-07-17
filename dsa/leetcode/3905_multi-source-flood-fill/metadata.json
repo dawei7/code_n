@@ -6,6 +6,9 @@
   "title": "Multi Source Flood Fill",
   "difficulty": "Medium",
   "acceptance_rate": 56.40278629632874,
+  "frequency": 22.2,
+  "elo_rating": 1671.4061227694,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

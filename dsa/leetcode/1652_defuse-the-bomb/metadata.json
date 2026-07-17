@@ -6,6 +6,9 @@
   "title": "Defuse the Bomb",
   "difficulty": "Easy",
   "acceptance_rate": 79.40084627390178,
+  "frequency": 52.8,
+  "elo_rating": 1416.8961009909,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

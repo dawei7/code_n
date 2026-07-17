@@ -6,6 +6,9 @@
   "title": "Find the Longest Balanced Substring of a Binary String",
   "difficulty": "Easy",
   "acceptance_rate": 46.71915705247488,
+  "frequency": 0.0,
+  "elo_rating": 1348.577010609,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

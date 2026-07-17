@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1801",
+  "cases": [
+    {"id":"example-multiple-sells","name":"sample: one buy consumes several sells","kind":"sample","visible":true,"input":{"orders":[[10,5,0],[15,2,1],[25,1,1],[30,4,0]]},"expected":6,"tags":["example","multiple-matches"]},
+    {"id":"example-large-amounts","name":"sample: final total requires modulo","kind":"sample","visible":true,"input":{"orders":[[7,1000000000,1],[15,3,0],[5,999999995,0],[5,1,1]]},"expected":999999984,"tags":["example","modulo"]},
+    {"id":"example-unmatched-sell","name":"sample: high sell remains in backlog","kind":"sample","visible":true,"input":{"orders":[[19,28,0],[9,4,1],[25,15,1]]},"expected":39,"tags":["example","price-boundary"]},
+    {"id":"trial-exact-fill","name":"equal-price orders exactly fill","kind":"trial","visible":true,"input":{"orders":[[10,5,0],[10,5,1]]},"expected":0,"tags":["exact-fill","equal-price"]},
+    {"id":"trial-partial-buy-remains","name":"sell partially fills an existing buy","kind":"trial","visible":true,"input":{"orders":[[10,10,0],[9,4,1]]},"expected":6,"tags":["partial-fill","buy-backlog"]},
+    {"id":"real-highest-buy-first","name":"sell consumes the highest buy before a lower buy","kind":"real","visible":false,"input":{"orders":[[10,5,0],[20,3,0],[15,4,1]]},"expected":6,"tags":["priority","partial-fill"]},
+    {"id":"real-lowest-sell-first","name":"buy consumes only the compatible cheapest sell","kind":"real","visible":false,"input":{"orders":[[10,5,1],[8,4,1],[9,6,0]]},"expected":7,"tags":["priority","price-boundary"]},
+    {"id":"real-single-large-order","name":"single amount is reduced only in the answer","kind":"real","visible":false,"input":{"orders":[[1,1000000000,0]]},"expected":1000000000,"tags":["singleton","large-amount"]}
+  ]
+}

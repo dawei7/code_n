@@ -6,6 +6,9 @@
   "title": "Max Increase to Keep City Skyline",
   "difficulty": "Medium",
   "acceptance_rate": 86.45284501090327,
+  "frequency": 48.6,
+  "elo_rating": 1376.2600892096,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

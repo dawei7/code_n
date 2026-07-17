@@ -6,6 +6,9 @@
   "title": "Partition Array for Maximum Sum",
   "difficulty": "Medium",
   "acceptance_rate": 77.48554671135317,
+  "frequency": 47.7,
+  "elo_rating": 1916.0689858272,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

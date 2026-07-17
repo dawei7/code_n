@@ -6,6 +6,9 @@
   "title": "Minimum Moves to Clean the Classroom",
   "difficulty": "Medium",
   "acceptance_rate": 26.940350069092585,
+  "frequency": 41.4,
+  "elo_rating": 2143.028994471,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

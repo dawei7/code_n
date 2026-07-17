@@ -6,6 +6,9 @@
   "title": "Minimum Swaps to Arrange a Binary Grid",
   "difficulty": "Medium",
   "acceptance_rate": 70.12984425331253,
+  "frequency": 65.8,
+  "elo_rating": 1880.5909929633,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

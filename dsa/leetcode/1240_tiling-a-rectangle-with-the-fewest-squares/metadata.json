@@ -6,6 +6,9 @@
   "title": "Tiling a Rectangle with the Fewest Squares",
   "difficulty": "Hard",
   "acceptance_rate": 55.12347375446587,
+  "frequency": 38.9,
+  "elo_rating": 2241.5199974312,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

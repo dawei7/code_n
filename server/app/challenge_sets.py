@@ -9,22 +9,30 @@ from server.app.config import LEETCODE_ROOT
 
 AlgorithmSetId = Literal[
     "leetcode",
+    "elo",
+    "frequency",
     "leetcode_company",
     "leetcode_studyplan",
     "neetcode",
     "algomaster",
+    "custom",
 ]
 ResolvedAlgorithmSetId = AlgorithmSetId
 
 KNOWN_ALGORITHM_SETS: set[str] = {
     "leetcode",
+    "elo",
+    "frequency",
     "leetcode_company",
     "leetcode_studyplan",
     "neetcode",
     "algomaster",
+    "custom",
 }
 LEETCODE_VIEW_SETS: set[str] = {
     "leetcode",
+    "elo",
+    "frequency",
     "leetcode_company",
     "leetcode_studyplan",
 }
@@ -160,9 +168,12 @@ def is_challenge_in_set(challenge_id: str, active_set: ResolvedAlgorithmSetId) -
 def challenge_set_label(set_id: str) -> str:
     labels = {
         "leetcode": "LeetCode problems",
+        "elo": "LeetCode problems by Elo",
+        "frequency": "LeetCode problems by Frequency",
         "leetcode_company": "LeetCode company subsets",
         "leetcode_studyplan": "LeetCode study-plan subsets",
         "neetcode": "NeetCode subsets of LeetCode",
         "algomaster": "AlgoMaster subsets of LeetCode",
+        "custom": "Personal LeetCode problem sets",
     }
     return labels.get(set_id, set_id)

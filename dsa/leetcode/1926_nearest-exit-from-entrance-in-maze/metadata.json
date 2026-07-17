@@ -6,6 +6,9 @@
   "title": "Nearest Exit from Entrance in Maze",
   "difficulty": "Medium",
   "acceptance_rate": 48.76572234630304,
+  "frequency": 29.7,
+  "elo_rating": 1638.3134093066,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

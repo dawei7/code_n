@@ -6,6 +6,9 @@
   "title": "Maximum Number of Groups Entering a Competition",
   "difficulty": "Medium",
   "acceptance_rate": 68.67379759144289,
+  "frequency": 0.0,
+  "elo_rating": 1502.5363677723,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

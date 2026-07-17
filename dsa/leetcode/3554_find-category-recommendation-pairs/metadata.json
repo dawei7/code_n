@@ -6,6 +6,9 @@
   "title": "Find Category Recommendation Pairs",
   "difficulty": "Hard",
   "acceptance_rate": 63.68289172042437,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1975.857452,
   "category": "database",
   "category_title": "Database",
   "topics": [

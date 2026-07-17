@@ -6,6 +6,9 @@
   "title": "All Divisions With the Highest Score of a Binary Array",
   "difficulty": "Medium",
   "acceptance_rate": 65.67359091779701,
+  "frequency": 0.0,
+  "elo_rating": 1390.5023027273,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

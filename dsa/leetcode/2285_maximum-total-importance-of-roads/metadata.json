@@ -6,6 +6,9 @@
   "title": "Maximum Total Importance of Roads",
   "difficulty": "Medium",
   "acceptance_rate": 69.09108491279999,
+  "frequency": 0.0,
+  "elo_rating": 1496.2502937005,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

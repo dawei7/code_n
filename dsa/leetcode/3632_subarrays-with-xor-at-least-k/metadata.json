@@ -6,6 +6,9 @@
   "title": "Subarrays with XOR at Least K",
   "difficulty": "Hard",
   "acceptance_rate": 44.6958981612447,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2160.365365,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

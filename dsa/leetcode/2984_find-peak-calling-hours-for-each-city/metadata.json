@@ -6,6 +6,9 @@
   "title": "Find Peak Calling Hours for Each City",
   "difficulty": "Medium",
   "acceptance_rate": 61.36028326940101,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1453.263241,
   "category": "database",
   "category_title": "Database",
   "topics": [

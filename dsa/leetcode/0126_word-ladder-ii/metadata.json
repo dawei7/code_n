@@ -6,6 +6,9 @@
   "title": "Word Ladder II",
   "difficulty": "Hard",
   "acceptance_rate": 27.826304655766005,
+  "frequency": 54.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 2369.15231,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

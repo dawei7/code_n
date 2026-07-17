@@ -6,6 +6,9 @@
   "title": "Most Frequent IDs",
   "difficulty": "Medium",
   "acceptance_rate": 43.17267752357091,
+  "frequency": 47.0,
+  "elo_rating": 1793.1160019698,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

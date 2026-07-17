@@ -6,6 +6,9 @@
   "title": "Increment Submatrices by One",
   "difficulty": "Medium",
   "acceptance_rate": 73.82850672938893,
+  "frequency": 0.0,
+  "elo_rating": 1583.3117784523,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

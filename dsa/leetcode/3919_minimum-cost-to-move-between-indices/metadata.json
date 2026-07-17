@@ -6,6 +6,9 @@
   "title": "Minimum Cost to Move Between Indices",
   "difficulty": "Medium",
   "acceptance_rate": 50.574197882345416,
+  "frequency": 29.4,
+  "elo_rating": 1776.835397588,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

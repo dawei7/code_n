@@ -6,6 +6,9 @@
   "title": "Remove All Occurrences of a Substring",
   "difficulty": "Medium",
   "acceptance_rate": 78.58691335928698,
+  "frequency": 22.7,
+  "elo_rating": 1460.9105672071,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

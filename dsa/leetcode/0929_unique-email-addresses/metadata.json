@@ -6,6 +6,9 @@
   "title": "Unique Email Addresses",
   "difficulty": "Easy",
   "acceptance_rate": 67.92806229312748,
+  "frequency": 40.1,
+  "elo_rating": 1199.2892732505,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

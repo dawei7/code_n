@@ -6,6 +6,9 @@
   "title": "Power of Four",
   "difficulty": "Easy",
   "acceptance_rate": 52.25409011922609,
+  "frequency": 31.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1244.574065,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

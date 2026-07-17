@@ -6,6 +6,9 @@
   "title": "All the Matches of the League",
   "difficulty": "Easy",
   "acceptance_rate": 88.53393325834271,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

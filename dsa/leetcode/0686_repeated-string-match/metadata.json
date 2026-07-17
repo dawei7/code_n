@@ -6,6 +6,9 @@
   "title": "Repeated String Match",
   "difficulty": "Medium",
   "acceptance_rate": 39.32950119778259,
+  "frequency": 38.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1707.83897,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

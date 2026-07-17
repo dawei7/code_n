@@ -6,6 +6,9 @@
   "title": "Maximum Genetic Difference Query",
   "difficulty": "Hard",
   "acceptance_rate": 47.623931623931625,
+  "frequency": 0.0,
+  "elo_rating": 2502.5176603922,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

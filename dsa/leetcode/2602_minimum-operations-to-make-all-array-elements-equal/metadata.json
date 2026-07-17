@@ -6,6 +6,9 @@
   "title": "Minimum Operations to Make All Array Elements Equal",
   "difficulty": "Medium",
   "acceptance_rate": 38.56175867850711,
+  "frequency": 41.9,
+  "elo_rating": 1903.1973989877,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

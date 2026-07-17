@@ -6,6 +6,9 @@
   "title": "Describe the Painting",
   "difficulty": "Medium",
   "acceptance_rate": 52.65990122122024,
+  "frequency": 0.0,
+  "elo_rating": 1969.2019235672,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

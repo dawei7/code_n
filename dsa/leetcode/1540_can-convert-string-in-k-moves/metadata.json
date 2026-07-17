@@ -6,6 +6,9 @@
   "title": "Can Convert String in K Moves",
   "difficulty": "Medium",
   "acceptance_rate": 37.83266776508699,
+  "frequency": 33.5,
+  "elo_rating": 1631.338145683,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

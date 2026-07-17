@@ -6,6 +6,9 @@
   "title": "Convert to Base -2",
   "difficulty": "Medium",
   "acceptance_rate": 62.020062816486124,
+  "frequency": 34.9,
+  "elo_rating": 1697.8500495479,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

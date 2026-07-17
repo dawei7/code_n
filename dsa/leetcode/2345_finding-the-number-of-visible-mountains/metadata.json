@@ -6,6 +6,9 @@
   "title": "Finding the Number of Visible Mountains",
   "difficulty": "Medium",
   "acceptance_rate": 37.46522576503317,
+  "frequency": 38.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1725.048746,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Max Points on a Line",
   "difficulty": "Hard",
   "acceptance_rate": 31.009456809990184,
+  "frequency": 60.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2342.54221,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

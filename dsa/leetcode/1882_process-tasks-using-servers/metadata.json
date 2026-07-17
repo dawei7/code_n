@@ -6,6 +6,9 @@
   "title": "Process Tasks Using Servers",
   "difficulty": "Medium",
   "acceptance_rate": 42.02681660899654,
+  "frequency": 51.8,
+  "elo_rating": 1979.1112273597,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

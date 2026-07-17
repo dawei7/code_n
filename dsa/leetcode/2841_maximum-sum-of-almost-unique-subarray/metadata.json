@@ -6,6 +6,9 @@
   "title": "Maximum Sum of Almost Unique Subarray",
   "difficulty": "Medium",
   "acceptance_rate": 41.39475653757219,
+  "frequency": 17.3,
+  "elo_rating": 1545.9654593951,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

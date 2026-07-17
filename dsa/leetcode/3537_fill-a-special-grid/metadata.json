@@ -6,6 +6,9 @@
   "title": "Fill a Special Grid",
   "difficulty": "Medium",
   "acceptance_rate": 70.76493762311227,
+  "frequency": 0.0,
+  "elo_rating": 1541.5352218724,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

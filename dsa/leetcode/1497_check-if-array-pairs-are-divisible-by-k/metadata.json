@@ -6,6 +6,9 @@
   "title": "Check If Array Pairs Are Divisible by k",
   "difficulty": "Medium",
   "acceptance_rate": 46.19805142878426,
+  "frequency": 48.7,
+  "elo_rating": 1787.2310751136,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

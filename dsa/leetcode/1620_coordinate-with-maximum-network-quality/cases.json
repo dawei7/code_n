@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1620",
+  "cases": [
+    {"id":"sample-three-towers","name":"sample: overlapping tower signals peak at the middle tower","kind":"sample","visible":true,"input":{"towers":[[1,2,5],[2,1,7],[3,1,9]],"radius":2},"expected":[2,1],"tags":["sample","overlap"]},
+    {"id":"sample-single-tower","name":"sample: one tower peaks at its own coordinate","kind":"sample","visible":true,"input":{"towers":[[23,11,21]],"radius":9},"expected":[23,11],"tags":["sample","single-tower"]},
+    {"id":"sample-lexical-region","name":"sample: first tower coordinate has greatest total quality","kind":"sample","visible":true,"input":{"towers":[[1,2,13],[2,1,7],[0,1,9]],"radius":2},"expected":[1,2],"tags":["sample","overlap"]},
+    {"id":"trial-zero-quality","name":"trial: zero quality everywhere returns the origin","kind":"trial","visible":true,"input":{"towers":[[50,50,0]],"radius":1},"expected":[0,0],"tags":["zero-quality","lexicographic-tie"]},
+    {"id":"trial-separated-tie","name":"trial: equal isolated peaks choose the smaller coordinate","kind":"trial","visible":true,"input":{"towers":[[0,0,10],[2,0,10]],"radius":1},"expected":[0,0],"tags":["lexicographic-tie","separated"]},
+    {"id":"trial-shared-coordinate","name":"trial: colocated towers contribute independently","kind":"trial","visible":true,"input":{"towers":[[4,7,10],[4,7,20],[0,0,1]],"radius":3},"expected":[4,7],"tags":["colocated","sum"]},
+    {"id":"real-maximum-coordinate","name":"hidden: a positive tower at the coordinate boundary wins","kind":"real","visible":false,"input":{"towers":[[50,50,50],[0,0,1]],"radius":1},"expected":[50,50],"tags":["coordinate-boundary"]},
+    {"id":"real-inclusive-radius","name":"hidden: a tower on the radius boundary contributes","kind":"real","visible":false,"input":{"towers":[[0,0,20],[3,4,20]],"radius":5},"expected":[0,0],"tags":["inclusive-radius","three-four-five"]},
+    {"id":"real-floor-before-sum","name":"hidden: individual fractional signals are floored before summing","kind":"real","visible":false,"input":{"towers":[[0,0,5],[2,0,5],[1,2,5]],"radius":3},"expected":[0,0],"tags":["flooring","overlap"]},
+    {"id":"real-wide-radius","name":"hidden: all towers are reachable across a small bounding box","kind":"real","visible":false,"input":{"towers":[[0,0,8],[2,2,12],[4,0,8]],"radius":50},"expected":[2,2],"tags":["wide-radius","symmetric"]}
+  ]
+}

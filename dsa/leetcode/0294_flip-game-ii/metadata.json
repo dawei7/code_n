@@ -6,6 +6,9 @@
   "title": "Flip Game II",
   "difficulty": "Medium",
   "acceptance_rate": 52.35296137339056,
+  "frequency": 42.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1556.451276,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

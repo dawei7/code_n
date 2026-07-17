@@ -6,6 +6,9 @@
   "title": "Sum of K-Digit Numbers in a Range",
   "difficulty": "Hard",
   "acceptance_rate": 50.681572304363506,
+  "frequency": 0.0,
+  "elo_rating": 2085.3980002157,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Longest Binary Subsequence Less Than or Equal to K",
   "difficulty": "Medium",
   "acceptance_rate": 52.77472902760832,
+  "frequency": 0.0,
+  "elo_rating": 1839.9203623221,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

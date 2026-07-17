@@ -6,6 +6,9 @@
   "title": "Number of Comments per Post",
   "difficulty": "Easy",
   "acceptance_rate": 65.58256178924623,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1204.032023,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Tweet Counts Per Frequency",
   "difficulty": "Medium",
   "acceptance_rate": 46.35236694150786,
+  "frequency": 34.0,
+  "elo_rating": 2036.7206020719,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

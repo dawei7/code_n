@@ -6,6 +6,9 @@
   "title": "Distinct Echo Substrings",
   "difficulty": "Hard",
   "acceptance_rate": 53.31439827752072,
+  "frequency": 34.0,
+  "elo_rating": 1836.536348078,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

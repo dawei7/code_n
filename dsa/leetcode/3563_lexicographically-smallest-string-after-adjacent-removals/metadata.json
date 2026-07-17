@@ -6,6 +6,9 @@
   "title": "Lexicographically Smallest String After Adjacent Removals",
   "difficulty": "Hard",
   "acceptance_rate": 17.763629464097484,
+  "frequency": 0.0,
+  "elo_rating": 2584.8334198718,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

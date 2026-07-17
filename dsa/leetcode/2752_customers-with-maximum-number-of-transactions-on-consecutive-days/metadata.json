@@ -6,6 +6,9 @@
   "title": "Customers with Maximum Number of Transactions on Consecutive Days",
   "difficulty": "Hard",
   "acceptance_rate": 42.46768206834762,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2191.069327,
   "category": "database",
   "category_title": "Database",
   "topics": [

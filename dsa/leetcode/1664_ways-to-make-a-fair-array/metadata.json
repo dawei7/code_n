@@ -6,6 +6,9 @@
   "title": "Ways to Make a Fair Array",
   "difficulty": "Medium",
   "acceptance_rate": 67.24307544323722,
+  "frequency": 34.9,
+  "elo_rating": 1590.269030833,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Arrange Table by Gender",
   "difficulty": "Medium",
   "acceptance_rate": 70.94348775163716,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1379.462349,
   "category": "database",
   "category_title": "Database",
   "topics": [

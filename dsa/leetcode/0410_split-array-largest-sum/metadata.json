@@ -6,6 +6,9 @@
   "title": "Split Array Largest Sum",
   "difficulty": "Hard",
   "acceptance_rate": 60.831981150144735,
+  "frequency": 77.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 2000.131937,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

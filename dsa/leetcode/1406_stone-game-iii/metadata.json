@@ -6,6 +6,9 @@
   "title": "Stone Game III",
   "difficulty": "Hard",
   "acceptance_rate": 63.35813023927164,
+  "frequency": 46.7,
+  "elo_rating": 2026.8957817007,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

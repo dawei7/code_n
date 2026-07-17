@@ -6,6 +6,9 @@
   "title": "Form Array by Concatenating Subarrays of Another Array",
   "difficulty": "Medium",
   "acceptance_rate": 54.971496071080075,
+  "frequency": 0.0,
+  "elo_rating": 1588.3835994255,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Check if Array Is Sorted and Rotated",
   "difficulty": "Easy",
   "acceptance_rate": 57.495866839116005,
+  "frequency": 69.7,
+  "elo_rating": 1324.5320836804,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

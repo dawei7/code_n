@@ -6,6 +6,9 @@
   "title": "Taking Maximum Energy From the Mystic Dungeon",
   "difficulty": "Medium",
   "acceptance_rate": 61.0166393170823,
+  "frequency": 0.0,
+  "elo_rating": 1460.3224820858,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

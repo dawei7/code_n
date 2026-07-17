@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1896",
+  "frontend_id": "1770",
+  "title_slug": "maximum-score-from-performing-multiplication-operations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maximumScore",
+  "verified_submission_id": "2071072835",
+  "verified_at": "2026-07-17T12:00:03.963851+00:00"
+}

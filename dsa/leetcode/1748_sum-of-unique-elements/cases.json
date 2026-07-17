@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1748",
+  "cases": [
+    {
+      "id": "sample-some-unique",
+      "name": "sample: repeated middle value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 2]},
+      "expected": 4,
+      "tags": ["sample", "mixed-frequencies"]
+    },
+    {
+      "id": "sample-no-unique",
+      "name": "sample: every occurrence repeats",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 1, 1, 1, 1]},
+      "expected": 0,
+      "tags": ["sample", "empty-contribution"]
+    },
+    {
+      "id": "sample-all-unique",
+      "name": "sample: all values occur once",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4, 5]},
+      "expected": 15,
+      "tags": ["sample", "all-unique"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one-element array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [37]},
+      "expected": 37,
+      "tags": ["minimum-length"]
+    },
+    {
+      "id": "trial-boundary-values",
+      "name": "trial: both value boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 100, 1, 99]},
+      "expected": 199,
+      "tags": ["value-boundaries", "mixed-frequencies"]
+    },
+    {
+      "id": "real-second-copy-removes-value",
+      "name": "hidden: second occurrences cancel contributions",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, 3, 8, 5, 3, 11]},
+      "expected": 16,
+      "tags": ["second-occurrence", "interleaved"]
+    },
+    {
+      "id": "real-higher-multiplicity",
+      "name": "hidden: values occurring more than twice remain excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 7, 4, 4, 9, 7, 12, 7]},
+      "expected": 21,
+      "tags": ["higher-multiplicity", "mixed-frequencies"]
+    },
+    {
+      "id": "real-duplicate-boundary-only",
+      "name": "hidden: duplicate upper boundary and one survivor",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100, 42, 100]},
+      "expected": 42,
+      "tags": ["upper-boundary", "duplicate"]
+    }
+  ]
+}

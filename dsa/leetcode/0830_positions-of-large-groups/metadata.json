@@ -6,6 +6,9 @@
   "title": "Positions of Large Groups",
   "difficulty": "Easy",
   "acceptance_rate": 54.13839831753826,
+  "frequency": 0.0,
+  "elo_rating": 1251.822378691,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

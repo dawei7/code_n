@@ -6,6 +6,9 @@
   "title": "Longest Common Subsequence Between Sorted Arrays",
   "difficulty": "Medium",
   "acceptance_rate": 81.28374001295616,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

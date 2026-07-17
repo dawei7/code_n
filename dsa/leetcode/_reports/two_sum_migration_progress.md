@@ -1,6 +1,6 @@
 # Two Sum Migration Progress
 
-Generated: 2026-07-16T16:48:14.387038+00:00
+Generated: 2026-07-17T18:35:46.316163+00:00
 
 All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.
 
@@ -13,20 +13,20 @@ A package is locally complete only when its canonical document (including a sour
 | Metric | Count |
 | --- | ---: |
 | packages | 3985 |
-| local complete | 1613 |
-| fully complete and verified | 1566 |
+| local complete | 1806 |
+| fully complete and verified | 1759 |
 | blocked | 47 |
-| doc complete | 1613 |
-| cases complete | 2178 |
-| benchmarks complete | 1582 |
-| optimal solution complete | 2232 |
-| leetcode submission complete | 1566 |
-| complexity certified | 31 |
-| complexity complete | 1613 |
+| doc complete | 1806 |
+| cases complete | 2371 |
+| benchmarks complete | 1739 |
+| optimal solution complete | 2425 |
+| leetcode submission complete | 1759 |
+| complexity certified | 67 |
+| complexity complete | 1806 |
 
 ## Next package
 
-- 1614 — Maximum Nesting Depth of the Parentheses (`dsa/leetcode/1614_maximum-nesting-depth-of-the-parentheses`)
+- 1807 — Evaluate the Bracket Pairs of a String (`dsa/leetcode/1807_evaluate-the-bracket-pairs-of-a-string`)
 
 ## Recorded blockers
 

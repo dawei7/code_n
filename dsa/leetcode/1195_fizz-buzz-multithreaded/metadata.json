@@ -6,6 +6,9 @@
   "title": "Fizz Buzz Multithreaded",
   "difficulty": "Medium",
   "acceptance_rate": 74.86572878143062,
+  "frequency": 33.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "concurrency",
   "category_title": "Concurrency",
   "topics": [
@@ -15,7 +18,9 @@
     }
   ],
   "url": "https://leetcode.com/problems/fizz-buzz-multithreaded/",
-  "supported_languages": ["python"],
+  "supported_languages": [
+    "python"
+  ],
   "primary_language": "python",
   "runnable_in_coden": true,
   "subsets": [

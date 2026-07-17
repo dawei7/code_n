@@ -6,6 +6,9 @@
   "title": "Find All K-Distant Indices in an Array",
   "difficulty": "Easy",
   "acceptance_rate": 77.24218436202972,
+  "frequency": 44.4,
+  "elo_rating": 1266.341468955,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

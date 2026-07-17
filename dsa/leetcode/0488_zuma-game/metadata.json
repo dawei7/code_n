@@ -6,6 +6,9 @@
   "title": "Zuma Game",
   "difficulty": "Hard",
   "acceptance_rate": 29.50604410458425,
+  "frequency": 23.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 2354.823795,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

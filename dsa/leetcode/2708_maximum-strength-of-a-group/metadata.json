@@ -6,6 +6,9 @@
   "title": "Maximum Strength of a Group",
   "difficulty": "Medium",
   "acceptance_rate": 25.815711855165574,
+  "frequency": 0.0,
+  "elo_rating": 1502.2633100489,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

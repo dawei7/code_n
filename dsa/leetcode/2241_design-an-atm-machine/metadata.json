@@ -6,6 +6,9 @@
   "title": "Design an ATM Machine",
   "difficulty": "Medium",
   "acceptance_rate": 45.395038767179535,
+  "frequency": 35.7,
+  "elo_rating": 1616.2067360638,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

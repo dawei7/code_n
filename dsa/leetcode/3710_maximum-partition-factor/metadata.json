@@ -6,6 +6,9 @@
   "title": "Maximum Partition Factor",
   "difficulty": "Hard",
   "acceptance_rate": 32.09435310936383,
+  "frequency": 37.5,
+  "elo_rating": 2135.1002785041,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

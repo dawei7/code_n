@@ -6,6 +6,9 @@
   "title": "K-diff Pairs in an Array",
   "difficulty": "Medium",
   "acceptance_rate": 46.08834098980567,
+  "frequency": 58.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1644.250305,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

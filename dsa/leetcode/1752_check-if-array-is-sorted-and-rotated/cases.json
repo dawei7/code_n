@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1752",
+  "cases": [
+    {
+      "id": "sample-rotated",
+      "name": "sample: one rotation boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 4, 5, 1, 2]},
+      "expected": true,
+      "tags": ["sample", "positive"]
+    },
+    {
+      "id": "sample-two-descents",
+      "name": "sample: no valid rotation cut",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 1, 3, 4]},
+      "expected": false,
+      "tags": ["sample", "negative", "wraparound"]
+    },
+    {
+      "id": "sample-zero-rotation",
+      "name": "sample: already non-decreasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3]},
+      "expected": true,
+      "tags": ["sample", "zero-rotation"]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: duplicate-only array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7, 7, 7, 7]},
+      "expected": true,
+      "tags": ["duplicates", "no-descent"]
+    },
+    {
+      "id": "trial-reversed-pair",
+      "name": "trial: reversed pair is one rotation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 1]},
+      "expected": true,
+      "tags": ["two-elements", "rotation"]
+    },
+    {
+      "id": "real-duplicate-boundary",
+      "name": "hidden: duplicates span the rotation boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 2, 3, 1, 2]},
+      "expected": true,
+      "tags": ["duplicates", "single-descent"]
+    },
+    {
+      "id": "real-multiple-descents",
+      "name": "hidden: two internal decreases",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 1, 2, 2, 0]},
+      "expected": false,
+      "tags": ["multiple-descents", "negative"]
+    },
+    {
+      "id": "real-singleton",
+      "name": "hidden: one-element array",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100]},
+      "expected": true,
+      "tags": ["minimum-length", "value-boundary"]
+    }
+  ]
+}

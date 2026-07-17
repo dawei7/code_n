@@ -6,6 +6,9 @@
   "title": "Design Snake Game",
   "difficulty": "Medium",
   "acceptance_rate": 40.047610121836925,
+  "frequency": 50.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1702.005147,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

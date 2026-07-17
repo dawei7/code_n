@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1888",
+  "frontend_id": "1779",
+  "title_slug": "find-nearest-point-that-has-the-same-x-or-y-coordinate",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.nearestValidPoint",
+  "verified_submission_id": "2071115561",
+  "verified_at": "2026-07-17T12:52:26.775925+00:00"
+}

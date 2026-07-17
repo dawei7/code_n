@@ -6,6 +6,9 @@
   "title": "Paths in Maze That Lead to Same Room",
   "difficulty": "Medium",
   "acceptance_rate": 56.74961649906255,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1494.029376,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

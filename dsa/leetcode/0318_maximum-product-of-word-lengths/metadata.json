@@ -6,6 +6,9 @@
   "title": "Maximum Product of Word Lengths",
   "difficulty": "Medium",
   "acceptance_rate": 61.372419373703565,
+  "frequency": 37.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1453.106552,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

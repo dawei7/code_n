@@ -6,6 +6,9 @@
   "title": "Distribute Candies Among Children I",
   "difficulty": "Easy",
   "acceptance_rate": 76.58004941213576,
+  "frequency": 0.0,
+  "elo_rating": 1393.3604603199,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

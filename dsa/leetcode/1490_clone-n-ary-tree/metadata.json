@@ -6,6 +6,9 @@
   "title": "Clone N-ary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 83.21214762483658,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

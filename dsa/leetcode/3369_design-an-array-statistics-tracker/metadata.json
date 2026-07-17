@@ -6,6 +6,9 @@
   "title": "Design an Array Statistics Tracker ",
   "difficulty": "Hard",
   "acceptance_rate": 35.67683508102955,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2288.639697,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

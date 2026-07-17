@@ -6,6 +6,9 @@
   "title": "Count Routes to Climb a Rectangular Grid",
   "difficulty": "Hard",
   "acceptance_rate": 25.056789500252396,
+  "frequency": 44.7,
+  "elo_rating": 2375.5647445059,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

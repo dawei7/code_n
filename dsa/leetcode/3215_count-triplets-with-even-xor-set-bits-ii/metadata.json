@@ -6,6 +6,9 @@
   "title": "Count Triplets with Even XOR Set Bits II",
   "difficulty": "Medium",
   "acceptance_rate": 61.77972283005106,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1449.345997,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Move Zeroes",
   "difficulty": "Easy",
   "acceptance_rate": 64.05160956655666,
+  "frequency": 82.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1211.744899,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

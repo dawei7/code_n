@@ -6,6 +6,9 @@
   "title": "Ambiguous Coordinates",
   "difficulty": "Medium",
   "acceptance_rate": 56.61204964798245,
+  "frequency": 0.0,
+  "elo_rating": 1707.8992927609,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

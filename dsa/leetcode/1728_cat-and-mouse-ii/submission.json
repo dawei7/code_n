@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1727",
+  "frontend_id": "1728",
+  "title_slug": "cat-and-mouse-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.canMouseWin",
+  "verified_submission_id": "2070851690",
+  "verified_at": "2026-07-17T08:15:31.243740+00:00"
+}

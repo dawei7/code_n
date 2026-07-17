@@ -6,6 +6,9 @@
   "title": "Dinner Plate Stacks",
   "difficulty": "Hard",
   "acceptance_rate": 33.71429351684964,
+  "frequency": 0.0,
+  "elo_rating": 2109.9830154953,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

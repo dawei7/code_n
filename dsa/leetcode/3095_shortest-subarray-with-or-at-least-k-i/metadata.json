@@ -6,6 +6,9 @@
   "title": "Shortest Subarray With OR at Least K I",
   "difficulty": "Easy",
   "acceptance_rate": 44.823030770077615,
+  "frequency": 0.0,
+  "elo_rating": 1368.6653311461,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

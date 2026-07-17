@@ -6,6 +6,9 @@
   "title": "Find the Minimum Cost Array Permutation",
   "difficulty": "Hard",
   "acceptance_rate": 26.042570922601477,
+  "frequency": 42.4,
+  "elo_rating": 2641.6067035188,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

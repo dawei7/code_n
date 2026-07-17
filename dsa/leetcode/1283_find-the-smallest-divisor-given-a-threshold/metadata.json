@@ -6,6 +6,9 @@
   "title": "Find the Smallest Divisor Given a Threshold",
   "difficulty": "Medium",
   "acceptance_rate": 66.29605047067531,
+  "frequency": 45.9,
+  "elo_rating": 1541.7840320661,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

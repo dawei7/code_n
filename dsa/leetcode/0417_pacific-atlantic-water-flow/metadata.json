@@ -6,6 +6,9 @@
   "title": "Pacific Atlantic Water Flow",
   "difficulty": "Medium",
   "acceptance_rate": 61.16216440507062,
+  "frequency": 58.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1454.986829,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

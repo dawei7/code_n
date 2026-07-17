@@ -6,6 +6,9 @@
   "title": "Pizza Toppings Cost Analysis",
   "difficulty": "Medium",
   "acceptance_rate": 68.9799476896251,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1392.780982,
   "category": "database",
   "category_title": "Database",
   "topics": [

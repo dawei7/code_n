@@ -261,6 +261,25 @@ Always reopen the refreshed completion report before selecting the next batch.
   runtime prerequisites, regression evidence, and blocker-clearing procedure.
   Do not reclassify those packages from an old chat summary.
 
+## Mutable LeetCode metadata and weekly imports
+
+`LEETCODE_METADATA.md` is authoritative for Frequency, estimated Elo, and
+newly published problem imports. Read it before changing these fields.
+
+- Refresh real Elo, authenticated LeetCode Frequency, current acceptance data,
+  and every stored estimate with:
+  `.\.venv\Scripts\python.exe tools\update_leetcode_metrics.py --refresh-zerotrac`
+- Import only frontend IDs absent from the canonical index with:
+  `.\.venv\Scripts\python.exe tools\import_new_leetcode_problems.py`
+- Never hand-edit `frequency`, `elo_rating`, or `estimated_elo_rating`. The
+  updater validates the complete source corpus before atomically writing
+  package metadata and the index. Real and estimated Elo are mutually
+  exclusive in each problem record.
+- LeetCode Frequency requires a valid signed-in Premium session. An expired or
+  non-Premium session must fail without replacing values with zeros.
+- The Elo set remains real ZeroTrac-only. Estimated Elo is for display,
+  navigation, and direct problem-level averages, never set membership.
+
 ## Personal solutions and progress
 
 Development user data lives under ignored `.coden-data/`. Installed user data

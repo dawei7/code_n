@@ -6,6 +6,9 @@
   "title": "Find Closest Number to Zero",
   "difficulty": "Easy",
   "acceptance_rate": 48.06524895831268,
+  "frequency": 27.6,
+  "elo_rating": 1256.0514740971,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

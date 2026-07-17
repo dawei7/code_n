@@ -6,6 +6,9 @@
   "title": "Destroy Sequential Targets",
   "difficulty": "Medium",
   "acceptance_rate": 42.167286440056564,
+  "frequency": 0.0,
+  "elo_rating": 1761.9162628125,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

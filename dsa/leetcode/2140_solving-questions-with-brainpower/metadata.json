@@ -6,6 +6,9 @@
   "title": "Solving Questions With Brainpower",
   "difficulty": "Medium",
   "acceptance_rate": 60.21382215748815,
+  "frequency": 38.1,
+  "elo_rating": 1709.1054732427,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

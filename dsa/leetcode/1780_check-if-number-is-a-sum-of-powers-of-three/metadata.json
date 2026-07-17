@@ -6,6 +6,9 @@
   "title": "Check if Number is a Sum of Powers of Three",
   "difficulty": "Medium",
   "acceptance_rate": 79.42497721189848,
+  "frequency": 36.0,
+  "elo_rating": 1505.82499953,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

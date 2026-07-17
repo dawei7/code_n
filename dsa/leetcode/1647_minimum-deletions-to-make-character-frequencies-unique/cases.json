@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1647",
+  "cases": [
+    {"id":"sample-already-good","name":"sample: two distinct frequencies need no deletion","kind":"sample","visible":true,"input":{"s":"aab"},"expected":0,"tags":["sample","already-good"]},
+    {"id":"sample-three-frequencies","name":"sample: two deletions resolve repeated frequencies","kind":"sample","visible":true,"input":{"s":"aaabbbcc"},"expected":2,"tags":["sample","frequency-collision"]},
+    {"id":"sample-remove-character","name":"sample: deleting one character class entirely is optimal","kind":"sample","visible":true,"input":{"s":"ceabaacb"},"expected":2,"tags":["sample","zero-frequency"]},
+    {"id":"trial-single-character","name":"trial: singleton string is already good","kind":"trial","visible":true,"input":{"s":"a"},"expected":0,"tags":["minimum-length"]},
+    {"id":"trial-two-singletons","name":"trial: one of two singleton characters must be deleted","kind":"trial","visible":true,"input":{"s":"ab"},"expected":1,"tags":["singleton-collision"]},
+    {"id":"real-three-equal-counts","name":"hidden: three equal frequencies descend to distinct positive counts","kind":"real","visible":false,"input":{"s":"abcabc"},"expected":3,"tags":["multiple-collisions"]},
+    {"id":"real-already-staircase","name":"hidden: descending frequency staircase is already unique","kind":"real","visible":false,"input":{"s":"aaaaabbbbcccdd"},"expected":0,"tags":["already-good","staircase"]},
+    {"id":"real-full-alphabet","name":"hidden: almost every singleton letter must disappear","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyza"},"expected":24,"tags":["full-alphabet","zero-frequency"]},
+    {"id":"real-four-equal-groups","name":"hidden: four groups of frequency three require six deletions","kind":"real","visible":false,"input":{"s":"zzzyyyxxxwww"},"expected":6,"tags":["multiple-collisions"]},
+    {"id":"real-large-equal-groups","name":"hidden: three large equal groups preserve the largest staircase","kind":"real","visible":false,"input":{"s":"aaaaaaaaaabbbbbbbbbbcccccccccc"},"expected":3,"tags":["large-frequencies"]}
+  ]
+}

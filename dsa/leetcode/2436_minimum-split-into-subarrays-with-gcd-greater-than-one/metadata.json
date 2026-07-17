@@ -6,6 +6,9 @@
   "title": "Minimum Split Into Subarrays With GCD Greater Than One",
   "difficulty": "Medium",
   "acceptance_rate": 70.3774032755756,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1383.222904,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Operations to Make Network Connected",
   "difficulty": "Medium",
   "acceptance_rate": 66.89045248686303,
+  "frequency": 33.9,
+  "elo_rating": 1633.1372577433,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

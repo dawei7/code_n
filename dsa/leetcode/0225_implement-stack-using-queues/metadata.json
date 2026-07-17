@@ -6,6 +6,9 @@
   "title": "Implement Stack using Queues",
   "difficulty": "Easy",
   "acceptance_rate": 70.34837323690148,
+  "frequency": 42.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1183.068821,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

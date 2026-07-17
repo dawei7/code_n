@@ -6,6 +6,9 @@
   "title": "Profitable Schemes",
   "difficulty": "Hard",
   "acceptance_rate": 48.457355670839085,
+  "frequency": 37.1,
+  "elo_rating": 2204.3524370174,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

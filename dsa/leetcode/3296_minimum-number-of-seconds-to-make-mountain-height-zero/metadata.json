@@ -6,6 +6,9 @@
   "title": "Minimum Number of Seconds to Make Mountain Height Zero",
   "difficulty": "Medium",
   "acceptance_rate": 58.34310882893251,
+  "frequency": 70.9,
+  "elo_rating": 1694.7320914942,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

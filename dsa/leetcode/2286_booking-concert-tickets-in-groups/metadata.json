@@ -6,6 +6,9 @@
   "title": "Booking Concert Tickets in Groups",
   "difficulty": "Hard",
   "acceptance_rate": 19.84460927256003,
+  "frequency": 0.0,
+  "elo_rating": 2470.2118194809,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

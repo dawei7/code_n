@@ -6,6 +6,9 @@
   "title": "Plates Between Candles",
   "difficulty": "Medium",
   "acceptance_rate": 47.594924523647656,
+  "frequency": 39.3,
+  "elo_rating": 1819.3068421506,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

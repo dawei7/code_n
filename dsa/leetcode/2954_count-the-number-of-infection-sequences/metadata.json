@@ -6,6 +6,9 @@
   "title": "Count the Number of Infection Sequences",
   "difficulty": "Hard",
   "acceptance_rate": 37.97547052506641,
+  "frequency": 69.8,
+  "elo_rating": 2644.8498152558,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

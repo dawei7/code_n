@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1776",
+  "cases": [
+    {
+      "id": "example-1",
+      "name": "two independent collisions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"cars": [[1,2],[2,1],[4,3],[7,2]]},
+      "expected": [1.0,-1.0,3.0,-1.0],
+      "validator": {"kind": "float_list_close", "tolerance": 0.00001},
+      "tags": ["example", "independent-fleets"]
+    },
+    {
+      "id": "example-2",
+      "name": "collisions depend on later fleets",
+      "kind": "sample",
+      "visible": true,
+      "input": {"cars": [[3,4],[5,4],[6,3],[9,1]]},
+      "expected": [2.0,1.0,1.5,-1.0],
+      "validator": {"kind": "float_list_close", "tolerance": 0.00001},
+      "tags": ["example", "formed-fleet"]
+    },
+    {
+      "id": "increasing-speeds",
+      "name": "every car ahead is faster",
+      "kind": "sample",
+      "visible": true,
+      "input": {"cars": [[1,1],[2,2],[3,3]]},
+      "expected": [-1.0,-1.0,-1.0],
+      "validator": {"kind": "float_list_close", "tolerance": 0.00001},
+      "tags": ["no-collision", "increasing-speeds"]
+    },
+    {
+      "id": "simultaneous-three-way",
+      "name": "three cars meet simultaneously",
+      "kind": "trial",
+      "visible": true,
+      "input": {"cars": [[1,3],[4,2],[7,1]]},
+      "expected": [3.0,3.0,-1.0],
+      "validator": {"kind": "float_list_close", "tolerance": 0.00001},
+      "tags": ["simultaneous", "equality-boundary"]
+    },
+    {
+      "id": "catches-formed-fleet",
+      "name": "rear car skips a target that merges first",
+      "kind": "real",
+      "visible": false,
+      "input": {"cars": [[0,4],[2,3],[3,1]]},
+      "expected": [1.0,0.5,-1.0],
+      "validator": {"kind": "float_list_close", "tolerance": 0.00001},
+      "tags": ["formed-fleet", "candidate-pop"]
+    },
+    {
+      "id": "same-speed",
+      "name": "equal speeds never close distance",
+      "kind": "real",
+      "visible": false,
+      "input": {"cars": [[2,5],[7,5],[11,5]]},
+      "expected": [-1.0,-1.0,-1.0],
+      "validator": {"kind": "float_list_close", "tolerance": 0.00001},
+      "tags": ["equal-speeds", "no-collision"]
+    },
+    {
+      "id": "single-car",
+      "name": "frontmost and only car",
+      "kind": "real",
+      "visible": false,
+      "input": {"cars": [[10,7]]},
+      "expected": [-1.0],
+      "validator": {"kind": "float_list_close", "tolerance": 0.00001},
+      "tags": ["single", "boundary"]
+    }
+  ]
+}

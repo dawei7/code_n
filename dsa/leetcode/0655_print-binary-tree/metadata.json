@@ -6,6 +6,9 @@
   "title": "Print Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 66.71856106408706,
+  "frequency": 32.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1410.173549,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

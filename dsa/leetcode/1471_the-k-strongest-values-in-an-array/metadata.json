@@ -6,6 +6,9 @@
   "title": "The k Strongest Values in an Array",
   "difficulty": "Medium",
   "acceptance_rate": 62.77556920852909,
+  "frequency": 0.0,
+  "elo_rating": 1332.4653491345,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Coin Change II",
   "difficulty": "Medium",
   "acceptance_rate": 59.63718614255159,
+  "frequency": 49.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1466.895253,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

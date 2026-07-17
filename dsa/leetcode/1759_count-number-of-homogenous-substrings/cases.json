@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1759",
+  "cases": [
+    {
+      "id": "sample-several-runs",
+      "name": "sample: runs of several lengths",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abbcccaa"},
+      "expected": 13,
+      "tags": ["sample", "multiple-runs"]
+    },
+    {
+      "id": "sample-distinct-pair",
+      "name": "sample: only singleton substrings qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "xy"},
+      "expected": 2,
+      "tags": ["sample", "distinct"]
+    },
+    {
+      "id": "sample-uniform",
+      "name": "sample: one uniform run",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "zzzzz"},
+      "expected": 15,
+      "tags": ["sample", "uniform", "triangular-count"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: minimum-length string",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "a"},
+      "expected": 1,
+      "tags": ["minimum-length", "singleton"]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "trial: every run has length one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcdef"},
+      "expected": 6,
+      "tags": ["all-distinct", "singletons"]
+    },
+    {
+      "id": "real-three-runs",
+      "name": "hidden: adjacent runs repeat a character later",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaabbaa"},
+      "expected": 12,
+      "tags": ["repeated-character", "run-boundaries"]
+    },
+    {
+      "id": "real-varied-runs",
+      "name": "hidden: varied run lengths accumulate independently",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aabbaaac"},
+      "expected": 13,
+      "tags": ["varied-runs", "triangular-count"]
+    },
+    {
+      "id": "real-longest-run-in-middle",
+      "name": "hidden: longest run is surrounded by other characters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ppqqqrrrrp"},
+      "expected": 20,
+      "tags": ["middle-run", "repeated-character"]
+    }
+  ]
+}

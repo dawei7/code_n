@@ -6,6 +6,9 @@
   "title": "Bulls and Cows",
   "difficulty": "Medium",
   "acceptance_rate": 52.67431939901846,
+  "frequency": 63.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1552.075909,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Most Popular Video Creator",
   "difficulty": "Medium",
   "acceptance_rate": 45.45939333103296,
+  "frequency": 0.0,
+  "elo_rating": 1548.1751146981,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

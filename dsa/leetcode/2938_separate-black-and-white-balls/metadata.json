@@ -6,6 +6,9 @@
   "title": "Separate Black and White Balls",
   "difficulty": "Medium",
   "acceptance_rate": 63.90548116444879,
+  "frequency": 33.6,
+  "elo_rating": 1422.7125559974,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

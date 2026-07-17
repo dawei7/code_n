@@ -6,6 +6,9 @@
   "title": "Change Minimum Characters to Satisfy One of Three Conditions",
   "difficulty": "Medium",
   "acceptance_rate": 38.15294515148102,
+  "frequency": 0.0,
+  "elo_rating": 1952.7073399331,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

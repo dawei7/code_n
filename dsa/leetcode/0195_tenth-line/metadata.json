@@ -6,6 +6,9 @@
   "title": "Tenth Line",
   "difficulty": "Easy",
   "acceptance_rate": 37.03342906274601,
+  "frequency": 39.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1261.651165,
   "category": "shell",
   "category_title": "Shell",
   "topics": [

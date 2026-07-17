@@ -6,6 +6,9 @@
   "title": "Number of Adjacent Elements With the Same Color",
   "difficulty": "Medium",
   "acceptance_rate": 59.91498514800778,
+  "frequency": 63.0,
+  "elo_rating": 1705.2545641354,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

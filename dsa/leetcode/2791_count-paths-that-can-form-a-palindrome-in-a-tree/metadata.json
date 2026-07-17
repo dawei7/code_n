@@ -6,6 +6,9 @@
   "title": "Count Paths That Can Form a Palindrome in a Tree",
   "difficulty": "Hard",
   "acceptance_rate": 52.64499898007752,
+  "frequency": 83.9,
+  "elo_rating": 2677.1682592316,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

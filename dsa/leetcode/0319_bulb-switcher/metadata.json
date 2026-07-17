@@ -6,6 +6,9 @@
   "title": "Bulb Switcher",
   "difficulty": "Medium",
   "acceptance_rate": 56.10620222256505,
+  "frequency": 64.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1503.071801,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

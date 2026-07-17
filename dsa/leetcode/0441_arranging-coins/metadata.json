@@ -6,6 +6,9 @@
   "title": "Arranging Coins",
   "difficulty": "Easy",
   "acceptance_rate": 48.375960341176764,
+  "frequency": 47.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1253.078006,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Sort the People",
   "difficulty": "Easy",
   "acceptance_rate": 84.81636885907437,
+  "frequency": 28.8,
+  "elo_rating": 1193.0585534828,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

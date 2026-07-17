@@ -6,6 +6,9 @@
   "title": "Sum of Remoteness of All Cells",
   "difficulty": "Medium",
   "acceptance_rate": 70.7379679144385,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1380.559178,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

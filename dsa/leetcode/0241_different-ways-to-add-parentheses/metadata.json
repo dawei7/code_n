@@ -6,6 +6,9 @@
   "title": "Different Ways to Add Parentheses",
   "difficulty": "Medium",
   "acceptance_rate": 73.3929638752365,
+  "frequency": 36.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

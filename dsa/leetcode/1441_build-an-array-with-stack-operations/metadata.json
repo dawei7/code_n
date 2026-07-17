@@ -6,6 +6,9 @@
   "title": "Build an Array With Stack Operations",
   "difficulty": "Medium",
   "acceptance_rate": 80.83203776625322,
+  "frequency": 50.3,
+  "elo_rating": 1180.3543157775,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

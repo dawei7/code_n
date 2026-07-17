@@ -6,6 +6,9 @@
   "title": "K-th Smallest Remaining Even Integer in Subarray Queries",
   "difficulty": "Hard",
   "acceptance_rate": 29.408363846598572,
+  "frequency": 0.0,
+  "elo_rating": 2155.5770176064,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

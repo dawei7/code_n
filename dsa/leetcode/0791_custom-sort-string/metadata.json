@@ -6,6 +6,9 @@
   "title": "Custom Sort String",
   "difficulty": "Medium",
   "acceptance_rate": 72.30850454821403,
+  "frequency": 41.7,
+  "elo_rating": 1423.5501543781,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

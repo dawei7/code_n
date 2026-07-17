@@ -6,6 +6,9 @@
   "title": "Multiply Strings",
   "difficulty": "Medium",
   "acceptance_rate": 44.40129363359765,
+  "frequency": 63.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1660.293317,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

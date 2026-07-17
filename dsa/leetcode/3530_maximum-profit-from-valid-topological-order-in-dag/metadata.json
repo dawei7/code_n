@@ -6,6 +6,9 @@
   "title": "Maximum Profit from Valid Topological Order in DAG",
   "difficulty": "Hard",
   "acceptance_rate": 30.470008528380554,
+  "frequency": 0.0,
+  "elo_rating": 2352.795754512,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

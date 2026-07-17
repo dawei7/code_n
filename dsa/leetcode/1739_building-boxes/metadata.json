@@ -6,6 +6,9 @@
   "title": "Building Boxes",
   "difficulty": "Hard",
   "acceptance_rate": 52.55266353413231,
+  "frequency": 0.0,
+  "elo_rating": 2198.4642973466,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1805",
+  "cases": [
+    {"id":"example-repeated-thirty-four","name":"sample: one numeric token repeats","kind":"sample","visible":true,"input":{"word":"a123bc34d8ef34"},"expected":3,"tags":["example","repeated-value"]},
+    {"id":"example-two-values","name":"sample: two separated values","kind":"sample","visible":true,"input":{"word":"leet1234code234"},"expected":2,"tags":["example","separated-runs"]},
+    {"id":"example-leading-zero-variants","name":"sample: leading-zero variants are equal","kind":"sample","visible":true,"input":{"word":"a1b01c001"},"expected":1,"tags":["example","leading-zeros"]},
+    {"id":"trial-no-digits","name":"letters only contain no integers","kind":"trial","visible":true,"input":{"word":"abcxyz"},"expected":0,"tags":["no-digits","boundary"]},
+    {"id":"trial-all-zero-runs","name":"all zero runs normalize to zero","kind":"trial","visible":true,"input":{"word":"000a0b00"},"expected":1,"tags":["zero","leading-zeros"]},
+    {"id":"real-one-long-run","name":"one uninterrupted digit run is one integer","kind":"real","visible":false,"input":{"word":"123456789012345678901234567890"},"expected":1,"tags":["long-token","single-run"]},
+    {"id":"real-prefix-numbers-differ","name":"decimal prefixes remain different values","kind":"real","visible":false,"input":{"word":"1a10b100"},"expected":3,"tags":["distinct-values","prefixes"]},
+    {"id":"real-zero-and-powers","name":"zero and leading-zero powers remain distinct","kind":"real","visible":false,"input":{"word":"0a0001b0010c0100"},"expected":4,"tags":["zero","normalization"]}
+  ]
+}

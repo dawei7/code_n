@@ -6,6 +6,9 @@
   "title": "Fraction Addition and Subtraction",
   "difficulty": "Medium",
   "acceptance_rate": 66.52131181954371,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1411.113687,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

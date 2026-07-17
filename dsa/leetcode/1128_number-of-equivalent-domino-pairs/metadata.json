@@ -6,6 +6,9 @@
   "title": "Number of Equivalent Domino Pairs",
   "difficulty": "Easy",
   "acceptance_rate": 60.71324156953308,
+  "frequency": 0.0,
+  "elo_rating": 1332.622596763,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

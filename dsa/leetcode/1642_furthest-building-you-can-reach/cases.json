@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1642",
+  "cases": [
+    {"id":"sample-bricks-and-ladder","name":"sample: resources reach building four","kind":"sample","visible":true,"input":{"heights":[4,2,7,6,9,14,12],"bricks":5,"ladders":1},"expected":4,"tags":["sample","resource-allocation"]},
+    {"id":"sample-multiple-ladders","name":"sample: two ladders cover the largest prefix climbs","kind":"sample","visible":true,"input":{"heights":[4,12,2,7,3,18,20,3,19],"bricks":10,"ladders":2},"expected":7,"tags":["sample","multiple-ladders"]},
+    {"id":"sample-bricks-only","name":"sample: bricks alone cover the only positive climb","kind":"sample","visible":true,"input":{"heights":[14,3,19,3],"bricks":17,"ladders":0},"expected":3,"tags":["sample","zero-ladders"]},
+    {"id":"trial-single-building","name":"trial: the starting building is always reachable","kind":"trial","visible":true,"input":{"heights":[1],"bricks":0,"ladders":0},"expected":0,"tags":["minimum-length"]},
+    {"id":"trial-all-descending","name":"trial: downward moves require no resources","kind":"trial","visible":true,"input":{"heights":[5,4,3,2],"bricks":0,"ladders":0},"expected":3,"tags":["free-descents"]},
+    {"id":"real-insufficient-bricks","name":"hidden: bricks one short cannot cross the first climb","kind":"real","visible":false,"input":{"heights":[1,5],"bricks":3,"ladders":0},"expected":0,"tags":["brick-boundary"]},
+    {"id":"real-one-ladder","name":"hidden: one ladder covers a climb with no bricks","kind":"real","visible":false,"input":{"heights":[1,5],"bricks":0,"ladders":1},"expected":1,"tags":["ladder-only"]},
+    {"id":"real-exact-bricks","name":"hidden: ladder takes one climb and bricks exactly cover two","kind":"real","visible":false,"input":{"heights":[1,2,3,4],"bricks":2,"ladders":1},"expected":3,"tags":["exact-bricks"]},
+    {"id":"real-retroactive-exchange","name":"hidden: a later larger climb displaces an earlier ladder choice","kind":"real","visible":false,"input":{"heights":[10,1,20,2,30],"bricks":15,"ladders":1},"expected":3,"tags":["greedy-exchange"]},
+    {"id":"real-height-boundary","name":"hidden: maximum-height climbs use one ladder and exact bricks","kind":"real","visible":false,"input":{"heights":[1,1000000,1,1000000],"bricks":999999,"ladders":1},"expected":3,"tags":["height-boundary","exact-bricks"]}
+  ]
+}

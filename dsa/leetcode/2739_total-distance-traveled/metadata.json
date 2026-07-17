@@ -6,6 +6,9 @@
   "title": "Total Distance Traveled",
   "difficulty": "Easy",
   "acceptance_rate": 41.62007979061317,
+  "frequency": 0.0,
+  "elo_rating": 1262.100652797,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

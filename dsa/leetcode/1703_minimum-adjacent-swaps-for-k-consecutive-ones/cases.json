@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1703",
+  "cases": [
+    {"id":"sample-last-pair","name":"sample: the last two ones need one swap","kind":"sample","visible":true,"input":{"nums":[1,0,0,1,0,1],"k":2},"expected":1,"tags":["sample","choose-window"]},
+    {"id":"sample-move-leftmost","name":"sample: the first one crosses five zeros","kind":"sample","visible":true,"input":{"nums":[1,0,0,0,0,0,1,1],"k":3},"expected":5,"tags":["sample","all-ones"]},
+    {"id":"sample-already-grouped","name":"sample: an existing adjacent pair costs zero","kind":"sample","visible":true,"input":{"nums":[1,1,0,1],"k":2},"expected":0,"tags":["sample","zero-cost"]},
+    {"id":"trial-single-one","name":"trial: grouping one selected one never costs a move","kind":"trial","visible":true,"input":{"nums":[0,0,1,0],"k":1},"expected":0,"tags":["k-one","minimum-group"]},
+    {"id":"trial-two-separated","name":"trial: two endpoint ones meet with two swaps","kind":"trial","visible":true,"input":{"nums":[1,0,0,1],"k":2},"expected":2,"tags":["two-ones","spacing"]},
+    {"id":"trial-choose-cheaper-window","name":"trial: extra one allows the cheaper occurrence window","kind":"trial","visible":true,"input":{"nums":[1,0,0,0,1,0,1],"k":2},"expected":1,"tags":["extra-one","sliding-window"]},
+    {"id":"real-even-group","name":"hidden: even-sized group uses either adjusted median","kind":"real","visible":false,"input":{"nums":[1,0,1,0,1,0,1],"k":4},"expected":4,"tags":["even-k","median"]},
+    {"id":"real-odd-group","name":"hidden: odd-sized group centers on its middle one","kind":"real","visible":false,"input":{"nums":[1,0,0,1,0,0,1],"k":3},"expected":4,"tags":["odd-k","median"]},
+    {"id":"real-leading-trailing-zeros","name":"hidden: exterior zeros do not affect internal grouping","kind":"real","visible":false,"input":{"nums":[0,0,1,0,1,0,0],"k":2},"expected":1,"tags":["exterior-zeros","two-ones"]},
+    {"id":"real-middle-consecutive","name":"hidden: a later consecutive triple beats sparse alternatives","kind":"real","visible":false,"input":{"nums":[1,0,0,1,1,1,0,1],"k":3},"expected":0,"tags":["extra-ones","zero-cost"]}
+  ]
+}

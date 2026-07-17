@@ -6,6 +6,9 @@
   "title": "Maximum Equal Frequency",
   "difficulty": "Hard",
   "acceptance_rate": 38.29733947251815,
+  "frequency": 0.0,
+  "elo_rating": 2050.715977457,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

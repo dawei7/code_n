@@ -6,6 +6,9 @@
   "title": "Dice Roll Simulation",
   "difficulty": "Hard",
   "acceptance_rate": 51.01084553016742,
+  "frequency": 42.4,
+  "elo_rating": 2008.40650791,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

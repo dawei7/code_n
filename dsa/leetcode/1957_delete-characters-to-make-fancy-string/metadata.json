@@ -6,6 +6,9 @@
   "title": "Delete Characters to Make Fancy String",
   "difficulty": "Easy",
   "acceptance_rate": 74.04674152659135,
+  "frequency": 0.0,
+  "elo_rating": 1357.6553050616,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

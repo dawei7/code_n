@@ -6,6 +6,9 @@
   "title": "Maximum Product of Three Numbers",
   "difficulty": "Easy",
   "acceptance_rate": 46.06185838758716,
+  "frequency": 56.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1256.637795,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

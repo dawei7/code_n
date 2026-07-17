@@ -6,6 +6,9 @@
   "title": "Smallest All-Ones Multiple",
   "difficulty": "Medium",
   "acceptance_rate": 47.03240888679595,
+  "frequency": 0.0,
+  "elo_rating": 1593.2313178073,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

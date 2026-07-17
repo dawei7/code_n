@@ -6,6 +6,9 @@
   "title": "Minimum Distance to the Target Element",
   "difficulty": "Easy",
   "acceptance_rate": 64.42590117742502,
+  "frequency": 57.9,
+  "elo_rating": 1216.6376846517,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

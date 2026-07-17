@@ -6,6 +6,9 @@
   "title": "Sort the Students by Their Kth Score",
   "difficulty": "Medium",
   "acceptance_rate": 86.03730448601779,
+  "frequency": 0.0,
+  "elo_rating": 1294.0257382852,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

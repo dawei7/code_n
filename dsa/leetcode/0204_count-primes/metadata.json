@@ -6,6 +6,9 @@
   "title": "Count Primes",
   "difficulty": "Medium",
   "acceptance_rate": 36.23523947878756,
+  "frequency": 66.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1733.507789,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

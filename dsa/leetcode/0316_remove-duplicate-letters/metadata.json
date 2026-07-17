@@ -6,6 +6,9 @@
   "title": "Remove Duplicate Letters",
   "difficulty": "Medium",
   "acceptance_rate": 53.51554979250706,
+  "frequency": 62.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1539.533191,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

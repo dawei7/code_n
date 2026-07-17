@@ -6,6 +6,9 @@
   "title": "Number of Restricted Paths From First to Last Node",
   "difficulty": "Medium",
   "acceptance_rate": 41.490566685354054,
+  "frequency": 30.6,
+  "elo_rating": 2078.5417326415,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

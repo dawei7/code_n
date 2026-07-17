@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1624",
+  "measurement_note": "Size is n, the string length. Each tier places matching 'a' characters at both ends, so the entire interior is the answer, while a pair-enumeration implementation still examines every index pair. The Accepted first-occurrence scan and an independent last-occurrence scan take O(n) time. A correct exhaustive O(n^2) implementation completes every legal tier and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: endpoint match across 18 characters","kind":"benchmark","visible":false,"size":18,"input":{"s":"abbbbbbbbbbbbbbbba"},"expected":16,"tags":["benchmark","scale-small","endpoint-match"]},
+    {"id":"benchmark-scale-2","name":"benchmark: endpoint match across 72 characters","kind":"benchmark","visible":false,"size":72,"input":{"s":"abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"},"expected":70,"tags":["benchmark","scale-medium","endpoint-match"]},
+    {"id":"benchmark-scale-3","name":"benchmark: endpoint match across 288 characters","kind":"benchmark","visible":false,"size":288,"input":{"s":"abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"},"expected":286,"tags":["benchmark","scale-large","endpoint-match"]}
+  ]
+}

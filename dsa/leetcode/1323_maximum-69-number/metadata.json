@@ -6,6 +6,9 @@
   "title": "Maximum 69 Number",
   "difficulty": "Easy",
   "acceptance_rate": 84.56330536904237,
+  "frequency": 21.0,
+  "elo_rating": 1193.9819783429,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

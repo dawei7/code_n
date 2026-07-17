@@ -6,6 +6,9 @@
   "title": "Maximum Nesting Depth of Two Valid Parentheses Strings",
   "difficulty": "Medium",
   "acceptance_rate": 72.00384510897958,
+  "frequency": 41.6,
+  "elo_rating": 1749.4981778209,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

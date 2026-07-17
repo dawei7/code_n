@@ -6,6 +6,9 @@
   "title": "Slowest Key",
   "difficulty": "Easy",
   "acceptance_rate": 59.70875492731427,
+  "frequency": 0.0,
+  "elo_rating": 1315.3715333947,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

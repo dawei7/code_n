@@ -6,6 +6,9 @@
   "title": "Minimum Number of Lines to Cover Points",
   "difficulty": "Medium",
   "acceptance_rate": 44.14877532506804,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1662.335154,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

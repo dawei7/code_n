@@ -6,6 +6,9 @@
   "title": "Valid Anagram",
   "difficulty": "Easy",
   "acceptance_rate": 68.3333205332678,
+  "frequency": 81.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1192.759358,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

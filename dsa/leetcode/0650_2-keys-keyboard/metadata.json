@@ -6,6 +6,9 @@
   "title": "2 Keys Keyboard",
   "difficulty": "Medium",
   "acceptance_rate": 59.411056199621115,
+  "frequency": 11.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1468.462151,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

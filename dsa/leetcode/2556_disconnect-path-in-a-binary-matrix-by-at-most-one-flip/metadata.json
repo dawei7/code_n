@@ -6,6 +6,9 @@
   "title": "Disconnect Path in a Binary Matrix by at Most One Flip",
   "difficulty": "Medium",
   "acceptance_rate": 28.026915500855488,
+  "frequency": 0.0,
+  "elo_rating": 2368.6674771307,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

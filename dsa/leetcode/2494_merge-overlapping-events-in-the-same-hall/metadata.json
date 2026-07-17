@@ -6,6 +6,9 @@
   "title": "Merge Overlapping Events in the Same Hall",
   "difficulty": "Hard",
   "acceptance_rate": 37.687121471831794,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2269.53501,
   "category": "database",
   "category_title": "Database",
   "topics": [

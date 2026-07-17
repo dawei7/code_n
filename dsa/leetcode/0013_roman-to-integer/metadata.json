@@ -6,6 +6,9 @@
   "title": "Roman to Integer",
   "difficulty": "Easy",
   "acceptance_rate": 66.82696115104986,
+  "frequency": 84.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1198.692339,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

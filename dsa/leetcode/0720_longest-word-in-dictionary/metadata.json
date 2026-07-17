@@ -6,6 +6,9 @@
   "title": "Longest Word in Dictionary",
   "difficulty": "Medium",
   "acceptance_rate": 55.099438279063406,
+  "frequency": 19.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1517.948048,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

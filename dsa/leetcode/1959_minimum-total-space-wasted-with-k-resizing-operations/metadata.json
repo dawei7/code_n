@@ -6,6 +6,9 @@
   "title": "Minimum Total Space Wasted With K Resizing Operations",
   "difficulty": "Medium",
   "acceptance_rate": 44.12512520224979,
+  "frequency": 0.0,
+  "elo_rating": 2310.3824631335,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

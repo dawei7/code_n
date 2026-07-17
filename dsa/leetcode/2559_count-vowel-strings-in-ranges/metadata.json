@@ -6,6 +6,9 @@
   "title": "Count Vowel Strings in Ranges",
   "difficulty": "Medium",
   "acceptance_rate": 67.86118681781676,
+  "frequency": 16.8,
+  "elo_rating": 1435.0179887342,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

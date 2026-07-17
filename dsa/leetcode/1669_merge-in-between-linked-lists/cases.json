@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1669",
+  "cases": [
+    {"id":"sample-middle-splice","name":"sample: replace two middle nodes","kind":"sample","visible":true,"input":{"list1":[10,1,13,6,9,5],"a":3,"b":4,"list2":[1000000,1000001,1000002]},"expected":[10,1,13,1000000,1000001,1000002,5],"tags":["sample","middle"]},
+    {"id":"sample-long-range","name":"sample: replace four nodes with five","kind":"sample","visible":true,"input":{"list1":[0,1,2,3,4,5,6],"a":2,"b":5,"list2":[1000000,1000001,1000002,1000003,1000004]},"expected":[0,1,1000000,1000001,1000002,1000003,1000004,6],"tags":["sample","long-range"]},
+    {"id":"trial-single-replacement","name":"trial: replace one node with one node","kind":"trial","visible":true,"input":{"list1":[0,1,2],"a":1,"b":1,"list2":[9]},"expected":[0,9,2],"tags":["minimum","single-node"]},
+    {"id":"trial-long-insertion","name":"trial: insertion may exceed removed range","kind":"trial","visible":true,"input":{"list1":[5,6,7,8],"a":2,"b":2,"list2":[20,21,22,23]},"expected":[5,6,20,21,22,23,8],"tags":["single-removal","long-insertion"]},
+    {"id":"real-left-boundary","name":"hidden: removal begins at earliest legal index","kind":"real","visible":false,"input":{"list1":[4,5,6,7,8],"a":1,"b":2,"list2":[90,91]},"expected":[4,90,91,7,8],"tags":["a-one","boundary"]},
+    {"id":"real-right-boundary","name":"hidden: removal ends at latest legal index","kind":"real","visible":false,"input":{"list1":[1,2,3,4,5,6],"a":2,"b":4,"list2":[8]},"expected":[1,2,8,6],"tags":["b-n-minus-two","single-insertion"]},
+    {"id":"real-duplicate-values","name":"hidden: duplicate values do not identify boundaries","kind":"real","visible":false,"input":{"list1":[7,7,7,7,7,7],"a":2,"b":3,"list2":[7,7,7]},"expected":[7,7,7,7,7,7,7],"tags":["duplicates","positional"]},
+    {"id":"real-entire-interior","name":"hidden: replace every node except endpoints","kind":"real","visible":false,"input":{"list1":[11,12,13,14,15,16,17],"a":1,"b":5,"list2":[30,31]},"expected":[11,30,31,17],"tags":["entire-interior","both-boundaries"]}
+  ]
+}

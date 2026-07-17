@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1692",
+  "measurement_note": "Size is n, the number of candies; each tier sets k=n/2, so the Accepted O(nk) rolling recurrence performs quadratic work in the reported size. An independently structured full-table implementation has the same O(nk) class. A correct recurrence that computes the factor j by repeated addition takes O(nk^2), completes every 16/48/128-candy tier, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 candies into 8 bags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "n": 16,
+        "k": 8
+      },
+      "expected": 141764039,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "proportional-k"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 48 candies into 24 bags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "n": 48,
+        "k": 24
+      },
+      "expected": 139368110,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "proportional-k"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128 candies into 64 bags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 128,
+        "k": 64
+      },
+      "expected": 627942915,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "proportional-k"
+      ]
+    }
+  ]
+}
+

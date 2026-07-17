@@ -6,6 +6,9 @@
   "title": "Find Overbooked Employees",
   "difficulty": "Medium",
   "acceptance_rate": 43.963117606123866,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1665.543757,
   "category": "database",
   "category_title": "Database",
   "topics": [

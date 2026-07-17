@@ -6,6 +6,9 @@
   "title": "Squares of a Sorted Array",
   "difficulty": "Easy",
   "acceptance_rate": 73.89717258149213,
+  "frequency": 73.9,
+  "elo_rating": 1129.949090232,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

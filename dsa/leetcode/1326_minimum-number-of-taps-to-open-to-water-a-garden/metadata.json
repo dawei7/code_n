@@ -6,6 +6,9 @@
   "title": "Minimum Number of Taps to Open to Water a Garden",
   "difficulty": "Hard",
   "acceptance_rate": 51.02015920927104,
+  "frequency": 70.1,
+  "elo_rating": 1885.0178370385,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

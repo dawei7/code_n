@@ -6,6 +6,9 @@
   "title": "Falling Squares",
   "difficulty": "Hard",
   "acceptance_rate": 48.079373980424144,
+  "frequency": 26.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 2104.635655,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

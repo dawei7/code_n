@@ -6,6 +6,9 @@
   "title": "Complement of Base 10 Integer",
   "difficulty": "Easy",
   "acceptance_rate": 63.3586649622835,
+  "frequency": 54.6,
+  "elo_rating": 1234.7084656358,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

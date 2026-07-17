@@ -6,6 +6,9 @@
   "title": "Pour Water Between Buckets to Make Water Levels Equal",
   "difficulty": "Medium",
   "acceptance_rate": 68.66494401378122,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1396.071467,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

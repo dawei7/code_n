@@ -6,6 +6,9 @@
   "title": "Find Array Given Subset Sums",
   "difficulty": "Hard",
   "acceptance_rate": 49.636571153961675,
+  "frequency": 44.7,
+  "elo_rating": 2872.0290327119,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

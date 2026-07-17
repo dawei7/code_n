@@ -6,6 +6,9 @@
   "title": "Cracking the Safe",
   "difficulty": "Hard",
   "acceptance_rate": 58.52510166595815,
+  "frequency": 60.0,
+  "elo_rating": 2273.7910625337,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

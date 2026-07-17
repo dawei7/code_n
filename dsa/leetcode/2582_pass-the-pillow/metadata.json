@@ -6,6 +6,9 @@
   "title": "Pass the Pillow",
   "difficulty": "Easy",
   "acceptance_rate": 56.58598422298322,
+  "frequency": 19.3,
+  "elo_rating": 1278.0092842613,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

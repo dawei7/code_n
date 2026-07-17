@@ -6,6 +6,9 @@
   "title": "Biggest Single Number",
   "difficulty": "Easy",
   "acceptance_rate": 71.59872660733193,
+  "frequency": 17.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1179.509032,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Threshold for Inversion Pairs Count",
   "difficulty": "Medium",
   "acceptance_rate": 54.40844009042954,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1527.573855,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

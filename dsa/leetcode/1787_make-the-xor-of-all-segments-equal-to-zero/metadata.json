@@ -6,6 +6,9 @@
   "title": "Make the XOR of All Segments Equal to Zero",
   "difficulty": "Hard",
   "acceptance_rate": 40.832535346138684,
+  "frequency": 0.0,
+  "elo_rating": 2640.3824813624,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

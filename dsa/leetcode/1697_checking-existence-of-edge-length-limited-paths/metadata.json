@@ -6,6 +6,9 @@
   "title": "Checking Existence of Edge Length Limited Paths",
   "difficulty": "Hard",
   "acceptance_rate": 63.404063657291566,
+  "frequency": 32.3,
+  "elo_rating": 2300.1557840589,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

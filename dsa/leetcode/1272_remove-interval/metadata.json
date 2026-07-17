@@ -6,6 +6,9 @@
   "title": "Remove Interval",
   "difficulty": "Medium",
   "acceptance_rate": 67.30579289801678,
+  "frequency": 0.0,
+  "elo_rating": 1524.8218282113,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

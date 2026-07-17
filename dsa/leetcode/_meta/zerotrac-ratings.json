@@ -4,9 +4,9 @@
   "source_repository": "https://github.com/zerotrac/leetcode_problem_rating",
   "license": "MIT",
   "license_file": "zerotrac-LICENSE.txt",
-  "upstream_revision": "978ae944e2acafbd270bf755b6bd41d3e195a6a2",
-  "upstream_updated_at": "2026-07-10T11:29:57Z",
-  "count": 2533,
+  "upstream_revision": "81cd5930dac1d5bf6bf6d3b2af3fefb2f5c92e4d",
+  "upstream_updated_at": "2026-07-17T07:12:21Z",
+  "count": 2537,
   "ratings": {
     "746": 1358.3561730566,
     "747": 1188.6470369782,
@@ -2540,7 +2540,11 @@
     "3982": 1200.3250239331,
     "3983": 1754.7431866815,
     "3984": 1944.4722266435,
-    "3985": 2201.968109609
+    "3985": 2201.968109609,
+    "3986": 1205.3197977948,
+    "3987": 1549.6115401529,
+    "3988": 2054.6741405769,
+    "3989": 2013.6413901055
   },
   "legacy_acceptance_estimate": {
     "description": "Weekly Contests 1-62 have no ZeroTrac Elo. These problem ids use the former acceptance-percentile 1-10 estimate as an explicitly labelled fallback.",

@@ -6,6 +6,9 @@
   "title": "Minimum Number of Arrows to Burst Balloons",
   "difficulty": "Medium",
   "acceptance_rate": 61.6463165051637,
+  "frequency": 45.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1450.756205,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find Unique Binary String",
   "difficulty": "Medium",
   "acceptance_rate": 81.23353720713044,
+  "frequency": 62.0,
+  "elo_rating": 1361.6459603518,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximal Network Rank",
   "difficulty": "Medium",
   "acceptance_rate": 66.04723264181276,
+  "frequency": 0.0,
+  "elo_rating": 1521.9977490324,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

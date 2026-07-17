@@ -6,6 +6,9 @@
   "title": "Capacity To Ship Packages Within D Days",
   "difficulty": "Medium",
   "acceptance_rate": 74.22741059767063,
+  "frequency": 75.7,
+  "elo_rating": 1725.4481937307,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

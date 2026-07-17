@@ -6,6 +6,9 @@
   "title": "Max Consecutive Ones",
   "difficulty": "Easy",
   "acceptance_rate": 65.56111993511908,
+  "frequency": 71.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1204.229789,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1799",
+  "cases": [
+    {"id":"example-single-operation","name":"sample: one available pair","kind":"sample","visible":true,"input":{"nums":[1,2]},"expected":1,"tags":["example","minimum-size"]},
+    {"id":"example-four-values","name":"sample: later multiplier rewards gcd four","kind":"sample","visible":true,"input":{"nums":[3,4,6,8]},"expected":11,"tags":["example","operation-order"]},
+    {"id":"example-six-values","name":"sample: three optimized operations","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5,6]},"expected":14,"tags":["example","bitmask"]},
+    {"id":"trial-equal-pair","name":"single equal pair","kind":"trial","visible":true,"input":{"nums":[2,2]},"expected":2,"tags":["duplicates","minimum-size"]},
+    {"id":"trial-powers-of-two","name":"largest gcd belongs to second operation","kind":"trial","visible":true,"input":{"nums":[2,4,8,16]},"expected":18,"tags":["operation-order","gcd"]},
+    {"id":"real-all-equal","name":"all pairs have equal gcd","kind":"real","visible":false,"input":{"nums":[5,5,5,5,5,5]},"expected":30,"tags":["duplicates","equal-transitions"]},
+    {"id":"real-overlapping-divisors","name":"competing high-gcd pairings","kind":"real","visible":false,"input":{"nums":[6,10,15,30]},"expected":32,"tags":["gcd","pairing-choice"]},
+    {"id":"real-coprime-values","name":"all pair gcd values are one","kind":"real","visible":false,"input":{"nums":[5,7,11,13,17,19,23,29]},"expected":10,"tags":["coprime","full-depth"]}
+  ]
+}

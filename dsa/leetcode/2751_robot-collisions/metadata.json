@@ -6,6 +6,9 @@
   "title": "Robot Collisions",
   "difficulty": "Hard",
   "acceptance_rate": 61.60656583182378,
+  "frequency": 75.1,
+  "elo_rating": 2091.6474629767,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

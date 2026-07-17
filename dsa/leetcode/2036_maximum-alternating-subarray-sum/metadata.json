@@ -6,6 +6,9 @@
   "title": "Maximum Alternating Subarray Sum",
   "difficulty": "Medium",
   "acceptance_rate": 39.985590778097986,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1702.58853,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

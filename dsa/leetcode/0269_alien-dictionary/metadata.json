@@ -6,6 +6,9 @@
   "title": "Alien Dictionary",
   "difficulty": "Hard",
   "acceptance_rate": 37.255591148294506,
+  "frequency": 84.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 2272.946561,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

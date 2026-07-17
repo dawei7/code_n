@@ -6,6 +6,9 @@
   "title": "Maximum Frequency Score of a Subarray",
   "difficulty": "Hard",
   "acceptance_rate": 36.08050847457627,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2285.910456,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

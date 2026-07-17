@@ -6,6 +6,9 @@
   "title": "Maximal Score After Applying K Operations",
   "difficulty": "Medium",
   "acceptance_rate": 64.12039002848783,
+  "frequency": 20.4,
+  "elo_rating": 1386.1200017827,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

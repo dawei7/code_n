@@ -6,6 +6,9 @@
   "title": "Minimum ASCII Delete Sum for Two Strings",
   "difficulty": "Medium",
   "acceptance_rate": 71.08046711390338,
+  "frequency": 44.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1378.83559,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

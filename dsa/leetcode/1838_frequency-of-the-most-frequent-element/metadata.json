@@ -6,6 +6,9 @@
   "title": "Frequency of the Most Frequent Element",
   "difficulty": "Medium",
   "acceptance_rate": 44.997027750431684,
+  "frequency": 74.5,
+  "elo_rating": 1876.3611046625,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

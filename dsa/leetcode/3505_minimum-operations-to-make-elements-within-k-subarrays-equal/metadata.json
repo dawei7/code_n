@@ -6,6 +6,9 @@
   "title": "Minimum Operations to Make Elements Within K Subarrays Equal",
   "difficulty": "Hard",
   "acceptance_rate": 28.711934934745603,
+  "frequency": 0.0,
+  "elo_rating": 2538.8958579924,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

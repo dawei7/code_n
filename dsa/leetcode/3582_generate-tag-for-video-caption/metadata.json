@@ -6,6 +6,9 @@
   "title": "Generate Tag for Video Caption",
   "difficulty": "Easy",
   "acceptance_rate": 32.57617323237865,
+  "frequency": 0.0,
+  "elo_rating": 1316.5911628575,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

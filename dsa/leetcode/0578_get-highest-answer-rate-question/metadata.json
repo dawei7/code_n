@@ -6,6 +6,9 @@
   "title": "Get Highest Answer Rate Question",
   "difficulty": "Medium",
   "acceptance_rate": 40.07186341374101,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1701.713456,
   "category": "database",
   "category_title": "Database",
   "topics": [

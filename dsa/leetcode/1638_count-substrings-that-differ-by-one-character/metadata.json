@@ -6,6 +6,9 @@
   "title": "Count Substrings That Differ by One Character",
   "difficulty": "Medium",
   "acceptance_rate": 72.36582756096188,
+  "frequency": 0.0,
+  "elo_rating": 1744.7611048301,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

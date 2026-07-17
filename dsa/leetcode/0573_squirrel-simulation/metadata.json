@@ -6,6 +6,9 @@
   "title": "Squirrel Simulation",
   "difficulty": "Medium",
   "acceptance_rate": 57.366066144267414,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1484.111877,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

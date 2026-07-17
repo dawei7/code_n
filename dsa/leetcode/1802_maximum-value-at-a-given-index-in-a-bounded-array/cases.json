@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1802",
+  "cases": [
+    {"id":"example-short-middle","name":"sample: short array with an interior target","kind":"sample","visible":true,"input":{"n":4,"index":2,"maxSum":6},"expected":2,"tags":["example","interior"]},
+    {"id":"example-asymmetric-sides","name":"sample: target near the left edge","kind":"sample","visible":true,"input":{"n":6,"index":1,"maxSum":10},"expected":3,"tags":["example","asymmetric"]},
+    {"id":"example-single-position","name":"single position uses the full budget","kind":"sample","visible":true,"input":{"n":1,"index":0,"maxSum":24},"expected":24,"tags":["example","singleton"]},
+    {"id":"trial-minimum-budget","name":"minimum sum forces every value to one","kind":"trial","visible":true,"input":{"n":5,"index":2,"maxSum":5},"expected":1,"tags":["boundary","minimum-budget"]},
+    {"id":"trial-left-edge","name":"target at the left edge","kind":"trial","visible":true,"input":{"n":4,"index":0,"maxSum":10},"expected":4,"tags":["edge-index","full-slope"]},
+    {"id":"real-right-edge","name":"symmetric target at the right edge","kind":"real","visible":false,"input":{"n":4,"index":3,"maxSum":10},"expected":4,"tags":["edge-index","symmetry"]},
+    {"id":"real-slope-reaches-one","name":"both slopes flatten at one","kind":"real","visible":false,"input":{"n":6,"index":2,"maxSum":20},"expected":4,"tags":["floor-one","interior"]},
+    {"id":"real-large-singleton","name":"largest budget with one position","kind":"real","visible":false,"input":{"n":1,"index":0,"maxSum":1000000000},"expected":1000000000,"tags":["large-bound","singleton"]}
+  ]
+}

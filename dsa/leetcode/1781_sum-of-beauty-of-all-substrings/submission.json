@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1890",
+  "frontend_id": "1781",
+  "title_slug": "sum-of-beauty-of-all-substrings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.beautySum",
+  "verified_submission_id": "2071124118",
+  "verified_at": "2026-07-17T13:01:52.002362+00:00"
+}

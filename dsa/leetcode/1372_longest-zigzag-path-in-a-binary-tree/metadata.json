@@ -6,6 +6,9 @@
   "title": "Longest ZigZag Path in a Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 67.24864470606526,
+  "frequency": 0.0,
+  "elo_rating": 1713.2768268466,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

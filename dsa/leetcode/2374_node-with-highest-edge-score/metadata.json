@@ -6,6 +6,9 @@
   "title": "Node With Highest Edge Score",
   "difficulty": "Medium",
   "acceptance_rate": 49.501167480365105,
+  "frequency": 0.0,
+  "elo_rating": 1418.9758090724,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

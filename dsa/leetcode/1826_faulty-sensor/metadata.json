@@ -6,6 +6,9 @@
   "title": "Faulty Sensor",
   "difficulty": "Easy",
   "acceptance_rate": 50.544522741832154,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1248.727153,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

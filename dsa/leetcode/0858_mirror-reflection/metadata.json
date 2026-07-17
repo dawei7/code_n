@@ -6,6 +6,9 @@
   "title": "Mirror Reflection",
   "difficulty": "Medium",
   "acceptance_rate": 61.9117303543702,
+  "frequency": 33.5,
+  "elo_rating": 1880.7433591583,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Phone Number Prefix",
   "difficulty": "Easy",
   "acceptance_rate": 70.08665511265164,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1184.255417,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

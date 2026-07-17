@@ -6,6 +6,9 @@
   "title": "Traffic Light Controlled Intersection",
   "difficulty": "Easy",
   "acceptance_rate": 73.13308718358115,
+  "frequency": 44.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1174.202414,
   "category": "concurrency",
   "category_title": "Concurrency",
   "topics": [
@@ -15,7 +18,9 @@
     }
   ],
   "url": "https://leetcode.com/problems/traffic-light-controlled-intersection/",
-  "supported_languages": ["python"],
+  "supported_languages": [
+    "python"
+  ],
   "primary_language": "python",
   "runnable_in_coden": true,
   "subsets": [

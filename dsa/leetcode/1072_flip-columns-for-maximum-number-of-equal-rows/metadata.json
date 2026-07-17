@@ -6,6 +6,9 @@
   "title": "Flip Columns For Maximum Number of Equal Rows",
   "difficulty": "Medium",
   "acceptance_rate": 78.53674859264896,
+  "frequency": 0.0,
+  "elo_rating": 1797.5851607225,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

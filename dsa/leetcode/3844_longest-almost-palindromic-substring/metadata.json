@@ -6,6 +6,9 @@
   "title": "Longest Almost-Palindromic Substring",
   "difficulty": "Medium",
   "acceptance_rate": 22.768288513282492,
+  "frequency": 54.0,
+  "elo_rating": 1989.5764824732,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

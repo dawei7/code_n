@@ -6,6 +6,9 @@
   "title": "Guess the Word",
   "difficulty": "Hard",
   "acceptance_rate": 36.662271018429664,
+  "frequency": 68.1,
+  "elo_rating": 2077.5054883516,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

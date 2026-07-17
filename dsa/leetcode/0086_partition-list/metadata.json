@@ -6,6 +6,9 @@
   "title": "Partition List",
   "difficulty": "Medium",
   "acceptance_rate": 61.50928349955668,
+  "frequency": 51.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1452.323103,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Lexicographically Smallest String After Deleting Duplicate Characters",
   "difficulty": "Hard",
   "acceptance_rate": 20.676348838840948,
+  "frequency": 48.8,
+  "elo_rating": 2376.616945774,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

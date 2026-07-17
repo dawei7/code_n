@@ -6,6 +6,9 @@
   "title": "Count Stepping Numbers in Range",
   "difficulty": "Hard",
   "acceptance_rate": 29.21364696734059,
+  "frequency": 42.0,
+  "elo_rating": 2367.4705934718,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

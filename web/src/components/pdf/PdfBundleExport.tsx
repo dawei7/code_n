@@ -51,6 +51,8 @@ export type PdfTocNode =
       label: string;
       difficultyLabel: string;
       eloRating: number | null;
+      estimatedEloRating: number | null;
+      frequency: number | null;
     };
 
 type ExportPdfBundleOptions = {
@@ -537,6 +539,8 @@ function pdfTocProblem(challenge: ChallengeSummary): PdfTocNode {
     label: challenge.name,
     difficultyLabel: challenge.difficulty_label,
     eloRating: challenge.elo_rating,
+    estimatedEloRating: challenge.estimated_elo_rating,
+    frequency: challenge.frequency,
   };
 }
 
@@ -566,6 +570,10 @@ function formatTocMetadata(node: Extract<PdfTocNode, { kind: 'problem' }>): stri
   const metadata = [`lc_${node.frontendId}`];
   if (node.difficultyLabel) metadata.push(node.difficultyLabel);
   if (node.eloRating !== null) metadata.push(`Elo: ${Math.round(node.eloRating)}`);
+  else if (node.estimatedEloRating !== null) {
+    metadata.push(`Est. Elo: ${Math.round(node.estimatedEloRating)}`);
+  }
+  if (node.frequency !== null) metadata.push(`Freq: ${node.frequency.toFixed(1)}%`);
   return ` - ${metadata.join(' - ')}`;
 }
 

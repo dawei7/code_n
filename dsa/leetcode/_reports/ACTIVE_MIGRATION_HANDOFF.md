@@ -1,6 +1,6 @@
 # Active LeetCode Migration Handoff
 
-Updated: 2026-07-16
+Updated: 2026-07-17
 
 This work is active. It is neither complete nor globally blocked. The full
 goal remains the canonical migration of every problem through frontend ID
@@ -37,8 +37,8 @@ the problem-specific reason and continue to the next numeric frontend ID.
 - Current committed migration checkpoint:
   `97717019379cb191b141940935075f9667ece6c4`, which completes and delivers
   frontend IDs 1481 through 1489.
-- The worktree contains the completed local package changes for frontend IDs
-  1490 through 1499, the bounded-domain certificate regression for 1491, and
+- The worktree contains the completed local package changes through frontend
+  ID 1781, the accumulated benchmark and certificate runtime regressions, and
   refreshed generated reports. Preserve them and any later local changes unless
   inspection proves they are unrelated.
 - The four-digit directory migration remains based on
@@ -235,24 +235,24 @@ For each package in ascending numeric frontend-ID order:
 ## Current authoritative checkpoint
 
 The refreshed migration audit after completing and remotely verifying package
-work through 1613 reports:
+work through 1723 reports:
 
 - 3985 canonical packages;
-- 1613 locally complete;
-- 1566 packages fully complete and remotely verified;
-- 1582 completed three-tier scaling benchmarks;
-- 31 strictly validated complexity certificates;
-- 1613 packages with complete complexity verification;
+- 1723 locally complete;
+- 1676 packages fully complete and remotely verified;
+- 1669 completed three-tier scaling benchmarks;
+- 54 strictly validated complexity certificates;
+- 1723 packages with complete complexity verification;
 - 47 recorded remote-verification blockers. Frontend IDs 1413 through 1426
   are locally complete but Electron `safeStorage.decryptString` fails with
   Windows error `0x8009000B`. Frontend IDs 1463 through 1495 are locally
   complete but Chrome was not running; the Chrome-control policy requires an
   explicit confirmation before launching it, while the user instructed the
   migration to record blockers rather than request input;
-- frontend ID 1614, Maximum Nesting Depth of the Parentheses, as the first
+- frontend ID 1724, Checking Existence of Edge Length Limited Paths II, as the first
   actionable incomplete package.
 
-There are 2372 locally incomplete packages after this checkpoint. The forty-seven
+There are 2269 locally incomplete packages after this checkpoint. The forty-seven
 recorded blockers affect only remote Accepted verification; per the user's
 instruction, record the exact failure for each affected package and continue
 numerically without waiting for user input. Use the generated report for the
@@ -2210,9 +2210,3188 @@ latest completed packages add this evidence:
   query passed the legal 32/128/512-ID tiers. Correct correlated counting
   completed every tier and failed only scaling at `+0.73`, with a `7.30x`
   largest ratio;
-- the refreshed migration audit: 1613 locally complete, 1566 fully verified,
-  47 blocked, 1582 scaling benchmarks, 31 certificates, and frontend ID 1614
+- problem 1614 is complete and remotely verified as submission `2070418055`.
+  Its live backend `question_id` is `1737`. The Accepted one-pass counter and
+  an independent explicit stack passed the legal 16/40/100-character tiers.
+  Correct repeated-prefix scanning completed every tier and failed only
+  scaling at `+1.26`, with a `39.52x` largest ratio;
+- problem 1615 is complete and remotely verified as submission `2070419305`.
+  Its live backend `question_id` is `1738`. The Accepted degree-plus-matrix
+  method and an independent adjacency-set method passed the legal 8/24/72-city
+  cycle tiers. Correct per-pair road rescanning completed every tier and failed
+  only scaling at `+1.21`, with a `33.21x` largest ratio;
+- problem 1616 is complete and remotely verified as submission `2070420709`.
+  Its live backend `question_id` is `1739`. The Accepted two-direction
+  cross-string scan passed exhaustive comparison against brute force for every
+  binary-string pair through length four. An independent linear scan passed
+  the legal 128/512/2048-character tiers; correct full split construction
+  completed every tier and failed only scaling at `+0.38`;
+- problem 1617 is complete and remotely verified as optimized submission
+  `2070422535` with backend `question_id` `1740`. An earlier Accepted
+  all-pairs version was deliberately replaced because two restricted tree
+  traversals per subset improve $O(2^n n^2)$ to $O(2^n n)$. The exact
+  optimized source was resubmitted and Accepted. Independent recursive
+  traversal passed the legal 2/4/8-city tiers; correct per-subtree
+  Floyd-Warshall completed every tier and failed only scaling at `+0.96`;
+- problem 1618 is complete and remotely verified as Premium submission
+  `2070425052` with backend `question_id` `1384`. The package adds a budgeted,
+  read-only `_JudgeFontInfo` adapter and focused regression test so its native
+  interactive contract is runnable in-app. Independent frequency-compressed
+  binary search passed the legal 16/64/256 tiers; correct per-occurrence linear
+  font scanning completed every tier and failed only scaling at `+1.77` and
+  `1346.76x`;
+- problem 1619 is complete and remotely verified as submission `2070426983`
+  with backend `question_id` `1210`. Independent sorting passed the legal
+  20/80/320-element tiers; correct insertion sort returned every mean and
+  failed only scaling at `+1.69` and `312.82x`;
+- problem 1620 is complete and remotely verified as submission `2070428621`
+  with backend `question_id` `1726`. Its fixed 51-by-51 coordinate domain and
+  50-tower maximum use a strict bounded-domain certificate for the $O(T)$
+  scan. The certificate regression compares the bounding-box implementation
+  with an independent exhaustive full-grid oracle across deterministic random
+  fixtures and coordinate, radius, zero-quality, and tie boundaries;
+- problem 1621 is complete and remotely verified as submission `2070430227`
+  with backend `question_id` `1725`. Cases independently match
+  $\binom{n+k-1}{2k}$ through the maximum boundaries. The factorial formula
+  passed the legal k=8/32/128 tiers; correct Pascal-table computation completed
+  every tier and failed only scaling at `+1.25` and `87.58x`;
+- problem 1622 is complete and remotely verified as submission `2070431808`
+  with backend `question_id` `1728`. The source-native stateful traces match a
+  direct-array oracle. Independent affine normalization passed the legal
+  49/193/769-call tiers; correct direct bulk rewrites completed every tier and
+  failed only scaling at `+0.77` and `11.45x`;
+- problem 1623 is complete and remotely verified as MySQL submission
+  `2070433861` with backend `question_id` `1763`. Its app-local SQL matches an
+  independent Cartesian-product oracle across authored fixtures. Because every
+  valid output row must be emitted, a strict asymptotic-optimality certificate
+  records the output-size lower bound that matches the $O(abc)$ query;
+- problem 1624 is complete and remotely verified as submission `2070436094`
+  with backend `question_id` `1746`. The first-occurrence scan passed the legal
+  18/72/288-character tiers; a correct exhaustive pair scan completed every
+  tier and failed only the scaling verdict;
+- problem 1625 is complete and remotely verified as submission `2070437243`
+  with backend `question_id` `1747`. The hash-set state-graph traversal passed
+  the legal 20/40/100-digit tiers; a correct linear-lookup traversal completed
+  every case and failed only the scaling verdict;
+- problem 1626 is complete and remotely verified as submission `2070439057`
+  with backend `question_id` `1748`. The Fenwick maximum-DP passed the legal
+  10/40/160-player tiers; a correct quadratic predecessor DP completed every
+  tier and failed only the scaling verdict;
+- problem 1627 is complete and remotely verified as submission `2070440204`
+  with backend `question_id` `1223`. The divisor-sieve union-find passed the
+  legal 40/160/640-city tiers; a correct pairwise-gcd graph construction
+  completed every tier and failed only the scaling verdict;
+- problem 1628 is complete and remotely verified as Premium submission
+  `2070441415` with backend `question_id` `1768`. The iterative expression-tree
+  builder passed the legal 5/20/50-operand tiers; a correct recursive subtree
+  scanner completed every tier and failed only the scaling verdict;
+- problem 1629 is complete and remotely verified as submission `2070443145`
+  with backend `question_id` `1751`. The one-pass duration scan passed the
+  legal 25/100/400-keypress tiers; a correct all-pairs maximum check completed
+  every tier and failed only the scaling verdict;
+- problem 1630 is complete and remotely verified as submission `2070444391`
+  with backend `question_id` `1752`. The linear arithmetic-slot check passed
+  the legal 25/100/400-element tiers; a correct insertion-sort checker
+  completed every tier and failed only the scaling verdict;
+- problem 1631 is complete and remotely verified as submission `2070445755`
+  with backend `question_id` `1753`. Heap-based minimax Dijkstra passed the
+  legal 25/100/400-cell tiers; correct array-based Dijkstra completed every
+  tier and failed only the scaling verdict;
+- problem 1632 is complete and remotely verified as submission `2070447017`
+  with backend `question_id` `1257`. Sorted-value union-find passed the legal
+  25/100/400-cell tiers; correct repeated-minimum value processing completed
+  every tier and failed only the scaling verdict;
+- problem 1633 is complete and remotely verified as MySQL submission
+  `2070448300` with backend `question_id` `1773`. Its SQLite-compatible app
+  query matches an independent registration-counter oracle. A strict
+  asymptotic-optimality certificate records the input-scan and required
+  contest-ordering lower bounds;
+- problem 1634 is complete and remotely verified as Premium submission
+  `2070450513` with backend `question_id` `1774`. The two-pointer polynomial
+  merge passed the legal 20/80/320-term tiers; correct sorted insertion
+  completed every tier and failed only the scaling verdict;
+- problem 1635 is complete and remotely verified as Premium MySQL submission
+  `2070451890` with backend `question_id` `1779`. Its SQLite-compatible app
+  query matches an independent month-calendar oracle. A strict
+  asymptotic-optimality certificate records the unavoidable driver, ride, and
+  accepted-ride input scans;
+- problem 1636 is complete and remotely verified as submission `2070453969`
+  with backend `question_id` `1741`. Key-based sorting passed the legal
+  25/50/100-element tiers; a correct insertion sort completed every tier and
+  failed only the scaling verdict;
+- problem 1637 is complete and remotely verified as submission `2070454921`
+  with backend `question_id` `1742`. Sorted x-coordinate gaps passed the legal
+  8/32/128-point tiers; a correct insertion sort completed every tier and
+  failed only the scaling verdict;
+- problem 1638 is complete and remotely verified as submission `2070455729`
+  with backend `question_id` `1743`. Rolling one-mismatch dynamic programming
+  passed the legal 64/576/4096-position-pair tiers; a correct cubic extension
+  algorithm completed every tier and failed only the scaling verdict;
+- problem 1639 is complete and remotely verified as submission `2070456829`
+  with backend `question_id` `1744`. Precomputed column-frequency dynamic
+  programming passed the legal 24/216/1536-work-unit tiers; a correct
+  transition-recount implementation completed every tier and failed only the
+  scaling verdict;
+- problem 1640 is complete and remotely verified as submission `2070457824`
+  with backend `question_id` `1760`. First-value lookup passed the legal
+  25/50/100-element tiers; a correct repeated piece search completed every
+  tier and failed only the scaling verdict;
+- problem 1641 is complete and remotely verified as submission `2070458972`
+  with backend `question_id` `1761`. Initial submission `2070458868` exposed
+  an off-by-one stars-and-bars formula and was rejected; the corrected formula
+  is anchored by exhaustive comparison with an independent dynamic program
+  over all 50 legal inputs. A strict bounded-domain certificate records the
+  fixed scalar domain and constant-work closed form;
+- problem 1642 is complete and remotely verified as submission `2070459874`
+  with backend `question_id` `1762`. The bounded ladder-climb min-heap passed
+  the legal 8/32/128-building tiers; a correct linear-minimum allocator
+  completed every tier and failed only the scaling verdict;
+- problem 1643 is complete and remotely verified as submission `2070461282`
+  with backend `question_id` `489`. Combinatorial lexicographic unranking is
+  backed by exhaustive rank comparison on every grid through 4 by 4 and both
+  extreme ranks at the 15 by 15 boundary. A strict bounded-domain certificate
+  records the maximum 30-character output contract;
+- problem 1644 is complete and remotely verified as Premium submission
+  `2070462524` with backend `question_id` `1780`. The one-pass postorder
+  existence-and-LCA traversal passed the legal 8/32/128-node tiers; a correct
+  repeated subtree-membership implementation completed every tier and failed
+  only the scaling verdict;
+- problem 1645 is complete and remotely verified as Premium MySQL submission
+  `2070463718` with backend `question_id` `1785`. Its SQLite-compatible app
+  query matches an independent calendar oracle across distinct-driver,
+  zero-denominator, rounding, join-boundary, rejected-request, and out-of-year
+  fixtures. A strict asymptotic-optimality certificate records the unavoidable
+  driver, ride, and acceptance input scans;
+- problem 1646 is complete and remotely verified as submission `2070464751`
+  with backend `question_id` `1769`. Direct recurrence generation is checked
+  against an independently memoized recurrence oracle for all 101 legal inputs.
+  A strict bounded-domain certificate records the maximum 101 generated
+  entries;
+- problem 1647 is complete and remotely verified as submission `2070465673`
+  with backend `question_id` `1770`. The used-frequency greedy passed the legal
+  64/256/512-character tiers; a correct insertion-sort frequency derivation
+  completed every tier and failed only the scaling verdict;
+- problem 1648 is complete and remotely verified as submission `2070467688`
+  with backend `question_id` `1771`. Descending value-band batching passed the
+  legal 8/32/64-color tiers; a correct per-order max-heap implementation
+  completed every correctness and benchmark case and failed only the scaling
+  verdict;
+- problem 1649 is complete and remotely verified as submission `2070469385`
+  with backend `question_id` `1772`. Fenwick prefix frequencies passed the
+  legal 32/128/512-instruction tiers; an independent iterative segment tree
+  passed, while a correct direct prior-prefix scan completed every tier and
+  failed only the scaling verdict;
+- problem 1650 is complete and remotely verified as Premium submission
+  `2070471015` with backend `question_id` `1790`. Shared parent-tree fixtures
+  now preserve object identity for `p` and `q`. Path-switching pointers passed
+  the legal 16/64/256-node chain tiers; independent depth alignment passed,
+  while correct repeated ancestor scanning failed only the scaling verdict;
+- problem 1651 is complete and remotely verified as Premium MySQL submission
+  `2070472718` with backend `question_id` `1795`. Its SQLite-compatible query
+  matches an independent calendar oracle across overlapping windows, empty
+  months, date boundaries, monthly summation, rounding, rejected requests,
+  out-of-year rides, and the December endpoint. A strict
+  asymptotic-optimality certificate records the unavoidable ride and
+  acceptance input scans;
+- problem 1652 is complete and remotely verified as submission `2070474008`
+  with backend `question_id` `1755`. Its circular sliding window passed the
+  complete legal 8/32/100-element tiers; independent doubled-prefix sums
+  passed, while correct direct modular summation completed every tier and
+  failed only the scaling verdict;
+- problem 1653 is complete and remotely verified as submission `2070475312`
+  with backend `question_id` `1756`. Its one-state prefix dynamic program
+  passed the legal 32/128/512-character tiers; an independent conflict-
+  cancellation counter passed, while correct split-point recounting completed
+  every tier and failed only the scaling verdict;
+- problem 1654 is complete and remotely verified as submission `2070476587`
+  with backend `question_id` `1757`. Its bounded hash-set breadth-first search
+  passed the legal 32/128/512-state tiers; an independent boolean-state BFS
+  passed, while a correct linear-list-membership BFS completed every tier and
+  failed only the scaling verdict;
+- problem 1655 is complete and remotely verified as submission `2070478092`
+  with backend `question_id` `1758`. Its iterative subset allocation DP passed
+  the legal customer-state tiers with $S=4/16/64$ masks; an independent
+  memoized subset DP passed, while exhaustive customer-to-frequency mapping
+  completed every tier and failed only the scaling verdict;
+- problem 1656 is complete and remotely verified as submission `2070479516`
+  with backend `question_id` `1775`. Its persistent array pointer passed the
+  legal 32/128/512-insertion traces; an independent dictionary pointer passed,
+  while correct emitted-prefix rescanning completed every tier and failed only
+  the scaling verdict;
+- problem 1657 is complete and remotely verified as submission `2070480969`
+  with backend `question_id` `1777`. Its character-support and frequency-
+  multiset invariant passed the 64/256/512-character tiers; an independent
+  frequency-of-frequency counter passed, while correct insertion sorting
+  completed every tier and failed only the scaling verdict;
+- problem 1658 is complete and remotely verified as submission `2070483278`
+  with backend `question_id` `1776`. Its longest-kept-middle sliding window
+  passed the legal 32/128/384-element tiers; an independent two-pointer end-
+  sum implementation passed, while exhaustive prefix-suffix split enumeration
+  completed every tier correctly and failed only scaling with extra growth
+  `+1.07` and a `72.36x` largest runtime ratio;
+- problem 1659 is complete and remotely verified as submission `2070485157`
+  with backend `question_id` `1778`. Its ternary-profile memoized DP passed
+  the legal saturated 2/4/9-cell tiers; an independent precomputed-interaction
+  profile DP passed, while correct repeated frontier reconstruction completed
+  every tier and failed only scaling with extra growth `+0.61`;
+- problem 1660 is complete and remotely verified as Premium submission
+  `2070487957` with backend `question_id` `1796`. Its app adapter reconstructs
+  LeetCode's custom `fromNode`/`toNode` pointer defect before the native-style
+  repair. Identity-set DFS passed the legal 63/511/4095-node tiers; independent
+  right-to-left BFS passed, while correct list membership completed every tier
+  and failed only scaling with extra growth `+0.21`;
+- problem 1661 is complete and remotely verified as MySQL submission
+  `2070490709` with backend `question_id` `1801`. Its keyed start/end self-join
+  matches an independent fixture oracle across shared process IDs, row order,
+  rounding, identifier gaps, one-process machines, and multiple machines. A
+  strict asymptotic-optimality certificate records the unavoidable linear
+  activity-row scan;
+- problem 1662 is complete and remotely verified as submission `2070492643`
+  with backend `question_id` `1781`. Its lazy character stream passed the
+  legal 24/96/240-character tiers; an independent lazy mismatch reduction
+  passed, while correct explicit prefix recomparison completed every tier and
+  failed only scaling with extra growth `+1.39` and a `91.18x` largest ratio;
+- problem 1663 is complete and remotely verified as submission `2070494581`
+  with backend `question_id` `1782`. Its right-to-left greedy constructor
+  passed the legal 32/128/384-character tiers; independent quotient-based
+  construction passed, while correct suffix-capacity rescanning completed
+  every tier and failed only scaling with extra growth `+1.14` and a
+  `275.82x` largest runtime ratio;
+- problem 1664 is complete and remotely verified as submission `2070496223`
+  with backend `question_id` `1783`. Its rolling parity sums passed the legal
+  21/81/201-element tiers; independent prefix arrays passed, while correct
+  direct reconstruction completed every tier and failed only scaling with
+  extra growth `+1.26` and a `137.17x` largest runtime ratio;
+- problem 1665 is complete and remotely verified as submission `2070497798`
+  with backend `question_id` `1784`. Its reserved-gap comparison sort passed
+  the legal 32/128/384-task tiers; independent key-decoration sorting passed,
+  while correct repeated maximum-gap selection completed every tier and failed
+  only scaling with extra growth `+1.10` and an `89.45x` largest ratio;
+- problem 1666 is complete and remotely verified as Premium submission
+  `2070499521` with backend `question_id` `1810`. The in-app runner now decodes
+  shared `root`/`leaf` parent-tree fixtures so the app solution preserves the
+  native object contract. Constant-space path reversal passed the legal
+  6/24/96-node chain tiers; an independent edge reversal passed, while correct
+  repeated parent searches completed every tier and failed only scaling with
+  extra growth `+1.00` and a `23.04x` largest ratio;
+- problem 1667 is complete and remotely verified as MySQL submission
+  `2070502521` with backend `question_id` `1811`. Its accepted native query
+  normalizes the first character and suffix separately and orders by the
+  primary key. Six SQLite execution fixtures cover mixed case, one-character
+  names, already normalized names, uniform case, identifier gaps, and input
+  row-order independence. A strict asymptotic-optimality certificate records
+  the unavoidable linear output and input scan;
+- the refreshed migration audit: 1667 locally complete, 1620 fully verified,
+  47 blocked, 1625 scaling benchmarks, 42 certificates, and frontend ID 1668
   next;
+- the dataset checker after problem 1667: 3985 documents, 2626 manually
+  complete, and 1359 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1667 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- all six authored SQL cases executed successfully against the app-local
+  SQLite query, and `git diff --check` after problem 1667 passed apart from
+  non-failing line-ending notices;
+- problem 1668 is complete and remotely verified as submission `2070504209`
+  with backend `question_id` `1764`. Its KMP occurrence scan and endpoint
+  repetition dynamic program passed the legal 20/50/100-character tiers; an
+  independent linear run counter passed, while correct repeated-candidate
+  character rescanning completed every tier and failed only scaling with
+  extra growth `+0.87` and a `9.21x` largest runtime ratio;
+- the refreshed migration audit: 1668 locally complete, 1621 fully verified,
+  47 blocked, 1626 scaling benchmarks, 42 certificates, and frontend ID 1669
+  next;
+- the dataset checker after problem 1668: 3985 documents, 2627 manually
+  complete, and 1358 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1668 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1668 passed apart from non-failing line-
+  ending notices;
+- problem 1669 is complete and remotely verified as submission `2070506479`
+  with backend `question_id` `1765`. Its constant-space positional pointer
+  splice passed the legal 32/128/512-total-node tiers; an independent paired
+  boundary traversal passed, while correct repeated-head tail discovery
+  completed every tier and failed only scaling with extra growth `+1.20` and
+  a `68.14x` largest runtime ratio;
+- the refreshed migration audit: 1669 locally complete, 1622 fully verified,
+  47 blocked, 1627 scaling benchmarks, 42 certificates, and frontend ID 1670
+  next;
+- the dataset checker after problem 1669: 3985 documents, 2628 manually
+  complete, and 1357 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1669 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1669 passed apart from non-failing line-
+  ending notices;
+- problem 1670 is complete and remotely verified as submission `2070509163`
+  with backend `question_id` `1767`. Its balanced two-deque design passed the
+  legal 32/128/512-operation middle-mutation tiers; an independent opposite-
+  invariant two-deque implementation passed, while a correct explicit array
+  shifter completed every tier and failed only scaling with extra growth
+  `+0.72` and an `8.79x` largest runtime ratio;
+- the refreshed migration audit: 1670 locally complete, 1623 fully verified,
+  47 blocked, 1628 scaling benchmarks, 42 certificates, and frontend ID 1671
+  next;
+- the dataset checker after problem 1670: 3985 documents, 2628 manually
+  complete, and 1357 still needing authoring (problem 1670's prior substantive
+  scaffold already counted as manual before its canonical rewrite);
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1670 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1670 passed apart from non-failing line-
+  ending notices;
+- problem 1671 is complete and remotely verified as submission `2070511293`
+  with backend `question_id` `1766`. Its strict patience-sorting LIS/LDS passes
+  passed the legal 63/255/511-element mountain tiers; an independently
+  structured native-lower-bound tails implementation passed, while correct
+  pairwise subsequence DP completed every tier and failed only scaling with
+  extra growth `+1.07` and a `148.14x` largest runtime ratio;
+- the refreshed migration audit: 1671 locally complete, 1624 fully verified,
+  47 blocked, 1629 scaling benchmarks, 42 certificates, and frontend ID 1672
+  next;
+- the dataset checker after problem 1671: 3985 documents, 2628 manually
+  complete, and 1357 still needing authoring (the previous substantive
+  scaffold for this package already counted as manual before its rewrite);
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1671 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1671 passed apart from non-failing line-
+  ending notices;
+- problem 1672 is complete and remotely verified as submission `2070513725`
+  with backend `question_id` `1791`. Its explicit total-cell matrix scan passed
+  the legal 100/625/2500-balance tiers; an independent built-in row-sum scan
+  passed, while correct redundant row rescanning completed every tier and
+  failed only scaling with extra growth `+0.68` and a `54.66x` largest runtime
+  ratio;
+- the refreshed migration audit: 1672 locally complete, 1625 fully verified,
+  47 blocked, 1630 scaling benchmarks, 42 certificates, and frontend ID 1673
+  next;
+- the dataset checker after problem 1672: 3985 documents, 2628 manually
+  complete, and 1357 still needing authoring (the previous substantive
+  scaffold already counted as manual before its canonical rewrite);
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1672 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1672 passed apart from non-failing line-
+  ending notices;
+- problem 1673 is complete and remotely verified as submission `2070516125`
+  with backend `question_id` `1792`. The native candidate was resubmitted after
+  capping its monotonic stack at $O(k)$ space. It passed the legal
+  32/128/512-element ascending-window tiers; an independent remaining-capacity
+  stack passed, while correct repeated feasible-window selection completed
+  every tier and failed only scaling with extra growth `+1.18` and a `50.68x`
+  largest runtime ratio;
+- the refreshed migration audit: 1673 locally complete, 1626 fully verified,
+  47 blocked, 1631 scaling benchmarks, 42 certificates, and frontend ID 1674
+  next;
+- the dataset checker after problem 1673: 3985 documents, 2628 manually
+  complete, and 1357 still needing authoring (the prior substantive scaffold
+  already counted as manual before its canonical rewrite);
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1673 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1673 passed apart from non-failing line-
+  ending notices;
+- problem 1674 is complete and remotely verified as submission `2070517474`
+  with backend `question_id` `1793`. Its target-cost difference array passed
+  the legal 32/128/512 combined-width tiers; an independent baseline-savings
+  event formulation passed, while correct target-by-pair enumeration completed
+  every tier and failed only scaling with extra growth `+1.07` and a `70.35x`
+  largest runtime ratio;
+- the refreshed migration audit: 1674 locally complete, 1627 fully verified,
+  47 blocked, 1632 scaling benchmarks, 42 certificates, and frontend ID 1675
+  next;
+- the dataset checker after problem 1674: 3985 documents, 2628 manually
+  complete, and 1357 still needing authoring (the prior substantive scaffold
+  already counted as manual before its canonical rewrite);
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1674 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1674 passed apart from non-failing line-
+  ending notices;
+- problem 1675 is complete and remotely verified as submission `2070519949`
+  with backend `question_id` `1794`. Its normalized descending-chain max heap
+  passed the legal 16/64/160-value power-of-two tiers; an independent heapify-
+  based implementation passed, while correct linear maximum rescanning
+  completed every tier and failed only scaling with extra growth `+0.97` and
+  a `40.33x` largest runtime ratio;
+- the refreshed migration audit: 1675 locally complete, 1628 fully verified,
+  47 blocked, 1633 scaling benchmarks, 42 certificates, and frontend ID 1676
+  next;
+- the dataset checker after problem 1675: 3985 documents, 2628 manually
+  complete, and 1357 still needing authoring (the prior substantive scaffold
+  already counted as manual before its canonical rewrite);
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1675 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1675 passed apart from non-failing line-
+  ending notices;
+- problem 1676 is complete and remotely verified as submission `2070523476`
+  with backend `question_id` `1816`. The runner now builds the root and target
+  collection from one shared tree so node identity matches LeetCode's native
+  contract. The Accepted target-set DFS passed the 16/64/192-node complete-
+  tree tiers; an independent value-set DFS passed with extra growth `+0.03`
+  and a `1.18x` largest runtime ratio, while correct linear target scanning
+  completed every tier and failed only scaling with extra growth `+0.96` and
+  a `26.56x` largest runtime ratio;
+- the refreshed migration audit: 1676 locally complete, 1629 fully verified,
+  47 blocked, 1634 scaling benchmarks, 42 certificates, and frontend ID 1677
+  next;
+- the dataset checker after problem 1676: 3985 documents, 2629 manually
+  complete, and 1356 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1676 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1676 passed apart from non-failing line-
+  ending notices;
+- problem 1677 is complete and remotely verified as MySQL submission
+  `2070526980` with backend `question_id` `1821`. The initial inner-join source
+  was rejected as submission `2070526844`, proving that products without
+  invoices must remain with zero totals; the accepted source uses a left join
+  and null-to-zero sums. An independently pre-aggregated query passed all
+  cases, while the inner-join form failed both no-invoice boundaries. Its
+  strict asymptotic-optimality certificate records the matching
+  $O(I + P \log P)$ scan-and-order lower and upper bounds;
+- the refreshed migration audit: 1677 locally complete, 1630 fully verified,
+  47 blocked, 1634 scaling benchmarks, 43 certificates, and frontend ID 1678
+  next;
+- the dataset checker after problem 1677: 3985 documents, 2630 manually
+  complete, and 1355 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1677 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1677 passed apart from non-failing line-
+  ending notices;
+- problem 1678 is complete and remotely verified as submission `2070529891`
+  with backend `question_id` `1797`. Its Accepted one-pass Goal token parser
+  passed the legal 8/32/100-character tiers; an independent constant-pass
+  replacement implementation passed, while a correct implementation that
+  reparses the full command for every input character completed every tier
+  and failed only scaling with extra growth `+1.34` and an `86.13x` largest
+  runtime ratio;
+- the refreshed migration audit: 1678 locally complete, 1631 fully verified,
+  47 blocked, 1635 scaling benchmarks, 43 certificates, and frontend ID 1679
+  next;
+- the dataset checker after problem 1678: 3985 documents, 2631 manually
+  complete, and 1354 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1678 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1678 passed apart from non-failing line-
+  ending notices;
+- problem 1679 is complete and remotely verified as submission `2070532915`
+  with backend `question_id` `1798`. Its Accepted unmatched-frequency scan
+  passed the 64/256/768-element distant-complement tiers; an independent full-
+  frequency implementation passed, while correct nested complement search
+  completed every tier and failed only scaling with extra growth `+1.06` and
+  a `76.32x` largest runtime ratio;
+- the refreshed migration audit: 1679 locally complete, 1632 fully verified,
+  47 blocked, 1636 scaling benchmarks, 43 certificates, and frontend ID 1680
+  next;
+- the dataset checker after problem 1679: 3985 documents, 2631 manually
+  complete, and 1354 still needing authoring (the prior substantive scaffold
+  already counted as manual before its canonical rewrite);
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1679 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1679 passed apart from non-failing line-
+  ending notices;
+- problem 1680 is complete and remotely verified as submission `2070535209`
+  with backend `question_id` `1800`. Its Accepted power-of-two width recurrence
+  passed the 32/512/8192 endpoint tiers; an independent `bit_length()`
+  recurrence passed, while correct per-bit modular processing completed every
+  case and tier and failed only scaling with extra growth `+0.26` and an
+  `8.92x` largest runtime ratio;
+- the refreshed migration audit: 1680 locally complete, 1633 fully verified,
+  47 blocked, 1637 scaling benchmarks, 43 certificates, and frontend ID 1681
+  next;
+- the dataset checker after problem 1680: 3985 documents, 2632 manually
+  complete, and 1353 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1680 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1680 passed apart from non-failing line-
+  ending notices;
+- problem 1681 is complete and remotely verified as revised submission
+  `2070538578` with backend `question_id` `1799`; the earlier accepted
+  `2070538243` was superseded when its duplicated group lists were replaced by
+  one exact $O(2^n)$ cost table. The final anchored submask DP passed the
+  16/64/256-state tiers; an independently organized anchored valid-group DP
+  passed, while a correct memoized all-mask scan completed every tier and
+  failed only scaling with extra growth `+0.36`;
+- the refreshed migration audit: 1681 locally complete, 1634 fully verified,
+  47 blocked, 1638 scaling benchmarks, 43 certificates, and frontend ID 1682
+  next;
+- the dataset checker after problem 1681: 3985 documents, 2632 manually
+  complete, and 1353 still needing authoring (the prior substantive scaffold
+  already counted as manual before its canonical rewrite);
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1681 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1681 passed apart from non-failing line-
+  ending notices;
+- problem 1682 is complete and remotely verified as Premium submission
+  `2070542553`; its rolling boundary-letter interval DP takes $O(n^2)$ time
+  and $O(n)$ auxiliary space while enforcing that equal adjacent characters
+  occur only at the center of the chosen palindrome;
+- problem 1682's benchmark uses 6, 18, and 48-character layered good
+  palindromes. The Accepted rolling DP and an independent memoized quadratic
+  DP passed. A correct cubic full-table implementation completed every tier
+  and failed only scaling with extra growth exponent `+0.45`;
+- the refreshed migration audit: 1682 locally complete, 1635 fully verified,
+  47 blocked, 1639 scaling benchmarks, 43 certificates, and frontend ID 1683
+  first actionable;
+- the dataset checker after problem 1682: 3985 documents, 2633 manually
+  complete, and 1352 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1682 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1682 passed apart from non-failing line-
+  ending notices;
+- problem 1683 is complete and remotely verified as MySQL submission
+  `2070546526`; its `CHAR_LENGTH(content) > 15` filter preserves the strict
+  boundary and returns IDs in the contract's arbitrary order;
+- problem 1683 uses a strict asymptotic-optimality certificate for $O(R)$
+  time. Any tweet can independently be the only over-limit row, while a
+  single scan matches that linear inspection lower bound;
+- the refreshed migration audit: 1683 locally complete, 1636 fully verified,
+  47 blocked, 1639 scaling benchmarks, 44 certificates, and frontend ID 1684
+  first actionable;
+- the dataset checker after problem 1683: 3985 documents, 2634 manually
+  complete, and 1351 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1683 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1683 passed apart from non-failing line-
+  ending notices;
+- problem 1684 is complete and remotely verified as submission `2070549698`;
+  its prebuilt allowed-letter set scans the input once in $O(S)$ time and
+  constant alphabet space;
+- problem 1684's benchmark uses total character-work sizes 82, 328, and 1306
+  while scaling the legal allowed alphabet through 2, 8, and 26 letters. The
+  Accepted set scan and an independent bitmask scan passed. A correct repeated
+  linear membership scan completed every tier and failed only scaling with
+  extra growth exponent `+0.80`;
+- the refreshed migration audit: 1684 locally complete, 1637 fully verified,
+  47 blocked, 1640 scaling benchmarks, 44 certificates, and frontend ID 1685
+  first actionable;
+- the dataset checker after problem 1684: 3985 documents, 2634 manually
+  complete, and 1351 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1684 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1684 passed apart from non-failing line-
+  ending notices;
+- problem 1685 is complete and remotely verified as submission `2070552558`;
+  its running left sum and total derive every absolute-difference total in
+  $O(n)$ time and $O(1)$ auxiliary space beyond the output;
+- problem 1685's benchmark uses 32, 128, and 384 consecutive sorted values.
+  The Accepted running-sum method and an independent prefix-array method
+  passed. A correct direct pairwise implementation completed every tier and
+  failed only scaling with extra growth exponent `+1.28`;
+- the refreshed migration audit: 1685 locally complete, 1638 fully verified,
+  47 blocked, 1641 scaling benchmarks, 44 certificates, and frontend ID 1686
+  first actionable;
+- the dataset checker after problem 1685: 3985 documents, 2634 manually
+  complete, and 1351 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1685 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1685 passed apart from non-failing line-
+  ending notices;
+- problem 1686 is complete and remotely verified as submission `2070555555`;
+  its exchange proof orders stones by Alice-plus-Bob value and scores
+  alternating ownership in $O(n \log n)$ time;
+- problem 1686's benchmark uses 32, 128, and 384 unsorted combined-priority
+  stones. The Accepted comparison sort and an independent max-heap passed. A
+  correct repeated-maximum selection completed every tier and failed only
+  scaling with extra growth exponent `+1.14`;
+- the refreshed migration audit: 1686 locally complete, 1639 fully verified,
+  47 blocked, 1642 scaling benchmarks, 44 certificates, and frontend ID 1687
+  first actionable;
+- the dataset checker after problem 1686: 3985 documents, 2634 manually
+  complete, and 1351 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1686 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1686 passed apart from non-failing line-
+  ending notices;
+- problem 1687 is complete and remotely verified as submission `2070559422`;
+  its prefix DP and monotonic deque enforce both ship capacities and minimize
+  feasible split values in $O(n)$ time;
+- problem 1687's benchmark uses 32, 128, and 384 alternating-port boxes with
+  all split starts feasible. The Accepted deque and an independent array-backed
+  monotonic queue passed. A correct quadratic transition scan completed every
+  tier and failed only scaling with extra growth exponent `+0.95`;
+- randomized small legal instances for problem 1687 matched a direct
+  quadratic brute-force recurrence before remote submission;
+- the refreshed migration audit: 1687 locally complete, 1640 fully verified,
+  47 blocked, 1643 scaling benchmarks, 44 certificates, and frontend ID 1688
+  first actionable;
+- the dataset checker after problem 1687: 3985 documents, 2634 manually
+  complete, and 1351 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1687 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1687 passed apart from non-failing line-
+  ending notices;
+- problem 1688 is complete and remotely verified as submission `2070563135`;
+  every match eliminates one team, so the direct $n-1$ invariant takes
+  constant time and space;
+- problem 1688's legal-domain benchmark uses 4, 32, and 200 teams. The
+  Accepted formula and an independent constant-time form passed. A correct
+  one-elimination-at-a-time simulation completed every tier and failed only
+  scaling with extra growth exponent `+0.30`;
+- the refreshed migration audit: 1688 locally complete, 1641 fully verified,
+  47 blocked, 1644 scaling benchmarks, 44 certificates, and frontend ID 1689
+  first actionable;
+- the dataset checker after problem 1688: 3985 documents, 2635 manually
+  complete, and 1350 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1688 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1688 passed apart from non-failing line-
+  ending notices;
+- problem 1689 is complete and remotely verified as submission `2070566200`;
+  its answer is the maximum decimal digit, proved by a matching per-column
+  lower bound and layer construction;
+- problem 1689 uses a strict asymptotic-optimality certificate for $O(L)$
+  time: the unique maximum can occur at any position, and one scan matches the
+  linear inspection lower bound;
+- the refreshed migration audit: 1689 locally complete, 1642 fully verified,
+  47 blocked, 1644 scaling benchmarks, 45 certificates, and frontend ID 1690
+  first actionable;
+- the dataset checker after problem 1689: 3985 documents, 2636 manually
+  complete, and 1349 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1689 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1689 passed apart from non-failing line-
+  ending notices;
+- problem 1690 is complete and remotely verified as submission `2070570668`;
+  its accepted rolling interval minimax DP uses prefix sums and takes
+  $O(n^2)$ time with $O(n)$ auxiliary space;
+- problem 1690's benchmark sizes are 8, 32, and 96 stones. An independent
+  two-dimensional quadratic DP passed scaling, while a correct cubic DP that
+  rescans every remaining sum completed all tiers and failed only scaling at
+  extra relative growth `+0.98`;
+- the refreshed migration audit: 1690 locally complete, 1643 fully verified,
+  47 blocked, 1645 scaling benchmarks, 45 certificates, and frontend ID 1691
+  first actionable;
+- the dataset checker after problem 1690: 3985 documents, 2636 manually
+  complete, and 1349 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1690 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1690 passed apart from non-failing line-
+  ending notices;
+- problem 1691 is complete and remotely verified as submission `2070574865`;
+  its normalized-dimension longest-chain DP takes $O(n^2)$ time and $O(n)$
+  auxiliary space;
+- problem 1691's benchmark sizes are 8, 24, and 64 mutually compatible
+  cuboids. An independent quadratic DP passed scaling, while correct reverse-
+  order repeated edge relaxation completed all tiers and failed only scaling
+  at extra relative growth `+1.15` and a `39.11x` largest ratio;
+- the refreshed migration audit: 1691 locally complete, 1644 fully verified,
+  47 blocked, 1646 scaling benchmarks, 45 certificates, and frontend ID 1692
+  first actionable;
+- the dataset checker after problem 1691: 3985 documents, 2636 manually
+  complete, and 1349 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1691 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1691 passed apart from non-failing line-
+  ending notices;
+- problem 1692 is complete and remotely verified as Premium submission
+  `2070579765`; its rolling Stirling-number recurrence takes $O(nk)$ time and
+  $O(k)$ auxiliary space;
+- problem 1692's benchmark sizes are 16, 48, and 128 candies with $k=n/2$.
+  An independent full-table $O(nk)$ DP passed scaling, while a correct
+  repeated-addition $O(nk^2)$ recurrence completed all tiers and failed only
+  scaling at extra relative growth `+1.12` and a `32.99x` largest ratio;
+- the refreshed migration audit: 1692 locally complete, 1645 fully verified,
+  47 blocked, 1647 scaling benchmarks, 45 certificates, and frontend ID 1693
+  first actionable;
+- the dataset checker after problem 1692: 3985 documents, 2637 manually
+  complete, and 1348 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1692 passed 154 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1692 passed apart from non-failing line-
+  ending notices;
+- problem 1693 is complete and remotely verified as MySQL submission
+  `2070583898`; its grouped distinct-count query is backed by a strict
+  asymptotic-optimality certificate for expected $O(R)$ time;
+- problem 1693 added a narrowly scoped `unordered_table` validator so SQL
+  results allowed in any row order compare by exact columns and row multiset;
+- the refreshed migration audit: 1693 locally complete, 1646 fully verified,
+  47 blocked, 1647 scaling benchmarks, 46 certificates, and frontend ID 1694
+  first actionable;
+- the dataset checker after problem 1693: 3985 documents, 2638 manually
+  complete, and 1347 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1693 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1693 passed apart from non-failing line-
+  ending notices;
+- problem 1694 is complete and remotely verified as submission `2070588984`;
+  its cleanup-and-group formatter is backed by a strict
+  asymptotic-optimality certificate for $O(N)$ time;
+- the refreshed migration audit: 1694 locally complete, 1647 fully verified,
+  47 blocked, 1647 scaling benchmarks, 47 certificates, and frontend ID 1695
+  first actionable;
+- the dataset checker after problem 1694: 3985 documents, 2639 manually
+  complete, and 1346 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1694 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1694 passed apart from non-failing line-
+  ending notices;
+- problem 1695 is complete and remotely verified as submission `2070593098`;
+  its unique-value sliding window takes $O(n)$ time and $O(n)$ space;
+- problem 1695's benchmark sizes are 32, 128, and 384 distinct values. An
+  independent linear last-index window passed scaling, while correct quadratic
+  start enumeration completed all tiers and failed only scaling at extra
+  relative growth `+1.31` and a `164.44x` largest ratio;
+- the refreshed migration audit: 1695 locally complete, 1648 fully verified,
+  47 blocked, 1648 scaling benchmarks, 47 certificates, and frontend ID 1696
+  first actionable;
+- the dataset checker after problem 1695: 3985 documents, 2639 manually
+  complete, and 1346 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1695 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1695 passed apart from non-failing line-
+  ending notices;
+- problem 1696 is complete and remotely verified as submission `2070597137`;
+  its monotonic-deque DP takes $O(n)$ time and $O(n)$ space;
+- problem 1696's benchmark sizes are 32, 128, and 384 positions with
+  proportional jump windows. An independent array-backed monotonic queue
+  passed scaling, while correct $O(nk)$ predecessor scans completed all tiers
+  and failed only scaling at extra relative growth `+1.02` and a `17.55x`
+  largest ratio;
+- the refreshed migration audit: 1696 locally complete, 1649 fully verified,
+  47 blocked, 1649 scaling benchmarks, 47 certificates, and frontend ID 1697
+  first actionable;
+- the dataset checker after problem 1696: 3985 documents, 2639 manually
+  complete, and 1346 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1696 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1696 passed apart from non-failing line-
+  ending notices;
+- problem 1697 is complete and remotely verified as submission `2070601591`;
+  its sorted offline union-find sweep takes
+  $O((E+Q)\log(E+Q))$ time and $O(n+E+Q)$ space;
+- problem 1697's benchmark sizes are 16, 64, and 192 chain vertices with a
+  proportional query batch. Independent offline union-find passed scaling,
+  while correct per-query BFS completed all tiers and failed only scaling at
+  extra relative growth `+1.22` and an `83.15x` largest ratio;
+- the refreshed migration audit: 1697 locally complete, 1650 fully verified,
+  47 blocked, 1650 scaling benchmarks, 47 certificates, and frontend ID 1698
+  first actionable;
+- the dataset checker after problem 1697: 3985 documents, 2639 manually
+  complete, and 1346 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1697 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1697 passed apart from non-failing line-
+  ending notices;
+- problem 1698 is complete and remotely verified as Premium submission
+  `2070606052`; its suffix automaton takes $O(n)$ time and $O(n)$ space;
+- problem 1698's benchmark sizes are 32, 128, and 500 characters. An
+  independent suffix automaton passed scaling, while a correct quadratic
+  suffix trie completed all tiers and failed only scaling at extra relative
+  growth `+1.02` and a `26.04x` largest ratio;
+- the refreshed migration audit: 1698 locally complete, 1651 fully verified,
+  47 blocked, 1651 scaling benchmarks, 47 certificates, and frontend ID 1699
+  first actionable;
+- the dataset checker after problem 1698: 3985 documents, 2640 manually
+  complete, and 1345 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1698 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1698 passed apart from non-failing line-
+  ending notices;
+- problem 1699 is complete and remotely verified as Premium MySQL submission
+  `2070610422`; its canonical unordered-pair aggregation is backed by a strict
+  asymptotic-optimality certificate for expected $O(R)$ time;
+- the refreshed migration audit: 1699 locally complete, 1652 fully verified,
+  47 blocked, 1651 scaling benchmarks, 48 certificates, and frontend ID 1700
+  first actionable;
+- the dataset checker after problem 1699: 3985 documents, 2641 manually
+  complete, and 1344 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1699 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1699 passed apart from non-failing line-
+  ending notices;
+- problem 1700 is complete and remotely verified as submission `2070614869`;
+  its preference-count scan takes $O(n)$ time and $O(1)$ auxiliary space;
+- problem 1700's benchmark sizes are 8, 32, and 100 students. An independent
+  linear counter passed scaling, while a correct literal queue simulation
+  completed every tier and failed only scaling at extra relative growth
+  `+1.01` and a `16.51x` largest ratio;
+- the refreshed migration audit: 1700 locally complete, 1653 fully verified,
+  47 blocked, 1652 scaling benchmarks, 48 certificates, and frontend ID 1701
+  first actionable;
+- the dataset checker after problem 1700: 3985 documents, 2641 manually
+  complete, and 1344 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1700 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1700 passed apart from non-failing line-
+  ending notices;
+- problem 1701 is complete and remotely verified as submission `2070620242`;
+  its chef-finish recurrence takes $O(n)$ time and $O(1)$ auxiliary space;
+- problem 1701's benchmark sizes are 8, 32, and 128 customers. An independent
+  linear wait accumulator passed scaling, while correct repeated prefix
+  reconstruction completed every tier and failed only scaling at extra
+  relative growth `+1.10` and a `25.92x` largest ratio;
+- the refreshed migration audit: 1701 locally complete, 1654 fully verified,
+  47 blocked, 1653 scaling benchmarks, 48 certificates, and frontend ID 1702
+  first actionable;
+- the dataset checker after problem 1701: 3985 documents, 2641 manually
+  complete, and 1344 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1701 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1701 passed apart from non-failing line-
+  ending notices;
+- problem 1702 is complete and remotely verified as submission `2070626658`;
+  its first-zero/count construction takes $O(n)$ time and $O(n)$ output space;
+- problem 1702's benchmark sizes are 8, 32, and 128 characters. An independent
+  linear list constructor passed scaling, while correct repeated global-zero
+  scans completed every tier and failed only scaling at extra relative growth
+  `+1.43` and an `81.56x` largest ratio;
+- the refreshed migration audit: 1702 locally complete, 1655 fully verified,
+  47 blocked, 1654 scaling benchmarks, 48 certificates, and frontend ID 1703
+  first actionable;
+- the dataset checker after problem 1702: 3985 documents, 2642 manually
+  complete, and 1343 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1702 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1702 passed apart from non-failing line-
+  ending notices;
+- problem 1703 is complete and remotely verified as submission `2070631481`;
+  its adjusted-position median scan takes $O(n)$ time and $O(m)$ space;
+- problem 1703's benchmark sizes are 8, 32, and 126 array positions. An
+  independent raw-position prefix method passed scaling, while correct direct
+  median summation completed every tier and failed only scaling at extra
+  relative growth `+0.29`;
+- the refreshed migration audit: 1703 locally complete, 1656 fully verified,
+  47 blocked, 1655 scaling benchmarks, 48 certificates, and frontend ID 1704
+  first actionable;
+- the dataset checker after problem 1703: 3985 documents, 2642 manually
+  complete, and 1343 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1703 passed 155 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1703 passed apart from non-failing line-
+  ending notices;
+- problem 1704 is complete and remotely verified as submission `2070637960`;
+  its signed vowel-balance scan takes $O(n)$ time and $O(1)$ space;
+- problem 1704 uses a strict asymptotic-optimality certificate matching the
+  $\Omega(n)$ adversarial inspection lower bound. Its certificate-specific
+  regression exhaustively checks mixed upper- and lowercase reduced alphabets
+  through length six;
+- the refreshed migration audit: 1704 locally complete, 1657 fully verified,
+  47 blocked, 1655 scaling benchmarks, 49 certificates, and frontend ID 1705
+  first actionable;
+- the dataset checker after problem 1704: 3985 documents, 2643 manually
+  complete, and 1342 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1704 passed 156 tests and 41 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1704 passed apart from non-failing line-
+  ending notices;
+- problem 1705 is complete and remotely verified as submission `2070643897`;
+  its earliest-expiration heap takes $O((n + E) \log n)$ time and $O(n)$
+  space;
+- problem 1705's benchmark sizes are 8, 32, and 128 production days. An
+  independent mutable-top heap passed scaling, while the correct active-batch
+  linear scan completed every tier and failed only scaling at extra relative
+  growth `+0.62`;
+- the refreshed migration audit: 1705 locally complete, 1658 fully verified,
+  47 blocked, 1656 scaling benchmarks, 49 certificates, and frontend ID 1706
+  first actionable;
+- the dataset checker after problem 1705: 3985 documents, 2643 manually
+  complete, and 1342 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1705 passed 156 tests and 41 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1705 passed apart from non-failing line-
+  ending notices;
+- problem 1706 is complete and remotely verified as submission `2070650569`;
+  its deterministic ball simulation takes $O(mn)$ time and $O(n)$ output
+  space;
+- problem 1706 uses a strict asymptotic-optimality certificate matching the
+  $\Omega(mn)$ path-transition lower bound. Its certificate regression
+  exhaustively compares iterative and recursive simulation for every grid up
+  to three rows and three columns;
+- the refreshed migration audit: 1706 locally complete, 1659 fully verified,
+  47 blocked, 1656 scaling benchmarks, 50 certificates, and frontend ID 1707
+  first actionable;
+- the dataset checker after problem 1706: 3985 documents, 2643 manually
+  complete, and 1342 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1706 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1706 passed apart from non-failing line-
+  ending notices;
+- problem 1707 is complete and remotely verified as submission `2070656825`;
+  its offline limit sweep and binary trie take
+  $O((n + q)\log(n + q) + (n + q)B)$ time and $O(nB + q)$ space for the
+  fixed 30 relevant bit positions;
+- problem 1707's benchmark sizes are 8, 32, and 128 values and equally many
+  all-eligible queries. An independent dictionary trie passed scaling, while
+  the correct direct scan completed every tier and failed only scaling at
+  extra relative growth `+0.31`;
+- the refreshed migration audit: 1707 locally complete, 1660 fully verified,
+  47 blocked, 1657 scaling benchmarks, 50 certificates, and frontend ID 1708
+  first actionable;
+- the dataset checker after problem 1707: 3985 documents, 2643 manually
+  complete, and 1342 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1707 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1707 passed apart from non-failing line-
+  ending notices;
+- problem 1708 is complete and remotely verified as submission `2070664806`;
+  its maximum eligible-start scan takes $O(n)$ time and $O(k)$ total output
+  space;
+- problem 1708's benchmark sizes are 256, 1024, and 4096 distinct values with
+  `k` equal to half the array length. An independent built-in maximum scan
+  passed scaling, while the correct full-window materialization completed
+  every tier and failed only scaling at extra relative growth `+0.40`;
+- the refreshed migration audit: 1708 locally complete, 1661 fully verified,
+  47 blocked, 1658 scaling benchmarks, 50 certificates, and frontend ID 1709
+  first actionable;
+- the dataset checker after problem 1708: 3985 documents, 2644 manually
+  complete, and 1341 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1708 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1708 passed apart from non-failing line-
+  ending notices;
+- problem 1709 is complete and remotely verified as submission `2070672538`;
+  its ordered per-user next-visit scan takes $O(R)$ time and conservatively
+  $O(R)$ window-materialization space;
+- problem 1709 uses a strict asymptotic-optimality certificate matching the
+  $\Omega(R)$ visit-inspection lower bound. Its SQLite fixtures cover unsorted
+  rows, a single visit, internal and terminal winning gaps, multiple users,
+  year boundaries, and leap-day arithmetic;
+- the refreshed migration audit: 1709 locally complete, 1662 fully verified,
+  47 blocked, 1658 scaling benchmarks, 51 certificates, and frontend ID 1710
+  first actionable;
+- the dataset checker after problem 1709: 3985 documents, 2645 manually
+  complete, and 1340 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1709 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1709 passed apart from non-failing line-
+  ending notices;
+- problem 1710 is complete and remotely verified as submission `2070677103`;
+  its descending type-level greedy sort takes $O(t\log t)$ time and $O(t)$
+  space;
+- problem 1710's benchmark sizes are 8, 64, and 512 types with the same number
+  of boxes per type. An independent in-place type sort passed scaling, while
+  the correct physical-box expansion completed every tier and failed only
+  scaling at extra relative growth `+0.38`;
+- the refreshed migration audit: 1710 locally complete, 1663 fully verified,
+  47 blocked, 1659 scaling benchmarks, 51 certificates, and frontend ID 1711
+  first actionable;
+- the dataset checker after problem 1710: 3985 documents, 2645 manually
+  complete, and 1340 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1710 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1710 passed apart from non-failing line-
+  ending notices;
+- problem 1711 is complete and remotely verified as submission `2070683262`;
+  its previous-frequency complement scan takes $O(nB)$ time for $B=22$ and
+  $O(n)$ space;
+- problem 1711's benchmark sizes are 16, 64, and 256 identical one-valued
+  items. An independent precomputed-power scan passed scaling, while the
+  correct direct pair scan completed every tier and failed only scaling at
+  extra relative growth `+0.90`;
+- the refreshed migration audit: 1711 locally complete, 1664 fully verified,
+  47 blocked, 1660 scaling benchmarks, 51 certificates, and frontend ID 1712
+  first actionable;
+- the dataset checker after problem 1711: 3985 documents, 2645 manually
+  complete, and 1340 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1711 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1711 passed apart from non-failing line-
+  ending notices;
+- problem 1712 is complete and remotely verified as submission `2070689071`;
+  its monotone prefix-pointer sweep takes $O(n)$ time and $O(n)$ space;
+- problem 1712's benchmark sizes are 16, 64, and 256 zero values, making every
+  legal split valid. An independent two-pointer formulation passed scaling,
+  while correct direct cut enumeration completed every tier and failed only
+  scaling at extra relative growth `+1.13`;
+- the refreshed migration audit: 1712 locally complete, 1665 fully verified,
+  47 blocked, 1661 scaling benchmarks, 51 certificates, and frontend ID 1713
+  first actionable;
+- the dataset checker after problem 1712: 3985 documents, 2645 manually
+  complete, and 1340 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1712 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1712 passed apart from non-failing line-
+  ending notices;
+- problem 1713 is complete and remotely verified as submission `2070695004`;
+  its target-index mapping and patience-sorting LIS take
+  $O(n+m\log n)$ time and $O(n)$ space;
+- problem 1713's benchmark sizes are 16, 64, and 256 target values presented
+  in reverse. An independent mapped-sequence tails implementation passed
+  scaling, while quadratic LIS dynamic programming completed every tier and
+  failed only scaling at extra relative growth `+1.14`;
+- the refreshed migration audit: 1713 locally complete, 1666 fully verified,
+  47 blocked, 1662 scaling benchmarks, 51 certificates, and frontend ID 1714
+  first actionable;
+- the dataset checker after problem 1713: 3985 documents, 2645 manually
+  complete, and 1340 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1713 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1713 passed apart from non-failing line-
+  ending notices;
+- problem 1714 is complete and remotely verified as submission `2070702158`;
+  its grouped square-root decomposition takes $O((n+q)S)$ time for
+  $S=\lfloor\sqrt n\rfloor+1$ and $O(n+q)$ space;
+- problem 1714's benchmark sizes are 16, 64, and 256 repeated step-one
+  full-array queries. An independent grouped progression cache passed scaling,
+  while uncached per-query traversal completed every tier and failed only
+  scaling at extra relative growth `+1.03`;
+- the refreshed migration audit: 1714 locally complete, 1667 fully verified,
+  47 blocked, 1663 scaling benchmarks, 51 certificates, and frontend ID 1715
+  first actionable;
+- the dataset checker after problem 1714: 3985 documents, 2646 manually
+  complete, and 1339 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1714 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1714 passed apart from non-failing line-
+  ending notices;
+- problem 1715 is complete and remotely verified as submission `2070708429`;
+  its left hash join and aggregate scan take $O(R)$ time and $O(C)$ join
+  space;
+- problem 1715 uses a strict asymptotic-optimality certificate matching the
+  $\Omega(R)$ general relational input-inspection lower bound. Its SQLite
+  fixtures cover null chest IDs, repeated references, unreferenced chests,
+  zero fruit counts, and the public sample;
+- the refreshed migration audit: 1715 locally complete, 1668 fully verified,
+  47 blocked, 1663 scaling benchmarks, 52 certificates, and frontend ID 1716
+  first actionable;
+- the dataset checker after problem 1715: 3985 documents, 2647 manually
+  complete, and 1338 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1715 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1715 passed apart from non-failing line-
+  ending notices;
+- problem 1716 is complete and remotely verified as submission `2070714410`;
+  its complete-week and partial-week arithmetic formula takes $O(1)$ time and
+  $O(1)$ space;
+- problem 1716's benchmark sizes are 10, 100, and 1000 saving days. An
+  independent arithmetic-series formula passed scaling, while correct
+  day-by-day simulation completed every legal tier and failed only scaling at
+  extra relative growth `+0.36`;
+- the refreshed migration audit: 1716 locally complete, 1669 fully verified,
+  47 blocked, 1664 scaling benchmarks, 52 certificates, and frontend ID 1717
+  first actionable;
+- the dataset checker after problem 1716: 3985 documents, 2648 manually
+  complete, and 1337 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1716 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1716 passed apart from non-failing line-
+  ending notices;
+- problem 1717 is complete and remotely verified as submission `2070722736`;
+  its accepted two-pass stack greedily removes the higher-value pair before
+  collecting the remaining lower-value pair in $O(n)$ time and $O(n)$ space;
+- problem 1717's benchmark sizes are 64, 256, and 1024 string characters. An
+  independently written linear stack implementation passed with extra relative
+  growth `+0.05`, while correct repeated search and immutable-string rebuilding
+  completed every expected output and failed only scaling at `+1.09` with a
+  `100.32x` largest runtime ratio;
+- problem 1717's `General` explanation uses three standalone, problem-specific
+  bold signposts. A review confirmed problems 1707 through 1716 already use two
+  such standalone signposts each; the initial inline-only 1717 lead-in was
+  corrected after review;
+- the refreshed migration audit: 1717 locally complete, 1670 fully verified,
+  47 blocked, 1665 scaling benchmarks, 52 certificates, and frontend ID 1718
+  first actionable;
+- the dataset checker after problem 1717: 3985 documents, 2649 manually
+  complete, and 1336 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1717 passed 157 tests and 42 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the focused dynamic-document suite after the signpost formatting correction
+  passed all 7 tests, and `git diff --check` remained clean apart from the
+  non-failing line-ending notice;
+- problem 1718 is complete and remotely verified as submission `2070730501`.
+  Its descending in-place backtracking fixes the first empty position, tries
+  unused values in lexicographically decreasing order, and stops at the first
+  complete valid arrangement;
+- exhaustive independent enumeration proved the exact lexicographic maximum
+  for every `n` from 1 through 7, while boundary regression verifies output
+  length, value range, multiplicities, and exact index distances for every
+  legal `n` through 20;
+- attempted 2/4/8 scaling was deliberately discarded: the genuine exhaustive
+  alternative hit the Python safety cap on mandatory correctness inputs, while
+  state-copying backtracking remained in the same factorial class and correctly
+  passed scaling. Problem 1718 therefore uses a reviewed `bounded_domain`
+  certificate over the complete legal domain `1 <= n <= 20`;
+- the complexity loader now has an explicit `O(n!)` class and regression test,
+  preventing factorial documentation from being mislabeled as linear in the
+  app;
+- the refreshed migration audit: 1718 locally complete, 1671 fully verified,
+  47 blocked, 1665 scaling benchmarks, 53 certificates, and frontend ID 1719
+  first actionable;
+- the dataset checker after problem 1718: 3985 documents, 2649 manually
+  complete, and 1336 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1718 passed 159 tests and 43 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1718 passed apart from non-failing line-
+  ending notices;
+- problem 1719 is complete and remotely verified as submission `2070743972`.
+  Its adjacency-set containment method identifies a universal root, selects
+  each node's minimum-degree eligible parent, rejects non-nested neighborhoods,
+  and detects equal-degree ambiguity in $O(V^2)$ time and space;
+- an independent Prüfer-sequence oracle enumerated every rooted labeled tree
+  and matched the accepted implementation across all 814 applicable pair sets
+  on two through five nodes;
+- problem 1719's final benchmark uses reverse-ordered complete comparability
+  graphs on 8, 32, and 128 nodes. An independent Boolean-matrix implementation
+  passed with extra relative growth `-0.01`; correct raw-pair-list containment
+  returned every expected output and failed only scaling at `+0.61`, with a
+  `5.54x` largest-tier ratio;
+- the refreshed migration audit: 1719 locally complete, 1672 fully verified,
+  47 blocked, 1666 scaling benchmarks, 53 certificates, and frontend ID 1720
+  first actionable;
+- the dataset checker after problem 1719: 3985 documents, 2649 manually
+  complete, and 1336 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1719 passed 159 tests and 43 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1719 passed apart from non-failing line-
+  ending notices;
+- problem 1720 is complete and remotely verified as submission `2070756225`.
+  Its accepted left-to-right XOR recurrence reconstructs the unique original
+  array in $O(n)$ time with $O(1)$ auxiliary space beyond the returned array;
+- the scaffold's illegal empty-`encoded` example was replaced with legal
+  minimum-length and zero-XOR boundary coverage;
+- problem 1720's benchmark sizes are 64, 256, and 1024 decoded values. An
+  independent `itertools.accumulate` implementation passed scaling, while
+  correct prefix recomputation completed every output and failed only scaling
+  at `+0.95` with an `18.12x` largest-tier ratio;
+- the refreshed migration audit: 1720 locally complete, 1673 fully verified,
+  47 blocked, 1667 scaling benchmarks, 53 certificates, and frontend ID 1721
+  first actionable;
+- the dataset checker after problem 1720: 3985 documents, 2649 manually
+  complete, and 1336 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1720 passed 159 tests and 43 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1720 passed apart from non-failing line-
+  ending notices;
+- problem 1721 is complete and remotely verified as submission `2070761019`.
+  Its accepted lead/lag pointer locates the symmetric positions in $O(n)$ time
+  and swaps only node values with $O(1)$ auxiliary space;
+- calibration exposed that the initial return text said only "list head", which
+  the runtime could not recognize as a linked-list result. The contract now
+  says "linked-list head", enabling the existing canonical node serializer
+  without a challenge-specific runtime exception;
+- problem 1721's benchmark sizes are 32, 128, and 512 nodes. An independent
+  length-first pointer implementation passed scaling, while correct repeated
+  suffix measurement completed every output and failed only scaling at `+1.21`
+  with a `91.26x` largest-tier ratio;
+- the refreshed migration audit: 1721 locally complete, 1674 fully verified,
+  47 blocked, 1668 scaling benchmarks, 53 certificates, and frontend ID 1722
+  first actionable;
+- the dataset checker after problem 1721: 3985 documents, 2650 manually
+  complete, and 1335 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1721 passed 159 tests and 43 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1721 passed apart from non-failing line-
+  ending notices;
+- problem 1722 is complete and remotely verified as submission `2070767262`.
+  Its accepted union-find groups all transitively swappable indices and uses
+  per-component value counters to count unavoidable mismatches in
+  $O((n+m)\alpha(n))$ time and $O(n)$ space;
+- problem 1722's final benchmark sizes are 32, 96, and 256 indices connected
+  as one swap chain. An independent one-pass DFS component implementation
+  passed scaling, while correct per-position component rediscovery completed
+  every output and failed only scaling at `+1.04` with a `71.77x`
+  largest-tier ratio;
+- the refreshed migration audit: 1722 locally complete, 1675 fully verified,
+  47 blocked, 1669 scaling benchmarks, 53 certificates, and frontend ID 1723
+  first actionable;
+- the dataset checker after problem 1722: 3985 documents, 2650 manually
+  complete, and 1335 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1722 passed 159 tests and 43 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1722 passed apart from non-failing line-
+  ending notices;
+- problem 1723 is complete and remotely verified as submission `2070773134`.
+  Its accepted descending branch-and-bound explores distinct worker-load
+  states, prunes non-improving loads, and removes equal-load and empty-worker
+  symmetry;
+- an independent exhaustive labeled-assignment oracle matched the reference on
+  1,008 canonical instances through six jobs. Boundary checks cover one worker,
+  one worker per job, duplicate durations, twelve jobs, and maximum durations;
+- scaling was rejected as dishonest because the complete legal domain has at
+  most twelve jobs and removing symmetry pruning remains in the same $O(k^n)$
+  worst-case class. Problem 1723 therefore uses a reviewed `bounded_domain`
+  certificate;
+- the runtime complexity model now parses and labels `O(k^n)` explicitly, using
+  an ASCII label that remains safe in the Windows `cp1252` console;
+- the refreshed migration audit: 1723 locally complete, 1676 fully verified,
+  47 blocked, 1669 scaling benchmarks, 54 certificates, and frontend ID 1724
+  first actionable;
+- the dataset checker after problem 1723: 3985 documents, 2650 manually
+  complete, and 1335 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1723 passed 161 tests and 44 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1723 passed apart from non-failing line-
+  ending notices;
+- problem 1724 is complete and remotely verified as Premium submission
+  `2070781260`. Its live backend `question_id` is `1865`. The Accepted
+  minimum-spanning-forest plus binary-lifting implementation answers each
+  strict edge-limit query through the maximum edge on the unique forest path;
+- independent threshold-BFS differential checks covered 100 randomized graphs
+  for every node count from 1 through 10, all endpoint pairs, and limits 1
+  through 21. Parallel edges, disconnected components, strict equality,
+  indirect bottlenecks, cycles, and maximum weights have authored cases;
+- problem 1724's final benchmark sizes are 32, 64, and 128, defined as
+  $n+q$ for an $n$-node chain with $q=n$ full-chain queries. A correct
+  threshold-BFS implementation completed every output and failed only scaling
+  at `+0.79`; the Accepted binary-lifting implementation passed;
+- the refreshed migration audit: 1724 locally complete, 1677 fully verified,
+  47 blocked, 1670 scaling benchmarks, 54 certificates, and frontend ID 1725
+  first actionable;
+- the dataset checker after problem 1724: 3985 documents, 2651 manually
+  complete, and 1334 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1724 passed 161 tests and 44 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1724 passed apart from non-failing line-
+  ending notices;
+- problem 1725 is complete and remotely verified as submission `2070791822`.
+  Its live backend `question_id` is `1843`. The Accepted one-pass scan tracks
+  the largest smaller rectangle dimension and its frequency in $O(n)$ time
+  and $O(1)$ auxiliary space;
+- authored cases preserve the contract's unequal-dimension guarantee and cover
+  a single rectangle, all tied minima, repeated best replacement, both
+  orientations, noncontiguous ties, and dimensions up to $10^9$;
+- problem 1725's benchmark sizes are 64, 128, and 256 rectangles with every
+  smaller dimension tied, forcing a correct all-pairs comparison to finish its
+  full quadratic work. The Accepted scan and an independent two-pass method
+  passed, while the quadratic method completed every output and failed only
+  scaling at `+1.25` with a `95.29x` largest-tier ratio;
+- the refreshed migration audit: 1725 locally complete, 1678 fully verified,
+  47 blocked, 1671 scaling benchmarks, 54 certificates, and frontend ID 1726
+  first actionable;
+- the dataset checker after problem 1725: 3985 documents, 2651 manually
+  complete, and 1334 still needing authoring. The count did not change because
+  the replaced 1725 scaffold already passed that report's looser heuristic;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1725 passed 161 tests and 44 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1725 passed apart from non-failing line-
+  ending notices;
+- problem 1726 is complete and remotely verified as submission `2070796477`.
+  Its live backend `question_id` is `1364`. The Accepted pair-product counter
+  matched a direct permutation oracle on 800 randomized arrays through eight
+  elements;
+- the distinct-positive contract proves that two different equal-product pairs
+  cannot share exactly one value, so each pair collision already supplies four
+  distinct elements and contributes exactly eight ordered tuples;
+- problem 1726's benchmark sizes are 10, 20, and 40 distinct consecutive
+  values. The Accepted incremental counter and an independent frequency-then-
+  combination method passed, while a correct ordered-triple implementation
+  completed every output and failed only scaling at `+1.49` with a `68.54x`
+  largest-tier ratio;
+- the refreshed migration audit: 1726 locally complete, 1679 fully verified,
+  47 blocked, 1672 scaling benchmarks, 54 certificates, and frontend ID 1727
+  first actionable;
+- the dataset checker after problem 1726: 3985 documents, 2651 manually
+  complete, and 1334 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1726 passed 161 tests and 44 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1726 passed apart from non-failing line-
+  ending notices;
+- problem 1727 is complete and remotely verified as submission `2070801266`.
+  Its live backend `question_id` is `1845`. The Accepted stable-height-order
+  algorithm preserves non-increasing consecutive-one heights through filtering
+  and reset-column appends, avoiding a sort on every row;
+- the Accepted source matched a conventional height-sorting oracle on 9,418
+  exhaustive matrices with at most twelve cells plus 1,000 randomized matrices
+  through eight rows and eight columns;
+- problem 1727's benchmark sizes are 128, 256, and 512 matrix cells. The
+  Accepted index-order implementation and an independent tuple-order form
+  passed, while a correct repeated-height-threshold implementation completed
+  every output and failed only scaling at `+1.05` with a `20.69x`
+  largest-tier ratio;
+- the refreshed migration audit: 1727 locally complete, 1680 fully verified,
+  47 blocked, 1673 scaling benchmarks, 54 certificates, and frontend ID 1728
+  first actionable;
+- the dataset checker after problem 1727: 3985 documents, 2651 manually
+  complete, and 1334 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1727 passed 161 tests and 44 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1727 passed apart from non-failing line-
+  ending notices;
+- problem 1728 is complete and remotely verified as submission `2070851690`.
+  Its live backend `question_id` is `1727`, and the exact
+  `Solution.canMouseWin` source is Accepted;
+- the retrograde solver tracks forced winners and optimal turn distances over
+  the $2V^2$ mouse/cat/turn states, explicitly enforcing the 1000-turn limit.
+  It matched an exact 1000-turn bottom-up oracle on the three public examples,
+  96 exhaustive open 2-by-2 configurations after the deque revision, and the
+  earlier 136 fixed/exhaustive/random small-board checks;
+- problem 1728's benchmark sizes are 4, 12, and 24 non-wall cells. The
+  symmetric-predecessor implementation and an independent explicit reverse-
+  list implementation passed, while correct manual predecessor/reachability
+  scans completed every output and failed only scaling at `+0.21`;
+- the refreshed migration audit after recording the remote blocker: 1728
+  locally complete, 1680 fully verified, 48 blocked, 1674 scaling benchmarks,
+  54 certificates, and frontend ID 1729 first actionable;
+- the dataset checker after problem 1728: 3985 documents, 2651 manually
+  complete, and 1334 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1728 passed 161 tests and 44 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1728 passed apart from non-failing line-
+  ending notices;
+- problem 1729 is complete and remotely verified as submission `2070851903`.
+  Its live backend `question_id` is `1877`, and the exact grouped MySQL query
+  is Accepted;
+- the query groups `Followers` by `user_id`, counts primary-key relationships,
+  and orders the result ascending. It passed every authored SQL fixture and an
+  independent Python group-count regression;
+- the composite primary key begins with `user_id`, so an ordered group scan
+  matches the unavoidable $\Omega(R)$ row-inspection lower bound. Problem 1729
+  therefore uses a reviewed `asymptotic_optimality` certificate;
+- the refreshed migration audit after recording the remote blocker: 1729
+  locally complete, 1680 fully verified, 49 blocked, 1674 scaling benchmarks,
+  55 certificates, and frontend ID 1730 first actionable;
+- the dataset checker after problem 1729: 3985 documents, 2652 manually
+  complete, and 1333 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1729 passed 162 tests and 45 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1729 passed apart from non-failing line-
+  ending notices;
+- problem 1730 is complete and remotely verified as submission `2070852310`.
+  Its live backend `question_id` is `550`, and the exact Premium
+  `Solution.getFood` Python source is Accepted;
+- the breadth-first search starts at the unique `'*'` cell, visits only
+  traversable grid cells, and returns the first distance that reaches `'#'`.
+  The exact native source matched all four public platform examples and 500
+  randomized small grids checked against an independent Floyd-Warshall oracle;
+- problem 1730's benchmark sizes are 64, 400, and 1,600 grid cells. The
+  Accepted-form queue implementation and an independent distance-grid BFS
+  passed, while a correct list-backed visited-membership BFS completed every
+  output and failed only scaling at `+0.17`;
+- the refreshed migration audit after recording the remote blocker: 1730
+  locally complete, 1680 fully verified, 50 blocked, 1675 scaling benchmarks,
+  55 certificates, and frontend ID 1731 first actionable;
+- the dataset checker after problem 1730: 3985 documents, 2653 manually
+  complete, and 1332 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1730 passed 162 tests and 45 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1730 passed apart from non-failing line-
+  ending notices;
+- problem 1731 is complete and remotely verified as submission `2070852487`.
+  Its live backend `question_id` is `1882`, and the exact grouped MySQL
+  self-join is Accepted;
+- the query gives `Employees` separate manager and direct-report aliases,
+  counts only immediate reports, rounds their average age, and orders managers
+  by `employee_id`. It passed both public samples, all eight authored SQL
+  fixtures, and an independent direct-report aggregation regression;
+- every employee row can change manager membership, a direct-report count, or
+  a rounded average, so the indexed self-join and grouped scan matches the
+  unavoidable $\Omega(E)$ row-inspection lower bound. Problem 1731 therefore
+  uses a reviewed `asymptotic_optimality` certificate;
+- the refreshed migration audit after recording the remote blocker: 1731
+  locally complete, 1680 fully verified, 51 blocked, 1675 scaling benchmarks,
+  56 certificates, and frontend ID 1732 first actionable;
+- the dataset checker after problem 1731: 3985 documents, 2654 manually
+  complete, and 1331 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1731 passed 163 tests and 46 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1731 passed apart from non-failing line-
+  ending notices;
+- problem 1732 is complete and remotely verified as submission `2070852743`.
+  Its live backend `question_id` is `1833`, and the exact
+  `Solution.largestAltitude` Python source is Accepted;
+- the linear prefix scan preserves the running altitude and the greatest
+  altitude seen, including the starting value zero. Both app-local and native
+  forms matched an independent prefix-sum oracle on 3,000 legal randomized
+  arrays in addition to the ten authored correctness cases;
+- the public contract limits `gain` to at most 100 entries, which is too small
+  to separate linear and quadratic Python implementations through an honest
+  runtime trend. Problem 1732 therefore uses a reviewed `bounded_domain`
+  certificate with maximum-length and value-boundary evidence;
+- the refreshed migration audit after the five session-blocked candidates were
+  remotely Accepted: 1732 locally complete, 1685 fully verified, 47 blocked,
+  1675 scaling benchmarks,
+  57 certificates, and frontend ID 1733 first actionable;
+- the dataset checker after problem 1732: 3985 documents, 2654 manually
+  complete, and 1331 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1732 passed 164 tests and 47 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- focused `git diff --check` after problem 1732 passed apart from non-failing
+  line-ending notices;
+- problem 1733 is complete and remotely verified as submission `2070861157`.
+  Its live backend `question_id` is `1834`, and the exact
+  `Solution.minimumTeachings` Python source is Accepted;
+- the algorithm isolates endpoints of friendship pairs that currently share no
+  language, counts language frequencies only among those affected users, and
+  keeps the most common existing language. Both app-local and native forms
+  matched an independent brute-force language oracle on 3,000 randomized legal
+  instances in addition to the ten authored correctness cases;
+- problem 1733's benchmark sizes are 12, 108, and 768 units of $S+C$ across
+  balanced disjoint-language groups. The Accepted frequency implementation and
+  an independent bit-mask implementation passed. A correct language-by-
+  language simulation copied teaching state and rechecked every friendship,
+  completed every output, and failed only scaling at `+0.44` with a `13.67x`
+  largest-tier ratio;
+- the refreshed migration audit: 1733 locally complete, 1686 fully verified,
+  47 blocked, 1676 scaling benchmarks, 57 certificates, and frontend ID 1734
+  first actionable;
+- the dataset checker after problem 1733: 3985 documents, 2654 manually
+  complete, and 1331 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1733 passed 164 tests and 47 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1733 passed apart from non-failing line-
+  ending notices;
+- problem 1734 is complete and remotely verified as submission `2070866414`.
+  Its live backend `question_id` is `1835`, and the exact `Solution.decode`
+  Python source is Accepted;
+- the algorithm XORs the full range $1$ through $n$ with odd-index encoded
+  pairs to recover the first permutation value, then decodes the remaining
+  chain. Both app-local and native forms matched 2,450 randomized valid odd-
+  length permutations in addition to the nine authored correctness cases;
+- problem 1734's benchmark sizes are 9, 33, and 129 permutation values, with
+  the largest value placed first so candidate-first validation reaches its
+  final candidate. The Accepted linear implementation and an independent
+  closed-form range-XOR implementation passed. The correct candidate-first
+  decoder completed every output and failed only scaling at `+1.20` with a
+  `32.76x` largest-tier ratio;
+- the refreshed migration audit: 1734 locally complete, 1687 fully verified,
+  47 blocked, 1677 scaling benchmarks, 57 certificates, and frontend ID 1735
+  first actionable;
+- the dataset checker after problem 1734: 3985 documents, 2654 manually
+  complete, and 1331 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1734 passed 164 tests and 47 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1734 passed apart from non-failing line-
+  ending notices;
+- problem 1735 is complete and remotely verified as submission `2070872449`.
+  Its live backend `question_id` is `1836`, and the exact
+  `Solution.waysToFillArray` Python source is Accepted;
+- the algorithm factors each requested product, distributes every prime
+  exponent across the ordered array positions with stars and bars, and
+  multiplies the independent binomial counts modulo $10^9+7$. Both app-local
+  and native forms matched an exhaustive ordered-factorization oracle on all
+  300 tested combinations with $1 \le n \le 5$ and $1 \le k \le 60$, in
+  addition to the ten authored correctness cases;
+- problem 1735's benchmark sizes are 24, 192, and 1,536 units of
+  $Q\lceil\sqrt K\rceil$ across repeated prime targets. The Accepted square-
+  root factorization and an independent multiplicative-combination form
+  passed. A correct full-divisor factorizer completed every output and failed
+  only scaling at `+0.46` with a `9.95x` largest-tier ratio;
+- the refreshed migration audit: 1735 locally complete, 1688 fully verified,
+  47 blocked, 1678 scaling benchmarks, 57 certificates, and frontend ID 1736
+  first actionable;
+- the dataset checker after problem 1735: 3985 documents, 2654 manually
+  complete, and 1331 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1735 passed 164 tests and 47 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1735 passed apart from non-failing line-
+  ending notices;
+- problem 1736 is complete and remotely verified as submission `2070877608`.
+  Its live backend `question_id` is `1858`, and the exact
+  `Solution.maximumTime` Python source is Accepted;
+- the greedy implementation couples the two hour digits, then independently
+  maximizes the minute tens and ones positions. It matched a reverse-
+  chronological oracle on all 2,926 distinct valid-completable patterns
+  generated from the 1,440 valid times and all 16 hidden-digit masks;
+- the fixed `hh:mm` contract has exactly four digit positions and cannot
+  support an honest scaling trend. Problem 1736 therefore uses a reviewed
+  `bounded_domain` certificate backed by the exhaustive pattern regression;
+- the refreshed migration audit: 1736 locally complete, 1689 fully verified,
+  47 blocked, 1678 scaling benchmarks, 58 certificates, and frontend ID 1737
+  first actionable;
+- the dataset checker after problem 1736: 3985 documents, 2655 manually
+  complete, and 1330 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1736 passed 165 tests and 48 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1736 passed apart from non-failing line-
+  ending notices;
+- problem 1737 is complete and remotely verified as submission `2070884850`.
+  Its live backend `question_id` is `1859`, and the exact
+  `Solution.minCharacters` Python source is Accepted;
+- the algorithm counts the fixed lowercase alphabet, evaluates both strict-
+  order directions at every valid boundary, and separately keeps the most
+  frequent shared target letter. Both app-local and native forms matched an
+  independent direct-condition oracle on 5,000 randomized string pairs in
+  addition to the ten authored correctness cases;
+- problem 1737's benchmark sizes are 64, 256, and 998 total characters across
+  descending alphabet cycles. The Accepted frequency-prefix implementation and
+  an independent `Counter` implementation passed. A correct insertion-sort
+  implementation completed every output and failed only scaling at `+1.13`
+  with a `55.20x` largest-tier ratio;
+- the refreshed migration audit: 1737 locally complete, 1690 fully verified,
+  47 blocked, 1679 scaling benchmarks, 58 certificates, and frontend ID 1738
+  first actionable;
+- the dataset checker after problem 1737: 3985 documents, 2656 manually
+  complete, and 1329 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1737 passed 165 tests and 48 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1737 passed apart from non-failing line-
+  ending notices;
+- problem 1738 is complete and remotely verified as submission `2070892203`.
+  Its live backend `question_id` is `1860`, and the exact
+  `Solution.kthLargestValue` Python source is Accepted;
+- the rolling two-row prefix-XOR recurrence and bounded size-$k$ min-heap
+  matched an independent full 2D prefix-table oracle on 5,000 randomized
+  matrices, in addition to all ten authored correctness cases;
+- problem 1738's benchmark sizes are 32, 128, and 512 matrix cells. The
+  accepted implementation and an independent full-prefix required-class
+  implementation passed. A correct insertion-sort implementation completed
+  every output and failed only scaling at `+1.03`, with a `79.16x`
+  largest-tier ratio;
+- the refreshed migration audit: 1738 locally complete, 1691 fully verified,
+  47 blocked, 1680 scaling benchmarks, 58 certificates, and frontend ID 1739
+  first actionable;
+- the dataset checker after problem 1738: 3985 documents, 2656 manually
+  complete, and 1329 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1738 passed 165 tests and 48 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1738 passed apart from non-failing line-
+  ending notices;
+- problem 1739 is complete and remotely verified as submission `2070897279`.
+  Its live backend `question_id` is `1861`, and the exact
+  `Solution.minimumBoxes` Python source is Accepted;
+- the two monotone binary searches locate the largest complete tetrahedral
+  corner stack and the smallest triangular staircase for its remainder. Both
+  solution forms matched a constructive incremental oracle for every input
+  from 1 through 100,000 and for 5,000 additional randomized legal inputs;
+- problem 1739's benchmark sizes are complete-stack heights 10, 100, and
+  1,000. The accepted implementation and an independent binary-search
+  implementation passed. A correct incremental construction completed every
+  output and failed only scaling at `+0.57`, with an `11.63x`
+  largest-tier ratio;
+- the refreshed migration audit: 1739 locally complete, 1692 fully verified,
+  47 blocked, 1681 scaling benchmarks, 58 certificates, and frontend ID 1740
+  first actionable;
+- the dataset checker after problem 1739: 3985 documents, 2657 manually
+  complete, and 1328 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1739 passed 165 tests and 48 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1739 passed apart from non-failing line-
+  ending notices;
+- problem 1740 is complete and remotely verified as Premium submission
+  `2070903370`. Its live backend `question_id` is `1883`, and the exact
+  `Solution.findDistance` Python source is Accepted;
+- the iterative parent/depth traversal avoids recursion depth limits and
+  matched an independent graph-distance oracle on 5,000 randomized trees in
+  addition to the ten authored correctness cases;
+- problem 1740's benchmark sizes are complete trees with 16, 64, and 256
+  nodes. The accepted implementation and an independent linear graph search
+  passed. A correct all-pairs graph traversal completed every output and
+  failed only scaling at `+1.16`, with a `211.92x` largest-tier ratio;
+- the refreshed migration audit: 1740 locally complete, 1693 fully verified,
+  47 blocked, 1682 scaling benchmarks, 58 certificates, and frontend ID 1741
+  first actionable;
+- the dataset checker after problem 1740: 3985 documents, 2658 manually
+  complete, and 1327 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1740 passed 165 tests and 48 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1740 passed apart from non-failing line-
+  ending notices;
+- problem 1741 is complete and remotely verified as MySQL submission
+  `2070908204`. Its live backend `question_id` is `1892`, and the exact grouped
+  duration query is Accepted;
+- the SQL groups by both `event_day` and `emp_id`, sums `out_time - in_time`,
+  and passed every authored fixture against an independent Python grouping
+  oracle;
+- because every visit row can change a returned group or its total, problem
+  1741 uses a reviewed `asymptotic_optimality` certificate matching the
+  $\Omega(R)$ inspection lower bound with an $O(R)$ grouped scan. Its dedicated
+  certificate regression covers all eight authored table fixtures;
+- the refreshed migration audit: 1741 locally complete, 1694 fully verified,
+  47 blocked, 1682 scaling benchmarks, 59 certificates, and frontend ID 1742
+  first actionable;
+- the dataset checker after problem 1741: 3985 documents, 2659 manually
+  complete, and 1326 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1741 passed 166 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1741 passed apart from non-failing line-
+  ending notices;
+- problem 1742 is complete and remotely verified as submission `2070912511`.
+  Its live backend `question_id` is `1844`, and the exact
+  `Solution.countBalls` Python source is Accepted;
+- the arithmetic digit-sum counter matched an independent string-based oracle
+  on all authored cases and 5,000 randomized legal intervals;
+- problem 1742's benchmark sizes are inclusive range lengths 16, 64, and 192.
+  The accepted implementation and an independent direct `Counter`
+  implementation passed. A correct repeated-count implementation completed
+  every output and failed only scaling at `+0.96`, with a `27.52x`
+  largest-tier ratio;
+- the refreshed migration audit: 1742 locally complete, 1695 fully verified,
+  47 blocked, 1683 scaling benchmarks, 59 certificates, and frontend ID 1743
+  first actionable;
+- the dataset checker after problem 1742: 3985 documents, 2660 manually
+  complete, and 1325 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1742 passed 166 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1742 passed apart from non-failing line-
+  ending notices;
+- problem 1743 is complete and remotely verified as submission `2070921602`.
+  Its live backend `question_id` is `1866`, and the exact
+  `Solution.restoreArray` Python source is Accepted;
+- the new `adjacent_path` semantic validator accepts either valid path
+  orientation while rejecting missing, duplicated, or nonadjacent values. It
+  has a focused regression, and both solution forms passed all authored cases
+  plus 5,000 randomized shuffled paths;
+- problem 1743's benchmark sizes are paths with 16, 64, and 192 values. The
+  accepted implementation and an independent linear DFS passed. A correct
+  raw-pair rescanning implementation completed every output and failed only
+  scaling at `+1.10`, with a `27.03x` largest-tier ratio;
+- the refreshed migration audit: 1743 locally complete, 1696 fully verified,
+  47 blocked, 1684 scaling benchmarks, 59 certificates, and frontend ID 1744
+  first actionable;
+- the dataset checker after problem 1743: 3985 documents, 2660 manually
+  complete, and 1325 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1743 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1743 passed apart from non-failing line-
+  ending notices;
+- problem 1744 is complete and remotely verified as submission `2070928863`.
+  Its live backend `question_id` is `1872`, and the exact `Solution.canEat`
+  Python source is Accepted;
+- the prefix-interval condition matched an explicit schedule-enumeration oracle
+  on every authored case and 5,000 randomized small instances, including the
+  strict earliest boundary, inclusive latest boundary, day zero, same-day type
+  transitions, and large products;
+- problem 1744's benchmark sizes are total input counts 8, 32, and 128, with
+  equal numbers of singleton types and final-type queries. The accepted
+  implementation and an independent prefix implementation passed. A correct
+  per-query summation completed every output and failed only scaling at
+  `+0.60`;
+- the refreshed migration audit: 1744 locally complete, 1697 fully verified,
+  47 blocked, 1685 scaling benchmarks, 59 certificates, and frontend ID 1745
+  first actionable;
+- the dataset checker after problem 1744: 3985 documents, 2660 manually
+  complete, and 1325 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1744 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1744 passed apart from non-failing line-
+  ending notices;
+- problem 1745 is complete and remotely verified as submission `2070934343`.
+  Its live backend `question_id` is `1871`, and the exact
+  `Solution.checkPartitioning` Python source is Accepted;
+- the quadratic palindrome-interval DP matched brute-force cut enumeration on
+  every one of the 2,040 binary strings of lengths 3 through 10 and on 5,000
+  additional randomized strings;
+- problem 1745's benchmark sizes are uniform strings of lengths 8, 20, and
+  40. The accepted implementation and an independent quadratic center-
+  expansion implementation passed. A correct exhaustive substring rescanner
+  completed every output and failed only scaling at `+1.00`;
+- the refreshed migration audit: 1745 locally complete, 1698 fully verified,
+  47 blocked, 1686 scaling benchmarks, 59 certificates, and frontend ID 1746
+  first actionable;
+- the dataset checker after problem 1745: 3985 documents, 2661 manually
+  complete, and 1324 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1745 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1745 passed apart from non-failing line-
+  ending notices;
+- problem 1746 is complete and remotely verified as Premium submission
+  `2070939079`. Its live backend `question_id` is `1893`, and the exact
+  `Solution.maxSumAfterOperation` Python source is Accepted;
+- the two-state mandatory-operation DP matched exhaustive operation-position
+  and subarray enumeration on all 19,530 arrays over values `-2..2` through
+  length six, plus 5,000 randomized arrays;
+- problem 1746's benchmark sizes are uniform negative-one arrays of lengths
+  16, 64, and 192. The accepted implementation and an independent linear
+  state recurrence passed. A correct try-every-operation implementation
+  completed every output and failed only scaling at `+1.19`, with a `79.38x`
+  largest-tier ratio;
+- the first audit correctly withheld local completion because the Goal had 58
+  words rather than the required 60. The Goal was expanded with a material
+  subarray-boundary statement, the dynamic-document tests were rerun, and the
+  refreshed audit then accepted the package;
+- the refreshed migration audit: 1746 locally complete, 1699 fully verified,
+  47 blocked, 1687 scaling benchmarks, 59 certificates, and frontend ID 1747
+  first actionable;
+- the dataset checker after problem 1746: 3985 documents, 2662 manually
+  complete, and 1323 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1746 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning; all nine
+  dynamic-document tests also passed after the Goal repair;
+- `git diff --check` after problem 1746 passed apart from non-failing line-
+  ending notices;
+- problem 1747 is complete and remotely verified as Premium MySQL submission
+  `2070948346`. Its live backend `question_id` is `1898`, and the exact
+  self-join query in `solutions/leetcode_mysql.sql` is Accepted;
+- the SQL query and every authored expected table matched an independent
+  closed-interval pairwise oracle across all eight correctness cases and all
+  three benchmark tiers, including shared endpoints, containment,
+  same-address overlap, sequential sessions, several accounts, and duplicate
+  conflicts;
+- problem 1747's benchmark sizes are dense overlapping session tables with
+  4, 12, and 36 rows. The accepted quadratic self-join passed with a `1.00x`
+  largest-tier ratio. A correct cubic three-way join completed every output
+  and failed only scaling at `+0.84`, with an `8.60x` largest-tier ratio;
+- the refreshed migration audit: 1747 locally complete, 1700 fully verified,
+  47 blocked, 1688 scaling benchmarks, 59 certificates, and frontend ID 1748
+  first actionable;
+- the dataset checker after problem 1747: 3985 documents, 2663 manually
+  complete, and 1322 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1747 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1747 passed apart from non-failing line-
+  ending notices;
+- problem 1748 is complete and remotely verified as submission `2070953221`.
+  Its live backend `question_id` is `1848`, and the exact bounded-frequency
+  `Solution.sumOfUnique` Python source is Accepted;
+- the incremental app-local implementation matched exhaustive arrays through
+  length seven over values `1..5`, plus 5,000 randomized legal arrays and
+  every authored correctness and benchmark fixture;
+- problem 1748's benchmark sizes are all-distinct legal arrays of lengths 6,
+  24, and 96. The accepted linear implementation passed with a `1.01x`
+  largest-tier ratio. A correct Python-level quadratic rescan completed every
+  output and failed only scaling at `+1.13`, with a `30.87x` largest-tier
+  ratio;
+- the refreshed migration audit: 1748 locally complete, 1701 fully verified,
+  47 blocked, 1689 scaling benchmarks, 59 certificates, and frontend ID 1749
+  first actionable;
+- the dataset checker after problem 1748: 3985 documents, 2663 manually
+  complete, and 1322 still needing authoring. The count is unchanged because
+  the replaced legacy 1748 document was already classified as manually
+  complete despite not meeting the canonical migration standard;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1748 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1748 passed apart from non-failing line-
+  ending notices;
+- problem 1749 is complete and remotely verified as submission `2070959223`.
+  Its live backend `question_id` is `1849`, and the exact prefix-extrema
+  `Solution.maxAbsoluteSum` Python source is Accepted;
+- live contract inspection corrected the legacy document's material semantic
+  error: the selected subarray is possibly empty, not necessarily nonempty.
+  The initial zero prefix now explicitly represents that baseline;
+- the prefix-extrema implementation matched exhaustive subarray enumeration
+  for every array through length eight over values `-2..2`, plus 5,000
+  randomized arrays and all authored fixtures;
+- problem 1749's benchmark sizes are all-one arrays of lengths 24, 96, and
+  380. The accepted linear implementation passed with a `1.00x` largest-tier
+  ratio. A correct quadratic subarray extender completed every output and
+  failed only scaling at `+1.27`, with a `145.69x` largest-tier ratio;
+- the refreshed migration audit: 1749 locally complete, 1702 fully verified,
+  47 blocked, 1690 scaling benchmarks, 59 certificates, and frontend ID 1750
+  first actionable;
+- the dataset checker after problem 1749: 3985 documents, 2663 manually
+  complete, and 1322 still needing authoring. The count is unchanged because
+  the replaced legacy 1749 document was already classified as manually
+  complete despite its stale semantics and noncanonical structure;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1749 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1749 passed apart from non-failing line-
+  ending notices;
+- problem 1750 is complete and remotely verified as submission `2070964996`.
+  Its live backend `question_id` is `1850`, and the exact maximal-boundary-run
+  `Solution.minimumLength` Python source is Accepted;
+- the two-pointer implementation matched a full legal-operation state search
+  for every string over `abc` through length ten and every authored fixture,
+  covering unequal run sizes, nonoverlap, one-character centers, and complete
+  deletion;
+- the initial largest benchmark fixture audit caught a transcription mismatch:
+  the actual legal string has 382 characters and leaves a four-character
+  center. Its declared size, expected result, and measurement wording were
+  corrected before calibration;
+- problem 1750's benchmark sizes are nested-boundary strings of lengths 25,
+  97, and 382. The accepted linear implementation passed with a `1.00x`
+  largest-tier ratio. A correct implementation that rebuilds the remaining
+  substring after every deletion completed every output and failed only
+  scaling at `+0.96`, with a `34.29x` largest-tier ratio;
+- the refreshed migration audit: 1750 locally complete, 1703 fully verified,
+  47 blocked, 1691 scaling benchmarks, 59 certificates, and frontend ID 1751
+  first actionable;
+- the dataset checker after problem 1750: 3985 documents, 2664 manually
+  complete, and 1321 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1750 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1750 passed apart from non-failing line-
+  ending notices;
+- problem 1751 is complete and remotely verified as submission `2070971379`.
+  Its live backend `question_id` is `1851`, and the exact sorted,
+  binary-search-transition `Solution.maxValue` Python source is Accepted;
+- the rolled dynamic program matched exhaustive subset scheduling on 5,000
+  randomized instances and every ordinary fixture, explicitly including the
+  inclusive-end-day rule and selecting fewer than `k` events;
+- an initial validation command incorrectly attempted the exponential subset
+  oracle on the 192-event benchmark and timed out. Validation was corrected
+  to keep exhaustive enumeration on small schedules and use the direct
+  all-overlap maximum-value oracle for benchmark tiers;
+- problem 1751's benchmark sizes are 16, 64, and 192 mutually overlapping
+  events with `k=4`. The accepted $O(n\log n+nk)$ implementation passed with a
+  `1.12x` largest-tier ratio. A correct memoized DP with linear compatible-
+  event searches completed every output and failed only scaling at `+0.83`;
+- the refreshed migration audit: 1751 locally complete, 1704 fully verified,
+  47 blocked, 1692 scaling benchmarks, 59 certificates, and frontend ID 1752
+  first actionable;
+- the dataset checker after problem 1751: 3985 documents, 2664 manually
+  complete, and 1321 still needing authoring. The count is unchanged because
+  the replaced legacy 1751 document was already classified as manually
+  complete despite its noncanonical structure;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1751 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1751 passed apart from non-failing line-
+  ending notices;
+- problem 1752 is complete and remotely verified as submission `2070980627`.
+  Its live backend `question_id` is `1878`, and the exact circular-descent
+  `Solution.check` Python source is Accepted;
+- the one-pass implementation matched explicit sorted-array rotation
+  enumeration for every array through length nine over values `1..4` and all
+  authored fixtures, including duplicates, zero rotation, the circular
+  boundary, reversed pairs, and one-element input;
+- problem 1752's benchmark sizes are 6, 24, and 96 ascending arrays with only
+  the final pair swapped, placing the second circular descent at the last
+  comparison so the accepted implementation scans the full tier. It passed
+  with a `1.01x` largest-tier ratio. A correct explicit all-rotations checker
+  completed every output and failed only scaling at `+1.42`, with a `92.10x`
+  largest-tier ratio;
+- the refreshed migration audit: 1752 locally complete, 1705 fully verified,
+  47 blocked, 1693 scaling benchmarks, 59 certificates, and frontend ID 1753
+  first actionable;
+- the dataset checker after problem 1752: 3985 documents, 2664 manually
+  complete, and 1321 still needing authoring. The count is unchanged because
+  the replaced legacy 1752 document was already classified as manually
+  complete despite its noncanonical structure;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1752 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1752 passed apart from non-failing line-
+  ending notices;
+- problem 1753 is complete and remotely verified as submission `2070986442`.
+  Its live backend `question_id` is `1879`, and the exact two-bound arithmetic
+  `Solution.maximumScore` Python source is Accepted;
+- the closed-form result matched exhaustive legal-move search for every pile
+  triple in `1..20` and all authored fixtures, including dominant piles,
+  exact balance, odd totals, permutation symmetry, and maximum values;
+- problem 1753's benchmark sizes are total stone counts 24, 192, and 1536
+  split equally among the three piles. The accepted constant-time formula
+  passed with a `1.01x` largest-tier ratio. A correct per-turn max-heap
+  simulation completed every output and failed only scaling at `+0.82`, with
+  a `49.23x` largest-tier ratio;
+- the refreshed migration audit: 1753 locally complete, 1706 fully verified,
+  47 blocked, 1694 scaling benchmarks, 59 certificates, and frontend ID 1754
+  first actionable;
+- the dataset checker after problem 1753: 3985 documents, 2665 manually
+  complete, and 1320 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1753 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1753 passed apart from non-failing line-
+  ending notices;
+- problem 1754 is complete and remotely verified as submission `2070991804`.
+  Its live backend `question_id` is `1880`, and the exact suffix-greedy
+  `Solution.largestMerge` Python source is Accepted;
+- the suffix-greedy source matched exhaustive merge enumeration for every pair
+  of strings over `abc` with individual lengths from 1 through 4, plus 5,000
+  random pairs with lengths from 1 through 8 over `abcd`;
+- problem 1754's benchmark sizes are total input lengths 16, 32, and 64 using
+  two equal repeated-character strings. The accepted quadratic suffix
+  strategy passed with a `1.06x` largest-tier ratio. A correct memoized
+  two-index search completed every output and failed only scaling at `+1.16`,
+  with a `13.74x` largest-tier ratio;
+- the refreshed migration audit: 1754 locally complete, 1707 fully verified,
+  47 blocked, 1695 scaling benchmarks, 59 certificates, and frontend ID 1755
+  first actionable;
+- the dataset checker after problem 1754: 3985 documents, 2666 manually
+  complete, and 1319 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1754 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1754 passed apart from non-failing line-
+  ending notices;
+- problem 1755 is complete and remotely verified as submission `2070998406`.
+  Its live backend `question_id` is `1881`, and the exact meet-in-the-middle
+  `Solution.minAbsDifference` Python source is Accepted;
+- the meet-in-the-middle source matched exhaustive subset enumeration on 8,000
+  random arrays across lengths 1 through 8, including mixed signs and goals
+  on both sides of zero;
+- problem 1755's benchmark sizes are array lengths 4, 8, and 16 with an
+  unreachable goal just beyond each all-one array sum. The accepted
+  meet-in-the-middle source passed with a `1.03x` largest-tier ratio. Correct
+  full subset enumeration completed every output and failed only scaling at
+  `+3.43`, with a `143.06x` largest-tier ratio;
+- the refreshed migration audit: 1755 locally complete, 1708 fully verified,
+  47 blocked, 1696 scaling benchmarks, 59 certificates, and frontend ID 1756
+  first actionable;
+- the dataset checker after problem 1755: 3985 documents, 2666 manually
+  complete, and 1319 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1755 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1755 passed apart from non-failing line-
+  ending notices;
+- problem 1756 is complete and remotely verified as submission `2071005009`.
+  Its live backend `question_id` is `1903`, and the exact square-root-decomposed
+  `MRUQueue` Python source is Accepted;
+- the block implementation matched direct list simulation across 400,000
+  randomized fetches for every queue size from 1 through 80, with the flattened
+  block state checked after every operation;
+- problem 1756's benchmark sizes are queue lengths 64, 256, and 1024, with
+  $\sqrt n$ middle-rank fetches at each tier. The accepted block source passed
+  with a `0.96x` largest-tier ratio. A correct explicit-shift array queue
+  completed every output and failed only scaling at `+0.61`, with a `6.47x`
+  largest-tier ratio;
+- the refreshed migration audit: 1756 locally complete, 1709 fully verified,
+  47 blocked, 1697 scaling benchmarks, 59 certificates, and frontend ID 1757
+  first actionable;
+- the dataset checker after problem 1756: 3985 documents, 2667 manually
+  complete, and 1318 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1756 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1756 passed apart from non-failing line-
+  ending notices;
+- problem 1757 is complete and remotely verified as submission `2071010937`.
+  Its live backend `question_id` is `1908`, and the exact conjunctive MySQL
+  projection is Accepted;
+- the query returned the exact expected table for all eight authored fixtures,
+  including all four flag combinations, empty and complete result sets,
+  single-flag exclusions, unsorted identifiers, and mixed rows;
+- problem 1757 uses a verified `asymptotic_optimality` certificate. Any
+  uninspected product row can independently change result membership, proving
+  an $\Omega(R)$ lower bound, while the accepted one-scan filter is $O(R)$;
+- the refreshed migration audit: 1757 locally complete, 1710 fully verified,
+  47 blocked, 1697 scaling benchmarks, 60 certificates, and frontend ID 1758
+  first actionable;
+- the dataset checker after problem 1757: 3985 documents, 2668 manually
+  complete, and 1317 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1757 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1757 passed apart from non-failing line-
+  ending notices;
+- problem 1758 is complete and remotely verified as submission `2071015368`.
+  Its live backend `question_id` is `1884`, and the exact one-count
+  `Solution.minOperations` Python source is Accepted;
+- the complement-count source matched explicit comparison against both valid
+  alternating targets for every binary string through length 12;
+- problem 1758's benchmark sizes are alternating strings of lengths 16, 64,
+  and 256. The accepted linear scan passed with a `0.91x` largest-tier ratio.
+  A correct implementation that rebuilt the full target for every position
+  completed every output and failed only scaling at `+1.31`, with a `163.05x`
+  largest-tier ratio;
+- the refreshed migration audit: 1758 locally complete, 1711 fully verified,
+  47 blocked, 1698 scaling benchmarks, 60 certificates, and frontend ID 1759
+  first actionable;
+- the dataset checker after problem 1758: 3985 documents, 2669 manually
+  complete, and 1316 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1758 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1758 passed apart from non-failing line-
+  ending notices;
+- problem 1759 is complete and remotely verified as submission `2071020056`.
+  Its live backend `question_id` is `1885`, and the exact run-length
+  `Solution.countHomogenous` Python source is Accepted;
+- the run-length contribution source matched explicit substring enumeration
+  for every string over `abc` through length 10;
+- problem 1759's benchmark sizes are uniform strings of lengths 32, 128, and
+  512. The accepted linear scan passed with a `1.00x` largest-tier ratio. A
+  correct start-and-extend substring enumeration completed every output and
+  failed only scaling at `+1.20`, with a `182.34x` largest-tier ratio;
+- the refreshed migration audit: 1759 locally complete, 1712 fully verified,
+  47 blocked, 1699 scaling benchmarks, 60 certificates, and frontend ID 1760
+  first actionable;
+- the dataset checker after problem 1759: 3985 documents, 2670 manually
+  complete, and 1315 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1759 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1759 passed apart from non-failing line-
+  ending notices;
+- problem 1760 is complete and remotely verified as submission `2071024454`.
+  Its live backend `question_id` is `1886`, and the exact feasibility-binary-
+  search `Solution.minimumSize` Python source is Accepted;
+- the binary-search source matched an exhaustive small-domain oracle plus
+  20,000 random arrays and operation budgets;
+- problem 1760's benchmark sizes are 6, 24, and 96 equal bags, each containing
+  64 balls with one allowed split per bag. The accepted $O(n\log M)$ source
+  passed with a `1.00x` largest-tier ratio. A universally correct binary search
+  that redundantly recomputed the feasibility sum once per bag completed every
+  output and failed only scaling at `+1.19`, with an `81.44x` largest-tier
+  ratio;
+- the refreshed migration audit: 1760 locally complete, 1713 fully verified,
+  47 blocked, 1700 scaling benchmarks, 60 certificates, and frontend ID 1761
+  first actionable;
+- the dataset checker after problem 1760: 3985 documents, 2670 manually
+  complete, and 1315 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1760 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1760 passed apart from non-failing line-
+  ending notices;
+- problem 1761 is complete and remotely verified as submission `2071030935`.
+  Its live backend `question_id` is `1887`, and the exact adjacency-matrix
+  `Solution.minTrioDegree` Python source is Accepted;
+- the triangle-degree source matched an independent explicit boundary-edge
+  oracle on 27,000 random graphs;
+- problem 1761's benchmark sizes are complete graphs on 4, 8, and 16 nodes.
+  The accepted cubic degree-formula source passed with a `1.00x` largest-tier
+  ratio. A correct implementation that scanned every outside node for each
+  triangle completed every output and failed only scaling at `+1.28`, with a
+  `6.42x` largest-tier ratio;
+- the refreshed migration audit: 1761 locally complete, 1714 fully verified,
+  47 blocked, 1701 scaling benchmarks, 60 certificates, and frontend ID 1762
+  first actionable;
+- the dataset checker after problem 1761: 3985 documents, 2671 manually
+  complete, and 1314 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1761 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1761 passed apart from non-failing line-
+  ending notices;
+- problem 1762 is complete and remotely verified as submission `2071035308`.
+  Its live backend `question_id` is `1909`, and the exact reverse-maximum
+  `Solution.findBuildings` Python source is Accepted;
+- the strict reverse-scan source matched the direct definition for every
+  duplicate-inclusive height array through length 8 plus 20,000 random arrays;
+- problem 1762's benchmark sizes are equal-height arrays of lengths 16, 64,
+  and 261. The accepted linear scan passed with a `1.01x` largest-tier ratio.
+  A correct explicit suffix scan completed every output and failed only
+  scaling at `+1.36`, with a `105.00x` largest-tier ratio;
+- the refreshed migration audit: 1762 locally complete, 1715 fully verified,
+  47 blocked, 1702 scaling benchmarks, 60 certificates, and frontend ID 1763
+  first actionable;
+- the dataset checker after problem 1762: 3985 documents, 2672 manually
+  complete, and 1313 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1762 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1762 passed apart from non-failing line-
+  ending notices;
+- problem 1763 is complete and remotely verified as submission `2071042376`.
+  Its live backend `question_id` is `1873`, and the exact divide-and-conquer
+  `Solution.longestNiceSubstring` Python source is Accepted;
+- the separator-based source matched earliest-tie exhaustive substring search
+  for every string over `aAbB` through length 9 plus 10,000 random strings;
+- problem 1763's benchmark sizes are all-lowercase strings of lengths 16, 32,
+  and 64, forcing maximally unbalanced recursion. The accepted quadratic
+  source passed with a `1.00x` largest-tier ratio. A correct exhaustive
+  substring checker completed every output and failed only scaling at `+1.08`,
+  with a `17.07x` largest-tier ratio;
+- the refreshed migration audit: 1763 locally complete, 1716 fully verified,
+  47 blocked, 1703 scaling benchmarks, 60 certificates, and frontend ID 1764
+  first actionable;
+- the dataset checker after problem 1763: 3985 documents, 2673 manually
+  complete, and 1312 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1763 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1763 passed apart from non-failing line-
+  ending notices;
+- problem 1764 is complete and remotely verified as submission `2071046626`.
+  Its live backend `question_id` is `1874`, and the exact per-group KMP
+  `Solution.canChoose` Python source is Accepted;
+- the ordered earliest-match source matched an exhaustive recursive
+  non-overlapping placement oracle on 50,000 random instances;
+- problem 1764's benchmark sizes are all-one `nums` arrays of lengths 16, 64,
+  and 244 with a roughly half-length group whose final value is two. The
+  accepted $O(N+S)$ KMP source passed with a `1.01x` largest-tier ratio. A
+  correct candidate-start matcher completed every output and failed only
+  scaling at `+0.85`, with a `9.45x` largest-tier ratio;
+- the refreshed migration audit: 1764 locally complete, 1717 fully verified,
+  47 blocked, 1704 scaling benchmarks, 60 certificates, and frontend ID 1765
+  first actionable;
+- the dataset checker after problem 1764: 3985 documents, 2673 manually
+  complete, and 1312 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1764 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1764 passed apart from non-failing line-
+  ending notices;
+- problem 1765 is complete and remotely verified as submission `2071052641`.
+  Its live backend `question_id` is `1876`, and the exact multi-source BFS
+  `Solution.highestPeak` Python source is Accepted;
+- the nearest-water distance source matched an independent Manhattan-distance
+  oracle on all 673 nonempty-water matrices through 3 by 3;
+- problem 1765's benchmark sizes are alternating-water one-row maps with 16,
+  64, and 128 cells. The accepted $O(RC)$ BFS source passed with a `1.00x`
+  largest-tier ratio. A correct implementation that checked every water source
+  for every cell completed every output and failed only scaling at `+0.90`,
+  with a `6.68x` largest-tier ratio;
+- the refreshed migration audit: 1765 locally complete, 1718 fully verified,
+  47 blocked, 1705 scaling benchmarks, 60 certificates, and frontend ID 1766
+  first actionable;
+- the dataset checker after problem 1765: 3985 documents, 2673 manually
+  complete, and 1312 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1765 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1765 passed apart from non-failing line-
+  ending notices;
+- problem 1766 is complete and remotely verified as submission `2071057867`.
+  Its live backend `question_id` is `1875`, and the exact iterative path-state
+  DFS `Solution.getCoprimes` Python source is Accepted;
+- the bounded-value source matched a direct ancestor-chain oracle on 50,000
+  random rooted trees;
+- problem 1766's benchmark sizes are all-value-2 chains with 8, 32, and 128
+  nodes. The accepted $O(n)$ source passed with a `1.00x` largest-tier ratio.
+  A correct direct ancestor scan completed every output and failed only
+  scaling at `+1.25`, with a `1.04x` largest-tier ratio;
+- the refreshed migration audit: 1766 locally complete, 1719 fully verified,
+  47 blocked, 1706 scaling benchmarks, 60 certificates, and frontend ID 1767
+  first actionable;
+- the dataset checker after problem 1766: 3985 documents, 2673 manually
+  complete, and 1312 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1766 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1766 passed apart from non-failing line-
+  ending notices;
+- problem 1767 is complete and remotely verified as submission `2071061981`.
+  Its live backend `question_id` is `1914`, and the exact recursive-enumeration
+  MySQL query is Accepted for the Premium problem;
+- problem 1767 uses a reviewed `asymptotic_optimality` certificate. With $T$
+  total valid task-subtask pairs, an empty `Executed` table forces an
+  $\Omega(T)$-row output, while the recursive CTE generates and anti-joins each
+  legal pair once for an $O(T)$ upper bound;
+- the refreshed migration audit: 1767 locally complete, 1720 fully verified,
+  47 blocked, 1706 scaling benchmarks, 61 certificates, and frontend ID 1768
+  first actionable;
+- the dataset checker after problem 1767: 3985 documents, 2674 manually
+  complete, and 1311 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1767 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1767 passed apart from non-failing line-
+  ending notices;
+- problem 1768 is complete and remotely verified as submission `2071065819`.
+  Its live backend `question_id` is `1894`, and the exact buffered
+  `Solution.mergeAlternately` Python source is Accepted;
+- the alternating-merge source matched an independent construction for all
+  3,844 ordered binary-word pairs through length 5;
+- problem 1768's benchmark sizes are total output lengths 16, 64, and 200.
+  The accepted $O(A+B)$ source passed with a `1.01x` largest-tier ratio. A
+  correct implementation that rebuilt every output prefix completed every
+  output and failed only scaling at `+1.32`, with a `62.79x` largest-tier
+  ratio;
+- the refreshed migration audit: 1768 locally complete, 1721 fully verified,
+  47 blocked, 1707 scaling benchmarks, 61 certificates, and frontend ID 1769
+  first actionable;
+- the dataset checker after problem 1768: 3985 documents, 2674 manually
+  complete, and 1311 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1768 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1768 passed apart from non-failing line-
+  ending notices;
+- problem 1769 is complete and remotely verified as submission `2071069356`.
+  Its live backend `question_id` is `1895`, and the exact two-direction
+  contribution `Solution.minOperations` Python source is Accepted;
+- the two-sweep source matched direct initial-position distance sums for all
+  32,766 binary strings through length 14;
+- problem 1769's benchmark sizes are empty-box strings of lengths 4, 16, and
+  64. The accepted $O(n)$ source passed with a `1.00x` largest-tier ratio. A
+  correct direct per-target distance scan completed every output and failed
+  only scaling at `+0.76`, with an `8.24x` largest-tier ratio;
+- the refreshed migration audit: 1769 locally complete, 1722 fully verified,
+  47 blocked, 1708 scaling benchmarks, 61 certificates, and frontend ID 1770
+  first actionable;
+- the dataset checker after problem 1769: 3985 documents, 2674 manually
+  complete, and 1311 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1769 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1769 passed apart from non-failing line-
+  ending notices;
+- problem 1770 is complete and remotely verified as submission `2071072835`.
+  Its live backend `question_id` is `1896`, and the exact rolling
+  `Solution.maximumScore` Python source is Accepted;
+- the two-boundary dynamic program matched exhaustive memoized choice search
+  on 50,000 random instances;
+- problem 1770's benchmark sizes are tied all-one instances with 4, 8, and 16
+  operations. The accepted $O(m^2)$ source passed with a `0.98x` largest-tier
+  ratio. A correct uncached choice enumeration completed every output and
+  failed only scaling at `+4.49`, with a `775.92x` largest-tier ratio;
+- the refreshed migration audit: 1770 locally complete, 1723 fully verified,
+  47 blocked, 1709 scaling benchmarks, 61 certificates, and frontend ID 1771
+  first actionable;
+- the dataset checker after problem 1770: 3985 documents, 2674 manually
+  complete, and 1311 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1770 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1770 passed apart from non-failing line-
+  ending notices;
+- problem 1771 is complete and remotely verified as submission `2071077530`.
+  Its live backend `question_id` is `1897`, and the exact rolling cross-boundary
+  `Solution.longestPalindrome` Python source is Accepted;
+- the boundary-aware LPS source matched exhaustive nonempty-subsequence
+  enumeration for all 3,844 ordered binary-word pairs through length 5;
+- problem 1771's benchmark sizes are total concatenated lengths 4, 8, and 16.
+  The accepted $O(L^2)$ source passed with a `0.99x` largest-tier ratio. A
+  correct exhaustive subsequence-pair search completed every output and failed
+  only scaling at `+4.09`, with a `416.85x` largest-tier ratio;
+- the refreshed migration audit: 1771 locally complete, 1724 fully verified,
+  47 blocked, 1710 scaling benchmarks, 61 certificates, and frontend ID 1772
+  first actionable;
+- the dataset checker after problem 1771: 3985 documents, 2675 manually
+  complete, and 1310 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1771 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1771 passed apart from non-failing line-
+  ending notices;
+- problem 1772 is complete and remotely verified as submission `2071081479`.
+  Its live backend `question_id` is `1919`, and the exact response-deduplicating
+  `Solution.sortFeatures` Python source is Accepted for the Premium problem;
+- the popularity source matched direct per-feature response counting on 50,000
+  random response sets;
+- problem 1772's benchmark sizes use 4, 16, and 64 equally unpopular features
+  with the same number of unrelated responses. The accepted
+  $O(W+F\log F)$ source passed with a `0.97x` largest-tier ratio. A correct
+  per-feature response rescan completed every output and failed only scaling
+  at `+0.82`, with a `10.64x` largest-tier ratio;
+- the refreshed migration audit: 1772 locally complete, 1725 fully verified,
+  47 blocked, 1711 scaling benchmarks, 61 certificates, and frontend ID 1773
+  first actionable;
+- the dataset checker after problem 1772: 3985 documents, 2676 manually
+  complete, and 1309 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1772 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1772 passed apart from non-failing line-
+  ending notices;
+- problem 1773 is complete and remotely verified as submission `2071085084`.
+  Its live backend `question_id` is `1899`, and the exact mapped-field
+  `Solution.countMatches` Python source is Accepted;
+- the field-index source matched direct rule evaluation on 50,000 randomized
+  item collections;
+- problem 1773's benchmark sizes use 4, 16, and 64 nonmatching items. The
+  accepted $O(n)$ source passed with a `1.00x` largest-tier ratio. A correct
+  prefix-recount implementation completed every output and failed only
+  scaling at `+0.94`, with a `15.49x` largest-tier ratio;
+- the refreshed migration audit: 1773 locally complete, 1726 fully verified,
+  47 blocked, 1712 scaling benchmarks, 61 certificates, and frontend ID 1774
+  first actionable;
+- the dataset checker after problem 1773: 3985 documents, 2676 manually
+  complete, and 1309 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1773 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1773 passed apart from non-failing line-
+  ending notices;
+- problem 1774 is complete and remotely verified as submission `2071091089`.
+  Its live backend `question_id` is `1900`, and the exact three-choice topping
+  sum `Solution.closestCost` Python source is Accepted;
+- the accepted source matched exhaustive enumeration on 50,000 randomized
+  base, topping, and target combinations;
+- problem 1774's benchmark sizes use 27, 243, and 2,187 distinct topping
+  multiplicity vectors. The accepted $O(n \cdot 3^m)$ source passed with a
+  `0.99x` largest-tier ratio. A correct redundant re-sorting implementation
+  completed every output and failed only scaling at `+0.26`, with a `2.52x`
+  largest-tier ratio;
+- the refreshed migration audit: 1774 locally complete, 1727 fully verified,
+  47 blocked, 1713 scaling benchmarks, 61 certificates, and frontend ID 1775
+  first actionable;
+- the dataset checker after problem 1774: 3985 documents, 2676 manually
+  complete, and 1309 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1774 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1774 passed apart from non-failing line-
+  ending notices;
+- problem 1775 is complete and remotely verified as submission `2071097113`.
+  Its live backend `question_id` is `1901`, and the exact five-gain-bucket
+  `Solution.minOperations` Python source is Accepted;
+- the accepted source matched an independent descending-gain oracle on 50,000
+  randomized pairs of arrays;
+- problem 1775's benchmark sizes use 32, 128, and 503 total array elements.
+  The accepted $O(n+m)$ source passed with a `0.99x` largest-tier ratio. A
+  correct repeated-best-gain search completed every output and failed only
+  scaling at `+0.36`, with a `3.42x` largest-tier ratio;
+- the refreshed migration audit: 1775 locally complete, 1728 fully verified,
+  47 blocked, 1714 scaling benchmarks, 61 certificates, and frontend ID 1776
+  first actionable;
+- the dataset checker after problem 1775: 3985 documents, 2676 manually
+  complete, and 1309 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1775 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1775 passed apart from non-failing line-
+  ending notices;
+- problem 1776 is complete and remotely verified as submission `2071101584`.
+  Its live backend `question_id` is `1902`, and the exact monotonic-stack
+  `Solution.getCollisionTimes` Python source is Accepted;
+- the accepted source matched an independent quadratic forward recurrence on
+  50,000 randomized ordered car collections;
+- problem 1776's benchmark sizes use 8, 32, and 128 increasing-speed cars.
+  The accepted $O(n)$ source passed with a `1.01x` largest-tier ratio. A
+  correct quadratic forward search completed every output and failed only
+  scaling at `+1.02`, with a `19.43x` largest-tier ratio;
+- the refreshed migration audit: 1776 locally complete, 1729 fully verified,
+  47 blocked, 1715 scaling benchmarks, 61 certificates, and frontend ID 1777
+  first actionable;
+- the dataset checker after problem 1776: 3985 documents, 2676 manually
+  complete, and 1309 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1776 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1776 passed apart from non-failing line-
+  ending notices;
+- problem 1777 is complete and remotely verified as submission `2071106548`.
+  Its live backend `question_id` is `1926`, and the exact conditional-
+  aggregation MySQL pivot is Accepted for the Premium problem. An earlier
+  unpivot candidate was remotely rejected, exposing the reversed table shape;
+  the contract, query, docs, cases, and complexity evidence were authored from
+  the corrected Accepted semantics;
+- the SQLite-compatible app-local pivot passed every authored sparse, dense,
+  ordering, and store-boundary fixture;
+- problem 1777 uses a verified `asymptotic_optimality` certificate: every one
+  of the $R$ source rows can determine an output cell, establishing
+  $\Omega(R)$, and one conditional hash-aggregation pass gives $O(R)$;
+- the refreshed migration audit: 1777 locally complete, 1730 fully verified,
+  47 blocked, 1715 scaling benchmarks, 62 certificates, and frontend ID 1778
+  first actionable;
+- the dataset checker after problem 1777: 3985 documents, 2677 manually
+  complete, and 1308 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1777 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1777 passed apart from non-failing line-
+  ending notices;
+- problem 1778 is complete and remotely verified as submission `2071111414`.
+  Its live backend `question_id` is `1931`, and the exact explicit-stack
+  `GridMaster` exploration plus BFS Python source is Accepted for the Premium
+  interactive problem;
+- the native artifact passed interactive simulations, while the app-local
+  adapter preserves the contract through deterministic `-1`/`0`/`1`/`2` grid
+  fixtures and a direct BFS;
+- problem 1778's benchmark sizes use 32, 128, and 512 reachable corridor
+  cells. The accepted/app-local $O(V)$ traversal passed with a `0.99x`
+  largest-tier ratio. A correct quadratic repeated-discovery implementation
+  completed every output and failed only scaling at `+0.76`, with an `18.97x`
+  largest-tier ratio;
+- the refreshed migration audit: 1778 locally complete, 1731 fully verified,
+  47 blocked, 1716 scaling benchmarks, 62 certificates, and frontend ID 1779
+  first actionable;
+- the dataset checker after problem 1778: 3985 documents, 2678 manually
+  complete, and 1307 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1778 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1778 passed apart from non-failing line-
+  ending notices;
+- problem 1779 is complete and remotely verified as submission `2071115561`.
+  Its live backend `question_id` is `1888`, and the exact one-pass
+  `Solution.nearestValidPoint` Python source is Accepted;
+- authored cases explicitly verify invalid-point filtering, zero distance,
+  strict improvement, equal-distance index preservation, and duplicate
+  coordinates;
+- problem 1779's benchmark sizes use 16, 64, and 256 invalid points. The
+  accepted $O(n)$ scan passed with a `1.00x` largest-tier ratio. A correct
+  prefix-rescan implementation completed every output and failed only scaling
+  at `+1.31`, with a `115.80x` largest-tier ratio;
+- the refreshed migration audit: 1779 locally complete, 1732 fully verified,
+  47 blocked, 1717 scaling benchmarks, 62 certificates, and frontend ID 1780
+  first actionable;
+- the dataset checker after problem 1779: 3985 documents, 2678 manually
+  complete, and 1307 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1779 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1779 passed apart from non-failing line-
+  ending notices;
+- problem 1780 is complete and remotely verified as submission `2071119878`.
+  Its live backend `question_id` is `1889`, and the exact ternary-digit
+  `Solution.checkPowersOfThree` Python source is Accepted;
+- the accepted/app-local source matched the complete subset-sum set of the
+  fifteen legal powers on 50,000 randomized inputs;
+- problem 1780 uses a verified `bounded_domain` certificate: every legal input
+  is smaller than $3^{15}$, so the accepted digit-extraction loop performs at
+  most fifteen iterations and cannot support an honest scaling verdict;
+- the refreshed migration audit: 1780 locally complete, 1733 fully verified,
+  47 blocked, 1717 scaling benchmarks, 63 certificates, and frontend ID 1781
+  first actionable;
+- the dataset checker after problem 1780: 3985 documents, 2679 manually
+  complete, and 1306 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1780 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1780 passed apart from non-failing line-
+  ending notices;
+- problem 1781 is complete and remotely verified as submission `2071124118`.
+  Its live backend `question_id` is `1890`, and the exact incremental
+  fixed-alphabet `Solution.beautySum` Python source is Accepted;
+- the accepted source matched exhaustive `Counter` evaluation on 50,000
+  randomized strings, including the corrected `"abaacc"` total of `12`;
+- problem 1781's benchmark sizes use 36, 528, and 8,256 substrings,
+  corresponding to source lengths 8, 32, and 128. The accepted $O(n^2)$
+  incremental counter passed with a `1.01x` largest-tier ratio. A correct
+  explicit per-substring character recount completed every output and failed
+  only scaling at `+0.20`, with a `2.21x` largest-tier ratio;
+- the refreshed migration audit: 1781 locally complete, 1734 fully verified,
+  47 blocked, 1718 scaling benchmarks, 63 certificates, and frontend ID 1782
+  first actionable;
+- the dataset checker after problem 1781: 3985 documents, 2680 manually
+  complete, and 1305 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1781 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1781 passed apart from non-failing line-
+  ending notices;
+- problem 1782 is complete and remotely verified as submission `2071130104`.
+  Its live backend `question_id` is `1891`, and the exact degree-sorting,
+  two-pointer, and parallel-edge correction `Solution.countPairs` Python
+  source is Accepted;
+- the accepted and app-local sources matched an explicit unordered-pair oracle
+  on 50,000 randomized multigraphs, including reversed parallel edges,
+  disconnected components, strict threshold equality, and multiple queries;
+- problem 1782's benchmark sizes are 16, 64, and 256 nodes on path graphs with
+  one query. The accepted $O(n\log n)$ implementation and an independent
+  binary-search implementation passed. A correct $O(n^2)$ unordered-pair
+  implementation completed every output and failed only scaling at `+1.01`,
+  with a `28.36x` largest-tier ratio;
+- the refreshed migration audit: 1782 locally complete, 1735 fully verified,
+  47 blocked, 1719 scaling benchmarks, 63 certificates, and frontend ID 1783
+  first actionable;
+- the dataset checker after problem 1782: 3985 documents, 2680 manually
+  complete, and 1305 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1782 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1782 passed apart from non-failing line-
+  ending notices;
+- problem 1783 is complete and remotely verified as submission `2071137876`.
+  Its live backend `question_id` is `1932`, and the exact four-branch
+  `UNION ALL`, player join, and grouped-count MySQL source is Accepted;
+- the accepted query was anchored to the authenticated paid statement, and
+  the app-local query passed seven SQL fixtures covering all four tournament
+  columns, clean sweeps, tied totals, repeated winners across years,
+  noncontiguous identifiers, unsorted players, and exclusion of nonwinners;
+- problem 1783 uses a verified `asymptotic_optimality` certificate. Every
+  championship winner cell can change the answer and every winning-player
+  group must be emitted, while the fixed four-way normalization, indexed
+  player lookup, and aggregation match the $O(C + K)$ bound;
+- the refreshed migration audit: 1783 locally complete, 1736 fully verified,
+  47 blocked, 1719 scaling benchmarks, 64 certificates, and frontend ID 1784
+  first actionable;
+- the dataset checker after problem 1783: 3985 documents, 2681 manually
+  complete, and 1304 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1783 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1783 passed apart from non-failing line-
+  ending notices;
+- problem 1784 is complete and remotely verified as submission `2071142571`.
+  Its live backend `question_id` is `1910`, and the exact `"01"` boundary
+  `Solution.checkOnesSegment` Python source is Accepted;
+- the app-local transition scan passed cases for minimum length, all ones,
+  trailing zeros, immediate and long-gap restarts, and several segments;
+- problem 1784's benchmark sizes are 4, 20, and 100 characters on all-one
+  strings. The accepted-equivalent transition scan and an independent linear
+  state machine passed. A correct prefix-rescanning implementation completed
+  every output and failed only scaling at `+1.03`, with a `29.90x`
+  largest-tier ratio;
+- the refreshed migration audit: 1784 locally complete, 1737 fully verified,
+  47 blocked, 1720 scaling benchmarks, 64 certificates, and frontend ID 1785
+  first actionable;
+- the dataset checker after problem 1784: 3985 documents, 2682 manually
+  complete, and 1303 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1784 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1784 passed apart from non-failing line-
+  ending notices;
+- problem 1785 is complete and remotely verified as submission `2071147155`.
+  Its live backend `question_id` is `1911`, and the exact absolute-gap ceiling
+  `Solution.minElements` Python source is Accepted;
+- the accepted and app-local sources matched the arithmetic oracle on 50,000
+  randomized arrays, limits, and goals, including exact multiples, zero gaps,
+  negative corrections, unit limits, and large integer boundaries;
+- problem 1785's benchmark sizes are 16, 64, and 256 array elements. Two
+  independent explicit $O(n)$ accumulators passed. A correct implementation
+  that recomputes every prefix sum completed every output and failed only
+  scaling at `+1.36`, with a `115.66x` largest-tier ratio;
+- the refreshed migration audit: 1785 locally complete, 1738 fully verified,
+  47 blocked, 1721 scaling benchmarks, 64 certificates, and frontend ID 1786
+  first actionable;
+- the dataset checker after problem 1785: 3985 documents, 2682 manually
+  complete, and 1303 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1785 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1785 passed apart from non-failing line-
+  ending notices;
+- problem 1786 is complete and remotely verified as submission `2071152926`.
+  Its live backend `question_id` is `1912`, and the exact destination-rooted
+  Dijkstra plus distance-ordered path-count DP Python source is Accepted;
+- the accepted and app-local sources matched explicit restricted-path
+  enumeration on 20,000 randomized connected graphs. Authored cases also
+  cover the single-node empty path, equal-distance exclusions, restricted
+  paths that are not shortest paths, shared suffixes, and a 31-layer
+  modulo-sensitive DAG;
+- problem 1786's benchmark sizes are 16, 64, and 256 nodes on path graphs
+  whose edge order is adversarial to relaxation. Two independent Dijkstra
+  implementations passed. Correct Bellman–Ford completed every output and
+  failed only scaling at `+1.00`, with a `45.53x` largest-tier ratio;
+- the refreshed migration audit: 1786 locally complete, 1739 fully verified,
+  47 blocked, 1722 scaling benchmarks, 64 certificates, and frontend ID 1787
+  first actionable;
+- the dataset checker after problem 1786: 3985 documents, 2683 manually
+  complete, and 1302 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1786 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1786 passed apart from non-failing line-
+  ending notices;
+- problem 1787 is complete and remotely verified as submission `2071160608`.
+  Its live backend `question_id` is `1913`, and the exact indexed
+  residue-frequency plus 1,024-state XOR DP Python source is Accepted. An
+  earlier accepted slicing variant was deliberately superseded so the exact
+  recorded source preserves the $O(X)$ auxiliary-space bound;
+- the accepted and app-local sources matched exhaustive group-assignment
+  search on 10,000 randomized small-domain inputs. That oracle also corrected
+  the mixed-frequency hidden fixture from a hand-computed `4` to the true
+  optimum `6`;
+- problem 1787 uses a verified `asymptotic_optimality` certificate. Every
+  input element can affect the optimum, while the complete legal XOR domain
+  is fixed at $X=1024$; the frequency-compressed $O(nX)$ DP is therefore
+  linear in the only unbounded workload variable;
+- the refreshed migration audit: 1787 locally complete, 1740 fully verified,
+  47 blocked, 1722 scaling benchmarks, 65 certificates, and frontend ID 1788
+  first actionable;
+- the dataset checker after problem 1787: 3985 documents, 2683 manually
+  complete, and 1302 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1787 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1787 passed apart from non-failing line-
+  ending notices;
+- problem 1788 is complete and remotely verified as submission `2071167085`.
+  Its live backend `question_id` is `1937`, and the exact positive-prefix plus
+  per-beauty adjusted-start Python source is Accepted;
+- the accepted and app-local sources matched explicit equal-endpoint pair
+  enumeration on 50,000 randomized gardens. That oracle also exposed and
+  removed an accidental repeated positive endpoint from the negative-endpoint
+  fixture;
+- problem 1788's benchmark sizes are 16, 64, and 256 equal positive flowers.
+  Two independent $O(n)$ prefix/hash-map implementations passed. Correct
+  endpoint-pair enumeration completed every output and failed only scaling at
+  `+1.08`, with a `49.69x` largest-tier ratio;
+- the refreshed migration audit: 1788 locally complete, 1741 fully verified,
+  47 blocked, 1723 scaling benchmarks, 65 certificates, and frontend ID 1789
+  first actionable;
+- the dataset checker after problem 1788: 3985 documents, 2684 manually
+  complete, and 1301 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1788 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1788 passed apart from non-failing line-
+  ending notices;
+- problem 1789 is complete and remotely verified as submission `2071174477`.
+  Its live backend `question_id` is `1942`, and the exact single-pass grouped
+  conditional-aggregation MySQL source is Accepted. An earlier accepted
+  window-function form was deliberately superseded to avoid a partition sort
+  and align the artifact with the linear certificate;
+- the app-local query passed seven SQL fixtures covering implicit single-row
+  primaries, explicit primaries before and after other memberships, primaries
+  that are not department-ID extrema, interleaved employees, and unsorted
+  identifiers;
+- problem 1789 uses a verified `asymptotic_optimality` certificate: every
+  membership row may determine an employee's answer, and one conditional hash
+  aggregation pass matches the $O(R)$ lower bound;
+- the refreshed migration audit: 1789 locally complete, 1742 fully verified,
+  47 blocked, 1723 scaling benchmarks, 66 certificates, and frontend ID 1790
+  first actionable;
+- the dataset checker after problem 1789: 3985 documents, 2685 manually
+  complete, and 1300 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1789 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1789 passed apart from non-failing line-
+  ending notices;
+- problem 1790 is complete and remotely verified as submission `2071179054`.
+  Its live backend `question_id` is `1915`, and the exact two-mismatch
+  Python source is Accepted;
+- the app-local adapter passed nine authored fixtures plus 50,000 randomized
+  comparisons against direct swap enumeration, covering already-equal
+  strings, one mismatch, a valid cross-pair, wrong cross-pairs, and more than
+  two mismatches;
+- problem 1790's benchmark sizes are string lengths 4, 20, and 100. The
+  reference and an independent linear implementation passed, while correct
+  pair enumeration returned every expected answer and failed only scaling at
+  extra exponent `+1.34` and largest-tier ratio `82.15x`;
+- the refreshed migration audit: 1790 locally complete, 1743 fully verified,
+  47 blocked, 1724 scaling benchmarks, 66 certificates, and frontend ID 1791
+  first actionable;
+- the dataset checker after problem 1790: 3985 documents, 2686 manually
+  complete, and 1299 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1790 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1790 passed apart from non-failing line-
+  ending notices;
+- problem 1791 is complete and remotely verified as submission `2071186244`.
+  Its live backend `question_id` is `1916`, and the exact two-edge
+  common-endpoint Python source is Accepted;
+- the app-local adapter passed eight authored fixtures plus 50,000 randomized
+  valid stars, covering every endpoint orientation, minimum three-node stars,
+  shuffled edges, and centers with the maximum node label;
+- problem 1791's benchmark sizes are valid stars with 16, 64, and 256 nodes.
+  The reference and independent constant-time implementations passed, while
+  correct degree counting returned every expected center and failed only
+  scaling at extra exponent `+0.39`;
+- the refreshed migration audit: 1791 locally complete, 1744 fully verified,
+  47 blocked, 1725 scaling benchmarks, 66 certificates, and frontend ID 1792
+  first actionable;
+- the dataset checker after problem 1791: 3985 documents, 2687 manually
+  complete, and 1298 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1791 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1791 passed apart from non-failing line-
+  ending notices;
+- problem 1792 is complete and remotely verified as submission `2071192178`.
+  Its live backend `question_id` is `1917`, and the exact marginal-gain
+  max-heap Python source is Accepted;
+- the app-local adapter passed eight authored floating-point fixtures using
+  the contract's `1e-5` tolerance and 20,000 randomized small instances
+  exhaustively compared against every possible allocation;
+- problem 1792's benchmark sizes are combined class-and-student workloads 32,
+  128, and 512 with equal class and extra-student counts. The reference and an
+  independent heap implementation passed, while correct full gain rescanning
+  returned every expected average and failed only scaling at extra exponent
+  `+0.99` and largest-tier ratio `32.59x`;
+- the refreshed migration audit: 1792 locally complete, 1745 fully verified,
+  47 blocked, 1726 scaling benchmarks, 66 certificates, and frontend ID 1793
+  first actionable;
+- the dataset checker after problem 1792: 3985 documents, 2687 manually
+  complete, and 1298 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1792 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1792 passed apart from non-failing line-
+  ending notices;
+- problem 1793 is complete and remotely verified as submission `2071200060`.
+  Its live backend `question_id` is `1918`, and the exact greedy two-pointer
+  Python source is Accepted;
+- the app-local adapter passed nine authored fixtures plus 50,000 randomized
+  arrays compared against quadratic enumeration, covering both endpoint
+  positions for `k`, equal plateaus, a deep minimum at `k`, and local optima;
+- problem 1793's final benchmark sizes are 32, 128, and 384 values with a
+  central required index. The reference and independent monotonic-stack
+  implementations passed, while correct interval enumeration completed all
+  tiers and failed only scaling at extra exponent `+1.11` and largest-tier
+  ratio `51.67x`;
+- the refreshed migration audit: 1793 locally complete, 1746 fully verified,
+  47 blocked, 1727 scaling benchmarks, 66 certificates, and frontend ID 1794
+  first actionable;
+- the dataset checker after problem 1793: 3985 documents, 2687 manually
+  complete, and 1298 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1793 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1793 passed apart from non-failing line-
+  ending notices;
+- problem 1794 is complete and remotely verified as submission `2071207039`.
+  Its authenticated Premium backend `question_id` is `1943`, and the exact
+  extreme-occurrence Python source is Accepted. The temporary authenticated
+  contract-fetch helper was deleted after use;
+- the app-local adapter passed nine authored fixtures plus 10,000 randomized
+  small string pairs compared against enumeration of the original equal-
+  substring quadruples, validating the proof that every minimum match has
+  length one;
+- problem 1794's benchmark sizes are total string lengths 32, 128, and 512
+  with repeated shared alphabets. The reference and independent fixed-array
+  scans passed, while correct all-pairs character comparison completed every
+  tier and failed only scaling at extra exponent `+1.37` and largest-tier
+  ratio `93.81x`;
+- the refreshed migration audit: 1794 locally complete, 1747 fully verified,
+  47 blocked, 1728 scaling benchmarks, 66 certificates, and frontend ID 1795
+  first actionable;
+- the dataset checker after problem 1794: 3985 documents, 2688 manually
+  complete, and 1297 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1794 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1794 passed apart from non-failing line-
+  ending notices;
+- problem 1795 is complete and remotely verified as submission `2071212915`.
+  Its live backend `question_id` is `1948`, and the exact three-branch
+  `UNION ALL` MySQL source is Accepted;
+- the app-local SQL passed seven unordered-table fixtures covering all-null
+  products, each individual store, all stores present, equal prices, zero and
+  negative non-null integers, sparse availability, and nonconsecutive IDs;
+- problem 1795 uses a verified `asymptotic_optimality` certificate: each of the
+  three nullable prices in every source row may independently change the
+  result, and three fixed filtered scans match the resulting $O(R)$ lower
+  bound;
+- the refreshed migration audit: 1795 locally complete, 1748 fully verified,
+  47 blocked, 1728 scaling benchmarks, 67 certificates, and frontend ID 1796
+  first actionable;
+- the dataset checker after problem 1795: 3985 documents, 2689 manually
+  complete, and 1296 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1795 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1795 passed apart from non-failing line-
+  ending notices;
+- problem 1796 is complete and remotely verified as submission `2071218601`.
+  Its live backend `question_id` is `1904`, and the exact two-distinct-rank
+  Python source is Accepted;
+- the app-local adapter passed nine authored fixtures plus 50,000 randomized
+  alphanumeric strings compared against a set-based oracle, covering no
+  digits, one repeated digit, zero as the answer, all ten digits, and both
+  rank-update orders;
+- problem 1796's benchmark sizes are 16, 64, and 256 characters with repeated
+  `9` and `8` digits. The reference and independent presence-set scans passed,
+  while correct all-pairs digit comparison completed every tier and failed
+  only scaling at extra exponent `+1.30` and largest-tier ratio `91.20x`;
+- the refreshed migration audit: 1796 locally complete, 1749 fully verified,
+  47 blocked, 1729 scaling benchmarks, 67 certificates, and frontend ID 1797
+  first actionable;
+- the dataset checker after problem 1796: 3985 documents, 2690 manually
+  complete, and 1295 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1796 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1796 passed apart from non-failing line-
+  ending notices;
+- problem 1797 is complete and remotely verified as submission `2071223815`.
+  Its live backend `question_id` is `1905`, and the exact
+  `AuthenticationManager` Python source is Accepted;
+- its app-local adapter preserves the native constructor and three method
+  contracts. The ordered mapping is kept in increasing expiration order:
+  cleanup removes only the expired prefix, and renewal moves an active token
+  to the newest position. Twenty thousand randomized stateful sequences
+  matched an independent dictionary oracle;
+- problem 1797's benchmark sizes are 32, 128, and 512 method calls after
+  construction. The reference and an independent hash-map-plus-queue
+  implementation passed. A correct implementation that scans the full token
+  map on every count completed every tier and failed only scaling at extra
+  exponent `+0.95` and largest-tier ratio `17.43x`;
+- the refreshed migration audit: 1797 locally complete, 1750 fully verified,
+  47 blocked, 1730 scaling benchmarks, 67 certificates, and frontend ID 1798
+  first actionable;
+- the dataset checker after problem 1797: 3985 documents, 2691 manually
+  complete, and 1294 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1797 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1797 passed apart from non-failing line-
+  ending notices;
+- problem 1798 is complete and remotely verified as submission `2071232759`.
+  Its live backend `question_id` is `1930`, and the exact greedy
+  `Solution.getMaximumConsecutive` Python source is Accepted;
+- its app-local adapter preserves the input by sorting a copy. Exhaustive
+  arrays through length six over values `1..6` and 50,000 randomized arrays
+  matched explicit subset-sum enumeration;
+- problem 1798's benchmark sizes are 32, 128, and 512 deterministically
+  shuffled bridgeable coins. The reference and an independent sort-and-scan
+  implementation passed. Correct selection sort completed every tier and
+  failed only scaling at extra exponent `+1.37` and largest-tier ratio
+  `216.73x`;
+- the refreshed migration audit: 1798 locally complete, 1751 fully verified,
+  47 blocked, 1731 scaling benchmarks, 67 certificates, and frontend ID 1799
+  first actionable;
+- the dataset checker after problem 1798: 3985 documents, 2691 manually
+  complete, and 1294 still needing authoring. The count is unchanged because
+  the replaced legacy document was already classified as manually complete;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1798 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1798 passed apart from non-failing line-
+  ending notices;
+- problem 1799 is complete and remotely verified as submission `2071239188`.
+  Its live backend `question_id` is `1906`, and the exact memoized bitmask-DP
+  `Solution.maxScore` Python source is Accepted;
+- its app-local adapter precomputes pairwise GCD values and memoizes by used
+  index mask. Exhaustive arrays of lengths two, four, and six over values
+  `1..5`, plus 10,000 randomized arrays through length eight, matched an
+  independent remaining-tuple oracle;
+- problem 1799's final benchmark sizes are 2, 8, and 12 positions. A proposed
+  14-position tier was removed because the accepted implementation reached the
+  traced-step safety cap, which is not valid scaling evidence. On the final
+  tiers the reference and independent bottom-up mask DP passed, while correct
+  tuple-state DP with an additional tuple-construction factor completed every
+  output and failed only scaling at extra exponent `+0.19`;
+- the refreshed migration audit: 1799 locally complete, 1752 fully verified,
+  47 blocked, 1732 scaling benchmarks, 67 certificates, and frontend ID 1800
+  first actionable;
+- the dataset checker after problem 1799: 3985 documents, 2691 manually
+  complete, and 1294 still needing authoring. The count is unchanged because
+  the replaced legacy document was already classified as manually complete;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1799 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1799 passed apart from non-failing line-
+  ending notices;
+- problem 1800 is complete and remotely verified as submission `2071246478`.
+  Its live backend `question_id` is `1927`, and the exact one-pass
+  `Solution.maxAscendingSum` Python source is Accepted;
+- its canonical document preserves the strict `ascending` vocabulary and
+  explicitly treats equality as a run break. Exhaustive arrays through length
+  seven over values `1..5`, plus 50,000 randomized legal arrays, matched
+  explicit ascending-subarray enumeration;
+- problem 1800's benchmark sizes are 6, 25, and 100 fully ascending values.
+  The reference and independent run-sum scans passed. Correct enumeration from
+  every starting position completed all tiers and failed only scaling at extra
+  exponent `+1.16` and largest-tier ratio `33.84x`;
+- the refreshed migration audit: 1800 locally complete, 1753 fully verified,
+  47 blocked, 1733 scaling benchmarks, 67 certificates, and frontend ID 1801
+  first actionable;
+- the dataset checker after problem 1800: 3985 documents, 2691 manually
+  complete, and 1294 still needing authoring. The count is unchanged because
+  the replaced legacy document was already classified as manually complete;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1800 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1800 passed apart from non-failing line-
+  ending notices;
+- problem 1801 is complete and remotely verified as submission `2071251303`.
+  Its live backend `question_id` is `1928`, and the exact two-heap
+  `Solution.getNumberOfBacklogOrders` Python source is Accepted;
+- its app-local adapter preserves lowest-sell and highest-buy price priority,
+  partial fills, inclusive equal-price matches, and final-only modulo
+  reduction. Fifty thousand randomized order streams matched an independent
+  price-scanning backlog oracle;
+- problem 1801's benchmark sizes are 32, 128, and 512 noncrossing orders. The
+  reference and independent heap implementations passed. A correct backlog
+  list that scans for the best opposite price completed every tier and failed
+  only scaling at extra exponent `+0.99` and largest-tier ratio `35.34x`;
+- the refreshed migration audit: 1801 locally complete, 1754 fully verified,
+  47 blocked, 1734 scaling benchmarks, 67 certificates, and frontend ID 1802
+  first actionable;
+- the dataset checker after problem 1801: 3985 documents, 2691 manually
+  complete, and 1294 still needing authoring. The count is unchanged because
+  the replaced legacy document was already classified as manually complete;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1801 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1801 passed apart from non-failing line-
+  ending notices;
+- problem 1802 is complete and remotely verified as submission `2071256889`.
+  Its live backend `question_id` is `1929`, and the exact arithmetic
+  binary-search `Solution.maxValue` Python source is Accepted;
+- its app-local adapter computes the minimum positive bounded mountain for a
+  candidate peak using arithmetic progressions. Exhaustive contracts with
+  `n <= 10` and budgets through 30, plus 50,000 randomized contracts, matched
+  explicit mountain construction;
+- problem 1802's benchmark sizes are 32, 128, and 512 with central targets and
+  `maxSum = n^2`. The reference and independent arithmetic searches passed.
+  Correct binary search that explicitly constructs each candidate slope
+  completed every tier and failed only scaling at extra exponent `+0.97` and
+  largest-tier ratio `30.61x`;
+- the refreshed migration audit: 1802 locally complete, 1755 fully verified,
+  47 blocked, 1735 scaling benchmarks, 67 certificates, and frontend ID 1803
+  first actionable;
+- the dataset checker after problem 1802: 3985 documents, 2692 manually
+  complete, and 1293 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1802 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1802 passed apart from non-failing line-
+  ending notices;
+- problem 1803 is complete and remotely verified as submission `2071263486`.
+  Its live backend `question_id` is `1907`, and the exact incremental binary-
+  trie `Solution.countPairs` Python source is Accepted;
+- its app-local adapter computes the inclusive interval as
+  `count_less(high + 1) - count_less(low)` and inserts each value only after
+  querying earlier indices. Exhaustive arrays through length five over values
+  `1..6` with every bound interval inside `1..8`, plus 50,000 randomized legal
+  arrays, matched direct pair enumeration;
+- problem 1803's benchmark sizes are 32, 128, and 512 deterministic legal
+  values with mixed 15-bit paths. The reference and independent array-backed
+  tries passed. Correct direct pair enumeration completed every tier and
+  failed only scaling at extra exponent `+0.84`;
+- the refreshed migration audit: 1803 locally complete, 1756 fully verified,
+  47 blocked, 1736 scaling benchmarks, 67 certificates, and frontend ID 1804
+  first actionable;
+- the dataset checker after problem 1803: 3985 documents, 2692 manually
+  complete, and 1293 still needing authoring. The count is unchanged because
+  the replaced legacy document was already classified as manually complete;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1803 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1803 passed apart from non-failing line-
+  ending notices;
+- problem 1804 is complete and remotely verified as Premium submission
+  `2071466128`. Its live backend `question_id` is `1949`, and the exact
+  counted `Trie` Python class is Accepted;
+- its app-local sequence adapter distinguishes terminal word multiplicity from
+  path prefix multiplicity and decrements exactly one guaranteed-present
+  occurrence on erase. Twenty thousand randomized stateful operation
+  sequences matched a `Counter`-based word-multiset oracle;
+- problem 1804's benchmark sizes are 32, 128, and 512 method calls with shared
+  prefixes. The reference and independent counted tries passed. A correct
+  complete-word multiset that scans every word for each prefix query completed
+  every tier and failed only scaling at extra exponent `+0.86` and largest-
+  tier ratio `11.09x`;
+- the refreshed migration audit: 1804 locally complete, 1757 fully verified,
+  47 blocked, 1737 scaling benchmarks, 67 certificates, and frontend ID 1805
+  first actionable;
+- the dataset checker after problem 1804: 3985 documents, 2693 manually
+  complete, and 1292 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1804 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1804 passed apart from non-failing line-
+  ending notices;
+- problem 1805 is complete and remotely verified as submission `2071474992`.
+  Its live backend `question_id` is `1933`, and the exact one-pass
+  `Solution.numDifferentIntegers` Python source is Accepted;
+- its app-local adapter extracts maximal digit runs and normalizes leading
+  zeros without fixed-width integer conversion. Every string through length
+  eight over `a`, `b`, `0`, and `1`, plus 50,000 randomized legal strings,
+  matched an independent regular-expression oracle;
+- problem 1805's benchmark sizes are 60, 240, and 960 characters with dense
+  unique decimal tokens. The reference and independent regex-plus-set
+  implementation passed. Python's built-in list membership scaled too well to
+  serve as slower-class evidence, so it was rejected as a calibration
+  candidate. Correct explicit pairwise canonical-string comparison completed
+  every tier and failed only scaling at extra exponent `+0.93` and largest-
+  tier ratio `49.15x`;
+- the refreshed migration audit: 1805 locally complete, 1758 fully verified,
+  47 blocked, 1738 scaling benchmarks, 67 certificates, and frontend ID 1806
+  first actionable;
+- the dataset checker after problem 1805: 3985 documents, 2694 manually
+  complete, and 1291 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1805 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1805 passed apart from non-failing line-
+  ending notices;
+- problem 1806 is complete and remotely verified as submission `2071483819`.
+  Its live backend `question_id` is `1935`, and the exact representative-index
+  cycle `Solution.reinitializePermutation` Python source is Accepted;
+- its app-local adapter follows the even-or-odd source-index permutation and
+  relies on its multiplication-by-inverse-two interpretation modulo `n - 1`.
+  It matched full-array permutation simulation for every legal even `n` from
+  2 through 1000;
+- problem 1806's benchmark sizes are 32, 128, and 512, whose power-of-two
+  lengths have cycle answers 5, 7, and 9. The reference and independent
+  modular-order implementations passed. Correct full-array simulation
+  completed every tier and failed only scaling at extra exponent `+0.95` and
+  largest-tier ratio `34.48x`;
+- the refreshed migration audit: 1806 locally complete, 1759 fully verified,
+  47 blocked, 1739 scaling benchmarks, 67 certificates, and frontend ID 1807
+  first actionable;
+- the dataset checker after problem 1806: 3985 documents, 2694 manually
+  complete, and 1291 still needing authoring. The count is unchanged because
+  the replaced legacy document was already classified as manually complete;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1806 passed 167 tests and 49 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1806 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1666: 3985 documents, 2625 manually
+  complete, and 1360 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1666 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1666 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1665: 3985 documents, 2624 manually
+  complete, and 1361 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1665 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1665 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1664: 3985 documents, 2624 manually
+  complete, and 1361 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1664 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1664 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1663: 3985 documents, 2624 manually
+  complete, and 1361 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1663 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1663 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1662: 3985 documents, 2623 manually
+  complete, and 1362 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1662 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1662 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1661: 3985 documents, 2623 manually
+  complete, and 1362 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1661 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1661 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1660: 3985 documents, 2622 manually
+  complete, and 1363 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1660 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1660 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1659: 3985 documents, 2621 manually
+  complete, and 1364 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1659 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1659 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1658: 3985 documents, 2620 manually
+  complete, and 1365 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1658 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1658 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1657: 3985 documents, 2620 manually
+  complete, and 1365 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1657 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- `git diff --check` after problem 1657 passed apart from non-failing line-
+  ending notices;
+- the dataset checker after problem 1656: 3985 documents, 2619 manually
+  complete, and 1366 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1656 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1655: 3985 documents, 2619 manually
+  complete, and 1366 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1655 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1654: 3985 documents, 2619 manually
+  complete, and 1366 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1654 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1653: 3985 documents, 2619 manually
+  complete, and 1366 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1653 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1652: 3985 documents, 2618 manually
+  complete, and 1367 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1652 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1651: 3985 documents, 2618 manually
+  complete, and 1367 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1651 passed 153 tests and 40 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1650: 3985 documents, 2617 manually
+  complete, and 1368 still needing authoring;
+- the focused validated-case and dynamic-documentation suite after problem
+  1650 passed 121 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the dataset checker after problem 1649: 3985 documents, 2616 manually
+  complete, and 1369 still needing authoring;
+- the focused validated-case and dynamic-documentation suite after problem
+  1649 passed 120 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the dataset checker after problem 1648: 3985 documents, 2616 manually
+  complete, and 1369 still needing authoring;
+- the focused validated-case and dynamic-documentation suite after problem
+  1648 passed 120 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the dataset checker after problem 1647: 3985 documents, 2616 manually
+  complete, and 1369 still needing authoring;
+- the dataset checker after problem 1646: 3985 documents, 2615 manually
+  complete, and 1370 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1646 passed 151 tests and 39 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1645: 3985 documents, 2615 manually
+  complete, and 1370 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1645 passed 150 tests and 38 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1644: 3985 documents, 2614 manually
+  complete, and 1371 still needing authoring;
+- the dataset checker after problem 1643: 3985 documents, 2613 manually
+  complete, and 1372 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1643 passed 149 tests and 37 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1642: 3985 documents, 2613 manually
+  complete, and 1372 still needing authoring;
+- the dataset checker after problem 1641: 3985 documents, 2613 manually
+  complete, and 1372 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1641 passed 148 tests and 36 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1640: 3985 documents, 2612 manually
+  complete, and 1373 still needing authoring;
+- the dataset checker after problem 1639: 3985 documents, 2612 manually
+  complete, and 1373 still needing authoring;
+- the dataset checker after problem 1638: 3985 documents, 2612 manually
+  complete, and 1373 still needing authoring;
+- the dataset checker after problem 1637: 3985 documents, 2611 manually
+  complete, and 1374 still needing authoring;
+- the dataset checker after problem 1636: 3985 documents, 2611 manually
+  complete, and 1374 still needing authoring;
+- the focused validated-case and dynamic-document suite after problem 1636
+  passed 120 tests, with only the existing Starlette `httpx` deprecation
+  warning;
+- the dataset checker after problem 1635: 3985 documents, 2611 manually
+  complete, and 1374 still needing authoring;
+- the combined complexity-certificate, validated-case, and dynamic-document
+  suite after problem 1635 passed 147 tests and 35 certificate-route subtests,
+  with only the existing Starlette `httpx` deprecation warning;
+- the dataset checker after problem 1619: 3985 documents, 2602 manually
+  complete, and 1383 still needing authoring;
+- the dataset checker after problem 1615: 3985 documents, 2599 manually
+  complete, and 1386 still needing authoring;
 - the dataset checker after problem 1613: 3985 documents, 2597 manually
   complete, and 1388 still needing authoring;
 - the dataset checker after problem 1612: 3985 documents, 2596 manually
@@ -2657,7 +5836,7 @@ Get-Content dsa\leetcode\_reports\two_sum_migration_progress.md
 The expected branch is `main`, and the expected committed migration checkpoint is
 `97717019379cb191b141940935075f9667ece6c4`. The refreshed first actionable
 package should be
-`dsa/leetcode/1614_maximum-nesting-depth-of-the-parentheses`. If
+`dsa/leetcode/1807_evaluate-the-bracket-pairs-of-a-string`. If
 any of those facts differ, trust the live worktree and refreshed audit,
 investigate the drift, and preserve rather than discard changes.
 
@@ -2674,7 +5853,7 @@ For the next native candidate, replace the frontend ID in:
 
 ```powershell
 $env:ELECTRON_RUN_AS_NODE=$null
-npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1614
+npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1807
 ```
 
 ## Exact prompt for a new Codex session
@@ -2691,12 +5870,14 @@ Copy and paste this entire block into the new session:
 > `dsa/leetcode/_reports/ACTIVE_MIGRATION_HANDOFF.md`, and
 > `dsa/leetcode/_reports/two_sum_migration_progress.md` completely. Then run a
 > fresh migration audit and treat the live worktree and generated reports as
-> authoritative. Problems through frontend ID 1613 are locally complete;
-> 1566 packages are remotely verified. Problems 1413 through 1426 have
+> authoritative. Problems through frontend ID 1806 are locally complete;
+> 1759 packages are remotely verified. Problems 1413 through 1426 have
 > recorded Electron credential-decryption blockers, while 1463 through 1495
-> have recorded Chrome-not-running launch-policy blockers. The expected first
+> have recorded Chrome-not-running launch-policy blockers. The former
+> expired-session blockers for problems 1728 through 1732 were cleared after
+> all five candidates were remotely Accepted. The expected first
 > actionable package is
-> `dsa/leetcode/1614_maximum-nesting-depth-of-the-parentheses`,
+> `dsa/leetcode/1807_evaluate-the-bracket-pairs-of-a-string`,
 > but follow
 > the refreshed audit if it differs.
 > Continue autonomously in numeric frontend-ID order and do not stop after

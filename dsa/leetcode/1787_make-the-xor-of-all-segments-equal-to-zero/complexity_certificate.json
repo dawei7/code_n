@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1787",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(nX)",
+  "summary": "The input must be inspected and the XOR domain is contractually fixed at X = 1024; frequency-compressed residue-class DP performs O(nX) work, which is linear in n under the complete legal domain.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(nX) = O(n) for fixed X = 1024",
+    "argument": "Changing any one array value can change its residue-class frequency and the optimum, so an exact algorithm must inspect all n inputs. Every legal value is ten-bit, fixing the complete XOR state domain at X = 1024 rather than allowing it to grow with n. The DP crosses each observed group value with X states; the total number of observed distinct values across groups is at most n, giving O(nX) = O(n) time over the legal contract."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Any uninspected element may be the occurrence that changes a residue class's best retained value and therefore the minimum number of edits."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Counting groups is O(n); baseline initialization is O(kX); and transitions total O(X times the sum of group distinct counts), at most O(nX), with X fixed at 1024."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover k = 1, k = n, zero required changes, one required change, periodic classes, mixed group frequencies, a singleton, and the maximum legal value 1023."
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
   "difficulty": "Medium",
   "acceptance_rate": 57.82961652719328,
+  "frequency": 75.3,
+  "elo_rating": 1672.1678031263,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

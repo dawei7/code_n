@@ -6,6 +6,9 @@
   "title": "Convert Date to Binary",
   "difficulty": "Easy",
   "acceptance_rate": 88.48094009744912,
+  "frequency": 13.6,
+  "elo_rating": 1205.6588098967,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

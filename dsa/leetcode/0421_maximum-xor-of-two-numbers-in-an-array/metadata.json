@@ -6,6 +6,9 @@
   "title": "Maximum XOR of Two Numbers in an Array",
   "difficulty": "Medium",
   "acceptance_rate": 53.613018289484415,
+  "frequency": 56.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1537.491353,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

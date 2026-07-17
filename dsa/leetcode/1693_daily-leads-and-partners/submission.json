@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1837",
+  "frontend_id": "1693",
+  "title_slug": "daily-leads-and-partners",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070583898",
+  "verified_at": "2026-07-17T04:16:42.697795+00:00"
+}

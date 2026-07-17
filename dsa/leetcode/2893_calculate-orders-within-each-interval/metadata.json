@@ -6,6 +6,9 @@
   "title": "Calculate Orders Within Each Interval",
   "difficulty": "Medium",
   "acceptance_rate": 67.21708831995153,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1406.412993,
   "category": "database",
   "category_title": "Database",
   "topics": [

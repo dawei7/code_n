@@ -6,6 +6,9 @@
   "title": "Largest Values From Labels",
   "difficulty": "Medium",
   "acceptance_rate": 64.476915979902,
+  "frequency": 0.0,
+  "elo_rating": 1501.1152614679,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

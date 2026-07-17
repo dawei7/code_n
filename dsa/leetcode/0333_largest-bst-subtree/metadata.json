@@ -6,6 +6,9 @@
   "title": "Largest BST Subtree",
   "difficulty": "Medium",
   "acceptance_rate": 45.90413040475204,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1645.70876,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

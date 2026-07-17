@@ -6,6 +6,9 @@
   "title": "Find Missing Observations",
   "difficulty": "Medium",
   "acceptance_rate": 57.37450551891523,
+  "frequency": 35.0,
+  "elo_rating": 1444.6795731919,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1652",
+  "cases": [
+    {"id":"sample-positive","name":"sample: positive full neighbor window wraps forward","kind":"sample","visible":true,"input":{"code":[5,7,1,4],"k":3},"expected":[12,10,16,13],"tags":["sample","positive","wraparound"]},
+    {"id":"sample-zero","name":"sample: zero key clears every position","kind":"sample","visible":true,"input":{"code":[1,2,3,4],"k":0},"expected":[0,0,0,0],"tags":["sample","zero"]},
+    {"id":"sample-negative","name":"sample: negative key sums previous values","kind":"sample","visible":true,"input":{"code":[2,4,9,3],"k":-2},"expected":[12,5,6,13],"tags":["sample","negative","wraparound"]},
+    {"id":"trial-single","name":"trial: singleton array permits only a zero key","kind":"trial","visible":true,"input":{"code":[100],"k":0},"expected":[0],"tags":["minimum-length"]},
+    {"id":"trial-next-one","name":"trial: each value becomes its circular successor","kind":"trial","visible":true,"input":{"code":[10,20,30],"k":1},"expected":[20,30,10],"tags":["positive","single-neighbor"]},
+    {"id":"real-previous-one","name":"hidden: each value becomes its circular predecessor","kind":"real","visible":false,"input":{"code":[10,20,30],"k":-1},"expected":[30,10,20],"tags":["negative","single-neighbor"]},
+    {"id":"real-forward-two","name":"hidden: two-value forward window crosses boundary","kind":"real","visible":false,"input":{"code":[1,2,3,4,5],"k":2},"expected":[5,7,9,6,3],"tags":["positive","wraparound"]},
+    {"id":"real-all-previous","name":"hidden: maximum negative key includes every other value","kind":"real","visible":false,"input":{"code":[1,2,3,4,5],"k":-4},"expected":[14,13,12,11,10],"tags":["negative","maximum-window"]},
+    {"id":"real-all-next","name":"hidden: maximum positive key includes every other value","kind":"real","visible":false,"input":{"code":[7,1,9,2,6],"k":4},"expected":[18,24,16,23,19],"tags":["positive","maximum-window"]},
+    {"id":"real-two-values","name":"hidden: two-element negative window wraps on every step","kind":"real","visible":false,"input":{"code":[8,6],"k":-1},"expected":[6,8],"tags":["minimum-nonzero-window","negative"]}
+  ]
+}

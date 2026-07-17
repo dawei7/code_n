@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1794",
+  "cases": [
+    {
+      "id": "example-one-minimum-pair",
+      "name": "one character pair achieves the minimum difference",
+      "kind": "sample",
+      "visible": true,
+      "input": {"firstString": "abcd", "secondString": "bccda"},
+      "expected": 1,
+      "tags": ["example", "single-minimum"]
+    },
+    {
+      "id": "example-no-common-character",
+      "name": "no equal nonempty substrings exist",
+      "kind": "sample",
+      "visible": true,
+      "input": {"firstString": "ab", "secondString": "cd"},
+      "expected": 0,
+      "tags": ["example", "disjoint-alphabets"]
+    },
+    {
+      "id": "trial-identical-distinct-letters",
+      "name": "three singleton pairs tie at zero difference",
+      "kind": "trial",
+      "visible": true,
+      "input": {"firstString": "abc", "secondString": "abc"},
+      "expected": 3,
+      "tags": ["tie", "identical-strings"]
+    },
+    {
+      "id": "real-repeated-single-letter",
+      "name": "hidden: earliest and latest repeated occurrences are unique",
+      "kind": "real",
+      "visible": false,
+      "input": {"firstString": "aaaa", "secondString": "aaaa"},
+      "expected": 1,
+      "tags": ["repeated-character", "unique-extremes"]
+    },
+    {
+      "id": "real-two-character-tie",
+      "name": "hidden: two shared characters have equal best differences",
+      "kind": "real",
+      "visible": false,
+      "input": {"firstString": "ab", "secondString": "zzab"},
+      "expected": 2,
+      "tags": ["tie", "shifted-occurrences"]
+    },
+    {
+      "id": "real-long-equal-substring-not-minimal",
+      "name": "hidden: the whole equal string loses to singleton pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {"firstString": "ab", "secondString": "ab"},
+      "expected": 2,
+      "tags": ["long-substring", "singleton-reduction"]
+    },
+    {
+      "id": "real-negative-minimum-difference",
+      "name": "hidden: late occurrence in second string creates a negative minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {"firstString": "zzab", "secondString": "abzz"},
+      "expected": 1,
+      "tags": ["negative-difference", "repetition"]
+    },
+    {
+      "id": "real-one-character-inputs-match",
+      "name": "hidden: minimum matching inputs form one quadruple",
+      "kind": "real",
+      "visible": false,
+      "input": {"firstString": "q", "secondString": "q"},
+      "expected": 1,
+      "tags": ["minimum-length", "match"]
+    },
+    {
+      "id": "real-all-letters-tie",
+      "name": "hidden: every alphabet character attains the same difference",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "firstString": "abcdefghijklmnopqrstuvwxyz",
+        "secondString": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 26,
+      "tags": ["maximum-tie-count", "alphabet"]
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Maximum Number of Words Found in Sentences",
   "difficulty": "Easy",
   "acceptance_rate": 86.72079846087655,
+  "frequency": 23.4,
+  "elo_rating": 1257.323514611,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

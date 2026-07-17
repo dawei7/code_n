@@ -6,6 +6,9 @@
   "title": "Number of Alternating XOR Partitions",
   "difficulty": "Medium",
   "acceptance_rate": 27.28587788560063,
+  "frequency": 0.0,
+  "elo_rating": 2005.6235019774,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

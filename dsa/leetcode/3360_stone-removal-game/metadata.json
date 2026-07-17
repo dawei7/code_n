@@ -6,6 +6,9 @@
   "title": "Stone Removal Game",
   "difficulty": "Easy",
   "acceptance_rate": 42.582832712932586,
+  "frequency": 0.0,
+  "elo_rating": 1267.4622869026,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Number of Distinct Averages",
   "difficulty": "Easy",
   "acceptance_rate": 59.062845804556034,
+  "frequency": 29.0,
+  "elo_rating": 1250.0975318308,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

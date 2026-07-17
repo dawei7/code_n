@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1743",
+  "cases": [
+    {"id":"sample-official-one","name":"sample: shuffled positive path","kind":"sample","visible":true,"input":{"adjacentPairs":[[2,1],[3,4],[3,2]]},"expected":[1,2,3,4],"validator":{"kind":"adjacent_path"},"tags":["sample","shuffled-pairs"]},
+    {"id":"sample-official-two","name":"sample: path with negative values","kind":"sample","visible":true,"input":{"adjacentPairs":[[4,-2],[1,4],[-3,1]]},"expected":[-2,4,1,-3],"validator":{"kind":"adjacent_path"},"tags":["sample","negative-values"]},
+    {"id":"sample-official-three","name":"sample: two boundary values","kind":"sample","visible":true,"input":{"adjacentPairs":[[100000,-100000]]},"expected":[100000,-100000],"validator":{"kind":"adjacent_path"},"tags":["sample","two-values","value-boundaries"]},
+    {"id":"trial-ordered-path","name":"trial: already ordered pairs","kind":"trial","visible":true,"input":{"adjacentPairs":[[1,2],[2,3],[3,4],[4,5]]},"expected":[1,2,3,4,5],"validator":{"kind":"adjacent_path"},"tags":["ordered-pairs"]},
+    {"id":"trial-reversed-pairs","name":"trial: every pair points opposite the chosen output","kind":"trial","visible":true,"input":{"adjacentPairs":[[2,1],[3,2],[4,3],[5,4]]},"expected":[1,2,3,4,5],"validator":{"kind":"adjacent_path"},"tags":["reversed-pairs"]},
+    {"id":"real-unsorted-mixed","name":"hidden: mixed signs and shuffled edges","kind":"real","visible":false,"input":{"adjacentPairs":[[8,-1],[20,8],[-5,3],[-1,-5]]},"expected":[20,8,-1,-5,3],"validator":{"kind":"adjacent_path"},"tags":["mixed-signs","shuffled-pairs"]},
+    {"id":"real-large-gaps","name":"hidden: numeric distance is irrelevant","kind":"real","visible":false,"input":{"adjacentPairs":[[99999,-50000],[7,99999],[-100000,42],[42,7]]},"expected":[-50000,99999,7,42,-100000],"validator":{"kind":"adjacent_path"},"tags":["value-boundaries","large-gaps"]},
+    {"id":"real-endpoint-pair-last","name":"hidden: neither endpoint appears in the first pair","kind":"real","visible":false,"input":{"adjacentPairs":[[30,40],[20,30],[50,60],[40,50],[10,20]]},"expected":[10,20,30,40,50,60],"validator":{"kind":"adjacent_path"},"tags":["endpoint-discovery","shuffled-pairs"]},
+    {"id":"real-eight-values","name":"hidden: longer shuffled path","kind":"real","visible":false,"input":{"adjacentPairs":[[4,5],[1,2],[7,8],[3,4],[6,7],[2,3],[5,6]]},"expected":[1,2,3,4,5,6,7,8],"validator":{"kind":"adjacent_path"},"tags":["longer-path","shuffled-pairs"]},
+    {"id":"real-zero-endpoint","name":"hidden: zero is an endpoint value","kind":"real","visible":false,"input":{"adjacentPairs":[[12,9],[0,-4],[9,0],[20,12]]},"expected":[-4,0,9,12,20],"validator":{"kind":"adjacent_path"},"tags":["zero","endpoint"]}
+  ]
+}

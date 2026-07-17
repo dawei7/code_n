@@ -6,6 +6,9 @@
   "title": "RLE Iterator",
   "difficulty": "Medium",
   "acceptance_rate": 59.43869592346089,
+  "frequency": 53.8,
+  "elo_rating": 1532.2539947529,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

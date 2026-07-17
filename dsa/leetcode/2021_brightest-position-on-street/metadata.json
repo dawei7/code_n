@@ -6,6 +6,9 @@
   "title": "Brightest Position on Street",
   "difficulty": "Medium",
   "acceptance_rate": 60.726049720883466,
+  "frequency": 40.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1459.374143,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

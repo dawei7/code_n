@@ -6,6 +6,9 @@
   "title": "Make Lexicographically Smallest Array by Swapping Elements",
   "difficulty": "Medium",
   "acceptance_rate": 60.29342001229904,
+  "frequency": 42.4,
+  "elo_rating": 2047.3919190727,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

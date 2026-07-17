@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1943",
+  "frontend_id": "1794",
+  "title_slug": "count-pairs-of-equal-substrings-with-minimum-difference",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countQuadruples",
+  "verified_submission_id": "2071207039",
+  "verified_at": "2026-07-17T14:26:33.021999+00:00"
+}

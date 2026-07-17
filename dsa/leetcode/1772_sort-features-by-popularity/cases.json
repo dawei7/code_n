@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1772",
+  "cases": [
+    {
+      "id": "sample-popularity-and-tie",
+      "name": "sample: popularity wins before original-order tie-breaking",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "features": ["cooler","lock","touch"],
+        "responses": ["i like cooler cooler","lock touch cool","locker like touch"]
+      },
+      "expected": ["touch","cooler","lock"],
+      "tags": ["sample", "tie-order", "deduplication"]
+    },
+    {
+      "id": "sample-repeated-mentions",
+      "name": "sample: repeated words contribute one vote per response",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "features": ["a","aa","b","c"],
+        "responses": ["a","a aa","a a a a a","b a"]
+      },
+      "expected": ["a","aa","b","c"],
+      "tags": ["sample", "repeated-mentions"]
+    },
+    {
+      "id": "trial-single-feature",
+      "name": "trial: one feature remains the only output",
+      "kind": "trial",
+      "visible": true,
+      "input": {"features": ["speed"], "responses": ["speed speed","other"]},
+      "expected": ["speed"],
+      "tags": ["single-feature", "deduplication"]
+    },
+    {
+      "id": "trial-no-mentions",
+      "name": "trial: all zero counts preserve input order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"features": ["z","a","m"], "responses": ["none here","still none"]},
+      "expected": ["z","a","m"],
+      "tags": ["zero-counts", "original-order"]
+    },
+    {
+      "id": "real-exact-token-match",
+      "name": "hidden: substrings do not count as feature words",
+      "kind": "real",
+      "visible": false,
+      "input": {"features": ["lock","locker"], "responses": ["locker lockable","lock"]},
+      "expected": ["lock","locker"],
+      "tags": ["exact-token", "tie-order"]
+    },
+    {
+      "id": "real-popularity-reorders",
+      "name": "hidden: several popularity levels reorder the full list",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "features": ["red","blue","green","gold"],
+        "responses": ["green blue","green","gold green","blue"]
+      },
+      "expected": ["green","blue","gold","red"],
+      "tags": ["multiple-levels", "zero-count"]
+    },
+    {
+      "id": "real-tied-positive-counts",
+      "name": "hidden: positive ties retain nonalphabetic feature order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "features": ["zeta","alpha","middle"],
+        "responses": ["alpha zeta","middle","zeta alpha middle"]
+      },
+      "expected": ["zeta","alpha","middle"],
+      "tags": ["positive-tie", "original-order"]
+    }
+  ]
+}

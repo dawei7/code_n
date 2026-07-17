@@ -6,6 +6,9 @@
   "title": "Customer Who Visited but Did Not Make Any Transactions",
   "difficulty": "Easy",
   "acceptance_rate": 67.92140381267913,
+  "frequency": 53.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1194.737018,
   "category": "database",
   "category_title": "Database",
   "topics": [

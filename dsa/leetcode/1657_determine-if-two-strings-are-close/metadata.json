@@ -6,6 +6,9 @@
   "title": "Determine if Two Strings Are Close",
   "difficulty": "Medium",
   "acceptance_rate": 54.35001344995546,
+  "frequency": 22.9,
+  "elo_rating": 1530.4652027753,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

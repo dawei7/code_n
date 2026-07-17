@@ -6,6 +6,9 @@
   "title": "Campus Bikes",
   "difficulty": "Medium",
   "acceptance_rate": 59.096745128955966,
+  "frequency": 47.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1470.655808,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count K-Subsequences of a String With Maximum Beauty",
   "difficulty": "Hard",
   "acceptance_rate": 30.5102102282995,
+  "frequency": 0.0,
+  "elo_rating": 2091.6580433632,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

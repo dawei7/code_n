@@ -6,6 +6,9 @@
   "title": "All the Pairs With the Maximum Number of Common Followers",
   "difficulty": "Medium",
   "acceptance_rate": 69.72859125939401,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1386.983459,
   "category": "database",
   "category_title": "Database",
   "topics": [

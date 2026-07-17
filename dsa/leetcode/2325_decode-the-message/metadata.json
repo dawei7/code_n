@@ -6,6 +6,9 @@
   "title": "Decode the Message",
   "difficulty": "Easy",
   "acceptance_rate": 85.88971735926427,
+  "frequency": 24.5,
+  "elo_rating": 1268.0287696194,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

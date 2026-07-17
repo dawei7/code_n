@@ -6,6 +6,9 @@
   "title": "Find Top Scoring Students",
   "difficulty": "Medium",
   "acceptance_rate": 50.00786039930829,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1592.037593,
   "category": "database",
   "category_title": "Database",
   "topics": [

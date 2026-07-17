@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1866",
+  "frontend_id": "1743",
+  "title_slug": "restore-the-array-from-adjacent-pairs",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.restoreArray",
+  "verified_submission_id": "2070921602",
+  "verified_at": "2026-07-17T09:21:10.253529+00:00"
+}

@@ -6,6 +6,9 @@
   "title": "Maximum Tastiness of Candy Basket",
   "difficulty": "Medium",
   "acceptance_rate": 68.39114880942746,
+  "frequency": 13.1,
+  "elo_rating": 2020.6775180586,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

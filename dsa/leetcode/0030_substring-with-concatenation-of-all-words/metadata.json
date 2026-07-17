@@ -6,6 +6,9 @@
   "title": "Substring with Concatenation of All Words",
   "difficulty": "Hard",
   "acceptance_rate": 34.6693713683973,
+  "frequency": 56.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 2300.921282,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

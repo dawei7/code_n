@@ -6,6 +6,9 @@
   "title": "Find Leaves of Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 81.33829079672718,
+  "frequency": 67.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

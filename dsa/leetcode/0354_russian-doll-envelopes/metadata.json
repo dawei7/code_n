@@ -6,6 +6,9 @@
   "title": "Russian Doll Envelopes",
   "difficulty": "Hard",
   "acceptance_rate": 38.006050837638384,
+  "frequency": 69.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 2266.805768,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

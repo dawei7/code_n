@@ -6,6 +6,9 @@
   "title": "Groups of Special-Equivalent Strings",
   "difficulty": "Medium",
   "acceptance_rate": 73.66146840649253,
+  "frequency": 0.0,
+  "elo_rating": 1590.0883962313,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

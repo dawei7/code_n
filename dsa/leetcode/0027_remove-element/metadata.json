@@ -6,6 +6,9 @@
   "title": "Remove Element",
   "difficulty": "Easy",
   "acceptance_rate": 62.05643343838836,
+  "frequency": 69.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1217.875647,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

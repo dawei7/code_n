@@ -6,6 +6,9 @@
   "title": "Toeplitz Matrix",
   "difficulty": "Easy",
   "acceptance_rate": 69.72867577580129,
+  "frequency": 51.8,
+  "elo_rating": 1249.4294341104,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

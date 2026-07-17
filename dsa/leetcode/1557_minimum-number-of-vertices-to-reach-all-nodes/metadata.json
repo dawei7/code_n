@@ -6,6 +6,9 @@
   "title": "Minimum Number of Vertices to Reach All Nodes",
   "difficulty": "Medium",
   "acceptance_rate": 81.67849223191506,
+  "frequency": 7.1,
+  "elo_rating": 1512.3323577063,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Reverse String",
   "difficulty": "Easy",
   "acceptance_rate": 80.99693094115688,
+  "frequency": 73.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

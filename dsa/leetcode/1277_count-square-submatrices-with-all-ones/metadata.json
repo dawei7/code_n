@@ -6,6 +6,9 @@
   "title": "Count Square Submatrices with All Ones",
   "difficulty": "Medium",
   "acceptance_rate": 80.7527103003762,
+  "frequency": 43.1,
+  "elo_rating": 1613.0429766636,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

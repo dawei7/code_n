@@ -6,6 +6,9 @@
   "title": "Delete and Earn",
   "difficulty": "Medium",
   "acceptance_rate": 57.35946754808594,
+  "frequency": 56.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1484.69526,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

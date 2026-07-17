@@ -6,6 +6,9 @@
   "title": "Vowel Spellchecker",
   "difficulty": "Medium",
   "acceptance_rate": 61.43651818284219,
+  "frequency": 44.1,
+  "elo_rating": 1795.0422250815,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

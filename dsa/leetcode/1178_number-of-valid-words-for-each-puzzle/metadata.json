@@ -6,6 +6,9 @@
   "title": "Number of Valid Words for Each Puzzle",
   "difficulty": "Hard",
   "acceptance_rate": 47.94576051430269,
+  "frequency": 0.0,
+  "elo_rating": 2233.963903408,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

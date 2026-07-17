@@ -6,6 +6,9 @@
   "title": "Sum of Nodes with Even-Valued Grandparent",
   "difficulty": "Medium",
   "acceptance_rate": 85.9727156719638,
+  "frequency": 21.1,
+  "elo_rating": 1426.948379305,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

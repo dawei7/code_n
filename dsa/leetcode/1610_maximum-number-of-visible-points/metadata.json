@@ -6,6 +6,9 @@
   "title": "Maximum Number of Visible Points",
   "difficulty": "Hard",
   "acceptance_rate": 38.29587621648113,
+  "frequency": 73.0,
+  "elo_rating": 2147.1828941776,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

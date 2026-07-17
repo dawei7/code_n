@@ -6,6 +6,9 @@
   "title": "Maximum Depth of Binary Tree",
   "difficulty": "Easy",
   "acceptance_rate": 78.3628500846658,
+  "frequency": 56.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

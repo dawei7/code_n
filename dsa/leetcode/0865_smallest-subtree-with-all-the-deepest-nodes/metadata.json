@@ -6,6 +6,9 @@
   "title": "Smallest Subtree with all the Deepest Nodes",
   "difficulty": "Medium",
   "acceptance_rate": 77.65332084689635,
+  "frequency": 0.0,
+  "elo_rating": 1534.325005151,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

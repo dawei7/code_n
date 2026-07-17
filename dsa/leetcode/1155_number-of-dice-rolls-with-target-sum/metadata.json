@@ -6,6 +6,9 @@
   "title": "Number of Dice Rolls With Target Sum",
   "difficulty": "Medium",
   "acceptance_rate": 62.4477628621673,
+  "frequency": 26.4,
+  "elo_rating": 1653.7337081336,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

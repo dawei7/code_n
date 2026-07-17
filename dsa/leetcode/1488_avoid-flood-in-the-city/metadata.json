@@ -6,6 +6,9 @@
   "title": "Avoid Flood in The City",
   "difficulty": "Medium",
   "acceptance_rate": 38.976822329544966,
+  "frequency": 55.3,
+  "elo_rating": 1973.7407637067,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

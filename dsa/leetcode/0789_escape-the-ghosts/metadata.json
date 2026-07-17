@@ -6,6 +6,9 @@
   "title": "Escape The Ghosts",
   "difficulty": "Medium",
   "acceptance_rate": 63.928508680860574,
+  "frequency": 37.3,
+  "elo_rating": 1611.7621820686,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximum Value Sum by Placing Three Rooks I",
   "difficulty": "Hard",
   "acceptance_rate": 16.872729696404175,
+  "frequency": 0.0,
+  "elo_rating": 2262.2295067249,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

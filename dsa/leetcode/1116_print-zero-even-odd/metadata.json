@@ -6,6 +6,9 @@
   "title": "Print Zero Even Odd",
   "difficulty": "Medium",
   "acceptance_rate": 65.73863971238286,
+  "frequency": 14.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1415.501001,
   "category": "concurrency",
   "category_title": "Concurrency",
   "topics": [
@@ -15,7 +18,9 @@
     }
   ],
   "url": "https://leetcode.com/problems/print-zero-even-odd/",
-  "supported_languages": ["python"],
+  "supported_languages": [
+    "python"
+  ],
   "primary_language": "python",
   "runnable_in_coden": true,
   "subsets": [

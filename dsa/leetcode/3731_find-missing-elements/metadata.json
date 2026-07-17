@@ -6,6 +6,9 @@
   "title": "Find Missing Elements",
   "difficulty": "Easy",
   "acceptance_rate": 83.28641718313857,
+  "frequency": 40.7,
+  "elo_rating": 1217.1140041501,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1688",
+  "measurement_note": "Size is n, the initial number of teams. The 4/32/200 tiers span powers of two and the maximum legal domain. The Accepted elimination invariant and an independent direct formula take O(1) time. A correct implementation that simulates one eliminated team per iteration takes O(n), completes every tier, and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: four-team tournament","kind":"benchmark","visible":false,"size":4,"input":{"n":4},"expected":3,"tags":["benchmark","scaling","power-of-two"]},
+    {"id":"benchmark-scale-2","name":"benchmark: thirty-two-team tournament","kind":"benchmark","visible":false,"size":32,"input":{"n":32},"expected":31,"tags":["benchmark","scaling","power-of-two"]},
+    {"id":"benchmark-scale-3","name":"benchmark: maximum two-hundred-team tournament","kind":"benchmark","visible":false,"size":200,"input":{"n":200},"expected":199,"tags":["benchmark","scaling","maximum"]}
+  ]
+}

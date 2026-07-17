@@ -6,6 +6,9 @@
   "title": "Maximum Earnings From Taxi",
   "difficulty": "Medium",
   "acceptance_rate": 46.61498093783999,
+  "frequency": 21.6,
+  "elo_rating": 1871.8245218615,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

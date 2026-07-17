@@ -6,6 +6,9 @@
   "title": "Find the Missing IDs",
   "difficulty": "Medium",
   "acceptance_rate": 72.8784226466407,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1368.650753,
   "category": "database",
   "category_title": "Database",
   "topics": [

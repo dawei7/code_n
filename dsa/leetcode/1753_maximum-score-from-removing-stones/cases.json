@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1753",
+  "cases": [
+    {
+      "id": "sample-even-balanced",
+      "name": "sample: all stones can be paired",
+      "kind": "sample",
+      "visible": true,
+      "input": {"a": 2, "b": 4, "c": 6},
+      "expected": 6,
+      "tags": ["sample", "balanced"]
+    },
+    {
+      "id": "sample-larger-balanced",
+      "name": "sample: balanced even total",
+      "kind": "sample",
+      "visible": true,
+      "input": {"a": 4, "b": 4, "c": 6},
+      "expected": 7,
+      "tags": ["sample", "balanced"]
+    },
+    {
+      "id": "sample-odd-total",
+      "name": "sample: one stone remains",
+      "kind": "sample",
+      "visible": true,
+      "input": {"a": 1, "b": 8, "c": 8},
+      "expected": 8,
+      "tags": ["sample", "odd-total"]
+    },
+    {
+      "id": "trial-equal-singletons",
+      "name": "trial: three one-stone piles",
+      "kind": "trial",
+      "visible": true,
+      "input": {"a": 1, "b": 1, "c": 1},
+      "expected": 1,
+      "tags": ["minimum-values", "odd-total"]
+    },
+    {
+      "id": "trial-dominant-pile",
+      "name": "trial: largest pile exceeds the others combined",
+      "kind": "trial",
+      "visible": true,
+      "input": {"a": 10, "b": 2, "c": 3},
+      "expected": 5,
+      "tags": ["dominant-pile", "outside-supply"]
+    },
+    {
+      "id": "real-exact-balance-boundary",
+      "name": "hidden: largest equals the other two combined",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": 3, "b": 7, "c": 10},
+      "expected": 10,
+      "tags": ["balance-boundary", "complete-consumption"]
+    },
+    {
+      "id": "real-permuted-dominance",
+      "name": "hidden: dominant pile appears first",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": 20, "b": 4, "c": 5},
+      "expected": 9,
+      "tags": ["permutation", "dominant-pile"]
+    },
+    {
+      "id": "real-maximum-boundary",
+      "name": "hidden: maximum pile with minimal partners",
+      "kind": "real",
+      "visible": false,
+      "input": {"a": 100000, "b": 1, "c": 1},
+      "expected": 2,
+      "tags": ["value-boundary", "dominant-pile"]
+    }
+  ]
+}

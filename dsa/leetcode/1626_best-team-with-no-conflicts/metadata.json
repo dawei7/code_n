@@ -6,6 +6,9 @@
   "title": "Best Team With No Conflicts",
   "difficulty": "Medium",
   "acceptance_rate": 50.769346393767066,
+  "frequency": 0.0,
+  "elo_rating": 2027.3839266711,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

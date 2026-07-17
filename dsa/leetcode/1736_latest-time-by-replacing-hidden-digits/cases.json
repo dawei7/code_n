@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1736",
+  "cases": [
+    {
+      "id": "sample-official-one",
+      "name": "sample: leading two constrains the second hour digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {"time": "2?:?0"},
+      "expected": "23:50",
+      "tags": ["sample", "hour-boundary", "minute-tens"]
+    },
+    {
+      "id": "sample-official-two",
+      "name": "sample: leading zero permits hour nine",
+      "kind": "sample",
+      "visible": true,
+      "input": {"time": "0?:3?"},
+      "expected": "09:39",
+      "tags": ["sample", "leading-zero"]
+    },
+    {
+      "id": "sample-official-three",
+      "name": "sample: leading one permits hour nineteen",
+      "kind": "sample",
+      "visible": true,
+      "input": {"time": "1?:22"},
+      "expected": "19:22",
+      "tags": ["sample", "leading-one"]
+    },
+    {
+      "id": "trial-all-hidden",
+      "name": "trial: all hidden digits form the daily maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"time": "??:??"},
+      "expected": "23:59",
+      "tags": ["all-hidden", "daily-maximum"]
+    },
+    {
+      "id": "trial-visible-second-hour-high",
+      "name": "trial: second hour digit forces a leading one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"time": "?4:??"},
+      "expected": "14:59",
+      "tags": ["hour-coupling", "visible-digit"]
+    },
+    {
+      "id": "real-visible-second-hour-three",
+      "name": "hidden: second hour digit three still permits leading two",
+      "kind": "real",
+      "visible": false,
+      "input": {"time": "?3:??"},
+      "expected": "23:59",
+      "tags": ["hour-boundary", "leading-two"]
+    },
+    {
+      "id": "real-minute-ones-visible",
+      "name": "hidden: minute tens is maximized around visible ones",
+      "kind": "real",
+      "visible": false,
+      "input": {"time": "??:?5"},
+      "expected": "23:55",
+      "tags": ["minute-boundary", "visible-digit"]
+    },
+    {
+      "id": "real-no-hidden",
+      "name": "hidden: already complete time is unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {"time": "23:59"},
+      "expected": "23:59",
+      "tags": ["no-hidden-digits", "daily-maximum"]
+    },
+    {
+      "id": "real-leading-two-partial-minute",
+      "name": "hidden: both constrained hour and minute positions maximize",
+      "kind": "real",
+      "visible": false,
+      "input": {"time": "2?:4?"},
+      "expected": "23:49",
+      "tags": ["leading-two", "minute-ones"]
+    },
+    {
+      "id": "real-leading-hour-hidden",
+      "name": "hidden: visible hour nine forces leading one",
+      "kind": "real",
+      "visible": false,
+      "input": {"time": "?9:?0"},
+      "expected": "19:50",
+      "tags": ["hour-coupling", "minute-tens"]
+    }
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Zigzag Iterator",
   "difficulty": "Medium",
   "acceptance_rate": 67.08090079917113,
+  "frequency": 34.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1407.509822,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

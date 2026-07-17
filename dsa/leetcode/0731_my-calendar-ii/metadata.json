@@ -6,6 +6,9 @@
   "title": "My Calendar II",
   "difficulty": "Medium",
   "acceptance_rate": 63.27818762940479,
+  "frequency": 25.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1436.340744,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

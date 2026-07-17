@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1796",
+  "frontend_id": "1660",
+  "title_slug": "correct-a-binary-tree",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.correctBinaryTree",
+  "verified_submission_id": "2070487957",
+  "verified_at": "2026-07-17T01:26:43.968343+00:00"
+}

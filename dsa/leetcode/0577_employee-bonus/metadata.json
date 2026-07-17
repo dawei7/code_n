@@ -6,6 +6,9 @@
   "title": "Employee Bonus",
   "difficulty": "Easy",
   "acceptance_rate": 77.64128082343518,
+  "frequency": 53.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

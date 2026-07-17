@@ -6,6 +6,9 @@
   "title": "Find the Shortest Superstring",
   "difficulty": "Hard",
   "acceptance_rate": 45.521347083146516,
+  "frequency": 27.1,
+  "elo_rating": 2185.5444704515,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

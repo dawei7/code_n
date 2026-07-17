@@ -6,6 +6,9 @@
   "title": "Minimum Time to Complete All Tasks",
   "difficulty": "Hard",
   "acceptance_rate": 40.044356190525306,
+  "frequency": 0.0,
+  "elo_rating": 2380.5983169295,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

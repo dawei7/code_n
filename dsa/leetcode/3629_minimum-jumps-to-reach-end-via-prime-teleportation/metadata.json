@@ -6,6 +6,9 @@
   "title": "Minimum Jumps to Reach End via Prime Teleportation",
   "difficulty": "Medium",
   "acceptance_rate": 44.59843286027827,
+  "frequency": 73.8,
+  "elo_rating": 2139.3079901181,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

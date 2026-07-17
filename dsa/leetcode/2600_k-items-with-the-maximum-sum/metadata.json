@@ -6,6 +6,9 @@
   "title": "K Items With the Maximum Sum",
   "difficulty": "Easy",
   "acceptance_rate": 60.32763080274085,
+  "frequency": 0.0,
+  "elo_rating": 1434.2392062372,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

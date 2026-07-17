@@ -6,6 +6,9 @@
   "title": "Remove Outermost Parentheses",
   "difficulty": "Easy",
   "acceptance_rate": 87.25685693106004,
+  "frequency": 57.7,
+  "elo_rating": 1311.3495317884,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

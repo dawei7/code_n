@@ -6,6 +6,9 @@
   "title": "Count Subarrays With K Distinct Integers",
   "difficulty": "Hard",
   "acceptance_rate": 20.477342539484056,
+  "frequency": 33.0,
+  "elo_rating": 2302.2950547766,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

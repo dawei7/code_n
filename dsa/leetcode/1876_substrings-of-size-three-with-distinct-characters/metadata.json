@@ -6,6 +6,9 @@
   "title": "Substrings of Size Three with Distinct Characters",
   "difficulty": "Easy",
   "acceptance_rate": 76.92375442067181,
+  "frequency": 34.5,
+  "elo_rating": 1248.7224675206,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

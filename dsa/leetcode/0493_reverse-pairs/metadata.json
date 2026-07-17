@@ -6,6 +6,9 @@
   "title": "Reverse Pairs",
   "difficulty": "Hard",
   "acceptance_rate": 34.69510897840456,
+  "frequency": 68.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 2300.238972,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

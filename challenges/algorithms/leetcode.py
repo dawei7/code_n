@@ -71,37 +71,28 @@ def _load_leetcode_metadata() -> dict[str, tuple[str, float | None, list[str], i
     return result
 
 
-def _load_rating_metadata() -> tuple[dict[str, float], set[str]]:
+def _load_legacy_contest_frontend_ids() -> set[str]:
     if not ZEROTRAC_RATINGS_PATH.is_file():
-        return {}, set()
+        return set()
     try:
         payload = json.loads(ZEROTRAC_RATINGS_PATH.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
-        return {}, set()
-    ratings = payload.get("ratings")
-    if not isinstance(ratings, dict):
-        ratings = {}
-    normalized_ratings = {
-        str(frontend_id): float(rating)
-        for frontend_id, rating in ratings.items()
-        if isinstance(rating, (int, float))
-    }
+        return set()
     legacy_payload = payload.get("legacy_acceptance_estimate")
     contest_by_frontend_id = (
         legacy_payload.get("contest_by_frontend_id", {})
         if isinstance(legacy_payload, dict)
         else {}
     )
-    legacy_frontend_ids = {
+    return {
         str(frontend_id)
         for frontend_id, contest_number in contest_by_frontend_id.items()
         if isinstance(contest_number, int) and 1 <= contest_number <= 62
     }
-    return normalized_ratings, legacy_frontend_ids
 
 
 _LEETCODE_METADATA = _load_leetcode_metadata()
-_ELO_RATINGS, _LEGACY_CONTEST_FRONTEND_IDS = _load_rating_metadata()
+_LEGACY_CONTEST_FRONTEND_IDS = _load_legacy_contest_frontend_ids()
 
 
 def _noop_source(params: list[str]) -> str:
@@ -393,7 +384,15 @@ def _parse_complexity(text: str) -> ComplexityClass:
     if not tc_match:
         return ComplexityClass.UNKNOWN
     raw = tc_match.group(1).strip().lower()
-    
+
+    # Check factorial before the generic alphabetic fallback.
+    if "n!" in raw or "factorial" in raw:
+        return ComplexityClass.O_N_FACTORIAL
+
+    # Worker-assignment and similar branching searches use k choices per item.
+    if "k^n" in raw or "k^{n}" in raw or "kⁿ" in raw:
+        return ComplexityClass.O_KN
+
     # Check exponential first
     if "o(2" in raw or "2^" in raw or "2\u207f" in raw or "exponential" in raw:
         return ComplexityClass.O_2N
@@ -450,9 +449,27 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
  
     difficulty_label = _read_field(text, "Difficulty")
     metadata = _LEETCODE_METADATA.get(frontend_id)
-    elo_rating = _ELO_RATINGS.get(frontend_id)
-    acceptance_rate = metadata[1] if metadata else None
     package_metadata = _package_metadata(path)
+    raw_elo = package_metadata.get("elo_rating")
+    elo_rating = float(raw_elo) if isinstance(raw_elo, (int, float)) else None
+    raw_acceptance = package_metadata.get("acceptance_rate")
+    acceptance_rate = (
+        float(raw_acceptance)
+        if isinstance(raw_acceptance, (int, float))
+        else metadata[1] if metadata else None
+    )
+    raw_estimated_elo = package_metadata.get("estimated_elo_rating")
+    estimated_elo_rating = (
+        float(raw_estimated_elo)
+        if isinstance(raw_estimated_elo, (int, float))
+        else None
+    )
+    raw_frequency = package_metadata.get("frequency")
+    frequency = (
+        float(raw_frequency)
+        if isinstance(raw_frequency, (int, float))
+        else None
+    )
     leetcode_category = str(package_metadata.get("category") or "")
     leetcode_category_title = str(package_metadata.get("category_title") or "")
     supported_languages = [
@@ -461,7 +478,18 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
         if isinstance(language, str)
     ]
     runnable_in_coden = category_is_runnable(package_metadata)
-    topic_categories = metadata[2] if metadata and metadata[2] else []
+    package_topics = (
+        package_metadata.get("topics")
+        if isinstance(package_metadata.get("topics"), list)
+        else []
+    )
+    topic_categories = [
+        f"leetcode_{str(topic.get('slug', '')).replace('-', '_')}"
+        for topic in package_topics
+        if isinstance(topic, dict) and topic.get("slug")
+    ]
+    if not topic_categories and metadata and metadata[2]:
+        topic_categories = metadata[2]
     categories: list[str] = []
     if leetcode_category and leetcode_category != "algorithms":
         categories.append(f"leetcode_{leetcode_category.replace('-', '_')}")
@@ -516,8 +544,13 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
         samples=samples,
         hint=hint,
         max_n=50 if runnable_in_coden else 1,
-        difficulty_label=metadata[0] if metadata else difficulty_label,
+        difficulty_label=(
+            str(package_metadata.get("difficulty") or "")
+            or (metadata[0] if metadata else difficulty_label)
+        ),
         elo_rating=elo_rating,
+        estimated_elo_rating=estimated_elo_rating if elo_rating is None else None,
+        frequency=frequency,
         difficulty_estimate=(
             metadata[3]
             if metadata and elo_rating is None and frontend_id in _LEGACY_CONTEST_FRONTEND_IDS

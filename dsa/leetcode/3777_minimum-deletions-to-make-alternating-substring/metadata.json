@@ -6,6 +6,9 @@
   "title": "Minimum Deletions to Make Alternating Substring",
   "difficulty": "Hard",
   "acceptance_rate": 45.53297265682117,
+  "frequency": 0.0,
+  "elo_rating": 2201.668658533,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

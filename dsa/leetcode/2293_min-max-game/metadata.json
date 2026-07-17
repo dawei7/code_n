@@ -6,6 +6,9 @@
   "title": "Min Max Game",
   "difficulty": "Easy",
   "acceptance_rate": 64.47386955909283,
+  "frequency": 20.4,
+  "elo_rating": 1241.0825147417,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

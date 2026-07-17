@@ -6,6 +6,9 @@
   "title": "Most Frequent Prime",
   "difficulty": "Medium",
   "acceptance_rate": 46.23934878849907,
+  "frequency": 0.0,
+  "elo_rating": 1737.2065180671,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

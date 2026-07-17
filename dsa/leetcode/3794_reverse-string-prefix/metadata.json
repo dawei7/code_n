@@ -6,6 +6,9 @@
   "title": "Reverse String Prefix",
   "difficulty": "Easy",
   "acceptance_rate": 89.4909854097656,
+  "frequency": 13.0,
+  "elo_rating": 1229.6563395275,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

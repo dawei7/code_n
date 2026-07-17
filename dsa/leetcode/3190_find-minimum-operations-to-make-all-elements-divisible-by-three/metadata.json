@@ -6,6 +6,9 @@
   "title": "Find Minimum Operations to Make All Elements Divisible by Three",
   "difficulty": "Easy",
   "acceptance_rate": 90.84148233564065,
+  "frequency": 24.2,
+  "elo_rating": 1139.54127323,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

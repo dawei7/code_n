@@ -6,6 +6,9 @@
   "title": "Find the Safest Path in a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 57.138119525192685,
+  "frequency": 65.1,
+  "elo_rating": 2153.5854429139,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

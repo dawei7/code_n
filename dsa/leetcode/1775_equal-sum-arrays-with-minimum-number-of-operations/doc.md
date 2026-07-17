@@ -8,49 +8,81 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Greedy, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [equal-sum-arrays-with-minimum-number-of-operations](https://leetcode.com/problems/equal-sum-arrays-with-minimum-number-of-operations/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/equal-sum-arrays-with-minimum-number-of-operations/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/equal-sum-arrays-with-minimum-number-of-operations/).
 
 ### Goal
-Two arrays contain values from `1` to `6`. In one operation, change any one value in either array to another value from `1` to `6`. Find the fewest operations needed to make the two array sums equal.
+
+You are given two integer arrays, `nums1` and `nums2`, which may have different lengths. Every value in both arrays is between `1` and `6`, inclusive.
+
+One operation selects any single element from either array and replaces it with any value from `1` through `6`. Determine the minimum number of operations needed to make the sum of `nums1` equal to the sum of `nums2`. If no sequence of permitted replacements can make the sums equal, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums1`: the first array of dice-like values.
-- `nums2`: the second array of dice-like values.
+- `nums1`: the first array of values in the inclusive range $[1,6]$, with length $n$.
+- `nums2`: the second array of values in the inclusive range $[1,6]$, with length $m$.
+- The constraints guarantee $1 \le n,m \le 10^5$.
 
 **Return value**
 
-Return the minimum number of operations, or `-1` if equal sums are impossible.
+Return the fewest single-element replacements that make the array sums equal, or `-1` when equality is impossible.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums1 = [1,2,3,4,5,6], nums2 = [1,1,2,2,2,2]`
 - Output: `3`
+- Explanation: Three replacements can close the sum difference; no two replacements have enough combined effect.
 
 **Example 2**
 
 - Input: `nums1 = [1,1,1,1,1,1,1], nums2 = [6]`
 - Output: `-1`
+- Explanation: Even the smallest possible sum of the seven-element array exceeds the largest possible sum of the one-element array.
 
 **Example 3**
 
 - Input: `nums1 = [6,6], nums2 = [1]`
 - Output: `3`
+- Explanation: Three replacements are necessary and sufficient to bring the sums together.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Compare the sums. Each element in the smaller-sum array can increase by `6 - value`, and each element in the larger-sum array can decrease by `value - 1`. Count how many changes of each possible gain `1..5` are available, then greedily apply the largest gains until the sum gap is closed.
+- **Time:** $O(n+m)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n + m)`
-- **Space Complexity**: `O(1)`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Reject incompatible sum ranges**
+
+An array of length $k$ can have only sums from $k$ through $6k$. Therefore equality is impossible when the largest possible sum of one array is smaller than the smallest possible sum of the other: `6 * n < m` or `6 * m < n`. This length check detects the only global impossibility before considering individual values.
+
+**Express every replacement as a possible gain**
+
+Orient the arrays so `nums1` has the smaller current sum. The gap must then be closed by increasing an element `value` from `nums1`, which can contribute at most `6 - value`, or decreasing an element `value` from `nums2`, which can contribute at most `value - 1`. Every useful operation consequently has a maximum gain from `1` to `5`. Count how many operations offer each gain; no sorting is needed because there are only five nonzero buckets.
+
+**Use the largest gains first**
+
+Process gains from `5` down to `1`. If a solution used a smaller available gain while leaving a larger one unused, exchanging those operations could only close at least as much of the gap with the same operation count. Thus some minimum solution always takes gains in descending order. For each bucket, use only as many operations as needed to cover the remaining gap. The first point where the gap becomes nonpositive is the minimum operation count.
+
+#### Complexity detail
+
+Computing both sums and counting gains visits every input value once, so it takes $O(n+m)$ time. Processing the five gain buckets is constant work. The six-entry frequency array and scalar state use $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Sort all possible gains:** Build one gain per element and sort in descending order before taking a prefix. This preserves the greedy reasoning but costs $O((n+m)\log(n+m))$ time.
+- **Repeated best-operation search:** Scan both arrays before every replacement to find the largest remaining gain. It is correct but can require $O((n+m)^2)$ time.
+- If the initial sums are equal, zero operations are required.
+- Different array lengths do not by themselves imply impossibility; their attainable sum intervals must be compared.
+- A replacement may overshoot the remaining gap in terms of its maximum gain because the chosen element can be changed to any intermediate value from `1` to `6`.
+- Swapping the lower- and higher-sum roles changes only the interpretation of gains, not the answer.
+
+</details>

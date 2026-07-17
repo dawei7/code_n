@@ -6,6 +6,9 @@
   "title": "Copy List with Random Pointer",
   "difficulty": "Medium",
   "acceptance_rate": 63.235136842343344,
+  "frequency": 71.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1436.810813,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

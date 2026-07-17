@@ -6,6 +6,9 @@
   "title": "Reshape the Matrix",
   "difficulty": "Easy",
   "acceptance_rate": 65.15117238352363,
+  "frequency": 40.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1205.614151,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Rectangles to Cover Points",
   "difficulty": "Medium",
   "acceptance_rate": 64.02637748003583,
+  "frequency": 0.0,
+  "elo_rating": 1401.2732392084,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

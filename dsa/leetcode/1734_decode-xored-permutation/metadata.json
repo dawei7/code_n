@@ -6,6 +6,9 @@
   "title": "Decode XORed Permutation",
   "difficulty": "Medium",
   "acceptance_rate": 67.13798923601159,
+  "frequency": 0.0,
+  "elo_rating": 2024.3797833173,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

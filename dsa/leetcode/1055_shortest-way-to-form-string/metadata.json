@@ -6,6 +6,9 @@
   "title": "Shortest Way to Form String",
   "difficulty": "Medium",
   "acceptance_rate": 61.71162811009094,
+  "frequency": 53.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1449.972756,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

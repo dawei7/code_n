@@ -6,6 +6,9 @@
   "title": "Get Watched Videos by Your Friends",
   "difficulty": "Medium",
   "acceptance_rate": 53.48958144372287,
+  "frequency": 44.1,
+  "elo_rating": 1652.5809810428,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

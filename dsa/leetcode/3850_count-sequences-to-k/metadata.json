@@ -6,6 +6,9 @@
   "title": "Count Sequences to K",
   "difficulty": "Hard",
   "acceptance_rate": 36.09014084507042,
+  "frequency": 59.8,
+  "elo_rating": 1964.6174369373,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

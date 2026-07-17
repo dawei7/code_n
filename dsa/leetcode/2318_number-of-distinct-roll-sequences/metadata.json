@@ -6,6 +6,9 @@
   "title": "Number of Distinct Roll Sequences",
   "difficulty": "Hard",
   "acceptance_rate": 58.315924795114896,
+  "frequency": 0.0,
+  "elo_rating": 2090.4183788498,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

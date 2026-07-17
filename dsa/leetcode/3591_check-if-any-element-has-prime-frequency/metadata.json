@@ -6,6 +6,9 @@
   "title": "Check if Any Element Has Prime Frequency",
   "difficulty": "Easy",
   "acceptance_rate": 62.5872585937328,
+  "frequency": 0.0,
+  "elo_rating": 1234.5443176819,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

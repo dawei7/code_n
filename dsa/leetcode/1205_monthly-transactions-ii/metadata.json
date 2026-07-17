@@ -6,6 +6,9 @@
   "title": "Monthly Transactions II",
   "difficulty": "Medium",
   "acceptance_rate": 42.02582446344443,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1685.087062,
   "category": "database",
   "category_title": "Database",
   "topics": [

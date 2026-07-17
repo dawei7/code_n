@@ -6,6 +6,9 @@
   "title": "Loan Types",
   "difficulty": "Easy",
   "acceptance_rate": 64.26714657068587,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1210.756069,
   "category": "database",
   "category_title": "Database",
   "topics": [

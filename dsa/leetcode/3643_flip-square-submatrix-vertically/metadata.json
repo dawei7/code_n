@@ -6,6 +6,9 @@
   "title": "Flip Square Submatrix Vertically",
   "difficulty": "Easy",
   "acceptance_rate": 79.37557261954777,
+  "frequency": 65.3,
+  "elo_rating": 1234.9818183966,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Path with Maximum Gold",
   "difficulty": "Medium",
   "acceptance_rate": 68.50530284428885,
+  "frequency": 57.0,
+  "elo_rating": 1663.2612318917,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Network Delay Time",
   "difficulty": "Medium",
   "acceptance_rate": 60.929214734690795,
+  "frequency": 48.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1457.023796,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

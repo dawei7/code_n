@@ -6,6 +6,9 @@
   "title": "Duplicate Emails",
   "difficulty": "Easy",
   "acceptance_rate": 73.95763072908429,
+  "frequency": 65.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1170.973709,
   "category": "database",
   "category_title": "Database",
   "topics": [

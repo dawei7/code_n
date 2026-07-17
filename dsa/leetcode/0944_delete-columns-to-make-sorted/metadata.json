@@ -6,6 +6,9 @@
   "title": "Delete Columns to Make Sorted",
   "difficulty": "Easy",
   "acceptance_rate": 78.16136010291324,
+  "frequency": 13.6,
+  "elo_rating": 1396.4853538164,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

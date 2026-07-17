@@ -6,6 +6,9 @@
   "title": "Find Closest Person",
   "difficulty": "Easy",
   "acceptance_rate": 88.98454755017721,
+  "frequency": 0.0,
+  "elo_rating": 1164.1515670153,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

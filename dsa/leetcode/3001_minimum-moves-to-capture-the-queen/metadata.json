@@ -6,6 +6,9 @@
   "title": "Minimum Moves to Capture The Queen",
   "difficulty": "Medium",
   "acceptance_rate": 22.569049592352023,
+  "frequency": 0.0,
+  "elo_rating": 1796.5392133092,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

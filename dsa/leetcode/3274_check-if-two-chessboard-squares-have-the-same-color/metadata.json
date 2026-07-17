@@ -6,6 +6,9 @@
   "title": "Check if Two Chessboard Squares Have the Same Color",
   "difficulty": "Easy",
   "acceptance_rate": 72.21848140373113,
+  "frequency": 0.0,
+  "elo_rating": 1162.3856045908,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

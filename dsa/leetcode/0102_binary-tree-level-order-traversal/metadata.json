@@ -6,6 +6,9 @@
   "title": "Binary Tree Level Order Traversal",
   "difficulty": "Medium",
   "acceptance_rate": 73.00136516567433,
+  "frequency": 59.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1368.337374,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

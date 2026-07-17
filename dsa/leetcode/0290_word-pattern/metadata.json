@@ -6,6 +6,9 @@
   "title": "Word Pattern",
   "difficulty": "Easy",
   "acceptance_rate": 44.30622209691761,
+  "frequency": 40.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1259.40652,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

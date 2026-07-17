@@ -6,6 +6,9 @@
   "title": "Populating Next Right Pointers in Each Node II",
   "difficulty": "Medium",
   "acceptance_rate": 57.7947406341509,
+  "frequency": 33.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1480.370576,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Last Person to Fit in the Bus",
   "difficulty": "Medium",
   "acceptance_rate": 69.4466131239033,
+  "frequency": 49.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1389.647186,
   "category": "database",
   "category_title": "Database",
   "topics": [

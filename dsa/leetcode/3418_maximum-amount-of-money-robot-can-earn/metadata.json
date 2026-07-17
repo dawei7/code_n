@@ -6,6 +6,9 @@
   "title": "Maximum Amount of Money Robot Can Earn",
   "difficulty": "Medium",
   "acceptance_rate": 47.777691856313034,
+  "frequency": 74.2,
+  "elo_rating": 1798.2282534931,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

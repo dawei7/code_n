@@ -6,6 +6,9 @@
   "title": "Escape the Spreading Fire",
   "difficulty": "Hard",
   "acceptance_rate": 38.58652922163012,
+  "frequency": 44.4,
+  "elo_rating": 2346.5717839654,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

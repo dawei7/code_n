@@ -6,6 +6,9 @@
   "title": "Number of Good Paths",
   "difficulty": "Hard",
   "acceptance_rate": 56.47073780565326,
+  "frequency": 39.3,
+  "elo_rating": 2444.6660756903,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Happy Number",
   "difficulty": "Easy",
   "acceptance_rate": 59.90280934869353,
+  "frequency": 76.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1225.588524,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

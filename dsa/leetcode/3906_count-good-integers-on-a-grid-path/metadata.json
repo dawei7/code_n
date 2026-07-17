@@ -6,6 +6,9 @@
   "title": "Count Good Integers on a Grid Path",
   "difficulty": "Hard",
   "acceptance_rate": 49.15409236396891,
+  "frequency": 38.2,
+  "elo_rating": 2160.2886328928,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

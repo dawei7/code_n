@@ -6,6 +6,9 @@
   "title": "Sum of Left Leaves",
   "difficulty": "Easy",
   "acceptance_rate": 62.88725910502176,
+  "frequency": 40.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1215.304688,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

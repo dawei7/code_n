@@ -6,6 +6,9 @@
   "title": "Time Taken to Mark All Nodes",
   "difficulty": "Hard",
   "acceptance_rate": 28.59401605448796,
+  "frequency": 0.0,
+  "elo_rating": 2521.5876597895,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

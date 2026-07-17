@@ -6,6 +6,9 @@
   "title": "Smallest Value After Replacing With Sum of Prime Factors",
   "difficulty": "Medium",
   "acceptance_rate": 50.203670512953444,
+  "frequency": 0.0,
+  "elo_rating": 1499.5903720292,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

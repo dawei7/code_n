@@ -6,6 +6,9 @@
   "title": "Maximum Number of Points From Grid Queries",
   "difficulty": "Hard",
   "acceptance_rate": 59.249128004204685,
+  "frequency": 50.9,
+  "elo_rating": 2195.6540241654,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

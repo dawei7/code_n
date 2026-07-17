@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1663",
+  "measurement_note": "Size is n, the required output length. Each target k = 13n forces substantial allocation across the suffix. The Accepted right-to-left greedy allocation and an independent quotient-based constructor take O(n) time. A correct left-to-right implementation that rescans every remaining suffix position to recompute feasible capacity takes O(n^2), completes all 32/128/384-character tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: midpoint value across 32 output characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 32,
+        "k": 416
+      },
+      "expected": "aaaaaaaaaaaaaaaajzzzzzzzzzzzzzzz"
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: midpoint value across 128 output characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 128,
+        "k": 1664
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaalzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: midpoint value across 384 output characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 384,
+      "input": {
+        "n": 384,
+        "k": 4992
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaizzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+    }
+  ]
+}
+

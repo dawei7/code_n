@@ -6,6 +6,9 @@
   "title": "Maximum Number of Upgradable Servers",
   "difficulty": "Medium",
   "acceptance_rate": 43.73170731707317,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1667.585595,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

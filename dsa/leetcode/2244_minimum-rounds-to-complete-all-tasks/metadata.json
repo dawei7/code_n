@@ -6,6 +6,9 @@
   "title": "Minimum Rounds to Complete All Tasks",
   "difficulty": "Medium",
   "acceptance_rate": 63.36683598112324,
+  "frequency": 27.7,
+  "elo_rating": 1371.8092952004,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

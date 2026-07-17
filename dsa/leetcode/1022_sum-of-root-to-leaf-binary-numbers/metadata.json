@@ -6,6 +6,9 @@
   "title": "Sum of Root To Leaf Binary Numbers",
   "difficulty": "Easy",
   "acceptance_rate": 76.62451139158617,
+  "frequency": 68.9,
+  "elo_rating": 1462.4423844498,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

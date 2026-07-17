@@ -6,6 +6,9 @@
   "title": "Largest Number At Least Twice of Others",
   "difficulty": "Easy",
   "acceptance_rate": 52.757878791536406,
+  "frequency": 22.1,
+  "elo_rating": 1188.6470369782,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

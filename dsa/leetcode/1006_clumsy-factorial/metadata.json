@@ -6,6 +6,9 @@
   "title": "Clumsy Factorial",
   "difficulty": "Medium",
   "acceptance_rate": 61.67352840268588,
+  "frequency": 32.9,
+  "elo_rating": 1407.9870845299,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

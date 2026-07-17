@@ -6,6 +6,9 @@
   "title": "Design Authentication Manager",
   "difficulty": "Medium",
   "acceptance_rate": 58.69209442027032,
+  "frequency": 86.3,
+  "elo_rating": 1534.0648719302,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

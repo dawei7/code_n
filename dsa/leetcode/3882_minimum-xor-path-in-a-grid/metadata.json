@@ -6,6 +6,9 @@
   "title": "Minimum XOR Path in a Grid",
   "difficulty": "Medium",
   "acceptance_rate": 39.85467277392743,
+  "frequency": 26.8,
+  "elo_rating": 1770.9328676037,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

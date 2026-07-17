@@ -6,6 +6,9 @@
   "title": "Count Tested Devices After Test Operations",
   "difficulty": "Easy",
   "acceptance_rate": 78.94925093890578,
+  "frequency": 0.0,
+  "elo_rating": 1169.4209117977,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

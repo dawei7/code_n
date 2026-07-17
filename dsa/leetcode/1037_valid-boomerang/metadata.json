@@ -6,6 +6,9 @@
   "title": "Valid Boomerang",
   "difficulty": "Easy",
   "acceptance_rate": 39.87096774193548,
+  "frequency": 0.0,
+  "elo_rating": 1255.9002796024,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

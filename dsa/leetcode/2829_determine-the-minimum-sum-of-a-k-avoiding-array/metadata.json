@@ -6,6 +6,9 @@
   "title": "Determine the Minimum Sum of a k-avoiding Array",
   "difficulty": "Medium",
   "acceptance_rate": 61.00329549615525,
+  "frequency": 0.0,
+  "elo_rating": 1347.2146542772,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

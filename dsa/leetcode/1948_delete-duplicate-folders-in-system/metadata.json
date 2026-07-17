@@ -6,6 +6,9 @@
   "title": "Delete Duplicate Folders in System",
   "difficulty": "Hard",
   "acceptance_rate": 77.36339982653946,
+  "frequency": 0.0,
+  "elo_rating": 2533.7796160302,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

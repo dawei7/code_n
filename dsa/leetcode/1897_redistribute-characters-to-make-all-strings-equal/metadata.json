@@ -6,6 +6,9 @@
   "title": "Redistribute Characters to Make All Strings Equal",
   "difficulty": "Easy",
   "acceptance_rate": 66.8887256305852,
+  "frequency": 0.0,
+  "elo_rating": 1309.1422268153,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

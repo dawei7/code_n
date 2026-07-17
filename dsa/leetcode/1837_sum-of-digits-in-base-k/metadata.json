@@ -6,6 +6,9 @@
   "title": "Sum of Digits in Base K",
   "difficulty": "Easy",
   "acceptance_rate": 78.76967451100244,
+  "frequency": 15.2,
+  "elo_rating": 1282.4111853142,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

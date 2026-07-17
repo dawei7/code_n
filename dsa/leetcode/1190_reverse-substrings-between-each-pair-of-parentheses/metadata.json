@@ -6,6 +6,9 @@
   "title": "Reverse Substrings Between Each Pair of Parentheses",
   "difficulty": "Medium",
   "acceptance_rate": 72.01996186667287,
+  "frequency": 0.0,
+  "elo_rating": 1485.6550472186,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

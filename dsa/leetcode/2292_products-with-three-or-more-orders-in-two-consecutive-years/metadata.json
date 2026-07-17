@@ -6,6 +6,9 @@
   "title": "Products With Three or More Orders in Two Consecutive Years",
   "difficulty": "Medium",
   "acceptance_rate": 40.78268670105405,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1696.463016,
   "category": "database",
   "category_title": "Database",
   "topics": [

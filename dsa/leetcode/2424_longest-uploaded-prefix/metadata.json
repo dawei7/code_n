@@ -6,6 +6,9 @@
   "title": "Longest Uploaded Prefix",
   "difficulty": "Medium",
   "acceptance_rate": 55.216603463413726,
+  "frequency": 0.0,
+  "elo_rating": 1604.1602280047,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

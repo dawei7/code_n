@@ -6,6 +6,9 @@
   "title": "Compare Version Numbers",
   "difficulty": "Medium",
   "acceptance_rate": 46.64184544886482,
+  "frequency": 44.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1635.499571,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

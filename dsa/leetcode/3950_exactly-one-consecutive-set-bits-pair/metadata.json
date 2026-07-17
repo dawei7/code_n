@@ -6,6 +6,9 @@
   "title": "Exactly One Consecutive Set Bits Pair",
   "difficulty": "Easy",
   "acceptance_rate": 50.887019008493716,
+  "frequency": 16.8,
+  "elo_rating": 1270.4393027234,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

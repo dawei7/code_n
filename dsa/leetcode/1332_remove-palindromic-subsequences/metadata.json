@@ -6,6 +6,9 @@
   "title": "Remove Palindromic Subsequences",
   "difficulty": "Easy",
   "acceptance_rate": 77.1310717306256,
+  "frequency": 0.0,
+  "elo_rating": 1628.5072578803,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Fix Names in a Table",
   "difficulty": "Easy",
   "acceptance_rate": 60.59084916997709,
+  "frequency": 33.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1223.215331,
   "category": "database",
   "category_title": "Database",
   "topics": [

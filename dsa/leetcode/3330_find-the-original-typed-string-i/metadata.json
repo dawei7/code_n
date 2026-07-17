@@ -6,6 +6,9 @@
   "title": "Find the Original Typed String I",
   "difficulty": "Easy",
   "acceptance_rate": 72.06236403190718,
+  "frequency": 0.0,
+  "elo_rating": 1338.2680180575,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

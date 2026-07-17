@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import re
+import shutil
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -184,6 +185,97 @@ def active_solution_path(
         active_version(challenge_id, language_id),
         create=create,
     )
+
+
+def _solution_deletion_targets(challenge_ids: Iterable[str]) -> list[tuple[str, Path, Path]]:
+    """Resolve and validate scoped user-solution directories before deletion."""
+
+    root = USER_LEETCODE_ROOT.resolve()
+    targets: list[tuple[str, Path, Path]] = []
+    for challenge_id in dict.fromkeys(str(value) for value in challenge_ids):
+        problem_dir = user_problem_dir(challenge_id)
+        resolved_problem_dir = problem_dir.resolve()
+        if resolved_problem_dir.parent != root:
+            raise RuntimeError("User solution path escaped the configured LeetCode root")
+
+        solution_dir = problem_dir / "user_solutions"
+        resolved_solution_dir = solution_dir.resolve()
+        if resolved_solution_dir.parent != resolved_problem_dir or solution_dir.is_symlink():
+            raise RuntimeError("User solution path failed the deletion safety check")
+        if solution_dir.exists() and not solution_dir.is_dir():
+            raise RuntimeError("User solution path is not a directory")
+        targets.append((challenge_id, problem_dir, solution_dir))
+    return targets
+
+
+def _delete_legacy_user_solutions(challenge_ids: set[str]) -> int:
+    """Remove matching pre-overlay files so startup migration cannot restore them."""
+
+    if not LEGACY_SOLUTIONS_DIR.is_dir():
+        return 0
+
+    root = LEGACY_SOLUTIONS_DIR.resolve()
+    deleted = 0
+    for language_dir in list(LEGACY_SOLUTIONS_DIR.iterdir()):
+        if not language_dir.is_dir() or language_dir.is_symlink():
+            continue
+        resolved_language_dir = language_dir.resolve()
+        if resolved_language_dir.parent != root:
+            raise RuntimeError("Legacy solution path escaped the configured user-data root")
+
+        for source_path in list(language_dir.iterdir()):
+            if not source_path.is_file() or source_path.is_symlink():
+                continue
+            match = _LEGACY_FILE_RE.match(source_path.name)
+            if match and match.group(1) in challenge_ids:
+                source_path.unlink()
+                deleted += 1
+
+        try:
+            language_dir.rmdir()
+        except OSError:
+            pass
+
+    state_path = LEGACY_SOLUTIONS_DIR / ".versions.json"
+    if state_path.is_file() and not state_path.is_symlink():
+        state = _legacy_state(state_path)
+        keys_to_remove = [
+            key
+            for key in state
+            if isinstance(key, str) and key.rsplit(":", 1)[-1] in challenge_ids
+        ]
+        if keys_to_remove:
+            for key in keys_to_remove:
+                state.pop(key, None)
+            state_path.write_text(
+                json.dumps(state, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+    return deleted
+
+
+def delete_user_solutions(challenge_ids: Iterable[str]) -> int:
+    """Delete all personal solution versions for selected LeetCode problems.
+
+    Canonical package solutions are outside ``USER_LEETCODE_ROOT`` and are
+    deliberately never considered. Matching legacy user-data files are also
+    removed so the startup migration cannot recreate deleted personal work.
+    """
+
+    targets = _solution_deletion_targets(challenge_ids)
+    selected_ids = {challenge_id for challenge_id, _problem_dir, _solution_dir in targets}
+
+    deleted = 0
+    for _challenge_id, problem_dir, solution_dir in targets:
+        if solution_dir.is_dir():
+            shutil.rmtree(solution_dir)
+            deleted += 1
+        try:
+            problem_dir.rmdir()
+        except OSError:
+            pass
+
+    return deleted + _delete_legacy_user_solutions(selected_ids)
 
 
 def _legacy_state(path: Path) -> dict[str, Any]:

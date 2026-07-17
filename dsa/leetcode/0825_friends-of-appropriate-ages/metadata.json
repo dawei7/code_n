@@ -6,6 +6,9 @@
   "title": "Friends Of Appropriate Ages",
   "difficulty": "Medium",
   "acceptance_rate": 49.94488197924835,
+  "frequency": 38.8,
+  "elo_rating": 1697.0187705319,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

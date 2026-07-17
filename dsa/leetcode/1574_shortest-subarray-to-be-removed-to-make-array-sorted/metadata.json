@@ -6,6 +6,9 @@
   "title": "Shortest Subarray to be Removed to Make Array Sorted",
   "difficulty": "Medium",
   "acceptance_rate": 51.35010576320859,
+  "frequency": 47.5,
+  "elo_rating": 1931.7335479582,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

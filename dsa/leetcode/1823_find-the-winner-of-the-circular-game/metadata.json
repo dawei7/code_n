@@ -6,6 +6,9 @@
   "title": "Find the Winner of the Circular Game",
   "difficulty": "Medium",
   "acceptance_rate": 82.28856080875742,
+  "frequency": 64.0,
+  "elo_rating": 1412.3053230205,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

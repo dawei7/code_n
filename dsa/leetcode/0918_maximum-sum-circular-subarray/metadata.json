@@ -6,6 +6,9 @@
   "title": "Maximum Sum Circular Subarray",
   "difficulty": "Medium",
   "acceptance_rate": 50.68453777029699,
+  "frequency": 58.6,
+  "elo_rating": 1777.3786570233,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

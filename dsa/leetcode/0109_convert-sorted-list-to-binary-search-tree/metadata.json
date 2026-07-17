@@ -6,6 +6,9 @@
   "title": "Convert Sorted List to Binary Search Tree",
   "difficulty": "Medium",
   "acceptance_rate": 66.92518753008852,
+  "frequency": 60.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1408.92003,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Interleaving String",
   "difficulty": "Medium",
   "acceptance_rate": 44.288692086983694,
+  "frequency": 48.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1661.460081,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

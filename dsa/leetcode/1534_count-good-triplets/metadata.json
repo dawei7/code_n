@@ -6,6 +6,9 @@
   "title": "Count Good Triplets",
   "difficulty": "Easy",
   "acceptance_rate": 85.54421569774242,
+  "frequency": 30.3,
+  "elo_rating": 1279.3383966145,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

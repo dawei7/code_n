@@ -6,6 +6,9 @@
   "title": "Maximum and Minimum Sums of at Most Size K Subarrays",
   "difficulty": "Hard",
   "acceptance_rate": 26.069078947368425,
+  "frequency": 43.5,
+  "elo_rating": 2644.9681021386,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

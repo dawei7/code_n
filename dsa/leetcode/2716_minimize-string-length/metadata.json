@@ -6,6 +6,9 @@
   "title": "Minimize String Length",
   "difficulty": "Easy",
   "acceptance_rate": 79.46646195182804,
+  "frequency": 15.4,
+  "elo_rating": 1242.9383307344,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

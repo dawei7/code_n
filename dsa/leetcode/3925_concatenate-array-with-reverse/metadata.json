@@ -6,6 +6,9 @@
   "title": "Concatenate Array With Reverse",
   "difficulty": "Easy",
   "acceptance_rate": 91.78373642877257,
+  "frequency": 11.7,
+  "elo_rating": 1176.2218745016,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

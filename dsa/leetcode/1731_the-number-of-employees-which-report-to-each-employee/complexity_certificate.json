@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1731",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(E)",
+  "summary": "Every employee row can change manager membership, a direct-report count, or an average age, so exact output has a linear inspection lower bound; one indexed self-join and grouped scan matches it.",
+  "optimality": {
+    "symbol": "E",
+    "lower_bound": "Omega(E)",
+    "upper_bound": "O(E)",
+    "argument": "An uninspected employee row may be the only direct report of a manager, may change an existing manager's count, or may change that manager's rounded average age. All E rows must therefore be considered. Looking up each non-null reports_to value through the unique employee_id index and updating one manager's count and age sum takes constant expected work per row, for O(E) total time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An adversary can alter the reports_to or age value of any uninspected employee and thereby change manager inclusion, reports_count, or average_age."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The self-join resolves each direct relationship once through the unique employee_id key, while grouped count and age-sum states are updated once per matching report."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover both public samples, one report, direct-versus-indirect hierarchy semantics, no managers, unordered input, upward-reporting managers, and averages that round up or down."
+    }
+  ]
+}

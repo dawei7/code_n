@@ -6,6 +6,9 @@
   "title": "Check Balanced String",
   "difficulty": "Easy",
   "acceptance_rate": 82.91892000765381,
+  "frequency": 0.0,
+  "elo_rating": 1190.6856174464,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

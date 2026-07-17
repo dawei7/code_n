@@ -6,6 +6,9 @@
   "title": "Smallest Missing Integer Greater Than Sequential Prefix Sum",
   "difficulty": "Easy",
   "acceptance_rate": 35.80421368539341,
+  "frequency": 44.3,
+  "elo_rating": 1405.7482709086,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1752",
+  "frontend_id": "1630",
+  "title_slug": "arithmetic-subarrays",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.checkArithmeticSubarrays",
+  "verified_submission_id": "2070444391",
+  "verified_at": "2026-07-16T22:52:45.068211+00:00"
+}

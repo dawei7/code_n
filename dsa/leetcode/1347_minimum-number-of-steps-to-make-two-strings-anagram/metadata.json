@@ -6,6 +6,9 @@
   "title": "Minimum Number of Steps to Make Two Strings Anagram",
   "difficulty": "Medium",
   "acceptance_rate": 82.56132638991541,
+  "frequency": 50.0,
+  "elo_rating": 1330.918577828,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

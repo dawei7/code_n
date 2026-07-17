@@ -6,6 +6,9 @@
   "title": "Matrix Diagonal Sum",
   "difficulty": "Easy",
   "acceptance_rate": 84.40979506525443,
+  "frequency": 33.7,
+  "elo_rating": 1280.2941647587,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

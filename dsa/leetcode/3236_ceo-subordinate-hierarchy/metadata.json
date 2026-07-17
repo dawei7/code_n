@@ -6,6 +6,9 @@
   "title": "CEO Subordinate Hierarchy",
   "difficulty": "Hard",
   "acceptance_rate": 70.07268063274904,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1944.588623,
   "category": "database",
   "category_title": "Database",
   "topics": [

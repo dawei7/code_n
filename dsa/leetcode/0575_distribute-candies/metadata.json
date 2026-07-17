@@ -6,6 +6,9 @@
   "title": "Distribute Candies",
   "difficulty": "Easy",
   "acceptance_rate": 71.36777948132891,
+  "frequency": 20.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1180.10233,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

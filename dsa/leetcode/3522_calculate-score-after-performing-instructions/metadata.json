@@ -6,6 +6,9 @@
   "title": "Calculate Score After Performing Instructions",
   "difficulty": "Medium",
   "acceptance_rate": 57.20056638347493,
+  "frequency": 0.0,
+  "elo_rating": 1238.9187002982,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

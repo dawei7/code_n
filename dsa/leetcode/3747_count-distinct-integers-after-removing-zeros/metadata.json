@@ -6,6 +6,9 @@
   "title": "Count Distinct Integers After Removing Zeros",
   "difficulty": "Medium",
   "acceptance_rate": 23.074952683183675,
+  "frequency": 37.6,
+  "elo_rating": 1848.1765176884,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

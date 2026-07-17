@@ -6,6 +6,9 @@
   "title": "Building H2O",
   "difficulty": "Medium",
   "acceptance_rate": 58.37825438697099,
+  "frequency": 25.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1475.669882,
   "category": "concurrency",
   "category_title": "Concurrency",
   "topics": [
@@ -15,7 +18,9 @@
     }
   ],
   "url": "https://leetcode.com/problems/building-h2o/",
-  "supported_languages": ["python"],
+  "supported_languages": [
+    "python"
+  ],
   "primary_language": "python",
   "runnable_in_coden": true,
   "subsets": [

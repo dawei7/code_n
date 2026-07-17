@@ -6,6 +6,9 @@
   "title": "Sort Items by Groups Respecting Dependencies",
   "difficulty": "Hard",
   "acceptance_rate": 65.97177585694139,
+  "frequency": 21.3,
+  "elo_rating": 2418.5742747632,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

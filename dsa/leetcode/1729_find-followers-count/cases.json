@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1729",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: three users with one or two followers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Followers": [
+            {"user_id": 0, "follower_id": 1},
+            {"user_id": 1, "follower_id": 0},
+            {"user_id": 2, "follower_id": 0},
+            {"user_id": 2, "follower_id": 1}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["user_id", "followers_count"],
+        "rows": [[0,1],[1,1],[2,2]]
+      },
+      "tags": ["sample", "group-count", "ascending-order"]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one relationship gives one follower",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Followers": [{"user_id": 7, "follower_id": 42}]
+        }
+      },
+      "expected": {
+        "columns": ["user_id", "followers_count"],
+        "rows": [[7,1]]
+      },
+      "tags": ["single-row", "single-group"]
+    },
+    {
+      "id": "trial-one-user-many",
+      "name": "trial: one user has several distinct followers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Followers": [
+            {"user_id": 5, "follower_id": 10},
+            {"user_id": 5, "follower_id": 20},
+            {"user_id": 5, "follower_id": 30},
+            {"user_id": 5, "follower_id": 40}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["user_id", "followers_count"],
+        "rows": [[5,4]]
+      },
+      "tags": ["one-group", "several-followers"]
+    },
+    {
+      "id": "real-unsorted-users",
+      "name": "hidden: output is sorted independently of input row order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Followers": [
+            {"user_id": 10, "follower_id": 2},
+            {"user_id": 3, "follower_id": 7},
+            {"user_id": 10, "follower_id": 1},
+            {"user_id": 3, "follower_id": 4},
+            {"user_id": 3, "follower_id": 1}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["user_id", "followers_count"],
+        "rows": [[3,3],[10,2]]
+      },
+      "tags": ["unsorted-input", "nonconsecutive-users"]
+    },
+    {
+      "id": "real-shared-follower",
+      "name": "hidden: one follower contributes to several user groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Followers": [
+            {"user_id": 100, "follower_id": 9},
+            {"user_id": 200, "follower_id": 9},
+            {"user_id": 200, "follower_id": 8},
+            {"user_id": 300, "follower_id": 9}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["user_id", "followers_count"],
+        "rows": [[100,1],[200,2],[300,1]]
+      },
+      "tags": ["shared-follower", "separate-groups"]
+    },
+    {
+      "id": "real-large-identifiers",
+      "name": "hidden: large and zero identifiers are grouped normally",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Followers": [
+            {"user_id": 1000000, "follower_id": 0},
+            {"user_id": 0, "follower_id": 1000000},
+            {"user_id": 1000000, "follower_id": 999999},
+            {"user_id": 0, "follower_id": 7}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["user_id", "followers_count"],
+        "rows": [[0,2],[1000000,2]]
+      },
+      "tags": ["large-identifiers", "zero-identifier", "ordering"]
+    }
+  ]
+}

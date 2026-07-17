@@ -6,6 +6,9 @@
   "title": "Array Partition",
   "difficulty": "Easy",
   "acceptance_rate": 81.90471585293653,
+  "frequency": 51.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1898",
+  "frontend_id": "1747",
+  "title_slug": "leetflex-banned-accounts",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070948346",
+  "verified_at": "2026-07-17T09:45:29.144390+00:00"
+}

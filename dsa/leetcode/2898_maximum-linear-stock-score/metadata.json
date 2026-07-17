@@ -6,6 +6,9 @@
   "title": "Maximum Linear Stock Score",
   "difficulty": "Medium",
   "acceptance_rate": 61.80555555555556,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1448.875927,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

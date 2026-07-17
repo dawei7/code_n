@@ -6,6 +6,9 @@
   "title": "Find Cutoff Score for Each School",
   "difficulty": "Medium",
   "acceptance_rate": 67.10551062629303,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1407.196442,
   "category": "database",
   "category_title": "Database",
   "topics": [

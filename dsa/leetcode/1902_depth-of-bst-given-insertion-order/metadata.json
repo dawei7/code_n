@@ -6,6 +6,9 @@
   "title": "Depth of BST Given Insertion Order",
   "difficulty": "Medium",
   "acceptance_rate": 42.723594251430164,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1678.086475,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

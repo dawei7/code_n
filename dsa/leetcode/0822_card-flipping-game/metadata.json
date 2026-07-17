@@ -6,6 +6,9 @@
   "title": "Card Flipping Game",
   "difficulty": "Medium",
   "acceptance_rate": 50.63972813875323,
+  "frequency": 40.7,
+  "elo_rating": 1594.2563236049,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

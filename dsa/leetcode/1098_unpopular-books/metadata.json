@@ -6,6 +6,9 @@
   "title": "Unpopular Books",
   "difficulty": "Medium",
   "acceptance_rate": 43.39383967588415,
+  "frequency": 45.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1671.085888,
   "category": "database",
   "category_title": "Database",
   "topics": [

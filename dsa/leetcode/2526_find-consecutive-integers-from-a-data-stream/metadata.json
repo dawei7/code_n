@@ -6,6 +6,9 @@
   "title": "Find Consecutive Integers from a Data Stream",
   "difficulty": "Medium",
   "acceptance_rate": 51.41040339136694,
+  "frequency": 26.8,
+  "elo_rating": 1444.3218903725,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

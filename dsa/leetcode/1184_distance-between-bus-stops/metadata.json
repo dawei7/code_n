@@ -6,6 +6,9 @@
   "title": "Distance Between Bus Stops",
   "difficulty": "Easy",
   "acceptance_rate": 55.49942579022202,
+  "frequency": 27.9,
+  "elo_rating": 1234.4144116814,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

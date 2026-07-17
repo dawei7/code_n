@@ -6,6 +6,9 @@
   "title": "Finding MK Average",
   "difficulty": "Hard",
   "acceptance_rate": 38.82111683668104,
+  "frequency": 46.1,
+  "elo_rating": 2395.8765531206,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

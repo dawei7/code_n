@@ -6,6 +6,9 @@
   "title": "Apply Discount Every n Orders",
   "difficulty": "Medium",
   "acceptance_rate": 65.78090989418331,
+  "frequency": 0.0,
+  "elo_rating": 1429.6349292399,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

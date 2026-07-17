@@ -6,6 +6,9 @@
   "title": "Expression Add Operators",
   "difficulty": "Hard",
   "acceptance_rate": 43.43169836503169,
+  "frequency": 60.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 2177.423122,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

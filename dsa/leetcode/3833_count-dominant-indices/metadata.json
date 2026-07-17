@@ -6,6 +6,9 @@
   "title": "Count Dominant Indices",
   "difficulty": "Easy",
   "acceptance_rate": 66.1136556403732,
+  "frequency": 22.4,
+  "elo_rating": 1171.7374328673,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

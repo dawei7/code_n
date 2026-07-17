@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1698",
+  "cases": [
+    {"id":"sample-repeated-mix","name":"sample: mixed repeated substrings","kind":"sample","visible":true,"input":{"s":"aabbaba"},"expected":21,"tags":["sample","repetition"]},
+    {"id":"sample-all-distinct","name":"sample: every substring content is unique","kind":"sample","visible":true,"input":{"s":"abcdefg"},"expected":28,"tags":["sample","all-distinct"]},
+    {"id":"trial-single","name":"trial: one character gives one substring","kind":"trial","visible":true,"input":{"s":"a"},"expected":1,"tags":["minimum","single-character"]},
+    {"id":"trial-all-equal","name":"trial: equal characters distinguish only lengths","kind":"trial","visible":true,"input":{"s":"aaaa"},"expected":4,"tags":["all-equal","repetition"]},
+    {"id":"trial-alternating","name":"trial: alternating pattern shares many contents","kind":"trial","visible":true,"input":{"s":"abab"},"expected":7,"tags":["periodic","overlap"]},
+    {"id":"real-banana","name":"hidden: overlapping suffix patterns in banana","kind":"real","visible":false,"input":{"s":"banana"},"expected":15,"tags":["overlap","repetition"]},
+    {"id":"real-repeated-prefix","name":"hidden: final character repeats the prefix","kind":"real","visible":false,"input":{"s":"abca"},"expected":9,"tags":["repeated-prefix","clone"]},
+    {"id":"real-period-three","name":"hidden: period-three string shares long substrings","kind":"real","visible":false,"input":{"s":"abcabc"},"expected":15,"tags":["periodic","overlap"]},
+    {"id":"real-clone-pattern","name":"hidden: repeated edge characters around a unique middle","kind":"real","visible":false,"input":{"s":"zzxyzz"},"expected":17,"tags":["clone","repetition"]}
+  ]
+}

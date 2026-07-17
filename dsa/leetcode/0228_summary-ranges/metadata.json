@@ -6,6 +6,9 @@
   "title": "Summary Ranges",
   "difficulty": "Easy",
   "acceptance_rate": 54.41665527511166,
+  "frequency": 58.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1238.83885,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

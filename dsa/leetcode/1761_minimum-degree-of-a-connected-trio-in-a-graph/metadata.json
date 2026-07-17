@@ -6,6 +6,9 @@
   "title": "Minimum Degree of a Connected Trio in a Graph",
   "difficulty": "Hard",
   "acceptance_rate": 44.631458464789354,
+  "frequency": 0.0,
+  "elo_rating": 2005.2755755378,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

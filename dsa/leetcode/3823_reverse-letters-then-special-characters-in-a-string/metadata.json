@@ -6,6 +6,9 @@
   "title": "Reverse Letters Then Special Characters in a String",
   "difficulty": "Easy",
   "acceptance_rate": 82.23430477018994,
+  "frequency": 17.1,
+  "elo_rating": 1250.1561837398,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

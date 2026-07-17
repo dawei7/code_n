@@ -6,6 +6,9 @@
   "title": "Longest Harmonious Subsequence",
   "difficulty": "Easy",
   "acceptance_rate": 64.8259663513771,
+  "frequency": 36.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1206.998514,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

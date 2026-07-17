@@ -6,6 +6,9 @@
   "title": "Find Customer Referee",
   "difficulty": "Easy",
   "acceptance_rate": 73.0948581574913,
+  "frequency": 57.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1174.310037,
   "category": "database",
   "category_title": "Database",
   "topics": [

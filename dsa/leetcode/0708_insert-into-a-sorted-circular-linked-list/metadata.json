@@ -6,6 +6,9 @@
   "title": "Insert into a Sorted Circular Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 38.5716186912376,
+  "frequency": 58.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1713.672792,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

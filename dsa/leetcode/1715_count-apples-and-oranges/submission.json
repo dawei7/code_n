@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1862",
+  "frontend_id": "1715",
+  "title_slug": "count-apples-and-oranges",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070708429",
+  "verified_at": "2026-07-17T06:01:53.020931+00:00"
+}

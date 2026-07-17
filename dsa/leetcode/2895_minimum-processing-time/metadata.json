@@ -6,6 +6,9 @@
   "title": "Minimum Processing Time",
   "difficulty": "Medium",
   "acceptance_rate": 70.56891619874986,
+  "frequency": 55.1,
+  "elo_rating": 1351.6909336495,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

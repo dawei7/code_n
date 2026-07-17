@@ -3,7 +3,9 @@
 import json
 import os
 import re
+from collections.abc import Iterable
 from dataclasses import dataclass, field
+from typing import Literal
 
 from .branding import normalize_player_name
 
@@ -75,6 +77,7 @@ class PlayerProgress:
     pane_font_scales: dict[str, float] = field(default_factory=dict)
     pane_sizes: dict[str, float] = field(default_factory=dict)
     accent_colors: dict[str, str] = field(default_factory=lambda: dict(DEFAULT_ACCENT_COLORS))
+    custom_problem_sets: list[dict] = field(default_factory=list)
 
     def complete(self, challenge_id: str, ops: int, complexity: str):
         self.completed.add(challenge_id)
@@ -97,13 +100,50 @@ class PlayerProgress:
         self.completed.discard(challenge_id)
         self.last_status[challenge_id] = "failed"
 
-    def reset_statuses(self):
-        self.completed.clear()
-        self.records.clear()
-        self.last_status.clear()
-        self.leetcode_solved.clear()
-        self.leetcode_submissions.clear()
-        self.unlocked_leetcode.clear()
+    def reset_statuses(
+        self,
+        challenge_ids: Iterable[str] | None = None,
+        scope: Literal["all", "coden", "leetcode"] = "all",
+    ):
+        """Clear selected progress while preserving profile settings and solutions."""
+
+        if scope not in {"all", "coden", "leetcode"}:
+            raise ValueError(f"Unsupported progress reset scope: {scope}")
+
+        selected = None if challenge_ids is None else {str(challenge_id) for challenge_id in challenge_ids}
+
+        if scope in {"all", "coden"}:
+            if selected is None:
+                self.completed.clear()
+                self.records.clear()
+                self.last_status.clear()
+            else:
+                self.completed.difference_update(selected)
+                for challenge_id in selected:
+                    self.records.pop(challenge_id, None)
+                    self.last_status.pop(challenge_id, None)
+
+        if scope in {"all", "leetcode"}:
+            if selected is None:
+                self.leetcode_solved.clear()
+                self.leetcode_submissions.clear()
+                self.unlocked_leetcode.clear()
+            else:
+                self.leetcode_solved = [
+                    challenge_id
+                    for challenge_id in self.leetcode_solved
+                    if challenge_id not in selected
+                ]
+                self.unlocked_leetcode = [
+                    challenge_id
+                    for challenge_id in self.unlocked_leetcode
+                    if challenge_id not in selected
+                ]
+                for challenge_id in selected:
+                    self.leetcode_submissions.pop(challenge_id, None)
+
+        # Milestones belong to the retired progression model and are never
+        # retained after a progress mutation.
         self.milestones.clear()
 
     def status_for(self, challenge_id: str) -> str:
@@ -142,6 +182,11 @@ class PlayerProgress:
             "pane_font_scales": dict(self.pane_font_scales),
             "pane_sizes": dict(self.pane_sizes),
             "accent_colors": normalize_accent_colors(self.accent_colors),
+            "custom_problem_sets": [
+                dict(problem_set)
+                for problem_set in self.custom_problem_sets
+                if isinstance(problem_set, dict)
+            ],
         }
 
     @classmethod
@@ -179,6 +224,12 @@ class PlayerProgress:
             for scope, size in dict(data.get("pane_sizes", {})).items()
         }
         progress.accent_colors = normalize_accent_colors(data.get("accent_colors"))
+        raw_custom_sets = data.get("custom_problem_sets", [])
+        progress.custom_problem_sets = [
+            dict(problem_set)
+            for problem_set in raw_custom_sets
+            if isinstance(problem_set, dict)
+        ] if isinstance(raw_custom_sets, list) else []
         return progress
 
 

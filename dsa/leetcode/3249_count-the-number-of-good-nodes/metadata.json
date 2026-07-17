@@ -6,6 +6,9 @@
   "title": "Count the Number of Good Nodes",
   "difficulty": "Medium",
   "acceptance_rate": 55.50696242390316,
+  "frequency": 0.0,
+  "elo_rating": 1565.8040286471,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

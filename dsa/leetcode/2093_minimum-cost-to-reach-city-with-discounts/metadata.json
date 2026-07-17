@@ -6,6 +6,9 @@
   "title": "Minimum Cost to Reach City With Discounts",
   "difficulty": "Medium",
   "acceptance_rate": 61.04501014572957,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1455.770278,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

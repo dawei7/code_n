@@ -6,6 +6,9 @@
   "title": "Can You Eat Your Favorite Candy on Your Favorite Day?",
   "difficulty": "Medium",
   "acceptance_rate": 36.33055344958302,
+  "frequency": 0.0,
+  "elo_rating": 1858.9581916885,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

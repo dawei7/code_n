@@ -6,6 +6,9 @@
   "title": "Simplified Fractions",
   "difficulty": "Medium",
   "acceptance_rate": 70.0512405609493,
+  "frequency": 0.0,
+  "elo_rating": 1268.5768566953,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

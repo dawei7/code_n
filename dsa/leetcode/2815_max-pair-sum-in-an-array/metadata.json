@@ -6,6 +6,9 @@
   "title": "Max Pair Sum in an Array",
   "difficulty": "Easy",
   "acceptance_rate": 60.95651749548582,
+  "frequency": 40.3,
+  "elo_rating": 1295.0947625986,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

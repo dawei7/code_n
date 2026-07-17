@@ -6,6 +6,9 @@
   "title": "Count Nodes That Are Great Enough",
   "difficulty": "Hard",
   "acceptance_rate": 56.648731744811684,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2029.343607,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

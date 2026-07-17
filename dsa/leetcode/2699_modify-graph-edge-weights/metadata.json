@@ -6,6 +6,9 @@
   "title": "Modify Graph Edge Weights",
   "difficulty": "Hard",
   "acceptance_rate": 55.591101006820395,
+  "frequency": 0.0,
+  "elo_rating": 2873.9745576413,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

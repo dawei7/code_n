@@ -6,6 +6,9 @@
   "title": "Count All Possible Routes",
   "difficulty": "Hard",
   "acceptance_rate": 64.80297727513764,
+  "frequency": 47.0,
+  "elo_rating": 2055.0970201875,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

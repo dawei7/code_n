@@ -6,6 +6,9 @@
   "title": "High Five",
   "difficulty": "Easy",
   "acceptance_rate": 74.19021057201135,
+  "frequency": 66.8,
+  "elo_rating": 1327.0282989915,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

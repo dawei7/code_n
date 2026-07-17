@@ -6,6 +6,9 @@
   "title": "Binary Search Tree to Greater Sum Tree",
   "difficulty": "Medium",
   "acceptance_rate": 88.37215776087865,
+  "frequency": 14.6,
+  "elo_rating": 1374.6755455786,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

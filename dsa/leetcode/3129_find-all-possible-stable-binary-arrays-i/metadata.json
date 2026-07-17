@@ -6,6 +6,9 @@
   "title": "Find All Possible Stable Binary Arrays I",
   "difficulty": "Medium",
   "acceptance_rate": 53.59533497084357,
+  "frequency": 87.1,
+  "elo_rating": 2200.1171591946,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Clone Graph",
   "difficulty": "Medium",
   "acceptance_rate": 65.66279856233794,
+  "frequency": 48.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1416.44114,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

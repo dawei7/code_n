@@ -6,6 +6,9 @@
   "title": "Largest Number",
   "difficulty": "Medium",
   "acceptance_rate": 43.307048050693844,
+  "frequency": 82.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1672.544344,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

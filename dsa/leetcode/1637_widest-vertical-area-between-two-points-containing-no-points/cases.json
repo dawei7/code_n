@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1637",
+  "cases": [
+    {"id":"sample-unit-gaps","name":"sample: two adjacent unit gaps tie for widest","kind":"sample","visible":true,"input":{"points":[[8,7],[9,9],[7,4],[9,7]]},"expected":1,"tags":["sample","duplicate-x"]},
+    {"id":"sample-width-three","name":"sample: unsorted points leave a width-three strip","kind":"sample","visible":true,"input":{"points":[[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]]},"expected":3,"tags":["sample","unsorted"]},
+    {"id":"trial-two-points","name":"trial: two distant points define the only strip","kind":"trial","visible":true,"input":{"points":[[0,4],[10,2]]},"expected":10,"tags":["minimum-length"]},
+    {"id":"trial-same-x","name":"trial: two points on one vertical line produce zero width","kind":"trial","visible":true,"input":{"points":[[5,0],[5,100]]},"expected":0,"tags":["duplicate-x","zero-width"]},
+    {"id":"trial-y-irrelevant","name":"trial: y-coordinates do not affect horizontal gaps","kind":"trial","visible":true,"input":{"points":[[2,1000000000],[20,0],[7,500]]},"expected":13,"tags":["y-irrelevant"]},
+    {"id":"real-coordinate-boundaries","name":"hidden: x-coordinate boundaries define the widest legal gap","kind":"real","visible":false,"input":{"points":[[1000000000,1],[0,2],[999999999,3]]},"expected":999999999,"tags":["coordinate-boundaries"]},
+    {"id":"real-many-duplicates","name":"hidden: repeated boundary coordinates do not alter the maximum","kind":"real","visible":false,"input":{"points":[[4,1],[4,2],[4,3],[11,0],[11,9],[20,5]]},"expected":9,"tags":["duplicate-x"]},
+    {"id":"real-input-order","name":"hidden: a shuffled sequence must be sorted before scanning","kind":"real","visible":false,"input":{"points":[[30,3],[1,8],[18,4],[17,9],[7,2],[50,1]]},"expected":20,"tags":["unsorted","multiple-gaps"]},
+    {"id":"real-gap-at-start","name":"hidden: the widest gap occurs between the two smallest x-coordinates","kind":"real","visible":false,"input":{"points":[[100,0],[101,1],[0,2],[80,3],[102,4]]},"expected":80,"tags":["leading-gap"]},
+    {"id":"real-gap-at-end","name":"hidden: the widest gap occurs between the two largest x-coordinates","kind":"real","visible":false,"input":{"points":[[0,0],[1,1],[2,2],[3,3],[100,4]]},"expected":97,"tags":["trailing-gap"]}
+  ]
+}

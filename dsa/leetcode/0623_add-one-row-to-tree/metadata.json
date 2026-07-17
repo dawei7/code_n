@@ -6,6 +6,9 @@
   "title": "Add One Row to Tree",
   "difficulty": "Medium",
   "acceptance_rate": 64.15375913406649,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1428.819634,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

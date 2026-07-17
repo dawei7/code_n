@@ -6,6 +6,9 @@
   "title": "Unique 3-Digit Even Numbers",
   "difficulty": "Easy",
   "acceptance_rate": 70.09109819955526,
+  "frequency": 34.5,
+  "elo_rating": 1323.5902064671,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

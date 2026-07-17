@@ -6,6 +6,9 @@
   "title": "Minimum Adjacent Swaps to Reach the Kth Smallest Number",
   "difficulty": "Medium",
   "acceptance_rate": 71.87913597203146,
+  "frequency": 0.0,
+  "elo_rating": 2073.0124645606,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

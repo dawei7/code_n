@@ -6,6 +6,9 @@
   "title": "Consecutive Transactions with Increasing Amounts",
   "difficulty": "Hard",
   "acceptance_rate": 35.11081587052358,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2297.509731,
   "category": "database",
   "category_title": "Database",
   "topics": [

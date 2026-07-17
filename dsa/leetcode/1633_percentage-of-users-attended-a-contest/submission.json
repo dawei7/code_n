@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1773",
+  "frontend_id": "1633",
+  "title_slug": "percentage-of-users-attended-a-contest",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070448300",
+  "verified_at": "2026-07-16T23:07:44.361327+00:00"
+}

@@ -6,6 +6,9 @@
   "title": "Maximum Fruits Harvested After at Most K Steps",
   "difficulty": "Hard",
   "acceptance_rate": 61.01040617656932,
+  "frequency": 0.0,
+  "elo_rating": 2062.3601158741,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

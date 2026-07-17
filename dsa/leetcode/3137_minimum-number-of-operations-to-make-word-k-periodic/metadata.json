@@ -6,6 +6,9 @@
   "title": "Minimum Number of Operations to Make Word K-Periodic",
   "difficulty": "Medium",
   "acceptance_rate": 60.880572139828274,
+  "frequency": 0.0,
+  "elo_rating": 1491.2092519226,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

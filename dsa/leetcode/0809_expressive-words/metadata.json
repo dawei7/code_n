@@ -6,6 +6,9 @@
   "title": "Expressive Words",
   "difficulty": "Medium",
   "acceptance_rate": 46.89865797832904,
+  "frequency": 20.1,
+  "elo_rating": 1604.9737380545,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

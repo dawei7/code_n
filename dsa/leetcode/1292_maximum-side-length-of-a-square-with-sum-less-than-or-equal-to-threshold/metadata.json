@@ -6,6 +6,9 @@
   "title": "Maximum Side Length of a Square with Sum Less than or Equal to Threshold",
   "difficulty": "Medium",
   "acceptance_rate": 65.46332821785748,
+  "frequency": 88.7,
+  "elo_rating": 1734.8208369949,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

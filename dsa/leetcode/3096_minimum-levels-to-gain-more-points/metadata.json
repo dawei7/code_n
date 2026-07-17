@@ -6,6 +6,9 @@
   "title": "Minimum Levels to Gain More Points",
   "difficulty": "Medium",
   "acceptance_rate": 40.51411812065099,
+  "frequency": 0.0,
+  "elo_rating": 1500.9381282198,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

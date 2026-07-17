@@ -6,6 +6,9 @@
   "title": "Video Stitching",
   "difficulty": "Medium",
   "acceptance_rate": 52.78442209888298,
+  "frequency": 18.4,
+  "elo_rating": 1746.135917977,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

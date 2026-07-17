@@ -6,6 +6,9 @@
   "title": "Find Eventual Safe States",
   "difficulty": "Medium",
   "acceptance_rate": 71.12330469238147,
+  "frequency": 40.0,
+  "elo_rating": 1962.3314335449,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

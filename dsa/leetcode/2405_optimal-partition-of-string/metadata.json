@@ -6,6 +6,9 @@
   "title": "Optimal Partition of String",
   "difficulty": "Medium",
   "acceptance_rate": 78.47033571452528,
+  "frequency": 39.0,
+  "elo_rating": 1355.3956434989,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

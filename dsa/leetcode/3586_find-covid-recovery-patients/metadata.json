@@ -6,6 +6,9 @@
   "title": "Find COVID Recovery Patients",
   "difficulty": "Medium",
   "acceptance_rate": 43.09521133093525,
+  "frequency": 33.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 1675.461255,
   "category": "database",
   "category_title": "Database",
   "topics": [

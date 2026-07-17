@@ -6,6 +6,9 @@
   "title": "Find Words Containing Character",
   "difficulty": "Easy",
   "acceptance_rate": 90.39347451257792,
+  "frequency": 20.4,
+  "elo_rating": 1182.2102562446,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

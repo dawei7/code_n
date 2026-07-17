@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1702",
+  "measurement_note": "Size is n, the binary-string length. Every tier is a legal all-zero string, so all input characters affect the forced survivor position and the expected result is n-1 ones followed by zero. The Accepted first-index/count construction and an independent one-pass zero scan take O(n) time. A correct implementation that recomputes the global zero statistics for every output position takes O(n^2), completes all 8/32/128-character tiers, and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 8 zero characters","kind":"benchmark","visible":false,"size":8,"input":{"binary":"00000000"},"expected":"11111110","tags":["benchmark","scaling","all-zeros"]},
+    {"id":"benchmark-scale-2","name":"benchmark: 32 zero characters","kind":"benchmark","visible":false,"size":32,"input":{"binary":"00000000000000000000000000000000"},"expected":"11111111111111111111111111111110","tags":["benchmark","scaling","all-zeros"]},
+    {"id":"benchmark-scale-3","name":"benchmark: 128 zero characters","kind":"benchmark","visible":false,"size":128,"input":{"binary":"00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"},"expected":"11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111110","tags":["benchmark","scaling","all-zeros"]}
+  ]
+}

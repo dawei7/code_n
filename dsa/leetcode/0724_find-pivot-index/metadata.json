@@ -6,6 +6,9 @@
   "title": "Find Pivot Index",
   "difficulty": "Easy",
   "acceptance_rate": 63.15166357376817,
+  "frequency": 51.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1214.71139,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

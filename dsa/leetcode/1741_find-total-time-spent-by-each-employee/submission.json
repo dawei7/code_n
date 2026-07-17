@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1892",
+  "frontend_id": "1741",
+  "title_slug": "find-total-time-spent-by-each-employee",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070908204",
+  "verified_at": "2026-07-17T09:09:32.223882+00:00"
+}

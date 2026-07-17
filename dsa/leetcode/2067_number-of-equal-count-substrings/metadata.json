@@ -6,6 +6,9 @@
   "title": "Number of Equal Count Substrings",
   "difficulty": "Medium",
   "acceptance_rate": 45.62513637355444,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1648.917363,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

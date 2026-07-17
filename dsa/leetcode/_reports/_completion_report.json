@@ -1,8 +1,8 @@
 {
-  "total_docs": 3985,
+  "total_docs": 3991,
   "counts": {
-    "manual_complete": 2597,
-    "needs_authoring": 1388
+    "manual_complete": 2694,
+    "needs_authoring": 1297
   },
   "entries": [
     {
@@ -11298,36 +11298,36 @@
     },
     {
       "path": "dsa/leetcode/1614_maximum-nesting-depth-of-the-parentheses/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1615_maximal-network-rank/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1616_split-two-strings-to-make-palindrome/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1617_count-subtrees-with-max-distance-between-cities/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1618_maximum-font-to-fit-a-sentence-in-a-screen/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11347,36 +11347,36 @@
     },
     {
       "path": "dsa/leetcode/1621_number-of-sets-of-k-non-overlapping-line-segments/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1622_fancy-sequence/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1623_all-valid-triplets-that-can-represent-a-country/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1624_largest-substring-between-two-equal-characters/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1625_lexicographically-smallest-string-after-applying-operations/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11396,8 +11396,8 @@
     },
     {
       "path": "dsa/leetcode/1628_design-an-expression-tree-with-evaluate-function/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11431,22 +11431,22 @@
     },
     {
       "path": "dsa/leetcode/1633_percentage-of-users-attended-a-contest/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1634_add-two-polynomials-represented-as-linked-lists/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1635_hopper-company-queries-i/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11466,8 +11466,8 @@
     },
     {
       "path": "dsa/leetcode/1638_count-substrings-that-differ-by-one-character/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11487,8 +11487,8 @@
     },
     {
       "path": "dsa/leetcode/1641_count-sorted-vowel-strings/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11508,15 +11508,15 @@
     },
     {
       "path": "dsa/leetcode/1644_lowest-common-ancestor-of-a-binary-tree-ii/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1645_hopper-company-queries-ii/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11529,8 +11529,8 @@
     },
     {
       "path": "dsa/leetcode/1647_minimum-deletions-to-make-character-frequencies-unique/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11550,15 +11550,15 @@
     },
     {
       "path": "dsa/leetcode/1650_lowest-common-ancestor-of-a-binary-tree-iii/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1651_hopper-company-queries-iii/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11571,8 +11571,8 @@
     },
     {
       "path": "dsa/leetcode/1653_minimum-deletions-to-make-string-balanced/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11599,8 +11599,8 @@
     },
     {
       "path": "dsa/leetcode/1657_determine-if-two-strings-are-close/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11613,22 +11613,22 @@
     },
     {
       "path": "dsa/leetcode/1659_maximize-grid-happiness/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1660_correct-a-binary-tree/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1661_average-time-of-process-per-machine/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11641,8 +11641,8 @@
     },
     {
       "path": "dsa/leetcode/1663_smallest-string-with-a-given-numeric-value/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11662,29 +11662,29 @@
     },
     {
       "path": "dsa/leetcode/1666_change-the-root-of-a-binary-tree/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1667_fix-names-in-a-table/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1668_maximum-repeating-substring/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1669_merge-in-between-linked-lists/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11732,22 +11732,22 @@
     },
     {
       "path": "dsa/leetcode/1676_lowest-common-ancestor-of-a-binary-tree-iv/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1677_products-worth-over-invoices/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1678_goal-parser-interpretation/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11760,8 +11760,8 @@
     },
     {
       "path": "dsa/leetcode/1680_concatenation-of-consecutive-binary-numbers/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11774,15 +11774,15 @@
     },
     {
       "path": "dsa/leetcode/1682_longest-palindromic-subsequence-ii/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1683_invalid-tweets/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11816,15 +11816,15 @@
     },
     {
       "path": "dsa/leetcode/1688_count-of-matches-in-tournament/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1689_partitioning-into-minimum-number-of-deci-binary-numbers/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11844,22 +11844,22 @@
     },
     {
       "path": "dsa/leetcode/1692_count-ways-to-distribute-candies/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1693_daily-leads-and-partners/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1694_reformat-phone-number/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11886,15 +11886,15 @@
     },
     {
       "path": "dsa/leetcode/1698_number-of-distinct-substrings-in-a-string/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1699_number-of-calls-between-two-persons/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11914,8 +11914,8 @@
     },
     {
       "path": "dsa/leetcode/1702_maximum-binary-string-after-change/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11928,8 +11928,8 @@
     },
     {
       "path": "dsa/leetcode/1704_determine-if-string-halves-are-alike/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11956,15 +11956,15 @@
     },
     {
       "path": "dsa/leetcode/1708_largest-subarray-length-k/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1709_biggest-window-between-visits/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -11998,29 +11998,29 @@
     },
     {
       "path": "dsa/leetcode/1714_sum-of-special-evenly-spaced-elements-in-array/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1715_count-apples-and-oranges/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1716_calculate-money-in-leetcode-bank/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1717_maximum-score-from-removing-substrings/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12047,8 +12047,8 @@
     },
     {
       "path": "dsa/leetcode/1721_swapping-nodes-in-a-linked-list/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12068,8 +12068,8 @@
     },
     {
       "path": "dsa/leetcode/1724_checking-existence-of-edge-length-limited-paths-ii/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12103,22 +12103,22 @@
     },
     {
       "path": "dsa/leetcode/1729_find-followers-count/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1730_shortest-path-to-get-food/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1731_the-number-of-employees-which-report-to-each-employee/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12152,15 +12152,15 @@
     },
     {
       "path": "dsa/leetcode/1736_latest-time-by-replacing-hidden-digits/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1737_change-minimum-characters-to-satisfy-one-of-three-conditions/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12173,29 +12173,29 @@
     },
     {
       "path": "dsa/leetcode/1739_building-boxes/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1740_find-distance-in-a-binary-tree/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1741_find-total-time-spent-by-each-employee/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1742_maximum-number-of-balls-in-a-box/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12215,22 +12215,22 @@
     },
     {
       "path": "dsa/leetcode/1745_palindrome-partitioning-iv/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1746_maximum-subarray-sum-after-one-operation/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1747_leetflex-banned-accounts/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12250,8 +12250,8 @@
     },
     {
       "path": "dsa/leetcode/1750_minimum-length-of-string-after-deleting-similar-ends/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12271,15 +12271,15 @@
     },
     {
       "path": "dsa/leetcode/1753_maximum-score-from-removing-stones/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1754_largest-merge-of-two-strings/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12292,29 +12292,29 @@
     },
     {
       "path": "dsa/leetcode/1756_design-most-recently-used-queue/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1757_recyclable-and-low-fat-products/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1758_minimum-changes-to-make-alternating-binary-string/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1759_count-number-of-homogenous-substrings/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12327,22 +12327,22 @@
     },
     {
       "path": "dsa/leetcode/1761_minimum-degree-of-a-connected-trio-in-a-graph/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1762_buildings-with-an-ocean-view/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1763_longest-nice-substring/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12369,8 +12369,8 @@
     },
     {
       "path": "dsa/leetcode/1767_find-the-subtasks-that-did-not-execute/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12397,15 +12397,15 @@
     },
     {
       "path": "dsa/leetcode/1771_maximize-palindrome-length-from-subsequences/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1772_sort-features-by-popularity/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12439,15 +12439,15 @@
     },
     {
       "path": "dsa/leetcode/1777_products-price-for-each-store/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1778_shortest-path-in-a-hidden-grid/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12460,15 +12460,15 @@
     },
     {
       "path": "dsa/leetcode/1780_check-if-number-is-a-sum-of-powers-of-three/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1781_sum-of-beauty-of-all-substrings/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12481,15 +12481,15 @@
     },
     {
       "path": "dsa/leetcode/1783_grand-slam-titles/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1784_check-if-binary-string-has-at-most-one-segment-of-ones/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12502,8 +12502,8 @@
     },
     {
       "path": "dsa/leetcode/1786_number-of-restricted-paths-from-first-to-last-node/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12516,29 +12516,29 @@
     },
     {
       "path": "dsa/leetcode/1788_maximize-the-beauty-of-the-garden/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1789_primary-department-for-each-employee/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1790_check-if-one-string-swap-can-make-strings-equal/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1791_find-center-of-star-graph/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12558,29 +12558,29 @@
     },
     {
       "path": "dsa/leetcode/1794_count-pairs-of-equal-substrings-with-minimum-difference/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1795_rearrange-products-table/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1796_second-largest-digit-in-a-string/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1797_design-authentication-manager/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12614,8 +12614,8 @@
     },
     {
       "path": "dsa/leetcode/1802_maximum-value-at-a-given-index-in-a-bounded-array/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -12628,15 +12628,15 @@
     },
     {
       "path": "dsa/leetcode/1804_implement-trie-ii-prefix-tree/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
     {
       "path": "dsa/leetcode/1805_number-of-different-integers-in-a-string/doc.md",
-      "status": "needs_authoring",
-      "has_placeholder": true,
+      "status": "manual_complete",
+      "has_placeholder": false,
       "has_required_sections": true,
       "from_local_spec": false
     },
@@ -27895,6 +27895,48 @@
     },
     {
       "path": "dsa/leetcode/3985_palindromic-subarray-sum/doc.md",
+      "status": "needs_authoring",
+      "has_placeholder": true,
+      "has_required_sections": true,
+      "from_local_spec": false
+    },
+    {
+      "path": "dsa/leetcode/3986_number-of-elapsed-seconds-between-two-times/doc.md",
+      "status": "needs_authoring",
+      "has_placeholder": true,
+      "has_required_sections": true,
+      "from_local_spec": false
+    },
+    {
+      "path": "dsa/leetcode/3987_minimum-total-cost-to-process-all-elements/doc.md",
+      "status": "needs_authoring",
+      "has_placeholder": true,
+      "has_required_sections": true,
+      "from_local_spec": false
+    },
+    {
+      "path": "dsa/leetcode/3988_create-grid-with-exactly-k-paths-i/doc.md",
+      "status": "needs_authoring",
+      "has_placeholder": true,
+      "has_required_sections": true,
+      "from_local_spec": false
+    },
+    {
+      "path": "dsa/leetcode/3989_maximum-consistent-columns-in-a-grid/doc.md",
+      "status": "needs_authoring",
+      "has_placeholder": true,
+      "has_required_sections": true,
+      "from_local_spec": false
+    },
+    {
+      "path": "dsa/leetcode/3990_create-grid-with-exactly-k-paths-ii/doc.md",
+      "status": "needs_authoring",
+      "has_placeholder": true,
+      "has_required_sections": true,
+      "from_local_spec": false
+    },
+    {
+      "path": "dsa/leetcode/3991_sort-array-using-prefix-reversals/doc.md",
       "status": "needs_authoring",
       "has_placeholder": true,
       "has_required_sections": true,

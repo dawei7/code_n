@@ -6,6 +6,9 @@
   "title": "Maximum Twin Sum of a Linked List",
   "difficulty": "Medium",
   "acceptance_rate": 83.2601522202548,
+  "frequency": 46.4,
+  "elo_rating": 1317.9207508583,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

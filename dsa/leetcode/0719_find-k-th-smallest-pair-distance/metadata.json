@@ -6,6 +6,9 @@
   "title": "Find K-th Smallest Pair Distance",
   "difficulty": "Hard",
   "acceptance_rate": 46.64529914529915,
+  "frequency": 38.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 2122.155989,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

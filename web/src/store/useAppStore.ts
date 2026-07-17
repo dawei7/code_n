@@ -28,6 +28,7 @@ import { create } from 'zustand';
 import type {
   ChallengeDetail,
   ChallengeSummary,
+  CustomProblemSet,
   ProgressOut,
   RunResponse,
   ProfileSummary,
@@ -39,6 +40,7 @@ import * as runApi from '../api/run';
 import * as progressApi from '../api/progress';
 import * as solutionsApi from '../api/solutions';
 import * as profilesApi from '../api/profiles';
+import * as customProblemSetsApi from '../api/customProblemSets';
 import type { AlgorithmSetId } from '../lib/algorithmSets';
 import { getAlgorithmSetOption, normalizeAlgorithmSet } from '../lib/algorithmSets';
 import { DEFAULT_ACCENT_COLORS, normalizeAccentColors } from '../lib/accentColors';
@@ -122,6 +124,7 @@ export interface AppState {
   versions: number[];
   versionNames: Record<number, string>;
   modifiedVersions: number[];
+  solutionResetRevision: number;
 
   // Run args
   mode: RunMode;
@@ -148,6 +151,11 @@ export interface AppState {
   progress: ProgressOut | null;
   activeSet: AlgorithmSetId;
   setActiveSet: (setVal: AlgorithmSetId) => Promise<void>;
+  customProblemSets: CustomProblemSet[];
+  customProblemSetsLoading: boolean;
+  customProblemSetsError: string | null;
+  loadCustomProblemSets(): Promise<void>;
+  saveCustomProblemSets(sets: CustomProblemSet[]): Promise<void>;
   activeTopic: Topic;
   setActiveTopic: (topic: Topic) => void;
 
@@ -168,6 +176,7 @@ export interface AppState {
   setCodeLanguage(language: SupportedLanguage): Promise<void>;
   setSource(s: string): void;
   saveSource(s: string): Promise<void>;
+  clearSolutionStateAfterReset(challengeIds: string[]): void;
   setMode(m: RunMode): void;
   setSelectedCaseIds(ids: string[]): void;
   runAllTrialCases(): void;
@@ -272,6 +281,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   versions: [],
   versionNames: {},
   modifiedVersions: [],
+  solutionResetRevision: 0,
   mode: 'practice',
   selectedCaseIds: [],
   customCaseInput: '',
@@ -281,6 +291,9 @@ export const useAppStore = create<AppState>((set, get) => ({
   error: null,
   progress: null,
   activeSet: 'leetcode',
+  customProblemSets: [],
+  customProblemSetsLoading: true,
+  customProblemSetsError: null,
   activeTopic: 'reference',
   setActiveTopic: (topic) => set({ activeTopic: topic }),
   activeProfile: 'Default',
@@ -477,6 +490,20 @@ export const useAppStore = create<AppState>((set, get) => ({
       console.error('Failed to save source:', e);
     }
   },
+  clearSolutionStateAfterReset(challengeIds: string[]) {
+    const { currentDetail, codeLanguage } = get();
+    if (!currentDetail || !challengeIds.includes(currentDetail.id)) return;
+    set((state) => ({
+      source: starterForLanguage(currentDetail, codeLanguage),
+      activeVersion: 1,
+      versions: [1, 2, 3],
+      versionNames: {},
+      modifiedVersions: [],
+      runResult: null,
+      error: null,
+      solutionResetRevision: state.solutionResetRevision + 1,
+    }));
+  },
   setMode(m: RunMode) {
     set({ mode: m });
   },
@@ -655,8 +682,46 @@ export const useAppStore = create<AppState>((set, get) => ({
       if (p.sidebar_collapsed !== undefined) {
         set({ sidebarCollapsed: p.sidebar_collapsed });
       }
+      await get().loadCustomProblemSets();
     } catch {
       // ignore
+    }
+  },
+
+  async loadCustomProblemSets() {
+    set({ customProblemSetsLoading: true, customProblemSetsError: null });
+    try {
+      const response = await customProblemSetsApi.getCustomProblemSets();
+      set({
+        customProblemSets: response.sets,
+        customProblemSetsLoading: false,
+      });
+    } catch (error) {
+      set({
+        customProblemSetsLoading: false,
+        customProblemSetsError: error instanceof Error
+          ? error.message
+          : 'Unable to load custom problem sets',
+      });
+    }
+  },
+
+  async saveCustomProblemSets(sets: CustomProblemSet[]) {
+    set({ customProblemSetsLoading: true, customProblemSetsError: null });
+    try {
+      const response = await customProblemSetsApi.replaceCustomProblemSets(sets);
+      set({
+        customProblemSets: response.sets,
+        customProblemSetsLoading: false,
+      });
+    } catch (error) {
+      set({
+        customProblemSetsLoading: false,
+        customProblemSetsError: error instanceof Error
+          ? error.message
+          : 'Unable to save custom problem sets',
+      });
+      throw error;
     }
   },
 

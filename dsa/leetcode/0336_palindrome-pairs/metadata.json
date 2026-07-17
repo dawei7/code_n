@@ -6,6 +6,9 @@
   "title": "Palindrome Pairs",
   "difficulty": "Hard",
   "acceptance_rate": 37.33536710120896,
+  "frequency": 28.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 2272.264251,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

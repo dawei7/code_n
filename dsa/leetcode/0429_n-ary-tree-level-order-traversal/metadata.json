@@ -6,6 +6,9 @@
   "title": "N-ary Tree Level Order Traversal",
   "difficulty": "Medium",
   "acceptance_rate": 71.58934357466656,
+  "frequency": 10.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1376.015174,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

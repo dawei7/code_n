@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1723",
+  "cases": [
+    {"id":"sample-each-worker","name":"sample: one job per worker","kind":"sample","visible":true,"input":{"jobs":[3,2,3],"k":3},"expected":3,"tags":["sample","k-equals-n"]},
+    {"id":"sample-balanced-two","name":"sample: two workers balance at eleven","kind":"sample","visible":true,"input":{"jobs":[1,2,4,7,8],"k":2},"expected":11,"tags":["sample","balanced"]},
+    {"id":"trial-single-job","name":"trial: one worker and one job","kind":"trial","visible":true,"input":{"jobs":[9],"k":1},"expected":9,"tags":["minimum","single-worker"]},
+    {"id":"trial-one-worker","name":"trial: one worker receives every job","kind":"trial","visible":true,"input":{"jobs":[2,5,7,11],"k":1},"expected":25,"tags":["single-worker","sum"]},
+    {"id":"trial-perfect-seven","name":"trial: one long job balances three shorter jobs","kind":"trial","visible":true,"input":{"jobs":[2,2,3,7],"k":2},"expected":7,"tags":["perfect-balance","two-workers"]},
+    {"id":"trial-duplicate-durations","name":"trial: duplicate jobs require multiplicity","kind":"trial","visible":true,"input":{"jobs":[5,5,4,4,4],"k":2},"expected":12,"tags":["duplicates","symmetry"]},
+    {"id":"real-three-workers","name":"hidden: one worker may remain below the optimum","kind":"real","visible":false,"input":{"jobs":[10,9,8,7,6],"k":3},"expected":15,"tags":["three-workers","partition"]},
+    {"id":"real-exact-pairs","name":"hidden: complementary pairs give equal workloads","kind":"real","visible":false,"input":{"jobs":[12,11,10,9,8,7],"k":3},"expected":19,"tags":["exact-balance","pairs"]},
+    {"id":"real-four-workers","name":"hidden: four complementary pairs attain the average","kind":"real","visible":false,"input":{"jobs":[8,7,6,5,4,3,2,1],"k":4},"expected":9,"tags":["four-workers","average-bound"]},
+    {"id":"real-maximum-count","name":"hidden: maximum job count with repeated maximum durations","kind":"real","visible":false,"input":{"jobs":[10000000,10000000,10000000,10000000,10000000,10000000,10000000,10000000,10000000,10000000,10000000,10000000],"k":6},"expected":20000000,"tags":["maximum-n","maximum-duration","symmetry"]}
+  ]
+}

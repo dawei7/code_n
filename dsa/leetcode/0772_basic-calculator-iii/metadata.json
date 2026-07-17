@@ -6,6 +6,9 @@
   "title": "Basic Calculator III",
   "difficulty": "Hard",
   "acceptance_rate": 53.42227574402446,
+  "frequency": 79.8,
+  "elo_rating": null,
+  "estimated_elo_rating": 2056.909548,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

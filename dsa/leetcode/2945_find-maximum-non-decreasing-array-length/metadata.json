@@ -6,6 +6,9 @@
   "title": "Find Maximum Non-decreasing Array Length",
   "difficulty": "Hard",
   "acceptance_rate": 19.13446507418479,
+  "frequency": 0.0,
+  "elo_rating": 2943.2173551759,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

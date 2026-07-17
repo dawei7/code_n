@@ -6,6 +6,9 @@
   "title": "Random Point in Non-overlapping Rectangles",
   "difficulty": "Medium",
   "acceptance_rate": 40.09103436144013,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1701.421765,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

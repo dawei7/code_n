@@ -6,6 +6,9 @@
   "title": "Maximum Capacity Within Budget",
   "difficulty": "Medium",
   "acceptance_rate": 20.543233426002963,
+  "frequency": 65.6,
+  "elo_rating": 1796.1227580681,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

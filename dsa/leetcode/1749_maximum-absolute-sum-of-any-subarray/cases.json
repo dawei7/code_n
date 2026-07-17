@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1749",
+  "cases": [
+    {
+      "id": "sample-positive-winner",
+      "name": "sample: largest magnitude is positive",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, -3, 2, 3, -4]},
+      "expected": 5,
+      "tags": ["sample", "positive-sum"]
+    },
+    {
+      "id": "sample-negative-winner",
+      "name": "sample: largest magnitude is negative",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, -5, 1, -4, 3, -2]},
+      "expected": 8,
+      "tags": ["sample", "negative-sum"]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: empty baseline remains optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0, 0, 0]},
+      "expected": 0,
+      "tags": ["zero", "possibly-empty"]
+    },
+    {
+      "id": "trial-single-negative",
+      "name": "trial: one negative element",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [-7]},
+      "expected": 7,
+      "tags": ["minimum-length", "negative"]
+    },
+    {
+      "id": "real-all-positive",
+      "name": "hidden: full positive array",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 1, 9, 2]},
+      "expected": 16,
+      "tags": ["all-positive", "full-array"]
+    },
+    {
+      "id": "real-all-negative",
+      "name": "hidden: full negative array",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-4, -1, -9, -2]},
+      "expected": 16,
+      "tags": ["all-negative", "full-array"]
+    },
+    {
+      "id": "real-cancelled-total",
+      "name": "hidden: full sum cancels but an interior range dominates",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, -3, -5, -9, 4, 5]},
+      "expected": 17,
+      "tags": ["cancellation", "interior-subarray"]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: both magnitude boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10000, -10000, -10000, 10000, 10000]},
+      "expected": 20000,
+      "tags": ["value-boundaries", "prefix-extrema"]
+    }
+  ]
+}

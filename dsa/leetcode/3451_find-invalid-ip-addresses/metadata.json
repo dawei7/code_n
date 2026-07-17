@@ -6,6 +6,9 @@
   "title": "Find Invalid IP Addresses",
   "difficulty": "Hard",
   "acceptance_rate": 50.91987909094302,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2076.658282,
   "category": "database",
   "category_title": "Database",
   "topics": [

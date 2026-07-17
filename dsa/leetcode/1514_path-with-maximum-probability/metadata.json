@@ -6,6 +6,9 @@
   "title": "Path with Maximum Probability",
   "difficulty": "Medium",
   "acceptance_rate": 65.6116020987788,
+  "frequency": 19.6,
+  "elo_rating": 1846.4077077642,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

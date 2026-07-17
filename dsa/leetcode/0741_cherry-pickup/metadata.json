@@ -6,6 +6,9 @@
   "title": "Cherry Pickup",
   "difficulty": "Hard",
   "acceptance_rate": 39.83374822190612,
+  "frequency": 47.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 2238.831047,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

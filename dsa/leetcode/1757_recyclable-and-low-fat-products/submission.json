@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1908",
+  "frontend_id": "1757",
+  "title_slug": "recyclable-and-low-fat-products",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2071010937",
+  "verified_at": "2026-07-17T10:46:01.522827+00:00"
+}

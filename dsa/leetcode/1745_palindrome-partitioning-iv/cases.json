@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1745",
+  "cases": [
+    {"id":"sample-official-one","name":"sample: singleton, odd palindrome, and pair","kind":"sample","visible":true,"input":{"s":"abcbdd"},"expected":true,"tags":["sample","mixed-lengths"]},
+    {"id":"sample-official-two","name":"sample: no valid two cuts","kind":"sample","visible":true,"input":{"s":"bcbddxy"},"expected":false,"tags":["sample","impossible"]},
+    {"id":"trial-minimum-distinct","name":"trial: three distinct characters become singletons","kind":"trial","visible":true,"input":{"s":"xyz"},"expected":true,"tags":["minimum-length","singletons"]},
+    {"id":"trial-minimum-equal","name":"trial: three equal characters","kind":"trial","visible":true,"input":{"s":"aaa"},"expected":true,"tags":["minimum-length","repeated-characters"]},
+    {"id":"real-three-named-palindromes","name":"hidden: three multi-character palindromes","kind":"real","visible":false,"input":{"s":"racecarannakayak"},"expected":true,"tags":["three-palindromes","mixed-lengths"]},
+    {"id":"real-singleton-last","name":"hidden: final singleton completes the partition","kind":"real","visible":false,"input":{"s":"abacdcx"},"expected":true,"tags":["singleton-suffix"]},
+    {"id":"real-near-miss-suffix","name":"hidden: extending the suffix destroys every partition","kind":"real","visible":false,"input":{"s":"abacdcxy"},"expected":false,"tags":["near-miss","impossible"]},
+    {"id":"real-no-long-palindromes","name":"hidden: longer all-distinct string fails","kind":"real","visible":false,"input":{"s":"abcdefg"},"expected":false,"tags":["distinct-characters","impossible"]},
+    {"id":"real-palindromic-whole","name":"hidden: whole-string palindrome still needs three pieces","kind":"real","visible":false,"input":{"s":"aabbaa"},"expected":true,"tags":["whole-palindrome","exactly-three"]},
+    {"id":"real-two-large-blocks-only","name":"hidden: two obvious palindromes do not guarantee three","kind":"real","visible":false,"input":{"s":"abbacddc"},"expected":false,"tags":["exactly-three","impossible"]}
+  ]
+}

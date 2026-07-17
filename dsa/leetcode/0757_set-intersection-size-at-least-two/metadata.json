@@ -6,6 +6,9 @@
   "title": "Set Intersection Size At Least Two",
   "difficulty": "Hard",
   "acceptance_rate": 58.08155677914255,
+  "frequency": 0.0,
+  "elo_rating": 2378.6234112504,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

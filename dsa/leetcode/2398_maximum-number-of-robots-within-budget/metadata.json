@@ -6,6 +6,9 @@
   "title": "Maximum Number of Robots Within Budget",
   "difficulty": "Hard",
   "acceptance_rate": 38.772299657049366,
+  "frequency": 26.6,
+  "elo_rating": 1917.2145829853,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

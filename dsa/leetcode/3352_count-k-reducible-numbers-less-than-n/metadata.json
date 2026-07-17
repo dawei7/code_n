@@ -6,6 +6,9 @@
   "title": "Count K-Reducible Numbers Less Than N",
   "difficulty": "Hard",
   "acceptance_rate": 28.42261023971589,
+  "frequency": 0.0,
+  "elo_rating": 2450.5982290839,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

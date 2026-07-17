@@ -6,6 +6,9 @@
   "title": "Remove Stones to Minimize the Total",
   "difficulty": "Medium",
   "acceptance_rate": 65.91134388175782,
+  "frequency": 55.3,
+  "elo_rating": 1418.6847740057,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

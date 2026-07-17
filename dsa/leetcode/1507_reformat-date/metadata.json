@@ -6,6 +6,9 @@
   "title": "Reformat Date",
   "difficulty": "Easy",
   "acceptance_rate": 68.69528080290412,
+  "frequency": 0.0,
+  "elo_rating": 1283.51021448,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

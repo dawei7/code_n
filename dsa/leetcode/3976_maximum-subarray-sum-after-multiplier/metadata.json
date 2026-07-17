@@ -6,6 +6,9 @@
   "title": "Maximum Subarray Sum After Multiplier",
   "difficulty": "Medium",
   "acceptance_rate": 25.614895752034787,
+  "frequency": 28.3,
+  "elo_rating": 1981.0453403379,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

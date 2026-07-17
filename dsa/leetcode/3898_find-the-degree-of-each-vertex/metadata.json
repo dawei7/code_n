@@ -6,6 +6,9 @@
   "title": "Find the Degree of Each Vertex",
   "difficulty": "Easy",
   "acceptance_rate": 92.5059123437452,
+  "frequency": 23.6,
+  "elo_rating": 1202.4960842955,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

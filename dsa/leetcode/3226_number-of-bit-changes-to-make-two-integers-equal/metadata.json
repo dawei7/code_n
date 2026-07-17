@@ -6,6 +6,9 @@
   "title": "Number of Bit Changes to Make Two Integers Equal",
   "difficulty": "Easy",
   "acceptance_rate": 63.63099114745398,
+  "frequency": 0.0,
+  "elo_rating": 1247.3575940876,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

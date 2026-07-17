@@ -6,6 +6,9 @@
   "title": "Check if Point Is Reachable",
   "difficulty": "Hard",
   "acceptance_rate": 45.09520366353338,
+  "frequency": 0.0,
+  "elo_rating": 2220.8257124139,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimize Hamming Distance After Swap Operations",
   "difficulty": "Medium",
   "acceptance_rate": 69.6281803292053,
+  "frequency": 80.1,
+  "elo_rating": 1892.1600619469,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

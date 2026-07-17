@@ -6,6 +6,9 @@
   "title": "Score of Parentheses",
   "difficulty": "Medium",
   "acceptance_rate": 63.547666627483245,
+  "frequency": 37.6,
+  "elo_rating": 1562.7212466716,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "All Valid Triplets That Can Represent a Country",
   "difficulty": "Easy",
   "acceptance_rate": 80.88896516217608,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "database",
   "category_title": "Database",
   "topics": [

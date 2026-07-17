@@ -6,6 +6,9 @@
   "title": "Find Words That Can Be Formed by Characters",
   "difficulty": "Easy",
   "acceptance_rate": 71.6601265112418,
+  "frequency": 47.3,
+  "elo_rating": 1205.6698455508,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

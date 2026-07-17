@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1872",
+  "frontend_id": "1744",
+  "title_slug": "can-you-eat-your-favorite-candy-on-your-favorite-day",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.canEat",
+  "verified_submission_id": "2070928863",
+  "verified_at": "2026-07-17T09:27:45.348107+00:00"
+}

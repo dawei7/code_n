@@ -6,6 +6,9 @@
   "title": "Product of Two Run-Length Encoded Arrays",
   "difficulty": "Medium",
   "acceptance_rate": 59.63949551694632,
+  "frequency": 70.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1466.738564,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

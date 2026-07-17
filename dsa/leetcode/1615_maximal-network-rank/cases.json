@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1615",
+  "cases": [
+    {"id":"sample-four-cities","name":"sample: shared road is counted once","kind":"sample","visible":true,"input":{"n":4,"roads":[[0,1],[0,3],[1,2],[1,3]]},"expected":4,"tags":["sample","shared-road"]},
+    {"id":"sample-five-cities","name":"sample: dense middle pair","kind":"sample","visible":true,"input":{"n":5,"roads":[[0,1],[0,3],[1,2],[1,3],[2,3],[2,4]]},"expected":5,"tags":["sample","dense"]},
+    {"id":"sample-disconnected","name":"sample: best cities lie in different components","kind":"sample","visible":true,"input":{"n":8,"roads":[[0,1],[1,2],[2,3],[2,4],[5,6],[5,7]]},"expected":5,"tags":["sample","disconnected"]},
+    {"id":"trial-no-roads","name":"trial: all cities are isolated","kind":"trial","visible":true,"input":{"n":4,"roads":[]},"expected":0,"tags":["empty-graph","isolated"]},
+    {"id":"trial-one-road","name":"trial: the only pair shares one road","kind":"trial","visible":true,"input":{"n":2,"roads":[[0,1]]},"expected":1,"tags":["minimum-n","single-road"]},
+    {"id":"trial-complete-four","name":"trial: complete graph subtracts the shared edge","kind":"trial","visible":true,"input":{"n":4,"roads":[[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]]},"expected":5,"tags":["complete-graph","shared-road"]},
+    {"id":"real-star","name":"hidden: hub paired with a leaf","kind":"real","visible":false,"input":{"n":6,"roads":[[0,1],[0,2],[0,3],[0,4],[0,5]]},"expected":5,"tags":["star","hub"]},
+    {"id":"real-two-stars","name":"hidden: hubs from disconnected stars form the best pair","kind":"real","visible":false,"input":{"n":8,"roads":[[0,1],[0,2],[0,3],[4,5],[4,6],[4,7]]},"expected":6,"tags":["disconnected","two-hubs"]},
+    {"id":"real-path","name":"hidden: adjacent internal path cities share a road","kind":"real","visible":false,"input":{"n":6,"roads":[[0,1],[1,2],[2,3],[3,4],[4,5]]},"expected":4,"tags":["path","nonadjacent-best-pair"]},
+    {"id":"real-isolated-with-triangle","name":"hidden: isolated cities do not change triangle rank","kind":"real","visible":false,"input":{"n":7,"roads":[[0,1],[1,2],[0,2]]},"expected":3,"tags":["triangle","isolated"]}
+  ]
+}

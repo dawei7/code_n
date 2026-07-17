@@ -6,6 +6,9 @@
   "title": "Number of Divisible Triplet Sums",
   "difficulty": "Medium",
   "acceptance_rate": 67.64449217963349,
+  "frequency": 79.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1402.182369,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

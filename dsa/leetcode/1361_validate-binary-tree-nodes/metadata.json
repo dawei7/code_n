@@ -6,6 +6,9 @@
   "title": "Validate Binary Tree Nodes",
   "difficulty": "Medium",
   "acceptance_rate": 44.164699543285266,
+  "frequency": 18.5,
+  "elo_rating": 1464.6895034875,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Element Appearing More Than 25% In Sorted Array",
   "difficulty": "Easy",
   "acceptance_rate": 61.275190172829255,
+  "frequency": 37.5,
+  "elo_rating": 1179.1495967491,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Determine if a Simple Graph Exists",
   "difficulty": "Medium",
   "acceptance_rate": 47.71033013844516,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1624.415308,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

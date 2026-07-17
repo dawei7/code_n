@@ -6,6 +6,9 @@
   "title": "Flip Binary Tree To Match Preorder Traversal",
   "difficulty": "Medium",
   "acceptance_rate": 52.006370744218756,
+  "frequency": 0.0,
+  "elo_rating": 1786.5491561897,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

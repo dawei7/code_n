@@ -6,6 +6,9 @@
   "title": "Minimum Recolors to Get K Consecutive Black Blocks",
   "difficulty": "Easy",
   "acceptance_rate": 68.81524015869404,
+  "frequency": 13.7,
+  "elo_rating": 1360.0511262593,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

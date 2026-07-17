@@ -6,6 +6,9 @@
   "title": "Maximum Number of Accepted Invitations",
   "difficulty": "Medium",
   "acceptance_rate": 52.684548050367454,
+  "frequency": 63.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1551.784218,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

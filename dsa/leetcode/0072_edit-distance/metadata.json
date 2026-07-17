@@ -6,6 +6,9 @@
   "title": "Edit Distance",
   "difficulty": "Medium",
   "acceptance_rate": 60.850264256559015,
+  "frequency": 74.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1458.277315,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

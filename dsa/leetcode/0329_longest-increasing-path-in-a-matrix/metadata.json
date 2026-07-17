@@ -6,6 +6,9 @@
   "title": "Longest Increasing Path in a Matrix",
   "difficulty": "Hard",
   "acceptance_rate": 56.790274839468736,
+  "frequency": 56.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 2027.697879,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

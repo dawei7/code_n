@@ -6,6 +6,9 @@
   "title": "Number of Pairs After Increment",
   "difficulty": "Hard",
   "acceptance_rate": 20.737274157044766,
+  "frequency": 34.0,
+  "elo_rating": 2409.9040742694,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

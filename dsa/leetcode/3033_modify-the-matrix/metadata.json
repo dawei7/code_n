@@ -6,6 +6,9 @@
   "title": "Modify the Matrix",
   "difficulty": "Easy",
   "acceptance_rate": 69.24941423608306,
+  "frequency": 22.4,
+  "elo_rating": 1180.5927490268,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

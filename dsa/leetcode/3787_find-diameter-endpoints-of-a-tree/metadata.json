@@ -6,6 +6,9 @@
   "title": "Find Diameter Endpoints of a Tree",
   "difficulty": "Medium",
   "acceptance_rate": 66.98024459078081,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1408.606651,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Ways to Express an Integer as Sum of Powers",
   "difficulty": "Medium",
   "acceptance_rate": 49.80221239856381,
+  "frequency": 0.0,
+  "elo_rating": 1817.5282352022,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

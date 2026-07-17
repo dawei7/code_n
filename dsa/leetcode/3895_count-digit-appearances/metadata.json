@@ -6,6 +6,9 @@
   "title": "Count Digit Appearances",
   "difficulty": "Medium",
   "acceptance_rate": 86.78449196892599,
+  "frequency": 5.2,
+  "elo_rating": 1269.6604781768,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

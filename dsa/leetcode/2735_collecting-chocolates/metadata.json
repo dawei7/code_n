@@ -6,6 +6,9 @@
   "title": "Collecting Chocolates",
   "difficulty": "Medium",
   "acceptance_rate": 35.17648909160357,
+  "frequency": 0.0,
+  "elo_rating": 2043.1015779104,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

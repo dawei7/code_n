@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1756",
+  "measurement_note": "Size is n, the initial queue length. Each workload performs sqrt(n) fetches from a middle rank. The accepted block decomposition spends O(n) overall including construction; a correct array implementation shifts O(n) entries per fetch, completes every tier, and is rejected by O(n sqrt(n)) workload scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 64 elements and 8 middle fetches",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "operations": ["MRUQueue", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch"],
+        "arguments": [[64], [32], [32], [32], [32], [32], [32], [32], [32]]
+      },
+      "expected": [null, 32, 33, 34, 35, 36, 37, 38, 39],
+      "tags": ["benchmark", "scaling", "middle-rank"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 256 elements and 16 middle fetches",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "operations": ["MRUQueue", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch"],
+        "arguments": [[256], [128], [128], [128], [128], [128], [128], [128], [128], [128], [128], [128], [128], [128], [128], [128], [128]]
+      },
+      "expected": [null, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143],
+      "tags": ["benchmark", "scaling", "middle-rank"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 1024 elements and 32 middle fetches",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {
+        "operations": ["MRUQueue", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch", "fetch"],
+        "arguments": [[1024], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512], [512]]
+      },
+      "expected": [null, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543],
+      "tags": ["benchmark", "scaling", "middle-rank"]
+    }
+  ]
+}

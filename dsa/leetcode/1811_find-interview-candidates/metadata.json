@@ -6,6 +6,9 @@
   "title": "Find Interview Candidates",
   "difficulty": "Medium",
   "acceptance_rate": 60.7305378248786,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1459.060764,
   "category": "database",
   "category_title": "Database",
   "topics": [

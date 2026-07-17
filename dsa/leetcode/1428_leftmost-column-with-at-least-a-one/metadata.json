@@ -6,6 +6,9 @@
   "title": "Leftmost Column with at Least a One",
   "difficulty": "Medium",
   "acceptance_rate": 55.258091185005576,
+  "frequency": 75.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1514.739446,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

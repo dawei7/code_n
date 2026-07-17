@@ -6,6 +6,9 @@
   "title": "Integer Break",
   "difficulty": "Medium",
   "acceptance_rate": 62.474490077329534,
+  "frequency": 51.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1443.391785,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

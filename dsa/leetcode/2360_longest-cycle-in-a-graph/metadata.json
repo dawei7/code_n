@@ -6,6 +6,9 @@
   "title": "Longest Cycle in a Graph",
   "difficulty": "Hard",
   "acceptance_rate": 50.90023727895653,
+  "frequency": 48.3,
+  "elo_rating": 1897.1863301576,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1742",
+  "measurement_note": "Size is R, the inclusive range length. Each tier starts at one. Direct frequency counting is O(RD), while a correct implementation that stores every digit sum and linearly recounts each one completes all tiers and is rejected by quadratic scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: first 16 labels","kind":"benchmark","visible":false,"size":16,"input":{"lowLimit":1,"highLimit":16},"expected":2,"tags":["benchmark","scaling"]},
+    {"id":"benchmark-scale-2","name":"benchmark: first 64 labels","kind":"benchmark","visible":false,"size":64,"input":{"lowLimit":1,"highLimit":64},"expected":7,"tags":["benchmark","scaling"]},
+    {"id":"benchmark-scale-3","name":"benchmark: first 192 labels","kind":"benchmark","visible":false,"size":192,"input":{"lowLimit":1,"highLimit":192},"expected":19,"tags":["benchmark","scaling"]}
+  ]
+}

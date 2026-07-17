@@ -6,6 +6,9 @@
   "title": "Sort Array by Increasing Frequency",
   "difficulty": "Easy",
   "acceptance_rate": 80.92115541808845,
+  "frequency": 39.7,
+  "elo_rating": 1430.3429533629,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1650",
+  "cases": [
+    {"id":"sample-root-lca","name":"sample: nodes in opposite root subtrees","kind":"sample","visible":true,"input":{"p":{"tree":[3,5,1,6,2,0,8,null,null,7,4],"target_index":1},"q":{"same_tree_as":"p","target_index":2}},"expected":3,"validator":{"kind":"node_value"},"tags":["sample","root"]},
+    {"id":"sample-input-is-lca","name":"sample: first input is ancestor of the second","kind":"sample","visible":true,"input":{"p":{"tree":[3,5,1,6,2,0,8,null,null,7,4],"target_index":1},"q":{"same_tree_as":"p","target_index":10}},"expected":5,"validator":{"kind":"node_value"},"tags":["sample","ancestor-input"]},
+    {"id":"sample-two-node-tree","name":"sample: root and its only child","kind":"sample","visible":true,"input":{"p":{"tree":[1,2],"target_index":0},"q":{"same_tree_as":"p","target_index":1}},"expected":1,"validator":{"kind":"node_value"},"tags":["sample","minimum-tree"]},
+    {"id":"trial-siblings","name":"trial: sibling leaves share their parent","kind":"trial","visible":true,"input":{"p":{"tree":[10,5,15,3,7,12,18],"target_index":3},"q":{"same_tree_as":"p","target_index":4}},"expected":5,"validator":{"kind":"node_value"},"tags":["siblings"]},
+    {"id":"trial-opposite-subtrees","name":"trial: inner nodes in opposite subtrees meet at root","kind":"trial","visible":true,"input":{"p":{"tree":[10,5,15,3,7,12,18],"target_index":4},"q":{"same_tree_as":"p","target_index":5}},"expected":10,"validator":{"kind":"node_value"},"tags":["root"]},
+    {"id":"real-direct-parent","name":"hidden: direct parent is the lowest common ancestor","kind":"real","visible":false,"input":{"p":{"tree":[10,5,15,3,7,12,18],"target_index":1},"q":{"same_tree_as":"p","target_index":3}},"expected":5,"validator":{"kind":"node_value"},"tags":["direct-parent"]},
+    {"id":"real-second-is-ancestor","name":"hidden: second input is ancestor of first","kind":"real","visible":false,"input":{"p":{"tree":[1,2,null,3,null,4,null],"target_index":5},"q":{"same_tree_as":"p","target_index":3}},"expected":3,"validator":{"kind":"node_value"},"tags":["skewed","second-ancestor"]},
+    {"id":"real-unequal-depths","name":"hidden: unequal-depth cousins meet below root","kind":"real","visible":false,"input":{"p":{"tree":[8,4,12,2,6,10,14,1,3,5,7],"target_index":7},"q":{"same_tree_as":"p","target_index":10}},"expected":4,"validator":{"kind":"node_value"},"tags":["unequal-depths"]},
+    {"id":"real-deep-common-parent","name":"hidden: deep leaves share an internal ancestor","kind":"real","visible":false,"input":{"p":{"tree":[20,10,30,5,15,25,35,2,7,12,17],"target_index":9},"q":{"same_tree_as":"p","target_index":10}},"expected":15,"validator":{"kind":"node_value"},"tags":["internal-lca"]},
+    {"id":"real-root-and-deep-node","name":"hidden: root is supplied after a deep node","kind":"real","visible":false,"input":{"p":{"tree":[9,4,13,2,6,11,15,1],"target_index":7},"q":{"same_tree_as":"p","target_index":0}},"expected":9,"validator":{"kind":"node_value"},"tags":["root-input","unequal-depths"]}
+  ]
+}

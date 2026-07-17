@@ -6,6 +6,9 @@
   "title": "Count Connected Subgraphs with Even Node Sum",
   "difficulty": "Hard",
   "acceptance_rate": 62.138224422902574,
+  "frequency": 0.0,
+  "elo_rating": 1859.4380732602,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

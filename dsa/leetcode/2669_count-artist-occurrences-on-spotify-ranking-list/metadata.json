@@ -6,6 +6,9 @@
   "title": "Count Artist Occurrences On Spotify Ranking List",
   "difficulty": "Easy",
   "acceptance_rate": 74.28032090608778,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1170.112721,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "4 Keys Keyboard",
   "difficulty": "Medium",
   "acceptance_rate": 56.49647091818451,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1497.82136,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

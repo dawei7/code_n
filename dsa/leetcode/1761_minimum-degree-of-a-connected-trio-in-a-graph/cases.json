@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1761",
+  "cases": [
+    {
+      "id": "sample-trio-with-three-external-edges",
+      "name": "sample: one external edge from each trio node",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 6, "edges": [[1,2],[1,3],[3,2],[4,1],[5,2],[3,6]]},
+      "expected": 3,
+      "tags": ["sample", "single-trio", "boundary-edges"]
+    },
+    {
+      "id": "sample-isolated-trio",
+      "name": "sample: an isolated triangle has degree zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 7, "edges": [[1,3],[4,1],[4,3],[2,5],[5,6],[6,7],[7,5],[2,6]]},
+      "expected": 0,
+      "tags": ["sample", "multiple-trios", "zero-degree"]
+    },
+    {
+      "id": "trial-three-node-clique",
+      "name": "trial: the whole graph is one trio",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "edges": [[1,2],[1,3],[2,3]]},
+      "expected": 0,
+      "tags": ["minimum-trio", "complete-graph"]
+    },
+    {
+      "id": "trial-no-trio",
+      "name": "trial: a path contains no triangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5, "edges": [[1,2],[2,3],[3,4],[4,5]]},
+      "expected": -1,
+      "tags": ["no-trio", "path"]
+    },
+    {
+      "id": "real-complete-four",
+      "name": "hidden: every triple in a complete graph has degree three",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4, "edges": [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]},
+      "expected": 3,
+      "tags": ["complete-graph", "overlapping-trios"]
+    },
+    {
+      "id": "real-separate-leaves",
+      "name": "hidden: separate leaves contribute three boundary edges",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 6, "edges": [[1,2],[1,3],[2,3],[1,4],[2,5],[3,6]]},
+      "expected": 3,
+      "tags": ["single-trio", "leaf-edges"]
+    },
+    {
+      "id": "real-overlapping-trios",
+      "name": "hidden: overlapping trios have different degrees",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 7, "edges": [[1,2],[1,3],[2,3],[3,4],[3,5],[4,5],[1,6],[2,7]]},
+      "expected": 2,
+      "tags": ["overlapping-trios", "minimum-selection"]
+    },
+    {
+      "id": "real-almost-triangle",
+      "name": "hidden: two sides do not form a trio",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 6, "edges": [[1,2],[2,3],[4,5],[4,6]]},
+      "expected": -1,
+      "tags": ["missing-edge", "disconnected"]
+    }
+  ]
+}

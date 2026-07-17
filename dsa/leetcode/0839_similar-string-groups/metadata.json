@@ -6,6 +6,9 @@
   "title": "Similar String Groups",
   "difficulty": "Hard",
   "acceptance_rate": 56.39877948415348,
+  "frequency": 27.6,
+  "elo_rating": 2053.7468090497,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Find All The Lonely Nodes",
   "difficulty": "Easy",
   "acceptance_rate": 84.1239412108605,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1165.831407,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

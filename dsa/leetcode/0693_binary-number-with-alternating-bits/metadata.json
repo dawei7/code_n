@@ -6,6 +6,9 @@
   "title": "Binary Number with Alternating Bits",
   "difficulty": "Easy",
   "acceptance_rate": 69.93162291930503,
+  "frequency": 54.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1185.244247,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

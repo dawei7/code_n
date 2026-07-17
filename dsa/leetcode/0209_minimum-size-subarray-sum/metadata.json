@@ -6,6 +6,9 @@
   "title": "Minimum Size Subarray Sum",
   "difficulty": "Medium",
   "acceptance_rate": 52.13889888525033,
+  "frequency": 66.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1559.076496,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

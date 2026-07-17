@@ -6,6 +6,9 @@
   "title": "Final Element After Subarray Deletions",
   "difficulty": "Medium",
   "acceptance_rate": 40.90683291522814,
+  "frequency": 66.8,
+  "elo_rating": 1591.216420723,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

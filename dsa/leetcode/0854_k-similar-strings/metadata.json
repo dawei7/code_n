@@ -6,6 +6,9 @@
   "title": "K-Similar Strings",
   "difficulty": "Hard",
   "acceptance_rate": 41.05413942554911,
+  "frequency": 47.9,
+  "elo_rating": 2377.3895801187,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

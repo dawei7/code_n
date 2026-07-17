@@ -6,6 +6,9 @@
   "title": "Minimum Remove to Make Valid Parentheses",
   "difficulty": "Medium",
   "acceptance_rate": 71.51493455823794,
+  "frequency": 77.6,
+  "elo_rating": 1657.1231739081,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

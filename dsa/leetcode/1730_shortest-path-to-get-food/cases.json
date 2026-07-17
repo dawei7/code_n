@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1730",
+  "cases": [
+    {
+      "id": "sample-one",
+      "name": "sample: food is three steps away",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [["X","X","X","X","X","X"],["X","*","O","O","O","X"],["X","O","O","#","O","X"],["X","X","X","X","X","X"]]},
+      "expected": 3,
+      "tags": ["sample", "reachable-food"]
+    },
+    {
+      "id": "sample-two",
+      "name": "sample: obstacles isolate the food",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [["X","X","X","X","X"],["X","*","X","O","X"],["X","O","X","#","X"],["X","X","X","X","X"]]},
+      "expected": -1,
+      "tags": ["sample", "unreachable-food"]
+    },
+    {
+      "id": "sample-three",
+      "name": "sample: choose the nearer of several food cells",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [["X","X","X","X","X","X","X","X"],["X","*","O","X","O","#","O","X"],["X","O","O","X","O","O","X","X"],["X","O","O","O","O","#","O","X"],["X","X","X","X","X","X","X","X"]]},
+      "expected": 6,
+      "tags": ["sample", "multiple-food"]
+    },
+    {
+      "id": "sample-four",
+      "name": "sample: route around the open bottom boundary",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [["X","X","X","X","X"],["X","*","X","O","X"],["X","O","X","#","X"],["O","O","O","O","O"]]},
+      "expected": 5,
+      "tags": ["sample", "boundary-route"]
+    },
+    {
+      "id": "trial-adjacent-food",
+      "name": "trial: food is adjacent to the start",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [["*","#"]]},
+      "expected": 1,
+      "tags": ["adjacent-food", "single-step"]
+    },
+    {
+      "id": "trial-two-equidistant-foods",
+      "name": "trial: either nearest food gives the same distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [["*","O","#"],["O","#","O"]]},
+      "expected": 2,
+      "tags": ["multiple-food", "distance-tie"]
+    },
+    {
+      "id": "real-no-food",
+      "name": "hidden: a grid without food returns minus one",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [["*","O"],["O","O"]]},
+      "expected": -1,
+      "tags": ["no-food", "exhausted-search"]
+    },
+    {
+      "id": "real-wall-between-start-and-food",
+      "name": "hidden: a wall blocks the only row",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [["*","X","#"]]},
+      "expected": -1,
+      "tags": ["blocked-food", "single-row"]
+    },
+    {
+      "id": "real-boundary-corridor",
+      "name": "hidden: shortest route follows the outer boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [["*","O","O"],["X","X","O"],["#","O","O"]]},
+      "expected": 6,
+      "tags": ["boundary-start", "corridor"]
+    },
+    {
+      "id": "real-nearest-not-first-in-scan",
+      "name": "hidden: BFS distance overrides row-major food order",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [["#","X","O","O"],["O","X","O","#"],["O","O","*","O"]]},
+      "expected": 2,
+      "tags": ["multiple-food", "row-order-trap"]
+    }
+  ]
+}

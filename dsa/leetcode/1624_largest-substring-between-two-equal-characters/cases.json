@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1624",
+  "cases": [
+    {"id":"sample-adjacent","name":"sample: equal adjacent endpoints enclose an empty substring","kind":"sample","visible":true,"input":{"s":"aa"},"expected":0,"tags":["sample","adjacent"]},
+    {"id":"sample-two-between","name":"sample: matching endpoints enclose two characters","kind":"sample","visible":true,"input":{"s":"abca"},"expected":2,"tags":["sample","outer-pair"]},
+    {"id":"sample-no-repeat","name":"sample: no character occurs twice","kind":"sample","visible":true,"input":{"s":"cbzxy"},"expected":-1,"tags":["sample","no-pair"]},
+    {"id":"trial-single","name":"trial: a one-character string has no pair","kind":"trial","visible":true,"input":{"s":"z"},"expected":-1,"tags":["minimum-length","no-pair"]},
+    {"id":"trial-all-equal","name":"trial: the first and last equal characters are optimal","kind":"trial","visible":true,"input":{"s":"aaaaa"},"expected":3,"tags":["all-equal","extreme-occurrences"]},
+    {"id":"trial-later-character","name":"trial: a different repeated character gives the widest span","kind":"trial","visible":true,"input":{"s":"abcbadbb"},"expected":5,"tags":["multiple-pairs","later-repeat"]},
+    {"id":"real-first-occurrence","name":"hidden: retain the first occurrence across several repeats","kind":"real","visible":false,"input":{"s":"abcabcabc"},"expected":5,"tags":["first-occurrence","repeated-block"]},
+    {"id":"real-optimum-not-outer","name":"hidden: optimal pair is not at both string boundaries","kind":"real","visible":false,"input":{"s":"xabcydefyq"},"expected":3,"tags":["interior-pair","multiple-characters"]},
+    {"id":"real-adjacent-only","name":"hidden: the only repeated pair is adjacent","kind":"real","visible":false,"input":{"s":"abcdefgg"},"expected":0,"tags":["adjacent","boundary-result"]},
+    {"id":"real-long-mixed","name":"hidden: long mixed string exercises distant repeated letters","kind":"real","visible":false,"input":{"s":"mgntdygtxrvxjnwksqhxuxtrv"},"expected":18,"tags":["distant-repeat","mixed"]}
+  ]
+}

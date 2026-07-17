@@ -6,6 +6,9 @@
   "title": "Button with Longest Push Time",
   "difficulty": "Easy",
   "acceptance_rate": 41.28395824597798,
+  "frequency": 0.0,
+  "elo_rating": 1255.5192903192,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,592 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1633",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official contest attendance percentages",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 6,
+              "user_name": "Alice"
+            },
+            {
+              "user_id": 2,
+              "user_name": "Bob"
+            },
+            {
+              "user_id": 7,
+              "user_name": "Alex"
+            }
+          ],
+          "Register": [
+            {
+              "contest_id": 215,
+              "user_id": 6
+            },
+            {
+              "contest_id": 209,
+              "user_id": 2
+            },
+            {
+              "contest_id": 208,
+              "user_id": 2
+            },
+            {
+              "contest_id": 210,
+              "user_id": 6
+            },
+            {
+              "contest_id": 208,
+              "user_id": 6
+            },
+            {
+              "contest_id": 209,
+              "user_id": 7
+            },
+            {
+              "contest_id": 209,
+              "user_id": 6
+            },
+            {
+              "contest_id": 215,
+              "user_id": 7
+            },
+            {
+              "contest_id": 208,
+              "user_id": 7
+            },
+            {
+              "contest_id": 210,
+              "user_id": 2
+            },
+            {
+              "contest_id": 207,
+              "user_id": 2
+            },
+            {
+              "contest_id": 210,
+              "user_id": 7
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "contest_id",
+          "percentage"
+        ],
+        "rows": [
+          [
+            208,
+            100
+          ],
+          [
+            209,
+            100
+          ],
+          [
+            210,
+            100
+          ],
+          [
+            215,
+            66.67
+          ],
+          [
+            207,
+            33.33
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "rounding",
+        "ordering"
+      ]
+    },
+    {
+      "id": "sample-single-user",
+      "name": "sample: one user makes every entered contest one hundred percent",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "Ada"
+            }
+          ],
+          "Register": [
+            {
+              "contest_id": 9,
+              "user_id": 1
+            },
+            {
+              "contest_id": 3,
+              "user_id": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "contest_id",
+          "percentage"
+        ],
+        "rows": [
+          [
+            3,
+            100
+          ],
+          [
+            9,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "single-user",
+        "contest-tie"
+      ]
+    },
+    {
+      "id": "sample-quarter-steps",
+      "name": "sample: four users produce exact quarter percentages",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A"
+            },
+            {
+              "user_id": 2,
+              "user_name": "B"
+            },
+            {
+              "user_id": 3,
+              "user_name": "C"
+            },
+            {
+              "user_id": 4,
+              "user_name": "D"
+            }
+          ],
+          "Register": [
+            {
+              "contest_id": 10,
+              "user_id": 1
+            },
+            {
+              "contest_id": 10,
+              "user_id": 2
+            },
+            {
+              "contest_id": 10,
+              "user_id": 3
+            },
+            {
+              "contest_id": 20,
+              "user_id": 1
+            },
+            {
+              "contest_id": 20,
+              "user_id": 2
+            },
+            {
+              "contest_id": 30,
+              "user_id": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "contest_id",
+          "percentage"
+        ],
+        "rows": [
+          [
+            10,
+            75
+          ],
+          [
+            20,
+            50
+          ],
+          [
+            30,
+            25
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "exact-percentages"
+      ]
+    },
+    {
+      "id": "trial-unregistered-users",
+      "name": "trial: users without registrations remain in the denominator",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A"
+            },
+            {
+              "user_id": 2,
+              "user_name": "B"
+            },
+            {
+              "user_id": 3,
+              "user_name": "C"
+            },
+            {
+              "user_id": 4,
+              "user_name": "D"
+            },
+            {
+              "user_id": 5,
+              "user_name": "E"
+            }
+          ],
+          "Register": [
+            {
+              "contest_id": 7,
+              "user_id": 1
+            },
+            {
+              "contest_id": 7,
+              "user_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "contest_id",
+          "percentage"
+        ],
+        "rows": [
+          [
+            7,
+            40
+          ]
+        ]
+      },
+      "tags": [
+        "denominator",
+        "unregistered-users"
+      ]
+    },
+    {
+      "id": "trial-round-two-thirds",
+      "name": "trial: repeating percentage rounds to two decimals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A"
+            },
+            {
+              "user_id": 2,
+              "user_name": "B"
+            },
+            {
+              "user_id": 3,
+              "user_name": "C"
+            }
+          ],
+          "Register": [
+            {
+              "contest_id": 5,
+              "user_id": 1
+            },
+            {
+              "contest_id": 5,
+              "user_id": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "contest_id",
+          "percentage"
+        ],
+        "rows": [
+          [
+            5,
+            66.67
+          ]
+        ]
+      },
+      "tags": [
+        "rounding",
+        "two-thirds"
+      ]
+    },
+    {
+      "id": "real-tie-contest-order",
+      "name": "hidden: equal percentages sort by contest id ascending",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A"
+            },
+            {
+              "user_id": 2,
+              "user_name": "B"
+            },
+            {
+              "user_id": 3,
+              "user_name": "C"
+            },
+            {
+              "user_id": 4,
+              "user_name": "D"
+            }
+          ],
+          "Register": [
+            {
+              "contest_id": 99,
+              "user_id": 1
+            },
+            {
+              "contest_id": 2,
+              "user_id": 2
+            },
+            {
+              "contest_id": 50,
+              "user_id": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "contest_id",
+          "percentage"
+        ],
+        "rows": [
+          [
+            2,
+            25
+          ],
+          [
+            50,
+            25
+          ],
+          [
+            99,
+            25
+          ]
+        ]
+      },
+      "tags": [
+        "tie-order",
+        "contest-id"
+      ]
+    },
+    {
+      "id": "real-six-user-rounding",
+      "name": "hidden: sixths round upward at two decimals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A"
+            },
+            {
+              "user_id": 2,
+              "user_name": "B"
+            },
+            {
+              "user_id": 3,
+              "user_name": "C"
+            },
+            {
+              "user_id": 4,
+              "user_name": "D"
+            },
+            {
+              "user_id": 5,
+              "user_name": "E"
+            },
+            {
+              "user_id": 6,
+              "user_name": "F"
+            }
+          ],
+          "Register": [
+            {
+              "contest_id": 1,
+              "user_id": 1
+            },
+            {
+              "contest_id": 1,
+              "user_id": 2
+            },
+            {
+              "contest_id": 1,
+              "user_id": 3
+            },
+            {
+              "contest_id": 1,
+              "user_id": 4
+            },
+            {
+              "contest_id": 1,
+              "user_id": 5
+            },
+            {
+              "contest_id": 2,
+              "user_id": 6
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "contest_id",
+          "percentage"
+        ],
+        "rows": [
+          [
+            1,
+            83.33
+          ],
+          [
+            2,
+            16.67
+          ]
+        ]
+      },
+      "tags": [
+        "rounding",
+        "sixths"
+      ]
+    },
+    {
+      "id": "real-shared-users",
+      "name": "hidden: one user contributes independently to several contests",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Users": [
+            {
+              "user_id": 1,
+              "user_name": "A"
+            },
+            {
+              "user_id": 2,
+              "user_name": "B"
+            },
+            {
+              "user_id": 3,
+              "user_name": "C"
+            },
+            {
+              "user_id": 4,
+              "user_name": "D"
+            },
+            {
+              "user_id": 5,
+              "user_name": "E"
+            }
+          ],
+          "Register": [
+            {
+              "contest_id": 4,
+              "user_id": 1
+            },
+            {
+              "contest_id": 4,
+              "user_id": 2
+            },
+            {
+              "contest_id": 8,
+              "user_id": 1
+            },
+            {
+              "contest_id": 8,
+              "user_id": 3
+            },
+            {
+              "contest_id": 8,
+              "user_id": 4
+            },
+            {
+              "contest_id": 12,
+              "user_id": 1
+            },
+            {
+              "contest_id": 12,
+              "user_id": 2
+            },
+            {
+              "contest_id": 12,
+              "user_id": 3
+            },
+            {
+              "contest_id": 12,
+              "user_id": 4
+            },
+            {
+              "contest_id": 12,
+              "user_id": 5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "contest_id",
+          "percentage"
+        ],
+        "rows": [
+          [
+            12,
+            100
+          ],
+          [
+            8,
+            60
+          ],
+          [
+            4,
+            40
+          ]
+        ]
+      },
+      "tags": [
+        "multiple-contests",
+        "shared-users"
+      ]
+    }
+  ]
+}

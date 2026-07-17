@@ -6,6 +6,9 @@
   "title": "Thousand Separator",
   "difficulty": "Easy",
   "acceptance_rate": 53.77063949424502,
+  "frequency": 34.2,
+  "elo_rating": 1271.3776510163,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

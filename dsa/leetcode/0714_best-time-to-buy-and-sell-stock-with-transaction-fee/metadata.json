@@ -6,6 +6,9 @@
   "title": "Best Time to Buy and Sell Stock with Transaction Fee",
   "difficulty": "Medium",
   "acceptance_rate": 72.26065356791025,
+  "frequency": 43.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1372.254619,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Minimum Removals to Achieve Target XOR",
   "difficulty": "Medium",
   "acceptance_rate": 41.80739473292665,
+  "frequency": 0.0,
+  "elo_rating": 1745.1254709049,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

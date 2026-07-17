@@ -6,6 +6,9 @@
   "title": "Maximum Number of Tasks You Can Assign",
   "difficulty": "Hard",
   "acceptance_rate": 49.99538074231471,
+  "frequency": 0.0,
+  "elo_rating": 2648.1748409542,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

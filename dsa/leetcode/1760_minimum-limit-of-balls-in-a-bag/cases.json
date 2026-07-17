@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1760",
+  "cases": [
+    {
+      "id": "sample-one-bag",
+      "name": "sample: split one bag into equal thirds",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [9], "maxOperations": 2},
+      "expected": 3,
+      "tags": ["sample", "single-bag", "exact-division"]
+    },
+    {
+      "id": "sample-several-bags",
+      "name": "sample: distribute splits among several bags",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 4, 8, 2], "maxOperations": 4},
+      "expected": 2,
+      "tags": ["sample", "multiple-bags"]
+    },
+    {
+      "id": "sample-unequal-bags",
+      "name": "sample: smaller original bag fixes the optimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [7, 17], "maxOperations": 2},
+      "expected": 7,
+      "tags": ["sample", "unequal-bags"]
+    },
+    {
+      "id": "trial-unit-bag",
+      "name": "trial: size one is the minimum possible penalty",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1], "maxOperations": 1},
+      "expected": 1,
+      "tags": ["minimum-value", "single-bag"]
+    },
+    {
+      "id": "trial-abundant-operations",
+      "name": "trial: abundant budget reaches single-ball bags",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [10], "maxOperations": 1000000000},
+      "expected": 1,
+      "tags": ["large-budget", "unused-operations"]
+    },
+    {
+      "id": "real-maximum-bag",
+      "name": "hidden: one split at the maximum bag value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000], "maxOperations": 1},
+      "expected": 500000000,
+      "tags": ["maximum-value", "single-operation"]
+    },
+    {
+      "id": "real-equal-bags",
+      "name": "hidden: each equal bag needs one split",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10, 10], "maxOperations": 2},
+      "expected": 5,
+      "tags": ["equal-bags", "exact-division"]
+    },
+    {
+      "id": "real-mixed-threshold",
+      "name": "hidden: several bags jointly determine feasibility",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 6, 10], "maxOperations": 3},
+      "expected": 4,
+      "tags": ["mixed-sizes", "feasibility-boundary"]
+    }
+  ]
+}

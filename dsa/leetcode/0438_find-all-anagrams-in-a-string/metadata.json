@@ -6,6 +6,9 @@
   "title": "Find All Anagrams in a String",
   "difficulty": "Medium",
   "acceptance_rate": 54.04799256087982,
+  "frequency": 72.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1532.824295,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

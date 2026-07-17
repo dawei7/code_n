@@ -6,6 +6,9 @@
   "title": "Max Value of Equation",
   "difficulty": "Hard",
   "acceptance_rate": 45.11522310336342,
+  "frequency": 0.0,
+  "elo_rating": 2456.3900212097,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

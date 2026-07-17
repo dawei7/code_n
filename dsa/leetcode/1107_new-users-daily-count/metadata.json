@@ -6,6 +6,9 @@
   "title": "New Users Daily Count",
   "difficulty": "Medium",
   "acceptance_rate": 44.48672540467757,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1660.001625,
   "category": "database",
   "category_title": "Database",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Counting Elements",
   "difficulty": "Easy",
   "acceptance_rate": 60.81959895005624,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1221.435436,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

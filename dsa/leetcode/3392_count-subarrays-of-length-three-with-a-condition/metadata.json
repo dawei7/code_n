@@ -6,6 +6,9 @@
   "title": "Count Subarrays of Length Three With a Condition",
   "difficulty": "Easy",
   "acceptance_rate": 61.3783754516979,
+  "frequency": 0.0,
+  "elo_rating": 1200.6837984436,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

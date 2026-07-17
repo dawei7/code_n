@@ -6,6 +6,9 @@
   "title": "Longest Continuous Increasing Subsequence",
   "difficulty": "Easy",
   "acceptance_rate": 52.182049151582966,
+  "frequency": 38.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1245.167363,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

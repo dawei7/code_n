@@ -123,10 +123,13 @@ def fail(challenge_id: str) -> PlayerProgress:
     return progress
 
 
-def reset() -> PlayerProgress:
-    """Wipe all completion state for the active profile and persist."""
+def reset(
+    challenge_ids: list[str] | None = None,
+    scope: str = "all",
+) -> PlayerProgress:
+    """Clear selected progress for the active profile and persist."""
     progress = load()
-    progress.reset_statuses()
+    progress.reset_statuses(challenge_ids, scope)
     save(progress)
     return progress
 

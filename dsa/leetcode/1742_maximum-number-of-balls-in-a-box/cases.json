@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1742",
+  "cases": [
+    {"id":"sample-official-one","name":"sample: one through ten","kind":"sample","visible":true,"input":{"lowLimit":1,"highLimit":10},"expected":2,"tags":["sample","power-of-ten"]},
+    {"id":"sample-official-two","name":"sample: five through fifteen","kind":"sample","visible":true,"input":{"lowLimit":5,"highLimit":15},"expected":2,"tags":["sample","tied-boxes"]},
+    {"id":"sample-official-three","name":"sample: nineteen through twenty-eight","kind":"sample","visible":true,"input":{"lowLimit":19,"highLimit":28},"expected":2,"tags":["sample","same-digit-sum"]},
+    {"id":"trial-single-label","name":"trial: one ball occupies one box","kind":"trial","visible":true,"input":{"lowLimit":99,"highLimit":99},"expected":1,"tags":["single-label"]},
+    {"id":"trial-one-digit-range","name":"trial: distinct one-digit labels","kind":"trial","visible":true,"input":{"lowLimit":1,"highLimit":9},"expected":1,"tags":["one-digit"]},
+    {"id":"real-first-hundred","name":"hidden: repeated sums across two and three digits","kind":"real","visible":false,"input":{"lowLimit":1,"highLimit":100},"expected":10,"tags":["power-of-ten","wide-range"]},
+    {"id":"real-cross-hundred","name":"hidden: narrow interval crosses one hundred","kind":"real","visible":false,"input":{"lowLimit":98,"highLimit":102},"expected":1,"tags":["power-of-ten","narrow-range"]},
+    {"id":"real-midrange","name":"hidden: repeated sums away from one","kind":"real","visible":false,"input":{"lowLimit":500,"highLimit":550},"expected":6,"tags":["midrange","repeated-sums"]},
+    {"id":"real-near-maximum","name":"hidden: interval reaches maximum label","kind":"real","visible":false,"input":{"lowLimit":99990,"highLimit":100000},"expected":1,"tags":["maximum","digit-width-change"]},
+    {"id":"real-broad-two-digit-prefix","name":"hidden: broad prefix through two-digit labels","kind":"real","visible":false,"input":{"lowLimit":1,"highLimit":90},"expected":10,"tags":["wide-range","two-digit"]}
+  ]
+}

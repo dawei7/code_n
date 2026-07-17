@@ -6,6 +6,9 @@
   "title": "Minimum Cost Walk in Weighted Graph",
   "difficulty": "Hard",
   "acceptance_rate": 68.23240371002863,
+  "frequency": 27.4,
+  "elo_rating": 2108.5054318055,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

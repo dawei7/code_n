@@ -6,6 +6,9 @@
   "title": "Maximum Strictly Increasing Cells in a Matrix",
   "difficulty": "Hard",
   "acceptance_rate": 31.560217269151526,
+  "frequency": 0.0,
+  "elo_rating": 2387.3525635254,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

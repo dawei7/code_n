@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1840",
+  "frontend_id": "1722",
+  "title_slug": "minimize-hamming-distance-after-swap-operations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumHammingDistance",
+  "verified_submission_id": "2070767262",
+  "verified_at": "2026-07-17T06:45:56.594748+00:00"
+}

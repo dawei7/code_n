@@ -3992,9 +3992,15 @@
         "lc_3982",
         "lc_3983",
         "lc_3984",
-        "lc_3985"
+        "lc_3985",
+        "lc_3986",
+        "lc_3987",
+        "lc_3988",
+        "lc_3989",
+        "lc_3990",
+        "lc_3991"
       ],
-      "count": 3985
+      "count": 3991
     },
     {
       "id": "category:algorithms",
@@ -7568,9 +7574,15 @@
         "lc_3982",
         "lc_3983",
         "lc_3984",
-        "lc_3985"
+        "lc_3985",
+        "lc_3986",
+        "lc_3987",
+        "lc_3988",
+        "lc_3989",
+        "lc_3990",
+        "lc_3991"
       ],
-      "count": 3567
+      "count": 3573
     },
     {
       "id": "category:concurrency",
@@ -7999,19 +8011,6 @@
       "count": 67
     },
     {
-      "id": "category:shell",
-      "kind": "category",
-      "slug": "shell",
-      "name": "Shell",
-      "challenge_ids": [
-        "lc_192",
-        "lc_193",
-        "lc_194",
-        "lc_195"
-      ],
-      "count": 4
-    },
-    {
       "id": "category:pandas",
       "kind": "category",
       "slug": "pandas",
@@ -8034,6 +8033,19 @@
         "lc_2891"
       ],
       "count": 15
+    },
+    {
+      "id": "category:shell",
+      "kind": "category",
+      "slug": "shell",
+      "name": "Shell",
+      "challenge_ids": [
+        "lc_192",
+        "lc_193",
+        "lc_194",
+        "lc_195"
+      ],
+      "count": 4
     },
     {
       "id": "topic:array",
@@ -15747,6 +15759,23 @@
       "count": 9
     },
     {
+      "id": "topic:line-sweep",
+      "kind": "topic",
+      "slug": "line-sweep",
+      "name": "Sweep Line",
+      "challenge_ids": [
+        "lc_218",
+        "lc_391",
+        "lc_759",
+        "lc_850",
+        "lc_986",
+        "lc_1851",
+        "lc_3009",
+        "lc_3454"
+      ],
+      "count": 8
+    },
+    {
       "id": "topic:linked-list",
       "kind": "topic",
       "slug": "linked-list",
@@ -19990,23 +20019,6 @@
         "lc_3213",
         "lc_3735",
         "lc_3934"
-      ],
-      "count": 8
-    },
-    {
-      "id": "topic:line-sweep",
-      "kind": "topic",
-      "slug": "line-sweep",
-      "name": "Sweep Line",
-      "challenge_ids": [
-        "lc_218",
-        "lc_391",
-        "lc_759",
-        "lc_850",
-        "lc_986",
-        "lc_1851",
-        "lc_3009",
-        "lc_3454"
       ],
       "count": 8
     },
@@ -24357,9 +24369,15 @@
         "lc_3982",
         "lc_3983",
         "lc_3984",
-        "lc_3985"
+        "lc_3985",
+        "lc_3986",
+        "lc_3987",
+        "lc_3988",
+        "lc_3989",
+        "lc_3990",
+        "lc_3991"
       ],
-      "count": 3567
+      "count": 3573
     },
     {
       "id": "language:csharp",
@@ -27933,9 +27951,15 @@
         "lc_3982",
         "lc_3983",
         "lc_3984",
-        "lc_3985"
+        "lc_3985",
+        "lc_3986",
+        "lc_3987",
+        "lc_3988",
+        "lc_3989",
+        "lc_3990",
+        "lc_3991"
       ],
-      "count": 3567
+      "count": 3573
     },
     {
       "id": "language:go",
@@ -31509,9 +31533,15 @@
         "lc_3982",
         "lc_3983",
         "lc_3984",
-        "lc_3985"
+        "lc_3985",
+        "lc_3986",
+        "lc_3987",
+        "lc_3988",
+        "lc_3989",
+        "lc_3990",
+        "lc_3991"
       ],
-      "count": 3567
+      "count": 3573
     },
     {
       "id": "language:java",
@@ -35085,9 +35115,15 @@
         "lc_3982",
         "lc_3983",
         "lc_3984",
-        "lc_3985"
+        "lc_3985",
+        "lc_3986",
+        "lc_3987",
+        "lc_3988",
+        "lc_3989",
+        "lc_3990",
+        "lc_3991"
       ],
-      "count": 3567
+      "count": 3573
     },
     {
       "id": "language:javascript",
@@ -38728,9 +38764,15 @@
         "lc_3982",
         "lc_3983",
         "lc_3984",
-        "lc_3985"
+        "lc_3985",
+        "lc_3986",
+        "lc_3987",
+        "lc_3988",
+        "lc_3989",
+        "lc_3990",
+        "lc_3991"
       ],
-      "count": 3634
+      "count": 3640
     },
     {
       "id": "language:kotlin",
@@ -42304,9 +42346,15 @@
         "lc_3982",
         "lc_3983",
         "lc_3984",
-        "lc_3985"
+        "lc_3985",
+        "lc_3986",
+        "lc_3987",
+        "lc_3988",
+        "lc_3989",
+        "lc_3990",
+        "lc_3991"
       ],
-      "count": 3567
+      "count": 3573
     },
     {
       "id": "language:python",
@@ -45895,9 +45943,15 @@
         "lc_3982",
         "lc_3983",
         "lc_3984",
-        "lc_3985"
+        "lc_3985",
+        "lc_3986",
+        "lc_3987",
+        "lc_3988",
+        "lc_3989",
+        "lc_3990",
+        "lc_3991"
       ],
-      "count": 3582
+      "count": 3588
     },
     {
       "id": "language:sql",

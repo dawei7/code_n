@@ -6,6 +6,9 @@
   "title": "Longest Palindromic Substring",
   "difficulty": "Medium",
   "acceptance_rate": 38.147822098764976,
+  "frequency": 98.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1717.173086,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

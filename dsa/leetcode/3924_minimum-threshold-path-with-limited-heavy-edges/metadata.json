@@ -6,6 +6,9 @@
   "title": "Minimum Threshold Path With Limited Heavy Edges",
   "difficulty": "Hard",
   "acceptance_rate": 39.896322852574976,
+  "frequency": 49.9,
+  "elo_rating": 2079.5200791317,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

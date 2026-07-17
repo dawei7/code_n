@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1806",
+  "frontend_id": "1688",
+  "title_slug": "count-of-matches-in-tournament",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numberOfMatches",
+  "verified_submission_id": "2070563135",
+  "verified_at": "2026-07-17T03:55:51.215851+00:00"
+}

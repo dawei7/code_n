@@ -6,6 +6,9 @@
   "title": "Closest Room",
   "difficulty": "Hard",
   "acceptance_rate": 41.510413287484596,
+  "frequency": 0.0,
+  "elo_rating": 2081.7518764643,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

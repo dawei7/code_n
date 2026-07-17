@@ -6,6 +6,9 @@
   "title": "Find All Groups of Farmland",
   "difficulty": "Medium",
   "acceptance_rate": 75.52667248064053,
+  "frequency": 37.0,
+  "elo_rating": 1539.2250193318,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

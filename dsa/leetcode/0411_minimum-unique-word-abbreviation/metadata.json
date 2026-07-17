@@ -6,6 +6,9 @@
   "title": "Minimum Unique Word Abbreviation",
   "difficulty": "Hard",
   "acceptance_rate": 40.53576006152269,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2225.867152,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

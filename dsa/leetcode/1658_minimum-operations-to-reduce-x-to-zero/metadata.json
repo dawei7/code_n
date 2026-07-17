@@ -6,6 +6,9 @@
   "title": "Minimum Operations to Reduce X to Zero",
   "difficulty": "Medium",
   "acceptance_rate": 40.681358628901606,
+  "frequency": 56.4,
+  "elo_rating": 1817.224026292,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

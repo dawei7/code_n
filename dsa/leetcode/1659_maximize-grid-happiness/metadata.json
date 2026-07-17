@@ -6,6 +6,9 @@
   "title": "Maximize Grid Happiness",
   "difficulty": "Hard",
   "acceptance_rate": 41.28166915052161,
+  "frequency": 0.0,
+  "elo_rating": 2655.2178711909,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

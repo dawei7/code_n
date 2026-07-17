@@ -6,6 +6,9 @@
   "title": "Construct String With Repeat Limit",
   "difficulty": "Medium",
   "acceptance_rate": 70.84883309570009,
+  "frequency": 62.8,
+  "elo_rating": 1680.1353258588,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

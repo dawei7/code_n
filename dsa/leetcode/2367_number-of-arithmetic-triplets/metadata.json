@@ -6,6 +6,9 @@
   "title": "Number of Arithmetic Triplets",
   "difficulty": "Easy",
   "acceptance_rate": 85.56186999253657,
+  "frequency": 10.0,
+  "elo_rating": 1203.0737869081,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

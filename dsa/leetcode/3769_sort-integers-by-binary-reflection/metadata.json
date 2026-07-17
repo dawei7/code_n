@@ -6,6 +6,9 @@
   "title": "Sort Integers by Binary Reflection",
   "difficulty": "Easy",
   "acceptance_rate": 61.1594370988943,
+  "frequency": 30.5,
+  "elo_rating": 1363.9436268732,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

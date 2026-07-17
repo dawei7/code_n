@@ -6,6 +6,9 @@
   "title": "Find Kth Bit in Nth Binary String",
   "difficulty": "Medium",
   "acceptance_rate": 73.66996593578091,
+  "frequency": 71.4,
+  "elo_rating": 1479.4837595809,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

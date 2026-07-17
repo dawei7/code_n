@@ -6,6 +6,9 @@
   "title": "Longest Turbulent Subarray",
   "difficulty": "Medium",
   "acceptance_rate": 49.284264116331556,
+  "frequency": 44.1,
+  "elo_rating": 1393.4123491817,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

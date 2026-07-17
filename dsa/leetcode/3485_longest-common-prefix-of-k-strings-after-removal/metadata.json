@@ -6,6 +6,9 @@
   "title": "Longest Common Prefix of K Strings After Removal",
   "difficulty": "Hard",
   "acceptance_rate": 24.28254490803693,
+  "frequency": 0.0,
+  "elo_rating": 2289.6436758228,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

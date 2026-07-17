@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1686",
+  "cases": [
+    {"id":"sample-alice-wins","name":"sample: Alice claims her high-value stone","kind":"sample","visible":true,"input":{"aliceValues":[1,3],"bobValues":[2,1]},"expected":1,"tags":["sample","alice-win"]},
+    {"id":"sample-tie","name":"sample: optimal play ends level","kind":"sample","visible":true,"input":{"aliceValues":[1,2],"bobValues":[3,1]},"expected":0,"tags":["sample","tie"]},
+    {"id":"sample-bob-wins","name":"sample: Bob can force the larger total","kind":"sample","visible":true,"input":{"aliceValues":[2,4,3],"bobValues":[1,6,7]},"expected":-1,"tags":["sample","bob-win"]},
+    {"id":"trial-single-stone","name":"trial: Alice takes the only stone","kind":"trial","visible":true,"input":{"aliceValues":[1],"bobValues":[100]},"expected":1,"tags":["minimum","alice-win"]},
+    {"id":"trial-equal-priorities","name":"trial: equal combined values may be tied arbitrarily","kind":"trial","visible":true,"input":{"aliceValues":[4,1],"bobValues":[1,4]},"expected":0,"tags":["equal-priority","tie"]},
+    {"id":"real-denial-matters","name":"hidden: opponent value changes the first choice","kind":"real","visible":false,"input":{"aliceValues":[8,7,1],"bobValues":[1,100,1]},"expected":1,"tags":["denial","greedy-priority"]},
+    {"id":"real-all-equal","name":"hidden: identical valuations split by turn parity","kind":"real","visible":false,"input":{"aliceValues":[5,5,5,5],"bobValues":[5,5,5,5]},"expected":0,"tags":["all-equal","even-count"]},
+    {"id":"real-odd-identical","name":"hidden: Alice receives the extra identical stone","kind":"real","visible":false,"input":{"aliceValues":[2,2,2,2,2],"bobValues":[2,2,2,2,2]},"expected":1,"tags":["all-equal","odd-count"]},
+    {"id":"real-varied-priorities","name":"hidden: several combined priorities and score values","kind":"real","visible":false,"input":{"aliceValues":[10,1,6,4,9,2],"bobValues":[3,10,2,8,1,7]},"expected":1,"tags":["varied","even-count"]}
+  ]
+}

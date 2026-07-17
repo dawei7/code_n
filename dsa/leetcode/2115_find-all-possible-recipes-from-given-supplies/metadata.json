@@ -6,6 +6,9 @@
   "title": "Find All Possible Recipes from Given Supplies",
   "difficulty": "Medium",
   "acceptance_rate": 56.99714722097517,
+  "frequency": 48.1,
+  "elo_rating": 1678.5871762113,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Replace All ?'s to Avoid Consecutive Repeating Characters",
   "difficulty": "Easy",
   "acceptance_rate": 45.310542062126395,
+  "frequency": 0.0,
+  "elo_rating": 1368.0043517215,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

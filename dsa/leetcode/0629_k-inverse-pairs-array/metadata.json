@@ -6,6 +6,9 @@
   "title": "K Inverse Pairs Array",
   "difficulty": "Hard",
   "acceptance_rate": 48.99045698739107,
+  "frequency": 36.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 2098.052744,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

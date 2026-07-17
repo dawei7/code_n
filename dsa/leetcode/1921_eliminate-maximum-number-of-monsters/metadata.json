@@ -6,6 +6,9 @@
   "title": "Eliminate Maximum Number of Monsters",
   "difficulty": "Medium",
   "acceptance_rate": 51.191224361538026,
+  "frequency": 57.1,
+  "elo_rating": 1527.6868660176,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

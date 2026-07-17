@@ -6,6 +6,9 @@
   "title": "Get the Maximum Score",
   "difficulty": "Hard",
   "acceptance_rate": 41.260587394126055,
+  "frequency": 53.7,
+  "elo_rating": 1961.4987013156,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

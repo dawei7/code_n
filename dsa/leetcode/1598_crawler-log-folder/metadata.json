@@ -6,6 +6,9 @@
   "title": "Crawler Log Folder",
   "difficulty": "Easy",
   "acceptance_rate": 71.7062238135878,
+  "frequency": 19.8,
+  "elo_rating": 1297.3006230632,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

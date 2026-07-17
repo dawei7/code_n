@@ -6,6 +6,9 @@
   "title": "Number of Ways to Form a Target String Given a Dictionary",
   "difficulty": "Hard",
   "acceptance_rate": 56.42388363782105,
+  "frequency": 0.0,
+  "elo_rating": 2081.6909344021,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

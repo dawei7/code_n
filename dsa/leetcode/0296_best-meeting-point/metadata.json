@@ -6,6 +6,9 @@
   "title": "Best Meeting Point",
   "difficulty": "Hard",
   "acceptance_rate": 61.46191684682144,
+  "frequency": 56.6,
+  "elo_rating": null,
+  "estimated_elo_rating": 1992.31473,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

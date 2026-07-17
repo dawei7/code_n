@@ -6,6 +6,9 @@
   "title": "Greatest Sum Divisible by Three",
   "difficulty": "Medium",
   "acceptance_rate": 56.993808133984345,
+  "frequency": 14.8,
+  "elo_rating": 1762.0307532652,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

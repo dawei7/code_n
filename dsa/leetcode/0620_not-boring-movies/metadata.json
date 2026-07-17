@@ -6,6 +6,9 @@
   "title": "Not Boring Movies",
   "difficulty": "Easy",
   "acceptance_rate": 75.1123321272129,
+  "frequency": 43.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1167.099263,
   "category": "database",
   "category_title": "Database",
   "topics": [

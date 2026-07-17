@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1691",
+  "cases": [
+    {"id":"sample-three-stack","name":"sample: all three cuboids form a stack","kind":"sample","visible":true,"input":{"cuboids":[[50,45,20],[95,37,53],[45,23,12]]},"expected":190,"tags":["sample","all-used"]},
+    {"id":"sample-incompatible-pair","name":"sample: incompatible pair uses one cuboid","kind":"sample","visible":true,"input":{"cuboids":[[38,25,45],[76,35,3]]},"expected":76,"tags":["sample","incomparable"]},
+    {"id":"sample-rotated-duplicates","name":"sample: six rotations normalize identically","kind":"sample","visible":true,"input":{"cuboids":[[7,11,17],[7,17,11],[11,7,17],[11,17,7],[17,7,11],[17,11,7]]},"expected":102,"tags":["sample","rotation","duplicates"]},
+    {"id":"trial-single","name":"trial: one cuboid chooses its largest height","kind":"trial","visible":true,"input":{"cuboids":[[1,2,3]]},"expected":3,"tags":["minimum","rotation"]},
+    {"id":"trial-nested-pair","name":"trial: coordinatewise nested pair","kind":"trial","visible":true,"input":{"cuboids":[[1,2,3],[2,3,4]]},"expected":7,"tags":["nested","all-used"]},
+    {"id":"real-incomparable-equal-height","name":"hidden: equal maximum dimensions do not ensure compatibility","kind":"real","visible":false,"input":{"cuboids":[[4,4,1],[4,2,2]]},"expected":4,"tags":["incomparable","semantic-trap"]},
+    {"id":"real-equality-chain","name":"hidden: boundary dimensions and equality form a full chain","kind":"real","visible":false,"input":{"cuboids":[[100,100,1],[100,100,100],[1,1,100]]},"expected":300,"tags":["maximum-dimension","equality"]},
+    {"id":"real-varied-incomparable","name":"hidden: tall individual beats incompatible alternatives","kind":"real","visible":false,"input":{"cuboids":[[9,4,6],[7,8,3],[10,5,5],[6,6,6]]},"expected":10,"tags":["varied","subset"]},
+    {"id":"real-shared-maximum","name":"hidden: shared heights with crossing base dimensions","kind":"real","visible":false,"input":{"cuboids":[[3,4,5],[3,3,6],[2,4,6]]},"expected":6,"tags":["incomparable","equal-height"]}
+  ]
+}

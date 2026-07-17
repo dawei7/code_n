@@ -6,6 +6,9 @@
   "title": "Find Largest Value in Each Tree Row",
   "difficulty": "Medium",
   "acceptance_rate": 66.34824975150445,
+  "frequency": 46.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1411.897136,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

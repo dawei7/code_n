@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1659",
+  "cases": [
+    {"id":"sample-isolated-introvert","name":"sample: isolate introvert beside paired extroverts","kind":"sample","visible":true,"input":{"m":2,"n":3,"introvertsCount":1,"extrovertsCount":2},"expected":240,"tags":["sample","mixed"]},
+    {"id":"sample-line-mixed","name":"sample: extrovert between two introverts","kind":"sample","visible":true,"input":{"m":3,"n":1,"introvertsCount":2,"extrovertsCount":1},"expected":260,"tags":["sample","line"]},
+    {"id":"sample-all-introverts","name":"sample: four introverts on a two-by-two grid","kind":"sample","visible":true,"input":{"m":2,"n":2,"introvertsCount":4,"extrovertsCount":0},"expected":240,"tags":["sample","introverts"]},
+    {"id":"trial-empty","name":"trial: no people are available","kind":"trial","visible":true,"input":{"m":1,"n":1,"introvertsCount":0,"extrovertsCount":0},"expected":0,"tags":["empty"]},
+    {"id":"trial-single-choice","name":"trial: introvert dominates extrovert in one cell","kind":"trial","visible":true,"input":{"m":1,"n":1,"introvertsCount":1,"extrovertsCount":1},"expected":120,"tags":["single-cell","unused-person"]},
+    {"id":"real-two-introverts","name":"hidden: adjacent introverts lose happiness twice","kind":"real","visible":false,"input":{"m":1,"n":2,"introvertsCount":2,"extrovertsCount":0},"expected":180,"tags":["pair-effect","introverts"]},
+    {"id":"real-two-extroverts","name":"hidden: adjacent extroverts gain happiness twice","kind":"real","visible":false,"input":{"m":1,"n":2,"introvertsCount":0,"extrovertsCount":2},"expected":120,"tags":["pair-effect","extroverts"]},
+    {"id":"real-mixed-pair","name":"hidden: mixed adjacency has combined penalty ten","kind":"real","visible":false,"input":{"m":1,"n":2,"introvertsCount":1,"extrovertsCount":1},"expected":150,"tags":["pair-effect","mixed"]},
+    {"id":"real-diagonal-separation","name":"hidden: diagonal residents do not interact","kind":"real","visible":false,"input":{"m":2,"n":2,"introvertsCount":1,"extrovertsCount":1},"expected":160,"tags":["diagonal","non-neighbor"]},
+    {"id":"real-balanced-square","name":"hidden: all four cells with balanced types","kind":"real","visible":false,"input":{"m":2,"n":2,"introvertsCount":2,"extrovertsCount":2},"expected":280,"tags":["full-grid","mixed"]},
+    {"id":"real-rotated-line","name":"hidden: asymmetric dimensions preserve the optimum","kind":"real","visible":false,"input":{"m":1,"n":5,"introvertsCount":3,"extrovertsCount":2},"expected":400,"tags":["rotation","line"]},
+    {"id":"real-dense-square","name":"hidden: dense three-by-three grid with saturated counts","kind":"real","visible":false,"input":{"m":3,"n":3,"introvertsCount":6,"extrovertsCount":6},"expected":780,"tags":["dense-grid","maximum-counts"]}
+  ]
+}

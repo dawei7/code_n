@@ -6,6 +6,9 @@
   "title": "Stamping The Sequence",
   "difficulty": "Hard",
   "acceptance_rate": 62.392346324975655,
+  "frequency": 32.1,
+  "elo_rating": 2583.406911951,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

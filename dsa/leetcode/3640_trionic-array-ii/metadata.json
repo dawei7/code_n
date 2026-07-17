@@ -6,6 +6,9 @@
   "title": "Trionic Array II",
   "difficulty": "Hard",
   "acceptance_rate": 47.336447053898944,
+  "frequency": 88.5,
+  "elo_rating": 2277.5664098681,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

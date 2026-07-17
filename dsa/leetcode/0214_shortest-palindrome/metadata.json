@@ -6,6 +6,9 @@
   "title": "Shortest Palindrome",
   "difficulty": "Hard",
   "acceptance_rate": 42.7059757722889,
+  "frequency": 61.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 2187.657776,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

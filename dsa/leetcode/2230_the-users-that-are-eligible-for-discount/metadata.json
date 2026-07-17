@@ -6,6 +6,9 @@
   "title": "The Users That Are Eligible for Discount",
   "difficulty": "Easy",
   "acceptance_rate": 50.96471521078366,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1247.738322,
   "category": "database",
   "category_title": "Database",
   "topics": [

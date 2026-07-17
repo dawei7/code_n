@@ -6,6 +6,9 @@
   "title": "Find Maximum Balanced XOR Subarray Length",
   "difficulty": "Medium",
   "acceptance_rate": 51.20387742338962,
+  "frequency": 0.0,
+  "elo_rating": 1663.3612679416,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

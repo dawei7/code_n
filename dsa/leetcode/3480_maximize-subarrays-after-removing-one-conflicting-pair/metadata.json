@@ -6,6 +6,9 @@
   "title": "Maximize Subarrays After Removing One Conflicting Pair",
   "difficulty": "Hard",
   "acceptance_rate": 64.53069298078965,
+  "frequency": 0.0,
+  "elo_rating": 2763.6510278508,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

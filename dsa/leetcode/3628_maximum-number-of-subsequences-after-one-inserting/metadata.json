@@ -6,6 +6,9 @@
   "title": "Maximum Number of Subsequences After One Inserting",
   "difficulty": "Medium",
   "acceptance_rate": 32.077918100235834,
+  "frequency": 0.0,
+  "elo_rating": 1753.6218466339,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

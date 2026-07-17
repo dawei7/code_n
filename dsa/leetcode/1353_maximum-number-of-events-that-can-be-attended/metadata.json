@@ -6,6 +6,9 @@
   "title": "Maximum Number of Events That Can Be Attended",
   "difficulty": "Medium",
   "acceptance_rate": 39.01422088255353,
+  "frequency": 75.2,
+  "elo_rating": 2015.7291888336,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

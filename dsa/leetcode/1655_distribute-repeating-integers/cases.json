@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1655",
+  "cases": [
+    {"id":"sample-cannot-mix","name":"sample: one request cannot mix distinct values","kind":"sample","visible":true,"input":{"nums":[1,2,3,4],"quantity":[2]},"expected":false,"tags":["sample","indivisible-request"]},
+    {"id":"sample-unused-values","name":"sample: repeated value satisfies request with leftovers","kind":"sample","visible":true,"input":{"nums":[1,2,3,3],"quantity":[2]},"expected":true,"tags":["sample","unused-inventory"]},
+    {"id":"sample-separate-values","name":"sample: two frequencies satisfy two customers","kind":"sample","visible":true,"input":{"nums":[1,1,2,2],"quantity":[2,2]},"expected":true,"tags":["sample","separate-values"]},
+    {"id":"trial-shared-value","name":"trial: two customers share one repeated value","kind":"trial","visible":true,"input":{"nums":[1,1,1,1],"quantity":[2,2]},"expected":true,"tags":["shared-value"]},
+    {"id":"trial-insufficient-shared-value","name":"trial: shared capacity is one copy short","kind":"trial","visible":true,"input":{"nums":[1,1,1],"quantity":[2,2]},"expected":false,"tags":["insufficient-total"]},
+    {"id":"real-different-demands","name":"hidden: different capacities satisfy different demands","kind":"real","visible":false,"input":{"nums":[1,1,1,2,2,2],"quantity":[2,3]},"expected":true,"tags":["different-demands"]},
+    {"id":"real-several-groups","name":"hidden: three customers use three value groups","kind":"real","visible":false,"input":{"nums":[1,1,2,2,3,3],"quantity":[1,2,2]},"expected":true,"tags":["multiple-groups"]},
+    {"id":"real-share-and-separate","name":"hidden: two small requests share one value beside a larger request","kind":"real","visible":false,"input":{"nums":[1,1,2,2],"quantity":[1,1,2]},"expected":true,"tags":["shared-value","separate-value"]},
+    {"id":"real-total-enough-but-fragmented","name":"hidden: sufficient total inventory is fragmented across capacities","kind":"real","visible":false,"input":{"nums":[1,1,1,1,1,2,2,2,2],"quantity":[3,3,3]},"expected":false,"tags":["fragmentation","exact-quantity"]},
+    {"id":"real-demand-too-large","name":"hidden: no single frequency can satisfy a large request","kind":"real","visible":false,"input":{"nums":[1,1,2,2,3,3],"quantity":[3]},"expected":false,"tags":["single-customer","insufficient-frequency"]}
+  ]
+}

@@ -6,6 +6,9 @@
   "title": "Partition Array into Two Equal Product Subsets",
   "difficulty": "Medium",
   "acceptance_rate": 35.24906864828009,
+  "frequency": 0.0,
+  "elo_rating": 1459.1307655664,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

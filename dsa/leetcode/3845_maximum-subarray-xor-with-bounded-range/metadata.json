@@ -6,6 +6,9 @@
   "title": "Maximum Subarray XOR with Bounded Range",
   "difficulty": "Hard",
   "acceptance_rate": 33.17368137460336,
+  "frequency": 44.7,
+  "elo_rating": 2347.4483641639,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

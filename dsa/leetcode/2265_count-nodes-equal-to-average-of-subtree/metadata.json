@@ -6,6 +6,9 @@
   "title": "Count Nodes Equal to Average of Subtree",
   "difficulty": "Medium",
   "acceptance_rate": 86.8194386511114,
+  "frequency": 44.3,
+  "elo_rating": 1472.7864965062,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Super Egg Drop",
   "difficulty": "Hard",
   "acceptance_rate": 30.59217489474798,
+  "frequency": 41.2,
+  "elo_rating": 2376.8658923518,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

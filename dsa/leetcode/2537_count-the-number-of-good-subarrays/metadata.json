@@ -6,6 +6,9 @@
   "title": "Count the Number of Good Subarrays",
   "difficulty": "Medium",
   "acceptance_rate": 65.73253799511772,
+  "frequency": 34.9,
+  "elo_rating": 1891.8455273506,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1852",
+  "frontend_id": "1709",
+  "title_slug": "biggest-window-between-visits",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2070672538",
+  "verified_at": "2026-07-17T05:32:34.582875+00:00"
+}

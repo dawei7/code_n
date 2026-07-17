@@ -6,6 +6,9 @@
   "title": "Stone Game V",
   "difficulty": "Hard",
   "acceptance_rate": 42.06053839474011,
+  "frequency": 0.0,
+  "elo_rating": 2087.2049275667,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

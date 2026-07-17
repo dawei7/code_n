@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1687",
+  "cases": [
+    {"id":"sample-alternating-ports","name":"sample: all boxes fit one alternating-port load","kind":"sample","visible":true,"input":{"boxes":[[1,1],[2,1],[1,1]],"portsCount":2,"maxBoxes":3,"maxWeight":3},"expected":4,"tags":["sample","order"]},
+    {"id":"sample-three-loads","name":"sample: capacities create three loads","kind":"sample","visible":true,"input":{"boxes":[[1,2],[3,3],[3,1],[3,1],[2,4]],"portsCount":3,"maxBoxes":3,"maxWeight":6},"expected":6,"tags":["sample","both-limits"]},
+    {"id":"sample-weight-groups","name":"sample: weight limit separates same-port runs","kind":"sample","visible":true,"input":{"boxes":[[1,4],[1,2],[2,1],[2,1],[3,2],[3,4]],"portsCount":3,"maxBoxes":6,"maxWeight":7},"expected":6,"tags":["sample","weight-limit"]},
+    {"id":"trial-single-box","name":"trial: one box requires departure and return","kind":"trial","visible":true,"input":{"boxes":[[5,10]],"portsCount":5,"maxBoxes":1,"maxWeight":10},"expected":2,"tags":["minimum","return"]},
+    {"id":"trial-one-same-port-load","name":"trial: repeated port adds no intermediate travel","kind":"trial","visible":true,"input":{"boxes":[[2,1],[2,1],[2,1],[2,1]],"portsCount":2,"maxBoxes":4,"maxWeight":4},"expected":2,"tags":["same-port","one-load"]},
+    {"id":"real-box-count-limit","name":"hidden: box limit forces three same-port loads","kind":"real","visible":false,"input":{"boxes":[[1,1],[1,1],[1,1],[1,1],[1,1]],"portsCount":1,"maxBoxes":2,"maxWeight":10},"expected":6,"tags":["box-limit","same-port"]},
+    {"id":"real-weight-limit","name":"hidden: weight limit separates otherwise compatible boxes","kind":"real","visible":false,"input":{"boxes":[[1,3],[1,3],[2,1]],"portsCount":2,"maxBoxes":3,"maxWeight":4},"expected":5,"tags":["weight-limit","port-change"]},
+    {"id":"real-split-boundary","name":"hidden: split boundary replaces a port change with return pair","kind":"real","visible":false,"input":{"boxes":[[1,1],[2,1],[2,1],[1,1]],"portsCount":2,"maxBoxes":2,"maxWeight":2},"expected":6,"tags":["split","port-runs"]},
+    {"id":"real-mixed-capacities","name":"hidden: both constraints expire different starts","kind":"real","visible":false,"input":{"boxes":[[1,2],[1,1],[2,4],[3,1],[3,2],[2,3],[2,1]],"portsCount":3,"maxBoxes":3,"maxWeight":6},"expected":8,"tags":["both-limits","mixed-ports"]}
+  ]
+}

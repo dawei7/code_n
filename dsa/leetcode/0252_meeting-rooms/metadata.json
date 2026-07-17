@@ -6,6 +6,9 @@
   "title": "Meeting Rooms",
   "difficulty": "Easy",
   "acceptance_rate": 59.4806665679527,
+  "frequency": 60.9,
+  "elo_rating": null,
+  "estimated_elo_rating": 1226.577354,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

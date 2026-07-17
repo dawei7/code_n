@@ -6,6 +6,9 @@
   "title": "Shortest Common Supersequence ",
   "difficulty": "Hard",
   "acceptance_rate": 62.11029764694052,
+  "frequency": 38.7,
+  "elo_rating": 1976.7214151234,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

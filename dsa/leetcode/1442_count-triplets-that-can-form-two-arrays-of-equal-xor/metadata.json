@@ -6,6 +6,9 @@
   "title": "Count Triplets That Can Form Two Arrays of Equal XOR",
   "difficulty": "Medium",
   "acceptance_rate": 84.7597681370505,
+  "frequency": 25.4,
+  "elo_rating": 1524.5693481538,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

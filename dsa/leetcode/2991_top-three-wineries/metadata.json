@@ -6,6 +6,9 @@
   "title": "Top Three Wineries ",
   "difficulty": "Hard",
   "acceptance_rate": 54.080045255268,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2050.326636,
   "category": "database",
   "category_title": "Database",
   "topics": [

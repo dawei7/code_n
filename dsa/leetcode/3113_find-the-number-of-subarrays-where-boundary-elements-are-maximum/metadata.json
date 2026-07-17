@@ -6,6 +6,9 @@
   "title": "Find the Number of Subarrays Where Boundary Elements Are Maximum",
   "difficulty": "Hard",
   "acceptance_rate": 33.647277309809645,
+  "frequency": 0.0,
+  "elo_rating": 2046.2618466463,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

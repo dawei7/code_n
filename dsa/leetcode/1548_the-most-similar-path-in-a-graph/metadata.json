@@ -6,6 +6,9 @@
   "title": "The Most Similar Path in a Graph",
   "difficulty": "Hard",
   "acceptance_rate": 59.45740029150656,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2009.18344,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

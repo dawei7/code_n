@@ -6,6 +6,9 @@
   "title": "Remove Duplicates from Sorted Array II",
   "difficulty": "Medium",
   "acceptance_rate": 64.91738462167301,
+  "frequency": 64.2,
+  "elo_rating": null,
+  "estimated_elo_rating": 1422.708732,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

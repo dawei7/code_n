@@ -6,6 +6,9 @@
   "title": "Check if Binary String Has at Most One Segment of Ones",
   "difficulty": "Easy",
   "acceptance_rate": 49.19277625540625,
+  "frequency": 76.9,
+  "elo_rating": 1206.1240971343,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Maximal Square",
   "difficulty": "Medium",
   "acceptance_rate": 50.533779757621886,
+  "frequency": 58.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1583.578551,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

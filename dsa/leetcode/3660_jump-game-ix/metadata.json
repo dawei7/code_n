@@ -6,6 +6,9 @@
   "title": "Jump Game IX",
   "difficulty": "Medium",
   "acceptance_rate": 46.28438796088429,
+  "frequency": 80.2,
+  "elo_rating": 2187.3539422195,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

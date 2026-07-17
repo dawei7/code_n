@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1871",
+  "frontend_id": "1745",
+  "title_slug": "palindrome-partitioning-iv",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.checkPartitioning",
+  "verified_submission_id": "2070934343",
+  "verified_at": "2026-07-17T09:32:32.108956+00:00"
+}

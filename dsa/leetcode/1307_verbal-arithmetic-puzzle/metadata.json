@@ -6,6 +6,9 @@
   "title": "Verbal Arithmetic Puzzle",
   "difficulty": "Hard",
   "acceptance_rate": 33.43428337854409,
+  "frequency": 42.4,
+  "elo_rating": 2250.0454791316,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

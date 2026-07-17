@@ -6,6 +6,9 @@
   "title": "Apply Operations to Make All Array Elements Equal to Zero",
   "difficulty": "Medium",
   "acceptance_rate": 33.623167831919645,
+  "frequency": 0.0,
+  "elo_rating": 2029.4024513478,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

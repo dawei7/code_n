@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1756",
+  "cases": [
+    {
+      "id": "sample-changing-ranks",
+      "name": "sample: positions reflect every prior fetch",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": ["MRUQueue", "fetch", "fetch", "fetch", "fetch"], "arguments": [[8], [3], [5], [2], [8]]},
+      "expected": [null, 3, 6, 2, 2],
+      "tags": ["sample", "stateful", "changing-ranks"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: repeated fetches from a singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": ["MRUQueue", "fetch", "fetch", "fetch"], "arguments": [[1], [1], [1], [1]]},
+      "expected": [null, 1, 1, 1],
+      "tags": ["minimum-size", "singleton"]
+    },
+    {
+      "id": "trial-front-and-back",
+      "name": "trial: fetch both endpoint ranks",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": ["MRUQueue", "fetch", "fetch", "fetch"], "arguments": [[5], [5], [1], [4]]},
+      "expected": [null, 5, 1, 5],
+      "tags": ["front", "back"]
+    },
+    {
+      "id": "real-repeated-middle",
+      "name": "hidden: repeated middle rank cycles the suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": ["MRUQueue", "fetch", "fetch", "fetch", "fetch"], "arguments": [[6], [3], [3], [3], [3]]},
+      "expected": [null, 3, 4, 5, 6],
+      "tags": ["repeated-rank", "middle"]
+    },
+    {
+      "id": "real-alternating-boundaries",
+      "name": "hidden: moves cross both queue boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": ["MRUQueue", "fetch", "fetch", "fetch", "fetch"], "arguments": [[4], [1], [4], [2], [3]]},
+      "expected": [null, 1, 1, 3, 1],
+      "tags": ["front", "back", "stateful"]
+    },
+    {
+      "id": "real-last-rank-idempotence",
+      "name": "hidden: repeated back fetch leaves order unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": ["MRUQueue", "fetch", "fetch", "fetch", "fetch"], "arguments": [[10], [10], [10], [1], [9]]},
+      "expected": [null, 10, 10, 1, 10],
+      "tags": ["back", "idempotence"]
+    },
+    {
+      "id": "real-block-boundaries",
+      "name": "hidden: rank changes cross square-root block boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": ["MRUQueue", "fetch", "fetch", "fetch", "fetch", "fetch"], "arguments": [[7], [4], [4], [7], [1], [3]]},
+      "expected": [null, 4, 5, 5, 1, 6],
+      "tags": ["block-boundary", "rebalancing"]
+    },
+    {
+      "id": "real-constructor-only",
+      "name": "hidden: construction produces only a null result",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": ["MRUQueue"], "arguments": [[2000]]},
+      "expected": [null],
+      "tags": ["maximum-size", "constructor"]
+    }
+  ]
+}

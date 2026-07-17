@@ -6,6 +6,9 @@
   "title": "Triangle",
   "difficulty": "Medium",
   "acceptance_rate": 59.92979145564791,
+  "frequency": 52.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1464.231527,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

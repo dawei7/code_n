@@ -6,6 +6,9 @@
   "title": "Maximum Consecutive Floors Without Special Floors",
   "difficulty": "Medium",
   "acceptance_rate": 52.78757002124783,
+  "frequency": 32.5,
+  "elo_rating": 1332.6187879411,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

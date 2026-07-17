@@ -6,6 +6,9 @@
   "title": "Apply Operations to an Array",
   "difficulty": "Easy",
   "acceptance_rate": 74.74126186132114,
+  "frequency": 27.2,
+  "elo_rating": 1223.9335618833,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

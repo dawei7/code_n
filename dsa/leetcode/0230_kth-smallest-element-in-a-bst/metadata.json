@@ -6,6 +6,9 @@
   "title": "Kth Smallest Element in a BST",
   "difficulty": "Medium",
   "acceptance_rate": 77.03244357473847,
+  "frequency": 49.4,
+  "elo_rating": null,
+  "estimated_elo_rating": 1366.334745,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

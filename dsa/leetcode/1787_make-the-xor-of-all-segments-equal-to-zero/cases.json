@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1787",
+  "cases": [
+    {
+      "id": "example-unit-segments",
+      "name": "each nonzero element must change when k is one",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,2,0,3,0], "k": 1},
+      "expected": 3,
+      "tags": ["example", "unit-segment"]
+    },
+    {
+      "id": "example-three-groups",
+      "name": "three residue classes reuse frequent values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3,4,5,2,1,7,3,4,7], "k": 3},
+      "expected": 3,
+      "tags": ["example", "residue-groups"]
+    },
+    {
+      "id": "example-one-class-changes",
+      "name": "one residue class becomes constant",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,2,4,1,2,5,1,2,6], "k": 3},
+      "expected": 3,
+      "tags": ["example", "constant-class"]
+    },
+    {
+      "id": "trial-already-valid",
+      "name": "one full-length segment already has xor zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1,2,3], "k": 3},
+      "expected": 0,
+      "tags": ["already-valid", "full-length"]
+    },
+    {
+      "id": "real-single-element",
+      "name": "hidden: a nonzero singleton must become zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7], "k": 1},
+      "expected": 1,
+      "tags": ["single-element", "unit-segment"]
+    },
+    {
+      "id": "real-full-length-fix",
+      "name": "hidden: one change can repair the only segment",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,2,4], "k": 3},
+      "expected": 1,
+      "tags": ["full-length", "one-change"]
+    },
+    {
+      "id": "real-two-periodic-groups",
+      "name": "hidden: two constant groups need equal chosen values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,2,1,2], "k": 2},
+      "expected": 2,
+      "tags": ["periodicity", "two-groups"]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "hidden: the highest legal ten-bit value is supported",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1023,0,1023,0], "k": 2},
+      "expected": 2,
+      "tags": ["maximum-value", "state-boundary"]
+    },
+    {
+      "id": "real-mixed-frequencies",
+      "name": "hidden: group frequency tradeoffs determine the xor state",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5,1,7,5,2,7,6,1,7,5], "k": 4},
+      "expected": 6,
+      "tags": ["mixed-frequencies", "xor-dp"]
+    }
+  ]
+}

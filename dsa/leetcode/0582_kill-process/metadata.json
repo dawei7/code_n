@@ -6,6 +6,9 @@
   "title": "Kill Process",
   "difficulty": "Medium",
   "acceptance_rate": 70.70326245412959,
+  "frequency": 57.5,
+  "elo_rating": null,
+  "estimated_elo_rating": 1380.872557,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

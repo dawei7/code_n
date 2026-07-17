@@ -6,6 +6,9 @@
   "title": "Contiguous Array",
   "difficulty": "Medium",
   "acceptance_rate": 51.690966392742475,
+  "frequency": 73.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1567.243848,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

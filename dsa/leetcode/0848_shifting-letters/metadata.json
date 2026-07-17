@@ -6,6 +6,9 @@
   "title": "Shifting Letters",
   "difficulty": "Medium",
   "acceptance_rate": 46.32452394844322,
+  "frequency": 38.2,
+  "elo_rating": 1352.7250049956,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

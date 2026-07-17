@@ -6,6 +6,9 @@
   "title": "Guess the Majority in a Hidden Array",
   "difficulty": "Medium",
   "acceptance_rate": 68.9425587467363,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1393.094361,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

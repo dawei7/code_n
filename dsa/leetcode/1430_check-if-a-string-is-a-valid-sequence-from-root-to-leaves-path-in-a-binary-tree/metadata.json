@@ -6,6 +6,9 @@
   "title": "Check If a String Is a Valid Sequence from Root to Leaves Path in a Binary Tree",
   "difficulty": "Medium",
   "acceptance_rate": 47.53033547466096,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 1626.748837,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

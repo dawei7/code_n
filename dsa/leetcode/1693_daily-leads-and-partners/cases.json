@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1693",
+  "cases": [
+    {
+      "id":"sample-official","name":"sample: daily counts for two makes","kind":"sample","visible":true,
+      "input":{"tables":{"DailySales":[
+        {"date_id":"2020-12-08","make_name":"toyota","lead_id":0,"partner_id":1},
+        {"date_id":"2020-12-08","make_name":"toyota","lead_id":1,"partner_id":0},
+        {"date_id":"2020-12-08","make_name":"toyota","lead_id":1,"partner_id":2},
+        {"date_id":"2020-12-07","make_name":"toyota","lead_id":0,"partner_id":2},
+        {"date_id":"2020-12-07","make_name":"toyota","lead_id":0,"partner_id":1},
+        {"date_id":"2020-12-08","make_name":"honda","lead_id":1,"partner_id":2},
+        {"date_id":"2020-12-08","make_name":"honda","lead_id":2,"partner_id":1},
+        {"date_id":"2020-12-07","make_name":"honda","lead_id":0,"partner_id":1},
+        {"date_id":"2020-12-07","make_name":"honda","lead_id":1,"partner_id":2},
+        {"date_id":"2020-12-07","make_name":"honda","lead_id":2,"partner_id":1}
+      ]}},
+      "expected":{"columns":["date_id","make_name","unique_leads","unique_partners"],"rows":[
+        ["2020-12-08","toyota",2,3],["2020-12-07","toyota",1,2],["2020-12-08","honda",2,2],["2020-12-07","honda",3,2]
+      ]},"validator":{"kind":"unordered_table"},"tags":["sample","grouping","distinct"]
+    },
+    {
+      "id":"trial-duplicate-rows","name":"trial: exact duplicates count once","kind":"trial","visible":true,
+      "input":{"tables":{"DailySales":[
+        {"date_id":"2021-01-01","make_name":"ford","lead_id":7,"partner_id":9},
+        {"date_id":"2021-01-01","make_name":"ford","lead_id":7,"partner_id":9},
+        {"date_id":"2021-01-01","make_name":"ford","lead_id":7,"partner_id":9}
+      ]}},
+      "expected":{"columns":["date_id","make_name","unique_leads","unique_partners"],"rows":[["2021-01-01","ford",1,1]]},"validator":{"kind":"unordered_table"},"tags":["duplicates","minimum-group"]
+    },
+    {
+      "id":"trial-one-lead-many-partners","name":"trial: lead and partner counts are independent","kind":"trial","visible":true,
+      "input":{"tables":{"DailySales":[
+        {"date_id":"2021-02-03","make_name":"kia","lead_id":5,"partner_id":1},
+        {"date_id":"2021-02-03","make_name":"kia","lead_id":5,"partner_id":2},
+        {"date_id":"2021-02-03","make_name":"kia","lead_id":5,"partner_id":3}
+      ]}},
+      "expected":{"columns":["date_id","make_name","unique_leads","unique_partners"],"rows":[["2021-02-03","kia",1,3]]},"validator":{"kind":"unordered_table"},"tags":["independent-counts","repeated-lead"]
+    },
+    {
+      "id":"real-many-leads-one-partner","name":"hidden: several leads share one partner","kind":"real","visible":false,
+      "input":{"tables":{"DailySales":[
+        {"date_id":"2022-04-05","make_name":"mini","lead_id":1,"partner_id":8},
+        {"date_id":"2022-04-05","make_name":"mini","lead_id":2,"partner_id":8},
+        {"date_id":"2022-04-05","make_name":"mini","lead_id":3,"partner_id":8},
+        {"date_id":"2022-04-05","make_name":"mini","lead_id":3,"partner_id":8}
+      ]}},
+      "expected":{"columns":["date_id","make_name","unique_leads","unique_partners"],"rows":[["2022-04-05","mini",3,1]]},"validator":{"kind":"unordered_table"},"tags":["repeated-partner","duplicates"]
+    },
+    {
+      "id":"real-two-grouping-dimensions","name":"hidden: dates and makes both partition the rows","kind":"real","visible":false,
+      "input":{"tables":{"DailySales":[
+        {"date_id":"2023-06-01","make_name":"audi","lead_id":1,"partner_id":1},
+        {"date_id":"2023-06-01","make_name":"bmw","lead_id":1,"partner_id":1},
+        {"date_id":"2023-06-02","make_name":"audi","lead_id":1,"partner_id":1},
+        {"date_id":"2023-06-02","make_name":"audi","lead_id":2,"partner_id":2}
+      ]}},
+      "expected":{"columns":["date_id","make_name","unique_leads","unique_partners"],"rows":[
+        ["2023-06-01","audi",1,1],["2023-06-01","bmw",1,1],["2023-06-02","audi",2,2]
+      ]},"validator":{"kind":"unordered_table"},"tags":["composite-group","separate-dates","separate-makes"]
+    }
+  ]
+}

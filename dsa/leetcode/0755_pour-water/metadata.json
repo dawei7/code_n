@@ -6,6 +6,9 @@
   "title": "Pour Water",
   "difficulty": "Medium",
   "acceptance_rate": 49.10560662981175,
+  "frequency": 0.0,
+  "elo_rating": 1832.2280384591,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

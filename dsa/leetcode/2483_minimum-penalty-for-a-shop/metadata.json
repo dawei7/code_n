@@ -6,6 +6,9 @@
   "title": "Minimum Penalty for a Shop",
   "difficulty": "Medium",
   "acceptance_rate": 71.24817727631296,
+  "frequency": 41.2,
+  "elo_rating": 1494.500749598,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

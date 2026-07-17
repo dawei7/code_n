@@ -6,6 +6,9 @@
   "title": "Basic Calculator II",
   "difficulty": "Medium",
   "acceptance_rate": 46.979423924463426,
+  "frequency": 80.7,
+  "elo_rating": null,
+  "estimated_elo_rating": 1632.874351,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

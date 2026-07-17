@@ -6,6 +6,9 @@
   "title": "Sum of All Subset XOR Totals",
   "difficulty": "Easy",
   "acceptance_rate": 90.07290546778763,
+  "frequency": 39.2,
+  "elo_rating": 1372.1152262488,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

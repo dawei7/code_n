@@ -6,6 +6,9 @@
   "title": "Maximum Trailing Zeros in a Cornered Path",
   "difficulty": "Medium",
   "acceptance_rate": 37.83927217589083,
+  "frequency": 0.0,
+  "elo_rating": 2036.7410194704,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Count Number of Possible Root Nodes",
   "difficulty": "Hard",
   "acceptance_rate": 48.60166675187893,
+  "frequency": 41.4,
+  "elo_rating": 2228.3454693625,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

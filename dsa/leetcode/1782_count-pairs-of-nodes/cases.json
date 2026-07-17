@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1782",
+  "cases": [
+    {
+      "id": "example-four-nodes",
+      "name": "parallel edge changes one threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 4, "edges": [[1, 2], [2, 4], [1, 3], [2, 3], [2, 1]], "queries": [2, 3]},
+      "expected": [6, 5],
+      "tags": ["example", "parallel-edges"]
+    },
+    {
+      "id": "example-five-nodes",
+      "name": "several thresholds and repeated endpoints",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 5, "edges": [[1, 5], [1, 5], [3, 4], [2, 5], [1, 3], [5, 1], [2, 3], [2, 5]], "queries": [1, 2, 3, 4, 5]},
+      "expected": [10, 10, 9, 8, 6],
+      "tags": ["example", "multiple-queries"]
+    },
+    {
+      "id": "parallel-only",
+      "name": "three parallel edges count once for their endpoint pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2, "edges": [[1, 2], [1, 2], [2, 1]], "queries": [0, 2]},
+      "expected": [1, 1],
+      "tags": ["parallel-edges", "minimum-nodes"]
+    },
+    {
+      "id": "trial-isolated-nodes",
+      "name": "only the pair of isolated nodes fails a zero query",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 4, "edges": [[1, 2]], "queries": [0]},
+      "expected": [5],
+      "tags": ["isolated-nodes", "zero-query"]
+    },
+    {
+      "id": "real-strict-threshold",
+      "name": "hidden: equality does not satisfy greater than",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 3, "edges": [[1, 2]], "queries": [1]},
+      "expected": [0],
+      "tags": ["strict-inequality", "equality"]
+    },
+    {
+      "id": "real-simple-path",
+      "name": "hidden: path degrees across three thresholds",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4, "edges": [[1, 2], [2, 3], [3, 4]], "queries": [0, 1, 2]},
+      "expected": [6, 6, 3],
+      "tags": ["path", "multiple-queries"]
+    },
+    {
+      "id": "real-mixed-components",
+      "name": "hidden: repeated edge and disconnected component",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 6, "edges": [[1, 2], [1, 2], [2, 3], [3, 1], [4, 5]], "queries": [0, 1, 2, 3, 4]},
+      "expected": [15, 12, 11, 7, 0],
+      "tags": ["components", "parallel-edges", "upper-threshold"]
+    },
+    {
+      "id": "real-orientation-independent",
+      "name": "hidden: reversed duplicate orientation shares one multiplicity",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "edges": [[1, 2], [2, 1], [1, 3], [3, 4], [4, 5], [5, 3]], "queries": [1, 2, 3, 4]},
+      "expected": [10, 10, 8, 4],
+      "tags": ["orientation", "parallel-edges"]
+    }
+  ]
+}

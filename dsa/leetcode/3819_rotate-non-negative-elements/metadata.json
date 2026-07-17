@@ -6,6 +6,9 @@
   "title": "Rotate Non Negative Elements",
   "difficulty": "Medium",
   "acceptance_rate": 48.09619238476954,
+  "frequency": 49.5,
+  "elo_rating": 1381.4199385224,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

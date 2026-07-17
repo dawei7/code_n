@@ -6,6 +6,9 @@
   "title": "Find the Maximum Achievable Number",
   "difficulty": "Easy",
   "acceptance_rate": 91.43569995118511,
+  "frequency": 7.3,
+  "elo_rating": 1191.3681720998,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

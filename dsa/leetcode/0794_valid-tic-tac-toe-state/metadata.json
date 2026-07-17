@@ -6,6 +6,9 @@
   "title": "Valid Tic-Tac-Toe State",
   "difficulty": "Medium",
   "acceptance_rate": 34.90630099222638,
+  "frequency": 41.9,
+  "elo_rating": 1544.6371526659,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

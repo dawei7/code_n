@@ -6,6 +6,9 @@
   "title": "Number of Orders in the Backlog",
   "difficulty": "Medium",
   "acceptance_rate": 54.09314961070969,
+  "frequency": 31.9,
+  "elo_rating": 1711.1205064321,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Course Schedule IV",
   "difficulty": "Medium",
   "acceptance_rate": 60.02777785683588,
+  "frequency": 37.8,
+  "elo_rating": 1692.5884631801,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

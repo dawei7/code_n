@@ -6,6 +6,9 @@
   "title": "Count Cells in Overlapping Horizontal and Vertical Substrings",
   "difficulty": "Medium",
   "acceptance_rate": 27.608557058865195,
+  "frequency": 0.0,
+  "elo_rating": 2105.0143242092,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Corporate Flight Bookings",
   "difficulty": "Medium",
   "acceptance_rate": 67.8679629751355,
+  "frequency": 47.7,
+  "elo_rating": 1569.7528744586,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Longest Substring of One Repeating Character",
   "difficulty": "Hard",
   "acceptance_rate": 34.705766192733016,
+  "frequency": 0.0,
+  "elo_rating": 2628.7957821141,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

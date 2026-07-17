@@ -6,6 +6,9 @@
   "title": "Maximize Happiness of Selected Children",
   "difficulty": "Medium",
   "acceptance_rate": 58.70887238177674,
+  "frequency": 0.0,
+  "elo_rating": 1325.805380292,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [

@@ -6,6 +6,9 @@
   "title": "Longest Alternating Subarray After Removing At Most One Element",
   "difficulty": "Hard",
   "acceptance_rate": 31.382958836505026,
+  "frequency": 0.0,
+  "elo_rating": 2162.0729079623,
+  "estimated_elo_rating": null,
   "category": "algorithms",
   "category_title": "Algorithms",
   "topics": [
