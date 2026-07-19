@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1871",
+  "cases": [
+    {"id":"example-reachable","name":"sample: two jumps reach the final zero","kind":"sample","visible":true,"input":{"s":"011010","min_jump":2,"max_jump":3},"expected":true,"tags":["sample","reachable"]},
+    {"id":"example-unreachable","name":"sample: blocked positions break every route","kind":"sample","visible":true,"input":{"s":"01101110","min_jump":2,"max_jump":3},"expected":false,"tags":["sample","unreachable"]},
+    {"id":"trial-all-zeros","name":"all-zero string permits several routes","kind":"trial","visible":true,"input":{"s":"0000","min_jump":1,"max_jump":2},"expected":true,"tags":["all-zero","multiple-paths"]},
+    {"id":"trial-blocked-target","name":"a final one cannot be reached","kind":"trial","visible":true,"input":{"s":"0001","min_jump":1,"max_jump":3},"expected":false,"tags":["blocked-target"]},
+    {"id":"real-exact-minimum-jumps","name":"hidden: route uses the minimum jump repeatedly","kind":"real","visible":false,"input":{"s":"0101010","min_jump":2,"max_jump":3},"expected":true,"tags":["minimum-boundary"]},
+    {"id":"real-exact-maximum-jump","name":"hidden: only the maximum jump reaches the target","kind":"real","visible":false,"input":{"s":"01110","min_jump":2,"max_jump":4},"expected":true,"tags":["maximum-boundary"]},
+    {"id":"real-gap-too-wide","name":"hidden: next zero lies beyond maximum jump","kind":"real","visible":false,"input":{"s":"011110","min_jump":2,"max_jump":4},"expected":false,"tags":["gap","unreachable"]},
+    {"id":"real-zero-too-close","name":"hidden: an early zero inside the minimum gap is unusable","kind":"real","visible":false,"input":{"s":"00110","min_jump":3,"max_jump":4},"expected":true,"tags":["minimum-gap"]},
+    {"id":"real-single-jump","name":"hidden: final index is reached directly","kind":"real","visible":false,"input":{"s":"00000","min_jump":4,"max_jump":4},"expected":true,"tags":["single-jump","equal-bounds"]},
+    {"id":"real-equal-bounds-chain","name":"hidden: fixed-length jumps form a chain","kind":"real","visible":false,"input":{"s":"0101010","min_jump":2,"max_jump":2},"expected":true,"tags":["equal-bounds","chain"]},
+    {"id":"real-equal-bounds-blocked","name":"hidden: one blocked fixed landing ends the route","kind":"real","visible":false,"input":{"s":"0010000","min_jump":2,"max_jump":2},"expected":false,"tags":["equal-bounds","blocked-chain"]},
+    {"id":"real-late-recovery","name":"hidden: a later reachable zero keeps the window alive","kind":"real","visible":false,"input":{"s":"0100010010","min_jump":2,"max_jump":4},"expected":true,"tags":["sliding-window","late-route"]}
+  ]
+}

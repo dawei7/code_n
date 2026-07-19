@@ -1,0 +1,12 @@
+{"schema_version":1,"challenge_id":"lc_1851","cases":[
+{"id":"example-overlap","name":"sample: overlapping intervals","kind":"sample","visible":true,"input":{"args":[[[1,4],[2,4],[3,6],[4,4]],[2,3,4,5]]},"expected":[3,3,1,4],"validator":{"kind":"exact"},"tags":["example","overlap"]},
+{"id":"example-gap","name":"sample: uncovered query between groups","kind":"sample","visible":true,"input":{"args":[[[2,3],[2,5],[1,8],[20,25]],[2,19,5,22]]},"expected":[2,-1,4,6],"validator":{"kind":"exact"},"tags":["example","gap"]},
+{"id":"trial-point","name":"point interval covers only its endpoint","kind":"trial","visible":true,"input":{"args":[[[5,5]],[4,5,6]]},"expected":[-1,1,-1],"validator":{"kind":"exact"},"tags":["point-interval","closed-endpoints"]},
+{"id":"real-unsorted-queries","name":"hidden: answers restore original query order","kind":"real","visible":false,"input":{"args":[[[1,10],[3,3],[7,8]],[8,3,1,11]]},"expected":[2,1,10,-1],"validator":{"kind":"exact"},"tags":["query-order"]},
+{"id":"real-nested","name":"hidden: smallest nested interval wins","kind":"real","visible":false,"input":{"args":[[[1,20],[4,15],[7,9],[8,8]],[8,10,20]]},"expected":[1,12,20],"validator":{"kind":"exact"},"tags":["nested"]},
+{"id":"real-duplicates","name":"hidden: repeated queries retain repeated answers","kind":"real","visible":false,"input":{"args":[[[2,6],[4,4]],[4,4,2]]},"expected":[1,1,5],"validator":{"kind":"exact"},"tags":["duplicate-queries"]},
+{"id":"real-touching-endpoints","name":"hidden: both closed endpoints are included","kind":"real","visible":false,"input":{"args":[[[3,7]],[3,7]]},"expected":[5,5],"validator":{"kind":"exact"},"tags":["closed-endpoints"]},
+{"id":"real-expired-short","name":"hidden: expired short interval cannot answer later query","kind":"real","visible":false,"input":{"args":[[[1,2],[1,100]],[2,50]]},"expected":[2,100],"validator":{"kind":"exact"},"tags":["heap-expiration"]},
+{"id":"real-duplicate-intervals","name":"hidden: duplicate intervals do not change the minimum","kind":"real","visible":false,"input":{"args":[[[1,3],[1,3],[2,2]],[1,2,3]]},"expected":[3,1,3],"validator":{"kind":"exact"},"tags":["duplicate-intervals"]},
+{"id":"real-value-boundary","name":"hidden: maximum coordinate point interval","kind":"real","visible":false,"input":{"args":[[[10000000,10000000]],[9999999,10000000]]},"expected":[-1,1],"validator":{"kind":"exact"},"tags":["coordinate-boundary"]}
+]}

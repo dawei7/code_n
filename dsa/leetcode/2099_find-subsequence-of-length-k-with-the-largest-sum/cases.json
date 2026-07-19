@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2099",
+  "cases": [
+    {
+      "id": "sample-two-largest",
+      "name": "sample: two equal largest values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 1, 3, 3], "k": 2},
+      "expected": [3, 3],
+      "validator": {"kind": "maximum_sum_subsequence"},
+      "tags": ["sample", "duplicate-maximum"]
+    },
+    {
+      "id": "sample-negative-and-positive",
+      "name": "sample: preserve order across mixed signs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [-1, -2, 3, 4], "k": 3},
+      "expected": [-1, 3, 4],
+      "validator": {"kind": "maximum_sum_subsequence"},
+      "tags": ["sample", "mixed-sign"]
+    },
+    {
+      "id": "sample-tied-choices",
+      "name": "sample: either boundary tie is valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 4, 3, 3], "k": 2},
+      "expected": [3, 4],
+      "validator": {"kind": "maximum_sum_subsequence"},
+      "tags": ["sample", "non-unique"]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "choose the single largest value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [-5, 10, 7], "k": 1},
+      "expected": [10],
+      "validator": {"kind": "maximum_sum_subsequence"},
+      "tags": ["single-value"]
+    },
+    {
+      "id": "real-entire-array",
+      "name": "hidden: selecting all values preserves the whole array",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, -2, 5, 1], "k": 4},
+      "expected": [5, -2, 5, 1],
+      "validator": {"kind": "maximum_sum_subsequence"},
+      "tags": ["hidden", "all-values"]
+    },
+    {
+      "id": "real-all-negative",
+      "name": "hidden: choose the least negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-8, -1, -6, -2, -5], "k": 3},
+      "expected": [-1, -2, -5],
+      "validator": {"kind": "maximum_sum_subsequence"},
+      "tags": ["hidden", "all-negative"]
+    },
+    {
+      "id": "real-order-not-value-rank",
+      "name": "hidden: output order differs from descending value order",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, 100, 9, 90], "k": 3},
+      "expected": [100, 9, 90],
+      "validator": {"kind": "maximum_sum_subsequence"},
+      "tags": ["hidden", "subsequence-order"]
+    },
+    {
+      "id": "real-duplicate-boundary",
+      "name": "hidden: duplicate boundary values allow several index choices",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 1, 4, 1, 4], "k": 2},
+      "expected": [4, 4],
+      "validator": {"kind": "maximum_sum_subsequence"},
+      "tags": ["hidden", "duplicates", "non-unique"]
+    }
+  ]
+}

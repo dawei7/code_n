@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1925",
+  "cases": [
+    {"id":"example-five","name":"sample: the first primitive triple in both orientations","kind":"sample","visible":true,"input":{"n":5},"expected":2,"tags":["sample","ordered-pairs"]},
+    {"id":"example-ten","name":"sample: one primitive triple and one scaled triple","kind":"sample","visible":true,"input":{"n":10},"expected":4,"tags":["sample","scaled-triple"]},
+    {"id":"trial-one","name":"one cannot form a positive square triple","kind":"trial","visible":true,"input":{"n":1},"expected":0,"tags":["minimum-bound","zero-result"]},
+    {"id":"trial-four","name":"the bound just below the first hypotenuse has no triple","kind":"trial","visible":true,"input":{"n":4},"expected":0,"tags":["below-first-triple","zero-result"]},
+    {"id":"real-six","name":"hidden: increasing past five adds no new triple immediately","kind":"real","visible":false,"input":{"n":6},"expected":2,"tags":["inclusive-bound","plateau"]},
+    {"id":"real-thirteen","name":"hidden: the five-twelve-thirteen pair adds both orientations","kind":"real","visible":false,"input":{"n":13},"expected":6,"tags":["primitive-triple","ordered-pairs"]},
+    {"id":"real-fifteen","name":"hidden: another legal hypotenuse expands the count","kind":"real","visible":false,"input":{"n":15},"expected":8,"tags":["multiple-triples","inclusive-bound"]},
+    {"id":"real-twenty-five","name":"hidden: primitive and scaled triples coexist","kind":"real","visible":false,"input":{"n":25},"expected":16,"tags":["scaled-triples","multiple-hypotenuses"]},
+    {"id":"real-thirty","name":"hidden: larger bound includes several orientations","kind":"real","visible":false,"input":{"n":30},"expected":22,"tags":["larger-bound","ordered-pairs"]},
+    {"id":"real-thirty-six","name":"hidden: substantial terminating bound exercises square lookup","kind":"real","visible":false,"input":{"n":36},"expected":26,"tags":["large-bound","square-set"]}
+  ]
+}

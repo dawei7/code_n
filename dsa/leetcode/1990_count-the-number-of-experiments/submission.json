@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2143",
+  "frontend_id": "1990",
+  "title_slug": "count-the-number-of-experiments",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2072806427",
+  "verified_at": "2026-07-18T21:22:23.158096+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1968",
+  "frontend_id": "1840",
+  "title_slug": "maximum-building-height",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxBuilding",
+  "verified_submission_id": "2071658469",
+  "verified_at": "2026-07-18T01:56:07.545998+00:00"
+}

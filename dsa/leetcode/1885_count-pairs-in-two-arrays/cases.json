@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1885",
+  "cases": [
+    {"id":"example-one-pair","name":"sample: only two positive differences pair","kind":"sample","visible":true,"input":{"nums1":[2,1,2,1],"nums2":[1,2,1,2]},"expected":1,"tags":["sample","mixed-differences"]},
+    {"id":"example-five-pairs","name":"sample: five of six pairs qualify","kind":"sample","visible":true,"input":{"nums1":[1,10,6,2],"nums2":[1,4,1,5]},"expected":5,"tags":["sample","mixed-differences"]},
+    {"id":"trial-strict-zero","name":"a zero difference sum does not satisfy the strict inequality","kind":"trial","visible":true,"input":{"nums1":[5,1],"nums2":[3,3]},"expected":0,"tags":["strict-inequality","zero-sum"]},
+    {"id":"trial-single-element","name":"one position cannot form a pair","kind":"trial","visible":true,"input":{"nums1":[7],"nums2":[1]},"expected":0,"tags":["single-element"]},
+    {"id":"real-one-positive-pair","name":"hidden: one positive and one negative difference still qualify","kind":"real","visible":false,"input":{"nums1":[5,1],"nums2":[2,3]},"expected":1,"tags":["two-elements","mixed-signs"]},
+    {"id":"real-all-zero","name":"hidden: equal arrays produce no strict pair","kind":"real","visible":false,"input":{"nums1":[4,8,2,9],"nums2":[4,8,2,9]},"expected":0,"tags":["zero-differences","duplicates"]},
+    {"id":"real-all-positive","name":"hidden: every pair qualifies when every difference is positive","kind":"real","visible":false,"input":{"nums1":[4,4,4,4],"nums2":[1,1,1,1]},"expected":6,"tags":["all-valid","duplicates"]},
+    {"id":"real-mixed-duplicates","name":"hidden: mixed differences create several threshold crossings","kind":"real","visible":false,"input":{"nums1":[7,9,11,12,14],"nums2":[10,10,10,10,10]},"expected":6,"tags":["mixed-signs","two-pointers"]},
+    {"id":"real-symmetric-differences","name":"hidden: symmetric values emphasize strict zero rejection","kind":"real","visible":false,"input":{"nums1":[1,2,3,4,5,6],"nums2":[6,5,4,3,2,1]},"expected":6,"tags":["strict-inequality","symmetric"]},
+    {"id":"real-value-boundaries","name":"hidden: extreme legal values preserve signed differences","kind":"real","visible":false,"input":{"nums1":[100000,1,100000],"nums2":[1,100000,99999]},"expected":1,"tags":["value-boundary","mixed-signs"]},
+    {"id":"real-all-negative","name":"hidden: no pair qualifies when every difference is negative","kind":"real","visible":false,"input":{"nums1":[1,2,3,4],"nums2":[5,6,7,8]},"expected":0,"tags":["all-invalid","negative-differences"]},
+    {"id":"real-repeated-threshold","name":"hidden: duplicate values retain pair multiplicity","kind":"real","visible":false,"input":{"nums1":[6,6,4,4,4],"nums2":[5,5,5,5,5]},"expected":1,"tags":["duplicates","multiplicity"]}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1858",
+  "cases": [
+    {"id":"example-complete-chain","name":"sample: every prefix extends one chain","kind":"sample","visible":true,"input":{"words":["k","ki","kir","kira","kiran"]},"expected":"kiran","validator":{"kind":"exact"},"tags":["example","complete-chain"]},
+    {"id":"example-lexicographic-tie","name":"sample: lexicographic tie between longest words","kind":"sample","visible":true,"input":{"words":["a","banana","app","appl","ap","apply","apple"]},"expected":"apple","validator":{"kind":"exact"},"tags":["example","tie-break"]},
+    {"id":"example-no-starting-prefix","name":"sample: no one-letter prefix exists","kind":"sample","visible":true,"input":{"words":["abc","bc","ab","qwe"]},"expected":"","validator":{"kind":"exact"},"tags":["example","empty-answer"]},
+    {"id":"trial-unsorted-chain","name":"input order does not control prefix reachability","kind":"trial","visible":true,"input":{"words":["coding","cod","c","code","co","codin","codi"]},"expected":"coding","validator":{"kind":"exact"},"tags":["unsorted-input","complete-chain"]},
+    {"id":"real-single-letter","name":"hidden: one-letter word is valid by itself","kind":"real","visible":false,"input":{"words":["z"]},"expected":"z","validator":{"kind":"exact"},"tags":["minimum-input"]},
+    {"id":"real-one-letter-tie","name":"hidden: smallest one-letter word wins a tie","kind":"real","visible":false,"input":{"words":["z","m","a"]},"expected":"a","validator":{"kind":"exact"},"tags":["tie-break","one-letter"]},
+    {"id":"real-missing-middle-prefix","name":"hidden: missing middle prefix blocks a longer branch","kind":"real","visible":false,"input":{"words":["p","pl","plan","plane","q","qu","qui"]},"expected":"qui","validator":{"kind":"exact"},"tags":["missing-prefix","blocked-branch"]},
+    {"id":"real-deep-tie","name":"hidden: lexicographic comparison happens at a deep character","kind":"real","visible":false,"input":{"words":["a","ab","aba","abb","abac","abba"]},"expected":"abac","validator":{"kind":"exact"},"tags":["tie-break","shared-prefix"]},
+    {"id":"real-long-invalid-distractor","name":"hidden: a longer word without its prefixes cannot win","kind":"real","visible":false,"input":{"words":["xylophone","b","be","bee"]},"expected":"bee","validator":{"kind":"exact"},"tags":["invalid-distractor","length"]},
+    {"id":"real-branch-after-valid-prefix","name":"hidden: valid prefix can have both valid and blocked descendants","kind":"real","visible":false,"input":{"words":["a","an","and","andr","ant","ante","antel"]},"expected":"antel","validator":{"kind":"exact"},"tags":["branching","missing-prefix"]}
+  ]
+}

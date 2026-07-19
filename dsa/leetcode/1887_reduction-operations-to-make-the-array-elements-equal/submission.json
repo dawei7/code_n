@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2016",
+  "frontend_id": "1887",
+  "title_slug": "reduction-operations-to-make-the-array-elements-equal",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.reductionOperations",
+  "verified_submission_id": "2071910282",
+  "verified_at": "2026-07-18T07:14:21.529672+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2036",
+  "frontend_id": "1885",
+  "title_slug": "count-pairs-in-two-arrays",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countPairs",
+  "verified_submission_id": "2071898366",
+  "verified_at": "2026-07-18T07:02:06.723917+00:00"
+}

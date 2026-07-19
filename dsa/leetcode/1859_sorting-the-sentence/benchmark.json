@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1859",
+  "measurement_note": "Size is S, the shuffled sentence length. A single long marked word makes splitting, suffix removal, and output construction linear in S. A correct slower implementation that redundantly reparses the complete sentence once per input character takes O(S^2), completes the legal 8/64/200-character tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: one marked word in a 8-character sentence",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "AAAAAAA1"
+      },
+      "expected": "AAAAAAA",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "single-word"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: one marked word in a 64-character sentence",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1"
+      },
+      "expected": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "single-word"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: one marked word in a 200-character sentence",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 200,
+      "input": {
+        "s": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1"
+      },
+      "expected": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "single-word"
+      ]
+    }
+  ]
+}

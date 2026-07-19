@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1807",
+  "cases": [
+    {
+      "id": "example-two-known-keys",
+      "name": "sample: replace two known keys",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "(name)is(age)yearsold", "knowledge": [["name", "bob"], ["age", "two"]]},
+      "expected": "bobistwoyearsold",
+      "tags": ["example", "known-keys"]
+    },
+    {
+      "id": "example-unknown-key",
+      "name": "sample: unknown key becomes a question mark",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "hi(name)", "knowledge": [["a", "b"]]},
+      "expected": "hi?",
+      "tags": ["example", "unknown-key"]
+    },
+    {
+      "id": "example-repeated-key",
+      "name": "sample: repeated bracketed key",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "(a)(a)(a)aaa", "knowledge": [["a", "yes"]]},
+      "expected": "yesyesyesaaa",
+      "tags": ["example", "repeated-key", "literal-text"]
+    },
+    {
+      "id": "trial-no-brackets",
+      "name": "plain text remains unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "unchanged", "knowledge": []},
+      "expected": "unchanged",
+      "tags": ["no-brackets", "empty-knowledge"]
+    },
+    {
+      "id": "trial-adjacent-mixed-pairs",
+      "name": "adjacent known and unknown pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "(left)(missing)(right)", "knowledge": [["left", "l"], ["right", "r"]]},
+      "expected": "l?r",
+      "tags": ["adjacent-pairs", "mixed-lookup"]
+    },
+    {
+      "id": "trial-whole-string-key",
+      "name": "the entire string is one known pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "(language)", "knowledge": [["language", "python"]]},
+      "expected": "python",
+      "tags": ["whole-string", "known-key"]
+    },
+    {
+      "id": "real-whole-string-unknown",
+      "name": "the entire string is one unknown pair",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "(absent)", "knowledge": []},
+      "expected": "?",
+      "tags": ["whole-string", "unknown-key"]
+    },
+    {
+      "id": "real-unused-knowledge",
+      "name": "unused associations do not alter literals",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "keyvalue", "knowledge": [["key", "x"], ["value", "y"]]},
+      "expected": "keyvalue",
+      "tags": ["literal-text", "unused-knowledge"]
+    },
+    {
+      "id": "real-maximum-key-and-value-length",
+      "name": "ten-letter key and value",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "a(abcdefghij)z", "knowledge": [["abcdefghij", "klmnopqrst"]]},
+      "expected": "aklmnopqrstz",
+      "tags": ["maximum-key-length", "maximum-value-length"]
+    },
+    {
+      "id": "real-order-independent-knowledge",
+      "name": "knowledge order differs from occurrence order",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "(c)-(a)-(b)-(c)", "knowledge": [["a", "one"], ["b", "two"], ["c", "three"]]},
+      "expected": "three-one-two-three",
+      "tags": ["knowledge-order", "repeated-key"]
+    }
+  ]
+}

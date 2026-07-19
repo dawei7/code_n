@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1830",
+  "cases": [
+    {"id":"example-descending-three","name":"sample: descending three-character string","kind":"sample","visible":true,"input":{"s":"cba"},"expected":5,"tags":["example","descending"]},
+    {"id":"example-repeated-a","name":"sample: repeated letters require two operations","kind":"sample","visible":true,"input":{"s":"aabaa"},"expected":2,"tags":["example","duplicates"]},
+    {"id":"trial-already-sorted","name":"an ascending string needs no operations","kind":"trial","visible":true,"input":{"s":"abc"},"expected":0,"tags":["already-sorted","zero"]},
+    {"id":"trial-all-equal","name":"one distinct permutation for equal characters","kind":"trial","visible":true,"input":{"s":"aaaa"},"expected":0,"tags":["all-equal","duplicates"]},
+    {"id":"trial-two-reversed","name":"two reversed characters need one operation","kind":"trial","visible":true,"input":{"s":"ba"},"expected":1,"tags":["two-characters","descending"]},
+    {"id":"trial-duplicate-rank","name":"duplicate letters reduce the permutation rank","kind":"trial","visible":true,"input":{"s":"baa"},"expected":2,"tags":["duplicates","rank"]},
+    {"id":"real-four-descending","name":"hidden: reverse-sorted distinct letters have maximum rank","kind":"real","visible":false,"input":{"s":"dcba"},"expected":23,"tags":["descending","distinct"]},
+    {"id":"real-mixed-word","name":"hidden: mixed repeated letters across the alphabet","kind":"real","visible":false,"input":{"s":"leetcode"},"expected":4660,"tags":["mixed","duplicates"]},
+    {"id":"real-all-letters-descending","name":"hidden: every lowercase letter in descending order","kind":"real","visible":false,"input":{"s":"zyxwvutsrqponmlkjihgfedcba"},"expected":459042010,"tags":["full-alphabet","modulo"]},
+    {"id":"real-interleaved-duplicates","name":"hidden: several interleaved duplicate groups","kind":"real","visible":false,"input":{"s":"cbaabcba"},"expected":488,"tags":["interleaved","duplicates"]}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1854",
+  "cases": [
+    {"id":"example-disjoint-tie","name":"sample: earliest year wins across disjoint lifetimes","kind":"sample","visible":true,"input":{"args":[[[1993,1999],[2000,2010]]]},"expected":1993,"validator":{"kind":"exact"},"tags":["example","earliest-tie"]},
+    {"id":"example-overlapping-chain","name":"sample: overlap creates the first maximum","kind":"sample","visible":true,"input":{"args":[[[1950,1961],[1960,1971],[1970,1981]]]},"expected":1960,"validator":{"kind":"exact"},"tags":["example","overlap"]},
+    {"id":"trial-adjacent-lives","name":"death year is excluded from the first lifetime","kind":"trial","visible":true,"input":{"args":[[[2000,2001],[2001,2002]]]},"expected":2000,"validator":{"kind":"exact"},"tags":["death-exclusive","earliest-tie"]},
+    {"id":"real-full-range","name":"hidden: one person spans the complete allowed range","kind":"real","visible":false,"input":{"args":[[[1950,2050]]]},"expected":1950,"validator":{"kind":"exact"},"tags":["year-boundary","single-log"]},
+    {"id":"real-same-birth","name":"hidden: several births in one year create the peak","kind":"real","visible":false,"input":{"args":[[[1980,1990],[1980,1985],[1980,1981]]]},"expected":1980,"validator":{"kind":"exact"},"tags":["same-birth"]},
+    {"id":"real-birth-death-tie","name":"hidden: simultaneous death and birth preserve a population tie","kind":"real","visible":false,"input":{"args":[[[2000,2010],[2000,2005],[2005,2010]]]},"expected":2000,"validator":{"kind":"exact"},"tags":["simultaneous-events","earliest-tie"]},
+    {"id":"real-latest-peak","name":"hidden: maximum can first occur in 2049","kind":"real","visible":false,"input":{"args":[[[2048,2050],[2049,2050]]]},"expected":2049,"validator":{"kind":"exact"},"tags":["upper-boundary"]},
+    {"id":"real-short-overlap","name":"hidden: one-year lives overlap a longer lifetime","kind":"real","visible":false,"input":{"args":[[[1975,1976],[1974,1977],[1976,1977]]]},"expected":1975,"validator":{"kind":"exact"},"tags":["short-lifetime","earliest-tie"]},
+    {"id":"real-separated-groups","name":"hidden: later equal peak cannot replace earlier peak","kind":"real","visible":false,"input":{"args":[[[1960,1965],[1961,1964],[2020,2025],[2021,2024]]]},"expected":1961,"validator":{"kind":"exact"},"tags":["separated-groups","earliest-tie"]},
+    {"id":"real-staggered-deaths","name":"hidden: staggered departures reduce the running population","kind":"real","visible":false,"input":{"args":[[[1990,2000],[1991,1999],[1992,1998],[1993,1997]]]},"expected":1993,"validator":{"kind":"exact"},"tags":["staggered-events"]}
+  ]
+}

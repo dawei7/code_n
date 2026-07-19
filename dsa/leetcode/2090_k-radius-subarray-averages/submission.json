@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2211",
+  "frontend_id": "2090",
+  "title_slug": "k-radius-subarray-averages",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getAverages",
+  "verified_submission_id": "2073080995",
+  "verified_at": "2026-07-19T05:20:26.663870+00:00"
+}

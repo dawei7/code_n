@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1915",
+  "cases": [
+    {"id":"example-aba","name":"sample: three singletons and the full palindrome","kind":"sample","visible":true,"input":{"word":"aba"},"expected":4,"tags":["sample","palindrome"]},
+    {"id":"example-aabb","name":"sample: paired letters create nine wonderful intervals","kind":"sample","visible":true,"input":{"word":"aabb"},"expected":9,"tags":["sample","paired-counts"]},
+    {"id":"example-he","name":"sample: two distinct letters qualify only alone","kind":"sample","visible":true,"input":{"word":"he"},"expected":2,"tags":["sample","distinct-letters"]},
+    {"id":"trial-single","name":"one character is wonderful","kind":"trial","visible":true,"input":{"word":"a"},"expected":1,"tags":["minimum-length"]},
+    {"id":"trial-one-letter","name":"every interval of one repeated letter qualifies","kind":"trial","visible":true,"input":{"word":"aaaa"},"expected":10,"tags":["single-letter","all-wonderful"]},
+    {"id":"real-ten-distinct","name":"hidden: ten distinct letters qualify only as singletons","kind":"real","visible":false,"input":{"word":"abcdefghij"},"expected":10,"tags":["alphabet-boundary","distinct-letters"]},
+    {"id":"real-alternating-pair","name":"hidden: alternating equal letters produce seven intervals","kind":"real","visible":false,"input":{"word":"abab"},"expected":7,"tags":["alternating","repeated-text"]},
+    {"id":"real-palindromic-pattern","name":"hidden: nested repeats exercise many parity masks","kind":"real","visible":false,"input":{"word":"abacaba"},"expected":12,"tags":["palindrome","multiple-masks"]},
+    {"id":"real-blocks","name":"hidden: two even blocks produce thirty-two wonderful intervals","kind":"real","visible":false,"input":{"word":"jjjjiiii"},"expected":32,"tags":["alphabet-boundary","blocks"]},
+    {"id":"real-three-letter-repeat","name":"hidden: repeated three-letter cycle has nine qualifying intervals","kind":"real","visible":false,"input":{"word":"abcabc"},"expected":9,"tags":["cycle","multiple-odd"]},
+    {"id":"real-three-pairs","name":"hidden: three adjacent pairs produce eighteen intervals","kind":"real","visible":false,"input":{"word":"aabbcc"},"expected":18,"tags":["paired-counts","multiple-letters"]},
+    {"id":"real-high-letters","name":"hidden: the final two alphabet letters map to the highest bits","kind":"real","visible":false,"input":{"word":"ijij"},"expected":7,"tags":["high-mask-bits","alternating"]}
+  ]
+}

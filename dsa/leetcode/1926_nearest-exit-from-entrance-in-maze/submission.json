@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2038",
+  "frontend_id": "1926",
+  "title_slug": "nearest-exit-from-entrance-in-maze",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.nearestExit",
+  "verified_submission_id": "2072449477",
+  "verified_at": "2026-07-18T15:20:22.983819+00:00"
+}

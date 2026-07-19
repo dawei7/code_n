@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1983",
+  "cases": [
+    {"id":"example-interior-width-three","name":"sample: widest range is an interior suffix","kind":"sample","visible":true,"input":{"nums1":[1,1,0,1],"nums2":[0,1,1,0]},"expected":3,"tags":["sample","interior-range"]},
+    {"id":"example-single-match","name":"sample: only one position qualifies","kind":"sample","visible":true,"input":{"nums1":[0,1],"nums2":[1,1]},"expected":1,"tags":["sample","width-one"]},
+    {"id":"example-no-match","name":"sample: unequal single values","kind":"sample","visible":true,"input":{"nums1":[0],"nums2":[1]},"expected":0,"tags":["sample","no-range","minimum"]},
+    {"id":"trial-single-equal-zero","name":"equal zero values form a width-one range","kind":"trial","visible":true,"input":{"nums1":[0],"nums2":[0]},"expected":1,"tags":["minimum","width-one"]},
+    {"id":"trial-single-equal-one","name":"equal one values form a width-one range","kind":"trial","visible":true,"input":{"nums1":[1],"nums2":[1]},"expected":1,"tags":["minimum","width-one"]},
+    {"id":"trial-complete-equal","name":"identical arrays qualify over their full length","kind":"trial","visible":true,"input":{"nums1":[1,0,1,1,0],"nums2":[1,0,1,1,0]},"expected":5,"tags":["full-range","identical"]},
+    {"id":"trial-balanced-alternation","name":"opposite alternation balances over the full range","kind":"trial","visible":true,"input":{"nums1":[1,0,1,0],"nums2":[0,1,0,1]},"expected":4,"tags":["full-range","repeated-prefix"]},
+    {"id":"trial-strict-difference","name":"strictly decreasing difference never repeats","kind":"trial","visible":true,"input":{"nums1":[0,0,0,0],"nums2":[1,1,1,1]},"expected":0,"tags":["no-range","monotone-prefix"]},
+    {"id":"real-late-longest","name":"hidden: longest match appears only at the end","kind":"real","visible":false,"input":{"nums1":[1,1,1,0,0,0,1],"nums2":[0,0,0,1,1,1,1]},"expected":7,"tags":["full-range","late"]},
+    {"id":"real-repeated-difference","name":"hidden: earliest repeated difference must be retained","kind":"real","visible":false,"input":{"nums1":[1,0,0,1,0,1,0,0],"nums2":[0,1,0,0,1,0,1,0]},"expected":8,"tags":["earliest-prefix","full-range"]},
+    {"id":"real-only-middle","name":"hidden: matching range excludes both ends","kind":"real","visible":false,"input":{"nums1":[1,0,1,0,0,1],"nums2":[0,0,1,0,0,0]},"expected":4,"tags":["interior-range"]},
+    {"id":"real-long-alternation","name":"hidden: twenty positions repeatedly return to zero","kind":"real","visible":false,"input":{"nums1":[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],"nums2":[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]},"expected":20,"tags":["repeated-prefix","full-range"]}
+  ]
+}

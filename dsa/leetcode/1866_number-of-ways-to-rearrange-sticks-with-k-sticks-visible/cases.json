@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1866",
+  "cases": [
+    {"id":"example-three-two-visible","name":"sample: three arrangements expose two sticks","kind":"sample","visible":true,"input":{"n":3,"k":2},"expected":3,"validator":{"kind":"exact"},"tags":["example","small"]},
+    {"id":"example-all-visible","name":"sample: only increasing order exposes all sticks","kind":"sample","visible":true,"input":{"n":5,"k":5},"expected":1,"validator":{"kind":"exact"},"tags":["example","all-visible"]},
+    {"id":"example-modulo","name":"sample: larger count is returned modulo the constant","kind":"sample","visible":true,"input":{"n":20,"k":11},"expected":647427950,"validator":{"kind":"exact"},"tags":["example","modulo"]},
+    {"id":"trial-single-stick","name":"one stick is necessarily visible","kind":"trial","visible":true,"input":{"n":1,"k":1},"expected":1,"validator":{"kind":"exact"},"tags":["minimum-input"]},
+    {"id":"real-one-visible","name":"hidden: one visible stick gives a factorial count","kind":"real","visible":false,"input":{"n":4,"k":1},"expected":6,"validator":{"kind":"exact"},"tags":["one-visible","factorial"]},
+    {"id":"real-four-all-visible","name":"hidden: all-visible boundary remains unique","kind":"real","visible":false,"input":{"n":4,"k":4},"expected":1,"validator":{"kind":"exact"},"tags":["all-visible","boundary"]},
+    {"id":"real-five-two-visible","name":"hidden: recurrence combines both insertion cases","kind":"real","visible":false,"input":{"n":5,"k":2},"expected":50,"validator":{"kind":"exact"},"tags":["recurrence","middle-k"]},
+    {"id":"real-six-three-visible","name":"hidden: balanced visibility state","kind":"real","visible":false,"input":{"n":6,"k":3},"expected":225,"validator":{"kind":"exact"},"tags":["recurrence","middle-k"]},
+    {"id":"real-ten-five-visible","name":"hidden: larger unmodded dynamic-programming value","kind":"real","visible":false,"input":{"n":10,"k":5},"expected":269325,"validator":{"kind":"exact"},"tags":["larger-state"]},
+    {"id":"real-maximum-n","name":"hidden: maximum n exercises rolling storage","kind":"real","visible":false,"input":{"n":1000,"k":500},"expected":761367694,"validator":{"kind":"exact"},"tags":["maximum-n","modulo","rolling-dp"]}
+  ]
+}

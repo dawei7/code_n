@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2047",
+  "frontend_id": "1901",
+  "title_slug": "find-a-peak-element-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findPeakGrid",
+  "verified_submission_id": "2072036376",
+  "verified_at": "2026-07-18T09:29:14.207321+00:00"
+}

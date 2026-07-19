@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2133",
+  "frontend_id": "2023",
+  "title_slug": "number-of-pairs-of-strings-with-concatenation-equal-to-target",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numOfPairs",
+  "verified_submission_id": "2072849096",
+  "verified_at": "2026-07-18T23:55:36.781815+00:00"
+}

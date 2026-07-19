@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2122",
+  "frontend_id": "1995",
+  "title_slug": "count-special-quadruplets",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countQuadruplets",
+  "verified_submission_id": "2072815382",
+  "verified_at": "2026-07-18T21:48:13.933905+00:00"
+}

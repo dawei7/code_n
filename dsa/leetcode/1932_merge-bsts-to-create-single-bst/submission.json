@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2060",
+  "frontend_id": "1932",
+  "title_slug": "merge-bsts-to-create-single-bst",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.canMerge",
+  "verified_submission_id": "2072547109",
+  "verified_at": "2026-07-18T16:23:48.027688+00:00"
+}

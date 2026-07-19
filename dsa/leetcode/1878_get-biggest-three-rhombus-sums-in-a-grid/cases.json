@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1878",
+  "cases": [
+    {"id":"example-five-by-five","name":"sample: three largest borders in a varied grid","kind":"sample","visible":true,"input":{"grid":[[3,4,5,1,3],[3,3,4,2,3],[20,30,200,40,10],[1,5,5,4,1],[4,3,2,2,5]]},"expected":[228,216,211],"tags":["sample","multiple-radii"]},
+    {"id":"example-three-by-three","name":"sample: one positive-area border outranks single cells","kind":"sample","visible":true,"input":{"grid":[[1,2,3],[4,5,6],[7,8,9]]},"expected":[20,9,8],"tags":["sample","zero-area"]},
+    {"id":"example-equal-row","name":"sample: equal zero-area sums remain distinct once","kind":"sample","visible":true,"input":{"grid":[[7,7,7]]},"expected":[7],"tags":["sample","distinctness","thin-grid"]},
+    {"id":"trial-single-cell","name":"one cell is a valid zero-area rhombus","kind":"trial","visible":true,"input":{"grid":[[5]]},"expected":[5],"tags":["minimum","zero-area"]},
+    {"id":"trial-uniform-three","name":"uniform grid has one border sum per radius","kind":"trial","visible":true,"input":{"grid":[[1,1,1],[1,1,1],[1,1,1]]},"expected":[4,1],"tags":["uniform","radius-one"]},
+    {"id":"real-distinct-row","name":"hidden: one row returns its three largest distinct cells","kind":"real","visible":false,"input":{"grid":[[7,2,9,9,4]]},"expected":[9,7,4],"tags":["thin-grid","distinctness"]},
+    {"id":"real-distinct-column","name":"hidden: one column returns its three largest distinct cells","kind":"real","visible":false,"input":{"grid":[[3],[8],[1],[8],[6]]},"expected":[8,6,3],"tags":["thin-grid","zero-area"]},
+    {"id":"real-two-by-two","name":"hidden: two rows cannot contain a positive-area rhombus","kind":"real","visible":false,"input":{"grid":[[1,10],[7,4]]},"expected":[10,7,4],"tags":["no-positive-radius"]},
+    {"id":"real-uniform-five","name":"hidden: maximum radius contributes eight border cells","kind":"real","visible":false,"input":{"grid":[[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]},"expected":[8,4,1],"tags":["maximum-radius","uniform"]},
+    {"id":"real-large-center","name":"hidden: an interior value may dominate both cells and borders","kind":"real","visible":false,"input":{"grid":[[1,1,1],[1,100,1],[1,1,1]]},"expected":[100,4,1],"tags":["interior","zero-area"]},
+    {"id":"real-corner-accounting","name":"hidden: four unequal corners are counted exactly once","kind":"real","visible":false,"input":{"grid":[[1,2,3],[4,50,6],[7,8,9]]},"expected":[50,20,9],"tags":["corner-accounting","radius-one"]},
+    {"id":"real-rectangular","name":"hidden: rectangular grid limits radius by its shorter dimension","kind":"real","visible":false,"input":{"grid":[[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15]]},"expected":[36,32,28],"tags":["rectangular","multiple-centers"]}
+  ]
+}

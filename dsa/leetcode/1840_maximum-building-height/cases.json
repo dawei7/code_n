@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1840",
+  "cases": [
+    {"id":"example-two-caps","name":"sample: peak between and after two restrictions","kind":"sample","visible":true,"input":{"n":5,"restrictions":[[2,1],[4,1]]},"expected":2,"tags":["example","multiple-restrictions"]},
+    {"id":"example-no-restrictions","name":"sample: unrestricted heights rise to the endpoint","kind":"sample","visible":true,"input":{"n":6,"restrictions":[]},"expected":5,"tags":["example","no-restrictions"]},
+    {"id":"example-unsorted-caps","name":"sample: several input restrictions arrive unsorted","kind":"sample","visible":true,"input":{"n":10,"restrictions":[[5,3],[2,5],[7,4],[10,3]]},"expected":5,"tags":["example","unsorted"]},
+    {"id":"trial-two-buildings","name":"minimum city without explicit restrictions","kind":"trial","visible":true,"input":{"n":2,"restrictions":[]},"expected":1,"tags":["minimum-n","no-restrictions"]},
+    {"id":"trial-zero-final-cap","name":"zero-height endpoints permit a middle peak","kind":"trial","visible":true,"input":{"n":5,"restrictions":[[5,0]]},"expected":2,"tags":["endpoint-cap","zero-height"]},
+    {"id":"trial-zero-middle-cap","name":"an interior zero cap separates two rising sides","kind":"trial","visible":true,"input":{"n":5,"restrictions":[[3,0]]},"expected":2,"tags":["interior-cap","zero-height"]},
+    {"id":"real-loose-cap-tightened","name":"hidden: adjacency makes a stated cap unreachable","kind":"real","visible":false,"input":{"n":7,"restrictions":[[2,100],[6,1]]},"expected":3,"tags":["propagation","loose-restriction"]},
+    {"id":"real-final-and-middle-caps","name":"hidden: a peak is constrained from both directions","kind":"real","visible":false,"input":{"n":8,"restrictions":[[8,2],[4,2]]},"expected":4,"tags":["two-directional","interval-peak"]},
+    {"id":"real-billion-buildings","name":"hidden: huge unrestricted city cannot be expanded","kind":"real","visible":false,"input":{"n":1000000000,"restrictions":[]},"expected":999999999,"tags":["maximum-n","no-expansion"]},
+    {"id":"real-zero-at-two","name":"hidden: early zero cap shifts the unrestricted rise","kind":"real","visible":false,"input":{"n":4,"restrictions":[[2,0]]},"expected":2,"tags":["early-cap","suffix-rise"]}
+  ]
+}

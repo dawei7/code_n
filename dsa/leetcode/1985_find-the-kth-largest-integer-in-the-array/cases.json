@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1985",
+  "cases": [
+    {"id":"example-k-smallest","name":"sample: fourth largest is the minimum","kind":"sample","visible":true,"input":{"nums":["3","6","7","10"],"k":4},"expected":"3","tags":["sample","k-n"]},
+    {"id":"example-mixed-lengths","name":"sample: lengths determine broad ordering","kind":"sample","visible":true,"input":{"nums":["2","21","12","1"],"k":3},"expected":"2","tags":["sample","mixed-lengths"]},
+    {"id":"example-duplicate-zero","name":"sample: duplicate zeros occupy separate ranks","kind":"sample","visible":true,"input":{"nums":["0","0"],"k":2},"expected":"0","tags":["sample","duplicates","zero"]},
+    {"id":"trial-single","name":"one entry is every valid rank","kind":"trial","visible":true,"input":{"nums":["999"],"k":1},"expected":"999","tags":["minimum","k-one","k-n"]},
+    {"id":"trial-duplicate-maximum","name":"second copy of maximum occupies rank two","kind":"trial","visible":true,"input":{"nums":["1","10","10","2"],"k":2},"expected":"10","tags":["duplicates"]},
+    {"id":"trial-same-length","name":"lexicographic order handles equal lengths","kind":"trial","visible":true,"input":{"nums":["501","499","500"],"k":2},"expected":"500","tags":["same-length"]},
+    {"id":"trial-long-beats-short","name":"more digits outrank a larger leading digit","kind":"trial","visible":true,"input":{"nums":["999999","1000000","8"],"k":1},"expected":"1000000","tags":["mixed-lengths","k-one"]},
+    {"id":"trial-k-n","name":"last rank returns the numeric minimum","kind":"trial","visible":true,"input":{"nums":["100","2","30","4"],"k":4},"expected":"2","tags":["k-n"]},
+    {"id":"real-hundred-digits","name":"hidden: maximum permitted digit length","kind":"real","visible":false,"input":{"nums":["9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999","1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","99999999999999999999999999999999999999999999999999"],"k":2},"expected":"1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","tags":["maximum-length","same-length"]},
+    {"id":"real-many-duplicates","name":"hidden: repeated middle value spans several ranks","kind":"real","visible":false,"input":{"nums":["5","100","5","5","2","5","200"],"k":5},"expected":"5","tags":["duplicates"]},
+    {"id":"real-zero-minimum","name":"hidden: zero is the final rank","kind":"real","visible":false,"input":{"nums":["10","0","1","100"],"k":4},"expected":"0","tags":["zero","k-n"]},
+    {"id":"real-length-boundaries","name":"hidden: adjacent digit lengths","kind":"real","visible":false,"input":{"nums":["9","10","99","100","999","1000"],"k":3},"expected":"100","tags":["mixed-lengths"]}
+  ]
+}

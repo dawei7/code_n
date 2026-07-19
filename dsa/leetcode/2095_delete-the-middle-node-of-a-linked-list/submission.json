@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2216",
+  "frontend_id": "2095",
+  "title_slug": "delete-the-middle-node-of-a-linked-list",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.deleteMiddle",
+  "verified_submission_id": "2073098888",
+  "verified_at": "2026-07-19T05:41:23.007735+00:00"
+}

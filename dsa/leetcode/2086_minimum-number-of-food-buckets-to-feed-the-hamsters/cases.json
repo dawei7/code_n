@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2086",
+  "cases": [
+    {
+      "id": "sample-separated-endpoints",
+      "name": "sample: endpoint hamsters need separate buckets",
+      "kind": "sample",
+      "visible": true,
+      "input": {"hamsters": "H..H"},
+      "expected": 2,
+      "tags": ["sample", "endpoints"]
+    },
+    {
+      "id": "sample-shared-middle-bucket",
+      "name": "sample: one bucket feeds two hamsters",
+      "kind": "sample",
+      "visible": true,
+      "input": {"hamsters": ".H.H."},
+      "expected": 1,
+      "tags": ["sample", "shared-bucket"]
+    },
+    {
+      "id": "sample-three-consecutive",
+      "name": "sample: middle hamster cannot be fed",
+      "kind": "sample",
+      "visible": true,
+      "input": {"hamsters": ".HHH."},
+      "expected": -1,
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "trial-no-hamsters",
+      "name": "an entirely empty street needs no buckets",
+      "kind": "trial",
+      "visible": true,
+      "input": {"hamsters": "...."},
+      "expected": 0,
+      "tags": ["no-hamsters"]
+    },
+    {
+      "id": "real-single-hamster",
+      "name": "hidden: minimum-length hamster is impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {"hamsters": "H"},
+      "expected": -1,
+      "tags": ["hidden", "minimum", "impossible"]
+    },
+    {
+      "id": "real-adjacent-pair-with-outer-space",
+      "name": "hidden: adjacent hamsters use both outer positions",
+      "kind": "real",
+      "visible": false,
+      "input": {"hamsters": ".HH."},
+      "expected": 2,
+      "tags": ["hidden", "adjacent-pair"]
+    },
+    {
+      "id": "real-overlapping-sharing-options",
+      "name": "hidden: one bucket cannot cover three alternating hamsters",
+      "kind": "real",
+      "visible": false,
+      "input": {"hamsters": "H.H.H"},
+      "expected": 2,
+      "tags": ["hidden", "overlapping-options"]
+    },
+    {
+      "id": "real-impossible-left-boundary",
+      "name": "hidden: consecutive hamsters at the left boundary fail",
+      "kind": "real",
+      "visible": false,
+      "input": {"hamsters": "HH."},
+      "expected": -1,
+      "tags": ["hidden", "boundary", "impossible"]
+    }
+  ]
+}

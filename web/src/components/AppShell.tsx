@@ -40,7 +40,7 @@ import { InfoModal } from './InfoModal';
 import { EloGuideModal } from './EloGuideModal';
 import { BrandWordmark } from './BrandWordmark';
 import { ALGORITHM_SETS, challengesForAlgorithmSet } from '../lib/algorithmSets';
-import { collectCustomChallengeIds } from '../lib/customProblemSets';
+import { collectSetChallengeIds } from '../lib/customProblemSets';
 import {
   ACCENT_PRESETS,
   DEFAULT_ACCENT_COLORS,
@@ -218,15 +218,22 @@ function TopHeader({
   const activeProfile = useAppStore((s) => s.activeProfile);
   const activeSet = useAppStore((s) => s.activeSet);
   const setActiveSet = useAppStore((s) => s.setActiveSet);
+  const activeCustomSetId = useAppStore((s) => s.activeCustomSetId);
+  const setActiveCustomSet = useAppStore((s) => s.setActiveCustomSet);
   const customProblemSets = useAppStore((s) => s.customProblemSets);
+  const selectedCustomSet = customProblemSets.find((set) => set.id === activeCustomSetId) ?? null;
   const visibleChallengeCount = useMemo(
     () => {
       if (activeSet !== 'custom') return challengesForAlgorithmSet(challenges, activeSet).length;
-      const challengeIds = collectCustomChallengeIds(customProblemSets);
+      if (!selectedCustomSet) return 0;
+      const challengeIds = collectSetChallengeIds(selectedCustomSet);
       return challenges.filter((challenge) => challengeIds.has(challenge.id)).length;
     },
-    [challenges, activeSet, customProblemSets],
+    [challenges, activeSet, selectedCustomSet],
   );
+  const activeSetSelectorValue = activeSet === 'custom'
+    ? activeCustomSetId ? `custom:${activeCustomSetId}` : 'custom'
+    : activeSet;
 
   const sidebarCollapsed = useAppStore((s) => s.sidebarCollapsed);
   const setSidebarCollapsed = useAppStore((s) => s.setSidebarCollapsed);
@@ -286,41 +293,63 @@ function TopHeader({
           </span>
           <span className="text-coden-muted/60 text-[10.5px]">·</span>
           <select
-            value={activeSet}
-            onChange={(event) => void setActiveSet(event.target.value as typeof activeSet)}
+            value={activeSetSelectorValue}
+            onChange={(event) => {
+              const value = event.target.value;
+              if (value === 'custom') {
+                void setActiveCustomSet(null);
+              } else if (value.startsWith('custom:')) {
+                void setActiveCustomSet(value.slice('custom:'.length));
+              } else {
+                void setActiveSet(value as typeof activeSet);
+              }
+            }}
             className="bg-transparent text-coden-text text-[10.5px] font-medium outline-none cursor-pointer max-w-[145px]"
             title="Select algorithm set"
             aria-label="Select algorithm set"
           >
-            {Array.from(new Set(ALGORITHM_SETS.map((s) => s.category))).map((category) => (
-              category === 'Personal'
-                ? ALGORITHM_SETS.filter((s) => s.category === category).map((setOption) => (
+            {Array.from(new Set(ALGORITHM_SETS.map((s) => s.category)))
+              .filter((category) => category !== 'Personal')
+              .map((category) => (
+                <optgroup
+                  key={category}
+                  label={category}
+                  className="bg-coden-surface text-coden-text font-bold"
+                >
+                  {ALGORITHM_SETS.filter((s) => s.category === category).map((setOption) => (
                   <option
                     key={setOption.id}
                     value={setOption.id}
                     className="bg-coden-surface text-coden-text font-normal"
                   >
-                    {setOption.label}
+                    {setOption.label}{setOption.hasCareerPath ? ' · Career' : ''}
+                  </option>
+                  ))}
+                </optgroup>
+              ))}
+            <optgroup
+              label="Personal"
+              className="bg-coden-surface text-coden-text font-bold"
+            >
+              {customProblemSets.length > 0
+                ? customProblemSets.map((set) => (
+                  <option
+                    key={set.id}
+                    value={`custom:${set.id}`}
+                    className="bg-coden-surface text-coden-text font-normal"
+                  >
+                    {set.name || 'Untitled Personal root'}{set.career_mode ? ' · Career' : ''}
                   </option>
                 ))
                 : (
-                  <optgroup
-                    key={category}
-                    label={category}
-                    className="bg-coden-surface text-coden-text font-bold"
+                  <option
+                    value="custom"
+                    className="bg-coden-surface text-coden-text font-normal"
                   >
-                    {ALGORITHM_SETS.filter((s) => s.category === category).map((setOption) => (
-                      <option
-                        key={setOption.id}
-                        value={setOption.id}
-                        className="bg-coden-surface text-coden-text font-normal"
-                      >
-                        {setOption.label}
-                      </option>
-                    ))}
-                  </optgroup>
-                )
-            ))}
+                    Create a Personal root…
+                  </option>
+                )}
+            </optgroup>
           </select>
         </div>
         {activeSet === 'elo' && (

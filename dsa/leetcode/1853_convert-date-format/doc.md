@@ -2,54 +2,79 @@
 
 | Field | Value |
 |---|---|
-| Source | LeetCode |
+| Source | [LeetCode](https://leetcode.com/problems/convert-date-format/) |
 | Frontend ID | 1853 |
 | Difficulty | Easy |
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [convert-date-format](https://leetcode.com/problems/convert-date-format/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/convert-date-format/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `Days` table stores unique calendar dates in a single `DATE` column named `day`. Produce one result row for every input row, converting the stored date into a human-readable English string while preserving the date itself rather than filtering, grouping, or reordering it.
+
+The required text has the form `"day_name, month_name day, year"`. Spell out the weekday and month with their usual capitalization, place a comma after the weekday and before the year, and write the numeric day of the month without a leading zero. The returned column must also be named `day`; row order is unrestricted.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `Days(day DATE)`: one row per unique calendar date.
+- Let $r$ be the number of rows in `Days`.
 
 **Return value**
 
-TODO
+- Return one column named `day`.
+- Format every source date as the case-sensitive string `weekday, month day, year`.
+- Do not require a particular row order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input row: `2022-04-12`
+- Output row: `Tuesday, April 12, 2022`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input row: `2021-08-09`
+- Output row: `Monday, August 9, 2021`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input row: `2020-06-26`
+- Output row: `Friday, June 26, 2020`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(r)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+Project the `day` column through MySQL's `DATE_FORMAT` function. The format token `%W` emits the full weekday name, `%M` emits the full month name, `%e` emits an unpadded day of the month, and `%Y` emits the four-digit year.
+
+Literal punctuation and spaces in the format string produce the exact required shape. Alias the expression back to `day` so the result schema matches the contract. Because the query contains no ordering clause, it also respects the permission to return rows in any order.
+
+Each input row is formatted independently and emitted exactly once. The database derives every textual component from the same typed date, so weekday, month, day, and year cannot become inconsistent with one another.
+
+#### Complexity detail
+
+The query scans and formats all $r$ rows once, giving $O(r)$ time. Apart from the required result relation and fixed-size formatting state for the current date, it requires $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Concatenate separate date functions:** `DAYNAME`, `MONTHNAME`, `DAY`, and `YEAR` can be joined manually, but the punctuation and spacing are easier to get wrong.
+- **Client-side formatting:** Moving raw dates to application code violates the requirement to solve the transformation in SQL.
+- **Single-digit days:** `%e` produces `9`, not `09`.
+- **Case sensitivity:** Full English names must retain capitalization such as `Monday` and `August`.
+- **Leap day:** The weekday and month must be derived from the actual valid date rather than hard-coded.
+- **Column alias:** The formatted expression must be returned under the name `day`.
+- **Row order:** No `ORDER BY` is necessary because any order is accepted.
+
+</details>

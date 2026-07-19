@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1822",
+  "measurement_note": "Size is n, the array length. Every value is positive, so every prefix and the complete product have sign 1. One sign-tracking pass takes O(n) time. A correct implementation that recomputes the sign of each successive prefix from the beginning repeats the same inspections, takes O(n^2), completes every tier, and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 positive factors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums":[100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100]},
+      "expected": 1,
+      "tags": ["benchmark","scale-small","positive-factors"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 positive factors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums":[
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100
+      ]},
+      "expected": 1,
+      "tags": ["benchmark","scale-medium","positive-factors"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128 positive factors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"nums":[
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,
+        100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100
+      ]},
+      "expected": 1,
+      "tags": ["benchmark","scale-large","positive-factors"]
+    }
+  ]
+}

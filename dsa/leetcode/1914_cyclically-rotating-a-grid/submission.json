@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2043",
+  "frontend_id": "1914",
+  "title_slug": "cyclically-rotating-a-grid",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.rotateGrid",
+  "verified_submission_id": "2072290044",
+  "verified_at": "2026-07-18T14:09:47.226430+00:00"
+}

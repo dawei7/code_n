@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1995",
+  "frontend_id": "1865",
+  "title_slug": "finding-pairs-with-a-certain-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "FindSumPairs",
+  "verified_submission_id": "2071772387",
+  "verified_at": "2026-07-18T05:07:19.275433+00:00"
+}

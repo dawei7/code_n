@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2013",
+  "cases": [
+    {
+      "id": "sample-duplicate-multiplies",
+      "name": "sample: duplicate corner doubles the later count",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": ["DetectSquares", "add", "add", "add", "count", "count", "add", "count"],
+        "arguments": [[], [[3, 10]], [[11, 2]], [[3, 2]], [[11, 10]], [[14, 8]], [[11, 2]], [[11, 10]]]
+      },
+      "expected": [null, null, null, null, 1, 0, null, 2],
+      "tags": ["sample", "design", "duplicates"]
+    },
+    {
+      "id": "trial-empty-structure",
+      "name": "a query before additions returns zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["DetectSquares", "count"],
+        "arguments": [[], [[4, 1]]]
+      },
+      "expected": [null, 0],
+      "tags": ["empty"]
+    },
+    {
+      "id": "trial-squares-above-and-below",
+      "name": "one horizontal partner supports two orientations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["DetectSquares", "add", "add", "add", "add", "add", "count"],
+        "arguments": [[], [[2, 0]], [[0, 4]], [[2, 2]], [[0, 0]], [[2, 4]], [[0, 2]]]
+      },
+      "expected": [null, null, null, null, null, null, 2],
+      "tags": ["two-orientations"]
+    },
+    {
+      "id": "trial-duplicate-products",
+      "name": "corner multiplicities multiply independent choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["DetectSquares", "add", "add", "add", "add", "add", "add", "add", "add", "add", "count"],
+        "arguments": [[], [[1, 0]], [[1, 0]], [[0, 1]], [[0, 1]], [[0, 1]], [[1, 1]], [[1, 1]], [[1, 1]], [[1, 1]], [[0, 0]]]
+      },
+      "expected": [null, null, null, null, null, null, null, null, null, null, 24],
+      "tags": ["duplicates", "multiplicity"]
+    },
+    {
+      "id": "real-zero-area-excluded",
+      "name": "hidden: points on one vertical line do not form squares",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["DetectSquares", "add", "add", "add", "count"],
+        "arguments": [[], [[5, 5]], [[5, 6]], [[5, 7]], [[5, 5]]]
+      },
+      "expected": [null, null, null, null, 0],
+      "tags": ["hidden", "positive-area"]
+    },
+    {
+      "id": "real-coordinate-boundaries",
+      "name": "hidden: a square spans both coordinate limits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["DetectSquares", "add", "add", "add", "count"],
+        "arguments": [[], [[1000, 0]], [[0, 1000]], [[1000, 1000]], [[0, 0]]]
+      },
+      "expected": [null, null, null, null, 1],
+      "tags": ["hidden", "coordinate-boundary"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2042",
+  "frontend_id": "1913",
+  "title_slug": "maximum-product-difference-between-two-pairs",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxProductDifference",
+  "verified_submission_id": "2072285019",
+  "verified_at": "2026-07-18T14:04:50.587194+00:00"
+}

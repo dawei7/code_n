@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2009",
+  "cases": [
+    {
+      "id": "sample-already-continuous",
+      "name": "sample: values already form one interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4, 2, 5, 3]},
+      "expected": 0,
+      "tags": ["sample", "continuous"]
+    },
+    {
+      "id": "sample-one-gap",
+      "name": "sample: one replacement fills the gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 5, 6]},
+      "expected": 1,
+      "tags": ["sample", "gap"]
+    },
+    {
+      "id": "sample-separated-values",
+      "name": "sample: only one distant value can remain",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 10, 100, 1000]},
+      "expected": 3,
+      "tags": ["sample", "sparse"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "one value is continuous",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [42]},
+      "expected": 0,
+      "tags": ["minimum-length"]
+    },
+    {
+      "id": "trial-all-duplicates",
+      "name": "all but one duplicate must change",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [8, 8, 8, 8]},
+      "expected": 3,
+      "tags": ["duplicates"]
+    },
+    {
+      "id": "real-duplicate-inside-window",
+      "name": "hidden: a duplicate occupies one replacement position",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 2, 3]},
+      "expected": 1,
+      "tags": ["hidden", "duplicates", "window"]
+    },
+    {
+      "id": "real-best-middle-window",
+      "name": "hidden: the best interval starts inside sorted values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 100, 101, 102, 103, 1000]},
+      "expected": 2,
+      "tags": ["hidden", "middle-window"]
+    },
+    {
+      "id": "real-billion-boundary",
+      "name": "hidden: one billion-scale outlier is replaced",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 1000000000]},
+      "expected": 1,
+      "tags": ["hidden", "value-boundary"]
+    }
+  ]
+}

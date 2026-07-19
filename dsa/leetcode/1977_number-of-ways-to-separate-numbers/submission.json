@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2091",
+  "frontend_id": "1977",
+  "title_slug": "number-of-ways-to-separate-numbers",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numberOfCombinations",
+  "verified_submission_id": "2072775557",
+  "verified_at": "2026-07-18T20:15:18.914574+00:00"
+}

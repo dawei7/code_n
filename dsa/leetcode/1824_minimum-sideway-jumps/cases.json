@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1824",
+  "cases": [
+    {"id":"example-alternating-blocks","name":"sample: obstacles force two side jumps","kind":"sample","visible":true,"input":{"obstacles":[0,1,2,3,0]},"expected":2,"tags":["example","forced-jumps"]},
+    {"id":"example-middle-clear","name":"sample: lane two remains clear","kind":"sample","visible":true,"input":{"obstacles":[0,1,1,3,3,0]},"expected":0,"tags":["example","no-side-jump"]},
+    {"id":"example-two-jumps","name":"sample: mixed obstacles require two jumps","kind":"sample","visible":true,"input":{"obstacles":[0,2,1,0,3,0]},"expected":2,"tags":["example","mixed-obstacles"]},
+    {"id":"trial-one-transition","name":"shortest road without obstacles","kind":"trial","visible":true,"input":{"obstacles":[0,0]},"expected":0,"tags":["minimum-n","no-obstacles"]},
+    {"id":"trial-immediate-middle-block","name":"lane two blocked at the first destination","kind":"trial","visible":true,"input":{"obstacles":[0,2,0]},"expected":1,"tags":["immediate-obstacle","initial-side-jump"]},
+    {"id":"trial-outer-lane-only","name":"repeated lane-three obstacles leave lane two clear","kind":"trial","visible":true,"input":{"obstacles":[0,3,3,3,0]},"expected":0,"tags":["repeated-lane","no-side-jump"]},
+    {"id":"real-three-lanes-in-order","name":"hidden: each lane is blocked in succession","kind":"real","visible":false,"input":{"obstacles":[0,2,3,1,0]},"expected":2,"tags":["all-lanes","forced-jumps"]},
+    {"id":"real-spaced-obstacles","name":"hidden: gaps allow one strategic side jump","kind":"real","visible":false,"input":{"obstacles":[0,1,0,2,0,3,0]},"expected":1,"tags":["spaced-obstacles","strategic-jump"]},
+    {"id":"real-repeated-middle-pressure","name":"hidden: repeated inner-lane pattern","kind":"real","visible":false,"input":{"obstacles":[0,1,2,1,2,3,0]},"expected":2,"tags":["repeated-pattern","lane-state"]},
+    {"id":"real-long-clear-road","name":"hidden: long obstacle-free road","kind":"real","visible":false,"input":{"obstacles":[0,0,0,0,0,0,0,0,0,0,0]},"expected":0,"tags":["no-obstacles","longer-road"]}
+  ]
+}

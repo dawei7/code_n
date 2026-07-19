@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1826",
+  "measurement_note": "Size is n, the common sensor length. The arrays share n-2 readings before sensor 1 reveals a dropped penultimate value, so the full prefix and suffix must be inspected. The two-alignment scan takes O(n). A correct implementation that reconstructs and compares both possible shifted recordings for every candidate failure position takes O(n^2), completes all legal tiers, and fails only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 16 readings with late sensor-one fault","kind":"benchmark","visible":false,"size":16,"input":{"sensor1":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,4],"sensor2":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,3]},"expected":1,"tags":["benchmark","scale-small","late-mismatch"]},
+    {"id":"benchmark-scale-2","name":"benchmark: 64 readings with late sensor-one fault","kind":"benchmark","visible":false,"size":64,"input":{"sensor1":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,4],"sensor2":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,3]},"expected":1,"tags":["benchmark","scale-medium","late-mismatch"]},
+    {"id":"benchmark-scale-3","name":"benchmark: 100 readings with late sensor-one fault","kind":"benchmark","visible":false,"size":100,"input":{"sensor1":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,4],"sensor2":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,3]},"expected":1,"tags":["benchmark","scale-large","maximum-length"]}
+  ]
+}

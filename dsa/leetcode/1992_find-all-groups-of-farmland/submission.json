@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2103",
+  "frontend_id": "1992",
+  "title_slug": "find-all-groups-of-farmland",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findFarmland",
+  "verified_submission_id": "2072809385",
+  "verified_at": "2026-07-18T21:30:31.656767+00:00"
+}

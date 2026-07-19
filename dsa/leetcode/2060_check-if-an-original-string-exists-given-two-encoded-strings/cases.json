@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2060",
+  "cases": [
+    {"id":"sample-abbreviation","name":"sample: one encoding abbreviates eighteen letters","kind":"sample","visible":true,"input":{"s1":"internationalization","s2":"i18n"},"expected":true,"tags":["sample","numeric-length"]},
+    {"id":"sample-different-partitions","name":"sample: two numeric partitions describe one original","kind":"sample","visible":true,"input":{"s1":"l123e","s2":"44"},"expected":true,"tags":["sample","digit-partitions"]},
+    {"id":"sample-literal-conflict","name":"sample: required leading letters conflict","kind":"sample","visible":true,"input":{"s1":"a5b","s2":"c5b"},"expected":false,"tags":["sample","literal-conflict"]},
+    {"id":"trial-split-digit-run","name":"a three-digit run may represent three adjacent lengths","kind":"trial","visible":true,"input":{"s1":"123","s2":"6"},"expected":true,"tags":["digit-partition","all-numeric"]},
+    {"id":"real-wildcard-consumes-letter","name":"hidden: positive and negative balances consume literals","kind":"real","visible":false,"input":{"s1":"a2b","s2":"1a1b"},"expected":true,"tags":["hidden","balance"]},
+    {"id":"real-complex-partitions","name":"hidden: several numeric interpretations can align","kind":"real","visible":false,"input":{"s1":"112s","s2":"g841"},"expected":true,"tags":["hidden","numeric-ambiguity"]},
+    {"id":"real-direct-mismatch","name":"hidden: unequal literals with no wildcard cannot align","kind":"real","visible":false,"input":{"s1":"ab","s2":"ac"},"expected":false,"tags":["hidden","literal-mismatch"]}
+  ]
+}

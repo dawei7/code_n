@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1979",
+  "measurement_note": "Size is M, the larger endpoint value, while every tier keeps N=2 with nums=[1,M]. Euclid's remainder algorithm is logarithmic in M after endpoint discovery. A correct repeated-subtraction GCD completes all legal tiers and fails by linear scaling in M.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: endpoint value one hundred","kind":"benchmark","visible":false,"size":100,"input":{"nums":[1,100]},"expected":1,"tags":["benchmark","scale-small","subtraction-worst-case"]},
+    {"id":"benchmark-scale-2","name":"benchmark: endpoint value four hundred","kind":"benchmark","visible":false,"size":400,"input":{"nums":[1,400]},"expected":1,"tags":["benchmark","scale-medium","subtraction-worst-case"]},
+    {"id":"benchmark-scale-3","name":"benchmark: endpoint value one thousand","kind":"benchmark","visible":false,"size":1000,"input":{"nums":[1,1000]},"expected":1,"tags":["benchmark","scale-large","subtraction-worst-case"]}
+  ]
+}

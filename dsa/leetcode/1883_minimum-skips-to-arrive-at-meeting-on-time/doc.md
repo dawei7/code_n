@@ -2,56 +2,95 @@
 
 | Field | Value |
 |---|---|
-| Source | LeetCode |
+| Source | [LeetCode](https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/) |
 | Frontend ID | 1883 |
 | Difficulty | Hard |
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-skips-to-arrive-at-meeting-on-time](https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-skips-to-arrive-at-meeting-on-time/).
 
 ### Goal
-Travel a sequence of roads at a fixed speed. After each road except the last, you normally wait until the next integer hour before continuing. You may skip some waits. Find the fewest skips needed to arrive within `hoursBefore`.
+
+You have `hoursBefore` hours to reach a meeting by traveling $N$ roads in their given order. Road $i$ has length `dist[i]` kilometers, and you travel every road at the constant rate `speed` kilometers per hour.
+
+After finishing any road except the last, you normally must wait until the next integer-hour mark before starting the following road. Finishing exactly on an integer hour requires no extra wait. You may skip selected rests, which preserves the exact accumulated time and can also change the hour marks reached after later roads. Return the fewest rests that must be skipped to arrive no later than the deadline, or `-1` when even uninterrupted travel is too slow.
 
 ### Function Contract
+
 **Inputs**
 
-- `dist`: road distances in order.
-- `speed`: the constant travel speed.
-- `hoursBefore`: the latest allowed arrival time.
+- `dist`: a length-$N$ array of positive road distances in travel order, where $1 \le N \le 1000$ and $1 \le \texttt{dist[i]} \le 10^5$.
+- `speed`: the fixed positive travel speed, with $1 \le \texttt{speed} \le 10^6$.
+- `hoursBefore`: the positive integer-hour deadline, with $1 \le \texttt{hoursBefore} \le 10^7$.
 
 **Return value**
 
-Return the minimum number of skipped waits, or `-1` if arriving on time is impossible.
+- Return the minimum number of rests to skip so that arrival time is at most `hoursBefore`, or `-1` if this is impossible.
 
 ### Examples
+
 **Example 1**
 
 - Input: `dist = [1,3,2], speed = 4, hoursBefore = 2`
 - Output: `1`
+
+Skipping the first rest lets the first two roads finish exactly at hour `1`; the final road then ends at hour `1.5`.
 
 **Example 2**
 
 - Input: `dist = [7,3,5,5], speed = 2, hoursBefore = 10`
 - Output: `2`
 
+Skipping the rests after the first and third roads produces an arrival exactly at hour `10`.
+
 **Example 3**
 
 - Input: `dist = [7,3,5,5], speed = 1, hoursBefore = 10`
 - Output: `-1`
 
----
+The roads themselves require `20` hours, so removing rests cannot meet the deadline.
 
-## Solution
-### Approach
-Use dynamic programming over roads and number of skips. Store elapsed distance units rather than floating hours to avoid precision issues. After each non-final road, either round up to the next multiple of `speed` if not skipping, or keep the exact elapsed distance if skipping. The smallest skip count whose final elapsed distance is at most `hoursBefore * speed` is the answer.
+### Required Complexity
 
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)`
-- **Space Complexity**: `O(n)`
+- **Time:** $O(N^2)$
+- **Space:** $O(N)$
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+<details>
+<summary>Approach</summary>
+
+#### General
+
+**Measure time in distance units**
+
+Multiplying time by `speed` turns every road duration into its integer distance. In these units, an integer-hour boundary is a multiple of `speed`, and the deadline is `hoursBefore * speed`. This avoids floating-point comparisons entirely.
+
+**Keep the best elapsed distance for each skip count**
+
+After processing some non-final roads, let `best[j]` be the smallest elapsed distance-unit total achievable with exactly $j$ skipped rests. Only that smallest total matters: every future addition and rounding operation is monotone, so a larger total with the same state can never lead to a better arrival.
+
+For the next non-final road of length $d$, first form `elapsed = best[j] + d`. Taking its rest rounds upward with `((elapsed + speed - 1) // speed) * speed` and keeps $j$ skips. Skipping the rest keeps `elapsed` unchanged and moves to $j+1$. A fresh array prevents one road from being used twice.
+
+**Treat the final road separately**
+
+There is no rest after the last road. Add its distance to every reachable state without rounding, then scan skip counts from zero upward. The first total no greater than the scaled deadline is minimal. If the sum of all road distances already exceeds the deadline, no pattern of skipped rests can help.
+
+These transitions examine both legal choices after every non-final road. By induction, `best[j]` is the minimum elapsed total among all ways to make exactly $j$ skips. The final scan therefore returns precisely the least feasible number.
+
+#### Complexity detail
+
+There are $O(N)$ skip counts after each of $N-1$ possible rests, and each transition takes constant time, for $O(N^2)$ total time. Two length-$N$ arrays are sufficient, so auxiliary space is $O(N)$.
+
+#### Alternatives and edge cases
+
+- **Floating-point dynamic programming:** It follows the same states but needs an epsilon around ceiling operations; scaled integer arithmetic is exact.
+- **Enumerate skipped-rest subsets:** Trying every subset is correct but requires $O(2^N N)$ time in the worst case.
+- **Repeat a bounded-skip feasibility DP:** Testing each candidate skip limit with a fresh $O(NK)$ dynamic program is correct but can take $O(N^3)$ time; one pass computes all exact skip counts together.
+- **Two-dimensional table:** Storing every road/skip state is simpler to reconstruct but consumes $O(N^2)$ space without changing the answer.
+- **One road:** There is no rest to skip; return `0` if its travel time meets the deadline.
+- **Exact hour boundary:** A road ending on a multiple of `speed` adds no waiting time.
+- **Final road:** Never round after it, because arrival itself creates no rest.
+- **Impossible raw travel:** If $\sum_i \texttt{dist[i]} > \texttt{hoursBefore}\cdot\texttt{speed}$, return `-1` immediately.
+
+</details>

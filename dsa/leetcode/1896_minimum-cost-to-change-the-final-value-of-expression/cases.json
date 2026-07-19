@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1896",
+  "cases": [
+    {"id":"example-flip-operator","name":"sample: changing the inner OR flips the final value","kind":"sample","visible":true,"input":{"expression":"1&(0|1)"},"expected":1,"tags":["sample","operator-change"]},
+    {"id":"example-three-changes","name":"sample: separated false groups require three changes","kind":"sample","visible":true,"input":{"expression":"(0&0)&(0&0&0)"},"expected":3,"tags":["sample","multiple-changes"]},
+    {"id":"example-flip-literal","name":"sample: changing one nested literal flips the result","kind":"sample","visible":true,"input":{"expression":"(0|(1|0&1))"},"expected":1,"tags":["sample","literal-change"]},
+    {"id":"trial-left-to-right","name":"equal operator precedence makes the unparenthesized chain evaluate left to right","kind":"trial","visible":true,"input":{"expression":"1|0&0"},"expected":1,"tags":["left-to-right","precedence"]},
+    {"id":"trial-all-ones-or","name":"an OR chain of ones needs two changes to become false","kind":"trial","visible":true,"input":{"expression":"1|1|1|1"},"expected":2,"tags":["or-chain","multiple-changes"]},
+    {"id":"real-zero-literal","name":"hidden: a false literal changes with one operation","kind":"real","visible":false,"input":{"expression":"0"},"expected":1,"tags":["single-literal","zero"]},
+    {"id":"real-one-literal","name":"hidden: a true literal changes with one operation","kind":"real","visible":false,"input":{"expression":"1"},"expected":1,"tags":["single-literal","one"]},
+    {"id":"real-redundant-parentheses","name":"hidden: redundant parentheses do not change the literal cost","kind":"real","visible":false,"input":{"expression":"((((1))))"},"expected":1,"tags":["nested-parentheses","single-literal"]},
+    {"id":"real-parenthesized-precedence","name":"hidden: parentheses preserve an inner conjunction before the outer OR","kind":"real","visible":false,"input":{"expression":"1|(0&0)"},"expected":1,"tags":["parentheses","precedence"]},
+    {"id":"real-all-ones-and","name":"hidden: one false literal makes a long AND chain false","kind":"real","visible":false,"input":{"expression":"1&1&1&1&1"},"expected":1,"tags":["and-chain","literal-change"]},
+    {"id":"real-balanced-groups","name":"hidden: independently grouped subexpressions combine through an outer AND","kind":"real","visible":false,"input":{"expression":"((1&0)|(0|1))&(1|0)"},"expected":1,"tags":["nested-groups","mixed-operators"]},
+    {"id":"real-false-outer-and","name":"hidden: changing the outer operator can bypass a false left operand","kind":"real","visible":false,"input":{"expression":"(0|0)&(1&1)"},"expected":1,"tags":["outer-operator","group-boundary"]}
+  ]
+}

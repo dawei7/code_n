@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1933",
+  "cases": [
+    {"id":"example-no-pair","name":"sample: three length-three runs contain no pair","kind":"sample","visible":true,"input":{"s":"000111000"},"expected":false,"tags":["sample","missing-length-two"]},
+    {"id":"example-valid","name":"sample: one five-character run supplies the pair","kind":"sample","visible":true,"input":{"s":"00011111222"},"expected":true,"tags":["sample","valid-decomposition"]},
+    {"id":"example-single-run","name":"sample: a one-character run is impossible","kind":"sample","visible":true,"input":{"s":"011100022233"},"expected":false,"tags":["sample","remainder-one"]},
+    {"id":"trial-length-two","name":"one length-two run is a complete valid decomposition","kind":"trial","visible":true,"input":{"s":"11"},"expected":true,"tags":["minimum-valid","single-pair"]},
+    {"id":"trial-length-three","name":"one triple lacks the required pair","kind":"trial","visible":true,"input":{"s":"111"},"expected":false,"tags":["missing-length-two"]},
+    {"id":"trial-length-five","name":"one run splits into a triple and a pair","kind":"trial","visible":true,"input":{"s":"11111"},"expected":true,"tags":["single-run","remainder-two"]},
+    {"id":"real-length-four","name":"hidden: four equal digits would require two pairs","kind":"real","visible":false,"input":{"s":"1111"},"expected":false,"tags":["remainder-one","two-pairs"]},
+    {"id":"real-two-pairs","name":"hidden: two separate pairs violate uniqueness","kind":"real","visible":false,"input":{"s":"1122"},"expected":false,"tags":["multiple-length-two"]},
+    {"id":"real-pair-and-triple","name":"hidden: one pair followed by one triple is valid","kind":"real","visible":false,"input":{"s":"11222"},"expected":true,"tags":["multiple-runs","valid-decomposition"]},
+    {"id":"real-triples-and-final-pair","name":"hidden: several triples surround one final pair","kind":"real","visible":false,"input":{"s":"11122233"},"expected":true,"tags":["multiple-runs","single-pair"]}
+  ]
+}

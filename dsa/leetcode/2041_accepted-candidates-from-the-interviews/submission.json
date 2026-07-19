@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2185",
+  "frontend_id": "2041",
+  "title_slug": "accepted-candidates-from-the-interviews",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2072867712",
+  "verified_at": "2026-07-19T01:10:32.270432+00:00"
+}

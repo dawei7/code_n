@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1944",
+  "cases": [
+    {"id":"example-mixed","name":"sample: mixed queue has several visibility counts","kind":"sample","visible":true,"input":{"heights":[10,6,8,5,11,9]},"expected":[3,1,2,1,1,0],"tags":["sample","mixed"]},
+    {"id":"example-rising-after-valley","name":"sample: left person sees a rising sequence and final blocker","kind":"sample","visible":true,"input":{"heights":[5,1,2,3,10]},"expected":[4,1,1,1,0],"tags":["sample","rising-sequence"]},
+    {"id":"trial-single-person","name":"one person has nobody to the right","kind":"trial","visible":true,"input":{"heights":[7]},"expected":[0],"tags":["minimum-length"]},
+    {"id":"trial-strictly-increasing","name":"strictly increasing heights expose only each next person","kind":"trial","visible":true,"input":{"heights":[1,2,3,4]},"expected":[1,1,1,0],"tags":["strictly-increasing"]},
+    {"id":"trial-strictly-decreasing","name":"strictly decreasing heights expose only each next person","kind":"trial","visible":true,"input":{"heights":[4,3,2,1]},"expected":[1,1,1,0],"tags":["strictly-decreasing"]},
+    {"id":"trial-central-peak","name":"a central peak sees both shorter candidates to its right","kind":"trial","visible":true,"input":{"heights":[3,1,5,2,4]},"expected":[2,1,2,1,0],"tags":["central-peak"]},
+    {"id":"real-tall-left-boundary","name":"hidden: tallest left person sees all rising shorter heights","kind":"real","visible":false,"input":{"heights":[6,1,2,3,4,5]},"expected":[5,1,1,1,1,0],"tags":["tallest-first","rising-suffix"]},
+    {"id":"real-alternating","name":"hidden: alternating peaks create different blocker depths","kind":"real","visible":false,"input":{"heights":[9,2,8,3,7,4,6]},"expected":[2,1,2,1,2,1,0],"tags":["alternating-peaks"]},
+    {"id":"real-high-final-blocker","name":"hidden: final tallest person blocks all visibility beyond it","kind":"real","visible":false,"input":{"heights":[8,4,6,2,5,10]},"expected":[3,1,3,1,1,0],"tags":["final-blocker","mixed"]},
+    {"id":"real-height-boundaries","name":"hidden: minimum and maximum legal heights participate normally","kind":"real","visible":false,"input":{"heights":[100000,1,50000,2,99999]},"expected":[3,1,2,1,0],"tags":["height-boundaries"]}
+  ]
+}

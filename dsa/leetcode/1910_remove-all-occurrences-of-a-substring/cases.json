@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1910",
+  "cases": [
+    {"id":"example-cascading-abc","name":"sample: three abc occurrences disappear successively","kind":"sample","visible":true,"input":{"s":"daabcbaabcbc","part":"abc"},"expected":"dab","tags":["sample","cascading"]},
+    {"id":"example-repeated-xy","name":"sample: each deletion exposes another xy","kind":"sample","visible":true,"input":{"s":"axxxxyyyyb","part":"xy"},"expected":"ab","tags":["sample","boundary-created"]},
+    {"id":"trial-overlapping-pairs","name":"overlapping pairs leave one character","kind":"trial","visible":true,"input":{"s":"aaaaa","part":"aa"},"expected":"a","tags":["overlap","repeated-character"]},
+    {"id":"trial-no-match","name":"a source with no pattern remains unchanged","kind":"trial","visible":true,"input":{"s":"leetcode","part":"xyz"},"expected":"leetcode","tags":["no-match"]},
+    {"id":"real-complete-single","name":"hidden: one exact occurrence deletes the complete source","kind":"real","visible":false,"input":{"s":"abc","part":"abc"},"expected":"","tags":["complete-deletion","exact-match"]},
+    {"id":"real-pattern-longer","name":"hidden: a longer pattern cannot occur","kind":"real","visible":false,"input":{"s":"ab","part":"abc"},"expected":"ab","tags":["pattern-longer","no-match"]},
+    {"id":"real-one-character-pattern","name":"hidden: every copy of a one-character pattern is removed","kind":"real","visible":false,"input":{"s":"banana","part":"a"},"expected":"bnn","tags":["single-character-pattern","multiple-occurrences"]},
+    {"id":"real-boundary-cascade","name":"hidden: deletion exposes a match across the joined boundary","kind":"real","visible":false,"input":{"s":"aabcbc","part":"abc"},"expected":"","tags":["boundary-created","complete-deletion"]},
+    {"id":"real-overlapping-prefix","name":"hidden: a self-overlapping pattern is tracked through fallbacks","kind":"real","visible":false,"input":{"s":"ababababa","part":"ababa"},"expected":"baba","tags":["overlap","kmp-fallback"]},
+    {"id":"real-repeated-complete","name":"hidden: adjacent complete patterns all disappear","kind":"real","visible":false,"input":{"s":"catcatcatcat","part":"cat"},"expected":"","tags":["adjacent-occurrences","complete-deletion"]},
+    {"id":"real-partial-prefix-suffix","name":"hidden: unmatched partial prefixes remain","kind":"real","visible":false,"input":{"s":"abcababcabx","part":"abcab"},"expected":"x","tags":["partial-match","repeated-occurrences"]},
+    {"id":"real-created-after-middle","name":"hidden: survivors on both sides form a new occurrence","kind":"real","visible":false,"input":{"s":"cabbaab","part":"baab"},"expected":"cab","tags":["boundary-created","middle-deletion"]},
+    {"id":"real-source-length-one","name":"hidden: a one-character nonmatch survives","kind":"real","visible":false,"input":{"s":"z","part":"a"},"expected":"z","tags":["minimum-source","no-match"]},
+    {"id":"real-source-length-one-delete","name":"hidden: a one-character exact match becomes empty","kind":"real","visible":false,"input":{"s":"z","part":"z"},"expected":"","tags":["minimum-source","complete-deletion"]}
+  ]
+}

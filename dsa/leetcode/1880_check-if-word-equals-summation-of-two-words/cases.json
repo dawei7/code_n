@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1880",
+  "cases": [
+    {"id":"example-true","name":"sample: twenty-one plus two-ten equals two-thirty-one","kind":"sample","visible":true,"input":{"firstWord":"acb","secondWord":"cba","targetWord":"cdb"},"expected":true,"tags":["sample","true-equation"]},
+    {"id":"example-false","name":"sample: leading zeros do not equal one","kind":"sample","visible":true,"input":{"firstWord":"aaa","secondWord":"a","targetWord":"aab"},"expected":false,"tags":["sample","leading-zeros"]},
+    {"id":"example-all-zero","name":"sample: differently sized zero words are equal","kind":"sample","visible":true,"input":{"firstWord":"aaa","secondWord":"a","targetWord":"aaaa"},"expected":true,"tags":["sample","all-zero"]},
+    {"id":"trial-single-digits","name":"one plus one equals two","kind":"trial","visible":true,"input":{"firstWord":"b","secondWord":"b","targetWord":"c"},"expected":true,"tags":["single-letter"]},
+    {"id":"real-zero-addend","name":"hidden: zero leaves the other addend unchanged","kind":"real","visible":false,"input":{"firstWord":"j","secondWord":"a","targetWord":"j"},"expected":true,"tags":["zero-addend"]},
+    {"id":"real-carry","name":"hidden: decimal addition carries into a new position","kind":"real","visible":false,"input":{"firstWord":"j","secondWord":"b","targetWord":"ba"},"expected":true,"tags":["carry"]},
+    {"id":"real-leading-zero-prefix","name":"hidden: several leading zero digits are ignored numerically","kind":"real","visible":false,"input":{"firstWord":"aaab","secondWord":"a","targetWord":"b"},"expected":true,"tags":["leading-zeros"]},
+    {"id":"real-false-concatenation","name":"hidden: concatenating addends is not decimal addition","kind":"real","visible":false,"input":{"firstWord":"b","secondWord":"c","targetWord":"bc"},"expected":false,"tags":["semantic-trap"]},
+    {"id":"real-long-carry","name":"hidden: nine-eight-nine plus one equals nine-nine-zero","kind":"real","visible":false,"input":{"firstWord":"jij","secondWord":"b","targetWord":"jja"},"expected":true,"tags":["carry","mixed-digits"]},
+    {"id":"real-maximum-length","name":"hidden: eight-digit maximum is preserved by adding zero","kind":"real","visible":false,"input":{"firstWord":"jjjjjjjj","secondWord":"a","targetWord":"jjjjjjjj"},"expected":true,"tags":["length-boundary"]},
+    {"id":"real-order-sensitive","name":"hidden: reversed letters produce different place values","kind":"real","visible":false,"input":{"firstWord":"bc","secondWord":"a","targetWord":"cb"},"expected":false,"tags":["place-value"]},
+    {"id":"real-two-addends","name":"hidden: four-digit values add with aligned place values","kind":"real","visible":false,"input":{"firstWord":"bcde","secondWord":"baaa","targetWord":"ccde"},"expected":true,"tags":["multi-digit"]}
+  ]
+}

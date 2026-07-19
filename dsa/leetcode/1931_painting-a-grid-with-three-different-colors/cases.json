@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1931",
+  "cases": [
+    {"id":"example-single-cell","name":"sample: one cell has three color choices","kind":"sample","visible":true,"input":{"m":1,"n":1},"expected":3,"tags":["sample","single-cell"]},
+    {"id":"example-single-row","name":"sample: the second cell differs from the first","kind":"sample","visible":true,"input":{"m":1,"n":2},"expected":6,"tags":["sample","single-row"]},
+    {"id":"example-five-square","name":"sample: five-by-five grid","kind":"sample","visible":true,"input":{"m":5,"n":5},"expected":580986,"tags":["sample","maximum-height"]},
+    {"id":"trial-single-column-two","name":"a two-cell column has six vertical colorings","kind":"trial","visible":true,"input":{"m":2,"n":1},"expected":6,"tags":["single-column","vertical-adjacency"]},
+    {"id":"trial-two-square","name":"a two-by-two grid enforces both directions","kind":"trial","visible":true,"input":{"m":2,"n":2},"expected":18,"tags":["horizontal-adjacency","vertical-adjacency"]},
+    {"id":"trial-three-columns","name":"a two-row grid extends through three columns","kind":"trial","visible":true,"input":{"m":2,"n":3},"expected":54,"tags":["state-transitions"]},
+    {"id":"real-three-column","name":"hidden: one three-cell column has twelve states","kind":"real","visible":false,"input":{"m":3,"n":1},"expected":12,"tags":["single-column","column-states"]},
+    {"id":"real-three-square","name":"hidden: three-by-three transition count","kind":"real","visible":false,"input":{"m":3,"n":3},"expected":246,"tags":["state-transitions","square-grid"]},
+    {"id":"real-four-by-two","name":"hidden: taller neighboring columns","kind":"real","visible":false,"input":{"m":4,"n":2},"expected":162,"tags":["column-compatibility"]},
+    {"id":"real-five-single-column","name":"hidden: maximum-height state count","kind":"real","visible":false,"input":{"m":5,"n":1},"expected":48,"tags":["maximum-height","single-column"]}
+  ]
+}

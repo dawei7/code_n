@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2030",
+  "cases": [
+    {
+      "id": "sample-one-required-e",
+      "name": "sample: discard the leading larger character",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "leet", "k": 3, "letter": "e", "repetition": 1},
+      "expected": "eet",
+      "tags": ["sample", "monotonic-stack"]
+    },
+    {
+      "id": "sample-two-required-e",
+      "name": "sample: reserve two required copies",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "leetcode", "k": 4, "letter": "e", "repetition": 2},
+      "expected": "ecde",
+      "tags": ["sample", "reserved-slots"]
+    },
+    {
+      "id": "sample-only-subsequence",
+      "name": "sample: the whole string is required",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "bb", "k": 2, "letter": "b", "repetition": 2},
+      "expected": "bb",
+      "tags": ["sample", "whole-string"]
+    },
+    {
+      "id": "trial-all-same",
+      "name": "identical characters produce an identical prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaaa", "k": 2, "letter": "a", "repetition": 1},
+      "expected": "aa",
+      "tags": ["duplicates", "extra-required-letter"]
+    },
+    {
+      "id": "trial-required-at-end",
+      "name": "slots are reserved for a required final character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcde", "k": 3, "letter": "e", "repetition": 1},
+      "expected": "abe",
+      "tags": ["required-at-end", "reserved-slots"]
+    },
+    {
+      "id": "real-all-slots-required",
+      "name": "hidden: every output position must use the required letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "baacaa", "k": 3, "letter": "a", "repetition": 3},
+      "expected": "aaa",
+      "tags": ["hidden", "all-slots-required"]
+    },
+    {
+      "id": "real-protected-prefix",
+      "name": "hidden: scarce required letters cannot be popped",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "bbaaa", "k": 3, "letter": "b", "repetition": 2},
+      "expected": "bba",
+      "tags": ["hidden", "protected-letter"]
+    },
+    {
+      "id": "real-required-before-smaller-suffix",
+      "name": "hidden: one early required character precedes smaller letters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zzzaaa", "k": 3, "letter": "z", "repetition": 1},
+      "expected": "zaa",
+      "tags": ["hidden", "order-constraint"]
+    }
+  ]
+}

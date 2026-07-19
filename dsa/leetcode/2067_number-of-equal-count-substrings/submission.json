@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2209",
+  "frontend_id": "2067",
+  "title_slug": "number-of-equal-count-substrings",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.equalCountSubstrings",
+  "verified_submission_id": "2072976750",
+  "verified_at": "2026-07-19T03:24:42.525110+00:00"
+}

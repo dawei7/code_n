@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1920",
+  "cases": [
+    {"id":"example-one","name":"sample: fixed points, a swap, and a three-cycle","kind":"sample","visible":true,"input":{"nums":[0,2,1,5,3,4]},"expected":[0,1,2,4,5,3],"tags":["sample","mixed-cycles"]},
+    {"id":"example-two","name":"sample: one six-element cycle","kind":"sample","visible":true,"input":{"nums":[5,0,1,2,3,4]},"expected":[4,5,0,1,2,3],"tags":["sample","single-cycle"]},
+    {"id":"trial-single","name":"one-element permutation remains unchanged","kind":"trial","visible":true,"input":{"nums":[0]},"expected":[0],"tags":["single-element","minimum-constraints"]},
+    {"id":"trial-three-cycle","name":"a three-cycle advances by two links","kind":"trial","visible":true,"input":{"nums":[1,2,0]},"expected":[2,0,1],"tags":["three-cycle","composition"]},
+    {"id":"real-identity","name":"hidden: identity permutation is its own composition","kind":"real","visible":false,"input":{"nums":[0,1,2,3,4]},"expected":[0,1,2,3,4],"tags":["identity","fixed-points"]},
+    {"id":"real-reversal","name":"hidden: reversal consists of swaps and composes to identity","kind":"real","visible":false,"input":{"nums":[5,4,3,2,1,0]},"expected":[0,1,2,3,4,5],"tags":["reversal","two-cycles"]},
+    {"id":"real-mixed-cycles","name":"hidden: a three-cycle and a swap compose independently","kind":"real","visible":false,"input":{"nums":[2,0,1,4,3]},"expected":[1,2,0,3,4],"tags":["disjoint-cycles","composition"]},
+    {"id":"real-fixed-and-four-cycle","name":"hidden: fixed endpoints surround a four-cycle","kind":"real","visible":false,"input":{"nums":[0,3,1,4,2,5]},"expected":[0,4,3,2,1,5],"tags":["fixed-points","four-cycle"]},
+    {"id":"real-two-swaps","name":"hidden: disjoint swaps map every value back to itself","kind":"real","visible":false,"input":{"nums":[1,0,3,2]},"expected":[0,1,2,3],"tags":["two-cycles","identity-result"]},
+    {"id":"real-seven-cycle","name":"hidden: one longer cycle preserves direct indexing semantics","kind":"real","visible":false,"input":{"nums":[3,6,0,5,1,2,4]},"expected":[5,4,3,2,6,0,1],"tags":["long-cycle","composition"]}
+  ]
+}

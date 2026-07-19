@@ -1,0 +1,125 @@
+{
+  "challenge_id": "lc_2000",
+  "cases": [
+    {
+      "id": "sample-first-d",
+      "name": "sample: reverse through the first d",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abcdefd",
+        "ch": "d"
+      },
+      "expected": "dcbaefd",
+      "tags": [
+        "sample",
+        "first-occurrence"
+      ]
+    },
+    {
+      "id": "sample-first-z",
+      "name": "sample: reverse an internal prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "xyxzxe",
+        "ch": "z"
+      },
+      "expected": "zxyxxe",
+      "tags": [
+        "sample",
+        "internal-boundary"
+      ]
+    },
+    {
+      "id": "sample-absent",
+      "name": "sample: absent character leaves the word unchanged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abcd",
+        "ch": "z"
+      },
+      "expected": "abcd",
+      "tags": [
+        "sample",
+        "absent"
+      ]
+    },
+    {
+      "id": "trial-first-character",
+      "name": "a one-character prefix is unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "algorithm",
+        "ch": "a"
+      },
+      "expected": "algorithm",
+      "tags": [
+        "boundary",
+        "first-character"
+      ]
+    },
+    {
+      "id": "trial-repeated-boundary",
+      "name": "only the first repeated character ends the prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "aabba",
+        "ch": "b"
+      },
+      "expected": "baaba",
+      "tags": [
+        "repeated",
+        "first-occurrence"
+      ]
+    },
+    {
+      "id": "real-single-character",
+      "name": "hidden: reverse the entire one-character word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "z",
+        "ch": "z"
+      },
+      "expected": "z",
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-whole-word",
+      "name": "hidden: the final character selects the whole word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "stressed",
+        "ch": "d"
+      },
+      "expected": "desserts",
+      "tags": [
+        "hidden",
+        "whole-word"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: reverse the maximum-length prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaz",
+        "ch": "z"
+      },
+      "expected": "zaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": [
+        "hidden",
+        "maximum-length"
+      ]
+    }
+  ]
+}

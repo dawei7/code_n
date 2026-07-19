@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1926",
+  "cases": [
+    {"id":"example-neighbor-exit","name":"sample: the nearest exit is directly above the entrance","kind":"sample","visible":true,"input":{"maze":[["+","+",".","+"],[".",".",".","+"],["+","+","+","."]],"entrance":[1,2]},"expected":1,"tags":["sample","adjacent-exit"]},
+    {"id":"example-boundary-entrance","name":"sample: the boundary entrance is excluded","kind":"sample","visible":true,"input":{"maze":[["+","+","+"],[".",".","."],["+","+","+"]],"entrance":[1,0]},"expected":2,"tags":["sample","boundary-entrance"]},
+    {"id":"example-no-exit","name":"sample: a one-row entrance beside a wall has no exit","kind":"sample","visible":true,"input":{"maze":[[".","+"]],"entrance":[0,0]},"expected":-1,"tags":["sample","unreachable"]},
+    {"id":"trial-single-cell","name":"one cell is only the entrance and cannot be an exit","kind":"trial","visible":true,"input":{"maze":[["."]],"entrance":[0,0]},"expected":-1,"tags":["single-cell","boundary-entrance"]},
+    {"id":"trial-interior-adjacent","name":"an interior entrance has an adjacent boundary exit","kind":"trial","visible":true,"input":{"maze":[["+",".","+"],[".",".","."],["+","+","+"]],"entrance":[1,1]},"expected":1,"tags":["interior-entrance","adjacent-exit"]},
+    {"id":"real-sealed-room","name":"hidden: an open interior room has no open boundary","kind":"real","visible":false,"input":{"maze":[["+","+","+","+","+"],["+",".",".",".","+"],["+",".",".",".","+"],["+",".",".",".","+"],["+","+","+","+","+"]],"entrance":[2,2]},"expected":-1,"tags":["sealed-region","queue-exhaustion"]},
+    {"id":"real-one-column","name":"hidden: a different cell in a one-column maze is an exit","kind":"real","visible":false,"input":{"maze":[["."],["."],["+"]],"entrance":[0,0]},"expected":1,"tags":["one-column","boundary-entrance"]},
+    {"id":"real-competing-exits","name":"hidden: BFS chooses the nearer of two reachable exits","kind":"real","visible":false,"input":{"maze":[["+",".","+","+","+"],["+",".",".",".","."],["+",".","+",".","+"],["+",".",".",".","+"],["+","+","+",".","+"]],"entrance":[3,1]},"expected":3,"tags":["multiple-exits","shortest-path"]},
+    {"id":"real-cycle","name":"hidden: a cyclic open region is processed once per cell","kind":"real","visible":false,"input":{"maze":[["+","+","+",".","+"],["+",".",".",".","+"],["+",".","+",".","+"],["+",".",".",".","+"],["+","+","+","+","+"]],"entrance":[3,1]},"expected":5,"tags":["cycle","visited-state"]},
+    {"id":"real-unreachable-visible-exit","name":"hidden: a boundary opening behind walls is unreachable","kind":"real","visible":false,"input":{"maze":[["+",".","+","+"],["+","+","+","+"],["+",".",".","+"],["+","+","+","+"]],"entrance":[2,1]},"expected":-1,"tags":["unreachable-exit","walls"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1978",
+  "frontend_id": "1850",
+  "title_slug": "minimum-adjacent-swaps-to-reach-the-kth-smallest-number",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getMinSwaps",
+  "verified_submission_id": "2071712493",
+  "verified_at": "2026-07-18T03:58:07.709326+00:00"
+}

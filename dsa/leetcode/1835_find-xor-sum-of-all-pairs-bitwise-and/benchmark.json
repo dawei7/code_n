@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1835",
+  "measurement_note": "Size is s, the length of each input array. Both arrays contain only 1 and every tier has even size, so each aggregate XOR and the expected result are zero. Collapsing each array takes O(s) time. A correct slower implementation that explicitly XORs all s^2 pairwise AND values completes every tier and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: two arrays of 16 ones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"arr1":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"arr2":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 0,
+      "tags": ["benchmark","scale-small","duplicates"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: two arrays of 64 ones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "arr1":[
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+        ],
+        "arr2":[
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+        ]
+      },
+      "expected": 0,
+      "tags": ["benchmark","scale-medium","duplicates"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: two arrays of 128 ones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "arr1":[
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+        ],
+        "arr2":[
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+          1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+        ]
+      },
+      "expected": 0,
+      "tags": ["benchmark","scale-large","duplicates"]
+    }
+  ]
+}

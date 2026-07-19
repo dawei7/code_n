@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2102",
+  "cases": [
+    {
+      "id": "sample-full-trace",
+      "name": "sample: scores, lexical ties, and interleaved queries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": ["SORTracker", "add", "add", "get", "add", "get", "add", "get", "add", "get", "add", "get", "get"],
+        "arguments": [[], ["bradford", 2], ["branford", 3], [], ["alps", 2], [], ["orland", 2], [], ["orlando", 3], [], ["alpine", 2], [], []]
+      },
+      "expected": [null, null, null, "branford", null, "alps", null, "bradford", null, "bradford", null, "bradford", "orland"],
+      "tags": ["sample", "design", "interleaved"]
+    },
+    {
+      "id": "trial-lexical-tie",
+      "name": "equal scores use lexicographic names",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["SORTracker", "add", "get", "add", "get"],
+        "arguments": [[], ["zoo", 5], [], ["alpha", 5], []]
+      },
+      "expected": [null, null, "zoo", null, "zoo"],
+      "tags": ["lexicographic-tie"]
+    },
+    {
+      "id": "trial-consecutive-gets",
+      "name": "consecutive queries advance the ordinal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["SORTracker", "add", "add", "add", "get", "get", "get"],
+        "arguments": [[], ["c", 1], ["a", 3], ["b", 2], [], [], []]
+      },
+      "expected": [null, null, null, null, "a", "b", "c"],
+      "tags": ["consecutive-queries"]
+    },
+    {
+      "id": "real-better-late-addition",
+      "name": "hidden: a late best location crosses the boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["SORTracker", "add", "add", "get", "add", "get"],
+        "arguments": [[], ["low", 1], ["mid", 2], [], ["high", 10], []]
+      },
+      "expected": [null, null, null, "mid", null, "mid"],
+      "tags": ["hidden", "boundary-swap"]
+    },
+    {
+      "id": "real-equal-score-boundary",
+      "name": "hidden: lexical insertion crosses an established boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["SORTracker", "add", "add", "get", "add", "get", "get"],
+        "arguments": [[], ["m", 7], ["z", 7], [], ["a", 7], [], []]
+      },
+      "expected": [null, null, null, "m", null, "m", "z"],
+      "tags": ["hidden", "lexical-boundary"]
+    },
+    {
+      "id": "real-score-before-name",
+      "name": "hidden: score dominates lexicographic order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["SORTracker", "add", "add", "add", "get", "get"],
+        "arguments": [[], ["aaa", 1], ["zzz", 3], ["bbb", 2], [], []]
+      },
+      "expected": [null, null, null, null, "zzz", "bbb"],
+      "tags": ["hidden", "score-priority"]
+    }
+  ]
+}

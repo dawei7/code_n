@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2086",
+  "frontend_id": "1955",
+  "title_slug": "count-number-of-special-subsequences",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countSpecialSubsequences",
+  "verified_submission_id": "2072696075",
+  "verified_at": "2026-07-18T18:28:05.069955+00:00"
+}

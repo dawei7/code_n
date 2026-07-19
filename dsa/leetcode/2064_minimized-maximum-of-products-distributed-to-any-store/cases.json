@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2064",
+  "cases": [
+    {"id":"sample-two-types","name":"sample: six stores split two product types","kind":"sample","visible":true,"input":{"n":6,"quantities":[11,6]},"expected":3,"tags":["sample","split-types"]},
+    {"id":"sample-balanced-five","name":"sample: all stores receive five products","kind":"sample","visible":true,"input":{"n":7,"quantities":[15,10,10]},"expected":5,"tags":["sample","balanced"]},
+    {"id":"sample-single-store","name":"sample: one store receives the entire quantity","kind":"sample","visible":true,"input":{"n":1,"quantities":[100000]},"expected":100000,"tags":["sample","maximum-quantity"]},
+    {"id":"trial-one-type","name":"one type is split over four stores","kind":"trial","visible":true,"input":{"n":4,"quantities":[7]},"expected":2,"tags":["single-type"]},
+    {"id":"real-no-spare-store","name":"hidden: one store is required per type","kind":"real","visible":false,"input":{"n":5,"quantities":[1,1,1,1,1]},"expected":1,"tags":["hidden","no-spare-store"]},
+    {"id":"real-large-and-small","name":"hidden: one small type reserves a store","kind":"real","visible":false,"input":{"n":8,"quantities":[20,1]},"expected":3,"tags":["hidden","uneven-quantities"]},
+    {"id":"real-ceiling-boundary","name":"hidden: ceiling division determines feasibility","kind":"real","visible":false,"input":{"n":6,"quantities":[8,4,2]},"expected":3,"tags":["hidden","ceiling-division"]}
+  ]
+}

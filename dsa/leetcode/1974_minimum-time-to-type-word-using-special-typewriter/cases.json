@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1974",
+  "cases": [
+    {"id":"example-clockwise","name":"sample: adjacent clockwise letters","kind":"sample","visible":true,"input":{"word":"abc"},"expected":5,"tags":["sample","clockwise"]},
+    {"id":"example-wraparound","name":"sample: both directions and wraparound","kind":"sample","visible":true,"input":{"word":"bza"},"expected":7,"tags":["sample","wraparound"]},
+    {"id":"example-mixed","name":"sample: several long rotations","kind":"sample","visible":true,"input":{"word":"zjpc"},"expected":34,"tags":["sample","mixed"]},
+    {"id":"trial-start-letter","name":"typing the initial pointer letter","kind":"trial","visible":true,"input":{"word":"a"},"expected":1,"tags":["minimum","no-movement"]},
+    {"id":"trial-wrap-one-step","name":"counterclockwise from a to z","kind":"trial","visible":true,"input":{"word":"z"},"expected":2,"tags":["wraparound","single-letter"]},
+    {"id":"trial-half-circle","name":"exact half-circle rotation","kind":"trial","visible":true,"input":{"word":"m"},"expected":13,"tags":["half-circle","single-letter"]},
+    {"id":"real-repeated-letter","name":"hidden: repeated current letter needs only typing","kind":"real","visible":false,"input":{"word":"aaa"},"expected":3,"tags":["repeated","no-movement"]},
+    {"id":"real-alternating-wrap","name":"hidden: alternate across the circle boundary","kind":"real","visible":false,"input":{"word":"azaz"},"expected":7,"tags":["wraparound","alternating"]},
+    {"id":"real-alphabet","name":"hidden: type the alphabet in order","kind":"real","visible":false,"input":{"word":"abcdefghijklmnopqrstuvwxyz"},"expected":51,"tags":["alphabet","clockwise"]},
+    {"id":"real-word","name":"hidden: mixed ordinary word","kind":"real","visible":false,"input":{"word":"leetcode"},"expected":70,"tags":["mixed","repeated"]}
+  ]
+}

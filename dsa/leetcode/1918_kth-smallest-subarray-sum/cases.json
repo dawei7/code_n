@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1918",
+  "cases": [
+    {"id":"example-one","name":"sample: repeated middle sum determines the fourth rank","kind":"sample","visible":true,"input":{"nums":[2,1,3],"k":4},"expected":3,"tags":["sample","duplicate-sums"]},
+    {"id":"example-two","name":"sample: seventh of ten subarray sums","kind":"sample","visible":true,"input":{"nums":[3,3,5,5],"k":7},"expected":10,"tags":["sample","rank"]},
+    {"id":"trial-single","name":"one element has one subarray sum","kind":"trial","visible":true,"input":{"nums":[7],"k":1},"expected":7,"tags":["single-element","minimum-constraints"]},
+    {"id":"trial-all-ones","name":"multiplicity among equal-length sums","kind":"trial","visible":true,"input":{"nums":[1,1,1,1],"k":5},"expected":2,"tags":["duplicates","multiplicity"]},
+    {"id":"real-smallest-rank","name":"hidden: first rank is the minimum element","kind":"real","visible":false,"input":{"nums":[9,4,6,2,8],"k":1},"expected":2,"tags":["smallest-rank","lower-bound"]},
+    {"id":"real-largest-rank","name":"hidden: final rank is the complete-array sum","kind":"real","visible":false,"input":{"nums":[2,5,1,3],"k":10},"expected":11,"tags":["largest-rank","upper-bound"]},
+    {"id":"real-equal-elements","name":"hidden: equal elements create repeated ranked sums","kind":"real","visible":false,"input":{"nums":[2,2,2],"k":4},"expected":4,"tags":["equal-elements","duplicate-sums"]},
+    {"id":"real-overlapping-sums","name":"hidden: overlapping intervals share several sums","kind":"real","visible":false,"input":{"nums":[1,2,1,2],"k":6},"expected":3,"tags":["overlapping-subarrays","duplicate-sums"]},
+    {"id":"real-asymmetric","name":"hidden: asymmetric values select an interior rank","kind":"real","visible":false,"input":{"nums":[4,1,3,2],"k":7},"expected":5,"tags":["interior-rank","asymmetric"]},
+    {"id":"real-large-neighbors","name":"hidden: small middle values sit between large endpoints","kind":"real","visible":false,"input":{"nums":[10,1,1,10],"k":5},"expected":10,"tags":["window-shrinking","interior-rank"]},
+    {"id":"real-mixed","name":"hidden: varied values select the eighth rank","kind":"real","visible":false,"input":{"nums":[2,5,1,3],"k":8},"expected":8,"tags":["mixed-values","interior-rank"]},
+    {"id":"real-large-values","name":"hidden: large values preserve exact integer bounds","kind":"real","visible":false,"input":{"nums":[50000,50000,1],"k":5},"expected":100000,"tags":["large-values","upper-constraints"]}
+  ]
+}

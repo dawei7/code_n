@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1872",
+  "cases": [
+    {"id":"example-mixed-five","name":"sample: strategic negative reply produces difference five","kind":"sample","visible":true,"input":{"stones":[-1,2,-3,4,-5]},"expected":5,"tags":["sample","mixed-values"]},
+    {"id":"example-take-all","name":"sample: taking the entire row is optimal","kind":"sample","visible":true,"input":{"stones":[7,-6,5,10,5,-2,-6]},"expected":13,"tags":["sample","take-all"]},
+    {"id":"example-two-negative","name":"sample: only move has a negative total","kind":"sample","visible":true,"input":{"stones":[-10,-12]},"expected":-22,"tags":["sample","two-stones"]},
+    {"id":"trial-two-positive","name":"two positive stones must both be taken","kind":"trial","visible":true,"input":{"stones":[1,2]},"expected":3,"tags":["two-stones","positive"]},
+    {"id":"trial-three-positive","name":"taking all three positive stones is optimal","kind":"trial","visible":true,"input":{"stones":[1,2,3]},"expected":6,"tags":["take-all","positive"]},
+    {"id":"real-two-mixed","name":"hidden: forced two-stone total mixes signs","kind":"real","visible":false,"input":{"stones":[-5,10]},"expected":5,"tags":["two-stones","mixed-values"]},
+    {"id":"real-four-mixed","name":"hidden: intermediate prefix choice beats naive scoring","kind":"real","visible":false,"input":{"stones":[5,-2,3,-4]},"expected":4,"tags":["strategy","mixed-values"]},
+    {"id":"real-all-zero","name":"hidden: every move keeps the difference zero","kind":"real","visible":false,"input":{"stones":[0,0,0,0]},"expected":0,"tags":["zero-values"]},
+    {"id":"real-all-negative","name":"hidden: optimal play over three negative stones","kind":"real","visible":false,"input":{"stones":[-1,-2,-3]},"expected":3,"tags":["all-negative","strategy"]},
+    {"id":"real-alternating","name":"hidden: alternating totals require backward minimax","kind":"real","visible":false,"input":{"stones":[10,-10,10,-10,10]},"expected":10,"tags":["alternating-signs"]},
+    {"id":"real-six-mixed","name":"hidden: several candidate prefix endpoints","kind":"real","visible":false,"input":{"stones":[3,-5,2,7,-4,1]},"expected":4,"tags":["multiple-choices"]},
+    {"id":"real-large-magnitudes","name":"hidden: prefix totals can exceed individual bounds","kind":"real","visible":false,"input":{"stones":[10000,10000,-10000,10000]},"expected":20000,"tags":["large-values","prefix-sum"]}
+  ]
+}

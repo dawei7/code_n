@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1953",
+  "cases": [
+    {"id":"example-all-fit","name":"sample: balanced projects schedule every milestone","kind":"sample","visible":true,"input":{"milestones":[1,2,3]},"expected":6,"tags":["sample","all-scheduled"]},
+    {"id":"example-one-leftover","name":"sample: dominant project leaves one milestone unused","kind":"sample","visible":true,"input":{"milestones":[5,2,1]},"expected":7,"tags":["sample","dominant-project"]},
+    {"id":"trial-single-project","name":"one project permits only one working week","kind":"trial","visible":true,"input":{"milestones":[10]},"expected":1,"tags":["single-project","dominant-project"]},
+    {"id":"trial-two-equal-projects","name":"two equal projects alternate until both finish","kind":"trial","visible":true,"input":{"milestones":[4,4]},"expected":8,"tags":["two-projects","balanced"]},
+    {"id":"trial-dominant-project","name":"large imbalance uses one more dominant than other milestones","kind":"trial","visible":true,"input":{"milestones":[10,1,1]},"expected":5,"tags":["dominant-project"]},
+    {"id":"trial-boundary-rest-plus-one","name":"largest count exactly one above the rest still fully schedules","kind":"trial","visible":true,"input":{"milestones":[5,2,2]},"expected":9,"tags":["boundary","all-scheduled"]},
+    {"id":"real-equal-largest-counts","name":"hidden: tied largest projects prevent dominance","kind":"real","visible":false,"input":{"milestones":[7,7,1]},"expected":15,"tags":["tied-largest","all-scheduled"]},
+    {"id":"real-many-small-projects","name":"hidden: many small projects collectively separate the largest","kind":"real","visible":false,"input":{"milestones":[6,1,1,1,1,1]},"expected":11,"tags":["boundary","many-projects"]},
+    {"id":"real-large-counts","name":"hidden: large totals require a wide integer result","kind":"real","visible":false,"input":{"milestones":[1000000000,1000000000]},"expected":2000000000,"tags":["value-boundary","wide-result"]},
+    {"id":"real-extreme-imbalance","name":"hidden: one huge project is limited by two separators","kind":"real","visible":false,"input":{"milestones":[1000000000,1,1]},"expected":5,"tags":["value-boundary","dominant-project"]}
+  ]
+}

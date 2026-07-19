@@ -272,6 +272,7 @@ class ProgressOut(BaseModel):
     milestones: list[str] = Field(default_factory=list)
     gemini_api_key: str = ""
     active_set: str = "leetcode"
+    active_custom_set_id: str = ""
     sidebar_width: int = 256
     sidebar_position: str = "left"
     sidebar_collapsed: bool = False
@@ -301,6 +302,7 @@ class ProgressUpdate(BaseModel):
     pane_sizes: Optional[dict[str, float]] = None
     accent_colors: Optional[dict[str, str]] = None
     active_set: Optional[str] = None
+    active_custom_set_id: Optional[str] = Field(default=None, max_length=160)
 
 
 class ProgressResetRequest(BaseModel):

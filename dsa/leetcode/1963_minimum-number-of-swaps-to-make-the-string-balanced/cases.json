@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1963",
+  "cases": [
+    {"id":"example-one-swap","name":"sample: one arbitrary swap balances four brackets","kind":"sample","visible":true,"input":{"s":"][]["},"expected":1,"tags":["sample","one-swap"]},
+    {"id":"example-two-swaps","name":"sample: deficit of three needs two swaps","kind":"sample","visible":true,"input":{"s":"]]][[["},"expected":2,"tags":["sample","two-swaps"]},
+    {"id":"example-balanced-pair","name":"sample: smallest balanced string","kind":"sample","visible":true,"input":{"s":"[]"},"expected":0,"tags":["sample","balanced"]},
+    {"id":"trial-reversed-pair","name":"reversed pair needs one swap","kind":"trial","visible":true,"input":{"s":"]["},"expected":1,"tags":["minimum","one-swap"]},
+    {"id":"trial-nested-balanced","name":"nested brackets already satisfy every prefix","kind":"trial","visible":true,"input":{"s":"[[[]]]"},"expected":0,"tags":["balanced","nested"]},
+    {"id":"trial-late-deficit","name":"prefix becomes negative after an initial pair","kind":"trial","visible":true,"input":{"s":"[]][[]"},"expected":1,"tags":["late-deficit","one-swap"]},
+    {"id":"real-deficit-two","name":"hidden: deficit of two still needs one swap","kind":"real","visible":false,"input":{"s":"]][["},"expected":1,"tags":["deficit-two","one-swap"]},
+    {"id":"real-deficit-four","name":"hidden: four leading closings need two swaps","kind":"real","visible":false,"input":{"s":"]]]][[[["},"expected":2,"tags":["deficit-four","two-swaps"]},
+    {"id":"real-multiple-balanced-blocks","name":"hidden: concatenated balanced blocks need no swap","kind":"real","visible":false,"input":{"s":"[[]][][[]]"},"expected":0,"tags":["balanced","concatenation"]},
+    {"id":"real-interleaved-deficit","name":"hidden: later balanced pairs do not deepen the initial deficit","kind":"real","visible":false,"input":{"s":"]][][][["},"expected":1,"tags":["interleaved","one-swap"]}
+  ]
+}

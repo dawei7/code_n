@@ -7,8 +7,12 @@ import type {
   CustomProblemTreeNode,
 } from '../types/api';
 import { challengesForAlgorithmSet, getAlgorithmSetLabel } from '../lib/algorithmSets';
-import { collectCustomChallengeIds } from '../lib/customProblemSets';
-import { buildUnlockedCareerSequence, resolveCareerSequenceOrder } from '../lib/careerUnlocks';
+import { collectSetChallengeIds } from '../lib/customProblemSets';
+import {
+  buildCustomCareerUnlockMap,
+  buildUnlockedCareerSequence,
+  resolveCareerSequenceOrder,
+} from '../lib/careerUnlocks';
 import {
   calculateDirectEloAverage,
   calculateDirectFrequencyAverage,
@@ -191,6 +195,7 @@ type NavigationGroup = {
   orderedItems?: NavigationItem[];
   emptyMessage?: string;
   order?: number;
+  careerMode?: boolean;
 };
 
 type NavigationItem =
@@ -477,39 +482,60 @@ function progressHeading(
   submitted: Set<string>,
   eloAverage: EloAverage | null,
   frequencyAverage: FrequencyAverage | null,
-  countClassName = "ml-1 text-coden-muted",
+  careerMode = false,
 ) {
   const solved = isFullySolved(challenges, completed);
   const started = !solved && solvedCount(challenges, completed) > 0;
+  const solvedProgress = progressLabel(challenges, completed);
+  const submittedProgress = submissionProgressLabel(challenges, submitted);
   return (
-    <span className="inline-flex min-w-0 items-center gap-1">
-      {solved && <span className="shrink-0 text-green-400 font-bold" title="Completed">✓</span>}
-      {started && (
-        <span
-          className="h-2.5 w-2.5 shrink-0 rounded-full border border-green-400"
-          title="Started"
-        />
-      )}
-      <span className="truncate">{label}</span>
-      <span className={countClassName}>({progressLabel(challenges, completed)}</span>
-      <span className="text-coden-accent opacity-80">· LC {submissionProgressLabel(challenges, submitted)})</span>
-      {eloAverage !== null && (
-        <span
-          className="shrink-0 font-mono"
-          style={{ color: eloHeatColor(eloAverage.value) }}
-          title={eloAverageTitle(eloAverage)}
-        >
-          · Avg Elo{eloAverage.estimatedCount > 0 ? ' ~' : ' '}{Math.round(eloAverage.value)}
+    <span className="flex min-w-0 flex-1 flex-col items-start text-left">
+      <span className="flex w-full min-w-0 items-center gap-1">
+        {solved && <span className="shrink-0 text-green-400 font-bold" title="Completed">✓</span>}
+        {started && (
+          <span
+            className="h-2.5 w-2.5 shrink-0 rounded-full border border-green-400"
+            title="Started"
+          />
+        )}
+        <span className="min-w-0 truncate">{label}</span>
+        <span className="shrink-0 font-mono text-[10px] font-normal text-coden-muted">
+          · {solvedProgress} solved
         </span>
-      )}
-      {frequencyAverage !== null && (
-        <span
-          className="shrink-0 font-mono text-coden-accent"
-          title={frequencyAverageTitle(frequencyAverage)}
-        >
-          · Avg Freq {frequencyAverage.value.toFixed(1)}%
+        <span className="shrink-0 font-mono text-[10px] font-normal text-coden-accent opacity-80">
+          · LC {submittedProgress}
         </span>
-      )}
+        {careerMode && (
+          <span className="shrink-0 rounded border border-coden-accent/40 px-1 py-0.5 font-mono text-[9px] text-coden-accent">
+            Career
+          </span>
+        )}
+      </span>
+      <span className="mt-0.5 flex min-h-4 items-center gap-1 pl-4 font-mono text-[10px] font-normal">
+        {eloAverage !== null && (
+          <span
+            className="shrink-0"
+            style={{ color: eloHeatColor(eloAverage.value) }}
+            title={eloAverageTitle(eloAverage)}
+          >
+            Avg Elo{eloAverage.estimatedCount > 0 ? ' ~' : ' '}{Math.round(eloAverage.value)}
+          </span>
+        )}
+        {eloAverage !== null && frequencyAverage !== null && (
+          <span className="text-coden-muted opacity-60" aria-hidden="true">·</span>
+        )}
+        {frequencyAverage !== null && (
+          <span
+            className="shrink-0 text-coden-accent"
+            title={frequencyAverageTitle(frequencyAverage)}
+          >
+            Avg Freq {frequencyAverage.value.toFixed(1)}%
+          </span>
+        )}
+        {eloAverage === null && frequencyAverage === null && (
+          <span className="text-coden-muted">Average metrics unavailable</span>
+        )}
+      </span>
     </span>
   );
 }
@@ -694,6 +720,7 @@ function buildCustomGroups(
       challenges: converted.challenges,
       children: converted.children,
       orderedItems: converted.orderedItems,
+      careerMode: set.career_mode,
       emptyMessage: isEmpty
         ? 'No problems in this set match the current filters. Open the builder to add or organize problems.'
         : undefined,
@@ -895,7 +922,18 @@ function buildCareerUnlockMap(
   challenges: ChallengeSummary[],
   activeSet: string,
   completed: Set<string>,
+  customSets: CustomProblemSet[] = [],
 ): Map<string, Set<string>> {
+  if (activeSet === 'custom') {
+    const challengeOrder = new Map(
+      challenges.map((challenge) => [challenge.id, leetcodeProblemOrder(challenge)]),
+    );
+    return buildCustomCareerUnlockMap(
+      customSets,
+      completed,
+      (challengeId) => challengeOrder.get(challengeId) ?? Number.MAX_SAFE_INTEGER,
+    );
+  }
   if (activeSet !== 'leetcode_studyplan' && activeSet !== 'neetcode') {
     return new Map();
   }
@@ -961,10 +999,16 @@ function buildNavigationGroups(
     return buildCompanyGroups(challenges);
   }
   if (activeSet === 'leetcode_studyplan') {
-    return buildStudyPlanGroups(challenges);
+    return buildStudyPlanGroups(challenges).map((group) => ({
+      ...group,
+      careerMode: true,
+    }));
   }
   if (activeSet === 'neetcode') {
-    return buildNeetcodeGroups(challenges);
+    return buildNeetcodeGroups(challenges).map((group) => ({
+      ...group,
+      careerMode: true,
+    }));
   }
   if (activeSet === 'algomaster') {
     return buildAlgomasterGroups(challenges);
@@ -1664,6 +1708,7 @@ export function ChallengeList() {
   const completed = useAppStore((s) => s.progress?.completed ?? []);
   const leetcodeSubmissions = useAppStore((s) => s.progress?.leetcode_submissions ?? {});
   const activeSet = useAppStore((s) => s.activeSet);
+  const activeCustomSetId = useAppStore((s) => s.activeCustomSetId);
   const language = useAppStore((s) => s.language);
   const customProblemSets = useAppStore((s) => s.customProblemSets);
   const customProblemSetsLoading = useAppStore((s) => s.customProblemSetsLoading);
@@ -1684,6 +1729,14 @@ export function ChallengeList() {
   const [showCustomBuilder, setShowCustomBuilder] = useState(false);
   const completedSet = useMemo(() => new Set(completed), [completed]);
   const submittedSet = useMemo(() => new Set(Object.keys(leetcodeSubmissions)), [leetcodeSubmissions]);
+  const activeCustomProblemSets = useMemo(() => {
+    if (activeSet !== 'custom') return customProblemSets;
+    const selected = customProblemSets.find((set) => set.id === activeCustomSetId);
+    return selected ? [selected] : [];
+  }, [activeCustomSetId, activeSet, customProblemSets]);
+  const activeSetLabel = activeSet === 'custom'
+    ? activeCustomProblemSets[0]?.name || 'Personal'
+    : getAlgorithmSetLabel(activeSet);
 
   const toggleCategory = (category: string) => {
     setExpanded((prev) => ({ ...prev, [category]: !prev[category] }));
@@ -1693,10 +1746,12 @@ export function ChallengeList() {
   const activeSetChallenges = useMemo(
     () => {
       if (activeSet !== 'custom') return challengesForAlgorithmSet(challenges, activeSet);
-      const customIds = collectCustomChallengeIds(customProblemSets);
+      const selectedSet = activeCustomProblemSets[0];
+      if (!selectedSet) return [];
+      const customIds = collectSetChallengeIds(selectedSet);
       return challenges.filter((challenge) => customIds.has(challenge.id));
     },
-    [challenges, activeSet, customProblemSets],
+    [challenges, activeSet, activeCustomProblemSets],
   );
 
   const filteredChallenges = useMemo(() => {
@@ -1751,8 +1806,8 @@ export function ChallengeList() {
   );
 
   const navigationGroups = useMemo(
-    () => buildNavigationGroups(filteredChallenges, activeSet, customProblemSets),
-    [filteredChallenges, activeSet, customProblemSets],
+    () => buildNavigationGroups(filteredChallenges, activeSet, activeCustomProblemSets),
+    [filteredChallenges, activeSet, activeCustomProblemSets],
   );
 
   const shownChallengesForPdf = useMemo(
@@ -1766,17 +1821,17 @@ export function ChallengeList() {
   );
 
   const careerUnlocks = useMemo(
-    () => buildCareerUnlockMap(challenges, activeSet, completedSet),
-    [challenges, activeSet, completedSet],
+    () => buildCareerUnlockMap(challenges, activeSet, completedSet, activeCustomProblemSets),
+    [challenges, activeSet, completedSet, activeCustomProblemSets],
   );
 
   const challengeNumbers = useMemo(
     () => buildChallengeNumberMap(
-      buildNavigationGroups(activeSetChallenges, activeSet, customProblemSets),
+      buildNavigationGroups(activeSetChallenges, activeSet, activeCustomProblemSets),
       activeSetChallenges,
       activeSet,
     ),
-    [activeSetChallenges, activeSet, customProblemSets],
+    [activeSetChallenges, activeSet, activeCustomProblemSets],
   );
 
   const numberForChallenge = (challenge: ChallengeSummary, categoryContext?: string) => {
@@ -2211,8 +2266,13 @@ export function ChallengeList() {
           <div className="flex items-center gap-1">
             <button
               onClick={() => toggleCategory(group.id)}
-              className="flex-1 min-w-0 flex items-center justify-between px-2 py-1.5 text-xs leading-5 text-coden-muted font-semibold hover:text-coden-text transition-colors group select-none"
+              className="group flex min-w-0 flex-1 items-start rounded px-2 py-1.5 text-xs font-semibold text-coden-muted transition-colors hover:bg-coden-border/35 hover:text-coden-text select-none"
             >
+              <span
+                className="mr-1 mt-0.5 shrink-0 transform text-[10px] transition-transform duration-200 group-hover:text-coden-accent"
+              >
+                {isCollapsed ? '>' : 'v'}
+              </span>
               {progressHeading(
                 group.label,
                 groupChallenges,
@@ -2220,13 +2280,8 @@ export function ChallengeList() {
                 submittedSet,
                 groupEloAverage,
                 groupFrequencyAverage,
-                "ml-1 opacity-60",
+                group.careerMode,
               )}
-              <span
-                className="transform transition-transform duration-200 group-hover:text-coden-accent text-[10px]"
-              >
-                {isCollapsed ? '>' : 'v'}
-              </span>
             </button>
             {groupEntries.length > 0 && (
               <>
@@ -2246,7 +2301,7 @@ export function ChallengeList() {
                   ariaLabel={`Save ${group.label} PDF`}
                   onSelect={(includeSolution) => void handlePdfBundle(
                     collectGroupChallengesInSetOrder(group),
-                    `${getAlgorithmSetLabel(activeSet)} - ${path.join(' - ')}`,
+                    `${activeSetLabel} - ${path.join(' - ')}`,
                     [pdfTocGroup(group)],
                     includeSolution,
                   )}
@@ -2390,7 +2445,7 @@ export function ChallengeList() {
             label="all"
             onSelect={(includeSolution) => void handlePdfBundle(
               shownChallengesForPdf,
-              `${getAlgorithmSetLabel(activeSet)} - currently shown`,
+              `${activeSetLabel} - currently shown`,
               shownTocForPdf,
               includeSolution,
             )}
@@ -2405,7 +2460,7 @@ export function ChallengeList() {
             onSelect={(scope) => requestProgressReset(
               scope,
               shownChallengesForPdf,
-              `${getAlgorithmSetLabel(activeSet)} - currently shown`,
+              `${activeSetLabel} - currently shown`,
             )}
           />
         </div>

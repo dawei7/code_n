@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2033",
+  "cases": [
+    {
+      "id": "sample-even-grid",
+      "name": "sample: target the lower median",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[2, 4], [6, 8]], "x": 2},
+      "expected": 4,
+      "tags": ["sample", "median"]
+    },
+    {
+      "id": "sample-unit-step",
+      "name": "sample: unit steps make every value reachable",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1, 5], [2, 3]], "x": 1},
+      "expected": 5,
+      "tags": ["sample", "unit-step"]
+    },
+    {
+      "id": "sample-incompatible-remainders",
+      "name": "sample: mixed parity prevents a common value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1, 2], [3, 4]], "x": 2},
+      "expected": -1,
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "one cell is already a uni-value grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[7]], "x": 4},
+      "expected": 0,
+      "tags": ["minimum-grid"]
+    },
+    {
+      "id": "trial-odd-count",
+      "name": "the unique median minimizes three values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 3, 5]], "x": 2},
+      "expected": 2,
+      "tags": ["odd-count", "median"]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: equal cells need no operations",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[2, 2], [2, 2]], "x": 3},
+      "expected": 0,
+      "tags": ["hidden", "all-equal"]
+    },
+    {
+      "id": "real-large-step",
+      "name": "hidden: domain endpoints differ by one large step",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 10000]], "x": 9999},
+      "expected": 1,
+      "tags": ["hidden", "value-boundary"]
+    },
+    {
+      "id": "real-rectangular-grid",
+      "name": "hidden: flattening preserves all rectangular cells",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[2, 6, 10], [14, 18, 22]], "x": 4},
+      "expected": 9,
+      "tags": ["hidden", "rectangular", "even-count"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1953",
+  "frontend_id": "1825",
+  "title_slug": "finding-mk-average",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "MKAverage",
+  "verified_submission_id": "2071639951",
+  "verified_at": "2026-07-18T00:50:17.575340+00:00"
+}

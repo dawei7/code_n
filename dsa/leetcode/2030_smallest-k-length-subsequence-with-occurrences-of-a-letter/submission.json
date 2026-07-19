@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2157",
+  "frontend_id": "2030",
+  "title_slug": "smallest-k-length-subsequence-with-occurrences-of-a-letter",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.smallestSubsequence",
+  "verified_submission_id": "2072856534",
+  "verified_at": "2026-07-19T00:25:21.437729+00:00"
+}

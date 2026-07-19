@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1847",
+  "cases": [
+    {"id":"example-basic-eligibility","name":"sample: exact match no eligible room and left candidate","kind":"sample","visible":true,"input":{"args":[[[2,2],[1,2],[3,2]],[[3,1],[3,3],[5,2]]]},"expected":[3,-1,3],"validator":{"kind":"exact"},"tags":["example","no-eligible"]},
+    {"id":"example-tie-by-smaller-id","name":"sample: size filters create an equidistant tie","kind":"sample","visible":true,"input":{"args":[[[1,4],[2,3],[3,5],[4,1]],[[2,3],[2,4],[2,5]]]},"expected":[2,1,3],"validator":{"kind":"exact"},"tags":["example","tie-break"]},
+    {"id":"trial-single-room","name":"one room may qualify for one query but not another","kind":"trial","visible":true,"input":{"args":[[[10,2]],[[5,1],[20,3]]]},"expected":[10,-1],"validator":{"kind":"exact"},"tags":["single-room","threshold"]},
+    {"id":"trial-symmetric-tie","name":"symmetric eligible IDs choose the smaller one","kind":"trial","visible":true,"input":{"args":[[[1,5],[5,5]],[[3,5]]]},"expected":[1],"validator":{"kind":"exact"},"tags":["tie-break","smaller-id"]},
+    {"id":"real-exact-preferred","name":"hidden: an eligible preferred ID has zero distance","kind":"real","visible":false,"input":{"args":[[[4,7],[8,9],[12,3]],[[8,8]]]},"expected":[8],"validator":{"kind":"exact"},"tags":["exact-match"]},
+    {"id":"real-exact-ineligible","name":"hidden: an undersized exact ID is ignored","kind":"real","visible":false,"input":{"args":[[[4,3],[8,10]],[[4,5]]]},"expected":[8],"validator":{"kind":"exact"},"tags":["size-filter","exact-ineligible"]},
+    {"id":"real-threshold-equality","name":"hidden: size equal to the minimum qualifies","kind":"real","visible":false,"input":{"args":[[[2,6],[9,5]],[[8,5]]]},"expected":[9],"validator":{"kind":"exact"},"tags":["threshold-equality"]},
+    {"id":"real-right-candidate-closer","name":"hidden: successor can beat the predecessor","kind":"real","visible":false,"input":{"args":[[[2,5],[10,5]],[[7,5]]]},"expected":[10],"validator":{"kind":"exact"},"tags":["successor","distance"]},
+    {"id":"real-preferred-outside-range","name":"hidden: queries outside the ID range use one-sided candidates","kind":"real","visible":false,"input":{"args":[[[20,4],[40,4]],[[1,1],[100,1]]]},"expected":[20,40],"validator":{"kind":"exact"},"tags":["one-sided","range"]},
+    {"id":"real-original-query-order","name":"hidden: offline processing restores input order","kind":"real","visible":false,"input":{"args":[[[1,10],[5,5],[9,1]],[[8,1],[2,10],[5,6],[6,5]]]},"expected":[9,1,1,5],"validator":{"kind":"exact"},"tags":["query-order","varying-thresholds"]}
+  ]
+}

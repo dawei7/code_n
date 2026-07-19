@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1818",
+  "measurement_note": "Size is n, the common array length. Every source value is 1 and every target is 100000, so all replacement candidates must be considered to establish that no improvement exists. Sorting plus binary search takes O(n log n); a correct implementation that scans all source values for each target takes O(n^2), completes all tiers, and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 maximum differences",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums1": [1,1,1,1,1,1,1,1],
+        "nums2": [100000,100000,100000,100000,100000,100000,100000,100000]
+      },
+      "expected": 799992,
+      "tags": ["benchmark","scale-small","no-improvement"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 maximum differences",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "nums1": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "nums2": [100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000]
+      },
+      "expected": 3199968,
+      "tags": ["benchmark","scale-medium","no-improvement"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 maximum differences",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "nums1": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "nums2": [100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000,100000]
+      },
+      "expected": 6399936,
+      "tags": ["benchmark","scale-large","no-improvement"]
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2101",
+  "measurement_note": "Size is n, the number of bombs. All bombs share one center, producing the dense directed graph and making every start reach all n bombs. Building edges and exploring from every start exercises the O(n^3) worst case. A correct implementation that performs n full edge-relaxation passes separately for every start completes all tiers and fails only by O(n^4) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 co-located bombs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "bombs": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "dense-graph"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 co-located bombs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "bombs": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "dense-graph"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 co-located bombs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "bombs": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "dense-graph"
+      ]
+    }
+  ]
+}

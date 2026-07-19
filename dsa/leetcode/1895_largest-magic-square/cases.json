@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1895",
+  "cases": [
+    {"id":"example-three-by-three","name":"sample: the largest magic square is an interior three by three region","kind":"sample","visible":true,"input":{"grid":[[7,1,4,5,6],[2,5,1,6,4],[1,5,4,3,2],[1,2,7,3,4]]},"expected":3,"tags":["sample","interior-square"]},
+    {"id":"example-two-by-two","name":"sample: repeated values form a two by two magic square","kind":"sample","visible":true,"input":{"grid":[[5,1,3,1],[9,3,3,1],[1,3,3,8]]},"expected":2,"tags":["sample","repeated-values"]},
+    {"id":"trial-single-cell","name":"a single cell is always a magic square","kind":"trial","visible":true,"input":{"grid":[[1000000]]},"expected":1,"tags":["single-cell","maximum-value"]},
+    {"id":"trial-classic-three","name":"the classic three by three arrangement is magic","kind":"trial","visible":true,"input":{"grid":[[8,1,6],[3,5,7],[4,9,2]]},"expected":3,"tags":["whole-grid","three-by-three"]},
+    {"id":"real-one-row","name":"hidden: a one-row grid has no square larger than one","kind":"real","visible":false,"input":{"grid":[[2,7,1,8,2]]},"expected":1,"tags":["one-row","rectangular"]},
+    {"id":"real-one-column","name":"hidden: a one-column grid has no square larger than one","kind":"real","visible":false,"input":{"grid":[[2],[7],[1],[8],[2]]},"expected":1,"tags":["one-column","rectangular"]},
+    {"id":"real-uniform-rectangle","name":"hidden: a uniform rectangle contains a maximum-side magic square","kind":"real","visible":false,"input":{"grid":[[6,6,6,6],[6,6,6,6],[6,6,6,6]]},"expected":3,"tags":["uniform","non-distinct","rectangular"]},
+    {"id":"real-checkerboard","name":"hidden: balanced rows and columns do not compensate for unequal diagonals","kind":"real","visible":false,"input":{"grid":[[1,2,1,2],[2,1,2,1],[1,2,1,2],[2,1,2,1]]},"expected":1,"tags":["diagonal-trap","checkerboard"]},
+    {"id":"real-only-two","name":"hidden: the only nontrivial magic square is a uniform two by two corner","kind":"real","visible":false,"input":{"grid":[[1,1,9,8],[1,1,7,6],[5,4,3,2],[9,8,7,6]]},"expected":2,"tags":["two-by-two","corner"]},
+    {"id":"real-embedded-classic","name":"hidden: a three by three magic square is embedded in a larger noisy grid","kind":"real","visible":false,"input":{"grid":[[20,21,22,23,24],[19,8,1,6,18],[17,3,5,7,16],[15,4,9,2,14],[13,12,11,10,9]]},"expected":3,"tags":["embedded-square","noise"]},
+    {"id":"real-equal-diagonals-only","name":"hidden: matching diagonal sums alone do not make the square magic","kind":"real","visible":false,"input":{"grid":[[1,9,1],[4,5,6],[9,1,9]]},"expected":1,"tags":["row-column-trap","diagonals"]}
+  ]
+}

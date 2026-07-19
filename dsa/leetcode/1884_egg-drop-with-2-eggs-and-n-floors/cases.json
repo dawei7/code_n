@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1884",
+  "cases": [
+    {"id":"example-two-floors","name":"sample: two floors require two moves","kind":"sample","visible":true,"input":{"n":2},"expected":2,"tags":["sample","small"]},
+    {"id":"example-hundred-floors","name":"sample: fourteen moves cover one hundred floors","kind":"sample","visible":true,"input":{"n":100},"expected":14,"tags":["sample","triangular-capacity"]},
+    {"id":"trial-one-floor","name":"one floor needs one drop","kind":"trial","visible":true,"input":{"n":1},"expected":1,"tags":["minimum","single-floor"]},
+    {"id":"trial-three-floors","name":"two moves exactly cover three floors","kind":"trial","visible":true,"input":{"n":3},"expected":2,"tags":["triangular-boundary"]},
+    {"id":"real-above-three","name":"hidden: one floor above a triangular boundary needs another move","kind":"real","visible":false,"input":{"n":4},"expected":3,"tags":["boundary-plus-one"]},
+    {"id":"real-six","name":"hidden: three moves exactly cover six floors","kind":"real","visible":false,"input":{"n":6},"expected":3,"tags":["triangular-boundary"]},
+    {"id":"real-seven","name":"hidden: seven floors exceed three-move capacity","kind":"real","visible":false,"input":{"n":7},"expected":4,"tags":["boundary-plus-one"]},
+    {"id":"real-ten","name":"hidden: four moves exactly cover ten floors","kind":"real","visible":false,"input":{"n":10},"expected":4,"tags":["triangular-boundary"]},
+    {"id":"real-eleven","name":"hidden: eleven floors require five moves","kind":"real","visible":false,"input":{"n":11},"expected":5,"tags":["boundary-plus-one"]},
+    {"id":"real-near-maximum-boundary","name":"hidden: forty-four moves cover nine hundred ninety floors","kind":"real","visible":false,"input":{"n":990},"expected":44,"tags":["large","triangular-boundary"]},
+    {"id":"real-maximum","name":"hidden: the maximum input exceeds forty-four-move capacity","kind":"real","visible":false,"input":{"n":1000},"expected":45,"tags":["maximum","boundary-plus-one"]}
+  ]
+}

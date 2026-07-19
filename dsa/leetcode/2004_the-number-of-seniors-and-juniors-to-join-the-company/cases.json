@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2004",
+  "cases": [
+    {
+      "id": "sample-seniors-then-juniors",
+      "name": "sample: remaining budget hires two juniors",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Candidates": [
+        {"employee_id": 1, "experience": "Junior", "salary": 10000},
+        {"employee_id": 9, "experience": "Junior", "salary": 10000},
+        {"employee_id": 2, "experience": "Senior", "salary": 20000},
+        {"employee_id": 11, "experience": "Senior", "salary": 20000},
+        {"employee_id": 13, "experience": "Senior", "salary": 50000},
+        {"employee_id": 4, "experience": "Junior", "salary": 40000}
+      ]}},
+      "expected": {"columns": ["experience", "accepted_candidates"], "rows": [["Senior", 2], ["Junior", 2]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-no-affordable-senior",
+      "name": "sample: full budget passes to juniors",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Candidates": [
+        {"employee_id": 1, "experience": "Junior", "salary": 10000},
+        {"employee_id": 9, "experience": "Junior", "salary": 10000},
+        {"employee_id": 2, "experience": "Senior", "salary": 80000},
+        {"employee_id": 11, "experience": "Senior", "salary": 80000},
+        {"employee_id": 13, "experience": "Senior", "salary": 80000},
+        {"employee_id": 4, "experience": "Junior", "salary": 40000}
+      ]}},
+      "expected": {"columns": ["experience", "accepted_candidates"], "rows": [["Senior", 0], ["Junior", 3]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["sample", "zero-seniors"]
+    },
+    {
+      "id": "trial-exact-senior-budget",
+      "name": "seniors consume the budget exactly",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Candidates": [
+        {"employee_id": 1, "experience": "Senior", "salary": 30000},
+        {"employee_id": 2, "experience": "Senior", "salary": 40000},
+        {"employee_id": 3, "experience": "Junior", "salary": 1}
+      ]}},
+      "expected": {"columns": ["experience", "accepted_candidates"], "rows": [["Senior", 2], ["Junior", 0]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["exact-budget", "zero-juniors"]
+    },
+    {
+      "id": "trial-only-juniors",
+      "name": "only the cheapest junior prefix fits",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Candidates": [
+        {"employee_id": 1, "experience": "Junior", "salary": 30000},
+        {"employee_id": 2, "experience": "Junior", "salary": 30000},
+        {"employee_id": 3, "experience": "Junior", "salary": 30000}
+      ]}},
+      "expected": {"columns": ["experience", "accepted_candidates"], "rows": [["Senior", 0], ["Junior", 2]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["only-juniors", "prefix"]
+    },
+    {
+      "id": "real-priority-over-total-count",
+      "name": "hidden: senior priority reduces the possible junior count",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Candidates": [
+        {"employee_id": 1, "experience": "Senior", "salary": 60000},
+        {"employee_id": 2, "experience": "Junior", "salary": 10000},
+        {"employee_id": 3, "experience": "Junior", "salary": 10000},
+        {"employee_id": 4, "experience": "Junior", "salary": 10000},
+        {"employee_id": 5, "experience": "Junior", "salary": 10000},
+        {"employee_id": 6, "experience": "Junior", "salary": 10000},
+        {"employee_id": 7, "experience": "Junior", "salary": 10000},
+        {"employee_id": 8, "experience": "Junior", "salary": 10000}
+      ]}},
+      "expected": {"columns": ["experience", "accepted_candidates"], "rows": [["Senior", 1], ["Junior", 1]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "priority"]
+    },
+    {
+      "id": "real-cheapest-not-input-order",
+      "name": "hidden: salary ordering determines the affordable prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Candidates": [
+        {"employee_id": 10, "experience": "Senior", "salary": 50000},
+        {"employee_id": 20, "experience": "Senior", "salary": 10000},
+        {"employee_id": 30, "experience": "Senior", "salary": 20000},
+        {"employee_id": 40, "experience": "Junior", "salary": 40000},
+        {"employee_id": 50, "experience": "Junior", "salary": 10000},
+        {"employee_id": 60, "experience": "Junior", "salary": 10000}
+      ]}},
+      "expected": {"columns": ["experience", "accepted_candidates"], "rows": [["Senior", 2], ["Junior", 2]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "ordering"]
+    },
+    {
+      "id": "real-equal-salary-ties",
+      "name": "hidden: equal salaries still produce the correct count",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Candidates": [
+        {"employee_id": 9, "experience": "Senior", "salary": 20000},
+        {"employee_id": 3, "experience": "Senior", "salary": 20000},
+        {"employee_id": 5, "experience": "Senior", "salary": 20000},
+        {"employee_id": 7, "experience": "Senior", "salary": 20000},
+        {"employee_id": 11, "experience": "Junior", "salary": 10000}
+      ]}},
+      "expected": {"columns": ["experience", "accepted_candidates"], "rows": [["Senior", 3], ["Junior", 1]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "ties"]
+    }
+  ]
+}

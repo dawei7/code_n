@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1988",
+  "cases": [
+    {
+      "id": "example-public",
+      "name": "sample: capacities select tied, unique, and missing cutoffs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "Schools": [{"school_id":11,"capacity":151},{"school_id":5,"capacity":48},{"school_id":9,"capacity":9},{"school_id":10,"capacity":99}],
+        "Exam": [{"score":975,"student_count":10},{"score":966,"student_count":60},{"score":844,"student_count":76},{"score":749,"student_count":76},{"score":744,"student_count":100}]
+      }},
+      "expected": {"columns":["school_id","score"],"rows":[[5,975],[9,-1],[10,749],[11,744]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["sample","mixed","tie"]
+    },
+    {
+      "id": "trial-exact-capacity",
+      "name": "student count equal to capacity is feasible",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Schools":[{"school_id":1,"capacity":10}],"Exam":[{"score":900,"student_count":10},{"score":800,"student_count":20}]}},
+      "expected": {"columns":["school_id","score"],"rows":[[1,900]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["capacity-boundary"]
+    },
+    {
+      "id": "trial-no-feasible-score",
+      "name": "capacity below every recorded population returns minus one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Schools":[{"school_id":1,"capacity":4}],"Exam":[{"score":900,"student_count":5},{"score":800,"student_count":8}]}},
+      "expected": {"columns":["school_id","score"],"rows":[[1,-1]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["no-match"]
+    },
+    {
+      "id": "trial-all-feasible",
+      "name": "large capacity chooses the globally smallest score",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Schools":[{"school_id":2,"capacity":100}],"Exam":[{"score":900,"student_count":5},{"score":700,"student_count":50},{"score":500,"student_count":100}]}},
+      "expected": {"columns":["school_id","score"],"rows":[[2,500]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["all-feasible","minimum-score"]
+    },
+    {
+      "id": "trial-tied-population",
+      "name": "equal qualifying populations use the smaller score",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Schools":[{"school_id":3,"capacity":20}],"Exam":[{"score":950,"student_count":10},{"score":900,"student_count":10},{"score":850,"student_count":30}]}},
+      "expected": {"columns":["school_id","score"],"rows":[[3,900]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["tie","minimum-score"]
+    },
+    {
+      "id": "trial-several-schools",
+      "name": "each capacity is evaluated independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Schools":[{"school_id":1,"capacity":5},{"school_id":2,"capacity":10},{"school_id":3,"capacity":30}],"Exam":[{"score":1000,"student_count":6},{"score":900,"student_count":10},{"score":800,"student_count":25}]}},
+      "expected": {"columns":["school_id","score"],"rows":[[1,-1],[2,900],[3,800]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["multiple-schools"]
+    },
+    {
+      "id": "real-score-order-not-input-order",
+      "name": "hidden: physical exam-row order is irrelevant",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Schools":[{"school_id":7,"capacity":40}],"Exam":[{"score":600,"student_count":40},{"score":900,"student_count":5},{"score":700,"student_count":30},{"score":800,"student_count":20}]}},
+      "expected": {"columns":["school_id","score"],"rows":[[7,600]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["unordered-input"]
+    },
+    {
+      "id": "real-capacity-between-levels",
+      "name": "hidden: capacity between populations selects next cutoff",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Schools":[{"school_id":8,"capacity":24}],"Exam":[{"score":100,"student_count":50},{"score":200,"student_count":25},{"score":300,"student_count":20},{"score":400,"student_count":10}]}},
+      "expected": {"columns":["school_id","score"],"rows":[[8,300]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["capacity-gap"]
+    },
+    {
+      "id": "real-duplicate-capacities",
+      "name": "hidden: schools with equal capacities each receive a row",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Schools":[{"school_id":20,"capacity":15},{"school_id":10,"capacity":15}],"Exam":[{"score":500,"student_count":15},{"score":400,"student_count":16}]}},
+      "expected": {"columns":["school_id","score"],"rows":[[10,500],[20,500]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["duplicate-capacity","multiple-schools"]
+    },
+    {
+      "id": "real-one-exam-row",
+      "name": "hidden: one exam row can qualify some schools only",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Schools":[{"school_id":1,"capacity":9},{"school_id":2,"capacity":10},{"school_id":3,"capacity":11}],"Exam":[{"score":777,"student_count":10}]}},
+      "expected": {"columns":["school_id","score"],"rows":[[1,-1],[2,777],[3,777]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["single-exam-row","mixed"]
+    }
+  ]
+}

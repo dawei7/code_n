@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2056",
+  "cases": [
+    {
+      "id": "sample-corner-rook",
+      "name": "sample: corner rook destinations",
+      "kind": "sample",
+      "visible": true,
+      "input": {"pieces": ["rook"], "positions": [[1,1]]},
+      "expected": 15,
+      "tags": ["sample", "rook", "corner"]
+    },
+    {
+      "id": "sample-corner-queen",
+      "name": "sample: corner queen destinations",
+      "kind": "sample",
+      "visible": true,
+      "input": {"pieces": ["queen"], "positions": [[1,1]]},
+      "expected": 22,
+      "tags": ["sample", "queen", "corner"]
+    },
+    {
+      "id": "sample-bishop",
+      "name": "sample: bishop destinations from an interior square",
+      "kind": "sample",
+      "visible": true,
+      "input": {"pieces": ["bishop"], "positions": [[4,3]]},
+      "expected": 12,
+      "tags": ["sample", "bishop"]
+    },
+    {
+      "id": "trial-adjacent-rooks",
+      "name": "adjacent rooks may swap while other trajectories collide",
+      "kind": "trial",
+      "visible": true,
+      "input": {"pieces": ["rook", "rook"], "positions": [[1,1],[1,2]]},
+      "expected": 196,
+      "tags": ["swap", "collision"]
+    },
+    {
+      "id": "real-opposite-corners",
+      "name": "hidden: different piece types move from opposite corners",
+      "kind": "real",
+      "visible": false,
+      "input": {"pieces": ["bishop", "rook"], "positions": [[1,1],[8,8]]},
+      "expected": 119,
+      "tags": ["hidden", "mixed-pieces"]
+    },
+    {
+      "id": "real-adjacent-diagonal",
+      "name": "hidden: queen and bishop have intersecting diagonal trajectories",
+      "kind": "real",
+      "visible": false,
+      "input": {"pieces": ["queen", "bishop"], "positions": [[4,4],[5,5]]},
+      "expected": 366,
+      "tags": ["hidden", "queen", "bishop"]
+    },
+    {
+      "id": "real-three-rooks",
+      "name": "hidden: three edge rooks require multi-piece collision checks",
+      "kind": "real",
+      "visible": false,
+      "input": {"pieces": ["rook", "rook", "rook"], "positions": [[1,1],[1,8],[8,1]]},
+      "expected": 2753,
+      "tags": ["hidden", "three-pieces"]
+    }
+  ]
+}

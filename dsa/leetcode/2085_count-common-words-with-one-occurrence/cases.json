@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2085",
+  "cases": [
+    {
+      "id": "sample-two-qualifying-words",
+      "name": "sample: common singleton values survive",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words1": ["leetcode", "is", "amazing", "as", "is"],
+        "words2": ["amazing", "leetcode", "is"]
+      },
+      "expected": 2,
+      "tags": ["sample", "duplicate-in-first"]
+    },
+    {
+      "id": "sample-disjoint-arrays",
+      "name": "sample: no common values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words1": ["b", "bb", "bbb"],
+        "words2": ["a", "aa", "aaa"]
+      },
+      "expected": 0,
+      "tags": ["sample", "disjoint"]
+    },
+    {
+      "id": "sample-duplicate-in-second",
+      "name": "sample: repetition in the second array disqualifies a word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words1": ["a", "ab"],
+        "words2": ["a", "a", "a", "ab"]
+      },
+      "expected": 1,
+      "tags": ["sample", "duplicate-in-second"]
+    },
+    {
+      "id": "trial-minimum-equal",
+      "name": "minimum arrays contain the same singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words1": ["x"], "words2": ["x"]},
+      "expected": 1,
+      "tags": ["minimum", "qualifying"]
+    },
+    {
+      "id": "real-repeated-in-both",
+      "name": "hidden: common values repeated in both arrays do not qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words1": ["red", "red", "blue", "green"],
+        "words2": ["blue", "blue", "red", "red", "green"]
+      },
+      "expected": 1,
+      "tags": ["hidden", "duplicates-both"]
+    },
+    {
+      "id": "real-asymmetric-repetition",
+      "name": "hidden: each one-sided duplicate is rejected",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words1": ["aa", "aa", "bb", "cc", "dd"],
+        "words2": ["aa", "bb", "cc", "cc", "ee"]
+      },
+      "expected": 1,
+      "tags": ["hidden", "asymmetric-duplicates"]
+    },
+    {
+      "id": "real-order-independent",
+      "name": "hidden: matching positions are unnecessary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words1": ["alpha", "beta", "gamma", "delta"],
+        "words2": ["delta", "gamma", "beta", "alpha"]
+      },
+      "expected": 4,
+      "tags": ["hidden", "permuted"]
+    }
+  ]
+}

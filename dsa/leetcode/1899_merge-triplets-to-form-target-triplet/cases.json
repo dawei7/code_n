@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1899",
+  "cases": [
+    {"id":"example-two-witnesses","name":"sample: two safe triplets merge to the target","kind":"sample","visible":true,"input":{"triplets":[[2,5,3],[1,8,4],[1,7,5]],"target":[2,7,5]},"expected":true,"tags":["sample","multiple-witnesses"]},
+    {"id":"example-missing-two","name":"sample: the second coordinate can never decrease to two","kind":"sample","visible":true,"input":{"triplets":[[3,4,5],[4,5,6]],"target":[3,2,5]},"expected":false,"tags":["sample","missing-coordinate"]},
+    {"id":"example-three-witnesses","name":"sample: safe triplets collectively provide three fives","kind":"sample","visible":true,"input":{"triplets":[[2,5,3],[2,3,4],[1,2,5],[5,2,3]],"target":[5,5,5]},"expected":true,"tags":["sample","three-witnesses"]},
+    {"id":"trial-target-present","name":"an already-present target needs no operation","kind":"trial","visible":true,"input":{"triplets":[[4,6,8]],"target":[4,6,8]},"expected":true,"tags":["single-triplet","zero-operations"]},
+    {"id":"trial-all-below","name":"values below a missing target coordinate cannot combine upward","kind":"trial","visible":true,"input":{"triplets":[[4,5,5],[5,4,5],[5,5,4]],"target":[6,5,5]},"expected":false,"tags":["missing-exact-value","all-below"]},
+    {"id":"real-overshoot-contamination","name":"hidden: a needed third value is unusable because it overshoots another coordinate","kind":"real","visible":false,"input":{"triplets":[[5,1,1],[1,5,1],[6,1,5]],"target":[5,5,5]},"expected":false,"tags":["overshoot","unsafe-witness"]},
+    {"id":"real-discard-partial-match","name":"hidden: an exact coordinate from an overshooting triplet must be discarded","kind":"real","visible":false,"input":{"triplets":[[2,4,1],[1,2,3],[2,2,2]],"target":[2,3,3]},"expected":false,"tags":["overshoot","partial-match"]},
+    {"id":"real-three-separate","name":"hidden: three separate safe triplets provide the target coordinates","kind":"real","visible":false,"input":{"triplets":[[9,1,1],[1,8,1],[1,1,7]],"target":[9,8,7]},"expected":true,"tags":["three-witnesses","coordinate-maxima"]},
+    {"id":"real-target-amid-overshoots","name":"hidden: irrelevant overshooting triplets do not invalidate an existing target","kind":"real","visible":false,"input":{"triplets":[[10,2,3],[2,10,3],[2,3,4],[2,3,3]],"target":[2,3,4]},"expected":true,"tags":["target-present","overshoot"]},
+    {"id":"real-duplicates","name":"hidden: duplicate witnesses are harmless but one coordinate remains missing","kind":"real","visible":false,"input":{"triplets":[[3,2,1],[3,2,1],[1,4,1],[1,4,1]],"target":[3,4,2]},"expected":false,"tags":["duplicates","missing-coordinate"]},
+    {"id":"real-mixed-safe-unsafe","name":"hidden: safe witnesses can be selected around an unsafe triplet","kind":"real","visible":false,"input":{"triplets":[[999,1,1],[1000,998,998],[998,999,1],[1,998,999],[500,500,500]],"target":[999,999,999]},"expected":true,"tags":["large-values","mixed-eligibility"]}
+  ]
+}

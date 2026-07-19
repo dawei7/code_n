@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1848",
+  "cases": [
+    {"id":"example-one-step-right","name":"sample: target is one index to the right","kind":"sample","visible":true,"input":{"args":[[1,2,3,4,5],5,3]},"expected":1,"validator":{"kind":"exact"},"tags":["example","right-side"]},
+    {"id":"example-single-element","name":"sample: the only element is the target","kind":"sample","visible":true,"input":{"args":[[1],1,0]},"expected":0,"validator":{"kind":"exact"},"tags":["example","single-element"]},
+    {"id":"example-all-targets","name":"sample: every index contains the target","kind":"sample","visible":true,"input":{"args":[[1,1,1,1,1,1,1,1,1,1],1,0]},"expected":0,"validator":{"kind":"exact"},"tags":["example","all-targets"]},
+    {"id":"trial-target-at-start","name":"target at start has zero distance","kind":"trial","visible":true,"input":{"args":[[4,2,4],2,1]},"expected":0,"validator":{"kind":"exact"},"tags":["zero-distance"]},
+    {"id":"real-nearest-left","name":"hidden: a left occurrence is nearer than a right occurrence","kind":"real","visible":false,"input":{"args":[[7,3,2,3,9,9,3],3,4]},"expected":1,"validator":{"kind":"exact"},"tags":["left-side","multiple-targets"]},
+    {"id":"real-nearest-right","name":"hidden: a right occurrence is nearest","kind":"real","visible":false,"input":{"args":[[8,0,0,0,8],8,3]},"expected":1,"validator":{"kind":"exact"},"tags":["right-side","multiple-targets"]},
+    {"id":"real-equidistant-targets","name":"hidden: equal-distance occurrences produce their shared distance","kind":"real","visible":false,"input":{"args":[[0,8,0,1,0,8,0],8,3]},"expected":2,"validator":{"kind":"exact"},"tags":["equidistant","multiple-targets"]},
+    {"id":"real-target-at-last-index","name":"hidden: the only target is the final element","kind":"real","visible":false,"input":{"args":[[1,1,1,1,2],2,0]},"expected":4,"validator":{"kind":"exact"},"tags":["endpoint","full-distance"]},
+    {"id":"real-target-at-first-index","name":"hidden: the only target is the first element","kind":"real","visible":false,"input":{"args":[[6,2,2,2,2],6,4]},"expected":4,"validator":{"kind":"exact"},"tags":["endpoint","left-side"]},
+    {"id":"real-value-boundary","name":"hidden: large values use ordinary equality","kind":"real","visible":false,"input":{"args":[[10000,1,10000,2],10000,3]},"expected":1,"validator":{"kind":"exact"},"tags":["value-boundary","multiple-targets"]}
+  ]
+}

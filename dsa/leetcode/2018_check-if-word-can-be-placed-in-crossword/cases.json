@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2018",
+  "cases": [
+    {
+      "id": "sample-vertical-forward",
+      "name": "sample: word fits vertically downward",
+      "kind": "sample",
+      "visible": true,
+      "input": {"board": [["#", " ", "#"], [" ", " ", "#"], ["#", "c", " "]], "word": "abc"},
+      "expected": true,
+      "tags": ["sample", "vertical"]
+    },
+    {
+      "id": "sample-slot-too-long",
+      "name": "sample: no bounded slot has the required length",
+      "kind": "sample",
+      "visible": true,
+      "input": {"board": [[" ", "#", "a"], [" ", "#", "c"], [" ", "#", "a"]], "word": "ac"},
+      "expected": false,
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "sample-horizontal-backward",
+      "name": "sample: word fits from right to left",
+      "kind": "sample",
+      "visible": true,
+      "input": {"board": [["#", " ", "#"], [" ", " ", "#"], ["#", " ", "c"]], "word": "ca"},
+      "expected": true,
+      "tags": ["sample", "horizontal", "backward"]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "one matching cell is a complete slot",
+      "kind": "trial",
+      "visible": true,
+      "input": {"board": [["a"]], "word": "a"},
+      "expected": true,
+      "tags": ["minimum-board", "existing-letter"]
+    },
+    {
+      "id": "trial-substring-not-slot",
+      "name": "a word cannot occupy only part of a longer run",
+      "kind": "trial",
+      "visible": true,
+      "input": {"board": [[" ", " ", " "]], "word": "ab"},
+      "expected": false,
+      "tags": ["slot-boundary"]
+    },
+    {
+      "id": "real-existing-letter-mismatch",
+      "name": "hidden: an incompatible solved letter blocks placement",
+      "kind": "real",
+      "visible": false,
+      "input": {"board": [["#", "a", "b", "#"]], "word": "ac"},
+      "expected": false,
+      "tags": ["hidden", "letter-mismatch"]
+    },
+    {
+      "id": "real-blockers-create-exact-slot",
+      "name": "hidden: blockers isolate one exact horizontal slot",
+      "kind": "real",
+      "visible": false,
+      "input": {"board": [[" ", "#", " ", "b", " ", "#", " "]], "word": "abc"},
+      "expected": true,
+      "tags": ["hidden", "blockers", "blank"]
+    },
+    {
+      "id": "real-vertical-backward",
+      "name": "hidden: solved letters permit an upward placement",
+      "kind": "real",
+      "visible": false,
+      "input": {"board": [["c"], [" "], ["a"]], "word": "abc"},
+      "expected": true,
+      "tags": ["hidden", "vertical", "backward"]
+    }
+  ]
+}

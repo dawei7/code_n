@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1843",
+  "cases": [
+    {
+      "id": "example-one-suspicious-account",
+      "name": "sample: consecutive excess differs from a one-month gap",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables":{"Accounts":[{"account_id":3,"max_income":21000},{"account_id":4,"max_income":10400}],"Transactions":[{"transaction_id":2,"account_id":3,"type":"Creditor","amount":107100,"day":"2021-06-02 11:38:14"},{"transaction_id":4,"account_id":4,"type":"Creditor","amount":10400,"day":"2021-06-20 12:39:18"},{"transaction_id":11,"account_id":4,"type":"Debtor","amount":58800,"day":"2021-07-23 12:41:55"},{"transaction_id":1,"account_id":4,"type":"Creditor","amount":49300,"day":"2021-05-03 16:11:04"},{"transaction_id":15,"account_id":3,"type":"Debtor","amount":75500,"day":"2021-05-23 14:40:20"},{"transaction_id":10,"account_id":3,"type":"Creditor","amount":102100,"day":"2021-06-15 10:37:16"},{"transaction_id":14,"account_id":4,"type":"Creditor","amount":56300,"day":"2021-07-21 12:12:25"},{"transaction_id":19,"account_id":4,"type":"Debtor","amount":101100,"day":"2021-05-09 15:21:49"},{"transaction_id":8,"account_id":3,"type":"Creditor","amount":64900,"day":"2021-07-26 15:09:56"},{"transaction_id":7,"account_id":3,"type":"Creditor","amount":90900,"day":"2021-06-14 11:23:07"}]}},
+      "expected": {"columns":["account_id"],"rows":[[3]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["example","consecutive-months","gap"]
+    },
+    {
+      "id": "trial-equal-threshold",
+      "name": "income equal to the threshold does not qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Accounts":[{"account_id":1,"max_income":100}],"Transactions":[{"transaction_id":1,"account_id":1,"type":"Creditor","amount":100,"day":"2024-01-05 00:00:00"},{"transaction_id":2,"account_id":1,"type":"Creditor","amount":101,"day":"2024-02-05 00:00:00"}]}},
+      "expected": {"columns":["account_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["strict-comparison","threshold"]
+    },
+    {
+      "id": "trial-two-consecutive",
+      "name": "two consecutive over-limit months qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Accounts":[{"account_id":8,"max_income":50}],"Transactions":[{"transaction_id":1,"account_id":8,"type":"Creditor","amount":51,"day":"2024-03-31 23:59:59"},{"transaction_id":2,"account_id":8,"type":"Creditor","amount":60,"day":"2024-04-01 00:00:00"}]}},
+      "expected": {"columns":["account_id"],"rows":[[8]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["consecutive-months","date-boundary"]
+    },
+    {
+      "id": "trial-month-gap",
+      "name": "over-limit months separated by a gap do not qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Accounts":[{"account_id":2,"max_income":10}],"Transactions":[{"transaction_id":1,"account_id":2,"type":"Creditor","amount":11,"day":"2023-01-10 00:00:00"},{"transaction_id":2,"account_id":2,"type":"Creditor","amount":12,"day":"2023-03-10 00:00:00"}]}},
+      "expected": {"columns":["account_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["missing-month","gap"]
+    },
+    {
+      "id": "real-year-boundary",
+      "name": "hidden: December and January are consecutive",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Accounts":[{"account_id":5,"max_income":20}],"Transactions":[{"transaction_id":1,"account_id":5,"type":"Creditor","amount":21,"day":"2023-12-01 00:00:00"},{"transaction_id":2,"account_id":5,"type":"Creditor","amount":22,"day":"2024-01-31 23:59:59"}]}},
+      "expected": {"columns":["account_id"],"rows":[[5]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["year-boundary","consecutive-months"]
+    },
+    {
+      "id": "real-debtors-ignored",
+      "name": "hidden: large withdrawals are not income",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Accounts":[{"account_id":9,"max_income":100}],"Transactions":[{"transaction_id":1,"account_id":9,"type":"Debtor","amount":1000,"day":"2022-06-05 00:00:00"},{"transaction_id":2,"account_id":9,"type":"Creditor","amount":1,"day":"2022-06-06 00:00:00"},{"transaction_id":3,"account_id":9,"type":"Debtor","amount":1000,"day":"2022-07-05 00:00:00"},{"transaction_id":4,"account_id":9,"type":"Creditor","amount":1,"day":"2022-07-06 00:00:00"}]}},
+      "expected": {"columns":["account_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["debtor","transaction-type"]
+    },
+    {
+      "id": "real-summed-deposits",
+      "name": "hidden: several deposits combine above the threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Accounts":[{"account_id":6,"max_income":100}],"Transactions":[{"transaction_id":1,"account_id":6,"type":"Creditor","amount":60,"day":"2024-08-01 00:00:00"},{"transaction_id":2,"account_id":6,"type":"Creditor","amount":50,"day":"2024-08-31 00:00:00"},{"transaction_id":3,"account_id":6,"type":"Creditor","amount":70,"day":"2024-09-01 00:00:00"},{"transaction_id":4,"account_id":6,"type":"Creditor","amount":40,"day":"2024-09-30 00:00:00"}]}},
+      "expected": {"columns":["account_id"],"rows":[[6]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["monthly-sum","multiple-deposits"]
+    },
+    {
+      "id": "real-several-accounts",
+      "name": "hidden: return every and only suspicious account",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Accounts":[{"account_id":1,"max_income":5},{"account_id":2,"max_income":20},{"account_id":3,"max_income":7}],"Transactions":[{"transaction_id":1,"account_id":1,"type":"Creditor","amount":6,"day":"2024-01-01 00:00:00"},{"transaction_id":2,"account_id":1,"type":"Creditor","amount":6,"day":"2024-02-01 00:00:00"},{"transaction_id":3,"account_id":2,"type":"Creditor","amount":21,"day":"2024-01-01 00:00:00"},{"transaction_id":4,"account_id":2,"type":"Creditor","amount":19,"day":"2024-02-01 00:00:00"},{"transaction_id":5,"account_id":3,"type":"Creditor","amount":8,"day":"2024-05-01 00:00:00"},{"transaction_id":6,"account_id":3,"type":"Creditor","amount":9,"day":"2024-06-01 00:00:00"}]}},
+      "expected": {"columns":["account_id"],"rows":[[1],[3]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["multiple-accounts","mixed-qualification"]
+    },
+    {
+      "id": "real-long-run-distinct",
+      "name": "hidden: a three-month run returns one account row",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Accounts":[{"account_id":12,"max_income":10}],"Transactions":[{"transaction_id":1,"account_id":12,"type":"Creditor","amount":11,"day":"2020-10-01 00:00:00"},{"transaction_id":2,"account_id":12,"type":"Creditor","amount":12,"day":"2020-11-01 00:00:00"},{"transaction_id":3,"account_id":12,"type":"Creditor","amount":13,"day":"2020-12-01 00:00:00"}]}},
+      "expected": {"columns":["account_id"],"rows":[[12]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["long-run","distinct"]
+    },
+    {
+      "id": "real-no-creditor-month",
+      "name": "hidden: a month containing only withdrawals breaks the run",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Accounts":[{"account_id":20,"max_income":1}],"Transactions":[{"transaction_id":1,"account_id":20,"type":"Creditor","amount":2,"day":"2021-01-01 00:00:00"},{"transaction_id":2,"account_id":20,"type":"Debtor","amount":100,"day":"2021-02-01 00:00:00"},{"transaction_id":3,"account_id":20,"type":"Creditor","amount":2,"day":"2021-03-01 00:00:00"}]}},
+      "expected": {"columns":["account_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["missing-income","debtor-only-month"]
+    }
+  ]
+}

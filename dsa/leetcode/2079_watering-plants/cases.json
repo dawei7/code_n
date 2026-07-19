@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2079",
+  "cases": [
+    {
+      "id": "sample-two-refills",
+      "name": "sample: refills before the third and fourth plants",
+      "kind": "sample",
+      "visible": true,
+      "input": {"plants": [2, 2, 3, 3], "capacity": 5},
+      "expected": 14,
+      "tags": ["sample", "multiple-refills"]
+    },
+    {
+      "id": "sample-varied-needs",
+      "name": "sample: several refill group lengths",
+      "kind": "sample",
+      "visible": true,
+      "input": {"plants": [1, 1, 1, 4, 2, 3], "capacity": 4},
+      "expected": 30,
+      "tags": ["sample", "varied-requirements"]
+    },
+    {
+      "id": "sample-refill-every-time",
+      "name": "sample: every later plant requires a refill",
+      "kind": "sample",
+      "visible": true,
+      "input": {"plants": [7, 7, 7, 7, 7, 7, 7], "capacity": 8},
+      "expected": 49,
+      "tags": ["sample", "maximum-refills"]
+    },
+    {
+      "id": "trial-no-refill",
+      "name": "one can waters the whole row",
+      "kind": "trial",
+      "visible": true,
+      "input": {"plants": [1, 2, 1], "capacity": 4},
+      "expected": 3,
+      "tags": ["no-refill"]
+    },
+    {
+      "id": "real-exact-remaining-water",
+      "name": "hidden: exact capacity must not trigger an early refill",
+      "kind": "real",
+      "visible": false,
+      "input": {"plants": [2, 3], "capacity": 5},
+      "expected": 2,
+      "tags": ["hidden", "strict-insufficiency"]
+    },
+    {
+      "id": "real-refill-before-final",
+      "name": "hidden: final plant still requires the full detour",
+      "kind": "real",
+      "visible": false,
+      "input": {"plants": [3, 1, 2], "capacity": 4},
+      "expected": 7,
+      "tags": ["hidden", "final-refill"]
+    },
+    {
+      "id": "real-single-plant",
+      "name": "hidden: river to the only plant is one step",
+      "kind": "real",
+      "visible": false,
+      "input": {"plants": [1000000], "capacity": 1000000},
+      "expected": 1,
+      "tags": ["hidden", "minimum-length", "large-value"]
+    },
+    {
+      "id": "real-unused-capacity",
+      "name": "hidden: a very large can does not change walking distance",
+      "kind": "real",
+      "visible": false,
+      "input": {"plants": [5, 4, 3, 2, 1], "capacity": 100},
+      "expected": 5,
+      "tags": ["hidden", "large-capacity"]
+    }
+  ]
+}

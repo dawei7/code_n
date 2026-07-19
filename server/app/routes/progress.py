@@ -68,6 +68,9 @@ def update_progress(body: ProgressUpdate) -> ProgressOut:
         if body.active_set is not None:
             progress.active_set = normalize_algorithm_set(body.active_set)
             changed = True
+        if body.active_custom_set_id is not None:
+            progress.active_custom_set_id = body.active_custom_set_id.strip()
+            changed = True
         if body.sidebar_width is not None:
             progress.sidebar_width = body.sidebar_width
             changed = True

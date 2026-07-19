@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1869",
+  "cases": [
+    {"id":"example-ones-longer","name":"sample: longest ones segment is longer","kind":"sample","visible":true,"input":{"s":"1101"},"expected":true,"tags":["sample","ones-longer"]},
+    {"id":"example-equal-runs","name":"sample: equal maximum lengths fail the strict comparison","kind":"sample","visible":true,"input":{"s":"111000"},"expected":false,"tags":["sample","equality"]},
+    {"id":"example-zeros-longer","name":"sample: longest zeros segment is longer","kind":"sample","visible":true,"input":{"s":"110100010"},"expected":false,"tags":["sample","zeros-longer"]},
+    {"id":"trial-only-one","name":"single one has an absent zero segment","kind":"trial","visible":true,"input":{"s":"1"},"expected":true,"tags":["minimum","only-ones"]},
+    {"id":"trial-only-zero","name":"single zero does not qualify","kind":"trial","visible":true,"input":{"s":"0"},"expected":false,"tags":["minimum","only-zeros"]},
+    {"id":"real-all-ones","name":"hidden: an all-ones string succeeds","kind":"real","visible":false,"input":{"s":"1111111111"},"expected":true,"tags":["only-ones"]},
+    {"id":"real-all-zeros","name":"hidden: an all-zeros string fails","kind":"real","visible":false,"input":{"s":"0000000000"},"expected":false,"tags":["only-zeros"]},
+    {"id":"real-alternating","name":"hidden: alternating digits have equal maxima","kind":"real","visible":false,"input":{"s":"101010101"},"expected":false,"tags":["alternating","equality"]},
+    {"id":"real-final-run-wins","name":"hidden: the final ones run determines the result","kind":"real","visible":false,"input":{"s":"1001111"},"expected":true,"tags":["final-run","ones-longer"]},
+    {"id":"real-earlier-run-wins","name":"hidden: an earlier zeros run remains the maximum","kind":"real","visible":false,"input":{"s":"11000010111"},"expected":false,"tags":["earlier-run","zeros-longer"]},
+    {"id":"real-many-short-runs","name":"hidden: separated ones segments are not combined","kind":"real","visible":false,"input":{"s":"110110001101"},"expected":false,"tags":["contiguous-semantics"]},
+    {"id":"real-one-point-advantage","name":"hidden: a one-character advantage is sufficient","kind":"real","visible":false,"input":{"s":"001110011"},"expected":true,"tags":["strict-advantage"]}
+  ]
+}

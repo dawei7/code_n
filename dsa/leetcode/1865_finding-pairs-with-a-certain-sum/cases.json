@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1865",
+  "cases": [
+    {"id":"example-updates-and-counts","name":"sample: updates change later pair counts","kind":"sample","visible":true,"input":{"operations":["FindSumPairs","count","add","count","count","add","add","count"],"arguments":[[[1,1,2,2,2,3],[1,4,5,2,5,4]],[7],[3,2],[8],[4],[0,1],[1,1],[7]]},"expected":[null,8,null,2,1,null,null,11],"validator":{"kind":"exact"},"tags":["example","stateful","duplicates"]},
+    {"id":"trial-small-update","name":"small arrays lose one pair after an update","kind":"trial","visible":true,"input":{"operations":["FindSumPairs","count","add","count"],"arguments":[[[1,2],[3,4]],[5],[0,2],[5]]},"expected":[null,2,null,1],"validator":{"kind":"exact"},"tags":["small-arrays","update"]},
+    {"id":"trial-single-pair","name":"singleton arrays contain one matching pair","kind":"trial","visible":true,"input":{"operations":["FindSumPairs","count"],"arguments":[[[1],[1]],[2]]},"expected":[null,1],"validator":{"kind":"exact"},"tags":["singleton","count"]},
+    {"id":"real-constructor-only","name":"hidden: construction alone returns null","kind":"real","visible":false,"input":{"operations":["FindSumPairs"],"arguments":[[[1,2,3],[4,5]]]},"expected":[null],"validator":{"kind":"exact"},"tags":["constructor"]},
+    {"id":"real-duplicate-multiplicity","name":"hidden: duplicates multiply both index choices","kind":"real","visible":false,"input":{"operations":["FindSumPairs","count","add","count","count"],"arguments":[[[1,1],[2,2]],[3],[0,1],[3],[4]]},"expected":[null,4,null,2,2],"validator":{"kind":"exact"},"tags":["duplicates","frequency-update"]},
+    {"id":"real-no-complement","name":"hidden: absent complement returns zero","kind":"real","visible":false,"input":{"operations":["FindSumPairs","count"],"arguments":[[[10,20],[1,2,3]],[100]]},"expected":[null,0],"validator":{"kind":"exact"},"tags":["zero-result"]},
+    {"id":"real-repeated-index-update","name":"hidden: repeated updates remove the latest value","kind":"real","visible":false,"input":{"operations":["FindSumPairs","add","add","count","count"],"arguments":[[[2],[1,3]],[0,2],[0,4],[9],[5]]},"expected":[null,null,null,1,1],"validator":{"kind":"exact"},"tags":["repeated-index","stateful"]},
+    {"id":"real-two-updated-indices","name":"hidden: independent indices maintain separate frequencies","kind":"real","visible":false,"input":{"operations":["FindSumPairs","add","add","count"],"arguments":[[[1,2],[1,1,2]],[0,1],[1,2],[4]]},"expected":[null,null,null,3],"validator":{"kind":"exact"},"tags":["multiple-updates","duplicates"]},
+    {"id":"real-large-values","name":"hidden: values near the total bound match exactly","kind":"real","visible":false,"input":{"operations":["FindSumPairs","count"],"arguments":[[[999900000],[100000]],[1000000000]]},"expected":[null,1],"validator":{"kind":"exact"},"tags":["maximum-total","large-values"]},
+    {"id":"real-query-before-and-after","name":"hidden: counts observe only preceding updates","kind":"real","visible":false,"input":{"operations":["FindSumPairs","count","add","count","add","count"],"arguments":[[[3,3],[1,2]],[5],[1,1],[5],[0,1],[5]]},"expected":[null,2,null,0,null,2],"validator":{"kind":"exact"},"tags":["operation-order","stateful"]}
+  ]
+}

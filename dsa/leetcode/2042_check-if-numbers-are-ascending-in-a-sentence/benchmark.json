@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2042",
+  "measurement_note": "Size is T, the number of numeric tokens; all benchmark sentences remain within the 200-character contract. Comparing each number only with its predecessor is linear in the sentence length. A correct implementation that compares every new number with all earlier numeric tokens completes all tiers and fails by quadratic scaling in T.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 ascending numeric tokens",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "1 2 3 4 5 6 7 8"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "all-prior-comparisons"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 ascending numeric tokens",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "all-prior-comparisons"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 ascending numeric tokens",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "all-prior-comparisons"
+      ]
+    }
+  ]
+}

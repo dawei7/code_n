@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2035",
+  "measurement_note": "Size is H = 2^n, the number of subsets of either n-element half. Meet-in-the-middle processes O(H) grouped sums with logarithmic-factor sorting and searches. A correct implementation that enumerates every n-element choice from all 2n elements completes these tiers and fails by near-quadratic scaling in H.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: half length 3",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [1, 2, 3, 4, 5, 6]},
+      "expected": 1,
+      "tags": ["benchmark", "scale-small", "full-combination-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: half length 5",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]},
+      "expected": 1,
+      "tags": ["benchmark", "scale-medium", "full-combination-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: half length 7",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]},
+      "expected": 1,
+      "tags": ["benchmark", "scale-large", "full-combination-enumeration"]
+    }
+  ]
+}

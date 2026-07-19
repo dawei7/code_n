@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2037",
+  "frontend_id": "1925",
+  "title_slug": "count-square-sum-triples",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countTriples",
+  "verified_submission_id": "2072433901",
+  "verified_at": "2026-07-18T15:13:28.555612+00:00"
+}

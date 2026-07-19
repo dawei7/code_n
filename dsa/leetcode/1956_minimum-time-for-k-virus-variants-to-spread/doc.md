@@ -5,51 +5,101 @@
 | Source | LeetCode |
 | Frontend ID | 1956 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Math, Binary Search, Geometry, Sliding Window, Enumeration, Ordered Set |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-time-for-k-virus-variants-to-spread](https://leetcode.com/problems/minimum-time-for-k-virus-variants-to-spread/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-time-for-k-virus-variants-to-spread/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-time-for-k-virus-variants-to-spread/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+There are $N$ distinct virus variants on an infinite integer grid. Variant
+$i$ begins at `points[i]` on day zero; multiple distinct variants may share
+the same starting coordinate.
+
+On each following day, every infected grid cell spreads each variant it
+contains to its four cardinally adjacent cells. Variants spread independently,
+even when several occupy the same cell. Given `k`, return the earliest integer
+day on which some grid point contains at least `k` distinct variants.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `points`: a list of $N$ coordinate pairs, where $2\le N\le50$ and every
+  coordinate is between $1$ and $100$, inclusive. Define
+  $X=\max_i x_i-\min_i x_i+1$ and
+  $Y=\max_i y_i-\min_i y_i+1$.
+- `k`: the required number of variants, where $2\le k\le N$.
 
 **Return value**
 
-TODO
+- The minimum nonnegative number of days after which at least one integer grid
+  point contains at least `k` variants.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `points = [[1, 1], [6, 1]], k = 2`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `points = [[3, 3], [1, 2], [9, 2]], k = 2`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `points = [[3, 3], [1, 2], [9, 2]], k = 3`
+- Output: `4`
 
----
+### Required Complexity
+- **Time:** $O(XYN\log N)$
+- **Space:** $O(N)$
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Turn spreading time into distance**
+
+After $d$ days, a variant has reached exactly the grid points whose Manhattan
+distance from its origin is at most $d$. Therefore, at a fixed candidate point,
+the first day when `k` variants are present is the $k$-th smallest Manhattan
+distance from that point to the $N$ origins.
+
+**Restrict the infinite grid**
+
+An optimal meeting point can be chosen within the origins' axis-aligned
+bounding box. If its horizontal coordinate lies left or right of that box,
+projecting it to the nearest boundary does not increase its distance to any
+origin; the same argument applies vertically. It is therefore sufficient to
+enumerate the $XY$ integer points in the bounding box.
+
+For each candidate, compute and sort all $N$ Manhattan distances, then inspect
+the value at index `k - 1`. Minimizing that value over all candidates gives a
+point reached by `k` variants on the reported day. No earlier day can work,
+because every candidate's $k$-th distance is at least this global minimum and
+points outside the box cannot improve it.
+
+#### Complexity detail
+
+There are $XY$ candidate points. Computing their distance lists takes $O(N)$
+per candidate and sorting takes $O(N\log N)$, for $O(XYN\log N)$ time. A
+single distance list contains $N$ integers, so the auxiliary space is $O(N)$.
+Here $X,Y\le100$ and $N\le50$ under the contract.
+
+#### Alternatives and edge cases
+
+- **Transformed-coordinate sweep:** Mapping $(x,y)$ to $(x+y,x-y)$ turns
+  Manhattan diamonds into axis-aligned squares. Binary search plus a sweep can
+  reduce dependence on the coordinate box, but requires more intricate
+  overlap and parity handling.
+- **Simulate daily spreading:** Expanding every variant's infected region
+  duplicates a rapidly growing amount of state and is unnecessary because
+  Manhattan distance gives each arrival day directly.
+- Distinct variants that start at the same coordinate already coexist on day
+  zero and must be counted separately.
+- The answer depends on the `k`-th nearest origin, not necessarily on all $N$
+  variants reaching the same point.
+- Meeting points are integer grid coordinates; a geometric midpoint with
+  fractional coordinates is not a valid candidate.
+
+</details>

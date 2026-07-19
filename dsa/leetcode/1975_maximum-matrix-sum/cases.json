@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1975",
+  "cases": [
+    {"id":"example-even-negatives","name":"sample: two negatives can both be removed","kind":"sample","visible":true,"input":{"matrix":[[1,-1],[-1,1]]},"expected":4,"tags":["sample","even-negatives"]},
+    {"id":"example-odd-negatives","name":"sample: odd negatives sacrifice the smallest magnitude","kind":"sample","visible":true,"input":{"matrix":[[1,2,3],[-1,-2,-3],[1,2,3]]},"expected":16,"tags":["sample","odd-negatives"]},
+    {"id":"trial-zero-absorbs-sign","name":"zero removes the odd-parity penalty","kind":"trial","visible":true,"input":{"matrix":[[-1,0],[-2,-3]]},"expected":6,"tags":["zero","odd-negatives"]},
+    {"id":"trial-all-positive","name":"already positive matrix","kind":"trial","visible":true,"input":{"matrix":[[1,2],[3,4]]},"expected":10,"tags":["all-positive"]},
+    {"id":"trial-one-negative","name":"single negative leaves smallest magnitude negative","kind":"trial","visible":true,"input":{"matrix":[[-1,2],[3,4]]},"expected":8,"tags":["single-negative","minimum"]},
+    {"id":"trial-even-different-magnitudes","name":"two negatives with different magnitudes","kind":"trial","visible":true,"input":{"matrix":[[-5,-2],[1,4]]},"expected":12,"tags":["even-negatives"]},
+    {"id":"real-all-negative-even","name":"hidden: four negative entries","kind":"real","visible":false,"input":{"matrix":[[-1,-2],[-3,-4]]},"expected":10,"tags":["all-negative","even-negatives"]},
+    {"id":"real-zero-positive","name":"hidden: zero in a nonnegative matrix","kind":"real","visible":false,"input":{"matrix":[[0,5],[7,9]]},"expected":21,"tags":["zero","nonnegative"]},
+    {"id":"real-odd-small-positive","name":"hidden: sacrificed magnitude was initially positive","kind":"real","visible":false,"input":{"matrix":[[-10,1,8],[6,7,9],[4,5,3]]},"expected":51,"tags":["odd-negatives","small-positive"]},
+    {"id":"real-value-boundaries","name":"hidden: large magnitudes require wide sum","kind":"real","visible":false,"input":{"matrix":[[-100000,100000],[100000,100000]]},"expected":200000,"tags":["value-boundary","odd-negatives"]}
+  ]
+}

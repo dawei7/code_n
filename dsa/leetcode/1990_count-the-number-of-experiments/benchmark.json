@@ -1,0 +1,1912 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1990",
+  "measurement_note": "Size is the experiment-row count N. The fixed nine-category domain left-joins and aggregates the table in linear work. A correct control adds an unnecessary second left join to Experiments and uses COUNT(DISTINCT experiment_id) to recover the same counts after materializing quadratic row combinations.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: count 16 experiments in one category",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "Experiments": [
+            {
+              "experiment_id": 1,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 2,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 3,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 4,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 5,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 6,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 7,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 8,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 9,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 10,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 11,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 12,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 13,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 14,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 15,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 16,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "platform",
+          "experiment_name",
+          "num_experiments"
+        ],
+        "rows": [
+          [
+            "Android",
+            "Reading",
+            16
+          ],
+          [
+            "Android",
+            "Sports",
+            0
+          ],
+          [
+            "Android",
+            "Programming",
+            0
+          ],
+          [
+            "IOS",
+            "Reading",
+            0
+          ],
+          [
+            "IOS",
+            "Sports",
+            0
+          ],
+          [
+            "IOS",
+            "Programming",
+            0
+          ],
+          [
+            "Web",
+            "Reading",
+            0
+          ],
+          [
+            "Web",
+            "Sports",
+            0
+          ],
+          [
+            "Web",
+            "Programming",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "redundant-self-product"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: count 64 experiments in one category",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Experiments": [
+            {
+              "experiment_id": 1,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 2,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 3,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 4,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 5,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 6,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 7,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 8,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 9,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 10,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 11,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 12,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 13,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 14,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 15,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 16,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 17,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 18,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 19,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 20,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 21,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 22,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 23,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 24,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 25,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 26,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 27,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 28,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 29,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 30,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 31,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 32,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 33,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 34,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 35,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 36,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 37,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 38,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 39,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 40,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 41,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 42,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 43,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 44,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 45,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 46,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 47,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 48,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 49,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 50,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 51,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 52,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 53,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 54,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 55,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 56,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 57,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 58,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 59,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 60,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 61,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 62,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 63,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 64,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "platform",
+          "experiment_name",
+          "num_experiments"
+        ],
+        "rows": [
+          [
+            "Android",
+            "Reading",
+            64
+          ],
+          [
+            "Android",
+            "Sports",
+            0
+          ],
+          [
+            "Android",
+            "Programming",
+            0
+          ],
+          [
+            "IOS",
+            "Reading",
+            0
+          ],
+          [
+            "IOS",
+            "Sports",
+            0
+          ],
+          [
+            "IOS",
+            "Programming",
+            0
+          ],
+          [
+            "Web",
+            "Reading",
+            0
+          ],
+          [
+            "Web",
+            "Sports",
+            0
+          ],
+          [
+            "Web",
+            "Programming",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "redundant-self-product"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: count 256 experiments in one category",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Experiments": [
+            {
+              "experiment_id": 1,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 2,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 3,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 4,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 5,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 6,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 7,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 8,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 9,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 10,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 11,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 12,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 13,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 14,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 15,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 16,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 17,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 18,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 19,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 20,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 21,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 22,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 23,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 24,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 25,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 26,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 27,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 28,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 29,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 30,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 31,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 32,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 33,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 34,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 35,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 36,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 37,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 38,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 39,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 40,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 41,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 42,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 43,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 44,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 45,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 46,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 47,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 48,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 49,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 50,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 51,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 52,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 53,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 54,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 55,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 56,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 57,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 58,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 59,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 60,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 61,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 62,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 63,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 64,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 65,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 66,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 67,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 68,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 69,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 70,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 71,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 72,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 73,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 74,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 75,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 76,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 77,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 78,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 79,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 80,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 81,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 82,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 83,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 84,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 85,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 86,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 87,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 88,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 89,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 90,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 91,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 92,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 93,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 94,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 95,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 96,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 97,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 98,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 99,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 100,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 101,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 102,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 103,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 104,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 105,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 106,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 107,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 108,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 109,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 110,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 111,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 112,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 113,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 114,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 115,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 116,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 117,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 118,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 119,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 120,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 121,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 122,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 123,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 124,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 125,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 126,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 127,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 128,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 129,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 130,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 131,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 132,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 133,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 134,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 135,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 136,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 137,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 138,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 139,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 140,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 141,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 142,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 143,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 144,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 145,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 146,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 147,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 148,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 149,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 150,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 151,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 152,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 153,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 154,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 155,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 156,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 157,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 158,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 159,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 160,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 161,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 162,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 163,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 164,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 165,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 166,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 167,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 168,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 169,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 170,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 171,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 172,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 173,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 174,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 175,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 176,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 177,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 178,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 179,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 180,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 181,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 182,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 183,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 184,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 185,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 186,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 187,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 188,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 189,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 190,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 191,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 192,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 193,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 194,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 195,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 196,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 197,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 198,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 199,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 200,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 201,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 202,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 203,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 204,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 205,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 206,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 207,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 208,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 209,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 210,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 211,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 212,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 213,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 214,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 215,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 216,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 217,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 218,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 219,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 220,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 221,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 222,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 223,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 224,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 225,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 226,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 227,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 228,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 229,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 230,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 231,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 232,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 233,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 234,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 235,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 236,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 237,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 238,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 239,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 240,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 241,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 242,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 243,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 244,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 245,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 246,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 247,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 248,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 249,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 250,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 251,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 252,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 253,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 254,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 255,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            },
+            {
+              "experiment_id": 256,
+              "platform": "Android",
+              "experiment_name": "Reading"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "platform",
+          "experiment_name",
+          "num_experiments"
+        ],
+        "rows": [
+          [
+            "Android",
+            "Reading",
+            256
+          ],
+          [
+            "Android",
+            "Sports",
+            0
+          ],
+          [
+            "Android",
+            "Programming",
+            0
+          ],
+          [
+            "IOS",
+            "Reading",
+            0
+          ],
+          [
+            "IOS",
+            "Sports",
+            0
+          ],
+          [
+            "IOS",
+            "Programming",
+            0
+          ],
+          [
+            "Web",
+            "Reading",
+            0
+          ],
+          [
+            "Web",
+            "Sports",
+            0
+          ],
+          [
+            "Web",
+            "Programming",
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "redundant-self-product"
+      ]
+    }
+  ]
+}

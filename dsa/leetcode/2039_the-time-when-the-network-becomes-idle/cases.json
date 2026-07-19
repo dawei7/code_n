@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2039",
+  "cases": [
+    {
+      "id": "sample-path-with-resends",
+      "name": "sample: a distant server resends every second",
+      "kind": "sample",
+      "visible": true,
+      "input": {"edges": [[0, 1], [1, 2]], "patience": [0, 2, 1]},
+      "expected": 8,
+      "tags": ["sample", "path", "resends"]
+    },
+    {
+      "id": "sample-triangle-no-resends",
+      "name": "sample: direct neighbors wait for their replies",
+      "kind": "sample",
+      "visible": true,
+      "input": {"edges": [[0, 1], [0, 2], [1, 2]], "patience": [0, 10, 10]},
+      "expected": 3,
+      "tags": ["sample", "no-resend", "cycle"]
+    },
+    {
+      "id": "trial-single-edge-resend",
+      "name": "patience one causes a resend before the reply",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [[0, 1]], "patience": [0, 1]},
+      "expected": 4,
+      "tags": ["minimum-network", "strict-before-reply"]
+    },
+    {
+      "id": "trial-patience-equals-round-trip",
+      "name": "a reply suppresses the same-second resend",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [[0, 1]], "patience": [0, 2]},
+      "expected": 3,
+      "tags": ["timing-boundary", "no-resend"]
+    },
+    {
+      "id": "real-star-mixed-patience",
+      "name": "hidden: one direct neighbor resends and two wait",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[0, 1], [0, 2], [0, 3]], "patience": [0, 1, 2, 3]},
+      "expected": 4,
+      "tags": ["hidden", "star", "mixed-patience"]
+    },
+    {
+      "id": "real-diamond-shortest-path",
+      "name": "hidden: equal shortest paths give the same timing",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[0, 1], [0, 2], [1, 3], [2, 3]], "patience": [0, 5, 1, 2]},
+      "expected": 7,
+      "tags": ["hidden", "multiple-shortest-paths"]
+    },
+    {
+      "id": "real-longer-path-no-resends",
+      "name": "hidden: patience beyond every round trip",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[0, 1], [1, 2], [2, 3]], "patience": [0, 10, 10, 10]},
+      "expected": 7,
+      "tags": ["hidden", "path", "no-resend"]
+    }
+  ]
+}

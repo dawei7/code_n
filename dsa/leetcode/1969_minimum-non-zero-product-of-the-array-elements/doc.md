@@ -5,51 +5,120 @@
 | Source | LeetCode |
 | Frontend ID | 1969 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Math, Greedy, Recursion |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-non-zero-product-of-the-array-elements](https://leetcode.com/problems/minimum-non-zero-product-of-the-array-elements/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-non-zero-product-of-the-array-elements/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-non-zero-product-of-the-array-elements/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+For a positive integer `p`, form a 1-indexed array containing every integer in
+the inclusive range from $1$ through $2^p-1$, represented with `p` binary
+positions. An operation chooses two array elements and one bit position, then
+swaps the bits occupying that same position in the two chosen elements.
+
+Perform any number of these operations to minimize the product of all array
+elements, subject to the product remaining nonzero. The minimum is determined
+before applying a modulus; return that minimum modulo $10^9+7$.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `p`: the binary width, where $1 \le p \le 60$.
+- Let
+
+  $$
+  Q=2^p-1
+  $$
+
+  denote both the largest initial element and the `p`-bit all-ones value.
 
 **Return value**
 
-TODO
+- The minimum positive product reachable through corresponding-bit swaps,
+  reduced modulo $10^9+7$.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `p = 1`
+- Output: `1`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `p = 2`
+- Output: `6`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `p = 3`
+- Output: `1512`
 
----
+### Required Complexity
+- **Time:** $O(p)$
+- **Space:** $O(1)$
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Identify what bit swaps preserve**
+
+For each bit position, exactly $2^{p-1}$ of the original integers contain a
+one. A legal swap moves one such bit between elements but never changes that
+per-position count. The all-ones value $Q$ can remain intact, consuming one
+one from every bit position.
+
+The remaining ones can be distributed among
+
+$$
+K=2^{p-1}-1
+$$
+
+pairs of positive elements. Within each pair, place a single one in the least
+significant position of one element and all other bit-position ones in the
+other. Each pair then has values $1$ and $Q-1$.
+
+**Why the pairs give the minimum positive product**
+
+Consider redistributing a one-bit within a complementary pair while both
+values must stay positive. Moving value from the smaller member to the larger
+member makes the two values more unequal while preserving their sum. For
+positive integers with fixed sum, this decreases their product until the
+smaller value reaches its minimum possible value, $1$. The partner must then
+be $Q-1$.
+
+Applying that polarization across all remaining bit counts produces $K$
+copies of the pair $(1,Q-1)$ plus the single value $Q$. No element becomes
+zero, every bit-position count is preserved, and any less polarized positive
+pair has a product at least as large. The minimum product is therefore
+
+$$
+Q(Q-1)^K.
+$$
+
+Compute this expression modulo $10^9+7$ with binary modular exponentiation.
+The exponent may be as large as $2^{59}-1$, so expanding the multiplication
+one factor at a time is not feasible.
+
+#### Complexity detail
+
+The exponent $K$ has $O(p)$ binary digits. Modular exponentiation processes
+one digit per squaring step, giving $O(p)$ time. The values `Q`, `K`, the
+modulus, and the exponentiation state occupy $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Repeated multiplication:** Multiplying by $Q-1$ exactly $K$ times is
+  correct but takes $O(2^p)$ time.
+- **Construct the transformed array:** Explicitly materializing all
+  $2^p-1$ elements is unnecessary and becomes infeasible well before the
+  maximum `p`.
+- **Minimize the modular residue directly:** This solves a different problem.
+  The true integer product must be minimized first, and only that result is
+  reduced modulo $10^9+7$.
+- For `p = 1`, $K=0$ and the formula correctly becomes
+  $1\cdot 0^0=1$ under modular exponentiation's zero-exponent convention.
+- Arbitrary bit swaps are not allowed: each exchanged pair of bits must occupy
+  the same binary position in its two elements.
+
+</details>

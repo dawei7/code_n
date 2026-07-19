@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2119",
+  "frontend_id": "2009",
+  "title_slug": "minimum-number-of-operations-to-make-array-continuous",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minOperations",
+  "verified_submission_id": "2072834449",
+  "verified_at": "2026-07-18T22:57:36.067950+00:00"
+}

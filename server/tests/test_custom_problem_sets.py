@@ -1,6 +1,8 @@
 """Tests for profile-owned custom problem sets."""
 from __future__ import annotations
 
+from server.app.custom_problem_sets import safely_normalize_saved_custom_problem_sets
+
 from . import conftest
 
 
@@ -17,6 +19,7 @@ class CustomProblemSetsTest(conftest._Base):
                     "id": "set_interview",
                     "name": "Interview path",
                     "description": "A focused progression.",
+                    "career_mode": True,
                     "nodes": [
                         {
                             "type": "group",
@@ -87,7 +90,7 @@ class CustomProblemSetsTest(conftest._Base):
         self.assertEqual(response.status_code, 422, response.text)
         self.assertIn("3 levels", response.json()["detail"])
 
-    def test_rejects_unknown_problems_and_allows_repeated_practice_placements(self) -> None:
+    def test_rejects_unknown_problems_and_deduplicates_each_leaf(self) -> None:
         unknown = self.client.put(
             "/api/custom-problem-sets",
             json={
@@ -121,6 +124,18 @@ class CustomProblemSetsTest(conftest._Base):
                         "nodes": [
                             {"type": "problem", "id": "item_one", "challenge_id": "lc_1"},
                             {"type": "problem", "id": "item_two", "challenge_id": "lc_1"},
+                            {
+                                "type": "group",
+                                "id": "group_second_leaf",
+                                "name": "Second leaf",
+                                "children": [
+                                    {
+                                        "type": "problem",
+                                        "id": "item_three",
+                                        "challenge_id": "lc_1",
+                                    }
+                                ],
+                            },
                         ],
                     }
                 ]
@@ -128,9 +143,45 @@ class CustomProblemSetsTest(conftest._Base):
         )
         self.assertEqual(repeated.status_code, 200, repeated.text)
         self.assertEqual(
-            [node["challenge_id"] for node in repeated.json()["sets"][0]["nodes"]],
-            ["lc_1", "lc_1"],
+            [
+                node["challenge_id"]
+                for node in repeated.json()["sets"][0]["nodes"]
+                if node["type"] == "problem"
+            ],
+            ["lc_1"],
         )
+        self.assertEqual(
+            repeated.json()["sets"][0]["nodes"][1]["children"][0]["challenge_id"],
+            "lc_1",
+        )
+
+    def test_limits_personal_to_five_root_sets(self) -> None:
+        sets = [
+            {
+                "id": f"set_{index}",
+                "name": f"Root {index}",
+                "description": "",
+                "nodes": [],
+            }
+            for index in range(6)
+        ]
+        response = self.client.put("/api/custom-problem-sets", json={"sets": sets})
+        self.assertEqual(response.status_code, 422, response.text)
+        self.assertIn("at most 5", response.json()["detail"])
+
+    def test_reads_legacy_roots_without_silently_deleting_them(self) -> None:
+        legacy_sets = [
+            {
+                "id": f"set_legacy_{index}",
+                "name": f"Legacy root {index}",
+                "description": "",
+                "nodes": [],
+            }
+            for index in range(6)
+        ]
+        normalized = safely_normalize_saved_custom_problem_sets(legacy_sets)
+        self.assertEqual(len(normalized), 6)
+        self.assertTrue(all(set_data["career_mode"] is False for set_data in normalized))
 
     def test_custom_view_is_a_persisted_algorithm_set(self) -> None:
         response = self.client.put("/api/progress", json={"active_set": "custom"})
@@ -142,8 +193,9 @@ class CustomProblemSetsTest(conftest._Base):
             "sets": [
                 {
                     "id": "set_default",
-                    "name": "Default profile set",
-                    "description": "",
+                        "name": "Default profile set",
+                        "description": "",
+                        "career_mode": False,
                     "nodes": [
                         {"type": "problem", "id": "item_one", "challenge_id": "lc_1"}
                     ],

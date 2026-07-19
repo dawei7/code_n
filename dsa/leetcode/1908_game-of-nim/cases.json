@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1908",
+  "cases": [
+    {
+      "id": "example-single-pile",
+      "name": "sample: Alice empties the only pile",
+      "kind": "sample",
+      "visible": true,
+      "input": {"piles": [1]},
+      "expected": true,
+      "tags": ["sample", "single-pile"]
+    },
+    {
+      "id": "example-equal-pair",
+      "name": "sample: two equal piles cancel",
+      "kind": "sample",
+      "visible": true,
+      "input": {"piles": [1, 1]},
+      "expected": false,
+      "tags": ["sample", "zero-xor"]
+    },
+    {
+      "id": "example-distinct-zero-xor",
+      "name": "sample: three distinct piles have zero nim-sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"piles": [1, 2, 3]},
+      "expected": false,
+      "tags": ["sample", "zero-xor"]
+    },
+    {
+      "id": "trial-distinct-winning",
+      "name": "a nonzero nim-sum gives Alice a winning move",
+      "kind": "trial",
+      "visible": true,
+      "input": {"piles": [1, 2, 4]},
+      "expected": true,
+      "tags": ["nonzero-xor"]
+    },
+    {
+      "id": "trial-largest-single",
+      "name": "a maximum-size single pile is still an immediate win",
+      "kind": "trial",
+      "visible": true,
+      "input": {"piles": [7]},
+      "expected": true,
+      "tags": ["single-pile", "maximum-value"]
+    },
+    {
+      "id": "real-equal-large-pair",
+      "name": "hidden: equal maximum piles cancel",
+      "kind": "real",
+      "visible": false,
+      "input": {"piles": [7, 7]},
+      "expected": false,
+      "tags": ["zero-xor", "maximum-value"]
+    },
+    {
+      "id": "real-two-unequal",
+      "name": "hidden: unequal piles have nonzero nim-sum",
+      "kind": "real",
+      "visible": false,
+      "input": {"piles": [6, 7]},
+      "expected": true,
+      "tags": ["nonzero-xor", "two-piles"]
+    },
+    {
+      "id": "real-four-canceling-pairs",
+      "name": "hidden: two repeated pairs cancel independently",
+      "kind": "real",
+      "visible": false,
+      "input": {"piles": [2, 5, 2, 5]},
+      "expected": false,
+      "tags": ["zero-xor", "cancellation"]
+    },
+    {
+      "id": "real-four-distinct-zero-xor",
+      "name": "hidden: four distinct sizes can also form a losing position",
+      "kind": "real",
+      "visible": false,
+      "input": {"piles": [1, 2, 4, 7]},
+      "expected": false,
+      "tags": ["zero-xor", "distinct-values"]
+    },
+    {
+      "id": "real-six-paired",
+      "name": "hidden: three pairs cancel across a longer input",
+      "kind": "real",
+      "visible": false,
+      "input": {"piles": [1, 7, 3, 1, 3, 7]},
+      "expected": false,
+      "tags": ["zero-xor", "cancellation"]
+    },
+    {
+      "id": "real-maximum-length-winning",
+      "name": "hidden: seven maximum piles leave one uncanceled value",
+      "kind": "real",
+      "visible": false,
+      "input": {"piles": [7, 7, 7, 7, 7, 7, 7]},
+      "expected": true,
+      "tags": ["maximum-length", "maximum-value", "nonzero-xor"]
+    },
+    {
+      "id": "real-maximum-length-zero-xor",
+      "name": "hidden: a mixed maximum-length position has zero nim-sum",
+      "kind": "real",
+      "visible": false,
+      "input": {"piles": [1, 2, 3, 4, 5, 6, 7]},
+      "expected": false,
+      "tags": ["maximum-length", "zero-xor"]
+    }
+  ]
+}

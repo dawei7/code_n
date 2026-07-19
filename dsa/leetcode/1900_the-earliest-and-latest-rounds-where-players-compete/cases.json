@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1900",
+  "cases": [
+    {"id":"example-variable-round","name":"sample: outcomes allow rounds three through four","kind":"sample","visible":true,"input":{"n":11,"firstPlayer":2,"secondPlayer":4},"expected":[3,4],"tags":["sample","variable-round"]},
+    {"id":"example-immediate","name":"sample: first and last players meet immediately","kind":"sample","visible":true,"input":{"n":5,"firstPlayer":1,"secondPlayer":5},"expected":[1,1],"tags":["sample","immediate"]},
+    {"id":"trial-small-variable","name":"five players allow the meeting in round two or three","kind":"trial","visible":true,"input":{"n":5,"firstPlayer":1,"secondPlayer":3},"expected":[2,3],"tags":["small","variable-round"]},
+    {"id":"trial-minimum","name":"the only two players meet in round one","kind":"trial","visible":true,"input":{"n":2,"firstPlayer":1,"secondPlayer":2},"expected":[1,1],"tags":["minimum","immediate"]},
+    {"id":"real-odd-middle","name":"hidden: an odd middle player advances automatically","kind":"real","visible":false,"input":{"n":3,"firstPlayer":1,"secondPlayer":2},"expected":[2,2],"tags":["odd-middle","fixed-round"]},
+    {"id":"real-even-interior-opponents","name":"hidden: interior mirror positions are first-round opponents","kind":"real","visible":false,"input":{"n":4,"firstPlayer":2,"secondPlayer":3},"expected":[1,1],"tags":["even","immediate"]},
+    {"id":"real-six-variable","name":"hidden: unrelated outcomes vary a six-player meeting","kind":"real","visible":false,"input":{"n":6,"firstPlayer":1,"secondPlayer":3},"expected":[2,3],"tags":["even","variable-round"]},
+    {"id":"real-twelve-wide-range","name":"hidden: a twelve-player bracket permits rounds two through four","kind":"real","visible":false,"input":{"n":12,"firstPlayer":1,"secondPlayer":6},"expected":[2,4],"tags":["multiple-rounds","boundary"]},
+    {"id":"real-maximum-adjacent","name":"hidden: adjacent edge players survive until the fifth round","kind":"real","visible":false,"input":{"n":28,"firstPlayer":1,"secondPlayer":2},"expected":[5,5],"tags":["maximum-n","fixed-round"]},
+    {"id":"real-maximum-variable","name":"hidden: maximum-size bracket spans rounds two through five","kind":"real","visible":false,"input":{"n":28,"firstPlayer":7,"secondPlayer":19},"expected":[2,5],"tags":["maximum-n","variable-round"]},
+    {"id":"real-maximum-immediate","name":"hidden: mirrored maximum-size positions meet at once","kind":"real","visible":false,"input":{"n":28,"firstPlayer":13,"secondPlayer":16},"expected":[1,1],"tags":["maximum-n","immediate"]}
+  ]
+}

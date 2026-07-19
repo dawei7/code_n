@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2044",
+  "frontend_id": "1915",
+  "title_slug": "number-of-wonderful-substrings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.wonderfulSubstrings",
+  "verified_submission_id": "2072297877",
+  "verified_at": "2026-07-18T14:17:40.672473+00:00"
+}

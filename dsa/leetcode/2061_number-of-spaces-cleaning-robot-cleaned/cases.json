@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2061",
+  "cases": [
+    {"id":"sample-open-path","name":"sample: obstacles create one seven-cell route","kind":"sample","visible":true,"input":{"room":[[0,0,0],[1,1,0],[0,0,0]]},"expected":7,"tags":["sample","obstacles"]},
+    {"id":"sample-trapped-start","name":"sample: the robot is trapped at the start","kind":"sample","visible":true,"input":{"room":[[0,1,0],[1,0,0],[0,0,0]]},"expected":1,"tags":["sample","trapped"]},
+    {"id":"sample-open-square","name":"sample: an open square leaves the center untouched","kind":"sample","visible":true,"input":{"room":[[0,0,0],[0,0,0],[0,0,0]]},"expected":8,"tags":["sample","cycle"]},
+    {"id":"trial-single-cell","name":"one cell cycles through four directions","kind":"trial","visible":true,"input":{"room":[[0]]},"expected":1,"tags":["minimum-size"]},
+    {"id":"real-open-two-by-two","name":"hidden: a small open room cleans every boundary cell","kind":"real","visible":false,"input":{"room":[[0,0],[0,0]]},"expected":4,"tags":["hidden","open-room"]},
+    {"id":"real-internal-turns","name":"hidden: obstacles redirect the robot through an inner route","kind":"real","visible":false,"input":{"room":[[0,0,1],[0,0,0],[1,0,0]]},"expected":4,"tags":["hidden","turns"]},
+    {"id":"real-unreachable-region","name":"hidden: disconnected empty cells remain uncleaned","kind":"real","visible":false,"input":{"room":[[0,1,0,0],[0,0,0,1],[1,0,0,0]]},"expected":2,"tags":["hidden","unreachable"]}
+  ]
+}

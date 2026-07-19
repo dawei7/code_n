@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1862",
+  "cases": [
+    {"id":"example-distinct-values","name":"sample: distinct values span several quotients","kind":"sample","visible":true,"input":{"nums":[2,5,9]},"expected":10,"validator":{"kind":"exact"},"tags":["example","distinct"]},
+    {"id":"example-all-equal","name":"sample: every ordered pair contributes one","kind":"sample","visible":true,"input":{"nums":[7,7,7,7,7,7,7]},"expected":49,"validator":{"kind":"exact"},"tags":["example","all-equal"]},
+    {"id":"trial-consecutive","name":"three consecutive values include zero and larger quotients","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":9,"validator":{"kind":"exact"},"tags":["consecutive","ordered-pairs"]},
+    {"id":"real-single-element","name":"hidden: one self-pair contributes one","kind":"real","visible":false,"input":{"nums":[1]},"expected":1,"validator":{"kind":"exact"},"tags":["minimum-length","self-pair"]},
+    {"id":"real-duplicate-ones","name":"hidden: duplicate multiplicity applies on both axes","kind":"real","visible":false,"input":{"nums":[1,1,1]},"expected":9,"validator":{"kind":"exact"},"tags":["duplicates","all-equal"]},
+    {"id":"real-duplicate-denominators","name":"hidden: repeated denominator and numerator values","kind":"real","visible":false,"input":{"nums":[2,2,4]},"expected":9,"validator":{"kind":"exact"},"tags":["duplicates","multiplicity"]},
+    {"id":"real-one-and-five","name":"hidden: ordered direction changes the quotient","kind":"real","visible":false,"input":{"nums":[5,1]},"expected":7,"validator":{"kind":"exact"},"tags":["ordered-pairs","asymmetry"]},
+    {"id":"real-maximum-single","name":"hidden: maximum value alone still contributes one","kind":"real","visible":false,"input":{"nums":[100000]},"expected":1,"validator":{"kind":"exact"},"tags":["maximum-value","single-element"]},
+    {"id":"real-wide-range","name":"hidden: one and maximum value create a large quotient","kind":"real","visible":false,"input":{"nums":[1,100000]},"expected":100002,"validator":{"kind":"exact"},"tags":["maximum-value","large-quotient"]},
+    {"id":"real-multiples","name":"hidden: multiples align with quotient boundaries","kind":"real","visible":false,"input":{"nums":[3,6,9,12]},"expected":17,"validator":{"kind":"exact"},"tags":["multiples","range-boundaries"]}
+  ]
+}

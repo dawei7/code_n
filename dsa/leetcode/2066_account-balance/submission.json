@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2208",
+  "frontend_id": "2066",
+  "title_slug": "account-balance",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2072969345",
+  "verified_at": "2026-07-19T03:19:29.531028+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2205",
+  "frontend_id": "2100",
+  "title_slug": "find-good-days-to-rob-the-bank",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.goodDaysToRobBank",
+  "verified_submission_id": "2073126613",
+  "verified_at": "2026-07-19T06:11:23.637008+00:00"
+}

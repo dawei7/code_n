@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2082",
+  "cases": [
+    {
+      "id": "sample-two-rich-customers",
+      "name": "sample: duplicate qualifying bills count one customer once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Store": [
+            {"bill_id": 6, "customer_id": 1, "amount": 549},
+            {"bill_id": 8, "customer_id": 1, "amount": 834},
+            {"bill_id": 4, "customer_id": 2, "amount": 394},
+            {"bill_id": 11, "customer_id": 3, "amount": 657},
+            {"bill_id": 13, "customer_id": 3, "amount": 257}
+          ]
+        }
+      },
+      "expected": {"columns": ["rich_count"], "rows": [[2]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["sample", "distinct-customers"]
+    },
+    {
+      "id": "trial-strict-threshold",
+      "name": "an amount equal to five hundred does not qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Store": [
+            {"bill_id": 1, "customer_id": 7, "amount": 500},
+            {"bill_id": 2, "customer_id": 8, "amount": 501}
+          ]
+        }
+      },
+      "expected": {"columns": ["rich_count"], "rows": [[1]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["strict-threshold"]
+    },
+    {
+      "id": "trial-one-qualifying-bill",
+      "name": "one qualifying bill is sufficient among mixed amounts",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Store": [
+            {"bill_id": 1, "customer_id": 4, "amount": 100},
+            {"bill_id": 2, "customer_id": 4, "amount": 900},
+            {"bill_id": 3, "customer_id": 5, "amount": 300}
+          ]
+        }
+      },
+      "expected": {"columns": ["rich_count"], "rows": [[1]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["mixed-bills"]
+    },
+    {
+      "id": "real-no-rich-customers",
+      "name": "hidden: the aggregate returns zero when none qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Store": [
+            {"bill_id": 10, "customer_id": 1, "amount": 500},
+            {"bill_id": 11, "customer_id": 2, "amount": 1},
+            {"bill_id": 12, "customer_id": 1, "amount": 499}
+          ]
+        }
+      },
+      "expected": {"columns": ["rich_count"], "rows": [[0]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "zero-result"]
+    },
+    {
+      "id": "real-many-bills-one-customer",
+      "name": "hidden: several rich bills still represent one customer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Store": [
+            {"bill_id": 20, "customer_id": 9, "amount": 501},
+            {"bill_id": 21, "customer_id": 9, "amount": 700},
+            {"bill_id": 22, "customer_id": 9, "amount": 1000},
+            {"bill_id": 23, "customer_id": 10, "amount": 500}
+          ]
+        }
+      },
+      "expected": {"columns": ["rich_count"], "rows": [[1]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "deduplication"]
+    },
+    {
+      "id": "real-nonconsecutive-identities",
+      "name": "hidden: customer identifiers need not be consecutive",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Store": [
+            {"bill_id": 31, "customer_id": 100, "amount": 600},
+            {"bill_id": 32, "customer_id": 7, "amount": 999},
+            {"bill_id": 33, "customer_id": 42, "amount": 50},
+            {"bill_id": 34, "customer_id": 100, "amount": 800}
+          ]
+        }
+      },
+      "expected": {"columns": ["rich_count"], "rows": [[2]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "customer-identities"]
+    }
+  ]
+}

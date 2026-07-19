@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2080",
+  "cases": [
+    {
+      "id": "sample-two-queries",
+      "name": "sample: partial and full range frequencies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": ["RangeFreqQuery", "query", "query"],
+        "arguments": [
+          [[12, 33, 4, 56, 22, 2, 34, 33, 22, 12, 34, 56]],
+          [1, 2, 4],
+          [0, 11, 33]
+        ]
+      },
+      "expected": [null, 1, 2],
+      "tags": ["sample", "inclusive-range"]
+    },
+    {
+      "id": "trial-prefix-exclusion",
+      "name": "whole-array and prefix queries differ",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["RangeFreqQuery", "query", "query"],
+        "arguments": [[[1, 1, 2, 2, 2]], [0, 4, 2], [0, 1, 2]]
+      },
+      "expected": [null, 3, 0],
+      "tags": ["prefix", "repeated-value"]
+    },
+    {
+      "id": "trial-single-position",
+      "name": "one-position ranges count exact matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["RangeFreqQuery", "query", "query"],
+        "arguments": [[[5]], [0, 0, 5], [0, 0, 1]]
+      },
+      "expected": [null, 1, 0],
+      "tags": ["single-element", "absent-value"]
+    },
+    {
+      "id": "real-boundary-occurrences",
+      "name": "hidden: both inclusive boundaries contain the value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["RangeFreqQuery", "query", "query", "query"],
+        "arguments": [[[7, 2, 7, 7, 3, 7]], [0, 5, 7], [2, 3, 7], [1, 4, 7]]
+      },
+      "expected": [null, 4, 2, 2],
+      "tags": ["hidden", "inclusive-boundaries"]
+    },
+    {
+      "id": "real-absent-and-outside",
+      "name": "hidden: globally absent and range-absent values return zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["RangeFreqQuery", "query", "query", "query"],
+        "arguments": [[[4, 5, 4, 6, 5]], [0, 4, 9], [1, 1, 4], [1, 4, 5]]
+      },
+      "expected": [null, 0, 0, 2],
+      "tags": ["hidden", "zero-frequency"]
+    },
+    {
+      "id": "real-repeated-read-only-queries",
+      "name": "hidden: queries do not modify the index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["RangeFreqQuery", "query", "query", "query"],
+        "arguments": [[[8, 8, 1, 8]], [0, 3, 8], [0, 3, 8], [1, 2, 8]]
+      },
+      "expected": [null, 3, 3, 1],
+      "tags": ["hidden", "read-only-state"]
+    }
+  ]
+}

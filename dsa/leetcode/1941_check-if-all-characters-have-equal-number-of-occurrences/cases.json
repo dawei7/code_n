@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1941",
+  "cases": [
+    {"id":"example-equal","name":"sample: three characters each occur twice","kind":"sample","visible":true,"input":{"s":"abacbc"},"expected":true,"tags":["sample","equal-counts"]},
+    {"id":"example-unequal","name":"sample: two characters have different counts","kind":"sample","visible":true,"input":{"s":"aaabb"},"expected":false,"tags":["sample","unequal-counts"]},
+    {"id":"trial-single-character","name":"one character occurs once","kind":"trial","visible":true,"input":{"s":"z"},"expected":true,"tags":["minimum-length","single-character"]},
+    {"id":"trial-one-distinct","name":"one distinct character repeats","kind":"trial","visible":true,"input":{"s":"aaaaaa"},"expected":true,"tags":["one-distinct-character"]},
+    {"id":"trial-all-distinct","name":"all distinct characters occur once","kind":"trial","visible":true,"input":{"s":"abcdef"},"expected":true,"tags":["all-distinct"]},
+    {"id":"trial-balanced-groups","name":"three grouped characters occur twice","kind":"trial","visible":true,"input":{"s":"aabbcc"},"expected":true,"tags":["grouped","equal-counts"]},
+    {"id":"real-single-shortfall","name":"hidden: one character occurs one fewer time","kind":"real","visible":false,"input":{"s":"aabbc"},"expected":false,"tags":["near-balanced"]},
+    {"id":"real-reversed-alphabet","name":"hidden: separated characters have equal counts","kind":"real","visible":false,"input":{"s":"zzzyyyxxx"},"expected":true,"tags":["equal-counts","multiple-characters"]},
+    {"id":"real-one-duplicate","name":"hidden: one duplicated character breaks equality","kind":"real","visible":false,"input":{"s":"abcdd"},"expected":false,"tags":["one-duplicate"]},
+    {"id":"real-alphabet-imbalance","name":"hidden: one letter occurs twice while the rest occur once","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyza"},"expected":false,"tags":["full-alphabet","unequal-counts"]}
+  ]
+}

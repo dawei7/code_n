@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2040",
+  "cases": [
+    {
+      "id": "sample-positive-products",
+      "name": "sample: second of four positive products",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [2, 5], "nums2": [3, 4], "k": 2},
+      "expected": 8,
+      "tags": ["sample", "positive"]
+    },
+    {
+      "id": "sample-negative-and-zero",
+      "name": "sample: zero follows four negative products",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [-4, -2, 0, 3], "nums2": [2, 4], "k": 6},
+      "expected": 0,
+      "tags": ["sample", "zero", "negative"]
+    },
+    {
+      "id": "sample-all-signs",
+      "name": "sample: mixed signs determine the negative rank",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [-2, -1, 0, 1, 2], "nums2": [-3, -1, 2, 4, 5], "k": 3},
+      "expected": -6,
+      "tags": ["sample", "mixed-sign"]
+    },
+    {
+      "id": "trial-two-negatives-positive-product",
+      "name": "two negative singleton values produce a positive product",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [-1], "nums2": [-1], "k": 1},
+      "expected": 1,
+      "tags": ["singleton", "negative-factors"]
+    },
+    {
+      "id": "trial-all-zero-products",
+      "name": "zero factors preserve indexed multiplicity",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [0, 0], "nums2": [-5, 5], "k": 4},
+      "expected": 0,
+      "tags": ["zeros", "duplicates", "last-rank"]
+    },
+    {
+      "id": "real-duplicate-products",
+      "name": "hidden: every indexed pair has the same product",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [-2, -2], "nums2": [3, 3], "k": 4},
+      "expected": -6,
+      "tags": ["hidden", "duplicate-products"]
+    },
+    {
+      "id": "real-minimum-product-bound",
+      "name": "hidden: first rank reaches the negative product limit",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [-100000, 100000], "nums2": [-100000, 100000], "k": 1},
+      "expected": -10000000000,
+      "tags": ["hidden", "product-boundary", "first-rank"]
+    },
+    {
+      "id": "real-maximum-product-bound",
+      "name": "hidden: last rank reaches the positive product limit",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [-100000, 100000], "nums2": [-100000, 100000], "k": 4},
+      "expected": 10000000000,
+      "tags": ["hidden", "product-boundary", "last-rank"]
+    },
+    {
+      "id": "real-ceiling-division-boundary",
+      "name": "hidden: negative factor counting crosses through zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [-3], "nums2": [-2, -1, 0, 1, 2], "k": 3},
+      "expected": 0,
+      "tags": ["hidden", "negative-division", "zero"]
+    }
+  ]
+}

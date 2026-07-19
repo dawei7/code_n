@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1927",
+  "cases": [
+    {"id":"example-fixed-equal","name":"sample: fixed halves already have equal sums","kind":"sample","visible":true,"input":{"num":"5023"},"expected":false,"tags":["sample","no-moves","bob-wins"]},
+    {"id":"example-right-unknowns","name":"sample: Alice breaks equality with two right unknowns","kind":"sample","visible":true,"input":{"num":"25??"},"expected":true,"tags":["sample","alice-wins"]},
+    {"id":"example-compensated","name":"sample: known difference is exactly compensated by unknown imbalance","kind":"sample","visible":true,"input":{"num":"?3295???"},"expected":false,"tags":["sample","compensated-balance"]},
+    {"id":"trial-fixed-unequal","name":"fixed unequal halves give Alice an immediate win","kind":"trial","visible":true,"input":{"num":"1234"},"expected":true,"tags":["no-moves","unequal-sums"]},
+    {"id":"trial-one-unknown","name":"an odd number of moves lets Alice choose last","kind":"trial","visible":true,"input":{"num":"?0"},"expected":true,"tags":["odd-move-count","minimum-length"]},
+    {"id":"real-all-unknown","name":"hidden: symmetric all-unknown halves can be paired by Bob","kind":"real","visible":false,"input":{"num":"????????"},"expected":false,"tags":["all-unknown","symmetric"]},
+    {"id":"real-left-compensation","name":"hidden: two extra left unknowns compensate a right sum of nine","kind":"real","visible":false,"input":{"num":"??90"},"expected":false,"tags":["left-imbalance","compensated-balance"]},
+    {"id":"real-right-compensation","name":"hidden: two extra right unknowns compensate a left sum of nine","kind":"real","visible":false,"input":{"num":"90??"},"expected":false,"tags":["right-imbalance","compensated-balance"]},
+    {"id":"real-equal-unknown-counts","name":"hidden: equal unknown counts do not repair a known sum gap","kind":"real","visible":false,"input":{"num":"0?9?"},"expected":true,"tags":["equal-unknown-counts","known-gap"]},
+    {"id":"real-two-left-unknowns","name":"hidden: unopposed left unknown contribution favors Alice","kind":"real","visible":false,"input":{"num":"??00"},"expected":true,"tags":["left-imbalance","alice-wins"]},
+    {"id":"real-odd-many","name":"hidden: any odd total unknown count gives Alice the final move","kind":"real","visible":false,"input":{"num":"9???"},"expected":true,"tags":["odd-move-count","alice-wins"]}
+  ]
+}

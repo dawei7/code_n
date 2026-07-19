@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1809",
+  "cases": [
+    {
+      "id": "example-mixed-sessions",
+      "name": "sample: ads exclude two of five sessions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "Playback": [
+          {"session_id":1,"customer_id":1,"start_time":1,"end_time":5},
+          {"session_id":2,"customer_id":1,"start_time":15,"end_time":23},
+          {"session_id":3,"customer_id":2,"start_time":10,"end_time":12},
+          {"session_id":4,"customer_id":2,"start_time":17,"end_time":28},
+          {"session_id":5,"customer_id":2,"start_time":2,"end_time":8}
+        ],
+        "Ads": [
+          {"ad_id":1,"customer_id":1,"timestamp":5},
+          {"ad_id":2,"customer_id":2,"timestamp":15},
+          {"ad_id":3,"customer_id":2,"timestamp":20}
+        ]
+      }},
+      "expected": {"columns":["session_id"],"rows":[[2],[3],[5]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["sample","mixed-sessions","inclusive-end"]
+    },
+    {
+      "id": "trial-inclusive-start",
+      "name": "an ad at the start boundary excludes the session",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Playback": [{"session_id":7,"customer_id":3,"start_time":10,"end_time":20}],
+        "Ads": [{"ad_id":1,"customer_id":3,"timestamp":10}]
+      }},
+      "expected": {"columns":["session_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["inclusive-start","empty-output"]
+    },
+    {
+      "id": "trial-different-customer",
+      "name": "same timestamp for another customer does not match",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Playback": [{"session_id":8,"customer_id":4,"start_time":10,"end_time":20}],
+        "Ads": [{"ad_id":1,"customer_id":9,"timestamp":15}]
+      }},
+      "expected": {"columns":["session_id"],"rows":[[8]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["customer-match","unrelated-ad"]
+    },
+    {
+      "id": "trial-no-ads",
+      "name": "all sessions are returned when Ads is empty",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Playback": [
+          {"session_id":1,"customer_id":1,"start_time":1,"end_time":2},
+          {"session_id":2,"customer_id":2,"start_time":3,"end_time":4}
+        ],
+        "Ads": {"columns":["ad_id","customer_id","timestamp"],"rows":[]}
+      }},
+      "expected": {"columns":["session_id"],"rows":[[1],[2]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["empty-ads","all-output"]
+    },
+    {
+      "id": "real-inclusive-end",
+      "name": "hidden: an ad at the end boundary excludes the session",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Playback": [{"session_id":12,"customer_id":5,"start_time":30,"end_time":40}],
+        "Ads": [{"ad_id":9,"customer_id":5,"timestamp":40}]
+      }},
+      "expected": {"columns":["session_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["inclusive-end","boundary"]
+    },
+    {
+      "id": "real-ads-outside-interval",
+      "name": "hidden: ads immediately outside both boundaries do not match",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Playback": [{"session_id":20,"customer_id":6,"start_time":10,"end_time":20}],
+        "Ads": [
+          {"ad_id":1,"customer_id":6,"timestamp":9},
+          {"ad_id":2,"customer_id":6,"timestamp":21}
+        ]
+      }},
+      "expected": {"columns":["session_id"],"rows":[[20]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["outside-interval","off-by-one"]
+    },
+    {
+      "id": "real-ad-in-gap",
+      "name": "hidden: an ad between nonoverlapping sessions affects neither",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Playback": [
+          {"session_id":30,"customer_id":7,"start_time":1,"end_time":5},
+          {"session_id":31,"customer_id":7,"start_time":10,"end_time":15}
+        ],
+        "Ads": [{"ad_id":1,"customer_id":7,"timestamp":8}]
+      }},
+      "expected": {"columns":["session_id"],"rows":[[30],[31]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["same-customer","session-gap"]
+    },
+    {
+      "id": "real-multiple-ads",
+      "name": "hidden: several matching ads still exclude one session",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Playback": [
+          {"session_id":40,"customer_id":8,"start_time":100,"end_time":200},
+          {"session_id":41,"customer_id":9,"start_time":100,"end_time":200}
+        ],
+        "Ads": [
+          {"ad_id":1,"customer_id":8,"timestamp":110},
+          {"ad_id":2,"customer_id":8,"timestamp":150},
+          {"ad_id":3,"customer_id":8,"timestamp":190}
+        ]
+      }},
+      "expected": {"columns":["session_id"],"rows":[[41]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["multiple-matches","duplicate-join-rows"]
+    }
+  ]
+}

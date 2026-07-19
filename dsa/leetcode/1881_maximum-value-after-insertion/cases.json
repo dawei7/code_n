@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1881",
+  "cases": [
+    {"id":"example-equal-digits","name":"sample: equal digits give the same representation anywhere","kind":"sample","visible":true,"input":{"n":"99","x":9},"expected":"999","tags":["sample","equal-digits"]},
+    {"id":"example-negative-middle","name":"sample: negative magnitude improves before a larger digit","kind":"sample","visible":true,"input":{"n":"-13","x":2},"expected":"-123","tags":["sample","negative"]},
+    {"id":"trial-positive-middle","name":"insert before the first smaller positive digit","kind":"trial","visible":true,"input":{"n":"73","x":6},"expected":"763","tags":["positive","middle-insertion"]},
+    {"id":"trial-negative-front","name":"insert immediately after the sign before a larger digit","kind":"trial","visible":true,"input":{"n":"-469","x":3},"expected":"-3469","tags":["negative","front-insertion"]},
+    {"id":"real-positive-front","name":"hidden: a larger digit belongs at the highest place","kind":"real","visible":false,"input":{"n":"469","x":6},"expected":"6469","tags":["positive","front-insertion"]},
+    {"id":"real-negative-example","name":"hidden: a small digit minimizes the negative magnitude prefix","kind":"real","visible":false,"input":{"n":"-55","x":2},"expected":"-255","tags":["negative"]},
+    {"id":"real-positive-append","name":"hidden: smaller inserted digit belongs at the end","kind":"real","visible":false,"input":{"n":"987","x":6},"expected":"9876","tags":["positive","append"]},
+    {"id":"real-negative-append","name":"hidden: larger inserted digit belongs at the end of a negative value","kind":"real","visible":false,"input":{"n":"-123","x":9},"expected":"-1239","tags":["negative","append"]},
+    {"id":"real-single-positive","name":"hidden: one positive digit uses the ordinary comparison","kind":"real","visible":false,"input":{"n":"5","x":3},"expected":"53","tags":["single-digit","append"]},
+    {"id":"real-single-negative","name":"hidden: one negative digit reverses the comparison","kind":"real","visible":false,"input":{"n":"-5","x":7},"expected":"-57","tags":["single-digit","negative"]},
+    {"id":"real-equal-run-positive","name":"hidden: cross equal digits before the first smaller one","kind":"real","visible":false,"input":{"n":"666421","x":6},"expected":"6666421","tags":["equal-run","positive"]},
+    {"id":"real-equal-run-negative","name":"hidden: cross equal digits before the first larger one","kind":"real","visible":false,"input":{"n":"-222578","x":2},"expected":"-2222578","tags":["equal-run","negative"]}
+  ]
+}

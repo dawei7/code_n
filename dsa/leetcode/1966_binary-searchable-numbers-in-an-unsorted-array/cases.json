@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1966",
+  "cases": [
+    {"id":"example-single-value","name":"sample: only pivot is guaranteed","kind":"sample","visible":true,"input":{"nums":[7]},"expected":1,"tags":["sample","minimum"]},
+    {"id":"example-one-searchable","name":"sample: only the first value survives every pivot","kind":"sample","visible":true,"input":{"nums":[-1,5,2]},"expected":1,"tags":["sample","unsorted"]},
+    {"id":"trial-sorted","name":"every value in increasing order is searchable","kind":"trial","visible":true,"input":{"nums":[1,2,3,4,5]},"expected":5,"tags":["increasing","all-searchable"]},
+    {"id":"trial-decreasing","name":"no value in decreasing order is guaranteed","kind":"trial","visible":true,"input":{"nums":[5,4,3,2,1]},"expected":0,"tags":["decreasing","none-searchable"]},
+    {"id":"trial-none-searchable","name":"each value has an adversarial pivot","kind":"trial","visible":true,"input":{"nums":[3,1,2]},"expected":0,"tags":["unsorted","none-searchable"]},
+    {"id":"trial-searchable-endpoints","name":"only smallest first and largest last qualify","kind":"trial","visible":true,"input":{"nums":[1,3,2,4]},"expected":2,"tags":["endpoints","unsorted"]},
+    {"id":"real-only-largest-last","name":"hidden: final maximum is the only searchable value","kind":"real","visible":false,"input":{"nums":[2,1,3]},"expected":1,"tags":["last-position"]},
+    {"id":"real-value-boundaries","name":"hidden: sorted extreme values all qualify","kind":"real","visible":false,"input":{"nums":[-100000,0,100000]},"expected":3,"tags":["value-boundary","increasing"]},
+    {"id":"real-leading-maximum","name":"hidden: leading maximum invalidates all middle values","kind":"real","visible":false,"input":{"nums":[5,1,2,3,6]},"expected":1,"tags":["prefix-maximum","last-position"]},
+    {"id":"real-two-extremes","name":"hidden: internal disorder leaves only outer extremes","kind":"real","visible":false,"input":{"nums":[1,5,3,4,6,2,7]},"expected":2,"tags":["endpoints","internal-disorder"]}
+  ]
+}

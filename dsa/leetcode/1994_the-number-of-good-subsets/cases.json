@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1994",
+  "cases": [
+    {
+      "id": "sample-one-and-square",
+      "name": "sample: one doubles valid choices and four is invalid",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4]},
+      "expected": 6,
+      "tags": ["sample", "ones", "square-factor"]
+    },
+    {
+      "id": "sample-overlapping-factors",
+      "name": "sample: compatible and overlapping products",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4, 2, 3, 15]},
+      "expected": 5,
+      "tags": ["sample", "prime-mask"]
+    },
+    {
+      "id": "trial-only-ones",
+      "name": "ones alone never form a good subset",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 1, 1]},
+      "expected": 0,
+      "tags": ["boundary", "ones"]
+    },
+    {
+      "id": "trial-duplicate-indices",
+      "name": "equal values at different indices are distinct choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 2, 3, 3]},
+      "expected": 8,
+      "tags": ["duplicates", "index-distinct"]
+    },
+    {
+      "id": "real-all-square-factors",
+      "name": "hidden: every value contains a repeated prime factor",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 8, 9, 12, 18, 20, 25, 27]},
+      "expected": 0,
+      "tags": ["hidden", "square-factor"]
+    },
+    {
+      "id": "real-pairwise-overlap",
+      "name": "hidden: square-free values may still conflict with each other",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 10, 15]},
+      "expected": 3,
+      "tags": ["hidden", "overlap"]
+    },
+    {
+      "id": "real-mixed-masks",
+      "name": "hidden: mixed square-free and invalid values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 3, 4, 5, 6, 10, 15, 30]},
+      "expected": 14,
+      "tags": ["hidden", "mixed"]
+    },
+    {
+      "id": "real-many-independent-primes",
+      "name": "hidden: disjoint prime values combine freely with one",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 11, 13, 17, 19, 23, 29, 1]},
+      "expected": 254,
+      "tags": ["hidden", "disjoint", "ones"]
+    }
+  ]
+}

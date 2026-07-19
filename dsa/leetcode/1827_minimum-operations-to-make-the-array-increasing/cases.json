@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1827",
+  "cases": [
+    {"id":"example-flat-three","name":"sample: three equal values","kind":"sample","visible":true,"input":{"nums":[1,1,1]},"expected":3,"tags":["example","flat-array"]},
+    {"id":"example-mixed","name":"sample: forced increases propagate","kind":"sample","visible":true,"input":{"nums":[1,5,2,4,1]},"expected":14,"tags":["example","mixed-values"]},
+    {"id":"example-single","name":"sample: one element is already increasing","kind":"sample","visible":true,"input":{"nums":[8]},"expected":0,"tags":["example","single-element"]},
+    {"id":"trial-already-increasing","name":"no operations for a strictly increasing array","kind":"trial","visible":true,"input":{"nums":[1,3,7,20]},"expected":0,"tags":["already-increasing","gaps"]},
+    {"id":"trial-one-equal-pair","name":"one equal neighbor needs one increment","kind":"trial","visible":true,"input":{"nums":[2,2]},"expected":1,"tags":["equal-neighbors","two-elements"]},
+    {"id":"trial-decreasing","name":"decreasing values require propagated adjustments","kind":"trial","visible":true,"input":{"nums":[5,4,3]},"expected":6,"tags":["decreasing","propagation"]},
+    {"id":"real-trailing-plateau","name":"hidden: plateau after an increasing prefix","kind":"real","visible":false,"input":{"nums":[1,2,2,2]},"expected":3,"tags":["plateau","prefix"]},
+    {"id":"real-high-boundary-flat","name":"hidden: maximum input values may be increased beyond the bound","kind":"real","visible":false,"input":{"nums":[10000,10000,10000]},"expected":3,"tags":["maximum-value","flat-array"]},
+    {"id":"real-low-after-high","name":"hidden: a low suffix follows a high first value","kind":"real","visible":false,"input":{"nums":[3,1,2]},"expected":6,"tags":["low-suffix","propagation"]},
+    {"id":"real-alternating-drops","name":"hidden: several drops accumulate independently","kind":"real","visible":false,"input":{"nums":[1,4,2,6,3]},"expected":7,"tags":["alternating","multiple-adjustments"]}
+  ]
+}

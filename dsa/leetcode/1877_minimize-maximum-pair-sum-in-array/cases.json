@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1877",
+  "cases": [
+    {"id":"example-four-values","name":"sample: opposite extremes cap the maximum at seven","kind":"sample","visible":true,"input":{"nums":[3,5,2,3]},"expected":7,"tags":["sample","greedy-pairing"]},
+    {"id":"example-six-values","name":"sample: three balanced pairs cap the maximum at eight","kind":"sample","visible":true,"input":{"nums":[3,5,4,2,4,6]},"expected":8,"tags":["sample","balanced-pairs"]},
+    {"id":"trial-two-values","name":"two elements form one forced pair","kind":"trial","visible":true,"input":{"nums":[9,1]},"expected":10,"tags":["minimum","forced-pair"]},
+    {"id":"trial-all-equal","name":"all equal values give every pair the same sum","kind":"trial","visible":true,"input":{"nums":[4,4,4,4]},"expected":8,"tags":["duplicates","all-equal"]},
+    {"id":"real-sorted","name":"hidden: sorted values pair from the two ends","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,6]},"expected":7,"tags":["sorted","opposite-extremes"]},
+    {"id":"real-reverse-sorted","name":"hidden: input order does not affect the optimum","kind":"real","visible":false,"input":{"nums":[8,7,6,5,4,3,2,1]},"expected":9,"tags":["reverse-sorted"]},
+    {"id":"real-duplicate-extremes","name":"hidden: repeated extremes preserve every occurrence","kind":"real","visible":false,"input":{"nums":[1,1,1,9,9,9]},"expected":10,"tags":["duplicates","extremes"]},
+    {"id":"real-uneven-gaps","name":"hidden: wide gaps are balanced across pairs","kind":"real","visible":false,"input":{"nums":[1,2,3,50,51,100]},"expected":101,"tags":["wide-gaps","greedy-pairing"]},
+    {"id":"real-interleaved","name":"hidden: interleaved values are ranked before pairing","kind":"real","visible":false,"input":{"nums":[10,1,8,3,6,5,4,7]},"expected":11,"tags":["unordered-input"]},
+    {"id":"real-one-large","name":"hidden: the unique largest value receives the minimum partner","kind":"real","visible":false,"input":{"nums":[100,1,20,20]},"expected":101,"tags":["unique-maximum"]},
+    {"id":"real-maximum-values","name":"hidden: maximum allowed values produce the largest legal pair sum","kind":"real","visible":false,"input":{"nums":[100000,100000]},"expected":200000,"tags":["value-boundary"]},
+    {"id":"real-many-groups","name":"hidden: several duplicate groups balance by rank","kind":"real","visible":false,"input":{"nums":[2,2,4,4,7,7,9,9,12,12]},"expected":14,"tags":["duplicates","rank-pairing"]}
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2036",
+  "measurement_note": "Size is N, the array length. The two-state recurrence processes every element once. A correct implementation that starts at every index and incrementally extends all possible endpoints completes these tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 alternating values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [1, -1, 1, -1, 1, -1, 1, -1]},
+      "expected": 8,
+      "tags": ["benchmark", "scale-small", "all-subarrays"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 alternating values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"nums": [1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1]},
+      "expected": 32,
+      "tags": ["benchmark", "scale-medium", "all-subarrays"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128 alternating values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"nums": [1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1]},
+      "expected": 128,
+      "tags": ["benchmark", "scale-large", "all-subarrays"]
+    }
+  ]
+}

@@ -8,10 +8,11 @@ from server.app.challenge_sets import leetcode_metadata_by_id
 
 
 CUSTOM_PROBLEM_SETS_VERSION = 1
-MAX_CUSTOM_SETS = 40
+MAX_CUSTOM_SETS = 5
+LEGACY_MAX_CUSTOM_SETS = 40
 MAX_GROUP_DEPTH = 3
-MAX_TOTAL_NODES = 10_000
-MAX_NODES_PER_SET = 4_000
+MAX_TOTAL_NODES = 250_000
+MAX_NODES_PER_SET = 100_000
 MAX_NAME_LENGTH = 80
 MAX_DESCRIPTION_LENGTH = 500
 _ID_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$")
@@ -54,14 +55,15 @@ def normalize_custom_problem_sets(
     raw_sets: object,
     *,
     known_challenge_ids: Iterable[str] | None = None,
+    max_sets: int = MAX_CUSTOM_SETS,
 ) -> list[dict]:
     """Return a compact, validated copy of a custom-set payload."""
 
     if not isinstance(raw_sets, list):
         raise CustomProblemSetValidationError("Custom problem sets must be a list.")
-    if len(raw_sets) > MAX_CUSTOM_SETS:
+    if len(raw_sets) > max_sets:
         raise CustomProblemSetValidationError(
-            f"A profile can store at most {MAX_CUSTOM_SETS} custom problem sets."
+            f"A profile can store at most {max_sets} custom problem sets."
         )
 
     known_ids = (
@@ -87,6 +89,7 @@ def normalize_custom_problem_sets(
             )
 
         normalized: list[dict] = []
+        direct_problem_ids: set[str] = set()
         for raw_node in raw_nodes:
             if not isinstance(raw_node, dict):
                 raise CustomProblemSetValidationError(
@@ -117,6 +120,9 @@ def normalize_custom_problem_sets(
                     raise CustomProblemSetValidationError(
                         f'Unknown LeetCode problem "{challenge_id}" in "{set_name}".'
                     )
+                if challenge_id in direct_problem_ids:
+                    continue
+                direct_problem_ids.add(challenge_id)
                 normalized.append(
                     {
                         "type": "problem",
@@ -164,6 +170,7 @@ def normalize_custom_problem_sets(
                 "id": set_id,
                 "name": set_name,
                 "description": _clean_description(raw_set.get("description")),
+                "career_mode": raw_set.get("career_mode") is True,
                 "nodes": normalize_nodes(
                     raw_set.get("nodes", []),
                     set_name=set_name,
@@ -180,6 +187,9 @@ def safely_normalize_saved_custom_problem_sets(raw_sets: object) -> list[dict]:
     """Read old or hand-edited profile data without breaking application startup."""
 
     try:
-        return normalize_custom_problem_sets(raw_sets)
+        return normalize_custom_problem_sets(
+            raw_sets,
+            max_sets=LEGACY_MAX_CUSTOM_SETS,
+        )
     except CustomProblemSetValidationError:
         return []

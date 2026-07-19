@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1813",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n + m)",
+  "summary": "Each sentence is limited to 100 characters, too small for an honest runtime trend that separates a linear scan from repeated interval deletion.",
+  "workload_bound": {
+    "symbol": "L",
+    "maximum": 200,
+    "unit": "total characters across both sentences",
+    "source_constraint": "sentence1 and sentence2 each contain from 1 through 100 characters"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Splitting reads each bounded sentence once, and the prefix and suffix pointers together consume each shorter word at most once."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares all small two-word-alphabet sentence pairs with a brute-force contiguous-deletion oracle and checks maximum-length boundaries."
+    }
+  ]
+}

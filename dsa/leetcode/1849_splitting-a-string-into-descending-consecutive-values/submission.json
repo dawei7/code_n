@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1976",
+  "frontend_id": "1849",
+  "title_slug": "splitting-a-string-into-descending-consecutive-values",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.splitString",
+  "verified_submission_id": "2071709690",
+  "verified_at": "2026-07-18T03:53:59.024098+00:00"
+}

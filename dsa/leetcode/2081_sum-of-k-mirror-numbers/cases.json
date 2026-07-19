@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2081",
+  "cases": [
+    {
+      "id": "sample-binary-five",
+      "name": "sample: first five binary mirror values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"k": 2, "n": 5},
+      "expected": 25,
+      "tags": ["sample", "base-two"]
+    },
+    {
+      "id": "sample-ternary-seven",
+      "name": "sample: odd-length palindromes in base three",
+      "kind": "sample",
+      "visible": true,
+      "input": {"k": 3, "n": 7},
+      "expected": 499,
+      "tags": ["sample", "base-three"]
+    },
+    {
+      "id": "sample-base-seven-seventeen",
+      "name": "sample: larger cross-base palindromes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"k": 7, "n": 17},
+      "expected": 20379000,
+      "tags": ["sample", "base-seven"]
+    },
+    {
+      "id": "trial-first-value",
+      "name": "the first mirror value is one in every base",
+      "kind": "trial",
+      "visible": true,
+      "input": {"k": 9, "n": 1},
+      "expected": 1,
+      "tags": ["minimum-count", "maximum-base"]
+    },
+    {
+      "id": "real-binary-six",
+      "name": "hidden: the first multi-digit decimal match",
+      "kind": "real",
+      "visible": false,
+      "input": {"k": 2, "n": 6},
+      "expected": 58,
+      "tags": ["hidden", "even-decimal-length"]
+    },
+    {
+      "id": "real-ternary-four",
+      "name": "hidden: early one-digit values need no special handling",
+      "kind": "real",
+      "visible": false,
+      "input": {"k": 3, "n": 4},
+      "expected": 15,
+      "tags": ["hidden", "one-digit-values"]
+    },
+    {
+      "id": "real-base-nine-eight",
+      "name": "hidden: every positive digit below the base qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {"k": 9, "n": 8},
+      "expected": 36,
+      "tags": ["hidden", "single-digit-prefix"]
+    }
+  ]
+}

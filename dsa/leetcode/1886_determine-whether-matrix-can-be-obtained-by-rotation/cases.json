@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1886",
+  "cases": [
+    {"id":"example-quarter-turn","name":"sample: one clockwise quarter-turn matches","kind":"sample","visible":true,"input":{"mat":[[0,1],[1,0]],"target":[[1,0],[0,1]]},"expected":true,"tags":["sample","ninety-degrees"]},
+    {"id":"example-no-rotation","name":"sample: no orientation matches the target","kind":"sample","visible":true,"input":{"mat":[[0,1],[1,1]],"target":[[1,0],[0,1]]},"expected":false,"tags":["sample","impossible"]},
+    {"id":"example-half-turn","name":"sample: two quarter-turns match","kind":"sample","visible":true,"input":{"mat":[[0,0,0],[0,1,0],[1,1,1]],"target":[[1,1,1],[0,1,0],[0,0,0]]},"expected":true,"tags":["sample","one-eighty-degrees"]},
+    {"id":"trial-already-equal","name":"zero rotations are allowed","kind":"trial","visible":true,"input":{"mat":[[1,0],[0,0]],"target":[[1,0],[0,0]]},"expected":true,"tags":["zero-degrees","already-equal"]},
+    {"id":"trial-single-cell-equal","name":"one equal cell is rotation invariant","kind":"trial","visible":true,"input":{"mat":[[1]],"target":[[1]]},"expected":true,"tags":["single-cell","symmetric"]},
+    {"id":"real-single-cell-different","name":"hidden: one unequal cell cannot be repaired by rotation","kind":"real","visible":false,"input":{"mat":[[0]],"target":[[1]]},"expected":false,"tags":["single-cell","impossible"]},
+    {"id":"real-distinct-ninety","name":"hidden: an asymmetric matrix matches only after ninety degrees","kind":"real","visible":false,"input":{"mat":[[1,0,0],[1,1,0],[0,1,0]],"target":[[0,1,1],[1,1,0],[0,0,0]]},"expected":true,"tags":["ninety-degrees","asymmetric"]},
+    {"id":"real-distinct-one-eighty","name":"hidden: an asymmetric matrix matches only after one hundred eighty degrees","kind":"real","visible":false,"input":{"mat":[[1,0,0],[1,1,0],[0,1,0]],"target":[[0,1,0],[0,1,1],[0,0,1]]},"expected":true,"tags":["one-eighty-degrees","asymmetric"]},
+    {"id":"real-distinct-two-seventy","name":"hidden: an asymmetric matrix matches only after two hundred seventy degrees","kind":"real","visible":false,"input":{"mat":[[1,0,0],[1,1,0],[0,1,0]],"target":[[0,0,0],[0,1,1],[1,1,0]]},"expected":true,"tags":["two-seventy-degrees","asymmetric"]},
+    {"id":"real-all-zero","name":"hidden: a fully symmetric zero matrix matches every rotation","kind":"real","visible":false,"input":{"mat":[[0,0,0],[0,0,0],[0,0,0]],"target":[[0,0,0],[0,0,0],[0,0,0]]},"expected":true,"tags":["symmetric","all-zero"]},
+    {"id":"real-same-count-no-match","name":"hidden: equal one-count does not imply rotational equality","kind":"real","visible":false,"input":{"mat":[[1,1,0],[0,0,0],[0,0,0]],"target":[[1,0,1],[0,0,0],[0,0,0]]},"expected":false,"tags":["same-count","impossible"]}
+  ]
+}

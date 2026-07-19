@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1969",
+  "cases": [
+    {"id":"example-one-bit","name":"sample: one-bit domain","kind":"sample","visible":true,"input":{"p":1},"expected":1,"tags":["sample","minimum"]},
+    {"id":"example-two-bits","name":"sample: two-bit domain","kind":"sample","visible":true,"input":{"p":2},"expected":6,"tags":["sample","small"]},
+    {"id":"example-three-bits","name":"sample: three-bit domain","kind":"sample","visible":true,"input":{"p":3},"expected":1512,"tags":["sample","small"]},
+    {"id":"trial-four-bits","name":"four-bit domain","kind":"trial","visible":true,"input":{"p":4},"expected":581202553,"tags":["modulo"]},
+    {"id":"trial-five-bits","name":"five-bit domain","kind":"trial","visible":true,"input":{"p":5},"expected":202795991,"tags":["modulo"]},
+    {"id":"trial-six-bits","name":"six-bit domain","kind":"trial","visible":true,"input":{"p":6},"expected":57405498,"tags":["modulo"]},
+    {"id":"real-ten-bits","name":"hidden: ten-bit domain","kind":"real","visible":false,"input":{"p":10},"expected":586669277,"tags":["moderate"]},
+    {"id":"real-fifteen-bits","name":"hidden: fifteen-bit domain","kind":"real","visible":false,"input":{"p":15},"expected":431467833,"tags":["large-exponent"]},
+    {"id":"real-thirty-bits","name":"hidden: thirty-bit domain","kind":"real","visible":false,"input":{"p":30},"expected":945196305,"tags":["large-exponent"]},
+    {"id":"real-sixty-bits","name":"hidden: maximum binary width","kind":"real","visible":false,"input":{"p":60},"expected":813987236,"tags":["maximum","large-exponent"]}
+  ]
+}

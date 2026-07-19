@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1954",
+  "measurement_note": "Size is A, the neededApples value that governs the required logarithmic search. Each input is one more than the apple total for the preceding half-side, forcing the stated answer. The reference doubles and binary-searches candidate half-sides. A correct slower implementation checks every half-side in order, completes all legal tiers, and fails by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: first sufficient half-side is 256","kind":"benchmark","visible":false,"size":66716161,"input":{"neededApples":66716161},"expected":2048,"tags":["benchmark","scale-small","boundary"]},
+    {"id":"benchmark-scale-2","name":"benchmark: first sufficient half-side is 2048","kind":"benchmark","visible":false,"size":34334576641,"input":{"neededApples":34334576641},"expected":16384,"tags":["benchmark","scale-medium","boundary"]},
+    {"id":"benchmark-scale-3","name":"benchmark: first sufficient half-side is 16384","kind":"benchmark","visible":false,"size":17590575464449,"input":{"neededApples":17590575464449},"expected":131072,"tags":["benchmark","scale-large","boundary"]}
+  ]
+}

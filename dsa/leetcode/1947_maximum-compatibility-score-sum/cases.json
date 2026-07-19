@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1947",
+  "cases": [
+    {"id":"example-mixed","name":"sample: cross-pairing yields total eight","kind":"sample","visible":true,"input":{"students":[[1,1,0],[1,0,1],[0,0,1]],"mentors":[[1,0,0],[0,0,1],[1,1,0]]},"expected":8,"tags":["sample","mixed"]},
+    {"id":"example-all-opposite","name":"sample: every possible pair disagrees everywhere","kind":"sample","visible":true,"input":{"students":[[0,0],[0,0],[0,0]],"mentors":[[1,1],[1,1],[1,1]]},"expected":0,"tags":["sample","zero-score"]},
+    {"id":"trial-single-mismatch","name":"one student and mentor disagree on both answers","kind":"trial","visible":true,"input":{"students":[[1,0]],"mentors":[[0,1]]},"expected":0,"tags":["single-pair","zero-score"]},
+    {"id":"trial-single-perfect","name":"one identical pair matches every question","kind":"trial","visible":true,"input":{"students":[[1,0,1,1,0,0,1,0]],"mentors":[[1,0,1,1,0,0,1,0]]},"expected":8,"tags":["single-pair","perfect-score"]},
+    {"id":"trial-swapped-perfect-pairs","name":"two mentors can be swapped into perfect matches","kind":"trial","visible":true,"input":{"students":[[1,0],[0,1]],"mentors":[[0,1],[1,0]]},"expected":4,"tags":["permuted-perfect-matches"]},
+    {"id":"trial-identical-rows","name":"duplicate response rows still represent separate people","kind":"trial","visible":true,"input":{"students":[[0,0],[0,0],[1,1]],"mentors":[[0,0],[1,1],[0,0]]},"expected":6,"tags":["duplicate-rows","perfect-total"]},
+    {"id":"real-competing-best-mentor","name":"hidden: students compete for the same locally best mentor","kind":"real","visible":false,"input":{"students":[[1,1,1],[1,1,0],[0,0,0]],"mentors":[[1,1,1],[0,0,0],[0,1,0]]},"expected":8,"tags":["global-assignment","competing-choice"]},
+    {"id":"real-all-one-question","name":"hidden: one-question answers require balanced pairing","kind":"real","visible":false,"input":{"students":[[0],[0],[1],[1]],"mentors":[[1],[0],[1],[0]]},"expected":4,"tags":["one-question","perfect-total"]},
+    {"id":"real-tied-optima","name":"hidden: several assignments share the same optimum","kind":"real","visible":false,"input":{"students":[[0,1],[1,0]],"mentors":[[0,0],[1,1]]},"expected":2,"tags":["tied-optima"]},
+    {"id":"real-question-boundary","name":"hidden: eight questions contribute independently","kind":"real","visible":false,"input":{"students":[[1,1,1,1,0,0,0,0],[0,0,1,1,1,1,0,0]],"mentors":[[0,0,1,1,1,1,0,0],[1,1,1,1,0,0,0,0]]},"expected":16,"tags":["maximum-questions","permuted-perfect-matches"]}
+  ]
+}

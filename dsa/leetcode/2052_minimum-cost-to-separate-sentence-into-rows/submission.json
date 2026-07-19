@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2082",
+  "frontend_id": "2052",
+  "title_slug": "minimum-cost-to-separate-sentence-into-rows",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumCost",
+  "verified_submission_id": "2072882866",
+  "verified_at": "2026-07-19T02:05:34.074084+00:00"
+}

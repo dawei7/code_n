@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2038",
+  "measurement_note": "Size is N, the string length. Counting centered monochromatic triples is linear in N. A correct implementation that alternates turns, scans for a legal piece, and rebuilds the string after every removal completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: runs totaling 9 pieces",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9,
+      "input": {"colors": "AAAAABBBB"},
+      "expected": true,
+      "tags": ["benchmark", "scale-small", "removal-simulation"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: runs totaling 33 pieces",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 33,
+      "input": {"colors": "AAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBB"},
+      "expected": true,
+      "tags": ["benchmark", "scale-medium", "removal-simulation"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: runs totaling 129 pieces",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 129,
+      "input": {"colors": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"},
+      "expected": true,
+      "tags": ["benchmark", "scale-large", "removal-simulation"]
+    }
+  ]
+}

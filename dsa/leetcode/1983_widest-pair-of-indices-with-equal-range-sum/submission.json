@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "519",
+  "frontend_id": "1983",
+  "title_slug": "widest-pair-of-indices-with-equal-range-sum",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.widestPairOfIndices",
+  "verified_submission_id": "2072792904",
+  "verified_at": "2026-07-18T20:49:22.469329+00:00"
+}

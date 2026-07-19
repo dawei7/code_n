@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2076",
+  "cases": [
+    {
+      "id": "sample-first-side-grows",
+      "name": "sample: restriction becomes indirect after one merge",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "restrictions": [[0, 1]], "requests": [[0, 2], [2, 1]]},
+      "expected": [true, false],
+      "tags": ["sample", "indirect-restriction"]
+    },
+    {
+      "id": "sample-second-side-grows",
+      "name": "sample: symmetric component orientation",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "restrictions": [[0, 1]], "requests": [[1, 2], [0, 2]]},
+      "expected": [true, false],
+      "tags": ["sample", "symmetric-restriction"]
+    },
+    {
+      "id": "sample-multiple-restrictions",
+      "name": "sample: decisions accumulate in request order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "restrictions": [[0, 1], [1, 2], [2, 3]],
+        "requests": [[0, 4], [1, 2], [3, 1], [3, 4]]
+      },
+      "expected": [true, false, true, false],
+      "tags": ["sample", "request-order"]
+    },
+    {
+      "id": "trial-no-restrictions",
+      "name": "repeated connected requests remain successful",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "restrictions": [], "requests": [[0, 1], [0, 1], [1, 0]]},
+      "expected": [true, true, true],
+      "tags": ["no-restrictions", "repeated-request"]
+    },
+    {
+      "id": "real-rejection-does-not-persist",
+      "name": "hidden: rejected edge never changes connectivity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "restrictions": [[0, 1]],
+        "requests": [[0, 2], [1, 2], [1, 3], [2, 3]]
+      },
+      "expected": [true, false, true, false],
+      "tags": ["hidden", "rejection-state"]
+    },
+    {
+      "id": "real-already-indirectly-connected",
+      "name": "hidden: a redundant edge inside one component succeeds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "restrictions": [[0, 3]],
+        "requests": [[0, 1], [1, 2], [0, 2], [2, 3]]
+      },
+      "expected": [true, true, true, false],
+      "tags": ["hidden", "already-connected"]
+    },
+    {
+      "id": "real-direct-then-component-restriction",
+      "name": "hidden: direct rejection followed by safe requests",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "restrictions": [[0, 1]],
+        "requests": [[0, 1], [2, 3], [0, 2], [1, 3]]
+      },
+      "expected": [false, true, true, false],
+      "tags": ["hidden", "direct-restriction"]
+    }
+  ]
+}

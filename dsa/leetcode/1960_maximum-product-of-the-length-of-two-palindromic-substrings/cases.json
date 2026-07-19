@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1960",
+  "cases": [
+    {"id":"example-overlapping-options","name":"sample: choose aba and trailing bbb","kind":"sample","visible":true,"input":{"s":"ababbb"},"expected":9,"tags":["sample","split-choice"]},
+    {"id":"example-separated-triples","name":"sample: two separated length-three palindromes","kind":"sample","visible":true,"input":{"s":"zaaaxbbby"},"expected":9,"tags":["sample","separated"]},
+    {"id":"trial-two-characters","name":"two single-character palindromes","kind":"trial","visible":true,"input":{"s":"aa"},"expected":1,"tags":["minimum","singletons"]},
+    {"id":"trial-all-distinct","name":"all odd palindromes are single characters","kind":"trial","visible":true,"input":{"s":"abc"},"expected":1,"tags":["distinct","singletons"]},
+    {"id":"trial-uniform-odd","name":"uniform odd-length string must split its palindrome","kind":"trial","visible":true,"input":{"s":"aaaaa"},"expected":3,"tags":["uniform","overlap"]},
+    {"id":"trial-whole-palindrome","name":"whole-string palindrome cannot overlap the second choice","kind":"trial","visible":true,"input":{"s":"aba"},"expected":1,"tags":["overlap","singletons"]},
+    {"id":"real-adjacent-triples","name":"hidden: adjacent aba and cdc maximize the product","kind":"real","visible":false,"input":{"s":"abacdc"},"expected":9,"tags":["touching","separated"]},
+    {"id":"real-long-and-short","name":"hidden: length-seven and length-three palindromes","kind":"real","visible":false,"input":{"s":"racecarxaba"},"expected":21,"tags":["unequal-lengths","separated"]},
+    {"id":"real-even-palindrome-ignored","name":"hidden: long even palindrome does not qualify","kind":"real","visible":false,"input":{"s":"abaxyzzyx"},"expected":3,"tags":["odd-only","semantic-boundary"]},
+    {"id":"real-two-length-five","name":"hidden: two adjacent length-five palindromes","kind":"real","visible":false,"input":{"s":"levelmadam"},"expected":25,"tags":["touching","large-product"]}
+  ]
+}

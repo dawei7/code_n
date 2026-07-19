@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2023",
+  "cases": [
+    {
+      "id": "sample-mixed-splits",
+      "name": "sample: several target splits contribute",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": ["777", "7", "77", "77"], "target": "7777"},
+      "expected": 4,
+      "tags": ["sample", "multiple-splits"]
+    },
+    {
+      "id": "sample-two-splits",
+      "name": "sample: two different prefix lengths qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": ["123", "4", "12", "34"], "target": "1234"},
+      "expected": 2,
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-all-equal",
+      "name": "sample: equal values produce ordered distinct-index pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": ["1", "1", "1"], "target": "11"},
+      "expected": 6,
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "trial-reversed-values",
+      "name": "different ordered value combinations can both qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": ["1", "12", "21", "2"], "target": "121"},
+      "expected": 2,
+      "tags": ["ordered", "multiple-splits"]
+    },
+    {
+      "id": "trial-self-pair-forbidden",
+      "name": "one matching value cannot reuse its own index",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": ["1", "2"], "target": "11"},
+      "expected": 0,
+      "tags": ["distinct-indices"]
+    },
+    {
+      "id": "real-unused-full-target",
+      "name": "hidden: a full-target string has no empty partner",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": ["1234", "12", "34", "1"], "target": "1234"},
+      "expected": 1,
+      "tags": ["hidden", "nonempty"]
+    },
+    {
+      "id": "real-duplicate-products",
+      "name": "hidden: independent duplicate counts multiply",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": ["12", "12", "3", "3", "3", "9"], "target": "123"},
+      "expected": 6,
+      "tags": ["hidden", "duplicates"]
+    }
+  ]
+}

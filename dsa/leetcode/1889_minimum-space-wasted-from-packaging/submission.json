@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2018",
+  "frontend_id": "1889",
+  "title_slug": "minimum-space-wasted-from-packaging",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minWastedSpace",
+  "verified_submission_id": "2071920182",
+  "verified_at": "2026-07-18T07:24:50.265895+00:00"
+}

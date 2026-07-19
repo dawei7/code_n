@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1971",
+  "cases": [
+    {"id":"example-cycle","name":"sample: destination lies in a cycle","kind":"sample","visible":true,"input":{"n":3,"edges":[[0,1],[1,2],[2,0]],"source":0,"destination":2},"expected":true,"tags":["sample","cycle"]},
+    {"id":"example-components","name":"sample: vertices lie in separate components","kind":"sample","visible":true,"input":{"n":6,"edges":[[0,1],[0,2],[3,5],[5,4],[4,3]],"source":0,"destination":5},"expected":false,"tags":["sample","disconnected"]},
+    {"id":"trial-single-vertex","name":"single vertex has a zero-edge path to itself","kind":"trial","visible":true,"input":{"n":1,"edges":[],"source":0,"destination":0},"expected":true,"tags":["minimum","same-vertex"]},
+    {"id":"trial-empty-graph","name":"distinct isolated vertices are disconnected","kind":"trial","visible":true,"input":{"n":4,"edges":[],"source":1,"destination":3},"expected":false,"tags":["empty-edges","disconnected"]},
+    {"id":"trial-one-edge-reverse","name":"undirected edge works against its listed orientation","kind":"trial","visible":true,"input":{"n":2,"edges":[[0,1]],"source":1,"destination":0},"expected":true,"tags":["undirected","single-edge"]},
+    {"id":"trial-same-isolated","name":"isolated source equals destination","kind":"trial","visible":true,"input":{"n":5,"edges":[[0,1],[2,3]],"source":4,"destination":4},"expected":true,"tags":["same-vertex","isolated"]},
+    {"id":"real-long-chain","name":"hidden: destination at the end of a chain","kind":"real","visible":false,"input":{"n":8,"edges":[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]],"source":0,"destination":7},"expected":true,"tags":["chain"]},
+    {"id":"real-branch-dead-end","name":"hidden: branches do not reach the target component","kind":"real","visible":false,"input":{"n":9,"edges":[[0,1],[0,2],[1,3],[1,4],[2,5],[6,7],[7,8]],"source":0,"destination":8},"expected":false,"tags":["branches","disconnected"]},
+    {"id":"real-cycle-tail","name":"hidden: path leaves a cycle through a tail","kind":"real","visible":false,"input":{"n":7,"edges":[[0,1],[1,2],[2,0],[2,3],[3,4],[4,5],[5,6]],"source":1,"destination":6},"expected":true,"tags":["cycle","tail"]},
+    {"id":"real-unrelated-dense-component","name":"hidden: dense component does not connect the queried vertices","kind":"real","visible":false,"input":{"n":7,"edges":[[0,1],[0,2],[1,2],[3,4],[3,5],[4,5],[5,6]],"source":2,"destination":6},"expected":false,"tags":["components","dense"]}
+  ]
+}

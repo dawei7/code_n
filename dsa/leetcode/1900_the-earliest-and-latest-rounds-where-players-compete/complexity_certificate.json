@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1900",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n^5)",
+  "summary": "The legal tournament has at most 28 players and therefore at most five rounds, which is too narrow for an honest three-tier asymptotic verdict against complete outcome enumeration.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 28,
+    "unit": "players",
+    "source_constraint": "n is an integer from 2 through 28"
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"Memoization stores only distinguished-position states, and each round transition retains at most a quadratic set of winner-count pairs."},
+    {"kind":"exhaustive_domain","evidence":"The certificate regression compares all 3654 legal (n, firstPlayer, secondPlayer) inputs with an independent positional tournament oracle."}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2009",
+  "frontend_id": "1858",
+  "title_slug": "longest-word-with-all-prefixes",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.longestWord",
+  "verified_submission_id": "2071738582",
+  "verified_at": "2026-07-18T04:31:25.932628+00:00"
+}

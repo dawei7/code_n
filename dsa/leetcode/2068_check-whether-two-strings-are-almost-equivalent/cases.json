@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2068",
+  "cases": [
+    {"id":"sample-difference-four","name":"sample: one frequency differs by four","kind":"sample","visible":true,"input":{"word1":"aaaa","word2":"bccb"},"expected":false,"tags":["sample","above-threshold"]},
+    {"id":"sample-boundary-valid","name":"sample: a difference of three is allowed","kind":"sample","visible":true,"input":{"word1":"abcdeef","word2":"abaaacc"},"expected":true,"tags":["sample","inclusive-threshold"]},
+    {"id":"sample-several-letters","name":"sample: several nonzero differences stay within the limit","kind":"sample","visible":true,"input":{"word1":"cccddabba","word2":"babababab"},"expected":true,"tags":["sample","multiple-letters"]},
+    {"id":"trial-identical-single","name":"identical one-character strings have zero differences","kind":"trial","visible":true,"input":{"word1":"z","word2":"z"},"expected":true,"tags":["minimum-size","identical"]},
+    {"id":"real-exactly-three","name":"hidden: the inclusive boundary applies to an absent letter","kind":"real","visible":false,"input":{"word1":"aaab","word2":"bbbb"},"expected":true,"tags":["hidden","difference-three"]},
+    {"id":"real-second-string-excess","name":"hidden: excess frequency in the second string is symmetric","kind":"real","visible":false,"input":{"word1":"abcde","word2":"zzzzz"},"expected":false,"tags":["hidden","negative-difference"]},
+    {"id":"real-balanced-differences","name":"hidden: total length can balance while one letter exceeds the limit","kind":"real","visible":false,"input":{"word1":"aaaabbbb","word2":"ccccdddd"},"expected":false,"tags":["hidden","equal-length"]}
+  ]
+}

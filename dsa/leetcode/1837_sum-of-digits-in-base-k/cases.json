@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1837",
+  "cases": [
+    {"id":"example-base-six","name":"sample: two base-six digits","kind":"sample","visible":true,"input":{"n":34,"k":6},"expected":9,"tags":["example","base-six"]},
+    {"id":"example-base-ten","name":"sample: decimal digits remain unchanged","kind":"sample","visible":true,"input":{"n":10,"k":10},"expected":1,"tags":["example","base-ten"]},
+    {"id":"trial-minimum-value","name":"minimum value is one digit in every base","kind":"trial","visible":true,"input":{"n":1,"k":2},"expected":1,"tags":["minimum-value","single-digit"]},
+    {"id":"trial-power-of-two","name":"a binary power has one set digit","kind":"trial","visible":true,"input":{"n":8,"k":2},"expected":1,"tags":["binary","power"]},
+    {"id":"trial-two-base-three-digits","name":"base-three representation has repeated digits","kind":"trial","visible":true,"input":{"n":8,"k":3},"expected":4,"tags":["base-three","repeated-digits"]},
+    {"id":"real-maximum-decimal","name":"hidden: maximum input in base ten","kind":"real","visible":false,"input":{"n":100,"k":10},"expected":1,"tags":["maximum-value","base-ten"]},
+    {"id":"real-maximum-binary","name":"hidden: maximum input has three binary one bits","kind":"real","visible":false,"input":{"n":100,"k":2},"expected":3,"tags":["maximum-value","binary"]},
+    {"id":"real-base-five","name":"hidden: consecutive base-five powers contribute","kind":"real","visible":false,"input":{"n":31,"k":5},"expected":3,"tags":["base-five","multi-digit"]},
+    {"id":"real-decimal-nines","name":"hidden: decimal digits can sum above the base","kind":"real","visible":false,"input":{"n":99,"k":10},"expected":18,"tags":["base-ten","large-digit-sum"]},
+    {"id":"real-maximum-base-three","name":"hidden: zero digits inside a base-three representation","kind":"real","visible":false,"input":{"n":100,"k":3},"expected":4,"tags":["base-three","zero-digits"]}
+  ]
+}

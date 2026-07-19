@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1864",
+  "cases": [
+    {"id":"example-one-swap","name":"sample: one arbitrary swap fixes two blocks","kind":"sample","visible":true,"input":{"s":"111000"},"expected":1,"validator":{"kind":"exact"},"tags":["example","one-swap"]},
+    {"id":"example-already-alternating","name":"sample: alternating input requires no swap","kind":"sample","visible":true,"input":{"s":"010"},"expected":0,"validator":{"kind":"exact"},"tags":["example","already-alternating"]},
+    {"id":"example-impossible-counts","name":"sample: count difference makes alternation impossible","kind":"sample","visible":true,"input":{"s":"1110"},"expected":-1,"validator":{"kind":"exact"},"tags":["example","impossible"]},
+    {"id":"trial-single-zero","name":"one zero is already alternating","kind":"trial","visible":true,"input":{"s":"0"},"expected":0,"validator":{"kind":"exact"},"tags":["minimum-length","zero"]},
+    {"id":"real-single-one","name":"hidden: one one is already alternating","kind":"real","visible":false,"input":{"s":"1"},"expected":0,"validator":{"kind":"exact"},"tags":["minimum-length","one"]},
+    {"id":"real-two-equal","name":"hidden: two equal characters cannot alternate","kind":"real","visible":false,"input":{"s":"11"},"expected":-1,"validator":{"kind":"exact"},"tags":["impossible","two-characters"]},
+    {"id":"real-forced-zero-start","name":"hidden: extra zero forces the starting character","kind":"real","visible":false,"input":{"s":"100"},"expected":1,"validator":{"kind":"exact"},"tags":["odd-length","forced-start"]},
+    {"id":"real-balanced-one-swap","name":"hidden: equal counts choose the cheaper target","kind":"real","visible":false,"input":{"s":"1100"},"expected":1,"validator":{"kind":"exact"},"tags":["balanced","target-choice"]},
+    {"id":"real-nontrivial-permutation","name":"hidden: scattered mismatches pair across the string","kind":"real","visible":false,"input":{"s":"001011"},"expected":1,"validator":{"kind":"exact"},"tags":["scattered-mismatches"]},
+    {"id":"real-long-blocks","name":"hidden: long balanced blocks require several swaps","kind":"real","visible":false,"input":{"s":"00000000001111111111"},"expected":5,"validator":{"kind":"exact"},"tags":["blocks","balanced"]}
+  ]
+}

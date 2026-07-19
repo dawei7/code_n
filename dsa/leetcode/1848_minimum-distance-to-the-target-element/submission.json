@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1975",
+  "frontend_id": "1848",
+  "title_slug": "minimum-distance-to-the-target-element",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getMinDistance",
+  "verified_submission_id": "2071670407",
+  "verified_at": "2026-07-18T02:30:13.609550+00:00"
+}

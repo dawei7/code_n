@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1940",
+  "cases": [
+    {"id":"example-two-arrays","name":"sample: two arrays share values one and four","kind":"sample","visible":true,"input":{"arrays":[[1,3,4],[1,4,7,9]]},"expected":[1,4],"tags":["sample","two-arrays"]},
+    {"id":"example-three-arrays","name":"sample: three arrays share a length-three sequence","kind":"sample","visible":true,"input":{"arrays":[[2,3,6,8],[1,2,3,5,6,7,10],[2,3,4,6,9]]},"expected":[2,3,6],"tags":["sample","three-arrays"]},
+    {"id":"example-disjoint","name":"sample: disjoint value ranges have no common sequence","kind":"sample","visible":true,"input":{"arrays":[[1,2,3,4,5],[6,7,8]]},"expected":[],"tags":["sample","empty-result"]},
+    {"id":"trial-identical","name":"identical arrays preserve every value","kind":"trial","visible":true,"input":{"arrays":[[1,5,9],[1,5,9]]},"expected":[1,5,9],"tags":["identical-arrays","full-result"]},
+    {"id":"trial-one-common","name":"only one value appears in every array","kind":"trial","visible":true,"input":{"arrays":[[1,2,10],[2,3,10],[4,5,10]]},"expected":[10],"tags":["single-common-value","three-arrays"]},
+    {"id":"trial-boundary-values","name":"minimum and maximum domain values can both qualify","kind":"trial","visible":true,"input":{"arrays":[[1,50,100],[1,75,100]]},"expected":[1,100],"tags":["value-boundaries"]},
+    {"id":"real-smallest-array","name":"hidden: result is limited by a one-element array","kind":"real","visible":false,"input":{"arrays":[[1,2,3],[2],[2,4,6]]},"expected":[2],"tags":["one-element-array","intersection"]},
+    {"id":"real-subset-only","name":"hidden: values shared by only two of three arrays are excluded","kind":"real","visible":false,"input":{"arrays":[[1,2,3,4],[2,3,5],[3,6]]},"expected":[3],"tags":["all-arrays-required"]},
+    {"id":"real-many-arrays","name":"hidden: five arrays share two separated values","kind":"real","visible":false,"input":{"arrays":[[1,4,7],[2,4,7,9],[3,4,7],[4,5,7],[4,7,10]]},"expected":[4,7],"tags":["many-arrays","multiple-common-values"]},
+    {"id":"real-no-global-common","name":"hidden: pairwise overlap does not imply global overlap","kind":"real","visible":false,"input":{"arrays":[[1,2],[2,3],[1,3]]},"expected":[],"tags":["pairwise-overlap","empty-result"]}
+  ]
+}

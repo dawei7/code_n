@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2056",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The board is fixed at 8 by 8, there are at most four pieces and at most one queen, and every move lasts at most seven seconds. The complete legal domain therefore has a fixed finite work bound and cannot support honest asymptotic runtime scaling.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 94500,
+    "unit": "joint move-choice combinations",
+    "source_constraint": "At most one queen has at most 28 choices, and each of the other three pieces has at most the rook maximum of 15 choices"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "At most 28 * 15^3 = 94500 combinations are simulated, each for at most eight integer times and four pieces."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover every piece type, staying and movement interactions, adjacent swaps, intersecting trajectories, opposite corners, and three simultaneous pieces."
+    }
+  ]
+}

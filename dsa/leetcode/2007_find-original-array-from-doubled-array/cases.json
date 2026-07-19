@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_2007",
+  "cases": [
+    {
+      "id": "sample-valid-shuffle",
+      "name": "sample: recover three distinct originals",
+      "kind": "sample",
+      "visible": true,
+      "input": {"changed": [1, 3, 4, 2, 6, 8]},
+      "expected": [1, 3, 4],
+      "tags": ["sample", "valid"]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: no complete doubled pairing",
+      "kind": "sample",
+      "visible": true,
+      "input": {"changed": [6, 3, 0, 1]},
+      "expected": [],
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "sample-odd-length",
+      "name": "sample: one value cannot form a doubled array",
+      "kind": "sample",
+      "visible": true,
+      "input": {"changed": [1]},
+      "expected": [],
+      "tags": ["sample", "odd-length"]
+    },
+    {
+      "id": "trial-paired-zeros",
+      "name": "zeros are paired with other zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {"changed": [0, 0, 0, 0]},
+      "expected": [0, 0],
+      "tags": ["zero", "duplicates"]
+    },
+    {
+      "id": "trial-duplicate-chain",
+      "name": "duplicates can be both doubles and originals",
+      "kind": "trial",
+      "visible": true,
+      "input": {"changed": [2, 4, 4, 8]},
+      "expected": [2, 4],
+      "tags": ["duplicates", "chain"]
+    },
+    {
+      "id": "real-insufficient-double",
+      "name": "hidden: one duplicate lacks a doubled partner",
+      "kind": "real",
+      "visible": false,
+      "input": {"changed": [1, 1, 2, 3]},
+      "expected": [],
+      "tags": ["hidden", "insufficient-frequency"]
+    },
+    {
+      "id": "real-boundary-values",
+      "name": "hidden: large legal values and shuffled doubles",
+      "kind": "real",
+      "visible": false,
+      "input": {"changed": [100000, 0, 50000, 2, 0, 1]},
+      "expected": [0, 1, 50000],
+      "tags": ["hidden", "boundaries", "shuffled"]
+    }
+  ]
+}

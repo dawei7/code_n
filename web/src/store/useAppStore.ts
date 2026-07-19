@@ -151,6 +151,8 @@ export interface AppState {
   progress: ProgressOut | null;
   activeSet: AlgorithmSetId;
   setActiveSet: (setVal: AlgorithmSetId) => Promise<void>;
+  activeCustomSetId: string | null;
+  setActiveCustomSet: (setId: string | null) => Promise<void>;
   customProblemSets: CustomProblemSet[];
   customProblemSetsLoading: boolean;
   customProblemSetsError: string | null;
@@ -291,6 +293,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   error: null,
   progress: null,
   activeSet: 'leetcode',
+  activeCustomSetId: null,
   customProblemSets: [],
   customProblemSetsLoading: true,
   customProblemSetsError: null,
@@ -669,6 +672,7 @@ export const useAppStore = create<AppState>((set, get) => ({
       set({ 
         progress: p,
         activeSet: normalizeAlgorithmSet(p.active_set),
+        activeCustomSetId: p.active_custom_set_id || null,
         paneFontScales: p.pane_font_scales ?? {},
         paneSizes: p.pane_sizes ?? {},
         accentColors: normalizeAccentColors(p.accent_colors),
@@ -692,8 +696,13 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ customProblemSetsLoading: true, customProblemSetsError: null });
     try {
       const response = await customProblemSetsApi.getCustomProblemSets();
+      const requestedSetId = get().activeCustomSetId;
+      const activeCustomSetId = response.sets.some((set) => set.id === requestedSetId)
+        ? requestedSetId
+        : response.sets[0]?.id ?? null;
       set({
         customProblemSets: response.sets,
+        activeCustomSetId,
         customProblemSetsLoading: false,
       });
     } catch (error) {
@@ -710,10 +719,25 @@ export const useAppStore = create<AppState>((set, get) => ({
     set({ customProblemSetsLoading: true, customProblemSetsError: null });
     try {
       const response = await customProblemSetsApi.replaceCustomProblemSets(sets);
+      const requestedSetId = get().activeCustomSetId;
+      const activeCustomSetId = response.sets.some((set) => set.id === requestedSetId)
+        ? requestedSetId
+        : response.sets[0]?.id ?? null;
       set({
         customProblemSets: response.sets,
+        activeCustomSetId,
         customProblemSetsLoading: false,
       });
+      if (get().activeSet === 'custom' && activeCustomSetId !== requestedSetId) {
+        try {
+          const progress = await progressApi.updateProgressSettings({
+            active_custom_set_id: activeCustomSetId ?? '',
+          });
+          set({ progress });
+        } catch {
+          // The set save succeeded; keeping the repaired selection is sufficient for this session.
+        }
+      }
     } catch (error) {
       set({
         customProblemSetsLoading: false,
@@ -852,13 +876,53 @@ export const useAppStore = create<AppState>((set, get) => ({
       const p = await progressApi.updateProgressSettings({ active_set: setVal });
       set({ 
         progress: p,
-        activeSet: normalizeAlgorithmSet(p.active_set)
+        activeSet: normalizeAlgorithmSet(p.active_set),
+        activeCustomSetId: p.active_custom_set_id || get().activeCustomSetId,
       });
     } catch (e) {
       console.error(e);
       set({
         activeSet: previousSet,
         error: e instanceof Error ? e.message : 'Unable to change challenge view',
+      });
+    }
+  },
+
+  async setActiveCustomSet(setId: string | null) {
+    const previousSet = get().activeSet;
+    const previousCustomSetId = get().activeCustomSetId;
+    const selectedSetId = setId && get().customProblemSets.some((set) => set.id === setId)
+      ? setId
+      : get().customProblemSets[0]?.id ?? null;
+    set({
+      activeSet: 'custom',
+      activeCustomSetId: selectedSetId,
+      currentDetail: null,
+      openChallengeIds: [],
+      source: '',
+      runResult: null,
+      error: null,
+    });
+    const selectedSet = get().customProblemSets.find((set) => set.id === selectedSetId);
+    if (get().activeTopic === 'career_path' && !selectedSet?.career_mode) {
+      set({ activeTopic: 'reference' });
+    }
+    try {
+      const progress = await progressApi.updateProgressSettings({
+        active_set: 'custom',
+        active_custom_set_id: selectedSetId ?? '',
+      });
+      set({
+        progress,
+        activeSet: normalizeAlgorithmSet(progress.active_set),
+        activeCustomSetId: progress.active_custom_set_id || selectedSetId,
+      });
+    } catch (error) {
+      console.error(error);
+      set({
+        activeSet: previousSet,
+        activeCustomSetId: previousCustomSetId,
+        error: error instanceof Error ? error.message : 'Unable to change Personal root',
       });
     }
   },
@@ -872,7 +936,10 @@ export const useAppStore = create<AppState>((set, get) => ({
         gemini_api_key: geminiApiKey,
         active_set: activeSet,
       });
-      set({ progress: p });
+      set({
+        progress: p,
+        activeCustomSetId: p.active_custom_set_id || get().activeCustomSetId,
+      });
       await get().loadProfiles();
     } catch (e) {
       console.error(e);

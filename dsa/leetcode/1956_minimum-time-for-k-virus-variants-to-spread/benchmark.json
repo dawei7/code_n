@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1956",
+  "measurement_note": "Size is N, the number of variants, while every tier keeps the coordinate bounding box fixed at 16 by 16 and requires all variants. Repeated variants at the four corners are legal and the minimum day is 16. The reference sorts N distances at each candidate. A correct slower implementation repeatedly extracts the minimum distance to select the N-th value, performs quadratic work in N per candidate, completes all tiers, and fails by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: twelve variants at four corners","kind":"benchmark","visible":false,"size":12,"input":{"points":[[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16]],"k":12},"expected":16,"tags":["benchmark","scale-small","fixed-box"]},
+    {"id":"benchmark-scale-2","name":"benchmark: twenty-four variants at four corners","kind":"benchmark","visible":false,"size":24,"input":{"points":[[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16]],"k":24},"expected":16,"tags":["benchmark","scale-medium","fixed-box"]},
+    {"id":"benchmark-scale-3","name":"benchmark: forty-eight variants at four corners","kind":"benchmark","visible":false,"size":48,"input":{"points":[[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16],[1,1],[1,16],[16,1],[16,16]],"k":48},"expected":16,"tags":["benchmark","scale-large","fixed-box"]}
+  ]
+}

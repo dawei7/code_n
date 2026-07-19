@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2150",
+  "frontend_id": "2040",
+  "title_slug": "kth-smallest-product-of-two-sorted-arrays",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.kthSmallestProduct",
+  "verified_submission_id": "2072866713",
+  "verified_at": "2026-07-19T01:06:26.843006+00:00"
+}

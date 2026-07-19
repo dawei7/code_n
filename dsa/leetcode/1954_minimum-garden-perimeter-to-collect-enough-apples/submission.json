@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1295",
+  "frontend_id": "1954",
+  "title_slug": "minimum-garden-perimeter-to-collect-enough-apples",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumPerimeter",
+  "verified_submission_id": "2072691029",
+  "verified_at": "2026-07-18T18:23:38.717376+00:00"
+}

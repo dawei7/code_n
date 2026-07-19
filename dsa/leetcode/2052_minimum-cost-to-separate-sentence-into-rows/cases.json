@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2052",
+  "cases": [
+    {
+      "id": "sample-two-rows",
+      "name": "sample: combine the first two words",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence": "i love leetcode", "k": 12},
+      "expected": 36,
+      "tags": ["sample", "last-row-free"]
+    },
+    {
+      "id": "sample-forced-single-words",
+      "name": "sample: row width forces every word apart",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence": "apples and bananas taste great", "k": 7},
+      "expected": 21,
+      "tags": ["sample", "forced-breaks"]
+    },
+    {
+      "id": "sample-one-word",
+      "name": "sample: the sole row has no cost",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence": "a", "k": 5},
+      "expected": 0,
+      "tags": ["sample", "single-word"]
+    },
+    {
+      "id": "trial-mixed-layout",
+      "name": "choose among several feasible break positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"sentence": "a bb cc ddd", "k": 5},
+      "expected": 10,
+      "tags": ["dynamic-programming", "mixed-lengths"]
+    },
+    {
+      "id": "real-exact-width",
+      "name": "hidden: exact-width non-final rows contribute zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence": "one two three four", "k": 7},
+      "expected": 4,
+      "tags": ["hidden", "exact-width"]
+    },
+    {
+      "id": "real-many-short-words",
+      "name": "hidden: spaces prevent pairing one-letter words at width two",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence": "a a a a a", "k": 2},
+      "expected": 4,
+      "tags": ["hidden", "space-counting"]
+    },
+    {
+      "id": "real-long-words",
+      "name": "hidden: the final long word remains unpenalized",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence": "long tiny words", "k": 6},
+      "expected": 8,
+      "tags": ["hidden", "last-row-free"]
+    }
+  ]
+}

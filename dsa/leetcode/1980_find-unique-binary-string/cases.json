@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1980",
+  "cases": [
+    {"id":"example-complements","name":"sample: two complementary rows","kind":"sample","visible":true,"input":{"nums":["01","10"]},"expected":"11","validator":{"kind":"missing_binary_string"},"tags":["sample","multiple-answers"]},
+    {"id":"example-prefix","name":"sample: two rows share a prefix","kind":"sample","visible":true,"input":{"nums":["00","01"]},"expected":"10","validator":{"kind":"missing_binary_string"},"tags":["sample","multiple-answers"]},
+    {"id":"example-three","name":"sample: three distinct rows","kind":"sample","visible":true,"input":{"nums":["111","011","001"]},"expected":"000","validator":{"kind":"missing_binary_string"},"tags":["sample","multiple-answers"]},
+    {"id":"trial-single-zero","name":"one-row input containing zero","kind":"trial","visible":true,"input":{"nums":["0"]},"expected":"1","validator":{"kind":"missing_binary_string"},"tags":["minimum","single-bit"]},
+    {"id":"trial-single-one","name":"one-row input containing one","kind":"trial","visible":true,"input":{"nums":["1"]},"expected":"0","validator":{"kind":"missing_binary_string"},"tags":["minimum","single-bit"]},
+    {"id":"trial-four-prefixes","name":"four rows with leading zeros","kind":"trial","visible":true,"input":{"nums":["0000","0001","0010","0011"]},"expected":"1111","validator":{"kind":"missing_binary_string"},"tags":["leading-zeroes","multiple-answers"]},
+    {"id":"real-diagonal-zero","name":"hidden: all diagonal bits are zero","kind":"real","visible":false,"input":{"nums":["0111","1011","1101","1110"]},"expected":"1111","validator":{"kind":"missing_binary_string"},"tags":["diagonal","all-flipped-one"]},
+    {"id":"real-diagonal-one","name":"hidden: all diagonal bits are one","kind":"real","visible":false,"input":{"nums":["1000","0100","0010","0001"]},"expected":"0000","validator":{"kind":"missing_binary_string"},"tags":["diagonal","all-flipped-zero"]},
+    {"id":"real-mixed-five","name":"hidden: mixed five-bit rows","kind":"real","visible":false,"input":{"nums":["00000","10101","01110","11000","00111"]},"expected":"11011","validator":{"kind":"missing_binary_string"},"tags":["mixed","multiple-answers"]},
+    {"id":"real-maximum-length","name":"hidden: maximum legal string length","kind":"real","visible":false,"input":{"nums":["0000000000000000","0000000000000001","0000000000000010","0000000000000011","0000000000000100","0000000000000101","0000000000000110","0000000000000111","0000000000001000","0000000000001001","0000000000001010","0000000000001011","0000000000001100","0000000000001101","0000000000001110","0000000000001111"]},"expected":"1111111111110000","validator":{"kind":"missing_binary_string"},"tags":["maximum","multiple-answers"]}
+  ]
+}

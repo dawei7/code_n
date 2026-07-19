@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2210",
+  "frontend_id": "2089",
+  "title_slug": "find-target-indices-after-sorting-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.targetIndices",
+  "verified_submission_id": "2073078325",
+  "verified_at": "2026-07-19T05:17:05.556924+00:00"
+}

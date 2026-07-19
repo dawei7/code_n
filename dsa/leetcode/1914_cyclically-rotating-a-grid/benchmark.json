@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1914",
+  "measurement_note": "Size is S = R*C, the number of cells. Each legal two-row grid is one layer and uses k = S/2, so the effective shift is proportional to its perimeter. Direct modular placement is O(S). A correct slower implementation first reduces k modulo the perimeter, then materializes each remaining one-position rotation in O(S), completing every case but failing only by O(S^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: rotate a 2 by 4 layer 4 times",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"grid":[[1,1,1,1],[1,1,1,1]],"k":4},
+      "expected": [[1,1,1,1],[1,1,1,1]],
+      "tags": ["benchmark", "single-layer", "step-simulation"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: rotate a 2 by 16 layer 16 times",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"grid":[[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],"k":16},
+      "expected": [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+      "tags": ["benchmark", "single-layer", "step-simulation"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: rotate a 2 by 50 layer 50 times",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"grid":[[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],"k":50},
+      "expected": [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+      "tags": ["benchmark", "single-layer", "step-simulation"]
+    }
+  ]
+}

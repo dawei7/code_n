@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1962",
+  "frontend_id": "1834",
+  "title_slug": "single-threaded-cpu",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getOrder",
+  "verified_submission_id": "2071651457",
+  "verified_at": "2026-07-18T01:33:19.001644+00:00"
+}

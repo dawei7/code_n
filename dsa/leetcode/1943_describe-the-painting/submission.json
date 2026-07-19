@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2055",
+  "frontend_id": "1943",
+  "title_slug": "describe-the-painting",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.splitPainting",
+  "verified_submission_id": "2072618765",
+  "verified_at": "2026-07-18T17:23:55.553695+00:00"
+}

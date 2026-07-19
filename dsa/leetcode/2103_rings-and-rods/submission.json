@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2226",
+  "frontend_id": "2103",
+  "title_slug": "rings-and-rods",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countPoints",
+  "verified_submission_id": "2073141457",
+  "verified_at": "2026-07-19T06:26:27.505425+00:00"
+}

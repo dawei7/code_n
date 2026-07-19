@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1969",
+  "measurement_note": "Size is p, the binary width. The legal tiers p=15, p=30, and p=60 span 4x. Binary modular exponentiation scales linearly in p. A correct implementation that recomputes each selected power of two from the original base completes every tier and fails by quadratic scaling in p without reaching the benchmark safety cap.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: fifteen-bit exponent","kind":"benchmark","visible":false,"size":15,"input":{"p":15},"expected":431467833,"tags":["benchmark","scale-small"]},
+    {"id":"benchmark-scale-2","name":"benchmark: thirty-bit exponent","kind":"benchmark","visible":false,"size":30,"input":{"p":30},"expected":945196305,"tags":["benchmark","scale-medium"]},
+    {"id":"benchmark-scale-3","name":"benchmark: sixty-bit exponent","kind":"benchmark","visible":false,"size":60,"input":{"p":60},"expected":813987236,"tags":["benchmark","scale-large"]}
+  ]
+}

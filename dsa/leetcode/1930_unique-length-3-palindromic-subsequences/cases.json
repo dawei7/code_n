@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1930",
+  "cases": [
+    {"id":"example-three","name":"sample: three unique palindromes share one outer letter","kind":"sample","visible":true,"input":{"s":"aabca"},"expected":3,"tags":["sample","duplicate-index-choices"]},
+    {"id":"example-none","name":"sample: all distinct letters cannot close a palindrome","kind":"sample","visible":true,"input":{"s":"adc"},"expected":0,"tags":["sample","no-palindrome"]},
+    {"id":"example-four","name":"sample: multiple outer letters contribute","kind":"sample","visible":true,"input":{"s":"bbcbaba"},"expected":4,"tags":["sample","multiple-outer-letters"]},
+    {"id":"trial-all-equal","name":"three equal letters form one unique palindrome","kind":"trial","visible":true,"input":{"s":"aaa"},"expected":1,"tags":["equal-letters","minimum-length"]},
+    {"id":"trial-nested","name":"nested matching pairs have different middle choices","kind":"trial","visible":true,"input":{"s":"abcba"},"expected":3,"tags":["nested-pairs","distinct-middle"]},
+    {"id":"real-one-pair","name":"hidden: exactly one matching outer pair","kind":"real","visible":false,"input":{"s":"cac"},"expected":1,"tags":["single-palindrome"]},
+    {"id":"real-overlap","name":"hidden: overlapping subsequences use two outer letters","kind":"real","visible":false,"input":{"s":"abab"},"expected":2,"tags":["overlapping-subsequences"]},
+    {"id":"real-duplicate-realizations","name":"hidden: repeated indices do not multiply unique strings","kind":"real","visible":false,"input":{"s":"aaaaa"},"expected":1,"tags":["deduplication","equal-letters"]},
+    {"id":"real-three-middle-values","name":"hidden: one outer letter admits three middle values","kind":"real","visible":false,"input":{"s":"zzazbz"},"expected":3,"tags":["distinct-middle","same-outer"]},
+    {"id":"real-two-cycles","name":"hidden: two alphabet cycles create six palindromes","kind":"real","visible":false,"input":{"s":"abcabc"},"expected":6,"tags":["multiple-outer-letters","order"]}
+  ]
+}

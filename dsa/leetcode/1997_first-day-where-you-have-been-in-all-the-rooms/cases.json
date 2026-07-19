@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_1997",
+  "cases": [
+    {
+      "id": "sample-two-rooms",
+      "name": "sample: revisit room zero before advancing",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nextVisit": [0, 0]},
+      "expected": 2,
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "sample-return-to-zero",
+      "name": "sample: second room sends the process back to zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nextVisit": [0, 0, 2]},
+      "expected": 6,
+      "tags": ["sample", "detour"]
+    },
+    {
+      "id": "sample-self-jumps",
+      "name": "sample: each reached room repeats immediately",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nextVisit": [0, 1, 2, 0]},
+      "expected": 6,
+      "tags": ["sample", "self-jump"]
+    },
+    {
+      "id": "trial-all-self-jumps",
+      "name": "every room repeats once before advancing",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nextVisit": [0, 1, 2, 3, 4]},
+      "expected": 8,
+      "tags": ["linear-path", "self-jump"]
+    },
+    {
+      "id": "real-all-return-to-zero",
+      "name": "hidden: repeated full-prefix detours",
+      "kind": "real",
+      "visible": false,
+      "input": {"nextVisit": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
+      "expected": 1022,
+      "tags": ["hidden", "long-detour"]
+    },
+    {
+      "id": "real-mixed-back-jumps",
+      "name": "hidden: recurrence references several earlier arrivals",
+      "kind": "real",
+      "visible": false,
+      "input": {"nextVisit": [0, 0, 1, 0, 2]},
+      "expected": 26,
+      "tags": ["hidden", "mixed"]
+    },
+    {
+      "id": "real-last-entry-irrelevant",
+      "name": "hidden: the last room's outgoing rule does not change first coverage",
+      "kind": "real",
+      "visible": false,
+      "input": {"nextVisit": [0, 0, 2, 1]},
+      "expected": 8,
+      "tags": ["hidden", "last-room"]
+    }
+  ]
+}

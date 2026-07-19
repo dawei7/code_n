@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1819",
+  "cases": [
+    {"id":"example-five-gcds","name":"sample: five attainable GCD values","kind":"sample","visible":true,"input":{"nums":[6,10,3]},"expected":5,"tags":["example","composite-values"]},
+    {"id":"example-with-duplicate","name":"sample: duplicate value does not duplicate a GCD","kind":"sample","visible":true,"input":{"nums":[5,15,40,5,6]},"expected":7,"tags":["example","duplicate"]},
+    {"id":"trial-single-one","name":"single value one","kind":"trial","visible":true,"input":{"nums":[1]},"expected":1,"tags":["single-element","one"]},
+    {"id":"trial-all-duplicates","name":"all elements have the same value","kind":"trial","visible":true,"input":{"nums":[6,6,6]},"expected":1,"tags":["duplicates","single-gcd"]},
+    {"id":"trial-coprime-pair","name":"coprime pair adds GCD one","kind":"trial","visible":true,"input":{"nums":[7,11]},"expected":3,"tags":["coprime","pair"]},
+    {"id":"trial-powers-of-two","name":"nested divisibility yields only present values","kind":"trial","visible":true,"input":{"nums":[4,8,16]},"expected":3,"tags":["divisibility-chain","powers-of-two"]},
+    {"id":"real-absent-gcd","name":"an absent value occurs as a pair GCD","kind":"real","visible":false,"input":{"nums":[6,10]},"expected":3,"tags":["absent-gcd","pair"]},
+    {"id":"real-mixed-small","name":"mixed small values share GCD one","kind":"real","visible":false,"input":{"nums":[2,3,4]},"expected":4,"tags":["mixed-values","gcd-one"]},
+    {"id":"real-several-shared-divisors","name":"several subsets converge to GCD six","kind":"real","visible":false,"input":{"nums":[12,18,24]},"expected":4,"tags":["shared-divisor","multiple-subsets"]},
+    {"id":"real-maximum-single","name":"maximum legal value alone","kind":"real","visible":false,"input":{"nums":[200000]},"expected":1,"tags":["maximum-value","single-element"]}
+  ]
+}

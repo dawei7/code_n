@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2048",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The legal input is at most 1000000, and 1224444 is a seven-digit balanced upper witness. Candidate generation therefore considers a fixed seven-digit universe, so no unbounded workload variable exists for an honest runtime-scaling verdict.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 278,
+    "unit": "distinct numerically balanced candidates",
+    "source_constraint": "n is an integer from 0 through 1000000, and the guaranteed successor 1224444 has seven digits"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Only subsets of digits 1 through 7 whose digit-value sum is at most 7 can contribute; 18 such subsets generate exactly 278 distinct permutations."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover zero, a balanced input, the zero-digit trap, adjacent balanced permutations, a large gap, and n = 1000000 whose answer is 1224444."
+    }
+  ]
+}

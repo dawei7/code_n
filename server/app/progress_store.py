@@ -157,6 +157,7 @@ def to_out(progress: PlayerProgress) -> dict:
         "milestones": list(progress.milestones),
         "gemini_api_key": progress.gemini_api_key,
         "active_set": progress.active_set,
+        "active_custom_set_id": progress.active_custom_set_id,
         "sidebar_width": progress.sidebar_width,
         "sidebar_position": progress.sidebar_position,
         "sidebar_collapsed": progress.sidebar_collapsed,

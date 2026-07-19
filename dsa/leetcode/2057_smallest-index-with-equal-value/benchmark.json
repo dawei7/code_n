@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2057",
+  "measurement_note": "Size is n. Each value is one greater modulo ten than its index remainder, so there is no match and the full input is examined. The reference scans once. A correct implementation that rescans every growing prefix for its first match completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id":"benchmark-scale-1","name":"benchmark: 8 values without a match","kind":"benchmark","visible":false,"size":8,
+      "input":{"nums":[1,2,3,4,5,6,7,8]},"expected":-1,
+      "tags":["benchmark","scale-small","prefix-rescan"]
+    },
+    {
+      "id":"benchmark-scale-2","name":"benchmark: 32 values without a match","kind":"benchmark","visible":false,"size":32,
+      "input":{"nums":[1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2]},"expected":-1,
+      "tags":["benchmark","scale-medium","prefix-rescan"]
+    },
+    {
+      "id":"benchmark-scale-3","name":"benchmark: 100 values without a match","kind":"benchmark","visible":false,"size":100,
+      "input":{"nums":[1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0]},"expected":-1,
+      "tags":["benchmark","scale-large","prefix-rescan"]
+    }
+  ]
+}

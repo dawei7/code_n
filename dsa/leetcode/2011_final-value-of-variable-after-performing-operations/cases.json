@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_2011",
+  "cases": [
+    {
+      "id": "sample-mixed-positive",
+      "name": "sample: two increments follow one decrement",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": ["--X", "X++", "X++"]},
+      "expected": 1,
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-all-increments",
+      "name": "sample: all statements increment",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": ["++X", "++X", "X++"]},
+      "expected": 3,
+      "tags": ["sample", "positive"]
+    },
+    {
+      "id": "sample-balanced",
+      "name": "sample: prefix and postfix forms cancel",
+      "kind": "sample",
+      "visible": true,
+      "input": {"operations": ["X++", "++X", "--X", "X--"]},
+      "expected": 0,
+      "tags": ["sample", "balanced"]
+    },
+    {
+      "id": "trial-single-prefix-decrement",
+      "name": "one prefix decrement returns negative one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": ["--X"]},
+      "expected": -1,
+      "tags": ["minimum-length", "negative"]
+    },
+    {
+      "id": "trial-postfix-decrements",
+      "name": "postfix decrements have the same signed effect",
+      "kind": "trial",
+      "visible": true,
+      "input": {"operations": ["X--", "X--", "X++"]},
+      "expected": -1,
+      "tags": ["postfix", "negative"]
+    },
+    {
+      "id": "real-all-four-forms",
+      "name": "hidden: every literal operation form is represented",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": ["++X", "X++", "--X", "X--", "++X"]},
+      "expected": 1,
+      "tags": ["hidden", "all-forms"]
+    },
+    {
+      "id": "real-order-independent-total",
+      "name": "hidden: separated sign blocks still sum correctly",
+      "kind": "real",
+      "visible": false,
+      "input": {"operations": ["--X", "X--", "--X", "++X", "X++"]},
+      "expected": -1,
+      "tags": ["hidden", "ordering"]
+    }
+  ]
+}

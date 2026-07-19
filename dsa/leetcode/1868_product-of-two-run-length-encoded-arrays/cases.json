@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1868",
+  "cases": [
+    {"id":"example-merged-product","name":"sample: equal neighboring products merge","kind":"sample","visible":true,"input":{"encoded1":[[1,3],[2,3]],"encoded2":[[6,3],[3,3]]},"expected":[[6,6]],"tags":["sample","merge-output"]},
+    {"id":"example-misaligned-runs","name":"sample: consume different run boundaries","kind":"sample","visible":true,"input":{"encoded1":[[1,3],[2,1],[3,2]],"encoded2":[[2,3],[3,3]]},"expected":[[2,3],[6,1],[9,2]],"tags":["sample","misaligned-boundaries"]},
+    {"id":"trial-one-against-many","name":"one run overlaps two opposite runs","kind":"trial","visible":true,"input":{"encoded1":[[4,5]],"encoded2":[[2,2],[3,3]]},"expected":[[8,2],[12,3]],"tags":["one-to-many"]},
+    {"id":"trial-single-position","name":"single decoded position","kind":"trial","visible":true,"input":{"encoded1":[[7,1]],"encoded2":[[8,1]]},"expected":[[56,1]],"tags":["minimum"]},
+    {"id":"real-both-boundaries","name":"hidden: both pointers advance together repeatedly","kind":"real","visible":false,"input":{"encoded1":[[2,2],[5,3],[4,1]],"encoded2":[[3,2],[2,3],[7,1]]},"expected":[[6,2],[10,3],[28,1]],"tags":["coincident-boundaries"]},
+    {"id":"real-first-run-continues","name":"hidden: first encoding run survives boundaries","kind":"real","visible":false,"input":{"encoded1":[[5,8]],"encoded2":[[1,2],[2,1],[3,5]]},"expected":[[5,2],[10,1],[15,5]],"tags":["first-continues"]},
+    {"id":"real-second-run-continues","name":"hidden: second encoding run survives boundaries","kind":"real","visible":false,"input":{"encoded1":[[2,2],[3,3],[4,1]],"encoded2":[[5,6]]},"expected":[[10,2],[15,3],[20,1]],"tags":["second-continues"]},
+    {"id":"real-product-merges-three-overlaps","name":"hidden: three different overlaps share one product","kind":"real","visible":false,"input":{"encoded1":[[1,2],[2,2],[3,2]],"encoded2":[[6,2],[3,2],[2,2]]},"expected":[[6,6]],"tags":["multi-merge"]},
+    {"id":"real-alternating-products","name":"hidden: different products remain separate","kind":"real","visible":false,"input":{"encoded1":[[1,1],[2,1],[1,1],[2,1]],"encoded2":[[3,4]]},"expected":[[3,1],[6,1],[3,1],[6,1]],"tags":["alternating"]},
+    {"id":"real-large-frequency","name":"hidden: large frequencies are handled as counts","kind":"real","visible":false,"input":{"encoded1":[[9,100000]],"encoded2":[[9,99999],[1,1]]},"expected":[[81,99999],[9,1]],"tags":["large-frequency"]}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1954",
+  "cases": [
+    {"id":"example-minimum","name":"sample: one apple requires the first nonzero square","kind":"sample","visible":true,"input":{"neededApples":1},"expected":8,"tags":["sample","minimum"]},
+    {"id":"example-next-square","name":"sample: thirteen apples require half-side two","kind":"sample","visible":true,"input":{"neededApples":13},"expected":16,"tags":["sample","boundary"]},
+    {"id":"example-billion","name":"sample: one billion apples","kind":"sample","visible":true,"input":{"neededApples":1000000000},"expected":5040,"tags":["sample","large"]},
+    {"id":"trial-first-exact-total","name":"exact total at half-side one","kind":"trial","visible":true,"input":{"neededApples":12},"expected":8,"tags":["exact-total","boundary"]},
+    {"id":"trial-second-exact-total","name":"exact total at half-side two","kind":"trial","visible":true,"input":{"neededApples":60},"expected":16,"tags":["exact-total","boundary"]},
+    {"id":"trial-after-second-total","name":"one above an exact total advances the perimeter","kind":"trial","visible":true,"input":{"neededApples":61},"expected":24,"tags":["boundary","next-square"]},
+    {"id":"real-middle-exact-total","name":"hidden: exact total at half-side five","kind":"real","visible":false,"input":{"neededApples":660},"expected":40,"tags":["exact-total"]},
+    {"id":"real-after-middle-total","name":"hidden: one above half-side five","kind":"real","visible":false,"input":{"neededApples":661},"expected":48,"tags":["boundary","next-square"]},
+    {"id":"real-largest-requirement","name":"hidden: maximum allowed apple requirement","kind":"real","visible":false,"input":{"neededApples":1000000000000000},"expected":503968,"tags":["maximum","wide-integer"]},
+    {"id":"real-before-maximum-boundary","name":"hidden: exact predecessor total near the maximum","kind":"real","visible":false,"input":{"neededApples":999973689245640},"expected":503960,"tags":["large","exact-total"]}
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2090",
+  "cases": [
+    {
+      "id": "sample-three-valid-centers",
+      "name": "sample: three radius-three windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [7, 4, 3, 9, 1, 8, 5, 2, 6], "k": 3},
+      "expected": [-1, -1, -1, 5, 4, 4, -1, -1, -1],
+      "tags": ["sample", "sliding-window"]
+    },
+    {
+      "id": "sample-zero-radius",
+      "name": "sample: radius zero preserves each value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [100000], "k": 0},
+      "expected": [100000],
+      "tags": ["sample", "zero-radius"]
+    },
+    {
+      "id": "sample-radius-too-large",
+      "name": "sample: no complete window fits",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [8], "k": 100000},
+      "expected": [-1],
+      "tags": ["sample", "oversized-radius"]
+    },
+    {
+      "id": "trial-whole-array-window",
+      "name": "exactly one center averages the whole array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 3, 1, 5, 4], "k": 2},
+      "expected": [-1, -1, 3, -1, -1],
+      "tags": ["single-window", "whole-array"]
+    },
+    {
+      "id": "real-fraction-truncation",
+      "name": "hidden: fractional averages truncate",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 3, 1, 5], "k": 1},
+      "expected": [-1, 2, 3, -1],
+      "tags": ["hidden", "integer-division"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: valid zero averages differ from sentinels",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 0, 0, 0, 0], "k": 1},
+      "expected": [-1, 0, 0, 0, -1],
+      "tags": ["hidden", "zeros"]
+    },
+    {
+      "id": "real-multiple-slides",
+      "name": "hidden: outgoing and incoming values both affect each step",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10, 0, 0, 0, 20, 0, 0], "k": 2},
+      "expected": [-1, -1, 6, 4, 4, -1, -1],
+      "tags": ["hidden", "multiple-updates"]
+    }
+  ]
+}

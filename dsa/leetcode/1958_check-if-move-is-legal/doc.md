@@ -5,27 +5,32 @@
 | Source | LeetCode |
 | Frontend ID | 1958 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Matrix, Enumeration |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-move-is-legal](https://leetcode.com/problems/check-if-move-is-legal/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-move-is-legal/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-move-is-legal/).
-
 ### Goal
-On an Othello-like board, decide whether placing a color at an empty square creates a legal line: adjacent opponent pieces followed by one of the placed color's pieces in a straight direction.
+An 8-by-8 game board uses `"."` for a free cell, `"W"` for a white piece,
+and `"B"` for a black piece. A move places the given color on the specified
+free cell.
+
+The move is legal only when the newly occupied cell becomes one endpoint of a
+horizontal, vertical, or diagonal good line. Such a line contains at least
+three cells: both endpoints have the played color, every cell strictly between
+them has the opposite color, and no cell in the line is free. Return whether
+the proposed move is legal.
 
 ### Function Contract
 **Inputs**
 
-- `board`: an `8 x 8` grid containing `'B'`, `'W'`, and `'.'`.
-- `rMove`, `cMove`: the empty target cell.
-- `color`: the piece color to place.
+- `board`: an 8-by-8 matrix containing only `"."`, `"W"`, and `"B"`.
+- `rMove`, `cMove`: zero-based coordinates in $[0,7]$ identifying a free cell.
+- `color`: either `"W"` or `"B"`, the color placed by the proposed move.
 
 **Return value**
 
-Return `True` if the move is legal, otherwise `False`.
+- `True` if the new piece is an endpoint of at least one good line; otherwise
+  `False`.
 
 ### Examples
 **Example 1**
@@ -40,18 +45,53 @@ Return `True` if the move is legal, otherwise `False`.
 
 **Example 3**
 
-- Input: `board = [["B",".",".",".",".",".",".","."],["W",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]], rMove = 2, cMove = 0, color = "B"`
+- Input: `board = [[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".","W","B",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]], rMove = 3, cMove = 3, color = "B"`
 - Output: `True`
 
----
+### Required Complexity
+- **Time:** $O(1)$
+- **Space:** $O(1)$
 
-## Solution
-### Approach
-Try all eight directions from the move square. A direction is legal only if it first sees at least one opponent piece and then reaches a same-color piece before leaving the board or hitting an empty cell.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `O(1)` because the board is fixed at `8 x 8`.
-- **Space Complexity**: `O(1)`
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Search the eight possible directions**
+
+The placed piece can be an endpoint only along one of the eight horizontal,
+vertical, or diagonal rays leaving `(rMove, cMove)`. For each direction, move
+one cell at a time. The first cell must have the opposite color, which ensures
+that a potential line has at least one middle cell.
+
+**Recognize the closing endpoint**
+
+Continue while cells have the opposite color. The direction forms a good line
+exactly when this nonempty run is followed, before leaving the board, by a cell
+of the played color. A free cell, the board edge, or an immediate same-colored
+cell cannot close a valid line. Returning true for the first successful ray is
+sound because one good line is sufficient; if all eight rays fail, no allowed
+line orientation remains.
+
+#### Complexity detail
+
+The board dimensions are fixed by the contract. There are eight rays and each
+contains at most seven cells, so at most 56 cell inspections are required.
+This fixed upper bound gives $O(1)$ time. Only direction and coordinate
+variables are retained, giving $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Temporarily place the piece and scan complete rows:** This can be made
+  correct, but it mutates the input unnecessarily and examines cells unrelated
+  to lines having the move as an endpoint.
+- **Check only four undirected lines:** Each line has two possible rays from
+  the move, so both directions must still be inspected independently.
+- An adjacent piece of the played color does not form a good line because at
+  least one opposite-colored middle cell is required.
+- A run of opposite pieces that reaches the board boundary without a matching
+  endpoint is not sufficient.
+- A good line elsewhere on the board, or one having the move as a middle cell,
+  does not make the proposed move legal.
+
+</details>

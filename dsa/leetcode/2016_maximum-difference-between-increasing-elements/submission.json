@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2144",
+  "frontend_id": "2016",
+  "title_slug": "maximum-difference-between-increasing-elements",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maximumDifference",
+  "verified_submission_id": "2072841017",
+  "verified_at": "2026-07-18T23:23:38.281840+00:00"
+}

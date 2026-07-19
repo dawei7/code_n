@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1826",
+  "cases": [
+    {"id":"example-first-faulty","name":"sample: sensor one has the shifted suffix","kind":"sample","visible":true,"input":{"sensor1":[2,3,4,5],"sensor2":[2,1,3,4]},"expected":1,"tags":["example","sensor-one"]},
+    {"id":"example-second-faulty","name":"sample: sensor two has the shifted suffix","kind":"sample","visible":true,"input":{"sensor1":[2,1,3,4],"sensor2":[2,3,4,5]},"expected":2,"tags":["example","sensor-two"]},
+    {"id":"example-final-ambiguity","name":"sample: only the arbitrary final reading differs","kind":"sample","visible":true,"input":{"sensor1":[2,2,2,2,2],"sensor2":[2,2,2,2,5]},"expected":-1,"tags":["example","ambiguous"]},
+    {"id":"trial-identical","name":"identical recordings reveal no faulty sensor","kind":"trial","visible":true,"input":{"sensor1":[1,2,3,4],"sensor2":[1,2,3,4]},"expected":-1,"tags":["identical","ambiguous"]},
+    {"id":"trial-sensor-one-middle-drop","name":"sensor one drops a unique middle reading","kind":"trial","visible":true,"input":{"sensor1":[1,3,4,9],"sensor2":[1,2,3,4]},"expected":1,"tags":["middle-drop","sensor-one"]},
+    {"id":"trial-sensor-two-middle-drop","name":"sensor two drops a unique middle reading","kind":"trial","visible":true,"input":{"sensor1":[1,2,3,4],"sensor2":[1,3,4,9]},"expected":2,"tags":["middle-drop","sensor-two"]},
+    {"id":"real-first-position-drop","name":"hidden: failure occurs before any shared prefix","kind":"real","visible":false,"input":{"sensor1":[2,3,9],"sensor2":[1,2,3]},"expected":1,"tags":["first-position","sensor-one"]},
+    {"id":"real-alternating-ambiguity","name":"hidden: both alternating shifts are valid","kind":"real","visible":false,"input":{"sensor1":[1,2,1,2],"sensor2":[2,1,2,1]},"expected":-1,"tags":["repeated-pattern","ambiguous"]},
+    {"id":"real-repeated-prefix-drop","name":"hidden: repeated prefix delays directional evidence","kind":"real","visible":false,"input":{"sensor1":[5,5,7,8],"sensor2":[5,5,5,7]},"expected":1,"tags":["repeated-prefix","sensor-one"]},
+    {"id":"real-single-reading","name":"hidden: one reading cannot establish a shift","kind":"real","visible":false,"input":{"sensor1":[1],"sensor2":[2]},"expected":-1,"tags":["single-reading","ambiguous"]}
+  ]
+}

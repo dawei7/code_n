@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2025",
+  "cases": [
+    {
+      "id": "sample-change-first",
+      "name": "sample: replacing the first value creates one pivot",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, -1, 2], "k": 3},
+      "expected": 1,
+      "tags": ["sample", "replacement"]
+    },
+    {
+      "id": "sample-leave-unchanged",
+      "name": "sample: no replacement preserves two pivots",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [0, 0, 0], "k": 1},
+      "expected": 2,
+      "tags": ["sample", "unchanged"]
+    },
+    {
+      "id": "sample-multiple-negative-values",
+      "name": "sample: one replacement creates four pivots",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [22, 4, -25, -20, -15, 15, -16, 7, 19, -10, 0, -13, -14], "k": -33},
+      "expected": 4,
+      "tags": ["sample", "negative"]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "leaving four zeros unchanged keeps every pivot",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0, 0, 0, 0], "k": 5},
+      "expected": 3,
+      "tags": ["unchanged", "all-pivots"]
+    },
+    {
+      "id": "trial-change-leading-value",
+      "name": "changing the leading value creates all-zero pivots",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 0, 0, 0], "k": 0},
+      "expected": 3,
+      "tags": ["replacement", "boundary-index"]
+    },
+    {
+      "id": "real-two-elements",
+      "name": "hidden: the only pivot can be made valid",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 1], "k": 1},
+      "expected": 1,
+      "tags": ["hidden", "minimum-length"]
+    },
+    {
+      "id": "real-alternating-signs",
+      "name": "hidden: unchanged balance wins with alternating signs",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, -1, 1, -1], "k": 0},
+      "expected": 1,
+      "tags": ["hidden", "negative", "unchanged"]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2023",
+  "measurement_note": "Size is N, the number of source strings, split evenly between \"1\" and \"2\" with target \"12\". Frequency counting is linear in N. A correct nested ordered-index scan tests every pair, completes all tiers, and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 one-character strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "nums": [
+          "1",
+          "1",
+          "2",
+          "2"
+        ],
+        "target": "12"
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "ordered-pairs"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 one-character strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "2",
+          "2",
+          "2",
+          "2"
+        ],
+        "target": "12"
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "ordered-pairs"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 one-character strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "1",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2",
+          "2"
+        ],
+        "target": "12"
+      },
+      "expected": 64,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "ordered-pairs"
+      ]
+    }
+  ]
+}

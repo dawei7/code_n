@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1947",
+  "measurement_note": "Size is M, the equal number of students and mentors; every row has Q = 8 answers. Each tier permutes identical response rows, so a perfect assignment scores 8M. The reference precomputes pair scores and uses O(M * 2^M) assignment DP. A correct slower implementation evaluates all M! mentor permutations and their complete scores, completes all legal tiers, and fails by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: assign 1 student and mentor",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {
+        "students": [[0,0,0,0,0,0,0,0]],
+        "mentors": [[0,0,0,0,0,0,0,0]]
+      },
+      "expected": 8,
+      "tags": ["benchmark", "scale-small", "perfect-assignment"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: assign 2 permuted response rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "students": [
+          [0,0,0,0,0,0,0,0],
+          [1,1,1,1,1,1,1,1]
+        ],
+        "mentors": [
+          [1,1,1,1,1,1,1,1],
+          [0,0,0,0,0,0,0,0]
+        ]
+      },
+      "expected": 16,
+      "tags": ["benchmark", "scale-medium", "perfect-assignment"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: assign 5 permuted response rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "students": [
+          [0,0,0,0,0,0,0,0],
+          [1,1,1,1,1,1,1,1],
+          [0,1,0,1,0,1,0,1],
+          [1,0,1,0,1,0,1,0],
+          [0,0,1,1,0,0,1,1]
+        ],
+        "mentors": [
+          [1,0,1,0,1,0,1,0],
+          [0,0,0,0,0,0,0,0],
+          [0,0,1,1,0,0,1,1],
+          [1,1,1,1,1,1,1,1],
+          [0,1,0,1,0,1,0,1]
+        ]
+      },
+      "expected": 40,
+      "tags": ["benchmark", "scale-large", "perfect-assignment"]
+    }
+  ]
+}

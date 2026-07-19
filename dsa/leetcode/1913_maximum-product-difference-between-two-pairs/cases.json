@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1913",
+  "cases": [
+    {"id":"example-five-values","name":"sample: extrema come from four of five values","kind":"sample","visible":true,"input":{"nums":[5,6,2,7,4]},"expected":34,"tags":["sample","extrema"]},
+    {"id":"example-duplicates","name":"sample: one duplicate four participates in the minimum product","kind":"sample","visible":true,"input":{"nums":[4,2,5,9,7,4,8]},"expected":64,"tags":["sample","duplicates"]},
+    {"id":"trial-exactly-four","name":"all four positions are required","kind":"trial","visible":true,"input":{"nums":[1,2,3,4]},"expected":10,"tags":["minimum-length"]},
+    {"id":"trial-duplicate-extrema","name":"duplicate minima and maxima occupy distinct indices","kind":"trial","visible":true,"input":{"nums":[5,5,1,1]},"expected":24,"tags":["duplicate-minimum","duplicate-maximum"]},
+    {"id":"real-all-equal","name":"hidden: equal products have zero difference","kind":"real","visible":false,"input":{"nums":[7,7,7,7,7]},"expected":0,"tags":["all-equal","zero"]},
+    {"id":"real-unsorted-extrema","name":"hidden: extrema may appear in any order","kind":"real","visible":false,"input":{"nums":[100,3,50,2,99,4]},"expected":9894,"tags":["unsorted","extrema"]},
+    {"id":"real-two-smallest-late","name":"hidden: both minima arrive after both maxima","kind":"real","visible":false,"input":{"nums":[9,8,7,6,2,1]},"expected":70,"tags":["late-minima"]},
+    {"id":"real-two-largest-early","name":"hidden: both maxima may occur first","kind":"real","visible":false,"input":{"nums":[10,10,2,3,4]},"expected":94,"tags":["early-maxima","duplicate-maximum"]},
+    {"id":"real-domain-extremes","name":"hidden: domain maximum pair minus domain minimum pair","kind":"real","visible":false,"input":{"nums":[1,1,10000,10000]},"expected":99999999,"tags":["domain-boundary","large-result"]},
+    {"id":"real-repeated-minimum","name":"hidden: the two minimum slots retain separate equal occurrences","kind":"real","visible":false,"input":{"nums":[2,9,2,8,7]},"expected":68,"tags":["duplicate-minimum"]},
+    {"id":"real-repeated-maximum","name":"hidden: the two maximum slots retain separate equal occurrences","kind":"real","visible":false,"input":{"nums":[9,1,9,2,3]},"expected":79,"tags":["duplicate-maximum"]}
+  ]
+}

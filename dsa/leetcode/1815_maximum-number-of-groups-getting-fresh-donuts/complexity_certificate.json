@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1815",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(bS)",
+  "summary": "The source caps batchSize at 9 and the group count at 30, so the residual remainder-count state space is finite and too constrained for honest asymptotic timing tiers.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 30,
+    "unit": "customer groups",
+    "source_constraint": "groups contains from 1 through 30 entries and batchSize is at most 9"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "After zero and complementary reductions, memoization visits each bounded remainder-count tuple once and tries at most eight next remainders."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares the count-state solution with an independent index-bitmask oracle over exhaustive small remainder arrays and checks batch and group-count boundaries."
+    }
+  ]
+}

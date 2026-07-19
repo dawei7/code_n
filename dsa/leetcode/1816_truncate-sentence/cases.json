@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1816",
+  "cases": [
+    {"id":"example-four-of-five","name":"sample: retain four of five words","kind":"sample","visible":true,"input":{"s":"Hello how are you Contestant","k":4},"expected":"Hello how are you","tags":["example","proper-prefix"]},
+    {"id":"example-four-of-seven","name":"sample: retain four of seven words","kind":"sample","visible":true,"input":{"s":"What is the solution to this problem","k":4},"expected":"What is the solution","tags":["example","proper-prefix"]},
+    {"id":"example-all-five","name":"sample: retain the complete sentence","kind":"sample","visible":true,"input":{"s":"chopper is not a tanuki","k":5},"expected":"chopper is not a tanuki","tags":["example","all-words"]},
+    {"id":"trial-single-word","name":"one-word sentence","kind":"trial","visible":true,"input":{"s":"Codex","k":1},"expected":"Codex","tags":["single-word","mixed-case"]},
+    {"id":"trial-first-word","name":"retain only the first word","kind":"trial","visible":true,"input":{"s":"one two three four","k":1},"expected":"one","tags":["first-word","proper-prefix"]},
+    {"id":"trial-two-letter-cases","name":"preserve uppercase and lowercase letters","kind":"trial","visible":true,"input":{"s":"UPPER lower MiXeD Final","k":3},"expected":"UPPER lower MiXeD","tags":["letter-case","proper-prefix"]},
+    {"id":"real-two-words-keep-all","name":"two words retained completely","kind":"real","visible":false,"input":{"s":"alpha beta","k":2},"expected":"alpha beta","tags":["all-words","two-words"]},
+    {"id":"real-short-words","name":"single-letter words preserve separators","kind":"real","visible":false,"input":{"s":"a b c d e f","k":4},"expected":"a b c d","tags":["single-letter-words","proper-prefix"]},
+    {"id":"real-long-first-word","name":"cut after a long first word","kind":"real","visible":false,"input":{"s":"abcdefghij z y","k":1},"expected":"abcdefghij","tags":["word-length","first-word"]},
+    {"id":"real-boundary-length","name":"maximum-length sentence retained completely","kind":"real","visible":false,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","k":1},"expected":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","tags":["maximum-length","single-word"]}
+  ]
+}

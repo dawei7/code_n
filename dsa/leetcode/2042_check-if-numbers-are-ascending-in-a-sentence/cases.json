@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2042",
+  "cases": [
+    {
+      "id": "sample-increasing-numbers",
+      "name": "sample: five numbers increase through intervening words",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "1 box has 3 blue 4 red 6 green and 12 yellow marbles"},
+      "expected": true,
+      "tags": ["sample", "increasing"]
+    },
+    {
+      "id": "sample-equal-numbers",
+      "name": "sample: repeated values violate strict increase",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "hello world 5 x 5"},
+      "expected": false,
+      "tags": ["sample", "equality"]
+    },
+    {
+      "id": "sample-late-decrease",
+      "name": "sample: a later number decreases",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "sunset is at 7 51 pm overnight lows will be in the low 50 and 60 s"},
+      "expected": false,
+      "tags": ["sample", "decrease"]
+    },
+    {
+      "id": "trial-minimum-sentence",
+      "name": "two adjacent numeric tokens increase",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "1 2"},
+      "expected": true,
+      "tags": ["minimum-length", "adjacent-numbers"]
+    },
+    {
+      "id": "trial-numeric-not-lexicographic",
+      "name": "numeric comparison orders two before ten",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "2 then 10"},
+      "expected": true,
+      "tags": ["multi-digit", "numeric-order"]
+    },
+    {
+      "id": "real-final-violation",
+      "name": "hidden: only the last comparison fails",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "a 1 b 20 c 19"},
+      "expected": false,
+      "tags": ["hidden", "late-violation"]
+    },
+    {
+      "id": "real-upper-number-bound",
+      "name": "hidden: values increase through the upper limit",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "values 9 then 98 then 99"},
+      "expected": true,
+      "tags": ["hidden", "number-boundary"]
+    },
+    {
+      "id": "real-nonadjacent-equality",
+      "name": "hidden: words do not hide equal numbers",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "7 many lowercase words 7"},
+      "expected": false,
+      "tags": ["hidden", "words", "equality"]
+    }
+  ]
+}

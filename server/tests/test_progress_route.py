@@ -18,9 +18,31 @@ class ProgressTest(conftest._Base):
         self.assertEqual(body["last_status"], {})
         self.assertEqual(body["records"], {})
         self.assertEqual(body["active_set"], "leetcode")
+        self.assertEqual(body["active_custom_set_id"], "")
         self.assertEqual(body["pane_font_scales"], {})
         self.assertEqual(body["pane_sizes"], {})
         self.assertEqual(body["accent_colors"], {"light": "#0284c7", "dark": "#03dac6"})
+
+    def test_active_personal_root_is_profile_persistent(self) -> None:
+        response = self.client.put(
+            "/api/progress",
+            json={
+                "active_set": "custom",
+                "active_custom_set_id": "set_shared_interview_path",
+            },
+        )
+        self.assertEqual(response.status_code, 200, response.text)
+        self.assertEqual(response.json()["active_set"], "custom")
+        self.assertEqual(
+            response.json()["active_custom_set_id"],
+            "set_shared_interview_path",
+        )
+        reloaded = self.client.get("/api/progress").json()
+        self.assertEqual(reloaded["active_set"], "custom")
+        self.assertEqual(
+            reloaded["active_custom_set_id"],
+            "set_shared_interview_path",
+        )
 
     def test_pane_font_scales_are_profile_persistent_and_clamped(self) -> None:
         response = self.client.put(

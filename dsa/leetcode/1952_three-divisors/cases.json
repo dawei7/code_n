@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1952",
+  "cases": [
+    {"id":"example-prime","name":"sample: prime two has only two divisors","kind":"sample","visible":true,"input":{"n":2},"expected":false,"tags":["sample","prime"]},
+    {"id":"example-smallest-prime-square","name":"sample: four has divisors one two and four","kind":"sample","visible":true,"input":{"n":4},"expected":true,"tags":["sample","prime-square"]},
+    {"id":"trial-one","name":"one has only itself as a divisor","kind":"trial","visible":true,"input":{"n":1},"expected":false,"tags":["minimum-value","perfect-square"]},
+    {"id":"trial-nine","name":"nine is the square of prime three","kind":"trial","visible":true,"input":{"n":9},"expected":true,"tags":["prime-square"]},
+    {"id":"trial-composite-square","name":"sixteen is a square of a composite number","kind":"trial","visible":true,"input":{"n":16},"expected":false,"tags":["composite-square"]},
+    {"id":"trial-twenty-five","name":"twenty-five is the square of prime five","kind":"trial","visible":true,"input":{"n":25},"expected":true,"tags":["prime-square"]},
+    {"id":"real-nonsquare-composite","name":"hidden: a composite nonsquare cannot have exactly three divisors","kind":"real","visible":false,"input":{"n":12},"expected":false,"tags":["nonsquare","composite"]},
+    {"id":"real-larger-prime-square","name":"hidden: forty-nine is the square of prime seven","kind":"real","visible":false,"input":{"n":49},"expected":true,"tags":["prime-square"]},
+    {"id":"real-maximum-boundary","name":"hidden: ten thousand is a composite square","kind":"real","visible":false,"input":{"n":10000},"expected":false,"tags":["maximum-value","composite-square"]},
+    {"id":"real-largest-prime-square","name":"hidden: ninety-seven squared qualifies near the upper bound","kind":"real","visible":false,"input":{"n":9409},"expected":true,"tags":["prime-square","upper-bound"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1989",
+  "frontend_id": "1879",
+  "title_slug": "minimum-xor-sum-of-two-arrays",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumXORSum",
+  "verified_submission_id": "2071851248",
+  "verified_at": "2026-07-18T06:20:27.238493+00:00"
+}

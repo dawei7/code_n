@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1916",
+  "cases": [
+    {"id":"example-chain","name":"sample: a three-room chain has one order","kind":"sample","visible":true,"input":{"prevRoom":[-1,0,1]},"expected":1,"tags":["sample","chain"]},
+    {"id":"example-two-branches","name":"sample: two child chains have six interleavings","kind":"sample","visible":true,"input":{"prevRoom":[-1,0,0,1,2]},"expected":6,"tags":["sample","interleaving"]},
+    {"id":"trial-two-children","name":"two root children may swap order","kind":"trial","visible":true,"input":{"prevRoom":[-1,0,0]},"expected":2,"tags":["star","minimum-branching"]},
+    {"id":"trial-four-room-star","name":"three root children have six permutations","kind":"trial","visible":true,"input":{"prevRoom":[-1,0,0,0]},"expected":6,"tags":["star","factorial"]},
+    {"id":"real-balanced-binary","name":"hidden: a complete three-level tree has eighty orders","kind":"real","visible":false,"input":{"prevRoom":[-1,0,0,1,1,2,2]},"expected":80,"tags":["balanced-tree","multiple-interleavings"]},
+    {"id":"real-parent-higher-label","name":"hidden: parent labels need not precede child labels numerically","kind":"real","visible":false,"input":{"prevRoom":[-1,3,0,0]},"expected":3,"tags":["arbitrary-labels","index-order"]},
+    {"id":"real-three-branches","name":"hidden: three two-child branches create many interleavings","kind":"real","visible":false,"input":{"prevRoom":[-1,0,0,0,1,1,2,2,3,3]},"expected":13440,"tags":["three-branches","combinatorics"]},
+    {"id":"real-asymmetric-subtrees","name":"hidden: unequal subtree shapes can share one count","kind":"real","visible":false,"input":{"prevRoom":[-1,0,1,1,0,4,4]},"expected":80,"tags":["asymmetric-tree","interleaving"]},
+    {"id":"real-ten-room-star","name":"hidden: nine independent children give nine factorial","kind":"real","visible":false,"input":{"prevRoom":[-1,0,0,0,0,0,0,0,0,0]},"expected":362880,"tags":["star","larger-factorial"]},
+    {"id":"real-wide-under-child","name":"hidden: one internal room owns three independent children","kind":"real","visible":false,"input":{"prevRoom":[-1,0,0,1,1,1]},"expected":30,"tags":["mixed-depth","wide-subtree"]},
+    {"id":"real-minimum-chain","name":"hidden: two rooms force root then child","kind":"real","visible":false,"input":{"prevRoom":[-1,0]},"expected":1,"tags":["minimum-length","chain"]}
+  ]
+}

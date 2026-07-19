@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1929",
+  "cases": [
+    {"id":"example-first","name":"sample: repeated value appears in both copies","kind":"sample","visible":true,"input":{"nums":[1,2,1]},"expected":[1,2,1,1,2,1],"tags":["sample","duplicates"]},
+    {"id":"example-second","name":"sample: four values preserve their order","kind":"sample","visible":true,"input":{"nums":[1,3,2,1]},"expected":[1,3,2,1,1,3,2,1],"tags":["sample","order"]},
+    {"id":"trial-single","name":"one source element creates two result elements","kind":"trial","visible":true,"input":{"nums":[7]},"expected":[7,7],"tags":["minimum-length"]},
+    {"id":"trial-two","name":"two distinct elements form two adjacent copies","kind":"trial","visible":true,"input":{"nums":[4,9]},"expected":[4,9,4,9],"tags":["short-array","order"]},
+    {"id":"trial-all-equal","name":"equal values retain the required result length","kind":"trial","visible":true,"input":{"nums":[5,5,5]},"expected":[5,5,5,5,5,5],"tags":["duplicates","length"]},
+    {"id":"real-maximum-values","name":"hidden: values at the upper bound are copied","kind":"real","visible":false,"input":{"nums":[1000,1,1000]},"expected":[1000,1,1000,1000,1,1000],"tags":["value-bounds"]},
+    {"id":"real-increasing","name":"hidden: an increasing sequence restarts after its end","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5]},"expected":[1,2,3,4,5,1,2,3,4,5],"tags":["order","distinct"]},
+    {"id":"real-alternating","name":"hidden: an alternating pattern is not interleaved","kind":"real","visible":false,"input":{"nums":[2,1,2,1]},"expected":[2,1,2,1,2,1,2,1],"tags":["order","pattern"]},
+    {"id":"real-nonmonotonic","name":"hidden: arbitrary ordering is preserved exactly","kind":"real","visible":false,"input":{"nums":[8,3,9,2,6]},"expected":[8,3,9,2,6,8,3,9,2,6],"tags":["order","mixed-values"]},
+    {"id":"real-boundary-pair","name":"hidden: minimum and maximum values remain adjacent","kind":"real","visible":false,"input":{"nums":[1,1000]},"expected":[1,1000,1,1000],"tags":["value-bounds","short-array"]}
+  ]
+}

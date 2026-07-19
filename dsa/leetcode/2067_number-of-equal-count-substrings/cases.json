@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2067",
+  "cases": [
+    {"id":"sample-three-ranges","name":"sample: valid ranges use one, two, and three letters","kind":"sample","visible":true,"input":{"s":"aaabcbbcc","count":3},"expected":3,"tags":["sample","multiple-distinct-counts"]},
+    {"id":"sample-insufficient-counts","name":"sample: every letter occurs fewer than required","kind":"sample","visible":true,"input":{"s":"abcd","count":2},"expected":0,"tags":["sample","insufficient-frequency"]},
+    {"id":"sample-short-string","name":"sample: required count exceeds the string length","kind":"sample","visible":true,"input":{"s":"a","count":5},"expected":0,"tags":["sample","count-too-large"]},
+    {"id":"trial-count-one","name":"count one accepts exactly the unique-character ranges","kind":"trial","visible":true,"input":{"s":"aba","count":1},"expected":5,"tags":["count-one"]},
+    {"id":"real-overlapping-pairs","name":"hidden: overlapping copies of one letter count separately","kind":"real","visible":false,"input":{"s":"aaa","count":2},"expected":2,"tags":["hidden","overlapping"]},
+    {"id":"real-two-uniform-blocks","name":"hidden: individual blocks and their union qualify","kind":"real","visible":false,"input":{"s":"aabb","count":2},"expected":3,"tags":["hidden","multiple-widths"]},
+    {"id":"real-interleaved-letters","name":"hidden: positions need not form letter blocks","kind":"real","visible":false,"input":{"s":"abab","count":2},"expected":1,"tags":["hidden","interleaved"]}
+  ]
+}

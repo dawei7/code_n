@@ -71,6 +71,7 @@ class PlayerProgress:
     milestones: list[str] = field(default_factory=list)
     gemini_api_key: str = ""
     active_set: str = "leetcode"
+    active_custom_set_id: str = ""
     sidebar_width: int = 256
     sidebar_position: str = "left"
     sidebar_collapsed: bool = False
@@ -176,6 +177,7 @@ class PlayerProgress:
             "milestones": list(self.milestones),
             "gemini_api_key": self.gemini_api_key,
             "active_set": self.active_set,
+            "active_custom_set_id": self.active_custom_set_id,
             "sidebar_width": self.sidebar_width,
             "sidebar_position": self.sidebar_position,
             "sidebar_collapsed": self.sidebar_collapsed,
@@ -212,6 +214,7 @@ class PlayerProgress:
         progress.milestones = list(data.get("milestones", []))
         progress.gemini_api_key = str(data.get("gemini_api_key", ""))
         progress.active_set = str(data.get("active_set", "leetcode"))
+        progress.active_custom_set_id = str(data.get("active_custom_set_id", ""))
         progress.sidebar_width = int(data.get("sidebar_width", 256))
         progress.sidebar_position = str(data.get("sidebar_position", "left"))
         progress.sidebar_collapsed = bool(data.get("sidebar_collapsed", False))

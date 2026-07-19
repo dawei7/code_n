@@ -15,17 +15,21 @@ const moduleUrl = `data:text/javascript;base64,${Buffer.from(output).toString('b
 const {
   addGroupToCustomSet,
   addProblemToCustomSet,
+  addTemplateToCustomSet,
   collectCustomChallengeIds,
   copyCustomNode,
   countSetProblems,
+  createCustomSetFromTemplate,
   maxGroupDepth,
   moveCustomNode,
+  unwrapCustomGroup,
 } = await import(moduleUrl);
 
 const base = [{
   id: 'set_one',
   name: 'Interview path',
   description: '',
+  career_mode: false,
   nodes: [],
 }];
 
@@ -49,6 +53,49 @@ assert.deepEqual([...collectCustomChallengeIds(withProblem.sets)], ['lc_1']);
 const repeatedProblem = addProblemToCustomSet(withProblem.sets, 'set_one', null, 'lc_1');
 assert.equal(repeatedProblem.ok, true, 'A problem may be placed in multiple study stages.');
 assert.equal(countSetProblems(repeatedProblem.sets[0]), 2);
+const ignoredSameLeaf = addProblemToCustomSet(
+  repeatedProblem.sets,
+  'set_one',
+  null,
+  'lc_1',
+);
+assert.equal(ignoredSameLeaf.ok, true);
+assert.equal(ignoredSameLeaf.ignored, true, 'A repeated problem in the same leaf is ignored.');
+assert.equal(countSetProblems(ignoredSameLeaf.sets[0]), 2);
+const bulkFilteredProblems = addTemplateToCustomSet(
+  ignoredSameLeaf.sets,
+  'set_one',
+  null,
+  [
+    { type: 'problem', challenge_id: 'lc_1' },
+    { type: 'problem', challenge_id: 'lc_2' },
+    { type: 'problem', challenge_id: 'lc_3' },
+  ],
+);
+assert.equal(bulkFilteredProblems.ok, true);
+assert.deepEqual(
+  bulkFilteredProblems.sets[0].nodes
+    .filter((node) => node.type === 'problem')
+    .map((node) => node.challenge_id),
+  ['lc_1', 'lc_2', 'lc_3'],
+  'Bulk additions must preserve filter order and ignore same-leaf duplicates.',
+);
+const nestedProblemId = ignoredSameLeaf.sets[0]
+  .nodes[0].children[0].children[0].children[0].id;
+const ignoredMoveIntoDuplicateLeaf = moveCustomNode(
+  ignoredSameLeaf.sets,
+  'set_one',
+  nestedProblemId,
+  'set_one',
+  null,
+);
+assert.equal(ignoredMoveIntoDuplicateLeaf.ok, true);
+assert.equal(
+  ignoredMoveIntoDuplicateLeaf.ignored,
+  true,
+  'Moving a problem into a leaf that already contains it must leave the source placement intact.',
+);
+assert.equal(countSetProblems(ignoredMoveIntoDuplicateLeaf.sets[0]), 2);
 
 const intoDescendant = moveCustomNode(
   withProblem.sets,
@@ -63,10 +110,56 @@ assert.equal(
   'A group must not be movable into one of its own descendants.',
 );
 
+const unwrapFixture = [{
+  id: 'set_unwrap',
+  name: 'Flatten copied hierarchy',
+  description: '',
+  career_mode: false,
+  nodes: [
+    { type: 'problem', id: 'root_one', challenge_id: 'lc_1' },
+    {
+      type: 'group',
+      id: 'middle_level',
+      name: 'Algorithms',
+      children: [
+        { type: 'problem', id: 'duplicate_one', challenge_id: 'lc_1' },
+        {
+          type: 'group',
+          id: 'preserved_child',
+          name: 'String',
+          children: [
+            { type: 'problem', id: 'nested_three', challenge_id: 'lc_3' },
+          ],
+        },
+        { type: 'problem', id: 'promoted_two', challenge_id: 'lc_2' },
+      ],
+    },
+    { type: 'problem', id: 'root_four', challenge_id: 'lc_4' },
+  ],
+}];
+const unwrapped = unwrapCustomGroup(unwrapFixture, 'set_unwrap', 'middle_level');
+assert.equal(unwrapped.ok, true);
+assert.deepEqual(
+  unwrapped.sets[0].nodes.map((node) => node.id),
+  ['root_one', 'preserved_child', 'promoted_two', 'root_four'],
+  'Removing a folder level must promote its children at the folder position and preserve order.',
+);
+assert.equal(
+  unwrapped.sets[0].nodes[1].children[0].id,
+  'nested_three',
+  'Promoted child folders must retain their complete subtrees and placement ids.',
+);
+assert.equal(
+  countSetProblems(unwrapped.sets[0]),
+  4,
+  'A promoted problem already present in the parent leaf must be ignored.',
+);
+
 const rootItems = [{
   id: 'set_order',
   name: 'Order',
   description: '',
+  career_mode: false,
   nodes: [
     { type: 'problem', id: 'item_a', challenge_id: 'lc_1' },
     { type: 'problem', id: 'item_b', challenge_id: 'lc_2' },
@@ -91,6 +184,7 @@ const copySource = [{
   id: 'set_source',
   name: 'Source',
   description: '',
+  career_mode: true,
   nodes: [{
     type: 'group',
     id: 'group_source',
@@ -106,6 +200,7 @@ const copySource = [{
   id: 'set_target',
   name: 'Target',
   description: '',
+  career_mode: false,
   nodes: [],
 }];
 const copied = copyCustomNode(
@@ -135,5 +230,62 @@ assert.notEqual(
   'item_graph',
   'Fresh ids must be assigned recursively throughout the copied structure.',
 );
+
+const copiedDuplicateProblem = copyCustomNode(
+  copied.sets,
+  'set_source',
+  'item_graph',
+  'set_target',
+  copied.sets[1].nodes[0].children[0].id,
+);
+assert.equal(copiedDuplicateProblem.ok, true);
+assert.equal(
+  copiedDuplicateProblem.ignored,
+  true,
+  'Copying a problem into a leaf that already contains it is idempotent.',
+);
+
+const fiveRoots = Array.from({ length: 5 }, (_, index) => ({
+  id: `set_limit_${index}`,
+  name: `Root ${index}`,
+  description: '',
+  career_mode: false,
+  nodes: [],
+}));
+const sixthRoot = createCustomSetFromTemplate(
+  fiveRoots,
+  'Root 6',
+  '',
+  [{ type: 'problem', challenge_id: 'lc_1' }],
+);
+assert.equal(sixthRoot.ok, false, 'Personal must reject a sixth root.');
+
+const hierarchyRoot = createCustomSetFromTemplate(
+  [],
+  'Copied hierarchy',
+  'Complete source tree',
+  [{
+    type: 'group',
+    name: 'Arrays',
+    children: [
+      { type: 'problem', challenge_id: 'lc_1' },
+      { type: 'problem', challenge_id: 'lc_1' },
+      {
+        type: 'group',
+        name: 'Second leaf',
+        children: [{ type: 'problem', challenge_id: 'lc_1' }],
+      },
+    ],
+  }],
+  true,
+);
+assert.equal(hierarchyRoot.ok, true);
+assert.equal(hierarchyRoot.sets[0].career_mode, true);
+assert.equal(
+  hierarchyRoot.sets[0].nodes[0].children.filter((node) => node.type === 'problem').length,
+  1,
+  'Hierarchy import must suppress duplicates only within one leaf.',
+);
+assert.equal(countSetProblems(hierarchyRoot.sets[0]), 2);
 
 console.log('Custom problem-set tree regressions passed.');

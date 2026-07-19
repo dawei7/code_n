@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1960",
+  "frontend_id": "1832",
+  "title_slug": "check-if-the-sentence-is-pangram",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.checkIfPangram",
+  "verified_submission_id": "2071649216",
+  "verified_at": "2026-07-18T01:25:28.930104+00:00"
+}

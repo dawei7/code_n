@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1904",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Both inputs are minute positions within one 24-hour clock and a session spans at most 1439 minutes, so legal inputs cannot provide honest asymptotic runtime tiers.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 1439,
+    "unit": "session minutes",
+    "source_constraint": "login and logout are distinct minute positions in a 24-hour day"
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"The reference parses two fixed-width times and performs a fixed number of integer additions, divisions, comparisons, and subtractions."},
+    {"kind":"exhaustive_domain","evidence":"The certificate regression checks all 2072160 distinct ordered clock-time pairs against an independent bisected interval-boundary oracle."}
+  ]
+}

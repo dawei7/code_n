@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_2017",
+  "cases": [
+    {
+      "id": "sample-balanced-choice",
+      "name": "sample: optimal drop limits the second robot to four",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[2, 5, 4], [1, 5, 1]]},
+      "expected": 4,
+      "tags": ["sample", "minimax"]
+    },
+    {
+      "id": "sample-heavy-bottom-prefix",
+      "name": "sample: bottom prefix influences the drop",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[3, 3, 1], [8, 5, 2]]},
+      "expected": 4,
+      "tags": ["sample", "prefix"]
+    },
+    {
+      "id": "sample-four-columns",
+      "name": "sample: avoid the large top suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1, 3, 1, 15], [1, 3, 3, 1]]},
+      "expected": 7,
+      "tags": ["sample", "suffix"]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "one column leaves no points",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[7], [9]]},
+      "expected": 0,
+      "tags": ["minimum-width"]
+    },
+    {
+      "id": "trial-boundary-drop",
+      "name": "either boundary drop limits the score to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[100, 1], [1, 100]]},
+      "expected": 1,
+      "tags": ["boundary-drop"]
+    },
+    {
+      "id": "real-equal-cells",
+      "name": "hidden: equal rows balance at the center",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 1, 1, 1, 1], [1, 1, 1, 1, 1]]},
+      "expected": 2,
+      "tags": ["hidden", "balanced"]
+    },
+    {
+      "id": "real-value-boundary",
+      "name": "hidden: maximum cell values require a wide sum",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[100000, 100000], [100000, 100000]]},
+      "expected": 100000,
+      "tags": ["hidden", "value-boundary"]
+    }
+  ]
+}

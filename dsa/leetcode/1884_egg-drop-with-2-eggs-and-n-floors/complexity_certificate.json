@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1884",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The source restricts n to at most 1000, so the principal incremental triangular scan performs at most 45 iterations and does not produce a reliable timing distinction from the fixed integer formula.",
+  "workload_bound": {
+    "symbol": "N",
+    "maximum": 1000,
+    "unit": "building floors",
+    "source_constraint": "n is an integer from 1 through 1000"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "The reference evaluates the triangular-number root with one fixed-width integer square root and a constant number of arithmetic operations."},
+    {"kind": "exhaustive_domain", "evidence": "The certificate regression verifies every legal n from 1 through 1000 against an independent incremental triangular-capacity oracle."}
+  ]
+}

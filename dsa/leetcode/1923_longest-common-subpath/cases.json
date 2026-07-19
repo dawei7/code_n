@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1923",
+  "cases": [
+    {"id":"example-common-pair","name":"sample: one ordered pair occurs in all three paths","kind":"sample","visible":true,"input":{"n":5,"paths":[[0,1,2,3,4],[2,3,4],[4,0,1,2,3]]},"expected":2,"tags":["sample","common-pair"]},
+    {"id":"example-no-city","name":"sample: singleton paths share no city","kind":"sample","visible":true,"input":{"n":3,"paths":[[0],[1],[2]]},"expected":0,"tags":["sample","no-common-city"]},
+    {"id":"example-reversal","name":"sample: reversed paths share cities but no ordered edge","kind":"sample","visible":true,"input":{"n":5,"paths":[[0,1,2,3,4],[4,3,2,1,0]]},"expected":1,"tags":["sample","order-sensitive"]},
+    {"id":"trial-identical","name":"identical paths share their complete length","kind":"trial","visible":true,"input":{"n":4,"paths":[[0,2,1,3],[0,2,1,3]]},"expected":4,"tags":["identical-paths","full-length"]},
+    {"id":"trial-contained-shortest","name":"the complete shortest path occurs inside every longer path","kind":"trial","visible":true,"input":{"n":8,"paths":[[2,4,6],[0,2,4,6,7],[5,2,4,6,1]]},"expected":3,"tags":["shortest-contained","different-offsets"]},
+    {"id":"real-repeated-cities","name":"hidden: repeated nonconsecutive cities form a common triple","kind":"real","visible":false,"input":{"n":6,"paths":[[0,1,0,1,2],[3,0,1,0,4],[5,0,1,0]]},"expected":3,"tags":["repeated-cities","common-triple"]},
+    {"id":"real-noncontiguous-only","name":"hidden: common city order without adjacency does not form a subpath","kind":"real","visible":false,"input":{"n":7,"paths":[[0,1,2,3],[0,4,1,5,2,6,3]]},"expected":1,"tags":["contiguity","semantic-trap"]},
+    {"id":"real-many-paths","name":"hidden: four paths contain one common sequence at different offsets","kind":"real","visible":false,"input":{"n":9,"paths":[[0,2,3,4,8],[7,2,3,4],[2,3,4,5,6],[1,2,3,4,0]]},"expected":3,"tags":["many-paths","different-offsets"]},
+    {"id":"real-common-singleton","name":"hidden: exactly one city survives every intersection","kind":"real","visible":false,"input":{"n":8,"paths":[[0,1,2],[3,1,4],[5,1,6,7]]},"expected":1,"tags":["singleton-common","set-intersection"]},
+    {"id":"real-disjoint-alphabets","name":"hidden: longer paths with disjoint city sets return zero","kind":"real","visible":false,"input":{"n":10,"paths":[[0,1,2,3],[4,5,6],[7,8,9]]},"expected":0,"tags":["disjoint-cities","zero-answer"]},
+    {"id":"real-duplicate-windows","name":"hidden: repeated copies of a window do not change its common length","kind":"real","visible":false,"input":{"n":5,"paths":[[0,1,0,1,0],[2,0,1,0,3],[0,1,0]]},"expected":3,"tags":["duplicate-windows","repeated-cities"]}
+  ]
+}

@@ -5,51 +5,102 @@
 | Source | LeetCode |
 | Frontend ID | 1974 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | String, Greedy |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-time-to-type-word-using-special-typewriter](https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+A special typewriter arranges the 26 lowercase English letters in a circle.
+Its pointer starts at `a`. During one second, you may either move the pointer
+one position clockwise, move it one position counterclockwise, or type the
+letter currently under the pointer.
+
+Given a nonempty lowercase string `word`, type its characters from left to
+right in their supplied order. Return the minimum total number of seconds
+needed for all pointer movements and typing operations.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `word`: a lowercase English string of length $N$, where
+  $1 \le N \le 100$.
 
 **Return value**
 
-TODO
+- The minimum number of one-second movement and typing operations required to
+  produce `word`, starting with the pointer at `a`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "abc"`
+- Output: `5`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "bza"`
+- Output: `7`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "zjpc"`
+- Output: `34`
 
----
+### Required Complexity
+- **Time:** $O(N)$
+- **Space:** $O(1)$
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Choose the shorter arc for each next letter**
+
+Represent each letter by its position from `0` through `25`. If the pointer is
+at position `previous` and the next character is at `current`, their direct
+linear separation is
+
+$$
+d=\lvert \texttt{current}-\texttt{previous}\rvert.
+$$
+
+Moving along that direct arc costs $d$ seconds. Moving around the other side
+of the circle costs $26-d$, so the minimum movement cost is
+$\min(d,26-d)$. Add this cost and one second to type the character, then make
+that character the new pointer position.
+
+**Why local shortest moves are globally optimal**
+
+The pointer must reach each requested character before it can be typed, and
+typing fixes the pointer at exactly that character regardless of which
+direction reached it. Therefore the chosen route to the current character
+cannot change the starting position for the next character. Replacing any
+route by the shorter circular arc never harms a later decision and minimizes
+that transition independently. Summing these minimum transitions plus exactly
+one typing operation per character gives the global minimum.
+
+#### Complexity detail
+
+The scan processes each of the $N$ characters once and performs constant work
+per transition, giving $O(N)$ time. The total, previous position, and current
+distance use $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Step-by-step pointer simulation:** Move one circle position at a time
+  along the shorter arc. This is correct, but calculating the distance
+  directly is simpler; with a fixed 26-letter alphabet both remain linear in
+  $N$.
+- **Recompute every prefix:** Recalculate the complete typing time after each
+  next character is appended and keep the final prefix total. This remains
+  correct but repeats earlier transitions and takes $O(N^2)$ time.
+- Repeated letters require no movement, but each occurrence still costs one
+  second to type.
+- Moving between `a` and `z` costs one second because the alphabet is circular.
+- At separation 13, clockwise and counterclockwise routes tie; either direction
+  has the same minimum cost.
+- The pointer begins at `a`, so the first character's movement is measured from
+  `a`, not from an unspecified position.
+
+</details>

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1829",
+  "cases": [
+    {"id":"example-two-bit","name":"sample: repeated values with a two-bit mask","kind":"sample","visible":true,"input":{"nums":[0,1,1,3],"maximumBit":2},"expected":[0,3,2,3],"tags":["example","two-bit"]},
+    {"id":"example-four-values","name":"sample: four values with a three-bit mask","kind":"sample","visible":true,"input":{"nums":[2,3,4,7],"maximumBit":3},"expected":[5,2,6,5],"tags":["example","three-bit"]},
+    {"id":"example-six-values","name":"sample: six values and repeated entries","kind":"sample","visible":true,"input":{"nums":[0,1,2,2,5,7],"maximumBit":3},"expected":[4,3,6,4,6,7],"tags":["example","repeated-values"]},
+    {"id":"trial-single-zero","name":"one zero uses the complete one-bit mask","kind":"trial","visible":true,"input":{"nums":[0],"maximumBit":1},"expected":[1],"tags":["single-element","zero"]},
+    {"id":"trial-single-mask","name":"one value equal to the mask chooses zero","kind":"trial","visible":true,"input":{"nums":[7],"maximumBit":3},"expected":[0],"tags":["single-element","full-mask"]},
+    {"id":"trial-canceling-pairs","name":"pairs of equal values repeatedly cancel","kind":"trial","visible":true,"input":{"nums":[1,1,1,1],"maximumBit":3},"expected":[7,6,7,6],"tags":["duplicates","xor-cancellation"]},
+    {"id":"real-two-values-one-bit","name":"hidden: smallest bit width and both legal values","kind":"real","visible":false,"input":{"nums":[0,1],"maximumBit":1},"expected":[0,1],"tags":["minimum-bit-width","boundaries"]},
+    {"id":"real-maximum-bit","name":"hidden: maximum bit width and maximum legal value","kind":"real","visible":false,"input":{"nums":[0,1048575],"maximumBit":20},"expected":[0,1048575],"tags":["maximum-bit-width","maximum-value"]},
+    {"id":"real-zero-prefixes","name":"hidden: all-zero prefixes always choose the mask","kind":"real","visible":false,"input":{"nums":[0,0,0,0,0],"maximumBit":4},"expected":[15,15,15,15,15],"tags":["zeros","repeated-values"]},
+    {"id":"real-sequential","name":"hidden: sequential ascending values change several bits","kind":"real","visible":false,"input":{"nums":[0,1,2,3,4,5,6,7],"maximumBit":3},"expected":[7,0,6,3,7,4,6,7],"tags":["ascending","bit-transitions"]}
+  ]
+}

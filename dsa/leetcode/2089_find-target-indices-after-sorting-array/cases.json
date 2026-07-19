@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2089",
+  "cases": [
+    {
+      "id": "sample-two-targets",
+      "name": "sample: duplicate target occupies a two-index block",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 5, 2, 3], "target": 2},
+      "expected": [1, 2],
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "sample-one-middle-target",
+      "name": "sample: one target in the sorted middle",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 5, 2, 3], "target": 3},
+      "expected": [3],
+      "tags": ["sample", "singleton"]
+    },
+    {
+      "id": "sample-one-largest-target",
+      "name": "sample: target becomes the final sorted value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 5, 2, 3], "target": 5},
+      "expected": [4],
+      "tags": ["sample", "largest"]
+    },
+    {
+      "id": "trial-target-absent",
+      "name": "an absent target has no indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 4, 2, 4], "target": 3},
+      "expected": [],
+      "tags": ["absent"]
+    },
+    {
+      "id": "real-all-target",
+      "name": "hidden: every position belongs to the target block",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 7, 7, 7], "target": 7},
+      "expected": [0, 1, 2, 3],
+      "tags": ["hidden", "all-equal"]
+    },
+    {
+      "id": "real-target-smaller-than-all",
+      "name": "hidden: absent target below all values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [9, 8, 10], "target": 1},
+      "expected": [],
+      "tags": ["hidden", "below-range"]
+    },
+    {
+      "id": "real-one-minimum",
+      "name": "hidden: the only target sorts to index zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100, 1, 50, 75], "target": 1},
+      "expected": [0],
+      "tags": ["hidden", "minimum-value"]
+    },
+    {
+      "id": "real-unsorted-target-block",
+      "name": "hidden: scattered copies become one consecutive block",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 2, 4, 6, 1, 6, 9, 3], "target": 6},
+      "expected": [4, 5, 6],
+      "tags": ["hidden", "scattered-duplicates"]
+    }
+  ]
+}

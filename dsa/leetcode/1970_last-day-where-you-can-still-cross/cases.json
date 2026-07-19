@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1970",
+  "cases": [
+    {"id":"example-alternating-columns","name":"sample: crossing survives two floods","kind":"sample","visible":true,"input":{"row":2,"col":2,"cells":[[1,1],[2,1],[1,2],[2,2]]},"expected":2,"tags":["sample","square"]},
+    {"id":"example-top-row-first","name":"sample: top row closes early","kind":"sample","visible":true,"input":{"row":2,"col":2,"cells":[[1,1],[1,2],[2,1],[2,2]]},"expected":1,"tags":["sample","top-boundary"]},
+    {"id":"example-three-square","name":"sample: winding three-by-three order","kind":"sample","visible":true,"input":{"row":3,"col":3,"cells":[[1,2],[2,1],[3,3],[2,2],[1,1],[1,3],[2,3],[3,2],[3,1]]},"expected":3,"tags":["sample","square"]},
+    {"id":"trial-wide-top-row","name":"wide grid whose top row floods first","kind":"trial","visible":true,"input":{"row":2,"col":3,"cells":[[1,1],[1,2],[1,3],[2,1],[2,2],[2,3]]},"expected":2,"tags":["rectangular","top-boundary"]},
+    {"id":"trial-wide-column-order","name":"wide grid flooded one column at a time","kind":"trial","visible":true,"input":{"row":2,"col":3,"cells":[[1,1],[2,1],[1,2],[2,2],[1,3],[2,3]]},"expected":4,"tags":["rectangular","column-order"]},
+    {"id":"trial-tall-column-order","name":"tall grid flooded one column at a time","kind":"trial","visible":true,"input":{"row":3,"col":2,"cells":[[1,1],[2,1],[3,1],[1,2],[2,2],[3,2]]},"expected":3,"tags":["rectangular","column-order"]},
+    {"id":"real-middle-barrier","name":"hidden: middle row becomes a water barrier","kind":"real","visible":false,"input":{"row":4,"col":3,"cells":[[2,1],[2,2],[2,3],[3,1],[3,2],[3,3],[4,1],[4,2],[4,3],[1,1],[1,2],[1,3]]},"expected":2,"tags":["barrier"]},
+    {"id":"real-wide-barrier","name":"hidden: wide middle-row barrier","kind":"real","visible":false,"input":{"row":3,"col":4,"cells":[[2,1],[2,2],[2,3],[2,4],[3,1],[3,2],[3,3],[3,4],[1,1],[1,2],[1,3],[1,4]]},"expected":3,"tags":["barrier","rectangular"]},
+    {"id":"real-bottom-row-first","name":"hidden: bottom row floods from left to right","kind":"real","visible":false,"input":{"row":2,"col":4,"cells":[[2,1],[2,2],[2,3],[2,4],[1,1],[1,2],[1,3],[1,4]]},"expected":3,"tags":["bottom-boundary"]},
+    {"id":"real-alternating-two-by-five","name":"hidden: alternating cells across a wide grid","kind":"real","visible":false,"input":{"row":2,"col":5,"cells":[[1,1],[2,2],[1,3],[2,4],[1,5],[2,1],[1,2],[2,3],[1,4],[2,5]]},"expected":4,"tags":["rectangular","alternating"]}
+  ]
+}

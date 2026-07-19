@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1967",
+  "cases": [
+    {"id":"example-three-matches","name":"sample: three of four patterns occur","kind":"sample","visible":true,"input":{"patterns":["a","abc","bc","d"],"word":"abc"},"expected":3,"tags":["sample","mixed"]},
+    {"id":"example-two-letters","name":"sample: two single-letter patterns occur","kind":"sample","visible":true,"input":{"patterns":["a","b","c"],"word":"aaaaabbbbb"},"expected":2,"tags":["sample","single-character"]},
+    {"id":"example-duplicates","name":"sample: every duplicate entry counts","kind":"sample","visible":true,"input":{"patterns":["a","a","a"],"word":"ab"},"expected":3,"tags":["sample","duplicates"]},
+    {"id":"trial-pattern-longer","name":"pattern longer than word cannot occur","kind":"trial","visible":true,"input":{"patterns":["abc"],"word":"ab"},"expected":0,"tags":["length-boundary"]},
+    {"id":"trial-whole-word","name":"whole word is a substring of itself","kind":"trial","visible":true,"input":{"patterns":["leetcode"],"word":"leetcode"},"expected":1,"tags":["whole-word"]},
+    {"id":"trial-many-occurrences","name":"one pattern counts once despite overlapping occurrences","kind":"trial","visible":true,"input":{"patterns":["aa"],"word":"aaaa"},"expected":1,"tags":["overlapping-occurrences","count-once"]},
+    {"id":"real-duplicate-and-reverse","name":"hidden: duplicate and reversed patterns all occur","kind":"real","visible":false,"input":{"patterns":["ab","ab","ba"],"word":"ababa"},"expected":3,"tags":["duplicates","multiple-patterns"]},
+    {"id":"real-no-match","name":"hidden: no pattern occurs in the word","kind":"real","visible":false,"input":{"patterns":["x","xy","yx"],"word":"abcabc"},"expected":0,"tags":["no-match"]},
+    {"id":"real-length-ladder","name":"hidden: only patterns no longer than the run occur","kind":"real","visible":false,"input":{"patterns":["z","zz","zzz"],"word":"zz"},"expected":2,"tags":["length-boundary","repeated-character"]},
+    {"id":"real-internal-match","name":"hidden: pattern occurs strictly inside the word","kind":"real","visible":false,"input":{"patterns":["middle","start","end"],"word":"xxmiddleyy"},"expected":1,"tags":["internal-substring"]}
+  ]
+}

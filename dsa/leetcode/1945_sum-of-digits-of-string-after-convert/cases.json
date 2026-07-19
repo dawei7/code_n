@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1945",
+  "cases": [
+    {"id":"example-one-transform","name":"sample: four letter positions sum to thirty-six","kind":"sample","visible":true,"input":{"s":"iiii","k":1},"expected":36,"tags":["sample","one-transform"]},
+    {"id":"example-two-transforms","name":"sample: converted digits reach six after two transforms","kind":"sample","visible":true,"input":{"s":"leetcode","k":2},"expected":6,"tags":["sample","two-transforms"]},
+    {"id":"example-mixed-positions","name":"sample: one- and two-digit positions combine","kind":"sample","visible":true,"input":{"s":"zbax","k":2},"expected":8,"tags":["sample","mixed-positions"]},
+    {"id":"trial-smallest-letter","name":"letter a converts and transforms to one","kind":"trial","visible":true,"input":{"s":"a","k":1},"expected":1,"tags":["single-letter","one-digit-position"]},
+    {"id":"trial-largest-letter","name":"letter z contributes both digits of twenty-six","kind":"trial","visible":true,"input":{"s":"z","k":1},"expected":8,"tags":["single-letter","two-digit-position"]},
+    {"id":"trial-stable-single-digit","name":"remaining transforms preserve a single digit","kind":"trial","visible":true,"input":{"s":"z","k":10},"expected":8,"tags":["maximum-transforms","stable-digit"]},
+    {"id":"real-short-one-digit-positions","name":"hidden: positions below ten sum directly","kind":"real","visible":false,"input":{"s":"abc","k":1},"expected":6,"tags":["one-digit-positions"]},
+    {"id":"real-repeat-two-digit-position","name":"hidden: second transform reduces a two-digit first sum","kind":"real","visible":false,"input":{"s":"zz","k":2},"expected":7,"tags":["repeated-letter","two-transforms"]},
+    {"id":"real-complete-alphabet","name":"hidden: every alphabet position contributes its decimal digits","kind":"real","visible":false,"input":{"s":"abcdefghijklmnopqrstuvwxyz","k":2},"expected":9,"tags":["complete-alphabet"]},
+    {"id":"real-repeated-a","name":"hidden: repeated smallest positions reduce from ten to one","kind":"real","visible":false,"input":{"s":"aaaaaaaaaa","k":3},"expected":1,"tags":["repeated-letter","extra-transforms"]}
+  ]
+}

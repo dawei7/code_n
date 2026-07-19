@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2028",
+  "frontend_id": "1900",
+  "title_slug": "the-earliest-and-latest-rounds-where-players-compete",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.earliestAndLatest",
+  "verified_submission_id": "2072029995",
+  "verified_at": "2026-07-18T09:22:38.375565+00:00"
+}

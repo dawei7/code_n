@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2057",
+  "cases": [
+    {"id":"sample-all-match","name":"sample: every position qualifies","kind":"sample","visible":true,"input":{"nums":[0,1,2]},"expected":0,"tags":["sample","smallest"]},
+    {"id":"sample-one-match","name":"sample: only index two qualifies","kind":"sample","visible":true,"input":{"nums":[4,3,2,1]},"expected":2,"tags":["sample","single-match"]},
+    {"id":"sample-no-match","name":"sample: no remainder equals its value","kind":"sample","visible":true,"input":{"nums":[1,2,3,4,5,6,7,8,9,0]},"expected":-1,"tags":["sample","no-match"]},
+    {"id":"trial-single-match","name":"the minimum-length array qualifies at zero","kind":"trial","visible":true,"input":{"nums":[0]},"expected":0,"tags":["minimum-size"]},
+    {"id":"real-single-no-match","name":"hidden: a single nonzero value has no match","kind":"real","visible":false,"input":{"nums":[9]},"expected":-1,"tags":["hidden","minimum-size"]},
+    {"id":"real-index-ten","name":"hidden: modulo repeats after index nine","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,6,7,8,9,0,0,2]},"expected":10,"tags":["hidden","modulo-cycle"]},
+    {"id":"real-multiple-matches","name":"hidden: return the earlier of several matches","kind":"real","visible":false,"input":{"nums":[9,1,2,9]},"expected":1,"tags":["hidden","multiple-matches"]}
+  ]
+}

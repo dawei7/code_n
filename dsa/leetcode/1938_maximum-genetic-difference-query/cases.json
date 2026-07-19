@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1938",
+  "cases": [
+    {"id":"example-branching-tree","name":"sample: queries use different root paths","kind":"sample","visible":true,"input":{"parents":[-1,0,1,1],"queries":[[0,2],[3,2],[2,5]]},"expected":[2,3,7],"tags":["sample","ancestor-paths"]},
+    {"id":"example-nonzero-root","name":"sample: root is node two and paths branch deeply","kind":"sample","visible":true,"input":{"parents":[3,7,-1,2,0,7,0,2],"queries":[[4,6],[1,15],[0,5]]},"expected":[6,14,7],"tags":["sample","nonzero-root"]},
+    {"id":"trial-two-nodes","name":"two-node tree covers root and child queries","kind":"trial","visible":true,"input":{"parents":[-1,0],"queries":[[0,0],[1,0],[1,3]]},"expected":[0,1,3],"tags":["minimum-tree","query-order"]},
+    {"id":"trial-star","name":"star leaves see themselves and the root only","kind":"trial","visible":true,"input":{"parents":[-1,0,0,0],"queries":[[3,2],[2,7]]},"expected":[2,7],"tags":["star-tree","ancestor-scope"]},
+    {"id":"trial-root-two","name":"root identification does not assume node zero","kind":"trial","visible":true,"input":{"parents":[2,2,-1],"queries":[[0,1],[1,4],[2,7]]},"expected":[3,6,5],"tags":["nonzero-root","multiple-queries"]},
+    {"id":"real-deeper-branches","name":"hidden: queries on separate deep branches use distinct paths","kind":"real","visible":false,"input":{"parents":[-1,0,1,1,2,2],"queries":[[4,3],[3,3],[5,8]]},"expected":[7,3,13],"tags":["branching-tree","deep-paths"]},
+    {"id":"real-exclude-cousin","name":"hidden: cousin labels are not eligible ancestors","kind":"real","visible":false,"input":{"parents":[-1,0,0,1,1,2,2],"queries":[[3,4],[5,4]]},"expected":[7,6],"tags":["sibling-exclusion","ancestor-scope"]},
+    {"id":"real-large-query-value","name":"hidden: trie width includes the maximum query value","kind":"real","visible":false,"input":{"parents":[-1,0,1],"queries":[[2,200000],[2,0],[0,5]]},"expected":[200002,2,5],"tags":["bit-width","large-value"]},
+    {"id":"real-same-node-many","name":"hidden: multiple queries at one node preserve order","kind":"real","visible":false,"input":{"parents":[-1,0,1,1],"queries":[[3,2],[3,7],[3,0]]},"expected":[3,7,3],"tags":["same-node","query-order"]},
+    {"id":"real-root-only-path","name":"hidden: a root query has exactly one candidate","kind":"real","visible":false,"input":{"parents":[1,-1,1],"queries":[[1,9],[0,9]]},"expected":[8,9],"tags":["root-query","nonzero-root"]}
+  ]
+}

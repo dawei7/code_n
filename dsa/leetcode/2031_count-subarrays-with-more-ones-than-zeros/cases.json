@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2031",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: nine mixed-length subarrays qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [0, 1, 1, 0, 1]},
+      "expected": 9,
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "sample-single-zero",
+      "name": "sample: one zero has no qualifying subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [0]},
+      "expected": 0,
+      "tags": ["sample", "minimum"]
+    },
+    {
+      "id": "sample-single-one",
+      "name": "sample: one one qualifies",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1]},
+      "expected": 1,
+      "tags": ["sample", "minimum"]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "every subarray of three ones qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 1, 1]},
+      "expected": 6,
+      "tags": ["all-ones"]
+    },
+    {
+      "id": "trial-equal-pairs",
+      "name": "equal-length pairs do not qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 0, 1]},
+      "expected": 3,
+      "tags": ["strict-inequality", "balanced"]
+    },
+    {
+      "id": "real-all-zeros",
+      "name": "hidden: no subarray of all zeros qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 0, 0, 0]},
+      "expected": 0,
+      "tags": ["hidden", "all-zeros"]
+    },
+    {
+      "id": "real-long-all-ones",
+      "name": "hidden: ten ones contribute every possible subarray",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]},
+      "expected": 55,
+      "tags": ["hidden", "all-ones"]
+    },
+    {
+      "id": "real-leading-zero",
+      "name": "hidden: a leading zero can belong to a positive-balance suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 1, 1]},
+      "expected": 4,
+      "tags": ["hidden", "leading-zero"]
+    }
+  ]
+}

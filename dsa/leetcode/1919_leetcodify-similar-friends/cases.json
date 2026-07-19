@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1919",
+  "cases": [
+    {
+      "id": "example-similar-friends",
+      "name": "sample: only the friends sharing three songs on one day qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":10,"day":"2021-03-15"},{"user_id":1,"song_id":11,"day":"2021-03-15"},{"user_id":1,"song_id":12,"day":"2021-03-15"},{"user_id":2,"song_id":10,"day":"2021-03-15"},{"user_id":2,"song_id":11,"day":"2021-03-15"},{"user_id":2,"song_id":12,"day":"2021-03-15"},{"user_id":3,"song_id":10,"day":"2021-03-15"},{"user_id":3,"song_id":11,"day":"2021-03-15"},{"user_id":3,"song_id":12,"day":"2021-03-15"},{"user_id":4,"song_id":10,"day":"2021-03-15"},{"user_id":4,"song_id":11,"day":"2021-03-15"},{"user_id":4,"song_id":13,"day":"2021-03-15"},{"user_id":5,"song_id":10,"day":"2021-03-16"},{"user_id":5,"song_id":11,"day":"2021-03-16"},{"user_id":5,"song_id":12,"day":"2021-03-16"}],"Friendship":[{"user1_id":1,"user2_id":2},{"user1_id":2,"user2_id":4},{"user1_id":2,"user2_id":5}]}},
+      "expected": {"columns":["user1_id","user2_id"],"rows":[[1,2]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["sample","same-day","friendship"]
+    },
+    {
+      "id": "trial-exactly-three",
+      "name": "exactly three shared distinct songs qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":1,"song_id":3,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":3,"day":"2024-01-01"}],"Friendship":[{"user1_id":1,"user2_id":2}]}},
+      "expected": {"columns":["user1_id","user2_id"],"rows":[[1,2]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["threshold","canonical-orientation"]
+    },
+    {
+      "id": "trial-only-two",
+      "name": "two common songs do not reach the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"}],"Friendship":[{"user1_id":1,"user2_id":2}]}},
+      "expected": {"columns":["user1_id","user2_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["below-threshold","empty-result"]
+    },
+    {
+      "id": "real-similar-nonfriends",
+      "name": "hidden: sufficient overlap without friendship is excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":1,"song_id":3,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":3,"day":"2024-01-01"}],"Friendship":{"columns":["user1_id","user2_id"],"rows":[]}}},
+      "expected": {"columns":["user1_id","user2_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["nonfriends","empty-result"]
+    },
+    {
+      "id": "real-split-across-days",
+      "name": "hidden: common songs on separate dates cannot accumulate",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":1,"song_id":3,"day":"2024-01-02"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":3,"day":"2024-01-02"}],"Friendship":[{"user1_id":1,"user2_id":2}]}},
+      "expected": {"columns":["user1_id","user2_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["day-boundary","semantic-trap"]
+    },
+    {
+      "id": "real-duplicates-do-not-inflate",
+      "name": "hidden: duplicate logs do not turn two songs into three",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"}],"Friendship":[{"user1_id":1,"user2_id":2}]}},
+      "expected": {"columns":["user1_id","user2_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["duplicates","distinct-songs"]
+    },
+    {
+      "id": "real-multiple-qualifying-days",
+      "name": "hidden: qualification on two dates emits one friendship",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":1,"song_id":3,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":3,"day":"2024-01-01"},{"user_id":1,"song_id":4,"day":"2024-01-02"},{"user_id":1,"song_id":5,"day":"2024-01-02"},{"user_id":1,"song_id":6,"day":"2024-01-02"},{"user_id":2,"song_id":4,"day":"2024-01-02"},{"user_id":2,"song_id":5,"day":"2024-01-02"},{"user_id":2,"song_id":6,"day":"2024-01-02"}],"Friendship":[{"user1_id":1,"user2_id":2}]}},
+      "expected": {"columns":["user1_id","user2_id"],"rows":[[1,2]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["multiple-days","deduplication"]
+    },
+    {
+      "id": "real-two-independent-pairs",
+      "name": "hidden: two friendships qualify on different dates",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":1,"song_id":3,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":3,"day":"2024-01-01"},{"user_id":3,"song_id":4,"day":"2024-01-02"},{"user_id":3,"song_id":5,"day":"2024-01-02"},{"user_id":3,"song_id":6,"day":"2024-01-02"},{"user_id":4,"song_id":4,"day":"2024-01-02"},{"user_id":4,"song_id":5,"day":"2024-01-02"},{"user_id":4,"song_id":6,"day":"2024-01-02"}],"Friendship":[{"user1_id":1,"user2_id":2},{"user1_id":3,"user2_id":4}]}},
+      "expected": {"columns":["user1_id","user2_id"],"rows":[[1,2],[3,4]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["independent-pairs","multiple-days"]
+    },
+    {
+      "id": "real-empty-listens",
+      "name": "hidden: friendships without listening activity do not qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":{"columns":["user_id","song_id","day"],"rows":[]},"Friendship":[{"user1_id":1,"user2_id":2}]}},
+      "expected": {"columns":["user1_id","user2_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["empty-activity","empty-result"]
+    }
+  ]
+}

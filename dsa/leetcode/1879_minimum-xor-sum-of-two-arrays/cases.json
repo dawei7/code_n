@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1879",
+  "cases": [
+    {"id":"example-two-values","name":"sample: swapping the second array lowers the XOR sum","kind":"sample","visible":true,"input":{"nums1":[1,2],"nums2":[2,3]},"expected":2,"tags":["sample","rearrangement"]},
+    {"id":"example-three-values","name":"sample: one exact match belongs in the optimum","kind":"sample","visible":true,"input":{"nums1":[1,0,3],"nums2":[5,3,4]},"expected":8,"tags":["sample","assignment"]},
+    {"id":"trial-three-values","name":"three unequal values require checking all assignments","kind":"trial","visible":true,"input":{"nums1":[2,4,6],"nums2":[1,3,5]},"expected":9,"tags":["small-assignment"]},
+    {"id":"trial-single","name":"one value has one forced XOR","kind":"trial","visible":true,"input":{"nums1":[0],"nums2":[10000000]},"expected":10000000,"tags":["minimum","value-boundary"]},
+    {"id":"real-identical-multisets","name":"hidden: reordered identical multisets can achieve zero","kind":"real","visible":false,"input":{"nums1":[1,2,3],"nums2":[3,1,2]},"expected":0,"tags":["zero-answer","reordering"]},
+    {"id":"real-duplicates","name":"hidden: duplicate occurrences are assigned separately","kind":"real","visible":false,"input":{"nums1":[5,5,1],"nums2":[4,4,0]},"expected":3,"tags":["duplicates"]},
+    {"id":"real-zero-first-array","name":"hidden: all zero values sum the unchanged second values","kind":"real","visible":false,"input":{"nums1":[0,0,0],"nums2":[7,3,5]},"expected":15,"tags":["zeros","permutation-neutral"]},
+    {"id":"real-bit-patterns","name":"hidden: complementary bit patterns reward crossed assignments","kind":"real","visible":false,"input":{"nums1":[8,1,2,15],"nums2":[7,14,0,9]},"expected":8,"tags":["bit-patterns"]},
+    {"id":"real-maximum-values","name":"hidden: large legal values preserve exact integer arithmetic","kind":"real","visible":false,"input":{"nums1":[10000000,9999999],"nums2":[0,1]},"expected":19999998,"tags":["value-boundary"]},
+    {"id":"real-four-zero","name":"hidden: a complete multiset match gives four zero XOR pairs","kind":"real","visible":false,"input":{"nums1":[0,15,8,7],"nums2":[15,0,7,8]},"expected":0,"tags":["zero-answer","full-match"]},
+    {"id":"real-mixed-six","name":"hidden: six positions exercise overlapping assignment choices","kind":"real","visible":false,"input":{"nums1":[1,7,12,3,19,25],"nums2":[6,2,9,14,21,4]},"expected":31,"tags":["larger-state-space"]},
+    {"id":"real-all-equal","name":"hidden: equal second values make their occurrence identities interchangeable","kind":"real","visible":false,"input":{"nums1":[1,2,4,8],"nums2":[3,3,3,3]},"expected":21,"tags":["duplicates","permutation-neutral"]}
+  ]
+}

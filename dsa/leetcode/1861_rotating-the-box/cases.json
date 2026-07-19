@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1861",
+  "cases": [
+    {"id":"example-one-row","name":"sample: stones pack downward after one-row rotation","kind":"sample","visible":true,"input":{"boxGrid":[["#",".","#"]]},"expected":[["."],["#"],["#"]],"validator":{"kind":"exact"},"tags":["example","one-row"]},
+    {"id":"example-obstacle-columns","name":"sample: obstacles split both source rows","kind":"sample","visible":true,"input":{"boxGrid":[["#",".","*","."],["#","#","*","."]]},"expected":[["#","."],["#","#"],["*","*"],[".","."]],"validator":{"kind":"exact"},"tags":["example","obstacles"]},
+    {"id":"example-three-rows","name":"sample: multiple obstacle-delimited segments","kind":"sample","visible":true,"input":{"boxGrid":[["#","#","*",".","*","."],["#","#","#","*",".","."],["#","#","#",".","#","."]]},"expected":[[".","#","#"],[".","#","#"],["#","#","*"],["#","*","."],["#",".","*"],["#",".","."]],"validator":{"kind":"exact"},"tags":["example","multiple-segments"]},
+    {"id":"trial-single-empty","name":"one empty cell remains empty","kind":"trial","visible":true,"input":{"boxGrid":[["."]]},"expected":[["."]],"validator":{"kind":"exact"},"tags":["minimum-grid","empty"]},
+    {"id":"real-single-stone","name":"hidden: one stone remains at the only cell","kind":"real","visible":false,"input":{"boxGrid":[["#"]]},"expected":[["#"]],"validator":{"kind":"exact"},"tags":["minimum-grid","stone"]},
+    {"id":"real-single-obstacle","name":"hidden: one obstacle remains at the only cell","kind":"real","visible":false,"input":{"boxGrid":[["*"]]},"expected":[["*"]],"validator":{"kind":"exact"},"tags":["minimum-grid","obstacle"]},
+    {"id":"real-segmented-row","name":"hidden: obstacle prevents a left stone crossing segments","kind":"real","visible":false,"input":{"boxGrid":[["#","*","#","."]]},"expected":[["#"],["*"],["."],["#"]],"validator":{"kind":"exact"},"tags":["one-row","obstacle-boundary"]},
+    {"id":"real-all-empty","name":"hidden: an all-empty rectangle only changes orientation","kind":"real","visible":false,"input":{"boxGrid":[[".",".","."],[".",".","."]]},"expected":[[".","."],[".","."],[".","."]],"validator":{"kind":"exact"},"tags":["all-empty","rectangular"]},
+    {"id":"real-single-column","name":"hidden: a source column becomes one reversed row","kind":"real","visible":false,"input":{"boxGrid":[["#"],["*"],["."]]},"expected":[[".","*","#"]],"validator":{"kind":"exact"},"tags":["single-column","rotation"]},
+    {"id":"real-trailing-obstacle","name":"hidden: obstacle at the right edge blocks all stones before it","kind":"real","visible":false,"input":{"boxGrid":[["#",".","#","*"]]},"expected":[["."],["#"],["#"],["*"]],"validator":{"kind":"exact"},"tags":["right-edge-obstacle","packing"]}
+  ]
+}

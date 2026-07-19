@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1959",
+  "cases": [
+    {"id":"example-no-resize","name":"sample: one allocation covers two requirements","kind":"sample","visible":true,"input":{"nums":[10,20],"k":0},"expected":10,"tags":["sample","no-resize"]},
+    {"id":"example-one-resize","name":"sample: one resize isolates the final peak","kind":"sample","visible":true,"input":{"nums":[10,20,30],"k":1},"expected":10,"tags":["sample","one-resize"]},
+    {"id":"example-two-resizes","name":"sample: two boundaries minimize three segment costs","kind":"sample","visible":true,"input":{"nums":[10,20,15,30,20],"k":2},"expected":15,"tags":["sample","multiple-resizes"]},
+    {"id":"trial-single-time","name":"one time index has no wasted space","kind":"trial","visible":true,"input":{"nums":[5],"k":0},"expected":0,"tags":["minimum","zero-waste"]},
+    {"id":"trial-resize-every-time","name":"each requirement receives its own capacity","kind":"trial","visible":true,"input":{"nums":[5,1,9,2],"k":3},"expected":0,"tags":["maximum-resizes","zero-waste"]},
+    {"id":"trial-constant-requirement","name":"constant requirements waste no space without resizing","kind":"trial","visible":true,"input":{"nums":[7,7,7,7],"k":0},"expected":0,"tags":["constant","zero-waste"]},
+    {"id":"real-decreasing","name":"hidden: one boundary splits a decreasing sequence","kind":"real","visible":false,"input":{"nums":[30,20,10],"k":1},"expected":10,"tags":["decreasing","one-resize"]},
+    {"id":"real-no-beneficial-split","name":"hidden: one resize cannot improve separated equal peaks","kind":"real","visible":false,"input":{"nums":[5,1,5],"k":1},"expected":4,"tags":["separated-peaks"]},
+    {"id":"real-isolate-first-peak","name":"hidden: isolate a large first requirement","kind":"real","visible":false,"input":{"nums":[5,1,2],"k":1},"expected":1,"tags":["boundary-choice"]},
+    {"id":"real-value-boundary","name":"hidden: maximum requirement creates wide waste","kind":"real","visible":false,"input":{"nums":[1000000,1],"k":0},"expected":999999,"tags":["value-boundary","no-resize"]}
+  ]
+}

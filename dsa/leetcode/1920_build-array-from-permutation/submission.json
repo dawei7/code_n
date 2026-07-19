@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2048",
+  "frontend_id": "1920",
+  "title_slug": "build-array-from-permutation",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.buildArray",
+  "verified_submission_id": "2072347572",
+  "verified_at": "2026-07-18T14:43:42.559316+00:00"
+}

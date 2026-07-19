@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2073",
+  "cases": [
+    {"id":"sample-two-passes","name":"sample: the tracked suffix person finishes after six turns","kind":"sample","visible":true,"input":{"tickets":[2,3,2],"k":2},"expected":6,"tags":["sample","multiple-passes"]},
+    {"id":"sample-front-remains","name":"sample: the front person continues after everyone else leaves","kind":"sample","visible":true,"input":{"tickets":[5,1,1,1],"k":0},"expected":8,"tags":["sample","front-person"]},
+    {"id":"trial-single-person","name":"one person buys every requested ticket","kind":"trial","visible":true,"input":{"tickets":[7],"k":0},"expected":7,"tags":["minimum-size"]},
+    {"id":"real-first-pass-stop","name":"hidden: the process stops before suffix positions act","kind":"real","visible":false,"input":{"tickets":[3,1,2],"k":1},"expected":2,"tags":["hidden","first-pass"]},
+    {"id":"real-suffix-loses-final-turn","name":"hidden: people behind the target miss the final pass","kind":"real","visible":false,"input":{"tickets":[2,2,2],"k":0},"expected":4,"tags":["hidden","suffix-cutoff"]},
+    {"id":"real-early-finishers","name":"hidden: smaller demands stop contributing after completion","kind":"real","visible":false,"input":{"tickets":[1,4,2,1],"k":2},"expected":6,"tags":["hidden","early-finishers"]},
+    {"id":"real-demand-boundary","name":"hidden: maximum ticket demand for one person","kind":"real","visible":false,"input":{"tickets":[100],"k":0},"expected":100,"tags":["hidden","demand-boundary"]}
+  ]
+}

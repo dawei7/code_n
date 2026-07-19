@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1859",
+  "cases": [
+    {"id":"example-four-words","name":"sample: restore four words from mixed order","kind":"sample","visible":true,"input":{"s":"is2 sentence4 This1 a3"},"expected":"This is a sentence","validator":{"kind":"exact"},"tags":["example","shuffled"]},
+    {"id":"example-pronoun-sentence","name":"sample: preserve capitalization while ordering","kind":"sample","visible":true,"input":{"s":"Myself2 Me1 I4 and3"},"expected":"Me Myself and I","validator":{"kind":"exact"},"tags":["example","uppercase"]},
+    {"id":"trial-single-word","name":"one marked word loses its position suffix","kind":"trial","visible":true,"input":{"s":"Hello1"},"expected":"Hello","validator":{"kind":"exact"},"tags":["single-word","minimum-words"]},
+    {"id":"real-already-ordered","name":"hidden: already ordered tokens still lose their digits","kind":"real","visible":false,"input":{"s":"Keep1 this2 order3"},"expected":"Keep this order","validator":{"kind":"exact"},"tags":["already-ordered"]},
+    {"id":"real-reversed","name":"hidden: completely reversed token order","kind":"real","visible":false,"input":{"s":"three3 two2 One1"},"expected":"One two three","validator":{"kind":"exact"},"tags":["reversed"]},
+    {"id":"real-two-words","name":"hidden: smallest multiword permutation","kind":"real","visible":false,"input":{"s":"second2 First1"},"expected":"First second","validator":{"kind":"exact"},"tags":["two-words"]},
+    {"id":"real-nine-words","name":"hidden: every legal position digit is used","kind":"real","visible":false,"input":{"s":"i9 a1 h8 b2 g7 c3 f6 d4 e5"},"expected":"a b c d e f g h i","validator":{"kind":"exact"},"tags":["maximum-words","all-digits"]},
+    {"id":"real-mixed-case","name":"hidden: letter case is preserved exactly","kind":"real","visible":false,"input":{"s":"cOdE2 We1 Daily3"},"expected":"We cOdE Daily","validator":{"kind":"exact"},"tags":["mixed-case"]},
+    {"id":"real-long-words","name":"hidden: positions follow suffixes rather than word lengths","kind":"real","visible":false,"input":{"s":"x3 extraordinarily2 A1"},"expected":"A extraordinarily x","validator":{"kind":"exact"},"tags":["unequal-lengths"]},
+    {"id":"real-arbitrary-permutation","name":"hidden: indexed placement handles a non-patterned shuffle","kind":"real","visible":false,"input":{"s":"blue4 red2 violet6 first1 green3 indigo5"},"expected":"first red green blue indigo violet","validator":{"kind":"exact"},"tags":["permutation","six-words"]}
+  ]
+}

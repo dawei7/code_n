@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2168",
+  "frontend_id": "2042",
+  "title_slug": "check-if-numbers-are-ascending-in-a-sentence",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.areNumbersAscending",
+  "verified_submission_id": "2072868646",
+  "verified_at": "2026-07-19T01:14:06.797269+00:00"
+}

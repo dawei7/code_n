@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2158",
+  "frontend_id": "2010",
+  "title_slug": "the-number-of-seniors-and-juniors-to-join-the-company-ii",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2072835272",
+  "verified_at": "2026-07-18T23:00:54.549926+00:00"
+}

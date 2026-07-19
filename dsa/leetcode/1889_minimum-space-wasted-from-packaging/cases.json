@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1889",
+  "cases": [
+    {"id":"example-first-supplier","name":"sample: the first supplier minimizes total waste","kind":"sample","visible":true,"input":{"packages":[2,3,5],"boxes":[[4,8],[2,8]]},"expected":6,"tags":["sample","supplier-choice"]},
+    {"id":"example-impossible","name":"sample: no supplier can fit the largest package","kind":"sample","visible":true,"input":{"packages":[2,3,5],"boxes":[[1,4],[2,3],[3,4]]},"expected":-1,"tags":["sample","impossible"]},
+    {"id":"example-third-supplier","name":"sample: several box thresholds minimize waste","kind":"sample","visible":true,"input":{"packages":[3,5,8,10,11,12],"boxes":[[12],[11,9],[10,5,14]]},"expected":9,"tags":["sample","multiple-thresholds"]},
+    {"id":"trial-single-exact-fit","name":"one package chooses an exact-fit supplier","kind":"trial","visible":true,"input":{"packages":[5],"boxes":[[5],[6]]},"expected":0,"tags":["single-package","exact-fit"]},
+    {"id":"trial-exact-size-catalog","name":"a supplier with every package size wastes nothing","kind":"trial","visible":true,"input":{"packages":[1,2,3],"boxes":[[3],[1,2,3]]},"expected":0,"tags":["exact-fit","supplier-choice"]},
+    {"id":"real-duplicate-packages","name":"hidden: duplicate packages reuse unlimited box supply","kind":"real","visible":false,"input":{"packages":[2,2,3],"boxes":[[2,4],[3]]},"expected":1,"tags":["duplicates","unlimited-supply"]},
+    {"id":"real-unused-box-sizes","name":"hidden: offered sizes below and above exact fits may remain unused","kind":"real","visible":false,"input":{"packages":[4,7],"boxes":[[1,4,6,7,10]]},"expected":0,"tags":["unused-sizes","exact-fit"]},
+    {"id":"real-skip-infeasible","name":"hidden: skip an infeasible supplier before choosing the next","kind":"real","visible":false,"input":{"packages":[6,7],"boxes":[[6],[7]]},"expected":1,"tags":["infeasible-supplier","supplier-choice"]},
+    {"id":"real-unsorted-inputs","name":"hidden: unsorted packages and boxes still find exact fits","kind":"real","visible":false,"input":{"packages":[9,1,5],"boxes":[[10,6],[9,5,1]]},"expected":0,"tags":["unsorted","exact-fit"]},
+    {"id":"real-value-boundaries","name":"hidden: minimum and maximum legal sizes use one large box type","kind":"real","visible":false,"input":{"packages":[1,100000],"boxes":[[99999],[100000]]},"expected":99999,"tags":["value-boundary","infeasible-supplier"]},
+    {"id":"real-single-box-type","name":"hidden: one exact box type serves repeated packages","kind":"real","visible":false,"input":{"packages":[4,4,4],"boxes":[[4]]},"expected":0,"tags":["duplicates","single-box-size"]}
+  ]
+}

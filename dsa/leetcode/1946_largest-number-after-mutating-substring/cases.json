@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1946",
+  "cases": [
+    {"id":"example-single-digit-mutation","name":"sample: only the first digit should mutate","kind":"sample","visible":true,"input":{"num":"132","change":[9,8,5,0,3,6,4,2,6,8]},"expected":"832","tags":["sample","single-position"]},
+    {"id":"example-whole-string","name":"sample: every digit belongs to the improving substring","kind":"sample","visible":true,"input":{"num":"021","change":[9,4,3,5,7,2,1,9,0,6]},"expected":"934","tags":["sample","whole-string","leading-zero"]},
+    {"id":"example-no-improvement","name":"sample: no mutation improves the only digit","kind":"sample","visible":true,"input":{"num":"5","change":[1,4,7,5,3,2,5,6,9,4]},"expected":"5","tags":["sample","no-mutation"]},
+    {"id":"trial-equality-bridge","name":"equal replacement bridges two strict improvements","kind":"trial","visible":true,"input":{"num":"1203","change":[9,8,2,0,4,5,6,7,8,9]},"expected":"8293","tags":["equal-bridge","harmful-stop"]},
+    {"id":"trial-skip-early-harm","name":"harmful digit before mutation does not prevent a later start","kind":"trial","visible":true,"input":{"num":"3412","change":[0,1,0,2,9,5,6,7,8,9]},"expected":"3912","tags":["skip-harmful-prefix","equal-bridge"]},
+    {"id":"trial-identity-map","name":"identity mapping leaves every number unchanged","kind":"trial","visible":true,"input":{"num":"9081726354","change":[0,1,2,3,4,5,6,7,8,9]},"expected":"9081726354","tags":["identity-map","no-mutation"]},
+    {"id":"real-single-benefit","name":"hidden: one beneficial mapping changes a single digit","kind":"real","visible":false,"input":{"num":"7","change":[0,1,2,3,4,5,6,9,8,9]},"expected":"9","tags":["single-digit","beneficial"]},
+    {"id":"real-stop-before-loss","name":"hidden: mutation stops before a decreasing replacement","kind":"real","visible":false,"input":{"num":"56890","change":[9,1,2,3,4,7,8,6,7,9]},"expected":"78890","tags":["harmful-stop"]},
+    {"id":"real-beneficial-suffix","name":"hidden: optimal substring begins near the end","kind":"real","visible":false,"input":{"num":"987123","change":[0,1,8,9,4,5,6,6,7,8]},"expected":"987189","tags":["suffix-mutation","skip-harmful-prefix"]},
+    {"id":"real-leading-zeroes","name":"hidden: leading zeroes can begin the improving substring","kind":"real","visible":false,"input":{"num":"0005","change":[1,1,2,3,4,5,6,7,8,9]},"expected":"1115","tags":["leading-zero","prefix-mutation"]}
+  ]
+}

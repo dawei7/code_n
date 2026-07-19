@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1943",
+  "cases": [
+    {"id":"example-touching-overlap","name":"sample: touching segments overlap a longer segment","kind":"sample","visible":true,"input":{"segments":[[1,4,5],[4,7,7],[1,7,9]]},"expected":[[1,4,14],[4,7,16]],"tags":["sample","touching-endpoints"]},
+    {"id":"example-staggered","name":"sample: staggered segments produce four spans","kind":"sample","visible":true,"input":{"segments":[[1,7,9],[6,8,15],[8,10,7]]},"expected":[[1,6,9],[6,7,24],[7,8,15],[8,10,7]],"tags":["sample","staggered"]},
+    {"id":"example-equal-adjacent-sums","name":"sample: equal sums with different color sets stay separate","kind":"sample","visible":true,"input":{"segments":[[1,4,5],[1,4,7],[4,7,1],[4,7,11]]},"expected":[[1,4,12],[4,7,12]],"tags":["sample","equal-sums","different-color-sets"]},
+    {"id":"trial-single-segment","name":"one segment remains one painted span","kind":"trial","visible":true,"input":{"segments":[[2,5,10]]},"expected":[[2,5,10]],"tags":["single-segment"]},
+    {"id":"trial-unpainted-gap","name":"disjoint segments omit the gap","kind":"trial","visible":true,"input":{"segments":[[1,2,3],[4,5,7]]},"expected":[[1,2,3],[4,5,7]],"tags":["unpainted-gap","disjoint"]},
+    {"id":"trial-nested-segment","name":"nested segment raises only the middle sum","kind":"trial","visible":true,"input":{"segments":[[1,10,5],[2,3,10]]},"expected":[[1,2,5],[2,3,15],[3,10,5]],"tags":["nested"]},
+    {"id":"real-common-start","name":"hidden: several colors begin together and end separately","kind":"real","visible":false,"input":{"segments":[[1,6,2],[1,4,5],[1,2,11]]},"expected":[[1,2,18],[2,4,7],[4,6,2]],"tags":["common-start"]},
+    {"id":"real-common-end","name":"hidden: several colors start separately and end together","kind":"real","visible":false,"input":{"segments":[[1,8,3],[3,8,7],[6,8,13]]},"expected":[[1,3,3],[3,6,10],[6,8,23]],"tags":["common-end"]},
+    {"id":"real-overlap-with-gap","name":"hidden: overlapping clusters are separated by an unpainted gap","kind":"real","visible":false,"input":{"segments":[[1,4,2],[3,5,7],[8,10,11],[9,12,13]]},"expected":[[1,3,2],[3,4,9],[4,5,7],[8,9,11],[9,10,24],[10,12,13]],"tags":["multiple-clusters","unpainted-gap"]},
+    {"id":"real-zero-net-change-boundary","name":"hidden: zero net sum change still preserves a color-set boundary","kind":"real","visible":false,"input":{"segments":[[1,3,4],[3,5,1],[3,5,3]]},"expected":[[1,3,4],[3,5,4]],"tags":["zero-net-change","different-color-sets"]}
+  ]
+}

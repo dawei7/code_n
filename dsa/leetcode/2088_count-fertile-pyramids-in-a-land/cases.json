@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2088",
+  "cases": [
+    {
+      "id": "sample-two-upright",
+      "name": "sample: adjacent apexes form two upright pyramids",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[0, 1, 1, 0], [1, 1, 1, 1]]},
+      "expected": 2,
+      "tags": ["sample", "upright"]
+    },
+    {
+      "id": "sample-one-each-orientation",
+      "name": "sample: full two-row square has both orientations",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1, 1, 1], [1, 1, 1]]},
+      "expected": 2,
+      "tags": ["sample", "both-orientations"]
+    },
+    {
+      "id": "sample-mixed-four-rows",
+      "name": "sample: overlapping heights and orientations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "grid": [
+          [1, 1, 1, 1, 0],
+          [1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1],
+          [0, 1, 0, 0, 1]
+        ]
+      },
+      "expected": 13,
+      "tags": ["sample", "overlapping"]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "a height-one fertile cell is not a pyramid",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1]]},
+      "expected": 0,
+      "tags": ["minimum", "height-one"]
+    },
+    {
+      "id": "real-upright-only",
+      "name": "hidden: one isolated upright pyramid",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[0, 1, 0], [1, 1, 1], [0, 0, 0]]},
+      "expected": 1,
+      "tags": ["hidden", "upright-only"]
+    },
+    {
+      "id": "real-inverse-only",
+      "name": "hidden: one isolated inverse pyramid",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 1, 1], [0, 1, 0], [0, 0, 0]]},
+      "expected": 1,
+      "tags": ["hidden", "inverse-only"]
+    },
+    {
+      "id": "real-single-row",
+      "name": "hidden: width alone cannot create height",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 1, 1, 1, 1]]},
+      "expected": 0,
+      "tags": ["hidden", "single-row"]
+    },
+    {
+      "id": "real-barren-grid",
+      "name": "hidden: barren cells form no plots",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[0, 0, 0], [0, 0, 0], [0, 0, 0]]},
+      "expected": 0,
+      "tags": ["hidden", "all-zero"]
+    }
+  ]
+}

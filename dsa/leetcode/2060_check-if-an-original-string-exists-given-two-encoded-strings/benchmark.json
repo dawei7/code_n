@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2060",
+  "measurement_note": "Size is S, the exact number of reachable `(first, second, balance)` states: 61, 187, and 433 for one, two, and three repeated ambiguous `111a` blocks before conflicting final literals. The false result forces state-space exhaustion. The reference uses hashed memoization. A correct implementation with explicit linear memo-state lookup completes all tiers and fails by quadratic scaling in S.",
+  "cases": [
+    {
+      "id":"benchmark-scale-1","name":"benchmark: 61 states from one ambiguity block","kind":"benchmark","visible":false,"size":61,
+      "input":{"s1":"111ab","s2":"111ac"},"expected":false,
+      "tags":["benchmark","scale-small","linear-memo-lookup"]
+    },
+    {
+      "id":"benchmark-scale-2","name":"benchmark: 187 states from two ambiguity blocks","kind":"benchmark","visible":false,"size":187,
+      "input":{"s1":"111a111ab","s2":"111a111ac"},"expected":false,
+      "tags":["benchmark","scale-medium","linear-memo-lookup"]
+    },
+    {
+      "id":"benchmark-scale-3","name":"benchmark: 433 states from three ambiguity blocks","kind":"benchmark","visible":false,"size":433,
+      "input":{"s1":"111a111a111ab","s2":"111a111a111ac"},"expected":false,
+      "tags":["benchmark","scale-large","linear-memo-lookup"]
+    }
+  ]
+}

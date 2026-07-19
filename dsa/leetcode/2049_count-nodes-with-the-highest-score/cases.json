@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2049",
+  "cases": [
+    {
+      "id": "sample-three-way-tie",
+      "name": "sample: three leaves share the highest score",
+      "kind": "sample",
+      "visible": true,
+      "input": {"parents": [-1, 2, 0, 2, 0]},
+      "expected": 3,
+      "tags": ["sample", "non-index-order", "tie"]
+    },
+    {
+      "id": "sample-two-way-tie",
+      "name": "sample: root and leaf share the maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"parents": [-1, 2, 0]},
+      "expected": 2,
+      "tags": ["sample", "tie"]
+    },
+    {
+      "id": "trial-two-nodes",
+      "name": "both nodes of the smallest tree have score one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"parents": [-1, 0]},
+      "expected": 2,
+      "tags": ["minimum-size", "root", "leaf"]
+    },
+    {
+      "id": "trial-perfect-tree",
+      "name": "the root uniquely maximizes a perfect seven-node tree",
+      "kind": "trial",
+      "visible": true,
+      "input": {"parents": [-1, 0, 0, 1, 1, 2, 2]},
+      "expected": 1,
+      "tags": ["balanced-tree", "unique-maximum"]
+    },
+    {
+      "id": "real-odd-chain",
+      "name": "hidden: three central positions tie in a five-node chain",
+      "kind": "real",
+      "visible": false,
+      "input": {"parents": [-1, 0, 1, 2, 3]},
+      "expected": 3,
+      "tags": ["hidden", "deep-tree", "tie"]
+    },
+    {
+      "id": "real-asymmetric-binary-tree",
+      "name": "hidden: combine two child components with a parent side",
+      "kind": "real",
+      "visible": false,
+      "input": {"parents": [-1, 0, 0, 1, 1, 3, 2, 6]},
+      "expected": 1,
+      "tags": ["hidden", "asymmetric", "three-components"]
+    }
+  ]
+}

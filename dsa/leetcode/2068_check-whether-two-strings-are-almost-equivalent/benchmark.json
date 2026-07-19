@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2068",
+  "measurement_note": "Size is n for two identical all-a strings. The reference accumulates 26 signed differences in one pass. A correct implementation that recounts both complete strings for every character occurrence cannot exit early, completes all tiers, and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id":"benchmark-scale-1",
+      "name":"benchmark: identical strings of length 8",
+      "kind":"benchmark",
+      "visible":false,
+      "size":8,
+      "input":{"word1":"aaaaaaaa","word2":"aaaaaaaa"},
+      "expected":true,
+      "tags":["benchmark","scale-small","redundant-recount"]
+    },
+    {
+      "id":"benchmark-scale-2",
+      "name":"benchmark: identical strings of length 32",
+      "kind":"benchmark",
+      "visible":false,
+      "size":32,
+      "input":{"word1":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","word2":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected":true,
+      "tags":["benchmark","scale-medium","redundant-recount"]
+    },
+    {
+      "id":"benchmark-scale-3",
+      "name":"benchmark: identical strings of length 100",
+      "kind":"benchmark",
+      "visible":false,
+      "size":100,
+      "input":{"word1":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","word2":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected":true,
+      "tags":["benchmark","scale-large","redundant-recount"]
+    }
+  ]
+}

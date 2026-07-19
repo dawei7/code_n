@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1941",
+  "frontend_id": "1830",
+  "title_slug": "minimum-number-of-operations-to-make-string-sorted",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.makeStringSorted",
+  "verified_submission_id": "2071646700",
+  "verified_at": "2026-07-18T01:16:34.626200+00:00"
+}

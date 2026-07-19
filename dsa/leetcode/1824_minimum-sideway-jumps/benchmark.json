@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1824",
+  "measurement_note": "Size is n, the road length. Interior obstacles cycle through lanes 1, 2, and 3, forcing the full prefix to matter. Three-lane DP takes O(n) time. A correct implementation that recomputes the minimum-jump DP independently for every successive road prefix takes O(n^2), completes every tier, and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 12-point cycling road",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"obstacles":[0,1,2,3,1,2,3,1,2,3,1,2,0]},
+      "expected": 10,
+      "tags": ["benchmark","scale-small","cycling-obstacles"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 24-point cycling road",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"obstacles":[0,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,0]},
+      "expected": 22,
+      "tags": ["benchmark","scale-medium","cycling-obstacles"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 48-point cycling road",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {"obstacles":[0,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,0]},
+      "expected": 46,
+      "tags": ["benchmark","scale-large","cycling-obstacles"]
+    }
+  ]
+}

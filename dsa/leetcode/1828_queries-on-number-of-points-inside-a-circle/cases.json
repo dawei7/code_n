@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1828",
+  "cases": [
+    {"id":"example-four-points","name":"sample: three circular queries over four points","kind":"sample","visible":true,"input":{"points":[[1,3],[3,3],[5,3],[2,2]],"queries":[[2,3,1],[4,3,1],[1,1,2]]},"expected":[3,2,2],"tags":["example","multiple-queries"]},
+    {"id":"example-diagonal","name":"sample: nested circles over diagonal points","kind":"sample","visible":true,"input":{"points":[[1,1],[2,2],[3,3],[4,4],[5,5]],"queries":[[1,2,2],[2,2,2],[4,3,2],[4,3,3]]},"expected":[2,3,2,4],"tags":["example","nested-circles"]},
+    {"id":"example-duplicates-boundary","name":"duplicates count separately and boundary is included","kind":"sample","visible":true,"input":{"points":[[0,0],[0,0],[3,4],[6,0]],"queries":[[0,0,5]]},"expected":[3],"tags":["duplicates","boundary"]},
+    {"id":"trial-point-at-center","name":"a point at the circle center is inside","kind":"trial","visible":true,"input":{"points":[[7,9]],"queries":[[7,9,1]]},"expected":[1],"tags":["center","single-point"]},
+    {"id":"trial-no-points-inside","name":"a distant minimum-radius circle contains no points","kind":"trial","visible":true,"input":{"points":[[10,10],[20,20],[30,30]],"queries":[[0,0,1]]},"expected":[0],"tags":["no-match","minimum-radius"]},
+    {"id":"trial-all-points-inside","name":"one large circle contains every point","kind":"trial","visible":true,"input":{"points":[[0,0],[100,100],[250,250],[500,500]],"queries":[[250,250,500]]},"expected":[4],"tags":["all-match","large-radius"]},
+    {"id":"real-axis-boundaries","name":"hidden: horizontal and vertical circumference points","kind":"real","visible":false,"input":{"points":[[4,1],[1,4],[0,1],[1,0],[4,4]],"queries":[[1,1,3]]},"expected":[4],"tags":["axis-aligned","boundary"]},
+    {"id":"real-coordinate-extremes","name":"hidden: coordinates at both allowed extremes","kind":"real","visible":false,"input":{"points":[[0,0],[500,500],[0,500],[500,0]],"queries":[[0,0,500],[500,500,500]]},"expected":[3,3],"tags":["coordinate-extremes","multiple-queries"]},
+    {"id":"real-query-order","name":"hidden: output order follows differently sized queries","kind":"real","visible":false,"input":{"points":[[5,5],[6,5],[7,5],[8,5]],"queries":[[8,5,1],[5,5,3],[6,5,1]]},"expected":[2,4,3],"tags":["query-order","overlap"]},
+    {"id":"real-near-boundary-outside","name":"hidden: squared distance distinguishes nearby outside points","kind":"real","visible":false,"input":{"points":[[3,4],[4,4],[5,0],[5,1]],"queries":[[0,0,5]]},"expected":[2],"tags":["boundary","outside"]}
+  ]
+}

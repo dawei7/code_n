@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2073",
+  "frontend_id": "1956",
+  "title_slug": "minimum-time-for-k-virus-variants-to-spread",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minDayskVariants",
+  "verified_submission_id": "2072702051",
+  "verified_at": "2026-07-18T18:33:34.422979+00:00"
+}

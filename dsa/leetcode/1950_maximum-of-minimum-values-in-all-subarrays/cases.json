@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1950",
+  "cases": [
+    {"id":"example-increasing-with-zero","name":"sample: increasing values produce descending answers","kind":"sample","visible":true,"input":{"nums":[0,1,2,4]},"expected":[4,2,1,0],"tags":["sample","increasing","zero"]},
+    {"id":"example-repeated-minimum","name":"sample: repeated boundary minimum persists for long windows","kind":"sample","visible":true,"input":{"nums":[10,20,50,10]},"expected":[50,20,10,10],"tags":["sample","repeated-minimum"]},
+    {"id":"trial-single-value","name":"one value is the only window minimum","kind":"trial","visible":true,"input":{"nums":[7]},"expected":[7],"tags":["minimum-length"]},
+    {"id":"trial-all-equal","name":"all window lengths have the same minimum","kind":"trial","visible":true,"input":{"nums":[5,5,5]},"expected":[5,5,5],"tags":["all-equal","duplicates"]},
+    {"id":"trial-strictly-increasing","name":"strictly increasing values yield their reverse order","kind":"trial","visible":true,"input":{"nums":[1,2,3,4]},"expected":[4,3,2,1],"tags":["strictly-increasing"]},
+    {"id":"trial-strictly-decreasing","name":"strictly decreasing values yield the original order","kind":"trial","visible":true,"input":{"nums":[4,3,2,1]},"expected":[4,3,2,1],"tags":["strictly-decreasing"]},
+    {"id":"real-central-valley","name":"hidden: a central valley controls every longer window","kind":"real","visible":false,"input":{"nums":[3,1,2]},"expected":[3,1,1],"tags":["central-valley"]},
+    {"id":"real-zero-valley","name":"hidden: zero controls all windows spanning the middle","kind":"real","visible":false,"input":{"nums":[8,6,0,7,9]},"expected":[9,7,0,0,0],"tags":["zero","mixed"]},
+    {"id":"real-duplicate-peaks","name":"hidden: duplicate peaks and valleys share spans correctly","kind":"real","visible":false,"input":{"nums":[4,4,2,4,4]},"expected":[4,4,2,2,2],"tags":["duplicates","symmetric"]},
+    {"id":"real-value-boundary","name":"hidden: maximum legal values require no special handling","kind":"real","visible":false,"input":{"nums":[1000000000,999999999]},"expected":[1000000000,999999999],"tags":["value-boundary"]}
+  ]
+}

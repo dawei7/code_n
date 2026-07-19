@@ -5,51 +5,103 @@
 | Source | LeetCode |
 | Frontend ID | 2007 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Hash Table, Greedy, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-original-array-from-doubled-array](https://leetcode.com/problems/find-original-array-from-doubled-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-original-array-from-doubled-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-original-array-from-doubled-array/).
 
 ### Goal
-An array was doubled by appending twice every original value and shuffling. Recover one possible original array or report that none exists.
+
+An integer array `original` is transformed by adding one copy of twice every
+element and then shuffling all the values. The resulting array is named
+`changed`.
+
+Given only `changed`, determine whether it could have been produced by this
+process. If so, return any possible `original` array; its elements may appear
+in any order. If no complete pairing of every value with one doubled value is
+possible, return an empty list. Duplicate values represent separate
+occurrences and must be matched separately.
 
 ### Function Contract
+
 **Inputs**
 
-- `changed`: the shuffled doubled array.
+- `changed`: a list of $N$ integers, where $1\le N\le10^5$ and
+  $0\le\texttt{changed[i]}\le10^5$.
 
 **Return value**
 
-Return the original array if possible, otherwise an empty array.
+Return one array of length $N/2$ whose values and doubles form exactly the
+multiset in `changed`, or `[]` when no such array exists.
 
 ### Examples
+
 **Example 1**
 
-- Input: `changed = [1,3,4,2,6,8]`
-- Output: `[1,3,4]`
+- Input: `changed = [1, 3, 4, 2, 6, 8]`
+- Output: `[1, 3, 4]`
+- Explanation: The remaining values are respectively `2`, `6`, and `8`, the
+  doubles of the returned values.
 
 **Example 2**
 
-- Input: `changed = [6,3,0,1]`
+- Input: `changed = [6, 3, 0, 1]`
 - Output: `[]`
+- Explanation: The values cannot be divided into original-and-double pairs.
 
 **Example 3**
 
-- Input: `changed = [0,0,0,0]`
-- Output: `[0,0]`
+- Input: `changed = [1]`
+- Output: `[]`
+- Explanation: A doubled array must contain an even number of elements.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-If the length is odd, recovery is impossible. Count values and process them in ascending absolute value so each number is paired with its double before the double is consumed for another role. Zeros must have an even count.
+- **Time:** $O(N\log N)$
+- **Space:** $O(N)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(n)`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Claim the smallest remaining value first.** An odd input length is
+impossible. Otherwise, count every value and scan a sorted copy of `changed`.
+Whenever the current `value` still has unused occurrences, require an unused
+occurrence of `2 * value`. Append `value` to the recovered array and consume
+one occurrence of both values. If the double is unavailable, no valid recovery
+exists.
+
+**Why the greedy pairing cannot steal a needed value.** All values are
+nonnegative. For a positive `value`, its double is larger, so ascending order
+processes the only possible smaller role before considering that double as an
+original candidate. Any valid reconstruction must pair each remaining
+smallest occurrence with its double; choosing that forced pair preserves
+feasibility for the rest. For zero, the value and its double coincide, and
+each successful step consumes two zero occurrences. An odd zero count
+therefore fails exactly when the final zero has no partner.
+
+When the scan finishes, every occurrence has been consumed and the recovered
+array contains exactly half as many elements as `changed`, proving that its
+values and their doubles reproduce the input multiset.
+
+#### Complexity detail
+
+Here $N$ is the length of `changed`. Sorting takes $O(N\log N)$ time, while the
+frequency-table construction and scan take $O(N)$ time. The sorted sequence,
+frequency table, and returned array use $O(N)$ space.
+
+#### Alternatives and edge cases
+
+- **Repeated linear searches and removals:** Select a value, search a list for
+  its double, and remove both. This can take $O(N^2)$ time because searches and
+  shifts are repeated.
+- **Counting over the bounded value domain:** A frequency array can process
+  values from $0$ through $10^5$ in $O(N+M)$ time and $O(M)$ space, where
+  $M=10^5$; it trades sorting for a domain-sized scan.
+- An odd input length is rejected before any pairing attempt.
+- Zero occurrences must come in pairs because zero is its own double.
+- Duplicate originals require equally many unused doubled occurrences; one
+  double cannot satisfy multiple copies.
+
+</details>

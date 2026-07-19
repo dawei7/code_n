@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_2003",
+  "cases": [
+    {
+      "id": "sample-one-at-root",
+      "name": "sample: value one is stored at the root",
+      "kind": "sample",
+      "visible": true,
+      "input": {"parents": [-1, 0, 0, 2], "nums": [1, 2, 3, 4]},
+      "expected": [5, 1, 1, 1],
+      "tags": ["sample", "root"]
+    },
+    {
+      "id": "sample-one-in-branch",
+      "name": "sample: only one ancestor branch has nontrivial answers",
+      "kind": "sample",
+      "visible": true,
+      "input": {"parents": [-1, 0, 1, 0, 3, 3], "nums": [5, 4, 6, 2, 1, 3]},
+      "expected": [7, 1, 1, 4, 2, 1],
+      "tags": ["sample", "ancestor-path"]
+    },
+    {
+      "id": "sample-one-absent",
+      "name": "sample: value one is absent from every subtree",
+      "kind": "sample",
+      "visible": true,
+      "input": {"parents": [-1, 2, 3, 0, 2, 4, 1], "nums": [2, 3, 4, 5, 6, 7, 8]},
+      "expected": [1, 1, 1, 1, 1, 1, 1],
+      "tags": ["sample", "one-absent"]
+    },
+    {
+      "id": "trial-one-at-leaf-chain",
+      "name": "a chain accumulates one new value at each ancestor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"parents": [-1, 0, 1], "nums": [3, 2, 1]},
+      "expected": [4, 3, 2],
+      "tags": ["chain", "leaf"]
+    },
+    {
+      "id": "trial-root-with-children",
+      "name": "value one at the root leaves child answers equal to one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"parents": [-1, 0, 0], "nums": [1, 3, 2]},
+      "expected": [4, 1, 1],
+      "tags": ["root", "branches"]
+    },
+    {
+      "id": "real-gap-inside-ancestor-subtree",
+      "name": "hidden: an internal subtree has a gap below the root answer",
+      "kind": "real",
+      "visible": false,
+      "input": {"parents": [-1, 0, 0, 1, 1], "nums": [5, 1, 2, 3, 4]},
+      "expected": [6, 2, 1, 1, 1],
+      "tags": ["hidden", "gap"]
+    },
+    {
+      "id": "real-one-leaf-with-siblings",
+      "name": "hidden: upward expansion adds sibling branches once",
+      "kind": "real",
+      "visible": false,
+      "input": {"parents": [-1, 0, 0, 1, 1, 2], "nums": [6, 5, 4, 1, 2, 3]},
+      "expected": [7, 3, 1, 2, 1, 1],
+      "tags": ["hidden", "siblings", "incremental"]
+    }
+  ]
+}

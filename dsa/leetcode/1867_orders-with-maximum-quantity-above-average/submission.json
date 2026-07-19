@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2014",
+  "frontend_id": "1867",
+  "title_slug": "orders-with-maximum-quantity-above-average",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2071783456",
+  "verified_at": "2026-07-18T05:18:23.748284+00:00"
+}

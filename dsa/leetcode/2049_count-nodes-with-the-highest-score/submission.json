@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2175",
+  "frontend_id": "2049",
+  "title_slug": "count-nodes-with-the-highest-score",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countHighestScoreNodes",
+  "verified_submission_id": "2072877485",
+  "verified_at": "2026-07-19T01:47:18.749104+00:00"
+}

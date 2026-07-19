@@ -1294,6 +1294,71 @@ def _reformatted_string_match(actual: Any, source: Any) -> bool:
     )
 
 
+def _missing_binary_string_match(actual: Any, originals: Any) -> bool:
+    if not isinstance(actual, str) or not isinstance(originals, list):
+        return False
+    expected_length = len(originals)
+    return (
+        len(actual) == expected_length
+        and all(character in "01" for character in actual)
+        and actual not in originals
+    )
+
+
+def _missing_rolls_match(
+    actual: Any,
+    observed: Any,
+    mean: Any,
+    missing_count: Any,
+) -> bool:
+    if (
+        not isinstance(observed, list)
+        or any(not isinstance(value, int) or isinstance(value, bool) for value in observed)
+        or not isinstance(mean, int)
+        or isinstance(mean, bool)
+        or not isinstance(missing_count, int)
+        or isinstance(missing_count, bool)
+        or missing_count < 1
+        or not isinstance(actual, list)
+    ):
+        return False
+
+    required_sum = mean * (len(observed) + missing_count) - sum(observed)
+    feasible = missing_count <= required_sum <= 6 * missing_count
+    if not feasible:
+        return actual == []
+
+    return (
+        len(actual) == missing_count
+        and all(
+            isinstance(value, int)
+            and not isinstance(value, bool)
+            and 1 <= value <= 6
+            for value in actual
+        )
+        and sum(actual) == required_sum
+    )
+
+
+def _subset_sums_reconstruction_match(actual: Any, length: Any, originals: Any) -> bool:
+    if (
+        not isinstance(length, int)
+        or isinstance(length, bool)
+        or length < 0
+        or not isinstance(actual, list)
+        or len(actual) != length
+        or any(not isinstance(value, int) or isinstance(value, bool) for value in actual)
+        or not isinstance(originals, list)
+        or any(not isinstance(value, int) or isinstance(value, bool) for value in originals)
+    ):
+        return False
+
+    generated = [0]
+    for value in actual:
+        generated += [total + value for total in generated]
+    return Counter(generated) == Counter(originals)
+
+
 def _question_mark_replacement_match(actual: Any, source: Any) -> bool:
     if not isinstance(actual, str) or not isinstance(source, str) or len(actual) != len(source):
         return False
@@ -2146,6 +2211,17 @@ def _wiggle_sort_matches(actual: Any, original: Any, *, strict: bool = True) -> 
     return True
 
 
+def _not_average_neighbors_match(actual: Any, original: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(original, list):
+        return False
+    if Counter(actual) != Counter(original):
+        return False
+    return all(
+        2 * actual[index] != actual[index - 1] + actual[index + 1]
+        for index in range(1, len(actual) - 1)
+    )
+
+
 def _distant_barcodes_match(actual: Any, original: Any) -> bool:
     if not isinstance(actual, list) or not isinstance(original, list):
         return False
@@ -2600,6 +2676,29 @@ def _peak_index_match(actual: Any, nums: Any) -> bool:
     )
 
 
+def _peak_grid_match(actual: Any, matrix: Any) -> bool:
+    if (
+        not isinstance(actual, (list, tuple))
+        or len(actual) != 2
+        or any(isinstance(value, bool) or not isinstance(value, int) for value in actual)
+        or not isinstance(matrix, list)
+        or not matrix
+        or not all(isinstance(row, list) and row for row in matrix)
+    ):
+        return False
+    row, column = actual
+    if not (0 <= row < len(matrix) and 0 <= column < len(matrix[row])):
+        return False
+    value = matrix[row][column]
+    neighbors = (
+        matrix[row - 1][column] if row > 0 else -1,
+        matrix[row + 1][column] if row + 1 < len(matrix) else -1,
+        matrix[row][column - 1] if column > 0 else -1,
+        matrix[row][column + 1] if column + 1 < len(matrix[row]) else -1,
+    )
+    return all(value > neighbor for neighbor in neighbors)
+
+
 def _closest_leaf_match(actual: Any, root_fixture: Any, target_value: Any) -> bool:
     if isinstance(actual, bool) or not isinstance(actual, int):
         return False
@@ -2901,6 +3000,60 @@ def _adjacent_path_match(actual: Any, pairs: Any) -> bool:
     return all(count == 0 for count in edges.values())
 
 
+def _valid_pair_arrangement_match(actual: Any, pairs: Any) -> bool:
+    if not isinstance(actual, list) or not isinstance(pairs, list):
+        return False
+    if len(actual) != len(pairs):
+        return False
+
+    def directed_edge(value: Any) -> tuple[int, int] | None:
+        if (
+            not isinstance(value, list)
+            or len(value) != 2
+            or any(not isinstance(item, int) or isinstance(item, bool) for item in value)
+            or value[0] == value[1]
+        ):
+            return None
+        return value[0], value[1]
+
+    original_edges = [directed_edge(pair) for pair in pairs]
+    arranged_edges = [directed_edge(pair) for pair in actual]
+    if any(edge is None for edge in original_edges + arranged_edges):
+        return False
+
+    original_counter = Counter(original_edges)
+    arranged_counter = Counter(arranged_edges)
+    if arranged_counter != original_counter:
+        return False
+    return all(
+        left[1] == right[0]
+        for left, right in zip(arranged_edges, arranged_edges[1:])
+    )
+
+
+def _maximum_sum_subsequence_match(actual: Any, nums: Any, k: Any) -> bool:
+    if (
+        not isinstance(actual, list)
+        or not isinstance(nums, list)
+        or not isinstance(k, int)
+        or isinstance(k, bool)
+        or len(actual) != k
+        or not 0 <= k <= len(nums)
+        or any(not isinstance(value, int) or isinstance(value, bool) for value in actual)
+        or any(not isinstance(value, int) or isinstance(value, bool) for value in nums)
+    ):
+        return False
+
+    candidate_index = 0
+    for value in nums:
+        if candidate_index < k and value == actual[candidate_index]:
+            candidate_index += 1
+    if candidate_index != k:
+        return False
+
+    return sum(actual) == sum(sorted(nums, reverse=True)[:k])
+
+
 def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> bool:
     validator = case.validator or {}
     kind = str(validator.get("kind") or "")
@@ -2926,6 +3079,17 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         return _adjacent_path_match(
             actual,
             case.input.get(str(validator.get("pairs_param") or "adjacentPairs")),
+        )
+    if kind == "valid_pair_arrangement":
+        return _valid_pair_arrangement_match(
+            actual,
+            case.input.get(str(validator.get("pairs_param") or "pairs")),
+        )
+    if kind == "maximum_sum_subsequence":
+        return _maximum_sum_subsequence_match(
+            actual,
+            case.input.get(str(validator.get("values_param") or "nums")),
+            case.input.get(str(validator.get("k_param") or "k")),
         )
     if kind == "ordered_groups_unordered_items":
         return _ordered_groups_unordered_items_match(actual, expected)
@@ -3139,6 +3303,9 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
             case.input.get(values_param),
             strict=bool(validator.get("strict", True)),
         )
+    if kind == "not_average_neighbors":
+        values_param = str(validator.get("values_param") or "nums")
+        return _not_average_neighbors_match(actual, case.input.get(values_param))
     if kind == "distant_barcodes":
         values_param = str(validator.get("values_param") or "barcodes")
         return _distant_barcodes_match(actual, case.input.get(values_param))
@@ -3160,6 +3327,24 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
         return _reformatted_string_match(
             actual,
             case.input.get(str(validator.get("string_param") or "s")),
+        )
+    if kind == "missing_binary_string":
+        return _missing_binary_string_match(
+            actual,
+            case.input.get(str(validator.get("strings_param") or "nums")),
+        )
+    if kind == "missing_rolls":
+        return _missing_rolls_match(
+            actual,
+            case.input.get(str(validator.get("rolls_param") or "rolls")),
+            case.input.get(str(validator.get("mean_param") or "mean")),
+            case.input.get(str(validator.get("count_param") or "n")),
+        )
+    if kind == "subset_sums_reconstruction":
+        return _subset_sums_reconstruction_match(
+            actual,
+            case.input.get(str(validator.get("length_param") or "n")),
+            case.input.get(str(validator.get("sums_param") or "sums")),
         )
     if kind == "question_mark_replacement":
         return _question_mark_replacement_match(
@@ -3257,6 +3442,9 @@ def _validated_case_matches(case: ValidatedCase, actual: Any, expected: Any) -> 
     if kind == "peak_index":
         values_param = str(validator.get("values_param") or "nums")
         return _peak_index_match(actual, case.input.get(values_param))
+    if kind == "peak_grid":
+        matrix_param = str(validator.get("matrix_param") or "mat")
+        return _peak_grid_match(actual, case.input.get(matrix_param))
     if kind == "closest_leaf":
         return _closest_leaf_match(
             actual,
@@ -3391,7 +3579,15 @@ def _prepare_validated_kwargs(
             kwargs[name] = _immutable_list_node_from_values(fixture["immutable_values"])
     for name in tree_param_names:
         if name in kwargs:
-            kwargs[name] = _tree_from_level_order(kwargs[name])
+            fixture = kwargs[name]
+            if (
+                isinstance(fixture, list)
+                and fixture
+                and all(isinstance(tree, list) for tree in fixture)
+            ):
+                kwargs[name] = [_tree_from_level_order(tree) for tree in fixture]
+            else:
+                kwargs[name] = _tree_from_level_order(fixture)
     shared_list_names = _prepare_shared_list_nodes(kwargs, list_node_param_names)
     for name in list_node_param_names:
         if name in shared_list_names:

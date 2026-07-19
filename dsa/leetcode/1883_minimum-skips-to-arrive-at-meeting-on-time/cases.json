@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1883",
+  "cases": [
+    {"id":"example-one-skip","name":"sample: skipping one rest changes a later hour boundary","kind":"sample","visible":true,"input":{"dist":[1,3,2],"speed":4,"hoursBefore":2},"expected":1,"tags":["sample","changed-boundary"]},
+    {"id":"example-two-skips","name":"sample: two separated rests must be skipped","kind":"sample","visible":true,"input":{"dist":[7,3,5,5],"speed":2,"hoursBefore":10},"expected":2,"tags":["sample","multiple-skips"]},
+    {"id":"example-impossible","name":"sample: road travel alone exceeds the deadline","kind":"sample","visible":true,"input":{"dist":[7,3,5,5],"speed":1,"hoursBefore":10},"expected":-1,"tags":["sample","impossible"]},
+    {"id":"trial-single-road","name":"one road has no rest to skip","kind":"trial","visible":true,"input":{"dist":[10],"speed":2,"hoursBefore":5},"expected":0,"tags":["single-road","exact-deadline"]},
+    {"id":"trial-integer-hours","name":"every intermediate road ends on an integer hour","kind":"trial","visible":true,"input":{"dist":[4,4,4],"speed":4,"hoursBefore":3},"expected":0,"tags":["integer-boundary","no-skips"]},
+    {"id":"real-single-road-impossible","name":"hidden: a lone road can still miss the deadline","kind":"real","visible":false,"input":{"dist":[10],"speed":3,"hoursBefore":3},"expected":-1,"tags":["single-road","impossible"]},
+    {"id":"real-all-rests","name":"hidden: every possible rest must be skipped","kind":"real","visible":false,"input":{"dist":[1,1,1,1],"speed":4,"hoursBefore":1},"expected":3,"tags":["all-skips","exact-deadline"]},
+    {"id":"real-fractional-with-slack","name":"hidden: fractional roads fit without skips when the deadline has slack","kind":"real","visible":false,"input":{"dist":[1,1,1],"speed":2,"hoursBefore":3},"expected":0,"tags":["no-skips","slack"]},
+    {"id":"real-last-road-unrounded","name":"hidden: the final road does not round arrival to another hour","kind":"real","visible":false,"input":{"dist":[4,1],"speed":4,"hoursBefore":2},"expected":0,"tags":["final-road","rounding"]},
+    {"id":"real-raw-distance-impossible","name":"hidden: uninterrupted travel is already too long","kind":"real","visible":false,"input":{"dist":[6,6],"speed":3,"hoursBefore":3},"expected":-1,"tags":["impossible","raw-distance"]},
+    {"id":"real-large-ratio","name":"hidden: exact integer scaling handles a large speed-to-distance ratio","kind":"real","visible":false,"input":{"dist":[100000,100000],"speed":1000000,"hoursBefore":1},"expected":1,"tags":["large-values","precision"]},
+    {"id":"real-two-skips-needed","name":"hidden: one remaining rounded rest still misses the deadline","kind":"real","visible":false,"input":{"dist":[3,3,3],"speed":5,"hoursBefore":2},"expected":2,"tags":["multiple-skips","rounding"]},
+    {"id":"real-one-skip","name":"hidden: exactly one skipped rest is sufficient","kind":"real","visible":false,"input":{"dist":[5,1,1],"speed":3,"hoursBefore":3},"expected":1,"tags":["one-skip","exact-deadline"]}
+  ]
+}

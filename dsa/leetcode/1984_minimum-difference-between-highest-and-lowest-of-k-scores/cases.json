@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1984",
+  "cases": [
+    {"id":"example-single","name":"sample: one student","kind":"sample","visible":true,"input":{"nums":[90],"k":1},"expected":0,"tags":["sample","minimum"]},
+    {"id":"example-best-pair","name":"sample: closest pair in unsorted scores","kind":"sample","visible":true,"input":{"nums":[9,4,1,7],"k":2},"expected":2,"tags":["sample","pair"]},
+    {"id":"example-three-scores","name":"example: best group of three","kind":"sample","visible":true,"input":{"nums":[1,5,6,14,15],"k":3},"expected":5,"tags":["sample","window"]},
+    {"id":"trial-k-one","name":"choosing one of many scores always gives zero","kind":"trial","visible":true,"input":{"nums":[100000,0,42,42],"k":1},"expected":0,"tags":["k-one","bounds"]},
+    {"id":"trial-k-all","name":"choosing every score uses the full range","kind":"trial","visible":true,"input":{"nums":[8,3,10,1],"k":4},"expected":9,"tags":["k-all"]},
+    {"id":"trial-duplicate-zero","name":"enough duplicate scores produce zero spread","kind":"trial","visible":true,"input":{"nums":[5,1,5,9,5],"k":3},"expected":0,"tags":["duplicates","zero-answer"]},
+    {"id":"trial-optimum-interior","name":"best window excludes both extremes","kind":"trial","visible":true,"input":{"nums":[100,20,23,21,0],"k":3},"expected":3,"tags":["interior-window","unsorted"]},
+    {"id":"trial-boundary-values","name":"score bounds may both be present","kind":"trial","visible":true,"input":{"nums":[0,100000],"k":2},"expected":100000,"tags":["bounds","k-all"]},
+    {"id":"real-two-equal-among-noise","name":"hidden: duplicate pair beats nearby distinct values","kind":"real","visible":false,"input":{"nums":[30,4,17,4,99,5],"k":2},"expected":0,"tags":["duplicates","pair"]},
+    {"id":"real-late-window","name":"hidden: optimum is the final sorted window","kind":"real","visible":false,"input":{"nums":[1,30,50,51,52,100],"k":3},"expected":2,"tags":["late-window"]},
+    {"id":"real-multiple-optima","name":"hidden: several windows share the optimum","kind":"real","visible":false,"input":{"nums":[10,0,20,30,40],"k":2},"expected":10,"tags":["multiple-optima"]},
+    {"id":"real-four-duplicates","name":"hidden: exact duplicate multiplicity meets k","kind":"real","visible":false,"input":{"nums":[7,2,7,9,7,1,7],"k":4},"expected":0,"tags":["duplicates","zero-answer"]}
+  ]
+}

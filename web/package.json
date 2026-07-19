@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit",
     "test:career": "node scripts/test-career-unlocks.mjs",
     "test:metrics": "node scripts/test-challenge-metrics.mjs",
-    "test:custom-sets": "node scripts/test-custom-problem-sets.mjs"
+    "test:custom-sets": "node scripts/test-custom-problem-sets.mjs && node scripts/test-problem-set-hierarchies.mjs && node scripts/test-personal-set-exchange.mjs"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.3.0",

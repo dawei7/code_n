@@ -1,0 +1,4297 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1809",
+  "measurement_note": "Size is q, with q playback sessions and q ads. A reusable left anti-join access path scales near linearly for these unique-customer fixtures. A correct correlated COUNT subquery rescans all q ads for each of q sessions and is rejected for quadratic growth while returning the same rows.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 sessions and ads",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "Playback": [
+            {
+              "session_id": 1,
+              "customer_id": 1,
+              "start_time": 10,
+              "end_time": 15
+            },
+            {
+              "session_id": 2,
+              "customer_id": 2,
+              "start_time": 20,
+              "end_time": 25
+            },
+            {
+              "session_id": 3,
+              "customer_id": 3,
+              "start_time": 30,
+              "end_time": 35
+            },
+            {
+              "session_id": 4,
+              "customer_id": 4,
+              "start_time": 40,
+              "end_time": 45
+            },
+            {
+              "session_id": 5,
+              "customer_id": 5,
+              "start_time": 50,
+              "end_time": 55
+            },
+            {
+              "session_id": 6,
+              "customer_id": 6,
+              "start_time": 60,
+              "end_time": 65
+            },
+            {
+              "session_id": 7,
+              "customer_id": 7,
+              "start_time": 70,
+              "end_time": 75
+            },
+            {
+              "session_id": 8,
+              "customer_id": 8,
+              "start_time": 80,
+              "end_time": 85
+            },
+            {
+              "session_id": 9,
+              "customer_id": 9,
+              "start_time": 90,
+              "end_time": 95
+            },
+            {
+              "session_id": 10,
+              "customer_id": 10,
+              "start_time": 100,
+              "end_time": 105
+            },
+            {
+              "session_id": 11,
+              "customer_id": 11,
+              "start_time": 110,
+              "end_time": 115
+            },
+            {
+              "session_id": 12,
+              "customer_id": 12,
+              "start_time": 120,
+              "end_time": 125
+            },
+            {
+              "session_id": 13,
+              "customer_id": 13,
+              "start_time": 130,
+              "end_time": 135
+            },
+            {
+              "session_id": 14,
+              "customer_id": 14,
+              "start_time": 140,
+              "end_time": 145
+            },
+            {
+              "session_id": 15,
+              "customer_id": 15,
+              "start_time": 150,
+              "end_time": 155
+            },
+            {
+              "session_id": 16,
+              "customer_id": 16,
+              "start_time": 160,
+              "end_time": 165
+            }
+          ],
+          "Ads": [
+            {
+              "ad_id": 1,
+              "customer_id": 1,
+              "timestamp": 16
+            },
+            {
+              "ad_id": 2,
+              "customer_id": 2,
+              "timestamp": 22
+            },
+            {
+              "ad_id": 3,
+              "customer_id": 3,
+              "timestamp": 36
+            },
+            {
+              "ad_id": 4,
+              "customer_id": 4,
+              "timestamp": 42
+            },
+            {
+              "ad_id": 5,
+              "customer_id": 5,
+              "timestamp": 56
+            },
+            {
+              "ad_id": 6,
+              "customer_id": 6,
+              "timestamp": 62
+            },
+            {
+              "ad_id": 7,
+              "customer_id": 7,
+              "timestamp": 76
+            },
+            {
+              "ad_id": 8,
+              "customer_id": 8,
+              "timestamp": 82
+            },
+            {
+              "ad_id": 9,
+              "customer_id": 9,
+              "timestamp": 96
+            },
+            {
+              "ad_id": 10,
+              "customer_id": 10,
+              "timestamp": 102
+            },
+            {
+              "ad_id": 11,
+              "customer_id": 11,
+              "timestamp": 116
+            },
+            {
+              "ad_id": 12,
+              "customer_id": 12,
+              "timestamp": 122
+            },
+            {
+              "ad_id": 13,
+              "customer_id": 13,
+              "timestamp": 136
+            },
+            {
+              "ad_id": 14,
+              "customer_id": 14,
+              "timestamp": 142
+            },
+            {
+              "ad_id": 15,
+              "customer_id": 15,
+              "timestamp": 156
+            },
+            {
+              "ad_id": 16,
+              "customer_id": 16,
+              "timestamp": 162
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            9
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            15
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "anti-join",
+        "customer-time-match"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 sessions and ads",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Playback": [
+            {
+              "session_id": 1,
+              "customer_id": 1,
+              "start_time": 10,
+              "end_time": 15
+            },
+            {
+              "session_id": 2,
+              "customer_id": 2,
+              "start_time": 20,
+              "end_time": 25
+            },
+            {
+              "session_id": 3,
+              "customer_id": 3,
+              "start_time": 30,
+              "end_time": 35
+            },
+            {
+              "session_id": 4,
+              "customer_id": 4,
+              "start_time": 40,
+              "end_time": 45
+            },
+            {
+              "session_id": 5,
+              "customer_id": 5,
+              "start_time": 50,
+              "end_time": 55
+            },
+            {
+              "session_id": 6,
+              "customer_id": 6,
+              "start_time": 60,
+              "end_time": 65
+            },
+            {
+              "session_id": 7,
+              "customer_id": 7,
+              "start_time": 70,
+              "end_time": 75
+            },
+            {
+              "session_id": 8,
+              "customer_id": 8,
+              "start_time": 80,
+              "end_time": 85
+            },
+            {
+              "session_id": 9,
+              "customer_id": 9,
+              "start_time": 90,
+              "end_time": 95
+            },
+            {
+              "session_id": 10,
+              "customer_id": 10,
+              "start_time": 100,
+              "end_time": 105
+            },
+            {
+              "session_id": 11,
+              "customer_id": 11,
+              "start_time": 110,
+              "end_time": 115
+            },
+            {
+              "session_id": 12,
+              "customer_id": 12,
+              "start_time": 120,
+              "end_time": 125
+            },
+            {
+              "session_id": 13,
+              "customer_id": 13,
+              "start_time": 130,
+              "end_time": 135
+            },
+            {
+              "session_id": 14,
+              "customer_id": 14,
+              "start_time": 140,
+              "end_time": 145
+            },
+            {
+              "session_id": 15,
+              "customer_id": 15,
+              "start_time": 150,
+              "end_time": 155
+            },
+            {
+              "session_id": 16,
+              "customer_id": 16,
+              "start_time": 160,
+              "end_time": 165
+            },
+            {
+              "session_id": 17,
+              "customer_id": 17,
+              "start_time": 170,
+              "end_time": 175
+            },
+            {
+              "session_id": 18,
+              "customer_id": 18,
+              "start_time": 180,
+              "end_time": 185
+            },
+            {
+              "session_id": 19,
+              "customer_id": 19,
+              "start_time": 190,
+              "end_time": 195
+            },
+            {
+              "session_id": 20,
+              "customer_id": 20,
+              "start_time": 200,
+              "end_time": 205
+            },
+            {
+              "session_id": 21,
+              "customer_id": 21,
+              "start_time": 210,
+              "end_time": 215
+            },
+            {
+              "session_id": 22,
+              "customer_id": 22,
+              "start_time": 220,
+              "end_time": 225
+            },
+            {
+              "session_id": 23,
+              "customer_id": 23,
+              "start_time": 230,
+              "end_time": 235
+            },
+            {
+              "session_id": 24,
+              "customer_id": 24,
+              "start_time": 240,
+              "end_time": 245
+            },
+            {
+              "session_id": 25,
+              "customer_id": 25,
+              "start_time": 250,
+              "end_time": 255
+            },
+            {
+              "session_id": 26,
+              "customer_id": 26,
+              "start_time": 260,
+              "end_time": 265
+            },
+            {
+              "session_id": 27,
+              "customer_id": 27,
+              "start_time": 270,
+              "end_time": 275
+            },
+            {
+              "session_id": 28,
+              "customer_id": 28,
+              "start_time": 280,
+              "end_time": 285
+            },
+            {
+              "session_id": 29,
+              "customer_id": 29,
+              "start_time": 290,
+              "end_time": 295
+            },
+            {
+              "session_id": 30,
+              "customer_id": 30,
+              "start_time": 300,
+              "end_time": 305
+            },
+            {
+              "session_id": 31,
+              "customer_id": 31,
+              "start_time": 310,
+              "end_time": 315
+            },
+            {
+              "session_id": 32,
+              "customer_id": 32,
+              "start_time": 320,
+              "end_time": 325
+            },
+            {
+              "session_id": 33,
+              "customer_id": 33,
+              "start_time": 330,
+              "end_time": 335
+            },
+            {
+              "session_id": 34,
+              "customer_id": 34,
+              "start_time": 340,
+              "end_time": 345
+            },
+            {
+              "session_id": 35,
+              "customer_id": 35,
+              "start_time": 350,
+              "end_time": 355
+            },
+            {
+              "session_id": 36,
+              "customer_id": 36,
+              "start_time": 360,
+              "end_time": 365
+            },
+            {
+              "session_id": 37,
+              "customer_id": 37,
+              "start_time": 370,
+              "end_time": 375
+            },
+            {
+              "session_id": 38,
+              "customer_id": 38,
+              "start_time": 380,
+              "end_time": 385
+            },
+            {
+              "session_id": 39,
+              "customer_id": 39,
+              "start_time": 390,
+              "end_time": 395
+            },
+            {
+              "session_id": 40,
+              "customer_id": 40,
+              "start_time": 400,
+              "end_time": 405
+            },
+            {
+              "session_id": 41,
+              "customer_id": 41,
+              "start_time": 410,
+              "end_time": 415
+            },
+            {
+              "session_id": 42,
+              "customer_id": 42,
+              "start_time": 420,
+              "end_time": 425
+            },
+            {
+              "session_id": 43,
+              "customer_id": 43,
+              "start_time": 430,
+              "end_time": 435
+            },
+            {
+              "session_id": 44,
+              "customer_id": 44,
+              "start_time": 440,
+              "end_time": 445
+            },
+            {
+              "session_id": 45,
+              "customer_id": 45,
+              "start_time": 450,
+              "end_time": 455
+            },
+            {
+              "session_id": 46,
+              "customer_id": 46,
+              "start_time": 460,
+              "end_time": 465
+            },
+            {
+              "session_id": 47,
+              "customer_id": 47,
+              "start_time": 470,
+              "end_time": 475
+            },
+            {
+              "session_id": 48,
+              "customer_id": 48,
+              "start_time": 480,
+              "end_time": 485
+            },
+            {
+              "session_id": 49,
+              "customer_id": 49,
+              "start_time": 490,
+              "end_time": 495
+            },
+            {
+              "session_id": 50,
+              "customer_id": 50,
+              "start_time": 500,
+              "end_time": 505
+            },
+            {
+              "session_id": 51,
+              "customer_id": 51,
+              "start_time": 510,
+              "end_time": 515
+            },
+            {
+              "session_id": 52,
+              "customer_id": 52,
+              "start_time": 520,
+              "end_time": 525
+            },
+            {
+              "session_id": 53,
+              "customer_id": 53,
+              "start_time": 530,
+              "end_time": 535
+            },
+            {
+              "session_id": 54,
+              "customer_id": 54,
+              "start_time": 540,
+              "end_time": 545
+            },
+            {
+              "session_id": 55,
+              "customer_id": 55,
+              "start_time": 550,
+              "end_time": 555
+            },
+            {
+              "session_id": 56,
+              "customer_id": 56,
+              "start_time": 560,
+              "end_time": 565
+            },
+            {
+              "session_id": 57,
+              "customer_id": 57,
+              "start_time": 570,
+              "end_time": 575
+            },
+            {
+              "session_id": 58,
+              "customer_id": 58,
+              "start_time": 580,
+              "end_time": 585
+            },
+            {
+              "session_id": 59,
+              "customer_id": 59,
+              "start_time": 590,
+              "end_time": 595
+            },
+            {
+              "session_id": 60,
+              "customer_id": 60,
+              "start_time": 600,
+              "end_time": 605
+            },
+            {
+              "session_id": 61,
+              "customer_id": 61,
+              "start_time": 610,
+              "end_time": 615
+            },
+            {
+              "session_id": 62,
+              "customer_id": 62,
+              "start_time": 620,
+              "end_time": 625
+            },
+            {
+              "session_id": 63,
+              "customer_id": 63,
+              "start_time": 630,
+              "end_time": 635
+            },
+            {
+              "session_id": 64,
+              "customer_id": 64,
+              "start_time": 640,
+              "end_time": 645
+            }
+          ],
+          "Ads": [
+            {
+              "ad_id": 1,
+              "customer_id": 1,
+              "timestamp": 16
+            },
+            {
+              "ad_id": 2,
+              "customer_id": 2,
+              "timestamp": 22
+            },
+            {
+              "ad_id": 3,
+              "customer_id": 3,
+              "timestamp": 36
+            },
+            {
+              "ad_id": 4,
+              "customer_id": 4,
+              "timestamp": 42
+            },
+            {
+              "ad_id": 5,
+              "customer_id": 5,
+              "timestamp": 56
+            },
+            {
+              "ad_id": 6,
+              "customer_id": 6,
+              "timestamp": 62
+            },
+            {
+              "ad_id": 7,
+              "customer_id": 7,
+              "timestamp": 76
+            },
+            {
+              "ad_id": 8,
+              "customer_id": 8,
+              "timestamp": 82
+            },
+            {
+              "ad_id": 9,
+              "customer_id": 9,
+              "timestamp": 96
+            },
+            {
+              "ad_id": 10,
+              "customer_id": 10,
+              "timestamp": 102
+            },
+            {
+              "ad_id": 11,
+              "customer_id": 11,
+              "timestamp": 116
+            },
+            {
+              "ad_id": 12,
+              "customer_id": 12,
+              "timestamp": 122
+            },
+            {
+              "ad_id": 13,
+              "customer_id": 13,
+              "timestamp": 136
+            },
+            {
+              "ad_id": 14,
+              "customer_id": 14,
+              "timestamp": 142
+            },
+            {
+              "ad_id": 15,
+              "customer_id": 15,
+              "timestamp": 156
+            },
+            {
+              "ad_id": 16,
+              "customer_id": 16,
+              "timestamp": 162
+            },
+            {
+              "ad_id": 17,
+              "customer_id": 17,
+              "timestamp": 176
+            },
+            {
+              "ad_id": 18,
+              "customer_id": 18,
+              "timestamp": 182
+            },
+            {
+              "ad_id": 19,
+              "customer_id": 19,
+              "timestamp": 196
+            },
+            {
+              "ad_id": 20,
+              "customer_id": 20,
+              "timestamp": 202
+            },
+            {
+              "ad_id": 21,
+              "customer_id": 21,
+              "timestamp": 216
+            },
+            {
+              "ad_id": 22,
+              "customer_id": 22,
+              "timestamp": 222
+            },
+            {
+              "ad_id": 23,
+              "customer_id": 23,
+              "timestamp": 236
+            },
+            {
+              "ad_id": 24,
+              "customer_id": 24,
+              "timestamp": 242
+            },
+            {
+              "ad_id": 25,
+              "customer_id": 25,
+              "timestamp": 256
+            },
+            {
+              "ad_id": 26,
+              "customer_id": 26,
+              "timestamp": 262
+            },
+            {
+              "ad_id": 27,
+              "customer_id": 27,
+              "timestamp": 276
+            },
+            {
+              "ad_id": 28,
+              "customer_id": 28,
+              "timestamp": 282
+            },
+            {
+              "ad_id": 29,
+              "customer_id": 29,
+              "timestamp": 296
+            },
+            {
+              "ad_id": 30,
+              "customer_id": 30,
+              "timestamp": 302
+            },
+            {
+              "ad_id": 31,
+              "customer_id": 31,
+              "timestamp": 316
+            },
+            {
+              "ad_id": 32,
+              "customer_id": 32,
+              "timestamp": 322
+            },
+            {
+              "ad_id": 33,
+              "customer_id": 33,
+              "timestamp": 336
+            },
+            {
+              "ad_id": 34,
+              "customer_id": 34,
+              "timestamp": 342
+            },
+            {
+              "ad_id": 35,
+              "customer_id": 35,
+              "timestamp": 356
+            },
+            {
+              "ad_id": 36,
+              "customer_id": 36,
+              "timestamp": 362
+            },
+            {
+              "ad_id": 37,
+              "customer_id": 37,
+              "timestamp": 376
+            },
+            {
+              "ad_id": 38,
+              "customer_id": 38,
+              "timestamp": 382
+            },
+            {
+              "ad_id": 39,
+              "customer_id": 39,
+              "timestamp": 396
+            },
+            {
+              "ad_id": 40,
+              "customer_id": 40,
+              "timestamp": 402
+            },
+            {
+              "ad_id": 41,
+              "customer_id": 41,
+              "timestamp": 416
+            },
+            {
+              "ad_id": 42,
+              "customer_id": 42,
+              "timestamp": 422
+            },
+            {
+              "ad_id": 43,
+              "customer_id": 43,
+              "timestamp": 436
+            },
+            {
+              "ad_id": 44,
+              "customer_id": 44,
+              "timestamp": 442
+            },
+            {
+              "ad_id": 45,
+              "customer_id": 45,
+              "timestamp": 456
+            },
+            {
+              "ad_id": 46,
+              "customer_id": 46,
+              "timestamp": 462
+            },
+            {
+              "ad_id": 47,
+              "customer_id": 47,
+              "timestamp": 476
+            },
+            {
+              "ad_id": 48,
+              "customer_id": 48,
+              "timestamp": 482
+            },
+            {
+              "ad_id": 49,
+              "customer_id": 49,
+              "timestamp": 496
+            },
+            {
+              "ad_id": 50,
+              "customer_id": 50,
+              "timestamp": 502
+            },
+            {
+              "ad_id": 51,
+              "customer_id": 51,
+              "timestamp": 516
+            },
+            {
+              "ad_id": 52,
+              "customer_id": 52,
+              "timestamp": 522
+            },
+            {
+              "ad_id": 53,
+              "customer_id": 53,
+              "timestamp": 536
+            },
+            {
+              "ad_id": 54,
+              "customer_id": 54,
+              "timestamp": 542
+            },
+            {
+              "ad_id": 55,
+              "customer_id": 55,
+              "timestamp": 556
+            },
+            {
+              "ad_id": 56,
+              "customer_id": 56,
+              "timestamp": 562
+            },
+            {
+              "ad_id": 57,
+              "customer_id": 57,
+              "timestamp": 576
+            },
+            {
+              "ad_id": 58,
+              "customer_id": 58,
+              "timestamp": 582
+            },
+            {
+              "ad_id": 59,
+              "customer_id": 59,
+              "timestamp": 596
+            },
+            {
+              "ad_id": 60,
+              "customer_id": 60,
+              "timestamp": 602
+            },
+            {
+              "ad_id": 61,
+              "customer_id": 61,
+              "timestamp": 616
+            },
+            {
+              "ad_id": 62,
+              "customer_id": 62,
+              "timestamp": 622
+            },
+            {
+              "ad_id": 63,
+              "customer_id": 63,
+              "timestamp": 636
+            },
+            {
+              "ad_id": 64,
+              "customer_id": 64,
+              "timestamp": 642
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            9
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            15
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            21
+          ],
+          [
+            23
+          ],
+          [
+            25
+          ],
+          [
+            27
+          ],
+          [
+            29
+          ],
+          [
+            31
+          ],
+          [
+            33
+          ],
+          [
+            35
+          ],
+          [
+            37
+          ],
+          [
+            39
+          ],
+          [
+            41
+          ],
+          [
+            43
+          ],
+          [
+            45
+          ],
+          [
+            47
+          ],
+          [
+            49
+          ],
+          [
+            51
+          ],
+          [
+            53
+          ],
+          [
+            55
+          ],
+          [
+            57
+          ],
+          [
+            59
+          ],
+          [
+            61
+          ],
+          [
+            63
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "anti-join",
+        "customer-time-match"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 sessions and ads",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Playback": [
+            {
+              "session_id": 1,
+              "customer_id": 1,
+              "start_time": 10,
+              "end_time": 15
+            },
+            {
+              "session_id": 2,
+              "customer_id": 2,
+              "start_time": 20,
+              "end_time": 25
+            },
+            {
+              "session_id": 3,
+              "customer_id": 3,
+              "start_time": 30,
+              "end_time": 35
+            },
+            {
+              "session_id": 4,
+              "customer_id": 4,
+              "start_time": 40,
+              "end_time": 45
+            },
+            {
+              "session_id": 5,
+              "customer_id": 5,
+              "start_time": 50,
+              "end_time": 55
+            },
+            {
+              "session_id": 6,
+              "customer_id": 6,
+              "start_time": 60,
+              "end_time": 65
+            },
+            {
+              "session_id": 7,
+              "customer_id": 7,
+              "start_time": 70,
+              "end_time": 75
+            },
+            {
+              "session_id": 8,
+              "customer_id": 8,
+              "start_time": 80,
+              "end_time": 85
+            },
+            {
+              "session_id": 9,
+              "customer_id": 9,
+              "start_time": 90,
+              "end_time": 95
+            },
+            {
+              "session_id": 10,
+              "customer_id": 10,
+              "start_time": 100,
+              "end_time": 105
+            },
+            {
+              "session_id": 11,
+              "customer_id": 11,
+              "start_time": 110,
+              "end_time": 115
+            },
+            {
+              "session_id": 12,
+              "customer_id": 12,
+              "start_time": 120,
+              "end_time": 125
+            },
+            {
+              "session_id": 13,
+              "customer_id": 13,
+              "start_time": 130,
+              "end_time": 135
+            },
+            {
+              "session_id": 14,
+              "customer_id": 14,
+              "start_time": 140,
+              "end_time": 145
+            },
+            {
+              "session_id": 15,
+              "customer_id": 15,
+              "start_time": 150,
+              "end_time": 155
+            },
+            {
+              "session_id": 16,
+              "customer_id": 16,
+              "start_time": 160,
+              "end_time": 165
+            },
+            {
+              "session_id": 17,
+              "customer_id": 17,
+              "start_time": 170,
+              "end_time": 175
+            },
+            {
+              "session_id": 18,
+              "customer_id": 18,
+              "start_time": 180,
+              "end_time": 185
+            },
+            {
+              "session_id": 19,
+              "customer_id": 19,
+              "start_time": 190,
+              "end_time": 195
+            },
+            {
+              "session_id": 20,
+              "customer_id": 20,
+              "start_time": 200,
+              "end_time": 205
+            },
+            {
+              "session_id": 21,
+              "customer_id": 21,
+              "start_time": 210,
+              "end_time": 215
+            },
+            {
+              "session_id": 22,
+              "customer_id": 22,
+              "start_time": 220,
+              "end_time": 225
+            },
+            {
+              "session_id": 23,
+              "customer_id": 23,
+              "start_time": 230,
+              "end_time": 235
+            },
+            {
+              "session_id": 24,
+              "customer_id": 24,
+              "start_time": 240,
+              "end_time": 245
+            },
+            {
+              "session_id": 25,
+              "customer_id": 25,
+              "start_time": 250,
+              "end_time": 255
+            },
+            {
+              "session_id": 26,
+              "customer_id": 26,
+              "start_time": 260,
+              "end_time": 265
+            },
+            {
+              "session_id": 27,
+              "customer_id": 27,
+              "start_time": 270,
+              "end_time": 275
+            },
+            {
+              "session_id": 28,
+              "customer_id": 28,
+              "start_time": 280,
+              "end_time": 285
+            },
+            {
+              "session_id": 29,
+              "customer_id": 29,
+              "start_time": 290,
+              "end_time": 295
+            },
+            {
+              "session_id": 30,
+              "customer_id": 30,
+              "start_time": 300,
+              "end_time": 305
+            },
+            {
+              "session_id": 31,
+              "customer_id": 31,
+              "start_time": 310,
+              "end_time": 315
+            },
+            {
+              "session_id": 32,
+              "customer_id": 32,
+              "start_time": 320,
+              "end_time": 325
+            },
+            {
+              "session_id": 33,
+              "customer_id": 33,
+              "start_time": 330,
+              "end_time": 335
+            },
+            {
+              "session_id": 34,
+              "customer_id": 34,
+              "start_time": 340,
+              "end_time": 345
+            },
+            {
+              "session_id": 35,
+              "customer_id": 35,
+              "start_time": 350,
+              "end_time": 355
+            },
+            {
+              "session_id": 36,
+              "customer_id": 36,
+              "start_time": 360,
+              "end_time": 365
+            },
+            {
+              "session_id": 37,
+              "customer_id": 37,
+              "start_time": 370,
+              "end_time": 375
+            },
+            {
+              "session_id": 38,
+              "customer_id": 38,
+              "start_time": 380,
+              "end_time": 385
+            },
+            {
+              "session_id": 39,
+              "customer_id": 39,
+              "start_time": 390,
+              "end_time": 395
+            },
+            {
+              "session_id": 40,
+              "customer_id": 40,
+              "start_time": 400,
+              "end_time": 405
+            },
+            {
+              "session_id": 41,
+              "customer_id": 41,
+              "start_time": 410,
+              "end_time": 415
+            },
+            {
+              "session_id": 42,
+              "customer_id": 42,
+              "start_time": 420,
+              "end_time": 425
+            },
+            {
+              "session_id": 43,
+              "customer_id": 43,
+              "start_time": 430,
+              "end_time": 435
+            },
+            {
+              "session_id": 44,
+              "customer_id": 44,
+              "start_time": 440,
+              "end_time": 445
+            },
+            {
+              "session_id": 45,
+              "customer_id": 45,
+              "start_time": 450,
+              "end_time": 455
+            },
+            {
+              "session_id": 46,
+              "customer_id": 46,
+              "start_time": 460,
+              "end_time": 465
+            },
+            {
+              "session_id": 47,
+              "customer_id": 47,
+              "start_time": 470,
+              "end_time": 475
+            },
+            {
+              "session_id": 48,
+              "customer_id": 48,
+              "start_time": 480,
+              "end_time": 485
+            },
+            {
+              "session_id": 49,
+              "customer_id": 49,
+              "start_time": 490,
+              "end_time": 495
+            },
+            {
+              "session_id": 50,
+              "customer_id": 50,
+              "start_time": 500,
+              "end_time": 505
+            },
+            {
+              "session_id": 51,
+              "customer_id": 51,
+              "start_time": 510,
+              "end_time": 515
+            },
+            {
+              "session_id": 52,
+              "customer_id": 52,
+              "start_time": 520,
+              "end_time": 525
+            },
+            {
+              "session_id": 53,
+              "customer_id": 53,
+              "start_time": 530,
+              "end_time": 535
+            },
+            {
+              "session_id": 54,
+              "customer_id": 54,
+              "start_time": 540,
+              "end_time": 545
+            },
+            {
+              "session_id": 55,
+              "customer_id": 55,
+              "start_time": 550,
+              "end_time": 555
+            },
+            {
+              "session_id": 56,
+              "customer_id": 56,
+              "start_time": 560,
+              "end_time": 565
+            },
+            {
+              "session_id": 57,
+              "customer_id": 57,
+              "start_time": 570,
+              "end_time": 575
+            },
+            {
+              "session_id": 58,
+              "customer_id": 58,
+              "start_time": 580,
+              "end_time": 585
+            },
+            {
+              "session_id": 59,
+              "customer_id": 59,
+              "start_time": 590,
+              "end_time": 595
+            },
+            {
+              "session_id": 60,
+              "customer_id": 60,
+              "start_time": 600,
+              "end_time": 605
+            },
+            {
+              "session_id": 61,
+              "customer_id": 61,
+              "start_time": 610,
+              "end_time": 615
+            },
+            {
+              "session_id": 62,
+              "customer_id": 62,
+              "start_time": 620,
+              "end_time": 625
+            },
+            {
+              "session_id": 63,
+              "customer_id": 63,
+              "start_time": 630,
+              "end_time": 635
+            },
+            {
+              "session_id": 64,
+              "customer_id": 64,
+              "start_time": 640,
+              "end_time": 645
+            },
+            {
+              "session_id": 65,
+              "customer_id": 65,
+              "start_time": 650,
+              "end_time": 655
+            },
+            {
+              "session_id": 66,
+              "customer_id": 66,
+              "start_time": 660,
+              "end_time": 665
+            },
+            {
+              "session_id": 67,
+              "customer_id": 67,
+              "start_time": 670,
+              "end_time": 675
+            },
+            {
+              "session_id": 68,
+              "customer_id": 68,
+              "start_time": 680,
+              "end_time": 685
+            },
+            {
+              "session_id": 69,
+              "customer_id": 69,
+              "start_time": 690,
+              "end_time": 695
+            },
+            {
+              "session_id": 70,
+              "customer_id": 70,
+              "start_time": 700,
+              "end_time": 705
+            },
+            {
+              "session_id": 71,
+              "customer_id": 71,
+              "start_time": 710,
+              "end_time": 715
+            },
+            {
+              "session_id": 72,
+              "customer_id": 72,
+              "start_time": 720,
+              "end_time": 725
+            },
+            {
+              "session_id": 73,
+              "customer_id": 73,
+              "start_time": 730,
+              "end_time": 735
+            },
+            {
+              "session_id": 74,
+              "customer_id": 74,
+              "start_time": 740,
+              "end_time": 745
+            },
+            {
+              "session_id": 75,
+              "customer_id": 75,
+              "start_time": 750,
+              "end_time": 755
+            },
+            {
+              "session_id": 76,
+              "customer_id": 76,
+              "start_time": 760,
+              "end_time": 765
+            },
+            {
+              "session_id": 77,
+              "customer_id": 77,
+              "start_time": 770,
+              "end_time": 775
+            },
+            {
+              "session_id": 78,
+              "customer_id": 78,
+              "start_time": 780,
+              "end_time": 785
+            },
+            {
+              "session_id": 79,
+              "customer_id": 79,
+              "start_time": 790,
+              "end_time": 795
+            },
+            {
+              "session_id": 80,
+              "customer_id": 80,
+              "start_time": 800,
+              "end_time": 805
+            },
+            {
+              "session_id": 81,
+              "customer_id": 81,
+              "start_time": 810,
+              "end_time": 815
+            },
+            {
+              "session_id": 82,
+              "customer_id": 82,
+              "start_time": 820,
+              "end_time": 825
+            },
+            {
+              "session_id": 83,
+              "customer_id": 83,
+              "start_time": 830,
+              "end_time": 835
+            },
+            {
+              "session_id": 84,
+              "customer_id": 84,
+              "start_time": 840,
+              "end_time": 845
+            },
+            {
+              "session_id": 85,
+              "customer_id": 85,
+              "start_time": 850,
+              "end_time": 855
+            },
+            {
+              "session_id": 86,
+              "customer_id": 86,
+              "start_time": 860,
+              "end_time": 865
+            },
+            {
+              "session_id": 87,
+              "customer_id": 87,
+              "start_time": 870,
+              "end_time": 875
+            },
+            {
+              "session_id": 88,
+              "customer_id": 88,
+              "start_time": 880,
+              "end_time": 885
+            },
+            {
+              "session_id": 89,
+              "customer_id": 89,
+              "start_time": 890,
+              "end_time": 895
+            },
+            {
+              "session_id": 90,
+              "customer_id": 90,
+              "start_time": 900,
+              "end_time": 905
+            },
+            {
+              "session_id": 91,
+              "customer_id": 91,
+              "start_time": 910,
+              "end_time": 915
+            },
+            {
+              "session_id": 92,
+              "customer_id": 92,
+              "start_time": 920,
+              "end_time": 925
+            },
+            {
+              "session_id": 93,
+              "customer_id": 93,
+              "start_time": 930,
+              "end_time": 935
+            },
+            {
+              "session_id": 94,
+              "customer_id": 94,
+              "start_time": 940,
+              "end_time": 945
+            },
+            {
+              "session_id": 95,
+              "customer_id": 95,
+              "start_time": 950,
+              "end_time": 955
+            },
+            {
+              "session_id": 96,
+              "customer_id": 96,
+              "start_time": 960,
+              "end_time": 965
+            },
+            {
+              "session_id": 97,
+              "customer_id": 97,
+              "start_time": 970,
+              "end_time": 975
+            },
+            {
+              "session_id": 98,
+              "customer_id": 98,
+              "start_time": 980,
+              "end_time": 985
+            },
+            {
+              "session_id": 99,
+              "customer_id": 99,
+              "start_time": 990,
+              "end_time": 995
+            },
+            {
+              "session_id": 100,
+              "customer_id": 100,
+              "start_time": 1000,
+              "end_time": 1005
+            },
+            {
+              "session_id": 101,
+              "customer_id": 101,
+              "start_time": 1010,
+              "end_time": 1015
+            },
+            {
+              "session_id": 102,
+              "customer_id": 102,
+              "start_time": 1020,
+              "end_time": 1025
+            },
+            {
+              "session_id": 103,
+              "customer_id": 103,
+              "start_time": 1030,
+              "end_time": 1035
+            },
+            {
+              "session_id": 104,
+              "customer_id": 104,
+              "start_time": 1040,
+              "end_time": 1045
+            },
+            {
+              "session_id": 105,
+              "customer_id": 105,
+              "start_time": 1050,
+              "end_time": 1055
+            },
+            {
+              "session_id": 106,
+              "customer_id": 106,
+              "start_time": 1060,
+              "end_time": 1065
+            },
+            {
+              "session_id": 107,
+              "customer_id": 107,
+              "start_time": 1070,
+              "end_time": 1075
+            },
+            {
+              "session_id": 108,
+              "customer_id": 108,
+              "start_time": 1080,
+              "end_time": 1085
+            },
+            {
+              "session_id": 109,
+              "customer_id": 109,
+              "start_time": 1090,
+              "end_time": 1095
+            },
+            {
+              "session_id": 110,
+              "customer_id": 110,
+              "start_time": 1100,
+              "end_time": 1105
+            },
+            {
+              "session_id": 111,
+              "customer_id": 111,
+              "start_time": 1110,
+              "end_time": 1115
+            },
+            {
+              "session_id": 112,
+              "customer_id": 112,
+              "start_time": 1120,
+              "end_time": 1125
+            },
+            {
+              "session_id": 113,
+              "customer_id": 113,
+              "start_time": 1130,
+              "end_time": 1135
+            },
+            {
+              "session_id": 114,
+              "customer_id": 114,
+              "start_time": 1140,
+              "end_time": 1145
+            },
+            {
+              "session_id": 115,
+              "customer_id": 115,
+              "start_time": 1150,
+              "end_time": 1155
+            },
+            {
+              "session_id": 116,
+              "customer_id": 116,
+              "start_time": 1160,
+              "end_time": 1165
+            },
+            {
+              "session_id": 117,
+              "customer_id": 117,
+              "start_time": 1170,
+              "end_time": 1175
+            },
+            {
+              "session_id": 118,
+              "customer_id": 118,
+              "start_time": 1180,
+              "end_time": 1185
+            },
+            {
+              "session_id": 119,
+              "customer_id": 119,
+              "start_time": 1190,
+              "end_time": 1195
+            },
+            {
+              "session_id": 120,
+              "customer_id": 120,
+              "start_time": 1200,
+              "end_time": 1205
+            },
+            {
+              "session_id": 121,
+              "customer_id": 121,
+              "start_time": 1210,
+              "end_time": 1215
+            },
+            {
+              "session_id": 122,
+              "customer_id": 122,
+              "start_time": 1220,
+              "end_time": 1225
+            },
+            {
+              "session_id": 123,
+              "customer_id": 123,
+              "start_time": 1230,
+              "end_time": 1235
+            },
+            {
+              "session_id": 124,
+              "customer_id": 124,
+              "start_time": 1240,
+              "end_time": 1245
+            },
+            {
+              "session_id": 125,
+              "customer_id": 125,
+              "start_time": 1250,
+              "end_time": 1255
+            },
+            {
+              "session_id": 126,
+              "customer_id": 126,
+              "start_time": 1260,
+              "end_time": 1265
+            },
+            {
+              "session_id": 127,
+              "customer_id": 127,
+              "start_time": 1270,
+              "end_time": 1275
+            },
+            {
+              "session_id": 128,
+              "customer_id": 128,
+              "start_time": 1280,
+              "end_time": 1285
+            },
+            {
+              "session_id": 129,
+              "customer_id": 129,
+              "start_time": 1290,
+              "end_time": 1295
+            },
+            {
+              "session_id": 130,
+              "customer_id": 130,
+              "start_time": 1300,
+              "end_time": 1305
+            },
+            {
+              "session_id": 131,
+              "customer_id": 131,
+              "start_time": 1310,
+              "end_time": 1315
+            },
+            {
+              "session_id": 132,
+              "customer_id": 132,
+              "start_time": 1320,
+              "end_time": 1325
+            },
+            {
+              "session_id": 133,
+              "customer_id": 133,
+              "start_time": 1330,
+              "end_time": 1335
+            },
+            {
+              "session_id": 134,
+              "customer_id": 134,
+              "start_time": 1340,
+              "end_time": 1345
+            },
+            {
+              "session_id": 135,
+              "customer_id": 135,
+              "start_time": 1350,
+              "end_time": 1355
+            },
+            {
+              "session_id": 136,
+              "customer_id": 136,
+              "start_time": 1360,
+              "end_time": 1365
+            },
+            {
+              "session_id": 137,
+              "customer_id": 137,
+              "start_time": 1370,
+              "end_time": 1375
+            },
+            {
+              "session_id": 138,
+              "customer_id": 138,
+              "start_time": 1380,
+              "end_time": 1385
+            },
+            {
+              "session_id": 139,
+              "customer_id": 139,
+              "start_time": 1390,
+              "end_time": 1395
+            },
+            {
+              "session_id": 140,
+              "customer_id": 140,
+              "start_time": 1400,
+              "end_time": 1405
+            },
+            {
+              "session_id": 141,
+              "customer_id": 141,
+              "start_time": 1410,
+              "end_time": 1415
+            },
+            {
+              "session_id": 142,
+              "customer_id": 142,
+              "start_time": 1420,
+              "end_time": 1425
+            },
+            {
+              "session_id": 143,
+              "customer_id": 143,
+              "start_time": 1430,
+              "end_time": 1435
+            },
+            {
+              "session_id": 144,
+              "customer_id": 144,
+              "start_time": 1440,
+              "end_time": 1445
+            },
+            {
+              "session_id": 145,
+              "customer_id": 145,
+              "start_time": 1450,
+              "end_time": 1455
+            },
+            {
+              "session_id": 146,
+              "customer_id": 146,
+              "start_time": 1460,
+              "end_time": 1465
+            },
+            {
+              "session_id": 147,
+              "customer_id": 147,
+              "start_time": 1470,
+              "end_time": 1475
+            },
+            {
+              "session_id": 148,
+              "customer_id": 148,
+              "start_time": 1480,
+              "end_time": 1485
+            },
+            {
+              "session_id": 149,
+              "customer_id": 149,
+              "start_time": 1490,
+              "end_time": 1495
+            },
+            {
+              "session_id": 150,
+              "customer_id": 150,
+              "start_time": 1500,
+              "end_time": 1505
+            },
+            {
+              "session_id": 151,
+              "customer_id": 151,
+              "start_time": 1510,
+              "end_time": 1515
+            },
+            {
+              "session_id": 152,
+              "customer_id": 152,
+              "start_time": 1520,
+              "end_time": 1525
+            },
+            {
+              "session_id": 153,
+              "customer_id": 153,
+              "start_time": 1530,
+              "end_time": 1535
+            },
+            {
+              "session_id": 154,
+              "customer_id": 154,
+              "start_time": 1540,
+              "end_time": 1545
+            },
+            {
+              "session_id": 155,
+              "customer_id": 155,
+              "start_time": 1550,
+              "end_time": 1555
+            },
+            {
+              "session_id": 156,
+              "customer_id": 156,
+              "start_time": 1560,
+              "end_time": 1565
+            },
+            {
+              "session_id": 157,
+              "customer_id": 157,
+              "start_time": 1570,
+              "end_time": 1575
+            },
+            {
+              "session_id": 158,
+              "customer_id": 158,
+              "start_time": 1580,
+              "end_time": 1585
+            },
+            {
+              "session_id": 159,
+              "customer_id": 159,
+              "start_time": 1590,
+              "end_time": 1595
+            },
+            {
+              "session_id": 160,
+              "customer_id": 160,
+              "start_time": 1600,
+              "end_time": 1605
+            },
+            {
+              "session_id": 161,
+              "customer_id": 161,
+              "start_time": 1610,
+              "end_time": 1615
+            },
+            {
+              "session_id": 162,
+              "customer_id": 162,
+              "start_time": 1620,
+              "end_time": 1625
+            },
+            {
+              "session_id": 163,
+              "customer_id": 163,
+              "start_time": 1630,
+              "end_time": 1635
+            },
+            {
+              "session_id": 164,
+              "customer_id": 164,
+              "start_time": 1640,
+              "end_time": 1645
+            },
+            {
+              "session_id": 165,
+              "customer_id": 165,
+              "start_time": 1650,
+              "end_time": 1655
+            },
+            {
+              "session_id": 166,
+              "customer_id": 166,
+              "start_time": 1660,
+              "end_time": 1665
+            },
+            {
+              "session_id": 167,
+              "customer_id": 167,
+              "start_time": 1670,
+              "end_time": 1675
+            },
+            {
+              "session_id": 168,
+              "customer_id": 168,
+              "start_time": 1680,
+              "end_time": 1685
+            },
+            {
+              "session_id": 169,
+              "customer_id": 169,
+              "start_time": 1690,
+              "end_time": 1695
+            },
+            {
+              "session_id": 170,
+              "customer_id": 170,
+              "start_time": 1700,
+              "end_time": 1705
+            },
+            {
+              "session_id": 171,
+              "customer_id": 171,
+              "start_time": 1710,
+              "end_time": 1715
+            },
+            {
+              "session_id": 172,
+              "customer_id": 172,
+              "start_time": 1720,
+              "end_time": 1725
+            },
+            {
+              "session_id": 173,
+              "customer_id": 173,
+              "start_time": 1730,
+              "end_time": 1735
+            },
+            {
+              "session_id": 174,
+              "customer_id": 174,
+              "start_time": 1740,
+              "end_time": 1745
+            },
+            {
+              "session_id": 175,
+              "customer_id": 175,
+              "start_time": 1750,
+              "end_time": 1755
+            },
+            {
+              "session_id": 176,
+              "customer_id": 176,
+              "start_time": 1760,
+              "end_time": 1765
+            },
+            {
+              "session_id": 177,
+              "customer_id": 177,
+              "start_time": 1770,
+              "end_time": 1775
+            },
+            {
+              "session_id": 178,
+              "customer_id": 178,
+              "start_time": 1780,
+              "end_time": 1785
+            },
+            {
+              "session_id": 179,
+              "customer_id": 179,
+              "start_time": 1790,
+              "end_time": 1795
+            },
+            {
+              "session_id": 180,
+              "customer_id": 180,
+              "start_time": 1800,
+              "end_time": 1805
+            },
+            {
+              "session_id": 181,
+              "customer_id": 181,
+              "start_time": 1810,
+              "end_time": 1815
+            },
+            {
+              "session_id": 182,
+              "customer_id": 182,
+              "start_time": 1820,
+              "end_time": 1825
+            },
+            {
+              "session_id": 183,
+              "customer_id": 183,
+              "start_time": 1830,
+              "end_time": 1835
+            },
+            {
+              "session_id": 184,
+              "customer_id": 184,
+              "start_time": 1840,
+              "end_time": 1845
+            },
+            {
+              "session_id": 185,
+              "customer_id": 185,
+              "start_time": 1850,
+              "end_time": 1855
+            },
+            {
+              "session_id": 186,
+              "customer_id": 186,
+              "start_time": 1860,
+              "end_time": 1865
+            },
+            {
+              "session_id": 187,
+              "customer_id": 187,
+              "start_time": 1870,
+              "end_time": 1875
+            },
+            {
+              "session_id": 188,
+              "customer_id": 188,
+              "start_time": 1880,
+              "end_time": 1885
+            },
+            {
+              "session_id": 189,
+              "customer_id": 189,
+              "start_time": 1890,
+              "end_time": 1895
+            },
+            {
+              "session_id": 190,
+              "customer_id": 190,
+              "start_time": 1900,
+              "end_time": 1905
+            },
+            {
+              "session_id": 191,
+              "customer_id": 191,
+              "start_time": 1910,
+              "end_time": 1915
+            },
+            {
+              "session_id": 192,
+              "customer_id": 192,
+              "start_time": 1920,
+              "end_time": 1925
+            },
+            {
+              "session_id": 193,
+              "customer_id": 193,
+              "start_time": 1930,
+              "end_time": 1935
+            },
+            {
+              "session_id": 194,
+              "customer_id": 194,
+              "start_time": 1940,
+              "end_time": 1945
+            },
+            {
+              "session_id": 195,
+              "customer_id": 195,
+              "start_time": 1950,
+              "end_time": 1955
+            },
+            {
+              "session_id": 196,
+              "customer_id": 196,
+              "start_time": 1960,
+              "end_time": 1965
+            },
+            {
+              "session_id": 197,
+              "customer_id": 197,
+              "start_time": 1970,
+              "end_time": 1975
+            },
+            {
+              "session_id": 198,
+              "customer_id": 198,
+              "start_time": 1980,
+              "end_time": 1985
+            },
+            {
+              "session_id": 199,
+              "customer_id": 199,
+              "start_time": 1990,
+              "end_time": 1995
+            },
+            {
+              "session_id": 200,
+              "customer_id": 200,
+              "start_time": 2000,
+              "end_time": 2005
+            },
+            {
+              "session_id": 201,
+              "customer_id": 201,
+              "start_time": 2010,
+              "end_time": 2015
+            },
+            {
+              "session_id": 202,
+              "customer_id": 202,
+              "start_time": 2020,
+              "end_time": 2025
+            },
+            {
+              "session_id": 203,
+              "customer_id": 203,
+              "start_time": 2030,
+              "end_time": 2035
+            },
+            {
+              "session_id": 204,
+              "customer_id": 204,
+              "start_time": 2040,
+              "end_time": 2045
+            },
+            {
+              "session_id": 205,
+              "customer_id": 205,
+              "start_time": 2050,
+              "end_time": 2055
+            },
+            {
+              "session_id": 206,
+              "customer_id": 206,
+              "start_time": 2060,
+              "end_time": 2065
+            },
+            {
+              "session_id": 207,
+              "customer_id": 207,
+              "start_time": 2070,
+              "end_time": 2075
+            },
+            {
+              "session_id": 208,
+              "customer_id": 208,
+              "start_time": 2080,
+              "end_time": 2085
+            },
+            {
+              "session_id": 209,
+              "customer_id": 209,
+              "start_time": 2090,
+              "end_time": 2095
+            },
+            {
+              "session_id": 210,
+              "customer_id": 210,
+              "start_time": 2100,
+              "end_time": 2105
+            },
+            {
+              "session_id": 211,
+              "customer_id": 211,
+              "start_time": 2110,
+              "end_time": 2115
+            },
+            {
+              "session_id": 212,
+              "customer_id": 212,
+              "start_time": 2120,
+              "end_time": 2125
+            },
+            {
+              "session_id": 213,
+              "customer_id": 213,
+              "start_time": 2130,
+              "end_time": 2135
+            },
+            {
+              "session_id": 214,
+              "customer_id": 214,
+              "start_time": 2140,
+              "end_time": 2145
+            },
+            {
+              "session_id": 215,
+              "customer_id": 215,
+              "start_time": 2150,
+              "end_time": 2155
+            },
+            {
+              "session_id": 216,
+              "customer_id": 216,
+              "start_time": 2160,
+              "end_time": 2165
+            },
+            {
+              "session_id": 217,
+              "customer_id": 217,
+              "start_time": 2170,
+              "end_time": 2175
+            },
+            {
+              "session_id": 218,
+              "customer_id": 218,
+              "start_time": 2180,
+              "end_time": 2185
+            },
+            {
+              "session_id": 219,
+              "customer_id": 219,
+              "start_time": 2190,
+              "end_time": 2195
+            },
+            {
+              "session_id": 220,
+              "customer_id": 220,
+              "start_time": 2200,
+              "end_time": 2205
+            },
+            {
+              "session_id": 221,
+              "customer_id": 221,
+              "start_time": 2210,
+              "end_time": 2215
+            },
+            {
+              "session_id": 222,
+              "customer_id": 222,
+              "start_time": 2220,
+              "end_time": 2225
+            },
+            {
+              "session_id": 223,
+              "customer_id": 223,
+              "start_time": 2230,
+              "end_time": 2235
+            },
+            {
+              "session_id": 224,
+              "customer_id": 224,
+              "start_time": 2240,
+              "end_time": 2245
+            },
+            {
+              "session_id": 225,
+              "customer_id": 225,
+              "start_time": 2250,
+              "end_time": 2255
+            },
+            {
+              "session_id": 226,
+              "customer_id": 226,
+              "start_time": 2260,
+              "end_time": 2265
+            },
+            {
+              "session_id": 227,
+              "customer_id": 227,
+              "start_time": 2270,
+              "end_time": 2275
+            },
+            {
+              "session_id": 228,
+              "customer_id": 228,
+              "start_time": 2280,
+              "end_time": 2285
+            },
+            {
+              "session_id": 229,
+              "customer_id": 229,
+              "start_time": 2290,
+              "end_time": 2295
+            },
+            {
+              "session_id": 230,
+              "customer_id": 230,
+              "start_time": 2300,
+              "end_time": 2305
+            },
+            {
+              "session_id": 231,
+              "customer_id": 231,
+              "start_time": 2310,
+              "end_time": 2315
+            },
+            {
+              "session_id": 232,
+              "customer_id": 232,
+              "start_time": 2320,
+              "end_time": 2325
+            },
+            {
+              "session_id": 233,
+              "customer_id": 233,
+              "start_time": 2330,
+              "end_time": 2335
+            },
+            {
+              "session_id": 234,
+              "customer_id": 234,
+              "start_time": 2340,
+              "end_time": 2345
+            },
+            {
+              "session_id": 235,
+              "customer_id": 235,
+              "start_time": 2350,
+              "end_time": 2355
+            },
+            {
+              "session_id": 236,
+              "customer_id": 236,
+              "start_time": 2360,
+              "end_time": 2365
+            },
+            {
+              "session_id": 237,
+              "customer_id": 237,
+              "start_time": 2370,
+              "end_time": 2375
+            },
+            {
+              "session_id": 238,
+              "customer_id": 238,
+              "start_time": 2380,
+              "end_time": 2385
+            },
+            {
+              "session_id": 239,
+              "customer_id": 239,
+              "start_time": 2390,
+              "end_time": 2395
+            },
+            {
+              "session_id": 240,
+              "customer_id": 240,
+              "start_time": 2400,
+              "end_time": 2405
+            },
+            {
+              "session_id": 241,
+              "customer_id": 241,
+              "start_time": 2410,
+              "end_time": 2415
+            },
+            {
+              "session_id": 242,
+              "customer_id": 242,
+              "start_time": 2420,
+              "end_time": 2425
+            },
+            {
+              "session_id": 243,
+              "customer_id": 243,
+              "start_time": 2430,
+              "end_time": 2435
+            },
+            {
+              "session_id": 244,
+              "customer_id": 244,
+              "start_time": 2440,
+              "end_time": 2445
+            },
+            {
+              "session_id": 245,
+              "customer_id": 245,
+              "start_time": 2450,
+              "end_time": 2455
+            },
+            {
+              "session_id": 246,
+              "customer_id": 246,
+              "start_time": 2460,
+              "end_time": 2465
+            },
+            {
+              "session_id": 247,
+              "customer_id": 247,
+              "start_time": 2470,
+              "end_time": 2475
+            },
+            {
+              "session_id": 248,
+              "customer_id": 248,
+              "start_time": 2480,
+              "end_time": 2485
+            },
+            {
+              "session_id": 249,
+              "customer_id": 249,
+              "start_time": 2490,
+              "end_time": 2495
+            },
+            {
+              "session_id": 250,
+              "customer_id": 250,
+              "start_time": 2500,
+              "end_time": 2505
+            },
+            {
+              "session_id": 251,
+              "customer_id": 251,
+              "start_time": 2510,
+              "end_time": 2515
+            },
+            {
+              "session_id": 252,
+              "customer_id": 252,
+              "start_time": 2520,
+              "end_time": 2525
+            },
+            {
+              "session_id": 253,
+              "customer_id": 253,
+              "start_time": 2530,
+              "end_time": 2535
+            },
+            {
+              "session_id": 254,
+              "customer_id": 254,
+              "start_time": 2540,
+              "end_time": 2545
+            },
+            {
+              "session_id": 255,
+              "customer_id": 255,
+              "start_time": 2550,
+              "end_time": 2555
+            },
+            {
+              "session_id": 256,
+              "customer_id": 256,
+              "start_time": 2560,
+              "end_time": 2565
+            }
+          ],
+          "Ads": [
+            {
+              "ad_id": 1,
+              "customer_id": 1,
+              "timestamp": 16
+            },
+            {
+              "ad_id": 2,
+              "customer_id": 2,
+              "timestamp": 22
+            },
+            {
+              "ad_id": 3,
+              "customer_id": 3,
+              "timestamp": 36
+            },
+            {
+              "ad_id": 4,
+              "customer_id": 4,
+              "timestamp": 42
+            },
+            {
+              "ad_id": 5,
+              "customer_id": 5,
+              "timestamp": 56
+            },
+            {
+              "ad_id": 6,
+              "customer_id": 6,
+              "timestamp": 62
+            },
+            {
+              "ad_id": 7,
+              "customer_id": 7,
+              "timestamp": 76
+            },
+            {
+              "ad_id": 8,
+              "customer_id": 8,
+              "timestamp": 82
+            },
+            {
+              "ad_id": 9,
+              "customer_id": 9,
+              "timestamp": 96
+            },
+            {
+              "ad_id": 10,
+              "customer_id": 10,
+              "timestamp": 102
+            },
+            {
+              "ad_id": 11,
+              "customer_id": 11,
+              "timestamp": 116
+            },
+            {
+              "ad_id": 12,
+              "customer_id": 12,
+              "timestamp": 122
+            },
+            {
+              "ad_id": 13,
+              "customer_id": 13,
+              "timestamp": 136
+            },
+            {
+              "ad_id": 14,
+              "customer_id": 14,
+              "timestamp": 142
+            },
+            {
+              "ad_id": 15,
+              "customer_id": 15,
+              "timestamp": 156
+            },
+            {
+              "ad_id": 16,
+              "customer_id": 16,
+              "timestamp": 162
+            },
+            {
+              "ad_id": 17,
+              "customer_id": 17,
+              "timestamp": 176
+            },
+            {
+              "ad_id": 18,
+              "customer_id": 18,
+              "timestamp": 182
+            },
+            {
+              "ad_id": 19,
+              "customer_id": 19,
+              "timestamp": 196
+            },
+            {
+              "ad_id": 20,
+              "customer_id": 20,
+              "timestamp": 202
+            },
+            {
+              "ad_id": 21,
+              "customer_id": 21,
+              "timestamp": 216
+            },
+            {
+              "ad_id": 22,
+              "customer_id": 22,
+              "timestamp": 222
+            },
+            {
+              "ad_id": 23,
+              "customer_id": 23,
+              "timestamp": 236
+            },
+            {
+              "ad_id": 24,
+              "customer_id": 24,
+              "timestamp": 242
+            },
+            {
+              "ad_id": 25,
+              "customer_id": 25,
+              "timestamp": 256
+            },
+            {
+              "ad_id": 26,
+              "customer_id": 26,
+              "timestamp": 262
+            },
+            {
+              "ad_id": 27,
+              "customer_id": 27,
+              "timestamp": 276
+            },
+            {
+              "ad_id": 28,
+              "customer_id": 28,
+              "timestamp": 282
+            },
+            {
+              "ad_id": 29,
+              "customer_id": 29,
+              "timestamp": 296
+            },
+            {
+              "ad_id": 30,
+              "customer_id": 30,
+              "timestamp": 302
+            },
+            {
+              "ad_id": 31,
+              "customer_id": 31,
+              "timestamp": 316
+            },
+            {
+              "ad_id": 32,
+              "customer_id": 32,
+              "timestamp": 322
+            },
+            {
+              "ad_id": 33,
+              "customer_id": 33,
+              "timestamp": 336
+            },
+            {
+              "ad_id": 34,
+              "customer_id": 34,
+              "timestamp": 342
+            },
+            {
+              "ad_id": 35,
+              "customer_id": 35,
+              "timestamp": 356
+            },
+            {
+              "ad_id": 36,
+              "customer_id": 36,
+              "timestamp": 362
+            },
+            {
+              "ad_id": 37,
+              "customer_id": 37,
+              "timestamp": 376
+            },
+            {
+              "ad_id": 38,
+              "customer_id": 38,
+              "timestamp": 382
+            },
+            {
+              "ad_id": 39,
+              "customer_id": 39,
+              "timestamp": 396
+            },
+            {
+              "ad_id": 40,
+              "customer_id": 40,
+              "timestamp": 402
+            },
+            {
+              "ad_id": 41,
+              "customer_id": 41,
+              "timestamp": 416
+            },
+            {
+              "ad_id": 42,
+              "customer_id": 42,
+              "timestamp": 422
+            },
+            {
+              "ad_id": 43,
+              "customer_id": 43,
+              "timestamp": 436
+            },
+            {
+              "ad_id": 44,
+              "customer_id": 44,
+              "timestamp": 442
+            },
+            {
+              "ad_id": 45,
+              "customer_id": 45,
+              "timestamp": 456
+            },
+            {
+              "ad_id": 46,
+              "customer_id": 46,
+              "timestamp": 462
+            },
+            {
+              "ad_id": 47,
+              "customer_id": 47,
+              "timestamp": 476
+            },
+            {
+              "ad_id": 48,
+              "customer_id": 48,
+              "timestamp": 482
+            },
+            {
+              "ad_id": 49,
+              "customer_id": 49,
+              "timestamp": 496
+            },
+            {
+              "ad_id": 50,
+              "customer_id": 50,
+              "timestamp": 502
+            },
+            {
+              "ad_id": 51,
+              "customer_id": 51,
+              "timestamp": 516
+            },
+            {
+              "ad_id": 52,
+              "customer_id": 52,
+              "timestamp": 522
+            },
+            {
+              "ad_id": 53,
+              "customer_id": 53,
+              "timestamp": 536
+            },
+            {
+              "ad_id": 54,
+              "customer_id": 54,
+              "timestamp": 542
+            },
+            {
+              "ad_id": 55,
+              "customer_id": 55,
+              "timestamp": 556
+            },
+            {
+              "ad_id": 56,
+              "customer_id": 56,
+              "timestamp": 562
+            },
+            {
+              "ad_id": 57,
+              "customer_id": 57,
+              "timestamp": 576
+            },
+            {
+              "ad_id": 58,
+              "customer_id": 58,
+              "timestamp": 582
+            },
+            {
+              "ad_id": 59,
+              "customer_id": 59,
+              "timestamp": 596
+            },
+            {
+              "ad_id": 60,
+              "customer_id": 60,
+              "timestamp": 602
+            },
+            {
+              "ad_id": 61,
+              "customer_id": 61,
+              "timestamp": 616
+            },
+            {
+              "ad_id": 62,
+              "customer_id": 62,
+              "timestamp": 622
+            },
+            {
+              "ad_id": 63,
+              "customer_id": 63,
+              "timestamp": 636
+            },
+            {
+              "ad_id": 64,
+              "customer_id": 64,
+              "timestamp": 642
+            },
+            {
+              "ad_id": 65,
+              "customer_id": 65,
+              "timestamp": 656
+            },
+            {
+              "ad_id": 66,
+              "customer_id": 66,
+              "timestamp": 662
+            },
+            {
+              "ad_id": 67,
+              "customer_id": 67,
+              "timestamp": 676
+            },
+            {
+              "ad_id": 68,
+              "customer_id": 68,
+              "timestamp": 682
+            },
+            {
+              "ad_id": 69,
+              "customer_id": 69,
+              "timestamp": 696
+            },
+            {
+              "ad_id": 70,
+              "customer_id": 70,
+              "timestamp": 702
+            },
+            {
+              "ad_id": 71,
+              "customer_id": 71,
+              "timestamp": 716
+            },
+            {
+              "ad_id": 72,
+              "customer_id": 72,
+              "timestamp": 722
+            },
+            {
+              "ad_id": 73,
+              "customer_id": 73,
+              "timestamp": 736
+            },
+            {
+              "ad_id": 74,
+              "customer_id": 74,
+              "timestamp": 742
+            },
+            {
+              "ad_id": 75,
+              "customer_id": 75,
+              "timestamp": 756
+            },
+            {
+              "ad_id": 76,
+              "customer_id": 76,
+              "timestamp": 762
+            },
+            {
+              "ad_id": 77,
+              "customer_id": 77,
+              "timestamp": 776
+            },
+            {
+              "ad_id": 78,
+              "customer_id": 78,
+              "timestamp": 782
+            },
+            {
+              "ad_id": 79,
+              "customer_id": 79,
+              "timestamp": 796
+            },
+            {
+              "ad_id": 80,
+              "customer_id": 80,
+              "timestamp": 802
+            },
+            {
+              "ad_id": 81,
+              "customer_id": 81,
+              "timestamp": 816
+            },
+            {
+              "ad_id": 82,
+              "customer_id": 82,
+              "timestamp": 822
+            },
+            {
+              "ad_id": 83,
+              "customer_id": 83,
+              "timestamp": 836
+            },
+            {
+              "ad_id": 84,
+              "customer_id": 84,
+              "timestamp": 842
+            },
+            {
+              "ad_id": 85,
+              "customer_id": 85,
+              "timestamp": 856
+            },
+            {
+              "ad_id": 86,
+              "customer_id": 86,
+              "timestamp": 862
+            },
+            {
+              "ad_id": 87,
+              "customer_id": 87,
+              "timestamp": 876
+            },
+            {
+              "ad_id": 88,
+              "customer_id": 88,
+              "timestamp": 882
+            },
+            {
+              "ad_id": 89,
+              "customer_id": 89,
+              "timestamp": 896
+            },
+            {
+              "ad_id": 90,
+              "customer_id": 90,
+              "timestamp": 902
+            },
+            {
+              "ad_id": 91,
+              "customer_id": 91,
+              "timestamp": 916
+            },
+            {
+              "ad_id": 92,
+              "customer_id": 92,
+              "timestamp": 922
+            },
+            {
+              "ad_id": 93,
+              "customer_id": 93,
+              "timestamp": 936
+            },
+            {
+              "ad_id": 94,
+              "customer_id": 94,
+              "timestamp": 942
+            },
+            {
+              "ad_id": 95,
+              "customer_id": 95,
+              "timestamp": 956
+            },
+            {
+              "ad_id": 96,
+              "customer_id": 96,
+              "timestamp": 962
+            },
+            {
+              "ad_id": 97,
+              "customer_id": 97,
+              "timestamp": 976
+            },
+            {
+              "ad_id": 98,
+              "customer_id": 98,
+              "timestamp": 982
+            },
+            {
+              "ad_id": 99,
+              "customer_id": 99,
+              "timestamp": 996
+            },
+            {
+              "ad_id": 100,
+              "customer_id": 100,
+              "timestamp": 1002
+            },
+            {
+              "ad_id": 101,
+              "customer_id": 101,
+              "timestamp": 1016
+            },
+            {
+              "ad_id": 102,
+              "customer_id": 102,
+              "timestamp": 1022
+            },
+            {
+              "ad_id": 103,
+              "customer_id": 103,
+              "timestamp": 1036
+            },
+            {
+              "ad_id": 104,
+              "customer_id": 104,
+              "timestamp": 1042
+            },
+            {
+              "ad_id": 105,
+              "customer_id": 105,
+              "timestamp": 1056
+            },
+            {
+              "ad_id": 106,
+              "customer_id": 106,
+              "timestamp": 1062
+            },
+            {
+              "ad_id": 107,
+              "customer_id": 107,
+              "timestamp": 1076
+            },
+            {
+              "ad_id": 108,
+              "customer_id": 108,
+              "timestamp": 1082
+            },
+            {
+              "ad_id": 109,
+              "customer_id": 109,
+              "timestamp": 1096
+            },
+            {
+              "ad_id": 110,
+              "customer_id": 110,
+              "timestamp": 1102
+            },
+            {
+              "ad_id": 111,
+              "customer_id": 111,
+              "timestamp": 1116
+            },
+            {
+              "ad_id": 112,
+              "customer_id": 112,
+              "timestamp": 1122
+            },
+            {
+              "ad_id": 113,
+              "customer_id": 113,
+              "timestamp": 1136
+            },
+            {
+              "ad_id": 114,
+              "customer_id": 114,
+              "timestamp": 1142
+            },
+            {
+              "ad_id": 115,
+              "customer_id": 115,
+              "timestamp": 1156
+            },
+            {
+              "ad_id": 116,
+              "customer_id": 116,
+              "timestamp": 1162
+            },
+            {
+              "ad_id": 117,
+              "customer_id": 117,
+              "timestamp": 1176
+            },
+            {
+              "ad_id": 118,
+              "customer_id": 118,
+              "timestamp": 1182
+            },
+            {
+              "ad_id": 119,
+              "customer_id": 119,
+              "timestamp": 1196
+            },
+            {
+              "ad_id": 120,
+              "customer_id": 120,
+              "timestamp": 1202
+            },
+            {
+              "ad_id": 121,
+              "customer_id": 121,
+              "timestamp": 1216
+            },
+            {
+              "ad_id": 122,
+              "customer_id": 122,
+              "timestamp": 1222
+            },
+            {
+              "ad_id": 123,
+              "customer_id": 123,
+              "timestamp": 1236
+            },
+            {
+              "ad_id": 124,
+              "customer_id": 124,
+              "timestamp": 1242
+            },
+            {
+              "ad_id": 125,
+              "customer_id": 125,
+              "timestamp": 1256
+            },
+            {
+              "ad_id": 126,
+              "customer_id": 126,
+              "timestamp": 1262
+            },
+            {
+              "ad_id": 127,
+              "customer_id": 127,
+              "timestamp": 1276
+            },
+            {
+              "ad_id": 128,
+              "customer_id": 128,
+              "timestamp": 1282
+            },
+            {
+              "ad_id": 129,
+              "customer_id": 129,
+              "timestamp": 1296
+            },
+            {
+              "ad_id": 130,
+              "customer_id": 130,
+              "timestamp": 1302
+            },
+            {
+              "ad_id": 131,
+              "customer_id": 131,
+              "timestamp": 1316
+            },
+            {
+              "ad_id": 132,
+              "customer_id": 132,
+              "timestamp": 1322
+            },
+            {
+              "ad_id": 133,
+              "customer_id": 133,
+              "timestamp": 1336
+            },
+            {
+              "ad_id": 134,
+              "customer_id": 134,
+              "timestamp": 1342
+            },
+            {
+              "ad_id": 135,
+              "customer_id": 135,
+              "timestamp": 1356
+            },
+            {
+              "ad_id": 136,
+              "customer_id": 136,
+              "timestamp": 1362
+            },
+            {
+              "ad_id": 137,
+              "customer_id": 137,
+              "timestamp": 1376
+            },
+            {
+              "ad_id": 138,
+              "customer_id": 138,
+              "timestamp": 1382
+            },
+            {
+              "ad_id": 139,
+              "customer_id": 139,
+              "timestamp": 1396
+            },
+            {
+              "ad_id": 140,
+              "customer_id": 140,
+              "timestamp": 1402
+            },
+            {
+              "ad_id": 141,
+              "customer_id": 141,
+              "timestamp": 1416
+            },
+            {
+              "ad_id": 142,
+              "customer_id": 142,
+              "timestamp": 1422
+            },
+            {
+              "ad_id": 143,
+              "customer_id": 143,
+              "timestamp": 1436
+            },
+            {
+              "ad_id": 144,
+              "customer_id": 144,
+              "timestamp": 1442
+            },
+            {
+              "ad_id": 145,
+              "customer_id": 145,
+              "timestamp": 1456
+            },
+            {
+              "ad_id": 146,
+              "customer_id": 146,
+              "timestamp": 1462
+            },
+            {
+              "ad_id": 147,
+              "customer_id": 147,
+              "timestamp": 1476
+            },
+            {
+              "ad_id": 148,
+              "customer_id": 148,
+              "timestamp": 1482
+            },
+            {
+              "ad_id": 149,
+              "customer_id": 149,
+              "timestamp": 1496
+            },
+            {
+              "ad_id": 150,
+              "customer_id": 150,
+              "timestamp": 1502
+            },
+            {
+              "ad_id": 151,
+              "customer_id": 151,
+              "timestamp": 1516
+            },
+            {
+              "ad_id": 152,
+              "customer_id": 152,
+              "timestamp": 1522
+            },
+            {
+              "ad_id": 153,
+              "customer_id": 153,
+              "timestamp": 1536
+            },
+            {
+              "ad_id": 154,
+              "customer_id": 154,
+              "timestamp": 1542
+            },
+            {
+              "ad_id": 155,
+              "customer_id": 155,
+              "timestamp": 1556
+            },
+            {
+              "ad_id": 156,
+              "customer_id": 156,
+              "timestamp": 1562
+            },
+            {
+              "ad_id": 157,
+              "customer_id": 157,
+              "timestamp": 1576
+            },
+            {
+              "ad_id": 158,
+              "customer_id": 158,
+              "timestamp": 1582
+            },
+            {
+              "ad_id": 159,
+              "customer_id": 159,
+              "timestamp": 1596
+            },
+            {
+              "ad_id": 160,
+              "customer_id": 160,
+              "timestamp": 1602
+            },
+            {
+              "ad_id": 161,
+              "customer_id": 161,
+              "timestamp": 1616
+            },
+            {
+              "ad_id": 162,
+              "customer_id": 162,
+              "timestamp": 1622
+            },
+            {
+              "ad_id": 163,
+              "customer_id": 163,
+              "timestamp": 1636
+            },
+            {
+              "ad_id": 164,
+              "customer_id": 164,
+              "timestamp": 1642
+            },
+            {
+              "ad_id": 165,
+              "customer_id": 165,
+              "timestamp": 1656
+            },
+            {
+              "ad_id": 166,
+              "customer_id": 166,
+              "timestamp": 1662
+            },
+            {
+              "ad_id": 167,
+              "customer_id": 167,
+              "timestamp": 1676
+            },
+            {
+              "ad_id": 168,
+              "customer_id": 168,
+              "timestamp": 1682
+            },
+            {
+              "ad_id": 169,
+              "customer_id": 169,
+              "timestamp": 1696
+            },
+            {
+              "ad_id": 170,
+              "customer_id": 170,
+              "timestamp": 1702
+            },
+            {
+              "ad_id": 171,
+              "customer_id": 171,
+              "timestamp": 1716
+            },
+            {
+              "ad_id": 172,
+              "customer_id": 172,
+              "timestamp": 1722
+            },
+            {
+              "ad_id": 173,
+              "customer_id": 173,
+              "timestamp": 1736
+            },
+            {
+              "ad_id": 174,
+              "customer_id": 174,
+              "timestamp": 1742
+            },
+            {
+              "ad_id": 175,
+              "customer_id": 175,
+              "timestamp": 1756
+            },
+            {
+              "ad_id": 176,
+              "customer_id": 176,
+              "timestamp": 1762
+            },
+            {
+              "ad_id": 177,
+              "customer_id": 177,
+              "timestamp": 1776
+            },
+            {
+              "ad_id": 178,
+              "customer_id": 178,
+              "timestamp": 1782
+            },
+            {
+              "ad_id": 179,
+              "customer_id": 179,
+              "timestamp": 1796
+            },
+            {
+              "ad_id": 180,
+              "customer_id": 180,
+              "timestamp": 1802
+            },
+            {
+              "ad_id": 181,
+              "customer_id": 181,
+              "timestamp": 1816
+            },
+            {
+              "ad_id": 182,
+              "customer_id": 182,
+              "timestamp": 1822
+            },
+            {
+              "ad_id": 183,
+              "customer_id": 183,
+              "timestamp": 1836
+            },
+            {
+              "ad_id": 184,
+              "customer_id": 184,
+              "timestamp": 1842
+            },
+            {
+              "ad_id": 185,
+              "customer_id": 185,
+              "timestamp": 1856
+            },
+            {
+              "ad_id": 186,
+              "customer_id": 186,
+              "timestamp": 1862
+            },
+            {
+              "ad_id": 187,
+              "customer_id": 187,
+              "timestamp": 1876
+            },
+            {
+              "ad_id": 188,
+              "customer_id": 188,
+              "timestamp": 1882
+            },
+            {
+              "ad_id": 189,
+              "customer_id": 189,
+              "timestamp": 1896
+            },
+            {
+              "ad_id": 190,
+              "customer_id": 190,
+              "timestamp": 1902
+            },
+            {
+              "ad_id": 191,
+              "customer_id": 191,
+              "timestamp": 1916
+            },
+            {
+              "ad_id": 192,
+              "customer_id": 192,
+              "timestamp": 1922
+            },
+            {
+              "ad_id": 193,
+              "customer_id": 193,
+              "timestamp": 1936
+            },
+            {
+              "ad_id": 194,
+              "customer_id": 194,
+              "timestamp": 1942
+            },
+            {
+              "ad_id": 195,
+              "customer_id": 195,
+              "timestamp": 1956
+            },
+            {
+              "ad_id": 196,
+              "customer_id": 196,
+              "timestamp": 1962
+            },
+            {
+              "ad_id": 197,
+              "customer_id": 197,
+              "timestamp": 1976
+            },
+            {
+              "ad_id": 198,
+              "customer_id": 198,
+              "timestamp": 1982
+            },
+            {
+              "ad_id": 199,
+              "customer_id": 199,
+              "timestamp": 1996
+            },
+            {
+              "ad_id": 200,
+              "customer_id": 200,
+              "timestamp": 2002
+            },
+            {
+              "ad_id": 201,
+              "customer_id": 201,
+              "timestamp": 2016
+            },
+            {
+              "ad_id": 202,
+              "customer_id": 202,
+              "timestamp": 2022
+            },
+            {
+              "ad_id": 203,
+              "customer_id": 203,
+              "timestamp": 2036
+            },
+            {
+              "ad_id": 204,
+              "customer_id": 204,
+              "timestamp": 2042
+            },
+            {
+              "ad_id": 205,
+              "customer_id": 205,
+              "timestamp": 2056
+            },
+            {
+              "ad_id": 206,
+              "customer_id": 206,
+              "timestamp": 2062
+            },
+            {
+              "ad_id": 207,
+              "customer_id": 207,
+              "timestamp": 2076
+            },
+            {
+              "ad_id": 208,
+              "customer_id": 208,
+              "timestamp": 2082
+            },
+            {
+              "ad_id": 209,
+              "customer_id": 209,
+              "timestamp": 2096
+            },
+            {
+              "ad_id": 210,
+              "customer_id": 210,
+              "timestamp": 2102
+            },
+            {
+              "ad_id": 211,
+              "customer_id": 211,
+              "timestamp": 2116
+            },
+            {
+              "ad_id": 212,
+              "customer_id": 212,
+              "timestamp": 2122
+            },
+            {
+              "ad_id": 213,
+              "customer_id": 213,
+              "timestamp": 2136
+            },
+            {
+              "ad_id": 214,
+              "customer_id": 214,
+              "timestamp": 2142
+            },
+            {
+              "ad_id": 215,
+              "customer_id": 215,
+              "timestamp": 2156
+            },
+            {
+              "ad_id": 216,
+              "customer_id": 216,
+              "timestamp": 2162
+            },
+            {
+              "ad_id": 217,
+              "customer_id": 217,
+              "timestamp": 2176
+            },
+            {
+              "ad_id": 218,
+              "customer_id": 218,
+              "timestamp": 2182
+            },
+            {
+              "ad_id": 219,
+              "customer_id": 219,
+              "timestamp": 2196
+            },
+            {
+              "ad_id": 220,
+              "customer_id": 220,
+              "timestamp": 2202
+            },
+            {
+              "ad_id": 221,
+              "customer_id": 221,
+              "timestamp": 2216
+            },
+            {
+              "ad_id": 222,
+              "customer_id": 222,
+              "timestamp": 2222
+            },
+            {
+              "ad_id": 223,
+              "customer_id": 223,
+              "timestamp": 2236
+            },
+            {
+              "ad_id": 224,
+              "customer_id": 224,
+              "timestamp": 2242
+            },
+            {
+              "ad_id": 225,
+              "customer_id": 225,
+              "timestamp": 2256
+            },
+            {
+              "ad_id": 226,
+              "customer_id": 226,
+              "timestamp": 2262
+            },
+            {
+              "ad_id": 227,
+              "customer_id": 227,
+              "timestamp": 2276
+            },
+            {
+              "ad_id": 228,
+              "customer_id": 228,
+              "timestamp": 2282
+            },
+            {
+              "ad_id": 229,
+              "customer_id": 229,
+              "timestamp": 2296
+            },
+            {
+              "ad_id": 230,
+              "customer_id": 230,
+              "timestamp": 2302
+            },
+            {
+              "ad_id": 231,
+              "customer_id": 231,
+              "timestamp": 2316
+            },
+            {
+              "ad_id": 232,
+              "customer_id": 232,
+              "timestamp": 2322
+            },
+            {
+              "ad_id": 233,
+              "customer_id": 233,
+              "timestamp": 2336
+            },
+            {
+              "ad_id": 234,
+              "customer_id": 234,
+              "timestamp": 2342
+            },
+            {
+              "ad_id": 235,
+              "customer_id": 235,
+              "timestamp": 2356
+            },
+            {
+              "ad_id": 236,
+              "customer_id": 236,
+              "timestamp": 2362
+            },
+            {
+              "ad_id": 237,
+              "customer_id": 237,
+              "timestamp": 2376
+            },
+            {
+              "ad_id": 238,
+              "customer_id": 238,
+              "timestamp": 2382
+            },
+            {
+              "ad_id": 239,
+              "customer_id": 239,
+              "timestamp": 2396
+            },
+            {
+              "ad_id": 240,
+              "customer_id": 240,
+              "timestamp": 2402
+            },
+            {
+              "ad_id": 241,
+              "customer_id": 241,
+              "timestamp": 2416
+            },
+            {
+              "ad_id": 242,
+              "customer_id": 242,
+              "timestamp": 2422
+            },
+            {
+              "ad_id": 243,
+              "customer_id": 243,
+              "timestamp": 2436
+            },
+            {
+              "ad_id": 244,
+              "customer_id": 244,
+              "timestamp": 2442
+            },
+            {
+              "ad_id": 245,
+              "customer_id": 245,
+              "timestamp": 2456
+            },
+            {
+              "ad_id": 246,
+              "customer_id": 246,
+              "timestamp": 2462
+            },
+            {
+              "ad_id": 247,
+              "customer_id": 247,
+              "timestamp": 2476
+            },
+            {
+              "ad_id": 248,
+              "customer_id": 248,
+              "timestamp": 2482
+            },
+            {
+              "ad_id": 249,
+              "customer_id": 249,
+              "timestamp": 2496
+            },
+            {
+              "ad_id": 250,
+              "customer_id": 250,
+              "timestamp": 2502
+            },
+            {
+              "ad_id": 251,
+              "customer_id": 251,
+              "timestamp": 2516
+            },
+            {
+              "ad_id": 252,
+              "customer_id": 252,
+              "timestamp": 2522
+            },
+            {
+              "ad_id": 253,
+              "customer_id": 253,
+              "timestamp": 2536
+            },
+            {
+              "ad_id": 254,
+              "customer_id": 254,
+              "timestamp": 2542
+            },
+            {
+              "ad_id": 255,
+              "customer_id": 255,
+              "timestamp": 2556
+            },
+            {
+              "ad_id": 256,
+              "customer_id": 256,
+              "timestamp": 2562
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            7
+          ],
+          [
+            9
+          ],
+          [
+            11
+          ],
+          [
+            13
+          ],
+          [
+            15
+          ],
+          [
+            17
+          ],
+          [
+            19
+          ],
+          [
+            21
+          ],
+          [
+            23
+          ],
+          [
+            25
+          ],
+          [
+            27
+          ],
+          [
+            29
+          ],
+          [
+            31
+          ],
+          [
+            33
+          ],
+          [
+            35
+          ],
+          [
+            37
+          ],
+          [
+            39
+          ],
+          [
+            41
+          ],
+          [
+            43
+          ],
+          [
+            45
+          ],
+          [
+            47
+          ],
+          [
+            49
+          ],
+          [
+            51
+          ],
+          [
+            53
+          ],
+          [
+            55
+          ],
+          [
+            57
+          ],
+          [
+            59
+          ],
+          [
+            61
+          ],
+          [
+            63
+          ],
+          [
+            65
+          ],
+          [
+            67
+          ],
+          [
+            69
+          ],
+          [
+            71
+          ],
+          [
+            73
+          ],
+          [
+            75
+          ],
+          [
+            77
+          ],
+          [
+            79
+          ],
+          [
+            81
+          ],
+          [
+            83
+          ],
+          [
+            85
+          ],
+          [
+            87
+          ],
+          [
+            89
+          ],
+          [
+            91
+          ],
+          [
+            93
+          ],
+          [
+            95
+          ],
+          [
+            97
+          ],
+          [
+            99
+          ],
+          [
+            101
+          ],
+          [
+            103
+          ],
+          [
+            105
+          ],
+          [
+            107
+          ],
+          [
+            109
+          ],
+          [
+            111
+          ],
+          [
+            113
+          ],
+          [
+            115
+          ],
+          [
+            117
+          ],
+          [
+            119
+          ],
+          [
+            121
+          ],
+          [
+            123
+          ],
+          [
+            125
+          ],
+          [
+            127
+          ],
+          [
+            129
+          ],
+          [
+            131
+          ],
+          [
+            133
+          ],
+          [
+            135
+          ],
+          [
+            137
+          ],
+          [
+            139
+          ],
+          [
+            141
+          ],
+          [
+            143
+          ],
+          [
+            145
+          ],
+          [
+            147
+          ],
+          [
+            149
+          ],
+          [
+            151
+          ],
+          [
+            153
+          ],
+          [
+            155
+          ],
+          [
+            157
+          ],
+          [
+            159
+          ],
+          [
+            161
+          ],
+          [
+            163
+          ],
+          [
+            165
+          ],
+          [
+            167
+          ],
+          [
+            169
+          ],
+          [
+            171
+          ],
+          [
+            173
+          ],
+          [
+            175
+          ],
+          [
+            177
+          ],
+          [
+            179
+          ],
+          [
+            181
+          ],
+          [
+            183
+          ],
+          [
+            185
+          ],
+          [
+            187
+          ],
+          [
+            189
+          ],
+          [
+            191
+          ],
+          [
+            193
+          ],
+          [
+            195
+          ],
+          [
+            197
+          ],
+          [
+            199
+          ],
+          [
+            201
+          ],
+          [
+            203
+          ],
+          [
+            205
+          ],
+          [
+            207
+          ],
+          [
+            209
+          ],
+          [
+            211
+          ],
+          [
+            213
+          ],
+          [
+            215
+          ],
+          [
+            217
+          ],
+          [
+            219
+          ],
+          [
+            221
+          ],
+          [
+            223
+          ],
+          [
+            225
+          ],
+          [
+            227
+          ],
+          [
+            229
+          ],
+          [
+            231
+          ],
+          [
+            233
+          ],
+          [
+            235
+          ],
+          [
+            237
+          ],
+          [
+            239
+          ],
+          [
+            241
+          ],
+          [
+            243
+          ],
+          [
+            245
+          ],
+          [
+            247
+          ],
+          [
+            249
+          ],
+          [
+            251
+          ],
+          [
+            253
+          ],
+          [
+            255
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "unordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "anti-join",
+        "customer-time-match"
+      ]
+    }
+  ]
+}

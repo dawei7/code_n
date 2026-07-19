@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1846",
+  "cases": [
+    {"id":"example-duplicate-small-values","name":"sample: duplicates limit the attainable maximum","kind":"sample","visible":true,"input":{"args":[[2,2,1,2,1]]},"expected":2,"validator":{"kind":"exact"},"tags":["example","duplicates"]},
+    {"id":"example-large-gaps","name":"sample: large values are decreased into consecutive steps","kind":"sample","visible":true,"input":{"args":[[100,1,1000]]},"expected":3,"validator":{"kind":"exact"},"tags":["example","large-values"]},
+    {"id":"example-already-valid","name":"sample: an existing consecutive sequence is unchanged","kind":"sample","visible":true,"input":{"args":[[1,2,3,4,5]]},"expected":5,"validator":{"kind":"exact"},"tags":["example","already-valid"]},
+    {"id":"trial-single-value","name":"one value can always become one","kind":"trial","visible":true,"input":{"args":[[100]]},"expected":1,"validator":{"kind":"exact"},"tags":["single-element"]},
+    {"id":"real-all-equal-large","name":"hidden: equal large values can form every step","kind":"real","visible":false,"input":{"args":[[5,5,5,5]]},"expected":4,"validator":{"kind":"exact"},"tags":["all-equal","decreasing"]},
+    {"id":"real-many-ones","name":"hidden: repeated ones stall growth","kind":"real","visible":false,"input":{"args":[[1,1,1,100]]},"expected":2,"validator":{"kind":"exact"},"tags":["duplicates","ones"]},
+    {"id":"real-unsorted-consecutive","name":"hidden: input order does not affect a complete sequence","kind":"real","visible":false,"input":{"args":[[4,2,3,1]]},"expected":4,"validator":{"kind":"exact"},"tags":["rearrangement","unsorted"]},
+    {"id":"real-one-and-huge-values","name":"hidden: several huge values fill successive steps","kind":"real","visible":false,"input":{"args":[[1,10,10,10]]},"expected":4,"validator":{"kind":"exact"},"tags":["large-gap","greedy-steps"]},
+    {"id":"real-no-original-one","name":"hidden: the smallest value is decreased to one","kind":"real","visible":false,"input":{"args":[[2,3,3,5]]},"expected":4,"validator":{"kind":"exact"},"tags":["create-one","duplicates"]},
+    {"id":"real-value-boundary","name":"hidden: maximum-domain values are bounded by array length","kind":"real","visible":false,"input":{"args":[[1000000000,1000000000,1000000000]]},"expected":3,"validator":{"kind":"exact"},"tags":["value-boundary","decreasing"]}
+  ]
+}

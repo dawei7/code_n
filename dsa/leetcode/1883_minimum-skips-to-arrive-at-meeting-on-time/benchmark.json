@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1883",
+  "measurement_note": "Size is N, the number of roads. One dynamic-programming pass computes every skip count in O(N^2) time. A correct implementation that reruns an O(NK) feasibility DP for each candidate skip limit K completes all tiers and fails only by O(N^3) scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: all 11 rests must be skipped across 12 roads","kind":"benchmark","visible":false,"size":12,"input":{"dist":[1,1,1,1,1,1,1,1,1,1,1,1],"speed":12,"hoursBefore":1},"expected":11,"tags":["benchmark","all-skips","repeated-feasibility-dp"]},
+    {"id":"benchmark-scale-2","name":"benchmark: all 23 rests must be skipped across 24 roads","kind":"benchmark","visible":false,"size":24,"input":{"dist":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"speed":24,"hoursBefore":1},"expected":23,"tags":["benchmark","all-skips","repeated-feasibility-dp"]},
+    {"id":"benchmark-scale-3","name":"benchmark: all 47 rests must be skipped across 48 roads","kind":"benchmark","visible":false,"size":48,"input":{"dist":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"speed":48,"hoursBefore":1},"expected":47,"tags":["benchmark","all-skips","repeated-feasibility-dp"]}
+  ]
+}

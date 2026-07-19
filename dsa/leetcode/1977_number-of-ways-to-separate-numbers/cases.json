@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1977",
+  "cases": [
+    {"id":"example-two-lists","name":"sample: full number or two-number list","kind":"sample","visible":true,"input":{"num":"327"},"expected":2,"tags":["sample","multiple-partitions"]},
+    {"id":"example-leading-zero","name":"sample: leading zero invalidates every partition","kind":"sample","visible":true,"input":{"num":"094"},"expected":0,"tags":["sample","leading-zero"]},
+    {"id":"example-single-zero","name":"sample: zero is not a positive integer","kind":"sample","visible":true,"input":{"num":"0"},"expected":0,"tags":["sample","zero"]},
+    {"id":"trial-single-positive","name":"one positive digit","kind":"trial","visible":true,"input":{"num":"1"},"expected":1,"tags":["minimum","single-number"]},
+    {"id":"trial-equal-values","name":"equal adjacent numbers are permitted","kind":"trial","visible":true,"input":{"num":"11"},"expected":2,"tags":["equal-values"]},
+    {"id":"trial-three-ones","name":"several equal-prefix partitions","kind":"trial","visible":true,"input":{"num":"111"},"expected":3,"tags":["equal-prefix","multiple-partitions"]},
+    {"id":"real-increasing-digits","name":"hidden: several increasing partitions","kind":"real","visible":false,"input":{"num":"1234"},"expected":5,"tags":["increasing","multiple-partitions"]},
+    {"id":"real-internal-zero","name":"hidden: zero may occur inside one number","kind":"real","visible":false,"input":{"num":"101"},"expected":1,"tags":["internal-zero"]},
+    {"id":"real-repeated-nines","name":"hidden: repeated equal digits","kind":"real","visible":false,"input":{"num":"9999"},"expected":5,"tags":["equal-prefix","multiple-partitions"]},
+    {"id":"real-long-increasing","name":"hidden: longer increasing digit string","kind":"real","visible":false,"input":{"num":"123456789"},"expected":30,"tags":["longer","increasing"]}
+  ]
+}

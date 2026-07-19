@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1957",
+  "cases": [
+    {"id":"example-three-es","name":"sample: remove one character from a run of three","kind":"sample","visible":true,"input":{"s":"leeetcode"},"expected":"leetcode","tags":["sample","run-of-three"]},
+    {"id":"example-two-long-runs","name":"sample: truncate two separate runs","kind":"sample","visible":true,"input":{"s":"aaabaaaa"},"expected":"aabaa","tags":["sample","multiple-runs"]},
+    {"id":"example-already-fancy","name":"sample: valid string remains unchanged","kind":"sample","visible":true,"input":{"s":"aab"},"expected":"aab","tags":["sample","unchanged"]},
+    {"id":"trial-single-character","name":"one character is already fancy","kind":"trial","visible":true,"input":{"s":"z"},"expected":"z","tags":["minimum","unchanged"]},
+    {"id":"trial-long-single-run","name":"one long run is truncated to two characters","kind":"trial","visible":true,"input":{"s":"aaaaaa"},"expected":"aa","tags":["single-run","deletions"]},
+    {"id":"trial-all-distinct","name":"all distinct adjacent characters remain","kind":"trial","visible":true,"input":{"s":"abcdef"},"expected":"abcdef","tags":["unchanged","distinct"]},
+    {"id":"real-three-runs","name":"hidden: three long runs are truncated independently","kind":"real","visible":false,"input":{"s":"xxxyyyyzzzzz"},"expected":"xxyyzz","tags":["multiple-runs"]},
+    {"id":"real-separated-letter","name":"hidden: matching letters in separated runs do not merge","kind":"real","visible":false,"input":{"s":"aaabaaa"},"expected":"aabaa","tags":["separate-runs"]},
+    {"id":"real-boundary-pairs","name":"hidden: runs of two require no deletion","kind":"real","visible":false,"input":{"s":"aabbccddeeff"},"expected":"aabbccddeeff","tags":["run-of-two","unchanged"]},
+    {"id":"real-alternating-with-tail","name":"hidden: alternating prefix followed by a long run","kind":"real","visible":false,"input":{"s":"abababcccccc"},"expected":"abababcc","tags":["mixed","long-tail"]}
+  ]
+}

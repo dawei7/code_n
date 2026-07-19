@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2212",
+  "frontend_id": "2091",
+  "title_slug": "removing-minimum-and-maximum-from-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumDeletions",
+  "verified_submission_id": "2073084367",
+  "verified_at": "2026-07-19T05:24:35.790773+00:00"
+}

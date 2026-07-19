@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2070",
+  "cases": [
+    {"id":"sample-growing-budget","name":"sample: answers follow price-prefix maxima","kind":"sample","visible":true,"input":{"items":[[1,2],[3,2],[2,4],[5,6],[3,5]],"queries":[1,2,3,4,5,6]},"expected":[2,4,5,5,6,6],"tags":["sample","prefix-maxima"]},
+    {"id":"sample-duplicate-price","name":"sample: duplicate prices use their greatest beauty","kind":"sample","visible":true,"input":{"items":[[1,2],[1,2],[1,3],[1,4]],"queries":[1]},"expected":[4],"tags":["sample","duplicate-price"]},
+    {"id":"sample-none-affordable","name":"sample: a query below every price returns zero","kind":"sample","visible":true,"input":{"items":[[10,1000]],"queries":[5]},"expected":[0],"tags":["sample","no-affordable-item"]},
+    {"id":"trial-unsorted-queries","name":"query results retain their original order","kind":"trial","visible":true,"input":{"items":[[2,5],[4,1],[3,7]],"queries":[4,1,3]},"expected":[7,0,7],"tags":["query-order"]},
+    {"id":"real-cheaper-remains-best","name":"hidden: later affordable items need not improve beauty","kind":"real","visible":false,"input":{"items":[[1,10],[2,1],[3,9]],"queries":[2,3]},"expected":[10,10],"tags":["hidden","nonmonotone-beauty"]},
+    {"id":"real-unsorted-items","name":"hidden: item input order does not define affordability","kind":"real","visible":false,"input":{"items":[[8,3],[2,6],[5,4],[2,9]],"queries":[1,2,7,8]},"expected":[0,9,9,9],"tags":["hidden","unsorted-items","duplicate-price"]},
+    {"id":"real-value-boundary","name":"hidden: maximum legal price and beauty are supported","kind":"real","visible":false,"input":{"items":[[1000000000,1000000000],[1,1]],"queries":[999999999,1000000000]},"expected":[1,1000000000],"tags":["hidden","value-boundary"]}
+  ]
+}

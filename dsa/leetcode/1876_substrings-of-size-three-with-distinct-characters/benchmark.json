@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1876",
+  "measurement_note": "Size is N, the string length. Repeating abc makes every length-three window good. The direct fixed-window scan takes O(N) time, while a correct implementation that enumerates every substring and tests only those of length three completes all legal tiers and fails only by O(N^2) scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: scan 6 cyclic characters","kind":"benchmark","visible":false,"size":6,"input":{"s":"abcabc"},"expected":4,"tags":["benchmark","fixed-window","all-good"]},
+    {"id":"benchmark-scale-2","name":"benchmark: scan 24 cyclic characters","kind":"benchmark","visible":false,"size":24,"input":{"s":"abcabcabcabcabcabcabcabc"},"expected":22,"tags":["benchmark","fixed-window","all-good"]},
+    {"id":"benchmark-scale-3","name":"benchmark: scan 96 cyclic characters","kind":"benchmark","visible":false,"size":96,"input":{"s":"abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc"},"expected":94,"tags":["benchmark","fixed-window","all-good"]}
+  ]
+}

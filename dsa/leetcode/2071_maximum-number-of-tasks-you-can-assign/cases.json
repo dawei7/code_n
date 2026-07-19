@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2071",
+  "cases": [
+    {"id":"sample-all-assigned","name":"sample: one pill enables all three assignments","kind":"sample","visible":true,"input":{"tasks":[3,2,1],"workers":[0,3,3],"pills":1,"strength":1},"expected":3,"tags":["sample","all-assigned"]},
+    {"id":"sample-one-pill","name":"sample: one pill permits only one task","kind":"sample","visible":true,"input":{"tasks":[5,4],"workers":[0,0,0],"pills":1,"strength":5},"expected":1,"tags":["sample","pill-limit"]},
+    {"id":"sample-unreachable-hard-task","name":"sample: the hardest task remains unreachable","kind":"sample","visible":true,"input":{"tasks":[10,15,30],"workers":[0,10,10,10,10],"pills":3,"strength":10},"expected":2,"tags":["sample","unreachable-task"]},
+    {"id":"trial-no-pills","name":"without pills only direct strength matches count","kind":"trial","visible":true,"input":{"tasks":[2,3],"workers":[1,3],"pills":0,"strength":100},"expected":1,"tags":["no-pills"]},
+    {"id":"real-zero-requirements","name":"hidden: zero-strength workers complete zero-requirement tasks","kind":"real","visible":false,"input":{"tasks":[0,0,0],"workers":[0,0,0],"pills":0,"strength":0},"expected":3,"tags":["hidden","zero-values"]},
+    {"id":"real-save-pill-for-hard-task","name":"hidden: an easy direct match preserves a pill for harder work","kind":"real","visible":false,"input":{"tasks":[5,9],"workers":[5,8],"pills":1,"strength":4},"expected":2,"tags":["hidden","pill-allocation"]},
+    {"id":"real-worker-shortage","name":"hidden: extra feasible tasks cannot exceed worker count","kind":"real","visible":false,"input":{"tasks":[1,1,1,1],"workers":[10,10],"pills":2,"strength":10},"expected":2,"tags":["hidden","worker-shortage"]},
+    {"id":"real-value-boundary","name":"hidden: a maximum-strength pill reaches a maximum task","kind":"real","visible":false,"input":{"tasks":[1000000000],"workers":[0],"pills":1,"strength":1000000000},"expected":1,"tags":["hidden","value-boundary"]}
+  ]
+}

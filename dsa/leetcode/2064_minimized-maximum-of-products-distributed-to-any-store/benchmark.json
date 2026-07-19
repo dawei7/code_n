@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2064",
+  "measurement_note": "Size is Q, the maximum product quantity, with three stores and two types each containing Q products. At least one type must remain in a single store, so the optimum is Q. The reference finds the first feasible limit in logarithmically many tests. A correct implementation that tests every limit from one upward completes all tiers and fails by linear-in-Q scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: optimum quantity 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"n": 3, "quantities": [64,64]},
+      "expected": 64,
+      "tags": ["benchmark", "scale-small", "boundary-optimum"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: optimum quantity 1024",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {"n": 3, "quantities": [1024,1024]},
+      "expected": 1024,
+      "tags": ["benchmark", "scale-medium", "boundary-optimum"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: optimum quantity 16384",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16384,
+      "input": {"n": 3, "quantities": [16384,16384]},
+      "expected": 16384,
+      "tags": ["benchmark", "scale-large", "boundary-optimum"]
+    }
+  ]
+}

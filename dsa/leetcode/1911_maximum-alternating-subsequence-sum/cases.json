@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1911",
+  "cases": [
+    {"id":"example-middle-valley","name":"sample: a valley enables a larger later addition","kind":"sample","visible":true,"input":{"nums":[4,2,5,3]},"expected":7,"tags":["sample","valley"]},
+    {"id":"example-increasing","name":"sample: the largest increasing value alone is optimal","kind":"sample","visible":true,"input":{"nums":[5,6,7,8]},"expected":8,"tags":["sample","increasing"]},
+    {"id":"example-deep-valley","name":"sample: select the first peak, deepest valley, and final peak","kind":"sample","visible":true,"input":{"nums":[6,2,1,2,4,5]},"expected":10,"tags":["sample","multiple-choices"]},
+    {"id":"trial-single","name":"one value is added","kind":"trial","visible":true,"input":{"nums":[9]},"expected":9,"tags":["single-element"]},
+    {"id":"trial-equal","name":"equal values provide no profitable alternation","kind":"trial","visible":true,"input":{"nums":[4,4,4,4]},"expected":4,"tags":["duplicates"]},
+    {"id":"real-decreasing","name":"hidden: repeated drops and rises in subsequence parity accumulate value","kind":"real","visible":false,"input":{"nums":[9,7,5,3,1]},"expected":9,"tags":["decreasing"]},
+    {"id":"real-two-peaks","name":"hidden: two separated peaks contribute through one valley","kind":"real","visible":false,"input":{"nums":[8,1,7]},"expected":14,"tags":["valley","two-peaks"]},
+    {"id":"real-many-turns","name":"hidden: every profitable rise after a drop contributes","kind":"real","visible":false,"input":{"nums":[5,1,6,2,8,3,9]},"expected":22,"tags":["multiple-valleys","multiple-peaks"]},
+    {"id":"real-leading-small","name":"hidden: an early small value may be skipped","kind":"real","visible":false,"input":{"nums":[1,10,2,9]},"expected":17,"tags":["skip-prefix","valley"]},
+    {"id":"real-trailing-drop","name":"hidden: a trailing drop need not be selected","kind":"real","visible":false,"input":{"nums":[3,8,2]},"expected":8,"tags":["skip-suffix"]},
+    {"id":"real-domain-maximum","name":"hidden: maximum values and a minimum valley remain within integer range","kind":"real","visible":false,"input":{"nums":[100000,1,100000]},"expected":199999,"tags":["domain-boundary","large-result"]},
+    {"id":"real-zigzag","name":"hidden: alternating local extremes all matter","kind":"real","visible":false,"input":{"nums":[10,2,8,1,7,3,9]},"expected":28,"tags":["zigzag","multiple-valleys"]}
+  ]
+}

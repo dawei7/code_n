@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1833",
+  "cases": [
+    {"id":"example-four-bars","name":"sample: budget buys the four cheapest bars","kind":"sample","visible":true,"input":{"costs":[1,3,2,4,1],"coins":7},"expected":4,"tags":["example","mixed-costs"]},
+    {"id":"example-none-affordable","name":"sample: every bar exceeds the budget","kind":"sample","visible":true,"input":{"costs":[10,6,8,7,7,8],"coins":5},"expected":0,"tags":["example","none-affordable"]},
+    {"id":"example-all-affordable","name":"sample: budget covers every bar","kind":"sample","visible":true,"input":{"costs":[1,6,3,1,2,5],"coins":20},"expected":6,"tags":["example","all-affordable"]},
+    {"id":"trial-single-exact","name":"one bar exactly exhausts the budget","kind":"trial","visible":true,"input":{"costs":[5],"coins":5},"expected":1,"tags":["single-bar","exact-budget"]},
+    {"id":"trial-single-too-expensive","name":"one bar costs one coin too much","kind":"trial","visible":true,"input":{"costs":[6],"coins":5},"expected":0,"tags":["single-bar","budget-boundary"]},
+    {"id":"trial-partial-equal-bucket","name":"budget buys only part of an equal-price bucket","kind":"trial","visible":true,"input":{"costs":[2,2,2,2,2],"coins":7},"expected":3,"tags":["duplicates","partial-bucket"]},
+    {"id":"real-cheapest-over-original-order","name":"hidden: original order must not drive purchases","kind":"real","visible":false,"input":{"costs":[100,1,50,2,3],"coins":6},"expected":3,"tags":["input-order","greedy"]},
+    {"id":"real-one-coin-bars","name":"hidden: minimum prices maximize a small budget","kind":"real","visible":false,"input":{"costs":[1,1,1,1,2,2],"coins":4},"expected":4,"tags":["minimum-cost","duplicates"]},
+    {"id":"real-maximum-cost-exact","name":"hidden: maximum legal price can be bought exactly","kind":"real","visible":false,"input":{"costs":[100000,99999],"coins":100000},"expected":1,"tags":["maximum-cost","exact-budget"]},
+    {"id":"real-leftover-insufficient","name":"hidden: leftover coins cannot cover the next price","kind":"real","visible":false,"input":{"costs":[2,3,4,5],"coins":8},"expected":2,"tags":["leftover-budget","prefix"]}
+  ]
+}

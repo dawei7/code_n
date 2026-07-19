@@ -4,17 +4,39 @@ import { createPortal } from 'react-dom';
 import { ApiError } from '../api/client';
 import {
   MAX_CUSTOM_GROUP_DEPTH,
+  MAX_CUSTOM_ROOT_SETS,
   addGroupToCustomSet,
   addProblemToCustomSet,
+  addTemplateToCustomSet,
   cloneCustomProblemSets,
   copyCustomNode,
   countSetProblems,
   createCustomId,
+  createCustomSetFromTemplate,
   moveCustomNode,
   removeCustomNode,
+  unwrapCustomGroup,
   updateCustomGroupName,
 } from '../lib/customProblemSets';
 import { eloDisplayForChallenge } from '../lib/challengeMetrics';
+import {
+  STANDARD_HIERARCHY_OPTIONS,
+  buildPersonalProblemHierarchy,
+  buildStandardProblemHierarchy,
+  filterProblemHierarchy,
+  findHierarchyNode,
+  hierarchyNodesToTemplates,
+  hierarchyProblemCount,
+  type ProblemHierarchyNode,
+  type ProblemHierarchyRoot,
+  type StandardHierarchySetId,
+} from '../lib/problemSetHierarchies';
+import {
+  MAX_PERSONAL_SET_IMPORT_BYTES,
+  importPersonalProblemSets,
+  personalProblemSetExportFilename,
+  serializePersonalProblemSets,
+} from '../lib/personalProblemSetExchange';
 import type {
   ChallengeSummary,
   CustomProblemGroup,
@@ -25,7 +47,9 @@ import type {
 
 type DragPayload =
   | { kind: 'library-problem'; challengeId: string }
-  | { kind: 'tree-node'; setId: string; nodeId: string };
+  | { kind: 'tree-node'; setId: string; nodeId: string }
+  | { kind: 'hierarchy-root'; rootKey: string }
+  | { kind: 'hierarchy-node'; rootKey: string; nodeKey: string };
 
 interface CustomProblemSetBuilderProps {
   savedSets: CustomProblemSet[];
@@ -39,6 +63,7 @@ const DRAG_FORMAT = 'application/x-coden-custom-problem-set';
 const INITIAL_LIBRARY_LIMIT = 200;
 
 type DragAction = 'move' | 'copy';
+type LibraryMode = 'problems' | 'sets';
 type LibrarySort =
   | 'leetcode_asc'
   | 'elo_asc'
@@ -114,6 +139,16 @@ function readDragPayload(event: React.DragEvent): DragPayload | null {
     ) {
       return { kind: parsed.kind, setId: parsed.setId, nodeId: parsed.nodeId };
     }
+    if (parsed.kind === 'hierarchy-root' && typeof parsed.rootKey === 'string') {
+      return { kind: parsed.kind, rootKey: parsed.rootKey };
+    }
+    if (
+      parsed.kind === 'hierarchy-node'
+      && typeof parsed.rootKey === 'string'
+      && typeof parsed.nodeKey === 'string'
+    ) {
+      return { kind: parsed.kind, rootKey: parsed.rootKey, nodeKey: parsed.nodeKey };
+    }
   } catch {
     return null;
   }
@@ -171,6 +206,10 @@ export function CustomProblemSetBuilder({
   const [librarySort, setLibrarySort] = useState<LibrarySort>('leetcode_asc');
   const [libraryLimit, setLibraryLimit] = useState(INITIAL_LIBRARY_LIMIT);
   const [libraryTargetKey, setLibraryTargetKey] = useState<string | null>(null);
+  const [libraryMode, setLibraryMode] = useState<LibraryMode>('problems');
+  const [selectedSourceRootKey, setSelectedSourceRootKey] = useState<string | null>(null);
+  const [expandedSourceNodes, setExpandedSourceNodes] = useState<Record<string, boolean>>({});
+  const [collapsedTreeGroups, setCollapsedTreeGroups] = useState<Record<string, boolean>>({});
   const [dragAction, setDragAction] = useState<DragAction>('move');
   const [notice, setNotice] = useState<string | null>(null);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -311,6 +350,27 @@ export function CustomProblemSetBuilder({
     libraryTopic,
   ]);
   const libraryChallenges = filteredLibraryChallenges.slice(0, libraryLimit);
+  const filteredHierarchyChallengeIds = useMemo(
+    () => filteredLibraryChallenges.map((challenge) => challenge.id),
+    [filteredLibraryChallenges],
+  );
+  const hierarchyRootForKey = (rootKey: string): ProblemHierarchyRoot | null => {
+    let root: ProblemHierarchyRoot | null = null;
+    if (rootKey.startsWith('standard:')) {
+      const setId = rootKey.slice('standard:'.length) as StandardHierarchySetId;
+      if (!STANDARD_HIERARCHY_OPTIONS.some((option) => option.id === setId)) return null;
+      root = buildStandardProblemHierarchy(setId, challenges);
+    }
+    if (!root && rootKey.startsWith('personal:')) {
+      const set = draft.find((candidate) => `personal:${candidate.id}` === rootKey);
+      root = set ? buildPersonalProblemHierarchy(set) : null;
+    }
+    return root ? filterProblemHierarchy(root, filteredHierarchyChallengeIds) : null;
+  };
+  const selectedSourceRoot = useMemo(
+    () => selectedSourceRootKey ? hierarchyRootForKey(selectedSourceRootKey) : null,
+    [challenges, draft, filteredHierarchyChallengeIds, selectedSourceRootKey],
+  );
 
   useEffect(() => {
     setLibraryLimit(INITIAL_LIBRARY_LIMIT);
@@ -334,6 +394,10 @@ export function CustomProblemSetBuilder({
   };
 
   const addSet = () => {
+    if (draft.length >= MAX_CUSTOM_ROOT_SETS) {
+      setNotice(`Personal can contain at most ${MAX_CUSTOM_ROOT_SETS} root sets.`);
+      return;
+    }
     let suffix = draft.length + 1;
     let name = `My problem set ${suffix}`;
     while (draft.some((set) => set.name === name)) {
@@ -344,6 +408,7 @@ export function CustomProblemSetBuilder({
       id: createCustomId('set'),
       name,
       description: '',
+      career_mode: false,
       nodes: [],
     };
     setDraft((sets) => [...sets, next]);
@@ -369,7 +434,9 @@ export function CustomProblemSetBuilder({
     setNotice('Set removed from the draft. Save to apply the change.');
   };
 
-  const changeSet = (patch: Partial<Pick<CustomProblemSet, 'name' | 'description'>>) => {
+  const changeSet = (
+    patch: Partial<Pick<CustomProblemSet, 'name' | 'description' | 'career_mode'>>,
+  ) => {
     if (!selectedSetId) return;
     setDraft((sets) => sets.map((set) => (
       set.id === selectedSetId ? { ...set, ...patch } : set
@@ -388,12 +455,65 @@ export function CustomProblemSetBuilder({
     });
   };
 
+  const exportSets = (sets: CustomProblemSet[], setName?: string) => {
+    if (sets.length === 0) {
+      setNotice('There are no Personal roots to export.');
+      return;
+    }
+    const blob = new Blob(
+      [serializePersonalProblemSets(sets, challenges)],
+      { type: 'application/json;charset=utf-8' },
+    );
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = personalProblemSetExportFilename(setName);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+    setNotice(`${sets.length} Personal root${sets.length === 1 ? '' : 's'} exported in cOde(n) exchange format.`);
+  };
+
+  const importSets = async (file: File, input: HTMLInputElement) => {
+    try {
+      if (file.size > MAX_PERSONAL_SET_IMPORT_BYTES) {
+        throw new Error('The selected exchange is larger than the 5 MB import limit.');
+      }
+      const result = importPersonalProblemSets(await file.text(), draft, challenges);
+      setDraft(result.sets);
+      const firstImportedSet = result.sets[draft.length];
+      if (firstImportedSet) {
+        setSelectedSetId(firstImportedSet.id);
+        setLibraryTargetKey(`${firstImportedSet.id}:root`);
+      }
+      const details = [
+        `${result.importedSetCount} root set(s)`,
+        `${result.importedProblemCount} problem placement(s)`,
+      ];
+      if (result.warnings.length > 0) details.push(result.warnings.join(' '));
+      setNotice(`Imported ${details.join(' · ')} Save to apply the imported structure.`);
+      setSaveError(null);
+    } catch (error) {
+      setNotice(null);
+      setSaveError(error instanceof Error ? error.message : 'Unable to import Personal sets.');
+    } finally {
+      input.value = '';
+    }
+  };
+
   const applyTreeResult = (
     result: ReturnType<typeof addProblemToCustomSet>,
     successMessage: string,
+    ignoredMessage = 'That problem already exists in this leaf, so nothing was added.',
   ) => {
     if (!result.ok) {
       setNotice(result.message);
+      return;
+    }
+    if (result.ignored) {
+      setNotice(ignoredMessage);
+      setSaveError(null);
       return;
     }
     setDraft(result.sets);
@@ -415,6 +535,58 @@ export function CustomProblemSetBuilder({
       addProblemToCustomSet(draft, targetSetId, targetGroupId, challengeId),
       `${challenge?.name ?? 'Problem'} added. Save when the structure is ready.`,
     );
+  };
+
+  const addAllFilteredProblems = () => {
+    if (!effectiveLibraryTarget) {
+      setNotice('Create or select a problem set first.');
+      return;
+    }
+    if (filteredLibraryChallenges.length === 0) {
+      setNotice('No filtered problems are available to add.');
+      return;
+    }
+
+    const beforeSet = draft.find((set) => set.id === effectiveLibraryTarget.setId);
+    const result = addTemplateToCustomSet(
+      draft,
+      effectiveLibraryTarget.setId,
+      effectiveLibraryTarget.groupId,
+      filteredLibraryChallenges.map((challenge) => ({
+        type: 'problem' as const,
+        challenge_id: challenge.id,
+      })),
+    );
+    if (!result.ok) {
+      setNotice(result.message);
+      return;
+    }
+
+    const afterSet = result.sets.find((set) => set.id === effectiveLibraryTarget.setId);
+    const addedCount = Math.max(
+      0,
+      (afterSet ? countSetProblems(afterSet) : 0)
+        - (beforeSet ? countSetProblems(beforeSet) : 0),
+    );
+    const ignoredCount = filteredLibraryChallenges.length - addedCount;
+    if (addedCount === 0) {
+      setNotice('All filtered problems already exist in this destination leaf.');
+      setSaveError(null);
+      return;
+    }
+
+    setDraft(result.sets);
+    setNotice(
+      `Added ${addedCount} filtered ${addedCount === 1 ? 'problem' : 'problems'} to `
+      + `${effectiveLibraryTarget.label}.`
+      + (
+        ignoredCount > 0
+          ? ` ${ignoredCount} same-leaf ${ignoredCount === 1 ? 'duplicate was' : 'duplicates were'} ignored.`
+          : ''
+      )
+      + ' Save when the structure is ready.',
+    );
+    setSaveError(null);
   };
 
   const addGroup = (targetGroupId: string | null) => {
@@ -453,6 +625,28 @@ export function CustomProblemSetBuilder({
       );
       return;
     }
+    if (payload.kind === 'hierarchy-root' || payload.kind === 'hierarchy-node') {
+      const root = hierarchyRootForKey(payload.rootKey);
+      const node = payload.kind === 'hierarchy-node'
+        ? root && findHierarchyNode(root.nodes, payload.nodeKey)
+        : null;
+      if (!root || (payload.kind === 'hierarchy-node' && !node)) {
+        setNotice('The source hierarchy is no longer available.');
+        return;
+      }
+      const sourceNodes = node ? [node] : root.nodes;
+      applyTreeResult(
+        addTemplateToCustomSet(
+          draft,
+          targetSetId,
+          targetGroupId,
+          hierarchyNodesToTemplates(sourceNodes),
+          beforeNodeId,
+        ),
+        `${node?.type === 'group' ? node.name : root.name} copied with its complete hierarchy.`,
+      );
+      return;
+    }
     const shouldCopy = dragAction === 'copy' || event.ctrlKey;
     applyTreeResult(
       shouldCopy
@@ -475,6 +669,70 @@ export function CustomProblemSetBuilder({
       shouldCopy
         ? 'Item copied with its complete structure. Save to keep it.'
         : 'Item moved to the selected position. Save to keep it.',
+    );
+  };
+
+  const uniqueRootName = (baseName: string): string => {
+    if (!draft.some((set) => set.name === baseName)) return baseName;
+    let suffix = 2;
+    while (draft.some((set) => set.name === `${baseName} ${suffix}`)) suffix += 1;
+    return `${baseName} ${suffix}`;
+  };
+
+  const copyHierarchyAsRoot = (rootKey: string) => {
+    const root = hierarchyRootForKey(rootKey);
+    if (!root) {
+      setNotice('The source hierarchy is no longer available.');
+      return;
+    }
+    const result = createCustomSetFromTemplate(
+      draft,
+      uniqueRootName(root.name),
+      root.kind === 'standard'
+        ? `Copied from the standard ${root.name} hierarchy.`
+        : root.description,
+      hierarchyNodesToTemplates(root.nodes),
+      root.career_mode,
+    );
+    if (!result.ok) {
+      setNotice(result.message);
+      return;
+    }
+    const created = result.sets[result.sets.length - 1]!;
+    setDraft(result.sets);
+    setSelectedSetId(created.id);
+    setLibraryTargetKey(`${created.id}:root`);
+    setNotice(`${root.name} copied as a new Personal root.`);
+    setSaveError(null);
+  };
+
+  const handleRootDrop = (event: React.DragEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setDragOverTarget(null);
+    const payload = readDragPayload(event);
+    if (payload?.kind !== 'hierarchy-root') {
+      setNotice('Drop a standard or personal set root here to create another Personal root.');
+      return;
+    }
+    copyHierarchyAsRoot(payload.rootKey);
+  };
+
+  const copyHierarchyNodeToTarget = (
+    node: ProblemHierarchyNode,
+  ) => {
+    if (!effectiveLibraryTarget) {
+      setNotice('Create a Personal root before copying this hierarchy.');
+      return;
+    }
+    applyTreeResult(
+      addTemplateToCustomSet(
+        draft,
+        effectiveLibraryTarget.setId,
+        effectiveLibraryTarget.groupId,
+        hierarchyNodesToTemplates([node]),
+      ),
+      `${node.type === 'group' ? node.name : 'Problem'} copied to ${effectiveLibraryTarget.label}.`,
     );
   };
 
@@ -653,6 +911,7 @@ export function CustomProblemSetBuilder({
     set: CustomProblemSet,
     depth: number,
   ): React.ReactNode => {
+    const collapsed = Boolean(collapsedTreeGroups[group.id]);
     return (
       <div
         key={group.id}
@@ -677,6 +936,23 @@ export function CustomProblemSetBuilder({
           >
             ::
           </span>
+          <button
+            type="button"
+            draggable={false}
+            onClick={(event) => {
+              event.stopPropagation();
+              setCollapsedTreeGroups((current) => ({
+                ...current,
+                [group.id]: !current[group.id],
+              }));
+            }}
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded border border-coden-border font-mono text-[11px] text-coden-muted hover:border-coden-accent hover:text-coden-accent"
+            title={`${collapsed ? 'Expand' : 'Collapse'} ${group.name || 'this folder'}`}
+            aria-label={`${collapsed ? 'Expand' : 'Collapse'} ${group.name || 'folder'}`}
+            aria-expanded={!collapsed}
+          >
+            {collapsed ? '>' : 'v'}
+          </button>
           <span className="shrink-0 rounded bg-coden-border px-1.5 py-0.5 font-mono text-[10px] text-coden-muted">
             Level {depth}
           </span>
@@ -704,17 +980,232 @@ export function CustomProblemSetBuilder({
           <button
             type="button"
             onClick={() => {
+              const result = unwrapCustomGroup(draft, set.id, group.id);
+              if (!result.ok) {
+                setNotice(result.message);
+                return;
+              }
+              setDraft(result.sets);
+              setCollapsedTreeGroups((current) => {
+                const next = { ...current };
+                delete next[group.id];
+                return next;
+              });
+              setNotice(
+                'Folder level removed. Its folders and problems were promoted in place; '
+                + 'same-leaf duplicates were ignored.',
+              );
+            }}
+            className="rounded border border-coden-border px-2 py-1 text-[11px] text-coden-muted hover:border-coden-accent hover:text-coden-accent"
+            title="Remove only this folder level and promote its contents to the parent"
+          >
+            Remove level
+          </button>
+          <button
+            type="button"
+            onClick={() => {
               setDraft((sets) => removeCustomNode(sets, set.id, group.id));
               setNotice('Folder and its contents removed from the draft. Save to apply.');
             }}
             className="rounded px-1.5 py-1 text-[11px] text-coden-muted hover:bg-rose-500/15 hover:text-rose-300"
+            title="Delete this folder and everything inside it"
           >
-            Remove
+            Delete branch
           </button>
         </div>
-        <div className="ml-4 mt-2 border-l border-coden-border pl-3">
-          {renderNodeList(group.children, set, group.id, depth + 1)}
+        {!collapsed && (
+          <div className="ml-4 mt-2 border-l border-coden-border pl-3">
+            {renderNodeList(group.children, set, group.id, depth + 1)}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const renderHierarchyNodes = (
+    nodes: ProblemHierarchyNode[],
+    rootKey: string,
+    depth = 0,
+  ): React.ReactNode => (
+    <div className={depth === 0 ? 'space-y-1' : 'ml-3 mt-1 space-y-1 border-l border-coden-border pl-2'}>
+      {nodes.map((node) => {
+        if (node.type === 'problem') {
+          const challenge = challengeById.get(node.challenge_id);
+          return (
+            <div
+              key={node.key}
+              draggable={Boolean(effectiveLibraryTarget)}
+              onDragStart={(event) => writeDragPayload(event, {
+                kind: 'hierarchy-node',
+                rootKey,
+                nodeKey: node.key,
+              })}
+              className="flex cursor-grab items-center gap-2 rounded border border-transparent px-2 py-1.5 hover:border-coden-border hover:bg-coden-border/30"
+            >
+              <span className="font-mono text-[10px] text-coden-muted">::</span>
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-[11px] text-coden-text">
+                  {challenge?.name ?? node.challenge_id}
+                </div>
+                <div className="font-mono text-[9px] text-coden-muted">
+                  LC {challenge?.leetcode_frontend_id || node.challenge_id.replace(/^lc_/, '')}
+                </div>
+              </div>
+              <button
+                type="button"
+                disabled={!effectiveLibraryTarget}
+                onClick={() => copyHierarchyNodeToTarget(node)}
+                className="rounded border border-coden-border px-1.5 py-1 text-[9px] text-coden-muted hover:border-coden-accent hover:text-coden-accent disabled:opacity-40"
+              >
+                Copy
+              </button>
+            </div>
+          );
+        }
+        const expanded = Boolean(expandedSourceNodes[node.key]);
+        return (
+          <div key={node.key}>
+            <div
+              draggable={Boolean(effectiveLibraryTarget)}
+              onDragStart={(event) => writeDragPayload(event, {
+                kind: 'hierarchy-node',
+                rootKey,
+                nodeKey: node.key,
+              })}
+              className="flex cursor-grab items-center gap-2 rounded border border-transparent px-2 py-1.5 hover:border-coden-border hover:bg-coden-border/30"
+            >
+              <button
+                type="button"
+                onClick={() => setExpandedSourceNodes((current) => ({
+                  ...current,
+                  [node.key]: !current[node.key],
+                }))}
+                className="min-w-0 flex-1 text-left"
+              >
+                <span className="mr-1.5 font-mono text-[9px] text-coden-muted">
+                  {expanded ? 'v' : '>'}
+                </span>
+                <span className="text-[11px] font-semibold text-coden-text">
+                  {node.name}
+                </span>
+                <span className="ml-1.5 font-mono text-[9px] text-coden-muted">
+                  {hierarchyProblemCount(node.children)}
+                </span>
+              </button>
+              <button
+                type="button"
+                disabled={!effectiveLibraryTarget}
+                onClick={() => copyHierarchyNodeToTarget(node)}
+                className="rounded border border-coden-border px-1.5 py-1 text-[9px] text-coden-muted hover:border-coden-accent hover:text-coden-accent disabled:opacity-40"
+                title={`Copy ${node.name} and its complete hierarchy`}
+              >
+                Copy tree
+              </button>
+            </div>
+            {expanded && renderHierarchyNodes(node.children, rootKey, depth + 1)}
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  const copyHierarchyRootToTarget = (rootKey: string) => {
+    const root = hierarchyRootForKey(rootKey);
+    if (!root || !effectiveLibraryTarget) {
+      setNotice('Choose a Personal destination before copying this hierarchy.');
+      return;
+    }
+    applyTreeResult(
+      addTemplateToCustomSet(
+        draft,
+        effectiveLibraryTarget.setId,
+        effectiveLibraryTarget.groupId,
+        hierarchyNodesToTemplates(root.nodes),
+      ),
+      `${root.name} copied into ${effectiveLibraryTarget.label}.`,
+    );
+  };
+
+  const renderSourceRoot = (
+    rootKey: string,
+    name: string,
+    description: string,
+    kind: 'standard' | 'personal',
+    problemCount: number | null,
+    careerMode: boolean,
+  ) => {
+    const selected = selectedSourceRootKey === rootKey;
+    return (
+      <div
+        key={rootKey}
+        draggable
+        onDragStart={(event) => writeDragPayload(event, {
+          kind: 'hierarchy-root',
+          rootKey,
+        })}
+        className={[
+          'rounded border',
+          selected
+            ? 'border-coden-accent bg-coden-accent/5'
+            : 'border-coden-border bg-coden-bg/40',
+        ].join(' ')}
+      >
+        <div className="flex items-start gap-2 p-2">
+          <button
+            type="button"
+            onClick={() => setSelectedSourceRootKey(selected ? null : rootKey)}
+            className="min-w-0 flex-1 text-left"
+          >
+            <span className="flex min-w-0 items-center gap-1.5 text-xs font-semibold text-coden-text">
+              <span className="mr-1.5 font-mono text-[9px] text-coden-muted">
+                {selected ? 'v' : '>'}
+              </span>
+              <span className="min-w-0 truncate">{name}</span>
+              {careerMode && (
+                <span className="shrink-0 rounded border border-coden-accent/40 px-1 py-0.5 font-mono text-[9px] text-coden-accent">
+                  Career
+                </span>
+              )}
+            </span>
+            <span className="mt-0.5 block line-clamp-2 text-[9px] leading-3 text-coden-muted">
+              {kind === 'standard' ? 'Standard set' : 'Personal set'}
+              {problemCount !== null ? ` · ${problemCount} problems` : ''}
+              {' · '}
+              {description || 'No description'}
+            </span>
+          </button>
+          <div className="flex shrink-0 flex-col gap-1">
+            <button
+              type="button"
+              disabled={draft.length >= MAX_CUSTOM_ROOT_SETS}
+              onClick={() => copyHierarchyAsRoot(rootKey)}
+              className="rounded border border-coden-border px-1.5 py-1 text-[9px] text-coden-muted hover:border-coden-accent hover:text-coden-accent disabled:cursor-not-allowed disabled:opacity-35"
+              title={`Copy ${name} as another Personal root`}
+            >
+              Copy as root
+            </button>
+            <button
+              type="button"
+              disabled={!effectiveLibraryTarget}
+              onClick={() => copyHierarchyRootToTarget(rootKey)}
+              className="rounded border border-coden-border px-1.5 py-1 text-[9px] text-coden-muted hover:border-coden-accent hover:text-coden-accent disabled:cursor-not-allowed disabled:opacity-35"
+              title={`Copy the complete ${name} hierarchy into the selected destination`}
+            >
+              Copy into
+            </button>
+          </div>
         </div>
+        {selected && selectedSourceRoot && (
+          <div className="max-h-[360px] overflow-y-auto border-t border-coden-border p-2">
+            {selectedSourceRoot.nodes.length > 0
+              ? renderHierarchyNodes(selectedSourceRoot.nodes, rootKey)
+              : (
+                  <div className="px-2 py-4 text-center text-[10px] text-coden-muted">
+                    This set has no available hierarchy.
+                  </div>
+                )}
+          </div>
+        )}
       </div>
     );
   };
@@ -725,6 +1216,7 @@ export function CustomProblemSetBuilder({
         effectiveLibraryTarget.groupId,
       )
     : null;
+  const rootDropActive = dragOverTarget === 'personal-root-create';
 
   return createPortal(
     <div
@@ -741,7 +1233,10 @@ export function CustomProblemSetBuilder({
                 Personal problem-set builder
               </h2>
               <span className="rounded-full border border-coden-border px-2 py-0.5 font-mono text-[10px] text-coden-muted">
-                Up to 3 folder levels
+                Up to 5 Personal roots
+              </span>
+              <span className="rounded-full border border-coden-border px-2 py-0.5 font-mono text-[10px] text-coden-muted">
+                Up to 3 folder levels per root
               </span>
             </div>
             <p className="mt-1 max-w-3xl text-xs leading-5 text-coden-muted">
@@ -750,6 +1245,41 @@ export function CustomProblemSetBuilder({
             </p>
           </div>
           <div className="flex shrink-0 items-center gap-3">
+            <div className="flex items-center gap-1 rounded-lg border border-coden-border bg-coden-bg p-1">
+              <button
+                type="button"
+                disabled={!selectedSet}
+                onClick={() => selectedSet && exportSets([selectedSet], selectedSet.name)}
+                className="rounded px-2 py-1.5 text-[10px] font-semibold text-coden-muted hover:bg-coden-border hover:text-coden-text disabled:cursor-not-allowed disabled:opacity-35"
+                title="Export the selected Personal root with its complete hierarchy"
+              >
+                Export selected
+              </button>
+              <button
+                type="button"
+                disabled={draft.length === 0}
+                onClick={() => exportSets(draft)}
+                className="rounded px-2 py-1.5 text-[10px] font-semibold text-coden-muted hover:bg-coden-border hover:text-coden-text disabled:cursor-not-allowed disabled:opacity-35"
+                title="Export every Personal root"
+              >
+                Export all
+              </button>
+              <label
+                className="cursor-pointer rounded px-2 py-1.5 text-[10px] font-semibold text-coden-muted hover:bg-coden-border hover:text-coden-text"
+                title="Import a versioned cOde(n) Personal-set exchange"
+              >
+                Import
+                <input
+                  type="file"
+                  accept="application/json,.json"
+                  className="sr-only"
+                  onChange={(event) => {
+                    const file = event.target.files?.[0];
+                    if (file) void importSets(file, event.currentTarget);
+                  }}
+                />
+              </label>
+            </div>
             <div className="rounded-lg border border-coden-border bg-coden-bg p-1">
               <span className="px-2 text-[10px] font-semibold uppercase tracking-wider text-coden-muted">
                 Drag action
@@ -789,15 +1319,41 @@ export function CustomProblemSetBuilder({
         <div className="grid min-h-0 flex-1 grid-cols-[260px_minmax(480px,1fr)_440px] overflow-x-auto">
           <aside className="flex min-h-0 flex-col border-r border-coden-border bg-coden-surface/50">
             <div className="border-b border-coden-border p-3">
-              <button
-                type="button"
-                onClick={addSet}
-                className="w-full rounded bg-coden-accent px-3 py-2 text-sm font-semibold text-[var(--coden-accent-contrast)] hover:brightness-110"
+              <div
+                onDragOver={(event) => {
+                  event.preventDefault();
+                  event.dataTransfer.dropEffect = 'copy';
+                  setDragOverTarget('personal-root-create');
+                }}
+                onDragLeave={(event) => {
+                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                    setDragOverTarget((current) => (
+                      current === 'personal-root-create' ? null : current
+                    ));
+                  }
+                }}
+                onDrop={handleRootDrop}
+                className={[
+                  'rounded border border-dashed p-1 transition-colors',
+                  rootDropActive
+                    ? 'border-coden-accent bg-coden-accent/10'
+                    : 'border-transparent',
+                ].join(' ')}
               >
-                New problem set
-              </button>
+                <button
+                  type="button"
+                  onClick={addSet}
+                  disabled={draft.length >= MAX_CUSTOM_ROOT_SETS}
+                  className="w-full rounded bg-coden-accent px-3 py-2 text-sm font-semibold text-[var(--coden-accent-contrast)] hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  New Personal root ({draft.length}/{MAX_CUSTOM_ROOT_SETS})
+                </button>
+                <div className="mt-1 text-center text-[9px] text-coden-muted">
+                  Drop a standard or personal set here to copy its whole hierarchy as a root.
+                </div>
+              </div>
               <p className="mt-2 text-[10px] leading-4 text-coden-muted">
-                Each entry below is a top-level set in Personal. Drop an item on a set to
+                Each entry below is a root under Personal. Drop an item on a root to
                 {dragAction === 'copy' ? ' copy' : ' move'} it to that set's root.
               </p>
             </div>
@@ -825,6 +1381,7 @@ export function CustomProblemSetBuilder({
                     </span>
                     <span className="mt-0.5 block font-mono text-[10px] text-coden-muted">
                       {countSetProblems(set)} {countSetProblems(set) === 1 ? 'problem' : 'problems'}
+                      {set.career_mode ? ' · Career mode' : ''}
                     </span>
                   </button>
                 );
@@ -833,7 +1390,7 @@ export function CustomProblemSetBuilder({
                 <div className="px-3 py-8 text-center text-xs leading-5 text-coden-muted">
                   No personal sets yet.
                   <br />
-                  Start with “New problem set”.
+                  Start with “New Personal root” or copy a standard hierarchy.
                 </div>
               )}
             </div>
@@ -855,6 +1412,23 @@ export function CustomProblemSetBuilder({
                           maxLength={80}
                           className="w-full rounded border border-coden-border bg-coden-surface px-3 py-2 text-sm font-semibold text-coden-text focus:border-coden-accent focus:outline-none"
                         />
+                      </label>
+                      <label className="flex cursor-pointer items-start gap-2 rounded border border-coden-border bg-coden-surface px-3 py-2">
+                        <input
+                          type="checkbox"
+                          checked={selectedSet.career_mode}
+                          onChange={(event) => changeSet({ career_mode: event.target.checked })}
+                          className="mt-0.5 accent-[var(--coden-accent)]"
+                        />
+                        <span>
+                          <span className="block text-xs font-semibold text-coden-text">
+                            Career mode for this Personal root
+                          </span>
+                          <span className="mt-0.5 block text-[10px] leading-4 text-coden-muted">
+                            Problems unlock in order within each leaf. Other Personal roots keep
+                            their own setting.
+                          </span>
+                        </span>
                       </label>
                       <label className="block">
                         <span className="sr-only">Set description</span>
@@ -936,18 +1510,20 @@ export function CustomProblemSetBuilder({
               <div className="flex flex-1 items-center justify-center p-8 text-center">
                 <div>
                   <div className="text-base font-semibold text-coden-text">
-                    Create your first personal problem set
+                    Create your first Personal root
                   </div>
                   <p className="mt-2 max-w-md text-sm leading-6 text-coden-muted">
                     Use sets for goals such as “Backend interview”, “Weak areas”, or
                     “30-day review”, then organize them with up to three folder levels.
+                    Each root can independently enable Career mode.
                   </p>
                   <button
                     type="button"
                     onClick={addSet}
+                    disabled={draft.length >= MAX_CUSTOM_ROOT_SETS}
                     className="mt-4 rounded bg-coden-accent px-4 py-2 text-sm font-semibold text-[var(--coden-accent-contrast)] hover:brightness-110"
                   >
-                    Create a problem set
+                    Create a Personal root
                   </button>
                 </div>
               </div>
@@ -957,14 +1533,46 @@ export function CustomProblemSetBuilder({
           <aside className="flex min-h-0 flex-col border-l border-coden-border bg-coden-surface/40">
             <div className="border-b border-coden-border p-3">
               <div className="flex items-center justify-between gap-3">
-                <h3 className="text-sm font-semibold text-coden-text">Problem library</h3>
+                <h3 className="text-sm font-semibold text-coden-text">
+                  {libraryMode === 'problems' ? 'Problem library' : 'Set hierarchy library'}
+                </h3>
                 <span className="font-mono text-[10px] text-coden-muted">
-                  {filteredLibraryChallenges.length} matches
+                  {libraryMode === 'problems'
+                    ? `${filteredLibraryChallenges.length} matches`
+                    : `${STANDARD_HIERARCHY_OPTIONS.length + draft.length} roots · ${filteredLibraryChallenges.length} matches`}
                 </span>
               </div>
               <p className="mt-1 text-[10px] leading-4 text-coden-muted">
-                Drag into any insertion line, or choose any existing set and folder below.
+                {libraryMode === 'problems'
+                  ? 'Drag into any insertion line, or choose any existing set and folder below.'
+                  : 'Browse every standard and Personal set. Copy or drag a complete hierarchy.'}
               </p>
+              <div className="mt-2 grid grid-cols-2 rounded border border-coden-border bg-coden-bg p-1">
+                <button
+                  type="button"
+                  onClick={() => setLibraryMode('problems')}
+                  className={[
+                    'rounded px-2 py-1 text-[10px] font-semibold',
+                    libraryMode === 'problems'
+                      ? 'bg-coden-accent text-[var(--coden-accent-contrast)]'
+                      : 'text-coden-muted hover:bg-coden-border',
+                  ].join(' ')}
+                >
+                  Individual problems
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLibraryMode('sets')}
+                  className={[
+                    'rounded px-2 py-1 text-[10px] font-semibold',
+                    libraryMode === 'sets'
+                      ? 'bg-coden-accent text-[var(--coden-accent-contrast)]'
+                      : 'text-coden-muted hover:bg-coden-border',
+                  ].join(' ')}
+                >
+                  Sets and hierarchies
+                </button>
+              </div>
               <input
                 value={libraryQuery}
                 onChange={(event) => setLibraryQuery(event.target.value)}
@@ -1104,12 +1712,31 @@ export function CustomProblemSetBuilder({
                   ))}
                 </select>
                 <span className="mt-1 block text-[9px] text-coden-muted">
-                  Drag a problem or complete folder onto this box to {dragAction} it here.
+                  {libraryMode === 'sets'
+                    ? 'Hierarchy-library drops always create a deep copy here.'
+                    : `Drag a problem or complete folder onto this box to ${dragAction} it here.`}
                 </span>
               </label>
+              {libraryMode === 'problems' && (
+                <button
+                  type="button"
+                  onClick={addAllFilteredProblems}
+                  disabled={!effectiveLibraryTarget || filteredLibraryChallenges.length === 0}
+                  className="mt-2 w-full rounded border border-coden-accent bg-coden-accent/10 px-3 py-2 text-xs font-semibold text-coden-accent hover:bg-coden-accent/20 disabled:cursor-not-allowed disabled:border-coden-border disabled:bg-transparent disabled:text-coden-muted disabled:opacity-50"
+                  title={effectiveLibraryTarget
+                    ? `Add every filtered match to ${effectiveLibraryTarget.label}, including matches not currently rendered`
+                    : 'Create a personal set first'}
+                >
+                  Add all {filteredLibraryChallenges.length} filtered
+                  {' '}
+                  {filteredLibraryChallenges.length === 1 ? 'problem' : 'problems'}
+                </button>
+              )}
             </div>
             <div className="min-h-0 flex-1 space-y-1 overflow-y-auto p-2">
-              {libraryChallenges.map((challenge) => {
+              {libraryMode === 'problems' ? (
+                <>
+                  {libraryChallenges.map((challenge) => {
                 const elo = eloDisplayForChallenge(challenge);
                 const placements = countProblemPlacements(draft, challenge.id);
                 const difficultyClass = challenge.difficulty_label === 'Easy'
@@ -1175,28 +1802,91 @@ export function CustomProblemSetBuilder({
                     </div>
                   </div>
                 );
-              })}
-              {libraryChallenges.length === 0 && (
-                <div className="p-5 text-center text-xs text-coden-muted">
-                  No problems match this search.
+                  })}
+                  {libraryChallenges.length === 0 && (
+                    <div className="p-5 text-center text-xs text-coden-muted">
+                      No problems match this search.
+                    </div>
+                  )}
+                  {libraryChallenges.length < filteredLibraryChallenges.length && (
+                    <button
+                      type="button"
+                      onClick={() => setLibraryLimit((limit) => limit + INITIAL_LIBRARY_LIMIT)}
+                      className="w-full rounded border border-coden-border px-3 py-2 text-xs text-coden-muted hover:bg-coden-border hover:text-coden-text"
+                    >
+                      Show {Math.min(
+                        INITIAL_LIBRARY_LIMIT,
+                        filteredLibraryChallenges.length - libraryChallenges.length,
+                      )} more
+                    </button>
+                  )}
+                </>
+              ) : (
+                <div className="space-y-3">
+                  <section>
+                    <div className="mb-1.5 flex items-center justify-between px-1">
+                      <h4 className="text-[10px] font-semibold uppercase tracking-wider text-coden-muted">
+                        Standard sets
+                      </h4>
+                      <span className="font-mono text-[9px] text-coden-muted">
+                        {STANDARD_HIERARCHY_OPTIONS.length}
+                      </span>
+                    </div>
+                    <div className="space-y-1.5">
+                      {STANDARD_HIERARCHY_OPTIONS.map((option) => renderSourceRoot(
+                        `standard:${option.id}`,
+                        option.label,
+                        option.description,
+                        'standard',
+                        selectedSourceRootKey === `standard:${option.id}` && selectedSourceRoot
+                          ? hierarchyProblemCount(selectedSourceRoot.nodes)
+                          : null,
+                        option.hasCareerPath,
+                      ))}
+                    </div>
+                  </section>
+                  <section>
+                    <div className="mb-1.5 flex items-center justify-between px-1">
+                      <h4 className="text-[10px] font-semibold uppercase tracking-wider text-coden-muted">
+                        Personal sets
+                      </h4>
+                      <span className="font-mono text-[9px] text-coden-muted">
+                        {draft.length}/{MAX_CUSTOM_ROOT_SETS}
+                      </span>
+                    </div>
+                    <div className="space-y-1.5">
+                      {draft.map((set) => renderSourceRoot(
+                        `personal:${set.id}`,
+                        set.name || 'Untitled set',
+                        set.description,
+                        'personal',
+                        countSetProblems(set),
+                        set.career_mode,
+                      ))}
+                      {draft.length === 0 && (
+                        <div className="rounded border border-dashed border-coden-border px-3 py-5 text-center text-[10px] text-coden-muted">
+                          Create a Personal root to make it available as a reusable hierarchy.
+                        </div>
+                      )}
+                    </div>
+                  </section>
                 </div>
-              )}
-              {libraryChallenges.length < filteredLibraryChallenges.length && (
-                <button
-                  type="button"
-                  onClick={() => setLibraryLimit((limit) => limit + INITIAL_LIBRARY_LIMIT)}
-                  className="w-full rounded border border-coden-border px-3 py-2 text-xs text-coden-muted hover:bg-coden-border hover:text-coden-text"
-                >
-                  Show {Math.min(
-                    INITIAL_LIBRARY_LIMIT,
-                    filteredLibraryChallenges.length - libraryChallenges.length,
-                  )} more
-                </button>
               )}
             </div>
             <div className="border-t border-coden-border px-3 py-2 text-[10px] text-coden-muted">
-              Showing {libraryChallenges.length} of {filteredLibraryChallenges.length} matching problems
-              · {challenges.length} total.
+              {libraryMode === 'problems'
+                ? (
+                    <>
+                      Showing {libraryChallenges.length} of {filteredLibraryChallenges.length} matching problems
+                      {' · '}{challenges.length} total.
+                    </>
+                  )
+                : (
+                    <>
+                      {filteredLibraryChallenges.length} matching problems · Drag a root to “New Personal root”,
+                      or copy any opened branch into the selected destination.
+                    </>
+                  )}
             </div>
           </aside>
         </div>

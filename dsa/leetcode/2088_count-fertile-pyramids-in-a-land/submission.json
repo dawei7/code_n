@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2193",
+  "frontend_id": "2088",
+  "title_slug": "count-fertile-pyramids-in-a-land",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countPyramids",
+  "verified_submission_id": "2073074625",
+  "verified_at": "2026-07-19T05:12:28.923905+00:00"
+}

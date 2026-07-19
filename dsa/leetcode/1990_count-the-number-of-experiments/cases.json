@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1990",
+  "cases": [
+    {
+      "id":"example-public","name":"sample: mixed observed and missing combinations","kind":"sample","visible":true,
+      "input":{"tables":{"Experiments":[{"experiment_id":4,"platform":"IOS","experiment_name":"Programming"},{"experiment_id":13,"platform":"IOS","experiment_name":"Sports"},{"experiment_id":14,"platform":"Android","experiment_name":"Reading"},{"experiment_id":8,"platform":"Web","experiment_name":"Reading"},{"experiment_id":12,"platform":"Web","experiment_name":"Reading"},{"experiment_id":18,"platform":"Web","experiment_name":"Programming"}]}},
+      "expected":{"columns":["platform","experiment_name","num_experiments"],"rows":[["Android","Reading",1],["Android","Sports",0],["Android","Programming",0],["IOS","Reading",0],["IOS","Sports",1],["IOS","Programming",1],["Web","Reading",2],["Web","Sports",0],["Web","Programming",1]]},
+      "validator":{"kind":"unordered_table"},"tags":["sample","mixed","zero-counts"]
+    },
+    {
+      "id":"trial-one-row","name":"one observed pair leaves eight zero counts","kind":"trial","visible":true,
+      "input":{"tables":{"Experiments":[{"experiment_id":1,"platform":"Android","experiment_name":"Sports"}]}},
+      "expected":{"columns":["platform","experiment_name","num_experiments"],"rows":[["Android","Reading",0],["Android","Sports",1],["Android","Programming",0],["IOS","Reading",0],["IOS","Sports",0],["IOS","Programming",0],["Web","Reading",0],["Web","Sports",0],["Web","Programming",0]]},
+      "validator":{"kind":"unordered_table"},"tags":["single-row","zero-counts"]
+    },
+    {
+      "id":"trial-repeated-pair","name":"several rows in one category are all counted","kind":"trial","visible":true,
+      "input":{"tables":{"Experiments":[{"experiment_id":1,"platform":"Web","experiment_name":"Programming"},{"experiment_id":2,"platform":"Web","experiment_name":"Programming"},{"experiment_id":3,"platform":"Web","experiment_name":"Programming"}]}},
+      "expected":{"columns":["platform","experiment_name","num_experiments"],"rows":[["Android","Reading",0],["Android","Sports",0],["Android","Programming",0],["IOS","Reading",0],["IOS","Sports",0],["IOS","Programming",0],["Web","Reading",0],["Web","Sports",0],["Web","Programming",3]]},
+      "validator":{"kind":"unordered_table"},"tags":["duplicates","aggregation"]
+    },
+    {
+      "id":"trial-every-pair","name":"all nine category pairs are observed once","kind":"trial","visible":true,
+      "input":{"tables":{"Experiments":[{"experiment_id":1,"platform":"Android","experiment_name":"Reading"},{"experiment_id":2,"platform":"Android","experiment_name":"Sports"},{"experiment_id":3,"platform":"Android","experiment_name":"Programming"},{"experiment_id":4,"platform":"IOS","experiment_name":"Reading"},{"experiment_id":5,"platform":"IOS","experiment_name":"Sports"},{"experiment_id":6,"platform":"IOS","experiment_name":"Programming"},{"experiment_id":7,"platform":"Web","experiment_name":"Reading"},{"experiment_id":8,"platform":"Web","experiment_name":"Sports"},{"experiment_id":9,"platform":"Web","experiment_name":"Programming"}]}},
+      "expected":{"columns":["platform","experiment_name","num_experiments"],"rows":[["Android","Reading",1],["Android","Sports",1],["Android","Programming",1],["IOS","Reading",1],["IOS","Sports",1],["IOS","Programming",1],["Web","Reading",1],["Web","Sports",1],["Web","Programming",1]]},
+      "validator":{"kind":"unordered_table"},"tags":["complete-domain"]
+    },
+    {
+      "id":"trial-one-platform","name":"one platform has observations in every experiment","kind":"trial","visible":true,
+      "input":{"tables":{"Experiments":[{"experiment_id":1,"platform":"IOS","experiment_name":"Reading"},{"experiment_id":2,"platform":"IOS","experiment_name":"Sports"},{"experiment_id":3,"platform":"IOS","experiment_name":"Programming"},{"experiment_id":4,"platform":"IOS","experiment_name":"Reading"}]}},
+      "expected":{"columns":["platform","experiment_name","num_experiments"],"rows":[["Android","Reading",0],["Android","Sports",0],["Android","Programming",0],["IOS","Reading",2],["IOS","Sports",1],["IOS","Programming",1],["Web","Reading",0],["Web","Sports",0],["Web","Programming",0]]},
+      "validator":{"kind":"unordered_table"},"tags":["missing-platforms","mixed-counts"]
+    },
+    {
+      "id":"real-nonconsecutive-ids","name":"hidden: identifiers need not be consecutive","kind":"real","visible":false,
+      "input":{"tables":{"Experiments":[{"experiment_id":100,"platform":"Android","experiment_name":"Reading"},{"experiment_id":7,"platform":"Android","experiment_name":"Reading"},{"experiment_id":999,"platform":"Web","experiment_name":"Sports"}]}},
+      "expected":{"columns":["platform","experiment_name","num_experiments"],"rows":[["Android","Reading",2],["Android","Sports",0],["Android","Programming",0],["IOS","Reading",0],["IOS","Sports",0],["IOS","Programming",0],["Web","Reading",0],["Web","Sports",1],["Web","Programming",0]]},
+      "validator":{"kind":"unordered_table"},"tags":["identifier","mixed"]
+    },
+    {
+      "id":"real-balanced-counts","name":"hidden: different pairs share equal counts independently","kind":"real","visible":false,
+      "input":{"tables":{"Experiments":[{"experiment_id":1,"platform":"Android","experiment_name":"Programming"},{"experiment_id":2,"platform":"Android","experiment_name":"Programming"},{"experiment_id":3,"platform":"IOS","experiment_name":"Sports"},{"experiment_id":4,"platform":"IOS","experiment_name":"Sports"},{"experiment_id":5,"platform":"Web","experiment_name":"Reading"},{"experiment_id":6,"platform":"Web","experiment_name":"Reading"}]}},
+      "expected":{"columns":["platform","experiment_name","num_experiments"],"rows":[["Android","Reading",0],["Android","Sports",0],["Android","Programming",2],["IOS","Reading",0],["IOS","Sports",2],["IOS","Programming",0],["Web","Reading",2],["Web","Sports",0],["Web","Programming",0]]},
+      "validator":{"kind":"unordered_table"},"tags":["equal-counts","separate-groups"]
+    },
+    {
+      "id":"real-skewed-distribution","name":"hidden: one dominant group does not affect others","kind":"real","visible":false,
+      "input":{"tables":{"Experiments":[{"experiment_id":1,"platform":"Android","experiment_name":"Reading"},{"experiment_id":2,"platform":"Android","experiment_name":"Reading"},{"experiment_id":3,"platform":"Android","experiment_name":"Reading"},{"experiment_id":4,"platform":"Android","experiment_name":"Reading"},{"experiment_id":5,"platform":"IOS","experiment_name":"Programming"}]}},
+      "expected":{"columns":["platform","experiment_name","num_experiments"],"rows":[["Android","Reading",4],["Android","Sports",0],["Android","Programming",0],["IOS","Reading",0],["IOS","Sports",0],["IOS","Programming",1],["Web","Reading",0],["Web","Sports",0],["Web","Programming",0]]},
+      "validator":{"kind":"unordered_table"},"tags":["skew","aggregation"]
+    }
+  ]
+}

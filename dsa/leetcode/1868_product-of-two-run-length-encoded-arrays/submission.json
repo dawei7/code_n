@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2019",
+  "frontend_id": "1868",
+  "title_slug": "product-of-two-run-length-encoded-arrays",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findRLEArray",
+  "verified_submission_id": "2071790041",
+  "verified_at": "2026-07-18T05:24:48.879245+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1979",
+  "cases": [
+    {"id":"example-common-two","name":"sample: endpoints share divisor two","kind":"sample","visible":true,"input":{"nums":[2,5,6,9,10]},"expected":2,"tags":["sample","composite"]},
+    {"id":"example-coprime","name":"sample: endpoints are coprime","kind":"sample","visible":true,"input":{"nums":[7,5,6,8,3]},"expected":1,"tags":["sample","coprime"]},
+    {"id":"example-equal","name":"sample: equal endpoints","kind":"sample","visible":true,"input":{"nums":[3,3]},"expected":3,"tags":["sample","equal"]},
+    {"id":"trial-one-and-maximum","name":"minimum one forces GCD one","kind":"trial","visible":true,"input":{"nums":[1,1000]},"expected":1,"tags":["value-boundaries","coprime"]},
+    {"id":"trial-powers-of-two","name":"several powers share the minimum","kind":"trial","visible":true,"input":{"nums":[4,8,16]},"expected":4,"tags":["powers-of-two"]},
+    {"id":"trial-middle-irrelevant","name":"middle value does not enter endpoint GCD","kind":"trial","visible":true,"input":{"nums":[12,13,18]},"expected":6,"tags":["middle-value"]},
+    {"id":"real-three-endpoints","name":"hidden: unordered values with large shared divisor","kind":"real","visible":false,"input":{"nums":[1000,500,250]},"expected":250,"tags":["unordered","value-boundary"]},
+    {"id":"real-all-equal","name":"hidden: every value is equal","kind":"real","visible":false,"input":{"nums":[42,42,42,42]},"expected":42,"tags":["duplicates","equal"]},
+    {"id":"real-min-max-only","name":"hidden: GCD ignores non-endpoint divisibility","kind":"real","visible":false,"input":{"nums":[6,10,15]},"expected":3,"tags":["middle-value","composite"]},
+    {"id":"real-prime-endpoints","name":"hidden: distinct prime endpoints","kind":"real","visible":false,"input":{"nums":[997,2,101,503]},"expected":1,"tags":["prime","coprime"]}
+  ]
+}

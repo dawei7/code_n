@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1808",
+  "measurement_note": "Size is P, the allowed prime-factor count. Modular binary exponentiation takes O(log P) time. Correct repeated modular multiplication uses O(P) time, completes every tier, and is rejected by its additional growth.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: budget 3000","kind":"benchmark","visible":false,"size":3000,"input":{"primeFactors":3000},"expected":56888193,"tags":["benchmark","remainder-zero","modular-power"]},
+    {"id":"benchmark-scale-2","name":"benchmark: budget 30000","kind":"benchmark","visible":false,"size":30000,"input":{"primeFactors":30000},"expected":895629451,"tags":["benchmark","remainder-zero","modular-power"]},
+    {"id":"benchmark-scale-3","name":"benchmark: budget 300000","kind":"benchmark","visible":false,"size":300000,"input":{"primeFactors":300000},"expected":916902199,"tags":["benchmark","remainder-zero","modular-power"]}
+  ]
+}

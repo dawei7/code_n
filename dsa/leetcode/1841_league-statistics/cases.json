@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1841",
+  "cases": [
+    {
+      "id": "example-league-table",
+      "name": "sample: wins and draws across three teams",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables":{"Teams":[{"team_id":1,"team_name":"Ajax"},{"team_id":4,"team_name":"Dortmund"},{"team_id":6,"team_name":"Arsenal"}],"Matches":[{"home_team_id":1,"away_team_id":4,"home_team_goals":0,"away_team_goals":1},{"home_team_id":1,"away_team_id":6,"home_team_goals":3,"away_team_goals":3},{"home_team_id":4,"away_team_id":1,"home_team_goals":5,"away_team_goals":2},{"home_team_id":6,"away_team_id":1,"home_team_goals":0,"away_team_goals":0}]}},
+      "expected": {"columns":["team_name","matches_played","points","goal_for","goal_against","goal_diff"],"rows":[["Dortmund",2,6,6,2,4],["Arsenal",2,2,3,3,0],["Ajax",4,2,5,9,-4]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["example","wins","draws","goal-difference"]
+    },
+    {
+      "id": "trial-single-home-win",
+      "name": "one home win gives three and zero points",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Teams":[{"team_id":1,"team_name":"Alpha"},{"team_id":2,"team_name":"Beta"}],"Matches":[{"home_team_id":1,"away_team_id":2,"home_team_goals":2,"away_team_goals":0}]}},
+      "expected": {"columns":["team_name","matches_played","points","goal_for","goal_against","goal_diff"],"rows":[["Alpha",1,3,2,0,2],["Beta",1,0,0,2,-2]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["single-match","home-win"]
+    },
+    {
+      "id": "trial-scoreless-draw",
+      "name": "scoreless draw awards one point to each team",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Teams":[{"team_id":7,"team_name":"Zulu"},{"team_id":8,"team_name":"Echo"}],"Matches":[{"home_team_id":7,"away_team_id":8,"home_team_goals":0,"away_team_goals":0}]}},
+      "expected": {"columns":["team_name","matches_played","points","goal_for","goal_against","goal_diff"],"rows":[["Echo",1,1,0,0,0],["Zulu",1,1,0,0,0]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["draw","zero-goals","name-tiebreak"]
+    },
+    {
+      "id": "trial-away-win",
+      "name": "away goals and points use the away perspective",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Teams":[{"team_id":2,"team_name":"Home"},{"team_id":9,"team_name":"Visitor"}],"Matches":[{"home_team_id":2,"away_team_id":9,"home_team_goals":1,"away_team_goals":4}]}},
+      "expected": {"columns":["team_name","matches_played","points","goal_for","goal_against","goal_diff"],"rows":[["Visitor",1,3,4,1,3],["Home",1,0,1,4,-3]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["away-win","perspective"]
+    },
+    {
+      "id": "real-points-then-difference",
+      "name": "hidden: equal points are ranked by goal difference",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Teams":[{"team_id":1,"team_name":"A"},{"team_id":2,"team_name":"B"},{"team_id":3,"team_name":"C"},{"team_id":4,"team_name":"D"}],"Matches":[{"home_team_id":1,"away_team_id":2,"home_team_goals":3,"away_team_goals":0},{"home_team_id":3,"away_team_id":4,"home_team_goals":1,"away_team_goals":0}]}},
+      "expected": {"columns":["team_name","matches_played","points","goal_for","goal_against","goal_diff"],"rows":[["A",1,3,3,0,3],["C",1,3,1,0,1],["D",1,0,0,1,-1],["B",1,0,0,3,-3]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["points-tie","goal-difference-order"]
+    },
+    {
+      "id": "real-final-name-tiebreak",
+      "name": "hidden: equal points and difference use team name",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Teams":[{"team_id":1,"team_name":"Bravo"},{"team_id":2,"team_name":"Zulu"},{"team_id":3,"team_name":"Alpha"},{"team_id":4,"team_name":"Yankee"}],"Matches":[{"home_team_id":1,"away_team_id":2,"home_team_goals":1,"away_team_goals":0},{"home_team_id":3,"away_team_id":4,"home_team_goals":1,"away_team_goals":0}]}},
+      "expected": {"columns":["team_name","matches_played","points","goal_for","goal_against","goal_diff"],"rows":[["Alpha",1,3,1,0,1],["Bravo",1,3,1,0,1],["Yankee",1,0,0,1,-1],["Zulu",1,0,0,1,-1]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["name-order","full-tie"]
+    },
+    {
+      "id": "real-reversed-fixtures",
+      "name": "hidden: reversed home and away fixtures both count",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Teams":[{"team_id":10,"team_name":"North"},{"team_id":20,"team_name":"South"}],"Matches":[{"home_team_id":10,"away_team_id":20,"home_team_goals":2,"away_team_goals":1},{"home_team_id":20,"away_team_id":10,"home_team_goals":4,"away_team_goals":0}]}},
+      "expected": {"columns":["team_name","matches_played","points","goal_for","goal_against","goal_diff"],"rows":[["South",2,3,5,2,3],["North",2,3,2,5,-3]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["reversed-pair","home-away","multiple-matches"]
+    },
+    {
+      "id": "real-mixed-results",
+      "name": "hidden: accumulate a win draw and loss",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Teams":[{"team_id":1,"team_name":"Red"},{"team_id":2,"team_name":"Blue"},{"team_id":3,"team_name":"Green"},{"team_id":4,"team_name":"Gold"}],"Matches":[{"home_team_id":1,"away_team_id":2,"home_team_goals":2,"away_team_goals":0},{"home_team_id":3,"away_team_id":1,"home_team_goals":1,"away_team_goals":1},{"home_team_id":1,"away_team_id":4,"home_team_goals":0,"away_team_goals":3},{"home_team_id":2,"away_team_id":3,"home_team_goals":2,"away_team_goals":2}]}},
+      "expected": {"columns":["team_name","matches_played","points","goal_for","goal_against","goal_diff"],"rows":[["Red",3,4,3,4,-1],["Gold",1,3,3,0,3],["Green",2,2,3,3,0],["Blue",2,1,2,4,-2]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["mixed-results","accumulation"]
+    },
+    {
+      "id": "real-high-scoring-draw",
+      "name": "hidden: a high-scoring draw preserves both goal totals",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Teams":[{"team_id":5,"team_name":"Orion"},{"team_id":6,"team_name":"Lyra"}],"Matches":[{"home_team_id":5,"away_team_id":6,"home_team_goals":7,"away_team_goals":7}]}},
+      "expected": {"columns":["team_name","matches_played","points","goal_for","goal_against","goal_diff"],"rows":[["Lyra",1,1,7,7,0],["Orion",1,1,7,7,0]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["draw","goals","name-order"]
+    },
+    {
+      "id": "real-points-outrank-difference",
+      "name": "hidden: more points outrank a much larger goal difference",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Teams":[{"team_id":1,"team_name":"Steady"},{"team_id":2,"team_name":"Peer"},{"team_id":3,"team_name":"Burst"},{"team_id":4,"team_name":"Target"}],"Matches":[{"home_team_id":1,"away_team_id":2,"home_team_goals":1,"away_team_goals":1},{"home_team_id":2,"away_team_id":1,"home_team_goals":2,"away_team_goals":2},{"home_team_id":3,"away_team_id":4,"home_team_goals":9,"away_team_goals":0}]}},
+      "expected": {"columns":["team_name","matches_played","points","goal_for","goal_against","goal_diff"],"rows":[["Burst",1,3,9,0,9],["Peer",2,2,3,3,0],["Steady",2,2,3,3,0],["Target",1,0,0,9,-9]]},
+      "validator": {"kind":"ordered_table"},
+      "tags": ["primary-sort","points","goal-difference"]
+    }
+  ]
+}

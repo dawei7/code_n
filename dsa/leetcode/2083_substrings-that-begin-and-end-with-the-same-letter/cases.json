@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2083",
+  "cases": [
+    {
+      "id": "sample-nested-palindromic-endpoints",
+      "name": "sample: two repeated endpoint letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcba"},
+      "expected": 7,
+      "tags": ["sample", "multiple-letters"]
+    },
+    {
+      "id": "sample-three-a-positions",
+      "name": "sample: three occurrences create three endpoint pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abacad"},
+      "expected": 9,
+      "tags": ["sample", "repeated-a"]
+    },
+    {
+      "id": "sample-single-character",
+      "name": "sample: minimum length",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "a"},
+      "expected": 1,
+      "tags": ["sample", "minimum-length"]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "only singleton substrings qualify when letters are distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcdef"},
+      "expected": 6,
+      "tags": ["all-distinct"]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: every substring of a uniform string qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zzzz"},
+      "expected": 10,
+      "tags": ["hidden", "all-equal"]
+    },
+    {
+      "id": "real-two-interleaved-frequencies",
+      "name": "hidden: equal text at different positions counts separately",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abab"},
+      "expected": 6,
+      "tags": ["hidden", "interleaved"]
+    },
+    {
+      "id": "real-full-alphabet",
+      "name": "hidden: all twenty-six counters may be used once",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyz"},
+      "expected": 26,
+      "tags": ["hidden", "fixed-alphabet"]
+    }
+  ]
+}

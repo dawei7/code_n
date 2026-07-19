@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2069",
+  "cases": [
+    {"id":"sample-multiple-instructions","name":"sample: movement crosses two corners","kind":"sample","visible":true,"input":{"operations":["Robot","step","step","getPos","getDir","step","step","step","getPos","getDir"],"arguments":[[6,3],[2],[2],[],[],[2],[1],[4],[],[]]},"expected":[null,null,null,[4,0],"East",null,null,null,[1,2],"West"],"tags":["sample","multiple-corners"]},
+    {"id":"trial-initial-state","name":"queries before movement preserve the initial direction","kind":"trial","visible":true,"input":{"operations":["Robot","getPos","getDir"],"arguments":[[4,3],[],[]]},"expected":[null,[0,0],"East"],"tags":["initial-state"]},
+    {"id":"real-complete-cycle","name":"hidden: one complete cycle returns facing south","kind":"real","visible":false,"input":{"operations":["Robot","step","getPos","getDir"],"arguments":[[3,3],[8],[],[]]},"expected":[null,null,[0,0],"South"],"tags":["hidden","full-cycle"]},
+    {"id":"real-corner-direction","name":"hidden: direction changes only when the next step leaves a corner","kind":"real","visible":false,"input":{"operations":["Robot","step","getPos","getDir","step","getPos","getDir"],"arguments":[[4,3],[3],[],[],[1],[],[]]},"expected":[null,null,[3,0],"East",null,[3,1],"North"],"tags":["hidden","corner-direction"]},
+    {"id":"real-large-multiple","name":"hidden: a large multiple of the perimeter still records movement","kind":"real","visible":false,"input":{"operations":["Robot","step","getPos","getDir"],"arguments":[[2,2],[100000],[],[]]},"expected":[null,null,[0,0],"South"],"tags":["hidden","large-step","full-cycle"]},
+    {"id":"real-persistent-steps","name":"hidden: consecutive instructions compose on persistent state","kind":"real","visible":false,"input":{"operations":["Robot","step","step","getPos","getDir"],"arguments":[[5,2],[4],[2],[],[]]},"expected":[null,null,null,[3,1],"West"],"tags":["hidden","persistent-state"]}
+  ]
+}

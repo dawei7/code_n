@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2087",
+  "frontend_id": "1934",
+  "title_slug": "confirmation-rate",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2072563434",
+  "verified_at": "2026-07-18T16:38:08.360565+00:00"
+}

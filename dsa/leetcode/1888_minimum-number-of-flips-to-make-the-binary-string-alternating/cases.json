@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1888",
+  "cases": [
+    {"id":"example-rotation-then-flips","name":"sample: rotation exposes a two-flip alternating result","kind":"sample","visible":true,"input":{"s":"111000"},"expected":2,"tags":["sample","rotation"]},
+    {"id":"example-already-alternating","name":"sample: an alternating string needs no flip","kind":"sample","visible":true,"input":{"s":"010"},"expected":0,"tags":["sample","already-alternating"]},
+    {"id":"example-one-flip","name":"sample: one direct flip reaches an alternating pattern","kind":"sample","visible":true,"input":{"s":"1110"},"expected":1,"tags":["sample","one-flip"]},
+    {"id":"trial-single-character","name":"one character is vacuously alternating","kind":"trial","visible":true,"input":{"s":"0"},"expected":0,"tags":["single-character"]},
+    {"id":"trial-rotation-only","name":"an odd-length rotation can eliminate every mismatch","kind":"trial","visible":true,"input":{"s":"100"},"expected":0,"tags":["odd-length","rotation-only"]},
+    {"id":"real-two-equal-bits","name":"hidden: two equal bits require one flip","kind":"real","visible":false,"input":{"s":"00"},"expected":1,"tags":["two-characters","equal-bits"]},
+    {"id":"real-all-zero-odd","name":"hidden: three zeroes need one flip","kind":"real","visible":false,"input":{"s":"000"},"expected":1,"tags":["odd-length","uniform"]},
+    {"id":"real-alternating-even","name":"hidden: an even alternating string retains zero cost","kind":"real","visible":false,"input":{"s":"101010"},"expected":0,"tags":["even-length","already-alternating"]},
+    {"id":"real-balanced-blocks","name":"hidden: two equal-size blocks require two flips","kind":"real","visible":false,"input":{"s":"1100"},"expected":2,"tags":["even-length","blocks"]},
+    {"id":"real-odd-window-benefit","name":"hidden: an odd cyclic window reaches cost one","kind":"real","visible":false,"input":{"s":"01100"},"expected":1,"tags":["odd-length","sliding-window"]},
+    {"id":"real-uniform-even","name":"hidden: half of a uniform even string must flip","kind":"real","visible":false,"input":{"s":"11111111"},"expected":4,"tags":["even-length","uniform"]},
+    {"id":"real-mixed-seven","name":"hidden: mixed odd-length rotations compare both patterns","kind":"real","visible":false,"input":{"s":"1011001"},"expected":2,"tags":["odd-length","mixed"]}
+  ]
+}

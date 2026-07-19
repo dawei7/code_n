@@ -1,0 +1,55 @@
+{
+    "schema_version":  1,
+    "challenge_id":  "lc_1974",
+    "measurement_note":  "Size is N, the word length. Each tier alternates a and n, so every transition after the first has the maximum circular distance 13. The reference scans once. A correct implementation that recomputes the complete time for every growing prefix completes all legal tiers and fails by quadratic scaling.",
+    "cases":  [
+                  {
+                      "id":  "benchmark-scale-1",
+                      "name":  "benchmark: twenty alternating letters",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  20,
+                      "input":  {
+                                    "word":  "anananananananananan"
+                                },
+                      "expected":  267,
+                      "tags":  [
+                                   "benchmark",
+                                   "scale-small",
+                                   "maximum-distance"
+                               ]
+                  },
+                  {
+                      "id":  "benchmark-scale-2",
+                      "name":  "benchmark: fifty alternating letters",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  50,
+                      "input":  {
+                                    "word":  "ananananananananananananananananananananananananan"
+                                },
+                      "expected":  687,
+                      "tags":  [
+                                   "benchmark",
+                                   "scale-medium",
+                                   "maximum-distance"
+                               ]
+                  },
+                  {
+                      "id":  "benchmark-scale-3",
+                      "name":  "benchmark: one hundred alternating letters",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  100,
+                      "input":  {
+                                    "word":  "anananananananananananananananananananananananananananananananananananananananananananananananananan"
+                                },
+                      "expected":  1387,
+                      "tags":  [
+                                   "benchmark",
+                                   "scale-large",
+                                   "maximum-distance"
+                               ]
+                  }
+              ]
+}

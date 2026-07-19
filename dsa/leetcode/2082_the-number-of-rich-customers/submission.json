@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2223",
+  "frontend_id": "2082",
+  "title_slug": "the-number-of-rich-customers",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2073052092",
+  "verified_at": "2026-07-19T04:42:17.199925+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2104",
+  "frontend_id": "1993",
+  "title_slug": "operations-on-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "LockingTree",
+  "verified_submission_id": "2072811717",
+  "verified_at": "2026-07-18T21:36:54.856869+00:00"
+}

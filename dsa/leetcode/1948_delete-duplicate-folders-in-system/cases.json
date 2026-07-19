@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1948",
+  "cases": [
+    {"id":"example-duplicate-parents","name":"sample: two parents with the same child are deleted","kind":"sample","visible":true,"input":{"paths":[["a"],["c"],["d"],["a","b"],["c","b"],["d","a"]]},"expected":[["d"],["d","a"]],"tags":["sample","duplicate-subtrees"]},
+    {"id":"example-one-pass-only","name":"sample: newly identical parents survive after one deletion pass","kind":"sample","visible":true,"input":{"paths":[["a"],["c"],["a","b"],["c","b"],["a","b","x"],["a","b","x","y"],["w"],["w","y"]]},"expected":[["a"],["a","b"],["c"],["c","b"]],"tags":["sample","single-pass","nested-duplicate"]},
+    {"id":"example-all-unique","name":"sample: different child names keep all folders unique","kind":"sample","visible":true,"input":{"paths":[["a","b"],["c","d"],["c"],["a"]]},"expected":[["a"],["a","b"],["c"],["c","d"]],"tags":["sample","all-unique"]},
+    {"id":"trial-leaves-not-duplicates","name":"empty root-level folders are not duplicate structures","kind":"trial","visible":true,"input":{"paths":[["a"],["b"],["c"]]},"expected":[["a"],["b"],["c"]],"tags":["leaf-folders","nonempty-rule"]},
+    {"id":"trial-entire-branches-duplicate","name":"matching nonempty branches and descendants are all deleted","kind":"trial","visible":true,"input":{"paths":[["a"],["a","x"],["a","x","y"],["a","z"],["b"],["b","x"],["b","x","y"],["b","z"]]},"expected":[],"tags":["whole-branch-deletion","nested"]},
+    {"id":"trial-extra-child-distinguishes-parent","name":"one extra child distinguishes parents but matching inner folders delete","kind":"trial","visible":true,"input":{"paths":[["a"],["a","x"],["a","x","y"],["b"],["b","x"],["b","x","y"],["b","w"]]},"expected":[["a"],["b"],["b","w"]],"tags":["extra-child","nested-duplicate"]},
+    {"id":"real-different-depths","name":"hidden: duplicate structures at different depths are deleted","kind":"real","visible":false,"input":{"paths":[["a"],["a","p"],["a","p","x"],["b"],["b","x"]]},"expected":[["a"]],"tags":["different-depths","duplicate-subtrees"]},
+    {"id":"real-name-sensitive","name":"hidden: equal shapes with different child names are unique","kind":"real","visible":false,"input":{"paths":[["a"],["a","x"],["b"],["b","y"]]},"expected":[["a"],["a","x"],["b"],["b","y"]],"tags":["child-name-sensitive"]},
+    {"id":"real-duplicate-under-one-parent","name":"hidden: sibling folders may have matching nonempty structures","kind":"real","visible":false,"input":{"paths":[["root"],["root","a"],["root","a","x"],["root","b"],["root","b","x"],["root","keep"]]},"expected":[["root"],["root","keep"]],"tags":["sibling-duplicates","descendant-deletion"]},
+    {"id":"real-unique-chain","name":"hidden: nested suffixes with different depths remain unique","kind":"real","visible":false,"input":{"paths":[["a"],["a","b"],["a","b","c"],["a","b","c","d"]]},"expected":[["a"],["a","b"],["a","b","c"],["a","b","c","d"]],"tags":["unique-chain"]}
+  ]
+}

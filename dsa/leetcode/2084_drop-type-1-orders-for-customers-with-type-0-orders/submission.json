@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2224",
+  "frontend_id": "2084",
+  "title_slug": "drop-type-1-orders-for-customers-with-type-0-orders",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2073058658",
+  "verified_at": "2026-07-19T04:51:28.354388+00:00"
+}

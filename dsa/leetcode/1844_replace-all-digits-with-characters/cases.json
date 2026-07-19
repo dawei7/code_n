@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1844",
+  "cases": [
+    {"id":"example-uniform-shifts","name":"sample: three one-position shifts","kind":"sample","visible":true,"input":{"args":["a1c1e1"]},"expected":"abcdef","validator":{"kind":"exact"},"tags":["example","multiple-pairs"]},
+    {"id":"example-varied-shifts","name":"sample: different offsets and a trailing letter","kind":"sample","visible":true,"input":{"args":["a1b2c3d4e"]},"expected":"abbdcfdhe","validator":{"kind":"exact"},"tags":["example","varied-digits","odd-length"]},
+    {"id":"trial-single-letter","name":"one letter needs no replacement","kind":"trial","visible":true,"input":{"args":["a"]},"expected":"a","validator":{"kind":"exact"},"tags":["single-character"]},
+    {"id":"trial-zero-shift","name":"zero repeats the preceding letter","kind":"trial","visible":true,"input":{"args":["x0"]},"expected":"xx","validator":{"kind":"exact"},"tags":["zero-shift"]},
+    {"id":"real-shift-to-z","name":"hidden: a shift may land exactly on z","kind":"real","visible":false,"input":{"args":["q9"]},"expected":"qz","validator":{"kind":"exact"},"tags":["boundary","letter-z"]},
+    {"id":"real-all-zero-shifts","name":"hidden: every zero shift duplicates its letter","kind":"real","visible":false,"input":{"args":["a0b0c"]},"expected":"aabbc","validator":{"kind":"exact"},"tags":["zero-shift","odd-length"]},
+    {"id":"real-two-independent-pairs","name":"hidden: pairs use their own preceding letters","kind":"real","visible":false,"input":{"args":["m3n2"]},"expected":"mpnp","validator":{"kind":"exact"},"tags":["local-dependency","multiple-pairs"]},
+    {"id":"real-large-and-small-shifts","name":"hidden: offsets vary independently","kind":"real","visible":false,"input":{"args":["c7y1"]},"expected":"cjyz","validator":{"kind":"exact"},"tags":["varied-digits","boundary"]},
+    {"id":"real-nine-from-a","name":"hidden: the largest digit shifts from a to j","kind":"real","visible":false,"input":{"args":["a9"]},"expected":"aj","validator":{"kind":"exact"},"tags":["digit-nine"]},
+    {"id":"real-trailing-letter","name":"hidden: the final unmatched letter is preserved","kind":"real","visible":false,"input":{"args":["d2f3h"]},"expected":"dffih","validator":{"kind":"exact"},"tags":["odd-length","trailing-letter"]}
+  ]
+}

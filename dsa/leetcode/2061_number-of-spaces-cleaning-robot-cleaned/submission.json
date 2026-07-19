@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2203",
+  "frontend_id": "2061",
+  "title_slug": "number-of-spaces-cleaning-robot-cleaned",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.numberOfCleanRooms",
+  "verified_submission_id": "2072931661",
+  "verified_at": "2026-07-19T02:55:23.486212+00:00"
+}

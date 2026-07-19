@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2063",
+  "cases": [
+    {"id":"sample-two-vowels","name":"sample: two endpoint vowels contribute six","kind":"sample","visible":true,"input":{"word":"aba"},"expected":6,"tags":["sample","endpoint-vowels"]},
+    {"id":"sample-one-vowel","name":"sample: one vowel belongs to three substrings","kind":"sample","visible":true,"input":{"word":"abc"},"expected":3,"tags":["sample","single-vowel"]},
+    {"id":"sample-no-vowels","name":"sample: a consonant-only string contributes zero","kind":"sample","visible":true,"input":{"word":"ltcd"},"expected":0,"tags":["sample","no-vowels"]},
+    {"id":"trial-single-vowel","name":"one vowel forms one substring","kind":"trial","visible":true,"input":{"word":"a"},"expected":1,"tags":["minimum-size"]},
+    {"id":"real-all-five-vowels","name":"hidden: every character is a vowel","kind":"real","visible":false,"input":{"word":"aeiou"},"expected":35,"tags":["hidden","all-vowels"]},
+    {"id":"real-separated-vowels","name":"hidden: consonants do not contribute","kind":"real","visible":false,"input":{"word":"bace"},"expected":10,"tags":["hidden","mixed"]},
+    {"id":"real-repeated-vowels","name":"hidden: repeated vowel occurrences contribute independently","kind":"real","visible":false,"input":{"word":"leetcode"},"expected":58,"tags":["hidden","repeated-vowels"]}
+  ]
+}

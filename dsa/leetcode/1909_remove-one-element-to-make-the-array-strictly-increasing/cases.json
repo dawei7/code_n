@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1909",
+  "cases": [
+    {"id":"example-remove-middle","name":"sample: remove the high middle value","kind":"sample","visible":true,"input":{"nums":[1,2,10,5,7]},"expected":true,"tags":["sample","remove-previous"]},
+    {"id":"example-two-conflicts","name":"sample: no removal repairs both conflicts","kind":"sample","visible":true,"input":{"nums":[2,3,1,2]},"expected":false,"tags":["sample","multiple-conflicts"]},
+    {"id":"example-all-equal","name":"sample: one removal leaves an equal pair","kind":"sample","visible":true,"input":{"nums":[1,1,1]},"expected":false,"tags":["sample","duplicates"]},
+    {"id":"trial-already-increasing","name":"an increasing array remains valid after removing an endpoint","kind":"trial","visible":true,"input":{"nums":[1,2,3,4]},"expected":true,"tags":["already-increasing"]},
+    {"id":"trial-remove-first","name":"removing the first value repairs the order","kind":"trial","visible":true,"input":{"nums":[5,1,2,3]},"expected":true,"tags":["left-boundary","remove-previous"]},
+    {"id":"real-remove-last","name":"hidden: removing the last value repairs the order","kind":"real","visible":false,"input":{"nums":[1,2,3,1]},"expected":true,"tags":["right-boundary","remove-current"]},
+    {"id":"real-minimum-length-decrease","name":"hidden: either value may be removed from a decreasing pair","kind":"real","visible":false,"input":{"nums":[2,1]},"expected":true,"tags":["minimum-length","decrease"]},
+    {"id":"real-minimum-length-equal","name":"hidden: removing either duplicate leaves one element","kind":"real","visible":false,"input":{"nums":[7,7]},"expected":true,"tags":["minimum-length","duplicates"]},
+    {"id":"real-remove-low-middle","name":"hidden: discard the current low value to keep the prefix","kind":"real","visible":false,"input":{"nums":[1,4,2,5,6]},"expected":true,"tags":["remove-current","middle"]},
+    {"id":"real-remove-high-middle","name":"hidden: discard the previous high value to admit the current value","kind":"real","visible":false,"input":{"nums":[1,2,8,3,4]},"expected":true,"tags":["remove-previous","middle"]},
+    {"id":"real-duplicate-near-start","name":"hidden: one duplicate can be removed","kind":"real","visible":false,"input":{"nums":[1,1,2,3]},"expected":true,"tags":["duplicates","near-start"]},
+    {"id":"real-separated-equalities","name":"hidden: separated duplicate conflicts require two removals","kind":"real","visible":false,"input":{"nums":[1,1,2,2]},"expected":false,"tags":["duplicates","multiple-conflicts"]},
+    {"id":"real-two-late-decreases","name":"hidden: two late decreases cannot be repaired together","kind":"real","visible":false,"input":{"nums":[1,2,3,6,5,4]},"expected":false,"tags":["multiple-conflicts","late-conflict"]},
+    {"id":"real-domain-extremes","name":"hidden: the maximum value may be removed from the middle","kind":"real","visible":false,"input":{"nums":[1,1000,2,3]},"expected":true,"tags":["domain-boundary","remove-previous"]}
+  ]
+}

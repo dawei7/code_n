@@ -213,6 +213,7 @@ export interface ProgressOut {
   milestones: string[];
   gemini_api_key: string;
   active_set: string;
+  active_custom_set_id: string;
   sidebar_width: number;
   sidebar_position: 'left' | 'right';
   sidebar_collapsed: boolean;
@@ -240,6 +241,7 @@ export interface CustomProblemSet {
   id: string;
   name: string;
   description: string;
+  career_mode: boolean;
   nodes: CustomProblemTreeNode[];
 }
 

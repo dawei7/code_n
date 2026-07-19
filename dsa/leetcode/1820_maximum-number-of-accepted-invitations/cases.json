@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1820",
+  "cases": [
+    {"id":"example-perfect-three","name":"sample: perfect matching of size three","kind":"sample","visible":true,"input":{"grid":[[1,1,1],[1,0,1],[0,0,1]]},"expected":3,"tags":["example","perfect-matching"]},
+    {"id":"example-one-isolated-girl","name":"sample: one girl has no acceptable invitation","kind":"sample","visible":true,"input":{"grid":[[1,0,1,0],[1,0,0,0],[0,0,1,0],[1,1,1,0]]},"expected":3,"tags":["example","isolated-vertex"]},
+    {"id":"trial-no-edges","name":"no invitation can be accepted","kind":"trial","visible":true,"input":{"grid":[[0,0],[0,0]]},"expected":0,"tags":["no-edges","zero-matching"]},
+    {"id":"trial-single-edge","name":"one boy and one girl","kind":"trial","visible":true,"input":{"grid":[[1]]},"expected":1,"tags":["single-edge","perfect-matching"]},
+    {"id":"trial-reassignment-required","name":"augmenting path repairs an early choice","kind":"trial","visible":true,"input":{"grid":[[1,1],[1,0]]},"expected":2,"tags":["augmenting-path","greedy-trap"]},
+    {"id":"trial-more-boys","name":"more boys than girls","kind":"trial","visible":true,"input":{"grid":[[1,0],[1,1],[0,1],[1,1]]},"expected":2,"tags":["rectangular","girl-limit"]},
+    {"id":"real-more-girls","name":"more girls than boys","kind":"real","visible":false,"input":{"grid":[[0,1,0,1],[1,0,1,0]]},"expected":2,"tags":["rectangular","boy-limit"]},
+    {"id":"real-shared-only-girl","name":"all boys share one acceptable girl","kind":"real","visible":false,"input":{"grid":[[1],[1],[1],[1]]},"expected":1,"tags":["shared-neighbor","one-girl"]},
+    {"id":"real-disconnected-components","name":"independent components contribute separately","kind":"real","visible":false,"input":{"grid":[[1,1,0,0],[1,0,0,0],[0,0,1,1],[0,0,1,0]]},"expected":4,"tags":["components","reassignment"]},
+    {"id":"real-partial-matching","name":"one boy remains unmatched","kind":"real","visible":false,"input":{"grid":[[1,0,0],[1,1,0],[0,1,0]]},"expected":2,"tags":["partial-matching","isolated-girl"]}
+  ]
+}

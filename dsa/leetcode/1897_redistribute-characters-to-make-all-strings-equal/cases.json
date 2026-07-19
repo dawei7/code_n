@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1897",
+  "cases": [
+    {"id":"example-redistributable","name":"sample: one moved character makes all three words equal","kind":"sample","visible":true,"input":{"words":["abc","aabc","bc"]},"expected":true,"tags":["sample","redistribution"]},
+    {"id":"example-impossible","name":"sample: the total letter counts cannot split between two words","kind":"sample","visible":true,"input":{"words":["ab","a"]},"expected":false,"tags":["sample","indivisible-count"]},
+    {"id":"trial-anagrams","name":"two anagrams can be redistributed to identical words","kind":"trial","visible":true,"input":{"words":["ab","ba"]},"expected":true,"tags":["anagrams","two-words"]},
+    {"id":"trial-single-word","name":"one word is already equal to every word in the array","kind":"trial","visible":true,"input":{"words":["leetcode"]},"expected":true,"tags":["single-word"]},
+    {"id":"real-identical","name":"hidden: already identical words satisfy every divisibility condition","kind":"real","visible":false,"input":{"words":["abc","abc","abc"]},"expected":true,"tags":["already-equal"]},
+    {"id":"real-balanced-mixed","name":"hidden: mixed source words have enough of each letter for four equal targets","kind":"real","visible":false,"input":{"words":["aa","bb","ab","ab"]},"expected":true,"tags":["multiple-letters","four-words"]},
+    {"id":"real-total-length-not-enough","name":"hidden: one rare letter prevents four equal strings","kind":"real","visible":false,"input":{"words":["a","a","a","b"]},"expected":false,"tags":["rare-letter","indivisible-count"]},
+    {"id":"real-length-divisible-character-not","name":"hidden: divisible total length is insufficient when individual letter counts differ","kind":"real","visible":false,"input":{"words":["ab","cd"]},"expected":false,"tags":["total-length-trap","letter-counts"]},
+    {"id":"real-different-lengths","name":"hidden: source word lengths may differ before redistribution","kind":"real","visible":false,"input":{"words":["aabbcc","abc","abcabcabc"]},"expected":true,"tags":["length-redistribution","unequal-lengths"]},
+    {"id":"real-many-copies","name":"hidden: repeated letters distribute evenly across five targets","kind":"real","visible":false,"input":{"words":["aaaaa","bbbbb","ccccc","abcabcabcabcabc","abcabcabcabcabc"]},"expected":true,"tags":["many-words","repeated-letters"]}
+  ]
+}

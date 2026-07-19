@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2103",
+  "measurement_note": "Size is n, the number of encoded rings. Every tier cycles all three colors on rod 0, so duplicates must be aggregated without changing the answer. One-pass masks take O(n) time. A correct implementation that rescans all pairs to collect colors for each encoded ring completes all tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 6 rings on one rod",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "rings": "R0G0B0R0G0B0"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "duplicate-rings"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 24 rings on one rod",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "rings": "R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "duplicate-rings"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 96 rings on one rod",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "rings": "R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0R0G0B0"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "duplicate-rings"
+      ]
+    }
+  ]
+}

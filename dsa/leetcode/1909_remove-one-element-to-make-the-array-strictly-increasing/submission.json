@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2020",
+  "frontend_id": "1909",
+  "title_slug": "remove-one-element-to-make-the-array-strictly-increasing",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.canBeIncreasing",
+  "verified_submission_id": "2072254672",
+  "verified_at": "2026-07-18T13:33:55.510756+00:00"
+}

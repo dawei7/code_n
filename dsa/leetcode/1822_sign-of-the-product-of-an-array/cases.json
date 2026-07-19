@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1822",
+  "cases": [
+    {"id":"example-even-negatives","name":"sample: four negative factors","kind":"sample","visible":true,"input":{"nums":[-1,-2,-3,-4,3,2,1]},"expected":1,"tags":["example","even-negatives"]},
+    {"id":"example-with-zero","name":"sample: zero factor","kind":"sample","visible":true,"input":{"nums":[1,5,0,2,-3]},"expected":0,"tags":["example","zero"]},
+    {"id":"example-odd-negatives","name":"sample: three negative factors","kind":"sample","visible":true,"input":{"nums":[-1,1,-1,1,-1]},"expected":-1,"tags":["example","odd-negatives"]},
+    {"id":"trial-single-positive","name":"one positive value","kind":"trial","visible":true,"input":{"nums":[7]},"expected":1,"tags":["single-element","positive"]},
+    {"id":"trial-single-negative","name":"one negative value","kind":"trial","visible":true,"input":{"nums":[-7]},"expected":-1,"tags":["single-element","negative"]},
+    {"id":"trial-single-zero","name":"one zero value","kind":"trial","visible":true,"input":{"nums":[0]},"expected":0,"tags":["single-element","zero"]},
+    {"id":"real-zero-after-odd-negatives","name":"hidden: late zero overrides a negative prefix","kind":"real","visible":false,"input":{"nums":[-2,3,5,0]},"expected":0,"tags":["late-zero","odd-negatives"]},
+    {"id":"real-two-boundary-negatives","name":"hidden: two minimum values make a positive sign","kind":"real","visible":false,"input":{"nums":[-100,100,-100]},"expected":1,"tags":["boundary-values","even-negatives"]},
+    {"id":"real-many-ones","name":"hidden: multiplicative identities preserve positive sign","kind":"real","visible":false,"input":{"nums":[1,1,1,1,1,1,1,1]},"expected":1,"tags":["all-positive","identity"]},
+    {"id":"real-alternating-signs","name":"hidden: five negatives remain negative","kind":"real","visible":false,"input":{"nums":[-1,2,-3,4,-5,6,-7,8,-9]},"expected":-1,"tags":["alternating","odd-negatives"]}
+  ]
+}

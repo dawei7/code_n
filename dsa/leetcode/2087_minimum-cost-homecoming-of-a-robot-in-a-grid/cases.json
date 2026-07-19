@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2087",
+  "cases": [
+    {
+      "id": "sample-down-and-right",
+      "name": "sample: destination row and columns are charged",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "startPos": [1, 0],
+        "homePos": [2, 3],
+        "rowCosts": [5, 4, 3],
+        "colCosts": [8, 2, 6, 7]
+      },
+      "expected": 18,
+      "tags": ["sample", "down", "right"]
+    },
+    {
+      "id": "sample-already-home",
+      "name": "sample: no movement has zero cost",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "startPos": [0, 0],
+        "homePos": [0, 0],
+        "rowCosts": [5],
+        "colCosts": [26]
+      },
+      "expected": 0,
+      "tags": ["sample", "same-position"]
+    },
+    {
+      "id": "trial-up-and-left",
+      "name": "reverse movement charges entered rows and columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "startPos": [3, 3],
+        "homePos": [1, 0],
+        "rowCosts": [9, 2, 5, 8],
+        "colCosts": [7, 3, 4, 6]
+      },
+      "expected": 21,
+      "tags": ["up", "left", "entry-direction"]
+    },
+    {
+      "id": "real-horizontal-only",
+      "name": "hidden: unchanged row contributes no cost",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "startPos": [1, 3],
+        "homePos": [1, 1],
+        "rowCosts": [100, 100, 100],
+        "colCosts": [8, 5, 4, 9]
+      },
+      "expected": 9,
+      "tags": ["hidden", "horizontal-only"]
+    },
+    {
+      "id": "real-vertical-only",
+      "name": "hidden: unchanged column contributes no cost",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "startPos": [0, 1],
+        "homePos": [3, 1],
+        "rowCosts": [50, 6, 0, 2],
+        "colCosts": [90, 90]
+      },
+      "expected": 8,
+      "tags": ["hidden", "vertical-only", "zero-cost"]
+    },
+    {
+      "id": "real-start-cost-excluded",
+      "name": "hidden: expensive starting coordinates are never charged",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "startPos": [2, 2],
+        "homePos": [0, 0],
+        "rowCosts": [1, 2, 1000],
+        "colCosts": [3, 4, 1000]
+      },
+      "expected": 10,
+      "tags": ["hidden", "exclude-start", "include-home"]
+    },
+    {
+      "id": "real-all-zero-route",
+      "name": "hidden: a nonempty route may cost zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "startPos": [0, 0],
+        "homePos": [2, 2],
+        "rowCosts": [7, 0, 0],
+        "colCosts": [9, 0, 0]
+      },
+      "expected": 0,
+      "tags": ["hidden", "zero-costs"]
+    }
+  ]
+}

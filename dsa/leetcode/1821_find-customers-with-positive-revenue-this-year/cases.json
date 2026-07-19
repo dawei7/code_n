@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1821",
+  "cases": [
+    {
+      "id": "example-mixed-years-and-revenue",
+      "name": "sample: only positive 2021 rows qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables":{"Customers":[
+        {"customer_id":1,"year":2018,"revenue":50},
+        {"customer_id":1,"year":2021,"revenue":30},
+        {"customer_id":1,"year":2020,"revenue":70},
+        {"customer_id":2,"year":2021,"revenue":-50},
+        {"customer_id":3,"year":2018,"revenue":10},
+        {"customer_id":3,"year":2016,"revenue":50},
+        {"customer_id":4,"year":2021,"revenue":20}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[[1],[4]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["example","mixed-years","negative-revenue"]
+    },
+    {
+      "id": "trial-zero-is-not-positive",
+      "name": "zero revenue does not qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Customers":[{"customer_id":5,"year":2021,"revenue":0}]}},
+      "expected": {"columns":["customer_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["strict-comparison","zero-revenue"]
+    },
+    {
+      "id": "trial-single-positive",
+      "name": "one positive 2021 customer",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Customers":[{"customer_id":8,"year":2021,"revenue":1}]}},
+      "expected": {"columns":["customer_id"],"rows":[[8]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["minimum-positive","single-row"]
+    },
+    {
+      "id": "trial-positive-other-year",
+      "name": "positive revenue in another year is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Customers":[{"customer_id":9,"year":2020,"revenue":999}]}},
+      "expected": {"columns":["customer_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["year-filter","positive-other-year"]
+    },
+    {
+      "id": "real-negative-and-positive-years",
+      "name": "hidden: another year's positive value cannot offset 2021",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Customers":[
+        {"customer_id":10,"year":2020,"revenue":100},
+        {"customer_id":10,"year":2021,"revenue":-1}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["same-customer","negative-2021"]
+    },
+    {
+      "id": "real-2021-positive-among-history",
+      "name": "hidden: qualifying year amid several historical rows",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Customers":[
+        {"customer_id":11,"year":2019,"revenue":-5},
+        {"customer_id":11,"year":2020,"revenue":0},
+        {"customer_id":11,"year":2021,"revenue":7},
+        {"customer_id":11,"year":2022,"revenue":-9}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[[11]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["same-customer","historical-rows"]
+    },
+    {
+      "id": "real-multiple-qualifiers",
+      "name": "hidden: several customers qualify independently",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Customers":[
+        {"customer_id":3,"year":2021,"revenue":2},
+        {"customer_id":1,"year":2021,"revenue":5},
+        {"customer_id":2,"year":2021,"revenue":4}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[[1],[2],[3]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["unordered-output","multiple-customers"]
+    },
+    {
+      "id": "real-no-qualifiers",
+      "name": "hidden: preserve schema for an empty result",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Customers":[
+        {"customer_id":1,"year":2021,"revenue":0},
+        {"customer_id":2,"year":2021,"revenue":-3},
+        {"customer_id":3,"year":2022,"revenue":8}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["empty-output","mixed-failures"]
+    },
+    {
+      "id": "real-large-identifier",
+      "name": "hidden: identifier magnitude does not affect filtering",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Customers":[{"customer_id":1000000000,"year":2021,"revenue":42}]}},
+      "expected": {"columns":["customer_id"],"rows":[[1000000000]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["large-identifier","positive-revenue"]
+    },
+    {
+      "id": "real-sign-boundaries",
+      "name": "hidden: distinguish negative zero and positive values",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Customers":[
+        {"customer_id":20,"year":2021,"revenue":-1},
+        {"customer_id":21,"year":2021,"revenue":0},
+        {"customer_id":22,"year":2021,"revenue":1}
+      ]}},
+      "expected": {"columns":["customer_id"],"rows":[[22]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["sign-boundary","strict-positive"]
+    }
+  ]
+}

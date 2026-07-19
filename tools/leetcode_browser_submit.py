@@ -128,7 +128,54 @@ async def _submit(
         return submission_id, result
 
 
-def submit_with_chrome(**kwargs: str) -> tuple[str, dict[str, Any]]:
+async def _fetch_question(
+    websocket_url: str,
+    *,
+    slug: str,
+    query: str,
+    session_cookie: str,
+    csrf_token: str,
+    clearance: str,
+) -> dict[str, Any]:
+    async with websockets.connect(websocket_url, proxy=None, max_size=4 * 1024 * 1024) as socket:
+        cdp = _Cdp(socket)
+        target = await cdp.call("Target.createTarget", {"url": f"{BASE_URL}/problems/{slug}/"})
+        attached = await cdp.call("Target.attachToTarget", {"targetId": target["targetId"], "flatten": True})
+        page = attached["sessionId"]
+        await cdp.call("Network.enable", session_id=page)
+        cookies = [
+            {"name": "LEETCODE_SESSION", "value": session_cookie, "domain": ".leetcode.com", "path": "/", "secure": True},
+            {"name": "csrftoken", "value": csrf_token, "domain": ".leetcode.com", "path": "/", "secure": True},
+        ]
+        if clearance:
+            cookies.append({"name": "cf_clearance", "value": clearance, "domain": ".leetcode.com", "path": "/", "secure": True})
+        await cdp.call("Network.setCookies", {"cookies": cookies}, page)
+        await cdp.call("Emulation.setUserAgentOverride", {"userAgent": CHROME_USER_AGENT}, page)
+        await cdp.call("Page.navigate", {"url": f"{BASE_URL}/problems/{slug}/"}, page)
+        await asyncio.sleep(2)
+
+        payload = json.dumps({"query": query, "variables": {"titleSlug": slug}})
+        fetch_expression = f"""
+            fetch('/graphql/', {{
+              method: 'POST', credentials: 'include',
+              headers: {{'Content-Type': 'application/json', 'x-csrftoken': {json.dumps(csrf_token)}}},
+              body: {json.dumps(payload)}
+            }}).then(async response => ({{status: response.status, text: await response.text()}}))
+        """
+        fetched = await _evaluate(cdp, page, fetch_expression)
+        if not isinstance(fetched, dict) or fetched.get("status") != 200:
+            status = fetched.get("status") if isinstance(fetched, dict) else "unknown"
+            raise RuntimeError(f"browser question fetch HTTP {status}")
+        try:
+            question = json.loads(fetched["text"]).get("data", {}).get("question")
+        except (TypeError, json.JSONDecodeError, AttributeError) as exc:
+            raise RuntimeError("Browser question fetch returned an invalid response.") from exc
+        if not isinstance(question, dict):
+            raise RuntimeError("Browser question fetch returned no question data.")
+        return question
+
+
+def _run_with_chrome(operation: Any) -> Any:
     with tempfile.TemporaryDirectory(prefix="coden-leetcode-chrome-") as temp:
         profile = Path(temp)
         process = subprocess.Popen(
@@ -152,7 +199,7 @@ def submit_with_chrome(**kwargs: str) -> tuple[str, dict[str, Any]]:
                 if active_port.is_file():
                     lines = active_port.read_text(encoding="utf-8").splitlines()
                     websocket_url = f"ws://127.0.0.1:{lines[0]}{lines[1]}"
-                    return asyncio.run(_submit(websocket_url, **kwargs))
+                    return asyncio.run(operation(websocket_url))
                 if process.poll() is not None:
                     raise RuntimeError("Chrome exited before its verification session started.")
                 time.sleep(0.05)
@@ -163,3 +210,11 @@ def submit_with_chrome(**kwargs: str) -> tuple[str, dict[str, Any]]:
                 process.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 process.kill()
+
+
+def fetch_question_with_chrome(**kwargs: str) -> dict[str, Any]:
+    return _run_with_chrome(lambda websocket_url: _fetch_question(websocket_url, **kwargs))
+
+
+def submit_with_chrome(**kwargs: str) -> tuple[str, dict[str, Any]]:
+    return _run_with_chrome(lambda websocket_url: _submit(websocket_url, **kwargs))

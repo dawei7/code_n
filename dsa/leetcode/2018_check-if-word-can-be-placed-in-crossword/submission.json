@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2146",
+  "frontend_id": "2018",
+  "title_slug": "check-if-word-can-be-placed-in-crossword",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.placeWordInCrossword",
+  "verified_submission_id": "2072842612",
+  "verified_at": "2026-07-18T23:30:09.982655+00:00"
+}

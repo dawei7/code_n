@@ -6,7 +6,10 @@ import calendar
 import json
 import math
 import runpy
+from bisect import bisect_left, bisect_right
 from datetime import date, timedelta
+from functools import lru_cache
+from itertools import permutations, product
 from pathlib import Path
 
 from engine.complexity_certificates import validate_complexity_certificate
@@ -78,6 +81,16 @@ CERTIFIED_METHODS = {
     "1732": "bounded_domain",
     "1736": "bounded_domain",
     "1741": "asymptotic_optimality",
+    "1812": "bounded_domain",
+    "1813": "bounded_domain",
+    "1815": "bounded_domain",
+    "1884": "bounded_domain",
+    "1886": "asymptotic_optimality",
+    "1900": "bounded_domain",
+    "1904": "bounded_domain",
+    "1958": "bounded_domain",
+    "1980": "asymptotic_optimality",
+    "2081": "bounded_domain",
 }
 
 
@@ -238,6 +251,78 @@ def test_latest_hidden_time_bounded_domain_matches_every_valid_pattern() -> None
         assert maximum_time(pattern) == expected
 
 
+def test_chessboard_color_bounded_domain_matches_all_sixty_four_squares() -> None:
+    square_is_white = _reference_solve("1812")
+
+    for rank in range(1, 9):
+        expected_white = rank % 2 == 0
+        for column in range(8):
+            coordinate = f"{chr(ord('a') + column)}{rank}"
+            assert square_is_white(coordinate) is expected_white
+            expected_white = not expected_white
+
+
+def test_sentence_similarity_bounded_domain_matches_contiguous_deletion_oracle() -> None:
+    are_similar = _reference_solve("1813")
+
+    def brute_force(first: str, second: str) -> bool:
+        shorter = first.split()
+        longer = second.split()
+        if len(shorter) > len(longer):
+            shorter, longer = longer, shorter
+        return any(
+            longer[:start] + longer[end:] == shorter
+            for start in range(len(longer) + 1)
+            for end in range(start, len(longer) + 1)
+        )
+
+    sentences = [
+        " ".join(words)
+        for length in range(1, 6)
+        for words in product(("A", "B"), repeat=length)
+    ]
+    for first in sentences:
+        for second in sentences:
+            assert are_similar(first, second) is brute_force(first, second)
+
+    maximum = " ".join(["a"] * 50)
+    assert len(maximum) == 99
+    assert are_similar("a a", maximum)
+
+
+def test_fresh_donuts_bounded_domain_matches_independent_bitmask_oracle() -> None:
+    from functools import lru_cache
+
+    maximum_happy = _reference_solve("1815")
+
+    def bitmask_oracle(batch_size: int, groups: list[int]) -> int:
+        remainders = tuple(group % batch_size for group in groups)
+
+        @lru_cache(maxsize=None)
+        def search(mask: int, leftover: int) -> int:
+            if mask == (1 << len(remainders)) - 1:
+                return 0
+            return max(
+                (1 if leftover == 0 else 0)
+                + search(mask | (1 << index), (leftover + remainder) % batch_size)
+                for index, remainder in enumerate(remainders)
+                if not mask & (1 << index)
+            )
+
+        return search(0, 0)
+
+    for batch_size in range(1, 6):
+        values = tuple(range(1, batch_size + 1))
+        for length in range(1, 6):
+            for groups in product(values, repeat=length):
+                expected = bitmask_oracle(batch_size, list(groups))
+                assert maximum_happy(batch_size, list(groups)) == expected
+
+    assert maximum_happy(1, [10**9] * 30) == 30
+    assert maximum_happy(9, [1] * 30) == 4
+    assert maximum_happy(9, [9] * 30) == 30
+
+
 def _reference_solve(frontend_id: str):
     package = leetcode_package_dir(f"lc_{frontend_id}")
     assert package is not None
@@ -245,6 +330,45 @@ def _reference_solve(frontend_id: str):
         str(package / "solutions" / "python.py"),
         init_globals={"Point": _JudgePoint},
     )["solve"]
+
+
+def test_k_mirror_bounded_domain_matches_independent_numeric_generator() -> None:
+    k_mirror = _reference_solve("2081")
+
+    def mirror(half: int, odd_length: bool) -> int:
+        value = half
+        remainder = half // 10 if odd_length else half
+        while remainder:
+            value = value * 10 + remainder % 10
+            remainder //= 10
+        return value
+
+    def is_palindrome_in_base(number: int, base: int) -> bool:
+        original = number
+        reversed_digits = 0
+        while number:
+            reversed_digits = reversed_digits * base + number % base
+            number //= base
+        return reversed_digits == original
+
+    for base in range(2, 10):
+        prefix_sums: list[int] = []
+        running_sum = 0
+        length = 1
+        while len(prefix_sums) < 30:
+            half_length = (length + 1) // 2
+            for half in range(10 ** (half_length - 1), 10**half_length):
+                candidate = mirror(half, length % 2 == 1)
+                if not is_palindrome_in_base(candidate, base):
+                    continue
+                running_sum += candidate
+                prefix_sums.append(running_sum)
+                if len(prefix_sums) == 30:
+                    break
+            length += 1
+
+        for count, expected in enumerate(prefix_sums, start=1):
+            assert k_mirror(base, count) == expected
 
 
 def test_distanced_sequence_bounded_domain_matches_exhaustive_small_oracle_and_boundaries() -> None:
@@ -374,6 +498,163 @@ def test_all_non_scaling_certificates_are_strictly_valid() -> None:
         assert status.required_time.startswith("O(")
         path = leetcode_complexity_certificate_path(f"lc_{frontend_id}")
         assert path is not None and path.is_file()
+
+
+def test_two_egg_drop_bounded_domain_matches_every_legal_floor_count() -> None:
+    solve = _reference_solve("1884")
+    moves = 0
+    covered = 0
+
+    for floors in range(1, 1001):
+        while covered < floors:
+            moves += 1
+            covered += moves
+        assert solve(floors) == moves
+
+
+def test_check_move_bounded_domain_covers_every_direction_and_span() -> None:
+    solve = _reference_solve("1958")
+    directions = [
+        (row_step, column_step)
+        for row_step in (-1, 0, 1)
+        for column_step in (-1, 0, 1)
+        if (row_step, column_step) != (0, 0)
+    ]
+
+    for color in ("B", "W"):
+        opposite = "W" if color == "B" else "B"
+        for row_step, column_step in directions:
+            start_row = 0 if row_step >= 0 else 7
+            start_column = 0 if column_step >= 0 else 7
+            if row_step == 0:
+                start_row = 3
+            if column_step == 0:
+                start_column = 3
+
+            for span in range(2, 8):
+                board = [["." for _ in range(8)] for _ in range(8)]
+                for offset in range(1, span):
+                    board[
+                        start_row + offset * row_step
+                    ][
+                        start_column + offset * column_step
+                    ] = opposite
+                end_row = start_row + span * row_step
+                end_column = start_column + span * column_step
+                board[end_row][end_column] = color
+
+                assert solve(board, start_row, start_column, color)
+
+                board[end_row][end_column] = "."
+                assert not solve(board, start_row, start_column, color)
+
+
+def test_tournament_rounds_bounded_domain_matches_every_legal_pair() -> None:
+    solve = _reference_solve("1900")
+
+    @lru_cache(None)
+    def oracle(player_count: int, first: int, second: int) -> tuple[int, int]:
+        if first + second == player_count + 1:
+            return 1, 1
+
+        match_options: list[tuple[tuple[bool, bool], ...]] = []
+        for left in range(1, player_count // 2 + 1):
+            right = player_count + 1 - left
+            if first in (left, right):
+                winners = (first,)
+            elif second in (left, right):
+                winners = (second,)
+            else:
+                winners = (left, right)
+            match_options.append(
+                tuple((winner < first, winner < second) for winner in winners)
+            )
+
+        if player_count % 2:
+            middle = player_count // 2 + 1
+            match_options.append((((middle < first), (middle < second)),))
+
+        next_states = {
+            (
+                1 + sum(contribution[0] for contribution in outcome),
+                1 + sum(contribution[1] for contribution in outcome),
+            )
+            for outcome in product(*match_options)
+        }
+        child_results = [
+            oracle((player_count + 1) // 2, next_first, next_second)
+            for next_first, next_second in next_states
+        ]
+        return (
+            1 + min(result[0] for result in child_results),
+            1 + max(result[1] for result in child_results),
+        )
+
+    for player_count in range(2, 29):
+        for first in range(1, player_count):
+            for second in range(first + 1, player_count + 1):
+                assert solve(player_count, first, second) == list(
+                    oracle(player_count, first, second)
+                )
+
+
+def test_full_chess_rounds_bounded_domain_matches_every_clock_pair() -> None:
+    solve = _reference_solve("1904")
+    clock_text = [f"{minute // 60:02d}:{minute % 60:02d}" for minute in range(1440)]
+    round_starts = list(range(0, 2880, 15))
+    round_ends = [start + 15 for start in round_starts]
+
+    for login in range(1440):
+        for logout in range(1440):
+            if login == logout:
+                continue
+            normalized_logout = logout + (1440 if logout < login else 0)
+            expected = max(
+                0,
+                bisect_right(round_ends, normalized_logout)
+                - bisect_left(round_starts, login),
+            )
+            assert solve(clock_text[login], clock_text[logout]) == expected
+
+
+def test_matrix_rotation_optimality_matches_physical_rotations() -> None:
+    solve = _reference_solve("1886")
+
+    def matrix(bits: tuple[int, ...], size: int) -> list[list[int]]:
+        return [
+            list(bits[row * size : (row + 1) * size])
+            for row in range(size)
+        ]
+
+    def rotate(grid: list[list[int]]) -> list[list[int]]:
+        return [list(row) for row in zip(*grid[::-1])]
+
+    matrices = [matrix(bits, 2) for bits in product((0, 1), repeat=4)]
+    for source in matrices:
+        rotations = []
+        current = source
+        for _ in range(4):
+            rotations.append(current)
+            current = rotate(current)
+        for target in matrices:
+            assert solve(source, target) is (target in rotations)
+
+
+def test_missing_binary_string_optimality_constructs_an_absent_value() -> None:
+    solve = _reference_solve("1980")
+
+    for length in range(1, 4):
+        values = [format(value, f"0{length}b") for value in range(1 << length)]
+        for originals in permutations(values, length):
+            actual = solve(list(originals))
+            assert len(actual) == length
+            assert set(actual) <= {"0", "1"}
+            assert actual not in originals
+
+    maximum_case = [format(value, "016b") for value in range(16)]
+    maximum_actual = solve(maximum_case)
+    assert len(maximum_actual) == 16
+    assert maximum_actual not in maximum_case
 
 
 def test_sorted_vowel_formula_matches_dynamic_program_for_complete_domain() -> None:

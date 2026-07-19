@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2045",
+  "cases": [
+    {
+      "id": "sample-three-edge-second-route",
+      "name": "sample: the second route waits through a red phase",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 5, "edges": [[1, 2], [1, 3], [1, 4], [3, 4], [4, 5]], "time": 3, "change": 5},
+      "expected": 13,
+      "tags": ["sample", "traffic-wait", "second-route"]
+    },
+    {
+      "id": "sample-single-edge-revisit",
+      "name": "sample: a single edge must be traversed three times",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2, "edges": [[1, 2]], "time": 3, "change": 2},
+      "expected": 11,
+      "tags": ["sample", "minimum-graph", "revisit"]
+    },
+    {
+      "id": "trial-triangle-two-hop-second",
+      "name": "a direct route and a two-edge route have distinct times",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "edges": [[1, 2], [2, 3], [1, 3]], "time": 2, "change": 3},
+      "expected": 4,
+      "tags": ["triangle", "no-wait"]
+    },
+    {
+      "id": "trial-path-requires-waits",
+      "name": "each departure after an edge lands at a red boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "edges": [[1, 2], [2, 3]], "time": 2, "change": 2},
+      "expected": 14,
+      "tags": ["path", "phase-boundary", "revisit"]
+    },
+    {
+      "id": "real-equal-shortest-routes",
+      "name": "hidden: equal shortest paths count as one time value",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4, "edges": [[1, 2], [2, 4], [1, 3], [3, 4]], "time": 1, "change": 10},
+      "expected": 4,
+      "tags": ["hidden", "duplicate-minimum", "diamond"]
+    },
+    {
+      "id": "real-long-green-phase",
+      "name": "hidden: second path finishes before any signal changes",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4, "edges": [[1, 2], [2, 3], [3, 4]], "time": 1, "change": 100},
+      "expected": 5,
+      "tags": ["hidden", "path", "no-wait"]
+    },
+    {
+      "id": "real-time-and-change-one",
+      "name": "hidden: every intermediate arrival begins a red phase",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 2, "edges": [[1, 2]], "time": 1, "change": 1},
+      "expected": 5,
+      "tags": ["hidden", "timing-minimum", "phase-boundary"]
+    }
+  ]
+}

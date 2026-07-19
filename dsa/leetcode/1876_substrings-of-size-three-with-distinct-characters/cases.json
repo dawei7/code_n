@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1876",
+  "cases": [
+    {"id":"example-one-good","name":"sample: only xyz is good","kind":"sample","visible":true,"input":{"s":"xyzzaz"},"expected":1,"tags":["sample","mixed-windows"]},
+    {"id":"example-four-good","name":"sample: repeated abc occurrences both count","kind":"sample","visible":true,"input":{"s":"aababcabc"},"expected":4,"tags":["sample","repeated-occurrence"]},
+    {"id":"trial-overlapping","name":"two overlapping windows are both good","kind":"trial","visible":true,"input":{"s":"abca"},"expected":2,"tags":["overlap"]},
+    {"id":"trial-too-short","name":"a two-character string has no size-three window","kind":"trial","visible":true,"input":{"s":"ab"},"expected":0,"tags":["short-input"]},
+    {"id":"real-single-character","name":"hidden: minimum input length contributes zero","kind":"real","visible":false,"input":{"s":"z"},"expected":0,"tags":["minimum","short-input"]},
+    {"id":"real-exact-good","name":"hidden: one distinct three-character window","kind":"real","visible":false,"input":{"s":"abc"},"expected":1,"tags":["exact-length","good"]},
+    {"id":"real-exact-bad","name":"hidden: one repeated three-character window","kind":"real","visible":false,"input":{"s":"aba"},"expected":0,"tags":["exact-length","first-third-repeat"]},
+    {"id":"real-all-same","name":"hidden: uniform string has no good windows","kind":"real","visible":false,"input":{"s":"aaaaaaaa"},"expected":0,"tags":["all-repeated"]},
+    {"id":"real-all-cycle","name":"hidden: every cyclic window is good","kind":"real","visible":false,"input":{"s":"abcabcabc"},"expected":7,"tags":["all-good","overlap"]},
+    {"id":"real-adjacent-repeat","name":"hidden: adjacent duplicates invalidate nearby windows","kind":"real","visible":false,"input":{"s":"abbcde"},"expected":2,"tags":["adjacent-repeat"]},
+    {"id":"real-separated-repeat","name":"hidden: repeated first and third characters invalidate every window","kind":"real","visible":false,"input":{"s":"abababa"},"expected":0,"tags":["first-third-repeat"]},
+    {"id":"real-distinct-alphabet","name":"hidden: all windows of a distinct string are good","kind":"real","visible":false,"input":{"s":"abcdef"},"expected":4,"tags":["all-distinct"]}
+  ]
+}

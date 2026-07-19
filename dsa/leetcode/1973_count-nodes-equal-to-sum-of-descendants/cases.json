@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1973",
+  "cases": [
+    {"id":"example-two-matches","name":"sample: root and left child match descendant sums","kind":"sample","visible":true,"input":{"root":[10,3,4,2,1]},"expected":2,"tags":["sample","multiple-matches"]},
+    {"id":"example-no-match","name":"sample: no node matches","kind":"sample","visible":true,"input":{"root":[2,3,null,2,null]},"expected":0,"tags":["sample","skewed"]},
+    {"id":"example-zero-leaf","name":"sample: zero leaf matches empty descendant sum","kind":"sample","visible":true,"input":{"root":[0]},"expected":1,"tags":["sample","single-node","zero"]},
+    {"id":"trial-root-match","name":"root equals the sum of its two children","kind":"trial","visible":true,"input":{"root":[5,2,3]},"expected":1,"tags":["root-match"]},
+    {"id":"trial-all-zero","name":"every node in an all-zero tree matches","kind":"trial","visible":true,"input":{"root":[0,0,0]},"expected":3,"tags":["zero","all-match"]},
+    {"id":"trial-deeper-sum","name":"match depends on grandchildren as well as children","kind":"trial","visible":true,"input":{"root":[9,3,3,1,2]},"expected":2,"tags":["grandchildren"]},
+    {"id":"real-nonzero-leaves","name":"hidden: nonzero leaves do not match","kind":"real","visible":false,"input":{"root":[7,3,4]},"expected":1,"tags":["leaves","root-match"]},
+    {"id":"real-zero-leaves-only","name":"hidden: only zero leaves match","kind":"real","visible":false,"input":{"root":[5,0,0]},"expected":2,"tags":["zero-leaves"]},
+    {"id":"real-left-chain","name":"hidden: descendant sums along a left chain","kind":"real","visible":false,"input":{"root":[6,3,null,3,null]},"expected":2,"tags":["skewed","chain"]},
+    {"id":"real-mixed-tree","name":"hidden: matches occur at different depths","kind":"real","visible":false,"input":{"root":[12,5,2,2,3,0,0]},"expected":4,"tags":["mixed","multiple-matches"]}
+  ]
+}

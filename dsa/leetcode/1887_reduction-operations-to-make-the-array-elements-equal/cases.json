@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1887",
+  "cases": [
+    {"id":"example-three-operations","name":"sample: three distinct values require three reductions","kind":"sample","visible":true,"input":{"nums":[5,1,3]},"expected":3,"tags":["sample","distinct-values"]},
+    {"id":"example-already-equal","name":"sample: an equal array needs no operation","kind":"sample","visible":true,"input":{"nums":[1,1,1]},"expected":0,"tags":["sample","all-equal"]},
+    {"id":"example-duplicate-levels","name":"sample: duplicate values cross their lower levels separately","kind":"sample","visible":true,"input":{"nums":[1,1,2,2,3]},"expected":4,"tags":["sample","duplicates"]},
+    {"id":"trial-single-element","name":"one element is already equal to itself","kind":"trial","visible":true,"input":{"nums":[50000]},"expected":0,"tags":["single-element","value-boundary"]},
+    {"id":"trial-two-level-duplicates","name":"two maximum copies each require one reduction","kind":"trial","visible":true,"input":{"nums":[2,2,1]},"expected":2,"tags":["duplicates","two-levels"]},
+    {"id":"real-descending-distinct","name":"hidden: every descending distinct value crosses all lower ranks","kind":"real","visible":false,"input":{"nums":[4,3,2,1]},"expected":6,"tags":["all-distinct","descending"]},
+    {"id":"real-unordered-three-levels","name":"hidden: unordered duplicate groups preserve rank contributions","kind":"real","visible":false,"input":{"nums":[10,7,10,3,7,3]},"expected":6,"tags":["duplicates","unordered"]},
+    {"id":"real-value-extremes","name":"hidden: legal minimum and maximum form one reduction","kind":"real","visible":false,"input":{"nums":[50000,1]},"expected":1,"tags":["value-boundary","two-elements"]},
+    {"id":"real-heavy-maximum-group","name":"hidden: every maximum copy crosses two distinct lower levels","kind":"real","visible":false,"input":{"nums":[6,1,6,2,2,6]},"expected":8,"tags":["duplicates","maximum-group"]},
+    {"id":"real-repeated-three-levels","name":"hidden: repeated groups contribute once per lower distinct value","kind":"real","visible":false,"input":{"nums":[4,4,4,2,2,1]},"expected":8,"tags":["duplicates","level-count"]},
+    {"id":"real-four-levels","name":"hidden: unequal multiplicities across four levels","kind":"real","visible":false,"input":{"nums":[1,2,2,3,3,3,4]},"expected":11,"tags":["duplicates","four-levels"]}
+  ]
+}

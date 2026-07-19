@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2026",
+  "frontend_id": "1899",
+  "title_slug": "merge-triplets-to-form-target-triplet",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.mergeTriplets",
+  "verified_submission_id": "2072024540",
+  "verified_at": "2026-07-18T09:17:06.019645+00:00"
+}

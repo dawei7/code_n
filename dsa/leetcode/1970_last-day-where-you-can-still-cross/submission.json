@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2101",
+  "frontend_id": "1970",
+  "title_slug": "last-day-where-you-can-still-cross",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.latestDayToCross",
+  "verified_submission_id": "2072755502",
+  "verified_at": "2026-07-18T19:42:13.224390+00:00"
+}

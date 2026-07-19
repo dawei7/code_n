@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1814",
+  "cases": [
+    {"id":"example-two-pairs","name":"sample: two transformed-key matches","kind":"sample","visible":true,"input":{"nums":[42,11,1,97]},"expected":2,"tags":["example","different-values"]},
+    {"id":"example-four-pairs","name":"sample: several transformed-key groups","kind":"sample","visible":true,"input":{"nums":[13,10,35,24,76]},"expected":4,"tags":["example","multiple-groups"]},
+    {"id":"trial-all-equal","name":"three equal values form three index pairs","kind":"trial","visible":true,"input":{"nums":[1,1,1]},"expected":3,"tags":["equal-values","combinations"]},
+    {"id":"trial-single-value","name":"one index cannot form a pair","kind":"trial","visible":true,"input":{"nums":[123]},"expected":0,"tags":["minimum-length","no-pair"]},
+    {"id":"trial-zeros","name":"zero reverses to zero","kind":"trial","visible":true,"input":{"nums":[0,0,0,0]},"expected":6,"tags":["zero","palindrome"]},
+    {"id":"real-trailing-zero","name":"hidden: reversal drops trailing zeros","kind":"real","visible":false,"input":{"nums":[120,21,12,30]},"expected":0,"tags":["trailing-zero","numeric-reversal"]},
+    {"id":"real-different-values-same-key","name":"hidden: distinct values share a transformed key","kind":"real","visible":false,"input":{"nums":[42,97,24,79]},"expected":2,"tags":["different-values","key-equivalence"]},
+    {"id":"real-all-palindromes","name":"hidden: every palindrome belongs to key zero","kind":"real","visible":false,"input":{"nums":[0,1,11,121,1001]},"expected":10,"tags":["palindromes","single-group"]},
+    {"id":"real-no-matches","name":"hidden: all transformed keys are distinct","kind":"real","visible":false,"input":{"nums":[10,12,123,1000]},"expected":0,"tags":["distinct-keys","no-pair"]},
+    {"id":"real-maximum-value","name":"hidden: maximum legal value and its reversal","kind":"real","visible":false,"input":{"nums":[1000000000,1,1000000000]},"expected":1,"tags":["maximum-value","trailing-zeros"]},
+    {"id":"real-several-groups","name":"hidden: pair counts add across independent groups","kind":"real","visible":false,"input":{"nums":[42,97,11,1,0,0]},"expected":7,"tags":["multiple-groups","accumulation"]}
+  ]
+}

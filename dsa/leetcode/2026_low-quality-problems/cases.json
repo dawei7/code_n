@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2026",
+  "cases": [
+    {
+      "id": "sample-mixed-quality",
+      "name": "sample: filter and sort four low-quality problems",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"Problems": [
+        {"problem_id": 6, "likes": 1290, "dislikes": 425},
+        {"problem_id": 11, "likes": 2677, "dislikes": 8659},
+        {"problem_id": 1, "likes": 4446, "dislikes": 2760},
+        {"problem_id": 7, "likes": 8569, "dislikes": 6086},
+        {"problem_id": 13, "likes": 2050, "dislikes": 4164},
+        {"problem_id": 10, "likes": 9002, "dislikes": 7446}
+      ]}},
+      "expected": {"columns": ["problem_id"], "rows": [[7], [10], [11], [13]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "trial-exact-threshold",
+      "name": "exactly sixty percent is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Problems": [
+        {"problem_id": 1, "likes": 3, "dislikes": 2}
+      ]}},
+      "expected": {"columns": ["problem_id"], "rows": []},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["strict-boundary"]
+    },
+    {
+      "id": "trial-below-threshold",
+      "name": "a ten-percent like ratio qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"Problems": [
+        {"problem_id": 9, "likes": 1, "dislikes": 9}
+      ]}},
+      "expected": {"columns": ["problem_id"], "rows": [[9]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["low-quality"]
+    },
+    {
+      "id": "real-just-around-boundary",
+      "name": "hidden: distinguish values immediately around sixty percent",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Problems": [
+        {"problem_id": 2, "likes": 301, "dislikes": 199},
+        {"problem_id": 1, "likes": 299, "dislikes": 201}
+      ]}},
+      "expected": {"columns": ["problem_id"], "rows": [[1]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["hidden", "strict-boundary"]
+    },
+    {
+      "id": "real-all-high-quality",
+      "name": "hidden: no row qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Problems": [
+        {"problem_id": 4, "likes": 8, "dislikes": 2},
+        {"problem_id": 3, "likes": 9, "dislikes": 1}
+      ]}},
+      "expected": {"columns": ["problem_id"], "rows": []},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["hidden", "empty-result"]
+    },
+    {
+      "id": "real-output-order",
+      "name": "hidden: qualifying IDs are sorted independently of input",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"Problems": [
+        {"problem_id": 100, "likes": 0, "dislikes": 1},
+        {"problem_id": 2, "likes": 2, "dislikes": 8},
+        {"problem_id": 50, "likes": 7, "dislikes": 3}
+      ]}},
+      "expected": {"columns": ["problem_id"], "rows": [[2], [100]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["hidden", "ordering"]
+    }
+  ]
+}

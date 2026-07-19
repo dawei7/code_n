@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1940",
+  "frontend_id": "1829",
+  "title_slug": "maximum-xor-for-each-query",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getMaximumXor",
+  "verified_submission_id": "2071645257",
+  "verified_at": "2026-07-18T01:11:04.286317+00:00"
+}

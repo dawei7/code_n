@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1856",
+  "cases": [
+    {"id":"example-middle-plateau","name":"sample: middle subarray has the best min-product","kind":"sample","visible":true,"input":{"args":[[1,2,3,2]]},"expected":14,"validator":{"kind":"exact"},"tags":["example","interior-subarray"]},
+    {"id":"example-equal-minima","name":"sample: equal adjacent minima form the best interval","kind":"sample","visible":true,"input":{"args":[[2,3,3,1,2]]},"expected":18,"validator":{"kind":"exact"},"tags":["example","duplicates"]},
+    {"id":"example-central-block","name":"sample: central block uses four as its minimum","kind":"sample","visible":true,"input":{"args":[[3,1,5,6,4,2]]},"expected":60,"validator":{"kind":"exact"},"tags":["example","interior-subarray"]},
+    {"id":"trial-single-element","name":"single element contributes its square","kind":"trial","visible":true,"input":{"args":[[5]]},"expected":25,"validator":{"kind":"exact"},"tags":["minimum-length"]},
+    {"id":"real-all-equal","name":"hidden: an equal plateau uses the whole array","kind":"real","visible":false,"input":{"args":[[2,2,2]]},"expected":12,"validator":{"kind":"exact"},"tags":["all-equal","plateau"]},
+    {"id":"real-increasing","name":"hidden: increasing input requires final stack flush","kind":"real","visible":false,"input":{"args":[[1,2,3,4]]},"expected":21,"validator":{"kind":"exact"},"tags":["increasing","final-flush"]},
+    {"id":"real-decreasing","name":"hidden: decreasing input repeatedly inherits the left boundary","kind":"real","visible":false,"input":{"args":[[4,3,2,1]]},"expected":21,"validator":{"kind":"exact"},"tags":["decreasing","stack-pop"]},
+    {"id":"real-high-central-pair","name":"hidden: a high equal pair beats the full array","kind":"real","visible":false,"input":{"args":[[1,1,10,10,1]]},"expected":200,"validator":{"kind":"exact"},"tags":["interior-subarray","plateau"]},
+    {"id":"real-separated-peaks","name":"hidden: low separator prevents combining two high values","kind":"real","visible":false,"input":{"args":[[5,1,5]]},"expected":25,"validator":{"kind":"exact"},"tags":["separator","single-element-optimum"]},
+    {"id":"real-modulo-after-maximum","name":"hidden: large product is reduced only after maximization","kind":"real","visible":false,"input":{"args":[[10000000,10000000]]},"expected":998600007,"validator":{"kind":"exact"},"tags":["value-boundary","modulo"]}
+  ]
+}

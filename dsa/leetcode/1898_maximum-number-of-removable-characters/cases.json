@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1898",
+  "cases": [
+    {"id":"example-two-removals","name":"sample: two removals preserve the requested subsequence","kind":"sample","visible":true,"input":{"s":"abcacb","p":"ab","removable":[3,1,0]},"expected":2,"tags":["sample","interior-answer"]},
+    {"id":"example-one-removal","name":"sample: only the first removal preserves abcd","kind":"sample","visible":true,"input":{"s":"abcbddddd","p":"abcd","removable":[3,2,1,4,5,6]},"expected":1,"tags":["sample","interior-answer"]},
+    {"id":"example-zero-removals","name":"sample: the first listed character is essential","kind":"sample","visible":true,"input":{"s":"abcab","p":"abc","removable":[0,1,2,3,4]},"expected":0,"tags":["sample","zero-answer"]},
+    {"id":"trial-empty-list","name":"an empty removal list has answer zero","kind":"trial","visible":true,"input":{"s":"abc","p":"ac","removable":[]},"expected":0,"tags":["empty-removable","boundary"]},
+    {"id":"trial-all-listed","name":"every listed repeated character can be removed","kind":"trial","visible":true,"input":{"s":"aaaa","p":"a","removable":[0,1,2]},"expected":3,"tags":["full-answer","repeated-characters"]},
+    {"id":"real-irrelevant-characters","name":"hidden: all removable separator characters are irrelevant","kind":"real","visible":false,"input":{"s":"axbxc","p":"abc","removable":[1,3]},"expected":2,"tags":["full-answer","separators"]},
+    {"id":"real-pattern-equals-source","name":"hidden: removing anything fails when pattern equals source","kind":"real","visible":false,"input":{"s":"algorithm","p":"algorithm","removable":[8,0,4]},"expected":0,"tags":["equal-strings","zero-answer"]},
+    {"id":"real-removal-order","name":"hidden: removal order produces a failure at the second prefix","kind":"real","visible":false,"input":{"s":"abab","p":"ab","removable":[0,2,1]},"expected":1,"tags":["order-sensitive","repeated-characters"]},
+    {"id":"real-late-essential-index","name":"hidden: five irrelevant removals precede an essential character","kind":"real","visible":false,"input":{"s":"leetcode","p":"let","removable":[4,5,6,7,2,0]},"expected":5,"tags":["late-failure","full-prefix-search"]},
+    {"id":"real-position-not-frequency","name":"hidden: enough letters remain but their order stops forming the pattern","kind":"real","visible":false,"input":{"s":"cababc","p":"abc","removable":[3,0,5,1]},"expected":2,"tags":["relative-order","subsequence"]},
+    {"id":"real-nonmonotone-indices","name":"hidden: numeric index order differs from removal order","kind":"real","visible":false,"input":{"s":"zzaxbycz","p":"abc","removable":[7,1,2,0,3]},"expected":2,"tags":["original-indices","nonmonotone-indices"]}
+  ]
+}

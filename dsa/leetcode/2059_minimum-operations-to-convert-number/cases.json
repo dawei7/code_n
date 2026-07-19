@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2059",
+  "cases": [
+    {"id":"sample-positive-goal","name":"sample: two operations reach an in-range goal","kind":"sample","visible":true,"input":{"nums":[2,4,12],"start":2,"goal":12},"expected":2,"tags":["sample","addition","subtraction"]},
+    {"id":"sample-negative-goal","name":"sample: final operation leaves the expandable range","kind":"sample","visible":true,"input":{"nums":[3,5,7],"start":0,"goal":-4},"expected":2,"tags":["sample","out-of-range-goal"]},
+    {"id":"sample-unreachable","name":"sample: parity-preserving operations cannot reach one","kind":"sample","visible":true,"input":{"nums":[2,8,16],"start":0,"goal":1},"expected":-1,"tags":["sample","unreachable"]},
+    {"id":"trial-direct-xor","name":"one XOR operation reaches the goal","kind":"trial","visible":true,"input":{"nums":[7],"start":2,"goal":5},"expected":1,"tags":["xor","one-step"]},
+    {"id":"real-direct-above-range","name":"hidden: a direct result above one thousand is valid","kind":"real","visible":false,"input":{"nums":[1000],"start":1,"goal":1001},"expected":1,"tags":["hidden","upper-terminal"]},
+    {"id":"real-negative-operand","name":"hidden: a negative operand may participate repeatedly","kind":"real","visible":false,"input":{"nums":[-3],"start":5,"goal":-1},"expected":2,"tags":["hidden","negative-operand"]},
+    {"id":"real-reuse","name":"hidden: the same operand may be used more than once","kind":"real","visible":false,"input":{"nums":[5],"start":10,"goal":0},"expected":2,"tags":["hidden","operand-reuse"]}
+  ]
+}

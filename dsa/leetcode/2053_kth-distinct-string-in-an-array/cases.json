@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2053",
+  "cases": [
+    {
+      "id": "sample-second-distinct",
+      "name": "sample: repeated middle values are excluded",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arr": ["d", "b", "c", "b", "c", "a"], "k": 2},
+      "expected": "a",
+      "tags": ["sample", "order", "duplicates"]
+    },
+    {
+      "id": "sample-all-distinct",
+      "name": "sample: first of three unique strings",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arr": ["aaa", "aa", "a"], "k": 1},
+      "expected": "aaa",
+      "tags": ["sample", "all-distinct"]
+    },
+    {
+      "id": "sample-insufficient",
+      "name": "sample: requested rank exceeds distinct count",
+      "kind": "sample",
+      "visible": true,
+      "input": {"arr": ["a", "b", "a"], "k": 3},
+      "expected": "",
+      "tags": ["sample", "empty-result"]
+    },
+    {
+      "id": "trial-single",
+      "name": "a single value is the first distinct string",
+      "kind": "trial",
+      "visible": true,
+      "input": {"arr": ["x"], "k": 1},
+      "expected": "x",
+      "tags": ["minimum-size"]
+    },
+    {
+      "id": "real-all-repeated",
+      "name": "hidden: no copy of a repeated value qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": ["a", "a", "b", "b"], "k": 1},
+      "expected": "",
+      "tags": ["hidden", "all-repeated"]
+    },
+    {
+      "id": "real-late-duplicate",
+      "name": "hidden: a later copy disqualifies an early occurrence",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": ["first", "mid", "last", "first"], "k": 2},
+      "expected": "last",
+      "tags": ["hidden", "late-duplicate", "order"]
+    },
+    {
+      "id": "real-last-rank",
+      "name": "hidden: return the final available distinct rank",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr": ["aa", "bb", "aa", "cc", "dd", "cc", "ee"], "k": 3},
+      "expected": "ee",
+      "tags": ["hidden", "last-rank"]
+    }
+  ]
+}

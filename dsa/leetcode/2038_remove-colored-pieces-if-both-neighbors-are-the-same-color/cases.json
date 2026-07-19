@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2038",
+  "cases": [
+    {
+      "id": "sample-alice-one-move",
+      "name": "sample: Alice has one move and Bob has none",
+      "kind": "sample",
+      "visible": true,
+      "input": {"colors": "AAABABB"},
+      "expected": true,
+      "tags": ["sample", "alice-wins"]
+    },
+    {
+      "id": "sample-too-short",
+      "name": "sample: two edge pieces cannot be removed",
+      "kind": "sample",
+      "visible": true,
+      "input": {"colors": "AA"},
+      "expected": false,
+      "tags": ["sample", "short-string"]
+    },
+    {
+      "id": "sample-bob-more-moves",
+      "name": "sample: Bob's long run outlasts Alice",
+      "kind": "sample",
+      "visible": true,
+      "input": {"colors": "ABBBBBBBAAA"},
+      "expected": false,
+      "tags": ["sample", "bob-wins"]
+    },
+    {
+      "id": "trial-minimum-winning-run",
+      "name": "one length-three A run lets Alice win",
+      "kind": "trial",
+      "visible": true,
+      "input": {"colors": "AAA"},
+      "expected": true,
+      "tags": ["minimum-winning-run"]
+    },
+    {
+      "id": "trial-equal-budgets",
+      "name": "equal one-move budgets favor Bob",
+      "kind": "trial",
+      "visible": true,
+      "input": {"colors": "AAABBB"},
+      "expected": false,
+      "tags": ["equal-budgets", "turn-order"]
+    },
+    {
+      "id": "real-only-bob-run",
+      "name": "hidden: Alice cannot move before Bob's run matters",
+      "kind": "real",
+      "visible": false,
+      "input": {"colors": "BBB"},
+      "expected": false,
+      "tags": ["hidden", "alice-no-move"]
+    },
+    {
+      "id": "real-alternating-colors",
+      "name": "hidden: no same-color triple exists",
+      "kind": "real",
+      "visible": false,
+      "input": {"colors": "ABABABAB"},
+      "expected": false,
+      "tags": ["hidden", "alternating"]
+    },
+    {
+      "id": "real-alice-one-extra",
+      "name": "hidden: Alice wins with exactly one extra move",
+      "kind": "real",
+      "visible": false,
+      "input": {"colors": "AAAABBB"},
+      "expected": true,
+      "tags": ["hidden", "one-extra-move"]
+    },
+    {
+      "id": "real-multiple-runs",
+      "name": "hidden: separated runs contribute independently",
+      "kind": "real",
+      "visible": false,
+      "input": {"colors": "AAAABBAAABB"},
+      "expected": true,
+      "tags": ["hidden", "multiple-runs"]
+    }
+  ]
+}

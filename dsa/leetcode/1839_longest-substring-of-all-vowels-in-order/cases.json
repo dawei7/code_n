@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1839",
+  "cases": [
+    {"id":"example-long-middle-run","name":"sample: longest ordered run lies in the middle","kind":"sample","visible":true,"input":{"word":"aeiaaioaaaaeiiiiouuuooaauuaeiu"},"expected":13,"tags":["example","multiple-runs"]},
+    {"id":"example-final-minimum-run","name":"sample: final five characters form the answer","kind":"sample","visible":true,"input":{"word":"aeeeiiiioooauuuaeiou"},"expected":5,"tags":["example","reset"]},
+    {"id":"example-single-vowel","name":"sample: one character cannot contain every vowel","kind":"sample","visible":true,"input":{"word":"a"},"expected":0,"tags":["example","single-character"]},
+    {"id":"trial-minimum-beautiful","name":"the five vowels once each are beautiful","kind":"trial","visible":true,"input":{"word":"aeiou"},"expected":5,"tags":["minimum-beautiful","all-vowels"]},
+    {"id":"trial-missing-i","name":"a long ordered run missing one vowel is invalid","kind":"trial","visible":true,"input":{"word":"aaaaeeeeoooouuuu"},"expected":0,"tags":["missing-vowel","ordered"]},
+    {"id":"trial-wrong-order","name":"all vowels in descending order yield no answer","kind":"trial","visible":true,"input":{"word":"uoiea"},"expected":0,"tags":["wrong-order","resets"]},
+    {"id":"real-repeated-groups","name":"hidden: every ordered vowel group has repetitions","kind":"real","visible":false,"input":{"word":"aaeeiioouu"},"expected":10,"tags":["repeated-vowels","full-run"]},
+    {"id":"real-skipped-vowel-then-valid","name":"hidden: a skipped group is followed by a valid run","kind":"real","visible":false,"input":{"word":"aaaiouuaeiouu"},"expected":6,"tags":["skipped-vowel","later-run"]},
+    {"id":"real-two-valid-runs","name":"hidden: choose the longer of two beautiful runs","kind":"real","visible":false,"input":{"word":"aeiouaaaaeeeiioouuuu"},"expected":15,"tags":["multiple-runs","maximum"]},
+    {"id":"real-only-u","name":"hidden: repeated final vowel alone is not beautiful","kind":"real","visible":false,"input":{"word":"uuuuuu"},"expected":0,"tags":["single-vowel-kind","missing-vowels"]}
+  ]
+}

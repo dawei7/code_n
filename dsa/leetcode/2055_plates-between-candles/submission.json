@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2165",
+  "frontend_id": "2055",
+  "title_slug": "plates-between-candles",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.platesBetweenCandles",
+  "verified_submission_id": "2072887782",
+  "verified_at": "2026-07-19T02:20:30.748885+00:00"
+}

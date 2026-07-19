@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1874",
+  "cases": [
+    {"id":"example-four-values","name":"sample: opposite ordering gives product sum forty","kind":"sample","visible":true,"input":{"nums1":[5,3,4,2],"nums2":[4,2,2,5]},"expected":40,"tags":["sample","opposite-order"]},
+    {"id":"example-five-values","name":"sample: five-value greedy pairing","kind":"sample","visible":true,"input":{"nums1":[2,1,4,5,7],"nums2":[3,2,4,8,6]},"expected":65,"tags":["sample","greedy"]},
+    {"id":"trial-single","name":"single values have one possible product","kind":"trial","visible":true,"input":{"nums1":[7],"nums2":[9]},"expected":63,"tags":["minimum","single-element"]},
+    {"id":"trial-all-equal","name":"all equal values make every permutation equivalent","kind":"trial","visible":true,"input":{"nums1":[4,4,4],"nums2":[3,3,3]},"expected":36,"tags":["duplicates","all-equal"]},
+    {"id":"real-two-values","name":"hidden: larger value pairs with smaller counterpart","kind":"real","visible":false,"input":{"nums1":[1,10],"nums2":[2,9]},"expected":29,"tags":["exchange-argument"]},
+    {"id":"real-duplicates","name":"hidden: duplicate multiplicities are preserved","kind":"real","visible":false,"input":{"nums1":[1,1,5,5],"nums2":[2,2,9,9]},"expected":38,"tags":["duplicates"]},
+    {"id":"real-already-opposite","name":"hidden: already optimal input needs no conceptual swap","kind":"real","visible":false,"input":{"nums1":[1,2,3,4],"nums2":[8,6,4,2]},"expected":40,"tags":["already-optimal"]},
+    {"id":"real-same-order","name":"hidden: same-order arrays require complete reversal","kind":"real","visible":false,"input":{"nums1":[1,2,3,4],"nums2":[2,4,6,8]},"expected":40,"tags":["reverse-pairing"]},
+    {"id":"real-maximum-values","name":"hidden: maximum values remain within integer result range","kind":"real","visible":false,"input":{"nums1":[100,1,100,1],"nums2":[100,100,1,1]},"expected":400,"tags":["value-boundary"]},
+    {"id":"real-mixed-repetitions","name":"hidden: several frequency groups pair across extremes","kind":"real","visible":false,"input":{"nums1":[2,2,2,9,9,5],"nums2":[7,1,7,1,4,4]},"expected":74,"tags":["frequency-groups"]},
+    {"id":"real-longer-sequence","name":"hidden: unordered sequences use every occurrence once","kind":"real","visible":false,"input":{"nums1":[8,3,6,1,9,2,7],"nums2":[5,9,2,8,1,6,4]},"expected":126,"tags":["unordered-input"]},
+    {"id":"real-ones-against-varied","name":"hidden: equal first values make pairing neutral","kind":"real","visible":false,"input":{"nums1":[1,1,1,1,1],"nums2":[9,2,7,4,6]},"expected":28,"tags":["equal-first-array"]}
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2032",
+  "measurement_note": "Size is S, the total number of elements across three equal arrays of distinct values. Set-based appearance counting is linear in S. A correct implementation that considers every encountered value and linearly scans lists to test prior output and source-array membership completes all tiers, and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: three arrays of 4 shared values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums2": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "nums3": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "membership-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: three arrays of 8 shared values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "nums2": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "nums3": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "membership-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: three arrays of 16 shared values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "nums2": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "nums3": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "validator": {
+        "kind": "unordered_list"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "membership-rescan"
+      ]
+    }
+  ]
+}

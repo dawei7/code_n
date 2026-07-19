@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1811",
+  "cases": [
+    {
+      "id": "example-mixed-qualification",
+      "name": "sample: gold and consecutive-medal candidates",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "Contests": [
+          {"contest_id":190,"gold_medal":1,"silver_medal":5,"bronze_medal":2},
+          {"contest_id":191,"gold_medal":2,"silver_medal":3,"bronze_medal":5},
+          {"contest_id":192,"gold_medal":5,"silver_medal":2,"bronze_medal":3},
+          {"contest_id":193,"gold_medal":1,"silver_medal":3,"bronze_medal":5},
+          {"contest_id":194,"gold_medal":4,"silver_medal":5,"bronze_medal":2},
+          {"contest_id":195,"gold_medal":4,"silver_medal":2,"bronze_medal":1},
+          {"contest_id":196,"gold_medal":1,"silver_medal":5,"bronze_medal":2}
+        ],
+        "Users": [
+          {"user_id":1,"mail":"sarah@leetcode.com","name":"Sarah"},
+          {"user_id":2,"mail":"bob@leetcode.com","name":"Bob"},
+          {"user_id":3,"mail":"alice@leetcode.com","name":"Alice"},
+          {"user_id":4,"mail":"hercy@leetcode.com","name":"Hercy"},
+          {"user_id":5,"mail":"quarz@leetcode.com","name":"Quarz"}
+        ]
+      }},
+      "expected": {"columns":["name","mail"],"rows":[["Sarah","sarah@leetcode.com"],["Bob","bob@leetcode.com"],["Alice","alice@leetcode.com"],["Quarz","quarz@leetcode.com"]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["sample","both-rules","streaks"]
+    },
+    {
+      "id": "trial-nonconsecutive-golds",
+      "name": "three nonconsecutive gold medals qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Contests": [
+          {"contest_id":10,"gold_medal":7,"silver_medal":1,"bronze_medal":2},
+          {"contest_id":20,"gold_medal":7,"silver_medal":2,"bronze_medal":3},
+          {"contest_id":30,"gold_medal":7,"silver_medal":3,"bronze_medal":1}
+        ],
+        "Users": [
+          {"user_id":1,"mail":"a@x.com","name":"A"},{"user_id":2,"mail":"b@x.com","name":"B"},
+          {"user_id":3,"mail":"c@x.com","name":"C"},{"user_id":7,"mail":"g@x.com","name":"Gold"}
+        ]
+      }},
+      "expected": {"columns":["name","mail"],"rows":[["Gold","g@x.com"]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["gold-rule","nonconsecutive"]
+    },
+    {
+      "id": "trial-changing-medal-colors",
+      "name": "three consecutive wins may use different medal colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Contests": [
+          {"contest_id":40,"gold_medal":8,"silver_medal":1,"bronze_medal":2},
+          {"contest_id":41,"gold_medal":1,"silver_medal":8,"bronze_medal":2},
+          {"contest_id":42,"gold_medal":1,"silver_medal":2,"bronze_medal":8}
+        ],
+        "Users": [
+          {"user_id":1,"mail":"a@x.com","name":"A"},{"user_id":2,"mail":"b@x.com","name":"B"},
+          {"user_id":8,"mail":"mix@x.com","name":"Mixed"}
+        ]
+      }},
+      "expected": {"columns":["name","mail"],"rows":[["A","a@x.com"],["B","b@x.com"],["Mixed","mix@x.com"]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["consecutive-rule","mixed-medals"]
+    },
+    {
+      "id": "real-gap-breaks-streak",
+      "name": "hidden: a contest ID gap prevents qualification",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Contests": [
+          {"contest_id":1,"gold_medal":1,"silver_medal":8,"bronze_medal":2},
+          {"contest_id":2,"gold_medal":1,"silver_medal":8,"bronze_medal":2},
+          {"contest_id":3,"gold_medal":3,"silver_medal":4,"bronze_medal":5},
+          {"contest_id":4,"gold_medal":1,"silver_medal":8,"bronze_medal":2}
+        ],
+        "Users": [
+          {"user_id":1,"mail":"gold@x.com","name":"Gold"},{"user_id":2,"mail":"b@x.com","name":"B"},
+          {"user_id":3,"mail":"c@x.com","name":"C"},{"user_id":4,"mail":"d@x.com","name":"D"},
+          {"user_id":5,"mail":"e@x.com","name":"E"},
+          {"user_id":8,"mail":"gap@x.com","name":"Gap"}
+        ]
+      }},
+      "expected": {"columns":["name","mail"],"rows":[["Gold","gold@x.com"]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["gap","gold-rule","non-gold-streak"]
+    },
+    {
+      "id": "real-two-short-runs",
+      "name": "hidden: separate two-contest runs do not combine",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Contests": [
+          {"contest_id":10,"gold_medal":1,"silver_medal":9,"bronze_medal":2},
+          {"contest_id":11,"gold_medal":2,"silver_medal":9,"bronze_medal":1},
+          {"contest_id":12,"gold_medal":1,"silver_medal":2,"bronze_medal":3},
+          {"contest_id":13,"gold_medal":1,"silver_medal":2,"bronze_medal":3},
+          {"contest_id":14,"gold_medal":1,"silver_medal":2,"bronze_medal":3},
+          {"contest_id":15,"gold_medal":1,"silver_medal":2,"bronze_medal":3},
+          {"contest_id":16,"gold_medal":1,"silver_medal":2,"bronze_medal":3},
+          {"contest_id":17,"gold_medal":1,"silver_medal":2,"bronze_medal":3},
+          {"contest_id":18,"gold_medal":1,"silver_medal":2,"bronze_medal":3},
+          {"contest_id":19,"gold_medal":1,"silver_medal":2,"bronze_medal":3},
+          {"contest_id":20,"gold_medal":1,"silver_medal":9,"bronze_medal":2},
+          {"contest_id":21,"gold_medal":2,"silver_medal":9,"bronze_medal":1}
+        ],
+        "Users": [
+          {"user_id":1,"mail":"a@x.com","name":"A"},{"user_id":2,"mail":"b@x.com","name":"B"},
+          {"user_id":3,"mail":"c@x.com","name":"C"},
+          {"user_id":9,"mail":"short@x.com","name":"Short"}
+        ]
+      }},
+      "expected": {"columns":["name","mail"],"rows":[["A","a@x.com"],["B","b@x.com"],["C","c@x.com"]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["separate-runs","no-candidate"]
+    },
+    {
+      "id": "real-both-rules-deduplicate",
+      "name": "hidden: one user satisfying both rules appears once",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Contests": [
+          {"contest_id":50,"gold_medal":6,"silver_medal":1,"bronze_medal":2},
+          {"contest_id":51,"gold_medal":6,"silver_medal":2,"bronze_medal":1},
+          {"contest_id":52,"gold_medal":6,"silver_medal":1,"bronze_medal":2}
+        ],
+        "Users": [
+          {"user_id":1,"mail":"a@x.com","name":"A"},{"user_id":2,"mail":"b@x.com","name":"B"},
+          {"user_id":6,"mail":"both@x.com","name":"Both"}
+        ]
+      }},
+      "expected": {"columns":["name","mail"],"rows":[["A","a@x.com"],["B","b@x.com"],["Both","both@x.com"]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["both-rules","deduplication"]
+    }
+  ]
+}

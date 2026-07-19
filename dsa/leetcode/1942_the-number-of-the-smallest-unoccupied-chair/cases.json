@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1942",
+  "cases": [
+    {"id":"example-target-second","name":"sample: target takes chair one","kind":"sample","visible":true,"input":{"times":[[1,4],[2,3],[4,6]],"targetFriend":1},"expected":1,"tags":["sample","overlap"]},
+    {"id":"example-target-third-arrival","name":"sample: target arrives after two occupied chairs","kind":"sample","visible":true,"input":{"times":[[3,10],[1,5],[2,6]],"targetFriend":0},"expected":2,"tags":["sample","index-order"]},
+    {"id":"trial-same-time-reuse","name":"chair is reusable at its leaving time","kind":"trial","visible":true,"input":{"times":[[1,2],[2,3]],"targetFriend":1},"expected":0,"tags":["same-time-reuse"]},
+    {"id":"trial-target-earliest","name":"earliest arriving target takes chair zero","kind":"trial","visible":true,"input":{"times":[[8,10],[1,9],[4,6]],"targetFriend":1},"expected":0,"tags":["target-first"]},
+    {"id":"trial-smallest-released","name":"target chooses the smaller of two released chairs","kind":"trial","visible":true,"input":{"times":[[1,4],[2,8],[3,5],[6,10]],"targetFriend":3},"expected":0,"tags":["multiple-released","smallest-chair"]},
+    {"id":"trial-no-chair-released","name":"fully overlapping arrivals allocate consecutive chairs","kind":"trial","visible":true,"input":{"times":[[1,10],[2,9],[3,8],[4,7]],"targetFriend":3},"expected":3,"tags":["all-overlap"]},
+    {"id":"real-multiple-same-departures","name":"hidden: all chairs leaving together are released","kind":"real","visible":false,"input":{"times":[[1,5],[2,5],[3,5],[5,9]],"targetFriend":3},"expected":0,"tags":["multiple-departures","same-time-reuse"]},
+    {"id":"real-index-not-arrival-order","name":"hidden: friend indices differ from arrival order","kind":"real","visible":false,"input":{"times":[[9,12],[3,11],[7,10],[1,4],[5,8]],"targetFriend":0},"expected":0,"tags":["index-order","reused-chair"]},
+    {"id":"real-gap-in-occupied-chairs","name":"hidden: target fills the smallest internal chair gap","kind":"real","visible":false,"input":{"times":[[1,20],[2,5],[3,20],[4,20],[6,20]],"targetFriend":4},"expected":1,"tags":["internal-gap","smallest-chair"]},
+    {"id":"real-reuse-after-several-waves","name":"hidden: repeated departures and arrivals preserve chair priority","kind":"real","visible":false,"input":{"times":[[1,3],[2,7],[3,5],[5,9],[7,10],[8,11]],"targetFriend":5},"expected":2,"tags":["multiple-waves","chair-priority"]}
+  ]
+}

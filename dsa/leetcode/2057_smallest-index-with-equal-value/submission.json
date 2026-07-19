@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2181",
+  "frontend_id": "2057",
+  "title_slug": "smallest-index-with-equal-value",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.smallestEqual",
+  "verified_submission_id": "2072892529",
+  "verified_at": "2026-07-19T02:32:16.670669+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2207",
+  "frontend_id": "2102",
+  "title_slug": "sequentially-ordinal-rank-tracker",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "SORTracker",
+  "verified_submission_id": "2073136569",
+  "verified_at": "2026-07-19T06:21:32.430202+00:00"
+}

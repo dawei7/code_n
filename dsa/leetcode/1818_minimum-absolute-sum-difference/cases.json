@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1818",
+  "cases": [
+    {"id":"example-replace-middle","name":"sample: replace the middle value","kind":"sample","visible":true,"input":{"nums1":[1,7,5],"nums2":[2,3,5]},"expected":3,"tags":["example","replacement"]},
+    {"id":"example-equal-arrays","name":"sample: no replacement needed","kind":"sample","visible":true,"input":{"nums1":[2,4,6,8,10],"nums2":[2,4,6,8,10]},"expected":0,"tags":["example","no-replacement"]},
+    {"id":"example-replace-first","name":"sample: replace the first value","kind":"sample","visible":true,"input":{"nums1":[1,10,4,4,2,7],"nums2":[9,3,5,1,7,4]},"expected":20,"tags":["example","replacement"]},
+    {"id":"trial-single-element","name":"single element cannot improve","kind":"trial","visible":true,"input":{"nums1":[1],"nums2":[100000]},"expected":99999,"tags":["single-element","maximum-value"]},
+    {"id":"trial-perfect-replacement","name":"one replacement removes the whole sum","kind":"trial","visible":true,"input":{"nums1":[1,100],"nums2":[100,100]},"expected":0,"tags":["perfect-replacement","duplicate-target"]},
+    {"id":"trial-duplicates","name":"duplicate source values add no new choice","kind":"trial","visible":true,"input":{"nums1":[5,5,5],"nums2":[1,10,5]},"expected":9,"tags":["duplicates","no-improvement"]},
+    {"id":"real-predecessor-nearest","name":"nearest replacement lies below the target","kind":"real","visible":false,"input":{"nums1":[1,8,20],"nums2":[7,100,20]},"expected":86,"tags":["predecessor","binary-search"]},
+    {"id":"real-successor-nearest","name":"nearest replacement lies above the target","kind":"real","visible":false,"input":{"nums1":[2,10,30],"nums2":[9,10,30]},"expected":1,"tags":["successor","binary-search"]},
+    {"id":"real-two-large-differences","name":"only one of two differences may improve","kind":"real","visible":false,"input":{"nums1":[1,1],"nums2":[100000,100000]},"expected":199998,"tags":["at-most-one","maximum-value"]},
+    {"id":"real-unsorted-with-tie","name":"unsorted source with a large best reduction","kind":"real","visible":false,"input":{"nums1":[9,1,5,20],"nums2":[3,7,18,20]},"expected":14,"tags":["unsorted","nearest-value"]}
+  ]
+}

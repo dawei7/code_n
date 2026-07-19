@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2001",
+  "cases": [
+    {
+      "id": "sample-all-interchangeable",
+      "name": "sample: every rectangle has ratio one half",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rectangles": [[4, 8], [3, 6], [10, 20], [15, 30]]},
+      "expected": 6,
+      "tags": ["sample", "single-group"]
+    },
+    {
+      "id": "sample-no-pair",
+      "name": "sample: two different ratios",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rectangles": [[4, 5], [7, 8]]},
+      "expected": 0,
+      "tags": ["sample", "no-match"]
+    },
+    {
+      "id": "trial-single-rectangle",
+      "name": "one rectangle cannot form a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rectangles": [[9, 12]]},
+      "expected": 0,
+      "tags": ["boundary"]
+    },
+    {
+      "id": "trial-mixed-groups",
+      "name": "separate reduced ratios form independent groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rectangles": [[4, 8], [1, 2], [2, 3], [4, 6], [6, 9]]},
+      "expected": 4,
+      "tags": ["multiple-groups"]
+    },
+    {
+      "id": "real-duplicate-dimensions",
+      "name": "hidden: identical rectangles remain index-distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {"rectangles": [[1, 1], [1, 1], [1, 1]]},
+      "expected": 3,
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "real-large-reduction",
+      "name": "hidden: large dimensions reduce to the same exact key",
+      "kind": "real",
+      "visible": false,
+      "input": {"rectangles": [[100000, 50000], [2, 1], [6, 3]]},
+      "expected": 3,
+      "tags": ["hidden", "gcd"]
+    },
+    {
+      "id": "real-integer-division-trap",
+      "name": "hidden: equal truncated quotients are not equal ratios",
+      "kind": "real",
+      "visible": false,
+      "input": {"rectangles": [[3, 2], [4, 3], [5, 4]]},
+      "expected": 0,
+      "tags": ["hidden", "exact-ratio"]
+    },
+    {
+      "id": "real-three-equivalent-one-distinct",
+      "name": "hidden: only one reduced-ratio group contributes",
+      "kind": "real",
+      "visible": false,
+      "input": {"rectangles": [[1, 2], [2, 4], [3, 6], [4, 7]]},
+      "expected": 3,
+      "tags": ["hidden", "mixed"]
+    }
+  ]
+}

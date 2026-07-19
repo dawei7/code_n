@@ -39,6 +39,7 @@ export interface ProgressSettingsUpdate {
   player_name?: string;
   gemini_api_key?: string;
   active_set?: string;
+  active_custom_set_id?: string;
   sidebar_width?: number;
   sidebar_position?: string;
   sidebar_collapsed?: boolean;

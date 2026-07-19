@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1904",
+  "cases": [
+    {"id":"example-partial-ends","name":"sample: partial rounds at both ends are excluded","kind":"sample","visible":true,"input":{"loginTime":"09:31","logoutTime":"10:14"},"expected":1,"tags":["sample","rounding"]},
+    {"id":"example-cross-midnight","name":"sample: complete rounds are counted across midnight","kind":"sample","visible":true,"input":{"loginTime":"21:30","logoutTime":"03:00"},"expected":22,"tags":["sample","midnight"]},
+    {"id":"trial-exact-round","name":"one exact quarter-hour interval counts once","kind":"trial","visible":true,"input":{"loginTime":"00:00","logoutTime":"00:15"},"expected":1,"tags":["exact-boundaries","minimum-round"]},
+    {"id":"trial-too-short","name":"a short session between boundaries has no full round","kind":"trial","visible":true,"input":{"loginTime":"12:01","logoutTime":"12:14"},"expected":0,"tags":["short-session","zero"]},
+    {"id":"real-just-over-boundary","name":"hidden: spanning a boundary without fifteen contained minutes still counts zero","kind":"real","visible":false,"input":{"loginTime":"12:01","logoutTime":"12:16"},"expected":0,"tags":["partial-rounds","zero"]},
+    {"id":"real-midnight-exact","name":"hidden: the final quarter-hour of a day is complete","kind":"real","visible":false,"input":{"loginTime":"23:45","logoutTime":"00:00"},"expected":1,"tags":["midnight","exact-boundaries"]},
+    {"id":"real-midnight-partials","name":"hidden: partial intervals on both sides of midnight count zero","kind":"real","visible":false,"input":{"loginTime":"23:46","logoutTime":"00:14"},"expected":0,"tags":["midnight","partial-rounds"]},
+    {"id":"real-almost-full-day","name":"hidden: nearly a full same-day session contains ninety-four rounds","kind":"real","visible":false,"input":{"loginTime":"00:01","logoutTime":"23:59"},"expected":94,"tags":["long-session","same-day"]},
+    {"id":"real-longest-wrap","name":"hidden: a maximum-duration wrapped session contains ninety-five rounds","kind":"real","visible":false,"input":{"loginTime":"22:00","logoutTime":"21:59"},"expected":95,"tags":["long-session","midnight"]},
+    {"id":"real-unaligned-long-wrap","name":"hidden: unaligned endpoints still leave ninety-five full rounds","kind":"real","visible":false,"input":{"loginTime":"18:47","logoutTime":"18:46"},"expected":95,"tags":["long-session","rounding"]},
+    {"id":"real-evening-aligned","name":"hidden: aligned evening boundaries count by direct division","kind":"real","visible":false,"input":{"loginTime":"18:30","logoutTime":"20:00"},"expected":6,"tags":["same-day","exact-boundaries"]}
+  ]
+}

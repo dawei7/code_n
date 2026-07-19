@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1961",
+  "cases": [
+    {"id":"example-three-words","name":"sample: target equals the first three words","kind":"sample","visible":true,"input":{"s":"iloveleetcode","words":["i","love","leetcode","apples"]},"expected":true,"tags":["sample","multiple-words"]},
+    {"id":"example-first-word-mismatch","name":"sample: first word already differs","kind":"sample","visible":true,"input":{"s":"iloveleetcode","words":["apples","i","love","leetcode"]},"expected":false,"tags":["sample","mismatch"]},
+    {"id":"trial-first-word","name":"target equals the first complete word","kind":"trial","visible":true,"input":{"s":"hello","words":["hello","world"]},"expected":true,"tags":["first-word","boundary"]},
+    {"id":"trial-all-words","name":"target uses every supplied word","kind":"trial","visible":true,"input":{"s":"onetwothree","words":["one","two","three"]},"expected":true,"tags":["all-words","boundary"]},
+    {"id":"trial-inside-word","name":"matching characters end inside the second word","kind":"trial","visible":true,"input":{"s":"abc","words":["ab","cd"]},"expected":false,"tags":["inside-word","semantic-boundary"]},
+    {"id":"trial-single-character","name":"single-character target and word","kind":"trial","visible":true,"input":{"s":"a","words":["a"]},"expected":true,"tags":["minimum","boundary"]},
+    {"id":"real-late-mismatch","name":"hidden: mismatch occurs after several complete words","kind":"real","visible":false,"input":{"s":"alphabetagamma","words":["alpha","beta","delta","gamma"]},"expected":false,"tags":["late-mismatch"]},
+    {"id":"real-words-too-short","name":"hidden: all words end before the target","kind":"real","visible":false,"input":{"s":"abcdef","words":["ab","cd"]},"expected":false,"tags":["insufficient-words"]},
+    {"id":"real-extra-words","name":"hidden: words after the matching boundary are irrelevant","kind":"real","visible":false,"input":{"s":"redblue","words":["red","blue","green"]},"expected":true,"tags":["extra-words","boundary"]},
+    {"id":"real-exceeds-target","name":"hidden: next whole word extends beyond the target","kind":"real","visible":false,"input":{"s":"prefix","words":["pre","fixes","later"]},"expected":false,"tags":["inside-word","exceeds-target"]}
+  ]
+}

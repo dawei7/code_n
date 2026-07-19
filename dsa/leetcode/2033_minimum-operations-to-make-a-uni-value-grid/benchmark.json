@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2033",
+  "measurement_note": "Size is P, the number of grid cells. Sorting the flattened values and summing their distances from a median takes O(P log P) time. A correct alternative that evaluates the total distance to every input value as a possible target completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 reachable values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "grid": [[2, 4, 6, 8, 10, 12, 14, 16]],
+        "x": 2
+      },
+      "expected": 16,
+      "tags": ["benchmark", "scale-small", "exhaustive-targets"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 reachable values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "grid": [[2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32]],
+        "x": 2
+      },
+      "expected": 64,
+      "tags": ["benchmark", "scale-medium", "exhaustive-targets"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32 reachable values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "grid": [[2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64]],
+        "x": 2
+      },
+      "expected": 256,
+      "tags": ["benchmark", "scale-large", "exhaustive-targets"]
+    }
+  ]
+}

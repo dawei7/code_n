@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2041",
+  "cases": [
+    {
+      "id": "sample-mixed-candidates",
+      "name": "sample: only one candidate passes both thresholds",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "Candidates": [
+          {"candidate_id": 11, "name": "Atticus", "years_of_exp": 1, "interview_id": 101},
+          {"candidate_id": 9, "name": "Ruben", "years_of_exp": 6, "interview_id": 104},
+          {"candidate_id": 6, "name": "Aliza", "years_of_exp": 10, "interview_id": 109},
+          {"candidate_id": 8, "name": "Alfredo", "years_of_exp": 0, "interview_id": 107}
+        ],
+        "Rounds": [
+          {"interview_id": 109, "round_id": 3, "score": 4},
+          {"interview_id": 101, "round_id": 2, "score": 8},
+          {"interview_id": 109, "round_id": 4, "score": 1},
+          {"interview_id": 107, "round_id": 1, "score": 3},
+          {"interview_id": 104, "round_id": 3, "score": 6},
+          {"interview_id": 109, "round_id": 1, "score": 4},
+          {"interview_id": 104, "round_id": 4, "score": 7},
+          {"interview_id": 104, "round_id": 1, "score": 2},
+          {"interview_id": 109, "round_id": 2, "score": 1},
+          {"interview_id": 104, "round_id": 2, "score": 7},
+          {"interview_id": 107, "round_id": 2, "score": 3},
+          {"interview_id": 101, "round_id": 1, "score": 8}
+        ]
+      }},
+      "expected": {"columns": ["candidate_id"], "rows": [[9]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "trial-inclusive-experience",
+      "name": "exactly two years and sixteen points qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Candidates": [{"candidate_id": 1, "name": "Ana", "years_of_exp": 2, "interview_id": 10}],
+        "Rounds": [
+          {"interview_id": 10, "round_id": 1, "score": 8},
+          {"interview_id": 10, "round_id": 2, "score": 8}
+        ]
+      }},
+      "expected": {"columns": ["candidate_id"], "rows": [[1]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["experience-boundary", "qualifies"]
+    },
+    {
+      "id": "trial-strict-score",
+      "name": "a total of exactly fifteen is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Candidates": [{"candidate_id": 2, "name": "Bo", "years_of_exp": 5, "interview_id": 20}],
+        "Rounds": [
+          {"interview_id": 20, "round_id": 1, "score": 7},
+          {"interview_id": 20, "round_id": 2, "score": 8}
+        ]
+      }},
+      "expected": {"columns": ["candidate_id"], "rows": []},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["strict-score-boundary", "empty-result"]
+    },
+    {
+      "id": "real-score-without-experience",
+      "name": "hidden: high score does not replace required experience",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Candidates": [{"candidate_id": 3, "name": "Cy", "years_of_exp": 1, "interview_id": 30}],
+        "Rounds": [{"interview_id": 30, "round_id": 1, "score": 100}]
+      }},
+      "expected": {"columns": ["candidate_id"], "rows": []},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["hidden", "experience-filter"]
+    },
+    {
+      "id": "real-candidate-without-rounds",
+      "name": "hidden: an interview with no rounds cannot qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Candidates": [
+          {"candidate_id": 4, "name": "Dee", "years_of_exp": 9, "interview_id": 40},
+          {"candidate_id": 5, "name": "Eli", "years_of_exp": 3, "interview_id": 50}
+        ],
+        "Rounds": [{"interview_id": 50, "round_id": 1, "score": 16}]
+      }},
+      "expected": {"columns": ["candidate_id"], "rows": [[5]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["hidden", "missing-match"]
+    },
+    {
+      "id": "real-shared-interview",
+      "name": "hidden: eligible candidates sharing an interview remain separate",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Candidates": [
+          {"candidate_id": 8, "name": "Fay", "years_of_exp": 2, "interview_id": 60},
+          {"candidate_id": 7, "name": "Gia", "years_of_exp": 4, "interview_id": 60}
+        ],
+        "Rounds": [
+          {"interview_id": 60, "round_id": 1, "score": 10},
+          {"interview_id": 60, "round_id": 2, "score": 6}
+        ]
+      }},
+      "expected": {"columns": ["candidate_id"], "rows": [[7], [8]]},
+      "validator": {"kind": "ordered_table"},
+      "tags": ["hidden", "shared-interview", "ordering"]
+    }
+  ]
+}

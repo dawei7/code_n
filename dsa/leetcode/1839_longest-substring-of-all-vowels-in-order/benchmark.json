@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1839",
+  "measurement_note": "Size is n, the word length. Each tier is one globally ordered beautiful run with equal-size vowel groups. The one-pass group scan takes O(n) time. A correct slower implementation that starts at every position and scans forward while maintaining order and seen vowels takes O(n^2), completes all tiers, and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: five vowel groups of length 5",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25,
+      "input": {"word":"aaaaaeeeeeiiiiiooooouuuuu"},
+      "expected": 25,
+      "tags": ["benchmark","scale-small","ordered-run"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: five vowel groups of length 20",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"word":"aaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiiioooooooooooooooooooouuuuuuuuuuuuuuuuuuuu"},
+      "expected": 100,
+      "tags": ["benchmark","scale-medium","ordered-run"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: five vowel groups of length 40",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 200,
+      "input": {"word":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiioooooooooooooooooooooooooooooooooooooooouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"},
+      "expected": 200,
+      "tags": ["benchmark","scale-large","ordered-run"]
+    }
+  ]
+}

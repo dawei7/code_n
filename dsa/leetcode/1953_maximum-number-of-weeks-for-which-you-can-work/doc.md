@@ -5,51 +5,109 @@
 | Source | LeetCode |
 | Frontend ID | 1953 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Greedy |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-number-of-weeks-for-which-you-can-work](https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-number-of-weeks-for-which-you-can-work/).
-
 ### Goal
-Each project has a number of milestones. You may complete one milestone per week, but cannot work on the same project in two consecutive weeks. Maximize the number of weeks worked.
+There are $N$ projects, and `milestones[i]` is the number of milestones
+remaining in project $i$. During each week you must complete exactly one
+milestone, so there are no idle weeks while work continues.
+
+You may not work on the same project in two consecutive weeks. Work stops
+after every milestone is finished or when every remaining milestone belongs
+to the project used in the preceding week. Some milestones may therefore
+remain unfinished. Return the maximum number of weeks that can be scheduled
+without violating the consecutive-project rule.
 
 ### Function Contract
 **Inputs**
 
-- `milestones`: milestone counts for each project.
+- `milestones`: an array of length $N$, where $1 \le N \le 10^5$ and every
+  count is between 1 and $10^9$.
 
 **Return value**
 
-Return the maximum feasible number of working weeks.
+- The greatest number of consecutive working weeks achievable while completing
+  one milestone per week and never choosing the same project twice in a row.
 
 ### Examples
 **Example 1**
 
-- Input: `milestones = [1,2,3]`
+- Input: `milestones = [1, 2, 3]`
 - Output: `6`
 
 **Example 2**
 
-- Input: `milestones = [5,2,1]`
+- Input: `milestones = [5, 2, 1]`
 - Output: `7`
+- Explanation: One milestone from the largest project cannot be scheduled.
 
 **Example 3**
 
-- Input: `milestones = [9,3,3]`
-- Output: `15`
+- Input: `milestones = [5, 2, 2]`
+- Output: `9`
+- Explanation: The four other milestones can separate all five largest-project
+  milestones.
 
----
+### Required Complexity
+- **Time:** $O(N)$
+- **Space:** $O(1)$
 
-## Solution
-### Approach
-Let `largest` be the biggest project and `rest` be all other milestones. If `largest <= rest + 1`, all milestones can be scheduled. Otherwise the dominant project can appear only around the `rest` milestones, giving `2 * rest + 1` weeks.
+<details>
+<summary>Approach</summary>
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
+#### General
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+**Separate the dominant project**
+
+Let $L$ be the largest milestone count, let $R$ be the sum of all other
+counts, and let $T=L+R$ be the total. Milestones from the non-dominant projects
+can occupy $R$ separator positions between milestones from the largest
+project.
+
+If $L\le R+1$, the other milestones provide enough separators to place every
+largest-project milestone without adjacency. The remaining projects can be
+interleaved among those positions, so all $T$ milestones are schedulable.
+
+**Count the unavoidable dominant case**
+
+If $L>R+1$, at most one largest-project milestone can appear before, between,
+and after the $R$ other milestones. Thus at most $R+1$ dominant milestones
+can be used, giving
+
+$$
+(R+1)+R=2R+1
+$$
+
+working weeks. Alternating a largest-project milestone with each other
+milestone, starting and ending with the largest project, constructs a schedule
+of exactly that length. The upper bound is therefore attainable.
+
+Computing the total and largest count is sufficient; the identities and
+internal order of all smaller projects do not affect this separator argument.
+
+#### Complexity detail
+
+One pass computes the sum and maximum of the $N$ counts. The final comparison
+and formula are constant-time operations, so total time is $O(N)$. Apart from
+the input, only `total`, `largest`, and `rest` are stored, giving $O(1)$
+auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Priority-queue simulation:** Repeatedly choose the two projects with the
+  most milestones. It can construct a valid schedule but costs time
+  proportional to the number of worked milestones, which may be enormous.
+- **Sort project counts:** Sorting can identify the largest project but costs
+  $O(N\log N)$ when a linear maximum scan is sufficient.
+- With one project, only one week can be worked.
+- Equality $L=R+1$ still permits every milestone by starting and ending with
+  the largest project.
+- Several projects tied for the largest count cannot create a dominant
+  imbalance; all milestones are schedulable.
+- Counts and their sum may exceed 32-bit integer range, so implementations in
+  fixed-width languages need a 64-bit result.
+- The answer is never zero because every project has at least one milestone.
+
+</details>

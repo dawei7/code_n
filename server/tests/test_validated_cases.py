@@ -51,14 +51,19 @@ from server.app.engine_runner import (
     _minimum_unique_rows_matrix_match,
     _minimum_subsequence_match,
     _minimum_unique_abbreviation_match,
+    _missing_binary_string_match,
+    _missing_rolls_match,
+    _subset_sums_reconstruction_match,
     _master_guessed_match,
     _most_similar_path_match,
     _next_right_pointers_match,
     _neither_min_nor_max_match,
+    _not_average_neighbors_match,
     _ordered_unordered_groups_match,
     _parity_partition_match,
     _pancake_sort_match,
     _peak_index_match,
+    _peak_grid_match,
     _parent_tree_node_from_fixture,
     _parent_tree_pair_from_fixtures,
     _pre_post_tree_match,
@@ -98,6 +103,8 @@ from server.app.engine_runner import (
     _unique_bsts_match,
     _unordered_nested_list_matches,
     _ordered_groups_unordered_items_match,
+    _valid_pair_arrangement_match,
+    _maximum_sum_subsequence_match,
     _validated_case_matches,
     _vps_split_match,
     _wiggle_sort_matches,
@@ -135,6 +142,48 @@ class ValidatedCasesTest(conftest._Base):
         self.assertFalse(_adjacent_path_match([1, 2, 4, 3], pairs))
         self.assertFalse(_adjacent_path_match([1, 2, 3, 3], pairs))
         self.assertFalse(_adjacent_path_match([1, 2, 3], pairs))
+
+    def test_valid_pair_arrangement_validator_preserves_directed_edge_multiset(self) -> None:
+        pairs = [[1, 2], [1, 3], [2, 1]]
+        case = ValidatedCase(
+            id="directed-edge-arrangement",
+            name="directed edge arrangement",
+            kind="sample",
+            input={"pairs": pairs},
+            expected=[[1, 2], [2, 1], [1, 3]],
+            validator={"kind": "valid_pair_arrangement"},
+        )
+
+        self.assertTrue(_valid_pair_arrangement_match(case.expected, pairs))
+        self.assertTrue(
+            _validated_case_matches(
+                case,
+                [[1, 2], [2, 1], [1, 3]],
+                case.expected,
+            )
+        )
+        self.assertFalse(_valid_pair_arrangement_match([[1, 3], [1, 2], [2, 1]], pairs))
+        self.assertFalse(_valid_pair_arrangement_match([[2, 1], [1, 2], [2, 1]], pairs))
+        self.assertFalse(_valid_pair_arrangement_match([[1, 2], [2, 1]], pairs))
+        self.assertFalse(_valid_pair_arrangement_match([[1, 2], [2, True], [1, 3]], pairs))
+
+    def test_maximum_sum_subsequence_validator_accepts_optimal_ordered_ties(self) -> None:
+        nums = [3, 4, 3, 3]
+        case = ValidatedCase(
+            id="maximum-sum-subsequence",
+            name="maximum sum subsequence",
+            kind="sample",
+            input={"nums": nums, "k": 2},
+            expected=[3, 4],
+            validator={"kind": "maximum_sum_subsequence"},
+        )
+
+        self.assertTrue(_maximum_sum_subsequence_match([3, 4], nums, 2))
+        self.assertTrue(_validated_case_matches(case, [4, 3], case.expected))
+        self.assertFalse(_maximum_sum_subsequence_match([4, 4], nums, 2))
+        self.assertFalse(_maximum_sum_subsequence_match([3, 3], nums, 2))
+        self.assertFalse(_maximum_sum_subsequence_match([4, 3, 3], nums, 2))
+        self.assertFalse(_maximum_sum_subsequence_match([3, True], nums, 2))
 
     def test_shared_tree_target_fixture_preserves_node_identity(self) -> None:
         root, targets = _tree_root_and_targets_from_fixtures(
@@ -899,6 +948,22 @@ def solve(nums):
         self.assertFalse(_wiggle_sort_matches([2, 2, 2], [2, 2, 2], strict=True))
         self.assertTrue(_wiggle_sort_matches([1, 3, 2, 4], [1, 2, 3, 4], strict=False))
 
+    def test_not_average_neighbors_validator_accepts_any_valid_permutation(self) -> None:
+        values = [1, 2, 3, 4, 5]
+        case = ValidatedCase(
+            id="not-average",
+            name="not average",
+            kind="sample",
+            input={"nums": values},
+            expected=[2, 1, 4, 3, 5],
+            validator={"kind": "not_average_neighbors"},
+        )
+
+        self.assertTrue(_not_average_neighbors_match([1, 2, 4, 5, 3], values))
+        self.assertTrue(_validated_case_matches(case, [3, 5, 1, 4, 2], case.expected))
+        self.assertFalse(_not_average_neighbors_match([1, 2, 3, 5, 4], values))
+        self.assertFalse(_not_average_neighbors_match([1, 2, 4, 5, 5], values))
+
     def test_parity_partition_validator_accepts_any_valid_permutation(self) -> None:
         values = [3, 1, 2, 4, 2]
         case = ValidatedCase(
@@ -1340,6 +1405,58 @@ def solve(n):
         self.assertFalse(_question_mark_replacement_match("aza", "?zs"))
         self.assertFalse(_question_mark_replacement_match("az?", "?zs"))
 
+    def test_missing_binary_string_validator_accepts_any_absent_binary_value(self) -> None:
+        values = ["001", "010", "111"]
+        case = ValidatedCase(
+            id="missing-binary",
+            name="missing binary",
+            kind="sample",
+            input={"nums": values},
+            expected="100",
+            validator={"kind": "missing_binary_string"},
+        )
+
+        self.assertTrue(_missing_binary_string_match("000", values))
+        self.assertTrue(_validated_case_matches(case, "101", case.expected))
+        self.assertFalse(_missing_binary_string_match("001", values))
+        self.assertFalse(_missing_binary_string_match("10", values))
+        self.assertFalse(_missing_binary_string_match("10x", values))
+
+    def test_missing_rolls_validator_accepts_any_valid_observations(self) -> None:
+        case = ValidatedCase(
+            id="missing-rolls",
+            name="missing rolls",
+            kind="sample",
+            input={"rolls": [1, 5, 6], "mean": 3, "n": 4},
+            expected=[2, 3, 2, 2],
+            validator={"kind": "missing_rolls"},
+        )
+
+        self.assertTrue(_missing_rolls_match([1, 2, 3, 3], [1, 5, 6], 3, 4))
+        self.assertTrue(_validated_case_matches(case, [3, 1, 2, 3], case.expected))
+        self.assertFalse(_missing_rolls_match([2, 3, 2, 2], [1, 5, 6], 3, 3))
+        self.assertFalse(_missing_rolls_match([0, 3, 3, 3], [1, 5, 6], 3, 4))
+        self.assertFalse(_missing_rolls_match([True, 2, 3, 3], [1, 5, 6], 3, 4))
+        self.assertTrue(_missing_rolls_match([], [1, 2, 3, 4], 6, 4))
+        self.assertFalse(_missing_rolls_match([6, 6, 6, 6], [1, 2, 3, 4], 6, 4))
+
+    def test_subset_sums_reconstruction_validator_accepts_any_valid_array(self) -> None:
+        sums = [-3, -2, -1, 0, 0, 1, 2, 3]
+        case = ValidatedCase(
+            id="subset-sums",
+            name="subset sums",
+            kind="sample",
+            input={"n": 3, "sums": sums},
+            expected=[1, 2, -3],
+            validator={"kind": "subset_sums_reconstruction"},
+        )
+
+        self.assertTrue(_subset_sums_reconstruction_match([-1, -2, 3], 3, sums))
+        self.assertTrue(_validated_case_matches(case, [2, -3, 1], case.expected))
+        self.assertFalse(_subset_sums_reconstruction_match([1, 2, 3], 3, sums))
+        self.assertFalse(_subset_sums_reconstruction_match([1, -1], 3, sums))
+        self.assertFalse(_subset_sums_reconstruction_match([True, 2, -3], 3, sums))
+
     def test_gray_code_validator_checks_cycle_and_domain(self) -> None:
         self.assertTrue(_gray_code_match([0, 1, 3, 2], 2))
         self.assertTrue(_gray_code_match([0, 2, 3, 1], 2))
@@ -1732,9 +1849,31 @@ def solve(n):
         self.assertFalse(_peak_index_match(2, nums))
         self.assertFalse(_peak_index_match(True, nums))
 
+    def test_peak_grid_validator_accepts_any_strict_orthogonal_peak(self) -> None:
+        matrix = [[1, 4], [3, 2]]
+        self.assertTrue(_peak_grid_match([0, 1], matrix))
+        self.assertTrue(_peak_grid_match([1, 0], matrix))
+        self.assertFalse(_peak_grid_match([0, 0], matrix))
+        self.assertFalse(_peak_grid_match([True, 1], matrix))
+        self.assertFalse(_peak_grid_match([2, 0], matrix))
+
     def test_tree_root_node_hint_is_converted_for_validated_cases(self) -> None:
         spec = CHALLENGE_REGISTRY["lc_2458"]()._spec
         self.assertEqual(_tree_param_names(spec), ["root"])
+
+    def test_list_of_tree_fixtures_is_converted_to_separate_roots(self) -> None:
+        values = _prepare_validated_kwargs(
+            {"trees": [[2, 1], [3, None, 4]]},
+            ("trees",),
+        )
+        first, second = values["trees"]
+        self.assertEqual((first.val, first.left.val, first.right), (2, 1, None))
+        self.assertEqual((second.val, second.left, second.right.val), (3, None, 4))
+
+    def test_list_of_tree_root_hint_and_tree_return_are_detected(self) -> None:
+        spec = CHALLENGE_REGISTRY["lc_1932"]()._spec
+        self.assertEqual(_tree_param_names(spec), ["trees"])
+        self.assertTrue(_returns_tree(spec.returns))
 
     def test_tree_root_return_hint_is_normalized_for_validated_cases(self) -> None:
         spec = CHALLENGE_REGISTRY["lc_226"]()._spec

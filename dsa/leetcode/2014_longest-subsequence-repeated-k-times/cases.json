@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2014",
+  "cases": [
+    {
+      "id": "sample-lexicographic-tie",
+      "name": "sample: choose let over ete",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "letsleetcode", "k": 2},
+      "expected": "let",
+      "tags": ["sample", "tie-break"]
+    },
+    {
+      "id": "sample-single-character",
+      "name": "sample: one character repeats twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "bb", "k": 2},
+      "expected": "b",
+      "tags": ["sample", "single-character"]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: no character repeats often enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "ab", "k": 2},
+      "expected": "",
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "trial-repeated-character",
+      "name": "one character occupies three answer positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaaaaa", "k": 2},
+      "expected": "aaa",
+      "tags": ["duplicates", "length-three"]
+    },
+    {
+      "id": "trial-order-tie",
+      "name": "ba wins the equal-length lexicographic tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "babab", "k": 2},
+      "expected": "ba",
+      "tags": ["ordering", "tie-break"]
+    },
+    {
+      "id": "real-seven-character-answer",
+      "name": "hidden: answer reaches the strict length bound",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefgabcdefg", "k": 2},
+      "expected": "abcdefg",
+      "tags": ["hidden", "maximum-answer-length"]
+    },
+    {
+      "id": "real-large-source-one-character",
+      "name": "hidden: large source still produces seven copies of one character",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "k": 13},
+      "expected": "aaaaaaa",
+      "tags": ["hidden", "large-k", "maximum-answer-length"]
+    },
+    {
+      "id": "real-entire-pattern-repeats",
+      "name": "hidden: the complete base pattern repeats",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcabc", "k": 2},
+      "expected": "abc",
+      "tags": ["hidden", "pattern"]
+    }
+  ]
+}

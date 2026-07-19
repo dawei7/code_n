@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1946",
+  "frontend_id": "1818",
+  "title_slug": "minimum-absolute-sum-difference",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minAbsoluteSumDiff",
+  "verified_submission_id": "2071632286",
+  "verified_at": "2026-07-18T00:19:46.271976+00:00"
+}

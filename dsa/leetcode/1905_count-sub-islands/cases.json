@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1905",
+  "cases": [
+    {"id":"example-three","name":"sample: three grid2 components are fully contained","kind":"sample","visible":true,"input":{"grid1":[[1,1,1,0,0],[0,1,1,1,1],[0,0,0,0,0],[1,0,0,0,0],[1,1,0,1,1]],"grid2":[[1,1,1,0,0],[0,0,1,1,1],[0,1,0,0,0],[1,0,1,1,0],[0,1,0,1,0]]},"expected":3,"tags":["sample","mixed-components"]},
+    {"id":"example-two","name":"sample: two of the candidate islands are contained","kind":"sample","visible":true,"input":{"grid1":[[1,0,1,0,1],[1,1,1,1,1],[0,0,0,0,0],[1,1,1,1,1],[1,0,1,0,1]],"grid2":[[0,0,0,0,0],[1,1,1,1,1],[0,1,0,1,0],[0,1,0,1,0],[1,0,0,0,1]]},"expected":2,"tags":["sample","mixed-components"]},
+    {"id":"trial-single-contained","name":"one overlapping land cell is a sub-island","kind":"trial","visible":true,"input":{"grid1":[[1]],"grid2":[[1]]},"expected":1,"tags":["single-cell","contained"]},
+    {"id":"trial-single-invalid","name":"one grid2 land cell over grid1 water is invalid","kind":"trial","visible":true,"input":{"grid1":[[0]],"grid2":[[1]]},"expected":0,"tags":["single-cell","mismatch"]},
+    {"id":"real-all-water","name":"hidden: an all-water second grid has no islands","kind":"real","visible":false,"input":{"grid1":[[1,1],[1,1]],"grid2":[[0,0],[0,0]]},"expected":0,"tags":["all-water","zero"]},
+    {"id":"real-diagonal-separate","name":"hidden: diagonal cells form three separate contained islands","kind":"real","visible":false,"input":{"grid1":[[1,0,0],[0,1,0],[0,0,1]],"grid2":[[1,0,0],[0,1,0],[0,0,1]]},"expected":3,"tags":["diagonal","separate-islands"]},
+    {"id":"real-one-cell-invalidates","name":"hidden: one mismatching cell invalidates an entire connected island","kind":"real","visible":false,"input":{"grid1":[[1,1,1],[1,0,1],[1,1,1]],"grid2":[[1,1,1],[1,1,1],[1,1,1]]},"expected":0,"tags":["large-component","single-mismatch"]},
+    {"id":"real-multiple-mixed","name":"hidden: contained and invalid isolated islands are counted separately","kind":"real","visible":false,"input":{"grid1":[[1,0,1,0],[0,0,0,0],[1,0,0,1]],"grid2":[[1,0,1,0],[0,0,0,0],[1,0,1,1]]},"expected":3,"tags":["isolated-islands","mixed-validity"]},
+    {"id":"real-extra-reference-land","name":"hidden: extra reference land outside the candidate component is irrelevant","kind":"real","visible":false,"input":{"grid1":[[1,1,1],[1,1,1],[1,1,1]],"grid2":[[0,1,0],[0,1,0],[0,0,0]]},"expected":1,"tags":["extra-grid1-land","vertical-island"]},
+    {"id":"real-connected-through-mismatch","name":"hidden: traversal continues through a mismatching bridge cell","kind":"real","visible":false,"input":{"grid1":[[1,0,1]],"grid2":[[1,1,1]]},"expected":0,"tags":["bridge","consume-invalid-component"]},
+    {"id":"real-four-corners","name":"hidden: four disconnected corner cells are all contained","kind":"real","visible":false,"input":{"grid1":[[1,0,1],[0,0,0],[1,0,1]],"grid2":[[1,0,1],[0,0,0],[1,0,1]]},"expected":4,"tags":["multiple-islands","corners"]}
+  ]
+}

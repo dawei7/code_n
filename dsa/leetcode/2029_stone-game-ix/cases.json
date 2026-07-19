@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2029",
+  "cases": [
+    {
+      "id": "sample-two-residues",
+      "name": "sample: both nonzero residues let Alice win",
+      "kind": "sample",
+      "visible": true,
+      "input": {"stones": [2, 1]},
+      "expected": true,
+      "tags": ["sample", "even-zero-count"]
+    },
+    {
+      "id": "sample-single-stone",
+      "name": "sample: exhaustion awards Bob the game",
+      "kind": "sample",
+      "visible": true,
+      "input": {"stones": [2]},
+      "expected": false,
+      "tags": ["sample", "exhaustion"]
+    },
+    {
+      "id": "sample-balanced-with-zero",
+      "name": "sample: one zero residue reverses balanced play",
+      "kind": "sample",
+      "visible": true,
+      "input": {"stones": [5, 1, 2, 4, 3]},
+      "expected": false,
+      "tags": ["sample", "odd-zero-count"]
+    },
+    {
+      "id": "trial-odd-zero-large-imbalance",
+      "name": "an odd zero count and difference three lets Alice win",
+      "kind": "trial",
+      "visible": true,
+      "input": {"stones": [3, 1, 4, 7, 10, 2]},
+      "expected": true,
+      "tags": ["odd-zero-count", "imbalance"]
+    },
+    {
+      "id": "trial-odd-zero-difference-two",
+      "name": "difference two is insufficient with an odd zero count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"stones": [3, 1, 4, 7, 2]},
+      "expected": false,
+      "tags": ["odd-zero-count", "boundary"]
+    },
+    {
+      "id": "real-even-zero-missing-class",
+      "name": "hidden: even zero count cannot replace a missing residue class",
+      "kind": "real",
+      "visible": false,
+      "input": {"stones": [1, 4, 3, 6]},
+      "expected": false,
+      "tags": ["hidden", "even-zero-count"]
+    },
+    {
+      "id": "real-even-zero-both-classes",
+      "name": "hidden: two zero residues preserve Alice's winning parity",
+      "kind": "real",
+      "visible": false,
+      "input": {"stones": [3, 6, 1, 2]},
+      "expected": true,
+      "tags": ["hidden", "even-zero-count"]
+    },
+    {
+      "id": "real-only-zero-residues",
+      "name": "hidden: Alice loses immediately on a zero remainder",
+      "kind": "real",
+      "visible": false,
+      "input": {"stones": [3, 6, 9]},
+      "expected": false,
+      "tags": ["hidden", "all-zero-residue"]
+    }
+  ]
+}

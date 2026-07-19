@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2067",
+  "measurement_note": "Size is n for a cyclic 13-letter string, while count scales with the number of cycles. Frequencies do not exceed count until a long range has been explored. The reference scans at most 26 fixed-width windows in linear time. A correct implementation that extends a range from every start completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id":"benchmark-scale-1",
+      "name":"benchmark: one 13-letter cycle with count one",
+      "kind":"benchmark",
+      "visible":false,
+      "size":13,
+      "input":{"s":"abcdefghijklm","count":1},
+      "expected":91,
+      "tags":["benchmark","scale-small","cyclic-alphabet"]
+    },
+    {
+      "id":"benchmark-scale-2",
+      "name":"benchmark: four 13-letter cycles",
+      "kind":"benchmark",
+      "visible":false,
+      "size":52,
+      "input":{"s":"abcdefghijklmabcdefghijklmabcdefghijklmabcdefghijklm","count":4},
+      "expected":1,
+      "tags":["benchmark","scale-medium","cyclic-alphabet"]
+    },
+    {
+      "id":"benchmark-scale-3",
+      "name":"benchmark: twelve 13-letter cycles",
+      "kind":"benchmark",
+      "visible":false,
+      "size":156,
+      "input":{"s":"abcdefghijklmabcdefghijklmabcdefghijklmabcdefghijklmabcdefghijklmabcdefghijklmabcdefghijklmabcdefghijklmabcdefghijklmabcdefghijklmabcdefghijklmabcdefghijklm","count":12},
+      "expected":1,
+      "tags":["benchmark","scale-large","cyclic-alphabet"]
+    }
+  ]
+}

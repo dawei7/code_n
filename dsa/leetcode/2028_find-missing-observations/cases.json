@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2028",
+  "cases": [
+    {
+      "id": "sample-two-sixes",
+      "name": "sample: both missing dice must be six",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rolls": [3, 2, 4, 3], "mean": 4, "n": 2},
+      "expected": [6, 6],
+      "validator": {"kind": "missing_rolls"},
+      "tags": ["sample", "upper-bound"]
+    },
+    {
+      "id": "sample-many-distributions",
+      "name": "sample: any four dice summing to nine are valid",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rolls": [1, 5, 6], "mean": 3, "n": 4},
+      "expected": [2, 3, 2, 2],
+      "validator": {"kind": "missing_rolls"},
+      "tags": ["sample", "multiple-answers"]
+    },
+    {
+      "id": "sample-impossible-high",
+      "name": "sample: required sum exceeds six per die",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rolls": [1, 2, 3, 4], "mean": 6, "n": 4},
+      "expected": [],
+      "validator": {"kind": "missing_rolls"},
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "minimum feasible sum produces only ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rolls": [1, 1], "mean": 1, "n": 3},
+      "expected": [1, 1, 1],
+      "validator": {"kind": "missing_rolls"},
+      "tags": ["lower-bound"]
+    },
+    {
+      "id": "trial-remainder-distribution",
+      "name": "a nondivisible sum may be distributed in any order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rolls": [2, 2], "mean": 3, "n": 3},
+      "expected": [4, 4, 3],
+      "validator": {"kind": "missing_rolls"},
+      "tags": ["remainder", "multiple-answers"]
+    },
+    {
+      "id": "real-all-sixes",
+      "name": "hidden: maximum feasible sum produces only sixes",
+      "kind": "real",
+      "visible": false,
+      "input": {"rolls": [6, 6], "mean": 6, "n": 3},
+      "expected": [6, 6, 6],
+      "validator": {"kind": "missing_rolls"},
+      "tags": ["hidden", "upper-bound"]
+    },
+    {
+      "id": "real-impossible-low",
+      "name": "hidden: required sum is below one per missing die",
+      "kind": "real",
+      "visible": false,
+      "input": {"rolls": [6, 6], "mean": 1, "n": 1},
+      "expected": [],
+      "validator": {"kind": "missing_rolls"},
+      "tags": ["hidden", "impossible"]
+    }
+  ]
+}

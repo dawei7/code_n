@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1849",
+  "cases": [
+    {"id":"example-no-split","name":"sample: no descending consecutive split","kind":"sample","visible":true,"input":{"args":["1234"]},"expected":false,"validator":{"kind":"exact"},"tags":["example","false"]},
+    {"id":"example-leading-zeros","name":"sample: leading zeros preserve consecutive values","kind":"sample","visible":true,"input":{"args":["050043"]},"expected":true,"validator":{"kind":"exact"},"tags":["example","leading-zeros"]},
+    {"id":"example-misleading-digits","name":"sample: decreasing-looking digits do not form consecutive values","kind":"sample","visible":true,"input":{"args":["9080701"]},"expected":false,"validator":{"kind":"exact"},"tags":["example","false"]},
+    {"id":"trial-two-pieces-with-zeros","name":"two substrings represent 90 and 89","kind":"trial","visible":true,"input":{"args":["0090089"]},"expected":true,"validator":{"kind":"exact"},"tags":["leading-zeros","two-pieces"]},
+    {"id":"real-zero-one-order","name":"hidden: zero followed by one is increasing","kind":"real","visible":false,"input":{"args":["001"]},"expected":false,"validator":{"kind":"exact"},"tags":["zero","semantic-trap"]},
+    {"id":"real-two-value-split","name":"hidden: a three-digit value followed by its predecessor","kind":"real","visible":false,"input":{"args":["100099"]},"expected":true,"validator":{"kind":"exact"},"tags":["two-pieces","leading-zero"]},
+    {"id":"real-three-value-split","name":"hidden: consecutive values cross a digit-width boundary","kind":"real","visible":false,"input":{"args":["10009998"]},"expected":true,"validator":{"kind":"exact"},"tags":["multiple-pieces","width-boundary"]},
+    {"id":"real-final-zero","name":"hidden: a sequence may end at zero","kind":"real","visible":false,"input":{"args":["10"]},"expected":true,"validator":{"kind":"exact"},"tags":["zero","two-pieces"]},
+    {"id":"real-all-zeros","name":"hidden: equal zero values are not descending","kind":"real","visible":false,"input":{"args":["000000"]},"expected":false,"validator":{"kind":"exact"},"tags":["zero","equal-values"]},
+    {"id":"real-single-digit","name":"hidden: at least two non-empty substrings are required","kind":"real","visible":false,"input":{"args":["7"]},"expected":false,"validator":{"kind":"exact"},"tags":["minimum-length","two-pieces"]},
+    {"id":"real-consecutive-suffix","name":"hidden: one multi-digit value can precede single digits","kind":"real","visible":false,"input":{"args":["1098"]},"expected":true,"validator":{"kind":"exact"},"tags":["multiple-pieces","digit-width"]},
+    {"id":"real-maximum-length-false","name":"hidden: a maximum-length repeated digit string has no valid split","kind":"real","visible":false,"input":{"args":["99999999999999999999"]},"expected":false,"validator":{"kind":"exact"},"tags":["maximum-length","false"]}
+  ]
+}

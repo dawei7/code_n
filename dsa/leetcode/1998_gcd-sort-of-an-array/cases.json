@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1998",
+  "cases": [
+    {
+      "id": "sample-transitive-sort",
+      "name": "sample: shared factors enable two swaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [7, 21, 3]},
+      "expected": true,
+      "tags": ["sample", "connectivity"]
+    },
+    {
+      "id": "sample-isolated-five",
+      "name": "sample: an isolated value blocks its target position",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [5, 2, 6, 2]},
+      "expected": false,
+      "tags": ["sample", "disconnected"]
+    },
+    {
+      "id": "sample-multiple-primes",
+      "name": "sample: factors three and five connect the rearrangement",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [10, 5, 9, 3, 15]},
+      "expected": true,
+      "tags": ["sample", "multiple-factors"]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "one value is already sorted",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [17]},
+      "expected": true,
+      "tags": ["boundary", "prime"]
+    },
+    {
+      "id": "trial-sorted-coprimes",
+      "name": "isolated values need no swaps when already sorted",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 3, 5, 7]},
+      "expected": true,
+      "tags": ["already-sorted", "coprime"]
+    },
+    {
+      "id": "real-transitive-coprime-endpoints",
+      "name": "hidden: coprime endpoints connect through intermediate factors",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [35, 6, 21, 10]},
+      "expected": true,
+      "tags": ["hidden", "transitive"]
+    },
+    {
+      "id": "real-isolated-prime-misplaced",
+      "name": "hidden: a misplaced isolated prime prevents sorting",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 6, 10]},
+      "expected": false,
+      "tags": ["hidden", "isolated"]
+    },
+    {
+      "id": "real-duplicates-connected",
+      "name": "hidden: duplicate composite values remain index-distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10, 6, 15, 6]},
+      "expected": true,
+      "tags": ["hidden", "duplicates"]
+    }
+  ]
+}

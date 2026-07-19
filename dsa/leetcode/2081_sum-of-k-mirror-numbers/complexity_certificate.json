@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2081",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The legal contract has exactly 240 input pairs, and the app-local reference answers each pair by one lookup in a fixed verified prefix-sum table, so no unbounded runtime variable exists for scaling.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 240,
+    "unit": "legal (base, count) input pairs",
+    "source_constraint": "k is an integer from 2 through 9 and n is an integer from 1 through 30"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The fixed table has eight rows of thirty prefix sums, and solve performs one row lookup and one indexed lookup."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "The certificate regression checks all 240 legal pairs against an independent numeric palindrome generator."
+    }
+  ]
+}

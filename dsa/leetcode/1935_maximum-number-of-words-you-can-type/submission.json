@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1264",
+  "frontend_id": "1935",
+  "title_slug": "maximum-number-of-words-you-can-type",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.canBeTypedWords",
+  "verified_submission_id": "2072570997",
+  "verified_at": "2026-07-18T16:44:27.907550+00:00"
+}

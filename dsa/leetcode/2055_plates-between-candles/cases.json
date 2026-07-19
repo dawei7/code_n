@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2055",
+  "cases": [
+    {
+      "id": "sample-two-queries",
+      "name": "sample: two different enclosing candle pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "**|**|***|", "queries": [[2,5],[5,9]]},
+      "expected": [2,3],
+      "tags": ["sample", "inclusive-ranges"]
+    },
+    {
+      "id": "sample-mixed-zeroes",
+      "name": "sample: only the wide query encloses plates",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "***|**|*****|**||**|*", "queries": [[1,17],[4,5],[14,17],[5,11],[15,16]]},
+      "expected": [9,0,0,0,0],
+      "tags": ["sample", "mixed-results"]
+    },
+    {
+      "id": "trial-exact-candles",
+      "name": "query endpoints are the enclosing candles",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "|*|", "queries": [[0,2],[1,1]]},
+      "expected": [1,0],
+      "tags": ["endpoint-candles", "single-index"]
+    },
+    {
+      "id": "trial-no-candles",
+      "name": "a plate-only string encloses nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "*****", "queries": [[0,4],[1,3]]},
+      "expected": [0,0],
+      "tags": ["no-candles"]
+    },
+    {
+      "id": "real-one-candle",
+      "name": "hidden: one candle cannot enclose a plate",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "**|***", "queries": [[0,5],[2,5]]},
+      "expected": [0,0],
+      "tags": ["hidden", "one-candle"]
+    },
+    {
+      "id": "real-ignore-outer-plates",
+      "name": "hidden: plates outside the inner candles are excluded",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "**|***|**", "queries": [[0,8],[1,7],[3,8]]},
+      "expected": [3,3,0],
+      "tags": ["hidden", "outer-plates"]
+    },
+    {
+      "id": "real-consecutive-candles",
+      "name": "hidden: consecutive boundaries enclose zero plates",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "|**||*|", "queries": [[0,4],[3,6],[4,6]]},
+      "expected": [2,1,1],
+      "tags": ["hidden", "consecutive-candles"]
+    }
+  ]
+}

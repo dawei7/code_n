@@ -1,0 +1,55 @@
+{
+    "schema_version":  1,
+    "challenge_id":  "lc_1963",
+    "measurement_note":  "Size is N, the bracket string length governing the required linear scan. Each tier places all N/2 closing brackets before all N/2 opening brackets, so the deepest deficit is N/2 and the answer is N/4. The reference tracks this deficit in one pass. A correct slower implementation recomputes every prefix balance independently, completes all tiers, and fails by scaling.",
+    "cases":  [
+                  {
+                      "id":  "benchmark-scale-1",
+                      "name":  "benchmark: thirty-two brackets in worst order",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  32,
+                      "input":  {
+                                    "s":  "]]]]]]]]]]]]]]]][[[[[[[[[[[[[[[["
+                                },
+                      "expected":  8,
+                      "tags":  [
+                                   "benchmark",
+                                   "scale-small",
+                                   "maximum-deficit"
+                               ]
+                  },
+                  {
+                      "id":  "benchmark-scale-2",
+                      "name":  "benchmark: one hundred twenty-eight brackets in worst order",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  128,
+                      "input":  {
+                                    "s":  "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]][[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[["
+                                },
+                      "expected":  32,
+                      "tags":  [
+                                   "benchmark",
+                                   "scale-medium",
+                                   "maximum-deficit"
+                               ]
+                  },
+                  {
+                      "id":  "benchmark-scale-3",
+                      "name":  "benchmark: five hundred twelve brackets in worst order",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  512,
+                      "input":  {
+                                    "s":  "]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]][[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[["
+                                },
+                      "expected":  128,
+                      "tags":  [
+                                   "benchmark",
+                                   "scale-large",
+                                   "maximum-deficit"
+                               ]
+                  }
+              ]
+}

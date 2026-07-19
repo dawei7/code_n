@@ -5,51 +5,74 @@
 | Source | LeetCode |
 | Frontend ID | 2002 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | String, Dynamic Programming, Backtracking, Bit Manipulation, Bitmask |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-product-of-the-length-of-two-palindromic-subsequences](https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-subsequences/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-subsequences/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-subsequences/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a lowercase string `s`, choose two subsequences. Each subsequence must preserve the order of its selected characters and must read identically from left to right and right to left.
+
+The two selections must be disjoint by source index: no position of `s` may contribute a character to both subsequences, even when equal characters occur elsewhere. Among every valid pair of palindromic subsequences, maximize the product of their lengths and return that product.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: a lowercase English string of length $N$, where $2 \le N \le 12$.
 
 **Return value**
 
-TODO
+Return the maximum value of $\lvert A\rvert\lvert B\rvert$ over two palindromic subsequences $A$ and $B$ selected from disjoint index sets.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "leetcodecom"`
+- Output: `9`
+- Explanation: `"ete"` and `"cdc"` use disjoint positions and give $3\cdot3=9$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "bb"`
+- Output: `1`
+- Explanation: Select one `b` from each of the two source positions.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "accbcaxxcxx"`
+- Output: `25`
+- Explanation: Disjoint subsequences `"accca"` and `"xxcxx"` each have length $5$.
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(N2^N)$
+- **Space:** $O(2^N)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Encode each index selection as a bitmask.** A mask from $0$ through $2^N-1$ identifies one subsequence in source order. Determine whether it is palindromic by comparing the characters at its lowest and highest selected indices and consulting the already computed mask with those two bits removed. Single-bit and empty masks are base palindromes. Record the selected-bit count for palindromic masks and zero for all others.
+
+**Precompute the best palindrome inside every available set.** Let `best[mask]` be the greatest palindromic length obtainable from any submask of `mask`. Initialize it with the exact-mask palindrome lengths. For each bit, propagate `best[mask ^ bit]` into `best[mask]` whenever the bit is present. After all bits, every submask possibility has contributed.
+
+**Pair a selection with its complement.** For a first subsequence mask $A$, the second subsequence may use only indices in `full_mask ^ A`. Multiplying the palindrome length of $A$ by `best[full_mask ^ A]` therefore gives the best disjoint partner for that exact first selection. Taking the maximum over all masks examines every valid pair: any pair's second mask is a submask of the first mask's complement, while the table never admits an overlapping index.
+
+#### Complexity detail
+
+There are $2^N$ masks. The outer-character recurrence classifies them in $O(2^N)$ time. The submask-maximum transform performs $N2^N$ constant-time updates, and the final scan takes $O(2^N)$ time, giving $O(N2^N)$ overall. The mask tables use $O(2^N)$ space.
+
+#### Alternatives and edge cases
+
+- **Assign every character to the first subsequence, second subsequence, or neither:** This backtracking explores $3^N$ assignments and then checks the resulting strings.
+- **Compare every pair of palindromic masks:** Testing disjointness across all mask pairs can take $O(4^N)$ time; the submask-maximum transform removes that extra factor.
+- Two equal characters at the same source index cannot be shared; disjointness concerns indices, not values.
+- A two-character string always permits two one-character palindromes, giving product $1$.
+- When all characters are equal, the best split balances the two subsequence lengths.
+- Characters not used by either subsequence are allowed.
+
+</details>

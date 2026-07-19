@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1813",
+  "cases": [
+    {"id":"example-middle-insertion","name":"sample: insert two words in the middle","kind":"sample","visible":true,"input":{"sentence1":"My name is Haley","sentence2":"My Haley"},"expected":true,"tags":["example","middle-insertion"]},
+    {"id":"example-interior-only-match","name":"sample: interior word match is insufficient","kind":"sample","visible":true,"input":{"sentence1":"of","sentence2":"A lot of words"},"expected":false,"tags":["example","interior-match"]},
+    {"id":"example-end-insertion","name":"sample: append words to the shorter sentence","kind":"sample","visible":true,"input":{"sentence1":"Eating right now","sentence2":"Eating"},"expected":true,"tags":["example","end-insertion"]},
+    {"id":"trial-identical","name":"empty insertion preserves identical sentences","kind":"trial","visible":true,"input":{"sentence1":"One Same Sentence","sentence2":"One Same Sentence"},"expected":true,"tags":["empty-insertion","identical"]},
+    {"id":"trial-beginning-insertion","name":"prepend words before a matching suffix","kind":"trial","visible":true,"input":{"sentence1":"we agree","sentence2":"Today surely we agree"},"expected":true,"tags":["beginning-insertion","suffix"]},
+    {"id":"trial-whole-word-boundary","name":"characters cannot be inserted inside a word","kind":"trial","visible":true,"input":{"sentence1":"Frog cool","sentence2":"Frogs are cool"},"expected":false,"tags":["word-boundary","character-trap"]},
+    {"id":"real-unmatched-two-regions","name":"hidden: mismatches on both sides cannot form one block","kind":"real","visible":false,"input":{"sentence1":"A B C","sentence2":"A X C Y"},"expected":false,"tags":["two-regions","single-insertion"]},
+    {"id":"real-parameter-swap","name":"hidden: either input may be the shorter sentence","kind":"real","visible":false,"input":{"sentence1":"Start End","sentence2":"Start several new words End"},"expected":true,"tags":["parameter-order","middle-insertion"]},
+    {"id":"real-repeated-overlap","name":"hidden: repeated words do not double-count one position","kind":"real","visible":false,"input":{"sentence1":"A B A","sentence2":"A B B A"},"expected":true,"tags":["repeated-words","pointer-overlap"]},
+    {"id":"real-case-sensitive","name":"hidden: capitalization changes word identity","kind":"real","visible":false,"input":{"sentence1":"Hello World","sentence2":"hello bright World"},"expected":false,"tags":["case-sensitive"]},
+    {"id":"real-single-word-prefix","name":"hidden: a single first word can anchor an appended block","kind":"real","visible":false,"input":{"sentence1":"Only","sentence2":"Only many more words"},"expected":true,"tags":["single-word","prefix"]},
+    {"id":"real-maximum-length","name":"hidden: maximum-length repeated-word sentence","kind":"real","visible":false,"input":{"sentence1":"a a","sentence2":"a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a"},"expected":true,"tags":["maximum-length","repeated-words"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2147",
+  "frontend_id": "2019",
+  "title_slug": "the-score-of-students-solving-math-expression",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.scoreOfStudents",
+  "verified_submission_id": "2072843701",
+  "verified_at": "2026-07-18T23:34:23.416967+00:00"
+}

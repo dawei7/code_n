@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1891",
+  "cases": [
+    {"id":"example-three-pieces","name":"sample: one length-five piece from each ribbon","kind":"sample","visible":true,"input":{"ribbons":[9,7,5],"k":3},"expected":5,"tags":["sample","remainders"]},
+    {"id":"example-four-pieces","name":"sample: the longest ribbon provides two pieces","kind":"sample","visible":true,"input":{"ribbons":[7,5,9],"k":4},"expected":4,"tags":["sample","multiple-pieces"]},
+    {"id":"example-impossible","name":"sample: total material cannot provide enough positive pieces","kind":"sample","visible":true,"input":{"ribbons":[5,7,9],"k":22},"expected":0,"tags":["sample","impossible"]},
+    {"id":"trial-one-piece","name":"one requested piece uses the longest whole ribbon","kind":"trial","visible":true,"input":{"ribbons":[3,10,7],"k":1},"expected":10,"tags":["k-one","whole-ribbon"]},
+    {"id":"trial-exact-cuts","name":"one ribbon divides into four exact pieces","kind":"trial","visible":true,"input":{"ribbons":[8],"k":4},"expected":2,"tags":["single-ribbon","exact-division"]},
+    {"id":"real-discard-remainder","name":"hidden: unused remainder permits three length-three pieces","kind":"real","visible":false,"input":{"ribbons":[10],"k":3},"expected":3,"tags":["single-ribbon","remainder"]},
+    {"id":"real-combine-ribbons","name":"hidden: piece counts combine across ribbons","kind":"real","visible":false,"input":{"ribbons":[4,4],"k":3},"expected":2,"tags":["multiple-ribbons","piece-count"]},
+    {"id":"real-unit-only","name":"hidden: requiring all available material forces unit length","kind":"real","visible":false,"input":{"ribbons":[2,3],"k":5},"expected":1,"tags":["unit-length","total-material"]},
+    {"id":"real-large-k","name":"hidden: maximum k exceeds available unit pieces","kind":"real","visible":false,"input":{"ribbons":[100000],"k":1000000000},"expected":0,"tags":["large-k","impossible"]},
+    {"id":"real-value-boundary","name":"hidden: one maximum ribbon supplies both requested pieces","kind":"real","visible":false,"input":{"ribbons":[100000,1],"k":2},"expected":50000,"tags":["value-boundary","binary-search"]},
+    {"id":"real-duplicates","name":"hidden: equal ribbons contribute identical piece counts","kind":"real","visible":false,"input":{"ribbons":[6,6,6],"k":5},"expected":3,"tags":["duplicates","at-least-k"]}
+  ]
+}

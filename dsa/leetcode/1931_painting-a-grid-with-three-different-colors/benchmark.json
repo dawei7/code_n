@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1931",
+  "measurement_note": "Size is N, the column count, with the maximum legal height M = 5 in every tier. The reference builds the 48 valid column states and their compatibility relation once, then performs one state transition per column. A correct slower implementation recomputes the complete dynamic program independently for every prefix length through N, completes all tiers, and fails by its extra factor of N.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: paint five by three grid","kind":"benchmark","visible":false,"size":3,"input":{"m":5,"n":3},"expected":5118,"tags":["benchmark","scale-small","maximum-height"]},
+    {"id":"benchmark-scale-2","name":"benchmark: paint five by twelve grid","kind":"benchmark","visible":false,"size":12,"input":{"m":5,"n":12},"expected":857663302,"tags":["benchmark","scale-medium","maximum-height"]},
+    {"id":"benchmark-scale-3","name":"benchmark: paint five by 48 grid","kind":"benchmark","visible":false,"size":48,"input":{"m":5,"n":48},"expected":365531302,"tags":["benchmark","scale-large","maximum-height"]}
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2078",
+  "cases": [
+    {
+      "id": "sample-interior-outlier",
+      "name": "sample: one interior house differs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"colors": [1, 1, 1, 6, 1, 1, 1]},
+      "expected": 3,
+      "tags": ["sample", "matching-endpoints"]
+    },
+    {
+      "id": "sample-different-endpoints",
+      "name": "sample: endpoints span the street",
+      "kind": "sample",
+      "visible": true,
+      "input": {"colors": [1, 8, 3, 8, 3]},
+      "expected": 4,
+      "tags": ["sample", "different-endpoints"]
+    },
+    {
+      "id": "sample-two-houses",
+      "name": "sample: minimum length",
+      "kind": "sample",
+      "visible": true,
+      "input": {"colors": [0, 1]},
+      "expected": 1,
+      "tags": ["sample", "minimum-length"]
+    },
+    {
+      "id": "trial-outlier-near-left",
+      "name": "an early outlier is farther from the right end",
+      "kind": "trial",
+      "visible": true,
+      "input": {"colors": [5, 9, 5, 5, 5, 5]},
+      "expected": 4,
+      "tags": ["right-endpoint"]
+    },
+    {
+      "id": "real-outlier-near-right",
+      "name": "hidden: a late outlier is farther from the left end",
+      "kind": "real",
+      "visible": false,
+      "input": {"colors": [7, 7, 7, 7, 2, 7]},
+      "expected": 4,
+      "tags": ["hidden", "left-endpoint"]
+    },
+    {
+      "id": "real-several-colors",
+      "name": "hidden: numeric color values have no ordering role",
+      "kind": "real",
+      "visible": false,
+      "input": {"colors": [100, 3, 3, 100, 0, 100]},
+      "expected": 4,
+      "tags": ["hidden", "multiple-colors"]
+    },
+    {
+      "id": "real-long-endpoint-span",
+      "name": "hidden: differing endpoints are globally optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {"colors": [4, 4, 4, 4, 8]},
+      "expected": 4,
+      "tags": ["hidden", "maximum-span"]
+    }
+  ]
+}

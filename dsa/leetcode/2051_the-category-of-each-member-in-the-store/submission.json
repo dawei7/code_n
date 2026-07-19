@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2194",
+  "frontend_id": "2051",
+  "title_slug": "the-category-of-each-member-in-the-store",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2072880228",
+  "verified_at": "2026-07-19T01:56:42.985706+00:00"
+}

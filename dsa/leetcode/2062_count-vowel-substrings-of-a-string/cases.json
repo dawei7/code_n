@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2062",
+  "cases": [
+    {"id":"sample-two-ranges","name":"sample: a repeated final vowel creates two ranges","kind":"sample","visible":true,"input":{"word":"aeiouu"},"expected":2,"tags":["sample","repeated-vowel"]},
+    {"id":"sample-missing-vowels","name":"sample: no complete all-vowel range","kind":"sample","visible":true,"input":{"word":"unicornarihan"},"expected":0,"tags":["sample","missing-vowels"]},
+    {"id":"sample-central-run","name":"sample: seven ranges inside one vowel run","kind":"sample","visible":true,"input":{"word":"cuaieuouac"},"expected":7,"tags":["sample","consonant-boundaries"]},
+    {"id":"trial-minimum-length","name":"one character cannot contain all vowels","kind":"trial","visible":true,"input":{"word":"a"},"expected":0,"tags":["minimum-size"]},
+    {"id":"real-exactly-five","name":"hidden: one occurrence of every vowel","kind":"real","visible":false,"input":{"word":"aeiou"},"expected":1,"tags":["hidden","exact-set"]},
+    {"id":"real-repeated-prefix-vowel","name":"hidden: several legal starts share one ending","kind":"real","visible":false,"input":{"word":"aaaaaeiou"},"expected":5,"tags":["hidden","multiple-starts"]},
+    {"id":"real-consonant-reset","name":"hidden: a consonant separates independent vowel runs","kind":"real","visible":false,"input":{"word":"aeiouxaieouu"},"expected":3,"tags":["hidden","reset"]},
+    {"id":"real-two-cycles","name":"hidden: every long range in an all-vowel string qualifies","kind":"real","visible":false,"input":{"word":"aeiouaeiou"},"expected":21,"tags":["hidden","overlapping-ranges"]}
+  ]
+}

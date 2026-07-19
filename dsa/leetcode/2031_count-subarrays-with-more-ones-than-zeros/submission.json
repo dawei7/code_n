@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "510",
+  "frontend_id": "2031",
+  "title_slug": "count-subarrays-with-more-ones-than-zeros",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.subarraysWithMoreOnesThanZeroes",
+  "verified_submission_id": "2072857518",
+  "verified_at": "2026-07-19T00:29:35.116570+00:00"
+}

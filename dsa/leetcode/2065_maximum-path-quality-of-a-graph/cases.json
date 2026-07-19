@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2065",
+  "cases": [
+    {"id":"sample-two-branches","name":"sample: return through two profitable branches","kind":"sample","visible":true,"input":{"values":[0,32,10,43],"edges":[[0,1,10],[1,2,15],[0,3,10]],"maxTime":49},"expected":75,"tags":["sample","multiple-branches"]},
+    {"id":"sample-one-return-trip","name":"sample: only one profitable branch can return","kind":"sample","visible":true,"input":{"values":[5,10,15,20],"edges":[[0,1,10],[1,2,10],[0,3,10]],"maxTime":30},"expected":25,"tags":["sample","time-budget"]},
+    {"id":"sample-revisit-junction","name":"sample: a junction is revisited without double counting","kind":"sample","visible":true,"input":{"values":[1,2,3,4],"edges":[[0,1,10],[1,2,11],[2,3,12],[1,3,13]],"maxTime":50},"expected":7,"tags":["sample","revisit"]},
+    {"id":"trial-single-node","name":"the zero-length route collects the starting value","kind":"trial","visible":true,"input":{"values":[9],"edges":[],"maxTime":10},"expected":9,"tags":["minimum-size"]},
+    {"id":"real-disconnected-value","name":"hidden: an unreachable valuable node is ignored","kind":"real","visible":false,"input":{"values":[5,100],"edges":[],"maxTime":100},"expected":5,"tags":["hidden","disconnected"]},
+    {"id":"real-retrace-path","name":"hidden: reaching a deep node requires retracing edges","kind":"real","visible":false,"input":{"values":[1,10,20],"edges":[[0,1,10],[1,2,10]],"maxTime":40},"expected":31,"tags":["hidden","retrace"]},
+    {"id":"real-exact-budget","name":"hidden: an exact-budget round trip is valid","kind":"real","visible":false,"input":{"values":[0,5],"edges":[[0,1,50]],"maxTime":100},"expected":5,"tags":["hidden","inclusive-budget"]},
+    {"id":"real-cannot-return","name":"hidden: reaching a node is insufficient without return time","kind":"real","visible":false,"input":{"values":[1,100],"edges":[[0,1,60]],"maxTime":100},"expected":1,"tags":["hidden","return-required"]}
+  ]
+}

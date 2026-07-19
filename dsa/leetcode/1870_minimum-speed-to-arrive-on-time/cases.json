@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1870",
+  "cases": [
+    {"id":"example-speed-one","name":"sample: speed one meets a generous deadline","kind":"sample","visible":true,"input":{"dist":[1,3,2],"hour":6},"expected":1,"tags":["sample","integer-arrivals"]},
+    {"id":"example-speed-three","name":"sample: fractional final ride requires speed three","kind":"sample","visible":true,"input":{"dist":[1,3,2],"hour":2.7},"expected":3,"tags":["sample","fractional-deadline"]},
+    {"id":"example-impossible","name":"sample: departure boundaries exceed the deadline","kind":"sample","visible":true,"input":{"dist":[1,3,2],"hour":1.9},"expected":-1,"tags":["sample","impossible"]},
+    {"id":"trial-single-ride","name":"one ride has no rounded waiting interval","kind":"trial","visible":true,"input":{"dist":[100],"hour":1},"expected":100,"tags":["single-ride"]},
+    {"id":"trial-upper-bound","name":"the guaranteed upper speed can be the answer","kind":"trial","visible":true,"input":{"dist":[1,100000],"hour":1.01},"expected":10000000,"tags":["upper-bound","precision"]},
+    {"id":"real-deadline-boundary","name":"hidden: hour equal to mandatory departures is impossible","kind":"real","visible":false,"input":{"dist":[5,5,5,5],"hour":3},"expected":-1,"tags":["impossible-boundary"]},
+    {"id":"real-no-extra-wait","name":"hidden: exact integer ride times depart immediately","kind":"real","visible":false,"input":{"dist":[4,8,4],"hour":4},"expected":4,"tags":["integer-boundary"]},
+    {"id":"real-last-not-rounded","name":"hidden: the final fractional ride is not rounded","kind":"real","visible":false,"input":{"dist":[3,2],"hour":2.5},"expected":3,"tags":["final-ride","fractional-time"]},
+    {"id":"real-speed-one-single","name":"hidden: a long single deadline permits speed one","kind":"real","visible":false,"input":{"dist":[37],"hour":100},"expected":1,"tags":["single-ride","minimum-speed"]},
+    {"id":"real-many-short-rides","name":"hidden: waiting dominates several short rides","kind":"real","visible":false,"input":{"dist":[1,1,1,1,1],"hour":4.5},"expected":2,"tags":["waiting","multiple-rides"]},
+    {"id":"real-decimal-threshold","name":"hidden: speed changes at a two-decimal deadline","kind":"real","visible":false,"input":{"dist":[2,2],"hour":1.5},"expected":4,"tags":["decimal-hour","threshold"]},
+    {"id":"real-large-distances","name":"hidden: large distances retain integer ceiling semantics","kind":"real","visible":false,"input":{"dist":[100000,100000,100000],"hour":3},"expected":100000,"tags":["large-distance","integer-arrivals"]}
+  ]
+}

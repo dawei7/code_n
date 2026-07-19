@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2137",
+  "frontend_id": "2011",
+  "title_slug": "final-value-of-variable-after-performing-operations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.finalValueAfterOperations",
+  "verified_submission_id": "2072836155",
+  "verified_at": "2026-07-18T23:04:26.517661+00:00"
+}

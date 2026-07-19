@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1941",
+  "measurement_note": "Size is N, the string length. Every tier repeats the complete lowercase alphabet, so all 26 characters have equal counts and the expected result is true. The reference scans each character once. A correct slower implementation rebuilds the complete 26-entry frequency table for every growing prefix, uses the final prefix to produce the same answer, performs Theta(N squared) work, completes all legal tiers, and fails by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: two copies of the alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 52,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": true,
+      "tags": ["benchmark", "scale-small", "balanced-alphabet"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: ten copies of the alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 260,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": true,
+      "tags": ["benchmark", "scale-medium", "balanced-alphabet"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: thirty-eight copies of the alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 988,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": true,
+      "tags": ["benchmark", "scale-large", "balanced-alphabet"]
+    }
+  ]
+}

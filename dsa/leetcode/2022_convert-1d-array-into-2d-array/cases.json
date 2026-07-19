@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2022",
+  "cases": [
+    {
+      "id": "sample-square",
+      "name": "sample: reshape four values into a square",
+      "kind": "sample",
+      "visible": true,
+      "input": {"original": [1, 2, 3, 4], "m": 2, "n": 2},
+      "expected": [[1, 2], [3, 4]],
+      "tags": ["sample", "square"]
+    },
+    {
+      "id": "sample-single-row",
+      "name": "sample: all values form one row",
+      "kind": "sample",
+      "visible": true,
+      "input": {"original": [1, 2, 3], "m": 1, "n": 3},
+      "expected": [[1, 2, 3]],
+      "tags": ["sample", "single-row"]
+    },
+    {
+      "id": "sample-too-many-values",
+      "name": "sample: target has too few cells",
+      "kind": "sample",
+      "visible": true,
+      "input": {"original": [1, 2], "m": 1, "n": 1},
+      "expected": [],
+      "tags": ["sample", "invalid-shape"]
+    },
+    {
+      "id": "trial-too-few-values",
+      "name": "target has more cells than the source",
+      "kind": "trial",
+      "visible": true,
+      "input": {"original": [1, 2, 3], "m": 2, "n": 2},
+      "expected": [],
+      "tags": ["invalid-shape"]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "each value becomes a one-element row",
+      "kind": "trial",
+      "visible": true,
+      "input": {"original": [4, 5, 6], "m": 3, "n": 1},
+      "expected": [[4], [5], [6]],
+      "tags": ["single-column"]
+    },
+    {
+      "id": "real-single-cell",
+      "name": "hidden: one value fills one cell",
+      "kind": "real",
+      "visible": false,
+      "input": {"original": [100000], "m": 1, "n": 1},
+      "expected": [[100000]],
+      "tags": ["hidden", "minimum"]
+    },
+    {
+      "id": "real-duplicates-preserved",
+      "name": "hidden: duplicate values keep row-major order",
+      "kind": "real",
+      "visible": false,
+      "input": {"original": [7, 7, 8, 7, 8, 8], "m": 2, "n": 3},
+      "expected": [[7, 7, 8], [7, 8, 8]],
+      "tags": ["hidden", "duplicates"]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1989",
+  "cases": [
+    {"id":"example-two-caught","name":"sample: two catchers among three people","kind":"sample","visible":true,"input":{"team":[0,1,0,1,0],"dist":3},"expected":2,"tags":["sample","unbalanced"]},
+    {"id":"example-only-catcher","name":"sample: no person can be caught","kind":"sample","visible":true,"input":{"team":[1],"dist":1},"expected":0,"tags":["sample","minimum","all-catchers"]},
+    {"id":"example-only-person","name":"sample: no catcher is present","kind":"sample","visible":true,"input":{"team":[0],"dist":1},"expected":0,"tags":["sample","minimum","all-people"]},
+    {"id":"trial-exact-distance","name":"distance endpoint is inclusive","kind":"trial","visible":true,"input":{"team":[1,0],"dist":1},"expected":1,"tags":["distance-boundary"]},
+    {"id":"trial-greedy-order","name":"leftmost feasible person preserves a later match","kind":"trial","visible":true,"input":{"team":[0,0,1,0,1],"dist":1},"expected":2,"tags":["greedy","ordering"]},
+    {"id":"trial-too-far-left","name":"early people may expire before a catcher","kind":"trial","visible":true,"input":{"team":[0,0,0,1],"dist":1},"expected":1,"tags":["expired-person"]},
+    {"id":"trial-too-far-right","name":"early catchers may expire before a person","kind":"trial","visible":true,"input":{"team":[1,1,1,0],"dist":1},"expected":1,"tags":["expired-catcher"]},
+    {"id":"trial-full-distance","name":"full-array reach matches the smaller team","kind":"trial","visible":true,"input":{"team":[0,0,0,1,1],"dist":5},"expected":2,"tags":["maximum-distance","unbalanced"]},
+    {"id":"real-alternating","name":"hidden: adjacent alternating teams all match","kind":"real","visible":false,"input":{"team":[0,1,0,1,0,1,0,1],"dist":1},"expected":4,"tags":["alternating","all-match"]},
+    {"id":"real-separated-blocks","name":"hidden: only boundary positions across blocks can match","kind":"real","visible":false,"input":{"team":[1,1,1,1,0,0,0,0],"dist":2},"expected":2,"tags":["blocks","distance"]},
+    {"id":"real-asymmetric-gaps","name":"hidden: pointers discard both kinds of expired index","kind":"real","visible":false,"input":{"team":[0,0,1,1,1,0,0,1,0],"dist":1},"expected":3,"tags":["mixed","pointer-advances"]},
+    {"id":"real-many-catchers","name":"hidden: surplus catchers remain unmatched","kind":"real","visible":false,"input":{"team":[1,0,1,1,1,0,1],"dist":2},"expected":2,"tags":["unbalanced","surplus-catchers"]}
+  ]
+}

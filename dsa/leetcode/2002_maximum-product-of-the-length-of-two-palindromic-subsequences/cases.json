@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2002",
+  "cases": [
+    {
+      "id": "sample-two-length-three",
+      "name": "sample: two disjoint palindromes of length three",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "leetcodecom"},
+      "expected": 9,
+      "tags": ["sample", "disjoint"]
+    },
+    {
+      "id": "sample-two-characters",
+      "name": "sample: minimum length splits into singletons",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "bb"},
+      "expected": 1,
+      "tags": ["sample", "boundary"]
+    },
+    {
+      "id": "sample-two-length-five",
+      "name": "sample: two disjoint palindromes of length five",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "accbcaxxcxx"},
+      "expected": 25,
+      "tags": ["sample", "maximum-product"]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "distinct characters permit only singleton palindromes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcd"},
+      "expected": 1,
+      "tags": ["distinct"]
+    },
+    {
+      "id": "trial-even-identical",
+      "name": "four equal characters split evenly",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaaa"},
+      "expected": 4,
+      "tags": ["identical", "balanced"]
+    },
+    {
+      "id": "real-complement-palindromes",
+      "name": "hidden: complementary index sets give lengths two and three",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcba"},
+      "expected": 6,
+      "tags": ["hidden", "complement"]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating characters support two length-three choices",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ababab"},
+      "expected": 9,
+      "tags": ["hidden", "alternating"]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: twelve equal characters split into balanced halves",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaaaaaaaaaa"},
+      "expected": 36,
+      "tags": ["hidden", "maximum-length"]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1956",
+  "cases": [
+    {"id":"example-horizontal-pair","name":"sample: two variants five columns apart","kind":"sample","visible":true,"input":{"points":[[1,1],[6,1]],"k":2},"expected":3,"tags":["sample","pair"]},
+    {"id":"example-nearest-two","name":"sample: only the nearest two variants are required","kind":"sample","visible":true,"input":{"points":[[3,3],[1,2],[9,2]],"k":2},"expected":2,"tags":["sample","subset"]},
+    {"id":"example-all-three","name":"sample: all three variants must meet","kind":"sample","visible":true,"input":{"points":[[3,3],[1,2],[9,2]],"k":3},"expected":4,"tags":["sample","all-variants"]},
+    {"id":"trial-shared-origin","name":"multiple variants at one origin meet immediately","kind":"trial","visible":true,"input":{"points":[[5,5],[5,5],[5,5]],"k":2},"expected":0,"tags":["duplicate-origin","day-zero"]},
+    {"id":"trial-diagonal-pair","name":"two diagonal neighbors meet after one day","kind":"trial","visible":true,"input":{"points":[[1,1],[2,2]],"k":2},"expected":1,"tags":["pair","integer-meeting"]},
+    {"id":"trial-three-corner","name":"three corners share a point after two days","kind":"trial","visible":true,"input":{"points":[[1,1],[1,3],[3,1]],"k":3},"expected":2,"tags":["all-variants","geometry"]},
+    {"id":"real-four-corners","name":"hidden: all corners of a small square","kind":"real","visible":false,"input":{"points":[[1,1],[1,3],[3,1],[3,3]],"k":4},"expected":2,"tags":["all-variants","bounding-box"]},
+    {"id":"real-far-horizontal","name":"hidden: pair spans the horizontal coordinate range","kind":"real","visible":false,"input":{"points":[[1,1],[100,1]],"k":2},"expected":50,"tags":["coordinate-boundary","pair"]},
+    {"id":"real-duplicate-subset","name":"hidden: two colocated variants satisfy k before a distant third","kind":"real","visible":false,"input":{"points":[[1,1],[1,1],[100,1]],"k":2},"expected":0,"tags":["duplicate-origin","subset"]},
+    {"id":"real-cross","name":"hidden: center minimizes the maximum arm distance","kind":"real","visible":false,"input":{"points":[[1,8],[8,1],[8,15],[15,8]],"k":4},"expected":7,"tags":["all-variants","geometry"]}
+  ]
+}

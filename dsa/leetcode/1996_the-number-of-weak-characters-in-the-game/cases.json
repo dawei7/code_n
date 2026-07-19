@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1996",
+  "cases": [
+    {
+      "id": "sample-tradeoffs",
+      "name": "sample: every character trades attack for defense",
+      "kind": "sample",
+      "visible": true,
+      "input": {"properties": [[5, 5], [6, 3], [3, 6]]},
+      "expected": 0,
+      "tags": ["sample", "antichain"]
+    },
+    {
+      "id": "sample-one-dominator",
+      "name": "sample: one character dominates the other",
+      "kind": "sample",
+      "visible": true,
+      "input": {"properties": [[2, 2], [3, 3]]},
+      "expected": 1,
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-mixed-statistics",
+      "name": "sample: only the low-defense character is weak",
+      "kind": "sample",
+      "visible": true,
+      "input": {"properties": [[1, 5], [10, 4], [4, 3]]},
+      "expected": 1,
+      "tags": ["sample", "mixed"]
+    },
+    {
+      "id": "trial-equal-attack",
+      "name": "equal attack cannot establish strict domination",
+      "kind": "trial",
+      "visible": true,
+      "input": {"properties": [[5, 1], [5, 5]]},
+      "expected": 0,
+      "tags": ["strictness", "equal-attack"]
+    },
+    {
+      "id": "trial-equal-defense",
+      "name": "equal defense cannot establish strict domination",
+      "kind": "trial",
+      "visible": true,
+      "input": {"properties": [[1, 5], [2, 5]]},
+      "expected": 0,
+      "tags": ["strictness", "equal-defense"]
+    },
+    {
+      "id": "real-duplicate-weak-characters",
+      "name": "hidden: duplicate characters are counted independently",
+      "kind": "real",
+      "visible": false,
+      "input": {"properties": [[1, 1], [1, 1], [2, 2]]},
+      "expected": 2,
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "real-dominating-maximum",
+      "name": "hidden: one character dominates several tradeoffs",
+      "kind": "real",
+      "visible": false,
+      "input": {"properties": [[1, 5], [2, 4], [3, 3], [4, 6]]},
+      "expected": 3,
+      "tags": ["hidden", "multiple-weak"]
+    },
+    {
+      "id": "real-strict-chain",
+      "name": "hidden: every character except the maximum is weak",
+      "kind": "real",
+      "visible": false,
+      "input": {"properties": [[1, 1], [2, 2], [3, 3], [4, 4]]},
+      "expected": 3,
+      "tags": ["hidden", "chain"]
+    }
+  ]
+}

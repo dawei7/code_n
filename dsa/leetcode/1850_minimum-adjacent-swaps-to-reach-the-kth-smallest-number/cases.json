@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1850",
+  "cases": [
+    {"id":"example-fourth-wonderful","name":"sample: fourth wonderful integer needs two swaps","kind":"sample","visible":true,"input":{"args":["5489355142",4]},"expected":2,"validator":{"kind":"exact"},"tags":["example","repeated-digits"]},
+    {"id":"example-move-two-left","name":"sample: one digit moves across four equal digits","kind":"sample","visible":true,"input":{"args":["11112",4]},"expected":4,"validator":{"kind":"exact"},"tags":["example","repeated-digits"]},
+    {"id":"example-leading-zeros","name":"sample: leading zeros remain fixed-width digits","kind":"sample","visible":true,"input":{"args":["00123",1]},"expected":1,"validator":{"kind":"exact"},"tags":["example","leading-zeros"]},
+    {"id":"trial-one-next-permutation","name":"next permutation swaps the final pair","kind":"trial","visible":true,"input":{"args":["1234",1]},"expected":1,"validator":{"kind":"exact"},"tags":["next-permutation"]},
+    {"id":"real-fifth-permutation","name":"hidden: several next-permutation steps change multiple positions","kind":"real","visible":false,"input":{"args":["1234",5]},"expected":3,"validator":{"kind":"exact"},"tags":["multiple-permutations","distinct-digits"]},
+    {"id":"real-repeated-middle-digits","name":"hidden: stable matching handles duplicate digits","kind":"real","visible":false,"input":{"args":["1223",3]},"expected":1,"validator":{"kind":"exact"},"tags":["repeated-digits","stable-matching"]},
+    {"id":"real-leading-zero-later-target","name":"hidden: several successors preserve leading zeros","kind":"real","visible":false,"input":{"args":["00123",4]},"expected":2,"validator":{"kind":"exact"},"tags":["leading-zeros","multiple-permutations"]},
+    {"id":"real-minimum-length","name":"hidden: a two-digit number has one successor","kind":"real","visible":false,"input":{"args":["12",1]},"expected":1,"validator":{"kind":"exact"},"tags":["minimum-length"]},
+    {"id":"real-first-of-duplicates","name":"hidden: the first successor with repeated digits is adjacent","kind":"real","visible":false,"input":{"args":["11112",1]},"expected":1,"validator":{"kind":"exact"},"tags":["repeated-digits"]},
+    {"id":"real-large-k","name":"hidden: the maximum k-scale is supported","kind":"real","visible":false,"input":{"args":["0123456789",1000]},"expected":8,"validator":{"kind":"exact"},"tags":["large-k","distinct-digits"]},
+    {"id":"real-many-duplicates","name":"hidden: many duplicate occurrences retain stable order","kind":"real","visible":false,"input":{"args":["00112233",20]},"expected":5,"validator":{"kind":"exact"},"tags":["repeated-digits","multiple-permutations"]}
+  ]
+}

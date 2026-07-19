@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1894",
+  "cases": [
+    {"id":"example-exact-rounds","name":"sample: two full rounds leave student zero to replace chalk","kind":"sample","visible":true,"input":{"chalk":[5,1,5],"k":22},"expected":0,"tags":["sample","exact-rounds"]},
+    {"id":"example-partial-round","name":"sample: replacement occurs after student zero in the third round","kind":"sample","visible":true,"input":{"chalk":[3,4,1,2],"k":25},"expected":1,"tags":["sample","partial-round"]},
+    {"id":"trial-exact-first-requirement","name":"student zero uses the exact remainder before student one fails","kind":"trial","visible":true,"input":{"chalk":[2,3],"k":2},"expected":1,"tags":["exact-requirement","zero-remainder"]},
+    {"id":"trial-one-student","name":"the sole student always replaces the chalk eventually","kind":"trial","visible":true,"input":{"chalk":[7],"k":1},"expected":0,"tags":["single-student"]},
+    {"id":"real-exact-full-round","name":"hidden: exact total consumption returns replacement to student zero","kind":"real","visible":false,"input":{"chalk":[2,3],"k":5},"expected":0,"tags":["exact-round","modulo"]},
+    {"id":"real-one-before-round","name":"hidden: one less than a full round fails at the final student","kind":"real","visible":false,"input":{"chalk":[2,3],"k":4},"expected":1,"tags":["round-boundary","final-student"]},
+    {"id":"real-insufficient-first","name":"hidden: less than the first requirement fails immediately","kind":"real","visible":false,"input":{"chalk":[5,1,2],"k":3},"expected":0,"tags":["first-student","insufficient"]},
+    {"id":"real-large-k","name":"hidden: a large count reduces to a short partial round","kind":"real","visible":false,"input":{"chalk":[1,2,3],"k":1000000000},"expected":2,"tags":["large-k","modulo"]},
+    {"id":"real-large-exact-multiple","name":"hidden: maximum k is an exact multiple of the round cost","kind":"real","visible":false,"input":{"chalk":[100000,100000],"k":1000000000},"expected":0,"tags":["large-k","exact-round"]},
+    {"id":"real-middle-student","name":"hidden: several unequal costs stop in the middle of a round","kind":"real","visible":false,"input":{"chalk":[4,2,7,1],"k":20},"expected":2,"tags":["partial-round","unequal-costs"]}
+  ]
+}

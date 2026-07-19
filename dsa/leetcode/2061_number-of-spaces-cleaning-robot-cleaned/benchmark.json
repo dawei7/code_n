@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2061",
+  "measurement_note": "Size is n for an open one-row room. The robot traverses the row in both directions before its complete state repeats, so state history grows linearly with n. The reference uses hash-set cycle detection. A correct implementation that linearly scans its state-history list completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: open row of length 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": { "room": [[0, 0, 0, 0, 0, 0, 0, 0]] },
+      "expected": 8,
+      "tags": ["benchmark", "scale-small", "linear-state-history"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: open row of length 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "room": [
+          [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0
+          ]
+        ]
+      },
+      "expected": 32,
+      "tags": ["benchmark", "scale-medium", "linear-state-history"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: open row of length 123",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 123,
+      "input": {
+        "room": [
+          [
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0
+          ]
+        ]
+      },
+      "expected": 123,
+      "tags": ["benchmark", "scale-large", "linear-state-history"]
+    }
+  ]
+}

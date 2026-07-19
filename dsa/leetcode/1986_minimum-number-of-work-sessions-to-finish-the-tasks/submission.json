@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2114",
+  "frontend_id": "1986",
+  "title_slug": "minimum-number-of-work-sessions-to-finish-the-tasks",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minSessions",
+  "verified_submission_id": "2072798585",
+  "verified_at": "2026-07-18T21:02:03.484576+00:00"
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2021",
+  "cases": [
+    {
+      "id": "sample-tied-brightest-regions",
+      "name": "sample: choose the smallest point among tied bright regions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"lights": [[-3, 2], [1, 2], [3, 3]]},
+      "expected": -1,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "tie"]
+    },
+    {
+      "id": "sample-zero-range-overlap",
+      "name": "sample: a point lamp overlaps an interval endpoint",
+      "kind": "sample",
+      "visible": true,
+      "input": {"lights": [[1, 0], [0, 1]]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "zero-range"]
+    },
+    {
+      "id": "sample-single-interval",
+      "name": "sample: choose the left endpoint of one interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {"lights": [[1, 2]]},
+      "expected": -1,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "single"]
+    },
+    {
+      "id": "trial-touching-endpoints",
+      "name": "inclusive endpoints overlap at one position",
+      "kind": "trial",
+      "visible": true,
+      "input": {"lights": [[0, 2], [4, 2]]},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["inclusive", "boundary"]
+    },
+    {
+      "id": "trial-negative-tie",
+      "name": "disjoint point lamps tie at negative positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"lights": [[-10, 0], [-2, 0]]},
+      "expected": -10,
+      "validator": {"kind": "exact"},
+      "tags": ["negative", "tie"]
+    },
+    {
+      "id": "real-coincident-events",
+      "name": "hidden: coincident starts and removals are aggregated",
+      "kind": "real",
+      "visible": false,
+      "input": {"lights": [[0, 1], [0, 1], [2, 0]]},
+      "expected": -1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "coincident-events"]
+    },
+    {
+      "id": "real-maximum-radius",
+      "name": "hidden: a maximum-radius interval crosses zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"lights": [[100000000, 100000000]]},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "large-coordinate"]
+    }
+  ]
+}

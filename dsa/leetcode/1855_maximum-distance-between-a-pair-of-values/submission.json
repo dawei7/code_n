@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1984",
+  "frontend_id": "1855",
+  "title_slug": "maximum-distance-between-a-pair-of-values",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxDistance",
+  "verified_submission_id": "2071727711",
+  "verified_at": "2026-07-18T04:18:10.299943+00:00"
+}

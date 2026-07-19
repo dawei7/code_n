@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1817",
+  "cases": [
+    {"id":"example-duplicate-minute","name":"sample: duplicate minute counts once","kind":"sample","visible":true,"input":{"logs":[[0,5],[1,2],[0,2],[0,5],[1,3]],"k":5},"expected":[0,2,0,0,0],"tags":["example","duplicate-minute"]},
+    {"id":"example-one-and-two","name":"sample: users occupy first two buckets","kind":"sample","visible":true,"input":{"logs":[[1,1],[2,2],[2,3]],"k":4},"expected":[1,1,0,0],"tags":["example","multiple-buckets"]},
+    {"id":"trial-single-log","name":"one user and one action","kind":"trial","visible":true,"input":{"logs":[[7,9]],"k":1},"expected":[1],"tags":["single-log","uam-one"]},
+    {"id":"trial-all-duplicates","name":"many actions in one user-minute pair","kind":"trial","visible":true,"input":{"logs":[[3,4],[3,4],[3,4]],"k":3},"expected":[1,0,0],"tags":["duplicates","sparse-output"]},
+    {"id":"trial-shared-minute","name":"different users share one minute","kind":"trial","visible":true,"input":{"logs":[[1,8],[2,8],[3,8]],"k":2},"expected":[3,0],"tags":["simultaneous-users","uam-one"]},
+    {"id":"trial-three-buckets","name":"one user in each of three buckets","kind":"trial","visible":true,"input":{"logs":[[1,1],[2,1],[2,2],[3,1],[3,2],[3,3]],"k":3},"expected":[1,1,1],"tags":["all-buckets","distinct-minutes"]},
+    {"id":"real-large-identifiers","name":"large user IDs remain independent","kind":"real","visible":false,"input":{"logs":[[1000000000,1],[999999999,1],[1000000000,100000]],"k":4},"expected":[1,1,0,0],"tags":["maximum-id","maximum-minute"]},
+    {"id":"real-unsorted-logs","name":"input order does not affect UAM","kind":"real","visible":false,"input":{"logs":[[4,9],[2,7],[4,1],[2,7],[4,5]],"k":5},"expected":[1,0,1,0,0],"tags":["unsorted","duplicate-minute"]},
+    {"id":"real-uam-equals-k","name":"maximum UAM occupies final bucket","kind":"real","visible":false,"input":{"logs":[[5,10],[5,20],[5,30],[5,40]],"k":4},"expected":[0,0,0,1],"tags":["final-bucket","uam-equals-k"]},
+    {"id":"real-wide-k","name":"large k leaves a sparse suffix","kind":"real","visible":false,"input":{"logs":[[0,1],[1,2],[1,3]],"k":10},"expected":[1,1,0,0,0,0,0,0,0,0],"tags":["wide-output","sparse-output"]}
+  ]
+}

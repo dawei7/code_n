@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1827",
+  "measurement_note": "Size is n, the array length. Every value is 1, so the optimal adjusted array is 1 through n and requires n(n-1)/2 increments. Directly adding each required difference takes O(n). A correct implementation that performs every unit increment in an inner loop takes O(n^2), completes all tiers, and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 120,
+      "tags": ["benchmark","scale-small","flat-array"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums":[
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+      ]},
+      "expected": 2016,
+      "tags": ["benchmark","scale-medium","flat-array"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"nums":[
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+      ]},
+      "expected": 8128,
+      "tags": ["benchmark","scale-large","flat-array"]
+    }
+  ]
+}

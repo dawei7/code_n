@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1893",
+  "cases": [
+    {"id":"example-adjacent-coverage","name":"sample: adjacent ranges cover every target integer","kind":"sample","visible":true,"input":{"ranges":[[1,2],[3,4],[5,6]],"left":2,"right":5},"expected":true,"tags":["sample","adjacent-ranges"]},
+    {"id":"example-uncovered-point","name":"sample: target point lies beyond every range","kind":"sample","visible":true,"input":{"ranges":[[1,10],[10,20]],"left":21,"right":21},"expected":false,"tags":["sample","single-point","uncovered"]},
+    {"id":"trial-interior-gap","name":"an interior gap makes the complete target false","kind":"trial","visible":true,"input":{"ranges":[[1,2],[4,5]],"left":1,"right":5},"expected":false,"tags":["gap","inclusive-range"]},
+    {"id":"trial-single-endpoint","name":"a target equal to an interval endpoint is covered","kind":"trial","visible":true,"input":{"ranges":[[7,9]],"left":9,"right":9},"expected":true,"tags":["single-point","inclusive-endpoint"]},
+    {"id":"real-full-domain","name":"hidden: one interval covers the entire legal coordinate domain","kind":"real","visible":false,"input":{"ranges":[[1,50]],"left":1,"right":50},"expected":true,"tags":["value-boundary","full-coverage"]},
+    {"id":"real-touching-integers","name":"hidden: consecutive inclusive ranges leave no integer gap","kind":"real","visible":false,"input":{"ranges":[[1,2],[3,3]],"left":2,"right":3},"expected":true,"tags":["adjacent-ranges","inclusive-endpoint"]},
+    {"id":"real-overlap","name":"hidden: overlapping ranges jointly cover the target","kind":"real","visible":false,"input":{"ranges":[[2,6],[4,9],[8,12]],"left":3,"right":11},"expected":true,"tags":["overlap","multiple-ranges"]},
+    {"id":"real-missing-left","name":"hidden: coverage starting after left fails immediately","kind":"real","visible":false,"input":{"ranges":[[2,10]],"left":1,"right":5},"expected":false,"tags":["left-boundary","uncovered"]},
+    {"id":"real-missing-right","name":"hidden: coverage ending before right leaves the endpoint uncovered","kind":"real","visible":false,"input":{"ranges":[[1,49]],"left":45,"right":50},"expected":false,"tags":["right-boundary","value-boundary"]},
+    {"id":"real-outside-irrelevant","name":"hidden: intervals outside the target do not fill its gap","kind":"real","visible":false,"input":{"ranges":[[1,5],[20,30],[40,50]],"left":10,"right":12},"expected":false,"tags":["outside-ranges","gap"]},
+    {"id":"real-duplicate-overlap","name":"hidden: repeated coverage still yields one boolean result","kind":"real","visible":false,"input":{"ranges":[[5,15],[5,15],[10,20]],"left":7,"right":18},"expected":true,"tags":["duplicate-ranges","overlap"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1961",
+  "frontend_id": "1833",
+  "title_slug": "maximum-ice-cream-bars",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxIceCream",
+  "verified_submission_id": "2071650246",
+  "verified_at": "2026-07-18T01:29:15.409703+00:00"
+}

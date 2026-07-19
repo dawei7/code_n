@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1925",
+  "measurement_note": "Size is n, the inclusive component bound. The reference enumerates n^2 ordered leg pairs and checks a square set. A correct slower implementation explicitly enumerates all n^3 ordered triples; it completes every authored tier and fails only because of its extra linear growth factor.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: count triples through 8","kind":"benchmark","visible":false,"size":8,"input":{"n":8},"expected":2,"tags":["benchmark","scale-small"]},
+    {"id":"benchmark-scale-2","name":"benchmark: count triples through 24","kind":"benchmark","visible":false,"size":24,"input":{"n":24},"expected":12,"tags":["benchmark","scale-medium"]},
+    {"id":"benchmark-scale-3","name":"benchmark: count triples through 72","kind":"benchmark","visible":false,"size":72,"input":{"n":72},"expected":66,"tags":["benchmark","scale-large"]}
+  ]
+}

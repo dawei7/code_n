@@ -17,18 +17,24 @@ export function Workspace() {
   const setActiveTopic = useAppStore((s) => s.setActiveTopic);
   const paneFontScales = useAppStore((s) => s.paneFontScales);
   const activeSetOption = getAlgorithmSetOption(activeSet);
+  const activeCustomSetId = useAppStore((s) => s.activeCustomSetId);
+  const customProblemSets = useAppStore((s) => s.customProblemSets);
+  const activeCustomSet = activeSet === 'custom'
+    ? customProblemSets.find((set) => set.id === activeCustomSetId)
+    : null;
+  const hasCareerPath = activeSetOption.hasCareerPath || activeCustomSet?.career_mode === true;
 
   useEffect(() => {
-    if (!activeSetOption.hasCareerPath && activeTopic === 'career_path') {
+    if (!hasCareerPath && activeTopic === 'career_path') {
       setActiveTopic('reference');
     }
     if (activeTopic === 'guided_example' && !detail?.has_guided_example) {
       setActiveTopic('reference');
     }
-  }, [activeSetOption.hasCareerPath, activeTopic, detail?.has_guided_example, setActiveTopic]);
+  }, [hasCareerPath, activeTopic, detail?.has_guided_example, setActiveTopic]);
 
   if (!detail) {
-    if (activeSetOption.hasCareerPath) {
+    if (hasCareerPath) {
       return (
         <div className="flex-1 flex flex-col min-h-0 bg-coden-bg p-6 overflow-y-auto">
           <CareerPathTab onSelectCodenTab={() => setActiveTopic('coden')} />
@@ -43,7 +49,8 @@ export function Workspace() {
           Welcome to <BrandWordmark />
         </h3>
         <p className="text-xs max-w-sm leading-relaxed text-coden-muted font-mono">
-          You are practicing with the <strong>{getAlgorithmSetLabel(activeSet)}</strong> dataset.
+          You are practicing with the{' '}
+          <strong>{activeCustomSet?.name || getAlgorithmSetLabel(activeSet)}</strong> dataset.
           Select any available challenge from the left sidebar to start practicing.
         </p>
       </div>
@@ -58,7 +65,7 @@ export function Workspace() {
       ? [{ id: 'guided_example' as Topic, label: <ProfessorLectureIcon />, title: 'Guided Example' }]
       : []),
     { id: 'ai', label: 'AI', title: 'AI Tutor', className: 'font-mono text-xs tracking-tight' },
-    ...(activeSetOption.hasCareerPath
+    ...(hasCareerPath
       ? [{ id: 'career_path' as Topic, label: '∴', title: 'Career Path', className: 'font-serif text-lg' }]
       : []),
   ];

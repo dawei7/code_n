@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2103",
+  "cases": [
+    {
+      "id": "sample-one-complete-rod",
+      "name": "sample: only rod zero has every color",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rings": "B0B6G0R6R0R6G9"},
+      "expected": 1,
+      "tags": ["sample", "one-complete"]
+    },
+    {
+      "id": "sample-duplicates",
+      "name": "sample: duplicate colors do not change presence",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rings": "B0R0G0R9R0B0G0"},
+      "expected": 1,
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "sample-single-ring",
+      "name": "sample: one ring completes no rod",
+      "kind": "sample",
+      "visible": true,
+      "input": {"rings": "G4"},
+      "expected": 0,
+      "tags": ["sample", "single-ring"]
+    },
+    {
+      "id": "trial-three-rods",
+      "name": "three separate rods each receive all colors",
+      "kind": "trial",
+      "visible": true,
+      "input": {"rings": "R0G0B0R4G4B4R9G9B9"},
+      "expected": 3,
+      "tags": ["multiple-complete"]
+    },
+    {
+      "id": "real-order-independent",
+      "name": "hidden: colors arrive in mixed order",
+      "kind": "real",
+      "visible": false,
+      "input": {"rings": "B2R7G2R2B7G7"},
+      "expected": 2,
+      "tags": ["hidden", "mixed-order"]
+    },
+    {
+      "id": "real-missing-one-color",
+      "name": "hidden: many rings still lack blue",
+      "kind": "real",
+      "visible": false,
+      "input": {"rings": "R5G5R5G5R5G5"},
+      "expected": 0,
+      "tags": ["hidden", "missing-color"]
+    },
+    {
+      "id": "real-all-ten-rods",
+      "name": "hidden: every rod has every color",
+      "kind": "real",
+      "visible": false,
+      "input": {"rings": "R0G0B0R1G1B1R2G2B2R3G3B3R4G4B4R5G5B5R6G6B6R7G7B7R8G8B8R9G9B9"},
+      "expected": 10,
+      "tags": ["hidden", "all-rods"]
+    }
+  ]
+}

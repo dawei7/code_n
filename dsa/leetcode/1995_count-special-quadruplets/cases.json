@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_1995",
+  "cases": [
+    {
+      "id": "sample-single-quadruplet",
+      "name": "sample: exactly one quadruplet",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 6]},
+      "expected": 1,
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-no-match",
+      "name": "sample: no value equation matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 3, 6, 4, 5]},
+      "expected": 0,
+      "tags": ["sample", "no-match"]
+    },
+    {
+      "id": "sample-repeated-ones",
+      "name": "sample: repeated values create distinct index choices",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 1, 1, 3, 5]},
+      "expected": 4,
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "trial-minimum-no-match",
+      "name": "minimum length with no valid equation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 1, 1, 1]},
+      "expected": 0,
+      "tags": ["boundary"]
+    },
+    {
+      "id": "real-repeated-right-values",
+      "name": "hidden: equal fourth values count at distinct indices",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 2, 2, 6, 6]},
+      "expected": 2,
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "real-order-boundary",
+      "name": "hidden: an irrelevant prefix cannot serve as a late value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 1, 1, 1, 3]},
+      "expected": 1,
+      "tags": ["hidden", "index-order"]
+    },
+    {
+      "id": "real-multiple-boundaries",
+      "name": "hidden: matches arise at different middle boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 1, 4, 2, 8]},
+      "expected": 2,
+      "tags": ["hidden", "multiple-matches"]
+    }
+  ]
+}

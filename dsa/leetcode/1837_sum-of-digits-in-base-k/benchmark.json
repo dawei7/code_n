@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1837",
+  "measurement_note": "Size is n, the decimal input value, with k fixed at 2. Direct quotient/remainder extraction takes O(log n) iterations. A correct slower implementation that obtains each quotient and remainder through repeated subtraction performs O(n) total subtraction work, completes all legal tiers, and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: binary digit sum of 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"n":8,"k":2},
+      "expected": 1,
+      "tags": ["benchmark","scale-small","binary"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: binary digit sum of 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"n":32,"k":2},
+      "expected": 1,
+      "tags": ["benchmark","scale-medium","binary"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: binary digit sum of 100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"n":100,"k":2},
+      "expected": 3,
+      "tags": ["benchmark","scale-large","binary"]
+    }
+  ]
+}

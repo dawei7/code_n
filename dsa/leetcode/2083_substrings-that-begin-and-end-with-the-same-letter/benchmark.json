@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2083",
+  "measurement_note": "Size is n, the string length. Every character is 'a', so every endpoint pair qualifies and the expected count is n(n+1)/2. The reference updates one frequency per character. A correct implementation that checks every start and end pair completes all tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 equal characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"s": "aaaaaaaaaaaaaaaa"},
+      "expected": 136,
+      "tags": ["benchmark", "scale-small", "endpoint-pairs"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 equal characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": 2080,
+      "tags": ["benchmark", "scale-medium", "endpoint-pairs"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 equal characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 32896,
+      "tags": ["benchmark", "scale-large", "endpoint-pairs"]
+    }
+  ]
+}

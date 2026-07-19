@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2094",
+  "frontend_id": "1962",
+  "title_slug": "remove-stones-to-minimize-the-total",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minStoneSum",
+  "verified_submission_id": "2072729475",
+  "verified_at": "2026-07-18T19:05:46.089422+00:00"
+}

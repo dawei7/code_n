@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1928",
+  "cases": [
+    {"id":"example-cheap-exact","name":"sample: the cheapest route uses the full time budget","kind":"sample","visible":true,"input":{"maxTime":30,"edges":[[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]],"passingFees":[5,1,2,20,20,3]},"expected":11,"tags":["sample","exact-budget"]},
+    {"id":"example-fast-expensive","name":"sample: tighter time requires the expensive route","kind":"sample","visible":true,"input":{"maxTime":29,"edges":[[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]],"passingFees":[5,1,2,20,20,3]},"expected":48,"tags":["sample","time-cost-tradeoff"]},
+    {"id":"example-impossible","name":"sample: neither route meets the tighter budget","kind":"sample","visible":true,"input":{"maxTime":25,"edges":[[0,1,10],[1,2,10],[2,5,10],[0,3,1],[3,4,10],[4,5,15]],"passingFees":[5,1,2,20,20,3]},"expected":-1,"tags":["sample","unreachable-in-time"]},
+    {"id":"trial-direct-exact","name":"one direct road arrives exactly at the budget","kind":"trial","visible":true,"input":{"maxTime":5,"edges":[[0,1,5]],"passingFees":[7,11]},"expected":18,"tags":["direct-road","source-destination-fees"]},
+    {"id":"trial-direct-too-slow","name":"a connected direct road can still exceed the budget","kind":"trial","visible":true,"input":{"maxTime":4,"edges":[[0,1,5]],"passingFees":[7,11]},"expected":-1,"tags":["direct-road","unreachable-in-time"]},
+    {"id":"real-cheap-slow","name":"hidden: a slower route wins when both alternatives fit","kind":"real","visible":false,"input":{"maxTime":4,"edges":[[0,1,1],[1,3,3],[0,2,1],[2,3,1]],"passingFees":[5,1,100,2]},"expected":8,"tags":["time-cost-tradeoff","multiple-routes"]},
+    {"id":"real-fast-required","name":"hidden: only the expensive fast route meets the budget","kind":"real","visible":false,"input":{"maxTime":2,"edges":[[0,1,1],[1,3,3],[0,2,1],[2,3,1]],"passingFees":[5,1,100,2]},"expected":107,"tags":["fast-route","tight-budget"]},
+    {"id":"real-parallel-roads","name":"hidden: the faster of two parallel roads enables arrival","kind":"real","visible":false,"input":{"maxTime":4,"edges":[[0,1,5],[0,1,2],[1,2,2]],"passingFees":[3,4,5]},"expected":12,"tags":["parallel-roads","exact-budget"]},
+    {"id":"real-direct-versus-detour","name":"hidden: an over-budget direct edge leaves one feasible detour","kind":"real","visible":false,"input":{"maxTime":6,"edges":[[0,3,7],[0,1,2],[1,2,2],[2,3,2]],"passingFees":[4,1,1,20]},"expected":26,"tags":["detour","time-budget"]},
+    {"id":"real-extra-time-layer","name":"hidden: destination is cheapest at an earlier than maximum layer","kind":"real","visible":false,"input":{"maxTime":10,"edges":[[0,1,2],[1,2,2],[0,2,9]],"passingFees":[2,3,5]},"expected":7,"tags":["minimum-over-time","direct-versus-detour"]}
+  ]
+}

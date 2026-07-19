@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1991",
+  "frontend_id": "1841",
+  "title_slug": "league-statistics",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2071660127",
+  "verified_at": "2026-07-18T02:01:13.848085+00:00"
+}

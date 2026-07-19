@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2047",
+  "cases": [
+    {
+      "id": "sample-three-plain-words",
+      "name": "sample: multiple spaces separate three valid words",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence": "cat and  dog"},
+      "expected": 3,
+      "tags": ["sample", "multiple-spaces"]
+    },
+    {
+      "id": "sample-all-invalid",
+      "name": "sample: punctuation placement and digits reject every token",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence": "!this  1-s b8d!"},
+      "expected": 0,
+      "tags": ["sample", "digits", "misplaced-punctuation"]
+    },
+    {
+      "id": "sample-five-valid-prefixes",
+      "name": "sample: a digit invalidates only the final token",
+      "kind": "sample",
+      "visible": true,
+      "input": {"sentence": "alice and  bob are playing stone-game10"},
+      "expected": 5,
+      "tags": ["sample", "mixed-validity"]
+    },
+    {
+      "id": "trial-punctuation-only",
+      "name": "a punctuation mark alone is a valid word",
+      "kind": "trial",
+      "visible": true,
+      "input": {"sentence": "!"},
+      "expected": 1,
+      "tags": ["punctuation-only"]
+    },
+    {
+      "id": "trial-hyphen-and-punctuation",
+      "name": "an internal hyphen and final punctuation may coexist",
+      "kind": "trial",
+      "visible": true,
+      "input": {"sentence": "a-b."},
+      "expected": 1,
+      "tags": ["hyphen", "final-punctuation"]
+    },
+    {
+      "id": "real-hyphen-boundaries",
+      "name": "hidden: only the internally surrounded hyphen is valid",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence": "-ab ab- a-b"},
+      "expected": 1,
+      "tags": ["hidden", "hyphen-boundary"]
+    },
+    {
+      "id": "real-multiple-restricted-marks",
+      "name": "hidden: repeated hyphens and punctuation are invalid",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence": "a-b-c c., plain"},
+      "expected": 1,
+      "tags": ["hidden", "multiple-hyphens", "multiple-punctuation"]
+    },
+    {
+      "id": "real-punctuation-position",
+      "name": "hidden: punctuation must occur only at the final index",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence": "a!b valid! ,"},
+      "expected": 2,
+      "tags": ["hidden", "punctuation-position"]
+    },
+    {
+      "id": "real-spaces-and-valid-forms",
+      "name": "hidden: leading and repeated spaces do not create tokens",
+      "kind": "real",
+      "visible": false,
+      "input": {"sentence": "   well-formed,   ok   .   "},
+      "expected": 3,
+      "tags": ["hidden", "spaces", "valid-forms"]
+    }
+  ]
+}

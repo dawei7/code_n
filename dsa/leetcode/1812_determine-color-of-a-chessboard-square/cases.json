@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1812",
+  "cases": [
+    {"id":"example-a1","name":"sample: lower-left reference square is black","kind":"sample","visible":true,"input":{"coordinates":"a1"},"expected":false,"tags":["example","black","corner"]},
+    {"id":"example-h3","name":"sample: h3 is white","kind":"sample","visible":true,"input":{"coordinates":"h3"},"expected":true,"tags":["example","white"]},
+    {"id":"example-c7","name":"sample: c7 is black","kind":"sample","visible":true,"input":{"coordinates":"c7"},"expected":false,"tags":["example","black"]},
+    {"id":"trial-horizontal-neighbor","name":"one file step from a1 flips to white","kind":"trial","visible":true,"input":{"coordinates":"b1"},"expected":true,"tags":["adjacent","horizontal"]},
+    {"id":"trial-vertical-neighbor","name":"one rank step from a1 flips to white","kind":"trial","visible":true,"input":{"coordinates":"a2"},"expected":true,"tags":["adjacent","vertical"]},
+    {"id":"trial-diagonal-neighbor","name":"one diagonal step preserves black","kind":"trial","visible":true,"input":{"coordinates":"b2"},"expected":false,"tags":["diagonal","black"]},
+    {"id":"real-upper-right-corner","name":"hidden: h8 has the reference color","kind":"real","visible":false,"input":{"coordinates":"h8"},"expected":false,"tags":["corner","black"]},
+    {"id":"real-upper-left-corner","name":"hidden: a8 is white","kind":"real","visible":false,"input":{"coordinates":"a8"},"expected":true,"tags":["corner","white"]},
+    {"id":"real-lower-right-corner","name":"hidden: h1 is white","kind":"real","visible":false,"input":{"coordinates":"h1"},"expected":true,"tags":["corner","white"]},
+    {"id":"real-central-black","name":"hidden: central square d4 is black","kind":"real","visible":false,"input":{"coordinates":"d4"},"expected":false,"tags":["center","black"]},
+    {"id":"real-central-white","name":"hidden: central square e4 is white","kind":"real","visible":false,"input":{"coordinates":"e4"},"expected":true,"tags":["center","white"]}
+  ]
+}

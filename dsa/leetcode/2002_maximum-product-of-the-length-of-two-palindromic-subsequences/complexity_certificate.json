@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2002",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(N2^N)",
+  "summary": "The source contract fixes N at no more than twelve, so the complete subset state space contains at most 4096 masks and does not support unbounded asymptotic runtime scaling.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 4096,
+    "unit": "subsequence masks",
+    "source_constraint": "The input string has length at most 12, yielding exactly 2^12 possible index masks at the legal maximum."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference classifies each of at most 4096 masks by an outer-character recurrence and performs a twelve-by-4096 submask-maximum transform at the legal maximum."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover minimum and maximum lengths, all-distinct and all-identical strings, alternating characters, complementary palindromes, disjoint-index semantics, and both official larger examples."
+    }
+  ]
+}

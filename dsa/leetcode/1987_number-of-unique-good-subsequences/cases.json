@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1987",
+  "cases": [
+    {"id":"example-leading-zeros","name":"sample: leading zeros only contribute standalone zero","kind":"sample","visible":true,"input":{"binary":"001"},"expected":2,"tags":["sample","leading-zeros"]},
+    {"id":"example-two-ones","name":"sample: repeated ones create strings of two lengths","kind":"sample","visible":true,"input":{"binary":"11"},"expected":2,"tags":["sample","ones"]},
+    {"id":"example-mixed","name":"sample: mixed three-bit string","kind":"sample","visible":true,"input":{"binary":"101"},"expected":5,"tags":["sample","mixed"]},
+    {"id":"trial-single-zero","name":"standalone zero is good","kind":"trial","visible":true,"input":{"binary":"0"},"expected":1,"tags":["minimum","zero"]},
+    {"id":"trial-single-one","name":"standalone one is good","kind":"trial","visible":true,"input":{"binary":"1"},"expected":1,"tags":["minimum","one"]},
+    {"id":"trial-all-zero","name":"many zeros still produce one unique result","kind":"trial","visible":true,"input":{"binary":"0000"},"expected":1,"tags":["zeros","deduplication"]},
+    {"id":"trial-all-one","name":"all ones produce one result per length","kind":"trial","visible":true,"input":{"binary":"1111"},"expected":4,"tags":["ones","deduplication"]},
+    {"id":"trial-one-zero","name":"one followed by zero produces three good strings","kind":"trial","visible":true,"input":{"binary":"10"},"expected":3,"tags":["mixed","standalone-zero"]},
+    {"id":"real-leading-zero-before-one","name":"hidden: zero cannot prefix a longer result","kind":"real","visible":false,"input":{"binary":"01"},"expected":2,"tags":["leading-zero","semantic-trap"]},
+    {"id":"real-repeated-pattern","name":"hidden: repeated mixed pattern creates duplicate index choices","kind":"real","visible":false,"input":{"binary":"1001"},"expected":7,"tags":["mixed","deduplication"]},
+    {"id":"real-alternating","name":"hidden: alternating bits","kind":"real","visible":false,"input":{"binary":"101010"},"expected":21,"tags":["alternating","mixed"]},
+    {"id":"real-ten-ones","name":"hidden: homogeneous repeated input","kind":"real","visible":false,"input":{"binary":"1111111111"},"expected":10,"tags":["deduplication","ones"]}
+  ]
+}

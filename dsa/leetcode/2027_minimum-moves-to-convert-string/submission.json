@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2154",
+  "frontend_id": "2027",
+  "title_slug": "minimum-moves-to-convert-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumMoves",
+  "verified_submission_id": "2072852775",
+  "verified_at": "2026-07-19T00:10:27.747029+00:00"
+}

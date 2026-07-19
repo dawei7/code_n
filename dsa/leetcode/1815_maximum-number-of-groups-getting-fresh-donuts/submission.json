@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1924",
+  "frontend_id": "1815",
+  "title_slug": "maximum-number-of-groups-getting-fresh-donuts",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxHappyGroups",
+  "verified_submission_id": "2071627814",
+  "verified_at": "2026-07-18T00:03:15.941000+00:00"
+}

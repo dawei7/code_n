@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2070",
+  "frontend_id": "1933",
+  "title_slug": "check-if-string-is-decomposable-into-value-equal-substrings",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.isDecomposable",
+  "verified_submission_id": "2072557884",
+  "verified_at": "2026-07-18T16:33:11.978485+00:00"
+}

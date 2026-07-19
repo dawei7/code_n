@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1842",
+  "cases": [
+    {"id":"example-even-next","name":"sample: advance a two-digit half","kind":"sample","visible":true,"input":{"args":["1221"]},"expected":"2112","validator":{"kind":"exact"},"tags":["example","even-length"]},
+    {"id":"example-no-larger","name":"sample: descending half has no successor","kind":"sample","visible":true,"input":{"args":["32123"]},"expected":"","validator":{"kind":"exact"},"tags":["example","no-answer","odd-length"]},
+    {"id":"example-repeated-digits","name":"sample: repeated digits advance to the next half permutation","kind":"sample","visible":true,"input":{"args":["45544554"]},"expected":"54455445","validator":{"kind":"exact"},"tags":["example","repeated-digits"]},
+    {"id":"trial-single-digit","name":"one digit has no different arrangement","kind":"trial","visible":true,"input":{"args":["7"]},"expected":"","validator":{"kind":"exact"},"tags":["single-digit","no-answer"]},
+    {"id":"trial-two-equal-digits","name":"two equal digits have no larger palindrome","kind":"trial","visible":true,"input":{"args":["11"]},"expected":"","validator":{"kind":"exact"},"tags":["length-two","no-answer"]},
+    {"id":"real-simple-swap","name":"hidden: swap the only increasing half pair","kind":"real","visible":false,"input":{"args":["1331"]},"expected":"3113","validator":{"kind":"exact"},"tags":["simple-swap","even-length"]},
+    {"id":"real-odd-center-fixed","name":"hidden: an odd center stays fixed","kind":"real","visible":false,"input":{"args":["1229221"]},"expected":"2129212","validator":{"kind":"exact"},"tags":["odd-length","center","repeated-digits"]},
+    {"id":"real-rightmost-successor","name":"hidden: choose the least greater suffix digit","kind":"real","visible":false,"input":{"args":["1243333421"]},"expected":"1323443231","validator":{"kind":"exact"},"tags":["successor-choice","suffix-reversal"]},
+    {"id":"real-descending-long-half","name":"hidden: a longer non-increasing half has no successor","kind":"real","visible":false,"input":{"args":["999010999"]},"expected":"","validator":{"kind":"exact"},"tags":["no-pivot","odd-length"]},
+    {"id":"real-carry-leftward","name":"hidden: pivot search crosses repeated trailing digits","kind":"real","visible":false,"input":{"args":["1299999921"]},"expected":"1929999291","validator":{"kind":"exact"},"tags":["pivot-search","repeated-suffix"]}
+  ]
+}

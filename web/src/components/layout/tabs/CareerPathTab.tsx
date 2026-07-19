@@ -1,5 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useAppStore } from '../../../store/useAppStore';
+import {
+  buildCustomCareerUnlockMap,
+  collectCustomCareerLeaves,
+} from '../../../lib/careerUnlocks';
 
 interface CareerPathTabProps {
   onSelectCodenTab: () => void;
@@ -80,6 +84,10 @@ export function CareerPathTab({ onSelectCodenTab }: CareerPathTabProps) {
     selectChallenge(challengeId);
     onSelectCodenTab();
   };
+
+  if (activeSet === 'custom') {
+    return <PersonalCareerPath onSelectCodenTab={onSelectCodenTab} />;
+  }
 
   return (
     <div className="space-y-4 flex flex-col h-full overflow-hidden">
@@ -225,6 +233,136 @@ export function CareerPathTab({ onSelectCodenTab }: CareerPathTabProps) {
             </div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+function PersonalCareerPath({ onSelectCodenTab }: CareerPathTabProps) {
+  const challenges = useAppStore((state) => state.challenges);
+  const customSets = useAppStore((state) => state.customProblemSets);
+  const activeCustomSetId = useAppStore((state) => state.activeCustomSetId);
+  const completed = useAppStore((state) => state.progress?.completed ?? []);
+  const currentChallengeId = useAppStore((state) => state.currentDetail?.id ?? null);
+  const selectChallenge = useAppStore((state) => state.selectChallenge);
+  const selectedSet = customSets.find((set) => set.id === activeCustomSetId) ?? null;
+  const completedSet = useMemo(() => new Set(completed), [completed]);
+  const challengeById = useMemo(
+    () => new Map(challenges.map((challenge) => [challenge.id, challenge])),
+    [challenges],
+  );
+  const leaves = useMemo(
+    () => collectCustomCareerLeaves(selectedSet ? [selectedSet] : []),
+    [selectedSet],
+  );
+  const unlocks = useMemo(
+    () => buildCustomCareerUnlockMap(
+      selectedSet ? [selectedSet] : [],
+      completedSet,
+    ),
+    [completedSet, selectedSet],
+  );
+
+  const openChallenge = (challengeId: string) => {
+    void selectChallenge(challengeId);
+    onSelectCodenTab();
+  };
+
+  if (!selectedSet?.career_mode) {
+    return (
+      <div className="rounded-lg border border-coden-border bg-coden-surface p-6 text-center text-sm text-coden-muted">
+        This Personal root does not use Career mode.
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex h-full flex-col space-y-4 overflow-hidden">
+      <div className="flex shrink-0 items-center justify-between rounded-lg border border-coden-border bg-coden-surface p-4 shadow-sm">
+        <div className="min-w-0">
+          <h3 className="truncate text-sm font-bold text-coden-text">
+            {selectedSet.name}
+          </h3>
+          <p className="mt-1 text-[11px] text-coden-muted">
+            Each folder leaf is an independent sequence. Finish the current problem to unlock the next.
+          </p>
+        </div>
+        <span className="rounded border border-coden-accent/40 bg-coden-accent/10 px-2 py-1 text-[10px] font-semibold text-coden-accent">
+          Personal Career mode
+        </span>
+      </div>
+
+      <div className="flex-grow space-y-4 overflow-y-auto pr-1">
+        {leaves.map((leaf) => {
+          const leafChallenges = leaf.challengeIds.flatMap((challengeId) => {
+            const challenge = challengeById.get(challengeId);
+            return challenge ? [challenge] : [];
+          });
+          const solved = leafChallenges.filter((challenge) => completedSet.has(challenge.id)).length;
+          const progress = leafChallenges.length > 0 ? (solved / leafChallenges.length) * 100 : 0;
+          const unlocked = unlocks.get(leaf.key) ?? new Set<string>();
+          return (
+            <section
+              key={leaf.key}
+              className="rounded-lg border border-coden-border bg-coden-surface p-4 shadow-sm"
+            >
+              <div className="flex items-center justify-between gap-4 border-b border-coden-border pb-3">
+                <div className="min-w-0">
+                  <div className="truncate text-sm font-bold text-coden-text">
+                    {leaf.path.join(' / ')}
+                  </div>
+                  <div className="mt-1 text-[10px] font-mono text-coden-muted">
+                    {solved} / {leafChallenges.length} solved
+                  </div>
+                </div>
+                <div className="h-1.5 w-36 overflow-hidden rounded-full border border-coden-border bg-coden-bg">
+                  <div
+                    className={solved === leafChallenges.length ? 'h-full bg-emerald-500' : 'h-full bg-coden-accent'}
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+              </div>
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                {leafChallenges.map((challenge, index) => {
+                  const isDone = completedSet.has(challenge.id);
+                  const isLocked = !unlocked.has(challenge.id);
+                  const isSelected = currentChallengeId === challenge.id;
+                  return (
+                    <div key={`${leaf.key}:${index}:${challenge.id}`} className="flex items-center gap-2">
+                      {index > 0 && (
+                        <span className="select-none font-mono text-xs text-coden-muted">-&gt;</span>
+                      )}
+                      <button
+                        type="button"
+                        disabled={isLocked}
+                        onClick={() => openChallenge(challenge.id)}
+                        className={[
+                          'max-w-[220px] rounded-lg border px-3 py-2 text-left text-xs transition-all',
+                          isSelected ? 'ring-2 ring-coden-accent ring-offset-2 ring-offset-coden-surface' : '',
+                          isLocked
+                            ? 'cursor-not-allowed border-coden-border bg-coden-bg text-coden-muted opacity-70'
+                            : isDone
+                              ? 'border-emerald-700/70 bg-emerald-950/30 text-coden-text hover:border-emerald-500'
+                              : 'border-coden-border bg-coden-inner text-coden-text hover:border-coden-accent',
+                        ].join(' ')}
+                      >
+                        <span className="block truncate font-bold">{challenge.name}</span>
+                        <span className="mt-1 block font-mono text-[9px] text-coden-muted">
+                          {isLocked ? 'locked' : isDone ? 'done' : 'solve'} · {challenge.difficulty_label}
+                        </span>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })}
+        {leaves.length === 0 && (
+          <div className="rounded-lg border border-dashed border-coden-border p-8 text-center text-sm text-coden-muted">
+            Add problems directly to this root or one of its folders to create Career sequences.
+          </div>
+        )}
       </div>
     </div>
   );

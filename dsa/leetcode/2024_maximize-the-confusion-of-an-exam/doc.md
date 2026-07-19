@@ -5,51 +5,105 @@
 | Source | LeetCode |
 | Frontend ID | 2024 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | String, Binary Search, Sliding Window, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximize-the-confusion-of-an-exam](https://leetcode.com/problems/maximize-the-confusion-of-an-exam/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximize-the-confusion-of-an-exam/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximize-the-confusion-of-an-exam/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+An exam answer key is a string whose characters are `T` and `F`. You may
+change the answer at any position to either symbol, performing this operation
+at most `k` times.
+
+After those changes, find the greatest possible length of a consecutive block
+containing only `T` answers or only `F` answers. Changes outside the chosen
+block are unnecessary and do not affect its length.
 
 ### Function Contract
+
+Let $N$ be the length of `answerKey`.
+
 **Inputs**
 
-- TODO
+- `answerKey`: a string of $N$ characters, each either `T` or `F`, where
+  $1 \le N \le 5 \cdot 10^4$.
+- `k`: the maximum number of answers that may be changed, where
+  $1 \le k \le N$.
 
 **Return value**
 
-TODO
+- The maximum length of a consecutive equal-answer block achievable with at
+  most `k` changes.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `answerKey = "TTFF", k = 2`
+- Output: `4`
+- Explanation: Changing both `F` answers produces four consecutive `T`
+  answers.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `answerKey = "TFFT", k = 1`
+- Output: `3`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `answerKey = "TTFTTFTT", k = 1`
+- Output: `5`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- **Time:** $O(N)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Reduce the goal to two uniform targets**
+
+First seek the longest window that can become all `T`. Its exact replacement
+cost is the number of `F` characters inside it. Then perform the symmetric
+search for a window that can become all `F`, where the cost is its count of
+`T` characters. The better of the two searches is the overall answer.
+
+**Maintain the longest affordable window**
+
+For one target symbol, move a right boundary across the key and count
+characters that would need replacement. Whenever this cost exceeds `k`, move
+the left boundary forward, decreasing the cost when a replaceable character
+leaves. Once affordable again, record the window length.
+
+For each right boundary, shrinking stops at the smallest left boundary whose
+window costs at most `k`; it is therefore the longest valid window ending
+there. Both boundaries only move forward, and the cost always equals the
+number of opposite answers in the current window. Each pass finds every
+candidate for its chosen target, so their maximum is exactly the best block
+of either symbol.
+
+#### Complexity detail
+
+Each of the two sliding-window passes moves its left and right boundaries at
+most $N$ times, so the total time is $O(N)$. The boundaries, replacement
+counter, and best length use $O(1)$ space.
+
+#### Alternatives and edge cases
+
+- **One window with symbol counts:** Track both frequencies and keep a window
+  valid when its length minus its majority count is at most `k`. This is also
+  linear but its stale-maximum optimization requires a subtler argument.
+- **Binary search on the answer:** Prefix counts can test whether any window of
+  a chosen length is feasible, giving $O(N\log N)$ time.
+- **Expand from every start:** This is correct but repeats overlapping work and
+  can take $O(N^2)$ time.
+- If `k` covers every occurrence of the minority symbol, the entire key is
+  achievable.
+- An already uniform key returns its full length without needing a change.
+- Using at most `k` changes means unused operations never need to be forced.
+
+</details>

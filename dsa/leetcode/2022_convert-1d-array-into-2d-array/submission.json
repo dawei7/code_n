@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2132",
+  "frontend_id": "2022",
+  "title_slug": "convert-1d-array-into-2d-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.construct2DArray",
+  "verified_submission_id": "2072848266",
+  "verified_at": "2026-07-18T23:52:19.019224+00:00"
+}

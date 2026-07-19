@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2088",
+  "measurement_note": "Size is A = mn, the number of cells in a square all-fertile grid. Every legal pyramid is present in both orientations. The rolling dynamic program performs constant work per cell. A correct implementation that explicitly checks every cell of every candidate height completes all tiers and fails only by its repeated geometric work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: all-fertile 4 by 4 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "grid": [
+          [1, 1, 1, 1],
+          [1, 1, 1, 1],
+          [1, 1, 1, 1],
+          [1, 1, 1, 1]
+        ]
+      },
+      "expected": 12,
+      "tags": ["benchmark", "scale-small", "all-fertile"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: all-fertile 8 by 8 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "grid": [
+          [1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1]
+        ]
+      },
+      "expected": 152,
+      "tags": ["benchmark", "scale-medium", "all-fertile"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: all-fertile 16 by 16 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "grid": [
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        ]
+      },
+      "expected": 1456,
+      "tags": ["benchmark", "scale-large", "all-fertile"]
+    }
+  ]
+}

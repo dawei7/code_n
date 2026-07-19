@@ -43,7 +43,6 @@ type LoadState =
   | { kind: 'missing'; challengeId: string; challengeName: string; category: string }
   | { kind: 'error'; message: string };
 
-const CACHE: Map<string, string> = new Map();
 const OVERVIEW_CACHE: Map<string, string> = new Map();
 
 const REFERENCE_LANGUAGES: Array<{
@@ -63,10 +62,9 @@ const REFERENCE_LANGUAGES: Array<{
   { id: 'bash', label: 'Bash', monaco: 'shell', extension: 'sh' },
 ];
 
-function localizedCacheKey(language: string, id: string): string {
+function localizedReferenceKey(language: string, id: string): string {
   return `${language}:${id}`;
 }
-
 
 export function ReferenceTab() {
   const detail = useAppStore((s) => s.currentDetail);
@@ -95,15 +93,11 @@ export function ReferenceTab() {
           setState({ kind: 'idle' });
           return;
         }
-        const key = localizedCacheKey(language, id);
-        const cached = CACHE.get(key);
-        if (cached !== undefined) {
-          setState({ kind: 'loaded', markdown: cached });
-          return;
-        }
+        // Problem documents are authored while the app is running. Fetch them
+        // whenever a challenge is opened so edits do not remain hidden behind
+        // a process-wide cache keyed only by challenge ID.
         try {
           const text = await apiText(`/docs/by-id/${encodeURIComponent(id)}?lang=${language}`);
-          CACHE.set(key, text);
           setState({ kind: 'loaded', markdown: text });
         } catch (e) {
           if (e instanceof ApiError && e.status === 404) {
@@ -341,7 +335,7 @@ export function ReferenceTab() {
         </ReactMarkdown>
         {approachMarkdown && (
           <ApproachDisclosure
-            key={localizedCacheKey(language, challengeId ?? 'overview')}
+            key={localizedReferenceKey(language, challengeId ?? 'overview')}
             markdown={approachMarkdown}
           />
         )}

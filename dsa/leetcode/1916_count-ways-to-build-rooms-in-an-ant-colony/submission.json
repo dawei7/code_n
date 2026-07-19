@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1313",
+  "frontend_id": "1916",
+  "title_slug": "count-ways-to-build-rooms-in-an-ant-colony",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.waysToBuildRooms",
+  "verified_submission_id": "2072302728",
+  "verified_at": "2026-07-18T14:22:18.952541+00:00"
+}

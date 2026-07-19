@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1981",
+  "cases": [
+    {
+      "id": "example-exact-three-rows",
+      "name": "sample: three rows can hit the target",
+      "kind": "sample",
+      "visible": true,
+      "input": {"mat": [[1, 2, 3], [4, 5, 6], [7, 8, 9]], "target": 13},
+      "expected": 0,
+      "tags": ["sample", "exact"]
+    },
+    {
+      "id": "example-only-one-total",
+      "name": "sample: singleton rows have one possible total",
+      "kind": "sample",
+      "visible": true,
+      "input": {"mat": [[1], [2], [3]], "target": 100},
+      "expected": 94,
+      "tags": ["sample", "target-above"]
+    },
+    {
+      "id": "example-one-row",
+      "name": "sample: closest value in one row",
+      "kind": "sample",
+      "visible": true,
+      "input": {"mat": [[1, 2, 9, 8, 7]], "target": 6},
+      "expected": 1,
+      "tags": ["sample", "one-row"]
+    },
+    {
+      "id": "trial-single-exact",
+      "name": "single value equals the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"mat": [[5]], "target": 5},
+      "expected": 0,
+      "tags": ["minimum", "exact"]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicates within rows do not add choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"mat": [[2, 2], [3, 3]], "target": 4},
+      "expected": 1,
+      "tags": ["duplicates"]
+    },
+    {
+      "id": "trial-target-below-all",
+      "name": "target is below every possible total",
+      "kind": "trial",
+      "visible": true,
+      "input": {"mat": [[8, 9], [10, 11]], "target": 1},
+      "expected": 17,
+      "tags": ["target-below", "above-target-state"]
+    },
+    {
+      "id": "trial-target-above-all",
+      "name": "target is above every possible total",
+      "kind": "trial",
+      "visible": true,
+      "input": {"mat": [[1, 2], [3, 4]], "target": 20},
+      "expected": 14,
+      "tags": ["target-above"]
+    },
+    {
+      "id": "trial-non-greedy-exact",
+      "name": "an exact result uses a large later-row value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"mat": [[1, 10], [2, 20], [3, 30]], "target": 33},
+      "expected": 0,
+      "tags": ["exact", "row-interaction"]
+    },
+    {
+      "id": "real-maximum-row-count",
+      "name": "hidden: seventy singleton rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [[1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1], [1]],
+        "target": 800
+      },
+      "expected": 730,
+      "tags": ["maximum-rows", "target-above"]
+    },
+    {
+      "id": "real-maximum-column-count",
+      "name": "hidden: one row with seventy choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mat": [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70]],
+        "target": 36
+      },
+      "expected": 0,
+      "tags": ["maximum-columns", "exact"]
+    },
+    {
+      "id": "real-smallest-excess-dominates",
+      "name": "hidden: smallest partial excess must survive",
+      "kind": "real",
+      "visible": false,
+      "input": {"mat": [[1, 70], [1, 70]], "target": 100},
+      "expected": 29,
+      "tags": ["above-target-state", "dominance"]
+    },
+    {
+      "id": "real-mixed-nearest-below",
+      "name": "hidden: closest result lies below target",
+      "kind": "real",
+      "visible": false,
+      "input": {"mat": [[4, 17, 25], [8, 19, 30], [3, 21, 40]], "target": 59},
+      "expected": 1,
+      "tags": ["mixed", "nearest-below"]
+    }
+  ]
+}

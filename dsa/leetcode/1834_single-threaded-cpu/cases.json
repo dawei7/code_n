@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1834",
+  "cases": [
+    {"id":"example-overlapping-arrivals","name":"sample: shorter waiting tasks run first","kind":"sample","visible":true,"input":{"tasks":[[1,2],[2,4],[3,2],[4,1]]},"expected":[0,2,3,1],"tags":["example","overlap"]},
+    {"id":"example-same-enqueue","name":"sample: all tasks arrive together","kind":"sample","visible":true,"input":{"tasks":[[7,10],[7,12],[7,5],[7,4],[7,2]]},"expected":[4,3,2,0,1],"tags":["example","same-enqueue"]},
+    {"id":"trial-idle-gaps","name":"separate arrivals require clock jumps","kind":"trial","visible":true,"input":{"tasks":[[5,2],[100,1]]},"expected":[0,1],"tags":["idle","clock-jump"]},
+    {"id":"trial-processing-tie","name":"equal durations use original indices","kind":"trial","visible":true,"input":{"tasks":[[1,3],[1,3],[1,3]]},"expected":[0,1,2],"tags":["tie-break","same-enqueue"]},
+    {"id":"trial-nonpreemptive","name":"short arrivals cannot interrupt a running task","kind":"trial","visible":true,"input":{"tasks":[[1,10],[2,1],[3,1]]},"expected":[0,1,2],"tags":["non-preemptive","arrival-during-task"]},
+    {"id":"real-arrival-at-completion","name":"hidden: task arriving exactly at completion is eligible","kind":"real","visible":false,"input":{"tasks":[[1,3],[4,1],[1,5]]},"expected":[0,1,2],"tags":["completion-time","eligibility"]},
+    {"id":"real-unsorted-enqueue-input","name":"hidden: input order differs from arrival order","kind":"real","visible":false,"input":{"tasks":[[20,2],[1,4],[5,1],[2,2]]},"expected":[1,2,3,0],"tags":["unsorted-arrivals","idle"]},
+    {"id":"real-index-tie-after-wait","name":"hidden: original index breaks a later heap tie","kind":"real","visible":false,"input":{"tasks":[[5,2],[1,10],[3,2],[4,2]]},"expected":[1,0,2,3],"tags":["tie-break","waiting"]},
+    {"id":"real-large-times","name":"hidden: large times and cumulative clock remain exact","kind":"real","visible":false,"input":{"tasks":[[1000000000,1000000000],[1,1],[2,1000000000]]},"expected":[1,2,0],"tags":["large-values","clock"]},
+    {"id":"real-single-task","name":"hidden: one task after an initial idle interval","kind":"real","visible":false,"input":{"tasks":[[42,7]]},"expected":[0],"tags":["single-task","idle"]}
+  ]
+}

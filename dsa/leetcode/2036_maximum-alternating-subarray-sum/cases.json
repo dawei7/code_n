@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2036",
+  "cases": [
+    {
+      "id": "sample-mixed-values",
+      "name": "sample: a three-element prefix is optimal",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, -1, 1, 2]},
+      "expected": 5,
+      "tags": ["sample", "odd-length"]
+    },
+    {
+      "id": "sample-equal-values",
+      "name": "sample: equal values never exceed one element",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 2, 2, 2, 2]},
+      "expected": 2,
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "sample-single-element",
+      "name": "sample: the only nonempty subarray",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1]},
+      "expected": 1,
+      "tags": ["sample", "minimum-length"]
+    },
+    {
+      "id": "trial-subtract-negative",
+      "name": "subtracting a negative value raises the sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, -10]},
+      "expected": 15,
+      "tags": ["even-length", "negative"]
+    },
+    {
+      "id": "trial-restart-at-later-index",
+      "name": "the optimal sign pattern restarts inside the array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [-10, 100, -10]},
+      "expected": 110,
+      "tags": ["restart", "contiguous"]
+    },
+    {
+      "id": "real-all-negative",
+      "name": "hidden: an even all-negative segment can be positive",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-5, -2, -8]},
+      "expected": 6,
+      "tags": ["hidden", "all-negative"]
+    },
+    {
+      "id": "real-increasing-positive",
+      "name": "hidden: the final singleton beats alternating prefixes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3]},
+      "expected": 3,
+      "tags": ["hidden", "singleton-optimum"]
+    },
+    {
+      "id": "real-value-boundary-growth",
+      "name": "hidden: alternating value limits accumulate",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100000, -100000, 100000, -100000]},
+      "expected": 400000,
+      "tags": ["hidden", "value-boundary", "wide-result"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: every subarray sum is zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 0, 0, 0]},
+      "expected": 0,
+      "tags": ["hidden", "zeros"]
+    }
+  ]
+}

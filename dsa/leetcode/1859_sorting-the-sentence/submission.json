@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1970",
+  "frontend_id": "1859",
+  "title_slug": "sorting-the-sentence",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.sortSentence",
+  "verified_submission_id": "2071748574",
+  "verified_at": "2026-07-18T04:42:42.271200+00:00"
+}

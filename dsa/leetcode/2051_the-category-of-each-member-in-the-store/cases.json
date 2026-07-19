@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2051",
+  "cases": [
+    {
+      "id": "sample-all-categories",
+      "name": "sample: members span all four categories",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {
+        "Members": [
+          {"member_id": 9, "name": "Alice"},
+          {"member_id": 11, "name": "Bob"},
+          {"member_id": 3, "name": "Winston"},
+          {"member_id": 8, "name": "Hercy"},
+          {"member_id": 1, "name": "Narihan"}
+        ],
+        "Visits": [
+          {"visit_id": 22, "member_id": 11, "visit_date": "2021-10-28"},
+          {"visit_id": 16, "member_id": 11, "visit_date": "2021-01-12"},
+          {"visit_id": 18, "member_id": 9, "visit_date": "2021-12-10"},
+          {"visit_id": 19, "member_id": 3, "visit_date": "2021-10-19"},
+          {"visit_id": 12, "member_id": 11, "visit_date": "2021-03-01"},
+          {"visit_id": 17, "member_id": 8, "visit_date": "2021-05-07"},
+          {"visit_id": 21, "member_id": 9, "visit_date": "2021-05-12"}
+        ],
+        "Purchases": [
+          {"visit_id": 12, "charged_amount": 2000},
+          {"visit_id": 18, "charged_amount": 9000},
+          {"visit_id": 17, "charged_amount": 7000}
+        ]
+      }},
+      "expected": {
+        "columns": ["member_id", "name", "category"],
+        "rows": [[1, "Narihan", "Bronze"], [3, "Winston", "Silver"], [8, "Hercy", "Diamond"], [9, "Alice", "Gold"], [11, "Bob", "Silver"]]
+      },
+      "validator": {"kind": "unordered_table"},
+      "tags": ["sample", "all-categories"]
+    },
+    {
+      "id": "trial-exact-thresholds",
+      "name": "rates exactly fifty and eighty use inclusive thresholds",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Members": [{"member_id": 1, "name": "Gold Edge"}, {"member_id": 2, "name": "Diamond Edge"}],
+        "Visits": [
+          {"visit_id": 1, "member_id": 1, "visit_date": "2022-01-01"},
+          {"visit_id": 2, "member_id": 1, "visit_date": "2022-01-02"},
+          {"visit_id": 3, "member_id": 2, "visit_date": "2022-01-01"},
+          {"visit_id": 4, "member_id": 2, "visit_date": "2022-01-02"},
+          {"visit_id": 5, "member_id": 2, "visit_date": "2022-01-03"},
+          {"visit_id": 6, "member_id": 2, "visit_date": "2022-01-04"},
+          {"visit_id": 7, "member_id": 2, "visit_date": "2022-01-05"}
+        ],
+        "Purchases": [
+          {"visit_id": 1, "charged_amount": 1},
+          {"visit_id": 3, "charged_amount": 1},
+          {"visit_id": 4, "charged_amount": 1},
+          {"visit_id": 5, "charged_amount": 1},
+          {"visit_id": 6, "charged_amount": 1}
+        ]
+      }},
+      "expected": {"columns": ["member_id", "name", "category"], "rows": [[1, "Gold Edge", "Gold"], [2, "Diamond Edge", "Diamond"]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["threshold-50", "threshold-80"]
+    },
+    {
+      "id": "trial-bronze-versus-silver",
+      "name": "no visits differs from visits without purchases",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {
+        "Members": [{"member_id": 1, "name": "Never"}, {"member_id": 2, "name": "Window Shopper"}, {"member_id": 3, "name": "Buyer"}],
+        "Visits": [{"visit_id": 10, "member_id": 2, "visit_date": "2022-06-01"}, {"visit_id": 11, "member_id": 3, "visit_date": "2022-06-02"}],
+        "Purchases": [{"visit_id": 11, "charged_amount": 1}]
+      }},
+      "expected": {"columns": ["member_id", "name", "category"], "rows": [[1, "Never", "Bronze"], [2, "Window Shopper", "Silver"], [3, "Buyer", "Diamond"]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["bronze", "zero-conversion"]
+    },
+    {
+      "id": "real-amount-irrelevant",
+      "name": "hidden: purchase amounts do not weight conversion",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Members": [{"member_id": 7, "name": "Kai"}],
+        "Visits": [
+          {"visit_id": 70, "member_id": 7, "visit_date": "2023-01-01"},
+          {"visit_id": 71, "member_id": 7, "visit_date": "2023-01-02"},
+          {"visit_id": 72, "member_id": 7, "visit_date": "2023-01-03"}
+        ],
+        "Purchases": [{"visit_id": 70, "charged_amount": 1000000}]
+      }},
+      "expected": {"columns": ["member_id", "name", "category"], "rows": [[7, "Kai", "Silver"]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "count-not-revenue"]
+    },
+    {
+      "id": "real-gold-noninteger-rate",
+      "name": "hidden: a fractional rate between thresholds is gold",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {
+        "Members": [{"member_id": 4, "name": "Mina"}],
+        "Visits": [
+          {"visit_id": 40, "member_id": 4, "visit_date": "2023-02-01"},
+          {"visit_id": 41, "member_id": 4, "visit_date": "2023-02-02"},
+          {"visit_id": 42, "member_id": 4, "visit_date": "2023-02-03"}
+        ],
+        "Purchases": [{"visit_id": 40, "charged_amount": 3}, {"visit_id": 41, "charged_amount": 4}]
+      }},
+      "expected": {"columns": ["member_id", "name", "category"], "rows": [[4, "Mina", "Gold"]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["hidden", "fractional-rate"]
+    }
+  ]
+}

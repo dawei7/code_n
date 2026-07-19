@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1901",
+  "cases": [
+    {"id":"example-two-peaks","name":"sample: either corner peak is valid","kind":"sample","visible":true,"input":{"mat":[[1,4],[3,2]]},"expected":[0,1],"validator":{"kind":"peak_grid"},"tags":["sample","multiple-peaks"]},
+    {"id":"example-larger-matrix","name":"sample: two interior-or-boundary peaks are available","kind":"sample","visible":true,"input":{"mat":[[10,20,15],[21,30,14],[7,16,32]]},"expected":[1,1],"validator":{"kind":"peak_grid"},"tags":["sample","multiple-peaks"]},
+    {"id":"trial-single-cell","name":"one cell is surrounded by the negative perimeter","kind":"trial","visible":true,"input":{"mat":[[7]]},"expected":[0,0],"validator":{"kind":"peak_grid"},"tags":["single-cell","boundary"]},
+    {"id":"trial-single-row","name":"an increasing single row peaks at its right edge","kind":"trial","visible":true,"input":{"mat":[[1,3,5,7]]},"expected":[0,3],"validator":{"kind":"peak_grid"},"tags":["single-row","edge-peak"]},
+    {"id":"real-single-column","name":"hidden: a decreasing single column peaks at its top edge","kind":"real","visible":false,"input":{"mat":[[9],[6],[4],[1]]},"expected":[0,0],"validator":{"kind":"peak_grid"},"tags":["single-column","edge-peak"]},
+    {"id":"real-two-row-peaks","name":"hidden: separated peaks in one row are both acceptable","kind":"real","visible":false,"input":{"mat":[[1,5,2,4]]},"expected":[0,1],"validator":{"kind":"peak_grid"},"tags":["multiple-peaks","single-row"]},
+    {"id":"real-interior-peak","name":"hidden: a unique interior value dominates all four neighbors","kind":"real","visible":false,"input":{"mat":[[1,2,3],[4,9,5],[7,6,8]]},"expected":[1,1],"validator":{"kind":"peak_grid"},"tags":["interior-peak","unique-peak"]},
+    {"id":"real-monotone","name":"hidden: monotone rows and columns force the bottom-right peak","kind":"real","visible":false,"input":{"mat":[[1,2,3,4],[5,6,7,8],[9,10,11,12]]},"expected":[2,3],"validator":{"kind":"peak_grid"},"tags":["monotone","corner-peak"]},
+    {"id":"real-saddle","name":"hidden: a column maximum guides the search away from a saddle","kind":"real","visible":false,"input":{"mat":[[8,2,7,3],[6,5,4,9],[1,10,11,12]]},"expected":[2,3],"validator":{"kind":"peak_grid"},"tags":["direction-change","multiple-peaks"]},
+    {"id":"real-large-values","name":"hidden: values near the upper constraint behave normally","kind":"real","visible":false,"input":{"mat":[[99995,99997,99996],[99994,100000,99998]]},"expected":[1,1],"validator":{"kind":"peak_grid"},"tags":["large-values","interior-edge"]},
+    {"id":"real-tall-matrix","name":"hidden: column maxima move right in a tall matrix","kind":"real","visible":false,"input":{"mat":[[1,8,2],[3,9,4],[5,10,6],[7,11,12],[13,14,15]]},"expected":[4,2],"validator":{"kind":"peak_grid"},"tags":["tall-matrix","corner-peak"]}
+  ]
+}

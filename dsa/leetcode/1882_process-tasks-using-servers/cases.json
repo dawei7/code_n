@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1882",
+  "cases": [
+    {"id":"example-three-servers","name":"sample: weights and finish times interleave","kind":"sample","visible":true,"input":{"servers":[3,3,2],"tasks":[1,2,3,2,1,2]},"expected":[2,2,0,2,1,2],"tags":["sample","weight-priority"]},
+    {"id":"example-five-servers","name":"sample: simultaneous releases restore weight priority","kind":"sample","visible":true,"input":{"servers":[5,1,4,3,2],"tasks":[2,1,2,4,5,2,1]},"expected":[1,4,1,4,1,3,2],"tags":["sample","simultaneous-release"]},
+    {"id":"trial-single-server","name":"one server processes the full waiting queue","kind":"trial","visible":true,"input":{"servers":[1],"tasks":[5,1,1]},"expected":[0,0,0],"tags":["single-server","backlog"]},
+    {"id":"trial-equal-weights","name":"equal free weights break ties by index","kind":"trial","visible":true,"input":{"servers":[2,2,2],"tasks":[4,4,1,1]},"expected":[0,1,2,2],"tags":["index-tie"]},
+    {"id":"real-all-short","name":"hidden: a fastest server is free at every arrival","kind":"real","visible":false,"input":{"servers":[4,1,3],"tasks":[1,1,1,1,1]},"expected":[1,1,1,1,1],"tags":["idle-at-arrival"]},
+    {"id":"real-long-backlog","name":"hidden: queued tasks advance to successive finish events","kind":"real","visible":false,"input":{"servers":[1,2],"tasks":[10,10,1,1,1]},"expected":[0,1,0,0,1],"tags":["backlog","time-jump"]},
+    {"id":"real-simultaneous-tie","name":"hidden: simultaneous equal-weight finishers choose the lower index","kind":"real","visible":false,"input":{"servers":[3,3],"tasks":[3,2,1,1]},"expected":[0,1,0,1],"tags":["simultaneous-release","index-tie"]},
+    {"id":"real-weight-before-index","name":"hidden: lower weight beats lower index when both are free","kind":"real","visible":false,"input":{"servers":[9,2,5],"tasks":[2,2,2]},"expected":[1,2,1],"tags":["weight-priority"]},
+    {"id":"real-release-at-arrival","name":"hidden: a server finishing at the arrival second is immediately free","kind":"real","visible":false,"input":{"servers":[1,5],"tasks":[2,10,1]},"expected":[0,1,0],"tags":["boundary-time"]},
+    {"id":"real-many-finishers","name":"hidden: all finishers reenter before the oldest queued task is assigned","kind":"real","visible":false,"input":{"servers":[4,2,3],"tasks":[4,3,2,1,1,1]},"expected":[1,2,0,1,2,1],"tags":["simultaneous-release","backlog"]},
+    {"id":"real-single-task","name":"hidden: one task chooses the globally lightest server","kind":"real","visible":false,"input":{"servers":[7,1,1,3],"tasks":[8]},"expected":[1],"tags":["single-task","index-tie"]},
+    {"id":"real-large-durations","name":"hidden: finish times may extend far beyond all arrivals","kind":"real","visible":false,"input":{"servers":[2,1],"tasks":[200000,200000,200000]},"expected":[1,0,1],"tags":["duration-boundary","backlog"]}
+  ]
+}

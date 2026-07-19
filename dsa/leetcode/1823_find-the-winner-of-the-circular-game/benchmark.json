@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1823",
+  "measurement_note": "Size is n, the number of friends, and each tier also uses k = n. The Josephus recurrence performs O(n) modular updates. A correct queue simulation that moves one friend at a time for each of the k counts performs O(nk) operations, completes all legal tiers, and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 32 friends with step 32","kind":"benchmark","visible":false,"size":32,"input":{"n":32,"k":32},"expected":27,"tags":["benchmark","scale-small","large-step"]},
+    {"id":"benchmark-scale-2","name":"benchmark: 128 friends with step 128","kind":"benchmark","visible":false,"size":128,"input":{"n":128,"k":128},"expected":97,"tags":["benchmark","scale-medium","large-step"]},
+    {"id":"benchmark-scale-3","name":"benchmark: 500 friends with step 500","kind":"benchmark","visible":false,"size":500,"input":{"n":500,"k":500},"expected":69,"tags":["benchmark","scale-large","maximum-domain"]}
+  ]
+}

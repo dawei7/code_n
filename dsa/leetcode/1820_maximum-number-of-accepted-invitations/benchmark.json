@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1820",
+  "measurement_note": "Size is s for a complete s-by-s invitation matrix. Augmenting-path matching runs in polynomial time and finds all s pairs. Exact bitmask dynamic programming over used girls remains correct but explores 2^s masks; it completes the 4, 8, and 16 tiers and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: complete 4 by 4 graph","kind":"benchmark","visible":false,"size":4,"input":{"grid":[[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]},"expected":4,"tags":["benchmark","scale-small","complete-graph"]},
+    {"id":"benchmark-scale-2","name":"benchmark: complete 8 by 8 graph","kind":"benchmark","visible":false,"size":8,"input":{"grid":[[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1]]},"expected":8,"tags":["benchmark","scale-medium","complete-graph"]},
+    {"id":"benchmark-scale-3","name":"benchmark: complete 16 by 16 graph","kind":"benchmark","visible":false,"size":16,"input":{"grid":[[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]},"expected":16,"tags":["benchmark","scale-large","complete-graph"]}
+  ]
+}

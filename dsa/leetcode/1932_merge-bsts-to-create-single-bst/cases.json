@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1932",
+  "cases": [
+    {"id":"example-merge-three","name":"sample: two grafts create one valid BST","kind":"sample","visible":true,"input":{"trees":[[2,1],[3,2,5],[5,4]]},"expected":[3,2,5,1,null,4],"tags":["sample","multiple-grafts"]},
+    {"id":"example-global-violation","name":"sample: a graft violates an ancestor bound","kind":"sample","visible":true,"input":{"trees":[[5,3,8],[3,2,6]]},"expected":[],"tags":["sample","invalid-global-bounds"]},
+    {"id":"example-disconnected","name":"sample: no leaf matches the other root","kind":"sample","visible":true,"input":{"trees":[[5,4],[3]]},"expected":[],"tags":["sample","disconnected"]},
+    {"id":"trial-single-tree","name":"one valid input tree needs no merges","kind":"trial","visible":true,"input":{"trees":[[2,1,3]]},"expected":[2,1,3],"tags":["single-tree"]},
+    {"id":"trial-left-graft","name":"a singleton root fills a left leaf","kind":"trial","visible":true,"input":{"trees":[[2,1],[1]]},"expected":[2,1],"tags":["left-graft","singleton-tree"]},
+    {"id":"trial-right-chain","name":"two rightward trees form a valid chain","kind":"trial","visible":true,"input":{"trees":[[2,null,3],[3,null,4]]},"expected":[2,null,3,null,4],"tags":["right-graft","chain"]},
+    {"id":"real-cycle","name":"hidden: root values form a merge cycle","kind":"real","visible":false,"input":{"trees":[[2,1],[1,null,2]]},"expected":[],"tags":["cycle","no-final-root"]},
+    {"id":"real-two-components","name":"hidden: an unmatched singleton remains unused","kind":"real","visible":false,"input":{"trees":[[2,1,3],[4]]},"expected":[],"tags":["unused-tree","multiple-candidates"]},
+    {"id":"real-duplicate-leaf","name":"hidden: one root value appears at two graft positions","kind":"real","visible":false,"input":{"trees":[[4,2,6],[2,1],[6,2]]},"expected":[],"tags":["duplicate-leaf","strict-bounds"]},
+    {"id":"real-balanced-grafts","name":"hidden: both children expand into valid subtrees","kind":"real","visible":false,"input":{"trees":[[4,2,6],[2,1,3],[6,5,7]]},"expected":[4,2,6,1,3,5,7],"tags":["two-sided-grafts","balanced-tree"]}
+  ]
+}

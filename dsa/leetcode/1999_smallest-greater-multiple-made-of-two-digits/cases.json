@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_1999",
+  "cases": [
+    {
+      "id": "sample-zero-and-two",
+      "name": "sample: zero is allowed after a nonzero digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {"k": 2, "digit1": 0, "digit2": 2},
+      "expected": 20,
+      "tags": ["sample", "zero"]
+    },
+    {
+      "id": "sample-unsorted-digits",
+      "name": "sample: input digit order does not affect the minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"k": 3, "digit1": 4, "digit2": 2},
+      "expected": 24,
+      "tags": ["sample", "ordering"]
+    },
+    {
+      "id": "sample-only-zero",
+      "name": "sample: no positive number can start with zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"k": 2, "digit1": 0, "digit2": 0},
+      "expected": -1,
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "trial-equal-nonzero-digits",
+      "name": "equal digits generate one branch without duplicates",
+      "kind": "trial",
+      "visible": true,
+      "input": {"k": 7, "digit1": 7, "digit2": 7},
+      "expected": 77,
+      "tags": ["duplicates", "strictly-greater"]
+    },
+    {
+      "id": "trial-k-one",
+      "name": "the first candidate must still be greater than one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"k": 1, "digit1": 0, "digit2": 1},
+      "expected": 10,
+      "tags": ["boundary", "strictly-greater"]
+    },
+    {
+      "id": "real-three-digit-answer",
+      "name": "hidden: breadth-first order reaches a three-digit multiple",
+      "kind": "real",
+      "visible": false,
+      "input": {"k": 8, "digit1": 1, "digit2": 2},
+      "expected": 112,
+      "tags": ["hidden", "breadth-first"]
+    },
+    {
+      "id": "real-deeper-answer",
+      "name": "hidden: both digits participate in a deeper answer",
+      "kind": "real",
+      "visible": false,
+      "input": {"k": 17, "digit1": 3, "digit2": 5},
+      "expected": 3553,
+      "tags": ["hidden", "divisibility"]
+    },
+    {
+      "id": "real-signed-limit",
+      "name": "hidden: no qualifying value exists within signed 32-bit range",
+      "kind": "real",
+      "visible": false,
+      "input": {"k": 999, "digit1": 1, "digit2": 2},
+      "expected": -1,
+      "tags": ["hidden", "overflow", "impossible"]
+    }
+  ]
+}

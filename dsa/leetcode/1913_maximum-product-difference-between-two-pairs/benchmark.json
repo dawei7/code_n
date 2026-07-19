@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1913",
+  "measurement_note": "Size is N, the array length. Equal values keep the expected product difference at zero while forcing a correct selection-sort implementation to perform all pairwise comparisons. Direct extrema tracking is linear; selection sort completes every tier but fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: scan 16 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": { "nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+      "expected": 0,
+      "tags": ["benchmark", "all-equal", "selection-sort"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: scan 64 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "nums": [
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        ]
+      },
+      "expected": 0,
+      "tags": ["benchmark", "all-equal", "selection-sort"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: scan 243 equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 243,
+      "input": {
+        "nums": [
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        ]
+      },
+      "expected": 0,
+      "tags": ["benchmark", "all-equal", "selection-sort"]
+    }
+  ]
+}

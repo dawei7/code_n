@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1835",
+  "cases": [
+    {"id":"example-canceling-pairs","name":"sample: repeated pair results cancel","kind":"sample","visible":true,"input":{"arr1":[1,2,3],"arr2":[6,5]},"expected":0,"tags":["example","cancellation"]},
+    {"id":"example-single-pair","name":"sample: one pair contributes its AND","kind":"sample","visible":true,"input":{"arr1":[12],"arr2":[4]},"expected":4,"tags":["example","single-pair"]},
+    {"id":"trial-mixed-bits","name":"mixed bits survive with odd pair parity","kind":"trial","visible":true,"input":{"arr1":[5,1],"arr2":[3,7]},"expected":4,"tags":["bit-parity","multiple-pairs"]},
+    {"id":"trial-zero-array","name":"a zero-only side makes every pair zero","kind":"trial","visible":true,"input":{"arr1":[0,0,0],"arr2":[1,2,3]},"expected":0,"tags":["zeros","duplicates"]},
+    {"id":"trial-duplicate-cancellation","name":"two equal values cancel one aggregate","kind":"trial","visible":true,"input":{"arr1":[7,7],"arr2":[15]},"expected":0,"tags":["duplicates","even-parity"]},
+    {"id":"real-odd-duplicate-count","name":"hidden: three equal values contribute once","kind":"real","visible":false,"input":{"arr1":[10,10,10],"arr2":[14]},"expected":10,"tags":["duplicates","odd-parity"]},
+    {"id":"real-disjoint-bits","name":"hidden: disjoint aggregate bits produce zero","kind":"real","visible":false,"input":{"arr1":[1,4],"arr2":[2,8]},"expected":0,"tags":["disjoint-bits","zero-result"]},
+    {"id":"real-maximum-values","name":"hidden: maximum legal values preserve all common bits","kind":"real","visible":false,"input":{"arr1":[1000000000],"arr2":[1000000000]},"expected":1000000000,"tags":["maximum-value","single-pair"]},
+    {"id":"real-one-side-cancels","name":"hidden: only one zero aggregate is needed","kind":"real","visible":false,"input":{"arr1":[9,9],"arr2":[1,2,4,8]},"expected":0,"tags":["one-side-zero","cancellation"]},
+    {"id":"real-varied-values","name":"hidden: several values leave a multi-bit result","kind":"real","visible":false,"input":{"arr1":[3,10,14],"arr2":[5,6,4]},"expected":7,"tags":["varied-values","multi-bit"]}
+  ]
+}

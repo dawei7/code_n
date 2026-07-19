@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2091",
+  "cases": [
+    {
+      "id": "sample-split-ends",
+      "name": "sample: one extreme is removed from each side",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 10, 7, 5, 4, 1, 8, 6]},
+      "expected": 5,
+      "tags": ["sample", "split"]
+    },
+    {
+      "id": "sample-both-from-front",
+      "name": "sample: both extremes lie near the front",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [0, -4, 19, 1, 8, -2, -3, 5]},
+      "expected": 3,
+      "tags": ["sample", "front-only"]
+    },
+    {
+      "id": "sample-single-element",
+      "name": "sample: one element is both extremes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [101]},
+      "expected": 1,
+      "tags": ["sample", "minimum-length"]
+    },
+    {
+      "id": "trial-extremes-at-ends",
+      "name": "endpoint extremes need one deletion each",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [-5, 2, 1, 9]},
+      "expected": 2,
+      "tags": ["endpoints"]
+    },
+    {
+      "id": "real-both-from-back",
+      "name": "hidden: both extremes lie near the back",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 3, 2, 1, -10, 20]},
+      "expected": 2,
+      "tags": ["hidden", "back-only"]
+    },
+    {
+      "id": "real-front-beats-split",
+      "name": "hidden: adjacent interior extremes leave a short prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, -8, 11, 7, 6, 4, 3]},
+      "expected": 3,
+      "tags": ["hidden", "front-only"]
+    },
+    {
+      "id": "real-two-elements",
+      "name": "hidden: both distinct elements must be deleted",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, -3]},
+      "expected": 2,
+      "tags": ["hidden", "two-elements"]
+    }
+  ]
+}

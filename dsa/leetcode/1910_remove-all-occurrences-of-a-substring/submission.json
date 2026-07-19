@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2021",
+  "frontend_id": "1910",
+  "title_slug": "remove-all-occurrences-of-a-substring",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.removeOccurrences",
+  "verified_submission_id": "2072259383",
+  "verified_at": "2026-07-18T13:38:44.733106+00:00"
+}

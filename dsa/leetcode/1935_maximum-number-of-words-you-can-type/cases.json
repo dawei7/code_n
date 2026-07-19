@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1935",
+  "cases": [
+    {"id":"example-one-word","name":"sample: one of two words uses a broken key","kind":"sample","visible":true,"input":{"text":"hello world","brokenLetters":"ad"},"expected":1,"tags":["sample","one-rejected"]},
+    {"id":"example-first-rejected","name":"sample: broken keys reject only the first word","kind":"sample","visible":true,"input":{"text":"leet code","brokenLetters":"lt"},"expected":1,"tags":["sample","multiple-broken-keys"]},
+    {"id":"example-both-rejected","name":"sample: one broken key appears in both words","kind":"sample","visible":true,"input":{"text":"leet code","brokenLetters":"e"},"expected":0,"tags":["sample","all-rejected"]},
+    {"id":"trial-no-broken-keys","name":"every word works when no key is broken","kind":"trial","visible":true,"input":{"text":"abc def","brokenLetters":""},"expected":2,"tags":["empty-broken-set","all-typeable"]},
+    {"id":"trial-unused-broken","name":"broken keys absent from the text change nothing","kind":"trial","visible":true,"input":{"text":"abc","brokenLetters":"xyz"},"expected":1,"tags":["unused-broken-keys","single-word"]},
+    {"id":"trial-mixed-lengths","name":"only the middle word uses the broken key","kind":"trial","visible":true,"input":{"text":"a bb ccc","brokenLetters":"b"},"expected":2,"tags":["multiple-words","repeated-letter"]},
+    {"id":"real-single-rejected","name":"hidden: a one-letter word can be rejected","kind":"real","visible":false,"input":{"text":"z","brokenLetters":"z"},"expected":0,"tags":["single-character","broken-key"]},
+    {"id":"real-last-letter","name":"hidden: a broken final character rejects the word","kind":"real","visible":false,"input":{"text":"typing keyboard","brokenLetters":"d"},"expected":1,"tags":["last-character","one-rejected"]},
+    {"id":"real-repeated-broken","name":"hidden: repeated broken letters reject one containing word","kind":"real","visible":false,"input":{"text":"aaaa bbbb cccc","brokenLetters":"b"},"expected":2,"tags":["repeated-letter","multiple-words"]},
+    {"id":"real-many-broken","name":"hidden: several broken keys affect different words","kind":"real","visible":false,"input":{"text":"red green blue","brokenLetters":"rg"},"expected":1,"tags":["multiple-broken-keys","multiple-words"]}
+  ]
+}

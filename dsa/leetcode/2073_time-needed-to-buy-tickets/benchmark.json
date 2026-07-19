@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2073",
+  "measurement_note": "Size is N, the number of people, with Theta(N) requested tickets per person and k at the final position. The process makes Theta(N squared) purchases before the target finishes. The reference sums one contribution per person in linear time. A correct queue simulation completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 people requesting 8 tickets",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": { "tickets": [8, 8, 8, 8, 8, 8, 8, 8], "k": 7 },
+      "expected": 64,
+      "tags": ["benchmark", "scale-small", "queue-simulation"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 people requesting 32 tickets",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tickets": [
+          32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32,
+          32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32
+        ],
+        "k": 31
+      },
+      "expected": 1024,
+      "tags": ["benchmark", "scale-medium", "queue-simulation"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 97 people requesting 99 tickets",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 97,
+      "input": {
+        "tickets": [
+          99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
+          99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
+          99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
+          99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
+          99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99,
+          99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99
+        ],
+        "k": 96
+      },
+      "expected": 9603,
+      "tags": ["benchmark", "scale-large", "queue-simulation"]
+    }
+  ]
+}

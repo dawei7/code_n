@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1986",
+  "cases": [
+    {"id":"example-two-sessions","name":"sample: one exact pair and one full task","kind":"sample","visible":true,"input":{"tasks":[1,2,3],"sessionTime":3},"expected":2,"tags":["sample","exact-fill"]},
+    {"id":"example-reorder","name":"sample: reordering packs four tasks together","kind":"sample","visible":true,"input":{"tasks":[3,1,3,1,1],"sessionTime":8},"expected":2,"tags":["sample","reordering"]},
+    {"id":"example-one-session","name":"sample: every task fits together","kind":"sample","visible":true,"input":{"tasks":[1,2,3,4,5],"sessionTime":15},"expected":1,"tags":["sample","one-session"]},
+    {"id":"trial-single-task","name":"one task needs one session","kind":"trial","visible":true,"input":{"tasks":[10],"sessionTime":10},"expected":1,"tags":["minimum","exact-fill"]},
+    {"id":"trial-each-full","name":"every task fills a session","kind":"trial","visible":true,"input":{"tasks":[5,5,5,5],"sessionTime":5},"expected":4,"tags":["full-task","duplicates"]},
+    {"id":"trial-pairs","name":"equal tasks pack two per session","kind":"trial","visible":true,"input":{"tasks":[4,4,4,4,4],"sessionTime":8},"expected":3,"tags":["duplicates","pairing"]},
+    {"id":"trial-lower-bound-unreachable","name":"total-time lower bound cannot be attained","kind":"trial","visible":true,"input":{"tasks":[6,6,6],"sessionTime":10},"expected":3,"tags":["indivisible","lower-bound"]},
+    {"id":"trial-reordering-essential","name":"input order is not the best packing order","kind":"trial","visible":true,"input":{"tasks":[8,2,7,3,5,5],"sessionTime":10},"expected":3,"tags":["reordering","exact-fill"]},
+    {"id":"real-capacity-fifteen","name":"hidden: maximum session capacity","kind":"real","visible":false,"input":{"tasks":[10,5,9,6,8,7],"sessionTime":15},"expected":3,"tags":["maximum-capacity","pairing"]},
+    {"id":"real-many-ones","name":"hidden: repeated unit tasks","kind":"real","visible":false,"input":{"tasks":[1,1,1,1,1,1],"sessionTime":3},"expected":2,"tags":["duplicates","repeated-loads"]},
+    {"id":"real-mixed-six-tasks","name":"hidden: six distinct mixed tasks","kind":"real","visible":false,"input":{"tasks":[1,2,3,4,5,6],"sessionTime":10},"expected":3,"tags":["mixed","distinct"]},
+    {"id":"real-greedy-trap","name":"hidden: locally convenient packing is suboptimal","kind":"real","visible":false,"input":{"tasks":[2,2,3,3,4,4],"sessionTime":9},"expected":2,"tags":["greedy-trap","exact-fill"]}
+  ]
+}

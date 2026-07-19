@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2213",
+  "frontend_id": "2092",
+  "title_slug": "find-all-people-with-secret",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findAllPeople",
+  "verified_submission_id": "2073087357",
+  "verified_at": "2026-07-19T05:28:01.105770+00:00"
+}

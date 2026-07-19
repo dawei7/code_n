@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1992",
+  "cases": [
+    {"id":"example-two-groups","name":"sample: singleton and square groups","kind":"sample","visible":true,"input":{"land":[[1,0,0],[0,1,1],[0,1,1]]},"expected":[[0,0,0,0],[1,1,2,2]],"validator":{"kind":"unordered_nested_list"},"tags":["sample","multiple-groups"]},
+    {"id":"example-full-grid","name":"sample: complete grid is one rectangle","kind":"sample","visible":true,"input":{"land":[[1,1],[1,1]]},"expected":[[0,0,1,1]],"validator":{"kind":"unordered_nested_list"},"tags":["sample","full-grid"]},
+    {"id":"example-no-farmland","name":"sample: all forest","kind":"sample","visible":true,"input":{"land":[[0]]},"expected":[],"validator":{"kind":"unordered_nested_list"},"tags":["sample","minimum","empty-output"]},
+    {"id":"trial-single-farmland","name":"one farmland cell is one rectangle","kind":"trial","visible":true,"input":{"land":[[1]]},"expected":[[0,0,0,0]],"validator":{"kind":"unordered_nested_list"},"tags":["minimum","singleton"]},
+    {"id":"trial-one-row","name":"horizontal farmland strip","kind":"trial","visible":true,"input":{"land":[[0,1,1,1,0]]},"expected":[[0,1,0,3]],"validator":{"kind":"unordered_nested_list"},"tags":["one-row","horizontal"]},
+    {"id":"trial-one-column","name":"vertical farmland strip","kind":"trial","visible":true,"input":{"land":[[0],[1],[1],[0]]},"expected":[[1,0,2,0]],"validator":{"kind":"unordered_nested_list"},"tags":["one-column","vertical"]},
+    {"id":"trial-diagonal-groups","name":"diagonally touching cells are separate groups","kind":"trial","visible":true,"input":{"land":[[1,0],[0,1]]},"expected":[[0,0,0,0],[1,1,1,1]],"validator":{"kind":"unordered_nested_list"},"tags":["diagonal","multiple-groups"]},
+    {"id":"trial-edge-rectangles","name":"rectangles may touch different map edges","kind":"trial","visible":true,"input":{"land":[[1,1,0,0],[1,1,0,1],[0,0,0,1]]},"expected":[[0,0,1,1],[1,3,2,3]],"validator":{"kind":"unordered_nested_list"},"tags":["edges","multiple-groups"]},
+    {"id":"real-three-shapes","name":"hidden: horizontal, vertical, and singleton groups","kind":"real","visible":false,"input":{"land":[[1,1,0,0,0],[0,0,0,1,0],[0,1,0,1,0],[0,0,0,0,1]]},"expected":[[0,0,0,1],[1,3,2,3],[2,1,2,1],[3,4,3,4]],"validator":{"kind":"unordered_nested_list"},"tags":["mixed-shapes","multiple-groups"]},
+    {"id":"real-interior-rectangle","name":"hidden: rectangle surrounded by forest","kind":"real","visible":false,"input":{"land":[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]]},"expected":[[1,1,2,2]],"validator":{"kind":"unordered_nested_list"},"tags":["interior","rectangle"]},
+    {"id":"real-corner-groups","name":"hidden: separated corner groups","kind":"real","visible":false,"input":{"land":[[1,0,0,1],[0,0,0,0],[0,1,1,0],[0,1,1,0]]},"expected":[[0,0,0,0],[0,3,0,3],[2,1,3,2]],"validator":{"kind":"unordered_nested_list"},"tags":["corners","multiple-groups"]},
+    {"id":"real-wide-grid","name":"hidden: several separated rectangles across a wide map","kind":"real","visible":false,"input":{"land":[[1,1,0,1,0,0,1,1],[1,1,0,1,0,0,1,1]]},"expected":[[0,0,1,1],[0,3,1,3],[0,6,1,7]],"validator":{"kind":"unordered_nested_list"},"tags":["wide","multiple-groups"]}
+  ]
+}

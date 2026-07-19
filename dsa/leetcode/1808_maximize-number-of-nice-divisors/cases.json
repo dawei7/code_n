@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1808",
+  "cases": [
+    {"id":"example-five","name":"sample: remainder two budget","kind":"sample","visible":true,"input":{"primeFactors":5},"expected":6,"tags":["example","remainder-two"]},
+    {"id":"example-eight","name":"sample: two threes and a two","kind":"sample","visible":true,"input":{"primeFactors":8},"expected":18,"tags":["example","remainder-two"]},
+    {"id":"trial-minimum","name":"minimum budget","kind":"trial","visible":true,"input":{"primeFactors":1},"expected":1,"tags":["minimum-size","direct-return"]},
+    {"id":"trial-two","name":"budget two remains unsplit","kind":"trial","visible":true,"input":{"primeFactors":2},"expected":2,"tags":["direct-return"]},
+    {"id":"trial-three","name":"budget three remains unsplit","kind":"trial","visible":true,"input":{"primeFactors":3},"expected":3,"tags":["direct-return"]},
+    {"id":"trial-four","name":"remainder one becomes two plus two","kind":"trial","visible":true,"input":{"primeFactors":4},"expected":4,"tags":["remainder-one","boundary"]},
+    {"id":"real-divisible-by-three","name":"budget divisible by three","kind":"real","visible":false,"input":{"primeFactors":12},"expected":81,"tags":["remainder-zero"]},
+    {"id":"real-remainder-one","name":"larger remainder one budget","kind":"real","visible":false,"input":{"primeFactors":13},"expected":108,"tags":["remainder-one"]},
+    {"id":"real-remainder-two","name":"larger remainder two budget","kind":"real","visible":false,"input":{"primeFactors":14},"expected":162,"tags":["remainder-two"]},
+    {"id":"real-modular-reduction","name":"moderate power requires modular reduction","kind":"real","visible":false,"input":{"primeFactors":100},"expected":703522804,"tags":["modulo","large-power"]},
+    {"id":"real-maximum","name":"maximum legal budget","kind":"real","visible":false,"input":{"primeFactors":1000000000},"expected":897135186,"tags":["maximum-size","modulo"]}
+  ]
+}

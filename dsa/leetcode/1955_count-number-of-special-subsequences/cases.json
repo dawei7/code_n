@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1955",
+  "cases": [
+    {"id":"example-two-twos","name":"sample: either or both trailing twos may be selected","kind":"sample","visible":true,"input":{"nums":[0,1,2,2]},"expected":3,"tags":["sample","multiple-indices"]},
+    {"id":"example-wrong-order","name":"sample: all twos precede all zeros","kind":"sample","visible":true,"input":{"nums":[2,2,0,0]},"expected":0,"tags":["sample","wrong-order"]},
+    {"id":"example-interleaved","name":"sample: later stages and a new zero interleave","kind":"sample","visible":true,"input":{"nums":[0,1,2,0,1,2]},"expected":7,"tags":["sample","interleaved"]},
+    {"id":"trial-minimum-special","name":"smallest special sequence","kind":"trial","visible":true,"input":{"nums":[0,1,2]},"expected":1,"tags":["minimum","single-choice"]},
+    {"id":"trial-multiple-zeros","name":"three nonempty zero selections feed one completion","kind":"trial","visible":true,"input":{"nums":[0,0,1,2]},"expected":3,"tags":["repeated-zero"]},
+    {"id":"trial-multiple-ones","name":"three nonempty one selections extend one zero","kind":"trial","visible":true,"input":{"nums":[0,1,1,2]},"expected":3,"tags":["repeated-one"]},
+    {"id":"real-two-of-each","name":"hidden: independently choose nonempty subsets of three blocks","kind":"real","visible":false,"input":{"nums":[0,0,1,1,2,2]},"expected":27,"tags":["block-structure","multiple-indices"]},
+    {"id":"real-missing-two","name":"hidden: no complete subsequence without a two","kind":"real","visible":false,"input":{"nums":[0,0,1,1,1]},"expected":0,"tags":["missing-stage"]},
+    {"id":"real-reversed-blocks","name":"hidden: each value exists but block order is reversed","kind":"real","visible":false,"input":{"nums":[2,2,1,1,0,0]},"expected":0,"tags":["wrong-order"]},
+    {"id":"real-modulo","name":"hidden: large block choices require modular reduction","kind":"real","visible":false,"input":{"nums":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]},"expected":4681989,"tags":["modulo","large-count"]}
+  ]
+}

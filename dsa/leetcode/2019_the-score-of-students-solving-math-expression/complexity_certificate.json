@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2019",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(M^3V^2+A)",
+  "summary": "The complete expression domain has at most sixteen operands and retained DP results are capped at the 1,001 answer values, while interval-set sizes vary non-monotonically with digits and operators, so three legal expression tiers cannot provide an honest polynomial scaling verdict.",
+  "workload_bound": {
+    "symbol": "M",
+    "maximum": 16,
+    "unit": "single-digit operands",
+    "source_constraint": "The expression contains at most fifteen operators and therefore at most sixteen operands; submitted and retained plausible answers are bounded from 0 through 1000."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "There are at most M squared intervals and M splits per interval; deduplicated child sets each contain at most V = 1001 retained values, bounding combination work by O(M^3V^2), followed by one pass over A answers."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover correct-over-partial precedence, duplicate answers, zero multiplication, partial-credit groupings, invalid answers, and the maximum fifteen operators; the exact native source also has remote Accepted evidence."
+    }
+  ]
+}

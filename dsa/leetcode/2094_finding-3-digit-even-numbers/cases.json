@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2094",
+  "cases": [
+    {
+      "id": "sample-zero-and-distinct-digits",
+      "name": "sample: zero is allowed away from the hundreds place",
+      "kind": "sample",
+      "visible": true,
+      "input": {"digits": [2, 1, 3, 0]},
+      "expected": [102, 120, 130, 132, 210, 230, 302, 310, 312, 320],
+      "tags": ["sample", "leading-zero", "distinct"]
+    },
+    {
+      "id": "sample-repeated-even-digits",
+      "name": "sample: duplicate multiplicities enable repeated digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {"digits": [2, 2, 8, 8, 2]},
+      "expected": [222, 228, 282, 288, 822, 828, 882],
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "sample-no-even-digit",
+      "name": "sample: no valid ones digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {"digits": [3, 7, 5]},
+      "expected": [],
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "trial-two-zeroes",
+      "name": "two zeroes may fill tens and ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {"digits": [0, 0, 2]},
+      "expected": [200],
+      "tags": ["zeros", "multiplicity"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: leading-zero rule rejects every arrangement",
+      "kind": "real",
+      "visible": false,
+      "input": {"digits": [0, 0, 0, 0]},
+      "expected": [],
+      "tags": ["hidden", "all-zero"]
+    },
+    {
+      "id": "real-one-duplicate-pair",
+      "name": "hidden: two copies can occupy two places but not three",
+      "kind": "real",
+      "visible": false,
+      "input": {"digits": [1, 2, 2]},
+      "expected": [122, 212],
+      "tags": ["hidden", "duplicate-pair"]
+    },
+    {
+      "id": "real-extra-copies-do-not-duplicate-output",
+      "name": "hidden: equal position choices still yield unique integers",
+      "kind": "real",
+      "visible": false,
+      "input": {"digits": [1, 1, 1, 2, 2]},
+      "expected": [112, 122, 212],
+      "tags": ["hidden", "unique-output"]
+    }
+  ]
+}

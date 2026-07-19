@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1917",
+  "cases": [
+    {
+      "id": "example-three-users",
+      "name": "sample: existing friends are excluded from a three-user listening group",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":10,"day":"2021-03-15"},{"user_id":1,"song_id":11,"day":"2021-03-15"},{"user_id":1,"song_id":12,"day":"2021-03-15"},{"user_id":2,"song_id":10,"day":"2021-03-15"},{"user_id":2,"song_id":11,"day":"2021-03-15"},{"user_id":2,"song_id":12,"day":"2021-03-15"},{"user_id":3,"song_id":10,"day":"2021-03-15"},{"user_id":3,"song_id":11,"day":"2021-03-15"},{"user_id":3,"song_id":12,"day":"2021-03-15"},{"user_id":4,"song_id":10,"day":"2021-03-15"},{"user_id":4,"song_id":11,"day":"2021-03-15"},{"user_id":4,"song_id":13,"day":"2021-03-15"},{"user_id":5,"song_id":10,"day":"2021-03-16"},{"user_id":5,"song_id":11,"day":"2021-03-16"},{"user_id":5,"song_id":12,"day":"2021-03-16"}],"Friendship":[{"user1_id":1,"user2_id":2}]}},
+      "expected": {"columns":["user_id","recommended_id"],"rows":[[1,3],[2,3],[3,1],[3,2]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["sample","friend-exclusion","same-day"]
+    },
+    {
+      "id": "trial-exactly-three",
+      "name": "exactly three shared songs qualify in both directions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":1,"song_id":3,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":3,"day":"2024-01-01"}],"Friendship":{"columns":["user1_id","user2_id"],"rows":[]}}},
+      "expected": {"columns":["user_id","recommended_id"],"rows":[[1,2],[2,1]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["threshold","bidirectional"]
+    },
+    {
+      "id": "trial-only-two",
+      "name": "two shared songs do not reach the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"}],"Friendship":{"columns":["user1_id","user2_id"],"rows":[]}}},
+      "expected": {"columns":["user_id","recommended_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["below-threshold","empty-result"]
+    },
+    {
+      "id": "real-split-across-days",
+      "name": "hidden: shared songs on different days cannot be accumulated",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":1,"song_id":3,"day":"2024-01-02"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":3,"day":"2024-01-02"}],"Friendship":{"columns":["user1_id","user2_id"],"rows":[]}}},
+      "expected": {"columns":["user_id","recommended_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["day-boundary","semantic-trap"]
+    },
+    {
+      "id": "real-duplicates-do-not-inflate",
+      "name": "hidden: duplicate listen rows do not turn two songs into three",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"}],"Friendship":{"columns":["user1_id","user2_id"],"rows":[]}}},
+      "expected": {"columns":["user_id","recommended_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["duplicates","distinct-songs"]
+    },
+    {
+      "id": "real-existing-friends",
+      "name": "hidden: qualifying existing friends produce no recommendation",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":[{"user_id":4,"song_id":1,"day":"2024-01-01"},{"user_id":4,"song_id":2,"day":"2024-01-01"},{"user_id":4,"song_id":3,"day":"2024-01-01"},{"user_id":9,"song_id":1,"day":"2024-01-01"},{"user_id":9,"song_id":2,"day":"2024-01-01"},{"user_id":9,"song_id":3,"day":"2024-01-01"}],"Friendship":[{"user1_id":4,"user2_id":9}]}},
+      "expected": {"columns":["user_id","recommended_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["friend-exclusion","empty-result"]
+    },
+    {
+      "id": "real-multiple-qualifying-days",
+      "name": "hidden: qualifying on two days still emits one row per direction",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":1,"song_id":3,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":3,"day":"2024-01-01"},{"user_id":1,"song_id":4,"day":"2024-01-02"},{"user_id":1,"song_id":5,"day":"2024-01-02"},{"user_id":1,"song_id":6,"day":"2024-01-02"},{"user_id":2,"song_id":4,"day":"2024-01-02"},{"user_id":2,"song_id":5,"day":"2024-01-02"},{"user_id":2,"song_id":6,"day":"2024-01-02"}],"Friendship":{"columns":["user1_id","user2_id"],"rows":[]}}},
+      "expected": {"columns":["user_id","recommended_id"],"rows":[[1,2],[2,1]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["multiple-days","deduplication"]
+    },
+    {
+      "id": "real-two-independent-pairs",
+      "name": "hidden: separate days can qualify separate user pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":[{"user_id":1,"song_id":1,"day":"2024-01-01"},{"user_id":1,"song_id":2,"day":"2024-01-01"},{"user_id":1,"song_id":3,"day":"2024-01-01"},{"user_id":2,"song_id":1,"day":"2024-01-01"},{"user_id":2,"song_id":2,"day":"2024-01-01"},{"user_id":2,"song_id":3,"day":"2024-01-01"},{"user_id":3,"song_id":4,"day":"2024-01-02"},{"user_id":3,"song_id":5,"day":"2024-01-02"},{"user_id":3,"song_id":6,"day":"2024-01-02"},{"user_id":4,"song_id":4,"day":"2024-01-02"},{"user_id":4,"song_id":5,"day":"2024-01-02"},{"user_id":4,"song_id":6,"day":"2024-01-02"}],"Friendship":{"columns":["user1_id","user2_id"],"rows":[]}}},
+      "expected": {"columns":["user_id","recommended_id"],"rows":[[1,2],[2,1],[3,4],[4,3]]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["independent-pairs","multiple-days"]
+    },
+    {
+      "id": "real-empty-listens",
+      "name": "hidden: no listening facts produce no recommendations",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables":{"Listens":{"columns":["user_id","song_id","day"],"rows":[]},"Friendship":{"columns":["user1_id","user2_id"],"rows":[]}}},
+      "expected": {"columns":["user_id","recommended_id"],"rows":[]},
+      "validator": {"kind":"unordered_table"},
+      "tags": ["empty-input","empty-result"]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1921",
+  "cases": [
+    {"id":"example-all","name":"sample: all three deadlines are feasible","kind":"sample","visible":true,"input":{"dist":[1,3,4],"speed":[1,1,1]},"expected":3,"tags":["sample","all-eliminated"]},
+    {"id":"example-tied-zero","name":"sample: two monsters arrive at minute one","kind":"sample","visible":true,"input":{"dist":[1,1,2,3],"speed":[1,1,1,1]},"expected":1,"tags":["sample","tied-deadlines"]},
+    {"id":"example-fast","name":"sample: two monsters arrive before the second shot","kind":"sample","visible":true,"input":{"dist":[3,2,4],"speed":[5,3,2]},"expected":1,"tags":["sample","fractional-arrival"]},
+    {"id":"trial-single","name":"one monster can always be eliminated at minute zero","kind":"trial","visible":true,"input":{"dist":[1],"speed":[100000]},"expected":1,"tags":["single-monster","minimum-constraints"]},
+    {"id":"trial-exact-arrival","name":"exact-minute arrivals remain safe only before that minute","kind":"trial","visible":true,"input":{"dist":[2,4],"speed":[1,2]},"expected":2,"tags":["exact-arrival","boundary"]},
+    {"id":"real-three-way-tie","name":"hidden: a repeated minute-one deadline blocks the third shot","kind":"real","visible":false,"input":{"dist":[1,2,2],"speed":[1,1,1]},"expected":2,"tags":["tied-deadlines","exact-arrival"]},
+    {"id":"real-fractional-tie","name":"hidden: fractional arrivals after minute one permit two shots","kind":"real","visible":false,"input":{"dist":[3,5],"speed":[2,3]},"expected":2,"tags":["fractional-arrival","integer-deadline"]},
+    {"id":"real-input-order","name":"hidden: urgent monsters appear late in the input","kind":"real","visible":false,"input":{"dist":[20,12,1,6],"speed":[2,2,1,2]},"expected":4,"tags":["sorting","input-order"]},
+    {"id":"real-failure-after-three","name":"hidden: the fourth deadline is already missed","kind":"real","visible":false,"input":{"dist":[2,3,3,3,100],"speed":[1,1,1,1,1]},"expected":3,"tags":["partial-elimination","deadline-failure"]},
+    {"id":"real-large-values","name":"hidden: large distances and speeds use exact integer arithmetic","kind":"real","visible":false,"input":{"dist":[100000,99999,75000],"speed":[100000,50000,25000]},"expected":3,"tags":["large-values","integer-arithmetic"]},
+    {"id":"real-all-minute-one","name":"hidden: all immediate arrivals allow only the initial shot","kind":"real","visible":false,"input":{"dist":[5,4,3,2],"speed":[5,4,3,2]},"expected":1,"tags":["deadline-zero","tied-deadlines"]}
+  ]
+}

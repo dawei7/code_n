@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1963",
+  "frontend_id": "1835",
+  "title_slug": "find-xor-sum-of-all-pairs-bitwise-and",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getXORSum",
+  "verified_submission_id": "2071652559",
+  "verified_at": "2026-07-18T01:36:54.769079+00:00"
+}

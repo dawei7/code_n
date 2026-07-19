@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1936",
+  "cases": [
+    {"id":"example-large-final-gap","name":"sample: the final gap needs two additions","kind":"sample","visible":true,"input":{"rungs":[1,3,5,10],"dist":2},"expected":2,"tags":["sample","final-gap"]},
+    {"id":"example-no-additions","name":"sample: every existing gap already fits","kind":"sample","visible":true,"input":{"rungs":[3,6,8,10],"dist":3},"expected":0,"tags":["sample","already-reachable"]},
+    {"id":"example-first-gap","name":"sample: one rung is needed above the floor","kind":"sample","visible":true,"input":{"rungs":[3,4,6,7],"dist":2},"expected":1,"tags":["sample","floor-gap"]},
+    {"id":"trial-single-reachable","name":"one rung exactly one unit above the floor","kind":"trial","visible":true,"input":{"rungs":[1],"dist":1},"expected":0,"tags":["single-rung","exact-gap"]},
+    {"id":"trial-single-two-additions","name":"one distant rung needs two intermediates","kind":"trial","visible":true,"input":{"rungs":[5],"dist":2},"expected":2,"tags":["single-rung","floor-gap"]},
+    {"id":"trial-dist-plus-one","name":"a gap one above the limit needs one rung","kind":"trial","visible":true,"input":{"rungs":[4],"dist":3},"expected":1,"tags":["boundary-gap"]},
+    {"id":"real-exact-multiples","name":"hidden: exact multiples do not overcount endpoints","kind":"real","visible":false,"input":{"rungs":[4,8,12],"dist":4},"expected":0,"tags":["exact-gap","multiple-rungs"]},
+    {"id":"real-each-gap-needs-one","name":"hidden: independent gaps each contribute once","kind":"real","visible":false,"input":{"rungs":[3,6,9],"dist":2},"expected":3,"tags":["multiple-gaps","summation"]},
+    {"id":"real-mixed-gaps","name":"hidden: reachable and oversized gaps are combined","kind":"real","visible":false,"input":{"rungs":[2,7,8,15],"dist":3},"expected":3,"tags":["multiple-gaps","mixed-sizes"]},
+    {"id":"real-large-height","name":"hidden: arithmetic handles a large single height","kind":"real","visible":false,"input":{"rungs":[1000000000],"dist":100000000},"expected":9,"tags":["large-height","exact-multiple"]}
+  ]
+}

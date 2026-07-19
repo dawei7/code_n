@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2101",
+  "cases": [
+    {
+      "id": "sample-asymmetric-pair",
+      "name": "sample: only the larger radius reaches both bombs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"bombs": [[2, 1, 3], [6, 1, 4]]},
+      "expected": 2,
+      "tags": ["sample", "asymmetric"]
+    },
+    {
+      "id": "sample-disconnected",
+      "name": "sample: two disconnected bombs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"bombs": [[1, 1, 5], [10, 10, 5]]},
+      "expected": 1,
+      "tags": ["sample", "disconnected"]
+    },
+    {
+      "id": "sample-transitive-chain",
+      "name": "sample: indirect triggers reach every bomb",
+      "kind": "sample",
+      "visible": true,
+      "input": {"bombs": [[1, 2, 3], [2, 3, 1], [3, 4, 2], [4, 5, 3], [5, 6, 4]]},
+      "expected": 5,
+      "tags": ["sample", "transitive"]
+    },
+    {
+      "id": "trial-single-bomb",
+      "name": "one bomb always detonates itself",
+      "kind": "trial",
+      "visible": true,
+      "input": {"bombs": [[7, 9, 2]]},
+      "expected": 1,
+      "tags": ["single-bomb"]
+    },
+    {
+      "id": "real-boundary-contact",
+      "name": "hidden: a center on the circle boundary is reached",
+      "kind": "real",
+      "visible": false,
+      "input": {"bombs": [[1, 1, 5], [4, 5, 1]]},
+      "expected": 2,
+      "tags": ["hidden", "inclusive-boundary"]
+    },
+    {
+      "id": "real-duplicate-centers",
+      "name": "hidden: co-located bombs all trigger",
+      "kind": "real",
+      "visible": false,
+      "input": {"bombs": [[10, 10, 1], [10, 10, 2], [10, 10, 3]]},
+      "expected": 3,
+      "tags": ["hidden", "same-center"]
+    },
+    {
+      "id": "real-large-coordinates",
+      "name": "hidden: squared distances use the full coordinate scale",
+      "kind": "real",
+      "visible": false,
+      "input": {"bombs": [[1, 1, 100000], [100000, 100000, 1]]},
+      "expected": 1,
+      "tags": ["hidden", "large-coordinates"]
+    },
+    {
+      "id": "real-directed-chain",
+      "name": "hidden: the best start follows a one-way chain",
+      "kind": "real",
+      "visible": false,
+      "input": {"bombs": [[1, 1, 4], [5, 1, 3], [8, 1, 2], [10, 1, 1]]},
+      "expected": 4,
+      "tags": ["hidden", "directed-chain"]
+    }
+  ]
+}

@@ -2,34 +2,40 @@
 
 | Field | Value |
 |---|---|
-| Source | LeetCode |
+| Source | [LeetCode](https://leetcode.com/problems/minimum-operations-to-make-the-array-increasing/) |
 | Frontend ID | 1827 |
 | Difficulty | Easy |
 | Category | Algorithms |
 | Topics | Array, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-operations-to-make-the-array-increasing](https://leetcode.com/problems/minimum-operations-to-make-the-array-increasing/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-operations-to-make-the-array-increasing/).
 
 ### Goal
-Increase array elements by `1` any number of times so the array becomes strictly increasing. Minimize the number of increments.
+
+An operation selects one element of the 0-indexed integer array `nums` and increases that element by exactly 1. Operations may be applied repeatedly to the same position, but values can never be decreased.
+
+Make the array strictly increasing, meaning every element is smaller than the element immediately after it. Return the minimum total number of increment operations. A one-element array already satisfies the condition.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: a list of integers.
+- `nums`: an array of $n$ positive integers, where $1 \le n \le 5000$.
+- Each original value satisfies $1 \le \texttt{nums[i]} \le 10^4$.
 
 **Return value**
 
-Return the minimum number of increment operations.
+- Return the fewest unit increments required to make every adjacent relation strictly increasing.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [1,1,1]`
 - Output: `3`
+
+The least possible adjusted array is `[1,2,3]`, requiring zero, one, and two increments.
 
 **Example 2**
 
@@ -41,15 +47,40 @@ Return the minimum number of increment operations.
 - Input: `nums = [8]`
 - Output: `0`
 
----
+### Required Complexity
 
-## Solution
-### Approach
-Scan left to right. Track the minimum value the current element must have, one more than the previous adjusted value. If `nums[i]` is too small, add the difference to the answer and treat the adjusted value as the required minimum.
+- **Time:** $O(n)$
+- **Space:** $O(1)$
 
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
+<details>
+<summary>Approach</summary>
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+#### General
+
+**Commit to the smallest legal value at each position**
+
+Keep the previous value after all required increments. For the current original value, strict increase requires at least `previous + 1`. Its optimal adjusted value is therefore the larger of its original value and that threshold. Add the difference from the original to the operation count and carry the adjusted value forward.
+
+**Why no earlier choice should be made larger**
+
+Only increments are allowed, so the first value is optimally unchanged. At every later position, raising it above the smallest legal value spends extra operations immediately and can only raise—not relax—the minimum required value for the following position. Thus the locally smallest feasible adjustment is compatible with every optimal suffix.
+
+**Why the complete greedy construction is optimal**
+
+Inductively, after each position the algorithm has built the componentwise smallest strictly increasing prefix obtainable by increments. Any valid transformed array must make the current value at least `previous + 1`, and the algorithm pays exactly the necessary difference. Summing these individually unavoidable increments yields the global minimum.
+
+#### Complexity detail
+
+The scan visits each of the $n$ values once and performs constant work, so time is $O(n)$. The operation total and previous adjusted value use $O(1)$ auxiliary space.
+
+#### Alternatives and edge cases
+
+- **Increment one unit in a loop:** It produces the same adjusted values but can execute $\Theta(n^2)$ individual loop iterations on a flat array.
+- **Modify `nums` in place:** It is also $O(n)$ and correct, but tracking only the adjusted predecessor avoids changing the input.
+- **Already strictly increasing:** Every value exceeds the predecessor and the answer remains zero.
+- **Equal neighbors:** The later value must be raised by at least one.
+- **Decreasing input:** Earlier forced increases propagate and may require increasingly large changes.
+- **Single element:** Return zero without any adjacent comparison.
+- **Large adjusted values:** The transformed values may exceed the original $10^4$ bound; that bound applies only to input.
+
+</details>

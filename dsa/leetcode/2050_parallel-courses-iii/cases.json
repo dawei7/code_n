@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2050",
+  "cases": [
+    {
+      "id": "sample-two-prerequisites",
+      "name": "sample: a course waits for the slower prerequisite",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "relations": [[1, 3], [2, 3]], "time": [3, 2, 5]},
+      "expected": 8,
+      "tags": ["sample", "parallel-prerequisites"]
+    },
+    {
+      "id": "sample-critical-chain",
+      "name": "sample: the longest dependency chain determines completion",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 5, "relations": [[1, 5], [2, 5], [3, 5], [3, 4], [4, 5]], "time": [1, 2, 3, 4, 5]},
+      "expected": 12,
+      "tags": ["sample", "critical-path"]
+    },
+    {
+      "id": "trial-single-course",
+      "name": "one course completes after its own duration",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "relations": [], "time": [9]},
+      "expected": 9,
+      "tags": ["minimum-size", "no-relations"]
+    },
+    {
+      "id": "trial-all-independent",
+      "name": "independent courses all begin at month zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 4, "relations": [], "time": [5, 2, 11, 7]},
+      "expected": 11,
+      "tags": ["parallel", "no-relations"]
+    },
+    {
+      "id": "real-diamond",
+      "name": "hidden: a diamond joins parallel branches before the final course",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4, "relations": [[1, 2], [1, 3], [2, 4], [3, 4]], "time": [2, 7, 3, 5]},
+      "expected": 14,
+      "tags": ["hidden", "diamond", "join"]
+    },
+    {
+      "id": "real-disconnected-components",
+      "name": "hidden: choose the slower of separate prerequisite components",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 6, "relations": [[1, 2], [2, 3], [4, 5]], "time": [2, 3, 4, 10, 1, 12]},
+      "expected": 12,
+      "tags": ["hidden", "disconnected-dag"]
+    }
+  ]
+}

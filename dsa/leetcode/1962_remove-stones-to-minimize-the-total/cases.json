@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1962",
+  "cases": [
+    {"id":"example-two-operations","name":"sample: operate on nine then five","kind":"sample","visible":true,"input":{"piles":[5,4,9],"k":2},"expected":12,"tags":["sample","multiple-piles"]},
+    {"id":"example-three-operations","name":"sample: three greedy choices across four piles","kind":"sample","visible":true,"input":{"piles":[4,3,6,7],"k":3},"expected":12,"tags":["sample","multiple-piles"]},
+    {"id":"trial-single-one","name":"a one-stone pile cannot be reduced","kind":"trial","visible":true,"input":{"piles":[1],"k":5},"expected":1,"tags":["minimum","repeated-operation"]},
+    {"id":"trial-single-odd","name":"odd pile retains the extra stone","kind":"trial","visible":true,"input":{"piles":[9],"k":1},"expected":5,"tags":["odd-rounding","single-pile"]},
+    {"id":"trial-repeat-single-pile","name":"same odd pile is selected twice","kind":"trial","visible":true,"input":{"piles":[9],"k":2},"expected":3,"tags":["odd-rounding","repeated-operation"]},
+    {"id":"trial-tied-piles","name":"either tied largest pile may be selected","kind":"trial","visible":true,"input":{"piles":[8,8],"k":1},"expected":12,"tags":["tie","multiple-piles"]},
+    {"id":"real-largest-twice","name":"hidden: largest pile remains largest after one operation","kind":"real","visible":false,"input":{"piles":[10,1],"k":2},"expected":4,"tags":["repeated-operation","greedy"]},
+    {"id":"real-extra-operations-on-ones","name":"hidden: exact operations continue after all gains vanish","kind":"real","visible":false,"input":{"piles":[1,1],"k":5},"expected":2,"tags":["no-reduction","exact-k"]},
+    {"id":"real-three-stones","name":"hidden: floor removal from three leaves two","kind":"real","visible":false,"input":{"piles":[3],"k":1},"expected":2,"tags":["odd-rounding","single-pile"]},
+    {"id":"real-value-boundary","name":"hidden: maximum pile shrinks to one","kind":"real","visible":false,"input":{"piles":[10000],"k":14},"expected":1,"tags":["value-boundary","repeated-operation"]}
+  ]
+}

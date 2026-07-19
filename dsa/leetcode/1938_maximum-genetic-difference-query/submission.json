@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2068",
+  "frontend_id": "1938",
+  "title_slug": "maximum-genetic-difference-query",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxGeneticDifference",
+  "verified_submission_id": "2072590062",
+  "verified_at": "2026-07-18T17:00:01.560568+00:00"
+}

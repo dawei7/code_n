@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2048",
+  "cases": [
+    {
+      "id": "sample-single-to-double",
+      "name": "sample: first balanced value after one",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 1},
+      "expected": 22,
+      "tags": ["sample", "strict-successor"]
+    },
+    {
+      "id": "sample-four-digits",
+      "name": "sample: one one and three threes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 1000},
+      "expected": 1333,
+      "tags": ["sample", "zero-trap"]
+    },
+    {
+      "id": "sample-next-arrangement",
+      "name": "sample: next balanced arrangement after three thousand",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3000},
+      "expected": 3133,
+      "tags": ["sample", "mixed-digits"]
+    },
+    {
+      "id": "trial-zero",
+      "name": "zero advances to the single balanced digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 0},
+      "expected": 1,
+      "tags": ["lower-bound"]
+    },
+    {
+      "id": "trial-balanced-input",
+      "name": "an already balanced input still requires a strict successor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 22},
+      "expected": 122,
+      "tags": ["strict-successor", "balanced-input"]
+    },
+    {
+      "id": "real-zero-containing-candidates",
+      "name": "hidden: candidates containing zero remain invalid",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 100},
+      "expected": 122,
+      "tags": ["hidden", "zero-trap"]
+    },
+    {
+      "id": "real-adjacent-balanced-values",
+      "name": "hidden: choose the next ordering of the same digit multiset",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 212},
+      "expected": 221,
+      "tags": ["hidden", "minimality"]
+    },
+    {
+      "id": "real-large-gap",
+      "name": "hidden: scan a substantial gap between balanced values",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4444},
+      "expected": 14444,
+      "tags": ["hidden", "large-gap"]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: the answer may exceed the input constraint",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000},
+      "expected": 1224444,
+      "tags": ["hidden", "upper-bound"]
+    }
+  ]
+}

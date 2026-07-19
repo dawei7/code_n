@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1903",
+  "cases": [
+    {"id":"example-prefix-five","name":"sample: the first digit is the only odd ending","kind":"sample","visible":true,"input":{"num":"52"},"expected":"5","tags":["sample","prefix"]},
+    {"id":"example-no-odd","name":"sample: every digit is even","kind":"sample","visible":true,"input":{"num":"4206"},"expected":"","tags":["sample","empty-answer"]},
+    {"id":"example-full-number","name":"sample: an odd final digit keeps the full input","kind":"sample","visible":true,"input":{"num":"35427"},"expected":"35427","tags":["sample","full-answer"]},
+    {"id":"trial-single-odd","name":"one odd digit is its own answer","kind":"trial","visible":true,"input":{"num":"7"},"expected":"7","tags":["single-digit","odd"]},
+    {"id":"trial-single-even","name":"one even digit has no odd substring","kind":"trial","visible":true,"input":{"num":"8"},"expected":"","tags":["single-digit","even"]},
+    {"id":"real-middle-odd","name":"hidden: the rightmost odd digit ends a proper prefix","kind":"real","visible":false,"input":{"num":"1234568"},"expected":"12345","tags":["proper-prefix","rightmost-odd"]},
+    {"id":"real-internal-zeros","name":"hidden: internal zeros remain inside the largest odd prefix","kind":"real","visible":false,"input":{"num":"101010"},"expected":"10101","tags":["internal-zeros","proper-prefix"]},
+    {"id":"real-only-first-odd","name":"hidden: a long even suffix leaves the first digit","kind":"real","visible":false,"input":{"num":"900000"},"expected":"9","tags":["first-digit","even-suffix"]},
+    {"id":"real-many-odd","name":"hidden: the last of many odd digits keeps the whole number","kind":"real","visible":false,"input":{"num":"1357913579"},"expected":"1357913579","tags":["many-odd","full-answer"]},
+    {"id":"real-zero-heavy","name":"hidden: the final three after many zeros determines parity","kind":"real","visible":false,"input":{"num":"1000003000"},"expected":"1000003","tags":["zeros","rightmost-odd"]},
+    {"id":"real-large-prefix","name":"hidden: a long proper prefix is returned without numeric conversion","kind":"real","visible":false,"input":{"num":"98765432101234567890"},"expected":"9876543210123456789","tags":["large-number","proper-prefix"]}
+  ]
+}

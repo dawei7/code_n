@@ -114,6 +114,19 @@ environment; it never prints or persists plaintext credentials:
 npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_44
 ```
 
+Premium statement authoring should use the separate read-only authenticated
+bridge. It verifies the live identity against canonical metadata and prints
+transient statement/snippet evidence without writing LeetCode text into the
+dataset or exposing credentials. If Cloudflare rejects the direct API request,
+the same bridge retries through a temporary headless Chrome profile:
+
+```powershell
+npx.cmd --prefix electron electron electron/scripts/fetch-leetcode-question.cjs lc_1902
+```
+
+Use this authenticated evidence instead of a third-party statement mirror
+whenever the stored account can access the Premium problem.
+
 Multiple candidates may be supplied in numeric order. The bridge waits ten
 seconds between real posts and clears a migration blocker only after Accepted:
 

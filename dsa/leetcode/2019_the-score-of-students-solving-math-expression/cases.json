@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_2019",
+  "cases": [
+    {
+      "id": "sample-correct-partial-invalid",
+      "name": "sample: one answer in each scoring category",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "7+3*1*2", "answers": [20, 13, 42]},
+      "expected": 7,
+      "tags": ["sample", "mixed-scores"]
+    },
+    {
+      "id": "sample-duplicate-grades",
+      "name": "sample: duplicate correct and partial answers",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "3+5*2", "answers": [13, 0, 10, 13, 13, 16, 16]},
+      "expected": 19,
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "sample-correct-overrides-partial",
+      "name": "sample: a correct value reachable wrongly still earns five",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "6+0*1", "answers": [12, 9, 6, 4, 8, 6]},
+      "expected": 10,
+      "tags": ["sample", "precedence", "zero"]
+    },
+    {
+      "id": "trial-only-addition",
+      "name": "all parenthesizations of additions agree",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "1+2+3", "answers": [6, 3]},
+      "expected": 5,
+      "tags": ["addition", "single-result"]
+    },
+    {
+      "id": "trial-partial-multiplication-group",
+      "name": "wrong grouping produces fourteen",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "2*3+4", "answers": [10, 14, 7]},
+      "expected": 7,
+      "tags": ["partial-credit", "precedence"]
+    },
+    {
+      "id": "real-nested-wrong-order",
+      "name": "hidden: nested grouping yields a partial-credit value",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "1+2*3+4", "answers": [11, 21, 10]},
+      "expected": 7,
+      "tags": ["hidden", "nested", "partial-credit"]
+    },
+    {
+      "id": "real-operator-boundary",
+      "name": "hidden: fifteen additions have one possible result",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1", "answers": [16, 15]},
+      "expected": 5,
+      "tags": ["hidden", "maximum-operators"]
+    }
+  ]
+}

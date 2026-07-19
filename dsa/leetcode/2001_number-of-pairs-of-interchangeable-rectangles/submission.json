@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2129",
+  "frontend_id": "2001",
+  "title_slug": "number-of-pairs-of-interchangeable-rectangles",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.interchangeableRectangles",
+  "verified_submission_id": "2072823691",
+  "verified_at": "2026-07-18T22:18:03.552101+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2191",
+  "frontend_id": "2086",
+  "title_slug": "minimum-number-of-food-buckets-to-feed-the-hamsters",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumBuckets",
+  "verified_submission_id": "2073066821",
+  "verified_at": "2026-07-19T05:02:35.282856+00:00"
+}

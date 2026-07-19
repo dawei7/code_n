@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2014",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(NC)",
+  "summary": "The source relation N < 8k limits every repeated candidate to at most seven characters, while viable candidate counts depend non-monotonically on source order and multiplicities, so the finite search tree cannot support an honest three-tier scaling verdict.",
+  "workload_bound": {
+    "symbol": "L",
+    "maximum": 7,
+    "unit": "characters in a repeated candidate",
+    "source_constraint": "Because k copies of a length-L candidate require kL source characters and N < 8k, every valid candidate satisfies L <= 7."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "At most seven distinct characters can each occur k times, candidate depth is at most seven, and every generated extension is checked by one O(N) subsequence scan; prefix pruning retains only candidates that can lead to a longer repeated string."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover the empty result, lexicographic ties, repeated single characters, full-pattern repetition, and answers attaining the seven-character maximum; the exact native source also has remote Accepted evidence."
+    }
+  ]
+}

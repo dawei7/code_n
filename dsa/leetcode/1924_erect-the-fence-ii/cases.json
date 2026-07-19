@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1924",
+  "cases": [
+    {"id":"example-circle","name":"sample: cardinal boundary points determine a radius-two circle","kind":"sample","visible":true,"input":{"trees":[[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]},"expected":[2.0,2.0,2.0],"validator":{"kind":"float_list_close","tolerance":0.00001},"tags":["sample","interior-points"]},
+    {"id":"example-collinear","name":"sample: collinear extremes determine the diameter","kind":"sample","visible":true,"input":{"trees":[[1,2],[2,2],[4,2]]},"expected":[2.5,2.0,1.5],"validator":{"kind":"float_list_close","tolerance":0.00001},"tags":["sample","collinear"]},
+    {"id":"trial-single","name":"one tree needs a zero-radius fence","kind":"trial","visible":true,"input":{"trees":[[7,9]]},"expected":[7.0,9.0,0.0],"validator":{"kind":"float_list_close","tolerance":0.00001},"tags":["single-point","minimum-size"]},
+    {"id":"trial-two-points","name":"two trees define one diameter circle","kind":"trial","visible":true,"input":{"trees":[[0,0],[4,0]]},"expected":[2.0,0.0,2.0],"validator":{"kind":"float_list_close","tolerance":0.00001},"tags":["two-points","diameter"]},
+    {"id":"real-right-triangle","name":"hidden: a right triangle uses its hypotenuse as diameter","kind":"real","visible":false,"input":{"trees":[[0,0],[0,4],[3,0]]},"expected":[1.5,2.0,2.5],"validator":{"kind":"float_list_close","tolerance":0.00001},"tags":["right-triangle","diameter"]},
+    {"id":"real-acute-triangle","name":"hidden: an acute triangle requires its circumcircle","kind":"real","visible":false,"input":{"trees":[[0,0],[4,0],[2,3]]},"expected":[2.0,0.8333333333333334,2.1666666666666665],"validator":{"kind":"float_list_close","tolerance":0.00001},"tags":["acute-triangle","circumcircle"]},
+    {"id":"real-long-collinear","name":"hidden: interior collinear points do not change the extreme diameter","kind":"real","visible":false,"input":{"trees":[[0,0],[2,0],[5,0],[3,0]]},"expected":[2.5,0.0,2.5],"validator":{"kind":"float_list_close","tolerance":0.00001},"tags":["collinear","farthest-pair"]},
+    {"id":"real-square","name":"hidden: square corners share a diagonal circle","kind":"real","visible":false,"input":{"trees":[[0,0],[2,0],[2,2],[0,2]]},"expected":[1.0,1.0,1.4142135623730951],"validator":{"kind":"float_list_close","tolerance":0.00001},"tags":["square","circumcircle"]},
+    {"id":"real-interior-and-duplicate","name":"hidden: interior and duplicate coordinates add no boundary constraint","kind":"real","visible":false,"input":{"trees":[[0,0],[4,0],[0,0],[2,0],[2,1]]},"expected":[2.0,0.0,2.0],"validator":{"kind":"float_list_close","tolerance":0.00001},"tags":["duplicate-point","interior-point"]},
+    {"id":"real-coordinate-boundary","name":"hidden: opposite coordinate bounds form a diagonal diameter","kind":"real","visible":false,"input":{"trees":[[0,0],[3000,3000],[1500,1500]]},"expected":[1500.0,1500.0,2121.3203435596424],"validator":{"kind":"float_list_close","tolerance":0.00001},"tags":["coordinate-boundary","diagonal"]}
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2096",
+  "cases": [
+    {
+      "id": "sample-cross-subtrees",
+      "name": "sample: move up twice and down twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [5, 1, 2, 3, null, 6, 4],
+        "startValue": 3,
+        "destValue": 6
+      },
+      "expected": "UURL",
+      "tags": ["sample", "lowest-common-ancestor"]
+    },
+    {
+      "id": "sample-parent-to-left-child",
+      "name": "sample: destination is the left child",
+      "kind": "sample",
+      "visible": true,
+      "input": {"root": [2, 1], "startValue": 2, "destValue": 1},
+      "expected": "L",
+      "tags": ["sample", "downward-only"]
+    },
+    {
+      "id": "trial-sibling-to-sibling",
+      "name": "siblings travel through their parent",
+      "kind": "trial",
+      "visible": true,
+      "input": {"root": [1, 2, 3], "startValue": 2, "destValue": 3},
+      "expected": "UR",
+      "tags": ["siblings"]
+    },
+    {
+      "id": "real-destination-is-ancestor",
+      "name": "hidden: path consists only of upward moves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [1, 2, 3, 4, 5, null, 6],
+        "startValue": 5,
+        "destValue": 1
+      },
+      "expected": "UU",
+      "tags": ["hidden", "upward-only"]
+    },
+    {
+      "id": "real-start-is-ancestor",
+      "name": "hidden: path descends through mixed directions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [1, 2, 3, null, 4, 5, 6],
+        "startValue": 1,
+        "destValue": 4
+      },
+      "expected": "LR",
+      "tags": ["hidden", "downward-only"]
+    },
+    {
+      "id": "real-sparse-cross-branch",
+      "name": "hidden: null child slots preserve edge directions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [8, 4, 12, null, 6, 10, null, 5, 7],
+        "startValue": 5,
+        "destValue": 10
+      },
+      "expected": "UUURL",
+      "tags": ["hidden", "sparse-tree"]
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2021",
+  "measurement_note": "Size is N, the number of separated zero-range lamps. The event sweep sorts O(N) boundaries. A correct endpoint-rescan implementation tests every interval's left endpoint against all N lamps, completes all tiers, and fails by quadratic scaling independent of coordinate magnitude.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 separated point lamps",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "lights": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "endpoint-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 separated point lamps",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "lights": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            14,
+            0
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            18,
+            0
+          ],
+          [
+            20,
+            0
+          ],
+          [
+            22,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            26,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            30,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "endpoint-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32 separated point lamps",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "lights": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            14,
+            0
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            18,
+            0
+          ],
+          [
+            20,
+            0
+          ],
+          [
+            22,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            26,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            30,
+            0
+          ],
+          [
+            32,
+            0
+          ],
+          [
+            34,
+            0
+          ],
+          [
+            36,
+            0
+          ],
+          [
+            38,
+            0
+          ],
+          [
+            40,
+            0
+          ],
+          [
+            42,
+            0
+          ],
+          [
+            44,
+            0
+          ],
+          [
+            46,
+            0
+          ],
+          [
+            48,
+            0
+          ],
+          [
+            50,
+            0
+          ],
+          [
+            52,
+            0
+          ],
+          [
+            54,
+            0
+          ],
+          [
+            56,
+            0
+          ],
+          [
+            58,
+            0
+          ],
+          [
+            60,
+            0
+          ],
+          [
+            62,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "endpoint-rescan"
+      ]
+    }
+  ]
+}

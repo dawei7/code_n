@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2069",
+  "frontend_id": "1918",
+  "title_slug": "kth-smallest-subarray-sum",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.kthSmallestSubarraySum",
+  "verified_submission_id": "2072316564",
+  "verified_at": "2026-07-18T14:33:48.152474+00:00"
+}

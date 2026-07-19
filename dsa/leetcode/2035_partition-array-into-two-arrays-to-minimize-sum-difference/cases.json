@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2035",
+  "cases": [
+    {
+      "id": "sample-four-positive-values",
+      "name": "sample: closest two-element sums differ by two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 9, 7, 3]},
+      "expected": 2,
+      "tags": ["sample", "positive"]
+    },
+    {
+      "id": "sample-two-opposites",
+      "name": "sample: two values must be separated",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [-36, 36]},
+      "expected": 72,
+      "tags": ["sample", "minimum-length"]
+    },
+    {
+      "id": "sample-balanced-negative-sums",
+      "name": "sample: two mixed-sign groups have equal sums",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, -1, 0, 4, -2, -9]},
+      "expected": 0,
+      "tags": ["sample", "mixed-sign", "perfect-balance"]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "all zero values split with no difference",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0, 0, 0, 0]},
+      "expected": 0,
+      "tags": ["zeros", "duplicates"]
+    },
+    {
+      "id": "trial-consecutive-positive",
+      "name": "equal-cardinality groups can balance consecutive values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4]},
+      "expected": 0,
+      "tags": ["positive", "perfect-balance"]
+    },
+    {
+      "id": "real-all-negative",
+      "name": "hidden: negative values can form equal sums",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-1, -2, -3, -4]},
+      "expected": 0,
+      "tags": ["hidden", "all-negative"]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: opposite value limits",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-10000000, 10000000]},
+      "expected": 20000000,
+      "tags": ["hidden", "value-boundary"]
+    },
+    {
+      "id": "real-duplicates-and-odd-total",
+      "name": "hidden: duplicate values with an odd total",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 5, 5, 5, 5, 4]},
+      "expected": 1,
+      "tags": ["hidden", "duplicates", "odd-total"]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1855",
+  "cases": [
+    {"id":"example-farthest-equal","name":"sample: farthest pair uses equal endpoint values","kind":"sample","visible":true,"input":{"args":[[55,30,5,4,2],[100,20,10,10,5]]},"expected":2,"validator":{"kind":"exact"},"tags":["example","equality"]},
+    {"id":"example-repeated-two","name":"sample: repeated values produce distance one","kind":"sample","visible":true,"input":{"args":[[2,2,2],[10,10,1]]},"expected":1,"validator":{"kind":"exact"},"tags":["example","duplicates"]},
+    {"id":"example-later-small-value","name":"sample: a later first-array value enables the best pair","kind":"sample","visible":true,"input":{"args":[[30,29,19,5],[25,25,25,25,25]]},"expected":2,"validator":{"kind":"exact"},"tags":["example","pointer-advance"]},
+    {"id":"trial-single-equal","name":"single equal values have zero distance","kind":"trial","visible":true,"input":{"args":[[1],[1]]},"expected":0,"validator":{"kind":"exact"},"tags":["minimum-length","equality"]},
+    {"id":"real-no-value-pair","name":"hidden: every first-array value is too large","kind":"real","visible":false,"input":{"args":[[5,4],[3,2]]},"expected":0,"validator":{"kind":"exact"},"tags":["no-valid-value-pair"]},
+    {"id":"real-short-first-array","name":"hidden: first index can pair with the final second index","kind":"real","visible":false,"input":{"args":[[5,4],[6,6,6,6]]},"expected":3,"validator":{"kind":"exact"},"tags":["unequal-lengths","maximum-distance"]},
+    {"id":"real-short-second-array","name":"hidden: index condition blocks later first-array values","kind":"real","visible":false,"input":{"args":[[10,9,8,7,6],[10,8]]},"expected":0,"validator":{"kind":"exact"},"tags":["unequal-lengths","index-condition"]},
+    {"id":"real-equal-plateaus","name":"hidden: equal plateaus allow the full distance","kind":"real","visible":false,"input":{"args":[[4,4,4],[4,4,4,4]]},"expected":3,"validator":{"kind":"exact"},"tags":["duplicates","equality"]},
+    {"id":"real-value-boundaries","name":"hidden: boundary values obey the same comparison","kind":"real","visible":false,"input":{"args":[[100000,1],[100000,100000,1]]},"expected":1,"validator":{"kind":"exact"},"tags":["value-boundary"]},
+    {"id":"real-staggered-values","name":"hidden: both pointers advance across several thresholds","kind":"real","visible":false,"input":{"args":[[20,15,10,5],[25,18,14,11,6,5]]},"expected":2,"validator":{"kind":"exact"},"tags":["pointer-advance","mixed"]}
+  ]
+}

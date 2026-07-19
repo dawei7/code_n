@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1991",
+  "cases": [
+    {"id":"example-interior","name":"sample: interior middle index","kind":"sample","visible":true,"input":{"nums":[2,3,-1,8,4]},"expected":3,"tags":["sample","interior"]},
+    {"id":"example-right-boundary","name":"sample: final index with empty right side","kind":"sample","visible":true,"input":{"nums":[1,-1,4]},"expected":2,"tags":["sample","right-boundary"]},
+    {"id":"example-none","name":"sample: no middle index","kind":"sample","visible":true,"input":{"nums":[2,5]},"expected":-1,"tags":["sample","no-solution"]},
+    {"id":"trial-single","name":"one element has two empty sides","kind":"trial","visible":true,"input":{"nums":[999]},"expected":0,"tags":["minimum","both-empty"]},
+    {"id":"trial-left-boundary","name":"first index qualifies when the suffix sums to zero","kind":"trial","visible":true,"input":{"nums":[7,1,-1]},"expected":0,"tags":["left-boundary"]},
+    {"id":"trial-right-boundary","name":"last index qualifies when the prefix sums to zero","kind":"trial","visible":true,"input":{"nums":[1,-1,7]},"expected":2,"tags":["right-boundary"]},
+    {"id":"trial-many-valid","name":"leftmost of several valid indices is returned","kind":"trial","visible":true,"input":{"nums":[0,0,0,0]},"expected":0,"tags":["multiple-solutions","leftmost"]},
+    {"id":"trial-negative-middle","name":"negative values balance around an interior index","kind":"trial","visible":true,"input":{"nums":[-2,4,9,2]},"expected":2,"tags":["negative","interior"]},
+    {"id":"real-current-excluded","name":"hidden: candidate value is excluded from both sums","kind":"real","visible":false,"input":{"nums":[5,100,5]},"expected":1,"tags":["semantic-trap","interior"]},
+    {"id":"real-zero-total-no-index","name":"hidden: total zero alone does not guarantee a middle","kind":"real","visible":false,"input":{"nums":[2,-3,1]},"expected":-1,"tags":["zero-total","no-solution"]},
+    {"id":"real-late-match","name":"hidden: only a late interior index qualifies","kind":"real","visible":false,"input":{"nums":[3,1,2,6,4,2]},"expected":3,"tags":["late-match","interior"]},
+    {"id":"real-bounds","name":"hidden: extreme allowed values balance","kind":"real","visible":false,"input":{"nums":[1000,-1000,0,1000,-1000]},"expected":2,"tags":["value-bounds","interior"]}
+  ]
+}

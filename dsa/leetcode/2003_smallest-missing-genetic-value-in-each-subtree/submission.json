@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2131",
+  "frontend_id": "2003",
+  "title_slug": "smallest-missing-genetic-value-in-each-subtree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.smallestMissingValueSubtree",
+  "verified_submission_id": "2072826404",
+  "verified_at": "2026-07-18T22:26:49.677925+00:00"
+}

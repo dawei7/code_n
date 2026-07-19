@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2109",
+  "frontend_id": "1982",
+  "title_slug": "find-array-given-subset-sums",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.recoverArray",
+  "verified_submission_id": "2072789332",
+  "verified_at": "2026-07-18T20:41:57.148109+00:00"
+}

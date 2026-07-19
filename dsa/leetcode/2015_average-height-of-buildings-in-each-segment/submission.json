@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2142",
+  "frontend_id": "2015",
+  "title_slug": "average-height-of-buildings-in-each-segment",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.averageHeightOfBuildings",
+  "verified_submission_id": "2072840136",
+  "verified_at": "2026-07-18T23:20:01.777857+00:00"
+}

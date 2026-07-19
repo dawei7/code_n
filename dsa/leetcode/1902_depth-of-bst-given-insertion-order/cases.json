@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1902",
+  "cases": [
+    {"id":"example-left-of-right","name":"sample: a later key becomes the left child of four","kind":"sample","visible":true,"input":{"order":[2,1,4,3]},"expected":3,"tags":["sample","mixed-order"]},
+    {"id":"example-right-chain","name":"sample: the final key extends the right subtree","kind":"sample","visible":true,"input":{"order":[2,1,3,4]},"expected":3,"tags":["sample","right-chain"]},
+    {"id":"example-increasing","name":"sample: increasing order creates a full chain","kind":"sample","visible":true,"input":{"order":[1,2,3,4]},"expected":4,"tags":["sample","worst-depth"]},
+    {"id":"trial-single","name":"one inserted key has depth one","kind":"trial","visible":true,"input":{"order":[1]},"expected":1,"tags":["single-key","minimum"]},
+    {"id":"trial-balanced-seven","name":"middle-first insertion builds a perfect three-level tree","kind":"trial","visible":true,"input":{"order":[4,2,6,1,3,5,7]},"expected":3,"tags":["balanced","perfect-tree"]},
+    {"id":"real-decreasing","name":"hidden: decreasing order creates a left-only chain","kind":"real","visible":false,"input":{"order":[6,5,4,3,2,1]},"expected":6,"tags":["left-chain","worst-depth"]},
+    {"id":"real-root-extremes","name":"hidden: alternating extremes extend different subtrees","kind":"real","visible":false,"input":{"order":[4,1,7,2,6,3,5]},"expected":4,"tags":["alternating","mixed-subtrees"]},
+    {"id":"real-zigzag","name":"hidden: zigzag comparisons create a deep interior path","kind":"real","visible":false,"input":{"order":[5,1,9,3,7,2,4,6,8]},"expected":4,"tags":["zigzag","interior-path"]},
+    {"id":"real-near-balanced","name":"hidden: recursive median order keeps fifteen keys shallow","kind":"real","visible":false,"input":{"order":[8,4,12,2,6,10,14,1,3,5,7,9,11,13,15]},"expected":4,"tags":["balanced","fifteen-keys"]},
+    {"id":"real-late-small-key","name":"hidden: the final minimum extends the left boundary","kind":"real","visible":false,"input":{"order":[6,3,9,4,8,2,7,5,10,1]},"expected":4,"tags":["late-boundary","mixed-order"]},
+    {"id":"real-long-interior-chain","name":"hidden: consecutive interior insertions form the deepest branch","kind":"real","visible":false,"input":{"order":[6,2,10,4,3,5,8,7,9,1]},"expected":4,"tags":["interior-chain","ten-keys"]}
+  ]
+}

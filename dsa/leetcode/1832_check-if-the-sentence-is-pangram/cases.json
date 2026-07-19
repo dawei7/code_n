@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1832",
+  "cases": [
+    {"id":"example-classic-pangram","name":"sample: repeated letters still cover the alphabet","kind":"sample","visible":true,"input":{"sentence":"thequickbrownfoxjumpsoverthelazydog"},"expected":true,"tags":["example","pangram","duplicates"]},
+    {"id":"example-incomplete-word","name":"sample: a short word misses many letters","kind":"sample","visible":true,"input":{"sentence":"leetcode"},"expected":false,"tags":["example","not-pangram"]},
+    {"id":"trial-exact-alphabet","name":"each alphabet letter appears exactly once","kind":"trial","visible":true,"input":{"sentence":"abcdefghijklmnopqrstuvwxyz"},"expected":true,"tags":["exact-alphabet","minimum-pangram-length"]},
+    {"id":"trial-reverse-alphabet","name":"letter order does not affect pangram status","kind":"trial","visible":true,"input":{"sentence":"zyxwvutsrqponmlkjihgfedcba"},"expected":true,"tags":["reverse-order","exact-alphabet"]},
+    {"id":"trial-missing-last-letter","name":"the first 25 letters are not enough","kind":"trial","visible":true,"input":{"sentence":"abcdefghijklmnopqrstuvwxy"},"expected":false,"tags":["missing-z","length-25"]},
+    {"id":"trial-single-letter","name":"one repeated letter cannot cover the alphabet","kind":"trial","visible":true,"input":{"sentence":"a"},"expected":false,"tags":["single-character","not-pangram"]},
+    {"id":"real-duplicates-missing-one","name":"hidden: duplicates do not replace a missing letter","kind":"real","visible":false,"input":{"sentence":"abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxy"},"expected":false,"tags":["duplicates","missing-z"]},
+    {"id":"real-two-full-alphabets","name":"hidden: repeated complete alphabets remain a pangram","kind":"real","visible":false,"input":{"sentence":"abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"},"expected":true,"tags":["duplicates","pangram"]},
+    {"id":"real-final-character-completes","name":"hidden: the final character completes the set","kind":"real","visible":false,"input":{"sentence":"abcdefghijklmnopqrstuvwxyyyyyyyyyz"},"expected":true,"tags":["final-character","duplicates"]},
+    {"id":"real-shuffled-pangram","name":"hidden: nonalphabetical coverage with repeated vowels","kind":"real","visible":false,"input":{"sentence":"qazwsxedcrfvtgbyhnujmikolp"},"expected":true,"tags":["shuffled","pangram"]}
+  ]
+}

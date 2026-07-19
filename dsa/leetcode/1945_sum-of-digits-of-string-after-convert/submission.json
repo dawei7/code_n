@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2076",
+  "frontend_id": "1945",
+  "title_slug": "sum-of-digits-of-string-after-convert",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getLucky",
+  "verified_submission_id": "2072632626",
+  "verified_at": "2026-07-18T17:35:09.441720+00:00"
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2075",
+  "cases": [
+    {
+      "id": "sample-cipher",
+      "name": "sample: three-row cipher",
+      "kind": "sample",
+      "visible": true,
+      "input": {"encodedText": "ch   ie   pr", "rows": 3},
+      "expected": "cipher",
+      "tags": ["sample", "padding"]
+    },
+    {
+      "id": "sample-phrase",
+      "name": "sample: internal spaces survive decoding",
+      "kind": "sample",
+      "visible": true,
+      "input": {"encodedText": "iveo    eed   l te   olc", "rows": 4},
+      "expected": "i love leetcode",
+      "tags": ["sample", "internal-spaces"]
+    },
+    {
+      "id": "sample-one-row",
+      "name": "sample: one row preserves order",
+      "kind": "sample",
+      "visible": true,
+      "input": {"encodedText": "coding", "rows": 1},
+      "expected": "coding",
+      "tags": ["sample", "one-row"]
+    },
+    {
+      "id": "trial-empty",
+      "name": "empty text has no matrix columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {"encodedText": "", "rows": 4},
+      "expected": "",
+      "tags": ["minimum-length"]
+    },
+    {
+      "id": "real-short-phrase",
+      "name": "hidden: diagonal word boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {"encodedText": "a f  bd   ce", "rows": 3},
+      "expected": "abc def",
+      "tags": ["hidden", "internal-space"]
+    },
+    {
+      "id": "real-more-rows-than-columns",
+      "name": "hidden: row count may exceed column count",
+      "kind": "real",
+      "visible": false,
+      "input": {"encodedText": "a  b      ", "rows": 5},
+      "expected": "ab",
+      "tags": ["hidden", "narrow-matrix"]
+    },
+    {
+      "id": "real-multiple-internal-spaces",
+      "name": "hidden: padding and meaningful spaces differ",
+      "kind": "real",
+      "visible": false,
+      "input": {"encodedText": "a    c  b", "rows": 3},
+      "expected": "a b c",
+      "tags": ["hidden", "space-preservation"]
+    },
+    {
+      "id": "real-four-rows",
+      "name": "hidden: partial final diagonal",
+      "kind": "real",
+      "visible": false,
+      "input": {"encodedText": "tl dg  ripi   anan   igd", "rows": 4},
+      "expected": "trailing padding",
+      "tags": ["hidden", "partial-diagonal"]
+    }
+  ]
+}

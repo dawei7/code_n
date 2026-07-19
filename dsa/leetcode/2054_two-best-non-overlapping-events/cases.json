@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2054",
+  "cases": [
+    {"id":"sample-compatible-pair","name":"sample: two adjacent non-overlapping events","kind":"sample","visible":true,"input":{"events":[[1,3,2],[4,5,2],[2,4,3]]},"expected":4,"tags":["sample","pair"]},
+    {"id":"sample-single-best","name":"sample: one event beats every pair","kind":"sample","visible":true,"input":{"events":[[1,3,2],[4,5,2],[1,5,5]]},"expected":5,"tags":["sample","singleton"]},
+    {"id":"sample-after-end","name":"sample: an event starts one unit after an inclusive end","kind":"sample","visible":true,"input":{"events":[[1,5,3],[1,5,1],[6,6,5]]},"expected":8,"tags":["sample","inclusive-end"]},
+    {"id":"trial-shared-endpoint","name":"events sharing an endpoint cannot be paired","kind":"trial","visible":true,"input":{"events":[[1,3,7],[3,4,8]]},"expected":8,"tags":["endpoint-overlap"]},
+    {"id":"real-unsorted","name":"hidden: input order does not determine chronology","kind":"real","visible":false,"input":{"events":[[10,12,6],[1,2,5],[3,9,20],[13,13,7]]},"expected":27,"tags":["hidden","unsorted"]},
+    {"id":"real-best-nonadjacent","name":"hidden: suffix maximum may skip intervening events","kind":"real","visible":false,"input":{"events":[[1,1,4],[2,100,1],[3,3,9],[101,102,2]]},"expected":13,"tags":["hidden","suffix-maximum"]},
+    {"id":"real-all-overlap","name":"hidden: all-overlapping events force a singleton","kind":"real","visible":false,"input":{"events":[[1,10,3],[2,9,12],[5,8,7]]},"expected":12,"tags":["hidden","all-overlap"]}
+  ]
+}

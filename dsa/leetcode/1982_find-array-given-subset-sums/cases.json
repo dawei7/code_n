@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1982",
+  "cases": [
+    {
+      "id": "example-mixed-signs",
+      "name": "sample: mixed signs and duplicate zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "sums": [-3, -2, -1, 0, 0, 1, 2, 3]},
+      "expected": [1, 2, -3],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["sample", "mixed-signs", "multiple-answers"]
+    },
+    {
+      "id": "example-all-zero",
+      "name": "sample: every subset sum is zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2, "sums": [0, 0, 0, 0]},
+      "expected": [0, 0],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["sample", "zeros", "duplicates"]
+    },
+    {
+      "id": "example-zero-and-mixed",
+      "name": "sample: zero with positive and negative values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 4, "sums": [0, 0, 5, 5, 4, -1, 4, 9, 9, -1, 4, 3, 4, 8, 3, 8]},
+      "expected": [0, -1, 4, 5],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["sample", "zero", "unordered-input"]
+    },
+    {
+      "id": "trial-single-positive",
+      "name": "one positive element",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "sums": [5, 0]},
+      "expected": [5],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["minimum", "positive", "unordered-input"]
+    },
+    {
+      "id": "trial-single-negative",
+      "name": "one negative element",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "sums": [0, -5]},
+      "expected": [-5],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["minimum", "negative"]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "one zero element",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "sums": [0, 0]},
+      "expected": [0],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["minimum", "zero", "duplicates"]
+    },
+    {
+      "id": "trial-repeated-elements",
+      "name": "repeated original values create repeated sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "sums": [2, -1, 4, 1, 0, 3, 2, 1]},
+      "expected": [2, 2, -1],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["duplicates", "unordered-input"]
+    },
+    {
+      "id": "trial-all-positive",
+      "name": "all original elements are positive",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "sums": [4, 0, 8, 3, 5, 4, 1, 7]},
+      "expected": [1, 3, 4],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["positive", "unordered-input"]
+    },
+    {
+      "id": "real-zero-and-five-values",
+      "name": "hidden: five values include zero and mixed signs",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 5, "sums": [-5, -5, -4, -4, -2, -2, -1, -1, -1, -1, 0, 0, 2, 2, 3, 3, 3, 3, 4, 4, 6, 6, 7, 7, 7, 7, 8, 8, 10, 10, 11, 11]},
+      "expected": [-4, -1, 0, 3, 8],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["mixed-signs", "zero", "duplicates"]
+    },
+    {
+      "id": "real-balanced-pairs",
+      "name": "hidden: opposite-value pairs create many zeros",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 4, "sums": [-9, -7, -7, -5, -2, -2, 0, 0, 0, 0, 2, 2, 5, 7, 7, 9]},
+      "expected": [7, -7, 2, -2],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["balanced", "duplicates", "multiple-answers"]
+    },
+    {
+      "id": "real-three-zeros",
+      "name": "hidden: three zero-valued elements",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 3, "sums": [0, 0, 0, 0, 0, 0, 0, 0]},
+      "expected": [0, 0, 0],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["zeros", "multiplicity"]
+    },
+    {
+      "id": "real-sign-alternative",
+      "name": "hidden: sign-alternative reconstruction is valid",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 3, "sums": [-6, -4, -2, 0, 0, 2, 4, 6]},
+      "expected": [-6, 2, 4],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["mixed-signs", "multiple-answers"]
+    }
+  ]
+}
