@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2563",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Count the Number of Fair Pairs and meets the required complexity bound.",
+      "time_complexity": "O(...)",
+      "space_complexity": "O(...)"
+    }
+  ]
+}

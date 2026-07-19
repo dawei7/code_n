@@ -3,16 +3,26 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from server.app.challenge_packages import leetcode_solution_path  # noqa: E402
+
+
 LEETCODE_ROOT = REPO_ROOT / "dsa" / "leetcode"
 REPORT_PATH = LEETCODE_ROOT / "_reports" / "python_optimal_completion_report.json"
 
-def solution_path_for_doc(doc_path: Path) -> Path:
-    return doc_path.parent / "solutions" / "python.py"
+
+def solution_path_for_doc(doc_path: Path, metadata: dict[str, Any]) -> Path:
+    challenge_id = str(metadata.get("challenge_id") or "")
+    routed = leetcode_solution_path(challenge_id, "python") if challenge_id else None
+    return routed or doc_path.parent / "__missing_optimal_variant__" / "python.py"
 
 
 def load_package_metadata(doc_path: Path) -> dict[str, Any]:
@@ -68,7 +78,7 @@ def main() -> int:
     }
     for doc_path in docs:
         metadata = load_package_metadata(doc_path)
-        solution_path = solution_path_for_doc(doc_path)
+        solution_path = solution_path_for_doc(doc_path, metadata)
         applicable = python_optimal_applicable(metadata)
         has_optimal = applicable and solution_path.exists()
         if applicable:

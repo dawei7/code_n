@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_963",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Minimum Area Rectangle II and meets the required complexity bound.",
+      "time_complexity": "O(P^3)",
+      "space_complexity": "O(P)"
+    }
+  ]
+}

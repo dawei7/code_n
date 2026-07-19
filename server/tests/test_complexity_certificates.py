@@ -10,7 +10,6 @@ from bisect import bisect_left, bisect_right
 from datetime import date, timedelta
 from functools import lru_cache
 from itertools import permutations, product
-from pathlib import Path
 
 from engine.complexity_certificates import validate_complexity_certificate
 from server.app.engine_runner import (
@@ -24,6 +23,7 @@ from server.app.challenge_packages import (
     leetcode_complexity_certificate_path,
     leetcode_complexity_certificate_status,
     leetcode_package_dir,
+    leetcode_solution_path,
 )
 from server.app.special_environments import run_special_environment
 from tools.audit_leetcode_migration import build_report
@@ -94,10 +94,16 @@ CERTIFIED_METHODS = {
 }
 
 
+def _reference_source(frontend_id: str, language: str) -> str:
+    path = leetcode_solution_path(f"lc_{frontend_id}", language)
+    assert path is not None and path.is_file()
+    return path.read_text(encoding="utf-8")
+
+
 def test_followers_count_certificate_matches_independent_group_counts() -> None:
     package = leetcode_package_dir("lc_1729")
     assert package is not None
-    source = (package / "solutions" / "sql.sql").read_text(encoding="utf-8")
+    source = _reference_source("1729", "sql")
     payload = json.loads((package / "cases.json").read_text(encoding="utf-8"))
 
     for case in payload["cases"]:
@@ -123,7 +129,7 @@ def test_followers_count_certificate_matches_independent_group_counts() -> None:
 def test_employee_reports_certificate_matches_independent_direct_aggregates() -> None:
     package = leetcode_package_dir("lc_1731")
     assert package is not None
-    source = (package / "solutions" / "sql.sql").read_text(encoding="utf-8")
+    source = _reference_source("1731", "sql")
     payload = json.loads((package / "cases.json").read_text(encoding="utf-8"))
 
     for case in payload["cases"]:
@@ -168,7 +174,7 @@ def test_employee_reports_certificate_matches_independent_direct_aggregates() ->
 def test_employee_time_certificate_matches_independent_duration_groups() -> None:
     package = leetcode_package_dir("lc_1741")
     assert package is not None
-    source = (package / "solutions" / "sql.sql").read_text(encoding="utf-8")
+    source = _reference_source("1741", "sql")
     payload = json.loads((package / "cases.json").read_text(encoding="utf-8"))
 
     for case in payload["cases"]:
@@ -324,10 +330,10 @@ def test_fresh_donuts_bounded_domain_matches_independent_bitmask_oracle() -> Non
 
 
 def _reference_solve(frontend_id: str):
-    package = leetcode_package_dir(f"lc_{frontend_id}")
-    assert package is not None
+    source_path = leetcode_solution_path(f"lc_{frontend_id}", "python")
+    assert source_path is not None
     return runpy.run_path(
-        str(package / "solutions" / "python.py"),
+        str(source_path),
         init_globals={"Point": _JudgePoint},
     )["solve"]
 
@@ -694,7 +700,7 @@ def test_kth_instruction_unranking_matches_enumeration_and_boundaries() -> None:
 def test_hopper_working_percentages_match_independent_calendar_oracle() -> None:
     package = leetcode_package_dir("lc_1645")
     assert package is not None
-    source = (package / "solutions" / "sql.sql").read_text(encoding="utf-8")
+    source = _reference_source("1645", "sql")
     payload = json.loads((package / "cases.json").read_text(encoding="utf-8"))
 
     for case in payload["cases"]:
@@ -732,7 +738,7 @@ def test_hopper_working_percentages_match_independent_calendar_oracle() -> None:
 def test_hopper_three_month_averages_match_independent_calendar_oracle() -> None:
     package = leetcode_package_dir("lc_1651")
     assert package is not None
-    source = (package / "solutions" / "sql.sql").read_text(encoding="utf-8")
+    source = _reference_source("1651", "sql")
     payload = json.loads((package / "cases.json").read_text(encoding="utf-8"))
 
     for case in payload["cases"]:
@@ -1007,7 +1013,7 @@ def test_network_quality_bounded_domain_matches_full_grid_oracle() -> None:
 def test_valid_country_triplets_matches_cartesian_oracle() -> None:
     package = leetcode_package_dir("lc_1623")
     assert package is not None
-    source = (package / "solutions" / "sql.sql").read_text(encoding="utf-8")
+    source = _reference_source("1623", "sql")
 
     fixtures = [
         {
@@ -1051,7 +1057,7 @@ def test_valid_country_triplets_matches_cartesian_oracle() -> None:
 def test_contest_percentages_match_independent_counter_oracle() -> None:
     package = leetcode_package_dir("lc_1633")
     assert package is not None
-    source = (package / "solutions" / "sql.sql").read_text(encoding="utf-8")
+    source = _reference_source("1633", "sql")
 
     fixtures = [
         {
@@ -1117,7 +1123,7 @@ def test_contest_percentages_match_independent_counter_oracle() -> None:
 def test_hopper_monthly_counts_match_independent_calendar_oracle() -> None:
     package = leetcode_package_dir("lc_1635")
     assert package is not None
-    source = (package / "solutions" / "sql.sql").read_text(encoding="utf-8")
+    source = _reference_source("1635", "sql")
 
     fixtures = [
         {
@@ -1507,13 +1513,14 @@ class ComplexityCertificateRouteTest(conftest._Base):
             with self.subTest(frontend_id=frontend_id):
                 package = leetcode_package_dir(f"lc_{frontend_id}")
                 self.assertIsNotNone(package)
-                solutions_dir = Path(package) / "solutions"
-                if (solutions_dir / "python.py").is_file():
+                python_path = leetcode_solution_path(f"lc_{frontend_id}", "python")
+                sql_path = leetcode_solution_path(f"lc_{frontend_id}", "sql")
+                if python_path is not None and python_path.is_file():
                     language = "python"
-                    source_path = solutions_dir / "python.py"
-                elif (solutions_dir / "sql.sql").is_file():
+                    source_path = python_path
+                elif sql_path is not None and sql_path.is_file():
                     language = "sql"
-                    source_path = solutions_dir / "sql.sql"
+                    source_path = sql_path
                 else:
                     self.fail(f"No runnable reference source for lc_{frontend_id}")
                 source = source_path.read_text(encoding="utf-8")

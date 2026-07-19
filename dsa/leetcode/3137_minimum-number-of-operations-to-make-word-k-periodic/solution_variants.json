@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3137",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Minimum Number of Operations to Make Word K-Periodic and meets the required complexity bound.",
+      "time_complexity": "O(...)",
+      "space_complexity": "O(...)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3955",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Valid Binary Strings With Cost Limit and meets the required complexity bound.",
+      "time_complexity": "O(...)",
+      "space_complexity": "O(...)"
+    }
+  ]
+}

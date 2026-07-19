@@ -1,0 +1,36 @@
+## General
+**Encode only the moves that cross another key**
+
+Number the keypad as
+
+`1 2 3`
+
+`4 5 6`
+
+`7 8 9`.
+
+Most moves between unused keys are immediately legal. The exceptional pairs cross a key exactly halfway between them: `1-3` crosses `2`, `1-7` crosses `4`, `3-9` crosses `6`, `7-9` crosses `8`, and `1-9`, `3-7`, `2-8`, and `4-6` cross `5`. The same restriction applies in both directions. Store these intermediate keys in a symmetric `skip` table; every other pair has intermediate value zero.
+
+**Search legal continuations from a compact state**
+
+A bitmask records visited keys. A state consists of the current key, the visited mask, and the number of additional keys still required. To extend it, try every unvisited destination. The move is legal when its `skip` entry is zero or the indicated intermediate key is already set in the mask. Mark the destination and recurse. When no additional key is required, the current prefix itself contributes one valid pattern.
+
+**Exploit the keypad's three symmetry classes**
+
+Memoizing this state avoids recounting identical suffix choices reached through different orders. For each requested total length, start once from a representative corner, edge, and center. Rotational/reflection symmetry makes keys `1, 3, 7, 9` equivalent and keys `2, 4, 6, 8` equivalent, while key `5` stands alone. Thus the count is
+
+$4 \cdot \operatorname{count\_from}(1) + 4 \cdot \operatorname{count\_from}(2) + \operatorname{count\_from}(5)$.
+
+**Why the search counts every legal pattern once**
+
+The transition checks exactly the two validity rules: the destination is unused, and any crossed key has already been used. Therefore every generated sequence is legal. Conversely, the next key of any legal pattern satisfies those checks and is among the tried destinations, so induction on the remaining length shows that every legal pattern is counted. Distinct starting keys and destination choices describe distinct sequences, so none are counted twice.
+
+## Complexity detail
+Let $K = 9$ keypad keys. There are at most `K` current keys, $2^{K}$ masks, and `K` remaining-length values. Each state tries up to `K` destinations, giving the conservative bound $O(K^3 \cdot 2^K)$ time and $O(K^2 \cdot 2^K)$ cached states plus recursion. Since `K` is fixed at nine, the real resource use is bounded by a small constant.
+
+## Alternatives and edge cases
+- **Backtracking without memoization:** is correct but revisits equivalent suffix states and approaches permutation growth as the maximum length increases.
+- **Generate permutations before validation:** performs still more wasted work because illegal jumps are not pruned when they first occur.
+- The intermediate-key rule depends on history: `1 -> 3` is illegal initially but becomes legal after visiting key `2`.
+- Adjacent and non-collinear moves do not require an intermediate key.
+- Length one has exactly nine patterns, and no pattern can exceed nine because keys cannot repeat.

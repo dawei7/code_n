@@ -1,10 +1,18 @@
 """Tests for the canonical LeetCode challenge API."""
 from __future__ import annotations
 
+import json
 from types import SimpleNamespace
 
 from . import conftest
 from challenges.registry import CHALLENGE_REGISTRY
+from server.app.challenge_packages import (
+    leetcode_package_dir,
+    leetcode_solution_path,
+    leetcode_solution_variants_status,
+    leetcode_submission_manifest_path,
+    leetcode_variant_solution_path,
+)
 from server.app.optimal_sources import organized_solution_path
 from server.app.routes.challenges import get_unlocked_challenges
 
@@ -118,6 +126,96 @@ class ChallengesRouteTest(conftest._Base):
         self.assertAlmostEqual(detail["elo_rating"], 1746.135917977)
         self.assertIsNone(detail["estimated_elo_rating"])
         self.assertIsNone(detail["difficulty_estimate"])
+
+    def test_1502_exposes_two_separate_verified_solution_tabs(self) -> None:
+        response = self.client.get("/api/challenges/lc_1502")
+        self.assertEqual(response.status_code, 200, response.text)
+        detail = response.json()
+
+        self.assertEqual(detail["default_solution_variant"], "optimal")
+        self.assertEqual(
+            [variant["id"] for variant in detail["solution_variants"]],
+            ["optimal", "simplified"],
+        )
+        self.assertEqual(
+            [variant["kind"] for variant in detail["solution_variants"]],
+            ["optimal", "simplified"],
+        )
+        self.assertTrue(
+            all(
+                variant["submission_status"] == "verified"
+                and variant["verified_submission_id"]
+                for variant in detail["solution_variants"]
+            )
+        )
+        self.assertAlmostEqual(detail["solution_variant_effective_elo"], 1154.828067979)
+        self.assertEqual(detail["solution_variant_elo_source"], "elo_rating")
+        self.assertEqual(detail["simplified_solution_elo_ceiling"], 1500)
+
+        optimal, simplified = detail["solution_variants"]
+        self.assertIn("endpoint", optimal["summary"].lower())
+        self.assertEqual(optimal["time_complexity"], "O(n)")
+        self.assertEqual(optimal["space_complexity"], "O(n)")
+        self.assertNotIn("expected", optimal["time_complexity"].lower())
+        self.assertEqual(simplified["time_complexity"], "O(n log n)")
+        self.assertEqual(simplified["space_complexity"], "O(n)")
+        self.assertIn("sorted(arr)", simplified["sources"]["python"])
+        self.assertNotEqual(optimal["approach_markdown"], simplified["approach_markdown"])
+        self.assertNotEqual(optimal["sources"]["python"], simplified["sources"]["python"])
+
+    def test_1502_default_paths_resolve_to_optimal_branch(self) -> None:
+        package = leetcode_package_dir("lc_1502")
+        self.assertIsNotNone(package)
+        assert package is not None
+
+        status = leetcode_solution_variants_status("lc_1502")
+        self.assertTrue(status.complete, status.errors)
+        optimal = leetcode_variant_solution_path("lc_1502", "optimal", "python")
+        simplified = leetcode_variant_solution_path("lc_1502", "simplified", "python")
+        self.assertEqual(leetcode_solution_path("lc_1502", "python"), optimal)
+        self.assertEqual(
+            leetcode_submission_manifest_path("lc_1502"),
+            package / "variants" / "optimal" / "submission.json",
+        )
+        self.assertEqual(
+            leetcode_submission_manifest_path("lc_1502", "simplified"),
+            package / "variants" / "simplified" / "submission.json",
+        )
+        self.assertTrue(optimal and optimal.is_file())
+        self.assertTrue(simplified and simplified.is_file())
+        self.assertFalse((package / "solutions" / "python.py").is_file())
+        self.assertFalse((package / "submission.json").is_file())
+
+    def test_1502_both_branches_pass_the_unchanged_shared_real_test(self) -> None:
+        package = leetcode_package_dir("lc_1502")
+        self.assertIsNotNone(package)
+        assert package is not None
+        benchmark = json.loads(
+            (package / "benchmark.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(
+            [case["size"] for case in benchmark["cases"]],
+            [64, 256, 1000],
+        )
+
+        for variant_id in ("optimal", "simplified"):
+            source_path = leetcode_variant_solution_path("lc_1502", variant_id, "python")
+            self.assertIsNotNone(source_path)
+            assert source_path is not None
+            response = self.client.post(
+                "/api/challenges/lc_1502/run",
+                json={
+                    "source": source_path.read_text(encoding="utf-8"),
+                    "language": "python",
+                    "mode": "real_test",
+                },
+            )
+            self.assertEqual(response.status_code, 200, response.text)
+            body = response.json()
+            self.assertTrue(body["correct"], (variant_id, body))
+            self.assertTrue(body["runtime_check"], (variant_id, body))
+            self.assertTrue(body["runtime_passed"], (variant_id, body))
+            self.assertTrue(body["passed"], (variant_id, body))
 
     def test_legacy_contest_problem_uses_acceptance_estimate_fallback(self) -> None:
         response = self.client.get("/api/challenges/lc_389")

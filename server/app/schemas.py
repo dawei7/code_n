@@ -91,6 +91,21 @@ class ChallengeSummary(BaseModel):
     leetcode_submission_paid_only: bool = False
 
 
+class SolutionVariantDetail(BaseModel):
+    """One fully validated and remotely verified solution branch."""
+
+    id: str
+    label: str
+    kind: Literal["optimal", "simplified", "alternative"]
+    summary: str
+    time_complexity: str
+    space_complexity: str
+    approach_markdown: str
+    sources: dict[SupportedLanguage, str] = Field(default_factory=dict)
+    submission_status: str
+    verified_submission_id: str
+
+
 class ChallengeDetail(ChallengeSummary):
     """Full data for the challenge view, including the starter code.
 
@@ -105,6 +120,11 @@ class ChallengeDetail(ChallengeSummary):
     starter_sources: dict[SupportedLanguage, str] = Field(default_factory=dict)
     optimal_source: str
     optimal_sources: dict[SupportedLanguage, str] = Field(default_factory=dict)
+    default_solution_variant: str = ""
+    solution_variants: list[SolutionVariantDetail] = Field(default_factory=list)
+    solution_variant_effective_elo: float | None = None
+    solution_variant_elo_source: str = ""
+    simplified_solution_elo_ceiling: float | None = None
     # Per-algorithm complexity notes (best/average/worst/space/
     # stable/in_place) for the scientific complexity panel.
     # Empty dict â†’ hide the panel for this algorithm.

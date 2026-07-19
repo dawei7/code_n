@@ -4,7 +4,7 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
 const projectRoot = path.resolve(__dirname, '..', '..');
-const challengeIds = process.argv.slice(2);
+const rawTargets = process.argv.slice(2);
 const codenHome = path.resolve(process.env.CODEN_HOME || path.join(projectRoot, '.coden-data'));
 // Match the development app's Chromium profile because safeStorage's key is
 // held there, while cOde(n) deliberately stores the encrypted credential blob
@@ -12,9 +12,15 @@ const codenHome = path.resolve(process.env.CODEN_HOME || path.join(projectRoot, 
 app.setPath('userData', path.join(app.getPath('appData'), 'coden-electron'));
 
 async function main() {
-  if (!challengeIds.length || challengeIds.some((value) => !/^lc_\d+$/.test(value))) {
-    throw new Error('Pass one or more canonical challenge ids, for example lc_44 lc_45.');
+  if (!rawTargets.length || rawTargets.some((value) => !/^lc_\d+(?::[a-z][a-z0-9_-]*)?$/.test(value))) {
+    throw new Error(
+      'Pass canonical challenge ids, optionally with a variant, for example lc_44 or lc_1502:simplified.',
+    );
   }
+  const targets = rawTargets.map((value) => {
+    const [challengeId, variantId = ''] = value.split(':', 2);
+    return { challengeId, variantId };
+  });
   if (!safeStorage.isEncryptionAvailable()) {
     throw new Error('Electron secure-storage decryption is unavailable.');
   }
@@ -28,9 +34,12 @@ async function main() {
 
   const python = path.join(projectRoot, '.venv', 'Scripts', 'python.exe');
   const verifier = path.join(projectRoot, 'tools', 'verify_leetcode_submission.py');
-  for (const [index, challengeId] of challengeIds.entries()) {
+  for (const [index, { challengeId, variantId }] of targets.entries()) {
     if (index > 0) await new Promise((resolve) => setTimeout(resolve, 10_000));
-    const child = spawnSync(python, [verifier, challengeId, '--confirm-submit'], {
+    const verifierArgs = [verifier, challengeId];
+    if (variantId) verifierArgs.push('--variant', variantId);
+    verifierArgs.push('--confirm-submit');
+    const child = spawnSync(python, verifierArgs, {
       cwd: projectRoot,
       env: {
         ...process.env,
@@ -46,7 +55,7 @@ async function main() {
     if (child.stdout) process.stdout.write(child.stdout);
     if (child.stderr) process.stderr.write(child.stderr);
     if (child.error) throw child.error;
-    if (child.status === 0) {
+    if (child.status === 0 && !variantId) {
       spawnSync(python, ['tools/audit_leetcode_migration.py', '--clear-block', challengeId.slice(3)], {
         cwd: projectRoot,
         stdio: 'ignore',

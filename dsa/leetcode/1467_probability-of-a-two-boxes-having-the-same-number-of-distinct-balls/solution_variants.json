@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1467",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Probability of a Two Boxes Having The Same Number of Distinct Balls and meets the required complexity bound.",
+      "time_complexity": "O(K^2nB)",
+      "space_complexity": "O(Kn)"
+    }
+  ]
+}

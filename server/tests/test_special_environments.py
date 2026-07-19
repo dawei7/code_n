@@ -6,6 +6,7 @@ import shutil
 
 import pytest
 
+from server.app.challenge_packages import leetcode_solution_path
 from server.app.special_environments import run_special_environment
 
 from . import conftest
@@ -62,14 +63,9 @@ class SpecialEnvironmentRouteTest(conftest._Base):
                 self.assertEqual(body["supported_languages"], ["python"])
                 self.assertIn(class_declaration, body["starter_sources"]["python"])
 
-                source = (
-                    conftest.REPO_ROOT
-                    / "dsa"
-                    / "leetcode"
-                    / package_name
-                    / "solutions"
-                    / "python.py"
-                ).read_text(encoding="utf-8")
+                solution_path = leetcode_solution_path(f"lc_{frontend_id}", "python")
+                self.assertIsNotNone(solution_path)
+                source = solution_path.read_text(encoding="utf-8")
                 response = self.client.post(
                     f"/api/challenges/lc_{frontend_id}/run",
                     json={"language": "python", "source": source, "mode": "real_test"},
@@ -96,14 +92,9 @@ class SpecialEnvironmentRouteTest(conftest._Base):
                 body = detail.json()
                 self.assertTrue(body["runnable_in_coden"])
                 self.assertIn(class_declaration, body["starter_sources"]["python"])
-                source = (
-                    conftest.REPO_ROOT
-                    / "dsa"
-                    / "leetcode"
-                    / package_name
-                    / "solutions"
-                    / "python.py"
-                ).read_text(encoding="utf-8")
+                solution_path = leetcode_solution_path(f"lc_{frontend_id}", "python")
+                self.assertIsNotNone(solution_path)
+                source = solution_path.read_text(encoding="utf-8")
                 response = self.client.post(
                     f"/api/challenges/lc_{frontend_id}/run",
                     json={"language": "python", "source": source},

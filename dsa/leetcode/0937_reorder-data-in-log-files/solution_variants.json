@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_937",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Reorder Data in Log Files and meets the required complexity bound.",
+      "time_complexity": "O(S + LC\\log L)",
+      "space_complexity": "O(S)"
+    }
+  ]
+}

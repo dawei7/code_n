@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_466",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Count The Repetitions and meets the required complexity bound.",
+      "time_complexity": "O(|s1| \\cdot |s2|)",
+      "space_complexity": "O(|s2|)"
+    }
+  ]
+}

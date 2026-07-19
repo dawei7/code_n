@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_570",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Managers with at Least 5 Direct Reports and meets the required complexity bound.",
+      "time_complexity": "O(E \\log E)",
+      "space_complexity": "O(E)"
+    }
+  ]
+}

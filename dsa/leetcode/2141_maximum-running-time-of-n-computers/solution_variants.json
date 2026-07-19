@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2141",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Maximum Running Time of N Computers and meets the required complexity bound.",
+      "time_complexity": "O(...)",
+      "space_complexity": "O(...)"
+    }
+  ]
+}

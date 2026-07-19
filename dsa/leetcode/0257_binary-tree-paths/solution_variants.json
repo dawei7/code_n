@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_257",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Binary Tree Paths and meets the required complexity bound.",
+      "time_complexity": "O(n + output)",
+      "space_complexity": "O(h)"
+    }
+  ]
+}

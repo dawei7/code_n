@@ -43,10 +43,11 @@ def credentials_from_environment() -> LeetCodeCredentials:
     )
 
 
-def load_manifest(challenge_id: str) -> tuple[dict, Path]:
-    path = leetcode_submission_manifest_path(challenge_id)
+def load_manifest(challenge_id: str, variant_id: str | None = None) -> tuple[dict, Path]:
+    path = leetcode_submission_manifest_path(challenge_id, variant_id)
     if path is None or not path.is_file():
-        raise RuntimeError(f"No submission.json exists for {challenge_id}.")
+        suffix = f" variant {variant_id}" if variant_id else ""
+        raise RuntimeError(f"No submission.json exists for {challenge_id}{suffix}.")
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
         raise RuntimeError(f"{path} must contain a JSON object.")
@@ -84,8 +85,12 @@ def verify_remote_metadata(client: requests.Session, manifest: dict) -> dict:
     return question
 
 
-def submit_candidate(challenge_id: str, credentials: LeetCodeCredentials) -> dict:
-    manifest, manifest_path = load_manifest(challenge_id)
+def submit_candidate(
+    challenge_id: str,
+    credentials: LeetCodeCredentials,
+    variant_id: str | None = None,
+) -> dict:
+    manifest, manifest_path = load_manifest(challenge_id, variant_id)
     account = _account_status(credentials)
     if account.get("state") != "valid":
         raise RuntimeError(str(account.get("message") or "LeetCode session is invalid."))
@@ -165,6 +170,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("challenge_id", help="Canonical challenge id, for example lc_1")
     parser.add_argument(
+        "--variant",
+        help="Optional solution-variant id, for example simplified.",
+    )
+    parser.add_argument(
         "--confirm-submit",
         action="store_true",
         help="Required acknowledgement that this creates a real LeetCode submission.",
@@ -173,7 +182,11 @@ def main() -> int:
     if not args.confirm_submit:
         parser.error("--confirm-submit is required; verification creates a real external submission.")
     try:
-        result = submit_candidate(args.challenge_id, credentials_from_environment())
+        result = submit_candidate(
+            args.challenge_id,
+            credentials_from_environment(),
+            args.variant,
+        )
     except (RuntimeError, requests.RequestException, ValueError, KeyError) as exc:
         print(f"Verification failed: {exc}", file=sys.stderr)
         return 1

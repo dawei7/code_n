@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1994",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for The Number of Good Subsets and meets the required complexity bound.",
+      "time_complexity": "O(N+U2^P)",
+      "space_complexity": "O(2^P)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_642",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Design Search Autocomplete System and meets the required complexity bound.",
+      "time_complexity": "O(C + Q)",
+      "space_complexity": "O(C + Q)"
+    }
+  ]
+}

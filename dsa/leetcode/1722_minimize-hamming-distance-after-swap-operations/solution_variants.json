@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1722",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Minimize Hamming Distance After Swap Operations and meets the required complexity bound.",
+      "time_complexity": "O((n+m)\\alpha(n))",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

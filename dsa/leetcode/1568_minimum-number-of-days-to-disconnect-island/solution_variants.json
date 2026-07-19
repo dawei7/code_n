@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1568",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Minimum Number of Days to Disconnect Island and meets the required complexity bound.",
+      "time_complexity": "O(RC)",
+      "space_complexity": "O(RC)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1088",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Confusing Number II and meets the required complexity bound.",
+      "time_complexity": "O(C)",
+      "space_complexity": "O(D)"
+    }
+  ]
+}

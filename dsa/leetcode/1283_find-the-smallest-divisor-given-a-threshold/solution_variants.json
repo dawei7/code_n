@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1283",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Find the Smallest Divisor Given a Threshold and meets the required complexity bound.",
+      "time_complexity": "O(n \\log M)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1782",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Count Pairs Of Nodes and meets the required complexity bound.",
+      "time_complexity": "O(E + n\\log n + Q(n + P))",
+      "space_complexity": "O(n + P)"
+    }
+  ]
+}

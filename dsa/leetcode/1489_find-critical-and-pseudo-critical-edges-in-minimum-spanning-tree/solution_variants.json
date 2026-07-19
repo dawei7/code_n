@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1489",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree and meets the required complexity bound.",
+      "time_complexity": "O(E \\log E)",
+      "space_complexity": "O(V + E)"
+    }
+  ]
+}

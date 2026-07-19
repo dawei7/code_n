@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1502",
+  "default_variant": "optimal",
+  "simplified_policy": {
+    "maximum_effective_elo": 1500
+  },
+  "alternatives_root": "variants/alternatives",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses endpoint arithmetic and hash-set membership to achieve the best expected linear-time bound.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    {
+      "id": "simplified",
+      "label": "Simplified",
+      "kind": "simplified",
+      "directory": "variants/simplified",
+      "summary": "Sorts a copy and compares adjacent gaps, prioritizing the clearest interview-ready reasoning.",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

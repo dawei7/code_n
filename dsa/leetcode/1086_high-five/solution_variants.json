@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1086",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for High Five and meets the required complexity bound.",
+      "time_complexity": "O(N+S\\log S)",
+      "space_complexity": "O(S)"
+    }
+  ]
+}

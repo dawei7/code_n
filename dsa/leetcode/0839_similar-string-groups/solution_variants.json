@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_839",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Similar String Groups and meets the required complexity bound.",
+      "time_complexity": "O(g^2\\ell)",
+      "space_complexity": "O(g)"
+    }
+  ]
+}

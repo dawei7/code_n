@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1768",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Merge Strings Alternately and meets the required complexity bound.",
+      "time_complexity": "O(A+B)",
+      "space_complexity": "O(A+B)"
+    }
+  ]
+}

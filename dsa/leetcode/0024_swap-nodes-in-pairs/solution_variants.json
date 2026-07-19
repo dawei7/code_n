@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_24",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Swap Nodes in Pairs and meets the required complexity bound.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_418",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Sentence Screen Fitting and meets the required complexity bound.",
+      "time_complexity": "O(\\min(r,L)w)",
+      "space_complexity": "O(L)"
+    }
+  ]
+}

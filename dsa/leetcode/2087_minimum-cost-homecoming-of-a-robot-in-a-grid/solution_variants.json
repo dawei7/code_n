@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2087",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Minimum Cost Homecoming of a Robot in a Grid and meets the required complexity bound.",
+      "time_complexity": "O(D)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

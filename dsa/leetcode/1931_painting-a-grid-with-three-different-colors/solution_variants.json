@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1931",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Painting a Grid With Three Different Colors and meets the required complexity bound.",
+      "time_complexity": "O(NS^2)",
+      "space_complexity": "O(S^2)"
+    }
+  ]
+}

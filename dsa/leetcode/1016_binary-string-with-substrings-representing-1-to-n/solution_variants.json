@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1016",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Binary String With Substrings Representing 1 To N and meets the required complexity bound.",
+      "time_complexity": "O(ML)",
+      "space_complexity": "O(\\min(n,ML))"
+    }
+  ]
+}

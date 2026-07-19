@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1172",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Dinner Plate Stacks and meets the required complexity bound.",
+      "time_complexity": "O(m\\log s)",
+      "space_complexity": "O(v+s)"
+    }
+  ]
+}

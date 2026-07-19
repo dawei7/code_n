@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1079",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Letter Tile Possibilities and meets the required complexity bound.",
+      "time_complexity": "O(DM)",
+      "space_complexity": "O(M+n)"
+    }
+  ]
+}

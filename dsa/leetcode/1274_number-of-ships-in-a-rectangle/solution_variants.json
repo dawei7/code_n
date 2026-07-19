@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1274",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Number of Ships in a Rectangle and meets the required complexity bound.",
+      "time_complexity": "O(s \\log C)",
+      "space_complexity": "O(\\log C)"
+    }
+  ]
+}

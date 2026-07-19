@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_556",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Next Greater Element III and meets the required complexity bound.",
+      "time_complexity": "O(d)",
+      "space_complexity": "O(d)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1967",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Number of Strings That Appear as Substrings in Word and meets the required complexity bound.",
+      "time_complexity": "O(T+PM)",
+      "space_complexity": "O(L)"
+    }
+  ]
+}

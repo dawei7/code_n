@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1045",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Customers Who Bought All Products and meets the required complexity bound.",
+      "time_complexity": "O(R log R + Q)",
+      "space_complexity": "O(R+Q)"
+    }
+  ]
+}

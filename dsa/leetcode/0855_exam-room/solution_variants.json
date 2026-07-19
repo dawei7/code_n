@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_855",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Exam Room and meets the required complexity bound.",
+      "time_complexity": "O(q\\log q)",
+      "space_complexity": "O(q)"
+    }
+  ]
+}

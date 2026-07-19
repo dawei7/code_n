@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1465",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts and meets the required complexity bound.",
+      "time_complexity": "O(H \\log H + V \\log V)",
+      "space_complexity": "O(H + V)"
+    }
+  ]
+}

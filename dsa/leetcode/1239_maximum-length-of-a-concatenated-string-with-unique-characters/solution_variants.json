@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1239",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Maximum Length of a Concatenated String with Unique Characters and meets the required complexity bound.",
+      "time_complexity": "O(S+2^n)",
+      "space_complexity": "O(2^n)"
+    }
+  ]
+}

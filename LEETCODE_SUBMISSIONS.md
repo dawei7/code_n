@@ -28,17 +28,27 @@ Failures must remain explicit, conservative, and non-destructive.
 
 ## Package contract
 
-A submission-enabled package contains both artifacts:
+Every package owns its submission artifacts inside the mandatory Optimal
+branch:
 
 ```text
 dsa/leetcode/<frontend_id:04d>_<slug>/
-  submission.json
-  solutions/
-    leetcode_python3.py
+  solution_variants.json
+  variants/
+    optimal/
+      submission.json
+      solutions/
+        leetcode_python3.py
 ```
 
 The source must use LeetCode's native declaration exactly—for example
 `class Solution` and `twoSum(...)`, not the app-local `solve(...)` adapter.
+
+Each additional published branch owns the same two artifacts under
+`variants/<variant>/`. Its `submission.json` source path is relative to that
+branch. The root/default one-click action always resolves the Optimal branch;
+an additional branch is publishable only after its own exact native source is
+Accepted.
 
 `submission.json` records provider, status, internal question id, frontend id,
 title slug, access class, LeetCode language slug, source path, and remote
@@ -102,8 +112,8 @@ $env:LEETCODE_CFCLEARANCE = '<optional value>'
 
 The verifier checks the authenticated account and live problem metadata,
 submits the exact candidate source, polls the returned submission id, and
-promotes `submission.json` atomically only after Accepted. Clear the environment
-variables after verification.
+promotes `variants/optimal/submission.json` atomically only after Accepted.
+Clear the environment variables after verification.
 
 For development-owner verification, the candidate can instead use credentials
 already saved by the running Electron app. This bridge decrypts the values only
@@ -112,6 +122,13 @@ environment; it never prints or persists plaintext credentials:
 
 ```powershell
 npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_44
+```
+
+To verify a non-default branch, append its manifest id after a colon. This
+promotes only that branch's manifest:
+
+```powershell
+npx.cmd --prefix electron electron electron/scripts/verify-leetcode-candidate.cjs lc_1502:simplified
 ```
 
 Premium statement authoring should use the separate read-only authenticated

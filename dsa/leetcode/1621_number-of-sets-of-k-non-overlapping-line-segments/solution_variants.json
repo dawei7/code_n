@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1621",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Number of Sets of K Non-Overlapping Line Segments and meets the required complexity bound.",
+      "time_complexity": "O(k+\\log M)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

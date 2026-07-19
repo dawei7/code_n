@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_995",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Minimum Number of K Consecutive Bit Flips and meets the required complexity bound.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 # Two Sum Migration Progress
 
-Generated: 2026-07-19T06:29:25.361265+00:00
+Generated: 2026-07-19T08:53:55.469761+00:00
 
 All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.
 
 ## Completion criteria
 
-A package is locally complete only when its canonical document (including a source-like Goal narrative of at least two paragraphs and 60 words), visible/hidden cases, complexity verification, and optimal app-local solution pass the audit. Complexity verification normally requires exactly three ordered benchmark tiers; a strictly validated `complexity_certificate.json` replaces scaling only when the legal source domain cannot support an honest scaling verdict. Full completion additionally requires an exact platform-native source recorded as remotely Accepted in `submission.json`.
+A package is locally complete only when its shared canonical document (including a source-like Goal narrative of at least two paragraphs and 60 words), visible/hidden cases, complexity verification, optimal app-local solution, and mandatory Optimal-first branch topology pass the audit. Every published non-default branch must satisfy the Elo policy where applicable, keep its approach and sources separated, and carry exact Accepted evidence. Complexity verification normally requires exactly three ordered benchmark tiers; a strictly validated `complexity_certificate.json` replaces scaling only when the legal source domain cannot support an honest scaling verdict. Full completion additionally requires the exact platform-native Optimal source to be recorded as remotely Accepted in `variants/optimal/submission.json`.
 
 ## Counts
 
@@ -16,13 +16,15 @@ A package is locally complete only when its canonical document (including a sour
 | local complete | 2103 |
 | fully complete and verified | 2056 |
 | blocked | 47 |
-| doc complete | 2103 |
+| doc complete | 2122 |
 | cases complete | 2668 |
 | benchmarks complete | 2015 |
 | optimal solution complete | 2722 |
 | leetcode submission complete | 2056 |
 | complexity certified | 88 |
 | complexity complete | 2103 |
+| solution variant packages | 3991 |
+| solution variant packages complete | 2103 |
 
 ## Next package
 

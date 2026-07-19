@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1570",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Dot Product of Two Sparse Vectors and meets the required complexity bound.",
+      "time_complexity": "O(N + \\min(K_1,K_2))",
+      "space_complexity": "O(K_1+K_2)"
+    }
+  ]
+}

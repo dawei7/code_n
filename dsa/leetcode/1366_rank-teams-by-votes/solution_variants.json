@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1366",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Rank Teams by Votes and meets the required complexity bound.",
+      "time_complexity": "O(VT+T^2\\log T)",
+      "space_complexity": "O(T^2)"
+    }
+  ]
+}

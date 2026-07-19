@@ -79,10 +79,18 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   cases.json
   benchmark.json
   guided_example.md                 # optional code-free worked example
-  submission.json                 # present after reviewed remote verification
-  solutions/
-    python.py                     # app-local solve(...) implementation
-    leetcode_python3.py           # native submission candidate when available
+  solution_variants.json           # Optimal-first branch manifest
+  variants/
+    optimal/
+      approach.md
+      submission.json              # present after remote verification
+      solutions/
+        python.py                   # app-local solve(...) implementation
+        leetcode_python3.py         # native candidate when available
+    simplified/                     # optional, only after reviewed verification
+      approach.md
+      submission.json
+      solutions/
 ```
 
 The directory prefix is the four-digit, zero-padded frontend ID, so `lc_1`
@@ -90,10 +98,10 @@ lives in `0001_two-sum` and repository listings remain in numeric order. The
 padding is a path-formatting detail; metadata and challenge IDs remain `1` and
 `lc_1`.
 
-The package document contains the goal, function contract, examples, required
-complexity, and an educational approach explanation. Implementations remain in
-`solutions/` so the problem statement and the answer are intentionally
-separate.
+The shared package document contains the goal, function contract, and examples.
+Each branch owns its Required Complexity, educational approach, implementations,
+and submission evidence under `variants/`, so the shared problem contract stays
+separate from algorithm-specific material.
 
 ## Copyright, attribution, and LeetCode
 

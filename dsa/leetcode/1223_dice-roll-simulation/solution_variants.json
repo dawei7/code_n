@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1223",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Dice Roll Simulation and meets the required complexity bound.",
+      "time_complexity": "O(nR)",
+      "space_complexity": "O(R)"
+    }
+  ]
+}

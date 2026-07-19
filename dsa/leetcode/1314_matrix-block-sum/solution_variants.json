@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1314",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Matrix Block Sum and meets the required complexity bound.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(mn)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_913",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Cat and Mouse and meets the required complexity bound.",
+      "time_complexity": "O(n^3)",
+      "space_complexity": "O(n^2)"
+    }
+  ]
+}

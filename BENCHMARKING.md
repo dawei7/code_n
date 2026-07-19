@@ -5,7 +5,7 @@ reviewed example is the Two Sum package:
 
 - `dsa/leetcode/0001_two-sum/cases.json`
 - `dsa/leetcode/0001_two-sum/benchmark.json`
-- `dsa/leetcode/0001_two-sum/solutions/python.py`
+- `dsa/leetcode/0001_two-sum/variants/optimal/solutions/python.py`
 - `dsa/leetcode/0001_two-sum/doc.md`
 
 Future corpus migrations should reproduce the behavior described here, adapted
@@ -74,6 +74,13 @@ For a multi-tier sidecar:
 the parameter that governs the required complexity: list length for a one-list
 problem, total cells for an area-based grid algorithm, or another documented
 monotonic measure when the input has multiple dimensions.
+
+Every package owns exactly one legal benchmark at the problem root. The
+Optimal branch is the timing reference, while every published Simplified
+branch must pass that unchanged benchmark and its correctness checks. Never
+add oversized, out-of-contract, or specially relaxed tiers merely to make a
+simplified implementation pass; LeetCode's real input limits are part of the
+shared problem contract.
 
 A one-case sidecar remains supported for packages that have not been migrated.
 It uses the legacy rule `user runtime <= 1.5 * reference runtime`.
@@ -147,7 +154,7 @@ no runtime scaling verdict was measured.
 ## Measurement method
 
 Each tier compares the user solution with the same-language optimal reference
-from the package's `solutions/` directory.
+from the package's `variants/optimal/solutions/` directory.
 
 The timing procedure:
 

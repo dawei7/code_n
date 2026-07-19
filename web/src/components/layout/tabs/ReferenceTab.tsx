@@ -33,7 +33,7 @@ import { faLeetcode } from '@fortawesome/free-brands-svg-icons/faLeetcode';
 
 import { ApiError, apiText } from '../../../api/client';
 import { useAppStore } from '../../../store/useAppStore';
-import type { SupportedLanguage } from '../../../types/api';
+import type { SolutionVariantDetail, SupportedLanguage } from '../../../types/api';
 
 
 type LoadState =
@@ -71,10 +71,15 @@ export function ReferenceTab() {
   const language = useAppStore((s) => s.language);
   const completed = useAppStore((s) => s.progress?.completed ?? []);
   const [state, setState] = useState<LoadState>({ kind: 'idle' });
+  const [selectedVariantId, setSelectedVariantId] = useState('');
 
   const challengeId = detail?.id ?? null;
   const challengeName = detail?.name ?? null;
   const category = detail?.category ?? null;
+
+  useEffect(() => {
+    setSelectedVariantId(detail?.default_solution_variant ?? '');
+  }, [challengeId, detail?.default_solution_variant]);
 
   const load = useCallback(async (which: 'overview' | 'by-id', id?: string) => {
     setState({ kind: 'loading' });
@@ -192,6 +197,10 @@ export function ReferenceTab() {
   // Loaded: render the markdown.
   const markdown = state.markdown;
   const { mainMarkdown, approachMarkdown } = splitApproachSection(markdown);
+  const solutionVariants = challengeId ? detail?.solution_variants ?? [] : [];
+  const selectedVariant = solutionVariants.find(({ id }) => id === selectedVariantId)
+    ?? solutionVariants.find(({ id }) => id === detail?.default_solution_variant)
+    ?? solutionVariants[0];
   const solutionSource = challengeId ? detail?.optimal_source?.trim() ?? '' : '';
   const solutionSources: Partial<Record<SupportedLanguage, string>> = {
     ...(detail?.optimal_sources ?? {}),
@@ -333,21 +342,136 @@ export function ReferenceTab() {
         >
           {mainMarkdown}
         </ReactMarkdown>
-        {approachMarkdown && (
+        {selectedVariant && (
+          <SolutionVariantPanel
+            challengeId={challengeId ?? ''}
+            variants={solutionVariants}
+            selectedVariant={selectedVariant}
+            onSelect={setSelectedVariantId}
+            unlocked={solutionUnlocked}
+            effectiveElo={detail?.solution_variant_effective_elo ?? null}
+            eloSource={detail?.solution_variant_elo_source ?? ''}
+            simplifiedEloCeiling={detail?.simplified_solution_elo_ceiling ?? null}
+          />
+        )}
+        {!selectedVariant && approachMarkdown && (
           <ApproachDisclosure
             key={localizedReferenceKey(language, challengeId ?? 'overview')}
             markdown={approachMarkdown}
           />
         )}
-        {hasSolution && challengeId && (
+        {!selectedVariant && hasSolution && challengeId && (
           <SolutionDisclosure
             key={`solution:${challengeId}`}
             challengeId={challengeId}
+            variantId="optimal"
+            variantLabel="Optimal"
             sources={solutionSources}
             unlocked={solutionUnlocked}
           />
         )}
       </article>
+    </div>
+  );
+}
+
+function SolutionVariantPanel({
+  challengeId,
+  variants,
+  selectedVariant,
+  onSelect,
+  unlocked,
+  effectiveElo,
+  eloSource,
+  simplifiedEloCeiling,
+}: {
+  challengeId: string;
+  variants: SolutionVariantDetail[];
+  selectedVariant: SolutionVariantDetail;
+  onSelect: (variantId: string) => void;
+  unlocked: boolean;
+  effectiveElo: number | null;
+  eloSource: string;
+  simplifiedEloCeiling: number | null;
+}) {
+  const eloLabel = eloSource === 'elo_rating' ? 'Real Elo' : 'Estimated Elo';
+  return (
+    <section className="not-prose my-5">
+      <div
+        data-pdf-exclude="true"
+        role="tablist"
+        aria-label="Solution approach"
+        className="flex gap-1 border-b border-coden-border"
+      >
+        {variants.map((variant) => {
+          const selected = variant.id === selectedVariant.id;
+          return (
+            <button
+              key={variant.id}
+              id={`solution-variant-tab-${variant.id}`}
+              type="button"
+              role="tab"
+              aria-selected={selected}
+              aria-controls={`solution-variant-panel-${variant.id}`}
+              onClick={() => onSelect(variant.id)}
+              className={`-mb-px rounded-t border px-4 py-2 text-sm font-semibold transition-colors ${
+                selected
+                  ? 'border-coden-border border-b-coden-surface bg-coden-surface text-coden-accent'
+                  : 'border-transparent text-coden-muted hover:border-coden-border hover:text-coden-text'
+              }`}
+            >
+              {variant.label}
+            </button>
+          );
+        })}
+      </div>
+      <div
+        id={`solution-variant-panel-${selectedVariant.id}`}
+        role="tabpanel"
+        aria-labelledby={`solution-variant-tab-${selectedVariant.id}`}
+        className="rounded-b border border-t-0 border-coden-border bg-coden-surface/40 p-3"
+      >
+        <p className="m-0 text-sm leading-6 text-coden-text">{selectedVariant.summary}</p>
+        <VariantRequiredComplexity variant={selectedVariant} />
+        {selectedVariant.kind === 'simplified'
+          && effectiveElo !== null
+          && simplifiedEloCeiling !== null && (
+            <p className="mt-2 text-xs text-coden-muted">
+              {eloLabel}: {Math.round(effectiveElo)} ≤ {Math.round(simplifiedEloCeiling)}
+            </p>
+        )}
+        <ApproachDisclosure
+          key={`approach:${challengeId}:${selectedVariant.id}`}
+          markdown={selectedVariant.approach_markdown}
+        />
+        <SolutionDisclosure
+          key={`solution:${challengeId}:${selectedVariant.id}`}
+          challengeId={challengeId}
+          variantId={selectedVariant.id}
+          variantLabel={selectedVariant.label}
+          sources={selectedVariant.sources}
+          unlocked={unlocked}
+        />
+      </div>
+    </section>
+  );
+}
+
+function VariantRequiredComplexity({ variant }: { variant: SolutionVariantDetail }) {
+  const markdown = [
+    '### Required Complexity',
+    '',
+    `- **Time:** $${variant.time_complexity}$`,
+    `- **Space:** $${variant.space_complexity}$`,
+  ].join('\n');
+  return (
+    <div className="prose prose-sm mt-4 max-w-none text-coden-text prose-headings:text-coden-text prose-li:text-coden-text prose-strong:text-coden-text">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeRaw, rehypeKatex]}
+      >
+        {markdown}
+      </ReactMarkdown>
     </div>
   );
 }
@@ -400,6 +524,12 @@ function ApproachDisclosure({ markdown }: { markdown: string }) {
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeRaw, rehypeKatex]}
             components={{
+              h2: ({ node, ...props }) => (
+                <h2
+                  {...props}
+                  className="mb-2 mt-6 first:mt-0 text-sm font-semibold text-coden-text"
+                />
+              ),
               h4: ({ node, ...props }) => (
                 <h4
                   {...props}
@@ -463,10 +593,14 @@ function ApproachDisclosure({ markdown }: { markdown: string }) {
 
 function SolutionDisclosure({
   challengeId,
+  variantId,
+  variantLabel,
   sources,
   unlocked,
 }: {
   challengeId: string;
+  variantId: string;
+  variantLabel: string;
   sources: Partial<Record<SupportedLanguage, string>>;
   unlocked: boolean;
 }) {
@@ -506,7 +640,7 @@ function SolutionDisclosure({
         aria-expanded={unlocked ? open : false}
         aria-disabled={!unlocked}
         disabled={!unlocked}
-        title={unlocked ? 'Show the optimal solution' : 'Solve this challenge successfully to unlock the solution'}
+        title={unlocked ? `Show the ${variantLabel.toLowerCase()} solution` : 'Solve this challenge successfully to unlock the solution'}
         onClick={() => setOpen((current) => !current)}
         className={`flex w-full items-center gap-2 px-3 py-2 text-left text-sm font-semibold transition-colors ${
           unlocked
@@ -526,7 +660,7 @@ function SolutionDisclosure({
         <div className="coden-screen-only border-t border-coden-border px-4 py-3 text-sm text-coden-text">
           <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
             <div className="text-xs font-semibold uppercase tracking-wide text-coden-muted">
-              Optimal solution
+              {variantLabel} solution
             </div>
             <label className="flex items-center gap-2 text-xs text-coden-muted">
               <span>Language</span>
@@ -545,7 +679,7 @@ function SolutionDisclosure({
           </div>
           <div className="overflow-hidden rounded border border-coden-border bg-coden-bg" style={{ height: editorHeight }}>
             <Editor
-              path={`reference://${challengeId}/optimal.${selectedMeta.extension}`}
+              path={`reference://${challengeId}/${variantId}.${selectedMeta.extension}`}
               height="100%"
               language={selectedMeta.monaco}
               theme={theme === 'dark' ? 'vs-dark' : 'light'}
@@ -567,7 +701,7 @@ function SolutionDisclosure({
                 wordWrap: 'off',
                 automaticLayout: true,
                 padding: { top: 14, bottom: 14 },
-                ariaLabel: `Read-only optimal solution in ${selectedMeta.label}`,
+                ariaLabel: `Read-only ${variantLabel.toLowerCase()} solution in ${selectedMeta.label}`,
               }}
               loading={
                 <div className="flex h-full items-center justify-center text-xs text-coden-muted">

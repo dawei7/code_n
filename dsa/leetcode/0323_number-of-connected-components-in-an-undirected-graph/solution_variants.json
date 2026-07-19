@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_323",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Number of Connected Components in an Undirected Graph and meets the required complexity bound.",
+      "time_complexity": "O(n + e \\alpha(n))",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

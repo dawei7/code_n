@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2019",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for The Score of Students Solving Math Expression and meets the required complexity bound.",
+      "time_complexity": "O(M^3V^2+A)",
+      "space_complexity": "O(M^2V)"
+    }
+  ]
+}

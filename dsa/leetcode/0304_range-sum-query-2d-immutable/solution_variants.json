@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_304",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Range Sum Query 2D - Immutable and meets the required complexity bound.",
+      "time_complexity": "O(mn + q)",
+      "space_complexity": "O(mn)"
+    }
+  ]
+}

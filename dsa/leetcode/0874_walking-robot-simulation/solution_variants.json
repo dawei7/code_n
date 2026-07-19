@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_874",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Walking Robot Simulation and meets the required complexity bound.",
+      "time_complexity": "O(n+b+S)",
+      "space_complexity": "O(b)"
+    }
+  ]
+}

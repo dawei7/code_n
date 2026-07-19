@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_363",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Max Sum of Rectangle No Larger Than K and meets the required complexity bound.",
+      "time_complexity": "O(s^2 l \\log l)",
+      "space_complexity": "O(l)"
+    }
+  ]
+}

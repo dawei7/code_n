@@ -183,6 +183,41 @@ class DatasetSyncMetricPreservationTest(unittest.TestCase):
             self.assertEqual(stored["elo_rating"], 1350.25)
             self.assertEqual(stored["estimated_elo_rating"], 1234.5)
 
+    def test_metadata_sync_preserves_solution_variant_pointer(self) -> None:
+        question = {
+            "frontend_id": "1502",
+            "slug": "can-make-arithmetic-progression-from-sequence",
+            "title": "Can Make Arithmetic Progression From Sequence",
+        }
+        variant_pointer = {
+            "manifest": "solution_variants.json",
+            "default": "optimal",
+        }
+        refreshed_metadata = {
+            "challenge_id": "lc_1502",
+            "frontend_id": "1502",
+            "slug": question["slug"],
+            "title": question["title"],
+        }
+
+        with tempfile.TemporaryDirectory() as temporary:
+            leetcode_root = Path(temporary)
+            package = leetcode_root / "1502_can-make-arithmetic-progression-from-sequence"
+            package.mkdir()
+            (package / "metadata.json").write_text(
+                json.dumps({"solution_variants": variant_pointer}),
+                encoding="utf-8",
+            )
+            with patch.object(sync_leetcode_dataset, "LEETCODE_ROOT", leetcode_root):
+                sync_leetcode_dataset.write_package(
+                    question,
+                    refreshed_metadata,
+                    scaffold_docs=False,
+                )
+
+            stored = json.loads((package / "metadata.json").read_text(encoding="utf-8"))
+            self.assertEqual(stored["solution_variants"], variant_pointer)
+
     def test_weekly_import_creates_only_new_packages(self) -> None:
         def full_question(frontend_id: str, slug: str, title: str) -> dict[str, object]:
             return {
@@ -208,6 +243,7 @@ class DatasetSyncMetricPreservationTest(unittest.TestCase):
             index_path = leetcode_root / "index.json"
             subsets_path = leetcode_root / "subsets.json"
             template_path = leetcode_root / "_template.md"
+            approach_template_path = leetcode_root / "_approach_template.md"
             report_path = leetcode_root / "_reports" / "sync_report.json"
             existing_dir = leetcode_root / "0001_two-sum"
             existing_dir.mkdir(parents=True)
@@ -226,12 +262,27 @@ class DatasetSyncMetricPreservationTest(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            approach_template_path.write_text(
+                (
+                    "## General\n\nTODO\n\n"
+                    "## Complexity detail\n\nTODO\n\n"
+                    "## Alternatives and edge cases\n\n"
+                    "- **Alternative:** TODO\n"
+                    "- Edge case TODO\n"
+                ),
+                encoding="utf-8",
+            )
 
             with (
                 patch.object(sync_leetcode_dataset, "LEETCODE_ROOT", leetcode_root),
                 patch.object(sync_leetcode_dataset, "INDEX_PATH", index_path),
                 patch.object(sync_leetcode_dataset, "SUBSETS_PATH", subsets_path),
                 patch.object(sync_leetcode_dataset, "TEMPLATE_PATH", template_path),
+                patch.object(
+                    sync_leetcode_dataset,
+                    "APPROACH_TEMPLATE_PATH",
+                    approach_template_path,
+                ),
                 patch.object(sync_leetcode_dataset, "REPORT_PATH", report_path),
                 patch.object(
                     sync_leetcode_dataset,
@@ -254,6 +305,10 @@ class DatasetSyncMetricPreservationTest(unittest.TestCase):
             )
             new_dir = leetcode_root / "4000_new-weekly-problem"
             self.assertTrue((new_dir / "metadata.json").is_file())
+            self.assertTrue((new_dir / "solution_variants.json").is_file())
+            self.assertTrue(
+                (new_dir / "variants" / "optimal" / "approach.md").is_file()
+            )
             self.assertIn(
                 "# New Weekly Problem",
                 (new_dir / "doc.md").read_text(encoding="utf-8"),

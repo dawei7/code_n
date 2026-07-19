@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_514",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Freedom Trail and meets the required complexity bound.",
+      "time_complexity": "O(|ring| \\cdot |key|)",
+      "space_complexity": "O(|ring|)"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+## General
+**Let the final pair identify a dynamic-programming state**
+
+Create a map from each array value to its index. For indices `middle < right`, let the state for `(middle, right)` be the length of the longest Fibonacci-like subsequence ending with `arr[middle]` and `arr[right]`. Those final two values force the preceding value to be `arr[right] - arr[middle]`; there is no need to try every earlier index.
+
+Look up that difference in the value-to-index map. Because `arr` is strictly increasing, the predecessor belongs before `middle` exactly when its value is smaller than `arr[middle]`. If it exists at `left`, extend the state `(left, middle)` by one. A pair with no recorded earlier extension has implicit length two, so discovering its required predecessor creates a valid length-three state.
+
+**Every valid subsequence is represented**
+
+Any Fibonacci-like subsequence ending at `(middle, right)` must use the uniquely determined difference as its previous value. The transition therefore considers its only possible predecessor and extends the best subsequence ending at `(left, middle)`. Induction on the final index shows that every stored state has its true maximum length, and taking the largest stored length returns the optimum. If no transition ever produces length three, returning `0` implements the stated fallback.
+
+## Complexity detail
+There are $O(n^2)$ ordered index pairs, and each predecessor lookup and state transition takes expected $O(1)$ time in a hash table, for $O(n^2)$ total time. The value-index map uses $O(n)$ space and the pair states can occupy $O(n^2)$ space, so the total auxiliary space is $O(n^2)$.
+
+## Alternatives and edge cases
+- **Extend every starting pair by value lookup:** Starting from each pair and repeatedly seeking the next sum is easy to understand and often sparse in practice, but it can revisit the same pair suffixes; the pair DP shares those results explicitly.
+- **Try every index triple:** Checking all possible predecessors for every final pair takes $O(n^3)$ time even though strict increase makes the needed value unique.
+- **Two-pointer search per final value:** A two-pointer scan can find valid predecessor pairs in $O(n^2)$ time overall, but it still needs pair-length states to extend sequences correctly.
+- **Only a length-three match exists:** Return `3`; the `0` result is reserved for arrays with no valid triple.
+- **No valid transition:** States of implicit length two are not Fibonacci-like on their own, so return `0` rather than `2`.
+- **Nonconsecutive values:** The chosen values need only retain array order; adjacent positions are not required.
+- **Strict increase:** Each value has one index, and requiring the predecessor value to be smaller than `arr[middle]` guarantees the correct index order.

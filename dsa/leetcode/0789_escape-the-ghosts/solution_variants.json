@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_789",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Escape The Ghosts and meets the required complexity bound.",
+      "time_complexity": "O(g)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

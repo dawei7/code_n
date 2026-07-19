@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1011",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Capacity To Ship Packages Within D Days and meets the required complexity bound.",
+      "time_complexity": "O(N\\log S)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

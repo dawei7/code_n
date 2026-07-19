@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1764",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Form Array by Concatenating Subarrays of Another Array and meets the required complexity bound.",
+      "time_complexity": "O(N+S)",
+      "space_complexity": "O(L)"
+    }
+  ]
+}

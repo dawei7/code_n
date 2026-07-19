@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_596",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Classes With at Least 5 Students and meets the required complexity bound.",
+      "time_complexity": "O(n \\log c)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

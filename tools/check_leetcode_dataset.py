@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 
@@ -21,7 +22,7 @@ REQUIRED_SECTIONS = (
     "### Function Contract",
     "### Examples",
 )
-COMPLEXITY_SECTIONS = ("### Required Complexity", "### Complexity Analysis")
+APPROACH_HEADINGS = ("General", "Complexity detail", "Alternatives and edge cases")
 
 
 def is_doc(path: Path) -> bool:
@@ -30,17 +31,49 @@ def is_doc(path: Path) -> bool:
 
 def classify(path: Path) -> dict[str, str | bool]:
     text = path.read_text(encoding="utf-8")
-    has_placeholder = any(marker in text for marker in PLACEHOLDER_MARKERS)
-    has_required_sections = (
-        all(section in text for section in REQUIRED_SECTIONS)
-        and any(section in text for section in COMPLEXITY_SECTIONS)
+    package = path.parent
+    approach_path = package / "variants" / "optimal" / "approach.md"
+    approach = approach_path.read_text(encoding="utf-8") if approach_path.is_file() else ""
+    manifest_path = package / "solution_variants.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        manifest = {}
+    rows = manifest.get("variants") if isinstance(manifest, dict) else []
+    valid_rows = rows if isinstance(rows, list) else []
+    optimal = next(
+        (
+            row
+            for row in valid_rows
+            if isinstance(row, dict) and row.get("id") == "optimal"
+        ),
+        {},
+    )
+    time_complexity = str(optimal.get("time_complexity") or "")
+    space_complexity = str(optimal.get("space_complexity") or "")
+    approach_headings = tuple(
+        re.findall(r"^##\s+(.+?)\s*$", approach, flags=re.MULTILINE)
+    )
+    has_placeholder = (
+        any(marker in text or marker in approach for marker in PLACEHOLDER_MARKERS)
+        or time_complexity == "O(...)"
+        or space_complexity == "O(...)"
+    )
+    has_required_sections = all(section in text for section in REQUIRED_SECTIONS)
+    has_variant_artifacts = (
+        isinstance(optimal, dict)
+        and time_complexity.startswith("O")
+        and space_complexity.startswith("O")
+        and approach_headings == APPROACH_HEADINGS
+        and "### Required Complexity" not in text
+        and "<summary>Approach</summary>" not in text
     )
     from_local_spec = LOCAL_SOURCE_MARKER in text
     if has_placeholder:
         status = "needs_authoring"
-    elif has_required_sections and from_local_spec:
+    elif has_required_sections and has_variant_artifacts and from_local_spec:
         status = "materialized_from_local_spec"
-    elif has_required_sections:
+    elif has_required_sections and has_variant_artifacts:
         status = "manual_complete"
     else:
         status = "needs_authoring"
@@ -49,6 +82,7 @@ def classify(path: Path) -> dict[str, str | bool]:
         "status": status,
         "has_placeholder": has_placeholder,
         "has_required_sections": has_required_sections,
+        "has_variant_artifacts": has_variant_artifacts,
         "from_local_spec": from_local_spec,
     }
 

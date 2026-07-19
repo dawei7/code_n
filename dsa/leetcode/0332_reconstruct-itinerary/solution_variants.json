@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_332",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Reconstruct Itinerary and meets the required complexity bound.",
+      "time_complexity": "O(E \\log E)",
+      "space_complexity": "O(E)"
+    }
+  ]
+}

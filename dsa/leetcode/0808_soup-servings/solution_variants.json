@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_808",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Soup Servings and meets the required complexity bound.",
+      "time_complexity": "O(s^2)",
+      "space_complexity": "O(s^2)"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_745",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Prefix and Suffix Search and meets the required complexity bound.",
+      "time_complexity": "O(wL^2+q)",
+      "space_complexity": "O(wL^2)"
+    }
+  ]
+}

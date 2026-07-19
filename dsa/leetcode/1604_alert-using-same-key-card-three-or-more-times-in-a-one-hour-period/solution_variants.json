@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1604",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Alert Using Same Key-Card Three or More Times in a One Hour Period and meets the required complexity bound.",
+      "time_complexity": "O(n \\log n)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

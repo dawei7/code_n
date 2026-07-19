@@ -1,7 +1,7 @@
-"""Batch autocomplete LeetCode reference docs and generate optimal python solutions.
+"""Batch autocomplete LeetCode shared docs and Optimal branch artifacts.
 
 This script uses the Gemini API key from progress.json (or GEMINI_API_KEY environment variable)
-to fill in the scaffolded docs and generate matching optimal Python solutions.
+to fill in scaffolded docs, approaches, complexity bounds, and Python solutions.
 """
 
 from __future__ import annotations
@@ -132,20 +132,40 @@ def call_gemini(prompt: str, api_key: str) -> str:
             time.sleep(5)
 
 
-def generate_prompt(doc_content: str) -> str:
+def generate_prompt(doc_content: str, approach_content: str) -> str:
     return f"""You are an expert software engineer and computer science professor.
-Your task is to take a scaffolded LeetCode problem documentation (which has placeholders like "TODO" and "Write an original local summary") and complete it, plus write the optimal Python 3 solution code.
+Your task is to complete one scaffolded LeetCode package's shared documentation
+and its Optimal branch.
 
-Here is the scaffolded markdown:
+Here is the scaffolded shared markdown:
 {doc_content}
 
-Generate your response using two XML-like tags:
-1. <markdown>
-The fully completed markdown content. Replace all "TODO" sections and "Write an original local summary" placeholders with clear, high-quality, professional original descriptions, function contract, examples, base algorithms, and complexity analysis.
-Do not copy LeetCode's description word-for-word. Maintain the exact markdown format, table structure, and fields.
-</markdown>
+Here is the scaffolded Optimal approach:
+{approach_content}
 
-2. <python>
+Generate your response using these XML-like tags:
+1. <shared_markdown>
+The completed shared markdown. It must contain Goal, Function Contract, and
+Examples, but must not contain Required Complexity or Approach. Replace every
+placeholder with clear original text. Do not copy LeetCode word-for-word.
+</shared_markdown>
+
+2. <approach_markdown>
+The completed Optimal approach. It must contain exactly these level-two
+headings in order: General, Complexity detail, Alternatives and edge cases.
+The last section must be a scannable bullet list.
+</approach_markdown>
+
+3. <time_complexity>
+Only the plain Optimal Big-O bound, such as O(n) or O(n \\log n). Do not add
+words such as expected, amortized, average, or worst-case.
+</time_complexity>
+
+4. <space_complexity>
+Only the plain Optimal Big-O bound.
+</space_complexity>
+
+5. <python>
 The clean, optimal, and correct Python 3 code for the solve function.
 CRITICAL: The Python code MUST be a top-level standalone function named `solve`. Do NOT wrap it in a class (such as `class Solution` or any other class), and do NOT include `self` in the function parameters. All helper functions, classes (like TreeNodes, ListNodes), or imports must be defined at the top-level. The solve function signature must define the correct parameters matching the Function Contract inputs of your completed markdown.
 Do not wrap this code inside markdown code blocks (like ```python). Just output the raw code lines inside the <python> tags.
@@ -166,33 +186,81 @@ def extract_section(text: str, tag: str) -> str:
 
 
 def process_file(doc_path: Path, api_key: str) -> bool:
-    """Complete markdown file and create its optimal solution python file."""
+    """Complete the shared doc and canonical Optimal branch artifacts."""
     print(f"Processing: {doc_path.name}")
     try:
         content = doc_path.read_text(encoding="utf-8")
-        prompt = generate_prompt(content)
+        package = doc_path.parent
+        manifest_path = package / "solution_variants.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        variants = manifest.get("variants")
+        if not isinstance(variants, list):
+            raise ValueError("solution_variants.json has no variants list")
+        optimal = next(
+            (
+                row
+                for row in variants
+                if isinstance(row, dict) and row.get("id") == "optimal"
+            ),
+            None,
+        )
+        if optimal is None:
+            raise ValueError("solution_variants.json has no Optimal branch")
+        optimal_root = package / str(optimal["directory"])
+        approach_path = optimal_root / "approach.md"
+        approach_content = approach_path.read_text(encoding="utf-8")
+        prompt = generate_prompt(content, approach_content)
         res_text = call_gemini(prompt, api_key)
-        
-        markdown_content = extract_section(res_text, "markdown")
+
+        markdown_content = extract_section(res_text, "shared_markdown")
+        approach_markdown = extract_section(res_text, "approach_markdown")
+        time_complexity = extract_section(res_text, "time_complexity")
+        space_complexity = extract_section(res_text, "space_complexity")
         python_content = extract_section(res_text, "python")
 
-        if not markdown_content or not python_content:
+        if not all(
+            (
+                markdown_content,
+                approach_markdown,
+                time_complexity,
+                space_complexity,
+                python_content,
+            )
+        ):
             print(f"Failed to extract sections for {doc_path.name}")
             return False
+        if "### Required Complexity" in markdown_content or "<summary>Approach</summary>" in markdown_content:
+            raise ValueError("shared markdown contains branch-specific sections")
+        headings = re.findall(r"^##\s+(.+?)\s*$", approach_markdown, flags=re.MULTILINE)
+        if headings != ["General", "Complexity detail", "Alternatives and edge cases"]:
+            raise ValueError("Optimal approach headings do not match the canonical format")
+        for label, bound in (
+            ("time", time_complexity),
+            ("space", space_complexity),
+        ):
+            if not re.fullmatch(r"O(?:\(.+\)|\\left\(.+\\right\))", bound):
+                raise ValueError(f"{label} complexity is not a plain Big-O bound")
+            if "expected" in bound.lower():
+                raise ValueError(f"{label} complexity must not include expected")
 
         # Clean python block from any accidental markdown wraps
         python_content = re.sub(r"^```python\s*", "", python_content)
         python_content = re.sub(r"\s*```$", "", python_content)
 
-        # Write markdown back
+        # Write the shared document and Optimal branch artifacts.
         doc_path.write_text(markdown_content + "\n", encoding="utf-8")
-
-        # Write Python solution
-        solution_path = doc_path.parent / "solutions" / "python.py"
+        approach_path.write_text(approach_markdown + "\n", encoding="utf-8")
+        solution_path = optimal_root / "solutions" / "python.py"
         solution_path.parent.mkdir(parents=True, exist_ok=True)
         solution_path.write_text(python_content + "\n", encoding="utf-8")
+        optimal["time_complexity"] = time_complexity
+        optimal["space_complexity"] = space_complexity
+        manifest_path.write_text(
+            json.dumps(manifest, indent=2) + "\n",
+            encoding="utf-8",
+        )
 
-        print(f"Successfully completed {doc_path.name} and generated {solution_path.name}")
+        print(f"Successfully completed {doc_path.name} and its Optimal branch")
         return True
     except Exception as e:
         print(f"Failed to process {doc_path.name}: {e}")
@@ -210,12 +278,22 @@ def main() -> int:
         print("ERROR: Gemini API Key not found. Please set GEMINI_API_KEY environment variable or configure it in the app profiles.")
         return 1
 
-    # Find scaffolded docs needing completion
+    # Find packages with a scaffolded shared doc or Optimal approach.
     to_process: list[Path] = []
     for path in sorted(LEETCODE_ROOT.glob("*/doc.md")):
         try:
             text = path.read_text(encoding="utf-8")
-            if "Write an original local summary" in text or "TODO" in text:
+            approach_path = path.parent / "variants" / "optimal" / "approach.md"
+            approach_text = (
+                approach_path.read_text(encoding="utf-8")
+                if approach_path.is_file()
+                else "TODO"
+            )
+            if (
+                "Write an original local summary" in text
+                or "TODO" in text
+                or "TODO" in approach_text
+            ):
                 to_process.append(path)
         except Exception:
             pass

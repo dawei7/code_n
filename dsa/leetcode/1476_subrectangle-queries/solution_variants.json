@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1476",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Subrectangle Queries and meets the required complexity bound.",
+      "time_complexity": "O(RC+U+Q)",
+      "space_complexity": "O(RC)"
+    }
+  ]
+}

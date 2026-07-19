@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_355",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Design Twitter and meets the required complexity bound.",
+      "time_complexity": "O(1) / O(F + 10 \\log F)",
+      "space_complexity": "O(U + E)"
+    }
+  ]
+}

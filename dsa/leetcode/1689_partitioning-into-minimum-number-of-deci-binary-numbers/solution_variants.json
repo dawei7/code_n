@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1689",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Partitioning Into Minimum Number Of Deci-Binary Numbers and meets the required complexity bound.",
+      "time_complexity": "O(L)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

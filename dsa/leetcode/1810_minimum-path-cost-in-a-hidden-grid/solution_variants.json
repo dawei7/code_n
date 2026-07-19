@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1810",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Minimum Path Cost in a Hidden Grid and meets the required complexity bound.",
+      "time_complexity": "O(V\\log V)",
+      "space_complexity": "O(V)"
+    }
+  ]
+}

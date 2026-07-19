@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1331",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Rank Transform of an Array and meets the required complexity bound.",
+      "time_complexity": "O(n\\log n)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

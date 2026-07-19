@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_305",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Number of Islands II and meets the required complexity bound.",
+      "time_complexity": "O(k \\cdot \\alpha(k))",
+      "space_complexity": "O(k)"
+    }
+  ]
+}

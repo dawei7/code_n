@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1559",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Detect Cycles in 2D Grid and meets the required complexity bound.",
+      "time_complexity": "O(RC)",
+      "space_complexity": "O(RC)"
+    }
+  ]
+}

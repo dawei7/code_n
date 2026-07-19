@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1355",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Activity Participants and meets the required complexity bound.",
+      "time_complexity": "O(N \\log N)",
+      "space_complexity": "O(A)"
+    }
+  ]
+}

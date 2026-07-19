@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1337",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for The K Weakest Rows in a Matrix and meets the required complexity bound.",
+      "time_complexity": "O(m\\log n+m\\log m)",
+      "space_complexity": "O(m)"
+    }
+  ]
+}

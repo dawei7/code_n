@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1803",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Count Pairs With XOR in a Range and meets the required complexity bound.",
+      "time_complexity": "O(nB)",
+      "space_complexity": "O(nB)"
+    }
+  ]
+}

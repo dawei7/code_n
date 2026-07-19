@@ -27,7 +27,8 @@ class DynamicDocsTest(conftest._Base):
         response = self.client.get("/api/docs/by-id/lc_1")
         self.assertEqual(response.status_code, 200, response.text)
         self.assertIn("# Two Sum", response.text)
-        self.assertIn("Complexity", response.text)
+        self.assertIn("### Function Contract", response.text)
+        self.assertNotIn("### Required Complexity", response.text)
 
     def test_overview_is_the_root_readme(self) -> None:
         response = self.client.get("/api/docs/overview")

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_475",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Heaters and meets the required complexity bound.",
+      "time_complexity": "O((h + t) \\log(h + t))",
+      "space_complexity": "O(t)"
+    }
+  ]
+}

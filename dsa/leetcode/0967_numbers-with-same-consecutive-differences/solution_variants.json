@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_967",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Numbers With Same Consecutive Differences and meets the required complexity bound.",
+      "time_complexity": "O(T)",
+      "space_complexity": "O(F)"
+    }
+  ]
+}

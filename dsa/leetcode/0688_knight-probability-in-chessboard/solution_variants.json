@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_688",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Knight Probability in Chessboard and meets the required complexity bound.",
+      "time_complexity": "O(KN^2)",
+      "space_complexity": "O(N^2)"
+    }
+  ]
+}

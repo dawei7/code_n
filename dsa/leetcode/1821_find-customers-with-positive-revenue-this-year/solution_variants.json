@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1821",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Find Customers With Positive Revenue this Year and meets the required complexity bound.",
+      "time_complexity": "O(r)",
+      "space_complexity": "O(o)"
+    }
+  ]
+}

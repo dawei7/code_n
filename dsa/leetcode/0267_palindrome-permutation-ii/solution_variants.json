@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_267",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Palindrome Permutation II and meets the required complexity bound.",
+      "time_complexity": "O(n + p \\cdot n)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

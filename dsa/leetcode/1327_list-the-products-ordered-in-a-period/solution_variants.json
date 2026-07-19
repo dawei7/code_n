@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1327",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for List the Products Ordered in a Period and meets the required complexity bound.",
+      "time_complexity": "O(p+o+k\\log k)",
+      "space_complexity": "O(p+k)"
+    }
+  ]
+}

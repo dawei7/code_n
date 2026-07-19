@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1225",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Report Contiguous Dates and meets the required complexity bound.",
+      "time_complexity": "O(d\\log d)",
+      "space_complexity": "O(d)"
+    }
+  ]
+}

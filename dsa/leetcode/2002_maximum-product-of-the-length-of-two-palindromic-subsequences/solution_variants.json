@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2002",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Maximum Product of the Length of Two Palindromic Subsequences and meets the required complexity bound.",
+      "time_complexity": "O(N2^N)",
+      "space_complexity": "O(2^N)"
+    }
+  ]
+}

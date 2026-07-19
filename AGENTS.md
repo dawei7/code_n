@@ -71,12 +71,20 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   benchmark.json             # normal complexity-verification path
   complexity_certificate.json # only when legal scaling is inapplicable
   guided_example.md           # optional code-free representative walkthrough
-  submission.json            # optional verified LeetCode submission manifest
+  solution_variants.json     # required branch manifest; Optimal is default
   assets/                   # optional package-local doc assets
-  solutions/
-    python.py               # canonical app-friendly reference
-    <language>.<extension>  # optional same-language references
-    leetcode_<lang>.<ext>   # optional platform-native submission candidate
+  variants/
+    optimal/
+      approach.md
+      submission.json
+      solutions/
+        python.py               # canonical app-friendly reference
+        <language>.<extension>  # optional same-language references
+        leetcode_<lang>.<ext>   # optional native submission candidate
+    simplified/              # optional; authored in a later reviewed pass
+      approach.md
+      submission.json
+      solutions/
 ```
 
 - `server/app/challenge_packages.py` is the path API for these packages.
@@ -106,6 +114,14 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
 - Reference solutions are not personal attempts. When official submit-ready
   LeetCode forms are added, keep them beside—not instead of—the app-adapted
   `solve(...)` form and preserve original declarations.
+- `SOLUTION_VARIANTS.md` is authoritative for the repository-wide branch
+  structure. Keep identity, contract, cases, and legal benchmarks shared;
+  separate each branch's Required Complexity, approach, app-local source,
+  native source, and evidence. The Optimal branch stays first and default.
+- Publish a simplified branch only for an Elo-eligible Easy or Medium problem
+  after it passes the unchanged shared judge and its exact native source is
+  remotely Accepted. If that source is rejected, remove the simplified branch
+  and retain only the optimal branch.
 - `LEETCODE_SUBMISSIONS.md` is authoritative for direct submission. A package
   candidate must remain blocked until the exact source is remotely Accepted and
   its manifest is promoted to `verified`; never infer verification from local
@@ -136,10 +152,12 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
 - Follow `dsa/leetcode/_template.md`. The metadata table owns the only official
   problem link and labels it `LeetCode` so the UI renders a clickable LeetCode
   symbol. Do not repeat an external link below `Problem Description`.
-- Use `Goal`, `Function Contract`, `Examples`, and `Required Complexity` in that
-  order. Do not add a `Solution` or `Reference Implementations` section to the
-  problem document; implementation artifacts live in the package's `solutions/`
-  directory.
+- Use `Goal`, `Function Contract`, and `Examples` in that order. Do not add
+  Required Complexity, Approach, Solution, or Reference Implementations to the
+  shared problem document. Branch artifacts live under `variants/<id>/`.
+- Required Complexity belongs to each row of `solution_variants.json` and is
+  rendered inside the selected top tab. The corresponding explanation lives in
+  `variants/<id>/approach.md`. Do not duplicate either section in `doc.md`.
 - Give `Goal` an original, source-faithful problem narrative with depth and
   length proportionate to the public statement. Follow the original problem's
   logical order as closely as independent wording permits: introduce the same
@@ -178,15 +196,17 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   $$
 
   Then use the short symbol `$S$` in the prose and complexity bounds.
-- Keep `Required Complexity` notation-only, with exactly these two bullets:
-  `- **Time:** $O(...)$` and `- **Space:** $O(...)$`. Put qualifications and
-  the meanings of variables in `Complexity detail`, not beside the bounds.
-- Only `Approach` is collapsible. Make it maximally educational and specific to
-  the problem: derive the algorithm from its constraints and use precise
-  algorithm/data-structure terms. Every Approach must contain exactly three
-  level-four subsection headings, in this order: `General`, `Complexity detail`,
-  and `Alternatives and edge cases`. Do not add any other Markdown headings
-  inside Approach. `General` is a container, not a requirement to write one
+- Keep each manifest's `time_complexity` and `space_complexity` as plain
+  `O(...)` notation. The UI renders them as exactly two Required Complexity
+  bullets. Put qualifications such as expected hash behavior and the meanings
+  of variables in `Complexity detail`, never in the manifest bound.
+- Each branch's `Approach` is collapsible. Make it maximally educational and
+  specific to the problem: derive the algorithm from its constraints and use
+  precise algorithm/data-structure terms. Every branch `approach.md` must
+  contain exactly three level-two headings, in this order: `General`,
+  `Complexity detail`, and `Alternatives and edge cases`. Do not add any other
+  Markdown headings inside `approach.md`. `General` is a container, not a
+  requirement to write one
   unbroken block: use descriptive bold subheadings such as
   `**Why the unique pair must be found**` whenever they make the problem's
   distinct ideas easier to navigate. These bold subheadings must be
@@ -302,6 +322,15 @@ lives under Electron `app.getPath('userData')`.
 - There is no unversioned active alias. `versions.json` selects the active
   file and stores optional display names.
 - `server/app/user_solutions.py` owns path resolution and legacy migration.
+- Generated starter signatures must come from the executable contract: prefer
+  the authored app-local `solve(...)` signature, then authored `cases.json`
+  input keys. Never infer parameters from unconstrained prose bullets.
+- Under `Function Contract` -> `Inputs`, format only real parameters as
+  ``- `name`: ...`` entries. Put shared constraints and semantic notes in
+  paragraphs or subordinate prose so they cannot be mistaken for parameters.
+- Any starter-generation change must keep the global contract regression in
+  `tests/test_solution_templates.py` green; it compares generated parameters
+  with app-local solution signatures and authored case inputs.
 - Never write user files into packaged `resources/dsa/leetcode`.
 - Never commit `.coden-data` or another user's app-data files.
 - Preserve existing solution contents during storage migrations and verify

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2093",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Minimum Cost to Reach City With Discounts and meets the required complexity bound.",
+      "time_complexity": "O(E(K+1)\\log(n(K+1)))",
+      "space_complexity": "O((n+E)(K+1))"
+    }
+  ]
+}

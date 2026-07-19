@@ -13,6 +13,9 @@ frontend-ID order:
     ``complexity_certificate.json``
     ``guided_example.md`` (optional)
     ``solutions/<language>.<ext>``
+    ``solution_variants.json`` (optional)
+    ``variants/<variant>/approach.md`` (optional)
+    ``variants/<variant>/solutions/<language>.<ext>`` (optional)
 
 These packages are the sole source for challenge metadata and artifacts.
 """
@@ -30,6 +33,7 @@ from engine.complexity_certificates import (
     validate_complexity_certificate,
 )
 from engine.languages import language_extension, normalize_language
+from engine.solution_variants import SolutionVariantStatus, validate_solution_variants
 from server.app.config import LEETCODE_ROOT
 
 
@@ -164,13 +168,122 @@ def leetcode_guided_example_path(challenge_id: str) -> Path | None:
     return None if package_dir is None else package_dir / "guided_example.md"
 
 
-def leetcode_solution_path(challenge_id: str, language: str | None = "python") -> Path | None:
+def leetcode_solution_variants_manifest_path(challenge_id: str) -> Path | None:
     package_dir = leetcode_package_dir(challenge_id)
     if package_dir is None:
         return None
+    config = leetcode_metadata(challenge_id).get("solution_variants")
+    if not isinstance(config, dict):
+        return None
+    raw_relative = str(config.get("manifest") or "").strip()
+    if not raw_relative:
+        return None
+    relative = Path(raw_relative)
+    if relative.is_absolute():
+        return None
+    target = (package_dir / relative).resolve()
+    try:
+        target.relative_to(package_dir.resolve())
+    except ValueError:
+        return None
+    return target
+
+
+@lru_cache(maxsize=4096)
+def _raw_solution_variants(challenge_id: str) -> dict[str, Any]:
+    path = leetcode_solution_variants_manifest_path(challenge_id)
+    if path is None or not path.is_file():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _variant_row(challenge_id: str, variant_id: str | None = None) -> dict[str, Any] | None:
+    payload = _raw_solution_variants(challenge_id)
+    selected = variant_id or str(payload.get("default_variant") or "")
+    rows = payload.get("variants")
+    if not selected or not isinstance(rows, list):
+        return None
+    return next(
+        (
+            item
+            for item in rows
+            if isinstance(item, dict) and str(item.get("id") or "") == selected
+        ),
+        None,
+    )
+
+
+def _variant_directory(challenge_id: str, variant_id: str | None = None) -> Path | None:
+    package_dir = leetcode_package_dir(challenge_id)
+    if package_dir is None:
+        return None
+    row = _variant_row(challenge_id, variant_id)
+    if row is None:
+        return None
+    raw_relative = str(row.get("directory") or "").strip()
+    if not raw_relative:
+        return None
+    relative = Path(raw_relative)
+    if relative.is_absolute():
+        return None
+    target = (package_dir / relative).resolve()
+    try:
+        target.relative_to(package_dir.resolve())
+    except ValueError:
+        return None
+    return target
+
+
+def leetcode_solution_variant_complexity(
+    challenge_id: str,
+    variant_id: str | None = None,
+) -> tuple[str, str]:
+    """Return the selected branch's authored time and space bounds."""
+
+    row = _variant_row(challenge_id, variant_id)
+    if row is None:
+        return "", ""
+    return (
+        str(row.get("time_complexity") or "").strip(),
+        str(row.get("space_complexity") or "").strip(),
+    )
+
+
+def leetcode_solution_variants_status(challenge_id: str) -> SolutionVariantStatus:
+    path = leetcode_solution_variants_manifest_path(challenge_id)
+    if path is None:
+        return SolutionVariantStatus(complete=False, errors=("solution variants are not configured",))
+    return validate_solution_variants(
+        path,
+        metadata=leetcode_metadata(challenge_id),
+        expected_challenge_id=challenge_id,
+    )
+
+
+def leetcode_variant_solution_path(
+    challenge_id: str,
+    variant_id: str,
+    language: str | None = "python",
+) -> Path | None:
+    variant_dir = _variant_directory(challenge_id, variant_id)
+    if variant_dir is None:
+        return None
     language_id = normalize_language(language)
     extension = language_extension(language_id)
-    return package_dir / "solutions" / f"{language_id}.{extension}"
+    return variant_dir / "solutions" / f"{language_id}.{extension}"
+
+
+def leetcode_solution_path(challenge_id: str, language: str | None = "python") -> Path | None:
+    language_id = normalize_language(language)
+    extension = language_extension(language_id)
+    default_variant = _variant_directory(challenge_id)
+    if default_variant is None:
+        return None
+    return default_variant / "solutions" / f"{language_id}.{extension}"
 
 
 def leetcode_cases_path(challenge_id: str) -> Path | None:
@@ -211,9 +324,14 @@ def leetcode_complexity_certificate_status(challenge_id: str) -> ComplexityCerti
     return validate_complexity_certificate(payload, expected_challenge_id=challenge_id)
 
 
-def leetcode_submission_manifest_path(challenge_id: str) -> Path | None:
-    package_dir = leetcode_package_dir(challenge_id)
-    return None if package_dir is None else package_dir / "submission.json"
+def leetcode_submission_manifest_path(
+    challenge_id: str,
+    variant_id: str | None = None,
+) -> Path | None:
+    variant_dir = _variant_directory(challenge_id, variant_id)
+    if variant_dir is None:
+        return None
+    return variant_dir / "submission.json"
 
 
 def iter_leetcode_package_dirs() -> list[Path]:

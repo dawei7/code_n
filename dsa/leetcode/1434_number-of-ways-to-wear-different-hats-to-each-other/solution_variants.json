@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1434",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Number of Ways to Wear Different Hats to Each Other and meets the required complexity bound.",
+      "time_complexity": "O(40p2^p)",
+      "space_complexity": "O(2^p)"
+    }
+  ]
+}

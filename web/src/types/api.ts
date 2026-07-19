@@ -92,6 +92,19 @@ export interface ChallengeSummary {
   leetcode_submission_paid_only: boolean;
 }
 
+export interface SolutionVariantDetail {
+  id: string;
+  label: string;
+  kind: 'optimal' | 'simplified' | 'alternative';
+  summary: string;
+  time_complexity: string;
+  space_complexity: string;
+  approach_markdown: string;
+  sources: Partial<Record<SupportedLanguage, string>>;
+  submission_status: string;
+  verified_submission_id: string;
+}
+
 export interface ChallengeDetail extends ChallengeSummary {
   params: ParamDoc[];
   samples: Sample[];
@@ -100,6 +113,11 @@ export interface ChallengeDetail extends ChallengeSummary {
   starter_sources: Record<SupportedLanguage, string>;
   optimal_source: string;
   optimal_sources?: Partial<Record<SupportedLanguage, string>>;
+  default_solution_variant: string;
+  solution_variants: SolutionVariantDetail[];
+  solution_variant_effective_elo: number | null;
+  solution_variant_elo_source: string;
+  simplified_solution_elo_ceiling: number | null;
   /** Per-algorithm analysis notes for the scientific panel.
    *  Keys are labels (best/average/worst/space/stable/in_place);
    *  values are short human-readable strings. Empty for algorithms

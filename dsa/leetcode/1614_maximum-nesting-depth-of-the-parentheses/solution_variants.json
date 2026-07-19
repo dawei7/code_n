@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1614",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Maximum Nesting Depth of the Parentheses and meets the required complexity bound.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

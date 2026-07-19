@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2052",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Minimum Cost to Separate Sentence Into Rows and meets the required complexity bound.",
+      "time_complexity": "O(w^2)",
+      "space_complexity": "O(w)"
+    }
+  ]
+}

@@ -26,6 +26,7 @@ from server.app.challenge_sets import (
 )
 from server.app.challenge_packages import (
     leetcode_guided_example_path,
+    leetcode_solution_variants_status,
     leetcode_submission_manifest_path,
 )
 from server.app.schemas import (
@@ -33,6 +34,7 @@ from server.app.schemas import (
     ChallengeSummary,
     ParamDoc,
     Sample,
+    SolutionVariantDetail,
     TestCaseSummary,
 )
 
@@ -94,6 +96,42 @@ def _submission_summary(challenge_id: str) -> tuple[str, str, bool]:
         str(payload.get("status") or "missing"),
         str(payload.get("language") or ""),
         bool(payload.get("paid_only", False)),
+    )
+
+
+def _solution_variant_details(
+    challenge_id: str,
+) -> tuple[list[SolutionVariantDetail], str, float | None, str, float | None]:
+    """Return only complete, Accepted solution branches for the challenge UI."""
+
+    status = leetcode_solution_variants_status(challenge_id)
+    if not status.complete:
+        return [], "", None, "", None
+
+    variants = [
+        SolutionVariantDetail(
+            id=variant.id,
+            label=variant.label,
+            kind=variant.kind,
+            summary=variant.summary,
+            time_complexity=variant.time_complexity,
+            space_complexity=variant.space_complexity,
+            approach_markdown=variant.approach_path.read_text(encoding="utf-8"),
+            sources={
+                language: path.read_text(encoding="utf-8")
+                for language, path in variant.solution_paths.items()
+            },
+            submission_status=variant.submission_status,
+            verified_submission_id=variant.verified_submission_id,
+        )
+        for variant in status.variants
+    ]
+    return (
+        variants,
+        status.default_variant,
+        status.effective_elo,
+        status.elo_source,
+        status.simplified_elo_ceiling,
     )
 
 
@@ -352,6 +390,13 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
 
     optimal_sources = load_optimal_sources_by_language(spec.id, spec)
     optimal_source = optimal_sources.get("python", "")
+    (
+        solution_variants,
+        default_solution_variant,
+        solution_variant_effective_elo,
+        solution_variant_elo_source,
+        simplified_solution_elo_ceiling,
+    ) = _solution_variant_details(spec.id)
 
     return ChallengeDetail(
         **summary.model_dump(),
@@ -362,6 +407,11 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
         starter_sources=starter_sources,
         optimal_source=optimal_source,
         optimal_sources=optimal_sources,
+        default_solution_variant=default_solution_variant,
+        solution_variants=solution_variants,
+        solution_variant_effective_elo=solution_variant_effective_elo,
+        solution_variant_elo_source=solution_variant_elo_source,
+        simplified_solution_elo_ceiling=simplified_solution_elo_ceiling,
         complexity_notes=complexity_notes,
     )
 

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1178",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Number of Valid Words for Each Puzzle and meets the required complexity bound.",
+      "time_complexity": "O(W+p)",
+      "space_complexity": "O(u)"
+    }
+  ]
+}

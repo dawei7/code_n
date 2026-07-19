@@ -21,6 +21,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from engine.complexity_certificates import validate_complexity_certificate  # noqa: E402
+from engine.solution_variants import validate_solution_variants  # noqa: E402
 
 
 LEETCODE_ROOT = ROOT / "dsa" / "leetcode"
@@ -35,14 +36,7 @@ DOC_SECTIONS = (
     "### Goal",
     "### Function Contract",
     "### Examples",
-    "### Required Complexity",
-    "<details>",
-    "<summary>Approach</summary>",
-    "#### General",
-    "#### Complexity detail",
-    "#### Alternatives and edge cases",
 )
-APPROACH_HEADINGS = ("General", "Complexity detail", "Alternatives and edge cases")
 MIN_GOAL_WORDS = 60
 MIN_GOAL_PARAGRAPHS = 2
 EXTENSIONS = {
@@ -84,8 +78,12 @@ def _doc_status(path: Path) -> dict[str, Any]:
     positions = [text.find(section) for section in DOC_SECTIONS]
     complete = bool(text) and not any(marker in text for marker in PLACEHOLDERS)
     complete = complete and all(position >= 0 for position in positions)
-    required_positions = positions[:5]
-    complete = complete and required_positions == sorted(required_positions)
+    complete = complete and positions == sorted(positions)
+    shared_sections_only = (
+        "### Required Complexity" not in text
+        and "<summary>Approach</summary>" not in text
+    )
+    complete = complete and shared_sections_only
     goal_match = re.search(
         r"^### Goal\s*$\s*(.*?)(?=^### Function Contract\s*$)",
         text,
@@ -103,39 +101,20 @@ def _doc_status(path: Path) -> dict[str, Any]:
         and len(goal_paragraphs) >= MIN_GOAL_PARAGRAPHS
     )
     complete = complete and goal_narrative_complete
-    approach_start = text.find("<summary>Approach</summary>")
-    approach_end = text.find("</details>", approach_start)
-    approach_text = text[approach_start:approach_end] if approach_start >= 0 and approach_end >= 0 else ""
-    approach_headings = tuple(re.findall(r"^####\s+(.+?)\s*$", approach_text, flags=re.MULTILINE))
-    complete = complete and approach_headings == APPROACH_HEADINGS
-    alternatives_match = re.search(
-        r"^#### Alternatives and edge cases\s*$\s*(.*)\Z",
-        approach_text,
-        flags=re.MULTILINE | re.DOTALL,
-    )
-    alternatives_text = alternatives_match.group(1).strip() if alternatives_match else ""
-    alternatives_lines = [line for line in alternatives_text.splitlines() if line.strip()]
-    alternative_bullet_count = sum(line.startswith("- ") for line in alternatives_lines)
-    alternatives_as_list = alternative_bullet_count >= 2 and all(
-        line.startswith("- ") or line.startswith("  ") for line in alternatives_lines
-    )
-    complete = complete and alternatives_as_list
-    time_match = re.search(r"^- \*\*Time:\*\* \$(O\([^$]+\))\$\s*$", text, flags=re.MULTILINE)
     return {
         "complete": complete,
         "missing_sections": [
-            section for section, position in zip(DOC_SECTIONS, positions, strict=True) if position < 0
+            section
+            for section, position in zip(DOC_SECTIONS, positions, strict=True)
+            if position < 0
         ],
         "has_placeholder": any(marker in text for marker in PLACEHOLDERS),
+        "shared_sections_only": shared_sections_only,
         "goal_narrative_complete": goal_narrative_complete,
         "goal_word_count": goal_word_count,
         "goal_paragraph_count": len(goal_paragraphs),
         "goal_minimum_words": MIN_GOAL_WORDS,
         "goal_minimum_paragraphs": MIN_GOAL_PARAGRAPHS,
-        "approach_headings": list(approach_headings),
-        "alternatives_as_list": alternatives_as_list,
-        "alternative_bullet_count": alternative_bullet_count,
-        "required_time": time_match.group(1) if time_match else "",
     }
 
 
@@ -222,7 +201,13 @@ def _solution_status(package: Path, metadata: dict[str, Any]) -> dict[str, Any]:
         supported = metadata.get("supported_languages")
         primary = str(supported[0]).lower() if isinstance(supported, list) and supported else ""
     extension = EXTENSIONS.get(primary, "")
-    path = package / "solutions" / f"{primary}.{extension}" if extension else package / "solutions" / primary
+    variant_root = _default_variant_root(package, metadata)
+    solution_root = (
+        variant_root / "solutions"
+        if variant_root is not None
+        else package / "__missing_optimal_variant__" / "solutions"
+    )
+    path = solution_root / f"{primary}.{extension}" if extension else solution_root / primary
     return {
         "complete": bool(extension and path.is_file() and path.stat().st_size > 0),
         "language": primary,
@@ -230,12 +215,122 @@ def _solution_status(package: Path, metadata: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _solution_variants_status(package: Path, metadata: dict[str, Any]) -> dict[str, Any]:
+    config = metadata.get("solution_variants")
+    if not isinstance(config, dict):
+        return {
+            "complete": False,
+            "configured": False,
+            "variants": [],
+            "errors": ["metadata solution-variant pointer is missing"],
+        }
+    raw_manifest = str(config.get("manifest") or "").strip()
+    relative = Path(raw_manifest)
+    if not raw_manifest or relative.is_absolute():
+        return {
+            "complete": False,
+            "configured": True,
+            "variants": [],
+            "errors": ["metadata solution-variant manifest path is invalid"],
+        }
+    manifest_path = (package / relative).resolve()
+    try:
+        manifest_path.relative_to(package.resolve())
+    except ValueError:
+        return {
+            "complete": False,
+            "configured": True,
+            "variants": [],
+            "errors": ["metadata solution-variant manifest path leaves the package"],
+        }
+    challenge_id = str(metadata.get("challenge_id") or "")
+    status = validate_solution_variants(
+        manifest_path,
+        metadata=metadata,
+        expected_challenge_id=challenge_id,
+    )
+    default_variant = next(
+        (variant for variant in status.variants if variant.id == status.default_variant),
+        None,
+    )
+    return {
+        "complete": status.complete,
+        "configured": True,
+        "default": status.default_variant,
+        "effective_elo": status.effective_elo,
+        "elo_source": status.elo_source,
+        "simplified_elo_ceiling": status.simplified_elo_ceiling,
+        "variants": [
+            {
+                "id": variant.id,
+                "kind": variant.kind,
+                "submission_status": variant.submission_status,
+                "verified_submission_id": variant.verified_submission_id,
+                "time_complexity": variant.time_complexity,
+                "space_complexity": variant.space_complexity,
+            }
+            for variant in status.variants
+        ],
+        "required_time": default_variant.time_complexity if default_variant else "",
+        "required_space": default_variant.space_complexity if default_variant else "",
+        "errors": list(status.errors),
+    }
+
+
+def _default_variant_root(package: Path, metadata: dict[str, Any]) -> Path | None:
+    config = metadata.get("solution_variants")
+    if not isinstance(config, dict):
+        return None
+    raw_manifest = str(config.get("manifest") or "").strip()
+    manifest_relative = Path(raw_manifest)
+    if not raw_manifest or manifest_relative.is_absolute():
+        return None
+    manifest_path = (package / manifest_relative).resolve()
+    try:
+        manifest_path.relative_to(package.resolve())
+    except ValueError:
+        return None
+    manifest = _load_json(manifest_path)
+    if not isinstance(manifest, dict):
+        return None
+    default_variant = str(manifest.get("default_variant") or "")
+    rows = manifest.get("variants")
+    if not default_variant or not isinstance(rows, list):
+        return None
+    row = next(
+        (
+            item
+            for item in rows
+            if isinstance(item, dict) and str(item.get("id") or "") == default_variant
+        ),
+        None,
+    )
+    if row is None:
+        return None
+    raw_directory = str(row.get("directory") or "").strip()
+    relative = Path(raw_directory)
+    if not raw_directory or relative.is_absolute():
+        return None
+    target = (package / relative).resolve()
+    try:
+        target.relative_to(package.resolve())
+    except ValueError:
+        return None
+    return target
+
+
 def _submission_status(package: Path, metadata: dict[str, Any]) -> dict[str, Any]:
-    manifest = _load_json(package / "submission.json")
+    variant_root = _default_variant_root(package, metadata)
+    submission_root = (
+        variant_root
+        if variant_root is not None
+        else package / "__missing_optimal_variant__"
+    )
+    manifest = _load_json(submission_root / "submission.json")
     if not isinstance(manifest, dict):
         return {"complete": False, "status": "missing", "paid_only": bool(metadata.get("paid_only"))}
     source_value = str(manifest.get("source") or "")
-    source = package / source_value if source_value else package / "__missing__"
+    source = submission_root / source_value if source_value else submission_root / "__missing__"
     verified = (
         manifest.get("status") == "verified"
         and bool(str(manifest.get("verified_submission_id") or ""))
@@ -281,11 +376,12 @@ def build_report() -> dict[str, Any]:
         metadata = metadata if isinstance(metadata, dict) else {}
         frontend_id = str(metadata.get("frontend_id") or package.name.split("_", 1)[0])
         doc = _doc_status(package / "doc.md")
+        solution_variants = _solution_variants_status(package, metadata)
         benchmark = _benchmark_status(package / "benchmark.json")
         certificate = _complexity_certificate_status(
             package / "complexity_certificate.json",
             str(metadata.get("challenge_id") or f"lc_{int(frontend_id)}"),
-            str(doc.get("required_time") or ""),
+            str(solution_variants.get("required_time") or ""),
         )
         checks = {
             "doc": doc,
@@ -293,12 +389,13 @@ def build_report() -> dict[str, Any]:
             "benchmarks": benchmark,
             "complexity_certificate": certificate,
             "complexity": _complexity_status(benchmark, certificate),
+            "solution_variants": solution_variants,
             "optimal_solution": _solution_status(package, metadata),
             "leetcode_submission": _submission_status(package, metadata),
         }
         local_complete = all(
             checks[name]["complete"]
-            for name in ("doc", "cases", "complexity", "optimal_solution")
+            for name in ("doc", "cases", "complexity", "solution_variants", "optimal_solution")
         )
         complete = local_complete and checks["leetcode_submission"]["complete"]
         blocker = blockers.get(frontend_id)
@@ -328,6 +425,14 @@ def build_report() -> dict[str, Any]:
         entry["checks"]["complexity_certificate"]["complete"] for entry in entries
     )
     counts["complexity_complete"] = sum(entry["checks"]["complexity"]["complete"] for entry in entries)
+    counts["solution_variant_packages"] = sum(
+        entry["checks"]["solution_variants"]["configured"] for entry in entries
+    )
+    counts["solution_variant_packages_complete"] = sum(
+        entry["checks"]["solution_variants"]["configured"]
+        and entry["checks"]["solution_variants"]["complete"]
+        for entry in entries
+    )
     first_incomplete = next((entry for entry in entries if not entry["complete"] and not entry["blocked"]), None)
     return {
         "schema_version": 1,
@@ -358,7 +463,7 @@ def _write_report(report: dict[str, Any]) -> None:
         "",
         "## Completion criteria",
         "",
-        "A package is locally complete only when its canonical document (including a source-like Goal narrative of at least two paragraphs and 60 words), visible/hidden cases, complexity verification, and optimal app-local solution pass the audit. Complexity verification normally requires exactly three ordered benchmark tiers; a strictly validated `complexity_certificate.json` replaces scaling only when the legal source domain cannot support an honest scaling verdict. Full completion additionally requires an exact platform-native source recorded as remotely Accepted in `submission.json`.",
+        "A package is locally complete only when its shared canonical document (including a source-like Goal narrative of at least two paragraphs and 60 words), visible/hidden cases, complexity verification, optimal app-local solution, and mandatory Optimal-first branch topology pass the audit. Every published non-default branch must satisfy the Elo policy where applicable, keep its approach and sources separated, and carry exact Accepted evidence. Complexity verification normally requires exactly three ordered benchmark tiers; a strictly validated `complexity_certificate.json` replaces scaling only when the legal source domain cannot support an honest scaling verdict. Full completion additionally requires the exact platform-native Optimal source to be recorded as remotely Accepted in `variants/optimal/submission.json`.",
         "",
         "## Counts",
         "",

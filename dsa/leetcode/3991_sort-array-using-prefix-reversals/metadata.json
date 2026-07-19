@@ -24,6 +24,10 @@
   ],
   "primary_language": "python",
   "runnable_in_coden": true,
+  "solution_variants": {
+    "manifest": "solution_variants.json",
+    "default": "optimal"
+  },
   "subsets": [
     "leetcode_all",
     "leetcode_category:algorithms"

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1452",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for People Whose List of Favorite Companies Is Not a Subset of Another List and meets the required complexity bound.",
+      "time_complexity": "O(P^2C)",
+      "space_complexity": "O(PC)"
+    }
+  ]
+}

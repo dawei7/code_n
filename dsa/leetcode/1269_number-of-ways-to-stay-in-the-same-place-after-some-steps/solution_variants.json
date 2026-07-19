@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1269",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Number of Ways to Stay in the Same Place After Some Steps and meets the required complexity bound.",
+      "time_complexity": "O(\\texttt{steps}\\,w)",
+      "space_complexity": "O(w)"
+    }
+  ]
+}

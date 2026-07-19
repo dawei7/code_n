@@ -20,8 +20,10 @@ from engine.special_environments import category_is_runnable, starter_source as 
 from challenges.spec import AlgorithmSpec, Sample
 from server.app.challenge_packages import (
     iter_leetcode_doc_paths,
+    leetcode_cases_path,
     leetcode_metadata,
     leetcode_package_id,
+    leetcode_solution_variant_complexity,
     leetcode_solution_path,
 )
 from server.app.config import LEETCODE_ROOT
@@ -318,7 +320,12 @@ def _inputs(text: str) -> list[tuple[str, str]]:
         stripped = line.strip()
         if not stripped.startswith("-"):
             continue
-        match = re.match(r"-\s*`?([A-Za-z_][A-Za-z0-9_]*)`?\s*:?\s*(.*)", stripped)
+        # Only explicitly formatted contract entries are parameters. Constraint
+        # bullets such as "- Every value ..." are prose, not function inputs.
+        match = re.match(
+            r"-\s*`([A-Za-z_][A-Za-z0-9_]*)`\s*:\s*(.*)",
+            stripped,
+        )
         if match:
             name, doc = match.groups()
             inputs.append((name, doc.strip() or "Input value."))
@@ -335,12 +342,89 @@ def _safe_param_name(name: str) -> str:
     return cleaned
 
 
-def _normalize_sample_input_names(raw: str) -> str:
-    return re.sub(
-        r"\b([A-Za-z_][A-Za-z0-9_]*)\s*=",
-        lambda match: f"{_safe_param_name(match.group(1))} =",
-        raw,
+def _solution_contract_params(doc_path: Path) -> list[str] | None:
+    """Read the app-local ``solve(...)`` signature when one is authored."""
+
+    challenge_id = leetcode_package_id(doc_path.parent)
+    solution_path = leetcode_solution_path(challenge_id, "python") if challenge_id else None
+    if solution_path is None or not solution_path.is_file():
+        return None
+    try:
+        tree = ast.parse(solution_path.read_text(encoding="utf-8"))
+    except (OSError, SyntaxError):
+        return None
+
+    solve = next(
+        (
+            node
+            for node in tree.body
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+            and node.name == "solve"
+        ),
+        None,
     )
+    if solve is None or solve.args.vararg is not None or solve.args.kwarg is not None:
+        return None
+    if solve.args.kwonlyargs:
+        return None
+
+    params = [arg.arg for arg in (*solve.args.posonlyargs, *solve.args.args)]
+    if len(params) != len(set(params)) or any(
+        not name.isidentifier() or keyword.iskeyword(name)
+        for name in params
+    ):
+        return None
+    return params
+
+
+def _case_contract_params(doc_path: Path) -> list[str] | None:
+    """Read ordered input names from the first authored validated case."""
+
+    challenge_id = leetcode_package_id(doc_path.parent)
+    cases_path = leetcode_cases_path(challenge_id) if challenge_id else None
+    if cases_path is None or not cases_path.is_file():
+        return None
+    try:
+        payload = json.loads(cases_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+
+    cases = payload.get("cases")
+    if not isinstance(cases, list):
+        return None
+    for case in cases:
+        inputs = case.get("input") if isinstance(case, dict) else None
+        if not isinstance(inputs, dict):
+            continue
+        params = [str(name) for name in inputs]
+        if len(params) != len(set(params)) or any(
+            not name.isidentifier() or keyword.iskeyword(name)
+            for name in params
+        ):
+            return None
+        return params
+    return None
+
+
+def _contract_params(
+    doc_path: Path,
+    documented_inputs: list[tuple[str, str]],
+) -> list[str]:
+    """Choose parameter names from executable artifacts, never prose bullets."""
+
+    solution_params = _solution_contract_params(doc_path)
+    if solution_params is not None:
+        return solution_params
+    case_params = _case_contract_params(doc_path)
+    if case_params is not None:
+        return case_params
+    return [_safe_param_name(name) for name, _doc in documented_inputs]
+
+
+def _normalize_sample_input_names(raw: str) -> str:
+    # Preserve executable contract spelling such as ``numRows``. The app-local
+    # solve signature and validated cases, not prose normalization, own names.
+    return raw
 
 
 def _return_value(text: str) -> str:
@@ -430,19 +514,24 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
     frontend_id = _read_field(text, "Frontend ID")
     if not title_match or not frontend_id:
         return None
+    challenge_id = f"lc_{frontend_id}"
  
     slug, url = _read_link_slug_and_url(text)
     inputs = _inputs(text)
-    params = []
-    input_docs = {}
-    seen_params: set[str] = set()
-    for raw_name, doc in inputs:
-        name = _safe_param_name(raw_name)
-        if name in seen_params:
-            continue
-        seen_params.add(name)
-        params.append(name)
-        input_docs[name] = doc
+    params = _contract_params(path, inputs)
+    documented_by_name = {name: doc for name, doc in inputs}
+    documented_by_normalized_name = {
+        _safe_param_name(name): doc
+        for name, doc in inputs
+    }
+    input_docs = {
+        name: (
+            documented_by_name.get(name)
+            or documented_by_normalized_name.get(_safe_param_name(name))
+            or "Input value."
+        )
+        for name in params
+    }
     if not params:
         params = ["value"]
         input_docs = {"value": "Input value."}
@@ -513,7 +602,12 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
         if runnable_in_coden
         else _noop_source(params)
     )
-    required_complexity = _parse_complexity(text) if runnable_in_coden else ComplexityClass.UNKNOWN
+    time_complexity, _space_complexity = leetcode_solution_variant_complexity(challenge_id)
+    required_complexity = (
+        _parse_complexity(f"- **Time:** ${time_complexity}$")
+        if runnable_in_coden
+        else ComplexityClass.UNKNOWN
+    )
     hint = (
         "Use the Reference tab for the problem statement and algorithm outline."
         if runnable_in_coden
@@ -529,7 +623,7 @@ def _build_spec(path: Path) -> AlgorithmSpec | None:
         starter_sources = {"python": source}
 
     return AlgorithmSpec(
-        id=f"lc_{frontend_id}",
+        id=challenge_id,
         name=title_match.group(1).strip(),
         category=category,
         required_complexity=required_complexity,

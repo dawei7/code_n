@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1240",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Tiling a Rectangle with the Fewest Squares and meets the required complexity bound.",
+      "time_complexity": "O\\left(wh(h+1)^w\\right)",
+      "space_complexity": "O\\left((h+1)^w\\right)"
+    }
+  ]
+}

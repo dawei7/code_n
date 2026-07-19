@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1009",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Complement of Base 10 Integer and meets the required complexity bound.",
+      "time_complexity": "O(B)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

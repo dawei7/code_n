@@ -29,6 +29,7 @@ LEETCODE_ROOT = REPO_ROOT / "dsa" / "leetcode"
 INDEX_PATH = LEETCODE_ROOT / "index.json"
 SUBSETS_PATH = LEETCODE_ROOT / "subsets.json"
 TEMPLATE_PATH = LEETCODE_ROOT / "_template.md"
+APPROACH_TEMPLATE_PATH = LEETCODE_ROOT / "_approach_template.md"
 COOKIE_PATH = LEETCODE_ROOT / "_local" / ".leetcode_cookie"
 REPORT_PATH = LEETCODE_ROOT / "_reports" / "sync_report.json"
 GRAPHQL_URL = "https://leetcode.com/graphql"
@@ -276,6 +277,10 @@ def metadata_for_question(question: dict[str, Any]) -> dict[str, Any]:
         "supported_languages": question["supported_languages"],
         "primary_language": question["primary_language"],
         "runnable_in_coden": question["runnable_in_coden"],
+        "solution_variants": {
+            "manifest": "solution_variants.json",
+            "default": "optimal",
+        },
         "subsets": sorted(set(subsets)),
         "tags": sorted(set(tags)),
     }
@@ -313,6 +318,8 @@ def write_package(question: dict[str, Any], metadata: dict[str, Any], *, scaffol
         metadata["company_tag_stats"] = existing["company_tag_stats"]
     if isinstance(existing.get("study_plans"), list):
         metadata["study_plans"] = existing["study_plans"]
+    if isinstance(existing.get("solution_variants"), dict):
+        metadata["solution_variants"] = existing["solution_variants"]
     if isinstance(existing.get("neetcode_subsets"), list):
         metadata["neetcode_subsets"] = existing["neetcode_subsets"]
         neetcode_subset_tokens = {
@@ -338,10 +345,46 @@ def write_package(question: dict[str, Any], metadata: dict[str, Any], *, scaffol
             metadata[field] = existing[field]
     metadata_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
+    variants_path = directory / "solution_variants.json"
+    if not variants_path.is_file():
+        variants_path.write_text(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "challenge_id": f"lc_{question['frontend_id']}",
+                    "default_variant": "optimal",
+                    "variants": [
+                        {
+                            "id": "optimal",
+                            "label": "Optimal",
+                            "kind": "optimal",
+                            "directory": "variants/optimal",
+                            "summary": (
+                                f"Uses the canonical optimal approach for {question['title']} "
+                                "and meets the required complexity bound."
+                            ),
+                            "time_complexity": "O(...)",
+                            "space_complexity": "O(...)",
+                        }
+                    ],
+                },
+                indent=2,
+                ensure_ascii=False,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+
     doc_path = directory / "doc.md"
     if scaffold_docs and not doc_path.exists():
         template = TEMPLATE_PATH.read_text(encoding="utf-8")
         doc_path.write_text(render_doc(question, template), encoding="utf-8")
+        approach_path = directory / "variants" / "optimal" / "approach.md"
+        approach_path.parent.mkdir(parents=True, exist_ok=True)
+        approach_path.write_text(
+            APPROACH_TEMPLATE_PATH.read_text(encoding="utf-8"),
+            encoding="utf-8",
+        )
         return "created"
     return "preserved" if doc_path.exists() else "missing"
 

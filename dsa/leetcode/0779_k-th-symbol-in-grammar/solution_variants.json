@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_779",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for K-th Symbol in Grammar and meets the required complexity bound.",
+      "time_complexity": "O(\\log k)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

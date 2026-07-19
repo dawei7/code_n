@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_605",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Can Place Flowers and meets the required complexity bound.",
+      "time_complexity": "O(m)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

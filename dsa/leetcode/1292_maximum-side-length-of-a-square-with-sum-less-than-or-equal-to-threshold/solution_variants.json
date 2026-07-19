@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1292",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Maximum Side Length of a Square with Sum Less than or Equal to Threshold and meets the required complexity bound.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(mn)"
+    }
+  ]
+}

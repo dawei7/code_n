@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1771",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Maximize Palindrome Length From Subsequences and meets the required complexity bound.",
+      "time_complexity": "O(L^2)",
+      "space_complexity": "O(L)"
+    }
+  ]
+}

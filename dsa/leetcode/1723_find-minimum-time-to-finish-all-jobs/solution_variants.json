@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1723",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Find Minimum Time to Finish All Jobs and meets the required complexity bound.",
+      "time_complexity": "O(k^n)",
+      "space_complexity": "O(k+n)"
+    }
+  ]
+}

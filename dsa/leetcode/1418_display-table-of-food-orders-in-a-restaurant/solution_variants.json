@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1418",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Display Table of Food Orders in a Restaurant and meets the required complexity bound.",
+      "time_complexity": "O(N + F\\log F + T\\log T + TF)",
+      "space_complexity": "O(N + TF)"
+    }
+  ]
+}

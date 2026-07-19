@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1728",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Cat and Mouse II and meets the required complexity bound.",
+      "time_complexity": "O(V^2D)",
+      "space_complexity": "O(V^2+VD)"
+    }
+  ]
+}

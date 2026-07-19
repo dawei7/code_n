@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_464",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Can I Win and meets the required complexity bound.",
+      "time_complexity": "O(m \\cdot 2^m)",
+      "space_complexity": "O(2^m)"
+    }
+  ]
+}

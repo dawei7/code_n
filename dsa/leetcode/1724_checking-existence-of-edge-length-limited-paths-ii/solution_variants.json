@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1724",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Checking Existence of Edge Length Limited Paths II and meets the required complexity bound.",
+      "time_complexity": "O(m\\log m+n\\log n+q\\log n)",
+      "space_complexity": "O(n\\log n)"
+    }
+  ]
+}

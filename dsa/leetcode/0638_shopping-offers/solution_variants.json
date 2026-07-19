@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_638",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Shopping Offers and meets the required complexity bound.",
+      "time_complexity": "O(SM \\cdot \\prod(needs_i + 1))",
+      "space_complexity": "O(M \\cdot \\prod(needs_i + 1))"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_216",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Combination Sum III and meets the required complexity bound.",
+      "time_complexity": "O(C(9,k)k)",
+      "space_complexity": "O(k)"
+    }
+  ]
+}

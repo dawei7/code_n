@@ -18,6 +18,10 @@
   ],
   "primary_language": "javascript",
   "runnable_in_coden": false,
+  "solution_variants": {
+    "manifest": "solution_variants.json",
+    "default": "optimal"
+  },
   "subsets": [
     "leetcode_all",
     "leetcode_category:javascript"

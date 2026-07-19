@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_170",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses the canonical optimal approach for Two Sum III - Data structure design and meets the required complexity bound.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}
