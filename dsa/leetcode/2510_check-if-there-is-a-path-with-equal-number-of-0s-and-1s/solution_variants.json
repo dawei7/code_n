@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Check if There is a Path With Equal Number of 0's And 1's and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses rolling dynamic-programming sets to retain every reachable count of ones at each cell.",
+      "time_complexity": "O(rc(r + c))",
+      "space_complexity": "O(c(r + c))"
     }
   ]
 }

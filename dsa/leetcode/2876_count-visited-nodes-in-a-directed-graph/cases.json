@@ -1,0 +1,173 @@
+{
+  "challenge_id": "lc_2876",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one tail enters a three-node cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          1,
+          2,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "sample",
+        "tail-and-cycle"
+      ],
+      "expected": [
+        3,
+        3,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: every node belongs to one cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          1,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      "tags": [
+        "sample",
+        "single-cycle"
+      ],
+      "expected": [
+        5,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "id": "trial-chain-into-cycle",
+      "name": "trial: a two-node chain enters a three-node cycle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          1,
+          2,
+          3,
+          4,
+          2
+        ]
+      },
+      "tags": [
+        "trial",
+        "chain"
+      ],
+      "expected": [
+        5,
+        4,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "id": "trial-two-components",
+      "name": "trial: separate cycles have independent incoming tails",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          1,
+          0,
+          3,
+          2,
+          1,
+          4,
+          3
+        ]
+      },
+      "tags": [
+        "trial",
+        "multiple-cycles"
+      ],
+      "expected": [
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        3
+      ]
+    },
+    {
+      "id": "real-branching-tails",
+      "name": "hidden: multiple tails merge before a shared cycle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          1,
+          2,
+          0,
+          2,
+          2,
+          3
+        ]
+      },
+      "tags": [
+        "hidden",
+        "merging-paths"
+      ],
+      "expected": [
+        3,
+        3,
+        3,
+        4,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "real-two-cycles-with-depths",
+      "name": "hidden: unequal cycles and tail depths coexist",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          1,
+          2,
+          0,
+          4,
+          3,
+          0,
+          5,
+          4,
+          7
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiple-components"
+      ],
+      "expected": [
+        3,
+        3,
+        3,
+        2,
+        2,
+        4,
+        5,
+        3,
+        4
+      ]
+    }
+  ]
+}

@@ -8,74 +8,57 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-distances-between-same-letters](https://leetcode.com/problems/check-distances-between-same-letters/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-distances-between-same-letters/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-distances-between-same-letters/).
 
 ### Goal
-Determine if every character in a given string appears exactly twice, and if the number of characters between the two occurrences of each character matches a specified distance provided in an integer array.
+
+You are given a 0-indexed lowercase string `s` in which every letter that
+appears occurs exactly twice. You also receive a 26-element array `distance`;
+index 0 corresponds to `a`, index 1 to `b`, and so on through `z`.
+
+The string is well-spaced when, for every letter present in `s`, the number of
+string positions strictly between its two occurrences equals that letter's
+entry in `distance`. Entries belonging to letters absent from `s` have no
+effect and must be ignored. Return whether all present letters satisfy their
+individual requirements.
 
 ### Function Contract
+
 **Inputs**
 
-- `s`: A string consisting of lowercase English letters where each letter appears exactly twice.
-- `distance`: A list of 26 integers where `distance[i]` represents the required number of characters between the two occurrences of the i-th letter of the alphabet.
+- `s`: A lowercase string of length $n$, where $2 \le n \le 52$ and every
+  present letter occurs exactly twice.
+- `distance`: A list of exactly 26 integers, each between 0 and 50 inclusive.
 
 **Return value**
 
-- `bool`: Returns `True` if all characters satisfy their respective distance requirements, otherwise `False`.
+Return `True` if, for every letter at alphabet index $c$ with occurrence
+positions $p_c<q_c$, the equality
+$q_c-p_c-1=\texttt{distance[c]}$ holds. Return `False` if any present letter
+violates it.
 
 ### Examples
+
 **Example 1**
 
-- Input: `s = "abaccb"`, `distance = [1, 3, 0, 5, 0, 0, ...]`
+- Input: `s = "abaccb"`,
+  `distance = [1,3,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]`
 - Output: `True`
+- Explanation: The two `a`, `b`, and `c` occurrences have respectively 1, 3,
+  and 0 characters between them. The value for absent `d` is ignored.
 
 **Example 2**
 
-- Input: `s = "aa"`, `distance = [0, 0, ...]`
-- Output: `True`
+- Input: `s = "aa"`,
+  `distance = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]`
+- Output: `False`
+- Explanation: Adjacent occurrences have distance zero, not one.
 
 **Example 3**
 
-- Input: `s = "abcba"`, `distance = [1, 0, 0, 0, ...]`
-- Output: `False`
-
----
-
-## Solution
-### Approach
-The problem is solved using a Hash Table (or a fixed-size array of size 26) to track the first occurrence index of each character. By iterating through the string once, we can calculate the distance between the current index and the stored first index, then compare it against the provided `distance` array.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the string `s`. We traverse the string exactly once.
-- **Space Complexity**: `O(1)`, as the auxiliary storage (the distance array or a tracking map) is bounded by the constant size of the alphabet (26).
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(s: str, distance: list[int]) -> bool:
-    # Store the first occurrence index of each character
-    first_occurrence = {}
-
-    for current_index, char in enumerate(s):
-        char_code = ord(char) - ord('a')
-
-        if char in first_occurrence:
-            # Calculate distance: number of characters between the two occurrences
-            # Distance = (current_index - first_index - 1)
-            prev_index = first_occurrence[char]
-            actual_distance = current_index - prev_index - 1
-
-            if actual_distance != distance[char_code]:
-                return False
-        else:
-            # Record the first time we see the character
-            first_occurrence[char] = current_index
-
-    return True
-```
-</details>
+- Input: `s = "aa"`,
+  `distance = [0,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50]`
+- Output: `True`
+- Explanation: Only `a` appears, so every other entry is irrelevant.

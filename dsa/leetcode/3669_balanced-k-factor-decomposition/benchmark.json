@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3669",
+  "cases": [
+    {
+      "id": "benchmark-fourth-power-256",
+      "name": "benchmark: decompose 256 into four equal factors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "n": 256,
+        "k": 4
+      },
+      "expected": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "benchmark",
+        "fourth-power",
+        "divisor-search",
+        "n-256"
+      ]
+    },
+    {
+      "id": "benchmark-fourth-power-4096",
+      "name": "benchmark: decompose 4096 into four equal factors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {
+        "n": 4096,
+        "k": 4
+      },
+      "expected": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "benchmark",
+        "fourth-power",
+        "divisor-search",
+        "n-4096"
+      ]
+    },
+    {
+      "id": "benchmark-fourth-power-65536",
+      "name": "benchmark: decompose 65536 into four equal factors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 65536,
+      "input": {
+        "n": 65536,
+        "k": 4
+      },
+      "expected": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "benchmark",
+        "fourth-power",
+        "divisor-search",
+        "n-65536"
+      ]
+    }
+  ]
+}

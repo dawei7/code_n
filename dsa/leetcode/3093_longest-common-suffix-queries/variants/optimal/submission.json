@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3398",
+  "frontend_id": "3093",
+  "title_slug": "longest-common-suffix-queries",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.stringIndices",
+  "verified_submission_id": "2079224953",
+  "verified_at": "2026-07-24T08:48:00+02:00"
+}

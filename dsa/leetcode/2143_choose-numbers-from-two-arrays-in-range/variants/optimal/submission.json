@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2282",
+  "frontend_id": "2143",
+  "title_slug": "choose-numbers-from-two-arrays-in-range",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countSubranges",
+  "verified_submission_id": "2073474228",
+  "verified_at": "2026-07-19T12:57:14.970729+00:00"
+}

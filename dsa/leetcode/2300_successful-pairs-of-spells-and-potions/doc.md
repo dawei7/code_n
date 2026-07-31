@@ -5,27 +5,35 @@
 | Source | LeetCode |
 | Frontend ID | 2300 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Two Pointers, Binary Search, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [successful-pairs-of-spells-and-potions](https://leetcode.com/problems/successful-pairs-of-spells-and-potions/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/successful-pairs-of-spells-and-potions/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/successful-pairs-of-spells-and-potions/).
-
 ### Goal
-For each spell, count potions whose product with that spell is at least `success`.
+The positive integer arrays `spells` and `potions` describe the strengths of
+$n$ spells and $m$ potions. Pairing spell `spells[i]` with potion
+`potions[j]` is successful when their product is at least `success`.
+
+For every spell in its original order, count how many potions form a
+successful pair. Potions are considered independently for each spell and may
+contribute to several output counts.
+
+Return the $n$ counts aligned with `spells`.
 
 ### Function Contract
 **Inputs**
 
-- `spells`: positive spell strengths.
-- `potions`: positive potion strengths.
-- `success`: the minimum successful product.
+- `spells`: An array of $n$ positive spell strengths.
+- `potions`: An array of $m$ positive potion strengths.
+- `success`: The inclusive minimum product for a successful pair.
+
+The contract guarantees $1 \le n,m \le 10^5$, each strength is from 1 through
+$10^5$, and $1 \le \texttt{success} \le 10^{10}$.
 
 **Return value**
 
-One successful-potion count for each spell in its original order.
+An integer array where position $i$ contains the number of potions $p$ for
+which $\texttt{spells}[i]\cdot p \ge \texttt{success}$.
 
 ### Examples
 **Example 1**
@@ -37,21 +45,3 @@ One successful-potion count for each spell in its original order.
 
 - Input: `spells = [3, 1, 2]`, `potions = [8, 5, 8]`, `success = 16`
 - Output: `[2, 0, 2]`
-
-**Example 3**
-
-- Input: `spells = [10]`, `potions = [1, 2]`, `success = 10`
-- Output: `[2]`
-
----
-
-## Solution
-### Approach
-Sort potions. For spell `s`, binary-search the first potion at least `ceil(success / s)`; every potion from that position onward succeeds. Subtract the insertion index from the potion count.
-
-### Complexity Analysis
-- **Time Complexity**: `O(m log m + n log m)`
-- **Space Complexity**: `O(1)` auxiliary space when sorting potions in place
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

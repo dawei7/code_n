@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [smallest-absent-positive-greater-than-average](https://leetcode.com/problems/smallest-absent-positive-greater-than-average/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/smallest-absent-positive-greater-than-average/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/smallest-absent-positive-greater-than-average/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given an integer array `nums`, compute its arithmetic average as the sum of all elements divided by the array length. Find the smallest positive integer that is both strictly greater than this average and absent from `nums`.
+
+The comparison uses the exact average rather than a rounded value. Array elements may be negative or repeated, while the returned value must always be positive.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: a non-empty list of $n$ integers, where $1\le n\le100$ and $-100\le\texttt{nums[i]}\le100$.
 
 **Return value**
 
-TODO
+Return the smallest positive integer not appearing in `nums` whose value is strictly greater than the array average.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 5]`
+- Output: `6`
+
+The average is 4. Integer 5 is greater than the average but is present, so 6 is the first valid value.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [-1, 1, 2]`
+- Output: `3`
+
+The average is $2/3$; positive integers 1 and 2 are present, making 3 the first absent choice.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, -1]`
+- Output: `2`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The average is $3/2$, and 2 is absent and strictly larger.

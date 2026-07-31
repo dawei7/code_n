@@ -1,30 +1,18 @@
 def solve(nums: list[int]) -> list[int]:
-    n = len(nums)
-    res = [-1] * n
+    answer = [-1] * len(nums)
+    waiting_first = []
+    waiting_second = []
 
-    # stack1 stores indices of elements waiting for their first greater element.
-    # It is kept in decreasing order of values.
-    stack1 = []
+    for index, value in enumerate(nums):
+        while waiting_second and nums[waiting_second[-1]] < value:
+            answer[waiting_second.pop()] = value
 
-    # stack2 stores indices that have found their first greater element and
-    # are now waiting for their second greater element.
-    stack2 = []
+        moved = []
+        while waiting_first and nums[waiting_first[-1]] < value:
+            moved.append(waiting_first.pop())
+        while moved:
+            waiting_second.append(moved.pop())
 
-    for i, num in enumerate(nums):
-        # Current element is the second greater element for elements in stack2
-        # that are smaller than num.
-        while stack2 and nums[stack2[-1]] < num:
-            res[stack2.pop()] = num
+        waiting_first.append(index)
 
-        # Current element is the first greater element for elements in stack1
-        # that are smaller than nums[i]. Move them to stack2.
-        temp = []
-        while stack1 and nums[stack1[-1]] < num:
-            temp.append(stack1.pop())
-
-        while temp:
-            stack2.append(temp.pop())
-
-        stack1.append(i)
-
-    return res
+    return answer

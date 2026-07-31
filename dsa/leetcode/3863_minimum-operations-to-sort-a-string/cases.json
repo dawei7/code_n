@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3863",
+  "cases": [
+    {
+      "id": "sample-one-operation",
+      "name": "sample: sorting a proper suffix finishes the string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "dog"
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-operation",
+        "proper-suffix"
+      ]
+    },
+    {
+      "id": "sample-two-operations",
+      "name": "sample: two proper substring sorts are required",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "card"
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "two-operations",
+        "proper-substring"
+      ]
+    },
+    {
+      "id": "sample-impossible-pair",
+      "name": "sample: descending pair cannot change",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "gf"
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "impossible",
+        "length-two"
+      ]
+    },
+    {
+      "id": "trial-already-sorted",
+      "name": "trial: non-descending string needs no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "already-sorted",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character is already sorted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-character",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: equal letters are non-descending",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "equal-letters",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "real-minimum-first",
+      "name": "hidden: leading minimum permits one suffix sort",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "acb"
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "minimum-first",
+        "one-operation"
+      ]
+    },
+    {
+      "id": "real-maximum-last",
+      "name": "hidden: trailing maximum permits one prefix sort",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "bac"
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-last",
+        "one-operation"
+      ]
+    },
+    {
+      "id": "real-other-descending-pair",
+      "name": "hidden: every descending pair is impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ba"
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "descending-pair",
+        "negative-one"
+      ]
+    },
+    {
+      "id": "real-three-operations",
+      "name": "hidden: unique extremes occupy opposite endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "edc"
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "three-operations",
+        "unique-extremes"
+      ]
+    },
+    {
+      "id": "real-repeated-minimum",
+      "name": "hidden: repeated trailing minimum reduces answer to two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "jgg"
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "repeated-minimum",
+        "two-operations"
+      ]
+    },
+    {
+      "id": "real-minimum-in-prefix",
+      "name": "hidden: a minimum in a proper prefix enables two moves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "caba"
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "proper-prefix",
+        "two-operations"
+      ]
+    },
+    {
+      "id": "real-longer-three-operation",
+      "name": "hidden: longer reverse string retains unique endpoint extremes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "dcba"
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "unique-extremes",
+        "three-operations"
+      ]
+    }
+  ]
+}

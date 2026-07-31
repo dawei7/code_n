@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-two-operations",
-      "name": "sample: two prefix removals leave distinct suffix",
+      "name": "sample: two prefix removals leave a distinct suffix",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -22,12 +22,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "suffix-distinct"
+        "suffix"
       ]
     },
     {
       "id": "sample-remove-all",
-      "name": "sample: final operation removes the remaining duplicate array",
+      "name": "sample: the second operation empties the array",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -42,12 +42,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "prefix-removal"
+        "empty"
       ]
     },
     {
       "id": "sample-already-distinct",
-      "name": "sample: already distinct requires zero operations",
+      "name": "sample: no operation is necessary",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -65,8 +65,62 @@
       ]
     },
     {
+      "id": "trial-single-value",
+      "name": "trial: one value is already distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-equal-values",
+      "name": "trial: one operation removes a short duplicate array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "short-array"
+      ]
+    },
+    {
+      "id": "trial-first-block-contains-duplicate",
+      "name": "trial: removing the first block resolves the only duplicate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "block-boundary"
+      ]
+    },
+    {
       "id": "trial-tail-duplicate",
-      "name": "trial: duplicate in final suffix forces one more operation",
+      "name": "trial: a duplicate in the last block forces another operation",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -81,13 +135,13 @@
       },
       "expected": 2,
       "tags": [
-        "regression",
-        "suffix-distinct"
+        "edge",
+        "suffix"
       ]
     },
     {
-      "id": "real-many-prefix-removals",
-      "name": "real: distinct suffix begins late",
+      "id": "real-distinct-suffix-begins-late",
+      "name": "real: several duplicate pairs disappear after two operations",
       "kind": "real",
       "visible": false,
       "input": {
@@ -108,6 +162,122 @@
       "tags": [
         "real",
         "prefix-removal"
+      ]
+    },
+    {
+      "id": "real-maximum-all-equal",
+      "name": "real: maximum length leaves one value after thirty-three operations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "expected": 33,
+      "tags": [
+        "real",
+        "maximum-length",
+        "all-equal"
       ]
     }
   ]

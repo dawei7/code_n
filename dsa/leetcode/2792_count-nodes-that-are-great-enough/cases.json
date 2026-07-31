@@ -1,0 +1,232 @@
+{
+  "challenge_id": "lc_2792",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: three internal nodes exceed two descendants",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "balanced"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: increasing child values yield no qualifying node",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: root exceeds two equal children",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          3,
+          2,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "strict-comparison"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: one node has no smaller descendant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "trial: equal descendants do not count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          3,
+          3,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-descending-chain",
+      "name": "trial: two ancestors exceed two descendants",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          4,
+          3,
+          null,
+          2,
+          null,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "skewed-tree"
+      ]
+    },
+    {
+      "id": "real-smaller-grandchild",
+      "name": "hidden: a smaller grandchild qualifies two ancestors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          5,
+          4,
+          6,
+          null,
+          null,
+          1,
+          7
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "grandchild"
+      ]
+    },
+    {
+      "id": "real-balanced-k-three",
+      "name": "hidden: only the root has three smaller values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          10,
+          5,
+          15,
+          1,
+          8,
+          12,
+          20
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "bounded-summary"
+      ]
+    },
+    {
+      "id": "real-maximum-k",
+      "name": "hidden: maximum k is met only by the large root",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          100,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "k": 10
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "maximum-k"
+      ]
+    },
+    {
+      "id": "real-descending-complete",
+      "name": "hidden: several complete-tree ancestors qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          15,
+          14,
+          13,
+          12,
+          11,
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "complete-tree"
+      ]
+    }
+  ]
+}

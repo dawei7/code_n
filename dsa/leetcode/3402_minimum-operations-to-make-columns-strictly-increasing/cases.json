@@ -6,143 +6,81 @@
       "name": "sample: two columns need fifteen increments",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            3,
-            2
-          ],
-          [
-            1,
-            3
-          ],
-          [
-            3,
-            4
-          ],
-          [
-            0,
-            1
-          ]
-        ]
-      },
+      "input": {"grid": [[3, 2], [1, 3], [3, 4], [0, 1]]},
       "expected": 15,
-      "tags": [
-        "sample",
-        "columns"
-      ]
+      "tags": ["sample", "columns"]
     },
     {
       "id": "sample-three-columns",
       "name": "sample: three columns need twelve increments",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            3,
-            2,
-            1
-          ],
-          [
-            2,
-            1,
-            0
-          ],
-          [
-            1,
-            2,
-            3
-          ]
-        ]
-      },
+      "input": {"grid": [[3, 2, 1], [2, 1, 0], [1, 2, 3]]},
       "expected": 12,
-      "tags": [
-        "sample",
-        "columns"
-      ]
+      "tags": ["sample", "columns"]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: a single cell needs no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0]]},
+      "expected": 0,
+      "tags": ["edge", "single-cell"]
     },
     {
       "id": "trial-single-row",
-      "name": "trial: one row is already strictly increasing by column",
+      "name": "trial: every one-cell column is already valid",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            5,
-            0,
-            7
-          ]
-        ]
-      },
+      "input": {"grid": [[5, 0, 7]]},
       "expected": 0,
-      "tags": [
-        "edge",
-        "single-row"
-      ]
+      "tags": ["edge", "single-row"]
     },
     {
       "id": "trial-already-increasing",
-      "name": "trial: no increments needed",
+      "name": "trial: no increments are needed",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            0,
-            1
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            4,
-            5
-          ]
-        ]
-      },
+      "input": {"grid": [[0, 1], [2, 3], [4, 5]]},
       "expected": 0,
-      "tags": [
-        "edge",
-        "already-valid"
-      ]
+      "tags": ["edge", "already-valid"]
     },
     {
-      "id": "real-flat-columns",
-      "name": "real: flat columns accumulate increasing increments",
+      "id": "trial-flat-columns",
+      "name": "trial: flat columns accumulate triangular costs",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[2, 2, 2], [2, 2, 2], [2, 2, 2], [2, 2, 2]]},
+      "expected": 18,
+      "tags": ["equal-values", "cascade"]
+    },
+    {
+      "id": "real-adjusted-predecessor-cascade",
+      "name": "real: comparisons use the adjusted predecessor",
       "kind": "real",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            2,
-            2,
-            2
-          ],
-          [
-            2,
-            2,
-            2
-          ],
-          [
-            2,
-            2,
-            2
-          ],
-          [
-            2,
-            2,
-            2
-          ]
-        ]
-      },
-      "expected": 18,
-      "tags": [
-        "real",
-        "columns"
-      ]
+      "input": {"grid": [[5], [0], [4], [4]]},
+      "expected": 13,
+      "tags": ["real", "cascade"]
+    },
+    {
+      "id": "real-independent-columns",
+      "name": "real: columns contribute independent costs",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[0, 10], [0, 0], [0, 20]]},
+      "expected": 14,
+      "tags": ["real", "columns"]
+    },
+    {
+      "id": "real-near-input-maximum",
+      "name": "real: final values may exceed the input bound",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[2499], [2499], [2499]]},
+      "expected": 3,
+      "tags": ["real", "boundary"]
     }
   ]
 }

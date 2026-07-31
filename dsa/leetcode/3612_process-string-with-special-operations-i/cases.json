@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3612",
+  "cases": [
+    {
+      "id": "sample-mixed-operations",
+      "name": "sample: append duplicate reverse and remove",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "a#b%*"
+      },
+      "expected": "ba",
+      "tags": [
+        "sample",
+        "mixed-operations"
+      ]
+    },
+    {
+      "id": "sample-empty-duplication",
+      "name": "sample: remove the only letter then duplicate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "z*#"
+      },
+      "expected": "",
+      "tags": [
+        "sample",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-duplicate-reversed",
+      "name": "trial: duplicate a logically reversed result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab%#"
+      },
+      "expected": "baba",
+      "tags": [
+        "trial",
+        "reverse",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "trial-single-letter",
+      "name": "trial: one ordinary letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "q"
+      },
+      "expected": "q",
+      "tags": [
+        "trial",
+        "single-letter"
+      ]
+    },
+    {
+      "id": "trial-leading-removals",
+      "name": "trial: removals from empty have no effect",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "***a"
+      },
+      "expected": "a",
+      "tags": [
+        "trial",
+        "empty-result",
+        "remove"
+      ]
+    },
+    {
+      "id": "trial-empty-special-operations",
+      "name": "trial: every operation acts on an empty result",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "*#%%"
+      },
+      "expected": "",
+      "tags": [
+        "trial",
+        "empty-result",
+        "special-only"
+      ]
+    },
+    {
+      "id": "trial-append-while-reversed",
+      "name": "trial: append at the logical end while reversed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab%c"
+      },
+      "expected": "bac",
+      "tags": [
+        "trial",
+        "reverse",
+        "append"
+      ]
+    },
+    {
+      "id": "trial-remove-while-reversed",
+      "name": "trial: remove the logical end while reversed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc%*"
+      },
+      "expected": "cb",
+      "tags": [
+        "trial",
+        "reverse",
+        "remove"
+      ]
+    },
+    {
+      "id": "real-double-reversal",
+      "name": "hidden: two reversals restore the order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abc%%"
+      },
+      "expected": "abc",
+      "tags": [
+        "hidden",
+        "reverse"
+      ]
+    },
+    {
+      "id": "real-delete-after-duplicates",
+      "name": "hidden: removals follow two duplications",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ab##***"
+      },
+      "expected": "ababa",
+      "tags": [
+        "hidden",
+        "duplicate",
+        "remove"
+      ]
+    },
+    {
+      "id": "real-interleaved-sequence",
+      "name": "hidden: interleave all special operations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ab#%c*d#%"
+      },
+      "expected": "dababdabab",
+      "tags": [
+        "hidden",
+        "mixed-operations"
+      ]
+    },
+    {
+      "id": "real-maximum-letters",
+      "name": "hidden: maximum input length of ordinary letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdefghijklmnopqrst"
+      },
+      "expected": "abcdefghijklmnopqrst",
+      "tags": [
+        "hidden",
+        "maximum-input",
+        "letters"
+      ]
+    },
+    {
+      "id": "real-maximum-special-only",
+      "name": "hidden: maximum input length with no produced letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "*#%*#%*#%*#%*#%*#%**"
+      },
+      "expected": "",
+      "tags": [
+        "hidden",
+        "maximum-input",
+        "special-only"
+      ]
+    },
+    {
+      "id": "real-large-duplication",
+      "name": "hidden: twelve duplications create 4096 letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "a############"
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": [
+        "hidden",
+        "exponential-output",
+        "duplicate"
+      ]
+    }
+  ]
+}

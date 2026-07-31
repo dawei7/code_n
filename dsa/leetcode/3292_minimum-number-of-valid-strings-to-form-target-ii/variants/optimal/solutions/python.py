@@ -1,45 +1,41 @@
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-
 def solve(words: list[str], target: str) -> int:
-    root = TrieNode()
+    target_length = len(target)
+    longest = [0] * target_length
+
     for word in words:
-        node = root
-        for char in word:
-            if char not in node.children:
-                node.children[char] = TrieNode()
-            node = node.children[char]
+        combined = word + "{" + target
+        z = [0] * len(combined)
+        left = right = 0
+        for index in range(1, len(combined)):
+            if index <= right:
+                z[index] = min(right - index + 1, z[index - left])
+            while (
+                index + z[index] < len(combined)
+                and combined[z[index]] == combined[index + z[index]]
+            ):
+                z[index] += 1
+            if index + z[index] - 1 > right:
+                left = index
+                right = index + z[index] - 1
 
-    n = len(target)
-    # max_match[i] stores the length of the longest prefix of any word
-    # that matches target starting at index i
-    max_match = [0] * n
-    for i in range(n):
-        node = root
-        length = 0
-        for j in range(i, n):
-            if target[j] in node.children:
-                node = node.children[target[j]]
-                length += 1
-            else:
-                break
-        max_match[i] = length
+        offset = len(word) + 1
+        for start in range(target_length):
+            if z[offset + start] > longest[start]:
+                longest[start] = z[offset + start]
 
-    count = 0
-    farthest = 0
+    pieces = 0
     current_end = 0
-    i = 0
-
-    while current_end < n:
-        while i <= current_end and i < n:
-            farthest = max(farthest, i + max_match[i])
-            i += 1
-
-        if farthest <= current_end:
+    farthest = 0
+    for start, match_length in enumerate(longest):
+        if start > farthest:
             return -1
+        farthest = max(farthest, start + match_length)
+        if start == current_end:
+            if farthest == start:
+                return -1
+            pieces += 1
+            current_end = farthest
+            if current_end >= target_length:
+                return pieces
 
-        count += 1
-        current_end = farthest
-
-    return count
+    return -1

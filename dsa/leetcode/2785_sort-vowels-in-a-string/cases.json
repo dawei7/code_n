@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_2785",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed-case vowels among consonants",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "lEetcOde"},
+      "expected": "lEOtcede",
+      "tags": ["sample", "mixed-case"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no vowels",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "lYmpH"},
+      "expected": "lYmpH",
+      "tags": ["sample", "no-vowels"]
+    },
+    {
+      "id": "trial-single-lowercase-vowel",
+      "name": "trial: one lowercase vowel",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "a"},
+      "expected": "a",
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "trial-single-uppercase-vowel",
+      "name": "trial: one uppercase vowel",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "U"},
+      "expected": "U",
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "trial-all-vowels",
+      "name": "trial: all ten vowel characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aeiouAEIOU"},
+      "expected": "AEIOUaeiou",
+      "tags": ["trial", "ascii-order"]
+    },
+    {
+      "id": "trial-consonant-slots",
+      "name": "trial: consonant separates vowel positions",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aBUEi"},
+      "expected": "EBUai",
+      "tags": ["trial", "fixed-indices"]
+    },
+    {
+      "id": "real-duplicates-and-case",
+      "name": "hidden: duplicate vowels with uppercase ordering",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zuaAEux"},
+      "expected": "zAEauux",
+      "tags": ["hidden", "duplicates", "mixed-case"]
+    },
+    {
+      "id": "real-only-consonants",
+      "name": "hidden: every character is a consonant",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "BCdfgXYZ"},
+      "expected": "BCdfgXYZ",
+      "tags": ["hidden", "no-vowels"]
+    },
+    {
+      "id": "real-already-sorted",
+      "name": "hidden: vowels are already in ASCII order",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "AqErItOvUzaeiou"},
+      "expected": "AqErItOvUzaeiou",
+      "tags": ["hidden", "already-sorted"]
+    },
+    {
+      "id": "real-reverse-vowels",
+      "name": "hidden: reverse ASCII order with fixed consonants",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ubocidefagUhOjIkElA"},
+      "expected": "AbEcIdOfUgahejikolu",
+      "tags": ["hidden", "reverse-order", "fixed-indices"]
+    }
+  ]
+}

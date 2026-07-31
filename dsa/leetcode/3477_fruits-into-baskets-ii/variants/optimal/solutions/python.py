@@ -1,13 +1,12 @@
 def solve(fruits: list[int], baskets: list[int]) -> int:
-    placed = 0
-    n = len(baskets)
-    used = [False] * n
+    unplaced = 0
 
     for fruit in fruits:
-        for i in range(n):
-            if not used[i] and baskets[i] >= fruit:
-                used[i] = True
-                placed += 1
+        for index, capacity in enumerate(baskets):
+            if capacity >= fruit:
+                baskets[index] = 0
                 break
+        else:
+            unplaced += 1
 
-    return n - placed
+    return unplaced

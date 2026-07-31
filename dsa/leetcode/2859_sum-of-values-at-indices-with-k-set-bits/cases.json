@@ -1,120 +1,14 @@
 {
   "challenge_id": "lc_2859",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: one index has two set bits",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          4,
-          3,
-          2,
-          1
-        ],
-        "k": 2
-      },
-      "tags": [
-        "sample",
-        "bits"
-      ],
-      "expected": 1
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: indices one and two have one set bit",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          4,
-          3,
-          2,
-          1
-        ],
-        "k": 1
-      },
-      "tags": [
-        "sample",
-        "bits"
-      ],
-      "expected": 5
-    },
-    {
-      "id": "trial-zero-set-bits",
-      "name": "trial: index zero is the only zero-bit index",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          10,
-          20,
-          30
-        ],
-        "k": 0
-      },
-      "tags": [
-        "trial",
-        "zero-index"
-      ],
-      "expected": 10
-    },
-    {
-      "id": "trial-no-matching-index",
-      "name": "trial: k is larger than any index bit count",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          5,
-          6,
-          7,
-          8
-        ],
-        "k": 4
-      },
-      "tags": [
-        "trial",
-        "empty-sum"
-      ],
-      "expected": 0
-    },
-    {
-      "id": "real-many-qualifying-indices",
-      "name": "hidden: several indices have exactly three set bits",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          1,
-          3,
-          5,
-          7,
-          9,
-          11,
-          13,
-          15,
-          17,
-          19,
-          21,
-          23,
-          25,
-          27,
-          29,
-          31,
-          33,
-          35,
-          37,
-          39
-        ],
-        "k": 3
-      },
-      "tags": [
-        "hidden",
-        "bits"
-      ],
-      "expected": 133
-    }
+    {"id":"sample-1","name":"sample: three power-of-two indices qualify","kind":"sample","visible":true,"input":{"nums":[5,10,1,5,2],"k":1},"expected":13,"tags":["sample","one-set-bit"]},
+    {"id":"sample-2","name":"sample: only index three has two set bits","kind":"sample","visible":true,"input":{"nums":[4,3,2,1],"k":2},"expected":1,"tags":["sample","two-set-bits"]},
+    {"id":"trial-zero-set-bits","name":"trial: index zero is the sole zero-bit index","kind":"trial","visible":true,"input":{"nums":[10,20,30],"k":0},"expected":10,"tags":["trial","zero-index","zero-bits"]},
+    {"id":"trial-single-element-zero","name":"trial: a one-element array qualifies for k zero","kind":"trial","visible":true,"input":{"nums":[7],"k":0},"expected":7,"tags":["trial","single"]},
+    {"id":"trial-single-element-positive-k","name":"trial: index zero does not qualify for positive k","kind":"trial","visible":true,"input":{"nums":[7],"k":1},"expected":0,"tags":["trial","single","no-match"]},
+    {"id":"real-all-power-of-two-indices","name":"hidden: every in-range power-of-two index contributes","kind":"real","visible":false,"input":{"nums":[1,2,3,4,5,6,7,8,9],"k":1},"expected":19,"tags":["hidden","powers-of-two"]},
+    {"id":"real-several-two-bit-indices","name":"hidden: multiple nonadjacent indices share the target count","kind":"real","visible":false,"input":{"nums":[10,20,30,40,50,60,70,80],"k":2},"expected":170,"tags":["hidden","nonadjacent-indices"]},
+    {"id":"real-unattainable-bit-count","name":"hidden: no index reaches the maximum allowed k","kind":"real","visible":false,"input":{"nums":[9,8,7,6,5],"k":10},"expected":0,"tags":["hidden","unattainable-k"]},
+    {"id":"real-large-values","name":"hidden: selected values may reach the value limit","kind":"real","visible":false,"input":{"nums":[100000,100000,100000,100000],"k":2},"expected":100000,"tags":["hidden","large-values"]}
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Operations to Make Array Modulo Alternating I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Precomputes every parity-to-residue adjustment cost and combines each even target with the cheapest distinct odd target.",
+      "time_complexity": "O(NK)",
+      "space_complexity": "O(K)"
     }
   ]
 }

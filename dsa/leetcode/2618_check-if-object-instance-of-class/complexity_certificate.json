@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2618",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(h)",
+  "summary": "Prototype membership has a linear worst-case inspection lower bound over a chain of height h, and the accepted single traversal matches it, so no genuine principal slower class is needed for runtime scaling.",
+  "optimality": {
+    "symbol": "h",
+    "lower_bound": "Omega(h)",
+    "upper_bound": "O(h)",
+    "argument": "When the requested prototype is absent, or appears only at the final possible link, two chains can agree for their first h - 1 links and differ only at the last link. Any correct method must inspect that last link in the worst case, requiring Omega(h) prototype observations. The accepted traversal examines each link once and therefore uses O(h) time."
+  },
+  "replacement_checks": [
+    {"kind": "lower_bound_proof", "evidence": "Adversarial chains that differ only at their final prototype link cannot be distinguished before all h relevant links have been inspected."},
+    {"kind": "upper_bound_proof", "evidence": "The accepted source advances with Object.getPrototypeOf exactly once per iteration and stops after at most h prototype links."},
+    {"kind": "boundary_property_cases", "evidence": "Cases cover direct and inherited classes, primitive boxing, null and invalid arguments, null-prototype objects, and both a hit and miss on a 64-link chain."}
+  ]
+}

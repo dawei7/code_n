@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2278",
+  "measurement_note": "Size is n, the string length. Each tier contains n-1 copies of a followed by b, so the complete string must be counted and the result is floor(100(n-1)/n). One count takes O(n) time. Correctly recounting every growing prefix completes all legal tiers and fails through O(n^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: seven matches in eight characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"s":"aaaaaaab","letter":"a"},
+      "expected": 87,
+      "tags": ["benchmark","scale-small","round-down"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: thirty-one matches in thirty-two characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab","letter":"a"},
+      "expected": 96,
+      "tags": ["benchmark","scale-medium","round-down"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: ninety-nine matches in one hundred characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab","letter":"a"},
+      "expected": 99,
+      "tags": ["benchmark","scale-large","round-down"]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_3999",
+  "source": "leetcode",
+  "frontend_id": "3999",
+  "slug": "minimum-number-of-string-groups-through-transformations",
+  "title": "Minimum Number of String Groups Through Transformations",
+  "difficulty": "Hard",
+  "acceptance_rate": 47.95159545700378,
+  "frequency": 9.6,
+  "elo_rating": 2161.9707214195,
+  "estimated_elo_rating": null,
+  "contest_source": "Weekly Contest 511",
+  "contest_slug": "weekly-contest-511",
+  "contest_problem_index": "Q4",
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/minimum-number-of-string-groups-through-transformations/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "solution_variants": {
+    "manifest": "solution_variants.json",
+    "default": "optimal"
+  },
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

@@ -1,31 +1,22 @@
 def solve(nums: list[int]) -> int:
-    MOD = 10**9 + 7
-    n = len(nums)
-    max_val = max(nums)
-    
-    # dp[j] stores the number of ways to have arr1[i] = j
-    # Initially for i = 0, arr1[0] can be any value from 0 to nums[0]
-    dp = [1] * (max_val + 1)
-    
-    for i in range(1, n):
-        new_dp = [0] * (max_val + 1)
-        prefix_sum = [0] * (max_val + 2)
-        
-        # Build prefix sum of the previous dp state
-        for j in range(max_val + 1):
-            prefix_sum[j + 1] = (prefix_sum[j] + dp[j]) % MOD
-            
-        for j in range(nums[i] + 1):
-            # arr1[i-1] <= j
-            # arr2[i] <= arr2[i-1] => nums[i]-j <= nums[i-1]-arr1[i-1]
-            # => arr1[i-1] <= nums[i-1] - nums[i] + j
-            upper = min(j, nums[i-1] - nums[i] + j)
-            
-            if upper >= 0:
-                # Sum of dp[0...upper]
-                limit = min(upper, nums[i-1])
-                new_dp[j] = prefix_sum[limit + 1]
-        
-        dp = new_dp
-        
-    return sum(dp) % MOD
+    modulus = 1_000_000_007
+    ways = [1] * (nums[0] + 1)
+
+    for previous_value, current_value in zip(nums, nums[1:]):
+        prefix = []
+        running_sum = 0
+        for count in ways:
+            running_sum = (running_sum + count) % modulus
+            prefix.append(running_sum)
+
+        minimum_increase = max(0, current_value - previous_value)
+        next_ways = [0] * (current_value + 1)
+        for current_first in range(minimum_increase, current_value + 1):
+            previous_limit = current_first - minimum_increase
+            if previous_limit < len(prefix):
+                next_ways[current_first] = prefix[previous_limit]
+            else:
+                next_ways[current_first] = prefix[-1]
+        ways = next_ways
+
+    return sum(ways) % modulus

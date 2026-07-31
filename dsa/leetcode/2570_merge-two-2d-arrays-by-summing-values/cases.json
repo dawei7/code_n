@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: overlapping ids are summed",
+      "name": "sample: overlapping IDs are summed",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -56,12 +56,12 @@
       ],
       "tags": [
         "sample",
-        "two-pointers"
+        "overlap"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: disjoint ids from both arrays are merged",
+      "name": "sample: disjoint IDs are interleaved",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -113,13 +113,14 @@
         ]
       ],
       "tags": [
-        "sample"
+        "sample",
+        "disjoint"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one shared id",
-      "kind": "sample",
+      "id": "trial-single-shared-id",
+      "name": "trial: one shared ID has one summed record",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums1": [
@@ -142,12 +143,13 @@
         ]
       ],
       "tags": [
-        "sample"
+        "trial",
+        "complete-overlap"
       ]
     },
     {
       "id": "trial-no-overlap",
-      "name": "trial: ids remain sorted when there is no overlap",
+      "name": "trial: one record from each input remains sorted",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -175,24 +177,95 @@
         ]
       ],
       "tags": [
-        "trial"
+        "trial",
+        "disjoint"
       ]
     },
     {
-      "id": "real-single-shared-id",
-      "name": "hidden: one id is shared by both arrays",
+      "id": "real-first-array-before-second",
+      "name": "hidden: the first array is exhausted before the second",
       "kind": "real",
       "visible": false,
       "input": {
         "nums1": [
           [
             1,
-            2
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "nums2": [
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            8
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          8
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "remainder"
+      ]
+    },
+    {
+      "id": "real-second-array-before-first",
+      "name": "hidden: the second array is exhausted before the first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            8
           ]
         ],
         "nums2": [
           [
             1,
+            4
+          ],
+          [
+            2,
             5
           ]
         ]
@@ -200,11 +273,174 @@
       "expected": [
         [
           1,
+          4
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
           7
+        ],
+        [
+          5,
+          8
         ]
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "remainder"
+      ]
+    },
+    {
+      "id": "real-complete-overlap",
+      "name": "hidden: every ID receives two contributions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          [
+            1,
+            10
+          ],
+          [
+            5,
+            20
+          ],
+          [
+            9,
+            30
+          ]
+        ],
+        "nums2": [
+          [
+            1,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            9,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          11
+        ],
+        [
+          5,
+          22
+        ],
+        [
+          9,
+          33
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "complete-overlap"
+      ]
+    },
+    {
+      "id": "real-unequal-mixed",
+      "name": "hidden: overlap and unequal tails merge together",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          [
+            2,
+            2
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            12,
+            12
+          ]
+        ],
+        "nums2": [
+          [
+            1,
+            1
+          ],
+          [
+            6,
+            60
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          6,
+          66
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          12,
+          12
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-maximum-id-and-values",
+      "name": "hidden: summed value may exceed an individual value bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          [
+            1000,
+            1000
+          ]
+        ],
+        "nums2": [
+          [
+            1000,
+            1000
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1000,
+          2000
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "maximum-values"
       ]
     }
   ]

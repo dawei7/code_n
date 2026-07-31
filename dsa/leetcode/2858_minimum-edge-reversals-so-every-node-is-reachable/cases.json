@@ -1,0 +1,14 @@
+{
+  "challenge_id": "lc_2858",
+  "cases": [
+    {"id":"sample-1","name":"sample: branching tree already points outward from node two","kind":"sample","visible":true,"input":{"n":4,"edges":[[2,0],[2,1],[1,3]]},"expected":[1,1,0,2],"tags":["sample","rerooting"]},
+    {"id":"sample-2","name":"sample: directed path starts from its middle label","kind":"sample","visible":true,"input":{"n":3,"edges":[[1,2],[2,0]]},"expected":[2,0,1],"tags":["sample","path"]},
+    {"id":"trial-two-nodes-forward","name":"trial: one forward edge","kind":"trial","visible":true,"input":{"n":2,"edges":[[0,1]]},"expected":[0,1],"tags":["trial","minimum-tree"]},
+    {"id":"trial-two-nodes-reversed","name":"trial: one edge directed toward zero","kind":"trial","visible":true,"input":{"n":2,"edges":[[1,0]]},"expected":[1,0],"tags":["trial","edge-direction"]},
+    {"id":"real-forward-chain","name":"hidden: answers increase along a forward chain","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1],[1,2],[2,3],[3,4]]},"expected":[0,1,2,3,4],"tags":["hidden","chain","all-forward"]},
+    {"id":"real-backward-chain","name":"hidden: answers decrease along a backward chain","kind":"real","visible":false,"input":{"n":5,"edges":[[1,0],[2,1],[3,2],[4,3]]},"expected":[4,3,2,1,0],"tags":["hidden","chain","all-backward"]},
+    {"id":"real-outward-star","name":"hidden: an outward center costs zero","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1],[0,2],[0,3],[0,4]]},"expected":[0,1,1,1,1],"tags":["hidden","star","outward"]},
+    {"id":"real-inward-star","name":"hidden: every edge points into the center","kind":"real","visible":false,"input":{"n":5,"edges":[[1,0],[2,0],[3,0],[4,0]]},"expected":[4,3,3,3,3],"tags":["hidden","star","inward"]},
+    {"id":"real-mixed-branched-tree","name":"hidden: mixed directions reroot across several branches","kind":"real","visible":false,"input":{"n":6,"edges":[[0,1],[2,1],[2,3],[4,2],[4,5]]},"expected":[2,3,2,3,1,2],"tags":["hidden","mixed-directions","branches"]}
+  ]
+}

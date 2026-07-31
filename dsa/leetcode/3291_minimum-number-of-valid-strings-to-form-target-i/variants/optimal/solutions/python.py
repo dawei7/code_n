@@ -1,33 +1,25 @@
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-
 def solve(words: list[str], target: str) -> int:
-    root = TrieNode()
+    root: dict[str, dict] = {}
     for word in words:
         node = root
-        for char in word:
-            if char not in node.children:
-                node.children[char] = TrieNode()
-            node = node.children[char]
-            
-    n = len(target)
-    # dp[i] is the min strings to form target[0:i]
-    # Initialize with infinity
-    dp = [float('inf')] * (n + 1)
-    dp[0] = 0
-    
-    for i in range(n):
-        if dp[i] == float('inf'):
+        for character in word:
+            node = node.setdefault(character, {})
+
+    length = len(target)
+    infinity = length + 1
+    best = [infinity] * (length + 1)
+    best[0] = 0
+
+    for start in range(length):
+        if best[start] == infinity:
             continue
-            
-        # From index i, find all possible valid substrings starting at target[i]
         node = root
-        for j in range(i, n):
-            if target[j] in node.children:
-                node = node.children[target[j]]
-                dp[j + 1] = min(dp[j + 1], dp[i] + 1)
-            else:
+        candidate = best[start] + 1
+        for end in range(start, length):
+            node = node.get(target[end])
+            if node is None:
                 break
-                
-    return dp[n] if dp[n] != float('inf') else -1
+            if candidate < best[end + 1]:
+                best[end + 1] = candidate
+
+    return -1 if best[length] == infinity else best[length]

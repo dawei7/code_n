@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3424",
+  "frontend_id": "3118",
+  "title_slug": "friday-purchase-iii",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2079486004",
+  "verified_at": "2026-07-24T13:04:00+02:00"
+}

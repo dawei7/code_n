@@ -2,8 +2,8 @@
   "challenge_id": "lc_3375",
   "cases": [
     {
-      "id": "sample-two-ops",
-      "name": "sample: reduce distinct values above k",
+      "id": "sample-official-one",
+      "name": "sample: two distinct levels above target",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +19,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "distinct-values"
+        "distinct-levels"
       ]
     },
     {
-      "id": "sample-impossible-smaller",
-      "name": "sample: a value below k makes it impossible",
+      "id": "sample-official-two",
+      "name": "sample: value below target is impossible",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -42,8 +42,8 @@
       ]
     },
     {
-      "id": "sample-four-ops",
-      "name": "sample: four descending distinct values above k",
+      "id": "sample-official-three",
+      "name": "sample: four descending levels above absent target",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,12 +58,12 @@
       "expected": 4,
       "tags": [
         "sample",
-        "distinct-values"
+        "target-absent"
       ]
     },
     {
       "id": "trial-already-equal",
-      "name": "trial: already equal to k needs no operation",
+      "name": "trial: every value already equals target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -76,31 +76,106 @@
       },
       "expected": 0,
       "tags": [
-        "edge",
-        "already-equal"
+        "already-equal",
+        "zero-operations"
       ]
     },
     {
-      "id": "real-duplicates-above-k",
-      "name": "real: duplicates above k count once per distinct value",
+      "id": "trial-target-absent-with-duplicates",
+      "name": "trial: absent target still requires the lowest reduction",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          6,
+          8,
+          6
+        ],
+        "k": 5
+      },
+      "expected": 2,
+      "tags": [
+        "target-absent",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-single-greater",
+      "name": "trial: one value above target needs one operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100
+        ],
+        "k": 99
+      },
+      "expected": 1,
+      "tags": [
+        "single-element",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-single-below",
+      "name": "hidden: one value below target is unreachable",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
+          1
+        ],
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "single-element",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-below-among-many-levels",
+      "name": "hidden: one low value invalidates many reducible levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          9,
           8,
-          8,
+          7,
           6,
-          6,
-          5,
-          5,
-          3
+          2,
+          10
         ],
         "k": 3
       },
-      "expected": 3,
+      "expected": -1,
       "tags": [
-        "real",
-        "distinct-values"
+        "hidden",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-maximum-target",
+      "name": "hidden: maximum target with all equal values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          100,
+          100,
+          100
+        ],
+        "k": 100
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "upper-bound"
       ]
     }
   ]

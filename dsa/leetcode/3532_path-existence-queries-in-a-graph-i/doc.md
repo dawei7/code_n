@@ -8,78 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Binary Search, Union-Find, Graph Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [path-existence-queries-in-a-graph-i](https://leetcode.com/problems/path-existence-queries-in-a-graph-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/path-existence-queries-in-a-graph-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/path-existence-queries-in-a-graph-i/).
 
 ### Goal
-Given an undirected graph with $n$ nodes labeled from $0$ to $n-1$ and a list of edges, determine for several query pairs $(u, v)$ whether there exists a path between node $u$ and node $v$. Since the graph is undirected, a path exists if and only if both nodes belong to the same connected component.
+
+There are `n` graph nodes labeled from `0` through `n - 1`. The non-decreasing array `nums` assigns value `nums[i]` to node `i`. Rather than receiving an explicit edge list, the graph contains an undirected edge between every pair of nodes `i` and `j` whose values differ by at most `maxDiff`:
+
+$$
+\lvert\texttt{nums[i]}-\texttt{nums[j]}\rvert \le \texttt{maxDiff}.
+$$
+
+For each pair `[u, v]` in `queries`, determine whether some path connects nodes `u` and `v`. A node always has a trivial path to itself. Return the answers in query order.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: An integer representing the number of nodes in the graph.
-- `edges`: A list of lists, where each inner list `[u, v]` represents an undirected edge between nodes `u` and `v`.
-- `queries`: A list of lists, where each inner list `[u, v]` represents a query to check if a path exists between `u` and `v`.
+- `n`: The number of nodes, equal to the length of `nums`, where $1 \le n \le 10^5$.
+- `nums`: Node values in non-decreasing order, each between $0$ and $10^5$.
+- `maxDiff`: The largest allowed value difference for one edge, where $0 \le \texttt{maxDiff} \le 10^5$.
+- `queries`: Node pairs `[u, v]`, with both endpoints in $[0,n-1]$.
+
+Let $Q = \lvert\texttt{queries}\rvert$, where $1 \le Q \le 10^5$.
 
 **Return value**
 
-- A list of booleans where the $i$-th element is `True` if a path exists between the $i$-th query nodes, and `False` otherwise.
+- A boolean list whose $i$-th value states whether the endpoints of `queries[i]` lie in the same connected component.
 
 ### Examples
+
 **Example 1**
 
-- Input: `n = 3, edges = [[0, 1], [1, 2]], queries = [[0, 2]]`
-- Output: `[True]`
+- Input: `n = 2, nums = [1,3], maxDiff = 1, queries = [[0,0],[0,1]]`
+- Output: `[true,false]`
+- Explanation: Node `0` reaches itself, but the value gap between the two different nodes is $2$, which exceeds `maxDiff`.
 
 **Example 2**
 
-- Input: `n = 4, edges = [[0, 1], [2, 3]], queries = [[0, 3], [1, 2]]`
-- Output: `[False, False]`
-
-**Example 3**
-
-- Input: `n = 5, edges = [[0, 1], [1, 2], [3, 4]], queries = [[0, 2], [0, 4]]`
-- Output: `[True, False]`
-
----
-
-## Solution
-### Approach
-The problem is solved using the **Disjoint Set Union (DSU)** (also known as Union-Find) data structure. By iterating through all edges and performing `union` operations, we group all connected nodes into the same set. For each query, we perform a `find` operation on both nodes; if they share the same root representative, they are connected.
-
-### Complexity Analysis
-- **Time Complexity**: $O((E + Q) \cdot \alpha(n))$, where $E$ is the number of edges, $Q$ is the number of queries, and $\alpha$ is the inverse Ackermann function, which is nearly constant.
-- **Space Complexity**: $O(n)$ to store the parent array for the DSU structure.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(n: int, edges: list[list[int]], queries: list[list[int]]) -> list[bool]:
-    parent = list(range(n))
-
-    def find(i: int) -> int:
-        if parent[i] == i:
-            return i
-        parent[i] = find(parent[i])
-        return parent[i]
-
-    def union(i: int, j: int) -> None:
-        root_i = find(i)
-        root_j = find(j)
-        if root_i != root_j:
-            parent[root_i] = root_j
-
-    for u, v in edges:
-        union(u, v)
-
-    results = []
-    for u, v in queries:
-        results.append(find(u) == find(v))
-
-    return results
-```
-</details>
+- Input: `n = 4, nums = [2,5,6,8], maxDiff = 2, queries = [[0,1],[0,2],[1,3],[2,3]]`
+- Output: `[false,false,true,true]`
+- Explanation: The gap from `2` to `5` separates node `0`. Nodes `1`, `2`, and `3` remain connected through consecutive gaps of $1$ and $2$.

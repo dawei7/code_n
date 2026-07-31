@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3908",
+    "frontend_id": "3908",
+    "title_slug": "valid-digit-number",
+    "url": "https://leetcode.com/problems/valid-digit-number/description/",
+    "paid_only": false,
+    "content_sha256": "079a27086067b3b912c70d28d0df515af93afed9d5ef6708df5e8b826288ec21",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 101, x = 0",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 232, x = 2",
+        "output": "false",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 5, x = 1",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a2a5b030f954c8e9b28bca4b93dba90dcba31f1c48410719b3d8d15e2d5c2ffc",
+      "reference/contract.md": "4032d5b40fd25ac14a1aadb2fb26728da8a1e109ca324e63245acfbfa576b010",
+      "reference/examples.md": "fc1747bd2118b41e0a4b008aa0f81aaf8c21019db04b61ce1aa9071408486e31",
+      "reference/constraints.md": "1835ea1f52fbb36542f7b7227dadb1f4ed9236f42484d3f35b43ebb1a53afa44"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,6 +1,5 @@
 class Spreadsheet:
     def __init__(self, rows: int):
-        self.rows = rows
         self.cells: dict[str, int] = {}
 
     def setCell(self, cell: str, value: int) -> None:
@@ -22,6 +21,7 @@ class Spreadsheet:
 def solve(operations: list[str], arguments: list[list[object]]) -> list[object]:
     spreadsheet: Spreadsheet | None = None
     output: list[object] = []
+
     for operation, args in zip(operations, arguments):
         if operation == "Spreadsheet":
             spreadsheet = Spreadsheet(int(args[0]))
@@ -37,4 +37,5 @@ def solve(operations: list[str], arguments: list[list[object]]) -> list[object]:
         elif operation == "getValue":
             assert spreadsheet is not None
             output.append(spreadsheet.getValue(str(args[0])))
+
     return output

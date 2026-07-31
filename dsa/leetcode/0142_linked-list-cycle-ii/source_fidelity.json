@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_142", "frontend_id": "142", "title_slug": "linked-list-cycle-ii", "url": "https://leetcode.com/problems/linked-list-cycle-ii/description/", "paid_only": false, "content_sha256": "da334452f915f1db5839cc59d85bc9c5356a42f0e7a0002b097462cdf66b1ef7", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "head = [3,2,0,-4], pos = 1", "output": "tail connects to node index 1", "has_explanation": true},
+      {"ordinal": 2, "input": "head = [1,2], pos = 0", "output": "tail connects to node index 0", "has_explanation": true},
+      {"ordinal": 3, "input": "head = [1], pos = -1", "output": "no cycle", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 3, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 3}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "b4919f4381c1d4936a4ea2620dae9f03a4447dbba5123f8fc938974e19196a1c", "reference/contract.md": "a6195628df300d3304d65589d5325b833a3d5b4f34cb4db8b45729f4294066c6", "reference/examples.md": "e1d5d2c208a5622d09ded29cbb5831f7803ffbcbd8dc381055ca4e4f4d3a2840", "reference/constraints.md": "b555c35ef3a90963599aeb339ff553fc8823d83b23ff3cd3e5559d418545b8eb", "reference/follow_up.md": "1fe377c312a2525498aa9e4e57408777e4cce9fa2e3f3fd88065308142cd16d9"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

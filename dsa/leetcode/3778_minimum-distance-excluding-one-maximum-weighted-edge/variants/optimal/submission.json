@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4127",
+  "frontend_id": "3778",
+  "title_slug": "minimum-distance-excluding-one-maximum-weighted-edge",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minCostExcludingMax",
+  "verified_submission_id": "2085391670",
+  "verified_at": "2026-07-28T23:05:56.325031+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3772",
+  "cases": [
+    {"id":"sample-1","name":"sample: good endpoints offset the bad middle","kind":"sample","visible":true,"input":{"n":3,"edges":[[0,1],[1,2]],"good":[1,0,1]},"expected":[1,1,1],"validator":{"kind":"exact"},"tags":["sample","path","tied-optima"]},
+    {"id":"sample-2","name":"sample: different required nodes choose different branches","kind":"sample","visible":true,"input":{"n":5,"edges":[[1,0],[1,2],[1,3],[3,4]],"good":[0,1,0,1,1]},"expected":[2,3,2,3,3],"validator":{"kind":"exact"},"tags":["sample","branched-tree","rerooting"]},
+    {"id":"sample-3","name":"sample: every node is bad","kind":"sample","visible":true,"input":{"n":2,"edges":[[0,1]],"good":[0,0]},"expected":[-1,-1],"validator":{"kind":"exact"},"tags":["sample","all-bad"]},
+    {"id":"trial-one-good-one-bad","name":"trial: a bad required node can attach a zero-sum branch","kind":"trial","visible":true,"input":{"n":2,"edges":[[0,1]],"good":[1,0]},"expected":[1,0],"validator":{"kind":"exact"},"tags":["trial","zero-contribution"]},
+    {"id":"trial-all-good-path","name":"trial: every node chooses the whole all-good tree","kind":"trial","visible":true,"input":{"n":4,"edges":[[0,1],[1,2],[2,3]],"good":[1,1,1,1]},"expected":[4,4,4,4],"validator":{"kind":"exact"},"tags":["trial","all-good","path"]},
+    {"id":"trial-bad-star-center","name":"trial: three good leaves offset a bad center","kind":"trial","visible":true,"input":{"n":4,"edges":[[0,1],[0,2],[0,3]],"good":[0,1,1,1]},"expected":[2,2,2,2],"validator":{"kind":"exact"},"tags":["trial","star","required-bad-node"]},
+    {"id":"trial-alternating-path","name":"trial: zero-valued extensions create tied optima","kind":"trial","visible":true,"input":{"n":4,"edges":[[0,1],[1,2],[2,3]],"good":[1,0,1,0]},"expected":[1,1,1,0],"validator":{"kind":"exact"},"tags":["trial","path","zero-contribution"]},
+    {"id":"real-all-bad-path","name":"hidden: longer all-bad tree remains negative one everywhere","kind":"real","visible":false,"input":{"n":3,"edges":[[0,1],[1,2]],"good":[0,0,0]},"expected":[-1,-1,-1],"validator":{"kind":"exact"},"tags":["hidden","all-bad"]},
+    {"id":"real-multiple-positive-branches","name":"hidden: rerooting combines two profitable descendant branches","kind":"real","visible":false,"input":{"n":6,"edges":[[0,1],[1,2],[1,3],[3,4],[3,5]],"good":[0,1,0,0,1,1]},"expected":[1,2,1,2,2,2],"validator":{"kind":"exact"},"tags":["hidden","branched-tree","rerooting"]},
+    {"id":"real-good-center-bad-leaves","name":"hidden: harmful leaf branches are independently omitted","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1],[0,2],[0,3],[0,4]],"good":[1,0,0,0,0]},"expected":[1,0,0,0,0],"validator":{"kind":"exact"},"tags":["hidden","star","negative-branches"]}
+  ]
+}

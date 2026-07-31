@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_3516",
+  "cases": [
+    {
+      "id": "sample-person-one-closer",
+      "name": "sample: Person 1 is closer",
+      "kind": "sample",
+      "visible": true,
+      "input": {"x": 2, "y": 7, "z": 4},
+      "expected": 1,
+      "tags": ["sample", "person-one"]
+    },
+    {
+      "id": "sample-person-two-closer",
+      "name": "sample: Person 2 is closer",
+      "kind": "sample",
+      "visible": true,
+      "input": {"x": 2, "y": 5, "z": 6},
+      "expected": 2,
+      "tags": ["sample", "person-two"]
+    },
+    {
+      "id": "sample-equal-distance",
+      "name": "sample: equal distances on opposite sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {"x": 1, "y": 5, "z": 3},
+      "expected": 0,
+      "tags": ["sample", "tie", "opposite-sides"]
+    },
+    {
+      "id": "trial-person-one-at-target",
+      "name": "trial: Person 1 starts at Person 3",
+      "kind": "trial",
+      "visible": true,
+      "input": {"x": 6, "y": 10, "z": 6},
+      "expected": 1,
+      "tags": ["trial", "zero-distance", "person-one"]
+    },
+    {
+      "id": "trial-person-two-at-target",
+      "name": "trial: Person 2 starts at Person 3",
+      "kind": "trial",
+      "visible": true,
+      "input": {"x": 10, "y": 6, "z": 6},
+      "expected": 2,
+      "tags": ["trial", "zero-distance", "person-two"]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: both people already at target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"x": 42, "y": 42, "z": 42},
+      "expected": 0,
+      "tags": ["trial", "all-equal", "tie"]
+    },
+    {
+      "id": "real-same-start",
+      "name": "real: identical starts imply a tie",
+      "kind": "real",
+      "visible": false,
+      "input": {"x": 20, "y": 20, "z": 75},
+      "expected": 0,
+      "tags": ["real", "same-start", "tie"]
+    },
+    {
+      "id": "real-same-side-person-one",
+      "name": "real: Person 1 is nearer on the same side",
+      "kind": "real",
+      "visible": false,
+      "input": {"x": 70, "y": 55, "z": 80},
+      "expected": 1,
+      "tags": ["real", "same-side", "person-one"]
+    },
+    {
+      "id": "real-same-side-person-two",
+      "name": "real: Person 2 is nearer on the same side",
+      "kind": "real",
+      "visible": false,
+      "input": {"x": 25, "y": 40, "z": 50},
+      "expected": 2,
+      "tags": ["real", "same-side", "person-two"]
+    },
+    {
+      "id": "real-coordinate-boundaries",
+      "name": "real: off-center target breaks boundary symmetry",
+      "kind": "real",
+      "visible": false,
+      "input": {"x": 1, "y": 100, "z": 50},
+      "expected": 1,
+      "tags": ["real", "coordinate-boundary", "off-center"]
+    }
+  ]
+}

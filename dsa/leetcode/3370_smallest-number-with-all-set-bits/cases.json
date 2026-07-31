@@ -1,0 +1,297 @@
+{
+  "challenge_id": "lc_3370",
+  "cases": [
+    {
+      "id": "sample-five",
+      "name": "sample: five rounds to seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 7,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-ten",
+      "name": "sample: ten rounds to fifteen",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 15,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three",
+      "name": "sample: three is already all ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "boundary-1",
+      "name": "boundary: n equals 1",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "all-ones",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "boundary-2",
+      "name": "boundary: n equals 2",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 3,
+      "tags": [
+        "power-transition",
+        "boundary"
+      ]
+    },
+    {
+      "id": "boundary-4",
+      "name": "boundary: n equals 4",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": 7,
+      "tags": [
+        "power-transition",
+        "boundary"
+      ]
+    },
+    {
+      "id": "boundary-7",
+      "name": "boundary: n equals 7",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7
+      },
+      "expected": 7,
+      "tags": [
+        "all-ones",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "boundary-8",
+      "name": "boundary: n equals 8",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 8
+      },
+      "expected": 15,
+      "tags": [
+        "power-transition",
+        "boundary"
+      ]
+    },
+    {
+      "id": "boundary-15",
+      "name": "boundary: n equals 15",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 15
+      },
+      "expected": 15,
+      "tags": [
+        "all-ones",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "boundary-16",
+      "name": "boundary: n equals 16",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 16
+      },
+      "expected": 31,
+      "tags": [
+        "power-transition",
+        "boundary"
+      ]
+    },
+    {
+      "id": "boundary-31",
+      "name": "boundary: n equals 31",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 31
+      },
+      "expected": 31,
+      "tags": [
+        "all-ones",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "boundary-32",
+      "name": "boundary: n equals 32",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 32
+      },
+      "expected": 63,
+      "tags": [
+        "power-transition",
+        "boundary"
+      ]
+    },
+    {
+      "id": "boundary-63",
+      "name": "boundary: n equals 63",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 63
+      },
+      "expected": 63,
+      "tags": [
+        "all-ones",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "boundary-64",
+      "name": "boundary: n equals 64",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 64
+      },
+      "expected": 127,
+      "tags": [
+        "power-transition",
+        "boundary"
+      ]
+    },
+    {
+      "id": "boundary-127",
+      "name": "boundary: n equals 127",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 127
+      },
+      "expected": 127,
+      "tags": [
+        "all-ones",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "boundary-128",
+      "name": "boundary: n equals 128",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 128
+      },
+      "expected": 255,
+      "tags": [
+        "power-transition",
+        "boundary"
+      ]
+    },
+    {
+      "id": "boundary-255",
+      "name": "boundary: n equals 255",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 255
+      },
+      "expected": 255,
+      "tags": [
+        "all-ones",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "boundary-256",
+      "name": "boundary: n equals 256",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 256
+      },
+      "expected": 511,
+      "tags": [
+        "power-transition",
+        "boundary"
+      ]
+    },
+    {
+      "id": "boundary-511",
+      "name": "boundary: n equals 511",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 511
+      },
+      "expected": 511,
+      "tags": [
+        "all-ones",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "boundary-512",
+      "name": "boundary: n equals 512",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 512
+      },
+      "expected": 1023,
+      "tags": [
+        "power-transition",
+        "boundary"
+      ]
+    },
+    {
+      "id": "boundary-1000",
+      "name": "boundary: n equals 1000",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000
+      },
+      "expected": 1023,
+      "tags": [
+        "power-transition",
+        "boundary"
+      ]
+    }
+  ]
+}
+

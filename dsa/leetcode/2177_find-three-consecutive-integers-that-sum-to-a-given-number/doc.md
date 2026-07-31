@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Math, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-three-consecutive-integers-that-sum-to-a-given-number](https://leetcode.com/problems/find-three-consecutive-integers-that-sum-to-a-given-number/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-three-consecutive-integers-that-sum-to-a-given-number/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-three-consecutive-integers-that-sum-to-a-given-number/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a nonnegative integer `num`, find three consecutive integers whose sum
+equals `num`. Return those integers in increasing order.
+
+The integers may include negative values even though `num` is nonnegative. If
+no three consecutive integers have the required sum, return an empty array.
+The result, when it exists, is unique because the middle integer determines
+both neighbors. The returned order must be ascending rather than an arbitrary
+permutation of the same three values.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `num`: an integer satisfying $0\le\texttt{num}\le10^{15}$.
 
 **Return value**
 
-TODO
+Return `[x - 1, x, x + 1]` when these three consecutive integers sum to `num`;
+otherwise return `[]`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 33`
+- Output: `[10,11,12]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 4`
+- Output: `[]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `num = 0`
+- Output: `[-1,0,1]`

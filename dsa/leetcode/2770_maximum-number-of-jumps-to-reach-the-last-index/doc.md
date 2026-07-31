@@ -8,70 +8,43 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-number-of-jumps-to-reach-the-last-index](https://leetcode.com/problems/maximum-number-of-jumps-to-reach-the-last-index/) |
+| LeetCode | [2770. Maximum Number of Jumps to Reach the Last Index](https://leetcode.com/problems/maximum-number-of-jumps-to-reach-the-last-index/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-number-of-jumps-to-reach-the-last-index/).
 
 ### Goal
-Given an array of integers representing heights and a target jump threshold, determine the maximum number of jumps required to travel from the first index to the last index. A jump from index `i` to index `j` is valid if `i < j` and the absolute difference between the heights at these indices is within the range `[-target, target]`. If it is impossible to reach the last index, return -1.
+
+You begin at index $0$ of a 0-indexed integer array `nums`. From the current index $i$, you may jump forward to any index $j$ with $i<j$ when the value change satisfies $-\texttt{target} \le \texttt{nums}[j]-\texttt{nums}[i] \le \texttt{target}$. Every jump must move to a strictly larger index, although it may skip any number of positions.
+
+Among all valid sequences that finish at the final index $n-1$, return the greatest possible number of jumps. The objective is to maximize the number of edges in the route, not to minimize travel. If no valid sequence can reach the final index, return $-1$.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the heights at each position.
-- `target`: An integer representing the maximum allowed absolute difference between heights for a valid jump.
+- `nums`: An integer list of length $n$, where $2 \le n \le 1000$ and $-10^9 \le \texttt{nums}[i] \le 10^9$.
+- `target`: The inclusive maximum absolute difference allowed by a jump, with $0 \le \texttt{target} \le 2\cdot10^9$.
 
 **Return value**
 
-- An integer representing the maximum number of jumps to reach the last index, or -1 if the destination is unreachable.
+Return the maximum number of valid jumps needed by any route from index $0$ to index $n-1$, or $-1$ when the destination is unreachable.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [1, 3, 6, 4, 1, 2], target = 2`
 - Output: `3`
+- Explanation: One longest valid route uses indices $0 \to 1 \to 3 \to 5$.
 
 **Example 2**
 
 - Input: `nums = [1, 3, 6, 4, 1, 2], target = 3`
 - Output: `5`
+- Explanation: Every consecutive jump is valid, so all six indices can be visited.
 
 **Example 3**
 
-- Input: `nums = [1, 0, 2], target = 1`
+- Input: `nums = [1, 3, 6, 4, 1, 2], target = 0`
 - Output: `-1`
-
----
-
-## Solution
-### Approach
-Dynamic Programming (Linear DP). We maintain an array `dp` where `dp[i]` stores the maximum jumps to reach index `i`. We iterate through each index `i` and check all previous indices `j < i` to see if a jump is valid. If valid, we update `dp[i] = max(dp[i], dp[j] + 1)`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)`, where `n` is the length of the input array, due to the nested loops checking all previous indices for each position.
-- **Space Complexity**: `O(n)` to store the DP array tracking the maximum jumps for each index.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int], target: int) -> int:
-    n = len(nums)
-    # dp[i] stores the max jumps to reach index i.
-    # Initialize with -1 to represent unreachable states.
-    dp = [-1] * n
-    dp[0] = 0
-
-    for i in range(1, n):
-        for j in range(i):
-            # Check if index j is reachable and if the jump condition is met
-            if dp[j] != -1 and abs(nums[i] - nums[j]) <= target:
-                dp[i] = max(dp[i], dp[j] + 1)
-
-    return dp[n - 1]
-```
-</details>
+- Explanation: No forward route reaches the final value while requiring equal endpoint values for every jump.

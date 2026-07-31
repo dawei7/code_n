@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Weight in Two Bags and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Track every pair of exactly reachable bag weights and update both capacities backward for each item.",
+      "time_complexity": "O(n * w1 * w2)",
+      "space_complexity": "O(w1 * w2)"
     }
   ]
 }

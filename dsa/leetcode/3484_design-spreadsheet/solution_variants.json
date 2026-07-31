@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Spreadsheet and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Stores only explicitly assigned cells in a hash map and evaluates each two-operand formula directly.",
+      "time_complexity": "O(q)",
+      "space_complexity": "O(s)"
     }
   ]
 }

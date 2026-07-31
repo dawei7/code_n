@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2135",
+  "measurement_note": "Size is n for n start words and n target words of bounded length. Every target matches only the final start entry. Letter-mask lookup takes O(n) time. Comparing each target against start words in order completes every tier and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: late matching predecessor at n=8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "startWords": [
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "xyz"
+        ],
+        "targetWords": [
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz"
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "late-match"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: late matching predecessor at n=16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "startWords": [
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "xyz"
+        ],
+        "targetWords": [
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz"
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "late-match"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: late matching predecessor at n=32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "startWords": [
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "ab",
+          "xyz"
+        ],
+        "targetWords": [
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz",
+          "wxyz"
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "late-match"
+      ]
+    }
+  ]
+}

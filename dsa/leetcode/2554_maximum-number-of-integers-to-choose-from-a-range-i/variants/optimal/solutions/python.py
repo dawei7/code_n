@@ -1,19 +1,14 @@
 def solve(banned: list[int], n: int, maxSum: int) -> int:
-    banned_set = set(banned)
-    current_sum = 0
+    blocked = set(banned)
+    total = 0
     count = 0
-    
-    for i in range(1, n + 1):
-        if i in banned_set:
+
+    for value in range(1, n + 1):
+        if value in blocked:
             continue
-        
-        if current_sum + i <= maxSum:
-            current_sum += i
-            count += 1
-        else:
-            # Since we are iterating in increasing order, 
-            # if the current number exceeds the remaining sum, 
-            # no further numbers will fit.
+        if total + value > maxSum:
             break
-            
+        total += value
+        count += 1
+
     return count

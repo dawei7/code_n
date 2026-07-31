@@ -1,113 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3043",
   "cases": [
     {
       "id": "sample-common-three",
-      "name": "sample: common numeric prefix of length three",
+      "name": "sample: nested numeric prefixes",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "arr1": [
-          12345,
-          678
-        ],
-        "arr2": [
-          12399,
-          12000
-        ]
-      },
+      "input": {"arr1": [1, 10, 100], "arr2": [1000]},
       "expected": 3,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
       "id": "sample-no-common-prefix",
       "name": "sample: no matching first digit",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "arr1": [
-          1,
-          2,
-          3
-        ],
-        "arr2": [
-          4,
-          5,
-          6
-        ]
-      },
+      "input": {"arr1": [1, 2, 3], "arr2": [4, 4, 4]},
       "expected": 0,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
-      "id": "trial-full-number-prefix",
-      "name": "trial: full number appears as a prefix",
+      "id": "trial-full-value-prefix",
+      "name": "trial: one whole value is the shared prefix",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "arr1": [
-          987,
-          98
-        ],
-        "arr2": [
-          98765,
-          981
-        ]
-      },
+      "input": {"arr1": [987, 98], "arr2": [98765, 981]},
       "expected": 3,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["trial", "whole-value-prefix"]
     },
     {
-      "id": "trial-different-lengths",
-      "name": "trial: different digit lengths",
+      "id": "trial-longer-first-array-value",
+      "name": "trial: second-array value is the shorter prefix",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "arr1": [
-          1000,
-          100,
-          10
-        ],
-        "arr2": [
-          1099,
-          11,
-          999
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "trial"
-      ]
+      "input": {"arr1": [123456], "arr2": [123]},
+      "expected": 3,
+      "tags": ["trial", "length-order"]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "real: equal maximum legal values",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr1": [100000000], "arr2": [100000000]},
+      "expected": 9,
+      "tags": ["real", "boundary", "equal"]
+    },
+    {
+      "id": "real-same-array-prefixes-do-not-count",
+      "name": "real: matches confined to one array do not count",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr1": [123, 129], "arr2": [456, 459]},
+      "expected": 0,
+      "tags": ["real", "cross-array-only"]
     },
     {
       "id": "real-many-prefixes",
-      "name": "real: multiple candidate prefixes",
+      "name": "real: choose the best of several cross-array prefixes",
       "kind": "real",
       "visible": false,
-      "input": {
-        "arr1": [
-          45678,
-          456,
-          123456,
-          88
-        ],
-        "arr2": [
-          45699,
-          123499,
-          8700
-        ]
-      },
+      "input": {"arr1": [45678, 456, 123456, 88], "arr2": [45699, 123499, 8700]},
       "expected": 4,
-      "tags": [
-        "real",
-        "strings"
-      ]
+      "tags": ["real", "multiple-candidates"]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "real: duplicates do not change the maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {"arr1": [7654, 7654, 7], "arr2": [7654, 76549, 6]},
+      "expected": 4,
+      "tags": ["real", "duplicates"]
     }
   ]
 }

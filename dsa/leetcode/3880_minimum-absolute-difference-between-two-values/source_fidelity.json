@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3880",
+    "frontend_id": "3880",
+    "title_slug": "minimum-absolute-difference-between-two-values",
+    "url": "https://leetcode.com/problems/minimum-absolute-difference-between-two-values/description/",
+    "paid_only": false,
+    "content_sha256": "7ef3a68e0e4305c34a8b5958aa401de84f05e66295e180ac993ad898fa2cc034",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,0,0,2,0,1]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,0,1,0]",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "391e46ef97d4471ddcdecaa1a3dcabb50df0e8abe50707db943222142d5da1e8",
+      "reference/contract.md": "99ea0d03c1154908a005e693fc8ead79069c4767fd0059822e51abf3953ca224",
+      "reference/examples.md": "96db972b4d57aa667794dcbfda2d652b63c9da47b2304a00845f1680e4947bf8",
+      "reference/constraints.md": "e6197194dae238810d05aa4d6bc598d8e46c3a43ababfd1d8e160b522a9c463f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

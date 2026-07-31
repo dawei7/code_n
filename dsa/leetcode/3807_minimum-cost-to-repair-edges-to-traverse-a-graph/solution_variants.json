@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Cost to Repair Edges to Traverse a Graph and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the repair threshold and uses breadth-first search to enforce the edge limit.",
+      "time_complexity": "O((N + M) log M)",
+      "space_complexity": "O(N + M)"
     }
   ]
 }

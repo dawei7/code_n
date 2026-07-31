@@ -1,0 +1,599 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3926",
+  "cases": [
+    {
+      "id": "sample-complete-words-only",
+      "name": "sample: count complete words after chunk concatenation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "hello wor",
+          "ld hello"
+        ],
+        "queries": [
+          "hello",
+          "world",
+          "wor"
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        0
+      ],
+      "tags": [
+        "sample",
+        "chunk-concatenation",
+        "substring-trap"
+      ]
+    },
+    {
+      "id": "sample-joiner-and-double-hyphens",
+      "name": "sample: joiner hyphens survive while double hyphens separate",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "a-b a--b ",
+          "a-",
+          "b"
+        ],
+        "queries": [
+          "a-b",
+          "a",
+          "b"
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        1
+      ],
+      "tags": [
+        "sample",
+        "joiner-hyphen",
+        "consecutive-hyphens"
+      ]
+    },
+    {
+      "id": "sample-leading-and-trailing-hyphens",
+      "name": "sample: edge hyphens act as separators",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "-cat dog- mouse"
+        ],
+        "queries": [
+          "cat",
+          "dog",
+          "mouse",
+          "cat-dog"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "sample",
+        "edge-hyphens",
+        "separators"
+      ]
+    },
+    {
+      "id": "trial-letters-join-across-chunks",
+      "name": "trial: adjacent chunk letters form one word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "ab",
+          "cd"
+        ],
+        "queries": [
+          "abcd",
+          "ab",
+          "cd"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "chunk-boundary",
+        "maximal-word"
+      ]
+    },
+    {
+      "id": "trial-hyphen-left-chunk",
+      "name": "trial: a trailing chunk hyphen becomes a joiner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "a-",
+          "b"
+        ],
+        "queries": [
+          "a-b",
+          "a",
+          "b"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "chunk-boundary",
+        "joiner-hyphen"
+      ]
+    },
+    {
+      "id": "trial-hyphen-right-chunk",
+      "name": "trial: a leading chunk hyphen becomes a joiner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "a",
+          "-b"
+        ],
+        "queries": [
+          "a-b",
+          "a",
+          "b"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "chunk-boundary",
+        "joiner-hyphen"
+      ]
+    },
+    {
+      "id": "trial-double-hyphen-across-boundary",
+      "name": "trial: adjacent boundary hyphens split two words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "a-",
+          "-b"
+        ],
+        "queries": [
+          "a-b",
+          "a",
+          "b"
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        1
+      ],
+      "tags": [
+        "trial",
+        "chunk-boundary",
+        "consecutive-hyphens"
+      ]
+    },
+    {
+      "id": "trial-space-between-words",
+      "name": "trial: a space at a chunk edge remains a separator",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "one ",
+          "two"
+        ],
+        "queries": [
+          "one",
+          "two",
+          "onetwo"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "trial",
+        "space",
+        "chunk-boundary"
+      ]
+    },
+    {
+      "id": "trial-multiple-joiner-hyphens",
+      "name": "trial: every hyphen in a chain joins letters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "a-b-c"
+        ],
+        "queries": [
+          "a-b-c",
+          "a-b",
+          "b-c"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "hyphen-chain",
+        "exact-word"
+      ]
+    },
+    {
+      "id": "trial-both-edge-hyphens",
+      "name": "trial: leading and trailing hyphens isolate one word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "-a-"
+        ],
+        "queries": [
+          "a",
+          "a-a"
+        ]
+      },
+      "expected": [
+        1,
+        0
+      ],
+      "tags": [
+        "trial",
+        "edge-hyphens",
+        "singleton-word"
+      ]
+    },
+    {
+      "id": "trial-only-separators",
+      "name": "trial: spaces and invalid hyphens produce no words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          " --- "
+        ],
+        "queries": [
+          "a",
+          "a-b"
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "no-words",
+        "separators"
+      ]
+    },
+    {
+      "id": "trial-double-then-joiner",
+      "name": "trial: a double hyphen separates before a valid joined word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "a--b-c"
+        ],
+        "queries": [
+          "a",
+          "b-c",
+          "b",
+          "c"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "mixed-hyphens",
+        "maximal-word"
+      ]
+    },
+    {
+      "id": "trial-duplicate-queries",
+      "name": "trial: repeated queries retain duplicate answers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "cat cat cat"
+        ],
+        "queries": [
+          "cat",
+          "cat",
+          "dog"
+        ]
+      },
+      "expected": [
+        3,
+        3,
+        0
+      ],
+      "tags": [
+        "trial",
+        "duplicate-queries",
+        "repeated-word"
+      ]
+    },
+    {
+      "id": "trial-substring-is-not-word",
+      "name": "trial: an internal substring is not counted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "alphabet alpha"
+        ],
+        "queries": [
+          "alpha",
+          "alphabet",
+          "bet"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "trial",
+        "substring-trap",
+        "exact-word"
+      ]
+    },
+    {
+      "id": "trial-one-character-chunks",
+      "name": "trial: many one-character chunks concatenate into one word",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "chunks": [
+          "h",
+          "e",
+          "l",
+          "l",
+          "o"
+        ],
+        "queries": [
+          "hello",
+          "hell",
+          "o"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "many-chunks",
+        "maximal-word"
+      ]
+    },
+    {
+      "id": "hidden-complex-hyphen-mix",
+      "name": "hidden: mixed valid and invalid hyphens form exact maximal words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "chunks": [
+          "x-y z--q r-s-t -u v-"
+        ],
+        "queries": [
+          "x-y",
+          "z",
+          "q",
+          "r-s-t",
+          "u",
+          "v",
+          "x"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "mixed-hyphens",
+        "edge-hyphens"
+      ]
+    },
+    {
+      "id": "hidden-triple-hyphen",
+      "name": "hidden: three consecutive hyphens separate both letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "chunks": [
+          "a---b"
+        ],
+        "queries": [
+          "a",
+          "b",
+          "a-b"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "consecutive-hyphens",
+        "separators"
+      ]
+    },
+    {
+      "id": "hidden-boundaries-around-space",
+      "name": "hidden: single-character chunks preserve a space separator",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "chunks": [
+          "a",
+          "-",
+          "b",
+          " ",
+          "c"
+        ],
+        "queries": [
+          "a-b",
+          "c",
+          "b"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "chunk-boundary",
+        "space"
+      ]
+    },
+    {
+      "id": "hidden-repeated-mixed-words",
+      "name": "hidden: plain and hyphenated words keep separate frequencies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "chunks": [
+          "a a-b a b a-b"
+        ],
+        "queries": [
+          "a",
+          "b",
+          "a-b",
+          "a"
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        2,
+        2
+      ],
+      "tags": [
+        "hidden",
+        "repeated-words",
+        "duplicate-queries"
+      ]
+    },
+    {
+      "id": "hidden-twenty-letter-chunks",
+      "name": "hidden: twenty letter chunks become one long word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "chunks": [
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a",
+          "a"
+        ],
+        "queries": [
+          "aaaaaaaaaaaaaaaaaaaa",
+          "a",
+          "aaaaaaaaaa"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "many-chunks",
+        "long-word"
+      ]
+    },
+    {
+      "id": "hidden-long-hyphen-chain",
+      "name": "hidden: a longer valid hyphen chain remains one word",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "chunks": [
+          "a-b-c-d-e-f"
+        ],
+        "queries": [
+          "a-b-c-d-e-f",
+          "a-b-c",
+          "d-e-f",
+          "f"
+        ]
+      },
+      "expected": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "hyphen-chain",
+        "exact-word"
+      ]
+    }
+  ]
+}

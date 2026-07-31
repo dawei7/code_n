@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Original Typed String II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts all run-length choices, then subtracts choices shorter than k with a sliding-window dynamic program.",
+      "time_complexity": "O(n + k^2)",
+      "space_complexity": "O(k)"
     }
   ]
 }

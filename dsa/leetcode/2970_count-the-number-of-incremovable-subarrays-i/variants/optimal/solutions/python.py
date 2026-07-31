@@ -1,25 +1,21 @@
-def solve(nums: list[int]) -> int:
-    """
-    Counts the number of incremovable subarrays by checking every possible
-    subarray [i, j] and verifying if the remaining elements are strictly increasing.
-    """
-    n = len(nums)
-    count = 0
-    
-    def is_strictly_increasing(arr):
-        for i in range(len(arr) - 1):
-            if arr[i] >= arr[i + 1]:
-                return False
-        return True
+from typing import List
 
-    # Iterate over all possible start indices i
-    for i in range(n):
-        # Iterate over all possible end indices j (where j >= i)
-        for j in range(i, n):
-            # Construct the remaining array after removing nums[i...j]
-            remaining = nums[:i] + nums[j + 1:]
-            
-            if is_strictly_increasing(remaining):
-                count += 1
-                
-    return count
+
+def solve(nums: List[int]) -> int:
+    n = len(nums)
+    left = 0
+    while left + 1 < n and nums[left] < nums[left + 1]:
+        left += 1
+
+    if left == n - 1:
+        return n * (n + 1) // 2
+
+    answer = left + 2
+    right = n - 1
+    while right == n - 1 or nums[right] < nums[right + 1]:
+        while left >= 0 and nums[left] >= nums[right]:
+            left -= 1
+        answer += left + 2
+        right -= 1
+
+    return answer

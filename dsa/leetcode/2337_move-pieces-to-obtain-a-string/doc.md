@@ -8,48 +8,53 @@
 | Category | Algorithms |
 | Topics | Two Pointers, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [move-pieces-to-obtain-a-string](https://leetcode.com/problems/move-pieces-to-obtain-a-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/move-pieces-to-obtain-a-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/move-pieces-to-obtain-a-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Two strings describe rows of pieces and empty cells. Each string has the same
+length and contains only `L`, `R`, and `_`. An `L` piece may move into an
+adjacent empty cell on its left, while an `R` piece may move into an adjacent
+empty cell on its right. Pieces cannot move in the opposite direction or pass
+through one another.
+
+Determine whether a sequence of any number of legal moves can transform
+`start` into `target`. The arrangement must therefore preserve the left-to-right
+order and type of every piece, while each piece must also be able to reach its
+target position using only its permitted direction.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `start`: A string of length $n$ describing the initial arrangement.
+- `target`: A string of the same length describing the desired arrangement.
+
+Both strings contain only `L`, `R`, and `_`, with $1 \le n \le 10^5$.
 
 **Return value**
 
-TODO
+`True` if legal moves can transform `start` into `target`; otherwise `False`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `start = "_L__R__R_"`, `target = "L______RR"`
+- Output: `True`
+- Explanation: The `L` can move left once, and the two `R` pieces can move
+  right to their target cells without crossing another piece.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `start = "R_L_"`, `target = "__LR"`
+- Output: `False`
+- Explanation: The `R` would have to pass the `L`, which no legal move allows.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `start = "_R"`, `target = "R_"`
+- Output: `False`
+- Explanation: An `R` piece cannot move left.

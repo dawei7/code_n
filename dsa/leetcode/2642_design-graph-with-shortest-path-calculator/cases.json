@@ -1,0 +1,365 @@
+{
+  "challenge_id": "lc_2642",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: added edge creates a path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "Graph",
+          "shortestPath",
+          "shortestPath",
+          "addEdge",
+          "shortestPath"
+        ],
+        "arguments": [
+          [
+            4,
+            [
+              [
+                0,
+                2,
+                5
+              ],
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                2,
+                1
+              ],
+              [
+                3,
+                0,
+                3
+              ]
+            ]
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            [
+              1,
+              3,
+              4
+            ]
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        6,
+        -1,
+        null,
+        6
+      ],
+      "tags": [
+        "sample",
+        "edge-addition"
+      ]
+    },
+    {
+      "id": "trial-same-node",
+      "name": "trial: zero-length path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "Graph",
+          "shortestPath"
+        ],
+        "arguments": [
+          [
+            2,
+            []
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0
+      ],
+      "tags": [
+        "trial",
+        "same-node"
+      ]
+    },
+    {
+      "id": "trial-unreachable",
+      "name": "trial: direction prevents reverse travel",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "Graph",
+          "shortestPath",
+          "shortestPath"
+        ],
+        "arguments": [
+          [
+            3,
+            [
+              [
+                0,
+                1,
+                7
+              ],
+              [
+                1,
+                2,
+                4
+              ]
+            ]
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        11,
+        -1
+      ],
+      "tags": [
+        "trial",
+        "directed"
+      ]
+    },
+    {
+      "id": "trial-cheaper-route",
+      "name": "trial: added edge improves existing route",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "Graph",
+          "shortestPath",
+          "addEdge",
+          "shortestPath"
+        ],
+        "arguments": [
+          [
+            3,
+            [
+              [
+                0,
+                2,
+                20
+              ],
+              [
+                0,
+                1,
+                8
+              ],
+              [
+                1,
+                2,
+                8
+              ]
+            ]
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            [
+              0,
+              2,
+              3
+            ]
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        16,
+        null,
+        3
+      ],
+      "tags": [
+        "trial",
+        "improvement"
+      ]
+    },
+    {
+      "id": "real-cycle",
+      "name": "hidden: positive cycle is safely ignored",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "Graph",
+          "shortestPath",
+          "shortestPath"
+        ],
+        "arguments": [
+          [
+            4,
+            [
+              [
+                0,
+                1,
+                2
+              ],
+              [
+                1,
+                2,
+                2
+              ],
+              [
+                2,
+                0,
+                1
+              ],
+              [
+                2,
+                3,
+                5
+              ]
+            ]
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            3,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        9,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "cycle"
+      ]
+    },
+    {
+      "id": "real-parallel-directions",
+      "name": "hidden: opposite directions are independent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "Graph",
+          "shortestPath",
+          "shortestPath"
+        ],
+        "arguments": [
+          [
+            2,
+            [
+              [
+                0,
+                1,
+                4
+              ],
+              [
+                1,
+                0,
+                9
+              ]
+            ]
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        4,
+        9
+      ],
+      "tags": [
+        "hidden",
+        "directions"
+      ]
+    },
+    {
+      "id": "real-large-cost",
+      "name": "hidden: path total exceeds one edge limit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "Graph",
+          "shortestPath"
+        ],
+        "arguments": [
+          [
+            4,
+            [
+              [
+                0,
+                1,
+                1000000
+              ],
+              [
+                1,
+                2,
+                1000000
+              ],
+              [
+                2,
+                3,
+                1000000
+              ]
+            ]
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        3000000
+      ],
+      "tags": [
+        "hidden",
+        "large-cost"
+      ]
+    }
+  ]
+}

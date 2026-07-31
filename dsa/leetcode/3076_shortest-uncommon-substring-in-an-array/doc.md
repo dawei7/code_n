@@ -8,101 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, String, Trie |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [shortest-uncommon-substring-in-an-array](https://leetcode.com/problems/shortest-uncommon-substring-in-an-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/shortest-uncommon-substring-in-an-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/shortest-uncommon-substring-in-an-array/).
 
 ### Goal
-Given an array of strings, determine the shortest substring for each string that does not appear as a substring in any other string within the array. If multiple such substrings exist for a given string, choose the lexicographically smallest one. If no such substring exists, return an empty string for that index.
+
+You are given an array `arr` containing $n$ non-empty strings. Construct an array `answer` of the same length by choosing a substring for each input string independently.
+
+For every index $i$, `answer[i]` must be a substring of `arr[i]` that does not occur as a substring of any other string in `arr`. Among all substrings satisfying that condition, choose one with the shortest length. If several shortest choices remain, choose the lexicographically smallest one. If `arr[i]` has no substring absent from every other string, place the empty string at index $i$.
+
+Return the completed `answer` array.
 
 ### Function Contract
+
 **Inputs**
 
-- `arr`: A list of strings (`List[str]`) where each string consists of lowercase English letters.
+- `arr`: An array of $n$ non-empty strings, each containing only lowercase English letters.
+
+The input satisfies $2 \le n \le 100$, and every string has length from $1$ through $20$.
 
 **Return value**
 
-- A list of strings (`List[str]`) where the $i$-th element is the shortest, lexicographically smallest uncommon substring of `arr[i]`.
+- An array in which element $i$ is the shortest uncommon substring of `arr[i]`, with lexicographic order breaking equal-length ties, or `""` when no such substring exists.
 
 ### Examples
+
 **Example 1**
 
-- Input: `arr = ["cab","ad","bad","c"]`
-- Output: `["ab","ad","ba",""]`
+- Input: `arr = ["cab", "ad", "bad", "c"]`
+- Output: `["ab", "", "ba", ""]`
+- Explanation: For `"cab"`, both `"ab"` and `"ca"` are shortest substrings absent from the other words, so `"ab"` wins lexicographically. The word `"bad"` contributes `"ba"`. Every substring of `"ad"` or `"c"` appears in another word, so those answers are empty.
 
 **Example 2**
 
-- Input: `arr = ["abc","bcd","abcd"]`
-- Output: `["","","abcd"]`
-
-**Example 3**
-
-- Input: `arr = ["xyz","xyz","xyz"]`
-- Output: `["","",""]`
-
----
-
-## Solution
-### Approach
-The problem is solved by generating all possible substrings for each string in the input array. We use a frequency map (Hash Table) to count the occurrences of every substring across all strings. A substring is "uncommon" if its frequency count is exactly 1 and it belongs to the string currently being processed. We iterate through lengths from 1 to the string length to ensure we find the shortest substring first, and sort lexicographically for ties.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \cdot L^3)$, where $N$ is the number of strings and $L$ is the maximum length of a string. Generating all substrings takes $O(L^2)$ and string slicing/hashing takes $O(L)$, resulting in $O(N \cdot L^3)$.
-- **Space Complexity**: $O(N \cdot L^3)$ to store all possible substrings in a hash map.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-from collections import Counter
-
-def solve(arr: List[str]) -> List[str]:
-    # Count occurrences of every substring across all strings
-    # A substring is only valid if it appears in exactly one string
-    # and that string is the one we are currently checking.
-
-    substring_counts = Counter()
-
-    # Pre-calculate all substrings for every string
-    # We use a set for each string to avoid counting the same substring
-    # multiple times within the same string.
-    all_substrings_per_word = []
-    for s in arr:
-        n = len(s)
-        subs = set()
-        for i in range(n):
-            for j in range(i + 1, n + 1):
-                subs.add(s[i:j])
-        all_substrings_per_word.append(subs)
-        for sub in subs:
-            substring_counts[sub] += 1
-
-    result = []
-    for idx, s in enumerate(arr):
-        n = len(s)
-        found = False
-        # Check lengths from 1 to n to find the shortest
-        for length in range(1, n + 1):
-            candidates = []
-            for i in range(n - length + 1):
-                sub = s[i:i + length]
-                # If this substring appears only in the current string
-                if substring_counts[sub] == 1:
-                    candidates.append(sub)
-
-            if candidates:
-                # Sort lexicographically to pick the smallest
-                candidates.sort()
-                result.append(candidates[0])
-                found = True
-                break
-
-        if not found:
-            result.append("")
-
-    return result
-```
-</details>
+- Input: `arr = ["abc", "bcd", "abcd"]`
+- Output: `["", "", "abcd"]`
+- Explanation: Every substring of each shorter word occurs in `"abcd"`. For the last word, every proper substring appears in one of the other two words, leaving the full string `"abcd"` as its shortest uncommon substring.

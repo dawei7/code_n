@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_290", "frontend_id": "290", "title_slug": "word-pattern", "url": "https://leetcode.com/problems/word-pattern/description/", "paid_only": false, "content_sha256": "6ebf2932500943c6a0969a139ad966aaaff6fac70bc4f698ffed7c7dfd501340", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "pattern = \"abba\", s = \"dog cat cat dog\"", "output": "true", "has_explanation": true}, {"ordinal": 2, "input": "pattern = \"abba\", s = \"dog cat cat fish\"", "output": "false", "has_explanation": false}, {"ordinal": 3, "input": "pattern = \"aaaa\", s = \"dog cat cat dog\"", "output": "false", "has_explanation": false}],
+    "constraint_count": 6,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "bdd6ec8e9a9017bde9b8b18799d16168ac8a9b3ae33e5db657385d65f40e9efc", "reference/contract.md": "8778e431922250e92585f614ae07faf872ecdf1176226f182af3d02436eb16c6", "reference/examples.md": "75d279ceb60bc807d2c6fda9a2cbf3cb0d92ee3d079fb40f9bdf5097bfd92ff4", "reference/constraints.md": "f4ca63fa9d1b2fe1a94e8defb2dcde37209f9f017eea9a1890843f8028c10b3f"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3906",
+  "cases": [
+    {
+      "id": "sample-leading-zero-tail",
+      "name": "sample: eight and nine qualify but ten decreases at the endpoint",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 8,
+        "r": 10,
+        "directions": "DDDRRR"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "leading-zeros",
+        "endpoint-decrease"
+      ]
+    },
+    {
+      "id": "sample-nine-digit-pair",
+      "name": "sample: only the first neighboring value is non-decreasing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 123456789,
+        "r": 123456790,
+        "directions": "DDRRDR"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "row-major-grid",
+        "path-order"
+      ]
+    },
+    {
+      "id": "sample-high-singleton-invalid",
+      "name": "sample: a high singleton decreases in the middle of the path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 1288561398769758,
+        "r": 1288561398769758,
+        "directions": "RRRDDD"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "sixteen-digits",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-one-is-good",
+      "name": "trial: one has six leading path zeros before its final digit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1,
+        "r": 1,
+        "directions": "RDRDRD"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "lower-bound",
+        "leading-zeros"
+      ]
+    },
+    {
+      "id": "trial-ten-invalid",
+      "name": "trial: ten decreases along the bottom-row path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 10,
+        "r": 10,
+        "directions": "DDDRRR"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "direction-sensitive",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-ten-valid-other-path",
+      "name": "trial: the same ten is good when the digit one is off path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 10,
+        "r": 10,
+        "directions": "DDRRRD"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "direction-sensitive",
+        "off-path-digit"
+      ]
+    },
+    {
+      "id": "trial-hundred-off-path",
+      "name": "trial: an off-path nonzero digit does not affect ordering",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 100,
+        "r": 100,
+        "directions": "RRRDDD"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "off-path-digit",
+        "leading-zeros"
+      ]
+    },
+    {
+      "id": "trial-all-equal-path-digits",
+      "name": "trial: equal selected digits satisfy non-decreasing order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1111111111111111,
+        "r": 1111111111111111,
+        "directions": "DRDRDR"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "equality",
+        "sixteen-digits"
+      ]
+    },
+    {
+      "id": "trial-first-hundred-all-good",
+      "name": "trial: every value through one hundred is good for this path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1,
+        "r": 100,
+        "directions": "RRRDDD"
+      },
+      "expected": 100,
+      "tags": [
+        "trial",
+        "inclusive-range",
+        "prefix-count"
+      ]
+    },
+    {
+      "id": "hidden-digit-width-transition",
+      "name": "hidden: the interval crosses from three to four written digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 999,
+        "r": 1001,
+        "directions": "DRDRDR"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "digit-width",
+        "leading-zeros"
+      ]
+    },
+    {
+      "id": "hidden-maximum-upper-bound",
+      "name": "hidden: the largest legal value decreases immediately from nine",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 9000000000000000,
+        "r": 9000000000000000,
+        "directions": "RDRDRD"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "maximum-bound",
+        "sixteen-digits"
+      ]
+    },
+    {
+      "id": "hidden-high-good-singleton",
+      "name": "hidden: a high value has non-decreasing first-column and bottom-row digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 1234567899999999,
+        "r": 1234567899999999,
+        "directions": "DDDRRR"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "high-value",
+        "singleton"
+      ]
+    },
+    {
+      "id": "hidden-high-invalid-singleton",
+      "name": "hidden: a high value decreases across the top row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 8765432100000000,
+        "r": 8765432100000000,
+        "directions": "RRRDDD"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "high-value",
+        "early-decrease"
+      ]
+    },
+    {
+      "id": "hidden-cross-trillion-boundary",
+      "name": "hidden: prefix subtraction spans a thirteen-digit boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 999999999999,
+        "r": 1000000000199,
+        "directions": "RDRDRD"
+      },
+      "expected": 201,
+      "tags": [
+        "hidden",
+        "range-boundary",
+        "prefix-subtraction"
+      ]
+    }
+  ]
+}

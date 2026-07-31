@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Words Obtained After Adding a Letter and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Encodes each word as a letter mask and removes each target letter to test possible predecessor masks.",
+      "time_complexity": "O(L)",
+      "space_complexity": "O(s)"
     }
   ]
 }

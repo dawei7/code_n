@@ -8,79 +8,38 @@
 | Category | Algorithms |
 | Topics | Array, Stack, Greedy, Monotonic Stack |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [make-array-non-decreasing](https://leetcode.com/problems/make-array-non-decreasing/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/make-array-non-decreasing/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/make-array-non-decreasing/).
 
 ### Goal
-Determine the minimum number of rounds required to transform an array into a non-decreasing sequence. In each round, every element that is strictly smaller than the element immediately preceding it is removed from the array.
+
+You are given an integer array `nums`. In one operation, choose any contiguous subarray and replace the entire chosen subarray with a single element whose value is the maximum value in that subarray. This shortens the array unless the chosen subarray has length one.
+
+You may perform the operation any number of times, including zero. Among all arrays obtainable this way that are non-decreasing, return the maximum possible number of elements. Equal adjacent values are permitted in a non-decreasing result.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the initial sequence.
+- `nums`: An integer array of length $n$.
+
+The constraints are $1 \le n \le 2 \cdot 10^5$ and $1 \le \texttt{nums[i]} \le 2 \cdot 10^5$.
 
 **Return value**
 
-- An integer representing the total number of rounds needed until the array becomes non-decreasing.
+- The greatest achievable length of a non-decreasing array after zero or more allowed operations.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [5, 3, 4, 4, 7, 3, 6, 11, 8, 5, 11]`
+- Input: `nums = [4, 2, 5, 3, 5]`
 - Output: `3`
+- Explanation: Replace `[2, 5]` by `5`, producing `[4, 5, 3, 5]`; then replace `[3, 5]` by `5`, producing the non-decreasing array `[4, 5, 5]`.
 
 **Example 2**
 
-- Input: `nums = [4, 5, 7, 7, 13]`
-- Output: `0`
-
-**Example 3**
-
-- Input: `nums = [10, 1, 2, 3, 4, 5]`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Monotonic Stack**. Each element in the stack stores a pair: the value itself and the number of rounds it takes for that specific element to be "eliminated" (or survive). For each element, we determine how many rounds it would take to be removed by comparing it with the elements currently in the stack. If an element is greater than the top of the stack, it will be removed in the next round, and we calculate the maximum rounds needed based on the elements it "covers."
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array. Each element is pushed and popped from the stack at most once.
-- **Space Complexity**: `O(n)` to store the stack in the worst-case scenario where the array is strictly decreasing.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int]) -> int:
-    # The stack stores tuples of (value, rounds_to_be_removed)
-    # rounds_to_be_removed is the number of rounds until this element is deleted.
-    stack = []
-    max_rounds = 0
-
-    for x in nums:
-        rounds = 0
-        # While the current element is smaller than the top of the stack,
-        # it will be removed by the element at the top of the stack.
-        while stack and stack[-1][0] <= x:
-            rounds = max(rounds, stack.pop()[1])
-
-        if stack:
-            # If the stack is not empty, the current element will be removed
-            # in (rounds + 1) steps because it is smaller than the element
-            # currently at the top of the stack.
-            rounds += 1
-        else:
-            # If the stack is empty, this element will never be removed.
-            rounds = 0
-
-        max_rounds = max(max_rounds, rounds)
-        stack.append((x, rounds))
-
-    return max_rounds
-```
-</details>
+- Input: `nums = [1, 2, 3]`
+- Output: `3`
+- Explanation: The original array is already non-decreasing, so no operation is needed.

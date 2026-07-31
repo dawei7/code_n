@@ -1,36 +1,28 @@
-from collections import defaultdict
 import sys
+
 
 def solve(edges: list[list[int]], signalSpeed: int) -> list[int]:
     n = len(edges) + 1
-    sys.setrecursionlimit(max(sys.getrecursionlimit(), n * 2 + 50))
-    adj = defaultdict(list)
-    for u, v, w in edges:
-        adj[u].append((v, w))
-        adj[v].append((u, w))
+    graph: list[list[tuple[int, int]]] = [[] for _ in range(n)]
+    for first, second, weight in edges:
+        graph[first].append((second, weight))
+        graph[second].append((first, weight))
 
-    def count_divisible_paths(curr, parent, current_dist):
-        count = 1 if current_dist % signalSpeed == 0 else 0
-        for neighbor, weight in adj[curr]:
+    sys.setrecursionlimit(max(sys.getrecursionlimit(), 2 * n + 50))
+
+    def count_divisible(node: int, parent: int, distance: int) -> int:
+        count = int(distance % signalSpeed == 0)
+        for neighbor, weight in graph[node]:
             if neighbor != parent:
-                count += count_divisible_paths(neighbor, curr, current_dist + weight)
+                count += count_divisible(neighbor, node, distance + weight)
         return count
 
-    results = [0] * n
+    answer = [0] * n
+    for root in range(n):
+        qualifying_before = 0
+        for neighbor, weight in graph[root]:
+            branch_count = count_divisible(neighbor, root, weight)
+            answer[root] += qualifying_before * branch_count
+            qualifying_before += branch_count
 
-    for i in range(n):
-        subtree_counts = []
-        for neighbor, weight in adj[i]:
-            subtree_counts.append(count_divisible_paths(neighbor, i, weight))
-
-        # Calculate pairs: if we have subtrees with counts c1, c2, c3...
-        # The number of pairs is the sum of (ci * cj) for all i < j
-        total_pairs = 0
-        prefix_sum = 0
-        for count in subtree_counts:
-            total_pairs += prefix_sum * count
-            prefix_sum += count
-
-        results[i] = total_pairs
-
-    return results
+    return answer

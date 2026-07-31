@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_12",
+    "frontend_id": "12",
+    "title_slug": "integer-to-roman",
+    "url": "https://leetcode.com/problems/integer-to-roman/description/",
+    "paid_only": false,
+    "content_sha256": "a83b63ccaf243093117b591248718dd47de246d5a4321ba367476975068a92f2",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "num = 3749", "output": "\"MMMDCCXLIX\"", "has_explanation": true},
+      {"ordinal": 2, "input": "num = 58", "output": "\"LVIII\"", "has_explanation": true},
+      {"ordinal": 3, "input": "num = 1994", "output": "\"MCMXCIV\"", "has_explanation": true}
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 1,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 1,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3760df1d6ccefa3e36be6a8d749cc94ded17b7f900e7badefcf8a550d1b9ffec",
+      "reference/contract.md": "adac6c4ba5e4e0c198034ce852fb8445c462c09a27be65a3d8ab506b7045fe0a",
+      "reference/examples.md": "55d8c4aebe53c98116b5f3c765ef31aa40ef13c87526959e321c02637ef50704",
+      "reference/constraints.md": "61af046b4aa519066c0e005814723e80147cd5346c534e5602a6fa774ad9f6b3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

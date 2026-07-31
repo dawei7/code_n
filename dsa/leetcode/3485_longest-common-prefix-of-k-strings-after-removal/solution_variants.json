@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Common Prefix of K Strings After Removal and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds one trie and skips only prefix depths that become uniquely invalid for each removed word.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(S)"
     }
   ]
 }

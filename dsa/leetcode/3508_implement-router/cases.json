@@ -3,238 +3,111 @@
   "cases": [
     {
       "id": "sample-router-memory",
-      "name": "sample: memory limit and duplicate packet",
+      "name": "sample: duplicate rejection, eviction, and counting",
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": [
-          "Router",
-          "addPacket",
-          "addPacket",
-          "addPacket",
-          "addPacket",
-          "addPacket",
-          "forwardPacket",
-          "addPacket",
-          "getCount"
-        ],
-        "arguments": [
-          [
-            3
-          ],
-          [
-            1,
-            4,
-            90
-          ],
-          [
-            2,
-            5,
-            90
-          ],
-          [
-            1,
-            4,
-            90
-          ],
-          [
-            3,
-            5,
-            95
-          ],
-          [
-            4,
-            5,
-            105
-          ],
-          [],
-          [
-            5,
-            2,
-            110
-          ],
-          [
-            5,
-            100,
-            110
-          ]
-        ]
+        "operations": ["Router", "addPacket", "addPacket", "addPacket", "addPacket", "addPacket", "forwardPacket", "addPacket", "getCount"],
+        "arguments": [[3], [1, 4, 90], [2, 5, 90], [1, 4, 90], [3, 5, 95], [4, 5, 105], [], [5, 2, 110], [5, 100, 110]]
       },
-      "expected": [
-        null,
-        true,
-        true,
-        false,
-        true,
-        true,
-        [
-          2,
-          5,
-          90
-        ],
-        true,
-        1
-      ],
-      "tags": [
-        "sample",
-        "design"
-      ]
+      "expected": [null, true, true, false, true, true, [2, 5, 90], true, 1],
+      "tags": ["sample", "duplicate", "eviction", "range-count"]
     },
     {
       "id": "sample-empty-forward",
-      "name": "sample: forwarding from empty router",
+      "name": "sample: forwarding from an empty router",
       "kind": "sample",
       "visible": true,
       "input": {
-        "operations": [
-          "Router",
-          "addPacket",
-          "forwardPacket",
-          "forwardPacket"
-        ],
-        "arguments": [
-          [
-            2
-          ],
-          [
-            7,
-            4,
-            90
-          ],
-          [],
-          []
-        ]
+        "operations": ["Router", "addPacket", "forwardPacket", "forwardPacket"],
+        "arguments": [[2], [7, 4, 90], [], []]
       },
-      "expected": [
-        null,
-        true,
-        [
-          7,
-          4,
-          90
-        ],
-        []
-      ],
-      "tags": [
-        "sample",
-        "empty"
-      ]
+      "expected": [null, true, [7, 4, 90], []],
+      "tags": ["sample", "fifo", "empty"]
     },
     {
-      "id": "trial-count-after-drop",
-      "name": "trial: count after automatic drop",
+      "id": "trial-duplicate-does-not-evict",
+      "name": "trial: rejected duplicate leaves full router unchanged",
       "kind": "trial",
       "visible": true,
       "input": {
-        "operations": [
-          "Router",
-          "addPacket",
-          "addPacket",
-          "addPacket",
-          "getCount",
-          "forwardPacket",
-          "getCount"
-        ],
-        "arguments": [
-          [
-            2
-          ],
-          [
-            1,
-            9,
-            10
-          ],
-          [
-            2,
-            9,
-            20
-          ],
-          [
-            3,
-            9,
-            30
-          ],
-          [
-            9,
-            1,
-            30
-          ],
-          [],
-          [
-            9,
-            1,
-            30
-          ]
-        ]
+        "operations": ["Router", "addPacket", "addPacket", "addPacket", "forwardPacket", "getCount"],
+        "arguments": [[2], [1, 1, 10], [2, 2, 10], [1, 1, 10], [], [2, 1, 10]]
       },
-      "expected": [
-        null,
-        true,
-        true,
-        true,
-        2,
-        [
-          2,
-          9,
-          20
-        ],
-        1
-      ],
-      "tags": [
-        "trial",
-        "counts"
-      ]
+      "expected": [null, true, true, false, [1, 1, 10], 1],
+      "tags": ["trial", "duplicate", "capacity", "no-side-effect"]
+    },
+    {
+      "id": "trial-count-after-eviction",
+      "name": "trial: range counts ignore evicted and forwarded prefixes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Router", "addPacket", "addPacket", "addPacket", "getCount", "forwardPacket", "getCount"],
+        "arguments": [[2], [1, 9, 10], [2, 9, 20], [3, 9, 30], [9, 1, 30], [], [9, 1, 30]]
+      },
+      "expected": [null, true, true, true, 2, [2, 9, 20], 1],
+      "tags": ["trial", "eviction", "forward", "live-suffix"]
     },
     {
       "id": "real-duplicate-after-forward",
-      "name": "real: duplicate can return after forwarding",
+      "name": "real: forwarded triple can be inserted again",
       "kind": "real",
       "visible": false,
       "input": {
-        "operations": [
-          "Router",
-          "addPacket",
-          "forwardPacket",
-          "addPacket",
-          "getCount"
-        ],
-        "arguments": [
-          [
-            2
-          ],
-          [
-            5,
-            6,
-            10
-          ],
-          [],
-          [
-            5,
-            6,
-            10
-          ],
-          [
-            6,
-            10,
-            10
-          ]
-        ]
+        "operations": ["Router", "addPacket", "forwardPacket", "addPacket", "getCount"],
+        "arguments": [[2], [5, 6, 10], [], [5, 6, 10], [6, 10, 10]]
       },
-      "expected": [
-        null,
-        true,
-        [
-          5,
-          6,
-          10
-        ],
-        true,
-        1
-      ],
-      "tags": [
-        "real",
-        "duplicates"
-      ]
+      "expected": [null, true, [5, 6, 10], true, 1],
+      "tags": ["real", "duplicate-lifetime", "equal-timestamp"]
+    },
+    {
+      "id": "real-duplicate-after-eviction",
+      "name": "real: evicted triple is no longer a duplicate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Router", "addPacket", "addPacket", "addPacket", "addPacket", "forwardPacket", "forwardPacket"],
+        "arguments": [[2], [1, 1, 10], [2, 2, 10], [3, 3, 10], [1, 1, 10], [], []]
+      },
+      "expected": [null, true, true, true, true, [3, 3, 10], [1, 1, 10]],
+      "tags": ["real", "eviction", "duplicate-lifetime", "fifo"]
+    },
+    {
+      "id": "real-inclusive-count-boundaries",
+      "name": "real: range endpoints are both inclusive",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Router", "addPacket", "addPacket", "addPacket", "getCount", "getCount", "getCount", "getCount"],
+        "arguments": [[5], [1, 5, 10], [2, 5, 20], [3, 5, 30], [5, 10, 20], [5, 11, 29], [5, 30, 30], [8, 1, 100]]
+      },
+      "expected": [null, true, true, true, 2, 1, 1, 0],
+      "tags": ["real", "inclusive-range", "absent-destination"]
+    },
+    {
+      "id": "real-equal-timestamps-distinct-packets",
+      "name": "real: equal timestamps do not make packets duplicates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Router", "addPacket", "addPacket", "addPacket", "getCount", "forwardPacket", "getCount"],
+        "arguments": [[3], [1, 2, 10], [1, 3, 10], [2, 2, 10], [2, 10, 10], [], [2, 10, 10]]
+      },
+      "expected": [null, true, true, true, 2, [1, 2, 10], 1],
+      "tags": ["real", "equal-timestamp", "packet-identity"]
+    },
+    {
+      "id": "real-mixed-destination-removals",
+      "name": "real: removals advance only the matching destination",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Router", "addPacket", "addPacket", "addPacket", "addPacket", "getCount", "forwardPacket", "getCount"],
+        "arguments": [[3], [1, 5, 10], [2, 6, 20], [3, 5, 30], [4, 6, 40], [5, 1, 40], [], [6, 1, 40]]
+      },
+      "expected": [null, true, true, true, true, 1, [2, 6, 20], 1],
+      "tags": ["real", "mixed-destinations", "live-suffix", "fifo"]
     }
   ]
 }

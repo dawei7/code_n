@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3394",
+  "frontend_id": "3089",
+  "title_slug": "find-bursty-behavior",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2079179027",
+  "verified_at": "2026-07-24T08:11:00+02:00"
+}

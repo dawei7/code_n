@@ -3,114 +3,75 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one cheap swap balances the baskets",
+      "name": "sample: one cheap direct swap",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "basket1": [
-          4,
-          2,
-          2,
-          2
-        ],
-        "basket2": [
-          1,
-          4,
-          1,
-          2
-        ]
-      },
+      "input": {"basket1": [4, 2, 2, 2], "basket2": [1, 4, 1, 2]},
       "expected": 1,
-      "tags": [
-        "sample",
-        "greedy"
-      ]
+      "tags": ["sample", "direct-swap"]
     },
     {
       "id": "sample-2",
-      "name": "sample: odd total fruit count makes balancing impossible",
+      "name": "sample: odd combined frequencies are impossible",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "basket1": [
-          2,
-          3,
-          4,
-          1
-        ],
-        "basket2": [
-          3,
-          2,
-          5,
-          1
-        ]
-      },
+      "input": {"basket1": [2, 3, 4, 1], "basket2": [3, 2, 5, 1]},
       "expected": -1,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "impossible"]
     },
     {
       "id": "sample-3",
-      "name": "sample: another impossible distribution",
+      "name": "sample: global-minimum detour beats direct swap",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "basket1": [
-          8,
-          4,
-          5,
-          3
-        ],
-        "basket2": [
-          3,
-          2,
-          5,
-          1
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "sample"
-      ]
+      "input": {"basket1": [1, 100, 100], "basket2": [1, 200, 200]},
+      "expected": 2,
+      "tags": ["sample", "minimum-detour"]
     },
     {
       "id": "trial-already-equal",
-      "name": "trial: baskets are already equivalent",
+      "name": "trial: equal multisets in different orders",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "basket1": [
-          1,
-          1
-        ],
-        "basket2": [
-          1,
-          1
-        ]
-      },
+      "input": {"basket1": [3, 1, 2], "basket2": [2, 3, 1]},
       "expected": 0,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["trial", "already-equal"]
+    },
+    {
+      "id": "trial-two-direct-swaps",
+      "name": "trial: two direct endpoints determine the cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {"basket1": [2, 2, 100, 100], "basket2": [3, 3, 200, 200]},
+      "expected": 5,
+      "tags": ["trial", "multiple-swaps"]
     },
     {
       "id": "real-single-fruit-mismatch",
-      "name": "hidden: one fruit in each basket cannot be balanced",
+      "name": "hidden: two different singleton baskets cannot match",
       "kind": "real",
       "visible": false,
-      "input": {
-        "basket1": [
-          1
-        ],
-        "basket2": [
-          2
-        ]
-      },
+      "input": {"basket1": [1], "basket2": [2]},
       "expected": -1,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "impossible"]
+    },
+    {
+      "id": "real-duplicate-surpluses",
+      "name": "hidden: repeated copies require repeated swaps",
+      "kind": "real",
+      "visible": false,
+      "input": {"basket1": [4, 4, 4, 4], "basket2": [2, 2, 2, 2]},
+      "expected": 4,
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "real-large-direct-cost",
+      "name": "hidden: result may require a 64-bit accumulator",
+      "kind": "real",
+      "visible": false,
+      "input": {"basket1": [1000000000, 1000000000], "basket2": [999999999, 999999999]},
+      "expected": 999999999,
+      "tags": ["hidden", "large-cost"]
     }
   ]
 }

@@ -8,49 +8,46 @@
 | Category | Algorithms |
 | Topics | Array, Math, Greedy, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [append-k-integers-with-minimal-sum](https://leetcode.com/problems/append-k-integers-with-minimal-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/append-k-integers-with-minimal-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/append-k-integers-with-minimal-sum/).
 
 ### Goal
-Choose exactly `k` distinct positive integers absent from `nums` so their sum is as small as possible, and return that minimum sum.
+
+Choose exactly `k` positive integers to append to `nums`. The chosen integers
+must be distinct from one another, and none may already occur anywhere in
+`nums`; duplicates already present in `nums` impose only one exclusion.
+
+Among all valid choices, minimize the sum of the appended integers and return
+that minimum sum. Only the sum of the new integers is requested, not the sum
+of the resulting full array.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: positive integers whose values cannot be appended.
-- `k`: the number of distinct values to choose.
+- `nums`: an integer array of length $n$, where $1\le n\le10^5$ and each value
+  lies in $[1,10^9]$.
+- `k`: the number of distinct missing positive integers to append, with
+  $1\le k\le10^8$.
 
 **Return value**
 
-The minimum possible sum of the chosen integers.
+Return the minimum possible sum of the `k` appended integers.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 4, 25, 10, 25]`, `k = 2`
+- Input: `nums = [1,4,25,10,25]`, `k = 2`
 - Output: `5`
 
 **Example 2**
 
-- Input: `nums = [5, 6]`, `k = 6`
+- Input: `nums = [5,6]`, `k = 6`
 - Output: `25`
 
 **Example 3**
 
-- Input: `nums = [1, 2, 3]`, `k = 2`
-- Output: `9`
-
----
-
-## Solution
-### Approach
-Sort and deduplicate `nums`. Starting with the next candidate `1`, consume gaps before each forbidden value. For a gap, take as many of its smallest values as still needed and add their arithmetic-series sum in constant time. If values remain to choose after all forbidden numbers, take the next consecutive range.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(n)` when deduplicating, or `O(1)` auxiliary space with in-place sorting and duplicate skipping
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1,1,2]`, `k = 3`
+- Output: `12`

@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3818",
+  "cases": [
+    {
+      "id": "sample-duplicate-before-increasing-suffix",
+      "name": "sample: remove through the first of two equal threes",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, -1, 2, 3, 3, 4, 5]},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "duplicate", "strict-increase"]
+    },
+    {
+      "id": "sample-decreasing-array",
+      "name": "sample: only the final element remains",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4, 3, -2, -5]},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "decreasing", "singleton-suffix"]
+    },
+    {
+      "id": "sample-already-increasing",
+      "name": "sample: the empty prefix is sufficient",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4]},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "already-increasing", "empty-prefix"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: a singleton is strictly increasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5]},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "empty-prefix"]
+    },
+    {
+      "id": "trial-equal-pair",
+      "name": "trial: equality violates strict increase",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 2]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "equality", "singleton-suffix"]
+    },
+    {
+      "id": "trial-first-pair-violates",
+      "name": "trial: removing one element reveals an increasing suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 1, 2, 3]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "first-violation", "long-suffix"]
+    },
+    {
+      "id": "trial-middle-drop",
+      "name": "trial: remove an increasing prefix before a lower suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 0, 1, 2]},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "middle-violation", "suffix-boundary"]
+    },
+    {
+      "id": "real-strictly-decreasing",
+      "name": "hidden: a strictly decreasing array leaves its last value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 4, 3, 2, 1]},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "strictly-decreasing", "maximum-removal"]
+    },
+    {
+      "id": "real-negative-increasing",
+      "name": "hidden: negative values can already be strictly increasing",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-3, -2, -1]},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "negative-values", "empty-prefix"]
+    },
+    {
+      "id": "real-late-duplicate",
+      "name": "hidden: a late equality determines the suffix boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 3, 4, 5]},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "late-duplicate", "strictness"]
+    },
+    {
+      "id": "real-multiple-violations",
+      "name": "hidden: the final violation determines the removable prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 1, 4, 2, 3]},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "multiple-violations", "last-violation"]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: legal extreme values remain strictly increasing",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-1000000000, 0, 1000000000]},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "value-boundaries", "already-increasing"]
+    }
+  ]
+}

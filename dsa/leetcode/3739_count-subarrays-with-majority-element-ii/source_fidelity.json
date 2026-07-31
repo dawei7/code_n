@@ -1,0 +1,15 @@
+{
+  "schema_version":1,
+  "source":{"provider":"leetcode","challenge_id":"lc_3739","frontend_id":"3739","title_slug":"count-subarrays-with-majority-element-ii","url":"https://leetcode.com/problems/count-subarrays-with-majority-element-ii/description/","paid_only":false,"content_sha256":"18bd9d3971f4bac220688b6685e723cd1d44c1034cf4c86aff2ac735ebedd907","checked_at":"2026-07-28"},
+  "structure":{"sections":["description","examples","constraints"],"examples":[
+    {"ordinal":1,"input":"nums = [1,2,2,3], target = 2","output":"5","has_explanation":true},
+    {"ordinal":2,"input":"nums = [1,1,1,1], target = 1","output":"10","has_explanation":true},
+    {"ordinal":3,"input":"nums = [1,2,3], target = 4","output":"0","has_explanation":true}
+  ],"constraint_count":3,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
+  "review":{"status":"verified","files":{
+    "reference/description.md":"1e69ada5adc72f060a6f83a95147a11d56063978e866fb9976bff4c270a88309",
+    "reference/contract.md":"8d2eb80db7dcd502673b424fde01e4097f32075fe2e78eb246d37315ba43b93b",
+    "reference/examples.md":"b358502782e920bb84b7907d60a21a975ee4b6d03b24c6afea5a54599a8ac5ef",
+    "reference/constraints.md":"e6e7a8e627f1f2c05393a9462fdf3db458d14bb1e16058fbaff2d249856ab95c"
+  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+}

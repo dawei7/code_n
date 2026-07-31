@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3603",
+  "cases": [
+    {
+      "id": "sample-one-row",
+      "name": "sample: destination reached on the first move",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 2,
+        "waitCost": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "one-move",
+        "destination-no-wait"
+      ]
+    },
+    {
+      "id": "sample-two-by-two",
+      "name": "sample: cheaper wait chooses the downward route",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "waitCost": [
+          [
+            3,
+            5
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "path-choice",
+        "waiting-cost"
+      ]
+    },
+    {
+      "id": "sample-two-by-three",
+      "name": "sample: alternating moves and waits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 3,
+        "waitCost": [
+          [
+            6,
+            1,
+            4
+          ],
+          [
+            3,
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "sample",
+        "multiple-waits"
+      ]
+    },
+    {
+      "id": "trial-forced-row",
+      "name": "trial: a single row charges only internal waits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 4,
+        "waitCost": [
+          [
+            100,
+            7,
+            11,
+            1000
+          ]
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "trial",
+        "single-row",
+        "forced-path"
+      ]
+    },
+    {
+      "id": "trial-forced-column",
+      "name": "trial: a single column exercises transposed storage",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 1,
+        "waitCost": [
+          [
+            100
+          ],
+          [
+            4
+          ],
+          [
+            9
+          ],
+          [
+            1000
+          ]
+        ]
+      },
+      "expected": 23,
+      "tags": [
+        "trial",
+        "single-column",
+        "transposed"
+      ]
+    },
+    {
+      "id": "real-destination-wait-ignored",
+      "name": "real: a huge destination wait does not affect the answer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 2,
+        "n": 2,
+        "waitCost": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            100000
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "destination-no-wait",
+        "large-value"
+      ]
+    },
+    {
+      "id": "real-start-wait-ignored",
+      "name": "real: a huge starting wait does not affect the answer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 2,
+        "n": 3,
+        "waitCost": [
+          [
+            100000,
+            2,
+            8
+          ],
+          [
+            5,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "real",
+        "start-no-wait"
+      ]
+    },
+    {
+      "id": "real-zero-waits",
+      "name": "real: entrance products alone determine the best route",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "waitCost": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "real",
+        "zero-waits",
+        "entrance-costs"
+      ]
+    },
+    {
+      "id": "real-non-greedy-waits",
+      "name": "real: a cheap immediate wait can lead to an expensive continuation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 3,
+        "n": 4,
+        "waitCost": [
+          [
+            0,
+            1,
+            50,
+            0
+          ],
+          [
+            20,
+            1,
+            50,
+            0
+          ],
+          [
+            0,
+            30,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 67,
+      "tags": [
+        "real",
+        "non-greedy",
+        "path-choice"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: totals exceed individual cost bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 3,
+        "n": 3,
+        "waitCost": [
+          [
+            100000,
+            100000,
+            100000
+          ],
+          [
+            100000,
+            100000,
+            100000
+          ],
+          [
+            100000,
+            100000,
+            100000
+          ]
+        ]
+      },
+      "expected": 300021,
+      "tags": [
+        "real",
+        "large-values",
+        "integer-range"
+      ]
+    }
+  ]
+}

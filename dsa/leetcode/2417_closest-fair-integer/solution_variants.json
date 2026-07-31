@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Closest Fair Integer and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Constructs the lexicographically smallest bounded decimal string with exactly half even digits.",
+      "time_complexity": "O(d^2)",
+      "space_complexity": "O(d^2)"
     }
   ]
 }

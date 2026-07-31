@@ -6,102 +6,81 @@
       "name": "sample: three weighted disjoint subarrays",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          -1,
-          2
-        ],
-        "k": 3
-      },
+      "input": { "nums": [1, 2, 3, -1, 2], "k": 3 },
       "expected": 22,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "ordered-subarrays"]
     },
     {
       "id": "sample-all-elements",
-      "name": "sample: k equals n so every subarray has length one",
+      "name": "sample: k equals n so every subarray is a singleton",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          12,
-          -2,
-          -2,
-          -2,
-          -2
-        ],
-        "k": 5
-      },
+      "input": { "nums": [12, -2, -2, -2, -2], "k": 5 },
       "expected": 64,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "k-equals-n"]
     },
     {
-      "id": "trial-one-subarray",
-      "name": "trial: k one chooses the maximum subarray sum",
-      "kind": "trial",
+      "id": "sample-one-subarray",
+      "name": "sample: one subarray reduces to maximum subarray sum",
+      "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          -1,
-          -2,
-          -3
-        ],
-        "k": 1
-      },
+      "input": { "nums": [-1, -2, -3], "k": 1 },
       "expected": -1,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["sample", "k-one", "all-negative"]
     },
     {
-      "id": "trial-negative-middle",
-      "name": "trial: negative middle can help the even weighted segment",
+      "id": "trial-order-matters",
+      "name": "trial: coefficients follow input order",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          4,
-          -5,
-          6,
-          -2,
-          3
-        ],
-        "k": 3
-      },
-      "expected": 29,
-      "tags": [
-        "trial"
-      ]
+      "input": { "nums": [2, -1, 1, 2, 3], "k": 3 },
+      "expected": 14,
+      "tags": ["trial", "ordering"]
     },
     {
-      "id": "real-mixed-strength",
-      "name": "real: mixed signs and five subarrays",
+      "id": "trial-negative-even-segment",
+      "name": "trial: a negative middle segment benefits the negative coefficient",
+      "kind": "trial",
+      "visible": true,
+      "input": { "nums": [4, -5, 6, -2, 3], "k": 3 },
+      "expected": 29,
+      "tags": ["trial", "alternating-signs"]
+    },
+    {
+      "id": "trial-all-negative",
+      "name": "trial: all-negative values can still yield positive strength",
+      "kind": "trial",
+      "visible": true,
+      "input": { "nums": [-5, -4, -3, -2, -1], "k": 3 },
+      "expected": 2,
+      "tags": ["trial", "all-negative"]
+    },
+    {
+      "id": "real-mixed-five-subarrays",
+      "name": "real: mixed signs with five selected subarrays",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          3,
-          -1,
-          2,
-          -4,
-          5,
-          -2,
-          6,
-          -3
-        ],
-        "k": 5
-      },
+      "input": { "nums": [3, -1, 2, -4, 5, -2, 6, -3], "k": 5 },
       "expected": 61,
-      "tags": [
-        "real",
-        "dp"
-      ]
+      "tags": ["real", "dynamic-programming"]
+    },
+    {
+      "id": "real-wide-negative-segment",
+      "name": "real: the negatively weighted segment spans several values",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [10, -100, 10, -100, 10], "k": 3 },
+      "expected": 420,
+      "tags": ["real", "segment-boundaries"]
+    },
+    {
+      "id": "real-large-result",
+      "name": "real: result exceeds 32-bit integer range",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [1000000000, -1000000000, 1000000000], "k": 3 },
+      "expected": 6000000000,
+      "tags": ["real", "integer-width", "bounds"]
     }
   ]
 }

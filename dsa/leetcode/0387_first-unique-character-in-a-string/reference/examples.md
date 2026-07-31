@@ -1,0 +1,17 @@
+## Examples
+
+**Example 1**
+
+- Input: `s = "leetcode"`
+- Output: `0`
+- Explanation: The character `'l'` at index `0` is the earliest character that occurs nowhere else in the string.
+
+**Example 2**
+
+- Input: `s = "loveleetcode"`
+- Output: `2`
+
+**Example 3**
+
+- Input: `s = "aabb"`
+- Output: `-1`

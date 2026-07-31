@@ -8,84 +8,39 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [special-array-ii](https://leetcode.com/problems/special-array-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/special-array-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/special-array-ii/).
-
 ### Goal
-Determine whether specific subarrays within a given integer array are "special." A subarray is defined as special if every pair of adjacent elements within that subarray has different parity (i.e., one is even and the other is odd). You are provided with a list of queries, where each query specifies a range `[from, to]`, and you must return a boolean indicating if the subarray spanning that range satisfies the parity condition.
+An array is **special** when every adjacent pair contains values of different parity. You are given an integer array `nums` and a list of inclusive index ranges `queries`.
+
+For each `queries[i] = [from_i, to_i]`, determine whether the subarray from `nums[from_i]` through `nums[to_i]` is special. Return one boolean per query in the same order. A one-element range is special because it contains no adjacent pair that can violate the condition.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: A list of integers.
-- `queries`: A list of lists, where each inner list contains two integers `[from, to]` representing the start and end indices (inclusive) of the subarray.
+- `nums`: A list of $n$ positive integers, where $1 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^5$.
+- `queries`: A list of $q$ pairs `[from_i, to_i]`, where $1 \le q \le 10^5$ and $0 \le \texttt{from_i} \le \texttt{to_i} < n$.
 
 **Return value**
 
-- A list of booleans corresponding to each query, where `True` indicates the subarray is special and `False` otherwise.
+Return a list `answer` of $q$ booleans. Its $i$-th value is `true` exactly when every adjacent pair inside the inclusive range `[from_i, to_i]` has different parity.
 
 ### Examples
 **Example 1**
 
-- Input: `nums = [3, 4, 1, 2, 6]`, `queries = [[0, 4]]`
-- Output: `[False]`
+- Input: `nums = [3,4,1,2,6]`, `queries = [[0,4]]`
+- Output: `[false]`
+- Explanation: The range contains adjacent even values `2` and `6`.
 
 **Example 2**
 
-- Input: `nums = [4, 3, 1, 6]`, `queries = [[0, 2], [2, 3]]`
-- Output: `[False, True]`
+- Input: `nums = [4,3,1,6]`, `queries = [[0,2],[2,3]]`
+- Output: `[false,true]`
+- Explanation: The first range contains the adjacent odd values `3` and `1`; the only pair in the second range alternates parity.
 
 **Example 3**
 
-- Input: `nums = [1], queries = [[0, 0]]`
-- Output: `[True]`
-
----
-
-## Solution
-### Approach
-The optimal approach utilizes a **Prefix Sum** array to track parity violations. We pre-calculate an array where `violation[i]` is 1 if `nums[i]` and `nums[i+1]` have the same parity, and 0 otherwise. By computing the prefix sum of this violation array, we can determine if any violations exist within a range `[start, end]` in constant time by checking if the sum of violations between `start` and `end-1` is greater than zero.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N + Q)`, where `N` is the length of `nums` and `Q` is the number of queries. We perform a single pass to build the prefix sum array and then answer each query in `O(1)`.
-- **Space Complexity**: `O(N)` to store the prefix sum array.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int], queries: list[list[int]]) -> list[bool]:
-    n = len(nums)
-    if n == 0:
-        return []
-
-    # violation[i] is 1 if nums[i] and nums[i+1] have the same parity
-    # We only care about indices up to n-2
-    violations = [0] * (n - 1)
-    for i in range(n - 1):
-        if (nums[i] % 2) == (nums[i + 1] % 2):
-            violations[i] = 1
-
-    # Build prefix sum of violations
-    # prefix_sum[i] stores the number of violations in nums[0...i]
-    prefix_sum = [0] * n
-    for i in range(n - 1):
-        prefix_sum[i + 1] = prefix_sum[i] + violations[i]
-
-    results = []
-    for start, end in queries:
-        if start == end:
-            results.append(True)
-        else:
-            # Check if there is any violation in the range [start, end-1]
-            # The number of violations in range [start, end-1] is:
-            # prefix_sum[end-1] - prefix_sum[start]
-            count = prefix_sum[end] - prefix_sum[start]
-            results.append(count == 0)
-
-    return results
-```
-</details>
+- Input: `nums = [2,4,1,6]`, `queries = [[1,3],[0,0]]`
+- Output: `[true,true]`
+- Explanation: The violation between indices `0` and `1` lies outside the first query, and the second query is a singleton.

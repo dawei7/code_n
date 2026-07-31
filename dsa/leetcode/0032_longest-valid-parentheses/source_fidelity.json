@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_32", "frontend_id": "32",
+    "title_slug": "longest-valid-parentheses",
+    "url": "https://leetcode.com/problems/longest-valid-parentheses/description/",
+    "paid_only": false, "content_sha256": "6bd002d044ae467e6cb53b71197dcc4290d497bd3c3448635827480d214b14c2", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"(()\"", "output": "2", "has_explanation": true},
+      {"ordinal": 2, "input": "s = \")()())\"", "output": "4", "has_explanation": true},
+      {"ordinal": 3, "input": "s = \"\"", "output": "0", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "fdc5c332cdac49a30df2e426301c83d8c2107c664dc8486b54811bb270162d49",
+      "reference/contract.md": "6f9a0a7e6a143c874116913cb3a84e614e9776b55f41e16392443af879a96810",
+      "reference/examples.md": "2630a16ee116c0a3f91c36950b35e12c5d0071ede0af222b01e947ea0a7aa88d",
+      "reference/constraints.md": "ce876b8d09abce2004bd6646e3518e5f6a39dec582bef7fa3c835a11322c2164"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

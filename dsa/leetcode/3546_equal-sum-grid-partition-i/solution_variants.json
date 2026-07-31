@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Equal Sum Grid Partition I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Compares the total with cumulative row and column sums while scanning the grid a constant number of times.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(1)"
     }
   ]
 }

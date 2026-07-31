@@ -1,7 +1,7 @@
 {
   "name": "coden-web",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "cOde(n) web frontend - React + Vite + Tailwind with in-app editing, debugging, reference docs, and progress tracking.",
   "scripts": {
@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "test:career": "node scripts/test-career-unlocks.mjs",
     "test:metrics": "node scripts/test-challenge-metrics.mjs",
+    "test:mermaid": "node scripts/test-mermaid-docs.mjs",
     "test:custom-sets": "node scripts/test-custom-problem-sets.mjs && node scripts/test-problem-set-hierarchies.mjs && node scripts/test-personal-set-exchange.mjs"
   },
   "dependencies": {
@@ -18,7 +19,9 @@
     "@fortawesome/free-brands-svg-icons": "^7.3.0",
     "@fortawesome/react-fontawesome": "^3.4.0",
     "@monaco-editor/react": "^4.7.0",
+    "coden": "file:..",
     "katex": "^0.17.0",
+    "mermaid": "^11.16.0",
     "monaco-editor": "^0.55.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -37,9 +40,13 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.19",
+    "jsdom": "^28.1.0",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3",
     "vite": "^5.3.4"
+  },
+  "overrides": {
+    "dompurify": "3.4.12"
   }
 }

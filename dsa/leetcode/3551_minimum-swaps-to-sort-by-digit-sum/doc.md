@@ -8,99 +8,46 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-swaps-to-sort-by-digit-sum](https://leetcode.com/problems/minimum-swaps-to-sort-by-digit-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-swaps-to-sort-by-digit-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-swaps-to-sort-by-digit-sum/).
 
 ### Goal
-Given an array of integers, determine the minimum number of swaps required to sort the array such that elements are ordered primarily by the sum of their digits (in non-decreasing order). If two numbers have the same digit sum, their relative order should be preserved based on their original indices (stable sort behavior).
+
+You are given an array `nums` containing distinct positive integers. Rearrange it into increasing order according to each number's decimal digit sum: a number with a smaller digit sum must come first. When two numbers have the same digit sum, the smaller number must come first.
+
+One swap exchanges the values at two distinct array positions. Return the minimum number of swaps needed to transform `nums` into the uniquely determined order above.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers (`List[int]`).
+- `nums`: An array of distinct positive integers.
+
+The constraints are $1 \le \lvert\texttt{nums}\rvert \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^9$.
 
 **Return value**
 
-- An integer representing the minimum number of swaps required to reach the target sorted state.
+Return the minimum number of pairwise swaps required to arrange all values by `(digit sum, value)` in increasing lexicographic order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [13, 22, 31]`
-- Output: `0`
-- Explanation: Digit sums are 4, 4, 4. They are already in stable order.
+- Input: `nums = [37,100]`
+- Output: `1`
+- Explanation: The digit sums are $10$ and $1$, so the target is `[100,37]`; one swap reaches it.
 
 **Example 2**
 
-- Input: `nums = [15, 8, 2]`
-- Output: `1`
-- Explanation: Digit sums are 6, 8, 2. Sorted order of sums: 2, 6, 8. Target array: [2, 15, 8]. One swap (15 and 2) achieves this.
+- Input: `nums = [22,14,33,7]`
+- Output: `0`
+- Explanation: Their digit sums are $4,5,6,7$, so the array already has the required order.
 
 **Example 3**
 
-- Input: `nums = [10, 20, 30]`
-- Output: `0`
-- Explanation: Digit sums are 1, 2, 3. Already sorted.
+- Input: `nums = [18,43,34,16]`
+- Output: `2`
+- Explanation: The target is `[16,34,43,18]`. Swapping `18` with `16`, then `43` with `34`, reaches it.
 
 ---
-
-## Solution
-### Approach
-The problem is solved by first determining the target permutation of the array indices based on the custom sorting criteria (digit sum, then original index). Once the target positions are known, the problem reduces to finding the minimum number of swaps to transform the current permutation into the target permutation. This is equivalent to counting the number of cycles in the permutation graph: `swaps = N - number_of_cycles`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N log N)` due to the sorting step, where `N` is the length of the array. The cycle decomposition takes `O(N)`.
-- **Space Complexity**: `O(N)` to store the target indices and the visited array for cycle detection.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def get_digit_sum(n: int) -> int:
-    s = 0
-    n = abs(n)
-    while n > 0:
-        s += n % 10
-        n //= 10
-    return s
-
-def solve(nums: list[int]) -> int:
-    n = len(nums)
-    # Create pairs of (digit_sum, original_index, value)
-    # We use original_index to ensure stability
-    indexed_nums = []
-    for i, val in enumerate(nums):
-        indexed_nums.append((get_digit_sum(val), i, val))
-
-    # Sort based on digit sum, then original index
-    indexed_nums.sort(key=lambda x: (x[0], x[1]))
-
-    # target_pos[i] is the index where the element currently at i should go
-    target_pos = [0] * n
-    for new_idx, (d_sum, old_idx, val) in enumerate(indexed_nums):
-        target_pos[old_idx] = new_idx
-
-    # Count cycles in the permutation
-    visited = [False] * n
-    swaps = 0
-
-    for i in range(n):
-        if visited[i] or target_pos[i] == i:
-            continue
-
-        cycle_size = 0
-        curr = i
-        while not visited[curr]:
-            visited[curr] = True
-            curr = target_pos[curr]
-            cycle_size += 1
-
-        if cycle_size > 1:
-            swaps += (cycle_size - 1)
-
-    return swaps
-```
-</details>

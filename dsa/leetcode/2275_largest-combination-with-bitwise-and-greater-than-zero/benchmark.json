@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2275",
+  "measurement_note": "Size is n, the number of candidates. Every value is 1, so the answer is n and the single relevant bit must be counted across the whole list. The optimal scan takes O(n log M) time. Correctly recounting a bit's full support for every candidate completes all tiers and fails through O(n^2 log M) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 candidates sharing bit zero",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"candidates":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 16,
+      "tags": ["benchmark","scale-small","shared-bit"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 candidates sharing bit zero",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"candidates":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 64,
+      "tags": ["benchmark","scale-medium","shared-bit"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 247 candidates sharing bit zero",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 247,
+      "input": {"candidates":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 247,
+      "tags": ["benchmark","scale-large","shared-bit"]
+    }
+  ]
+}

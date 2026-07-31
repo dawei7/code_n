@@ -1,0 +1,57 @@
+{
+  "challenge_id": "lc_2531",
+  "measurement_note": "Size is m, the length of each string. word1 contains only a, while word2 alternates repeated b and c, so no swap equalizes the distinct counts. Character-pair enumeration remains O(m) including counting, while checking every index pair requires O(m^2) work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 positions per string with no valid swap",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "word1": "aaaaaaaaaaaaaaaa",
+        "word2": "bcbcbcbcbcbcbcbc"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "index-pair-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 positions per string with no valid swap",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "word1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "word2": "bcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbc"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "index-pair-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128 positions per string with no valid swap",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "word1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "word2": "bcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbc"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "index-pair-contrast"
+      ]
+    }
+  ]
+}

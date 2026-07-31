@@ -1,0 +1,283 @@
+{
+  "challenge_id": "lc_3269",
+  "cases": [
+    {
+      "id": "sample-empty-first",
+      "name": "sample: only the second array is populated",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [],
+        "nums2": [
+          1,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "empty-first"
+      ]
+    },
+    {
+      "id": "sample-balanced-four",
+      "name": "sample: two four-element arrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "nums2": [
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-unequal-lengths",
+      "name": "sample: five and four positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "nums2": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "sample",
+        "unequal-lengths"
+      ]
+    },
+    {
+      "id": "trial-single-odd",
+      "name": "trial: smallest odd replacement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [],
+        "nums2": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "singleton",
+        "odd"
+      ]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: smallest even replacement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [],
+        "nums2": [
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "singleton",
+        "even"
+      ]
+    },
+    {
+      "id": "trial-two-even-arrays",
+      "name": "trial: equal parity values must remain distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0
+        ],
+        "nums2": [
+          0
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "global-uniqueness",
+        "even"
+      ]
+    },
+    {
+      "id": "trial-opposite-parities",
+      "name": "trial: odd and even can use one and two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0
+        ],
+        "nums2": [
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "opposite-parity",
+        "short"
+      ]
+    },
+    {
+      "id": "real-all-zeroes",
+      "name": "real: two runs of even requirements",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          0,
+          0,
+          0
+        ],
+        "nums2": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "all-even",
+        "runs"
+      ]
+    },
+    {
+      "id": "real-all-ones",
+      "name": "real: two runs of odd requirements",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "all-odd",
+        "runs"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "real: opposing alternating patterns",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ],
+        "nums2": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "alternating",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-blocks",
+      "name": "real: parity blocks create interleaving choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          0,
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        "nums2": [
+          1,
+          1,
+          0,
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "blocks",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-mixed-twelve",
+      "name": "real: twelve mixed positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ],
+        "nums2": [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "mixed",
+        "balanced"
+      ]
+    }
+  ]
+}

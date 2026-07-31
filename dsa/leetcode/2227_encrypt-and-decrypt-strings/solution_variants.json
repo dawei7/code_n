@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Encrypt and Decrypt Strings and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Pre-encrypts the dictionary into ciphertext frequencies so each decryption is one lookup.",
+      "time_complexity": "O(D + Q)",
+      "space_complexity": "O(D)"
     }
   ]
 }

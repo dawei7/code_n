@@ -1,0 +1,125 @@
+{
+  "challenge_id": "lc_2546",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: transform between nonzero strings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1010",
+        "target": "0110"
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "nonzero"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: nonzero cannot become all zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "11",
+        "target": "00"
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "invariant"
+      ]
+    },
+    {
+      "id": "trial-both-zero",
+      "name": "trial: all-zero strings are already equal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0000",
+        "target": "0000"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-zero-cannot-gain-one",
+      "name": "trial: all-zero source cannot gain a set bit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00000",
+        "target": "00001"
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "invariant"
+      ]
+    },
+    {
+      "id": "trial-single-ones-move",
+      "name": "trial: a lone set bit can move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "100000",
+        "target": "000001"
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "single-one"
+      ]
+    },
+    {
+      "id": "real-different-one-counts",
+      "name": "hidden: one counts need not match",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "00000001",
+        "target": "11111111"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "count-change"
+      ]
+    },
+    {
+      "id": "real-identical-nonzero",
+      "name": "hidden: identical nonzero strings need no operations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "010101",
+        "target": "010101"
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "real-minimum-length",
+      "name": "hidden: minimum-length mismatch classes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "00",
+        "target": "10"
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "minimum"
+      ]
+    }
+  ]
+}

@@ -1,94 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2506",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: two strings share the same character set",
+      "name": "sample: two matching character-set groups",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "words": [
-          "aba",
-          "aabb",
-          "abcd",
-          "bac",
-          "aabc"
-        ]
-      },
+      "input": { "words": ["aba", "aabb", "abcd", "bac", "aabc"] },
       "expected": 2,
-      "tags": [
-        "sample",
-        "bitmask"
-      ]
+      "tags": ["sample", "multiple-groups"]
     },
     {
       "id": "sample-2",
       "name": "sample: all three words are similar",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "words": [
-          "aabb",
-          "ab",
-          "ba"
-        ]
-      },
+      "input": { "words": ["aabb", "ab", "ba"] },
       "expected": 3,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "all-pairs"]
     },
     {
       "id": "sample-3",
-      "name": "sample: no matching character sets",
+      "name": "sample: each word has a distinct character set",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "words": [
-          "nba",
-          "cyp",
-          "ocm"
-        ]
-      },
+      "input": { "words": ["nba", "cba", "dba"] },
       "expected": 0,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "no-pairs"]
     },
     {
-      "id": "trial-one-similar-pair",
-      "name": "trial: only the two-letter words match",
+      "id": "trial-multiplicity-ignored",
+      "name": "trial: repeated letters do not change a signature",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "words": [
-          "a",
-          "b",
-          "ab",
-          "ba"
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "trial"
-      ]
+      "input": { "words": ["a", "aa", "aaaa", "b"] },
+      "expected": 3,
+      "tags": ["trial", "multiplicity"]
     },
     {
-      "id": "real-all-one-letter-set",
-      "name": "hidden: different lengths but the same character set",
+      "id": "trial-order-ignored",
+      "name": "trial: permutations share one signature",
+      "kind": "trial",
+      "visible": true,
+      "input": { "words": ["abc", "cba", "bac", "abd"] },
+      "expected": 3,
+      "tags": ["trial", "order"]
+    },
+    {
+      "id": "real-single-word",
+      "name": "hidden: one word cannot form a pair",
       "kind": "real",
       "visible": false,
-      "input": {
-        "words": [
-          "aaa",
-          "aa",
-          "a"
-        ]
-      },
+      "input": { "words": ["leetcode"] },
+      "expected": 0,
+      "tags": ["hidden", "minimum-length"]
+    },
+    {
+      "id": "real-separate-groups",
+      "name": "hidden: pair totals add across independent signatures",
+      "kind": "real",
+      "visible": false,
+      "input": { "words": ["ab", "ba", "aab", "xy", "yx", "z"] },
+      "expected": 4,
+      "tags": ["hidden", "frequency-groups"]
+    },
+    {
+      "id": "real-full-alphabet",
+      "name": "hidden: complete alphabet signatures ignore order and repeats",
+      "kind": "real",
+      "visible": false,
+      "input": { "words": ["abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"] },
       "expected": 3,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "all-letters", "maximum-mask"]
     }
   ]
 }

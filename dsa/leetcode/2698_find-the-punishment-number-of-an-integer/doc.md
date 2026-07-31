@@ -8,48 +8,38 @@
 | Category | Algorithms |
 | Topics | Math, Backtracking |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-punishment-number-of-an-integer](https://leetcode.com/problems/find-the-punishment-number-of-an-integer/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/find-the-punishment-number-of-an-integer/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-punishment-number-of-an-integer/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+For a positive integer `n`, consider every integer $i$ from $1$ through $n$. Write $i^2$ in decimal and determine whether its digits can be divided into one or more nonempty contiguous substrings whose integer values sum to $i$.
+
+A substring may contain leading zeroes, and its integer value is interpreted normally; for example, a piece `"00"` contributes zero. Every digit of the square must belong to exactly one piece, and the original digit order cannot change.
+
+Return the sum of $i^2$ over all values of $i$ that admit at least one such partition. This sum is the punishment number of `n`.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: A positive integer with $1 \leq n \leq 1000$.
 
 **Return value**
 
-TODO
+Return an integer equal to the sum of the squares of all qualifying values $i$ in the inclusive range $[1,n]$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 10`
+- Output: `182`
+- Explanation: The qualifying values are $1$, $9$, and $10$. Their squares are `1`, `81`, and `100`; partitions `8 + 1` and `10 + 0` establish the latter two.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 37`
+- Output: `1478`
+- Explanation: In addition to $1$, $9$, and $10$, the value $36$ qualifies because `1296` can be split as `1 + 29 + 6`. The four squares sum to $1478$.

@@ -1,158 +1,16 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3413",
   "cases": [
-    {
-      "id": "sample-gapped-segments",
-      "name": "sample: window crosses a gap",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "coins": [
-          [
-            8,
-            10,
-            1
-          ],
-          [
-            1,
-            3,
-            2
-          ],
-          [
-            5,
-            6,
-            4
-          ]
-        ],
-        "k": 4
-      },
-      "expected": 10,
-      "tags": [
-        "sample",
-        "gaps"
-      ]
-    },
-    {
-      "id": "sample-single-segment",
-      "name": "sample: one long segment",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "coins": [
-          [
-            1,
-            10,
-            3
-          ]
-        ],
-        "k": 2
-      },
-      "expected": 6,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-right-aligned",
-      "name": "trial: best window is right aligned",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "coins": [
-          [
-            1,
-            2,
-            5
-          ],
-          [
-            6,
-            8,
-            7
-          ],
-          [
-            10,
-            12,
-            1
-          ]
-        ],
-        "k": 4
-      },
-      "expected": 21,
-      "tags": [
-        "trial",
-        "alignment"
-      ]
-    },
-    {
-      "id": "trial-wide-window",
-      "name": "trial: window covers full segments and partial ends",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "coins": [
-          [
-            2,
-            4,
-            3
-          ],
-          [
-            9,
-            11,
-            6
-          ],
-          [
-            15,
-            18,
-            2
-          ]
-        ],
-        "k": 9
-      },
-      "expected": 24,
-      "tags": [
-        "trial",
-        "partial"
-      ]
-    },
-    {
-      "id": "real-many-segments",
-      "name": "real: several non-overlapping weighted ranges",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "coins": [
-          [
-            1,
-            5,
-            2
-          ],
-          [
-            8,
-            9,
-            10
-          ],
-          [
-            13,
-            16,
-            3
-          ],
-          [
-            20,
-            25,
-            4
-          ],
-          [
-            30,
-            31,
-            20
-          ]
-        ],
-        "k": 8
-      },
-      "expected": 48,
-      "tags": [
-        "real"
-      ]
-    }
+    {"id":"sample-gapped-segments","name":"sample: the optimal window crosses a gap","kind":"sample","visible":true,"input":{"coins":[[8,10,1],[1,3,2],[5,6,4]],"k":4},"expected":10,"tags":["sample","gap"]},
+    {"id":"sample-single-segment","name":"sample: a short window lies inside one segment","kind":"sample","visible":true,"input":{"coins":[[1,10,3]],"k":2},"expected":6,"tags":["sample","single-segment"]},
+    {"id":"trial-one-bag","name":"trial: one selected bag","kind":"trial","visible":true,"input":{"coins":[[5,5,7]],"k":1},"expected":7,"tags":["minimum","single-bag"]},
+    {"id":"trial-window-covers-all","name":"trial: a wide window covers every occupied bag","kind":"trial","visible":true,"input":{"coins":[[2,4,3],[9,10,5]],"k":20},"expected":19,"tags":["wide-window","gaps"]},
+    {"id":"trial-right-aligned","name":"trial: the optimum aligns with a segment's right endpoint","kind":"trial","visible":true,"input":{"coins":[[1,2,5],[6,8,7],[10,12,1]],"k":4},"expected":21,"tags":["right-aligned","orientation"]},
+    {"id":"trial-left-aligned","name":"trial: the optimum starts at a segment's left endpoint","kind":"trial","visible":true,"input":{"coins":[[1,3,1],[5,10,4]],"k":4},"expected":16,"tags":["left-aligned","orientation"]},
+    {"id":"real-large-coordinate-gap","name":"real: coordinates may be far apart","kind":"real","visible":false,"input":{"coins":[[1,2,5],[1000000000,1000000000,9]],"k":2},"expected":10,"tags":["coordinate-boundary","gap"]},
+    {"id":"real-unsorted-input","name":"real: input segments need not be ordered","kind":"real","visible":false,"input":{"coins":[[20,22,4],[1,4,2],[10,15,3]],"k":7},"expected":18,"tags":["sorting","partial-overlap"]},
+    {"id":"real-partial-boundaries","name":"real: the optimum includes complete and partial segments","kind":"real","visible":false,"input":{"coins":[[2,4,3],[9,11,6],[15,18,2]],"k":9},"expected":24,"tags":["partial-overlap","prefix-sum"]},
+    {"id":"real-many-segments","name":"real: multiple weighted ranges compete","kind":"real","visible":false,"input":{"coins":[[1,5,2],[8,9,10],[13,16,3],[20,25,4],[30,31,20]],"k":8},"expected":48,"tags":["weighted","multiple-segments"]}
   ]
 }

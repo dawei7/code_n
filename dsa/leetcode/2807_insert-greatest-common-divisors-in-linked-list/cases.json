@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2807",
+  "cases": [
+    {"id":"sample-multiple-pairs","name":"sample: three different GCD insertions","kind":"sample","visible":true,"input":{"head":[18,6,10,3]},"expected":[18,6,6,2,10,1,3],"tags":["sample","multiple-pairs"]},
+    {"id":"sample-single-node","name":"sample: one node has no adjacent pair","kind":"sample","visible":true,"input":{"head":[7]},"expected":[7],"tags":["sample","minimum"]},
+    {"id":"trial-one-pair","name":"trial: one coprime pair","kind":"trial","visible":true,"input":{"head":[50,28]},"expected":[50,2,28],"tags":["trial","one-pair"]},
+    {"id":"trial-equal-values","name":"trial: equal neighbors insert the same value","kind":"trial","visible":true,"input":{"head":[12,12,12]},"expected":[12,12,12,12,12],"tags":["trial","equal-values"]},
+    {"id":"trial-all-coprime","name":"trial: coprime neighbors insert ones","kind":"trial","visible":true,"input":{"head":[5,7,11,13]},"expected":[5,1,7,1,11,1,13],"tags":["trial","coprime"]},
+    {"id":"real-divisibility-chain","name":"hidden: smaller neighbor divides larger neighbor","kind":"real","visible":false,"input":{"head":[1000,500,100,20,1]},"expected":[1000,500,500,100,100,20,20,1,1],"tags":["hidden","divisibility"]},
+    {"id":"real-alternating-gcds","name":"hidden: adjacent pairs have different nontrivial GCDs","kind":"real","visible":false,"input":{"head":[84,30,45,75]},"expected":[84,6,30,15,45,15,75],"tags":["hidden","nontrivial-gcd"]},
+    {"id":"real-boundary-values","name":"hidden: minimum and maximum values","kind":"real","visible":false,"input":{"head":[1,1000,1,1000]},"expected":[1,1,1000,1,1,1,1000],"tags":["hidden","value-boundaries"]}
+  ]
+}

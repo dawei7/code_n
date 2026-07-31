@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3228",
+  "cases": [
+    {"id":"sample-two-blocks","name":"sample: two zero blocks contribute four moves","kind":"sample","visible":true,"input":{"s":"1001101"},"expected":4,"tags":["sample"]},
+    {"id":"sample-no-boundary","name":"sample: sorted string has no move","kind":"sample","visible":true,"input":{"s":"00111"},"expected":0,"tags":["sample"]},
+    {"id":"trial-one-move","name":"trial: one adjacent pair","kind":"trial","visible":true,"input":{"s":"10"},"expected":1,"tags":["minimum-operation"]},
+    {"id":"trial-single-zero","name":"trial: one zero cannot move","kind":"trial","visible":true,"input":{"s":"0"},"expected":0,"tags":["minimum-length"]},
+    {"id":"trial-single-one","name":"trial: one one cannot move","kind":"trial","visible":true,"input":{"s":"1"},"expected":0,"tags":["minimum-length"]},
+    {"id":"trial-long-zero-block","name":"trial: one operation crosses a long zero block","kind":"trial","visible":true,"input":{"s":"10000"},"expected":1,"tags":["zero-block"]},
+    {"id":"real-alternating","name":"real: alternating blocks accumulate prefix ones","kind":"real","visible":false,"input":{"s":"101010"},"expected":6,"tags":["alternating"]},
+    {"id":"real-leading-zeroes","name":"real: leading zeroes do not contribute","kind":"real","visible":false,"input":{"s":"0001010"},"expected":3,"tags":["leading-zeroes"]},
+    {"id":"real-many-ones-one-block","name":"real: every preceding one crosses the final block","kind":"real","visible":false,"input":{"s":"1111000"},"expected":4,"tags":["prefix-ones"]},
+    {"id":"real-all-zeroes","name":"real: all zeroes have no move","kind":"real","visible":false,"input":{"s":"000000"},"expected":0,"tags":["all-zeroes"]},
+    {"id":"real-all-ones","name":"real: all ones have no move","kind":"real","visible":false,"input":{"s":"111111"},"expected":0,"tags":["all-ones"]},
+    {"id":"real-varied-blocks","name":"real: varied block lengths count once per boundary","kind":"real","visible":false,"input":{"s":"110001001011000"},"expected":15,"tags":["multiple-blocks"]}
+  ]
+}

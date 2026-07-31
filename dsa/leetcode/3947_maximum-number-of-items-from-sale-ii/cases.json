@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3947",
+  "cases": [
+    {
+      "id": "sample-two-boosted-sources",
+      "name": "sample: two copies of the factor-one source match distinct targets",
+      "kind": "sample",
+      "visible": true,
+      "input": {"items": [[1, 6], [2, 4], [3, 5]], "budget": 19},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "distinct-targets", "partial-budget"]
+    },
+    {
+      "id": "sample-repeated-free-target",
+      "name": "sample: two sources may award the same target",
+      "kind": "sample",
+      "visible": true,
+      "input": {"items": [[2, 8], [1, 10], [6, 6], [4, 12], [5, 20], [5, 17]], "budget": 35},
+      "expected": 7,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "repeated-target", "mixed-prices"]
+    },
+    {
+      "id": "trial-single-type",
+      "name": "trial: one type has no free target and repeats ordinarily",
+      "kind": "trial",
+      "visible": true,
+      "input": {"items": [[1, 3]], "budget": 10},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "single-type", "ordinary-copies"]
+    },
+    {
+      "id": "trial-no-affordable-copy",
+      "name": "trial: every item price exceeds the budget",
+      "kind": "trial",
+      "visible": true,
+      "input": {"items": [[1, 5], [2, 6]], "budget": 4},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "unaffordable"]
+    },
+    {
+      "id": "trial-duplicate-factors",
+      "name": "trial: equal factors match the other indexed type",
+      "kind": "trial",
+      "visible": true,
+      "input": {"items": [[2, 2], [2, 3]], "budget": 4},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "duplicate-factors", "index-identity"]
+    },
+    {
+      "id": "trial-two-sources-shared-targets",
+      "name": "trial: factor two and factor three independently reward factor six",
+      "kind": "trial",
+      "visible": true,
+      "input": {"items": [[2, 3], [3, 3], [6, 100], [4, 100], [5, 100], [6, 100]], "budget": 6},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "repeated-target", "multiple-sources"]
+    },
+    {
+      "id": "trial-partial-boosted-batch",
+      "name": "trial: only part of one source's eligible-target batch is affordable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"items": [[1, 3], [2, 100], [3, 100], [4, 100], [5, 100]], "budget": 8},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "partial-batch", "unused-remainder"]
+    },
+    {
+      "id": "trial-expensive-boost-skipped",
+      "name": "trial: a boosted copy costs more than two cheapest ordinary copies",
+      "kind": "trial",
+      "visible": true,
+      "input": {"items": [[1, 9], [2, 4]], "budget": 12},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "price-threshold", "ordinary-copies"]
+    },
+    {
+      "id": "real-threshold-tie",
+      "name": "hidden: a boosted copy priced at twice the minimum ties ordinary copies",
+      "kind": "real",
+      "visible": false,
+      "input": {"items": [[1, 6], [2, 3]], "budget": 12},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "price-threshold", "tie"]
+    },
+    {
+      "id": "real-cheapest-boosted-prefix",
+      "name": "hidden: boosted batches must be consumed in price order",
+      "kind": "real",
+      "visible": false,
+      "input": {"items": [[1, 5], [2, 2], [4, 3], [4, 100]], "budget": 10},
+      "expected": 7,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "sorting", "multiple-batches"]
+    },
+    {
+      "id": "real-self-only-subtraction",
+      "name": "hidden: duplicate-factor sources exclude only their own index",
+      "kind": "real",
+      "visible": false,
+      "input": {"items": [[2, 4], [2, 4], [3, 10]], "budget": 8},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "duplicate-factors", "self-exclusion"]
+    },
+    {
+      "id": "real-factor-one-full-batch",
+      "name": "hidden: factor one has every other type as a distinct target",
+      "kind": "real",
+      "visible": false,
+      "input": {"items": [[1, 4], [2, 10], [3, 10], [4, 10]], "budget": 12},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "factor-one", "full-batch"]
+    },
+    {
+      "id": "real-maximum-budget",
+      "name": "hidden: maximum budget is handled arithmetically",
+      "kind": "real",
+      "visible": false,
+      "input": {"items": [[1, 1]], "budget": 1000000000},
+      "expected": 1000000000,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "boundary", "maximum-budget"]
+    },
+    {
+      "id": "real-maximum-factor",
+      "name": "hidden: a factor equal to the item count is a legal cheapest type",
+      "kind": "real",
+      "visible": false,
+      "input": {"items": [[5, 1], [1, 9], [2, 9], [3, 9], [4, 9]], "budget": 5},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "boundary", "maximum-factor"]
+    },
+    {
+      "id": "real-mixed-catalog",
+      "name": "hidden: mixed duplicate factors and prices combine several batch decisions",
+      "kind": "real",
+      "visible": false,
+      "input": {"items": [[6, 7], [1, 8], [3, 4], [2, 5], [6, 2], [4, 6]], "budget": 23},
+      "expected": 12,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "mixed-factors", "mixed-prices"]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{"schema_version":1,"challenge_id":"lc_3751","cases":[
+{"id":"sample-first-range","name":"sample: three peaks across eleven numbers","kind":"sample","visible":true,"input":{"num1":120,"num2":130},"expected":3,"validator":{"kind":"exact"},"tags":["sample","peaks"]},
+{"id":"sample-cross-hundred","name":"sample: one peak and two valleys","kind":"sample","visible":true,"input":{"num1":198,"num2":202},"expected":3,"validator":{"kind":"exact"},"tags":["sample","peak-and-valleys"]},
+{"id":"sample-single-wavy","name":"sample: alternating four-digit number","kind":"sample","visible":true,"input":{"num1":4848,"num2":4848},"expected":2,"validator":{"kind":"exact"},"tags":["sample","multiple-turns"]},
+{"id":"trial-two-digit-range","name":"trial: numbers shorter than three digits","kind":"trial","visible":true,"input":{"num1":1,"num2":99},"expected":0,"validator":{"kind":"exact"},"tags":["trial","short-numbers"]},
+{"id":"trial-equal-neighbors","name":"trial: middle zero equals one neighbor","kind":"trial","visible":true,"input":{"num1":100,"num2":100},"expected":0,"validator":{"kind":"exact"},"tags":["trial","strict-comparison"]},
+{"id":"trial-single-valley","name":"trial: one strict valley","kind":"trial","visible":true,"input":{"num1":101,"num2":101},"expected":1,"validator":{"kind":"exact"},"tags":["trial","valley"]},
+{"id":"real-monotonic","name":"hidden: monotonic digits have no turn","kind":"real","visible":false,"input":{"num1":123,"num2":123},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","monotonic"]},
+{"id":"real-single-peak","name":"hidden: one strict peak","kind":"real","visible":false,"input":{"num1":132,"num2":132},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","peak"]},
+{"id":"real-three-turns","name":"hidden: five digits alternate three times","kind":"real","visible":false,"input":{"num1":98989,"num2":98989},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","multiple-turns"]},
+{"id":"real-eleven-values","name":"hidden: consecutive valleys after a decimal boundary","kind":"real","visible":false,"input":{"num1":100,"num2":110},"expected":9,"validator":{"kind":"exact"},"tags":["hidden","range"]},
+{"id":"real-maximum-value","name":"hidden: maximum legal endpoint as a single-value range","kind":"real","visible":false,"input":{"num1":100000,"num2":100000},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","maximum-bound"]}
+]}

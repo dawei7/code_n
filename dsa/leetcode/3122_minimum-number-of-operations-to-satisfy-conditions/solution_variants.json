@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Number of Operations to Satisfy Conditions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts each digit by column and uses a ten-state dynamic program to maximize cells left unchanged under adjacent-column inequality.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(1)"
     }
   ]
 }

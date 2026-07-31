@@ -1,0 +1,458 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3636",
+  "cases": [
+    {
+      "id": "sample-one",
+      "name": "sample: thresholds across repeated ones and twos",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            5,
+            4
+          ],
+          [
+            0,
+            3,
+            3
+          ],
+          [
+            2,
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        -1,
+        2
+      ],
+      "tags": [
+        "sample",
+        "thresholds"
+      ]
+    },
+    {
+      "id": "sample-two",
+      "name": "sample: modes across nested ranges",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          3,
+          2,
+          3,
+          2,
+          3
+        ],
+        "queries": [
+          [
+            0,
+            6,
+            4
+          ],
+          [
+            1,
+            5,
+            2
+          ],
+          [
+            2,
+            4,
+            1
+          ],
+          [
+            3,
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        2,
+        3,
+        2
+      ],
+      "tags": [
+        "sample",
+        "nested-ranges"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: singleton range meets threshold one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        9
+      ],
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-all-unique",
+      "name": "trial: equal frequency chooses the smallest value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          3,
+          5,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            3,
+            1
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3
+      ],
+      "tags": [
+        "trial",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-threshold-too-high",
+      "name": "trial: mode frequency remains below threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          7,
+          7,
+          9
+        ],
+        "queries": [
+          [
+            0,
+            4,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "trial",
+        "no-answer"
+      ]
+    },
+    {
+      "id": "trial-inclusive-threshold",
+      "name": "trial: mode exactly meets the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          1,
+          6,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            3,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        6
+      ],
+      "tags": [
+        "trial",
+        "inclusive-threshold"
+      ]
+    },
+    {
+      "id": "real-subrange-mode",
+      "name": "hidden: global mode differs from subrange mode",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          3
+        ],
+        "queries": [
+          [
+            2,
+            6,
+            2
+          ],
+          [
+            0,
+            4,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "subrange"
+      ]
+    },
+    {
+      "id": "real-tied-modes",
+      "name": "hidden: smallest value wins a maximum-frequency tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          20,
+          10,
+          20,
+          30
+        ],
+        "queries": [
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            1,
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        10,
+        20
+      ],
+      "tags": [
+        "hidden",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-duplicate-queries",
+      "name": "hidden: identical ranges with different thresholds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          2,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            4,
+            2
+          ],
+          [
+            0,
+            4,
+            3
+          ],
+          [
+            0,
+            4,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        5,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "thresholds"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: ordering ties among large values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          1000000000,
+          999999999
+        ],
+        "queries": [
+          [
+            0,
+            3,
+            2
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        999999999,
+        999999999
+      ],
+      "tags": [
+        "hidden",
+        "large-values",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-boundary-candidate",
+      "name": "hidden: boundary additions overturn the middle mode",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          7,
+          1,
+          2,
+          1,
+          2,
+          7,
+          7
+        ],
+        "queries": [
+          [
+            0,
+            7,
+            3
+          ],
+          [
+            1,
+            6,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        7,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "boundary-candidate"
+      ]
+    },
+    {
+      "id": "real-many-queries",
+      "name": "hidden: mixed short and long query intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          2,
+          4,
+          3,
+          2,
+          4,
+          3,
+          3,
+          2
+        ],
+        "queries": [
+          [
+            0,
+            8,
+            3
+          ],
+          [
+            2,
+            7,
+            2
+          ],
+          [
+            4,
+            4,
+            1
+          ],
+          [
+            5,
+            8,
+            3
+          ],
+          [
+            1,
+            6,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        2,
+        -1,
+        -1
+      ],
+      "tags": [
+        "hidden",
+        "mixed-ranges"
+      ]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Emotionally Consistent Users and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Aggregates reaction counts by user and type, joins them to each user's total, and keeps the uniquely dominant type when its exact share reaches 60%.",
+      "time_complexity": "O(R log R + U log U)",
+      "space_complexity": "O(R + U)"
     }
   ]
 }

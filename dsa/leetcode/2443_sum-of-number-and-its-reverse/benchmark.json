@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2443",
+  "measurement_note": "Size is num + 1, the number of possible first addends. Each selected num has no witness, so the direct method checks the full range in O(size log size) time. Enumerating two independent addends before testing the reversal relation takes O(size^2) time.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: eight candidates without a witness",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"num": 7},
+      "expected": false,
+      "tags": ["benchmark", "pair-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: thirty-two candidates without a witness",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"num": 31},
+      "expected": false,
+      "tags": ["benchmark", "pair-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: sixty-four candidates without a witness",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"num": 63},
+      "expected": false,
+      "tags": ["benchmark", "pair-enumeration"]
+    }
+  ]
+}

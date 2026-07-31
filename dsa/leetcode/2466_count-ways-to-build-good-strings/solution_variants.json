@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Ways To Build Good Strings and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts construction paths by final length with a one-dimensional recurrence.",
+      "time_complexity": "O(H)",
+      "space_complexity": "O(H)"
     }
   ]
 }

@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3922",
+  "cases": [
+    {
+      "id": "sample-one-flip-leading-bit",
+      "name": "sample: flip the leading bit of 1010",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1010"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-flip",
+        "at-most-one-one"
+      ]
+    },
+    {
+      "id": "sample-one-flip-interior-bit",
+      "name": "sample: flip one interior bit of 0110",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0110"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-flip",
+        "forbidden-subsequences"
+      ]
+    },
+    {
+      "id": "sample-already-coherent",
+      "name": "sample: one leading one needs no flip",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "1000"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "already-coherent",
+        "single-one"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero cannot contain a length-three subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one one cannot contain a length-three subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "one"
+      ]
+    },
+    {
+      "id": "trial-two-zeros",
+      "name": "trial: two zeros are coherent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "00"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "short-string",
+        "all-zero"
+      ]
+    },
+    {
+      "id": "trial-zero-one",
+      "name": "trial: two mixed bits in increasing order are coherent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "01"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "short-string",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-one-zero",
+      "name": "trial: two mixed bits in decreasing order are coherent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "10"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "short-string",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-two-ones",
+      "name": "trial: two ones are coherent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "short-string",
+        "all-one"
+      ]
+    },
+    {
+      "id": "trial-exact-011",
+      "name": "trial: the first forbidden subsequence needs one flip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "011"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "exact-forbidden-pattern",
+        "011"
+      ]
+    },
+    {
+      "id": "trial-exact-110",
+      "name": "trial: the second forbidden subsequence needs one flip",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "110"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "exact-forbidden-pattern",
+        "110"
+      ]
+    },
+    {
+      "id": "trial-all-zeros",
+      "name": "trial: an all-zero string is coherent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "000000"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "all-zero",
+        "already-coherent"
+      ]
+    },
+    {
+      "id": "trial-all-ones",
+      "name": "trial: an all-one string is coherent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "111111"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "all-one",
+        "already-coherent"
+      ]
+    },
+    {
+      "id": "trial-one-interior-one",
+      "name": "trial: a single interior one is coherent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0010000"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single-one",
+        "already-coherent"
+      ]
+    },
+    {
+      "id": "hidden-endpoint-ones",
+      "name": "hidden: two endpoint ones with zero interior are coherent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "1000001"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "endpoint-pattern",
+        "already-coherent"
+      ]
+    },
+    {
+      "id": "hidden-alternating",
+      "name": "hidden: alternating bits favor retaining one existing one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "010101"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "alternating",
+        "at-most-one-one"
+      ]
+    },
+    {
+      "id": "hidden-ones-heavy",
+      "name": "hidden: flipping two endpoint zeros produces all ones",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "011110"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "all-one-target",
+        "endpoint-zeros"
+      ]
+    },
+    {
+      "id": "hidden-grouped-middle-ones",
+      "name": "hidden: grouped middle ones favor retaining one one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "000111000"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "grouped-ones",
+        "at-most-one-one"
+      ]
+    }
+  ]
+}

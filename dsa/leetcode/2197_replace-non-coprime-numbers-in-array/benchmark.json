@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2197",
+  "measurement_note": "Size is the input length n. Equal twos force n - 1 valid replacements while every least common multiple remains 2. The stack processes them in one pass; a correct implementation that explicitly rebuilds the whole current array after every replacement completes all tiers and exhibits quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 mutually mergeable values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums":[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]},
+      "expected": [2],
+      "tags": ["benchmark","scale-small","full-collapse"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 mutually mergeable values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums":[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]},
+      "expected": [2],
+      "tags": ["benchmark","scale-medium","full-collapse"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 241 mutually mergeable values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 241,
+      "input": {"nums":[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]},
+      "expected": [2],
+      "tags": ["benchmark","scale-large","full-collapse"]
+    }
+  ]
+}

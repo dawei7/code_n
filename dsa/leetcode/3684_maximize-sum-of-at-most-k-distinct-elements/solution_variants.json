@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximize Sum of At Most K Distinct Elements and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Deduplicate the positive values, sort them descending, and return the first k entries, which are exactly the maximum-sum distinct choice.",
+      "time_complexity": "O(n + U log U)",
+      "space_complexity": "O(U)"
     }
   ]
 }

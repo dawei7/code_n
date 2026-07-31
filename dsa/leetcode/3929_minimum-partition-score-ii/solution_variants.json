@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Partition Score II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines an exact-group penalty search with a monotone convex hull over prefix-sum transition lines.",
+      "time_complexity": "O(N log S)",
+      "space_complexity": "O(N)"
     }
   ]
 }

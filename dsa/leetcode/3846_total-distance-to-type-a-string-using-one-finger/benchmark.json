@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3846",
+  "measurement_note": "Size is N, the length of s. Each string alternates p at (0, 9) and z at (2, 0), making every transition nonzero and exercising both coordinate differences. The accepted coordinate scan is O(N); a correct prefix-recomputation control repeats all movements through each successive endpoint and is O(N^2).",
+  "cases": [
+    {
+      "id": "benchmark-24-alternating-corners",
+      "name": "benchmark: 24 alternating distant keys",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"s": "pzpzpzpzpzpzpzpzpzpzpzpz"},
+      "expected": 263,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "alternating-keys", "nonzero-moves"],
+      "size": 24
+    },
+    {
+      "id": "benchmark-96-alternating-corners",
+      "name": "benchmark: 96 alternating distant keys",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"s": "pzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpz"},
+      "expected": 1055,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "alternating-keys", "nonzero-moves"],
+      "size": 96
+    },
+    {
+      "id": "benchmark-388-alternating-corners",
+      "name": "benchmark: 388 alternating distant keys",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"s": "pzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpzpz"},
+      "expected": 4267,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "alternating-keys", "nonzero-moves"],
+      "size": 388
+    }
+  ]
+}

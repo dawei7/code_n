@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Power Update After K-th Largest Insertion II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Compresses every possible value and maintains the growing multiset in a Fenwick tree for logarithmic order-statistic queries.",
+      "time_complexity": "O((N + Q) log (N + Q) + Q log V)",
+      "space_complexity": "O(N + Q)"
     }
   ]
 }

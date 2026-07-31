@@ -1,17 +1,14 @@
 def solve(nums: list[int]) -> int:
-    n = len(nums)
-    min_sum = float('inf')
-    found = False
-    
-    # Iterate through all possible triplets (i, j, k)
-    for i in range(n):
-        for j in range(i + 1, n):
-            for k in range(j + 1, n):
-                # Check the mountain condition: nums[i] < nums[j] and nums[k] < nums[j]
-                if nums[i] < nums[j] and nums[k] < nums[j]:
-                    current_sum = nums[i] + nums[j] + nums[k]
-                    if current_sum < min_sum:
-                        min_sum = current_sum
-                        found = True
-                        
-    return int(min_sum) if found else -1
+    suffix_minimum = nums[:]
+    for index in range(len(nums) - 2, -1, -1):
+        suffix_minimum[index] = min(nums[index], suffix_minimum[index + 1])
+
+    answer = float("inf")
+    prefix_minimum = nums[0]
+    for middle in range(1, len(nums) - 1):
+        right_minimum = suffix_minimum[middle + 1]
+        if prefix_minimum < nums[middle] and right_minimum < nums[middle]:
+            answer = min(answer, prefix_minimum + nums[middle] + right_minimum)
+        prefix_minimum = min(prefix_minimum, nums[middle])
+
+    return -1 if answer == float("inf") else int(answer)

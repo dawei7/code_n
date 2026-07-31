@@ -5,51 +5,41 @@
 | Source | LeetCode |
 | Frontend ID | 3634 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Binary Search, Sliding Window, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-removals-to-balance-array](https://leetcode.com/problems/minimum-removals-to-balance-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-removals-to-balance-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-removals-to-balance-array/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given an integer array `nums` and an integer `k`. A nonempty array is balanced when its maximum value is at most `k` times its minimum value.
+
+Remove any number of elements while leaving at least one element. Return the fewest removals needed for the remaining values to be balanced. A single remaining element is always balanced because its minimum and maximum are equal.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ positive integers, where $1 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^9$.
+- `k`: A positive multiplier satisfying $1 \le \texttt{k} \le 10^5$.
 
 **Return value**
 
-TODO
+Return the minimum number of elements that must be removed so the nonempty remainder satisfies $\max \le k\min$.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 1, 5], k = 2`
+- Output: `1`
+- Explanation: Removing 5 leaves minimum 1 and maximum 2, and $2\le2\times1$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 6, 2, 9], k = 3`
+- Output: `2`
+- Explanation: Keeping 2 and 6 gives $6\le3\times2$.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [4, 6], k = 2`
+- Output: `0`
+- Explanation: The original array already satisfies $6\le2\times4$.

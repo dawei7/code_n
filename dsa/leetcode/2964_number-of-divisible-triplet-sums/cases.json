@@ -1,0 +1,186 @@
+{
+  "challenge_id": "lc_2964",
+  "cases": [
+    {
+      "id": "sample-three-triplets",
+      "name": "sample: three divisible triplets",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          4,
+          7,
+          8
+        ],
+        "d": 5
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-triplets",
+      "name": "sample: every triplet is divisible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "d": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "all-divisible"
+      ]
+    },
+    {
+      "id": "sample-no-triplet",
+      "name": "sample: no triplet sum is divisible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "d": 6
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "none"
+      ]
+    },
+    {
+      "id": "trial-fewer-than-three",
+      "name": "trial: too few indices to form a triplet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "d": 3
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "short-array"
+      ]
+    },
+    {
+      "id": "trial-divisor-one",
+      "name": "trial: divisor one accepts every triplet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          7,
+          9,
+          4,
+          20
+        ],
+        "d": 1
+      },
+      "expected": 10,
+      "tags": [
+        "boundary",
+        "divisor-one"
+      ]
+    },
+    {
+      "id": "trial-distinct-values",
+      "name": "trial: several distinct divisible sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "d": 4
+      },
+      "expected": 3,
+      "tags": [
+        "distinct"
+      ]
+    },
+    {
+      "id": "real-equal-values",
+      "name": "real: all equal values produce every index choice",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "d": 3
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: maximum-scale values use their remainders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          2,
+          3
+        ],
+        "d": 5
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-index-multiplicity",
+      "name": "real: duplicate remainders count distinct indices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          6,
+          4,
+          9,
+          5
+        ],
+        "d": 5
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "remainder-duplicates"
+      ]
+    }
+  ]
+}

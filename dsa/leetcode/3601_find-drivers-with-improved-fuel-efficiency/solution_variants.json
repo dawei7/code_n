@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Drivers with Improved Fuel Efficiency and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Conditionally aggregates per-trip efficiency once per driver, filters strict improvement, joins names, and orders the qualifying rows.",
+      "time_complexity": "O(T log T + D log D)",
+      "space_complexity": "O(T + D)"
     }
   ]
 }

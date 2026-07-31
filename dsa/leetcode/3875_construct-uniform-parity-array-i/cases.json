@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3875",
+  "cases": [
+    {
+      "id": "sample-mixed-parity",
+      "name": "sample: make both entries odd",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [2, 3]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "mixed-parity"]
+    },
+    {
+      "id": "sample-all-even",
+      "name": "sample: keep an already even array",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [4, 6]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "all-even"]
+    },
+    {
+      "id": "trial-single-odd",
+      "name": "trial: one odd value is already uniform",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "odd"]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: one even value is already uniform",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [100]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "even", "maximum-value"]
+    },
+    {
+      "id": "trial-all-odd",
+      "name": "trial: keep several odd values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1, 3, 5, 7]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "all-odd", "keep-values"]
+    },
+    {
+      "id": "trial-all-even",
+      "name": "trial: keep several even values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [2, 4, 6, 8]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "all-even", "keep-values"]
+    },
+    {
+      "id": "trial-one-odd-anchor",
+      "name": "trial: one odd anchor converts multiple evens",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [2, 5, 8, 10]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "mixed-parity", "odd-anchor"]
+    },
+    {
+      "id": "trial-one-even",
+      "name": "trial: a single even value can use an odd anchor",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1, 3, 2, 7]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "mixed-parity", "single-even"]
+    },
+    {
+      "id": "real-extreme-values",
+      "name": "hidden: minimum and maximum values have mixed parity",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1, 100]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "value-boundaries", "mixed-parity"]
+    },
+    {
+      "id": "real-descending-mixed",
+      "name": "hidden: array order does not affect the construction",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [100, 99, 98, 97, 96]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "descending", "mixed-parity"]
+    },
+    {
+      "id": "real-alternating-parity",
+      "name": "hidden: alternating parities use one fixed odd anchor",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1, 2, 3, 4, 5, 6, 7, 8]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "alternating-parity", "odd-anchor"]
+    },
+    {
+      "id": "real-irregular-order",
+      "name": "hidden: parity proof ignores numerical order",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [42, 17, 88, 3, 64, 51, 20]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "irregular", "mixed-parity"]
+    },
+    {
+      "id": "real-all-odd-near-maximum",
+      "name": "hidden: large odd values need no subtraction",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [99, 97, 95, 93, 91]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "all-odd", "large-values"]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: every legal value at maximum length",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-length", "complete-value-domain"]
+    }
+  ]
+}

@@ -2,15 +2,13 @@
   "schema_version": 1,
   "challenge_id": "lc_3051",
   "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Candidates for Data Scientist Position and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
+  "variants": [{
+    "id": "optimal",
+    "label": "Optimal",
+    "kind": "optimal",
+    "directory": "variants/optimal",
+    "summary": "Filters to the three required skills, groups by candidate, and retains groups containing every required proficiency.",
+    "time_complexity": "O(n + c log c)",
+    "space_complexity": "O(c)"
+  }]
 }

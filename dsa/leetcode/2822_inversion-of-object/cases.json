@@ -1,0 +1,213 @@
+{
+  "challenge_id": "lc_2822",
+  "cases": [
+    {
+      "id": "sample-unique-object",
+      "name": "sample: unique object values become keys",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": {
+          "a": "1",
+          "b": "2",
+          "c": "3",
+          "d": "4"
+        }
+      },
+      "expected": {
+        "1": "a",
+        "2": "b",
+        "3": "c",
+        "4": "d"
+      },
+      "tags": [
+        "sample",
+        "unique"
+      ]
+    },
+    {
+      "id": "sample-duplicate-object",
+      "name": "sample: duplicate value gathers both keys",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": {
+          "a": "1",
+          "b": "2",
+          "c": "2",
+          "d": "4"
+        }
+      },
+      "expected": {
+        "1": "a",
+        "2": [
+          "b",
+          "c"
+        ],
+        "4": "d"
+      },
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-array",
+      "name": "sample: array indices become string values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "expected": {
+        "1": "0",
+        "2": "1",
+        "3": "2",
+        "4": "3"
+      },
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "trial-array-duplicates",
+      "name": "duplicate array values gather index strings",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": [
+          "x",
+          "y",
+          "x",
+          "x"
+        ]
+      },
+      "expected": {
+        "x": [
+          "0",
+          "2",
+          "3"
+        ],
+        "y": "1"
+      },
+      "tags": [
+        "array",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-empty-object",
+      "name": "empty object remains empty after inversion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {}
+      },
+      "expected": {},
+      "tags": [
+        "boundary",
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-empty-array",
+      "name": "empty array becomes an empty object",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": []
+      },
+      "expected": {},
+      "tags": [
+        "boundary",
+        "empty",
+        "array"
+      ]
+    },
+    {
+      "id": "real-special-value-keys",
+      "name": "hidden: prototype-like strings remain data keys",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "obj": {
+          "a": "__proto__",
+          "b": "constructor",
+          "c": "toString",
+          "d": "__proto__"
+        }
+        },
+        "expected": {
+          "__proto__": [
+            "a",
+            "d"
+          ],
+          "constructor": "b",
+          "toString": "c"
+        },
+      "tags": [
+        "hidden",
+        "special-keys",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-integer-key-order",
+      "name": "hidden: integer-like keys use JavaScript enumeration order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "obj": {
+          "2": "same",
+          "10": "same",
+          "z": "same",
+          "a": "other"
+        }
+      },
+      "expected": {
+        "same": [
+          "2",
+          "10",
+          "z"
+        ],
+        "other": "a"
+      },
+      "tags": [
+        "hidden",
+        "enumeration-order"
+      ]
+    },
+    {
+      "id": "real-empty-and-numeric-values",
+      "name": "hidden: empty and numeric-looking strings are ordinary values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "obj": {
+          "first": "",
+          "second": "0",
+          "third": "",
+          "fourth": "01"
+        }
+      },
+      "expected": {
+        "0": "second",
+        "": [
+          "first",
+          "third"
+        ],
+        "01": "fourth"
+      },
+      "tags": [
+        "hidden",
+        "string-values"
+      ]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Commas in Range II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Adds one contribution for every comma threshold reached by the range.",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

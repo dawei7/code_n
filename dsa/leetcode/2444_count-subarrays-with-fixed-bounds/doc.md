@@ -8,86 +8,38 @@
 | Category | Algorithms |
 | Topics | Array, Queue, Sliding Window, Monotonic Queue |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-subarrays-with-fixed-bounds](https://leetcode.com/problems/count-subarrays-with-fixed-bounds/) |
+| LeetCode | [Count Subarrays With Fixed Bounds](https://leetcode.com/problems/count-subarrays-with-fixed-bounds/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-subarrays-with-fixed-bounds/).
 
 ### Goal
-Given an integer array and two boundary values, determine the total number of contiguous subarrays where the minimum element is exactly equal to `minK` and the maximum element is exactly equal to `maxK`.
+
+You are given an integer array `nums` and two integers `minK` and `maxK`. A fixed-bound subarray is a contiguous portion of `nums` whose minimum element is exactly `minK` and whose maximum element is exactly `maxK`.
+
+Count all fixed-bound subarrays and return the total. Subarrays with different start or end indices count separately, even when their sequences of values happen to be equal.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers.
-- `minK`: The required minimum value for the subarray.
-- `maxK`: The required maximum value for the subarray.
+- `nums`: A list of $n$ integers, where $2 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^6$.
+- `min_k`: The required minimum value, with $1 \le \texttt{min\_k} \le 10^6$.
+- `max_k`: The required maximum value, with $1 \le \texttt{max\_k} \le 10^6$.
 
 **Return value**
 
-- An integer representing the count of valid subarrays.
+- The number of contiguous subarrays whose minimum is `min_k` and whose maximum is `max_k`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 3, 5, 2, 7, 5]`, `minK = 1`, `maxK = 5`
+- Input: `nums = [1, 3, 5, 2, 7, 5], min_k = 1, max_k = 5`
 - Output: `2`
+- Explanation: The valid subarrays are `[1, 3, 5]` and `[1, 3, 5, 2]`.
 
 **Example 2**
 
-- Input: `nums = [1, 1, 1, 1]`, `minK = 1`, `maxK = 1`
+- Input: `nums = [1, 1, 1, 1], min_k = 1, max_k = 1`
 - Output: `10`
-
-**Example 3**
-
-- Input: `nums = [1, 2, 3]`, `minK = 1`, `maxK = 3`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Single-Pass Sliding Window** approach. We maintain three pointers (or indices) to track the state:
-1. `bad_idx`: The index of the most recent element that falls outside the range `[minK, maxK]`.
-2. `min_idx`: The index of the most recent occurrence of `minK`.
-3. `max_idx`: The index of the most recent occurrence of `maxK`.
-
-For every index `i` in the array, if `nums[i]` is within `[minK, maxK]`, the number of valid subarrays ending at `i` is `max(0, min(min_idx, max_idx) - bad_idx)`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we iterate through the array exactly once.
-- **Space Complexity**: `O(1)`, as we only store a few integer pointers regardless of the input size.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int], min_k: int, max_k: int) -> int:
-    ans = 0
-    bad_idx = -1
-    min_idx = -1
-    max_idx = -1
-
-    for i, x in enumerate(nums):
-        # If the current number is outside the allowed range,
-        # it resets the potential window.
-        if not (min_k <= x <= max_k):
-            bad_idx = i
-
-        # Update the last seen positions of min_k and max_k
-        if x == min_k:
-            min_idx = i
-        if x == max_k:
-            max_idx = i
-
-        # The number of valid subarrays ending at i is determined by the
-        # distance between the closest boundary (min or max) and the
-        # last 'bad' index.
-        count = min(min_idx, max_idx) - bad_idx
-        if count > 0:
-            ans += count
-
-    return ans
-```
-</details>
+- Explanation: Every nonempty subarray has both required bounds.

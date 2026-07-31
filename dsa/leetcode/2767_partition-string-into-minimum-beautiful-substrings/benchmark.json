@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2767",
+  "measurement_note": "Size is n, the binary-string length. Each tier contains only ones, so the valid answer uses n copies of 5^0. Prefix dynamic programming is O(n^2), while a correct implementation that enumerates every one of the 2^(n-1) cut masks completes the full legal domain and exhibits exponential scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: all-one string at n=3",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "s": "111"
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "exhaustive-partitions"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: all-one string at n=7",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 7,
+      "input": {
+        "s": "1111111"
+      },
+      "expected": 7,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "exhaustive-partitions"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: all-one string at n=15",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 15,
+      "input": {
+        "s": "111111111111111"
+      },
+      "expected": 15,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "exhaustive-partitions"
+      ]
+    }
+  ]
+}

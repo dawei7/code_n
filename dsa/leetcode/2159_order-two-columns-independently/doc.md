@@ -8,48 +8,51 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [order-two-columns-independently](https://leetcode.com/problems/order-two-columns-independently/) |
+| LeetCode | [Open](https://leetcode.com/problems/order-two-columns-independently/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/order-two-columns-independently/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `Data` table contains two integer columns, `first_col` and `second_col`,
+and may include duplicate rows. Reorder the values in the two columns
+independently rather than preserving their original row pairings.
+
+The result's `first_col` values must appear in ascending order, while its
+`second_col` values must appear in descending order. Preserve every occurrence
+from each input column, including duplicates, and pair values solely by their
+positions in these two independently sorted sequences.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `Data(first_col, second_col)`: the source table of integer pairs; duplicate
+  rows may occur.
 
 **Return value**
 
-TODO
+A result table with columns `first_col` and `second_col`, where the former is
+ascending and the latter is descending.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+Input table `Data`:
 
-**Example 2**
+| first_col | second_col |
+|---:|---:|
+| 4 | 2 |
+| 2 | 3 |
+| 3 | 1 |
+| 1 | 4 |
 
-- Input: `TODO`
-- Output: `TODO`
+Output:
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+| first_col | second_col |
+|---:|---:|
+| 1 | 4 |
+| 2 | 3 |
+| 3 | 2 |
+| 4 | 1 |

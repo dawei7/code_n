@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2420",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-two-good",
       "name": "sample: two good middle indices",
       "kind": "sample",
       "visible": true,
@@ -24,12 +25,12 @@
       ],
       "tags": [
         "sample",
-        "prefix"
+        "runs"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: no good index",
+      "id": "sample-empty-range",
+      "name": "sample: n equals twice k",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -43,13 +44,14 @@
       },
       "expected": [],
       "tags": [
-        "sample"
+        "sample",
+        "boundary"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: k one makes every interior index good",
-      "kind": "sample",
+      "id": "trial-k-one",
+      "name": "k one makes every interior index good",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -67,12 +69,12 @@
         3
       ],
       "tags": [
-        "sample"
+        "k-one"
       ]
     },
     {
-      "id": "trial-single-center",
-      "name": "trial: one symmetric good index",
+      "id": "trial-symmetric",
+      "name": "one valley-centered good index",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -89,12 +91,61 @@
         2
       ],
       "tags": [
-        "trial"
+        "valley"
       ]
     },
     {
-      "id": "real-no-index",
-      "name": "hidden: valid range exists but conditions fail",
+      "id": "trial-all-equal",
+      "name": "equal values satisfy both directions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 2
+      },
+      "expected": [
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "equal"
+      ]
+    },
+    {
+      "id": "real-center-excluded",
+      "name": "hidden: center value does not affect either block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          2,
+          100,
+          1,
+          2
+        ],
+        "k": 2
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "hidden",
+        "excluded-center"
+      ]
+    },
+    {
+      "id": "real-failing-suffix",
+      "name": "hidden: descending suffix rejects the candidate",
       "kind": "real",
       "visible": false,
       "input": {
@@ -109,7 +160,31 @@
       },
       "expected": [],
       "tags": [
-        "hidden"
+        "hidden",
+        "failure"
+      ]
+    },
+    {
+      "id": "real-boundary-values",
+      "name": "hidden: extreme values preserve ordering semantics",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          1,
+          500000,
+          1,
+          1000000
+        ],
+        "k": 2
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
       ]
     }
   ]

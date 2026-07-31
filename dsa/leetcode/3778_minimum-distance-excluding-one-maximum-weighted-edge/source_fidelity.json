@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3778",
+    "frontend_id": "3778",
+    "title_slug": "minimum-distance-excluding-one-maximum-weighted-edge",
+    "url": "https://leetcode.com/problems/minimum-distance-excluding-one-maximum-weighted-edge/description/",
+    "paid_only": true,
+    "content_sha256": "c9e7b6a9b61bddf882688ef8c9152f2c645470a2bc6471a4651221ca090398e7",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal":1,"input":"`n = 5, edges = [[0,1,2],[1,2,7],[2,3,7],[3,4,4]]`","output":"`13`","has_explanation":true},
+      {"ordinal":2,"input":"`n = 3, edges = [[0,1,1],[1,2,1],[0,2,50000]]`","output":"`0`","has_explanation":true}
+    ],
+    "constraint_count": 7,
+    "visuals": {"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8373064dcb47e4355c7d187a4cfc46a512205256109b77b18e96fbaba26d8678",
+      "reference/contract.md": "522c4710b0751e07ff240bddd18a30a460b574fe6e3555e0bb7faf079cf26151",
+      "reference/examples.md": "16ba78a4b23e4386e95d6487ee66464a24b5806d22c11ef46939d2cdd82b1c86",
+      "reference/constraints.md": "60ed7f53c01d7e167800e5900553a8176047050883b0d1c7137c0a63695b1739"
+    },
+    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+  }
+}

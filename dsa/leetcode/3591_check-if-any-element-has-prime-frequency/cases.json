@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3591",
+  "cases": [
+    {"id": "sample-one-prime-frequency","name": "sample: one value occurs twice","kind": "sample","visible": true,"input": {"nums": [1,2,3,4,5,4]},"expected": true,"tags": ["sample","frequency-two","prime"]},
+    {"id": "sample-all-unique","name": "sample: every value occurs once","kind": "sample","visible": true,"input": {"nums": [1,2,3,4,5]},"expected": false,"tags": ["sample","all-unique","frequency-one"]},
+    {"id": "sample-two-prime-frequencies","name": "sample: two values have prime frequencies","kind": "sample","visible": true,"input": {"nums": [2,2,2,4,4]},"expected": true,"tags": ["sample","frequency-two","frequency-three"]},
+    {"id": "trial-single-zero","name": "trial: a singleton frequency is not prime","kind": "trial","visible": true,"input": {"nums": [0]},"expected": false,"tags": ["trial","singleton","minimum-value"]},
+    {"id": "trial-composite-frequency-four","name": "trial: four equal values have composite frequency","kind": "trial","visible": true,"input": {"nums": [7,7,7,7]},"expected": false,"tags": ["trial","frequency-four","composite"]},
+    {"id": "trial-prime-frequency-five","name": "trial: a frequency of five is prime","kind": "trial","visible": true,"input": {"nums": [100,100,100,100,100,0,1,2,3]},"expected": true,"tags": ["trial","frequency-five","boundary-values"]},
+    {"id": "real-several-composite-frequencies","name": "real: several distinct composite frequencies remain false","kind": "real","visible": false,"input": {"nums": [0,0,0,0,8,8,8,8,8,8,100,100,100,100]},"expected": false,"tags": ["real","multiple-values","composite-frequencies"]},
+    {"id": "real-largest-prime-frequency","name": "real: the largest possible prime frequency is recognized","kind": "real","visible": false,"input": {"nums": [42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42]},"expected": true,"tags": ["real","frequency-97","largest-prime-frequency"]},
+    {"id": "real-maximum-composite-frequency","name": "real: the maximum legal frequency is composite","kind": "real","visible": false,"input": {"nums": [100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100]},"expected": false,"tags": ["real","frequency-100","upper-bound","composite"]},
+    {"id": "real-prime-count-hidden-among-unique-values","name": "real: a repeated zero among unique values determines the result","kind": "real","visible": false,"input": {"nums": [0,1,0,2,3,0,4,5,0,6,7,0]},"expected": true,"tags": ["real","frequency-five","mixed-order","zero-value"]}
+  ]
+}

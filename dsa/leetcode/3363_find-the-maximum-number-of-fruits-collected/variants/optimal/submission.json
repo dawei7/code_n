@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3648",
+  "frontend_id": "3363",
+  "title_slug": "find-the-maximum-number-of-fruits-collected",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxCollectedFruits",
+  "verified_submission_id": "2081246385",
+  "verified_at": "2026-07-25T21:32:00Z"
+}

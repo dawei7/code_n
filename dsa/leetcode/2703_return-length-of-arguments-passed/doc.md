@@ -8,48 +8,42 @@
 | Category | JavaScript |
 | Topics | Uncategorized |
 | Supported Languages | javascript |
-| Official Link | [return-length-of-arguments-passed](https://leetcode.com/problems/return-length-of-arguments-passed/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/return-length-of-arguments-passed/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/return-length-of-arguments-passed/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Implement a JavaScript function named `argumentsLength` that accepts any number of JSON-compatible arguments. Return how many separate arguments were supplied to that invocation, regardless of their types or values.
+
+The distinction is based on call arity: an explicitly passed `null`, object, array, string, number, or boolean each counts as one argument. Their contents do not matter. Calling the function without arguments produces zero.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `...args`: Between $0$ and $100$ arguments whose ordered collection is a valid JSON array.
 
 **Return value**
 
-TODO
+Return the integer number of arguments passed to the function.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `argumentsLength(5)`
+- Output: `1`
+- Explanation: One number was passed.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `argumentsLength({}, null, "3")`
+- Output: `3`
+- Explanation: The object, `null`, and string are three distinct arguments.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `argumentsLength()`
+- Output: `0`
+- Explanation: The call contains no arguments.

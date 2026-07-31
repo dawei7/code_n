@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_223", "frontend_id": "223", "title_slug": "rectangle-area", "url": "https://leetcode.com/problems/rectangle-area/description/", "paid_only": false, "content_sha256": "4f3e1aa79cfab9a8446cb8b81582679358979e482bd90b2c9ce352be6a4cb946", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "ax1 = -3, ay1 = 0, ax2 = 3, ay2 = 4, bx1 = 0, by1 = -1, bx2 = 9, by2 = 2", "output": "45", "has_explanation": false}, {"ordinal": 2, "input": "ax1 = -2, ay1 = -2, ax2 = 2, ay2 = 2, bx1 = -2, by1 = -2, bx2 = 2, by2 = 2", "output": "16", "has_explanation": false}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "a7f2cc340f1813f04acfee9a0f42d278aaec0d2e8d5123e665c9ccf51e8d29a2", "reference/contract.md": "0ae4432d6a07688d4daeec3f0c47c5e59fb1eee7d9eafdb59a76aadf91ddd836", "reference/examples.md": "562bbf6ace0d64fc5c00aa66b485e4b98a3b551258af4d9fc007fada5d80177a", "reference/constraints.md": "d2bd83bdede59a56c2b647bb35f1f260a69e52ed1b834a092f1561d99d5e3de1"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

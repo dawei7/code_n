@@ -2,8 +2,8 @@
   "challenge_id": "lc_3160",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: recolor one ball and add another color",
+      "id": "sample-recolor-and-restore",
+      "name": "sample: recolor one ball and later restore its old color",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -39,8 +39,8 @@
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: several balls share a color",
+      "id": "sample-shared-color",
+      "name": "sample: multiple balls can share one color",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -81,9 +81,62 @@
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: repeated assignment to same color",
-      "kind": "sample",
+      "id": "trial-single-query",
+      "name": "trial: first assignment creates one color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "limit": 1,
+        "queries": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "single-query",
+        "ball-zero"
+      ]
+    },
+    {
+      "id": "trial-idempotent",
+      "name": "trial: assigning the same color again changes nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "limit": 2,
+        "queries": [
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "idempotent"
+      ]
+    },
+    {
+      "id": "trial-one-ball-recolored",
+      "name": "trial: one ball changes through several colors",
+      "kind": "trial",
       "visible": true,
       "input": {
         "limit": 1,
@@ -97,12 +150,8 @@
             4
           ],
           [
-            1,
-            2
-          ],
-          [
-            1,
-            2
+            0,
+            4
           ],
           [
             0,
@@ -113,18 +162,17 @@
       "expected": [
         1,
         1,
-        2,
-        2,
-        2
+        1,
+        1
       ],
       "tags": [
-        "sample",
-        "overwrite"
+        "overwrite",
+        "same-ball"
       ]
     },
     {
       "id": "trial-color-disappears",
-      "name": "trial: a color disappears after overwrite",
+      "name": "trial: a color disappears when its last ball changes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -160,12 +208,118 @@
         2
       ],
       "tags": [
-        "frequency"
+        "frequency-zero",
+        "shared-color"
+      ]
+    },
+    {
+      "id": "real-boundary-labels",
+      "name": "real: ball labels use both ends of a huge range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "limit": 1000000000,
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            1000000000,
+            6
+          ],
+          [
+            0,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "tags": [
+        "label-boundaries",
+        "sparse"
+      ]
+    },
+    {
+      "id": "real-maximum-color",
+      "name": "real: colors reach the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "limit": 5,
+        "queries": [
+          [
+            2,
+            1000000000
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "tags": [
+        "color-upper-bound"
+      ]
+    },
+    {
+      "id": "real-color-splits",
+      "name": "real: recoloring one of two shared balls adds a color",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "limit": 4,
+        "queries": [
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            10
+          ],
+          [
+            1,
+            11
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            2,
+            12
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      "tags": [
+        "split",
+        "merge"
       ]
     },
     {
       "id": "real-many-overwrites",
-      "name": "real: many overwrites of the same ball",
+      "name": "real: overwrites remove and reintroduce colors",
       "kind": "real",
       "visible": false,
       "input": {
@@ -206,8 +360,92 @@
         3
       ],
       "tags": [
-        "real",
-        "overwrite"
+        "overwrite",
+        "reintroduction"
+      ]
+    },
+    {
+      "id": "real-swap-color-ownership",
+      "name": "real: colors move between balls without being unassigned explicitly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "limit": 2,
+        "queries": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        1,
+        2
+      ],
+      "tags": [
+        "ownership",
+        "frequency-zero"
+      ]
+    },
+    {
+      "id": "real-three-way-sharing",
+      "name": "real: one shared color persists until its final owner changes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "limit": 4,
+        "queries": [
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            2,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        1
+      ],
+      "tags": [
+        "shared-color",
+        "last-owner"
       ]
     }
   ]

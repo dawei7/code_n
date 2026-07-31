@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Rolling Average Steps and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses partitioned calendar-aware window calculations to produce every complete three-day rolling average.",
+      "time_complexity": "O(S log S)",
+      "space_complexity": "O(S)"
     }
   ]
 }

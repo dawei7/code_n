@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2283",
+  "frontend_id": "2164",
+  "title_slug": "sort-even-and-odd-indices-independently",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.sortEvenOdd",
+  "verified_submission_id": "2073603265",
+  "verified_at": "2026-07-19T15:12:09.571435+00:00"
+}

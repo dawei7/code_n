@@ -1,0 +1,789 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3214",
+  "cases": [
+    {
+      "id": "sample-four-years",
+      "name": "sample: four annual totals and growth rates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 1341,
+              "product_id": 123424,
+              "spend": 1500.6,
+              "transaction_date": "2019-12-31 12:00:00"
+            },
+            {
+              "transaction_id": 1423,
+              "product_id": 123424,
+              "spend": 1000.2,
+              "transaction_date": "2020-12-31 12:00:00"
+            },
+            {
+              "transaction_id": 1623,
+              "product_id": 123424,
+              "spend": 1246.44,
+              "transaction_date": "2021-12-31 12:00:00"
+            },
+            {
+              "transaction_id": 1322,
+              "product_id": 123424,
+              "spend": 2145.32,
+              "transaction_date": "2022-12-31 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2019,
+            123424,
+            1500.6,
+            null,
+            null
+          ],
+          [
+            2020,
+            123424,
+            1000.2,
+            1500.6,
+            -33.35
+          ],
+          [
+            2021,
+            123424,
+            1246.44,
+            1000.2,
+            24.62
+          ],
+          [
+            2022,
+            123424,
+            2145.32,
+            1246.44,
+            72.12
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-transaction",
+      "name": "trial: one product-year has null comparisons",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 1,
+              "product_id": 1,
+              "spend": 50,
+              "transaction_date": "2024-01-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2024,
+            1,
+            50,
+            null,
+            null
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-aggregate-same-year",
+      "name": "trial: multiple transactions combine before lag",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 2,
+              "product_id": 2,
+              "spend": 40,
+              "transaction_date": "2020-01-02 12:00:00"
+            },
+            {
+              "transaction_id": 3,
+              "product_id": 2,
+              "spend": 60,
+              "transaction_date": "2020-12-30 12:00:00"
+            },
+            {
+              "transaction_id": 4,
+              "product_id": 2,
+              "spend": 150,
+              "transaction_date": "2021-06-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2020,
+            2,
+            100,
+            null,
+            null
+          ],
+          [
+            2021,
+            2,
+            150,
+            100,
+            50
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "annual-aggregation"
+      ]
+    },
+    {
+      "id": "trial-two-products",
+      "name": "trial: each product starts an independent partition",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 5,
+              "product_id": 2,
+              "spend": 100,
+              "transaction_date": "2021-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 6,
+              "product_id": 1,
+              "spend": 80,
+              "transaction_date": "2020-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 7,
+              "product_id": 1,
+              "spend": 100,
+              "transaction_date": "2021-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 8,
+              "product_id": 2,
+              "spend": 50,
+              "transaction_date": "2022-01-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2020,
+            1,
+            80,
+            null,
+            null
+          ],
+          [
+            2021,
+            1,
+            100,
+            80,
+            25
+          ],
+          [
+            2021,
+            2,
+            100,
+            null,
+            null
+          ],
+          [
+            2022,
+            2,
+            50,
+            100,
+            -50
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "multiple-products"
+      ]
+    },
+    {
+      "id": "trial-missing-year",
+      "name": "trial: lag uses the preceding available annual row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 9,
+              "product_id": 3,
+              "spend": 100,
+              "transaction_date": "2018-03-01 12:00:00"
+            },
+            {
+              "transaction_id": 10,
+              "product_id": 3,
+              "spend": 125,
+              "transaction_date": "2021-03-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2018,
+            3,
+            100,
+            null,
+            null
+          ],
+          [
+            2021,
+            3,
+            125,
+            100,
+            25
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "year-gap"
+      ]
+    },
+    {
+      "id": "trial-decrease",
+      "name": "trial: falling spend produces negative growth",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 11,
+              "product_id": 4,
+              "spend": 200,
+              "transaction_date": "2022-02-02 12:00:00"
+            },
+            {
+              "transaction_id": 12,
+              "product_id": 4,
+              "spend": 150,
+              "transaction_date": "2023-02-02 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2022,
+            4,
+            200,
+            null,
+            null
+          ],
+          [
+            2023,
+            4,
+            150,
+            200,
+            -25
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "decrease"
+      ]
+    },
+    {
+      "id": "real-unchanged",
+      "name": "real: equal totals produce zero growth",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 13,
+              "product_id": 5,
+              "spend": 75,
+              "transaction_date": "2019-05-05 12:00:00"
+            },
+            {
+              "transaction_id": 14,
+              "product_id": 5,
+              "spend": 75,
+              "transaction_date": "2020-05-05 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2019,
+            5,
+            75,
+            null,
+            null
+          ],
+          [
+            2020,
+            5,
+            75,
+            75,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "unchanged"
+      ]
+    },
+    {
+      "id": "real-zero-previous",
+      "name": "real: zero previous total leaves rate null",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 15,
+              "product_id": 6,
+              "spend": 0,
+              "transaction_date": "2020-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 16,
+              "product_id": 6,
+              "spend": 25,
+              "transaction_date": "2021-01-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2020,
+            6,
+            0,
+            null,
+            null
+          ],
+          [
+            2021,
+            6,
+            25,
+            0,
+            null
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "zero-denominator"
+      ]
+    },
+    {
+      "id": "real-interleaved-input",
+      "name": "real: input order does not affect product-year ordering",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 17,
+              "product_id": 9,
+              "spend": 90,
+              "transaction_date": "2022-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 18,
+              "product_id": 8,
+              "spend": 120,
+              "transaction_date": "2021-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 19,
+              "product_id": 9,
+              "spend": 60,
+              "transaction_date": "2021-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 20,
+              "product_id": 8,
+              "spend": 180,
+              "transaction_date": "2022-01-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2021,
+            8,
+            120,
+            null,
+            null
+          ],
+          [
+            2022,
+            8,
+            180,
+            120,
+            50
+          ],
+          [
+            2021,
+            9,
+            60,
+            null,
+            null
+          ],
+          [
+            2022,
+            9,
+            90,
+            60,
+            50
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "input-order"
+      ]
+    },
+    {
+      "id": "real-decimal-rounding",
+      "name": "real: percentage is rounded after decimal aggregation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 21,
+              "product_id": 10,
+              "spend": 33.33,
+              "transaction_date": "2020-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 22,
+              "product_id": 10,
+              "spend": 66.67,
+              "transaction_date": "2021-01-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2020,
+            10,
+            33.33,
+            null,
+            null
+          ],
+          [
+            2021,
+            10,
+            66.67,
+            33.33,
+            100.03
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "rounding"
+      ]
+    },
+    {
+      "id": "real-three-years",
+      "name": "real: lag advances across three rows",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 23,
+              "product_id": 11,
+              "spend": 80,
+              "transaction_date": "2019-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 24,
+              "product_id": 11,
+              "spend": 100,
+              "transaction_date": "2020-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 25,
+              "product_id": 11,
+              "spend": 90,
+              "transaction_date": "2021-01-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2019,
+            11,
+            80,
+            null,
+            null
+          ],
+          [
+            2020,
+            11,
+            100,
+            80,
+            25
+          ],
+          [
+            2021,
+            11,
+            90,
+            100,
+            -10
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "window-lag"
+      ]
+    },
+    {
+      "id": "real-multirow-multiproduct",
+      "name": "real: annual sums and partitions interact",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_transactions": [
+            {
+              "transaction_id": 26,
+              "product_id": 12,
+              "spend": 20,
+              "transaction_date": "2020-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 27,
+              "product_id": 12,
+              "spend": 30,
+              "transaction_date": "2020-06-01 12:00:00"
+            },
+            {
+              "transaction_id": 28,
+              "product_id": 12,
+              "spend": 75,
+              "transaction_date": "2021-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 29,
+              "product_id": 13,
+              "spend": 40,
+              "transaction_date": "2020-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 30,
+              "product_id": 13,
+              "spend": 60,
+              "transaction_date": "2021-01-01 12:00:00"
+            },
+            {
+              "transaction_id": 31,
+              "product_id": 13,
+              "spend": 15,
+              "transaction_date": "2021-06-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "year",
+          "product_id",
+          "curr_year_spend",
+          "prev_year_spend",
+          "yoy_rate"
+        ],
+        "rows": [
+          [
+            2020,
+            12,
+            50,
+            null,
+            null
+          ],
+          [
+            2021,
+            12,
+            75,
+            50,
+            50
+          ],
+          [
+            2020,
+            13,
+            40,
+            null,
+            null
+          ],
+          [
+            2021,
+            13,
+            75,
+            40,
+            87.5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "aggregation",
+        "partitions"
+      ]
+    }
+  ]
+}

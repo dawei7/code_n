@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4097",
+  "frontend_id": "3877",
+  "title_slug": "minimum-removals-to-achieve-target-xor",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minRemovals",
+  "verified_submission_id": "2086586485",
+  "verified_at": "2026-07-29T18:27:40.895335+00:00"
+}

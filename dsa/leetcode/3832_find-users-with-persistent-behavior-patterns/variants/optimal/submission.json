@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4227",
+  "frontend_id": "3832",
+  "title_slug": "find-users-with-persistent-behavior-patterns",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2085793178",
+  "verified_at": "2026-07-29T07:53:08.170081+00:00"
+}

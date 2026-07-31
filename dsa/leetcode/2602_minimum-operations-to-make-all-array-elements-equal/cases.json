@@ -24,7 +24,7 @@
       ],
       "tags": [
         "sample",
-        "prefix-sum"
+        "independent-queries"
       ]
     },
     {
@@ -47,49 +47,55 @@
         20
       ],
       "tags": [
-        "sample"
+        "sample",
+        "above-maximum"
       ]
     },
     {
       "id": "trial-single-element",
-      "name": "trial: one element below target",
+      "name": "trial: one element and several targets",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          1
+          7
         ],
         "queries": [
-          0
+          1,
+          7,
+          10
         ]
       },
       "expected": [
-        1
+        6,
+        0,
+        3
       ],
       "tags": [
         "trial",
-        "small"
+        "single-element"
       ]
     },
     {
-      "id": "trial-all-equal",
-      "name": "trial: all values already equal",
+      "id": "trial-duplicates",
+      "name": "trial: duplicate values around targets",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          1,
-          1,
-          1
+          4,
+          4,
+          4,
+          9
         ],
         "queries": [
-          1,
-          2
+          4,
+          6
         ]
       },
       "expected": [
-        0,
-        3
+        5,
+        9
       ],
       "tags": [
         "trial",
@@ -97,29 +103,58 @@
       ]
     },
     {
-      "id": "real-low-mid-high-targets",
-      "name": "hidden: targets below, inside, and above values",
+      "id": "real-low-mid-high",
+      "name": "hidden: targets below, within, and above the values",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
+          2,
           5,
-          10,
-          15
+          10
         ],
         "queries": [
-          0,
-          10,
-          20
+          1,
+          5,
+          12
         ]
       },
       "expected": [
-        30,
-        10,
-        30
+        14,
+        8,
+        19
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "partition-boundaries"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: operation totals require wide integers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          1000000000
+        ],
+        "queries": [
+          1,
+          999999999,
+          1000000000
+        ]
+      },
+      "expected": [
+        1999999998,
+        1000000000,
+        999999999
+      ],
+      "tags": [
+        "hidden",
+        "large-values",
+        "wide-integer"
       ]
     }
   ]

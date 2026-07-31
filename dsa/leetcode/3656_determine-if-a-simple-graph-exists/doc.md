@@ -5,51 +5,34 @@
 | Source | LeetCode |
 | Frontend ID | 3656 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Binary Search, Graph Theory, Sorting, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [determine-if-a-simple-graph-exists](https://leetcode.com/problems/determine-if-a-simple-graph-exists/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/determine-if-a-simple-graph-exists/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/determine-if-a-simple-graph-exists/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The array `degrees` specifies one desired degree for every labeled vertex. Determine whether some undirected simple graph realizes exactly this degree sequence. A simple graph may contain neither a self-loop nor more than one edge between the same pair of vertices.
+
+Return `true` when at least one such graph exists and `false` otherwise. Only existence matters; you do not need to construct the edges.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `degrees`: An array of $n$ integers, where $1\le n\le10^5$ and $0\le\texttt{degrees[i]}\le n-1$.
 
 **Return value**
 
-TODO
+Return whether `degrees` is graphical: realizable as the vertex degrees of an undirected simple graph.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `degrees = [3,1,2,2]`
+- Output: `true`
+- Explanation: Edges `(0,1)`, `(0,2)`, `(0,3)`, and `(2,3)` realize the requested degrees.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `degrees = [1,3,3,1]`
+- Output: `false`
+- Explanation: Both degree-3 vertices must connect to every other vertex, forcing the two degree-1 vertices to have at least degree 2.

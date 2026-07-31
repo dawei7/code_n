@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Valid Subarrays With Matching Sum Digits I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Extends every start index with a running sum and checks the sum's boundary digits numerically.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(1)"
     }
   ]
 }

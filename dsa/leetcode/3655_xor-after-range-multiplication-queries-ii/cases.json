@@ -1,0 +1,399 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3655",
+  "cases": [
+    {
+      "id": "sample-all-indices",
+      "name": "sample: multiply all entries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "step-one"
+      ]
+    },
+    {
+      "id": "sample-overlapping-queries",
+      "name": "sample: overlapping progressions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          1,
+          5,
+          4
+        ],
+        "queries": [
+          [
+            1,
+            4,
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: singleton input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": 35,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-small-and-large-steps",
+      "name": "trial: batching and direct paths overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "queries": [
+          [
+            0,
+            8,
+            1,
+            2
+          ],
+          [
+            1,
+            8,
+            4,
+            3
+          ],
+          [
+            2,
+            8,
+            7,
+            5
+          ]
+        ]
+      },
+      "expected": 58,
+      "tags": [
+        "trial",
+        "mixed-steps"
+      ]
+    },
+    {
+      "id": "trial-residue-boundaries",
+      "name": "trial: first position after range shares residue",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "queries": [
+          [
+            1,
+            6,
+            3,
+            7
+          ],
+          [
+            1,
+            7,
+            3,
+            11
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "difference-boundary"
+      ]
+    },
+    {
+      "id": "real-repeated-multiplier",
+      "name": "real: inverse cache sees repeated factors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          5,
+          7,
+          9,
+          11,
+          13
+        ],
+        "queries": [
+          [
+            0,
+            4,
+            2,
+            17
+          ],
+          [
+            1,
+            5,
+            2,
+            17
+          ],
+          [
+            0,
+            5,
+            1,
+            17
+          ]
+        ]
+      },
+      "expected": 2510,
+      "tags": [
+        "real",
+        "repeated-multiplier"
+      ]
+    },
+    {
+      "id": "real-modular-reduction",
+      "name": "real: large products wrap modulo prime",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          999999998
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            1,
+            100000
+          ],
+          [
+            0,
+            2,
+            1,
+            100000
+          ]
+        ]
+      },
+      "expected": 428,
+      "tags": [
+        "real",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-many-residue-classes",
+      "name": "real: equal step updates separate residues",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "queries": [
+          [
+            0,
+            9,
+            3,
+            2
+          ],
+          [
+            1,
+            9,
+            3,
+            3
+          ],
+          [
+            2,
+            9,
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": 61,
+      "tags": [
+        "real",
+        "residue-classes"
+      ]
+    },
+    {
+      "id": "real-short-large-step",
+      "name": "real: large step touches only left endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30,
+          40,
+          50
+        ],
+        "queries": [
+          [
+            2,
+            3,
+            5,
+            9
+          ]
+        ]
+      },
+      "expected": 266,
+      "tags": [
+        "real",
+        "large-step"
+      ]
+    },
+    {
+      "id": "real-query-reordering-safe",
+      "name": "real: grouped processing preserves final products",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          8,
+          15,
+          16,
+          23,
+          42
+        ],
+        "queries": [
+          [
+            0,
+            5,
+            1,
+            2
+          ],
+          [
+            1,
+            5,
+            2,
+            3
+          ],
+          [
+            0,
+            4,
+            4,
+            5
+          ],
+          [
+            2,
+            5,
+            3,
+            7
+          ]
+        ]
+      },
+      "expected": 1704,
+      "tags": [
+        "real",
+        "grouped-queries"
+      ]
+    },
+    {
+      "id": "real-identity-multipliers",
+      "name": "real: identity updates do not affect XOR",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          2,
+          8,
+          3,
+          1,
+          9
+        ],
+        "queries": [
+          [
+            0,
+            5,
+            1,
+            1
+          ],
+          [
+            1,
+            5,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "real",
+        "identity"
+      ]
+    }
+  ]
+}

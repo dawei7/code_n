@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1392",
+  "frontend_id": "2215",
+  "title_slug": "find-the-difference-of-two-arrays",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "class Solution.findDifference",
+  "verified_submission_id": "2073885480",
+  "verified_at": "2026-07-19T20:25:21.680926+00:00"
+}

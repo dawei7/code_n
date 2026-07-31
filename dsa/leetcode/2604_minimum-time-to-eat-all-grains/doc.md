@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Two Pointers, Binary Search, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-time-to-eat-all-grains](https://leetcode.com/problems/minimum-time-to-eat-all-grains/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-time-to-eat-all-grains/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-time-to-eat-all-grains/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+There are $n$ hens and $m$ grains placed at integer positions on a line. The arrays `hens` and `grains` give their respective starting positions. A hen immediately eats any grain at its current position and may eat any number of grains.
+
+During one second, each hen may move one unit left or right. All hens move simultaneously and independently.
+
+Determine the minimum time in which the hens can eat every grain when their movements are chosen optimally.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `hens`: A list of $n$ integer positions of hens.
+- `grains`: A list of $m$ integer positions of grains.
+
+The constraints are $1 \leq n,m \leq 2 \cdot 10^4$ and $0 \leq \texttt{hens[i]}, \texttt{grains[j]} \leq 10^9$.
+
+Let $C = 2 \cdot 10^9 + 1$, the size of the inclusive search range used for a guaranteed upper bound.
 
 **Return value**
 
-TODO
+- The minimum number of seconds needed to eat every grain.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `hens = [3,6,7], grains = [2,4,7,9]`
+- Output: `2`
+
+In two seconds, the three hens can cover the grains near positions $3$, $6$, and $7$ concurrently. No assignment can cover every grain in less time.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `hens = [4,6,109,111,213,215], grains = [5,110,214]`
+- Output: `1`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Three hens each move one unit to a grain while the others remain still.

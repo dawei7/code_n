@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Strong Pair XOR I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Checks every unordered pair with repetition and keeps the largest XOR among pairs satisfying the strong-pair inequality.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(1)"
     }
   ]
 }

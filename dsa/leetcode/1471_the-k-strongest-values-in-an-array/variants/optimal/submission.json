@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1581",
+  "frontend_id": "1471",
+  "title_slug": "the-k-strongest-values-in-an-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.getStrongest",
+  "verified_submission_id": "2074752034",
+  "verified_at": "2026-07-20T15:38:19.369667+00:00"
+}

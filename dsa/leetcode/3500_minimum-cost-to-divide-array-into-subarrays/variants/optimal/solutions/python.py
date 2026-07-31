@@ -1,54 +1,44 @@
-def solve(nums: list[int], cost: list[int], k: int) -> int:
-    n = len(nums)
-    prefix_nums = [0] * (n + 1)
-    prefix_cost = [0] * (n + 1)
-    for index, (num, cst) in enumerate(zip(nums, cost), start=1):
-        prefix_nums[index] = prefix_nums[index - 1] + num
-        prefix_cost[index] = prefix_cost[index - 1] + cst
+from collections import deque
 
-    inf = 10**30
-    previous = [inf] * (n + 1)
-    previous[0] = 0
-    answer = inf
+
+def solve(nums: list[int], cost: list[int], k: int) -> int:
+    prefix_nums = sum(nums)
+    prefix_cost = sum(cost)
+    total_cost = prefix_cost
+    lines = deque()
+
+    def add_line(slope: int, intercept: int) -> None:
+        line = (slope, intercept)
+        while len(lines) >= 2:
+            m1, b1 = lines[-2]
+            m2, b2 = lines[-1]
+            if (b1 - b2) * (slope - m2) <= (b2 - intercept) * (m2 - m1):
+                lines.pop()
+            else:
+                break
+        lines.append(line)
 
     def value(line: tuple[int, int], x: int) -> int:
         return line[0] * x + line[1]
 
-    def intersection(first: tuple[int, int], second: tuple[int, int]) -> float:
-        return (first[1] - second[1]) / (second[0] - first[0])
+    add_line(
+        -(prefix_nums + k),
+        prefix_nums * prefix_cost + k * total_cost,
+    )
+    answer = 0
 
-    for part in range(1, n + 1):
-        current = [inf] * (n + 1)
-        lines: list[tuple[int, int]] = []
-        starts: list[float] = []
-        pointer = 0
-
-        for end in range(part, n + 1):
-            start = end - 1
-            if previous[start] < inf:
-                line = (-prefix_cost[start], previous[start])
-                begin = float("-inf")
-                while lines:
-                    begin = intersection(lines[-1], line)
-                    if begin <= starts[-1]:
-                        lines.pop()
-                        starts.pop()
-                        if pointer > len(lines) - 1:
-                            pointer = max(0, len(lines) - 1)
-                    else:
-                        break
-                if not lines:
-                    begin = float("-inf")
-                lines.append(line)
-                starts.append(begin)
-
-            x = prefix_nums[end] + k * part
-            while pointer + 1 < len(lines) and starts[pointer + 1] <= x:
-                pointer += 1
-            current[end] = x * prefix_cost[end] + value(lines[pointer], x)
-
-        if current[n] < answer:
-            answer = current[n]
-        previous = current
+    for index in range(len(nums) - 1, -1, -1):
+        prefix_nums -= nums[index]
+        prefix_cost -= cost[index]
+        while (
+            len(lines) >= 2
+            and value(lines[0], prefix_cost) >= value(lines[1], prefix_cost)
+        ):
+            lines.popleft()
+        answer = value(lines[0], prefix_cost)
+        add_line(
+            -(prefix_nums + k),
+            answer + prefix_nums * prefix_cost + k * total_cost,
+        )
 
     return answer

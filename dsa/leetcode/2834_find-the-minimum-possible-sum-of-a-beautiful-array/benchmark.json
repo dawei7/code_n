@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_2834",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: construct 64 values explicitly",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"n": 64, "target": 2},
+      "expected": 2080,
+      "tags": ["benchmark", "scale-small", "linear-construction"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: construct 256 values explicitly",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"n": 256, "target": 2},
+      "expected": 32896,
+      "tags": ["benchmark", "scale-medium", "linear-construction"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: construct 1024 values explicitly",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {"n": 1024, "target": 2},
+      "expected": 524800,
+      "tags": ["benchmark", "scale-large", "linear-construction"]
+    }
+  ]
+}

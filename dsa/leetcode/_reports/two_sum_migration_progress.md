@@ -1,6 +1,6 @@
 # Two Sum Migration Progress
 
-Generated: 2026-07-19T08:53:55.469761+00:00
+Generated: 2026-07-31T08:38:09.179948+00:00
 
 All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.
 
@@ -12,72 +12,30 @@ A package is locally complete only when its shared canonical document (including
 
 | Metric | Count |
 | --- | ---: |
-| packages | 3991 |
-| local complete | 2103 |
-| fully complete and verified | 2056 |
-| blocked | 47 |
-| doc complete | 2122 |
-| cases complete | 2668 |
-| benchmarks complete | 2015 |
-| optimal solution complete | 2722 |
-| leetcode submission complete | 2056 |
-| complexity certified | 88 |
-| complexity complete | 2103 |
-| solution variant packages | 3991 |
-| solution variant packages complete | 2103 |
+| packages | 4005 |
+| local complete | 3722 |
+| fully complete and verified | 3722 |
+| blocked | 0 |
+| doc complete | 3722 |
+| cases complete | 4005 |
+| benchmarks complete | 3696 |
+| optimal solution complete | 4005 |
+| leetcode submission complete | 4005 |
+| complexity certified | 309 |
+| complexity complete | 4005 |
+| solution variant packages | 4005 |
+| solution variant packages complete | 4005 |
 
-## Next package
+## Verified-solution queue
 
-- 2104 — Sum of Subarray Ranges (`dsa/leetcode/2104_sum-of-subarray-ranges`)
+- Empty
+
+## Next generally incomplete package
+
+- 3 — Longest Substring Without Repeating Characters (`dsa/leetcode/0003_longest-substring-without-repeating-characters`)
 
 ## Recorded blockers
 
-- 1413 — Minimum Value to Get Positive Step by Step Sum: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1414 — Find the Minimum Number of Fibonacci Numbers Whose Sum Is K: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1415 — The k-th Lexicographical String of All Happy Strings of Length n: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1416 — Restore The Array: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1417 — Reformat The String: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1418 — Display Table of Food Orders in a Restaurant: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1419 — Minimum Number of Frogs Croaking: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1420 — Build Array Where You Can Find The Maximum Exactly K Comparisons: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1421 — NPV Queries: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1422 — Maximum Score After Splitting a String: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1423 — Maximum Points You Can Obtain from Cards: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1424 — Diagonal Traverse II: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1425 — Constrained Subsequence Sum: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1426 — Counting Elements: Remote verification blocked: Electron credential bridge safeStorage.decryptString failed with Windows error 0x8009000B ('Key not valid for use in specified state') on 2026-07-15. Package is locally complete; exact native source remains pending.
-- 1463 — Cherry Pickup II: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1464 — Maximum Product of Two Elements in an Array: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1465 — Maximum Area of a Piece of Cake After Horizontal and Vertical Cuts: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1466 — Reorder Routes to Make All Paths Lead to the City Zero: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1467 — Probability of a Two Boxes Having The Same Number of Distinct Balls: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1468 — Calculate Salaries: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1469 — Find All The Lonely Nodes: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1470 — Shuffle the Array: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1471 — The k Strongest Values in an Array: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1472 — Design Browser History: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1473 — Paint House III: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1474 — Delete N Nodes After M Nodes of a Linked List: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1475 — Final Prices With a Special Discount in a Shop: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1476 — Subrectangle Queries: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1477 — Find Two Non-overlapping Sub-arrays Each With Target Sum: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1478 — Allocate Mailboxes: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1479 — Sales by Day of the Week: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1480 — Running Sum of 1d Array: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1481 — Least Number of Unique Integers after K Removals: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1482 — Minimum Number of Days to Make m Bouquets: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1483 — Kth Ancestor of a Tree Node: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1484 — Group Sold Products By The Date: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1485 — Clone Binary Tree With Random Pointer: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1486 — XOR Operation in an Array: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1487 — Making File Names Unique: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1488 — Avoid Flood in The City: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1489 — Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1490 — Clone N-ary Tree: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1491 — Average Salary Excluding the Minimum and Maximum Salary: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1492 — The kth Factor of n: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1493 — Longest Subarray of 1's After Deleting One Element: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1494 — Parallel Courses II: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
-- 1495 — Friendly Movies Streamed Last Month: Remote Accepted verification pending: Chrome is installed and configured but not running; Chrome-control policy requires explicit user confirmation before launching it, and the user instructed the migration to record blockers rather than request input.
+- None
 
 The JSON report contains the per-package check details.

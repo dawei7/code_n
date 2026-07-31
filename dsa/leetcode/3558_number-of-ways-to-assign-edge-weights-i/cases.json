@@ -1,0 +1,466 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3558",
+  "cases": [
+    {
+      "id": "sample-one-edge",
+      "name": "sample: one path edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "minimum-tree",
+        "parity"
+      ]
+    },
+    {
+      "id": "sample-two-deepest-nodes",
+      "name": "sample: either deepest node gives depth two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "multiple-deepest",
+        "branching"
+      ]
+    },
+    {
+      "id": "trial-depth-three-path",
+      "name": "trial: three-edge path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "path",
+        "depth-three"
+      ]
+    },
+    {
+      "id": "trial-star",
+      "name": "trial: every leaf has depth one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "star",
+        "multiple-deepest"
+      ]
+    },
+    {
+      "id": "trial-unordered-reversed-path",
+      "name": "trial: edge order and orientation do not matter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "edges": [
+          [
+            4,
+            5
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "unordered-edges",
+        "path"
+      ]
+    },
+    {
+      "id": "real-unbalanced-tree",
+      "name": "real: deepest branch determines the count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "unbalanced",
+        "maximum-depth"
+      ]
+    },
+    {
+      "id": "real-balanced-binary",
+      "name": "real: all leaves share depth two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "balanced",
+        "multiple-deepest"
+      ]
+    },
+    {
+      "id": "real-broom-tree",
+      "name": "real: shallow branches do not affect a deep handle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "real",
+        "broom",
+        "ignored-branches"
+      ]
+    },
+    {
+      "id": "real-depth-ten",
+      "name": "real: ten-edge path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            10,
+            11
+          ]
+        ]
+      },
+      "expected": 512,
+      "tags": [
+        "real",
+        "path",
+        "power-of-two"
+      ]
+    },
+    {
+      "id": "real-modular-path",
+      "name": "real: path count wraps modulo",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            8,
+            9
+          ],
+          [
+            9,
+            10
+          ],
+          [
+            10,
+            11
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            12,
+            13
+          ],
+          [
+            13,
+            14
+          ],
+          [
+            14,
+            15
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            16,
+            17
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            18,
+            19
+          ],
+          [
+            19,
+            20
+          ],
+          [
+            20,
+            21
+          ],
+          [
+            21,
+            22
+          ],
+          [
+            22,
+            23
+          ],
+          [
+            23,
+            24
+          ],
+          [
+            24,
+            25
+          ],
+          [
+            25,
+            26
+          ],
+          [
+            26,
+            27
+          ],
+          [
+            27,
+            28
+          ],
+          [
+            28,
+            29
+          ],
+          [
+            29,
+            30
+          ],
+          [
+            30,
+            31
+          ],
+          [
+            31,
+            32
+          ]
+        ]
+      },
+      "expected": 73741817,
+      "tags": [
+        "real",
+        "path",
+        "modulo"
+      ]
+    }
+  ]
+}

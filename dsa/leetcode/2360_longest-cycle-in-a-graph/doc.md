@@ -6,50 +6,48 @@
 | Frontend ID | 2360 |
 | Difficulty | Hard |
 | Category | Algorithms |
-| Topics | Depth-First Search, Breadth-First Search, Graph Theory, Topological Sort |
+| Topics | Depth-First Search, Graph, Topological Sort |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [longest-cycle-in-a-graph](https://leetcode.com/problems/longest-cycle-in-a-graph/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/longest-cycle-in-a-graph/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-cycle-in-a-graph/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A directed graph has $n$ nodes numbered from 0 through $n-1$, with at most one
+outgoing edge from each node. In the array `edges`, a non-negative `edges[i]`
+is the destination of the edge leaving $i$, while `-1` indicates that $i$ has
+no outgoing edge.
+
+Find the largest number of nodes in any directed cycle. A cycle follows
+directed edges and eventually returns to its starting node. Return `-1` if the
+graph contains no cycle.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `edges`: A length-$n$ list encoding each node's optional outgoing edge.
+
+The constraints are $2 \le n \le 10^5$,
+$-1 \le \texttt{edges[i]} < n$, and `edges[i] != i`.
 
 **Return value**
 
-TODO
+Return the length of the longest directed cycle, or `-1` when no cycle exists.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `edges = [3,3,4,2,3]`
+- Output: `3`
+
+Nodes 2, 4, and 3 form a directed cycle of length 3.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `edges = [2,-1,3,1]`
+- Output: `-1`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Every forward path terminates, so the graph has no cycle.

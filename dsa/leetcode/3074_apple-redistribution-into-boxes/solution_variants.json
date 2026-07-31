@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Apple Redistribution into Boxes and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts box capacities from largest to smallest and takes the shortest prefix that holds the total number of apples.",
+      "time_complexity": "O(n + m log m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

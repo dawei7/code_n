@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4092",
+  "frontend_id": "3965",
+  "title_slug": "finish-time-of-tasks-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.finishTime",
+  "verified_submission_id": "2087844820",
+  "verified_at": "2026-07-30T17:18:00+00:00"
+}

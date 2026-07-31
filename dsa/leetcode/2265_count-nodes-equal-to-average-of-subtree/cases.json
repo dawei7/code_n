@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2265",
+  "cases": [
+    {"id":"sample-mixed-tree","name":"sample: five nodes match their subtree averages","kind":"sample","visible":true,"input":{"root":[4,8,5,0,1,null,6]},"expected":5,"tags":["sample","mixed"]},
+    {"id":"sample-single-node","name":"sample: a single node always matches","kind":"sample","visible":true,"input":{"root":[1]},"expected":1,"tags":["sample","single-node"]},
+    {"id":"trial-all-equal","name":"every node in an equal-valued tree matches","kind":"trial","visible":true,"input":{"root":[7,7,7,7,7,7,7]},"expected":7,"tags":["duplicates","complete-tree"]},
+    {"id":"trial-floor-average","name":"root matches the rounded-down average","kind":"trial","visible":true,"input":{"root":[2,1,4]},"expected":3,"tags":["floor-division"]},
+    {"id":"trial-root-misses","name":"only the two leaves match","kind":"trial","visible":true,"input":{"root":[1,2,3]},"expected":2,"tags":["root-mismatch"]},
+    {"id":"real-zero-chain","name":"hidden: every zero in a skewed tree matches","kind":"real","visible":false,"input":{"root":[0,null,0,null,0,null,0]},"expected":4,"tags":["hidden","zero","skewed"]},
+    {"id":"real-internal-match","name":"hidden: one internal branch and all leaves match","kind":"real","visible":false,"input":{"root":[5,0,10,null,null,10,10]},"expected":4,"tags":["hidden","internal-node"]},
+    {"id":"real-large-values","name":"hidden: upper-bound values preserve matching averages","kind":"real","visible":false,"input":{"root":[1000,1000,1000,null,1000]},"expected":4,"tags":["hidden","upper-bound","unbalanced"]}
+  ]
+}

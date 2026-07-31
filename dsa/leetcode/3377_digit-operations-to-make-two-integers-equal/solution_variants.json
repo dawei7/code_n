@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Digit Operations to Make Two Integers Equal and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Runs Dijkstra's algorithm over legal fixed-width integers after classifying primes with a sieve.",
+      "time_complexity": "O(d U log U)",
+      "space_complexity": "O(U)"
     }
   ]
 }

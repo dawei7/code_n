@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_398", "frontend_id": "398", "title_slug": "random-pick-index", "url": "https://leetcode.com/problems/random-pick-index/description/", "paid_only": false, "content_sha256": "763bc01a28d8521021418154be37c41ba5fd5372830fa6d5c21d5a58e7850202", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "operations = [\"Solution\",\"pick\",\"pick\",\"pick\"], arguments = [[[1,2,3,3,3]],[3],[1],[3]]", "output": "[null,4,0,2]", "has_explanation": true}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "8b604888fd568dc16a6ed93be5ec28f5f2a48da1ca9f195e8efa4c88fd4debf4",
+    "reference/contract.md": "615ab2a544a460c56773d1f7e1a1ab38952f43af1dc4503094adc5f2512e4217",
+    "reference/examples.md": "00270087b915d4695203ff00839f80fe79e989bfbcec1ceac3f7a4421d71210a",
+    "reference/constraints.md": "d7284681460e901b0973a3f0f63bbb5b4e5dab618163ff4e0c097f52554ad8f5"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

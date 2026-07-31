@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4256",
+  "frontend_id": "3875",
+  "title_slug": "construct-uniform-parity-array-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.uniformArray",
+  "verified_submission_id": "2086542041",
+  "verified_at": "2026-07-29T17:57:44.735481+00:00"
+}

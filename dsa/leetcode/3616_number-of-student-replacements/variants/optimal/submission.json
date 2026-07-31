@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3960",
+  "frontend_id": "3616",
+  "title_slug": "number-of-student-replacements",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.totalReplacements",
+  "verified_submission_id": "2083673063",
+  "verified_at": "2026-07-27T16:48:45.418696+00:00"
+}

@@ -1,0 +1,448 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3880",
+  "cases": [
+    {
+      "id": "sample-two-candidates",
+      "name": "sample: choose the closer of two valid pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          2,
+          0,
+          1
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "multiple-pairs"
+      ]
+    },
+    {
+      "id": "sample-missing-two",
+      "name": "sample: no value two means no valid pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "missing-two"
+      ]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: a lone one has no partner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element",
+        "missing-two"
+      ]
+    },
+    {
+      "id": "trial-single-two",
+      "name": "trial: a lone two has no partner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element",
+        "missing-one"
+      ]
+    },
+    {
+      "id": "trial-forward-adjacent",
+      "name": "trial: adjacent one then two has distance one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "adjacent",
+        "forward-order"
+      ]
+    },
+    {
+      "id": "trial-reverse-adjacent",
+      "name": "trial: adjacent two then one is symmetric",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "adjacent",
+        "reverse-order"
+      ]
+    },
+    {
+      "id": "trial-separated-by-zeros",
+      "name": "trial: zeros contribute to index distance",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          0,
+          2
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zeros",
+        "separated"
+      ]
+    },
+    {
+      "id": "trial-latest-one-is-closest",
+      "name": "trial: the latest repeated one gives the best pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          2
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "repeated-one",
+        "latest-index"
+      ]
+    },
+    {
+      "id": "real-all-zeros",
+      "name": "hidden: zero-only array has no pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zeros",
+        "missing-both"
+      ]
+    },
+    {
+      "id": "real-reverse-separated",
+      "name": "hidden: reverse-order values remain valid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          2,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "reverse-order",
+        "zeros"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: every transition supplies distance one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "alternating",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "real-value-blocks",
+      "name": "hidden: the block boundary is the closest pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "block-boundary"
+      ]
+    },
+    {
+      "id": "real-two-sided-twos",
+      "name": "hidden: choose the nearer two around one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          0,
+          0,
+          1,
+          0,
+          2
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "multiple-twos",
+        "two-sided"
+      ]
+    },
+    {
+      "id": "real-maximum-separation",
+      "name": "hidden: only pair spans the maximum legal array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2
+        ]
+      },
+      "expected": 99,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "maximum-distance"
+      ]
+    },
+    {
+      "id": "real-late-adjacent-improvement",
+      "name": "hidden: a late adjacent pair improves an earlier distance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          2,
+          0,
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "late-improvement",
+        "adjacent"
+      ]
+    }
+  ]
+}

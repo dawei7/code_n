@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3814",
+    "frontend_id": "3814",
+    "title_slug": "maximum-capacity-within-budget",
+    "url": "https://leetcode.com/problems/maximum-capacity-within-budget/description/",
+    "paid_only": false,
+    "content_sha256": "b593b202cffc72595603a219196741ae2fef12cbd7b32d590171656d73411de8",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`costs = [4,8,5,3], capacity = [1,5,2,7], budget = 8`",
+        "output": "`8`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`costs = [3,5,7,4], capacity = [2,4,3,6], budget = 7`",
+        "output": "`6`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`costs = [2,2,2], capacity = [3,5,4], budget = 5`",
+        "output": "`9`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "27423a1853b08f0a4748cd6d0424e86c48ad1c2213759a9d9f602a6051bc5e6d",
+      "reference/contract.md": "b7f0d7412eee21cd95b2d43f2a4cfb308ca2976eda1b3a10bf0c66e43bb18620",
+      "reference/examples.md": "d5eef8204928a92c67f7c9838f992a27e73d55bb0ad130c673b2e535185bb186",
+      "reference/constraints.md": "85638c911d243e0af9c0efdca841364f76e8d0cacc9a01626df9d1fe61623dcc"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

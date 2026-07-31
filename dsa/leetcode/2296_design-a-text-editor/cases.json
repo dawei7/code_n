@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2296",
+  "cases": [
+    {"id":"sample-full-trace","name":"sample: insertion deletion and bounded cursor movement","kind":"sample","visible":true,"input":{"operations":["TextEditor","addText","deleteText","addText","cursorRight","cursorLeft","deleteText","cursorLeft","cursorRight"],"arguments":[[],["leetcode"],[4],["practice"],[3],[8],[10],[2],[6]]},"expected":[null,null,4,null,"etpractice","leet",4,"","practi"],"tags":["sample","stateful"]},
+    {"id":"trial-middle-insertion","name":"insert text between left and right document halves","kind":"trial","visible":true,"input":{"operations":["TextEditor","addText","cursorLeft","addText","cursorRight"],"arguments":[[],["abcd"],[2],["xy"],[2]]},"expected":[null,null,"ab",null,"abxycd"],"tags":["middle-insertion"]},
+    {"id":"trial-delete-boundary","name":"delete only available left characters","kind":"trial","visible":true,"input":{"operations":["TextEditor","addText","cursorLeft","deleteText","cursorRight"],"arguments":[[],["abc"],[1],[5],[10]]},"expected":[null,null,"ab",2,"c"],"tags":["delete-boundary"]},
+    {"id":"trial-window-ten","name":"movement returns only the nearest ten left characters","kind":"trial","visible":true,"input":{"operations":["TextEditor","addText","cursorLeft"],"arguments":[[],["abcdefghijklmnopqrstuvwxyz"],[5]]},"expected":[null,null,"lmnopqrstu"],"tags":["context-window"]},
+    {"id":"trial-empty-moves","name":"both directions stay bounded in an empty editor","kind":"trial","visible":true,"input":{"operations":["TextEditor","cursorLeft","cursorRight"],"arguments":[[],[40],[40]]},"expected":[null,"",""],"tags":["empty","boundaries"]},
+    {"id":"real-repeated-crossing","name":"hidden: characters cross the cursor repeatedly without reordering","kind":"real","visible":false,"input":{"operations":["TextEditor","addText","cursorLeft","cursorRight","cursorLeft","cursorRight"],"arguments":[[],["abcdefghijk"],[6],[3],[5],[20]]},"expected":[null,null,"abcde","abcdefgh","abc","bcdefghijk"],"tags":["hidden","movement"]},
+    {"id":"real-delete-after-middle","name":"hidden: backspace in the middle preserves the right suffix","kind":"real","visible":false,"input":{"operations":["TextEditor","addText","cursorLeft","deleteText","addText","cursorRight"],"arguments":[[],["abcdefgh"],[3],[2],["xy"],[10]]},"expected":[null,null,"abcde",2,null,"abcxyfgh"],"tags":["hidden","middle-delete"]},
+    {"id":"real-multiple-inserts","name":"hidden: several cursor-local insertions compose in order","kind":"real","visible":false,"input":{"operations":["TextEditor","addText","cursorLeft","addText","cursorLeft","addText","cursorRight"],"arguments":[[],["ace"],[2],["b"],[1],["x"],[20]]},"expected":[null,null,"a",null,"a",null,"axbce"],"tags":["hidden","insertions"]}
+  ]
+}

@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Stack, Monotonic Stack |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-bowl-subarrays](https://leetcode.com/problems/count-bowl-subarrays/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-bowl-subarrays/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-bowl-subarrays/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given an integer array `nums` whose elements are distinct, call a contiguous subarray `nums[l...r]` a bowl when it contains at least three elements and both endpoints rise strictly above every interior element. Equivalently, the smaller of `nums[l]` and `nums[r]` must be strictly greater than the maximum value in `nums[l + 1...r - 1]`.
+
+Count all index pairs `(l, r)` whose subarray satisfies these conditions. Subarrays are distinguished by their endpoints, and adjacent endpoints do not form a bowl because they leave no interior element.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: a list of $n$ distinct positive integers, where $3\le n\le10^5$ and each value is at most $10^9$.
 
 **Return value**
 
-TODO
+Return the number of bowl subarrays in `nums`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 5, 3, 1, 4]`
+- Output: `2`
+
+The qualifying ranges are `[3, 1, 4]` and `[5, 3, 1, 4]`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [5, 1, 2, 3, 4]`
+- Output: `3`
+
+The left endpoint `5` forms a bowl with each of `2`, `3`, and `4`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1000000000, 999999999, 999999998]`
+- Output: `0`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The middle value is greater than the smaller right endpoint, so the only length-three range is not a bowl.

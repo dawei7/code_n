@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3671",
+  "cases": [
+    {
+      "id": "sample-three",
+      "name": "sample: all increasing subsequences of one two three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "increasing"
+      ]
+    },
+    {
+      "id": "sample-two",
+      "name": "sample: pair contributes gcd two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          6
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "common-divisor"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one singleton subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: decreasing values allow only singletons",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "decreasing"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: equal values cannot extend one another",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "duplicates",
+        "strict-increase"
+      ]
+    },
+    {
+      "id": "real-common-factor",
+      "name": "hidden: every value shares factor two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "common-divisor"
+      ]
+    },
+    {
+      "id": "real-mixed-order",
+      "name": "hidden: only a suffix pair increases",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "index-order"
+      ]
+    },
+    {
+      "id": "real-value-boundary",
+      "name": "hidden: high values and one valid increase",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          70000,
+          35000,
+          70000
+        ]
+      },
+      "expected": 210000,
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-modulo",
+      "name": "hidden: increasing length thirty requires modulo",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ]
+      },
+      "expected": 73777711,
+      "tags": [
+        "hidden",
+        "modulo",
+        "many-subsequences"
+      ]
+    }
+  ]
+}

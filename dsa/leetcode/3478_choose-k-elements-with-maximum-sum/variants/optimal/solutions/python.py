@@ -1,36 +1,32 @@
-import heapq
+from heapq import heappop, heappush
 
-def solve(nums1, nums2, k):
-    n = len(nums1)
-    # Create a list of indices and sort them based on nums1 values
-    indices = sorted(range(n), key=lambda i: nums1[i])
 
-    res = [0] * n
-    min_heap = []
-    current_sum = 0
+def solve(nums1: list[int], nums2: list[int], k: int) -> list[int]:
+    indices = sorted(range(len(nums1)), key=nums1.__getitem__)
+    answer = [0] * len(nums1)
+    largest_values: list[int] = []
+    largest_sum = 0
 
-    # We need to process indices such that we only consider j where nums1[j] < nums1[i]
-    # Since multiple indices might have the same nums1 value, we group them
-    i = 0
-    while i < n:
-        j = i
-        # Find all indices with the same nums1 value
-        while j < n and nums1[indices[j]] == nums1[indices[i]]:
-            j += 1
+    group_start = 0
+    while group_start < len(indices):
+        group_end = group_start + 1
+        group_value = nums1[indices[group_start]]
+        while (
+            group_end < len(indices)
+            and nums1[indices[group_end]] == group_value
+        ):
+            group_end += 1
 
-        # For all indices in the current group, the valid j's are those processed before this group
-        for idx in range(i, j):
-            original_idx = indices[idx]
-            res[original_idx] = current_sum
+        for position in range(group_start, group_end):
+            answer[indices[position]] = largest_sum
 
-        # Now add the current group's nums2 values to the heap
-        for idx in range(i, j):
-            val = nums2[indices[idx]]
-            heapq.heappush(min_heap, val)
-            current_sum += val
-            if len(min_heap) > k:
-                current_sum -= heapq.heappop(min_heap)
+        for position in range(group_start, group_end):
+            value = nums2[indices[position]]
+            heappush(largest_values, value)
+            largest_sum += value
+            if len(largest_values) > k:
+                largest_sum -= heappop(largest_values)
 
-        i = j
+        group_start = group_end
 
-    return res
+    return answer

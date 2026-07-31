@@ -1,0 +1,116 @@
+{
+  "challenge_id": "lc_2384",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several pairs and a large center",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "444947137"
+      },
+      "expected": "7449447",
+      "tags": [
+        "sample",
+        "pairs"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: leading zeroes must be discarded",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": "00009"
+      },
+      "expected": "9",
+      "tags": [
+        "sample",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "trial-all-zeroes",
+      "name": "trial: all available digits are zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "0000"
+      },
+      "expected": "0",
+      "tags": [
+        "zero",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-even-without-center",
+      "name": "trial: even-length palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "1122"
+      },
+      "expected": "2112",
+      "tags": [
+        "even-length"
+      ]
+    },
+    {
+      "id": "trial-zeroes-inside",
+      "name": "trial: zero pairs follow a nonzero pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": "00011"
+      },
+      "expected": "10001",
+      "tags": [
+        "zero",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-largest-leftover-center",
+      "name": "hidden: choose the largest leftover center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": "1233219"
+      },
+      "expected": "3219123",
+      "tags": [
+        "hidden",
+        "center"
+      ]
+    },
+    {
+      "id": "real-extra-zero-center",
+      "name": "hidden: odd zero count supplies the center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": "00022"
+      },
+      "expected": "20002",
+      "tags": [
+        "hidden",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-no-pairs",
+      "name": "hidden: select the largest single digit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": "54321"
+      },
+      "expected": "5",
+      "tags": [
+        "hidden",
+        "single-digit"
+      ]
+    }
+  ]
+}

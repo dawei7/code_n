@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Operations to Make the Array Beautiful and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses bounded dynamic programming over attainable final values and enumerates divisible successors by their multiples.",
+      "time_complexity": "O(n V log V)",
+      "space_complexity": "O(V)"
     }
   ]
 }

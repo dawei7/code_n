@@ -8,48 +8,46 @@
 | Category | Algorithms |
 | Topics | String, Stack, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [resulting-string-after-adjacent-removals](https://leetcode.com/problems/resulting-string-after-adjacent-removals/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/resulting-string-after-adjacent-removals/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/resulting-string-after-adjacent-removals/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Start with a string `s` containing only lowercase English letters. While a removable pair exists, find the **leftmost** two adjacent characters that are consecutive in the alphabet, remove both characters, and close the resulting gap. The two letters may appear in either order, so both `ab` and `ba` are removable.
+
+The alphabet is circular for this operation: `a` and `z` are also consecutive, in either order. Removing one pair can bring previously separated characters together and create another removable pair. Continue until the string contains no eligible adjacent pair, then return that final string.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A string of lowercase English letters.
+
+Its length satisfies $1 \le \lvert s \rvert \le 10^5$.
 
 **Return value**
 
-TODO
+Return the string remaining after repeatedly deleting the leftmost adjacent alphabetically consecutive pair, including the circular pair `az` or `za`, until no operation is possible.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abc"`
+- Output: `"c"`
+- Explanation: The leftmost removable pair is `ab`, leaving `c`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "adcb"`
+- Output: `""`
+- Explanation: Removing `dc` leaves `ab`, which is then removed.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "zadb"`
+- Output: `"db"`
+- Explanation: The circular pair `za` is removed; the remaining `db` is stable.
 
 ---
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

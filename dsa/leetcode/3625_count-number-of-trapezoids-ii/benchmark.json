@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3625",
+  "measurement_note": "Size S is the number of points, placed at distinct integer coordinates (x, x^2) on a parabola. Tiers 6, 12, and 24 span 4x. Pair grouping is O(S^2); exhaustive enumeration of all four-point subsets is O(S^4), completes every tier, and must fail only scaling.",
+  "cases": [
+    {"id":"benchmark-parabola-6","name":"benchmark: 6 parabola points","kind":"benchmark","visible":false,"size":6,"input":{"points":[[-3,9],[-2,4],[-1,1],[0,0],[1,1],[2,4]]},"expected":7,"tags":["benchmark","parabola","size-6"]},
+    {"id":"benchmark-parabola-12","name":"benchmark: 12 parabola points","kind":"benchmark","visible":false,"size":12,"input":{"points":[[-6,36],[-5,25],[-4,16],[-3,9],[-2,4],[-1,1],[0,0],[1,1],[2,4],[3,9],[4,16],[5,25]]},"expected":95,"tags":["benchmark","parabola","size-12"]},
+    {"id":"benchmark-parabola-24","name":"benchmark: 24 parabola points","kind":"benchmark","visible":false,"size":24,"input":{"points":[[-12,144],[-11,121],[-10,100],[-9,81],[-8,64],[-7,49],[-6,36],[-5,25],[-4,16],[-3,9],[-2,4],[-1,1],[0,0],[1,1],[2,4],[3,9],[4,16],[5,25],[6,36],[7,49],[8,64],[9,81],[10,100],[11,121]]},"expected":946,"tags":["benchmark","parabola","size-24"]}
+  ]
+}

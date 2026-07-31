@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3998",
+    "frontend_id": "3998",
+    "title_slug": "transform-binary-string-using-subsequence-sort",
+    "url": "https://leetcode.com/problems/transform-binary-string-using-subsequence-sort/description/",
+    "paid_only": false,
+    "content_sha256": "16483f67c62c848e4ca9282006f8987ac5e6d6625640826fb2e8b85e9feaaad6",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"101\", strs = [\"1?1\",\"0?1\",\"0?0\"]",
+        "output": "[true,true,false]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"1100\", strs = [\"0011\",\"11?1\",\"1?1?\"]",
+        "output": "[true,false,true]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"1010\", strs = [\"0011\"]",
+        "output": "[true]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 5,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d177fe43f740c1a83bd01b528d2cb4d6a61ba861ad2fc86082e98c269c4da361",
+      "reference/contract.md": "f8130f4538b5f5d1b90014d3c5b10bbb2f33c80374d6c61eb0986e22645c4ac0",
+      "reference/examples.md": "ff3081c82d7aac5b28245d46913168fc79307d1023afc3893f8a0eb2ac7fedeb",
+      "reference/constraints.md": "a982777fde35497375c561d3b2bd207cde62786d97f0d41681a15a7639e27bcf"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

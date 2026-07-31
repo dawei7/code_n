@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Prime In Diagonal and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans only the two diagonals and tests each improving candidate for primality by trial division through its square root.",
+      "time_complexity": "O(n\\sqrt{m})",
+      "space_complexity": "O(1)"
     }
   ]
 }

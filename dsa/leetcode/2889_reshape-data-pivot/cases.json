@@ -1,0 +1,41 @@
+{
+  "challenge_id": "lc_2889",
+  "cases": [
+    {
+      "id": "sample-two-cities-five-months",
+      "name": "sample: pivot ten weather observations",
+      "kind": "sample",
+      "visible": true,
+      "input": {"tables": {"weather": [{"city": "Jacksonville", "month": "January", "temperature": 13}, {"city": "Jacksonville", "month": "February", "temperature": 23}, {"city": "Jacksonville", "month": "March", "temperature": 38}, {"city": "Jacksonville", "month": "April", "temperature": 5}, {"city": "Jacksonville", "month": "May", "temperature": 34}, {"city": "ElPaso", "month": "January", "temperature": 20}, {"city": "ElPaso", "month": "February", "temperature": 6}, {"city": "ElPaso", "month": "March", "temperature": 26}, {"city": "ElPaso", "month": "April", "temperature": 2}, {"city": "ElPaso", "month": "May", "temperature": 43}]}},
+      "expected": {"columns": ["month", "ElPaso", "Jacksonville"], "rows": [["April", 2, 5], ["February", 6, 23], ["January", 20, 13], ["March", 26, 38], ["May", 43, 34]]},
+      "tags": ["sample", "pivot"]
+    },
+    {
+      "id": "trial-one-city-negative-temperature",
+      "name": "one city with a negative temperature",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"weather": [{"city": "Oslo", "month": "June", "temperature": 17}, {"city": "Oslo", "month": "January", "temperature": -4}]}},
+      "expected": {"columns": ["month", "Oslo"], "rows": [["January", -4], ["June", 17]]},
+      "tags": ["single-city", "negative-value"]
+    },
+    {
+      "id": "trial-unsorted-complete-grid",
+      "name": "unsorted observations form an ordered wide table",
+      "kind": "trial",
+      "visible": true,
+      "input": {"tables": {"weather": [{"city": "Rome", "month": "March", "temperature": 15}, {"city": "Bern", "month": "January", "temperature": -2}, {"city": "Rome", "month": "January", "temperature": 8}, {"city": "Bern", "month": "March", "temperature": 7}]}},
+      "expected": {"columns": ["month", "Bern", "Rome"], "rows": [["January", -2, 8], ["March", 7, 15]]},
+      "tags": ["input-order", "two-by-two-grid"]
+    },
+    {
+      "id": "real-three-cities-two-months",
+      "name": "hidden: three city columns preserve exact values",
+      "kind": "real",
+      "visible": false,
+      "input": {"tables": {"weather": [{"city": "Zurich", "month": "July", "temperature": 26}, {"city": "Athens", "month": "April", "temperature": 21}, {"city": "Lima", "month": "July", "temperature": 18}, {"city": "Zurich", "month": "April", "temperature": 12}, {"city": "Lima", "month": "April", "temperature": 19}, {"city": "Athens", "month": "July", "temperature": 33}]}},
+      "expected": {"columns": ["month", "Athens", "Lima", "Zurich"], "rows": [["April", 21, 19, 12], ["July", 33, 18, 26]]},
+      "tags": ["hidden", "three-cities", "exact-values"]
+    }
+  ]
+}

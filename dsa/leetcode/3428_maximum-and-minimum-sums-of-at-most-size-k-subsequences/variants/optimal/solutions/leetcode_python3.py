@@ -1,0 +1,24 @@
+from typing import List
+
+
+class Solution:
+    def minMaxSums(self, nums: List[int], k: int) -> int:
+        mod = 1_000_000_007
+        values = sorted(nums)
+        n = len(values)
+        limit = min(k - 1, n - 1)
+        combinations = [1] + [0] * limit
+
+        answer = 0
+        for i in range(n):
+            ways = sum(combinations) % mod
+            answer = (
+                answer + (values[i] + values[n - 1 - i]) * ways
+            ) % mod
+
+            for chosen in range(min(i + 1, limit), 0, -1):
+                combinations[chosen] = (
+                    combinations[chosen] + combinations[chosen - 1]
+                ) % mod
+
+        return answer

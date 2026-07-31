@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2489",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four intervals with ratio one to two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "0110011", "num1": 1, "num2": 2},
+      "expected": 4,
+      "tags": ["sample", "multiple-lengths"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: requested ratio is absent",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "10101", "num1": 3, "num2": 1},
+      "expected": 0,
+      "tags": ["sample", "no-match"]
+    },
+    {
+      "id": "trial-overlapping",
+      "name": "trial: overlapping balanced intervals",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "0101", "num1": 1, "num2": 1},
+      "expected": 4,
+      "tags": ["trial", "overlap"]
+    },
+    {
+      "id": "trial-whole-string",
+      "name": "trial: only the whole string has the ratio",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "00111", "num1": 2, "num2": 3},
+      "expected": 1,
+      "tags": ["trial", "whole-string"]
+    },
+    {
+      "id": "trial-no-feasible-length",
+      "name": "trial: ratio unit exceeds string length",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "01010", "num1": 4, "num2": 3},
+      "expected": 0,
+      "tags": ["trial", "length-bound"]
+    },
+    {
+      "id": "real-repeated-unit",
+      "name": "hidden: unit and doubled ratios both occur",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "001001", "num1": 2, "num2": 1},
+      "expected": 5,
+      "tags": ["hidden", "common-multiple"]
+    },
+    {
+      "id": "real-all-zeros",
+      "name": "hidden: every interval lacks ones",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "000000", "num1": 1, "num2": 2},
+      "expected": 0,
+      "tags": ["hidden", "single-character"]
+    },
+    {
+      "id": "real-alternating-longer",
+      "name": "hidden: many repeated prefix scores",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "01010101", "num1": 1, "num2": 1},
+      "expected": 16,
+      "tags": ["hidden", "frequency-counting"]
+    }
+  ]
+}

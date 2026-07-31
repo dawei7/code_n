@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3635",
+  "cases": [
+    {
+      "id": "sample-land-first",
+      "name": "sample: land ride first finishes at nine",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "landStartTime": [
+          2,
+          8
+        ],
+        "landDuration": [
+          4,
+          1
+        ],
+        "waterStartTime": [
+          6
+        ],
+        "waterDuration": [
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "land-first"
+      ]
+    },
+    {
+      "id": "sample-water-first",
+      "name": "sample: water ride first finishes at fourteen",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "landStartTime": [
+          5
+        ],
+        "landDuration": [
+          3
+        ],
+        "waterStartTime": [
+          1
+        ],
+        "waterDuration": [
+          10
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "sample",
+        "water-first"
+      ]
+    },
+    {
+      "id": "trial-both-open-together",
+      "name": "trial: both categories open together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "landStartTime": [
+          1
+        ],
+        "landDuration": [
+          2
+        ],
+        "waterStartTime": [
+          1
+        ],
+        "waterDuration": [
+          3
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "single-pair"
+      ]
+    },
+    {
+      "id": "trial-wait-for-water",
+      "name": "trial: wait after finishing the land ride",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "landStartTime": [
+          1
+        ],
+        "landDuration": [
+          2
+        ],
+        "waterStartTime": [
+          10
+        ],
+        "waterDuration": [
+          1
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "trial",
+        "waiting",
+        "land-first"
+      ]
+    },
+    {
+      "id": "trial-wait-for-land",
+      "name": "trial: wait after finishing the water ride",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "landStartTime": [
+          10
+        ],
+        "landDuration": [
+          1
+        ],
+        "waterStartTime": [
+          1
+        ],
+        "waterDuration": [
+          2
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "trial",
+        "waiting",
+        "water-first"
+      ]
+    },
+    {
+      "id": "trial-later-opening-finishes-first",
+      "name": "trial: later opening can still finish first",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "landStartTime": [
+          1,
+          50
+        ],
+        "landDuration": [
+          100,
+          1
+        ],
+        "waterStartTime": [
+          200
+        ],
+        "waterDuration": [
+          2
+        ]
+      },
+      "expected": 202,
+      "tags": [
+        "trial",
+        "earliest-first-finish"
+      ]
+    },
+    {
+      "id": "real-second-water-choice",
+      "name": "hidden: choose a short later-opening water ride",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "landStartTime": [
+          2
+        ],
+        "landDuration": [
+          4
+        ],
+        "waterStartTime": [
+          1,
+          7
+        ],
+        "waterDuration": [
+          20,
+          1
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "ride-selection"
+      ]
+    },
+    {
+      "id": "real-second-land-choice",
+      "name": "hidden: choose a short later-opening land ride",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "landStartTime": [
+          1,
+          9
+        ],
+        "landDuration": [
+          20,
+          1
+        ],
+        "waterStartTime": [
+          3
+        ],
+        "waterDuration": [
+          4
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "ride-selection"
+      ]
+    },
+    {
+      "id": "real-water-first",
+      "name": "hidden: the water-first order is optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "landStartTime": [
+          5,
+          20
+        ],
+        "landDuration": [
+          3,
+          1
+        ],
+        "waterStartTime": [
+          1,
+          30
+        ],
+        "waterDuration": [
+          10,
+          1
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "order-choice"
+      ]
+    },
+    {
+      "id": "real-land-first",
+      "name": "hidden: the land-first order is optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "landStartTime": [
+          1,
+          30
+        ],
+        "landDuration": [
+          2,
+          1
+        ],
+        "waterStartTime": [
+          5,
+          20
+        ],
+        "waterDuration": [
+          3,
+          1
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "order-choice"
+      ]
+    },
+    {
+      "id": "real-many-options",
+      "name": "hidden: compare several openings and durations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "landStartTime": [
+          4,
+          12000,
+          7000
+        ],
+        "landDuration": [
+          8000,
+          1,
+          500
+        ],
+        "waterStartTime": [
+          3,
+          15000,
+          9000
+        ],
+        "waterDuration": [
+          9000,
+          1,
+          400
+        ]
+      },
+      "expected": 9400,
+      "tags": [
+        "hidden",
+        "mixed-options"
+      ]
+    },
+    {
+      "id": "real-upper-values",
+      "name": "hidden: values at the enlarged upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "landStartTime": [
+          100000,
+          99999
+        ],
+        "landDuration": [
+          100000,
+          1
+        ],
+        "waterStartTime": [
+          100000,
+          99998
+        ],
+        "waterDuration": [
+          100000,
+          2
+        ]
+      },
+      "expected": 100001,
+      "tags": [
+        "hidden",
+        "upper-bound"
+      ]
+    }
+  ]
+}

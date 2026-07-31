@@ -1,54 +1,36 @@
 {
   "challenge_id": "lc_2596",
+  "measurement_note": "Size is q = n^2, the number of board cells. Building the inverse move-to-position map and validating it takes O(q) time. A correct slower implementation that rescans all q cells to locate every successive move takes O(q^2) time. Each workload reaches its final transition so both paths perform their intended work.",
   "cases": [
     {
-      "id": "benchmark-valid-five-by-five",
-      "name": "benchmark: valid tour repeated for timing",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: nine-cell late failure",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            0,
-            11,
-            16,
-            5,
-            20
-          ],
-          [
-            17,
-            4,
-            19,
-            10,
-            15
-          ],
-          [
-            12,
-            1,
-            8,
-            21,
-            6
-          ],
-          [
-            3,
-            18,
-            23,
-            14,
-            9
-          ],
-          [
-            24,
-            13,
-            2,
-            7,
-            22
-          ]
-        ]
-      },
+      "size": 9,
+      "input": { "grid": [[0,3,6],[5,8,1],[2,7,4]] },
+      "expected": false,
+      "tags": ["benchmark", "scale-small", "late-failure"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: valid twenty-five-cell tour",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25,
+      "input": { "grid": [[0,19,8,13,2],[9,14,1,18,23],[20,7,22,3,12],[15,10,5,24,17],[6,21,16,11,4]] },
       "expected": true,
-      "tags": [
-        "benchmark"
-      ]
+      "tags": ["benchmark", "scale-medium", "valid-tour"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: valid forty-nine-cell tour",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 49,
+      "input": { "grid": [[0,29,16,33,2,39,26],[17,32,1,28,25,34,3],[30,15,42,35,38,27,40],[43,18,31,24,41,4,37],[14,21,44,47,36,7,10],[19,46,23,12,9,48,5],[22,13,20,45,6,11,8]] },
+      "expected": true,
+      "tags": ["benchmark", "scale-large", "valid-tour"]
     }
   ]
 }

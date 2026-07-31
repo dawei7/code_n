@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Palindrome After Substring Concatenation II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses Manacher radii for linear palindrome preprocessing and a rolling cross-string dynamic program.",
+      "time_complexity": "O(nm + n + m)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

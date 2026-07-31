@@ -1,0 +1,588 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3905",
+  "cases": [
+    {
+      "id": "sample-two-corner-sources",
+      "name": "sample: larger color wins the three final ties",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "m": 3,
+        "sources": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "tags": [
+        "sample",
+        "simultaneous-tie",
+        "two-sources"
+      ]
+    },
+    {
+      "id": "sample-adjacent-sources",
+      "name": "sample: adjacent sources create distinct horizontal bands",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "m": 3,
+        "sources": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          3,
+          3,
+          3
+        ],
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "tags": [
+        "sample",
+        "adjacent-sources",
+        "multiple-layers"
+      ]
+    },
+    {
+      "id": "sample-single-source",
+      "name": "sample: one source fills the entire grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "m": 2,
+        "sources": [
+          [
+            1,
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "tags": [
+        "sample",
+        "single-source",
+        "diagonal-distance"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: the only cell is already colored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 1,
+        "sources": [
+          [
+            0,
+            0,
+            42
+          ]
+        ]
+      },
+      "expected": [
+        [
+          42
+        ]
+      ],
+      "tags": [
+        "trial",
+        "single-cell",
+        "already-complete"
+      ]
+    },
+    {
+      "id": "trial-one-source-rectangle",
+      "name": "trial: one source fills a non-square grid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "m": 4,
+        "sources": [
+          [
+            0,
+            1,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        [
+          6,
+          6,
+          6,
+          6
+        ],
+        [
+          6,
+          6,
+          6,
+          6
+        ]
+      ],
+      "tags": [
+        "trial",
+        "rectangular-grid",
+        "single-source"
+      ]
+    },
+    {
+      "id": "trial-all-cells-are-sources",
+      "name": "trial: a fully colored grid never changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "m": 2,
+        "sources": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            0,
+            3
+          ],
+          [
+            1,
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "tags": [
+        "trial",
+        "all-sources",
+        "no-spread"
+      ]
+    },
+    {
+      "id": "trial-equal-distance-max-color",
+      "name": "trial: the middle cell chooses the larger equal-time color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 3,
+        "sources": [
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            2,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        [
+          4,
+          9,
+          9
+        ]
+      ],
+      "tags": [
+        "trial",
+        "tie-break",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-nearest-beats-larger-late-color",
+      "name": "trial: an earlier smaller color beats a later larger color",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 5,
+        "sources": [
+          [
+            0,
+            0,
+            100
+          ],
+          [
+            0,
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          100,
+          100,
+          100,
+          1,
+          1
+        ]
+      ],
+      "tags": [
+        "trial",
+        "arrival-time",
+        "color-priority"
+      ]
+    },
+    {
+      "id": "trial-three-way-competition",
+      "name": "trial: three simultaneous offers use their maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "m": 3,
+        "sources": [
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            1,
+            0,
+            7
+          ],
+          [
+            2,
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          7,
+          4,
+          4
+        ],
+        [
+          7,
+          7,
+          7
+        ],
+        [
+          7,
+          5,
+          5
+        ]
+      ],
+      "tags": [
+        "trial",
+        "three-way-tie",
+        "layer-aggregation"
+      ]
+    },
+    {
+      "id": "hidden-adjacent-sources-stay-fixed",
+      "name": "hidden: a larger adjacent source does not recolor its neighbor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "m": 2,
+        "sources": [
+          [
+            0,
+            0,
+            10
+          ],
+          [
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        [
+          10,
+          1
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "adjacent-sources",
+        "permanent-colors"
+      ]
+    },
+    {
+      "id": "hidden-four-corner-voronoi",
+      "name": "hidden: four corners compete across rows columns and center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "m": 3,
+        "sources": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            3
+          ],
+          [
+            2,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          2,
+          2
+        ],
+        [
+          3,
+          4,
+          4
+        ],
+        [
+          3,
+          4,
+          4
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "four-sources",
+        "center-tie"
+      ]
+    },
+    {
+      "id": "hidden-maximum-color-bound",
+      "name": "hidden: the maximum legal color propagates normally",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "m": 3,
+        "sources": [
+          [
+            0,
+            0,
+            1000000
+          ],
+          [
+            1,
+            2,
+            999999
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1000000,
+          1000000,
+          999999
+        ],
+        [
+          1000000,
+          999999,
+          999999
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "maximum-color",
+        "boundary"
+      ]
+    },
+    {
+      "id": "hidden-three-sources-long-row",
+      "name": "hidden: three source regions meet along one long row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "m": 9,
+        "sources": [
+          [
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            4,
+            10
+          ],
+          [
+            0,
+            8,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        [
+          3,
+          3,
+          10,
+          10,
+          10,
+          10,
+          10,
+          7,
+          7
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "single-row",
+        "multiple-ties"
+      ]
+    },
+    {
+      "id": "hidden-asymmetric-rectangle",
+      "name": "hidden: asymmetric sources exercise every direction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 4,
+        "m": 5,
+        "sources": [
+          [
+            0,
+            4,
+            6
+          ],
+          [
+            3,
+            0,
+            9
+          ],
+          [
+            1,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        [
+          9,
+          4,
+          4,
+          6,
+          6
+        ],
+        [
+          9,
+          4,
+          4,
+          4,
+          6
+        ],
+        [
+          9,
+          9,
+          4,
+          4,
+          6
+        ],
+        [
+          9,
+          9,
+          9,
+          9,
+          6
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "rectangular-grid",
+        "four-directions"
+      ]
+    }
+  ]
+}

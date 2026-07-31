@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2381",
+  "frontend_id": "2252",
+  "title_slug": "dynamic-pivoting-of-a-table",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "PivotProducts",
+  "verified_submission_id": "2073934916",
+  "verified_at": "2026-07-19T23:35:38.273491+00:00"
+}

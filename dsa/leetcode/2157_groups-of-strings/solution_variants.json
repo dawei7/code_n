@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Groups of Strings and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses weighted bitmask nodes and disjoint-set unions for additions, deletions, and replacements.",
+      "time_complexity": "O(n \\alpha(n))",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -1,20 +1,9 @@
-from typing import List
+def solve(nums: list[int]) -> int:
+    ordered = sorted(nums)
+    pair_sums: set[int] = set()
+    n = len(ordered)
 
-def solve(nums: List[int]) -> int:
-    """
-    Calculates the number of distinct averages by repeatedly pairing 
-    the minimum and maximum elements of the array.
-    """
-    nums.sort()
-    distinct_averages = set()
-    
-    left = 0
-    right = len(nums) - 1
-    
-    while left < right:
-        avg = (nums[left] + nums[right]) / 2
-        distinct_averages.add(avg)
-        left += 1
-        right -= 1
-        
-    return len(distinct_averages)
+    for left in range(n // 2):
+        pair_sums.add(ordered[left] + ordered[n - 1 - left])
+
+    return len(pair_sums)

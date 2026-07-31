@@ -1,0 +1,88 @@
+from functools import cache
+from math import gcd
+
+
+class Solution:
+    def beautifulNumbers(self, l: int, r: int) -> int:
+        def count_without_zero(bound: int) -> int:
+            if bound <= 0:
+                return 0
+
+            digits = tuple(map(int, str(bound)))
+            total = sum(9**length for length in range(1, len(digits)))
+            for position, digit in enumerate(digits):
+                remaining = len(digits) - position - 1
+                if digit == 0:
+                    return total
+                total += (digit - 1) * 9**remaining
+            return total + 1
+
+        def count_nonzero_beautiful(bound: int) -> int:
+            if bound <= 0:
+                return 0
+
+            digits = tuple(map(int, str(bound)))
+            length = len(digits)
+            answer = 0
+
+            for target_sum in range(1, 9 * length + 1):
+                leftover = target_sum
+                for prime in (2, 3, 5, 7):
+                    while leftover % prime == 0:
+                        leftover //= prime
+                if leftover != 1:
+                    continue
+
+                @cache
+                def dp(
+                    position: int,
+                    digit_sum: int,
+                    missing_factor: int,
+                    tight: bool,
+                    started: bool,
+                ) -> int:
+                    if position == length:
+                        return int(
+                            started
+                            and digit_sum == target_sum
+                            and missing_factor == 1
+                        )
+
+                    remaining = length - position
+                    if digit_sum > target_sum or digit_sum + 9 * remaining < target_sum:
+                        return 0
+
+                    limit = digits[position] if tight else 9
+                    total = 0
+                    for digit in range(limit + 1):
+                        next_tight = tight and digit == limit
+                        if not started and digit == 0:
+                            total += dp(
+                                position + 1,
+                                digit_sum,
+                                missing_factor,
+                                next_tight,
+                                False,
+                            )
+                        elif digit != 0 and digit_sum + digit <= target_sum:
+                            total += dp(
+                                position + 1,
+                                digit_sum + digit,
+                                missing_factor // gcd(missing_factor, digit),
+                                next_tight,
+                                True,
+                            )
+                    return total
+
+                answer += dp(0, 0, target_sum, True, False)
+
+            return answer
+
+        def count(bound: int) -> int:
+            return (
+                bound
+                - count_without_zero(bound)
+                + count_nonzero_beautiful(bound)
+            )
+
+        return count(r) - count(l - 1)

@@ -1,30 +1,22 @@
-from typing import List
-
-def solve(nums: List[int], k: int) -> int:
-    """
-    Finds the minimum capability using binary search on the answer.
-    """
-    def can_pick(max_val: int, k: int, nums: List[int]) -> bool:
-        count = 0
-        i = 0
-        while i < len(nums):
-            if nums[i] <= max_val:
-                count += 1
-                i += 2  # Skip adjacent house
-            else:
-                i += 1
-        return count >= k
-
+def solve(nums: list[int], k: int) -> int:
     low = min(nums)
     high = max(nums)
-    ans = high
 
-    while low <= high:
-        mid = (low + high) // 2
-        if can_pick(mid, k, nums):
-            ans = mid
-            high = mid - 1
+    while low < high:
+        capability = (low + high) // 2
+        robbed = 0
+        index = 0
+
+        while index < len(nums):
+            if nums[index] <= capability:
+                robbed += 1
+                index += 2
+            else:
+                index += 1
+
+        if robbed >= k:
+            high = capability
         else:
-            low = mid + 1
-            
-    return ans
+            low = capability + 1
+
+    return low

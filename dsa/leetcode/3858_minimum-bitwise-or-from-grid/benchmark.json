@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3858",
+  "measurement_note": "Size is M, the row count; every row has two choices. Row i can select 1 or its own distinct power-of-two bit, causing the reachable-OR set to grow exponentially. The accepted bit-feasibility scan is O(BMN); the correct slower control materializes all reachable OR states.",
+  "cases": [
+    {
+      "id": "benchmark-3-independent-rows",
+      "name": "benchmark: 3 rows with independent optional bits",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"grid": [[1,2],[1,4],[1,8]]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "reachable-or-states", "two-choices"],
+      "size": 3
+    },
+    {
+      "id": "benchmark-6-independent-rows",
+      "name": "benchmark: 6 rows with independent optional bits",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"grid": [[1,2],[1,4],[1,8],[1,16],[1,32],[1,64]]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "reachable-or-states", "two-choices"],
+      "size": 6
+    },
+    {
+      "id": "benchmark-12-independent-rows",
+      "name": "benchmark: 12 rows with independent optional bits",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"grid": [[1,2],[1,4],[1,8],[1,16],[1,32],[1,64],[1,128],[1,256],[1,512],[1,1024],[1,2048],[1,4096]]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "reachable-or-states", "two-choices"],
+      "size": 12
+    }
+  ]
+}

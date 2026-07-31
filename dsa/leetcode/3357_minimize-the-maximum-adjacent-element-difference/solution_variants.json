@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimize the Maximum Adjacent Element Difference and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the answer and checks every missing run against one canonical pair of replacement values.",
+      "time_complexity": "O(n log U)",
+      "space_complexity": "O(1)"
     }
   ]
 }

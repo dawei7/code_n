@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Partition Array to Minimize XOR and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses prefix XOR and rolling dynamic programming over part counts, prefix lengths, and final cut positions.",
+      "time_complexity": "O(kn^2)",
+      "space_complexity": "O(n)"
     }
   ]
 }

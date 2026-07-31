@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3959",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(log n)",
+  "summary": "Every legal input has at most ten decimal positions, so the complete workload range is too narrow for an honest runtime scaling verdict over digit traversal.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 10,
+    "unit": "decimal digit positions",
+    "source_constraint": "n is an integer between 1 and 10^9 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The remotely accepted and app-local implementations divide the remaining value by ten after each iteration, so they process exactly D decimal positions and D is at most ten."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression compares both stored source forms with an independent decimal-string oracle for every n from 1 through 1,000,000 and explicit threshold, repeated-digit, zero-digit, nine-digit, and 10^9 boundaries."
+    }
+  ]
+}

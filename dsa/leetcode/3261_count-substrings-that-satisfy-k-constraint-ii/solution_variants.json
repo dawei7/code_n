@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Substrings That Satisfy K-Constraint II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Precomputes each start's valid reach and a prefix sum of valid suffix counts for constant-time queries.",
+      "time_complexity": "O(n+q)",
+      "space_complexity": "O(n)"
     }
   ]
 }

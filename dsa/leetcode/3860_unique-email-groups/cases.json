@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3860",
+  "cases": [
+    {
+      "id": "sample-leetcode-domains",
+      "name": "sample: local normalization leaves two domains",
+      "kind": "sample",
+      "visible": true,
+      "input": {"emails": ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "plus-suffix", "domain-distinction"]
+    },
+    {
+      "id": "sample-case-and-dots",
+      "name": "sample: case and dots collapse into two groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {"emails": ["A@B.com","a@b.com","ab+xy@b.com","a.b@b.com"]},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "case-folding", "dot-removal"]
+    },
+    {
+      "id": "sample-multiple-plus-signs",
+      "name": "sample: the first plus sign discards the remaining suffix",
+      "kind": "sample",
+      "visible": true,
+      "input": {"emails": ["a.b+c.d+e@DoMain.com","ab+xyz@domain.com","ab@domain.com"]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "first-plus", "single-group"]
+    },
+    {
+      "id": "trial-one-address",
+      "name": "trial: one address creates one group",
+      "kind": "trial",
+      "visible": true,
+      "input": {"emails": ["A@B.com"]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-count", "case-folding"]
+    },
+    {
+      "id": "trial-all-local-rules",
+      "name": "trial: dots plus suffix and case all collapse",
+      "kind": "trial",
+      "visible": true,
+      "input": {"emails": ["A.B+tag@Domain.com","ab@domain.com"]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "all-rules", "same-group"]
+    },
+    {
+      "id": "trial-domain-dots-remain",
+      "name": "trial: dots in domains are significant",
+      "kind": "trial",
+      "visible": true,
+      "input": {"emails": ["a@x.y.com","a@xy.com"]},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "domain-dot", "semantic-trap"]
+    },
+    {
+      "id": "real-plus-variants",
+      "name": "hidden: distinct plus suffixes are ignored",
+      "kind": "real",
+      "visible": false,
+      "input": {"emails": ["a+one@d.com","a+two@d.com","a@d.com"]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "plus-suffix", "duplicates"]
+    },
+    {
+      "id": "real-different-domains",
+      "name": "hidden: equal local names do not merge different domains",
+      "kind": "real",
+      "visible": false,
+      "input": {"emails": ["a@x.com","a@y.com"]},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "domain-distinction", "same-local"]
+    },
+    {
+      "id": "real-case-collapse",
+      "name": "hidden: both local and domain names are case-insensitive",
+      "kind": "real",
+      "visible": false,
+      "input": {"emails": ["User@Domain.com","user@domain.com","u.s.e.r+tag@DOMAIN.com"]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "case-folding", "dot-removal"]
+    },
+    {
+      "id": "real-digit-distinction",
+      "name": "hidden: digits remain part of the normalized local name",
+      "kind": "real",
+      "visible": false,
+      "input": {"emails": ["a1@d.com","a.1+tag@D.com","a10@d.com"]},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "digits", "local-distinction"]
+    },
+    {
+      "id": "real-exact-duplicates",
+      "name": "hidden: repeated raw addresses remain one group",
+      "kind": "real",
+      "visible": false,
+      "input": {"emails": ["x@y.com","x@y.com","X@Y.com"]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "exact-duplicates", "case-folding"]
+    },
+    {
+      "id": "real-dots-after-plus",
+      "name": "hidden: punctuation after the first plus is irrelevant",
+      "kind": "real",
+      "visible": false,
+      "input": {"emails": ["ab+z.z@d.com","a.b+q@D.com"]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "first-plus", "ignored-suffix"]
+    },
+    {
+      "id": "real-all-unique",
+      "name": "hidden: distinct normalized local-domain pairs stay separate",
+      "kind": "real",
+      "visible": false,
+      "input": {"emails": ["a@d.com","b@d.com","a@e.com","ab@d.com"]},
+      "expected": 4,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "all-unique", "local-domain-pair"]
+    }
+  ]
+}

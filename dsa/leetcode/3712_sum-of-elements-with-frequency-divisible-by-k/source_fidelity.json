@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3712",
+    "frontend_id": "3712",
+    "title_slug": "sum-of-elements-with-frequency-divisible-by-k",
+    "url": "https://leetcode.com/problems/sum-of-elements-with-frequency-divisible-by-k/description/",
+    "paid_only": false,
+    "content_sha256": "d669ab7dfd1c97ff8061f1f67eca7c32800bbb57bbc2ccdba9ac1028dfc85850",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,2,2,3,3,3,3,4], k = 2", "output": "16", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [1,2,3,4,5], k = 2", "output": "0", "has_explanation": true},
+      {"ordinal": 3, "input": "nums = [4,4,4,1,2,3], k = 3", "output": "12", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "d23b487753f45b23118f74648ee2f3a311a3165994273f4b757258fc031c2ac3",
+      "reference/contract.md": "16a16b48ebaef43c1a920dccea539bb4d0eb18ef205684cfb1e92e6ba01243a4",
+      "reference/note.md": "2b144bb40df35616f1821bad1cb8e6fce76c1d28b91df3346962b04223a76ceb",
+      "reference/examples.md": "d385b3c211510c82e26d0993d9a0347d55d934734330de682c48c1137e671819",
+      "reference/constraints.md": "062482ac7b2175c8b3b90173c8fa473aa3d059a1664112523e6f05b78df570af"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

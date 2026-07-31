@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3553",
+  "cases": [
+    {
+      "id": "sample-branch-and-path",
+      "name": "sample: branching subtree and one path",
+      "kind": "sample",
+      "visible": true,
+      "input": {"edges": [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], "queries": [[2,3,4],[0,2,5]]},
+      "expected": [12,11],
+      "tags": ["sample", "weighted-tree", "multiple-queries"]
+    },
+    {
+      "id": "sample-three-node-chain",
+      "name": "sample: all edges of a three-node chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {"edges": [[1,0,8],[0,2,7]], "queries": [[0,1,2]]},
+      "expected": [15],
+      "tags": ["sample", "chain"]
+    },
+    {
+      "id": "trial-unit-chain",
+      "name": "trial: middle terminal lies between the others",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [[0,1,1],[1,2,1]], "queries": [[0,1,2]]},
+      "expected": [2],
+      "tags": ["trial", "chain", "middle-terminal"]
+    },
+    {
+      "id": "trial-weighted-star",
+      "name": "trial: three branches of a weighted star",
+      "kind": "trial",
+      "visible": true,
+      "input": {"edges": [[0,1,2],[0,2,3],[0,3,5]], "queries": [[1,2,3]]},
+      "expected": [10],
+      "tags": ["trial", "branching"]
+    },
+    {
+      "id": "real-several-query-shapes",
+      "name": "real: reuse one preprocessing table across queries",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[0,1,4],[1,2,2],[1,3,7],[3,4,1],[3,5,3]], "queries": [[2,4,5],[0,2,4],[0,4,5]]},
+      "expected": [13,14,15],
+      "tags": ["real", "multiple-queries", "branching"]
+    },
+    {
+      "id": "real-maximum-edge-weights",
+      "name": "real: two maximum-weight edges",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[0,1,10000],[1,2,10000]], "queries": [[0,1,2]]},
+      "expected": [20000],
+      "tags": ["real", "weight-boundary"]
+    },
+    {
+      "id": "real-root-and-two-branches",
+      "name": "real: root is one of three terminals",
+      "kind": "real",
+      "visible": false,
+      "input": {"edges": [[0,1,6],[0,2,8],[1,3,4],[1,4,2]], "queries": [[0,3,2],[0,3,4]]},
+      "expected": [18,12],
+      "tags": ["real", "root", "branching"]
+    }
+  ]
+}

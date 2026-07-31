@@ -1,92 +1,12 @@
-{
-  "challenge_id": "lc_3309",
-  "cases": [
-    {
-      "id": "sample-one-two-three",
-      "name": "sample: binary order matters",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3
-        ]
-      },
-      "expected": 30,
-      "tags": [
-        "sample",
-        "permutation"
-      ]
-    },
-    {
-      "id": "sample-powers-of-two",
-      "name": "sample: powers of two",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          8,
-          16
-        ]
-      },
-      "expected": 1296,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-equal-values",
-      "name": "trial: equal values",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1,
-          1
-        ]
-      },
-      "expected": 7,
-      "tags": [
-        "edge"
-      ]
-    },
-    {
-      "id": "trial-wide-bit-lengths",
-      "name": "trial: wide bit lengths",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          127,
-          1,
-          64
-        ]
-      },
-      "expected": 32704,
-      "tags": [
-        "bits"
-      ]
-    },
-    {
-      "id": "real-random-triple",
-      "name": "real: hidden triple",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          5,
-          31,
-          12
-        ]
-      },
-      "expected": 4069,
-      "tags": [
-        "real",
-        "permutation"
-      ]
-    }
-  ]
-}
+{"challenge_id":"lc_3309","cases":[
+{"id":"sample-one-two-three","name":"sample: binary order matters","kind":"sample","visible":true,"input":{"nums":[1,2,3]},"expected":30,"tags":["sample","permutation"]},
+{"id":"sample-powers-of-two","name":"sample: powers of two","kind":"sample","visible":true,"input":{"nums":[2,8,16]},"expected":1296,"tags":["sample","different-widths"]},
+{"id":"trial-equal-values","name":"trial: equal one-bit values","kind":"trial","visible":true,"input":{"nums":[1,1,1]},"expected":7,"tags":["duplicates"]},
+{"id":"trial-single-bit-widths","name":"trial: several powers of two","kind":"trial","visible":true,"input":{"nums":[1,4,2]},"expected":52,"tags":["different-widths"]},
+{"id":"trial-duplicate-values","name":"trial: duplicate multi-bit values","kind":"trial","visible":true,"input":{"nums":[3,3,2]},"expected":62,"tags":["duplicates"]},
+{"id":"real-wide-bit-lengths","name":"real: one-, seven-, and seven-bit values","kind":"real","visible":false,"input":{"nums":[127,1,64]},"expected":32704,"tags":["bit-width"]},
+{"id":"real-random-triple","name":"real: nontrivial permutation","kind":"real","visible":false,"input":{"nums":[5,31,12]},"expected":4069,"tags":["permutation"]},
+{"id":"real-comparator-trap","name":"real: numeric order is not optimal order","kind":"real","visible":false,"input":{"nums":[7,8,9]},"expected":1944,"tags":["ordering"]},
+{"id":"real-near-maximum","name":"real: near-boundary values and one bit","kind":"real","visible":false,"input":{"nums":[126,127,1]},"expected":32766,"tags":["boundary"]},
+{"id":"real-all-maximum","name":"real: every value is the maximum","kind":"real","visible":false,"input":{"nums":[127,127,127]},"expected":2097151,"tags":["boundary","duplicates"]}
+]}

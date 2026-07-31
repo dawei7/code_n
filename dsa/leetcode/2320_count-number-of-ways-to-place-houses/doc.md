@@ -5,51 +5,39 @@
 | Source | LeetCode |
 | Frontend ID | 2320 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Dynamic Programming |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-number-of-ways-to-place-houses](https://leetcode.com/problems/count-number-of-ways-to-place-houses/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-number-of-ways-to-place-houses/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-number-of-ways-to-place-houses/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+A street has `n` plots on each of its two sides, for $2n$ plots in total.
+Each plot may either remain empty or receive one house. Along either individual
+side, two neighboring plots may not both contain houses.
+
+The two sides impose no restriction on one another: houses may occupy the same
+numbered plot on opposite sides. Count all distinct placements satisfying the
+adjacency rule on both sides, including the placement with no houses. Return
+the count modulo $10^9+7$.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: The number of plots on each side, with $1\le n\le10^4$.
 
 **Return value**
 
-TODO
+The number of valid placements across both street sides modulo $10^9+7$.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 1`
+- Output: `4`
+- Explanation: Each of the two plots is independently empty or occupied.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 2`
+- Output: `9`
+- Explanation: Each side has three legal patterns, and the sides combine
+  independently.

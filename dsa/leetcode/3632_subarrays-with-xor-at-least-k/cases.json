@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3632",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: six XORs meet the threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "mixed-xor"
+      ]
+    },
+    {
+      "id": "sample-zero-threshold",
+      "name": "sample: every zero-XOR subarray meets zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "k": 0
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "zero-threshold"
+      ]
+    },
+    {
+      "id": "trial-single-below",
+      "name": "trial: one XOR below the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 6
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single-element",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "trial-single-equal",
+      "name": "trial: equality satisfies the threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "inclusive-threshold"
+      ]
+    },
+    {
+      "id": "trial-zeros-positive-k",
+      "name": "trial: zero XOR does not meet a positive threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "trial-k-zero",
+      "name": "trial: every subarray qualifies when k is zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 0
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "zero-threshold"
+      ]
+    },
+    {
+      "id": "real-prefix-cancellation",
+      "name": "hidden: prefix XOR cancellation creates zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "prefix-xor",
+        "inclusive-threshold"
+      ]
+    },
+    {
+      "id": "real-equal-pair",
+      "name": "hidden: equal values cancel as a pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "xor-cancellation"
+      ]
+    },
+    {
+      "id": "real-repeated-sevens",
+      "name": "hidden: odd repeated length restores the value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7
+        ],
+        "k": 7
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "inclusive-threshold"
+      ]
+    },
+    {
+      "id": "real-only-full-range",
+      "name": "hidden: only the full array reaches the threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          1,
+          2
+        ],
+        "k": 10
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "full-array"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: values near the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          0,
+          1000000000
+        ],
+        "k": 1000000000
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-alternating-bits",
+      "name": "hidden: repeated prefix values count many pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "prefix-xor",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-high-bit-threshold",
+      "name": "hidden: only subarrays containing the high bit qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          8,
+          16
+        ],
+        "k": 16
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "bit-boundary"
+      ]
+    }
+  ]
+}

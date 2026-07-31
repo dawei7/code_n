@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4133",
+  "frontend_id": "3923",
+  "title_slug": "minimum-generations-to-target-point",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minGenerations",
+  "verified_submission_id": "2086977726",
+  "verified_at": "2026-07-30T05:26:34.669312+00:00"
+}

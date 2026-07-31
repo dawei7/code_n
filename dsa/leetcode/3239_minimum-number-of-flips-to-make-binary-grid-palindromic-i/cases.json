@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3239",
   "cases": [
     {
-      "id": "sample-row-cheaper",
-      "name": "sample: row palindromes are cheaper",
+      "id": "sample-rows-cheaper",
+      "name": "sample: make all rows palindromic",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,83 +16,95 @@
           ],
           [
             0,
-            1,
+            0,
             0
           ],
           [
-            1,
             0,
-            0
+            0,
+            1
           ]
         ]
       },
-      "expected": 0,
+      "expected": 2,
       "tags": [
-        "sample",
-        "grid"
+        "sample"
       ]
     },
     {
-      "id": "sample-column-cheaper",
-      "name": "sample: column palindromes are cheaper",
+      "id": "sample-columns-cheaper",
+      "name": "sample: make all columns palindromic",
       "kind": "sample",
       "visible": true,
       "input": {
         "grid": [
           [
-            1,
-            0
+            0,
+            1
+          ],
+          [
+            0,
+            1
           ],
           [
             0,
             0
-          ],
-          [
-            1,
-            1
           ]
         ]
       },
       "expected": 1,
       "tags": [
-        "sample",
-        "columns"
+        "sample"
       ]
     },
     {
-      "id": "trial-already-palindromic",
-      "name": "trial: already row-palindromic",
-      "kind": "trial",
+      "id": "sample-single-column",
+      "name": "sample: one-cell rows are palindromic",
+      "kind": "sample",
       "visible": true,
       "input": {
         "grid": [
           [
-            1,
-            0,
             1
           ],
           [
-            0,
-            1,
             0
           ]
         ]
       },
       "expected": 0,
       "tags": [
+        "sample",
         "edge"
       ]
     },
     {
+      "id": "trial-single-cell",
+      "name": "trial: one cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "single"
+      ]
+    },
+    {
       "id": "trial-single-row",
-      "name": "trial: single row",
+      "name": "trial: single row uses column alternative",
       "kind": "trial",
       "visible": true,
       "input": {
         "grid": [
           [
             1,
-            0,
             0,
             1,
             1
@@ -100,12 +113,60 @@
       },
       "expected": 0,
       "tags": [
-        "row"
+        "edge",
+        "single-row"
       ]
     },
     {
-      "id": "real-rectangular-grid",
-      "name": "real: rectangular binary grid",
+      "id": "trial-odd-single-column",
+      "name": "trial: odd single column",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            1
+          ],
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "single-column"
+      ]
+    },
+    {
+      "id": "trial-two-by-two-diagonal",
+      "name": "trial: both orientations need two flips",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "square",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "real-rows-already-palindromic",
+      "name": "real: rows already palindromic",
       "kind": "real",
       "visible": false,
       "input": {
@@ -113,27 +174,122 @@
           [
             1,
             0,
-            1,
-            0
+            1
           ],
           [
             0,
             1,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "rows"
+      ]
+    },
+    {
+      "id": "real-columns-already-palindromic",
+      "name": "real: columns already palindromic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
             1,
+            1
+          ],
+          [
+            0,
             0
           ],
           [
             1,
+            1
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "columns"
+      ]
+    },
+    {
+      "id": "real-one-row-mismatch",
+      "name": "real: exactly one horizontal mismatch",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
             1,
             0,
             0
           ]
         ]
       },
-      "expected": 2,
+      "expected": 1,
       "tags": [
-        "real",
-        "grid"
+        "rows",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "real-one-column-mismatch",
+      "name": "real: exactly one vertical mismatch",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "columns",
+        "mismatch"
+      ]
+    },
+    {
+      "id": "real-rectangular-grid",
+      "name": "real: non-square matrix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "rectangular"
       ]
     }
   ]

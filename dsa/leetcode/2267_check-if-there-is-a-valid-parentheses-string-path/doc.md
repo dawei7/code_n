@@ -1,55 +1,56 @@
-#  Check if There Is a Valid Parentheses String Path
+# Check if There Is a Valid Parentheses String Path
 
 | Field | Value |
 |---|---|
 | Source | LeetCode |
 | Frontend ID | 2267 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Dynamic Programming, Matrix |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-there-is-a-valid-parentheses-string-path](https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/).
 
 ### Goal
-Move from the top-left to the bottom-right of a parentheses grid using only right and down steps. Determine whether the characters along some path form a valid parentheses string.
+
+A nonempty parentheses string is valid when its parentheses can be matched in
+the usual nested or concatenated form: `()` is valid, two valid strings may be
+concatenated, and enclosing a valid string in one pair of parentheses remains
+valid.
+
+The matrix `grid` contains only `(` and `)`. Begin at its upper-left cell
+`(0, 0)` and reach the bottom-right cell `(m - 1, n - 1)`, moving only one
+cell down or one cell right at each step. Reading the visited characters in
+path order produces a parentheses string.
+
+Return whether at least one such monotone path produces a valid parentheses
+string.
 
 ### Function Contract
+
 **Inputs**
 
-- `grid`: a matrix containing `"("` and `")"` characters.
+- `grid`: An $m\times n$ matrix whose entries are `(` or `)`.
+
+Both dimensions satisfy $1\le m,n\le100$. Every path contains exactly
+$m+n-1$ cells.
 
 **Return value**
 
-`true` if at least one path spells a balanced parentheses sequence; otherwise `false`.
+Return `true` if some upper-left-to-bottom-right path, using only down and
+right moves, spells a valid parentheses string. Otherwise return `false`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `grid = [["(", "(", "("], [")", "(", ")"], ["(", "(", ")"], ["(", "(", ")"]]`
+- Input: `grid = [["(","(","("],[")","(",")"],["(","(",")"],["(","(",")"]]`
 - Output: `true`
+
+Among the possible paths are ones spelling `()(())` and `((()))`.
 
 **Example 2**
 
-- Input: `grid = [[")", ")"], ["(", "("]]`
+- Input: `grid = [[")",")"],["(","("]]`
 - Output: `false`
 
-**Example 3**
-
-- Input: `grid = [["(", ")"]]`
-- Output: `true`
-
----
-
-## Solution
-### Approach
-Use dynamic programming over cells and open-parenthesis balance. Entering `"("` adds one and entering `")"` subtracts one; discard negative balances because no continuation can repair an already invalid prefix. Merge reachable balances from the top and left. The destination is valid exactly when balance zero is reachable. Reject odd path lengths early.
-
-### Complexity Analysis
-- **Time Complexity**: `O(mn(m + n))`
-- **Space Complexity**: `O(mn(m + n))`, reducible with rolling rows
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The two paths spell `"))("` and `")(("`, neither of which is valid.

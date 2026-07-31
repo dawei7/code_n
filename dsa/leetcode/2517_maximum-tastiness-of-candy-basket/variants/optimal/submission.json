@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2608",
+  "frontend_id": "2517",
+  "title_slug": "maximum-tastiness-of-candy-basket",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maximumTastiness",
+  "verified_submission_id": "2075207131",
+  "verified_at": "2026-07-21T02:51:00+00:00"
+}

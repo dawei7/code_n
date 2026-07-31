@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2160",
+  "cases": [
+    {"id": "sample-balanced-digits", "name": "sample: balance small digits across tens places", "kind": "sample", "visible": true, "input": {"num": 2932}, "expected": 52, "tags": ["sample", "greedy"]},
+    {"id": "sample-leading-zeros", "name": "sample: leading zeros minimize both numbers", "kind": "sample", "visible": true, "input": {"num": 4009}, "expected": 13, "tags": ["sample", "leading-zero"]},
+    {"id": "trial-lower-bound", "name": "smallest legal input has three zero digits", "kind": "trial", "visible": true, "input": {"num": 1000}, "expected": 1, "tags": ["lower-bound", "zeros"]},
+    {"id": "trial-distinct-ascending", "name": "four distinct ascending digits", "kind": "trial", "visible": true, "input": {"num": 1234}, "expected": 37, "tags": ["distinct-digits"]},
+    {"id": "trial-two-zero-pairs", "name": "two zeros occupy both tens positions", "kind": "trial", "visible": true, "input": {"num": 9090}, "expected": 18, "tags": ["zeros", "duplicates"]},
+    {"id": "trial-all-equal", "name": "equal digits form two equal numbers", "kind": "trial", "visible": true, "input": {"num": 5555}, "expected": 110, "tags": ["duplicates"]},
+    {"id": "real-upper-bound", "name": "hidden: largest legal input", "kind": "real", "visible": false, "input": {"num": 9999}, "expected": 198, "tags": ["hidden", "upper-bound"]},
+    {"id": "real-zero-and-large-pair", "name": "hidden: one zero and two equal large digits", "kind": "real", "visible": false, "input": {"num": 8081}, "expected": 26, "tags": ["hidden", "leading-zero", "duplicates"]}
+  ]
+}

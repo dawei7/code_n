@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Deletions to Make Alternating Substring and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains equal-adjacent edge indicators under flips and answers each deletion query as a dynamic range sum.",
+      "time_complexity": "O((N + Q) log N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

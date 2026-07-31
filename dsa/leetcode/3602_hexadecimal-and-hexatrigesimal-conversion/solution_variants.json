@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Hexadecimal and Hexatrigesimal Conversion and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Converts the square in base 16 and the cube in base 36 by repeated division, then concatenates the uppercase digit strings.",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(log n)"
     }
   ]
 }

@@ -1,0 +1,892 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3230",
+  "cases": [
+    {
+      "id": "sample-purchasing-summary",
+      "name": "sample: purchasing summaries and recency ties",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 101,
+              "product_id": 1,
+              "transaction_date": "2023-01-01",
+              "amount": 100
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 101,
+              "product_id": 2,
+              "transaction_date": "2023-01-15",
+              "amount": 150
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 102,
+              "product_id": 1,
+              "transaction_date": "2023-01-01",
+              "amount": 100
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 102,
+              "product_id": 3,
+              "transaction_date": "2023-01-22",
+              "amount": 200
+            },
+            {
+              "transaction_id": 5,
+              "customer_id": 101,
+              "product_id": 3,
+              "transaction_date": "2023-02-10",
+              "amount": 200
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "A",
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "category": "B",
+              "price": 150
+            },
+            {
+              "product_id": 3,
+              "category": "C",
+              "price": 200
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            101,
+            450,
+            3,
+            3,
+            150,
+            "C",
+            34.5
+          ],
+          [
+            102,
+            300,
+            2,
+            2,
+            150,
+            "C",
+            23
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-purchase",
+      "name": "trial: one customer and one purchase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 1,
+              "product_id": 10,
+              "transaction_date": "2024-01-01",
+              "amount": 99.99
+            }
+          ],
+          "products": [
+            {
+              "product_id": 10,
+              "category": "Books",
+              "price": 120
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            1,
+            99.99,
+            1,
+            1,
+            99.99,
+            "Books",
+            11
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "single"
+      ]
+    },
+    {
+      "id": "trial-repeated-category",
+      "name": "trial: different products share one category",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 2,
+              "product_id": 1,
+              "transaction_date": "2024-01-01",
+              "amount": 10
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 2,
+              "product_id": 2,
+              "transaction_date": "2024-01-02",
+              "amount": 20
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "A",
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "category": "A",
+              "price": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            2,
+            30,
+            2,
+            1,
+            15,
+            "A",
+            20.3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "category",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-frequency-tie-latest-wins",
+      "name": "trial: latest category breaks frequency tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 7,
+              "product_id": 1,
+              "transaction_date": "2024-01-01",
+              "amount": 50
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 7,
+              "product_id": 2,
+              "transaction_date": "2024-02-01",
+              "amount": 50
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "A",
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "category": "B",
+              "price": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            7,
+            100,
+            2,
+            2,
+            50,
+            "B",
+            21
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "tie",
+        "recency"
+      ]
+    },
+    {
+      "id": "trial-frequency-before-recency",
+      "name": "trial: frequency outranks a later date",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 8,
+              "product_id": 1,
+              "transaction_date": "2024-01-01",
+              "amount": 10
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 8,
+              "product_id": 1,
+              "transaction_date": "2024-01-02",
+              "amount": 10
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 8,
+              "product_id": 2,
+              "transaction_date": "2024-12-31",
+              "amount": 10
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "A",
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "category": "B",
+              "price": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            8,
+            30,
+            3,
+            2,
+            10,
+            "A",
+            30.3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "frequency",
+        "recency"
+      ]
+    },
+    {
+      "id": "trial-loyalty-tie-customer-order",
+      "name": "trial: loyalty tie uses customer identifier",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 2,
+              "product_id": 1,
+              "transaction_date": "2024-01-01",
+              "amount": 100
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 1,
+              "product_id": 2,
+              "transaction_date": "2024-01-01",
+              "amount": 100
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "A",
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "category": "B",
+              "price": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            1,
+            100,
+            1,
+            1,
+            100,
+            "B",
+            11
+          ],
+          [
+            2,
+            100,
+            1,
+            1,
+            100,
+            "A",
+            11
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "ordering",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-decimal-rounding",
+      "name": "real: decimal totals averages and score",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 9,
+              "product_id": 1,
+              "transaction_date": "2024-01-01",
+              "amount": 10.01
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 9,
+              "product_id": 1,
+              "transaction_date": "2024-01-02",
+              "amount": 10.02
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 9,
+              "product_id": 2,
+              "transaction_date": "2024-01-03",
+              "amount": 10.03
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "A",
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "category": "B",
+              "price": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            9,
+            30.06,
+            3,
+            2,
+            10.02,
+            "A",
+            30.3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "rounding"
+      ]
+    },
+    {
+      "id": "real-product-price-ignored",
+      "name": "real: paid amount differs from list price",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 10,
+              "product_id": 1,
+              "transaction_date": "2024-01-01",
+              "amount": 1.23
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "Luxury",
+              "price": 999.99
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            10,
+            1.23,
+            1,
+            1,
+            1.23,
+            "Luxury",
+            10.01
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "amount",
+        "price"
+      ]
+    },
+    {
+      "id": "real-repeated-product",
+      "name": "real: repeated purchases are separate transactions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 11,
+              "product_id": 1,
+              "transaction_date": "2024-01-01",
+              "amount": 25
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 11,
+              "product_id": 1,
+              "transaction_date": "2024-01-02",
+              "amount": 25
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 11,
+              "product_id": 1,
+              "transaction_date": "2024-01-03",
+              "amount": 50
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "Tools",
+              "price": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            11,
+            100,
+            3,
+            1,
+            33.33,
+            "Tools",
+            31
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "transactions",
+        "repeated"
+      ]
+    },
+    {
+      "id": "real-three-category-counts",
+      "name": "real: one category has a strict frequency lead",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 12,
+              "product_id": 1,
+              "transaction_date": "2024-01-01",
+              "amount": 20
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 12,
+              "product_id": 2,
+              "transaction_date": "2024-01-02",
+              "amount": 30
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 12,
+              "product_id": 2,
+              "transaction_date": "2024-01-03",
+              "amount": 40
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 12,
+              "product_id": 3,
+              "transaction_date": "2024-12-31",
+              "amount": 10
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "A",
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "category": "B",
+              "price": 100
+            },
+            {
+              "product_id": 3,
+              "category": "C",
+              "price": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            12,
+            100,
+            4,
+            3,
+            25,
+            "B",
+            41
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "frequency",
+        "categories"
+      ]
+    },
+    {
+      "id": "real-customer-loyalty-order",
+      "name": "real: higher spend changes loyalty order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 20,
+              "product_id": 1,
+              "transaction_date": "2024-01-01",
+              "amount": 1000
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 21,
+              "product_id": 2,
+              "transaction_date": "2024-01-01",
+              "amount": 1
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 21,
+              "product_id": 2,
+              "transaction_date": "2024-01-02",
+              "amount": 1
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "A",
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "category": "B",
+              "price": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            21,
+            2,
+            2,
+            1,
+            1,
+            "B",
+            20.02
+          ],
+          [
+            20,
+            1000,
+            1,
+            1,
+            1000,
+            "A",
+            20
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "loyalty",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-tied-counts-different-latest-dates",
+      "name": "real: latest date across tied category counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "transactions": [
+            {
+              "transaction_id": 1,
+              "customer_id": 30,
+              "product_id": 1,
+              "transaction_date": "2023-01-01",
+              "amount": 5
+            },
+            {
+              "transaction_id": 2,
+              "customer_id": 30,
+              "product_id": 1,
+              "transaction_date": "2023-02-01",
+              "amount": 5
+            },
+            {
+              "transaction_id": 3,
+              "customer_id": 30,
+              "product_id": 2,
+              "transaction_date": "2023-03-01",
+              "amount": 5
+            },
+            {
+              "transaction_id": 4,
+              "customer_id": 30,
+              "product_id": 2,
+              "transaction_date": "2023-04-01",
+              "amount": 5
+            }
+          ],
+          "products": [
+            {
+              "product_id": 1,
+              "category": "A",
+              "price": 100
+            },
+            {
+              "product_id": 2,
+              "category": "B",
+              "price": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "total_amount",
+          "transaction_count",
+          "unique_categories",
+          "avg_transaction_amount",
+          "top_category",
+          "loyalty_score"
+        ],
+        "rows": [
+          [
+            30,
+            20,
+            4,
+            2,
+            5,
+            "B",
+            40.2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "tie",
+        "latest-date"
+      ]
+    }
+  ]
+}

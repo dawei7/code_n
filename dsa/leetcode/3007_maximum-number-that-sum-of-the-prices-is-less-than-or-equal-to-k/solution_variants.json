@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Number That Sum of the Prices Is Less Than or Equal to K and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts selected set bits over complete cycles and binary-searches the greatest affordable number.",
+      "time_complexity": "O(log^2 K)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3954",
+    "frontend_id": "3954",
+    "title_slug": "sum-of-compatible-numbers-in-range-i",
+    "url": "https://leetcode.com/problems/sum-of-compatible-numbers-in-range-i/description/",
+    "paid_only": false,
+    "content_sha256": "d6a14fba10376676765d8fdf864c28d081e087169e41335c3bf44cc071619ec7",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 2, k = 3",
+        "output": "10",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 5, k = 1",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b425ef8e751ac27f60c798820e11c1a6fa55129911f30709e3e8dbb520612820",
+      "reference/contract.md": "813525097334157ec39e9a2cd4f135ce20c424175dc3b052620305252c5609c6",
+      "reference/examples.md": "4624d0c9a36bf0f79dab5cceab46f68425d6e5ac38d476bbdeace2f1c2881bce",
+      "reference/constraints.md": "c38f777d5282699714d2739ef549f6787ff807757981aba81de0ed4b58e7da5c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

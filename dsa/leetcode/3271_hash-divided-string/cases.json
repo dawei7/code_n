@@ -1,0 +1,185 @@
+{
+  "challenge_id": "lc_3271",
+  "cases": [
+    {
+      "id": "sample-two-groups",
+      "name": "sample: two adjacent pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "k": 2
+      },
+      "expected": "bf",
+      "tags": [
+        "sample",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "sample-one-group",
+      "name": "sample: one three-character group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "mxz",
+        "k": 3
+      },
+      "expected": "i",
+      "tags": [
+        "sample",
+        "single-group"
+      ]
+    },
+    {
+      "id": "sample-unit-groups",
+      "name": "sample: unit groups preserve characters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "azby",
+        "k": 1
+      },
+      "expected": "azby",
+      "tags": [
+        "sample",
+        "unit-groups"
+      ]
+    },
+    {
+      "id": "trial-single-a",
+      "name": "trial: minimum one-character input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 1
+      },
+      "expected": "a",
+      "tags": [
+        "minimum",
+        "zero-value"
+      ]
+    },
+    {
+      "id": "trial-single-z",
+      "name": "trial: maximum alphabet value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "k": 1
+      },
+      "expected": "z",
+      "tags": [
+        "singleton",
+        "maximum-letter"
+      ]
+    },
+    {
+      "id": "trial-all-a",
+      "name": "trial: zero-valued groups hash to a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaaaaa",
+        "k": 2
+      },
+      "expected": "aaaa",
+      "tags": [
+        "all-a",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "trial-wraparound",
+      "name": "trial: sum wraps modulo twenty-six",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zz",
+        "k": 2
+      },
+      "expected": "y",
+      "tags": [
+        "modulo",
+        "wraparound"
+      ]
+    },
+    {
+      "id": "real-whole-alphabet",
+      "name": "real: alphabet split into thirteen pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz",
+        "k": 2
+      },
+      "expected": "bfjnrvzdhlptx",
+      "tags": [
+        "alphabet",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "real-whole-string",
+      "name": "real: one group spans the whole string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "leetcode",
+        "k": 8
+      },
+      "expected": "j",
+      "tags": [
+        "single-group",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-repeated-z",
+      "name": "real: repeated maximum letters in groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzzzzzzzzzzz",
+        "k": 3
+      },
+      "expected": "xxxx",
+      "tags": [
+        "repeated",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-four-groups",
+      "name": "real: varied four-character groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "algorithmhashing",
+        "k": 4
+      },
+      "expected": "fzli",
+      "tags": [
+        "mixed",
+        "groups"
+      ]
+    },
+    {
+      "id": "real-long-pattern",
+      "name": "real: one hundred deterministic characters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "dulctkbsjarizqhypgxofwnevmdulctkbsjarizqhypgxofwnevmdulctkbsjarizqhypgxofwnevmdulctkbsjarizqhypgxofw",
+        "k": 10
+      },
+      "expected": "pzjtdnxhrb",
+      "tags": [
+        "long",
+        "mixed"
+      ]
+    }
+  ]
+}

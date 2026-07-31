@@ -6,98 +6,63 @@
       "name": "sample: a smaller positive remainder can be created",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          4,
-          3,
-          1
-        ]
-      },
+      "input": {"nums": [1, 4, 3, 1]},
       "expected": 1,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
       "id": "sample-all-divisible",
-      "name": "sample: all values divisible by the minimum",
+      "name": "sample: four minima leave two frozen zeros",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          5,
-          5,
-          10,
-          5
-        ]
-      },
+      "input": {"nums": [5, 5, 5, 10, 5]},
       "expected": 2,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
-      "id": "sample-no-common-divisibility",
-      "name": "sample: mixed small values reduce to one",
+      "id": "sample-mixed-values",
+      "name": "sample: mixed values reduce to one",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          3,
-          4
-        ]
-      },
+      "input": {"nums": [2, 3, 4]},
       "expected": 1,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
-      "id": "trial-many-minimums",
-      "name": "trial: many copies of the minimum remain as zeros",
+      "id": "single-element",
+      "name": "boundary: one element cannot be reduced",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          4,
-          12,
-          1,
-          9,
-          5,
-          1,
-          1
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "trial"
-      ]
+      "input": {"nums": [1000000000]},
+      "expected": 1,
+      "tags": ["boundary"]
     },
     {
-      "id": "real-large-min-frequency",
-      "name": "real: divisible values with four minima",
+      "id": "odd-minimum-count",
+      "name": "trial: odd minimum frequency leaves one positive",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [6, 18, 6, 12, 6]},
+      "expected": 2,
+      "tags": ["divisibility"]
+    },
+    {
+      "id": "nonminimum-breaks-divisibility",
+      "name": "real: one nonmultiple creates a smaller positive value",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          6,
-          6,
-          6,
-          6,
-          12,
-          18,
-          24,
-          30
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "real",
-        "number-theory"
-      ]
+      "input": {"nums": [12, 24, 36, 50, 12, 60]},
+      "expected": 1,
+      "tags": ["number-theory"]
+    },
+    {
+      "id": "many-equal-minima",
+      "name": "real: six equal minima pair into three zeros",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 7, 7, 7, 7, 7]},
+      "expected": 3,
+      "tags": ["duplicates"]
     }
   ]
 }

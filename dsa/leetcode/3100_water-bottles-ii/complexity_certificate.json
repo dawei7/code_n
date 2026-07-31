@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3100",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(\\sqrt{n})",
+  "summary": "The legal inputs contain only 10,000 integer pairs, and the increasing price limits the accepted simulation to at most 14 exchanges, which is too little range for an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "E",
+    "maximum": 14,
+    "unit": "exchange iterations",
+    "source_constraint": "1 <= numBottles <= 100 and 1 <= numExchange <= 100"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "After each exchange, the net empty-bottle costs increase consecutively; even the worst legal pair (100, 1) permits only 14 exchanges before the cumulative cost exceeds 99."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "The certificate regression checks all 10,000 legal input pairs against the independent cumulative-cost inequality for the maximum feasible number of exchanges."
+    }
+  ]
+}

@@ -1,23 +1,18 @@
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    """
-    Calculates the concatenation value of an array using two pointers.
-    """
-    total_sum = 0
+def solve(nums: list[int]) -> int:
     left = 0
     right = len(nums) - 1
-    
-    while left <= right:
-        if left == right:
-            # If there is only one element left, add it directly
-            total_sum += nums[left]
-        else:
-            # Concatenate the first and last elements as strings
-            concat_str = str(nums[left]) + str(nums[right])
-            total_sum += int(concat_str)
-        
+    total = 0
+
+    while left < right:
+        multiplier = 10
+        while multiplier <= nums[right]:
+            multiplier *= 10
+
+        total += nums[left] * multiplier + nums[right]
         left += 1
         right -= 1
-        
-    return total_sum
+
+    if left == right:
+        total += nums[left]
+
+    return total

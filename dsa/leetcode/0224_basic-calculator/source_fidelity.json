@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_224", "frontend_id": "224", "title_slug": "basic-calculator", "url": "https://leetcode.com/problems/basic-calculator/description/", "paid_only": false, "content_sha256": "0d5941c3cae7d8b0c679872c293a01ed4697673fbcadc5dfc7142b0e45702851", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "s = \"1 + 1\"", "output": "2", "has_explanation": false}, {"ordinal": 2, "input": "s = \" 2-1 + 2 \"", "output": "3", "has_explanation": false}, {"ordinal": 3, "input": "s = \"(1+(4+5+2)-3)+(6+8)\"", "output": "23", "has_explanation": false}],
+    "constraint_count": 7,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "e6c579ee4c5c526ae3a3ac247441c7547c2ed769daef5d27070c88e5e5bebb0b", "reference/contract.md": "e1823e0abc0c81d8be763ee5f9f3eaf6df3c9f008edb1b11959a99c53131aa83", "reference/note.md": "6406eb8144dd3198561d04051c119e41ea3000f61ce75fb0a554b177ced252c2", "reference/examples.md": "18a638adbdc9d308cc2e5c86c1d401e350dc99d5f2e807ea9c2ba3c79cb3d1e8", "reference/constraints.md": "ee158c24bf6aedce557e8e30e6732c10254b08f83d365c0c9eac6e8064fbf7ac"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

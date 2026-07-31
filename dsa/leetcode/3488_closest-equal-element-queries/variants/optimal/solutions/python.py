@@ -1,30 +1,23 @@
-from bisect import bisect_left
 from collections import defaultdict
 
 
 def solve(nums: list[int], queries: list[int]) -> list[int]:
-    n = len(nums)
+    length = len(nums)
     positions: dict[int, list[int]] = defaultdict(list)
     for index, value in enumerate(nums):
         positions[value].append(index)
 
-    answer: list[int] = []
-    for query in queries:
-        same = positions[nums[query]]
-        if len(same) == 1:
-            answer.append(-1)
+    closest = [-1] * length
+    for same_value in positions.values():
+        count = len(same_value)
+        if count < 2:
             continue
-        pos = bisect_left(same, query)
-        previous_index = same[pos - 1]
-        next_index = same[(pos + 1) % len(same)]
-        previous_distance = abs(query - previous_index)
-        next_distance = abs(next_index - query)
-        answer.append(
-            min(
-                previous_distance,
-                n - previous_distance,
-                next_distance,
-                n - next_distance,
+        for offset, index in enumerate(same_value):
+            previous_index = same_value[offset - 1]
+            next_index = same_value[(offset + 1) % count]
+            closest[index] = min(
+                (index - previous_index) % length,
+                (next_index - index) % length,
             )
-        )
-    return answer
+
+    return [closest[query] for query in queries]

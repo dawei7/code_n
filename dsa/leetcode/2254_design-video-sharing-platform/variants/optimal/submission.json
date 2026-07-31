@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2396",
+  "frontend_id": "2254",
+  "title_slug": "design-video-sharing-platform",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "VideoSharingPlatform",
+  "verified_submission_id": "2073937524",
+  "verified_at": "2026-07-19T23:46:31.159456+00:00"
+}

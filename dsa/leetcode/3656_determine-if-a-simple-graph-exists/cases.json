@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3656",
+  "cases": [
+    {
+      "id": "sample-graphical",
+      "name": "sample: graphical four-vertex sequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "degrees": [
+          3,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "graphical"
+      ]
+    },
+    {
+      "id": "sample-impossible-high-degrees",
+      "name": "sample: high degrees over-demand low vertices",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "degrees": [
+          1,
+          3,
+          3,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "nongraphical"
+      ]
+    },
+    {
+      "id": "trial-single-isolated",
+      "name": "trial: one isolated vertex",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "degrees": [
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-edgeless",
+      "name": "trial: all vertices are isolated",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "degrees": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "edgeless"
+      ]
+    },
+    {
+      "id": "trial-odd-sum",
+      "name": "trial: odd degree sum is impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "degrees": [
+          1,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "odd-sum"
+      ]
+    },
+    {
+      "id": "real-complete-graph",
+      "name": "real: complete graph degree sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "degrees": [
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "complete-graph"
+      ]
+    },
+    {
+      "id": "real-star",
+      "name": "real: star graph sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "degrees": [
+          4,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "star"
+      ]
+    },
+    {
+      "id": "real-odd-cycle",
+      "name": "real: five-cycle degree sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "degrees": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "cycle"
+      ]
+    },
+    {
+      "id": "real-prefix-inequality-fails",
+      "name": "real: even sum still violates prefix bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "degrees": [
+          4,
+          4,
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "erdos-gallai"
+      ]
+    },
+    {
+      "id": "real-mixed-graphical",
+      "name": "real: mixed repeated degrees are graphical",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "degrees": [
+          3,
+          3,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "mixed-degrees"
+      ]
+    },
+    {
+      "id": "real-three-universal-impossible",
+      "name": "real: universal vertices force excess degree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "degrees": [
+          5,
+          5,
+          5,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "nongraphical"
+      ]
+    },
+    {
+      "id": "real-large-complete",
+      "name": "real: larger complete graph",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "degrees": [
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99,
+          99
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "large-complete"
+      ]
+    }
+  ]
+}

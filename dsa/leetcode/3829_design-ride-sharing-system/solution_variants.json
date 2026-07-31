@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Ride Sharing System and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains FIFO rider and driver queues while lazily invalidating canceled riders through an active-ID set.",
+      "time_complexity": "O(Q)",
+      "space_complexity": "O(Q)"
     }
   ]
 }

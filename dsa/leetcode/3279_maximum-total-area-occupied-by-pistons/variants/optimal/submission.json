@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3590",
+  "frontend_id": "3279",
+  "title_slug": "maximum-total-area-occupied-by-pistons",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maxArea",
+  "verified_submission_id": "2080480352",
+  "verified_at": "2026-07-25T08:13:17.761924+00:00"
+}

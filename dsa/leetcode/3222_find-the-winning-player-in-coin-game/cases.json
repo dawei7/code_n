@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3222",
+  "cases": [
+    {"id":"sample-one-turn","name":"sample: one turn makes Alice the winner","kind":"sample","visible":true,"input":{"x":2,"y":7},"expected":"Alice","tags":["sample"]},
+    {"id":"sample-two-turns","name":"sample: two turns make Bob the winner","kind":"sample","visible":true,"input":{"x":4,"y":11},"expected":"Bob","tags":["sample"]},
+    {"id":"trial-no-turn","name":"trial: insufficient ten-value coins","kind":"trial","visible":true,"input":{"x":1,"y":1},"expected":"Bob","tags":["no-move"]},
+    {"id":"trial-exact-one-turn","name":"trial: exact resources for one turn","kind":"trial","visible":true,"input":{"x":1,"y":4},"expected":"Alice","tags":["boundary"]},
+    {"id":"trial-exact-two-turns","name":"trial: exact resources for two turns","kind":"trial","visible":true,"input":{"x":2,"y":8},"expected":"Bob","tags":["parity"]},
+    {"id":"trial-exact-three-turns","name":"trial: exact resources for three turns","kind":"trial","visible":true,"input":{"x":3,"y":12},"expected":"Alice","tags":["parity"]},
+    {"id":"real-both-maximum","name":"real: ten-value coins limit both maximum counts","kind":"real","visible":false,"input":{"x":100,"y":100},"expected":"Alice","tags":["maximum"]},
+    {"id":"real-even-near-maximum","name":"real: twenty-four turns have even parity","kind":"real","visible":false,"input":{"x":100,"y":99},"expected":"Bob","tags":["parity"]},
+    {"id":"real-x-limits","name":"real: one high-value coin limits the game","kind":"real","visible":false,"input":{"x":1,"y":100},"expected":"Alice","tags":["x-limited"]},
+    {"id":"real-y-limits","name":"real: four low-value coins limit the game","kind":"real","visible":false,"input":{"x":100,"y":4},"expected":"Alice","tags":["y-limited"]},
+    {"id":"real-two-x-limit","name":"real: two high-value coins make an even game","kind":"real","visible":false,"input":{"x":2,"y":100},"expected":"Bob","tags":["x-limited"]},
+    {"id":"real-twenty-five-turns","name":"real: twenty-five turns have odd parity","kind":"real","visible":false,"input":{"x":99,"y":100},"expected":"Alice","tags":["parity"]}
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2109",
+  "cases": [
+    {
+      "id": "sample-three-words",
+      "name": "sample: split into four words",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "LeetcodeHelpsMeLearn", "spaces": [8, 13, 15]},
+      "expected": "Leetcode Helps Me Learn",
+      "tags": ["sample", "multiple-insertions"]
+    },
+    {
+      "id": "sample-python-phrase",
+      "name": "sample: four insertion positions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "icodeinpython", "spaces": [1, 5, 7, 9]},
+      "expected": "i code in py thon",
+      "tags": ["sample", "multiple-insertions"]
+    },
+    {
+      "id": "sample-before-every-character",
+      "name": "sample: insert before every character",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "spacing", "spaces": [0, 1, 2, 3, 4, 5, 6]},
+      "expected": " s p a c i n g",
+      "tags": ["sample", "leading-space", "dense-insertions"]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "one character with a leading space",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "Z", "spaces": [0]},
+      "expected": " Z",
+      "tags": ["minimum-length", "leading-space", "uppercase"]
+    },
+    {
+      "id": "trial-final-character",
+      "name": "insert only before the final character",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcd", "spaces": [3]},
+      "expected": "abc d",
+      "tags": ["final-index", "single-insertion"]
+    },
+    {
+      "id": "real-original-indices",
+      "name": "hidden: later positions refer to the original string",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ABCdef", "spaces": [0, 2, 5]},
+      "expected": " AB Cde f",
+      "tags": ["hidden", "original-indices", "uppercase"]
+    },
+    {
+      "id": "real-adjacent-indices",
+      "name": "hidden: adjacent insertion indices",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "hello", "spaces": [1, 2, 3]},
+      "expected": "h e l lo",
+      "tags": ["hidden", "adjacent-indices"]
+    }
+  ]
+}

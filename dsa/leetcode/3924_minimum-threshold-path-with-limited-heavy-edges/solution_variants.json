@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Threshold Path With Limited Heavy Edges and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the threshold and uses 0-1 BFS to minimize the number of heavy edges on a path.",
+      "time_complexity": "O(n log m + m log m)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

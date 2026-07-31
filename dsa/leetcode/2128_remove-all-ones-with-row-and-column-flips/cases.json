@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2128",
+  "cases": [
+    {"id": "sample-alternating", "name": "sample: alternating rows are complements", "kind": "sample", "visible": true, "input": {"grid": [[0, 1, 0], [1, 0, 1], [0, 1, 0]]}, "expected": true, "tags": ["sample", "complement-rows"]},
+    {"id": "sample-incompatible-row", "name": "sample: one row is neither equal nor complementary", "kind": "sample", "visible": true, "input": {"grid": [[1, 1, 0], [0, 0, 0], [0, 0, 0]]}, "expected": false, "tags": ["sample", "impossible"]},
+    {"id": "sample-single-zero", "name": "sample: one zero needs no operation", "kind": "sample", "visible": true, "input": {"grid": [[0]]}, "expected": true, "tags": ["sample", "minimum-size"]},
+    {"id": "trial-single-one", "name": "a single one can be flipped", "kind": "trial", "visible": true, "input": {"grid": [[1]]}, "expected": true, "tags": ["minimum-size", "row-flip"]},
+    {"id": "trial-all-ones", "name": "one row flip removes an all-one matrix", "kind": "trial", "visible": true, "input": {"grid": [[1, 1, 1], [1, 1, 1]]}, "expected": true, "tags": ["uniform", "all-ones"]},
+    {"id": "real-rectangular-valid", "name": "hidden: rectangular matrix with both row types", "kind": "real", "visible": false, "input": {"grid": [[1, 0, 0, 1], [0, 1, 1, 0], [1, 0, 0, 1]]}, "expected": true, "tags": ["hidden", "rectangular"]},
+    {"id": "real-late-mismatch", "name": "hidden: a final bit breaks the complement pattern", "kind": "real", "visible": false, "input": {"grid": [[0, 1, 1, 0], [1, 0, 0, 0]]}, "expected": false, "tags": ["hidden", "late-mismatch"]},
+    {"id": "real-single-column", "name": "hidden: every single-column matrix is removable", "kind": "real", "visible": false, "input": {"grid": [[0], [1], [1], [0]]}, "expected": true, "tags": ["hidden", "single-column"]}
+  ]
+}

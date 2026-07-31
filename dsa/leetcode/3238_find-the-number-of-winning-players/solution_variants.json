@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Number of Winning Players and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts player-color picks online and records each player at the first winning threshold.",
+      "time_complexity": "O(p)",
+      "space_complexity": "O(n)"
     }
   ]
 }

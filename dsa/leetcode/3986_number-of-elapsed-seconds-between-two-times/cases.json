@@ -1,0 +1,149 @@
+{
+  "challenge_id": "lc_3986",
+  "cases": [
+    {
+      "id": "sample-twenty-five-seconds",
+      "name": "sample: twenty-five seconds within one minute",
+      "kind": "sample",
+      "visible": true,
+      "input": {"startTime": "01:00:00", "endTime": "01:00:25"},
+      "expected": 25,
+      "tags": ["sample", "same-minute"]
+    },
+    {
+      "id": "sample-across-hour",
+      "name": "sample: twenty-five minutes and four seconds cross an hour",
+      "kind": "sample",
+      "visible": true,
+      "input": {"startTime": "12:34:56", "endTime": "13:00:00"},
+      "expected": 1504,
+      "tags": ["sample", "hour-boundary"]
+    },
+    {
+      "id": "trial-equal-midnight",
+      "name": "trial: identical midnight readings have zero duration",
+      "kind": "trial",
+      "visible": true,
+      "input": {"startTime": "00:00:00", "endTime": "00:00:00"},
+      "expected": 0,
+      "tags": ["trial", "equal-times", "minimum-time"]
+    },
+    {
+      "id": "trial-equal-interior-time",
+      "name": "trial: identical interior readings have zero duration",
+      "kind": "trial",
+      "visible": true,
+      "input": {"startTime": "07:08:09", "endTime": "07:08:09"},
+      "expected": 0,
+      "tags": ["trial", "equal-times"]
+    },
+    {
+      "id": "trial-one-second",
+      "name": "trial: adjacent second readings",
+      "kind": "trial",
+      "visible": true,
+      "input": {"startTime": "03:21:45", "endTime": "03:21:46"},
+      "expected": 1,
+      "tags": ["trial", "minimum-positive-duration"]
+    },
+    {
+      "id": "trial-minute-rollover",
+      "name": "trial: one second crosses a minute boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"startTime": "03:21:59", "endTime": "03:22:00"},
+      "expected": 1,
+      "tags": ["trial", "minute-boundary"]
+    },
+    {
+      "id": "trial-hour-rollover",
+      "name": "trial: one second crosses an hour boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"startTime": "03:59:59", "endTime": "04:00:00"},
+      "expected": 1,
+      "tags": ["trial", "hour-boundary"]
+    },
+    {
+      "id": "trial-one-minute",
+      "name": "trial: exactly one minute",
+      "kind": "trial",
+      "visible": true,
+      "input": {"startTime": "09:15:30", "endTime": "09:16:30"},
+      "expected": 60,
+      "tags": ["trial", "minute-duration"]
+    },
+    {
+      "id": "trial-one-hour",
+      "name": "trial: exactly one hour",
+      "kind": "trial",
+      "visible": true,
+      "input": {"startTime": "09:15:30", "endTime": "10:15:30"},
+      "expected": 3600,
+      "tags": ["trial", "hour-duration"]
+    },
+    {
+      "id": "real-complete-day-range",
+      "name": "hidden: the widest legal same-day interval",
+      "kind": "real",
+      "visible": false,
+      "input": {"startTime": "00:00:00", "endTime": "23:59:59"},
+      "expected": 86399,
+      "tags": ["hidden", "maximum-duration", "boundaries"]
+    },
+    {
+      "id": "real-last-second",
+      "name": "hidden: the final one-second interval of the day",
+      "kind": "real",
+      "visible": false,
+      "input": {"startTime": "23:59:58", "endTime": "23:59:59"},
+      "expected": 1,
+      "tags": ["hidden", "maximum-time", "minimum-positive-duration"]
+    },
+    {
+      "id": "real-from-midnight",
+      "name": "hidden: conversion from midnight to an interior time",
+      "kind": "real",
+      "visible": false,
+      "input": {"startTime": "00:00:00", "endTime": "10:20:30"},
+      "expected": 37230,
+      "tags": ["hidden", "seconds-since-midnight"]
+    },
+    {
+      "id": "real-to-final-second",
+      "name": "hidden: conversion from an interior time to the final second",
+      "kind": "real",
+      "visible": false,
+      "input": {"startTime": "10:20:30", "endTime": "23:59:59"},
+      "expected": 49169,
+      "tags": ["hidden", "maximum-time"]
+    },
+    {
+      "id": "real-leading-zero-components",
+      "name": "hidden: leading zeroes in every component",
+      "kind": "real",
+      "visible": false,
+      "input": {"startTime": "01:02:03", "endTime": "02:03:04"},
+      "expected": 3661,
+      "tags": ["hidden", "leading-zeroes"]
+    },
+    {
+      "id": "real-mixed-carries",
+      "name": "hidden: seconds and minutes both cross component boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {"startTime": "14:58:47", "endTime": "16:03:12"},
+      "expected": 3865,
+      "tags": ["hidden", "multiple-boundaries"]
+    },
+    {
+      "id": "real-same-hour",
+      "name": "hidden: a duration confined to one hour",
+      "kind": "real",
+      "visible": false,
+      "input": {"startTime": "18:10:05", "endTime": "18:55:40"},
+      "expected": 2735,
+      "tags": ["hidden", "same-hour"]
+    }
+  ]
+}

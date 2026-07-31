@@ -8,48 +8,50 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [snaps-analysis](https://leetcode.com/problems/snaps-analysis/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/snaps-analysis/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/snaps-analysis/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Users spend time either sending or opening snaps. Each user belongs to one age
+bucket, and the analysis must combine the activity of every user in the same
+bucket.
+
+For each represented age bucket, calculate what percentage of its total snap
+time was spent on `send` activities and what percentage was spent on `open`
+activities. Round both percentages to two decimal places. The result may be
+returned in any order.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `Activities(activity_id, user_id, activity_type, time_spent)`: each unique
+  activity is either `send` or `open` and records its duration.
+- `Age(user_id, age_bucket)`: maps each unique user to an age bucket.
+
+Let $n$ be the number of activity rows and $g$ the number of represented age
+buckets.
 
 **Return value**
 
-TODO
+- A table with columns `age_bucket`, `send_perc`, and `open_perc`, with each
+  percentage rounded to two decimal places.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+For age bucket `31-35`, user `123` spends `3.50` sending and `5.75` opening.
+The total is `9.25`, so the returned percentages are `37.84` and `62.16`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+If several users share an age bucket, their activity times are added before
+either percentage is calculated; users are not averaged separately.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+If every activity in a represented bucket is a `send`, its percentages are
+`100.00` for sending and `0.00` for opening.

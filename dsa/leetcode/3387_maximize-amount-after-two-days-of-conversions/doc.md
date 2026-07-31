@@ -8,93 +8,47 @@
 | Category | Algorithms |
 | Topics | Array, String, Depth-First Search, Breadth-First Search, Graph Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximize-amount-after-two-days-of-conversions](https://leetcode.com/problems/maximize-amount-after-two-days-of-conversions/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximize-amount-after-two-days-of-conversions/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximize-amount-after-two-days-of-conversions/).
 
 ### Goal
-Given an initial amount of a starting currency, calculate the maximum possible amount of that same currency you can obtain after two days of trading. On each day, you are provided with a list of currency pairs and their corresponding exchange rates. You start with the initial currency on Day 1, convert it through various pairs to maximize the amount of a target currency, and then on Day 2, use those proceeds to perform further conversions to maximize the final amount of the starting currency.
+
+You begin with `1.0` unit of `initialCurrency`. Two independent sets of currency conversions are available on two consecutive days. On day 1, `pairs1[i] = [start, target]` allows an amount of `start` to be multiplied by `rates1[i]` and converted into `target`. Day 2 uses `pairs2` and `rates2` in the same way.
+
+Every listed conversion is reversible: the corresponding conversion from `target` to `start` has multiplier `1 / rate`. During each day you may make any number of that day's conversions, including none. All day-1 conversions must occur before any day-2 conversion.
+
+Each day's rates are internally valid and contain no contradictory conversion paths or profitable cycles; the two days need not agree with each other. Choose a currency to hold between the days and any valid path on each day so that the final amount of `initialCurrency` is as large as possible.
 
 ### Function Contract
+
 **Inputs**
 
-- `initialCurrency`: A string representing the starting currency.
-- `pairs1`: A list of lists where each inner list contains two strings (currency A, currency B) and a float (rate).
-- `rates1`: A list of floats representing the exchange rate from currency A to currency B for `pairs1`.
-- `pairs2`: A list of lists where each inner list contains two strings (currency A, currency B) and a float (rate).
-- `rates2`: A list of floats representing the exchange rate from currency A to currency B for `pairs2`.
+- `initialCurrency`: An uppercase currency code of length 1 to 3.
+- `pairs1`: The $n$ directed currency pairs listed for day 1.
+- `rates1`: The $n$ forward multipliers corresponding to `pairs1`.
+- `pairs2`: The $m$ directed currency pairs listed for day 2.
+- `rates2`: The $m$ forward multipliers corresponding to `pairs2`.
+
+The bounds are $1 \le n,m \le 10$ and $1.0 \le \texttt{rates1[i]}, \texttt{rates2[i]} \le 10.0$. Every currency code contains only uppercase English letters and has length at most 3. The result is at most $5 \times 10^{10}$.
 
 **Return value**
 
-- A float representing the maximum possible amount of `initialCurrency` obtainable after two days of conversions.
+Return the maximum amount of `initialCurrency` obtainable after the two days, in order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `initialCurrency = "EUR", pairs1 = [["EUR","USD"],["USD","JPY"]], rates1 = [2.0, 3.0], pairs2 = [["JPY","USD"],["USD","EUR"]], rates2 = [0.5, 0.5]`
-- Output: `1.5`
+- Input: `initialCurrency = "EUR", pairs1 = [["EUR", "USD"], ["USD", "JPY"]], rates1 = [2.0, 3.0], pairs2 = [["JPY", "USD"], ["USD", "CHF"], ["CHF", "EUR"]], rates2 = [4.0, 5.0, 6.0]`
+- Output: `720.0`
 
 **Example 2**
 
-- Input: `initialCurrency = "NGN", pairs1 = [["NGN","EUR"]], rates1 = [9.0], pairs2 = [["EUR","NGN"]], rates2 = [6.0]`
-- Output: `54.0`
+- Input: `initialCurrency = "NGN", pairs1 = [["NGN", "EUR"]], rates1 = [9.0], pairs2 = [["NGN", "EUR"]], rates2 = [6.0]`
+- Output: `1.5`
 
 **Example 3**
 
-- Input: `initialCurrency = "USD", pairs1 = [["USD","EUR"]], rates1 = [1.0], pairs2 = [["EUR","JPY"],["JPY","USD"]], rates2 = [1.0, 1.0]`
+- Input: `initialCurrency = "USD", pairs1 = [["USD", "EUR"]], rates1 = [1.0], pairs2 = [["EUR", "JPY"]], rates2 = [10.0]`
 - Output: `1.0`
-
----
-
-## Solution
-### Approach
-The problem is modeled as a directed graph where currencies are nodes and exchange rates are edge weights. Since we want to find the maximum conversion rate between any two currencies, we can use the Bellman-Ford algorithm or simply perform a Breadth-First Search (BFS) / Depth-First Search (DFS) from the source node to all reachable nodes, keeping track of the maximum product of rates found so far.
-
-### Complexity Analysis
-- **Time Complexity**: O(N + M), where N is the number of pairs in day 1 and M is the number of pairs in day 2. We perform a traversal (BFS/DFS) on the graph constructed from each day's rates.
-- **Space Complexity**: O(V), where V is the number of unique currencies, used to store the adjacency list and the maximum rates found during traversal.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import defaultdict, deque
-
-def solve(initialCurrency, pairs1, rates1, pairs2, rates2):
-    def get_max_rates(pairs, rates, start_node):
-        graph = defaultdict(list)
-        for (u, v), r in zip(pairs, rates):
-            graph[u].append((v, r))
-            graph[v].append((u, 1.0 / r))
-
-        max_rates = {start_node: 1.0}
-        queue = deque([start_node])
-
-        while queue:
-            curr = queue.popleft()
-            for neighbor, rate in graph[curr]:
-                if max_rates.get(neighbor, 0) < max_rates[curr] * rate:
-                    max_rates[neighbor] = max_rates[curr] * rate
-                    queue.append(neighbor)
-        return max_rates
-
-    # Day 1: Find max conversion from initialCurrency to all others
-    day1_rates = get_max_rates(pairs1, rates1, initialCurrency)
-
-    # Day 2: For every currency reached in Day 1, find max conversion back to initialCurrency
-    max_final_amount = 1.0
-
-    # We need to check all currencies reachable from initialCurrency in Day 1
-    # and see how much they can convert back to initialCurrency in Day 2
-    for intermediate_currency, amount_after_day1 in day1_rates.items():
-        day2_rates = get_max_rates(pairs2, rates2, intermediate_currency)
-        if initialCurrency in day2_rates:
-            final_amount = amount_after_day1 * day2_rates[initialCurrency]
-            if final_amount > max_final_amount:
-                max_final_amount = final_amount
-
-    return float(max_final_amount)
-```
-</details>

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Earliest Finish Time for Land and Water Rides I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses the earliest possible first-ride completion for each order and scans all choices for the second ride.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(1)"
     }
   ]
 }

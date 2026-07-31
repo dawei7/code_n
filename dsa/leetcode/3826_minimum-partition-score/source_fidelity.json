@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3826",
+    "frontend_id": "3826",
+    "title_slug": "minimum-partition-score",
+    "url": "https://leetcode.com/problems/minimum-partition-score/description/",
+    "paid_only": false,
+    "content_sha256": "e3468609bdd74aeeeb9e48f416ef7af816c5ec32efaf7620b916f8b098f30111",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [5,1,2,1], k = 2",
+        "output": "25",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,2,3,4], k = 1",
+        "output": "55",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1,1,1], k = 3",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "6b9a80602dca4cd51c52406f438922109e034ddd16a6280e276e4d3d4f340d56",
+      "reference/contract.md": "8c1c3a5122659effb01150fd3f4be9f7271eca130ae4ce0e28f19d72ad44f198",
+      "reference/examples.md": "4461a13f024362114a9e2162a17a6d5a233245eb023c564d8e18474baf94155d",
+      "reference/constraints.md": "f298dfcb3c575a1c061fd06c4b6ef6d0c5d1dcad517af32c27acd8fb0251ae8e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

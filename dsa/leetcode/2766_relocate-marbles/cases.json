@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2766",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: marbles merge at destination",
+      "id": "sample-separate",
+      "name": "sample: three moves keep four occupied positions",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,20 +25,20 @@
           5
         ]
       },
-      "tags": [
-        "sample",
-        "moves"
-      ],
       "expected": [
         5,
         6,
         8,
         9
+      ],
+      "tags": [
+        "sample",
+        "moves"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: single move chain",
+      "id": "sample-merge",
+      "name": "sample: multiple groups merge at one destination",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -56,77 +57,181 @@
           2
         ]
       },
+      "expected": [
+        2
+      ],
       "tags": [
         "sample",
         "merge"
-      ],
-      "expected": [
-        2
       ]
     },
     {
-      "id": "trial-move-absent-source",
-      "name": "trial: absent source is ignored",
+      "id": "trial-self-move",
+      "name": "trial: source and destination are equal",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          4,
-          8
+          5
         ],
         "moveFrom": [
-          1,
-          4,
-          8
+          5
         ],
         "moveTo": [
-          2,
-          6,
-          10
+          5
         ]
       },
-      "tags": [
-        "trial",
-        "absent"
-      ],
       "expected": [
-        6,
-        10
+        5
+      ],
+      "tags": [
+        "self-move"
       ]
     },
     {
-      "id": "trial-cycle-like-moves",
-      "name": "trial: positions move through a cycle",
+      "id": "trial-chain",
+      "name": "trial: moved groups continue through later operations",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           1,
-          2,
-          3
+          2
         ],
         "moveFrom": [
           1,
-          2,
-          3
+          3,
+          2
         ],
         "moveTo": [
-          2,
           3,
+          4,
           4
         ]
       },
-      "tags": [
-        "trial",
-        "chain"
-      ],
       "expected": [
         4
+      ],
+      "tags": [
+        "chain",
+        "merge"
+      ]
+    },
+    {
+      "id": "real-destination-occupied",
+      "name": "hidden: moving into an occupied position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2
+        ],
+        "moveFrom": [
+          1
+        ],
+        "moveTo": [
+          2
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "hidden",
+        "occupied-destination"
+      ]
+    },
+    {
+      "id": "real-merged-position-moves",
+      "name": "hidden: a merged position moves again",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "moveFrom": [
+          1,
+          2,
+          4
+        ],
+        "moveTo": [
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "hidden",
+        "merged-group",
+        "chain"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: coordinates at the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999
+        ],
+        "moveFrom": [
+          1000000000
+        ],
+        "moveTo": [
+          999999999
+        ]
+      },
+      "expected": [
+        999999999
+      ],
+      "tags": [
+        "hidden",
+        "coordinate-boundary"
+      ]
+    },
+    {
+      "id": "real-source-reoccupied",
+      "name": "hidden: a vacated source is reoccupied and moved again",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2
+        ],
+        "moveFrom": [
+          1,
+          2,
+          1
+        ],
+        "moveTo": [
+          3,
+          1,
+          4
+        ]
+      },
+      "expected": [
+        3,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "reoccupied-source"
       ]
     },
     {
       "id": "real-many-merge",
-      "name": "hidden: many starts merge into one position",
+      "name": "hidden: many starting positions collapse into one",
       "kind": "real",
       "visible": false,
       "input": {
@@ -139,22 +244,53 @@
         "moveFrom": [
           10,
           20,
-          30,
-          50
+          30
         ],
         "moveTo": [
-          20,
-          30,
+          40,
           40,
           40
         ]
       },
-      "tags": [
-        "hidden",
-        "merge"
-      ],
       "expected": [
         40
+      ],
+      "tags": [
+        "hidden",
+        "many-to-one"
+      ]
+    },
+    {
+      "id": "real-self-among-moves",
+      "name": "hidden: self-move between ordinary moves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ],
+        "moveFrom": [
+          2,
+          4,
+          6
+        ],
+        "moveTo": [
+          3,
+          4,
+          8
+        ]
+      },
+      "expected": [
+        3,
+        4,
+        8
+      ],
+      "tags": [
+        "hidden",
+        "self-move",
+        "mixed"
       ]
     }
   ]

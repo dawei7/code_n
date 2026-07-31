@@ -8,48 +8,49 @@
 | Category | Algorithms |
 | Topics | Math, Combinatorics |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-the-number-of-arrays-with-k-matching-adjacent-elements](https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given integers `n`, `m`, and `k`. Consider arrays `arr` of length $n$ whose elements all lie in the inclusive range $[1,m]$.
+
+An array is good when exactly $k$ indices $i$ with $1\le i<n$ satisfy `arr[i - 1] == arr[i]`. All other adjacent pairs must contain different values. Count how many good arrays exist and return the result modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The required array length.
+- `m`: The number of permitted values, namely the integers from 1 through $m$.
+- `k`: The exact number of matching adjacent pairs.
+
+The constraints are $1\le n,m\le10^5$ and $0\le k\le n-1$.
 
 **Return value**
 
-TODO
+- The number of good arrays modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3, m = 2, k = 1`
+- Output: `4`
+
+The good arrays are `[1, 1, 2]`, `[1, 2, 2]`, `[2, 1, 1]`, and `[2, 2, 1]`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4, m = 2, k = 2`
+- Output: `6`
+
+Each valid array has two equal boundaries and one changing boundary. There are three choices for the changing boundary and two choices for the first value.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5, m = 2, k = 0`
+- Output: `2`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Every boundary must change, so the two valid arrays alternate between 1 and 2, starting with either value.

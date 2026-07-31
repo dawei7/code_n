@@ -10,6 +10,17 @@ SupportedLanguage = Literal[
     "python", "cpp", "java", "csharp", "javascript", "go", "kotlin", "sql", "bash"
 ]
 
+# The application exposes only the language family used by each problem's
+# verified LeetCode submission. The broader SupportedLanguage type remains for
+# internal compatibility with legacy runners and personal solution files.
+PrimaryLanguage = Literal["python", "javascript", "sql", "bash"]
+PRIMARY_LANGUAGES: tuple[PrimaryLanguage, ...] = (
+    "python",
+    "javascript",
+    "sql",
+    "bash",
+)
+
 
 @dataclass(frozen=True)
 class LanguageInfo:

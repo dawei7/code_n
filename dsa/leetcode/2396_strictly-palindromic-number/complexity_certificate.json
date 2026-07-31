@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2396",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(1)",
+  "summary": "Every legal input is disproved by one fixed-form witness base, so no input-sized workload remains to scale and the constant-time upper bound matches the unavoidable constant decision cost.",
+  "optimality": {
+    "symbol": "q",
+    "lower_bound": "Omega(1)",
+    "upper_bound": "O(1)",
+    "argument": "Any implementation must produce one boolean decision. For n greater than 4, base n - 2 represents n as the unequal digits 12; for n equal to 4, base 2 represents it as 100. Returning false therefore uses a fixed amount of work and matches the Omega(1) lower bound."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "A correct call must emit one boolean result, which requires Omega(1) work."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The accepted reference returns false directly after the universal base n - 2 counterexample proves the result for the whole legal domain."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression checks every integer from 4 through 100000, verifies the explicit witness digits, and independently brute-converts every required base for small inputs."
+    }
+  ]
+}

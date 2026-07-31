@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3455",
+  "cases": [
+    {
+      "id": "sample-three-literals",
+      "name": "sample: three literal blocks",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abaacbaecebce",
+        "p": "ba*c*ce"
+      },
+      "expected": 8,
+      "tags": [
+        "sample",
+        "three-blocks"
+      ]
+    },
+    {
+      "id": "sample-no-match",
+      "name": "sample: required blocks cannot be linked",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "baccbaadbc",
+        "p": "cc*baa*adb"
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "no-match"
+      ]
+    },
+    {
+      "id": "sample-empty-pattern-blocks",
+      "name": "sample: both stars match empty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "p": "**"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "empty-substring"
+      ]
+    },
+    {
+      "id": "sample-empty-outer-blocks",
+      "name": "sample: literal middle block only",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "madlogic",
+        "p": "*adlogi*"
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "empty-outer"
+      ]
+    },
+    {
+      "id": "trial-overlapping-occurrences",
+      "name": "trial: selected literal occurrences cannot overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaaa",
+        "p": "aa*a*aa"
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-empty-first",
+      "name": "trial: empty first literal block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzabcxx",
+        "p": "*ab*c"
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "empty-first"
+      ]
+    },
+    {
+      "id": "real-empty-middle",
+      "name": "real: empty middle literal block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abxxcd",
+        "p": "ab**cd"
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "empty-middle"
+      ]
+    },
+    {
+      "id": "real-empty-last",
+      "name": "real: empty last literal block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "xxabc",
+        "p": "ab*c*"
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "empty-last"
+      ]
+    },
+    {
+      "id": "real-adjacent-blocks",
+      "name": "real: both stars match empty sequences",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzabczz",
+        "p": "a*b*c"
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "adjacent"
+      ]
+    },
+    {
+      "id": "real-repetitive-no-complete-chain",
+      "name": "real: many partial occurrences but no chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaaab",
+        "p": "aaaa*b*aaaa"
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "repetitive"
+      ]
+    }
+  ]
+}

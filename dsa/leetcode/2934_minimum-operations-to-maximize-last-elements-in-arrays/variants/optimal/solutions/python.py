@@ -1,26 +1,16 @@
 def solve(nums1: list[int], nums2: list[int]) -> int:
-    n = len(nums1)
-
-    def count_swaps(last1, last2):
+    def required_swaps(maximum1: int, maximum2: int) -> int:
         swaps = 0
-        for i in range(n - 1):
-            a, b = nums1[i], nums2[i]
-            # If current elements already satisfy the condition
-            if a <= last1 and b <= last2:
+        for value1, value2 in zip(nums1[:-1], nums2[:-1]):
+            if value1 <= maximum1 and value2 <= maximum2:
                 continue
-            # Try swapping to satisfy the condition
-            elif b <= last1 and a <= last2:
+            if value2 <= maximum1 and value1 <= maximum2:
                 swaps += 1
             else:
-                # Impossible to satisfy
-                return float('inf')
+                return len(nums1) + 1
         return swaps
 
-    # Scenario 1: Keep the last elements as they are
-    res1 = count_swaps(nums1[-1], nums2[-1])
-
-    # Scenario 2: Swap the last elements
-    res2 = count_swaps(nums2[-1], nums1[-1]) + 1
-
-    ans = min(res1, res2)
-    return int(ans) if ans != float('inf') else -1
+    keep_last = required_swaps(nums1[-1], nums2[-1])
+    swap_last = 1 + required_swaps(nums2[-1], nums1[-1])
+    answer = min(keep_last, swap_last)
+    return -1 if answer > len(nums1) else answer

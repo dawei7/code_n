@@ -1,21 +1,16 @@
 {
   "mode": "new_problems",
-  "upstream_total": 3991,
-  "previous_total": 3985,
-  "new_problem_count": 6,
-  "new_frontend_ids": [
-    "3986",
-    "3987",
-    "3988",
-    "3989",
-    "3990",
-    "3991"
-  ],
-  "doc_statuses": {
-    "created": 6
-  },
-  "canonical_total": 3991,
-  "estimated_elo_count": 1458,
-  "frequency_count": 0,
-  "next_step": "Run tools/update_leetcode_metrics.py with a valid Premium LeetCode session to refresh Frequency for the expanded corpus."
+  "canonical_limit": 4005,
+  "upstream_total": 4005,
+  "eligible_upstream_total": 4005,
+  "ignored_above_limit_count": 0,
+  "ignored_above_limit_frontend_ids": [],
+  "previous_total": 4005,
+  "new_problem_count": 0,
+  "new_frontend_ids": [],
+  "doc_statuses": {},
+  "canonical_total": 4005,
+  "estimated_elo_count": 1460,
+  "frequency_count": 4005,
+  "next_step": "The canonical corpus is frozen at 4005; no further additions are permitted."
 }

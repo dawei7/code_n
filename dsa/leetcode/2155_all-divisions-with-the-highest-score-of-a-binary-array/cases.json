@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2155",
+  "cases": [
+    {"id": "sample-tied-best", "name": "sample: two divisions share the best score", "kind": "sample", "visible": true, "input": {"nums": [0, 0, 1, 0]}, "expected": [2, 4], "tags": ["sample", "tie"]},
+    {"id": "sample-all-zeros", "name": "sample: all zeros favor the final division", "kind": "sample", "visible": true, "input": {"nums": [0, 0, 0]}, "expected": [3], "tags": ["sample", "all-zero"]},
+    {"id": "sample-all-ones", "name": "sample: all ones favor division zero", "kind": "sample", "visible": true, "input": {"nums": [1, 1]}, "expected": [0], "tags": ["sample", "all-one"]},
+    {"id": "trial-single-zero", "name": "one zero belongs on the left", "kind": "trial", "visible": true, "input": {"nums": [0]}, "expected": [1], "tags": ["minimum-length", "zero"]},
+    {"id": "trial-single-one", "name": "one one belongs on the right", "kind": "trial", "visible": true, "input": {"nums": [1]}, "expected": [0], "tags": ["minimum-length", "one"]},
+    {"id": "trial-endpoint-tie", "name": "both endpoint divisions tie", "kind": "trial", "visible": true, "input": {"nums": [1, 0]}, "expected": [0, 2], "tags": ["endpoints", "tie"]},
+    {"id": "real-alternating-ties", "name": "hidden: alternating bits produce separated maxima", "kind": "real", "visible": false, "input": {"nums": [0, 1, 0, 1]}, "expected": [1, 3], "tags": ["hidden", "alternating", "tie"]},
+    {"id": "real-mixed-repeated-max", "name": "hidden: the running score revisits its maximum", "kind": "real", "visible": false, "input": {"nums": [0, 1, 0, 1, 1, 0]}, "expected": [1, 3], "tags": ["hidden", "mixed", "tie"]}
+  ]
+}

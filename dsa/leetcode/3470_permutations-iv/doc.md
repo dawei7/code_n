@@ -5,105 +5,45 @@
 | Source | LeetCode |
 | Frontend ID | 3470 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Math, Combinatorics, Enumeration |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [permutations-iv](https://leetcode.com/problems/permutations-iv/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/permutations-iv/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/permutations-iv/).
-
 ### Goal
-Given an integer `n` and a 64-bit integer `k`, return the `k`-th lexicographically smallest permutation of the sequence `[1, 2, ..., n]`. The permutation should be represented as a list of integers. Note that `k` is 1-indexed.
+Given positive integers `n` and `k`, consider permutations of the first $n$ positive integers. A permutation is alternating when every adjacent pair contains one odd value and one even value; equivalently, no two adjacent elements may both be odd or both be even.
+
+Sort all alternating permutations in lexicographical order and return the $k$-th one, where `k` is 1-indexed. If the number of valid alternating permutations is smaller than `k`, return an empty list instead.
 
 ### Function Contract
 **Inputs**
 
-- `n`: An integer representing the range of numbers from 1 to `n`.
-- `k`: A 64-bit integer representing the rank of the desired permutation.
+- `n`: The inclusive upper endpoint of the values `1` through `n` used exactly once.
+- `k`: The 1-indexed lexicographical rank to retrieve.
+
+The constraints are $1\le n\le100$ and $1\le k\le10^{15}$.
 
 **Return value**
 
-- A list of integers representing the `k`-th lexicographical permutation.
+Return the requested alternating permutation, or `[]` when that rank does not exist.
 
 ### Examples
 **Example 1**
 
-- Input: `n = 3, k = 3`
-- Output: `[2, 1, 3]`
+- Input: `n = 4, k = 6`
+- Output: `[3,4,1,2]`
+
+This is the sixth of the eight alternating permutations of `[1,2,3,4]` in lexicographical order.
 
 **Example 2**
 
-- Input: `n = 4, k = 9`
-- Output: `[2, 3, 1, 4]`
+- Input: `n = 3, k = 2`
+- Output: `[3,2,1]`
+
+With two odd values and one even value, the only valid permutations are `[1,2,3]` and `[3,2,1]`.
 
 **Example 3**
 
-- Input: `n = 3, k = 1`
-- Output: `[1, 2, 3]`
+- Input: `n = 2, k = 3`
+- Output: `[]`
 
----
-
-## Solution
-### Approach
-The problem is solved using the **Factorial Number System (Factoradic)**. Since there are `(n-1)!` permutations starting with any specific digit, we can determine the first digit by calculating `(k-1) // (n-1)!`. We then update `k` to `(k-1) % (n-1)!` and repeat the process for the remaining `n-1` elements, maintaining a list of available numbers to pick from.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)` due to the list deletion operation `pop(index)` inside the loop, which takes `O(n)` time, repeated `n` times.
-- **Space Complexity**: `O(n)` to store the list of available numbers and the resulting permutation.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(n: int, k: int) -> list[int]:
-    cap = 10**18
-    factorial = [1] * (n + 1)
-    for value in range(1, n + 1):
-        factorial[value] = min(cap, factorial[value - 1] * value)
-
-    def count_with_next(odd_count: int, even_count: int, next_parity: int) -> int:
-        length = odd_count + even_count
-        next_slots = (length + 1) // 2
-        other_slots = length // 2
-        required_odd = next_slots if next_parity == 1 else other_slots
-        required_even = length - required_odd
-        if odd_count != required_odd or even_count != required_even:
-            return 0
-        return min(cap, factorial[odd_count] * factorial[even_count])
-
-    numbers = list(range(1, n + 1))
-    odd_count = (n + 1) // 2
-    even_count = n // 2
-    answer: list[int] = []
-    previous_parity: int | None = None
-
-    while numbers:
-        chosen = False
-        for index, value in enumerate(numbers):
-            parity = value & 1
-            if previous_parity is not None and parity == previous_parity:
-                continue
-            next_odd = odd_count - parity
-            next_even = even_count - (1 - parity)
-            ways = (
-                count_with_next(next_odd, next_even, 1 - parity)
-                if next_odd + next_even
-                else 1
-            )
-            if k > ways:
-                k -= ways
-                continue
-            answer.append(value)
-            numbers.pop(index)
-            odd_count = next_odd
-            even_count = next_even
-            previous_parity = parity
-            chosen = True
-            break
-        if not chosen:
-            return []
-    return answer
-```
-</details>
+Only `[1,2]` and `[2,1]` are available, so the third rank is out of range.

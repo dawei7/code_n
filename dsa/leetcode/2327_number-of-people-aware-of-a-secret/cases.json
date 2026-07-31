@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2327",
+  "cases": [
+    {"id":"sample-delayed-sharing","name":"sample: delayed sharing with early forgetting","kind":"sample","visible":true,"input":{"n":6,"delay":2,"forget":4},"expected":5,"tags":["sample","forgetting"]},
+    {"id":"sample-share-next-day","name":"sample: recipients share on the following day","kind":"sample","visible":true,"input":{"n":4,"delay":1,"forget":3},"expected":6,"tags":["sample","rapid-growth"]},
+    {"id":"trial-minimum-horizon","name":"minimum horizon permits one sharing event","kind":"trial","visible":true,"input":{"n":2,"delay":1,"forget":2},"expected":2,"tags":["boundary","minimum"]},
+    {"id":"trial-one-day-window","name":"each cohort has only one sharing day","kind":"trial","visible":true,"input":{"n":10,"delay":3,"forget":4},"expected":2,"tags":["narrow-window"]},
+    {"id":"trial-no-forgetting-yet","name":"no cohort forgets before the final day","kind":"trial","visible":true,"input":{"n":10,"delay":2,"forget":10},"expected":55,"tags":["long-memory"]},
+    {"id":"real-overlapping-cohorts","name":"hidden: several sharing and forgetting cohorts overlap","kind":"real","visible":false,"input":{"n":20,"delay":5,"forget":9},"expected":47,"tags":["hidden","overlap"]},
+    {"id":"real-modulus","name":"hidden: rapid growth requires modular arithmetic","kind":"real","visible":false,"input":{"n":1000,"delay":1,"forget":1000},"expected":344211605,"tags":["hidden","modulus","maximum"]}
+  ]
+}

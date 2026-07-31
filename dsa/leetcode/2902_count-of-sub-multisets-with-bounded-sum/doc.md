@@ -8,91 +8,46 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Dynamic Programming, Sliding Window |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-of-sub-multisets-with-bounded-sum](https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-of-sub-multisets-with-bounded-sum/).
 
 ### Goal
-Given a collection of integers (which may contain duplicates) and two bounds `l` and `r`, determine the total number of sub-multisets whose elements sum to a value between `l` and `r` inclusive. Since the result can be very large, return it modulo 10^9 + 7.
+
+You are given a 0-indexed array `nums` of non-negative integers and two bounds `l` and `r`. Count the sub-multisets of `nums` whose element sum lies in the inclusive interval $[l,r]$, and return the count modulo $10^9+7$.
+
+For a value $x$ occurring `occ[x]` times in the input, a sub-multiset may contain $x$ exactly $0,1,\ldots,\texttt{occ[x]}` times. Order does not matter: two selections are the same when sorting them produces identical multisets. The empty multiset is allowed and has sum $0$.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the available elements.
-- `l`: An integer representing the lower bound of the target sum.
-- `r`: An integer representing the upper bound of the target sum.
+- `nums`: A nonempty array of non-negative integers.
+- `l`: The inclusive lower bound for an accepted sum.
+- `r`: The inclusive upper bound for an accepted sum.
+
+The shared bounds are $1\le n\le2\cdot10^4$, $0\le\texttt{nums[i]}\le2\cdot10^4$, and $0\le l\le r\le2\cdot10^4$. The sum of all elements in `nums` is at most $2\cdot10^4$. Let $D$ be the number of distinct positive values.
 
 **Return value**
 
-- An integer representing the count of sub-multisets with a sum in the range `[l, r]` modulo 10^9 + 7.
+Return the number of distinct sub-multisets with sums in $[l,r]$, reduced modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 2, 2, 3], l = 6, r = 7`
-- Output: `3`
+- Input: `nums = [1, 2, 2, 3], l = 6, r = 6`
+- Output: `1`
+- Explanation: The only qualifying multiset is `{1, 2, 3}`.
 
 **Example 2**
 
 - Input: `nums = [2, 1, 4, 2, 7], l = 1, r = 5`
 - Output: `7`
+- Explanation: The qualifying multisets are `{1}`, `{2}`, `{4}`, `{2, 2}`, `{1, 2}`, `{1, 4}`, and `{1, 2, 2}`.
 
 **Example 3**
 
-- Input: `nums = [1, 2, 1, 2, 1], l = 3, r = 3`
-- Output: `3`
-
----
-
-## Solution
-### Approach
-The problem is a variation of the Bounded Knapsack Problem. We use dynamic programming with a frequency map to group identical elements. To optimize the transition, we use a sliding window sum technique on the DP array to update counts in $O(r)$ time per distinct element, rather than the naive $O(r \times \text{count})$ approach.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N + K \cdot R)$, where $N$ is the number of elements, $K$ is the number of distinct elements, and $R$ is the upper bound `r`.
-- **Space Complexity**: $O(R)$ to store the DP table.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import Counter
-
-def solve(nums: list[int], l: int, r: int) -> int:
-    MOD = 10**9 + 7
-
-    # Count frequencies of each number
-    counts = Counter(nums)
-
-    # dp[i] stores the number of ways to get sum i
-    dp = [0] * (r + 1)
-    dp[0] = 1
-
-    # Current maximum possible sum reachable so far
-    current_max = 0
-
-    for val, count in counts.items():
-        if val == 0:
-            # Zeros can be included in any sub-multiset
-            # If there are 'z' zeros, each existing sub-multiset can be
-            # combined with any subset of zeros (2^z ways)
-            for i in range(r + 1):
-                dp[i] = (dp[i] * (count + 1)) % MOD
-            continue
-
-        new_dp = list(dp)
-        # Sliding window sum to update DP table
-        # For a value 'val' with 'count' occurrences:
-        # dp[i] = sum(dp[i - k * val]) for 0 <= k <= count
-        for i in range(val, r + 1):
-            new_dp[i] = (new_dp[i] + new_dp[i - val]) % MOD
-            if i >= (count + 1) * val:
-                new_dp[i] = (new_dp[i] - dp[i - (count + 1) * val] + MOD) % MOD
-        dp = new_dp
-
-    # The result is the sum of ways to get sums from l to r
-    return sum(dp[l : r + 1]) % MOD
-```
-</details>
+- Input: `nums = [1, 2, 1, 3, 5, 2], l = 3, r = 5`
+- Output: `9`
+- Explanation: Nine distinct multiplicity selections have sums between $3$ and $5$ inclusive.

@@ -1,0 +1,185 @@
+{
+  "challenge_id": "lc_3017",
+  "cases": [
+    {
+      "id": "triangle",
+      "name": "sample: three-house cycle",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "x": 1,
+        "y": 3
+      },
+      "expected": [
+        6,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "cycle"
+      ]
+    },
+    {
+      "id": "self-edge",
+      "name": "sample: coincident endpoints leave a chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "x": 1,
+        "y": 1
+      },
+      "expected": [
+        6,
+        4,
+        2,
+        0
+      ],
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "whole-cycle",
+      "name": "sample: shortcut closes the full chain",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "x": 1,
+        "y": 5
+      },
+      "expected": [
+        10,
+        10,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "cycle"
+      ]
+    },
+    {
+      "id": "adjacent-endpoints",
+      "name": "trial: adjacent endpoints add no shortcut",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "x": 2,
+        "y": 3
+      },
+      "expected": [
+        10,
+        8,
+        6,
+        4,
+        2,
+        0
+      ],
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "two-tails",
+      "name": "trial: cycle with tails on both sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "x": 2,
+        "y": 5
+      },
+      "expected": [
+        12,
+        12,
+        6,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "tails",
+        "cycle"
+      ]
+    },
+    {
+      "id": "reversed-endpoints",
+      "name": "real: endpoint order does not matter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "x": 5,
+        "y": 2
+      },
+      "expected": [
+        12,
+        12,
+        6,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "symmetry"
+      ]
+    },
+    {
+      "id": "even-cycle",
+      "name": "real: even cycle has antipodal pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 8,
+        "x": 2,
+        "y": 7
+      },
+      "expected": [
+        16,
+        20,
+        16,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "even-cycle"
+      ]
+    },
+    {
+      "id": "asymmetric-tails",
+      "name": "real: unequal tails contribute different ranges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 10,
+        "x": 3,
+        "y": 8
+      },
+      "expected": [
+        20,
+        24,
+        24,
+        16,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "tails"
+      ]
+    }
+  ]
+}

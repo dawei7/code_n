@@ -1,31 +1,26 @@
-from collections import defaultdict
-
-
 def solve(n: int, conflictingPairs: list[list[int]]) -> int:
     by_right: list[list[tuple[int, int]]] = [[] for _ in range(n + 1)]
     for pair_id, (first, second) in enumerate(conflictingPairs):
         left, right = sorted((first, second))
         by_right[right].append((left, pair_id))
 
-    best_left = 0
-    second_left = 0
-    best_pair = -1
-    total = 0
-    gain = defaultdict(int)
+    largest_left = 0
+    second_largest_left = 0
+    largest_pair_id = -1
+    valid_subarrays = 0
+    removal_gain = [0] * len(conflictingPairs)
 
     for right in range(1, n + 1):
         for left, pair_id in by_right[right]:
-            if left > best_left:
-                second_left = best_left
-                best_left = left
-                best_pair = pair_id
-            elif left == best_left:
-                second_left = best_left
-            elif left > second_left:
-                second_left = left
+            if left > largest_left:
+                second_largest_left = largest_left
+                largest_left = left
+                largest_pair_id = pair_id
+            elif left > second_largest_left:
+                second_largest_left = left
 
-        total += right - best_left
-        if best_pair != -1:
-            gain[best_pair] += best_left - second_left
+        valid_subarrays += right - largest_left
+        if largest_pair_id != -1:
+            removal_gain[largest_pair_id] += largest_left - second_largest_left
 
-    return total + (max(gain.values()) if gain else 0)
+    return valid_subarrays + max(removal_gain)

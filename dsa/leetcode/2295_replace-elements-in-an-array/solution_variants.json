@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Replace Elements in an Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains the current array index of every value so each ordered replacement is constant-time.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(n)"
     }
   ]
 }

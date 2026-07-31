@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_39", "frontend_id": "39",
+    "title_slug": "combination-sum",
+    "url": "https://leetcode.com/problems/combination-sum/description/",
+    "paid_only": false, "content_sha256": "e42f934c75a151e702272f994b0a4c5e036845eca8ae152561cdd84924cecd69", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "candidates = [2,3,6,7], target = 7", "output": "[[2,2,3],[7]]", "has_explanation": true},
+      {"ordinal": 2, "input": "candidates = [2,3,5], target = 8", "output": "[[2,2,2,2],[2,3,3],[3,5]]", "has_explanation": false},
+      {"ordinal": 3, "input": "candidates = [2], target = 1", "output": "[]", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f15d6f17abdae372496461c16685a90d64bc075c175c25e10146503b1af20916",
+      "reference/contract.md": "7ba691e61664c13893d8c350613e2c743521afa8d893a08c92a29a0000951d8b",
+      "reference/examples.md": "78a9e2b99b61ba3767c62ab925c32fb6719d4e89f42c4ac20d2beb87bacc9f60",
+      "reference/constraints.md": "334d39d5de07443d63077eb0be713040d2573828af64a37bb9517747b5dd93f1"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

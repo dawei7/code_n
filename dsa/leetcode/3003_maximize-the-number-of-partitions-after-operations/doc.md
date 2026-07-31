@@ -8,48 +8,56 @@
 | Category | Algorithms |
 | Topics | String, Dynamic Programming, Bit Manipulation, Bitmask |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximize-the-number-of-partitions-after-operations](https://leetcode.com/problems/maximize-the-number-of-partitions-after-operations/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximize-the-number-of-partitions-after-operations/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximize-the-number-of-partitions-after-operations/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a lowercase English string `s` and an integer `k`. Before
+partitioning, you may replace at most one character of `s` with any lowercase
+English letter.
+
+Then repeatedly remove the longest remaining prefix containing at most `k`
+distinct characters. Each removed prefix is one partition, and the unremoved
+characters retain their order. Continue until no characters remain.
+
+Choose the optional replacement to maximize the number of partitions and
+return that maximum.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: the nonempty lowercase English string
+- `k`: the maximum distinct-character count in one partition
+
+Let $N=\lvert\texttt{s}\rvert$. The contract guarantees $1\le N\le10^4$
+and $1\le\texttt{k}\le26$.
 
 **Return value**
 
-TODO
+Return the maximum greedy partition count obtainable after at most one
+character replacement.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "accca", k = 2`
+- Output: `3`
+
+Changing the middle character to `b` produces `"acbca"`, partitioned as
+`"ac"`, `"bc"`, and `"a"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aabaab", k = 3`
+- Output: `1`
+
+One replacement cannot make the string contain more than three distinct
+letters, so the whole string remains one prefix.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "xxyz", k = 1`
+- Output: `4`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Replacing one repeated `x` with a new letter makes every adjacent character
+start a separate one-distinct-letter partition.

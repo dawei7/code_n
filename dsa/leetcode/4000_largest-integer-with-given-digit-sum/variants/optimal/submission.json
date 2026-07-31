@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4353",
+  "frontend_id": "4000",
+  "title_slug": "largest-integer-with-given-digit-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.largestInteger",
+  "verified_submission_id": "2088201208",
+  "verified_at": "2026-07-31T03:43:00Z"
+}

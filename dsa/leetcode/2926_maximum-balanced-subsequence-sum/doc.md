@@ -8,98 +8,55 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Dynamic Programming, Binary Indexed Tree, Segment Tree |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-balanced-subsequence-sum](https://leetcode.com/problems/maximum-balanced-subsequence-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-balanced-subsequence-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-balanced-subsequence-sum/).
 
 ### Goal
-Given an array of integers `nums`, identify a subsequence such that for any two elements at indices `i` and `j` (where `i < j`), the condition `nums[j] - nums[i] >= j - i` holds. The objective is to find the maximum possible sum of elements in such a "balanced" subsequence.
+
+Given a 0-indexed integer array `nums`, select a non-empty subsequence whose
+indices are $i_0<i_1<\dots<i_{k-1}$. The subsequence is balanced when every
+pair of consecutive selected indices satisfies
+
+$$
+\texttt{nums}[i_j]-\texttt{nums}[i_{j-1}]\ge i_j-i_{j-1}
+\qquad\text{for }1\le j<k.
+$$
+
+A subsequence of length one is balanced automatically. Return the maximum
+possible sum of the selected values. As with every subsequence, elements may
+be deleted without changing the relative order of those that remain.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the input sequence.
+- `nums`: The integer array from which the balanced subsequence is selected.
+
+Let $n=\lvert\texttt{nums}\rvert$. The constraints are $1\le n\le10^5$ and
+$-10^9\le\texttt{nums[i]}\le10^9$.
 
 **Return value**
 
-- An integer representing the maximum sum of a balanced subsequence.
+- The greatest sum among all non-empty balanced subsequences of `nums`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [3, 3, 5, 6]`
 - Output: `14`
-- Explanation: The subsequence `[3, 5, 6]` is balanced. Sum = 14.
+- Explanation: Indices 0, 2, and 3 give `[3, 5, 6]`; both consecutive
+  differences satisfy the balance inequality.
 
 **Example 2**
 
 - Input: `nums = [5, -1, -3, 8]`
 - Output: `13`
-- Explanation: The subsequence `[5, 8]` is balanced. Sum = 13.
+- Explanation: Selecting indices 0 and 3 gives `[5, 8]`, and $8-5\ge3-0$.
 
 **Example 3**
 
 - Input: `nums = [-2, -1]`
 - Output: `-1`
-- Explanation: The subsequence `[-1]` is balanced. Sum = -1.
-
----
-
-## Solution
-### Approach
-The problem can be transformed by rearranging the condition `nums[j] - nums[i] >= j - i` into `nums[j] - j >= nums[i] - i`. By defining `b[i] = nums[i] - i`, the condition becomes `b[j] >= b[i]`. This is a variation of the Longest Increasing Subsequence problem, specifically finding the Maximum Weight Increasing Subsequence. We use coordinate compression on the values of `b[i]` combined with a Fenwick Tree (Binary Indexed Tree) to efficiently query the maximum prefix sum of balanced subsequences in $O(n \log n)$ time.
-
-### Complexity Analysis
-- **Time Complexity**: $O(n \log n)$, where $n$ is the length of the input array, due to sorting for coordinate compression and $n$ operations on the Fenwick Tree.
-- **Space Complexity**: $O(n)$ to store the Fenwick Tree and the coordinate mapping.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int]) -> int:
-    # Transform the condition: nums[j] - nums[i] >= j - i
-    # nums[j] - j >= nums[i] - i
-    # Let b[i] = nums[i] - i. We want to find a subsequence with non-decreasing b[i]
-    # that maximizes the sum of nums[i].
-
-    n = len(nums)
-    b = [nums[i] - i for i in range(n)]
-
-    # Coordinate compression for b values
-    sorted_b = sorted(list(set(b)))
-    rank = {val: i + 1 for i, val in enumerate(sorted_b)}
-
-    # Fenwick Tree to store the maximum sum for a given rank
-    # bit[i] stores the max sum of a balanced subsequence ending with a value of rank i
-    bit = [0] * (len(sorted_b) + 1)
-
-    def update(idx, val):
-        while idx < len(bit):
-            bit[idx] = max(bit[idx], val)
-            idx += idx & (-idx)
-
-    def query(idx):
-        res = 0
-        while idx > 0:
-            res = max(res, bit[idx])
-            idx -= idx & (-idx)
-        return res
-
-    max_total_sum = float('-inf')
-
-    for i in range(n):
-        r = rank[b[i]]
-        # Current max sum ending at this b[i] is nums[i] + max sum of previous elements with b[j] <= b[i]
-        # We only add nums[i] if it improves the sum (or if it's the first element)
-        prev_max = query(r)
-        current_sum = max(nums[i], prev_max + nums[i])
-
-        update(r, current_sum)
-        max_total_sum = max(max_total_sum, current_sum)
-
-    return max_total_sum
-```
-</details>
+- Explanation: The singleton subsequence containing `-1` is optimal.

@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3638",
+  "cases": [
+    {
+      "id": "sample-two-shipments",
+      "name": "sample: form two non-overlapping balanced shipments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "weight": [
+          2,
+          5,
+          1,
+          4,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "two-shipments"
+      ]
+    },
+    {
+      "id": "sample-equal",
+      "name": "sample: equal weights are not strictly balanced",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "weight": [
+          4,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "strictness"
+      ]
+    },
+    {
+      "id": "trial-single-descent",
+      "name": "trial: one descending pair forms one shipment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weight": [
+          5,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-shipment"
+      ]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "trial: increasing weights form no shipment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weight": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-answer"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: disjoint descending pairs maximize the count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weight": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "many-shipments"
+      ]
+    },
+    {
+      "id": "trial-peak-at-start",
+      "name": "trial: a later low value closes the first shipment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weight": [
+          9,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "early-close"
+      ]
+    },
+    {
+      "id": "real-reset-required",
+      "name": "hidden: a closing parcel cannot start the next shipment",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weight": [
+          5,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "non-overlap"
+      ]
+    },
+    {
+      "id": "real-equal-then-drop",
+      "name": "hidden: equality does not close but a later drop does",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weight": [
+          4,
+          4,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "strictness"
+      ]
+    },
+    {
+      "id": "real-multiple-peaks",
+      "name": "hidden: rising runs each end with a lower parcel",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weight": [
+          1,
+          5,
+          2,
+          6,
+          3,
+          7,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "many-shipments"
+      ]
+    },
+    {
+      "id": "real-unused-prefix",
+      "name": "hidden: parcels before the useful maximum may be included",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weight": [
+          1,
+          2,
+          10,
+          9
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "unused-parcels"
+      ]
+    },
+    {
+      "id": "real-no-final-drop",
+      "name": "hidden: an unfinished rising suffix creates no extra shipment",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weight": [
+          3,
+          1,
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "unfinished-suffix"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: compare values near the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weight": [
+          1000000000,
+          999999999,
+          1000000000,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-alternating-equals",
+      "name": "hidden: equal plateaus separated by strict drops",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weight": [
+          8,
+          8,
+          7,
+          7,
+          6,
+          6
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "plateau",
+        "strictness"
+      ]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Coins Heroes Can Collect and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts heroes and monsters by power, then sweeps both orders while accumulating every newly defeatable monster reward.",
+      "time_complexity": "O(n log n + m log m)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

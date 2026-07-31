@@ -5,52 +5,47 @@
 | Source | LeetCode |
 | Frontend ID | 2250 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Hash Table, Binary Search, Binary Indexed Tree, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-number-of-rectangles-containing-each-point](https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-number-of-rectangles-containing-each-point/).
 
 ### Goal
-For each point, count axis-aligned rectangles with lower-left corner at the origin that contain it, including their boundaries. Rectangle `[length, height]` contains point `[x, y]` exactly when both dimensions reach the point.
+
+Each entry `[length, height]` in `rectangles` describes an axis-aligned
+rectangle whose bottom-left corner is $(0,0)$ and whose top-right corner is
+`(length, height)`. Each entry `[x, y]` in `points` is a query point.
+
+For every query, count the rectangles that contain it. Rectangle boundaries
+are included, so containment requires both $x\le\texttt{length}$ and
+$y\le\texttt{height}$. Return the counts in the same order as the query
+points.
 
 ### Function Contract
+
 **Inputs**
 
-- `rectangles`: pairs `[length, height]`.
-- `points`: query coordinates `[x, y]`.
+- `rectangles`: Between $1$ and $5\cdot10^4$ distinct pairs `[length, height]`, where $1\le\texttt{length}\le10^9$ and $1\le\texttt{height}\le100$.
+- `points`: Between $1$ and $5\cdot10^4$ distinct pairs `[x, y]`, where $1\le x\le10^9$ and $1\le y\le100$.
 
 **Return value**
 
-One count per point, preserving query order.
+Return one integer per point, preserving input order, equal to the number of
+rectangles whose width and height both reach that point.
 
 ### Examples
+
 **Example 1**
 
-- Input: `rectangles = [[1, 2], [2, 3], [2, 5]]`, `points = [[2, 1], [1, 4]]`
-- Output: `[2, 1]`
+- Input: `rectangles = [[1,2],[2,3],[2,5]], points = [[2,1],[1,4]]`
+- Output: `[2,1]`
 
 **Example 2**
 
-- Input: `rectangles = [[1, 1], [2, 2], [3, 3]]`, `points = [[1, 1], [2, 2], [3, 3]]`
-- Output: `[3, 2, 1]`
+- Input: `rectangles = [[1,1],[2,2],[3,3]], points = [[1,3],[1,1]]`
+- Output: `[1,3]`
 
 **Example 3**
 
-- Input: `rectangles = [[4, 2]]`, `points = [[5, 1], [4, 2]]`
-- Output: `[0, 1]`
-
----
-
-## Solution
-### Approach
-Group rectangle lengths by height and sort each group. Heights are bounded, so for point `(x, y)`, inspect every height at least `y` and binary-search its sorted lengths for the first value at least `x`. Sum the suffix sizes across those groups.
-
-### Complexity Analysis
-- **Time Complexity**: `O(R log R + P * H log R)`, where `H` is the bounded height range
-- **Space Complexity**: `O(R)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `rectangles = [[4,2]], points = [[5,1],[4,2]]`
+- Output: `[0,1]`

@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: delete one value to get three equal elements",
+      "name": "sample: join three occurrences of one value",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -17,15 +17,15 @@
         ],
         "k": 3
       },
+      "expected": 3,
       "tags": [
         "sample",
-        "window"
-      ],
-      "expected": 3
+        "intervening-deletions"
+      ]
     },
     {
       "id": "sample-2",
-      "name": "sample: no deletion needed for two equal values",
+      "name": "sample: remove the middle pair",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -39,15 +39,52 @@
         ],
         "k": 2
       },
+      "expected": 4,
       "tags": [
         "sample",
-        "window"
-      ],
-      "expected": 4
+        "exact-budget"
+      ]
     },
     {
-      "id": "trial-k-zero",
-      "name": "trial: k zero returns longest existing run by value positions",
+      "id": "trial-single-element",
+      "name": "trial: one element needs no deletion",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ],
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-size"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: an already equal array remains whole",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "k": 0
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "trial-zero-budget-run",
+      "name": "trial: zero budget preserves only an existing run",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -61,17 +98,38 @@
         ],
         "k": 0
       },
+      "expected": 2,
       "tags": [
         "trial",
         "zero-k"
-      ],
-      "expected": 2
+      ]
     },
     {
-      "id": "trial-large-gap",
-      "name": "trial: deletion budget limits distant equal values",
+      "id": "trial-exact-gap-budget",
+      "name": "trial: spend the budget on every internal gap",
       "kind": "trial",
       "visible": true,
+      "input": {
+        "nums": [
+          2,
+          9,
+          2,
+          8,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "gap-count"
+      ]
+    },
+    {
+      "id": "real-insufficient-budget",
+      "name": "hidden: distant equal values cannot all be joined",
+      "kind": "real",
+      "visible": false,
       "input": {
         "nums": [
           7,
@@ -84,37 +142,124 @@
         ],
         "k": 2
       },
+      "expected": 2,
       "tags": [
-        "trial",
-        "gap"
-      ],
-      "expected": 2
+        "hidden",
+        "budget-boundary"
+      ]
     },
     {
-      "id": "real-many-equals",
-      "name": "hidden: many equal values with sparse gaps",
+      "id": "real-best-value-not-first",
+      "name": "hidden: choose the value with the best feasible window",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
+          1,
           2,
-          9,
           2,
-          8,
+          1,
+          1,
           2,
-          7,
           2,
-          6,
-          2,
-          5
+          2
         ],
-        "k": 4
+        "k": 1
       },
+      "expected": 3,
       "tags": [
         "hidden",
-        "sparse"
-      ],
-      "expected": 5
+        "multiple-values"
+      ]
+    },
+    {
+      "id": "real-outside-elements-free",
+      "name": "hidden: values outside the chosen span need not be deleted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          9,
+          1,
+          9,
+          2,
+          9,
+          7
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "outside-span"
+      ]
+    },
+    {
+      "id": "real-budget-exceeds-need",
+      "name": "hidden: unused deletion budget is permitted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          1,
+          2
+        ],
+        "k": 6
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "at-most-k"
+      ]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "hidden: values may equal the array length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          1,
+          6,
+          2,
+          6,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-separated-pairs",
+      "name": "hidden: zero budget cannot join separated occurrences",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "zero-k",
+        "alternating"
+      ]
     }
   ]
 }

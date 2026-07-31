@@ -8,48 +8,39 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [bikes-last-time-used](https://leetcode.com/problems/bikes-last-time-used/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/bikes-last-time-used/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/bikes-last-time-used/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `Bikes` table records individual rides. Every row has a unique ride identifier, identifies the bike used, and gives valid start and end timestamps for that ride.
+
+For every bike that appears in the table, find the last time it was used. The last-use timestamp is the greatest `end_time` among that bike's rides. Return one row per bike and order the bikes from the most recently used to the least recently used.
 
 ### Function Contract
-**Inputs**
 
-- TODO
+**Input table**
+
+- `Bikes(ride_id, bike_number, start_time, end_time)`: `ride_id` is unique. Each row describes one ride of `bike_number` between two valid datetime values.
 
 **Return value**
 
-TODO
+Return columns `bike_number` and `end_time`, where `end_time` is that bike's latest ride ending time. Sort the result by `end_time` in descending order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: Bike `W00576` has rides ending at `2012-03-25 12:40:00`, `2012-03-25 09:10:00`, and `2012-03-28 02:50:00`; bike `W00455` has two rides; bike `W00300` has one.
+- Output: `[["W00576","2012-03-28 02:50:00"],["W00455","2012-03-26 17:40:00"],["W00300","2012-03-25 10:50:00"]]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `Bikes = [[1,"A1","2024-01-01 09:00:00","2024-01-01 10:00:00"]]`
+- Output: `[["A1","2024-01-01 10:00:00"]]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: Two rides of bike `B2` end on consecutive days.
+- Output: One row for `B2` containing the later end time.

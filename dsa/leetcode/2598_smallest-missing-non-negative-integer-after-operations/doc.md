@@ -8,77 +8,41 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Math, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [smallest-missing-non-negative-integer-after-operations](https://leetcode.com/problems/smallest-missing-non-negative-integer-after-operations/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/smallest-missing-non-negative-integer-after-operations/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/smallest-missing-non-negative-integer-after-operations/).
 
 ### Goal
-Given an array of integers and an integer `value`, you are allowed to repeatedly add or subtract `value` from any element in the array. The objective is to determine the smallest non-negative integer (MEX - Minimum Excluded value) that cannot be formed by any element in the array after performing any number of these operations.
+
+You are given a zero-indexed integer array `nums` and a positive integer `value`. In one operation, you may add or subtract `value` from any chosen array element. Each element may be changed any number of times.
+
+The MEX of an array is its smallest non-negative integer that does not occur. Negative values do not directly affect this definition, although the allowed operations may transform them into non-negative values.
+
+Return the greatest MEX that can be achieved after applying any number of operations.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers.
-- `value`: An integer representing the step size for allowed modifications.
+- `nums`: A list of $n$ integers, where $1 \leq n \leq 10^5$ and $-10^9 \leq \texttt{nums[i]} \leq 10^9$.
+- `value`: The positive operation amount, satisfying $1 \leq \texttt{value} \leq 10^5$.
 
 **Return value**
 
-- An integer representing the smallest non-negative integer that cannot be represented in the modified array.
+- The maximum possible MEX after independently adding or subtracting `value` any number of times from each element.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, -10, 7, 13, 6, 8], value = 5`
+- Input: `nums = [1,-10,7,13,6,8], value = 5`
 - Output: `4`
+
+Elements from the required remainder classes can be transformed into `0`, `1`, `2`, and `3`, but no unused element can represent `4` afterward.
 
 **Example 2**
 
-- Input: `nums = [1, -10, 7, 13, 6, 8], value = 7`
+- Input: `nums = [1,-10,7,13,6,8], value = 7`
 - Output: `2`
 
-**Example 3**
-
-- Input: `nums = [3, 0, 3, 2, 4, 2, 1, 1, 0, 4], value = 5`
-- Output: `10`
-
----
-
-## Solution
-### Approach
-The problem relies on modular arithmetic. Since we can add or subtract `value` infinitely, any number `x` is equivalent to `x % value`. We can map every number in the input to its remainder modulo `value`. By counting the frequency of each remainder, we can determine how many times each remainder class can "fill" a slot in the sequence 0, 1, 2, ... . We greedily fill the sequence by checking which remainder class has the fewest occurrences, effectively finding the first gap in the sequence.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n + value)`, where `n` is the length of the input array. We iterate through the array once to count remainders and then iterate up to `value` to find the MEX.
-- **Space Complexity**: `O(value)`, used to store the frequency counts of the remainders.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import Counter
-
-def solve(nums: list[int], value: int) -> int:
-    # Calculate the remainder of each number modulo 'value'.
-    # Since we can add/subtract 'value' infinitely, any number x
-    # can be transformed into any number y such that y % value == x % value.
-    # We use (n % value) to handle negative numbers correctly in Python.
-    counts = Counter(n % value for n in nums)
-
-    # We want to find the smallest non-negative integer 'mex'
-    # such that we cannot form 'mex'.
-    # We can form 'mex' if we have at least one number with remainder (mex % value).
-    # Specifically, if we have 'k' numbers with remainder 'r', we can form
-    # the values r, r + value, r + 2*value, ..., r + (k-1)*value.
-
-    mex = 0
-    while True:
-        remainder = mex % value
-        if counts[remainder] > 0:
-            counts[remainder] -= 1
-            mex += 1
-        else:
-            return mex
-```
-</details>
+The remainder supplies can cover `0` and `1`; the class needed for `2` is unavailable next.

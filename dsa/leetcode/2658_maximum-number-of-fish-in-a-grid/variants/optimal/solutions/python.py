@@ -1,43 +1,34 @@
-from collections import deque
-from typing import List
-
-def solve(grid: List[List[int]]) -> int:
-    if not grid or not grid[0]:
-        return 0
-
+def solve(grid: list[list[int]]) -> int:
     rows = len(grid)
-    cols = len(grid[0])
-    visited = set()
-    max_fish = 0
+    columns = len(grid[0])
+    visited = [[False] * columns for _ in range(rows)]
+    maximum = 0
 
-    # Define directions for neighbors (up, down, left, right)
-    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+    for row in range(rows):
+        for column in range(columns):
+            if grid[row][column] == 0 or visited[row][column]:
+                continue
 
-    def bfs(r_start, c_start):
-        current_component_fish = 0
-        q = deque([(r_start, c_start)])
-        visited.add((r_start, c_start))
+            visited[row][column] = True
+            stack = [(row, column)]
+            component = 0
 
-        while q:
-            r, c = q.popleft()
-            current_component_fish += grid[r][c]
+            while stack:
+                current_row, current_column = stack.pop()
+                component += grid[current_row][current_column]
 
-            for dr, dc in directions:
-                nr, nc = r + dr, c + dc
+                for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                    next_row = current_row + row_delta
+                    next_column = current_column + column_delta
+                    if (
+                        0 <= next_row < rows
+                        and 0 <= next_column < columns
+                        and grid[next_row][next_column] > 0
+                        and not visited[next_row][next_column]
+                    ):
+                        visited[next_row][next_column] = True
+                        stack.append((next_row, next_column))
 
-                # Check bounds
-                if 0 <= nr < rows and 0 <= nc < cols:
-                    # Check if it's a water cell with fish and not visited
-                    if grid[nr][nc] > 0 and (nr, nc) not in visited:
-                        visited.add((nr, nc))
-                        q.append((nr, nc))
-        return current_component_fish
+            maximum = max(maximum, component)
 
-    for r in range(rows):
-        for c in range(cols):
-            # If it's a water cell with fish and hasn't been visited yet
-            if grid[r][c] > 0 and (r, c) not in visited:
-                fish_in_component = bfs(r, c)
-                max_fish = max(max_fish, fish_in_component)
-
-    return max_fish
+    return maximum

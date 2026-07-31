@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2483",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: tied optimal closing hours",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "customers": "YYNY"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "tie"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: no customer hours",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "customers": "NNNNN"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "all-no-customers"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: customers every hour",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "customers": "YYYY"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "all-customers"
+      ]
+    },
+    {
+      "id": "trial-single-y",
+      "name": "trial: one customer hour",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "customers": "Y"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-hour"
+      ]
+    },
+    {
+      "id": "trial-single-n",
+      "name": "trial: one empty hour",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "customers": "N"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single-hour"
+      ]
+    },
+    {
+      "id": "real-nonadjacent-tie",
+      "name": "hidden: earliest of separated minima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": "NY"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: repeated local minima",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": "YNYN"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "alternating",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-interior",
+      "name": "hidden: unique interior minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "customers": "NYYN"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "interior"
+      ]
+    }
+  ]
+}
+

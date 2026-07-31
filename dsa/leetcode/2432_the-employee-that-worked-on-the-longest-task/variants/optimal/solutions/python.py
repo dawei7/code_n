@@ -1,18 +1,15 @@
 def solve(n: int, logs: list[list[int]]) -> int:
-    max_duration = -1
-    result_id = -1
-    prev_time = 0
-    
-    for emp_id, end_time in logs:
-        duration = end_time - prev_time
-        
-        if duration > max_duration:
-            max_duration = duration
-            result_id = emp_id
-        elif duration == max_duration:
-            if emp_id < result_id:
-                result_id = emp_id
-        
-        prev_time = end_time
-        
-    return result_id
+    best_duration = -1
+    best_employee = n
+    previous_end = 0
+
+    for employee, end_time in logs:
+        duration = end_time - previous_end
+        if duration > best_duration or (
+            duration == best_duration and employee < best_employee
+        ):
+            best_duration = duration
+            best_employee = employee
+        previous_end = end_time
+
+    return best_employee

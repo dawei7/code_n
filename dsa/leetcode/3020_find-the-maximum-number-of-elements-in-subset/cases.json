@@ -2,8 +2,8 @@
   "challenge_id": "lc_3020",
   "cases": [
     {
-      "id": "sample-square-chain",
-      "name": "sample: chain using 2, 4, and 16",
+      "id": "sample-one-pair",
+      "name": "sample: one square pair around a center",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -12,9 +12,7 @@
           4,
           1,
           2,
-          2,
-          16,
-          16
+          2
         ]
       },
       "expected": 3,
@@ -23,25 +21,45 @@
       ]
     },
     {
-      "id": "sample-ones-only",
-      "name": "sample: odd count of ones can all be used",
+      "id": "sample-singletons",
+      "name": "sample: no value can form an outer pair",
       "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
           1,
-          1,
-          1
+          3,
+          2,
+          4
         ]
       },
-      "expected": 3,
+      "expected": 1,
       "tags": [
         "sample"
       ]
     },
     {
-      "id": "trial-even-ones",
-      "name": "trial: even ones must leave an odd subset length",
+      "id": "full-square-chain",
+      "name": "trial: two paired levels and one center",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          4,
+          4,
+          16
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "chain"
+      ]
+    },
+    {
+      "id": "even-ones",
+      "name": "trial: an even one count drops one occurrence",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -54,33 +72,49 @@
       },
       "expected": 3,
       "tags": [
-        "trial"
+        "ones"
       ]
     },
     {
-      "id": "trial-long-chain",
-      "name": "trial: longer power chain",
+      "id": "odd-ones",
+      "name": "trial: every one can be used at odd multiplicity",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          3,
-          3,
-          9,
-          9,
-          81,
-          81,
-          6561
+          1,
+          1,
+          1,
+          1,
+          1
         ]
       },
-      "expected": 7,
+      "expected": 5,
       "tags": [
-        "trial"
+        "ones"
       ]
     },
     {
-      "id": "real-mixed-chains",
-      "name": "real: several possible chains compete",
+      "id": "missing-next-center",
+      "name": "real: innermost pair becomes the center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          4,
+          4
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "missing-center"
+      ]
+    },
+    {
+      "id": "second-base-chain",
+      "name": "real: a different base supplies the longest chain",
       "kind": "real",
       "visible": false,
       "input": {
@@ -94,18 +128,28 @@
           3,
           9,
           9,
-          81,
-          1,
-          1,
-          1,
-          1,
-          1
+          81
         ]
       },
       "expected": 5,
       "tags": [
-        "real",
-        "counts"
+        "multiple-chains"
+      ]
+    },
+    {
+      "id": "large-duplicate",
+      "name": "real: a duplicate with no square still yields one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "large-values"
       ]
     }
   ]

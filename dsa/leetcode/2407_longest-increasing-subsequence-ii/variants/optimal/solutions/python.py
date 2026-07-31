@@ -1,35 +1,33 @@
 def solve(nums: list[int], k: int) -> int:
-    # The maximum value in nums is 10^5 based on problem constraints
-    MAX_VAL = 100000
-    # Segment tree size: 4 * MAX_VAL is sufficient
-    tree = [0] * (4 * (MAX_VAL + 1))
+    leaf_count = 1
+    while leaf_count <= max(nums):
+        leaf_count <<= 1
+    tree = [0] * (2 * leaf_count)
 
-    def update(node, start, end, idx, val):
-        if start == end:
-            tree[node] = val
-            return
-        mid = (start + end) // 2
-        if idx <= mid:
-            update(2 * node, start, mid, idx, val)
-        else:
-            update(2 * node + 1, mid + 1, end, idx, val)
-        tree[node] = max(tree[2 * node], tree[2 * node + 1])
+    def range_maximum(left: int, right: int) -> int:
+        left += leaf_count
+        right += leaf_count
+        maximum = 0
+        while left < right:
+            if left & 1:
+                maximum = max(maximum, tree[left])
+                left += 1
+            if right & 1:
+                right -= 1
+                maximum = max(maximum, tree[right])
+            left >>= 1
+            right >>= 1
+        return maximum
 
-    def query(node, start, end, l, r):
-        if r < start or end < l:
-            return 0
-        if l <= start and end <= r:
-            return tree[node]
-        mid = (start + end) // 2
-        return max(query(2 * node, start, mid, l, r),
-                   query(2 * node + 1, mid + 1, end, l, r))
+    answer = 0
+    for value in nums:
+        current = 1 + range_maximum(max(1, value - k), value)
+        position = leaf_count + value
+        tree[position] = max(tree[position], current)
+        position >>= 1
+        while position:
+            tree[position] = max(tree[2 * position], tree[2 * position + 1])
+            position >>= 1
+        answer = max(answer, current)
 
-    max_len = 0
-    for x in nums:
-        # Query the range [max(1, x-k), x-1]
-        prev_max = query(1, 1, MAX_VAL, max(1, x - k), x - 1)
-        current_len = prev_max + 1
-        update(1, 1, MAX_VAL, x, current_len)
-        max_len = max(max_len, current_len)
-
-    return max_len
+    return answer

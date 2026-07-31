@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Good Integers in a Range and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts valid decimal prefixes at each endpoint with a memoized digit dynamic program.",
+      "time_complexity": "O(D)",
+      "space_complexity": "O(D)"
     }
   ]
 }

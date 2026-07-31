@@ -8,112 +8,53 @@
 | Category | Algorithms |
 | Topics | Array, Two Pointers, Binary Search, Dynamic Programming, Greedy, Bit Manipulation, Graph Theory, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [path-existence-queries-in-a-graph-ii](https://leetcode.com/problems/path-existence-queries-in-a-graph-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/path-existence-queries-in-a-graph-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/path-existence-queries-in-a-graph-ii/).
 
 ### Goal
-Given a directed graph with $n$ nodes and a set of weighted edges, determine if there exists a path between two nodes $u$ and $v$ such that the bitwise AND of all edge weights along the path equals a specific target value. You are provided with multiple queries, each specifying a start node, an end node, and a target bitwise AND value.
+
+There are `n` nodes labeled from `0` through `n - 1`, and node `i` carries the value `nums[i]`. The graph is implicit: two distinct nodes share an undirected, unweighted edge exactly when
+
+$$
+\lvert\texttt{nums[i]}-\texttt{nums[j]}\rvert \le \texttt{maxDiff}.
+$$
+
+For every pair `[u, v]` in `queries`, find the minimum number of edges in a path from `u` to `v`. Return `-1` when no such path exists. The distance from a node to itself is $0$.
+
+Return all query results in their original order.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: An integer representing the number of nodes.
-- `edges`: A list of lists, where each inner list `[u, v, w]` represents a directed edge from `u` to `v` with weight `w`.
-- `queries`: A list of lists, where each inner list `[start, end, target]` represents a query.
+- `n`: The number of nodes, equal to the length of `nums`, where $1 \le n \le 10^5$.
+- `nums`: The node values, each between $0$ and $10^5$; the input order is arbitrary.
+- `maxDiff`: The greatest value difference allowed across one edge, where $0 \le \texttt{maxDiff} \le 10^5$.
+- `queries`: Source-target pairs `[u, v]`, with both endpoints in $[0,n-1]$.
+
+Let $Q = \lvert\texttt{queries}\rvert$, where $1 \le Q \le 10^5$.
 
 **Return value**
 
-- A list of booleans where the $i$-th element is `True` if a path exists for the $i$-th query satisfying the bitwise AND condition, and `False` otherwise.
+- A list of minimum unweighted path lengths, using `-1` for disconnected endpoint pairs.
 
 ### Examples
+
 **Example 1**
 
-- Input: `n = 3, edges = [[0, 1, 7], [1, 2, 3]], queries = [[0, 2, 3]]`
-- Output: `[True]`
+- Input: `n = 5, nums = [1,8,3,4,2], maxDiff = 3, queries = [[0,3],[2,4]]`
+- Output: `[1,1]`
+- Explanation: Values $1$ and $4$ differ by $3$, while values $3$ and $2$ differ by $1$, so both queried pairs share a direct edge.
 
 **Example 2**
 
-- Input: `n = 3, edges = [[0, 1, 7], [1, 2, 3]], queries = [[0, 2, 7]]`
-- Output: `[False]`
+- Input: `n = 5, nums = [5,3,1,9,10], maxDiff = 2, queries = [[0,1],[0,2],[2,3],[4,3]]`
+- Output: `[1,2,-1,1]`
+- Explanation: The values $5,3,1$ form a three-node chain, while $9,10$ form a separate component.
 
 **Example 3**
 
-- Input: `n = 4, edges = [[0, 1, 15], [1, 2, 7], [0, 2, 7]], queries = [[0, 2, 7]]`
-- Output: `[True]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a combination of **Bitwise Property Analysis** and **Graph Reachability**. Since the bitwise AND operation is monotonic (adding an edge can only decrease or keep the AND value the same), we can precompute reachable bitwise AND values for each node. We use a set of reachable AND values for each node and propagate them using a modified BFS or Dijkstra-like approach, or by iterating through bits to determine reachability.
-
-### Complexity Analysis
-- **Time Complexity**: $O(Q + E \cdot \log(\max(W)))$, where $Q$ is the number of queries, $E$ is the number of edges, and $W$ is the maximum edge weight.
-- **Space Complexity**: $O(N \cdot \log(\max(W)) + E)$, where $N$ is the number of nodes, to store the reachable AND values for each node.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import defaultdict
-
-def solve(n, edges, queries):
-    """
-    Solves the path existence query problem by tracking reachable bitwise AND values.
-    Since the AND operation is non-increasing, we can maintain a set of possible
-    AND values for each node.
-    """
-    # adj[u] stores list of (v, weight)
-    adj = defaultdict(list)
-    for u, v, w in edges:
-        adj[u].append((v, w))
-
-    # reachable[u] stores a set of all possible bitwise AND values
-    # achievable from node u to any other node.
-    # Given the constraints and the nature of bitwise AND,
-    # the number of distinct AND values is limited (at most 31 per node).
-    reachable = [set() for _ in range(n)]
-
-    # We use a worklist approach to propagate reachable AND values
-    # For each node, we track the set of AND values of paths starting from it.
-    # To optimize, we process nodes in reverse topological order or via BFS.
-    # Since it's a general graph, we use a fixed-point iteration.
-
-    # Initialize: a node can reach itself with an AND value of "all ones" (identity)
-    # However, the problem implies paths of length >= 1.
-    # We initialize based on outgoing edges.
-    for u in range(n):
-        for v, w in adj[u]:
-            reachable[u].add(w)
-            # Propagate existing reachable values from v
-            for val in reachable[v]:
-                reachable[u].add(w & val)
-
-    # Iterative update until convergence
-    changed = True
-    while changed:
-        changed = False
-        for u in range(n):
-            for v, w in adj[u]:
-                old_len = len(reachable[u])
-                reachable[u].add(w)
-                for val in reachable[v]:
-                    reachable[u].add(w & val)
-                if len(reachable[u]) > old_len:
-                    changed = True
-
-    results = []
-    for start, end, target in queries:
-        if start == end:
-            # Depending on problem definition, path of length 0 might be allowed.
-            # Assuming path must contain at least one edge based on typical constraints.
-            results.append(False)
-        else:
-            results.append(target in reachable[start])
-
-    return results
-```
-</details>
+- Input: `n = 3, nums = [3,6,1], maxDiff = 1, queries = [[0,0],[0,1],[1,2]]`
+- Output: `[0,-1,-1]`
+- Explanation: No two different values are close enough for an edge, but the self-query still has distance zero.

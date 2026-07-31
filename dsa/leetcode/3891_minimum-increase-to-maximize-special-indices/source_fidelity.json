@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3891",
+    "frontend_id": "3891",
+    "title_slug": "minimum-increase-to-maximize-special-indices",
+    "url": "https://leetcode.com/problems/minimum-increase-to-maximize-special-indices/description/",
+    "paid_only": false,
+    "content_sha256": "b31085b8bd324daf31f8d8a9a3e4715bce3e7f4d5c36c3cb90929bd01b594e91",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,2]",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [2,1,1,3]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [5,2,1,4,3]",
+        "output": "4",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f5be7a084cfafeb2737a256d805ed99353ba750a01e58a77bb115c5dee7413cd",
+      "reference/contract.md": "cae8bff349541c3c848f644cd3663bde2a5753b69277fe1cc7230b0e1b71bb28",
+      "reference/examples.md": "d1dfd79e474af8242ed2d17426ea6695dfd1fcd034c2ded2a1374488d3bc7b0a",
+      "reference/constraints.md": "ee8a55545f3d9878f6ff4e1fe1c29a8dd0c163fb7fc353581a10fc362f931722"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

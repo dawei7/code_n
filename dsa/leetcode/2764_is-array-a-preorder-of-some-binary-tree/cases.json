@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2764",
+  "cases": [
+    {
+      "id": "sample-valid",
+      "name": "sample: child subtrees stay contiguous",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nodes": [
+          [
+            0,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "sample-invalid",
+      "name": "sample: a sibling interrupts a subtree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nodes": [
+          [
+            0,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "invalid",
+        "interleaved-subtrees"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: a single root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nodes": [
+          [
+            7,
+            -1
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "single-node",
+        "root"
+      ]
+    },
+    {
+      "id": "trial-chain",
+      "name": "trial: one descending path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nodes": [
+          [
+            5,
+            -1
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "chain",
+        "valid"
+      ]
+    },
+    {
+      "id": "real-two-subtrees",
+      "name": "hidden: two complete sibling subtrees",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": [
+          [
+            10,
+            -1
+          ],
+          [
+            20,
+            10
+          ],
+          [
+            40,
+            20
+          ],
+          [
+            50,
+            20
+          ],
+          [
+            30,
+            10
+          ],
+          [
+            60,
+            30
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "sibling-subtrees"
+      ]
+    },
+    {
+      "id": "real-return-too-late",
+      "name": "hidden: return to an already closed subtree",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": [
+          [
+            0,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "closed-subtree"
+      ]
+    },
+    {
+      "id": "real-deep-unwind",
+      "name": "hidden: unwind from a deep path to an uncle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": [
+          [
+            0,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            5,
+            2
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "deep-unwind"
+      ]
+    },
+    {
+      "id": "real-parent-after-child",
+      "name": "hidden: a node appears before its parent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": [
+          [
+            0,
+            -1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "parent-order"
+      ]
+    },
+    {
+      "id": "real-root-not-first",
+      "name": "hidden: the root is not first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            -1
+          ]
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "root-order"
+      ]
+    },
+    {
+      "id": "real-id-boundary",
+      "name": "hidden: identifiers at the allowed boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nodes": [
+          [
+            100000,
+            -1
+          ],
+          [
+            0,
+            100000
+          ]
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "id-boundary"
+      ]
+    }
+  ]
+}

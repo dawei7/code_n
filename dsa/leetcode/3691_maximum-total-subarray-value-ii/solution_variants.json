@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Total Subarray Value II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Merges one monotone range-value sequence per left endpoint with a max-heap and segment-tree queries.",
+      "time_complexity": "O(n + k log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

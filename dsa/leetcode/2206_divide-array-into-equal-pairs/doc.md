@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Bit Manipulation, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [divide-array-into-equal-pairs](https://leetcode.com/problems/divide-array-into-equal-pairs/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/divide-array-into-equal-pairs/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/divide-array-into-equal-pairs/).
 
 ### Goal
-Determine whether an even-length array can be partitioned into pairs whose two values are equal.
+
+An integer array `nums` contains exactly $2n$ elements. Divide all of its element occurrences into exactly $n$ pairs, with every occurrence used in one and only one pair.
+
+A pair is valid only when its two elements have equal values. Determine whether a complete division satisfying both conditions exists. The positions of equal values do not need to be adjacent, and rearranging the occurrences conceptually does not change the answer.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: an even-length integer array.
+- `nums`: an integer array of length $m=2n$, where $1 \le n \le 500$ and every value is between $1$ and $500$.
 
 **Return value**
 
-`true` if every element occurrence can belong to an equal-value pair; otherwise `false`.
+Return `true` when all occurrences can be divided into equal-value pairs; otherwise return `false`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [3, 2, 3, 2, 2, 2]`
 - Output: `true`
+- Explanation: the occurrences can form `(3, 3)`, `(2, 2)`, and `(2, 2)`.
 
 **Example 2**
 
 - Input: `nums = [1, 2, 3, 4]`
 - Output: `false`
+- Explanation: each value occurs only once, so no equal pair can be formed.
 
 **Example 3**
 
 - Input: `nums = [7, 7]`
 - Output: `true`
-
----
-
-## Solution
-### Approach
-Count occurrences of each value. A complete equal pairing exists exactly when every frequency is even. Equivalently, toggle values in a set and check that the set is empty after the scan.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)` expected
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: the two occurrences form the single required pair.

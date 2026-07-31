@@ -1,98 +1,89 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3213",
   "cases": [
     {
-      "id": "benchmark-target-1000-prefix-words",
-      "name": "benchmark: target length 1,000 with 35 shared-prefix words",
+      "id": "benchmark-length-bucket-dp-scale-1",
+      "name": "benchmark: target length 24 with long repeated prefixes",
       "kind": "benchmark",
       "visible": false,
+      "size": 24,
       "input": {
-        "target": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "target": "aaaaaaaaaaaaaaaaaaaaaaaa",
         "words": [
           "a",
           "aa",
-          "aaa",
           "aaaa",
-          "aaaaa",
-          "aaaaaa",
-          "aaaaaaa",
-          "aaaaaaaa",
-          "aaaaaaaaa",
-          "aaaaaaaaaa",
-          "aaaaaaaaaaa",
-          "aaaaaaaaaaaa",
-          "aaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-          "b",
-          "ab",
-          "ba"
+          "aaaaaaaaaaaa"
         ],
         "costs": [
-          39,
-          38,
-          37,
-          36,
-          35,
-          34,
-          33,
-          32,
-          31,
-          30,
-          29,
-          28,
-          27,
-          26,
-          25,
-          24,
-          23,
-          22,
-          21,
-          20,
-          19,
-          18,
-          17,
-          16,
-          15,
-          14,
-          13,
-          12,
-          11,
-          10,
-          9,
-          8,
-          7,
-          6,
+          3,
           5,
-          100,
-          80,
-          80
+          8,
+          9
         ]
       },
-      "expected": 160,
+      "expected": 18,
       "tags": [
         "benchmark",
-        "trie-dp"
+        "length-buckets",
+        "scale-1"
+      ]
+    },
+    {
+      "id": "benchmark-length-bucket-dp-scale-2",
+      "name": "benchmark: target length 56 with long repeated prefixes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 56,
+      "input": {
+        "target": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "words": [
+          "a",
+          "aa",
+          "aaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "costs": [
+          3,
+          5,
+          8,
+          19
+        ]
+      },
+      "expected": 38,
+      "tags": [
+        "benchmark",
+        "length-buckets",
+        "scale-2"
+      ]
+    },
+    {
+      "id": "benchmark-length-bucket-dp-scale-3",
+      "name": "benchmark: target length 120 with long repeated prefixes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 120,
+      "input": {
+        "target": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "words": [
+          "a",
+          "aa",
+          "aaaa",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "costs": [
+          3,
+          5,
+          8,
+          41
+        ]
+      },
+      "expected": 82,
+      "tags": [
+        "benchmark",
+        "length-buckets",
+        "scale-3"
       ]
     }
   ]

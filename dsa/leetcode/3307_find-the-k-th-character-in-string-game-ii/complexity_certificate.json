@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3307",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(log k)",
+  "summary": "The complete legal position domain ends at 10^14, so k has at most 47 binary digits; this bounded amount of work is too small for an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "k",
+    "maximum": 100000000000000,
+    "unit": "one-based positions",
+    "source_constraint": "The public contract restricts k to the inclusive range from 1 through 10^14."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each binary digit of k - 1 selects one first or second half. The accepted source examines each of at most 47 digits once and accumulates exactly the selected transformations."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover k = 1, both operation types, multiple selected bits, a 26-step alphabet wrap, the highest legal bit level, and k = 10^14."
+    }
+  ]
+}

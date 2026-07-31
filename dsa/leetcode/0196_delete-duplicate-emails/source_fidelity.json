@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_196", "frontend_id": "196", "title_slug": "delete-duplicate-emails", "url": "https://leetcode.com/problems/delete-duplicate-emails/description/", "paid_only": false, "content_sha256": "af4ebf48e317ee8f1ec134c574d3d2b8a7eb3c957854b7246d0a2091f51e3b75", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["person_table", "description", "execution_notes", "examples"],
+    "examples": [{"ordinal": 1, "input": "Person = [[1,\"john@example.com\"],[2,\"bob@example.com\"],[3,\"john@example.com\"]]", "output": "Person = [[1,\"john@example.com\"],[2,\"bob@example.com\"]]", "has_explanation": true}],
+    "constraint_count": 0,
+    "visuals": {"source_images": 0, "source_tables": 3, "source_diagrams": 0, "local_images": 0, "local_tables": 3, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/person_table.md": "63f6c5720e1eb45ed00c8c69323d87664aabcbe036a01b7f3c165fc6acea6883", "reference/description.md": "8085f2dd223a09e2e312993f4948365d35b96bf41348c5412206e318be52ef73", "reference/contract.md": "5df28624c26d517999a746d256c623933cb0df7171ff140d849826d990fa4fec", "reference/execution_notes.md": "852c2af2eb126e43c17258b57ab34bd5723a20dfa211e47019fa272b81b59178", "reference/examples.md": "6820312237ea1868221731c62823cc03b044e55a4f5d315c7965ca290ea50608"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

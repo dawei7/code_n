@@ -8,48 +8,37 @@
 | Category | Algorithms |
 | Topics | Math |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-maximum-achievable-number](https://leetcode.com/problems/find-the-maximum-achievable-number/) |
+| LeetCode | [2769. Find the Maximum Achievable Number](https://leetcode.com/problems/find-the-maximum-achievable-number/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-maximum-achievable-number/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Start with the given integer `num` and consider another integer $x$. In one operation, change $x$ by either $1$ or $-1$ and, at the same time, independently change `num` by either $1$ or $-1$. The two values need not move in the same direction.
+
+A value of $x$ is achievable when some sequence of at most `t` such operations can make the resulting $x$ equal the resulting `num`. Determine the greatest initial value of $x$ for which this meeting is possible. Using fewer than `t` operations is allowed, but the requested result is the maximum over every permitted sequence.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `num`: The initial value of the distinguished integer, with $1 \le \texttt{num} \le 50$.
+- `t`: The maximum permitted number of simultaneous operations, with $1 \le t \le 50$.
 
 **Return value**
 
-TODO
+Return the maximum achievable initial value of $x$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 4, t = 1`
+- Output: `6`
+- Explanation: Starting with $x=6$, decrease $x$ to $5$ while increasing `num` to $5$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `num = 3, t = 2`
+- Output: `7`
+- Explanation: Two operations decrease $x$ from $7$ to $5$ and increase `num` from $3$ to $5$.

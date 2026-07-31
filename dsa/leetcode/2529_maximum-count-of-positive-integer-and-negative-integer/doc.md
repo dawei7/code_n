@@ -8,68 +8,43 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-count-of-positive-integer-and-negative-integer](https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/).
 
 ### Goal
-Given a sorted array of integers, determine the count of strictly positive integers and strictly negative integers. Return the larger of these two counts.
+
+You are given an integer array `nums` sorted in non-decreasing order. Count how many elements are strictly positive and how many are strictly negative, then return the larger of those two counts.
+
+Zero is neither positive nor negative, so any zero-valued block contributes to neither count. If `pos` is the positive count and `neg` is the negative count, the requested result is $\max(\texttt{pos},\texttt{neg})$.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers sorted in non-decreasing order.
+- `nums`: A nonempty integer array sorted in non-decreasing order.
+
+Let $n = \lvert\texttt{nums}\rvert$. The constraints are $1 \le n \le 2000$ and $-2000 \le \texttt{nums[i]} \le 2000$.
 
 **Return value**
 
-- An integer representing the maximum of the count of positive numbers and the count of negative numbers.
+Return the maximum of the number of strictly positive elements and the number of strictly negative elements.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [-2, -1, -1, 1, 2, 3]`
 - Output: `3`
+- Explanation: There are three negative and three positive values.
 
 **Example 2**
 
 - Input: `nums = [-3, -2, -1, 0, 0, 1, 2]`
 - Output: `3`
+- Explanation: The three negatives outnumber the two positives; the zeros belong to neither group.
 
 **Example 3**
 
 - Input: `nums = [5, 20, 66, 1314]`
 - Output: `4`
-
----
-
-## Solution
-### Approach
-Binary Search. Since the array is sorted, we can use binary search (specifically `bisect_left` and `bisect_right`) to find the boundaries where negative numbers end and positive numbers begin in $O(\log n)$ time.
-
-### Complexity Analysis
-- **Time Complexity**: $O(\log n)$, where $n$ is the length of the array, due to the use of binary search to locate the split points.
-- **Space Complexity**: $O(1)$, as we only store a few integer variables regardless of the input size.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import bisect
-
-def solve(nums: list[int]) -> int:
-    """
-    Finds the maximum of the count of negative and positive integers
-    in a sorted array using binary search.
-    """
-    # The number of negative integers is the index of the first element >= 0
-    neg_count = bisect.bisect_left(nums, 0)
-
-    # The number of positive integers is the total length minus the index
-    # of the first element > 0
-    pos_count = len(nums) - bisect.bisect_right(nums, 0)
-
-    return max(neg_count, pos_count)
-```
-</details>

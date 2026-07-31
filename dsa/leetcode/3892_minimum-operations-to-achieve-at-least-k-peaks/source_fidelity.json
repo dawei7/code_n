@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3892",
+    "frontend_id": "3892",
+    "title_slug": "minimum-operations-to-achieve-at-least-k-peaks",
+    "url": "https://leetcode.com/problems/minimum-operations-to-achieve-at-least-k-peaks/description/",
+    "paid_only": false,
+    "content_sha256": "975032e2427011c5fb74f66409075f74e6836105e80b144100542ba83330c7be",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [2,1,2], k = 1",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [4,5,3,6], k = 2",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [3,7,3], k = 2",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "2fc92497849729324077ba3235644c07b5bb133b97b9d69757b09bd6f143ee65",
+      "reference/contract.md": "2627bae10c14d642c62c2114db837be4f6d36c739fff571c27c0f117ea47f2e4",
+      "reference/examples.md": "619c6f679d2a0382aa060e7b6aa5dc627fcdffa858c9b37422285840541dbecd",
+      "reference/constraints.md": "6970e82a213e5a3f629ab26192b0efefe6afa99728349e7d5cb61df1656aed29"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

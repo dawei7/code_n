@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3717",
+    "frontend_id": "3717",
+    "title_slug": "minimum-operations-to-make-the-array-beautiful",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-the-array-beautiful/description/",
+    "paid_only": true,
+    "content_sha256": "d08fc39a6d872a460bc32e644a41fa2e1ed8efb78bf33ecf29107ee8c8799bba",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [3,7,9]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,1,1]",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [4]",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "73fb41302cfc868ab47d09c4d2f2ab24fba9c9ae48fadf526d04be1ec29b05c0",
+      "reference/contract.md": "efc1c3a8002ba85ac7bd0881ac79b410782ca7fbef40bfc532498ace8a9d8377",
+      "reference/examples.md": "a2d0e26964dd2f3e84164312d64b3eb784ce4a3eed901febe2eb331a4250ac3b",
+      "reference/constraints.md": "a6ad61a07b50442a42ffc339f8211f85d82bb91c1c588f82ce13c99efe454084"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3677",
+  "cases": [
+    {
+      "id": "benchmark-complete-eight-bits",
+      "name": "benchmark: count through 255",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 255,
+      "input": {"n": 255},
+      "expected": 31,
+      "tags": ["benchmark", "complete-bit-length"]
+    },
+    {
+      "id": "benchmark-complete-twelve-bits",
+      "name": "benchmark: count through 4095",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4095,
+      "input": {"n": 4095},
+      "expected": 127,
+      "tags": ["benchmark", "complete-bit-length"]
+    },
+    {
+      "id": "benchmark-complete-sixteen-bits",
+      "name": "benchmark: count through 65535",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 65535,
+      "input": {"n": 65535},
+      "expected": 511,
+      "tags": ["benchmark", "complete-bit-length"]
+    }
+  ]
+}

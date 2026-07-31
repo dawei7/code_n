@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Users with Persistent Behavior Patterns and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Filters to single-action dates, forms consecutive same-action islands, and ranks each user's qualifying runs.",
+      "time_complexity": "O(R log R)",
+      "space_complexity": "O(R)"
     }
   ]
 }

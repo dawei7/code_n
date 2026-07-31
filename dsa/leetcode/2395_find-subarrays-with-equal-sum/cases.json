@@ -1,96 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2395",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: two adjacent sums match",
+      "name": "sample: overlapping pairs share sum six",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          4,
-          2,
-          4
-        ]
-      },
+      "input": {"nums": [4, 2, 4]},
       "expected": true,
-      "tags": [
-        "sample",
-        "hash-set"
-      ]
+      "tags": ["sample", "overlap"]
     },
     {
       "id": "sample-2",
-      "name": "sample: all adjacent sums unique",
+      "name": "sample: all adjacent sums are distinct",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
+      "input": {"nums": [1, 2, 3, 4, 5]},
       "expected": false,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "distinct"]
     },
     {
       "id": "sample-3",
-      "name": "sample: repeated zero sum",
+      "name": "sample: identical overlapping subarrays",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          0,
-          0,
-          0
-        ]
-      },
+      "input": {"nums": [0, 0, 0]},
       "expected": true,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "identical"]
     },
     {
-      "id": "trial-repeat-later",
-      "name": "trial: repeated sum appears later",
+      "id": "trial-minimum-length",
+      "name": "trial: one pair cannot have a duplicate",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          1,
-          2,
-          4,
-          3
-        ]
-      },
-      "expected": true,
-      "tags": [
-        "trial"
-      ]
+      "input": {"nums": [8, -3]},
+      "expected": false,
+      "tags": ["minimum-length"]
     },
     {
-      "id": "real-strictly-unique",
-      "name": "hidden: no duplicate adjacent pair sum",
+      "id": "trial-repeated-sum-with-different-contents",
+      "name": "trial: equal sums need not have equal elements",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 4, 2, 3]},
+      "expected": true,
+      "tags": ["different-contents"]
+    },
+    {
+      "id": "real-negative-values",
+      "name": "hidden: a negative sum repeats later",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          10,
-          20,
-          31,
-          43,
-          56
-        ]
-      },
+      "input": {"nums": [-5, 2, 0, -3]},
+      "expected": true,
+      "tags": ["hidden", "negative"]
+    },
+    {
+      "id": "real-extreme-values",
+      "name": "hidden: large positive and negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, -1000000000, 999999999, -999999999]},
+      "expected": true,
+      "tags": ["hidden", "bounds"]
+    },
+    {
+      "id": "real-mixed-distinct",
+      "name": "hidden: mixed signs with no repeated pair sum",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-2, 0, 3, 7]},
       "expected": false,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "distinct"]
     }
   ]
 }

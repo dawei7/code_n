@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2350",
+  "frontend_id": "2239",
+  "title_slug": "find-closest-number-to-zero",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.findClosestNumber",
+  "verified_submission_id": "2073919076",
+  "verified_at": "2026-07-19T22:29:51.837002+00:00"
+}

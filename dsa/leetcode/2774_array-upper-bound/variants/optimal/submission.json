@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2768",
+  "frontend_id": "2774",
+  "title_slug": "array-upper-bound",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "Array.prototype.upperBound",
+  "verified_submission_id": "2076654366",
+  "verified_at": "2026-07-22T05:37:00+00:00"
+}

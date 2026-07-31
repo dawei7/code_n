@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_3099",
+  "cases": [
+    {
+      "id": "sample-harshad",
+      "name": "sample: a two-digit Harshad number",
+      "kind": "sample",
+      "visible": true,
+      "input": {"x": 18},
+      "expected": 9,
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-not-harshad",
+      "name": "sample: the digit sum does not divide x",
+      "kind": "sample",
+      "visible": true,
+      "input": {"x": 23},
+      "expected": -1,
+      "tags": ["sample"]
+    },
+    {
+      "id": "trial-minimum",
+      "name": "trial: the minimum legal input",
+      "kind": "trial",
+      "visible": true,
+      "input": {"x": 1},
+      "expected": 1,
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "trial-single-digit",
+      "name": "trial: every single-digit input is Harshad",
+      "kind": "trial",
+      "visible": true,
+      "input": {"x": 7},
+      "expected": 7,
+      "tags": ["trial", "single-digit"]
+    },
+    {
+      "id": "trial-three-digit",
+      "name": "trial: the only three-digit legal input",
+      "kind": "trial",
+      "visible": true,
+      "input": {"x": 100},
+      "expected": 1,
+      "tags": ["trial", "boundary", "zero-digit"]
+    },
+    {
+      "id": "real-divisible-by-three",
+      "name": "real: a multi-digit Harshad number",
+      "kind": "real",
+      "visible": false,
+      "input": {"x": 12},
+      "expected": 3,
+      "tags": ["real", "harshad"]
+    },
+    {
+      "id": "real-divisible-by-twelve",
+      "name": "real: a larger digit sum divides x",
+      "kind": "real",
+      "visible": false,
+      "input": {"x": 48},
+      "expected": 12,
+      "tags": ["real", "harshad"]
+    },
+    {
+      "id": "real-repeated-digits",
+      "name": "real: repeated digits need not form a Harshad number",
+      "kind": "real",
+      "visible": false,
+      "input": {"x": 99},
+      "expected": -1,
+      "tags": ["real", "not-harshad"]
+    },
+    {
+      "id": "real-trailing-zero",
+      "name": "real: a trailing zero contributes nothing",
+      "kind": "real",
+      "visible": false,
+      "input": {"x": 10},
+      "expected": 1,
+      "tags": ["real", "zero-digit"]
+    }
+  ]
+}

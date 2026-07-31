@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1433",
+  "frontend_id": "2227",
+  "title_slug": "encrypt-and-decrypt-strings",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Encrypter",
+  "verified_submission_id": "2073904400",
+  "verified_at": "2026-07-19T21:25:58.336636+00:00"
+}

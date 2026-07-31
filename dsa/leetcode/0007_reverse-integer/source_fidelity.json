@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_7",
+    "frontend_id": "7",
+    "title_slug": "reverse-integer",
+    "url": "https://leetcode.com/problems/reverse-integer/description/",
+    "paid_only": false,
+    "content_sha256": "297443de104c780a3c64d3cef228a2898af86588e86171d3c5b6f00d5cec3589",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "x = 123", "output": "321", "has_explanation": false},
+      {"ordinal": 2, "input": "x = -123", "output": "-321", "has_explanation": false},
+      {"ordinal": 3, "input": "x = 120", "output": "21", "has_explanation": false}
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "18f0acdb1c90107f59678ee9c4be74a6f7b7a94d784768d5d40716622c38fe88",
+      "reference/contract.md": "ba2a536921c0840e4330b25269c7a92aa8a92b899191872fc2469fc84463b78c",
+      "reference/examples.md": "8c9c0a5903dae1742f3f45150ed3dd340a7356d746d1e12e77ccc10aefc269cd",
+      "reference/constraints.md": "90d57d801fd98d8421d9ddcdcbb0b3536454e32aba1dc121ea0e9a6801b811e5"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

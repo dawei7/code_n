@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_3078",
+  "cases": [
+    {
+      "id": "sample-earliest-match",
+      "name": "sample: choose the row-major earliest matching submatrix",
+      "kind": "sample",
+      "visible": true,
+      "input": { "board": [[1, 2, 2], [2, 2, 3], [2, 3, 3]], "pattern": ["ab", "bb"] },
+      "expected": [0, 0],
+      "tags": ["sample", "row-major", "letter-mapping"]
+    },
+    {
+      "id": "sample-literals-and-letters",
+      "name": "sample: combine fixed digits with distinct letters",
+      "kind": "sample",
+      "visible": true,
+      "input": { "board": [[1, 1, 2], [3, 3, 4], [6, 6, 6]], "pattern": ["ab", "66"] },
+      "expected": [1, 1],
+      "tags": ["sample", "literal-digits", "injective-letters"]
+    },
+    {
+      "id": "sample-repeated-letter-fails",
+      "name": "sample: repeated letter requires equal digits",
+      "kind": "sample",
+      "visible": true,
+      "input": { "board": [[1, 2], [2, 1]], "pattern": ["xx"] },
+      "expected": [-1, -1],
+      "tags": ["sample", "repeated-letter", "no-match"]
+    },
+    {
+      "id": "trial-letter-may-share-literal-digit",
+      "name": "trial: letter assignment may equal a fixed digit elsewhere",
+      "kind": "trial",
+      "visible": true,
+      "input": { "board": [[9, 9, 7], [0, 4, 6]], "pattern": ["9x7"] },
+      "expected": [0, 0],
+      "tags": ["trial", "literal-sharing", "semantic-boundary"]
+    },
+    {
+      "id": "trial-distinct-letters-collide",
+      "name": "trial: distinct letters cannot receive the same digit",
+      "kind": "trial",
+      "visible": true,
+      "input": { "board": [[1, 1]], "pattern": ["ab"] },
+      "expected": [-1, -1],
+      "tags": ["trial", "injective-letters", "no-match"]
+    },
+    {
+      "id": "trial-repeated-letter-matches",
+      "name": "trial: repeated letter maps consistently",
+      "kind": "trial",
+      "visible": true,
+      "input": { "board": [[4, 4, 5]], "pattern": ["aa"] },
+      "expected": [0, 0],
+      "tags": ["trial", "repeated-letter"]
+    },
+    {
+      "id": "real-pattern-larger-than-board",
+      "name": "real: pattern does not fit inside the board",
+      "kind": "real",
+      "visible": false,
+      "input": { "board": [[1]], "pattern": ["aa"] },
+      "expected": [-1, -1],
+      "tags": ["real", "dimensions", "no-match"]
+    },
+    {
+      "id": "real-fixed-literal-row",
+      "name": "real: all-literal pattern matches exactly",
+      "kind": "real",
+      "visible": false,
+      "input": { "board": [[1, 2], [3, 4]], "pattern": ["12"] },
+      "expected": [0, 0],
+      "tags": ["real", "literal-digits"]
+    },
+    {
+      "id": "real-two-letter-structure",
+      "name": "real: repeated two-letter structure",
+      "kind": "real",
+      "visible": false,
+      "input": { "board": [[1, 2, 1], [3, 4, 3]], "pattern": ["aba"] },
+      "expected": [0, 0],
+      "tags": ["real", "bijection", "repetition"]
+    }
+  ]
+}

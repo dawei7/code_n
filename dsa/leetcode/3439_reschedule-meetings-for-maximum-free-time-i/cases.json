@@ -1,108 +1,13 @@
 {
   "challenge_id": "lc_3439",
   "cases": [
-    {
-      "id": "sample-move-first",
-      "name": "sample: move one meeting for leading gap",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "eventTime": 5,
-        "k": 1,
-        "startTime": [
-          1,
-          3
-        ],
-        "endTime": [
-          2,
-          5
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-middle-gap",
-      "name": "sample: free middle interval",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "eventTime": 10,
-        "k": 1,
-        "startTime": [
-          0,
-          2,
-          9
-        ],
-        "endTime": [
-          1,
-          4,
-          10
-        ]
-      },
-      "expected": 6,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-no-free-time",
-      "name": "sample: packed schedule",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "eventTime": 5,
-        "k": 2,
-        "startTime": [
-          0,
-          1,
-          2,
-          3,
-          4
-        ],
-        "endTime": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample",
-        "edge"
-      ]
-    },
-    {
-      "id": "real-window-gaps",
-      "name": "real: merge several consecutive gaps",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "eventTime": 30,
-        "k": 2,
-        "startTime": [
-          2,
-          6,
-          12,
-          20,
-          25
-        ],
-        "endTime": [
-          4,
-          8,
-          15,
-          21,
-          27
-        ]
-      },
-      "expected": 13,
-      "tags": [
-        "real"
-      ]
-    }
+    {"id":"sample-open-start","name":"sample: consolidate free time at event start","kind":"sample","visible":true,"input":{"eventTime":5,"k":1,"startTime":[1,3],"endTime":[2,5]},"expected":2,"tags":["sample"]},
+    {"id":"sample-long-internal","name":"sample: create a long internal gap","kind":"sample","visible":true,"input":{"eventTime":10,"k":1,"startTime":[0,2,9],"endTime":[1,4,10]},"expected":6,"tags":["sample"]},
+    {"id":"sample-no-free-time","name":"sample: event completely occupied","kind":"sample","visible":true,"input":{"eventTime":5,"k":2,"startTime":[0,1,2,3,4],"endTime":[1,2,3,4,5]},"expected":0,"tags":["sample","zero"]},
+    {"id":"trial-move-all","name":"trial: consolidate all available free time","kind":"trial","visible":true,"input":{"eventTime":12,"k":3,"startTime":[1,4,9],"endTime":[2,6,10]},"expected":8,"tags":["trial","all-meetings"]},
+    {"id":"trial-best-ending-window","name":"trial: best gap block reaches event end","kind":"trial","visible":true,"input":{"eventTime":15,"k":1,"startTime":[1,3,6],"endTime":[2,4,7]},"expected":10,"tags":["trial","boundary"]},
+    {"id":"real-irregular-gaps","name":"real: choose middle consecutive gaps","kind":"real","visible":false,"input":{"eventTime":20,"k":2,"startTime":[1,4,10,17],"endTime":[2,6,12,19]},"expected":11,"tags":["real","sliding-window"]},
+    {"id":"real-zero-boundaries","name":"real: meetings touch both event boundaries","kind":"real","visible":false,"input":{"eventTime":12,"k":1,"startTime":[0,3,8],"endTime":[2,5,12]},"expected":4,"tags":["real","boundaries"]},
+    {"id":"real-large-clock","name":"real: large event-time values","kind":"real","visible":false,"input":{"eventTime":1000000000,"k":1,"startTime":[0,999999998],"endTime":[1,1000000000]},"expected":999999997,"tags":["real","large-values"]}
   ]
 }

@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3210",
+  "cases": [
+    {
+      "id": "sample-three-step",
+      "name": "sample: rotate dart left by three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "dart",
+        "k": 3
+      },
+      "expected": "tdar",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-equal-letters",
+      "name": "sample: equal letters hide the rotation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaa",
+        "k": 1
+      },
+      "expected": "aaa",
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character wraps for a large offset",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z",
+        "k": 10000
+      },
+      "expected": "z",
+      "tags": [
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-full-cycle",
+      "name": "trial: one full cycle preserves the string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcde",
+        "k": 5
+      },
+      "expected": "abcde",
+      "tags": [
+        "full-cycle"
+      ]
+    },
+    {
+      "id": "trial-one-step",
+      "name": "trial: a one-position shift moves the prefix to the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "leetcode",
+        "k": 1
+      },
+      "expected": "eetcodel",
+      "tags": [
+        "one-step"
+      ]
+    },
+    {
+      "id": "trial-offset-over-length",
+      "name": "trial: complete cycles are discarded by modulo",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "cipher",
+        "k": 14
+      },
+      "expected": "pherci",
+      "tags": [
+        "large-offset"
+      ]
+    },
+    {
+      "id": "real-maximum-k",
+      "name": "real: the maximum offset reduces correctly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "rotation",
+        "k": 10000
+      },
+      "expected": "rotation",
+      "tags": [
+        "k-boundary"
+      ]
+    },
+    {
+      "id": "real-two-characters",
+      "name": "real: odd movement swaps two positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "az",
+        "k": 9999
+      },
+      "expected": "za",
+      "tags": [
+        "two-characters"
+      ]
+    },
+    {
+      "id": "real-repeated-pattern",
+      "name": "real: repeated patterns remain position based",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ababab",
+        "k": 4
+      },
+      "expected": "ababab",
+      "tags": [
+        "repeated-pattern"
+      ]
+    },
+    {
+      "id": "real-alphabet",
+      "name": "real: a long string wraps its trailing suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz",
+        "k": 25
+      },
+      "expected": "zabcdefghijklmnopqrstuvwxy",
+      "tags": [
+        "long-string"
+      ]
+    },
+    {
+      "id": "real-offset-one-less",
+      "name": "real: length minus one rotates the final character first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "circular",
+        "k": 7
+      },
+      "expected": "rcircula",
+      "tags": [
+        "wraparound"
+      ]
+    },
+    {
+      "id": "real-offset-multiple-plus-two",
+      "name": "real: multiple cycles plus two positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "simultaneous",
+        "k": 38
+      },
+      "expected": "multaneoussi",
+      "tags": [
+        "simultaneous",
+        "large-offset"
+      ]
+    }
+  ]
+}

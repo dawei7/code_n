@@ -1,50 +1,55 @@
-def solve(nums1, nums2, queries):
+def solve(nums1: list[int], nums2: list[int], queries: list[list[int]]) -> list[int]:
     n = len(nums1)
-    tree = [0] * (4 * n)
-    lazy = [False] * (4 * n)
+    ones = [0] * (4 * n)
+    lazy_flip = [False] * (4 * n)
 
-    def build(node, start, end):
-        if start == end:
-            tree[node] = nums1[start]
+    def build(node: int, left: int, right: int) -> None:
+        if left == right:
+            ones[node] = nums1[left]
             return
-        mid = (start + end) // 2
-        build(2 * node, start, mid)
-        build(2 * node + 1, mid + 1, end)
-        tree[node] = tree[2 * node] + tree[2 * node + 1]
 
-    def push(node, start, end):
-        if not lazy[node] or start == end:
-            return
-        mid = (start + end) // 2
-        left = 2 * node
-        right = left + 1
-        tree[left] = (mid - start + 1) - tree[left]
-        lazy[left] = not lazy[left]
-        tree[right] = (end - mid) - tree[right]
-        lazy[right] = not lazy[right]
-        lazy[node] = False
+        middle = (left + right) // 2
+        build(node * 2, left, middle)
+        build(node * 2 + 1, middle + 1, right)
+        ones[node] = ones[node * 2] + ones[node * 2 + 1]
 
-    def update(node, start, end, l, r):
-        if start > end or start > r or end < l:
+    def apply_flip(node: int, left: int, right: int) -> None:
+        ones[node] = right - left + 1 - ones[node]
+        lazy_flip[node] = not lazy_flip[node]
+
+    def push(node: int, left: int, right: int) -> None:
+        if not lazy_flip[node] or left == right:
             return
-        if start >= l and end <= r:
-            tree[node] = (end - start + 1) - tree[node]
-            lazy[node] = not lazy[node]
+
+        middle = (left + right) // 2
+        apply_flip(node * 2, left, middle)
+        apply_flip(node * 2 + 1, middle + 1, right)
+        lazy_flip[node] = False
+
+    def flip(node: int, left: int, right: int, query_left: int, query_right: int) -> None:
+        if query_right < left or right < query_left:
             return
-        push(node, start, end)
-        mid = (start + end) // 2
-        update(2 * node, start, mid, l, r)
-        update(2 * node + 1, mid + 1, end, l, r)
-        tree[node] = tree[2 * node] + tree[2 * node + 1]
+        if query_left <= left and right <= query_right:
+            apply_flip(node, left, right)
+            return
+
+        push(node, left, right)
+        middle = (left + right) // 2
+        flip(node * 2, left, middle, query_left, query_right)
+        flip(node * 2 + 1, middle + 1, right, query_left, query_right)
+        ones[node] = ones[node * 2] + ones[node * 2 + 1]
 
     build(1, 0, n - 1)
+
     total = sum(nums2)
-    results = []
-    for q in queries:
-        if q[0] == 1:
-            update(1, 0, n - 1, q[1], q[2])
-        elif q[0] == 2:
-            total += q[1] * tree[1]
-        elif q[0] == 3:
-            results.append(total)
-    return results
+    answers: list[int] = []
+
+    for query_type, first, second in queries:
+        if query_type == 1:
+            flip(1, 0, n - 1, first, second)
+        elif query_type == 2:
+            total += first * ones[1]
+        else:
+            answers.append(total)
+
+    return answers

@@ -3,25 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: three values can all be made equal",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          4,
-          3
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "sample",
-        "sorting"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: changing two extremes leaves range three",
+      "name": "sample: changing two low values leaves range three",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,14 +17,94 @@
       },
       "expected": 3,
       "tags": [
-        "sample"
+        "sample",
+        "extremes"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: best change removes the two smallest values",
+      "id": "sample-2",
+      "name": "sample: three values can all become equal",
       "kind": "sample",
       "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          3
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-smallest",
+      "name": "trial: neutralizing the two smallest values is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          31,
+          25,
+          72,
+          79,
+          74,
+          65
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "trial",
+        "two-smallest"
+      ]
+    },
+    {
+      "id": "trial-two-largest",
+      "name": "trial: neutralizing the two largest values is optimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          100,
+          101
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "two-largest"
+      ]
+    },
+    {
+      "id": "real-one-at-each-end",
+      "name": "hidden: neutralizing both endpoints is optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          100,
+          101,
+          102,
+          1000
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "split-extremes"
+      ]
+    },
+    {
+      "id": "real-four-values",
+      "name": "hidden: four values leave a two-value range",
+      "kind": "real",
+      "visible": false,
       "input": {
         "nums": [
           1,
@@ -53,33 +115,19 @@
       },
       "expected": 25,
       "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-three-values",
-      "name": "trial: exactly three values can be normalized",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          100
-        ]
-      },
-      "expected": 0,
-      "tags": [
-        "trial"
+        "hidden",
+        "four-values"
       ]
     },
     {
       "id": "real-all-equal",
-      "name": "hidden: equal values already have score zero",
+      "name": "hidden: equal values keep both scores zero",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
+          5,
+          5,
           5,
           5,
           5
@@ -87,7 +135,48 @@
       },
       "expected": 0,
       "tags": [
-        "hidden"
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-duplicate-extremes",
+      "name": "hidden: duplicate extrema preserve multiplicity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          10,
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "extremes"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: large values use the same range arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          999999998,
+          999999999,
+          1000000000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "maximum-values"
       ]
     }
   ]

@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3878",
+  "cases": [
+    {
+      "id": "sample-four-good",
+      "name": "sample: four of six subarrays are good",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          2,
+          3
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "mixed-good-and-bad"
+      ]
+    },
+    {
+      "id": "sample-all-good",
+      "name": "sample: every subarray has an OR-valued element",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          1
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "all-good"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: a zero singleton is good",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-incompatible-pair",
+      "name": "trial: only the singletons of an incompatible pair qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "incompatible-bits"
+      ]
+    },
+    {
+      "id": "trial-right-witness",
+      "name": "trial: the combined OR occurs at the right endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "right-witness",
+        "combined-or"
+      ]
+    },
+    {
+      "id": "trial-zero-neutral",
+      "name": "trial: zero adds no bits beside a witness",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "zero",
+        "neutral-bits"
+      ]
+    },
+    {
+      "id": "trial-equal-pair",
+      "name": "trial: duplicate values make every interval good",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "rightmost-witness"
+      ]
+    },
+    {
+      "id": "trial-nested-bitsets",
+      "name": "trial: descending bit subsets make every interval good",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          15,
+          7,
+          3,
+          1,
+          0
+        ]
+      },
+      "expected": 15,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "nested-bits",
+        "all-good"
+      ]
+    },
+    {
+      "id": "real-zero-run",
+      "name": "hidden: every subarray of a zero run is good",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zeros",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-neutral-middle",
+      "name": "hidden: a neutral middle zero preserves pair witnesses",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          2
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zero",
+        "missing-full-or"
+      ]
+    },
+    {
+      "id": "real-alternating-incompatible",
+      "name": "hidden: repeated values do not rescue incompatible pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "incompatible-bits"
+      ]
+    },
+    {
+      "id": "real-multiple-rightmost-witnesses",
+      "name": "hidden: intervals are assigned to their rightmost equal witness",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          4,
+          12,
+          0,
+          12
+        ]
+      },
+      "expected": 14,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "rightmost-witness",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-maximum-repeated",
+      "name": "hidden: maximum legal values surround a neutral zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          0,
+          1000000000
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-high-disjoint-bits",
+      "name": "hidden: disjoint high-bit values have an absent combined OR",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          536870912,
+          463129088
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "high-bits",
+        "incompatible-bits"
+      ]
+    },
+    {
+      "id": "real-mixed-blockers",
+      "name": "hidden: several witnesses and blockers interact",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          0,
+          2,
+          6,
+          1,
+          7
+        ]
+      },
+      "expected": 16,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-boundaries",
+        "multiple-witnesses"
+      ]
+    }
+  ]
+}

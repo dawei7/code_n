@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3550",
+  "cases": [
+    {
+      "id": "sample-match-at-two",
+      "name": "sample: first match is index two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 3, 2]},
+      "expected": 2,
+      "tags": ["sample", "match"]
+    },
+    {
+      "id": "sample-multiple-matches",
+      "name": "sample: return the smaller of multiple matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 10, 11]},
+      "expected": 1,
+      "tags": ["sample", "smallest-index"]
+    },
+    {
+      "id": "sample-no-match",
+      "name": "sample: no stored value matches its index",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3]},
+      "expected": -1,
+      "tags": ["sample", "no-match"]
+    },
+    {
+      "id": "trial-zero-index",
+      "name": "trial: zero value qualifies at index zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [0, 999, 999]},
+      "expected": 0,
+      "tags": ["trial", "zero"]
+    },
+    {
+      "id": "trial-value-one-thousand",
+      "name": "trial: digit sum of one thousand is one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [999, 1000, 999]},
+      "expected": 1,
+      "tags": ["trial", "upper-value-bound"]
+    },
+    {
+      "id": "real-maximum-possible-index",
+      "name": "real: digit sum 27 qualifies at the cutoff",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999]},
+      "expected": 27,
+      "tags": ["real", "cutoff", "maximum-digit-sum"]
+    },
+    {
+      "id": "real-index-condition-uses-value",
+      "name": "real: condition uses the array value rather than index digits",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 9, 20, 4]},
+      "expected": 2,
+      "tags": ["real", "semantic-trap"]
+    },
+    {
+      "id": "real-no-match-through-cutoff",
+      "name": "real: cutoff position is deliberately nonmatching",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 999, 998, 999, 999]},
+      "expected": -1,
+      "tags": ["real", "no-match", "cutoff"]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+## Constraints
+
+- $1 \le n \le 10^5$
+- `edges.length == n - 1`
+- `edges[i] == [u_i, v_i]`
+- $0 \le u_i,v_i \le n-1$
+- $u_i \ne v_i$
+- `edges` represents a valid undirected tree.
+- `baseTime.length == n`
+- $1 \le \texttt{baseTime[i]} \le 10^5$

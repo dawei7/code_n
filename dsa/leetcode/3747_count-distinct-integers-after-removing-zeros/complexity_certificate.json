@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3747",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(D)",
+  "summary": "The legal bound has at most 16 decimal digits, which is too narrow for an honest runtime-scaling verdict; the accepted implementation counts shorter lengths and scans the bound's digits once.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 16,
+    "unit": "decimal digits",
+    "source_constraint": "1 <= n <= 10^15"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted source creates at most 16 decimal characters, sums at most 15 shorter-length terms, and processes each of the at most 16 bound digits once, establishing O(D) time over the complete legal width bound."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The dedicated regression compares the accepted adapter with an independent incremental zero-free counter for every n through 1,000,000, then checks decimal-width boundaries and deterministic values across the full legal range."
+    }
+  ]
+}

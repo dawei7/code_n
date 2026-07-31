@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Smallest Number in Infinite Set and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Represents the untouched infinite suffix with one frontier and stores only restored smaller values in a deduplicated min-heap.",
+      "time_complexity": "O(q log q)",
+      "space_complexity": "O(q)"
     }
   ]
 }

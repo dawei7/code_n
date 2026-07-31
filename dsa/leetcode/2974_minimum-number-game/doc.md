@@ -8,67 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Sorting, Heap (Priority Queue), Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-number-game](https://leetcode.com/problems/minimum-number-game/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-game/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-number-game/).
-
 ### Goal
-Given an array of integers with an even length, simulate a game where Alice and Bob repeatedly remove the two smallest elements from the array. In each round, Alice removes the smallest element, followed by Bob removing the next smallest. They then append these elements to a result array in the order [Bob's element, Alice's element]. The process continues until the original array is empty.
+You are given a 0-indexed integer array `nums` with even length and begin with
+an empty array `arr`. Alice and Bob repeatedly play one round until `nums` is
+empty.
+
+In each round, Alice first removes a minimum element from `nums`, then Bob
+removes the new minimum. Bob appends his removed value to `arr` first, followed
+by Alice's value.
+
+Return the final contents of `arr` after all rounds.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: A list of integers where `len(nums)` is even and `2 <= len(nums) <= 100`.
+- `nums`: an even-length array of positive integers used by the game
+
+Let $N=\lvert\texttt{nums}\rvert$. The contract guarantees $2\le N\le100$,
+$1\le\texttt{nums[i]}\le100$, and even $N$.
 
 **Return value**
 
-- A list of integers representing the result array after all rounds are completed.
+The array formed by appending Bob's removal and then Alice's removal in every
+round.
 
 ### Examples
 **Example 1**
 
-- Input: `nums = [5, 4, 2, 3]`
-- Output: `[3, 2, 5, 4]`
+- Input: `nums = [5,4,2,3]`
+- Output: `[3,2,5,4]`
+- Explanation: The removed pairs are `(2,3)` and `(4,5)`, each appended in reverse player order.
 
 **Example 2**
 
-- Input: `nums = [2, 5]`
-- Output: `[5, 2]`
-
-**Example 3**
-
-- Input: `nums = [10, 20, 30, 40, 50, 60]`
-- Output: `[20, 10, 40, 30, 60, 50]`
-
----
-
-## Solution
-### Approach
-The problem is solved by sorting the input array in non-decreasing order. Once sorted, the elements at index `i` and `i+1` represent the smallest and second-smallest elements of the remaining set, respectively. By iterating through the sorted array with a step of 2, we can swap the positions of these pairs to satisfy the game's requirement of appending Bob's element (the larger of the pair) before Alice's element (the smaller of the pair).
-
-### Complexity Analysis
-- **Time Complexity**: `O(N log N)`, where `N` is the length of the input array, due to the sorting operation. The subsequent linear scan is `O(N)`.
-- **Space Complexity**: `O(N)` to store the resulting array. Depending on the sorting implementation, the space complexity for the sort itself is `O(N)` or `O(log N)`.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int]) -> List[int]:
-    """
-    Sorts the array and swaps adjacent pairs to simulate the game.
-    """
-    nums.sort()
-
-    # Iterate through the array in steps of 2
-    # Swap the pair (nums[i], nums[i+1]) to (nums[i+1], nums[i])
-    for i in range(0, len(nums), 2):
-        nums[i], nums[i + 1] = nums[i + 1], nums[i]
-
-    return nums
-```
-</details>
+- Input: `nums = [2,5]`
+- Output: `[5,2]`
+- Explanation: Alice removes `2`, Bob removes `5`, and Bob appends first.

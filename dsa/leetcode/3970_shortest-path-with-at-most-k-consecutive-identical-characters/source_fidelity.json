@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3970",
+    "frontend_id": "3970",
+    "title_slug": "shortest-path-with-at-most-k-consecutive-identical-characters",
+    "url": "https://leetcode.com/problems/shortest-path-with-at-most-k-consecutive-identical-characters/description/",
+    "paid_only": false,
+    "content_sha256": "792ebab567856f2bb5e0272da539f97e93f6c02c9b02d7e24305086f881684a6",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = \"aab\", k = 1",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,3]], labels = \"aab\", k = 2",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 3, edges = [[0,1,1],[1,2,1]], labels = \"aaa\", k = 2",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 8,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8e36831363970da0f95e741bdbefdcf7ccf7d78825a391d390c50f2dbce14b2f",
+      "reference/contract.md": "3dc3cd891164ebe54f815b6cfd415d6a2307a0870214be1b88149123a21101b8",
+      "reference/examples.md": "68687fccd1bab658a3d4b336e1d2cf649c2f0fa12dd4ebd91cbbd5d3d2b71f19",
+      "reference/constraints.md": "5d9d51fe10f13de503356118df496363d18e1c9dfa600675f4e8f45effdf288f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

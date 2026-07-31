@@ -1,104 +1,13 @@
 {
   "challenge_id": "lc_2461",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: best distinct window appears before duplicates",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          5,
-          4,
-          2,
-          9,
-          9,
-          9
-        ],
-        "k": 3
-      },
-      "expected": 15,
-      "tags": [
-        "sample",
-        "sliding-window"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: all values repeat inside the only window",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          4,
-          4,
-          4
-        ],
-        "k": 3
-      },
-      "expected": 0,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: distinct window after repeated prefix",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1,
-          1,
-          7,
-          8,
-          9
-        ],
-        "k": 3
-      },
-      "expected": 24,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-late-distinct-window",
-      "name": "trial: only the final window has three distinct values",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          1,
-          2,
-          3
-        ],
-        "k": 3
-      },
-      "expected": 6,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-window-longer-than-array",
-      "name": "hidden: k is longer than the input",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          5,
-          6
-        ],
-        "k": 3
-      },
-      "expected": 0,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: best window precedes repeated suffix","kind":"sample","visible":true,"input":{"nums":[1,5,4,2,9,9,9],"k":3},"expected":15,"tags":["sample","sliding-window"]},
+    {"id":"sample-2","name":"sample: only window repeats one value","kind":"sample","visible":true,"input":{"nums":[4,4,4],"k":3},"expected":0,"tags":["sample","no-valid-window"]},
+    {"id":"trial-late-window","name":"trial: maximum distinct window is last","kind":"trial","visible":true,"input":{"nums":[1,1,1,7,8,9],"k":3},"expected":24,"tags":["trial","late-maximum"]},
+    {"id":"trial-singletons","name":"trial: every one-element window is distinct","kind":"trial","visible":true,"input":{"nums":[5,2,9,1],"k":1},"expected":9,"tags":["trial","k-one"]},
+    {"id":"real-duplicate-leaves","name":"hidden: removing a duplicate restores distinctness","kind":"real","visible":false,"input":{"nums":[1,2,1,3,4],"k":3},"expected":8,"tags":["hidden","frequency-removal"]},
+    {"id":"real-whole-array","name":"hidden: entire array is one valid window","kind":"real","visible":false,"input":{"nums":[6,1,8,3],"k":4},"expected":18,"tags":["hidden","whole-array"]},
+    {"id":"real-equal-sums","name":"hidden: multiple valid windows share the maximum","kind":"real","visible":false,"input":{"nums":[1,4,2,3,1],"k":3},"expected":9,"tags":["hidden","multiple-windows"]},
+    {"id":"real-all-invalid","name":"hidden: every candidate contains a duplicate","kind":"real","visible":false,"input":{"nums":[2,2,3,3,4,4],"k":3},"expected":0,"tags":["hidden","no-valid-window"]}
   ]
 }

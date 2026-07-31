@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_148", "frontend_id": "148", "title_slug": "sort-list", "url": "https://leetcode.com/problems/sort-list/description/", "paid_only": false, "content_sha256": "249deba6e35184ce6a26b8bad67e4d1306a83a49f199e609aabf1cfe5185fc01", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "head = [4,2,1,3]", "output": "[1,2,3,4]", "has_explanation": false},
+      {"ordinal": 2, "input": "head = [-1,5,3,4,0]", "output": "[-1,0,3,4,5]", "has_explanation": false},
+      {"ordinal": 3, "input": "head = []", "output": "[]", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "863e9f7de1f9ae81cecfd02287c30d74f4ac97d5440de3dde7f6b3d66184b30f", "reference/contract.md": "8b46cf537785a187e6913d2b9df84ca59b1f4574525d626968f9189219f56486", "reference/examples.md": "09c3fda58392804a572a01cf98dfd6ae52cfdae1ba490935a6501f6100d03794", "reference/constraints.md": "d8f331df4833d2b437496754f3dafc610a9acaa7002af52ce443be9db153e024", "reference/follow_up.md": "8c8f47ec86d523d2dc5a32eeec462fd75b672bab49ceff679a40541fb0ef8cf5"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

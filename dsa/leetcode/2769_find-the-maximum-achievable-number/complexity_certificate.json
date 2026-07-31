@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2769",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Both integer inputs are capped at 50, so the complete legal domain contains only 2,500 pairs and cannot support an honest asymptotic scaling experiment for the fixed arithmetic solution.",
+  "workload_bound": {
+    "symbol": "P",
+    "maximum": 2500,
+    "unit": "legal (num, t) input pairs",
+    "source_constraint": "1 <= num, t <= 50"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The closed form performs one fixed-factor multiplication and one addition regardless of either input value."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover both minima, each independent maximum boundary, both maxima together, and asymmetric interior values; exhaustive validation also evaluates every one of the 2,500 legal pairs against direct operation-count reasoning."
+    }
+  ]
+}

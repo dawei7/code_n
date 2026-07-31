@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Jumps to Reach End via Prime Teleportation and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Runs breadth-first search while expanding the divisible destinations of each reached prime value only once.",
+      "time_complexity": "O(M log log M + n log M)",
+      "space_complexity": "O(n + M)"
     }
   ]
 }

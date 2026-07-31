@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3742",
+  "frontend_id": "3946",
+  "title_slug": "maximum-number-of-items-from-sale-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maximumSaleItems",
+  "verified_submission_id": "2087510505",
+  "verified_at": "2026-07-30T13:01:31.677596+00:00"
+}

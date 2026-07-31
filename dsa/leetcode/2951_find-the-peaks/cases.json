@@ -2,8 +2,8 @@
   "challenge_id": "lc_2951",
   "cases": [
     {
-      "id": "sample-plateau-no-peak",
-      "name": "sample: plateau is not a peak",
+      "id": "sample-plateau",
+      "name": "sample: equal neighbor prevents a peak",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,12 +15,13 @@
       },
       "expected": [],
       "tags": [
-        "sample"
+        "sample",
+        "strict"
       ]
     },
     {
       "id": "sample-two-peaks",
-      "name": "sample: two peaks",
+      "name": "sample: two separated interior peaks",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,9 +42,9 @@
       ]
     },
     {
-      "id": "sample-increasing",
-      "name": "sample: strictly increasing has no peak",
-      "kind": "sample",
+      "id": "trial-increasing",
+      "name": "trial: increasing array has no interior peak",
+      "kind": "trial",
       "visible": true,
       "input": {
         "mountain": [
@@ -56,29 +57,67 @@
       },
       "expected": [],
       "tags": [
-        "sample"
+        "monotone"
       ]
     },
     {
-      "id": "trial-edge-peaks-ignored",
-      "name": "trial: endpoints are ignored",
+      "id": "trial-minimum-middle",
+      "name": "trial: minimum-length array has one peak",
       "kind": "trial",
       "visible": true,
       "input": {
         "mountain": [
-          9,
           1,
-          9
+          3,
+          2
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-valley",
+      "name": "trial: middle element is a valley",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "mountain": [
+          3,
+          1,
+          2
         ]
       },
       "expected": [],
       "tags": [
-        "edge"
+        "valley"
       ]
     },
     {
-      "id": "real-many-peaks",
-      "name": "real: repeated peak pattern",
+      "id": "real-left-endpoint-high",
+      "name": "hidden: first element is never eligible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mountain": [
+          100,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "endpoint"
+      ]
+    },
+    {
+      "id": "real-right-endpoint-high",
+      "name": "hidden: last element is never eligible",
       "kind": "real",
       "visible": false,
       "input": {
@@ -86,23 +125,83 @@
           1,
           3,
           1,
-          2,
+          100
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "hidden",
+        "endpoint"
+      ]
+    },
+    {
+      "id": "real-many-peaks",
+      "name": "hidden: alternating values create several peaks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mountain": [
+          1,
           5,
-          2,
-          4,
-          4,
-          3,
-          6,
+          1,
+          5,
+          1,
+          5,
           1
         ]
       },
       "expected": [
         1,
-        4,
-        9
+        3,
+        5
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-equal-left",
+      "name": "hidden: equality with the left neighbor disqualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mountain": [
+          4,
+          4,
+          3,
+          5,
+          2
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "hidden",
+        "strict"
+      ]
+    },
+    {
+      "id": "real-decreasing",
+      "name": "hidden: decreasing array has no interior peak",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "mountain": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "monotone"
       ]
     }
   ]

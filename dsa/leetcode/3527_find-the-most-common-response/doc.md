@@ -8,78 +8,38 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, String, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-most-common-response](https://leetcode.com/problems/find-the-most-common-response/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-most-common-response/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-most-common-response/).
 
 ### Goal
-Given a list of strings representing user responses, identify the string that appears with the highest frequency. If multiple strings share the same maximum frequency, return the one that is lexicographically smallest.
+
+You are given a two-dimensional string array `responses`. Each inner array contains the survey responses collected on one day. Before combining the days, remove duplicate strings independently within each day: repeating the same response several times on one day contributes only once for that day, while the same response on different days contributes once for every such day.
+
+After this per-day deduplication, find the response with the greatest total frequency across all days. If several responses have the same greatest frequency, return the lexicographically smallest one.
 
 ### Function Contract
+
 **Inputs**
 
-- `responses`: A list of strings (`List[str]`) representing the collected responses.
+- `responses`: A non-empty list of non-empty daily response lists.
+
+There are at most $1000$ days and at most $1000$ responses per day. Every response has length from $1$ through $10$ and contains only lowercase English letters.
 
 **Return value**
 
-- A string (`str`) representing the most frequent response, or the lexicographically smallest one in case of a tie.
+- The most frequent response after per-day deduplication, breaking ties lexicographically.
 
 ### Examples
+
 **Example 1**
 
-- Input: `["apple", "banana", "apple", "cherry", "banana"]`
-- Output: `"apple"`
+- Input: `responses = [["good", "ok", "good", "ok"], ["ok", "bad", "good", "ok", "ok"], ["good"], ["bad"]]`
+- Output: `"good"`
+- Explanation: The deduplicated days are `[["good", "ok"], ["ok", "bad", "good"], ["good"], ["bad"]]`; `"good"` occurs on three days.
 
 **Example 2**
 
-- Input: `["cat", "dog", "cat", "dog"]`
-- Output: `"cat"`
-
-**Example 3**
-
-- Input: `["a", "b", "c", "a", "b", "c"]`
-- Output: `"a"`
-
----
-
-## Solution
-### Approach
-The problem is solved using a Hash Map (dictionary in Python) to perform frequency counting. By iterating through the list once, we build a mapping of strings to their respective counts. We then iterate through the map to find the key with the maximum value, applying a tie-breaking condition based on lexicographical order.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N * K)`, where `N` is the number of responses and `K` is the average length of a string. We iterate through the list once to count and once through the unique keys to find the maximum.
-- **Space Complexity**: `O(N * K)` to store the frequency map containing all unique strings.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import Counter
-from typing import List
-
-def solve(responses: List[str]) -> str:
-    if not responses:
-        return ""
-
-    # Count the frequency of each response
-    counts = Counter(responses)
-
-    # Initialize variables to track the best response
-    most_common_response = ""
-    max_count = -1
-
-    # Iterate through the dictionary to find the most frequent
-    # and lexicographically smallest string
-    for response, count in counts.items():
-        if count > max_count:
-            max_count = count
-            most_common_response = response
-        elif count == max_count:
-            if response < most_common_response:
-                most_common_response = response
-
-    return most_common_response
-```
-</details>
+- Input: `responses = [["good", "ok", "good"], ["ok", "bad"], ["bad", "notsure"], ["great", "good"]]`
+- Output: `"bad"`
+- Explanation: `"bad"`, `"good"`, and `"ok"` each occur twice after deduplication, and `"bad"` is lexicographically smallest.

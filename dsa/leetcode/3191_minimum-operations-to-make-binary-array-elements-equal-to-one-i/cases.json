@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3191",
   "cases": [
     {
       "id": "sample-possible",
-      "name": "sample: greedy flips make all ones",
+      "name": "sample: three overlapping forced flips",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +20,12 @@
       "expected": 3,
       "tags": [
         "sample",
-        "greedy"
+        "overlapping"
       ]
     },
     {
       "id": "sample-impossible",
-      "name": "sample: trailing zero cannot be fixed",
+      "name": "sample: unresolved suffix makes the target impossible",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -42,8 +43,8 @@
       ]
     },
     {
-      "id": "trial-already-ones",
-      "name": "trial: already all ones",
+      "id": "trial-three-ones",
+      "name": "minimum length already equals the target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -55,29 +56,87 @@
       },
       "expected": 0,
       "tags": [
-        "edge"
+        "minimum-n",
+        "zero-operations"
       ]
     },
     {
-      "id": "trial-short-impossible",
-      "name": "trial: short array with zero",
+      "id": "trial-three-zeros",
+      "name": "minimum length solved by one flip",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-n",
+        "single-flip"
+      ]
+    },
+    {
+      "id": "trial-final-zero",
+      "name": "a final zero cannot be repaired",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "suffix",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-middle-zero",
+      "name": "hidden: a middle zero in length three is impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
           0,
           1
         ]
       },
       "expected": -1,
       "tags": [
-        "edge",
+        "hidden",
+        "minimum-n",
         "impossible"
       ]
     },
     {
-      "id": "real-overlapping-flips",
-      "name": "real: overlapping flips are required",
+      "id": "real-first-zero-only",
+      "name": "hidden: flipping the first zero creates an impossible suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "forced-flip",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-all-zeros-six",
+      "name": "hidden: disjoint triples solve six zeros",
       "kind": "real",
       "visible": false,
       "input": {
@@ -85,16 +144,120 @@
           0,
           0,
           0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "disjoint-windows"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating bits require overlapping decisions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
           1,
           0,
           1,
+          0,
+          1,
+          0,
           1
         ]
       },
       "expected": -1,
       "tags": [
-        "real",
-        "overlap"
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-generated-overlap",
+      "name": "hidden: a target-derived state has three forced flips",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "overlapping",
+        "solvable"
+      ]
+    },
+    {
+      "id": "real-dense-generated",
+      "name": "hidden: many target-derived flips remain uniquely recoverable",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "dense",
+        "solvable"
+      ]
+    },
+    {
+      "id": "real-long-impossible",
+      "name": "hidden: a long mixed array leaves a bad suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "mixed",
+        "impossible"
       ]
     }
   ]

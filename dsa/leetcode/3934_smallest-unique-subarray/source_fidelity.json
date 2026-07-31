@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3934",
+    "frontend_id": "3934",
+    "title_slug": "smallest-unique-subarray",
+    "url": "https://leetcode.com/problems/smallest-unique-subarray/description/",
+    "paid_only": false,
+    "content_sha256": "b2d3bd5e8d691640d499db168bef36031172fc77f65c3c500acd301c327d8de2",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [3,3,3]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [2,1,2,3,3]",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1,1,2,2,1]",
+        "output": "2",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "98314c122972057823affa4bd6a64fdd2850d384f2bde82a05410c7d7cd12902",
+      "reference/contract.md": "8242d3e13183012a0857fe693d0cab572187e4768866b89057c6012e93a53c8c",
+      "reference/examples.md": "df13794157d60db90904e60b4302cecce6b5fbd0de4aacbd90a601e46f662d27",
+      "reference/constraints.md": "2cd6112b77015cba04664e7730743b0adb6a57fe3ba193731717c5ef97ee6fe0"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,56 @@
+class Solution:
+    def shortestMatchingSubstring(self, s: str, p: str) -> int:
+        first, middle, last = p.split("*")
+
+        def occurrences(word: str) -> list[int]:
+            if not word:
+                return list(range(len(s) + 1))
+
+            prefix = [0] * len(word)
+            matched = 0
+            for index in range(1, len(word)):
+                while matched and word[index] != word[matched]:
+                    matched = prefix[matched - 1]
+                if word[index] == word[matched]:
+                    matched += 1
+                prefix[index] = matched
+
+            starts = []
+            matched = 0
+            for index, character in enumerate(s):
+                while matched and character != word[matched]:
+                    matched = prefix[matched - 1]
+                if character == word[matched]:
+                    matched += 1
+                if matched == len(word):
+                    starts.append(index - len(word) + 1)
+                    matched = prefix[matched - 1]
+            return starts
+
+        first_starts = occurrences(first)
+        middle_starts = occurrences(middle)
+        last_starts = occurrences(last)
+
+        answer = len(s) + 1
+        first_index = 0
+        last_index = 0
+        for middle_start in middle_starts:
+            while (
+                first_index < len(first_starts)
+                and first_starts[first_index] + len(first) <= middle_start
+            ):
+                first_index += 1
+            if first_index == 0:
+                continue
+
+            after_middle = middle_start + len(middle)
+            while last_index < len(last_starts) and last_starts[last_index] < after_middle:
+                last_index += 1
+            if last_index == len(last_starts):
+                break
+
+            start = first_starts[first_index - 1]
+            end = last_starts[last_index] + len(last)
+            answer = min(answer, end - start)
+
+        return -1 if answer > len(s) else answer

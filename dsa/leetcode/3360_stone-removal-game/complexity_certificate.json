@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3360",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The complete legal domain contains only the 50 initial pile sizes from 1 through 50, and no legal game can execute more than seven successful moves, so runtime scaling cannot honestly distinguish asymptotic classes.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 50,
+    "unit": "initial stones",
+    "source_constraint": "The public contract restricts n to the inclusive range from 1 through 50."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The first seven forced removals total 10 + 9 + 8 + 7 + 6 + 5 + 4 = 49 stones; an eighth move would require 3 additional stones, so every legal input stops after at most seven loop iterations."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "cases.json contains an authored expected winner for every legal input n from 1 through 50, including every cumulative-removal transition."
+    }
+  ]
+}

@@ -5,53 +5,45 @@
 | Source | LeetCode |
 | Frontend ID | 2132 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Greedy, Matrix, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [stamping-the-grid](https://leetcode.com/problems/stamping-the-grid/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/stamping-the-grid/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/stamping-the-grid/).
-
 ### Goal
-Determine whether rectangular stamps of one fixed size can cover every empty cell in a binary grid. A stamp must stay inside the grid and may not cover an occupied cell; stamps may overlap and any number may be used.
+You are given an $m\times n$ binary grid. A `0` denotes an empty cell and a
+`1` denotes an occupied cell. You also have any number of identical
+rectangular stamps, each with the specified height and width.
+
+Place stamps without rotating them. Every stamp must lie completely inside the
+grid and may cover only empty cells. Different stamps are allowed to overlap.
+Determine whether some collection of valid placements covers every empty cell;
+occupied cells must remain uncovered.
 
 ### Function Contract
 **Inputs**
 
-- `grid`: a binary matrix where `0` is empty and `1` is occupied.
-- `stampHeight`: the stamp's height.
-- `stampWidth`: the stamp's width.
+- `grid`: An $m\times n$ binary matrix with
+  $1\le m,n\le 10^5$ and $1\le mn\le 2\cdot 10^5$.
+- `stampHeight`: The fixed stamp height, between $1$ and $10^5$.
+- `stampWidth`: The fixed stamp width, between $1$ and $10^5$.
 
 **Return value**
 
-`true` if all empty cells can be covered by valid stamp placements; otherwise `false`.
+`true` if valid, possibly overlapping stamps can cover every empty cell;
+otherwise `false`.
 
 ### Examples
 **Example 1**
 
-- Input: `grid = [[0, 0], [0, 0]]`, `stampHeight = 2`, `stampWidth = 2`
+- Input: `grid = [[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0],[1,0,0,0]]`,
+  `stampHeight = 4`, `stampWidth = 3`
 - Output: `true`
+- Explanation: Two overlapping placements cover the empty three-column strip.
 
 **Example 2**
 
-- Input: `grid = [[0, 1], [0, 0]]`, `stampHeight = 2`, `stampWidth = 2`
+- Input: `grid = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]`,
+  `stampHeight = 2`, `stampWidth = 2`
 - Output: `false`
-
-**Example 3**
-
-- Input: `grid = [[0, 0, 0], [0, 0, 0]]`, `stampHeight = 2`, `stampWidth = 2`
-- Output: `true`
-
----
-
-## Solution
-### Approach
-Build a two-dimensional prefix sum of occupied cells so each candidate stamp rectangle can be checked in constant time. Mark every valid placement in a two-dimensional difference array, then prefix-sum those marks into coverage counts. The arrangement succeeds exactly when every empty cell has positive coverage.
-
-### Complexity Analysis
-- **Time Complexity**: `O(mn)`
-- **Space Complexity**: `O(mn)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: Some empty cells cannot belong to an in-bounds stamp without
+  also covering an occupied diagonal cell.

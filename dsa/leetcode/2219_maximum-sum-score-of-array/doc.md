@@ -5,51 +5,39 @@
 | Source | LeetCode |
 | Frontend ID | 2219 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-sum-score-of-array](https://leetcode.com/problems/maximum-sum-score-of-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-sum-score-of-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-sum-score-of-array/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+For every index $i$ in a 0-indexed integer array, consider two inclusive sums: the sum of the first $i+1$ elements and the sum of the last $n-i$ elements. The element at index $i$ belongs to both of these ranges.
+
+The sum score at $i$ is the larger of its prefix sum and suffix sum. Return the largest sum score attained at any index. Array values may be negative, so the answer is not necessarily nonnegative.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A nonempty list of integers.
+
+Let $n=\lvert\texttt{nums}\rvert$.
 
 **Return value**
 
-TODO
+Return the maximum, over all indices $i$, of the inclusive prefix sum through $i$ and the inclusive suffix sum beginning at $i$.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [4, 3, -2, 5]`
+- Output: `10`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [-3, -5]`
+- Output: `-3`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [7]`
+- Output: `7`

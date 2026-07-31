@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2113",
+  "cases": [
+    {
+      "id": "sample-three-elements",
+      "name": "sample: removal and replacement phases",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [0, 1, 2],
+        "queries": [[0, 2], [2, 0], [3, 2], [5, 0]]
+      },
+      "expected": [2, 2, -1, 0],
+      "tags": ["sample", "both-phases", "empty"]
+    },
+    {
+      "id": "sample-single-element",
+      "name": "sample: one element alternates full and empty",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [2],
+        "queries": [[0, 0], [1, 0], [2, 0], [3, 0]]
+      },
+      "expected": [2, -1, 2, -1],
+      "tags": ["sample", "minimum-length", "cycles"]
+    },
+    {
+      "id": "trial-phase-boundaries",
+      "name": "phase boundaries include the empty minute and full restart",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [5, 6, 7],
+        "queries": [[2, 0], [2, 1], [3, 0], [4, 0], [5, 1], [6, 2]]
+      },
+      "expected": [7, -1, -1, 5, 6, 7],
+      "tags": ["boundaries", "empty", "period"]
+    },
+    {
+      "id": "trial-suffix-reindexing",
+      "name": "remaining suffix starts again at index zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [10, 20, 30, 40],
+        "queries": [[1, 2], [2, 0], [2, 1], [2, 2]]
+      },
+      "expected": [40, 30, 40, -1],
+      "tags": ["removal", "suffix", "indexing"]
+    },
+    {
+      "id": "real-second-cycle",
+      "name": "hidden: phases repeat after the full period",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [7, 8],
+        "queries": [[4, 1], [5, 0], [6, 0], [7, 0], [8, 1]]
+      },
+      "expected": [8, 8, -1, 7, 8],
+      "tags": ["hidden", "modulo", "multiple-cycles"]
+    },
+    {
+      "id": "real-partial-restoration",
+      "name": "hidden: only the restored prefix is visible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [4, 9, 1, 8],
+        "queries": [[5, 0], [5, 1], [7, 2], [7, 3], [8, 3]]
+      },
+      "expected": [4, -1, 1, -1, 8],
+      "tags": ["hidden", "replacement", "prefix"]
+    },
+    {
+      "id": "real-large-time",
+      "name": "hidden: large times reduce to an ordinary phase",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [0, 1, 2],
+        "queries": [[99999, 0], [100000, 0], [100000, 1]]
+      },
+      "expected": [-1, 0, -1],
+      "tags": ["hidden", "maximum-time", "modulo"]
+    }
+  ]
+}

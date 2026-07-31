@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Edge Weight Equilibrium Queries in a Tree and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines binary-lifting LCA queries with root-to-node edge-weight frequencies.",
+      "time_complexity": "O((n + m) log n)",
+      "space_complexity": "O(n log n)"
     }
   ]
 }

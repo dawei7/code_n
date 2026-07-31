@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Median of a Binary Search Tree Level and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses the BST's already sorted left-to-right level order to select the upper median during breadth-first traversal.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(W)"
     }
   ]
 }

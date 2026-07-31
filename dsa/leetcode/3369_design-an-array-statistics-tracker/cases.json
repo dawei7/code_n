@@ -1,0 +1,565 @@
+{
+  "challenge_id": "lc_3369",
+  "cases": [
+    {
+      "id": "sample-official-one",
+      "name": "sample: four values, all statistics, FIFO removal, and changed mode",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "StatisticsTracker",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "getMean",
+          "getMedian",
+          "getMode",
+          "removeFirstAddedNumber",
+          "getMode"
+        ],
+        "arguments": [
+          [],
+          [
+            4
+          ],
+          [
+            4
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        3,
+        4,
+        4,
+        null,
+        2
+      ],
+      "tags": [
+        "sample",
+        "all-statistics",
+        "fifo-removal"
+      ]
+    },
+    {
+      "id": "sample-official-two",
+      "name": "sample: mean before removals and statistics after later additions",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": [
+          "StatisticsTracker",
+          "addNumber",
+          "addNumber",
+          "getMean",
+          "removeFirstAddedNumber",
+          "addNumber",
+          "addNumber",
+          "removeFirstAddedNumber",
+          "getMedian",
+          "addNumber",
+          "getMode"
+        ],
+        "arguments": [
+          [],
+          [
+            9
+          ],
+          [
+            5
+          ],
+          [],
+          [],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [],
+          [],
+          [
+            8
+          ],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        7,
+        null,
+        null,
+        null,
+        null,
+        6,
+        null,
+        5
+      ],
+      "tags": [
+        "sample",
+        "rebalance",
+        "mode"
+      ]
+    },
+    {
+      "id": "trial-upper-even-median",
+      "name": "trial: even collection uses the larger central value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "StatisticsTracker",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "getMedian",
+          "getMean",
+          "getMode"
+        ],
+        "arguments": [
+          [],
+          [
+            1
+          ],
+          [
+            10
+          ],
+          [
+            4
+          ],
+          [
+            7
+          ],
+          [],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        7,
+        5,
+        1
+      ],
+      "tags": [
+        "even-median",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "trial-smallest-mode-tie",
+      "name": "trial: several modes choose the smallest value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "StatisticsTracker",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "getMode",
+          "removeFirstAddedNumber",
+          "getMode"
+        ],
+        "arguments": [
+          [],
+          [
+            8
+          ],
+          [
+            3
+          ],
+          [
+            8
+          ],
+          [
+            5
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        3,
+        null,
+        3
+      ],
+      "tags": [
+        "mode-tie",
+        "fifo-removal"
+      ]
+    },
+    {
+      "id": "trial-duplicates-cross-heaps",
+      "name": "trial: duplicate boundary values survive repeated FIFO removals",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": [
+          "StatisticsTracker",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "getMedian",
+          "removeFirstAddedNumber",
+          "getMedian",
+          "removeFirstAddedNumber",
+          "getMedian",
+          "getMean"
+        ],
+        "arguments": [
+          [],
+          [
+            5
+          ],
+          [
+            5
+          ],
+          [
+            1
+          ],
+          [
+            9
+          ],
+          [
+            5
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        5,
+        null,
+        5,
+        null,
+        5,
+        5
+      ],
+      "tags": [
+        "duplicates",
+        "lazy-deletion",
+        "median"
+      ]
+    },
+    {
+      "id": "real-stale-mode-candidates",
+      "name": "hidden: old high-frequency mode candidates become invalid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "StatisticsTracker",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "getMode",
+          "removeFirstAddedNumber",
+          "removeFirstAddedNumber",
+          "getMode",
+          "addNumber",
+          "getMode"
+        ],
+        "arguments": [
+          [],
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            2
+          ],
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            1
+          ],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        2,
+        null,
+        null,
+        1,
+        null,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "stale-mode",
+        "frequency-decrease"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: large values exercise the running total and upper median",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "StatisticsTracker",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "getMean",
+          "getMedian",
+          "getMode",
+          "removeFirstAddedNumber",
+          "getMean"
+        ],
+        "arguments": [
+          [],
+          [
+            1000000000
+          ],
+          [
+            999999999
+          ],
+          [
+            1
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        666666666,
+        999999999,
+        1,
+        null,
+        500000000
+      ],
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "sum"
+      ]
+    },
+    {
+      "id": "real-drain-and-refill",
+      "name": "hidden: remove down to one value and refill around it",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "StatisticsTracker",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "removeFirstAddedNumber",
+          "removeFirstAddedNumber",
+          "getMean",
+          "getMedian",
+          "getMode",
+          "addNumber",
+          "addNumber",
+          "getMedian",
+          "getMode"
+        ],
+        "arguments": [
+          [],
+          [
+            7
+          ],
+          [
+            2
+          ],
+          [
+            9
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            1
+          ],
+          [
+            1
+          ],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        9,
+        9,
+        9,
+        null,
+        null,
+        1,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "near-empty",
+        "refill"
+      ]
+    },
+    {
+      "id": "real-alternating-extremes",
+      "name": "hidden: alternating extremes trigger repeated heap rebalancing",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": [
+          "StatisticsTracker",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "addNumber",
+          "getMedian",
+          "removeFirstAddedNumber",
+          "getMedian",
+          "removeFirstAddedNumber",
+          "getMedian",
+          "addNumber",
+          "getMode",
+          "getMean"
+        ],
+        "arguments": [
+          [],
+          [
+            1
+          ],
+          [
+            100
+          ],
+          [
+            2
+          ],
+          [
+            99
+          ],
+          [
+            3
+          ],
+          [
+            98
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            2
+          ],
+          [],
+          []
+        ]
+      },
+      "expected": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        98,
+        null,
+        98,
+        null,
+        98,
+        null,
+        2,
+        40
+      ],
+      "tags": [
+        "hidden",
+        "rebalance",
+        "alternating"
+      ]
+    }
+  ]
+}
+

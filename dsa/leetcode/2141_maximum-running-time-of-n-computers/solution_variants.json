@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Running Time of N Computers and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the longest duration whose capped battery contributions can supply every computer.",
+      "time_complexity": "O(m log(S / n))",
+      "space_complexity": "O(1)"
     }
   ]
 }

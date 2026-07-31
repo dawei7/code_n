@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Number of Items From Sale I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Precomputes each factor's activation reward with a multiples sieve, then combines one special first copy and unlimited ordinary copies in a capacity DP.",
+      "time_complexity": "O(F log(F) + nB)",
+      "space_complexity": "O(F + B)"
     }
   ]
 }

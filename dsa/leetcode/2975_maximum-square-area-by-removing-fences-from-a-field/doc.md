@@ -8,83 +8,49 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-square-area-by-removing-fences-from-a-field](https://leetcode.com/problems/maximum-square-area-by-removing-fences-from-a-field/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-square-area-by-removing-fences-from-a-field/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-square-area-by-removing-fences-from-a-field/).
-
 ### Goal
-Given a rectangular field defined by dimensions `m` and `n`, and sets of horizontal and vertical fence coordinates, determine the largest possible square area that can be formed by removing a subset of these fences. The boundaries of the field (1, m) and (1, n) are implicitly included as fences.
+A rectangular field has corners at `(1, 1)` and `(m, n)`, so its dimensions
+are `(m - 1)` by `(n - 1)`. Each value in `hFences` gives the row coordinate of
+a horizontal fence spanning the field, and each value in `vFences` gives the
+column coordinate of a vertical fence spanning the field.
+
+You may remove any number of the listed internal fences, including none. The
+four boundary fences at rows `1` and `m` and columns `1` and `n` cannot be
+removed. Choose two surviving horizontal fences and two surviving vertical
+fences that bound a square, and maximize its area.
+
+Return that maximum area modulo $10^9+7$, or `-1` if no square can be formed.
 
 ### Function Contract
 **Inputs**
 
-- `m`: An integer representing the total height of the field.
-- `n`: An integer representing the total width of the field.
-- `hFences`: A list of integers representing the coordinates of horizontal fences.
-- `vFences`: A list of integers representing the coordinates of vertical fences.
+- `m`: the lower boundary's row coordinate
+- `n`: the right boundary's column coordinate
+- `hFences`: unique internal horizontal-fence coordinates
+- `vFences`: unique internal vertical-fence coordinates
+
+Let $H=\lvert\texttt{hFences}\rvert+2$ and
+$V=\lvert\texttt{vFences}\rvert+2$, including boundary fences. The contract
+guarantees $3\le m,n\le10^9$, $1\le H-2,V-2\le600$, and every internal fence
+lies strictly between its corresponding boundaries.
 
 **Return value**
 
-- An integer representing the maximum area of a square formed by the remaining fences, or -1 if no square can be formed. The result should be returned modulo 10^9 + 7.
+The greatest attainable square area modulo $10^9+7$, or `-1` when the two
+orientations have no common positive fence separation.
 
 ### Examples
 **Example 1**
 
-- Input: `m = 4, n = 3, hFences = [2, 3], vFences = [2]`
+- Input: `m = 4`, `n = 3`, `hFences = [2,3]`, `vFences = [2]`
 - Output: `4`
+- Explanation: A horizontal and vertical span of length `2` can bound a square.
 
 **Example 2**
 
-- Input: `m = 6, n = 7, hFences = [2], vFences = [4]`
-- Output: `4`
-
-**Example 3**
-
-- Input: `m = 3, n = 9, hFences = [2], vFences = [8, 5, 6, 7]`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-The problem relies on the observation that any square formed by fences must have a side length equal to the distance between two horizontal fences and simultaneously equal to the distance between two vertical fences. By calculating all possible distances between every pair of horizontal fences (including boundaries 1 and m) and storing them in a hash set, we can then iterate through all possible distances between vertical fences (including boundaries 1 and n). If a vertical distance exists in the horizontal distance set, it represents a valid square side length. We track the maximum such side length and return its square modulo 10^9 + 7.
-
-### Complexity Analysis
-- **Time Complexity**: O(H^2 + V^2), where H is the number of horizontal fences and V is the number of vertical fences. We generate all pairs of distances for both sets.
-- **Space Complexity**: O(H^2), to store the set of all possible horizontal distances.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(m: int, n: int, hFences: list[int], vFences: list[int]) -> int:
-    MOD = 10**9 + 7
-
-    # Include the boundaries of the field
-    h_coords = sorted([1] + hFences + [m])
-    v_coords = sorted([1] + vFences + [n])
-
-    # Calculate all possible distances between any two horizontal fences
-    h_distances = set()
-    for i in range(len(h_coords)):
-        for j in range(i + 1, len(h_coords)):
-            h_distances.add(h_coords[j] - h_coords[i])
-
-    # Calculate all possible distances between any two vertical fences
-    # and check if they exist in the horizontal distances set
-    max_side = -1
-    for i in range(len(v_coords)):
-        for j in range(i + 1, len(v_coords)):
-            dist = v_coords[j] - v_coords[i]
-            if dist in h_distances:
-                if dist > max_side:
-                    max_side = dist
-
-    if max_side == -1:
-        return -1
-
-    return (max_side * max_side) % MOD
-```
-</details>
+- Input: `m = 6`, `n = 7`, `hFences = [2]`, `vFences = [4]`
+- Output: `-1`
+- Explanation: No separation occurs between a pair of fences in both orientations.

@@ -8,8 +8,11 @@ from unittest.mock import patch
 
 from challenges.registry import CHALLENGE_REGISTRY
 from server.app.engine_runner import (
+    _absolute_value_sorted_match,
+    _balanced_factor_decomposition_match,
     _accounts_merge_match,
     _adjacent_path_match,
+    _sequential_grid_path_cover_match,
     _alternating_groups_subsequence_match,
     _all_one_trace_match,
     _anagram_mapping_match,
@@ -21,6 +24,8 @@ from server.app.engine_runner import (
     _beautiful_array_match,
     _circular_doubly_tree_match,
     _closest_leaf_match,
+    _color_red_triangle_match,
+    _condition_matrix_match,
     _custom_sorted_string_match,
     _de_bruijn_sequence_match,
     _di_string_match,
@@ -31,12 +36,20 @@ from server.app.engine_runner import (
     _flattened_multilevel_list_match,
     _fibonacci_split_match,
     _frequency_sorted_string_match,
+    _generated_schedule_match,
+    _bounded_exact_monotone_path_grid_match,
+    _exact_monotone_path_grid_match,
+    _unique_monotone_path_grid_match,
     _gray_code_match,
+    _grid_layout_match,
+    _last_marked_nodes_match,
     _circular_gray_code_match,
+    _character_pair_rearrangement_match,
     _good_subset_matrix_match,
     _hamming_alternating_subsequence_match,
     _index_value_pair_match,
     _indexed_parity_match,
+    _json_object_match,
     _immutable_list_node_from_values,
     _immutable_list_print_match,
     _k_smallest_pairs_match,
@@ -53,6 +66,7 @@ from server.app.engine_runner import (
     _minimum_unique_abbreviation_match,
     _missing_binary_string_match,
     _missing_rolls_match,
+    _modified_graph_edges_match,
     _subset_sums_reconstruction_match,
     _master_guessed_match,
     _most_similar_path_match,
@@ -97,14 +111,20 @@ from server.app.engine_runner import (
     _three_equal_binary_parts_match,
     _JudgeSea,
     _JudgeBinaryMatrix,
+    _JudgeInfiniteStream,
     _JudgeFontInfo,
     _JudgePoint,
     _JudgeMaster,
     _unique_bsts_match,
     _unordered_nested_list_matches,
+    _unordered_string_match,
     _ordered_groups_unordered_items_match,
+    _ordered_results_unordered_lists_match,
     _valid_pair_arrangement_match,
+    _valid_subarray_size_match,
     _maximum_sum_subsequence_match,
+    _maximum_bob_points_match,
+    _recovered_original_array_match,
     _validated_case_matches,
     _vps_split_match,
     _wiggle_sort_matches,
@@ -126,6 +146,127 @@ def solve(nums: list[int], target: int) -> list[int]:
 
 
 class ValidatedCasesTest(conftest._Base):
+    def test_generated_schedule_validator_accepts_any_complete_valid_order(self) -> None:
+        schedule = [
+            [0, 1], [2, 3], [0, 4], [1, 2], [3, 4],
+            [0, 2], [1, 3], [2, 4], [0, 3], [1, 4],
+            [2, 0], [3, 1], [4, 0], [2, 1], [4, 3],
+            [1, 0], [3, 2], [4, 1], [3, 0], [4, 2],
+        ]
+        self.assertTrue(_generated_schedule_match(schedule, 5))
+        self.assertTrue(_generated_schedule_match([], 3))
+        self.assertFalse(_generated_schedule_match(schedule[:-1], 5))
+        self.assertFalse(_generated_schedule_match(schedule[:-1] + [[0, 1]], 5))
+        self.assertFalse(_generated_schedule_match([[0, 1], [1, 2]], 2))
+
+    def test_unique_monotone_path_grid_validator_accepts_any_legal_construction(
+        self,
+    ) -> None:
+        official = ["..#", "#.."]
+        alternate = ["...", "##."]
+        case = ValidatedCase(
+            id="unique-path-grid",
+            name="unique monotone path grid",
+            kind="sample",
+            input={"m": 2, "n": 3},
+            expected=official,
+            validator={"kind": "unique_monotone_path_grid"},
+        )
+
+        self.assertTrue(_unique_monotone_path_grid_match(official, 2, 3))
+        self.assertTrue(_validated_case_matches(case, alternate, official))
+        self.assertTrue(_unique_monotone_path_grid_match([".", ".", "."], 3, 1))
+        self.assertFalse(_unique_monotone_path_grid_match(["...", "..."], 2, 3))
+        self.assertFalse(_unique_monotone_path_grid_match(["...", "###"], 2, 3))
+        self.assertFalse(_unique_monotone_path_grid_match(["...", "##x"], 2, 3))
+        self.assertFalse(_unique_monotone_path_grid_match(["..", "##."], 2, 3))
+        self.assertFalse(_unique_monotone_path_grid_match(alternate, True, 3))
+
+    def test_exact_monotone_path_grid_validator_checks_count_and_impossibility(
+        self,
+    ) -> None:
+        official = ["...", "#.."]
+        alternate = ["..#", "..."]
+        case = ValidatedCase(
+            id="exact-path-grid",
+            name="exact monotone path grid",
+            kind="sample",
+            input={"m": 2, "n": 3, "k": 2},
+            expected=official,
+            validator={"kind": "exact_monotone_path_grid"},
+        )
+
+        self.assertTrue(_exact_monotone_path_grid_match(official, 2, 3, 2))
+        self.assertTrue(_validated_case_matches(case, alternate, official))
+        self.assertTrue(_exact_monotone_path_grid_match(["...", "..."], 2, 3, 3))
+        self.assertTrue(
+            _exact_monotone_path_grid_match(["..#", "...", "#.."], 3, 3, 4)
+        )
+        self.assertTrue(_exact_monotone_path_grid_match([], 1, 4, 2))
+        self.assertFalse(_exact_monotone_path_grid_match([], 2, 2, 2))
+        self.assertFalse(_exact_monotone_path_grid_match(["...", "..."], 2, 3, 2))
+        self.assertFalse(_exact_monotone_path_grid_match(["...", "##x"], 2, 3, 2))
+        self.assertFalse(_exact_monotone_path_grid_match(alternate, 2, 3, True))
+
+    def test_bounded_exact_monotone_path_grid_accepts_variable_dimensions(
+        self,
+    ) -> None:
+        two_paths = ["..", ".."]
+        alternate_two_paths = ["..#", "#..", "#.."]
+        case = ValidatedCase(
+            id="bounded-exact-path-grid",
+            name="bounded exact monotone path grid",
+            kind="sample",
+            input={"k": 2},
+            expected=two_paths,
+            validator={
+                "kind": "bounded_exact_monotone_path_grid",
+                "max_rows": 25,
+                "max_columns": 25,
+            },
+        )
+
+        self.assertTrue(
+            _bounded_exact_monotone_path_grid_match(two_paths, 25, 25, 2)
+        )
+        self.assertTrue(_validated_case_matches(case, alternate_two_paths, two_paths))
+        self.assertFalse(_bounded_exact_monotone_path_grid_match([], 25, 25, 2))
+        self.assertFalse(
+            _bounded_exact_monotone_path_grid_match(["." * 26], 25, 25, 1)
+        )
+        self.assertFalse(
+            _bounded_exact_monotone_path_grid_match(["..", "."], 25, 25, 2)
+        )
+        self.assertFalse(
+            _bounded_exact_monotone_path_grid_match(["..", ".x"], 25, 25, 2)
+        )
+        self.assertFalse(
+            _bounded_exact_monotone_path_grid_match(two_paths, True, 25, 2)
+        )
+        self.assertFalse(
+            _bounded_exact_monotone_path_grid_match(two_paths, 25, 25, True)
+        )
+
+    def test_color_red_triangle_validator_accepts_any_minimum_percolating_set(self) -> None:
+        sample = [[1, 1], [2, 1], [2, 3], [3, 1], [3, 5]]
+        alternate = [[1, 1], [2, 2], [3, 1], [3, 3], [3, 5]]
+
+        self.assertTrue(_color_red_triangle_match(sample, 3))
+        self.assertTrue(_color_red_triangle_match(alternate, 3))
+        self.assertFalse(_color_red_triangle_match(sample[:-1], 3))
+        self.assertFalse(_color_red_triangle_match(sample + [[3, 3]], 3))
+        self.assertFalse(_color_red_triangle_match([[1, 1], [2, 1], [2, 1]], 2))
+        self.assertFalse(_color_red_triangle_match([[1, 1], [2, 1], [2, 4]], 2))
+
+    def test_valid_subarray_size_validator_accepts_any_valid_length(self) -> None:
+        nums = [6, 5, 6, 5, 8]
+        self.assertTrue(_valid_subarray_size_match(1, nums, 7))
+        self.assertTrue(_valid_subarray_size_match(5, nums, 7))
+        self.assertFalse(_valid_subarray_size_match(2, [1, 1, 1], 3))
+        self.assertTrue(_valid_subarray_size_match(-1, [1, 1, 1], 3))
+        self.assertFalse(_valid_subarray_size_match(-1, nums, 7))
+        self.assertFalse(_valid_subarray_size_match(True, nums, 7))
+
     def test_adjacent_path_validator_accepts_either_valid_orientation(self) -> None:
         pairs = [[2, 1], [3, 4], [3, 2]]
         case = ValidatedCase(
@@ -142,6 +283,33 @@ class ValidatedCasesTest(conftest._Base):
         self.assertFalse(_adjacent_path_match([1, 2, 4, 3], pairs))
         self.assertFalse(_adjacent_path_match([1, 2, 3, 3], pairs))
         self.assertFalse(_adjacent_path_match([1, 2, 3], pairs))
+
+    def test_sequential_grid_path_cover_validator_accepts_any_legal_cover(self) -> None:
+        grid = [[0, 0, 0], [0, 1, 2]]
+        expected = [[0, 0], [1, 0], [1, 1], [1, 2], [0, 2], [0, 1]]
+        alternative = [[0, 1], [0, 0], [1, 0], [1, 1], [1, 2], [0, 2]]
+        case = ValidatedCase(
+            id="sequential-cover",
+            name="sequential grid path cover",
+            kind="sample",
+            input={"grid": grid, "k": 2},
+            expected=expected,
+            validator={"kind": "sequential_grid_path_cover"},
+        )
+
+        self.assertTrue(_sequential_grid_path_cover_match(expected, expected, grid, 2))
+        self.assertTrue(_validated_case_matches(case, alternative, expected))
+        self.assertFalse(_sequential_grid_path_cover_match(alternative[:-1], expected, grid, 2))
+        self.assertFalse(
+            _sequential_grid_path_cover_match(
+                [[0, 1], [0, 0], [1, 0], [1, 1], [0, 2], [1, 2]],
+                expected,
+                grid,
+                2,
+            )
+        )
+        self.assertTrue(_sequential_grid_path_cover_match([], [], [[1, 0, 4], [3, 0, 2]], 4))
+        self.assertFalse(_sequential_grid_path_cover_match([[0, 0]], [], [[1]], 1))
 
     def test_valid_pair_arrangement_validator_preserves_directed_edge_multiset(self) -> None:
         pairs = [[1, 2], [1, 3], [2, 1]]
@@ -167,6 +335,35 @@ class ValidatedCasesTest(conftest._Base):
         self.assertFalse(_valid_pair_arrangement_match([[1, 2], [2, 1]], pairs))
         self.assertFalse(_valid_pair_arrangement_match([[1, 2], [2, True], [1, 3]], pairs))
 
+    def test_modified_graph_edges_validator_accepts_any_legal_assignment(self) -> None:
+        edges = [[0, 1, -1], [1, 2, 2], [0, 2, 10]]
+        expected = [[0, 1, 3], [1, 2, 2], [0, 2, 10]]
+        alternate = [[2, 0, 10], [2, 1, 2], [1, 0, 3]]
+        case = ValidatedCase(
+            id="modified-graph",
+            name="modified graph",
+            kind="trial",
+            visible=True,
+            input={
+                "n": 3,
+                "edges": edges,
+                "source": 0,
+                "destination": 2,
+                "target": 5,
+            },
+            expected=expected,
+            validator={"kind": "modified_graph_edges"},
+        )
+
+        self.assertTrue(_validated_case_matches(case, alternate, expected))
+        self.assertTrue(_modified_graph_edges_match(alternate, expected, 3, edges, 0, 2, 5))
+        self.assertFalse(_modified_graph_edges_match([[0, 1, 0], [1, 2, 2], [0, 2, 10]], expected, 3, edges, 0, 2, 5))
+        self.assertFalse(_modified_graph_edges_match([[0, 1, 3], [1, 2, 3], [0, 2, 10]], expected, 3, edges, 0, 2, 5))
+        self.assertFalse(_modified_graph_edges_match([[0, 1, 2], [1, 2, 2], [0, 2, 10]], expected, 3, edges, 0, 2, 5))
+        self.assertFalse(_modified_graph_edges_match([[0, 1, 3], [1, 2, 2]], expected, 3, edges, 0, 2, 5))
+        self.assertTrue(_modified_graph_edges_match([], [], 3, edges, 0, 2, 5))
+        self.assertFalse(_modified_graph_edges_match(alternate, [], 3, edges, 0, 2, 5))
+
     def test_maximum_sum_subsequence_validator_accepts_optimal_ordered_ties(self) -> None:
         nums = [3, 4, 3, 3]
         case = ValidatedCase(
@@ -184,6 +381,15 @@ class ValidatedCasesTest(conftest._Base):
         self.assertFalse(_maximum_sum_subsequence_match([3, 3], nums, 2))
         self.assertFalse(_maximum_sum_subsequence_match([4, 3, 3], nums, 2))
         self.assertFalse(_maximum_sum_subsequence_match([3, True], nums, 2))
+
+    def test_recovered_original_array_validator_accepts_any_valid_recovery(self) -> None:
+        nums = [2, 10, 6, 4, 8, 12]
+
+        self.assertTrue(_recovered_original_array_match([3, 7, 11], nums))
+        self.assertTrue(_recovered_original_array_match([5, 7, 9], nums))
+        self.assertFalse(_recovered_original_array_match([3, 7, 10], nums))
+        self.assertFalse(_recovered_original_array_match([3, True, 11], nums))
+        self.assertFalse(_recovered_original_array_match([3, 7], nums))
 
     def test_shared_tree_target_fixture_preserves_node_identity(self) -> None:
         root, targets = _tree_root_and_targets_from_fixtures(
@@ -432,6 +638,29 @@ ORDER BY activity.player_id;
         with self.assertRaisesRegex(ValueError, "non-decreasing"):
             _JudgeBinaryMatrix([[1, 0]])
 
+    def test_infinite_stream_fixture_reads_bits_sequentially_and_enforces_its_limit(self) -> None:
+        kwargs = _prepare_validated_kwargs(
+            {"stream": {"bits": [1, 0, 1], "max_reads": 2}},
+            (),
+            (),
+        )
+        stream = kwargs["stream"]
+        self.assertIsInstance(stream, _JudgeInfiniteStream)
+        self.assertEqual(stream.next(), 1)
+        self.assertEqual(stream.next(), 0)
+        self.assertEqual(stream.read_count, 2)
+        with self.assertRaisesRegex(RuntimeError, "2-read fixture limit"):
+            stream.next()
+
+        compact = _prepare_validated_kwargs(
+            {"stream": {"repeated_bit": 1, "repeat_count": 3, "suffix": [0]}},
+            (),
+            (),
+        )["stream"]
+        self.assertEqual([compact.next() for _ in range(4)], [1, 1, 1, 0])
+        with self.assertRaisesRegex(ValueError, "values must be 0 or 1"):
+            _JudgeInfiniteStream([2])
+
     def test_font_info_fixture_exposes_metrics_and_enforces_the_budget(self) -> None:
         kwargs = _prepare_validated_kwargs(
             {
@@ -582,6 +811,31 @@ ORDER BY activity.player_id;
         self.assertTrue(all(case["expected_repr"] is None for case in hidden_results))
         self.assertTrue(all(case["message"] == "" for case in hidden_results))
 
+    def test_unordered_string_validator_preserves_character_multiplicity(self) -> None:
+        self.assertTrue(_unordered_string_match("bca", "abc"))
+        self.assertTrue(_unordered_string_match("aabc", "caba"))
+        self.assertFalse(_unordered_string_match("abc", "abb"))
+        self.assertFalse(_unordered_string_match(["a", "b"], "ab"))
+
+    def test_character_pair_rearrangement_accepts_any_valid_permutation(self) -> None:
+        case = ValidatedCase(
+            id="character-pair",
+            name="character pair rearrangement",
+            kind="sample",
+            input={"s": "dcab", "x": "d", "y": "b"},
+            expected="cabd",
+            validator={"kind": "character_pair_rearrangement"},
+        )
+
+        self.assertTrue(_character_pair_rearrangement_match("cabd", "dcab", "d", "b"))
+        self.assertTrue(_validated_case_matches(case, "bcad", "cabd"))
+        self.assertTrue(_character_pair_rearrangement_match("xea", "axe", "o", "x"))
+        self.assertTrue(_character_pair_rearrangement_match("bca", "abc", "a", "z"))
+        self.assertFalse(_character_pair_rearrangement_match("dcab", "dcab", "d", "b"))
+        self.assertFalse(_character_pair_rearrangement_match("bbcad", "dcab", "d", "b"))
+        self.assertFalse(_character_pair_rearrangement_match(["b", "c", "a", "d"], "dcab", "d", "b"))
+        self.assertFalse(_character_pair_rearrangement_match("bcad", "dcab", "d", "d"))
+
     def test_unordered_table_validator_preserves_columns_and_row_multiplicity(self) -> None:
         expected = {
             "columns": ["date_id", "make_name", "count"],
@@ -620,6 +874,15 @@ ORDER BY activity.player_id;
                 expected,
             )
         )
+
+    def test_json_object_validator_preserves_string_property_semantics(self) -> None:
+        self.assertTrue(
+            _json_object_match(
+                {1: "first", "__proto__": {"safe": True}},
+                {"1": "first", "__proto__": {"safe": True}},
+            )
+        )
+        self.assertFalse(_json_object_match({1: "later"}, {"1": "first"}))
 
     def test_runtime_benchmark_alternates_order_and_normalizes_amplification(self) -> None:
         case = ValidatedCase(
@@ -792,9 +1055,10 @@ ORDER BY activity.player_id;
         main_payload = json.loads(Path("dsa/leetcode/2615_sum-of-distances/cases.json").read_text(encoding="utf-8"))
         self.assertNotIn("benchmark", {case["kind"] for case in main_payload["cases"]})
         self.assertTrue(Path("dsa/leetcode/2615_sum-of-distances/benchmark.json").is_file())
-        benchmark = next(case for case in load_case_suite("lc_2615") if case.kind == "benchmark")
-        self.assertEqual(len(benchmark.input["nums"]), 6500)
-        self.assertEqual(benchmark.input["nums"][:3], [4, 4, 4])
+        distance_benchmarks = [case for case in load_case_suite("lc_2615") if case.kind == "benchmark"]
+        self.assertEqual([case.size for case in distance_benchmarks], [4, 16, 32])
+        self.assertEqual([len(case.input["nums"]) for case in distance_benchmarks], [4, 16, 32])
+        self.assertEqual(distance_benchmarks[0].input["nums"][:3], [4, 4, 4])
         stats_benchmarks = [case for case in load_case_suite("lc_1093") if case.kind == "benchmark"]
         self.assertEqual(len(stats_benchmarks), 3)
         stats_benchmark = stats_benchmarks[0]
@@ -948,6 +1212,22 @@ def solve(nums):
         self.assertFalse(_wiggle_sort_matches([2, 2, 2], [2, 2, 2], strict=True))
         self.assertTrue(_wiggle_sort_matches([1, 3, 2, 4], [1, 2, 3, 4], strict=False))
 
+    def test_absolute_value_sorted_validator_accepts_either_tie_order(self) -> None:
+        values = [3, -1, -4, 1, 5]
+
+        self.assertTrue(_absolute_value_sorted_match([-1, 1, 3, -4, 5], values))
+        self.assertTrue(_absolute_value_sorted_match([1, -1, 3, -4, 5], values))
+        self.assertFalse(_absolute_value_sorted_match([-1, 1, -4, 3, 5], values))
+        self.assertFalse(_absolute_value_sorted_match([-1, 1, 3, -4, 4], values))
+
+    def test_balanced_factor_validator_accepts_any_optimal_order(self) -> None:
+        expected = [2, 2, 11]
+
+        self.assertTrue(_balanced_factor_decomposition_match([11, 2, 2], expected, 44, 3))
+        self.assertFalse(_balanced_factor_decomposition_match([1, 4, 11], expected, 44, 3))
+        self.assertFalse(_balanced_factor_decomposition_match([2, 2, 10], expected, 44, 3))
+        self.assertFalse(_balanced_factor_decomposition_match([2, 22], expected, 44, 3))
+
     def test_not_average_neighbors_validator_accepts_any_valid_permutation(self) -> None:
         values = [1, 2, 3, 4, 5]
         case = ValidatedCase(
@@ -1079,6 +1359,17 @@ def solve(nums):
         self.assertFalse(_shortest_superstring_match("abcabc", case.expected, words))
         self.assertFalse(_shortest_superstring_match("abcax", case.expected, words))
         self.assertFalse(_shortest_superstring_match(["abcab"], case.expected, words))
+
+        pair_case = ValidatedCase(
+            id="shortest-superstring-pair",
+            name="shortest superstring pair",
+            kind="sample",
+            input={"s1": "aba", "s2": "bab"},
+            expected="abab",
+            validator={"kind": "shortest_superstring", "word_params": ["s1", "s2"]},
+        )
+        self.assertTrue(_validated_case_matches(pair_case, "baba", pair_case.expected))
+        self.assertFalse(_validated_case_matches(pair_case, "ababa", pair_case.expected))
 
     def test_shortest_common_supersequence_validator_accepts_optimal_ties(self) -> None:
         case = ValidatedCase(
@@ -1229,6 +1520,33 @@ def solve(barcodes):
         body = response.json()
         self.assertTrue(body["passed"], body)
 
+    def test_maximum_bob_points_validator_accepts_optimal_ties(self) -> None:
+        alice = [0] * 12
+        self.assertTrue(
+            _maximum_bob_points_match(
+                [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0],
+                27,
+                3,
+                alice,
+            )
+        )
+        self.assertTrue(
+            _maximum_bob_points_match(
+                [0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+                27,
+                3,
+                alice,
+            )
+        )
+        self.assertFalse(
+            _maximum_bob_points_match(
+                [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
+                27,
+                3,
+                alice,
+            )
+        )
+
     def test_rearranged_k_distance_validator_accepts_any_valid_arrangement(self) -> None:
         self.assertTrue(_rearranged_k_distance_match("acbacb", "abcabc", "aabbcc", 3))
         self.assertFalse(_rearranged_k_distance_match("abccab", "abcabc", "aabbcc", 3))
@@ -1359,6 +1677,45 @@ def solve(n):
         self.assertFalse(_matrix_margins_match([[3, -1], [1, 8]], [2, 9], [4, 7]))
         self.assertFalse(_matrix_margins_match([[True, 2], [3, 5]], [3, 8], [4, 7]))
 
+    def test_grid_layout_validator_accepts_any_exact_grid_embedding(self) -> None:
+        edges = [[0, 1], [0, 2], [1, 3], [2, 3]]
+        self.assertTrue(_grid_layout_match([[0, 1], [2, 3]], 4, edges))
+        self.assertTrue(_grid_layout_match([[3, 1], [2, 0]], 4, edges))
+        self.assertFalse(_grid_layout_match([[0, 1, 2, 3]], 4, edges))
+        self.assertFalse(_grid_layout_match([[0, 1], [2]], 4, edges))
+        self.assertFalse(_grid_layout_match([[0, 1], [2, 2]], 4, edges))
+
+    def test_last_marked_nodes_validator_accepts_any_farthest_ties(self) -> None:
+        edges = [[0, 1], [0, 2], [0, 3]]
+        self.assertTrue(_last_marked_nodes_match([1, 2, 1, 1], edges))
+        self.assertTrue(_last_marked_nodes_match([3, 2, 1, 1], edges))
+        self.assertFalse(_last_marked_nodes_match([0, 2, 1, 1], edges))
+        self.assertFalse(_last_marked_nodes_match([1, 2, 1], edges))
+
+    def test_condition_matrix_validator_accepts_any_valid_layout_and_impossibility(self) -> None:
+        rows = [[1, 2], [3, 2]]
+        columns = [[2, 1], [3, 2]]
+        self.assertTrue(
+            _condition_matrix_match(
+                [[3, 0, 0], [0, 0, 1], [0, 2, 0]],
+                3,
+                rows,
+                columns,
+            )
+        )
+        self.assertFalse(
+            _condition_matrix_match(
+                [[0, 0, 3], [1, 0, 0], [0, 2, 0]],
+                3,
+                rows,
+                columns,
+            )
+        )
+        self.assertTrue(
+            _condition_matrix_match([], 3, [[1, 2], [2, 3], [3, 1]], [[2, 1]])
+        )
+        self.assertFalse(_condition_matrix_match([], 3, rows, columns))
+
     def test_float_close_validator_accepts_small_probability_drift(self) -> None:
         self.assertTrue(_float_close_match(0.6666666667, 0.66667, 1e-4))
         self.assertFalse(_float_close_match(0.65, 0.66667, 1e-4))
@@ -1479,6 +1836,18 @@ def solve(n):
         self.assertTrue(_ordered_groups_unordered_items_match([[1, 0], [4, 2, 3]], expected))
         self.assertFalse(_ordered_groups_unordered_items_match([[4, 2, 3], [1, 0]], expected))
         self.assertFalse(_ordered_groups_unordered_items_match([[0, 1], [2, 3]], expected))
+
+    def test_ordered_results_validator_only_ignores_inner_list_order(self) -> None:
+        expected = [None, [2, 1], None, [3], []]
+        self.assertTrue(
+            _ordered_results_unordered_lists_match([None, [1, 2], None, [3], []], expected)
+        )
+        self.assertFalse(
+            _ordered_results_unordered_lists_match([None, [1, 2], [3], None, []], expected)
+        )
+        self.assertFalse(
+            _ordered_results_unordered_lists_match([None, [1], None, [3], []], expected)
+        )
 
     def test_ordered_unordered_groups_validator_preserves_round_order(self) -> None:
         expected = [[4, 5, 3], [2], [1]]
@@ -1860,6 +2229,10 @@ def solve(n):
     def test_tree_root_node_hint_is_converted_for_validated_cases(self) -> None:
         spec = CHALLENGE_REGISTRY["lc_2458"]()._spec
         self.assertEqual(_tree_param_names(spec), ["root"])
+
+    def test_parent_array_with_non_root_nodes_is_not_converted_to_tree_nodes(self) -> None:
+        spec = CHALLENGE_REGISTRY["lc_3575"]()._spec
+        self.assertEqual(_tree_param_names(spec), [])
 
     def test_list_of_tree_fixtures_is_converted_to_separate_roots(self) -> None:
         values = _prepare_validated_kwargs(

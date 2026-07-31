@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3959",
+    "frontend_id": "3959",
+    "title_slug": "check-good-integer",
+    "url": "https://leetcode.com/problems/check-good-integer/description/",
+    "paid_only": false,
+    "content_sha256": "3ce9c689885a711245967b5d050a2304547e8d4d1c9cc965c798a7b5ddeb966e",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 1000", "output": "false", "has_explanation": true},
+      {"ordinal": 2, "input": "n = 19", "output": "true", "has_explanation": true}
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "326f3bc2ddf42bd9750bcd3006a22f5f4acfc58521b5842c80123ed925abd875",
+      "reference/contract.md": "0282721e718718376f377c595d3d26ab58cef6bc6bf8a83f20b7fc3de3c7eb7e",
+      "reference/examples.md": "b3ce11fa36f9459a5b45ee14a476bd138ad529b2b7054e5bd7ec07b538aa88ab",
+      "reference/constraints.md": "cb3df2b25fc30000af2ebdc67febec9b47b281f09de689eb8e8d1b5dc081c856"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

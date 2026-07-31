@@ -3,90 +3,66 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: abc has a different difference vector",
+      "name": "sample: abc has the odd vector",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "words": [
-          "adc",
-          "wzy",
-          "abc"
-        ]
-      },
+      "input": {"words": ["adc", "wzy", "abc"]},
       "expected": "abc",
-      "tags": [
-        "sample",
-        "string"
-      ]
+      "tags": ["sample", "outlier-last"]
     },
     {
       "id": "sample-2",
       "name": "sample: bob is the outlier",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "words": [
-          "aaa",
-          "bob",
-          "ccc",
-          "ddd"
-        ]
-      },
+      "input": {"words": ["aaa", "bob", "ccc", "ddd"]},
       "expected": "bob",
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "outlier-middle"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: alm differs",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "abm",
-          "bcn",
-          "alm"
-        ]
-      },
-      "expected": "alm",
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-flat-then-odd",
-      "name": "trial: flat strings and one changing string",
+      "id": "trial-outlier-first",
+      "name": "trial: outlier appears first",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "words": [
-          "aaa",
-          "bbb",
-          "abd"
-        ]
-      },
-      "expected": "abd",
-      "tags": [
-        "trial"
-      ]
+      "input": {"words": ["ace", "abc", "bcd"]},
+      "expected": "ace",
+      "tags": ["trial", "outlier-first"]
     },
     {
-      "id": "real-two-letter-words",
-      "name": "hidden: two-letter words",
+      "id": "trial-shifted-common",
+      "name": "trial: shifted words share differences",
+      "kind": "trial",
+      "visible": true,
+      "input": {"words": ["abm", "bcn", "alm"]},
+      "expected": "alm",
+      "tags": ["trial", "shifted"]
+    },
+    {
+      "id": "real-two-letter",
+      "name": "hidden: two-letter signatures",
       "kind": "real",
       "visible": false,
-      "input": {
-        "words": [
-          "az",
-          "ba",
-          "cz"
-        ]
-      },
-      "expected": "az",
-      "tags": [
-        "hidden"
-      ]
+      "input": {"words": ["ab", "bc", "ac"]},
+      "expected": "ac",
+      "tags": ["hidden", "minimum-length"]
+    },
+    {
+      "id": "real-negative-differences",
+      "name": "hidden: descending common pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["cba", "abc", "dcb", "edc"]},
+      "expected": "abc",
+      "tags": ["hidden", "negative-differences"]
+    },
+    {
+      "id": "real-long-words",
+      "name": "hidden: maximum word length",
+      "kind": "real",
+      "visible": false,
+      "input": {"words": ["abcdefghijklmnopqrst", "bcdefghijklmnopqrstu", "abcdefghijklmnopqrtt"]},
+      "expected": "abcdefghijklmnopqrtt",
+      "tags": ["hidden", "maximum-length"]
     }
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_262", "frontend_id": "262", "title_slug": "trips-and-users", "url": "https://leetcode.com/problems/trips-and-users/description/", "paid_only": false, "content_sha256": "0d4180152535a7831bf5f8a37961c1fd1c00d69158e63060ebc30bb80880256c", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["trips_table", "users_table", "description", "examples"],
+    "examples": [{"ordinal": 1, "input": "Trips = [[1,1,10,1,\"completed\",\"2013-10-01\"],[2,2,11,1,\"cancelled_by_driver\",\"2013-10-01\"],[3,3,12,6,\"completed\",\"2013-10-01\"],[4,4,13,6,\"cancelled_by_client\",\"2013-10-01\"],[5,1,10,1,\"completed\",\"2013-10-02\"],[6,2,11,6,\"completed\",\"2013-10-02\"],[7,3,12,6,\"completed\",\"2013-10-02\"],[8,2,12,12,\"completed\",\"2013-10-03\"],[9,3,10,12,\"completed\",\"2013-10-03\"],[10,4,13,12,\"cancelled_by_driver\",\"2013-10-03\"]], Users = [[1,\"No\",\"client\"],[2,\"Yes\",\"client\"],[3,\"No\",\"client\"],[4,\"No\",\"client\"],[10,\"No\",\"driver\"],[11,\"No\",\"driver\"],[12,\"No\",\"driver\"],[13,\"No\",\"driver\"]]", "output": "[[\"2013-10-01\",0.33],[\"2013-10-02\",0.00],[\"2013-10-03\",0.50]]", "has_explanation": true}],
+    "constraint_count": 0,
+    "visuals": {"source_images": 0, "source_tables": 5, "source_diagrams": 0, "local_images": 0, "local_tables": 5, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/trips_table.md": "dc6afe32b444ad8a245bf2d976641cf1d7c0b4c9e1f3d45e4680df250394bb79", "reference/users_table.md": "98517ba2c53936c00da322f65f6151410c8b6f65a14f74bea1ec917f7eb6237d", "reference/description.md": "c043c0cffdc7cac1ab470cb48d4858ba6ea3924cee2127cb4f840fdd0030e016", "reference/contract.md": "7413d83190b75b85db9cb46699a7bfced01a4790409dc0b634a5e12dd3db8828", "reference/examples.md": "d4f3fc7f50c51ee9675b9fe3b85885a392935912fa1dc68f0b0bbcbc7f324fe5"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

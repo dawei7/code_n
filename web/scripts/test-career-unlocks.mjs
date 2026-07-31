@@ -18,6 +18,24 @@ const {
   collectCustomCareerLeaves,
   resolveCareerSequenceOrder,
 } = await import(moduleUrl);
+const cheaterModeSource = await readFile(
+  new URL('../src/lib/cheaterMode.ts', import.meta.url),
+  'utf8',
+);
+const cheaterModeOutput = ts.transpileModule(cheaterModeSource, {
+  compilerOptions: {
+    module: ts.ModuleKind.ES2022,
+    target: ts.ScriptTarget.ES2022,
+  },
+}).outputText;
+const cheaterModeUrl = `data:text/javascript;base64,${Buffer.from(cheaterModeOutput).toString('base64')}`;
+const { canPreviewChallenge, canRevealSolution } = await import(cheaterModeUrl);
+
+assert.equal(canRevealSolution(false, false), false);
+assert.equal(canRevealSolution(true, false), true);
+assert.equal(canRevealSolution(false, true), true);
+assert.equal(canPreviewChallenge(true, false), false);
+assert.equal(canPreviewChallenge(true, true), true);
 
 assert.equal(
   resolveCareerSequenceOrder(0, 217),

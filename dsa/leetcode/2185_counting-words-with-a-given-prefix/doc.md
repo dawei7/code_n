@@ -8,49 +8,54 @@
 | Category | Algorithms |
 | Topics | Array, String, String Matching |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [counting-words-with-a-given-prefix](https://leetcode.com/problems/counting-words-with-a-given-prefix/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/counting-words-with-a-given-prefix/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/counting-words-with-a-given-prefix/).
 
 ### Goal
-Count how many words begin with a specified prefix.
+
+Given an array of lowercase strings `words` and another lowercase string
+`pref`, inspect every word independently. A prefix is a contiguous substring
+that starts at the word's first character; it does not count when the same
+characters occur only in the middle or at the end.
+
+Count how many array entries have `pref` as a prefix. Duplicate strings occupy
+separate positions and each matching occurrence contributes one to the
+answer. A word shorter than `pref` cannot match it.
 
 ### Function Contract
+
 **Inputs**
 
-- `words`: a list of lowercase words.
-- `pref`: the lowercase prefix to match.
+- `words`: an array containing between one and 100 lowercase strings, each
+  with length in $[1,100]$.
+- `pref`: a lowercase string with length in $[1,100]$.
+
+Define
+
+$$
+C=\sum_{w\in\texttt{words}}
+\min\bigl(\lvert w\rvert,\lvert\texttt{pref}\rvert\bigr).
+$$
 
 **Return value**
 
-The number of words whose first characters equal `pref`.
+Return the number of entries in `words` whose leading characters equal
+`pref`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `words = ["pay", "attention", "practice", "attend"]`, `pref = "at"`
+- Input: `words = ["pay","attention","practice","attend"]`, `pref = "at"`
 - Output: `2`
 
 **Example 2**
 
-- Input: `words = ["leetcode", "win", "loops", "success"]`, `pref = "code"`
+- Input: `words = ["leetcode","win","loops","success"]`, `pref = "code"`
 - Output: `0`
 
 **Example 3**
 
-- Input: `words = ["a", "aa", "ab"]`, `pref = "a"`
+- Input: `words = ["a","a","ab"]`, `pref = "a"`
 - Output: `3`
-
----
-
-## Solution
-### Approach
-Scan the list and use a prefix comparison for each word, incrementing the result whenever the word starts with `pref`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(W * P)` in the worst case, where `W` is the number of words and `P` is the prefix length
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

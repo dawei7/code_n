@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Golden Hour Customers and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Aggregates exact peak-hour and rating metrics once per customer, filters all four thresholds, and applies the required ordering.",
+      "time_complexity": "O(R log R + C log C)",
+      "space_complexity": "O(R + C)"
     }
   ]
 }

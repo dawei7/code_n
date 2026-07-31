@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3653",
+  "cases": [
+    {
+      "id": "sample-all-indices",
+      "name": "sample: multiply all three entries",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "full-range"
+      ]
+    },
+    {
+      "id": "sample-overlapping-queries",
+      "name": "sample: overlapping progressions preserve order",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          1,
+          5,
+          4
+        ],
+        "queries": [
+          [
+            1,
+            4,
+            2,
+            3
+          ],
+          [
+            0,
+            2,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 31,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: singleton update and XOR",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "queries": [
+          [
+            0,
+            0,
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": 35,
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-step-exceeds-width",
+      "name": "trial: only left endpoint is visited",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "queries": [
+          [
+            1,
+            2,
+            5,
+            9
+          ]
+        ]
+      },
+      "expected": 17,
+      "tags": [
+        "trial",
+        "large-step"
+      ]
+    },
+    {
+      "id": "trial-multiplier-one",
+      "name": "trial: identity query leaves values unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          6,
+          7,
+          5
+        ],
+        "queries": [
+          [
+            0,
+            3,
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "trial",
+        "identity"
+      ]
+    },
+    {
+      "id": "real-same-index-repeated",
+      "name": "real: repeated multiplications use current value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30
+        ],
+        "queries": [
+          [
+            1,
+            1,
+            3,
+            4
+          ],
+          [
+            1,
+            2,
+            2,
+            5
+          ],
+          [
+            0,
+            1,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 810,
+      "tags": [
+        "real",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-modular-reduction",
+      "name": "real: products wrap modulo the required prime",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999
+        ],
+        "queries": [
+          [
+            0,
+            1,
+            1,
+            100000
+          ],
+          [
+            0,
+            0,
+            1,
+            100000
+          ]
+        ]
+      },
+      "expected": 999199981,
+      "tags": [
+        "real",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-disjoint-progressions",
+      "name": "real: residue progressions update disjoint indices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "queries": [
+          [
+            0,
+            5,
+            2,
+            3
+          ],
+          [
+            1,
+            5,
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "residue-classes"
+      ]
+    },
+    {
+      "id": "real-query-order",
+      "name": "real: several overlapping modular multiplications",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          123456789,
+          987654321,
+          42
+        ],
+        "queries": [
+          [
+            0,
+            2,
+            1,
+            99999
+          ],
+          [
+            0,
+            2,
+            2,
+            77777
+          ],
+          [
+            1,
+            2,
+            1,
+            55555
+          ]
+        ]
+      },
+      "expected": 905307277,
+      "tags": [
+        "real",
+        "multiple-overlaps"
+      ]
+    },
+    {
+      "id": "real-single-index-xor-cancellation",
+      "name": "real: equal updated values cancel in XOR pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "queries": [
+          [
+            0,
+            3,
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "xor-cancellation"
+      ]
+    },
+    {
+      "id": "real-maximum-multiplier",
+      "name": "real: maximum multiplier on sparse indices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "queries": [
+          [
+            0,
+            6,
+            3,
+            100000
+          ]
+        ]
+      },
+      "expected": 3982,
+      "tags": [
+        "real",
+        "maximum-multiplier"
+      ]
+    }
+  ]
+}

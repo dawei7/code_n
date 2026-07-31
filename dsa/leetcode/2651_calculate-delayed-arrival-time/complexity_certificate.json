@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2651",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The contract has only 23 possible scheduled hours and 24 possible delays, and one addition plus one modulo operation handles every pair.",
+  "workload_bound": {
+    "symbol": "P",
+    "maximum": 552,
+    "unit": "legal arrival-delay pairs",
+    "source_constraint": "arrivalTime ranges from 1 through 23 and delayedTime ranges from 1 through 24"
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"Every legal input is processed by exactly one integer addition and one remainder operation, independent of the hour values."},
+    {"kind":"exhaustive_domain","evidence":"Regression checks all 23 times 24 legal input pairs against repeated 24-hour normalization."}
+  ]
+}

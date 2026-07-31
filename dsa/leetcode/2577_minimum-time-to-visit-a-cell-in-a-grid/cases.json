@@ -31,7 +31,8 @@
       "expected": 7,
       "tags": [
         "sample",
-        "dijkstra"
+        "dijkstra",
+        "parity"
       ]
     },
     {
@@ -61,12 +62,12 @@
       "expected": -1,
       "tags": [
         "sample",
-        "blocked"
+        "blocked-start"
       ]
     },
     {
       "id": "trial-open-two-by-two",
-      "name": "trial: open two by two grid",
+      "name": "trial: every move is immediately available",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -84,35 +85,36 @@
       "expected": 2,
       "tags": [
         "trial",
-        "small"
+        "minimum-grid"
       ]
     },
     {
-      "id": "trial-blocked-two-by-two",
-      "name": "trial: no first move is possible",
+      "id": "trial-one-first-move",
+      "name": "trial: only the downward first move is legal",
       "kind": "trial",
       "visible": true,
       "input": {
         "grid": [
           [
             0,
-            5
+            2
           ],
           [
-            5,
-            6
+            1,
+            3
           ]
         ]
       },
-      "expected": -1,
+      "expected": 4,
       "tags": [
         "trial",
-        "edge"
+        "single-first-move",
+        "parity"
       ]
     },
     {
-      "id": "real-wait-on-middle-path",
-      "name": "hidden: reachable path with waits",
+      "id": "real-release-exact-parity",
+      "name": "hidden: release time has reachable parity",
       "kind": "real",
       "visible": false,
       "input": {
@@ -120,23 +122,164 @@
           [
             0,
             1,
-            4
+            100
           ],
           [
             1,
             2,
+            7
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "exact-parity"
+      ]
+    },
+    {
+      "id": "real-release-extra-second",
+      "name": "hidden: release time needs one extra second",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            100
+          ],
+          [
+            1,
+            2,
+            6
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "parity-adjustment"
+      ]
+    },
+    {
+      "id": "real-maximum-release",
+      "name": "hidden: destination has the maximum release time",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1
+          ],
+          [
+            100000,
+            100000
+          ]
+        ]
+      },
+      "expected": 100000,
+      "tags": [
+        "hidden",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-nonmonotone-times",
+      "name": "hidden: shortest route crosses nonmonotone release times",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            12
+          ],
+          [
+            19,
+            39,
+            97
+          ],
+          [
+            75,
+            88,
+            33
+          ],
+          [
+            21,
+            2,
+            88
+          ]
+        ]
+      },
+      "expected": 89,
+      "tags": [
+        "hidden",
+        "nonmonotone",
+        "dijkstra"
+      ]
+    },
+    {
+      "id": "real-zero-first-neighbor",
+      "name": "hidden: a zero-valued first neighbor opens the route",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            0,
+            5,
             5
           ],
           [
+            5,
             4,
-            3,
-            6
+            3
           ]
         ]
       },
       "expected": 6,
       "tags": [
-        "hidden"
+        "hidden",
+        "zero-release"
+      ]
+    },
+    {
+      "id": "real-detour-with-waits",
+      "name": "hidden: detour remains reachable through oscillation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            5,
+            1
+          ],
+          [
+            0,
+            7,
+            6
+          ],
+          [
+            7,
+            7,
+            1
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "detour",
+        "oscillation"
       ]
     }
   ]

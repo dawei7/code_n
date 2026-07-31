@@ -1,9 +1,9 @@
 ## General
-Only the parity of each increment count matters. Maintain one bit for every row and every column. For operation `[r, c]`, toggle the bit for row `r` and the bit for column `c`; toggling is equivalent to adding one modulo two.
+Only the parity of each increment count matters. Maintain one bit for every row and every column. For operation `[row, column]`, toggle the corresponding row and column bits; toggling is equivalent to adding one modulo two.
 
 **Deriving a cell's parity**
 
-Cell `(r, c)` receives every increment applied to row `r` and every increment applied to column `c`. Its final parity is therefore the exclusive-or of those two parity bits. The cell is odd exactly when one bit is odd and the other is even. The double increment at an operation's intersection is handled automatically because two toggles cancel modulo two.
+Cell `(row, column)` receives every increment applied to that row and every increment applied to that column. Its final parity is therefore the exclusive-or of those two parity bits. The cell is odd exactly when one bit is odd and the other is even. The double increment at an operation's intersection is handled automatically because two toggles cancel modulo two.
 
 **Counting without constructing the matrix**
 

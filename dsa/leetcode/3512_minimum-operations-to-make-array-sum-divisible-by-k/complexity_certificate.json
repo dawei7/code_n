@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3512",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Any array value can change the total remainder, so one complete input scan matches the problem's linear inspection lower bound.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "For any position an adversary can alter that positive input value by one while keeping every inspected value fixed, changing the total modulo any k greater than one and potentially changing the answer. A correct worst-case algorithm must inspect all n values. Summing once and taking one remainder performs O(1) work per value and meets this Omega(n) lower bound."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An uninspected array entry can be changed by one and thereby change the required remainder and operation count."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The accepted implementation visits each value once to compute the sum, then performs one modulo operation."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover k equal to one, the maximum k, a single element, zero remainder, remainder k minus one, maximum values, and sums below k."
+    }
+  ]
+}

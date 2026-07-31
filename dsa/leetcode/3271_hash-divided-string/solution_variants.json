@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Hash Divided String and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans every character once, accumulating one modulo-26 alphabet sum per fixed-size group.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n/k)"
     }
   ]
 }

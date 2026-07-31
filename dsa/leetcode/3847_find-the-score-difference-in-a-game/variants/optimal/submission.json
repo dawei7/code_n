@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4224",
+  "frontend_id": "3847",
+  "title_slug": "find-the-score-difference-in-a-game",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.scoreDifference",
+  "verified_submission_id": "2086049070",
+  "verified_at": "2026-07-29T11:35:58.000302+00:00"
+}

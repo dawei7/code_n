@@ -5,51 +5,46 @@
 | Source | LeetCode |
 | Frontend ID | 2128 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Math, Bit Manipulation, Matrix |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [remove-all-ones-with-row-and-column-flips](https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/remove-all-ones-with-row-and-column-flips/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given an $m\times n$ binary matrix. In one operation, choose any
+complete row or any complete column and flip all of its entries: every `0`
+becomes `1`, and every `1` becomes `0`.
+
+You may perform any number of these operations, including none, and may choose
+rows and columns in any order. Determine whether it is possible to transform
+the entire matrix to zeros.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `grid`: An $m\times n$ matrix whose entries are either `0` or `1`, with
+  $1\le m,n\le 300$.
 
 **Return value**
 
-TODO
+`true` if row and column flips can remove every `1`; otherwise `false`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]`
+- Output: `true`
+- Explanation: Flipping the middle row and then the middle column produces an
+  all-zero matrix.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `grid = [[1, 1, 0], [0, 0, 0], [0, 0, 0]]`
+- Output: `false`
+- Explanation: No combination of whole-row and whole-column flips can remove
+  all ones.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `grid = [[0]]`
+- Output: `true`
+- Explanation: The matrix already contains no ones.

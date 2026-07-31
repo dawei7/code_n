@@ -1,0 +1,393 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3999",
+  "cases": [
+    {
+      "id": "sample-single-group",
+      "name": "sample: one equivalent pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "ntgwz",
+          "zwntg"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "both-parities"
+      ]
+    },
+    {
+      "id": "sample-three-groups",
+      "name": "sample: six permutations form three groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "cab",
+          "bac",
+          "acb",
+          "bca",
+          "cba"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "sample-five-groups",
+      "name": "sample: equivalent pairs and singleton groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "leet",
+          "abb",
+          "bab",
+          "deed",
+          "edde",
+          "code",
+          "bba"
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "mixed-groups"
+      ]
+    },
+    {
+      "id": "trial-one-character",
+      "name": "trial: one word with an empty odd sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-duplicate-singletons",
+      "name": "trial: duplicate one-character words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-different-lengths",
+      "name": "trial: identical letters at four lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a",
+          "aa",
+          "aaa",
+          "aaaa"
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "different-lengths"
+      ]
+    },
+    {
+      "id": "trial-both-parity-rotations",
+      "name": "trial: both parity sequences rotate independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcdef",
+          "edafcb"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "independent-rotations"
+      ]
+    },
+    {
+      "id": "trial-odd-length-word",
+      "name": "trial: rotations with unequal parity lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcde",
+          "edabc"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "trial-identical-words",
+      "name": "trial: no shift and repeated words",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "algorithm",
+          "algorithm",
+          "algorithm"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "zero-shift",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-anagram-not-equivalent",
+      "name": "trial: anagrams can have different parity signatures",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abcd",
+          "abdc"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "parity-trap"
+      ]
+    },
+    {
+      "id": "real-two-rotation-classes",
+      "name": "hidden: four anagrams form two signature classes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abcd",
+          "cdab",
+          "badc",
+          "dcba"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "multiple-groups"
+      ]
+    },
+    {
+      "id": "real-swapped-parities",
+      "name": "hidden: swapping even and odd classes is not allowed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abab",
+          "baba"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "parity-trap",
+        "periodic"
+      ]
+    },
+    {
+      "id": "real-all-rotation-combinations",
+      "name": "hidden: all independent rotations share one signature",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abcdefgh",
+          "ahcbedgf",
+          "afchebgd",
+          "adcfehgb",
+          "gbadcfeh",
+          "ghabcdef",
+          "gfahcbed",
+          "gdafcheb",
+          "ebgdafch",
+          "ehgbadcf",
+          "efghabcd",
+          "edgfahcb",
+          "cbedgfah",
+          "chebgdaf",
+          "cfehgbad",
+          "cdefghab"
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "all-rotations",
+        "transitivity"
+      ]
+    },
+    {
+      "id": "real-two-character-fixed",
+      "name": "hidden: parity sequences of length one cannot rotate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "ab",
+          "ba",
+          "ab"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "short-words"
+      ]
+    },
+    {
+      "id": "real-three-character-even-rotation",
+      "name": "hidden: the two-character even sequence may rotate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abc",
+          "cba",
+          "bac"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "odd-length",
+        "mixed-groups"
+      ]
+    },
+    {
+      "id": "real-three-odd-length-classes",
+      "name": "hidden: one equivalent pair and two distinct signatures",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abcde",
+          "edabc",
+          "cbaed",
+          "bcdea"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "odd-length",
+        "mixed-groups"
+      ]
+    },
+    {
+      "id": "real-repeated-characters-different-lengths",
+      "name": "hidden: repeated characters still retain component lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aaaa",
+          "aaaaa",
+          "aaaaaa"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "periodic",
+        "different-lengths"
+      ]
+    },
+    {
+      "id": "real-longer-equivalent-pair",
+      "name": "hidden: longer words and one distinct parity signature",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "leetcode",
+          "codeleet",
+          "eetlecod"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "longer",
+        "mixed-groups"
+      ]
+    },
+    {
+      "id": "real-three-distinct-signatures",
+      "name": "hidden: equal character multisets do not imply equivalence",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "azbycx",
+          "ybxazc",
+          "xczayb"
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "parity-trap",
+        "anagrams"
+      ]
+    },
+    {
+      "id": "real-periodic-duplicates",
+      "name": "hidden: periodic duplicate words collapse to two groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aaaaaaaaaa",
+          "aaaaaaaaaa",
+          "bbbbbbbbbb",
+          "bbbbbbbbbb"
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "periodic",
+        "duplicates"
+      ]
+    }
+  ]
+}

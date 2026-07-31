@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sort the Olympic Table and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Orders all countries by the three descending medal keys and the ascending country tie-breaker.",
+      "time_complexity": "O(R log R)",
+      "space_complexity": "O(R)"
     }
   ]
 }

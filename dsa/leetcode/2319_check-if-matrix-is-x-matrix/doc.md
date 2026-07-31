@@ -5,51 +5,43 @@
 | Source | LeetCode |
 | Frontend ID | 2319 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array, Matrix |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-matrix-is-x-matrix](https://leetcode.com/problems/check-if-matrix-is-x-matrix/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-matrix-is-x-matrix/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-matrix-is-x-matrix/).
-
 ### Goal
-Check whether every cell on either diagonal of a square matrix is nonzero and every cell off both diagonals is zero.
+An $n\times n$ square matrix forms an X when its main diagonal and secondary
+diagonal contain only nonzero values. The main diagonal contains coordinates
+with equal row and column indices; the secondary diagonal contains coordinates
+whose indices sum to $n-1$. In an odd-sized matrix, the center belongs to both
+diagonals.
+
+Determine whether `grid` is an X-matrix. Every diagonal entry must be nonzero,
+and every cell outside both diagonals must be exactly zero. A violation of
+either requirement makes the answer false.
 
 ### Function Contract
 **Inputs**
 
-- `grid`: a square integer matrix.
+- `grid`: An $n\times n$ integer matrix.
+
+The dimension satisfies $3\le n\le100$, and every entry is from $0$ through
+$10^5$.
 
 **Return value**
 
-`true` if the matrix has the required X pattern; otherwise `false`.
+`true` exactly when both diagonals are entirely nonzero and every other entry
+is zero.
 
 ### Examples
 **Example 1**
 
-- Input: `grid = [[2, 0, 0, 1], [0, 3, 1, 0], [0, 5, 2, 0], [4, 0, 0, 2]]`
+- Input: `grid = [[2,0,0,1],[0,3,1,0],[0,5,2,0],[4,0,0,2]]`
 - Output: `true`
 
 **Example 2**
 
-- Input: `grid = [[5, 7, 0], [0, 3, 1], [0, 5, 0]]`
+- Input: `grid = [[5,7,0],[0,3,1],[0,5,0]]`
 - Output: `false`
-
-**Example 3**
-
-- Input: `grid = [[9]]`
-- Output: `true`
-
----
-
-## Solution
-### Approach
-For each `(row, column)`, it lies on the X when `row == column` or `row + column == n - 1`. Require nonzero exactly in that case and zero otherwise; reject the first violation.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: The matrix contains both misplaced nonzero values and a zero on
+  a diagonal.

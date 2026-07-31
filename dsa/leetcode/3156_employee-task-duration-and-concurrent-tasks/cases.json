@@ -1,0 +1,617 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3156",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: overlapping tasks for three employees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 1001,
+              "start_time": "2023-05-01 08:00:00",
+              "end_time": "2023-05-01 09:00:00"
+            },
+            {
+              "task_id": 2,
+              "employee_id": 1001,
+              "start_time": "2023-05-01 08:30:00",
+              "end_time": "2023-05-01 10:30:00"
+            },
+            {
+              "task_id": 3,
+              "employee_id": 1001,
+              "start_time": "2023-05-01 11:00:00",
+              "end_time": "2023-05-01 12:00:00"
+            },
+            {
+              "task_id": 7,
+              "employee_id": 1001,
+              "start_time": "2023-05-01 13:00:00",
+              "end_time": "2023-05-01 15:30:00"
+            },
+            {
+              "task_id": 4,
+              "employee_id": 1002,
+              "start_time": "2023-05-01 09:00:00",
+              "end_time": "2023-05-01 10:00:00"
+            },
+            {
+              "task_id": 5,
+              "employee_id": 1002,
+              "start_time": "2023-05-01 09:30:00",
+              "end_time": "2023-05-01 11:30:00"
+            },
+            {
+              "task_id": 6,
+              "employee_id": 1003,
+              "start_time": "2023-05-01 14:00:00",
+              "end_time": "2023-05-01 16:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            1001,
+            6,
+            2
+          ],
+          [
+            1002,
+            2,
+            2
+          ],
+          [
+            1003,
+            2,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "overlap",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-single-task",
+      "name": "trial: one two-hour task",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 1,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 10:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            1,
+            2,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-touching-tasks",
+      "name": "trial: touching endpoints are not concurrent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 2,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 09:00:00"
+            },
+            {
+              "task_id": 2,
+              "employee_id": 2,
+              "start_time": "2024-01-01 09:00:00",
+              "end_time": "2024-01-01 10:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            2,
+            2,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "endpoint-tie",
+        "half-open"
+      ]
+    },
+    {
+      "id": "trial-identical-intervals",
+      "name": "trial: three tasks share one interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 3,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 10:00:00"
+            },
+            {
+              "task_id": 2,
+              "employee_id": 3,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 10:00:00"
+            },
+            {
+              "task_id": 3,
+              "employee_id": 3,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 10:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            3,
+            2,
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "same-timestamps",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "trial-nested-touch",
+      "name": "trial: nested tasks meet at an endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 4,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 14:00:00"
+            },
+            {
+              "task_id": 2,
+              "employee_id": 4,
+              "start_time": "2024-01-01 09:00:00",
+              "end_time": "2024-01-01 10:00:00"
+            },
+            {
+              "task_id": 3,
+              "employee_id": 4,
+              "start_time": "2024-01-01 10:00:00",
+              "end_time": "2024-01-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            4,
+            6,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "nested",
+        "endpoint-tie"
+      ]
+    },
+    {
+      "id": "trial-duplicate-fractional",
+      "name": "trial: duplicate ninety-minute intervals round down",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 5,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 09:30:00"
+            },
+            {
+              "task_id": 2,
+              "employee_id": 5,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 09:30:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            5,
+            1,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "round-down",
+        "same-timestamps"
+      ]
+    },
+    {
+      "id": "real-disjoint-fractions",
+      "name": "real: disjoint fractional spans are summed before flooring",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 6,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 08:40:00"
+            },
+            {
+              "task_id": 2,
+              "employee_id": 6,
+              "start_time": "2024-01-01 09:00:00",
+              "end_time": "2024-01-01 09:50:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            6,
+            1,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "disjoint",
+        "round-down"
+      ]
+    },
+    {
+      "id": "real-overlap-chain",
+      "name": "real: overlap chain never has three active tasks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 7,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 10:00:00"
+            },
+            {
+              "task_id": 2,
+              "employee_id": 7,
+              "start_time": "2024-01-01 09:00:00",
+              "end_time": "2024-01-01 11:00:00"
+            },
+            {
+              "task_id": 3,
+              "employee_id": 7,
+              "start_time": "2024-01-01 10:00:00",
+              "end_time": "2024-01-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            7,
+            4,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "chain",
+        "endpoint-tie"
+      ]
+    },
+    {
+      "id": "real-multiple-employees",
+      "name": "real: employees are independent and output is ordered",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 20,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 09:00:00"
+            },
+            {
+              "task_id": 1,
+              "employee_id": 10,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 11:00:00"
+            },
+            {
+              "task_id": 2,
+              "employee_id": 10,
+              "start_time": "2024-01-01 09:00:00",
+              "end_time": "2024-01-01 10:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            10,
+            3,
+            2
+          ],
+          [
+            20,
+            1,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "multiple-employees",
+        "ordering",
+        "composite-key"
+      ]
+    },
+    {
+      "id": "real-sub-hour",
+      "name": "real: a duration below one hour floors to zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 8,
+              "start_time": "2024-01-01 10:00:00",
+              "end_time": "2024-01-01 10:59:59"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            8,
+            0,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "round-down",
+        "seconds"
+      ]
+    },
+    {
+      "id": "real-cross-midnight",
+      "name": "real: overlapping tasks cross midnight",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 9,
+              "start_time": "2024-01-01 23:00:00",
+              "end_time": "2024-01-02 01:00:00"
+            },
+            {
+              "task_id": 2,
+              "employee_id": 9,
+              "start_time": "2024-01-02 00:00:00",
+              "end_time": "2024-01-02 02:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            9,
+            3,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "cross-midnight",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-triple-peak",
+      "name": "real: staggered intervals reach concurrency three",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tasks": [
+            {
+              "task_id": 1,
+              "employee_id": 11,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 12:00:00"
+            },
+            {
+              "task_id": 2,
+              "employee_id": 11,
+              "start_time": "2024-01-01 09:00:00",
+              "end_time": "2024-01-01 11:00:00"
+            },
+            {
+              "task_id": 3,
+              "employee_id": 11,
+              "start_time": "2024-01-01 10:00:00",
+              "end_time": "2024-01-01 13:00:00"
+            },
+            {
+              "task_id": 4,
+              "employee_id": 11,
+              "start_time": "2024-01-01 11:00:00",
+              "end_time": "2024-01-01 14:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "total_task_hours",
+          "max_concurrent_tasks"
+        ],
+        "rows": [
+          [
+            11,
+            6,
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "triple-concurrency",
+        "endpoint-tie"
+      ]
+    }
+  ]
+}
+

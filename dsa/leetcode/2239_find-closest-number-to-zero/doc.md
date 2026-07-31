@@ -5,27 +5,38 @@
 | Source | LeetCode |
 | Frontend ID | 2239 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-closest-number-to-zero](https://leetcode.com/problems/find-closest-number-to-zero/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-closest-number-to-zero/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-closest-number-to-zero/).
 
 ### Goal
-Return the array value closest to zero. When a negative and positive value are equally close, choose the positive one.
+
+Given a nonempty integer array `nums`, choose an element whose numeric value is
+closest to zero. The distance of a value $x$ from zero is its absolute value
+$\lvert x\rvert$, so positive and negative values with the same magnitude are
+equally close.
+
+If exactly one array value has the smallest absolute value, return it. If
+several values share that minimum distance, return the largest of those
+values. In particular, when both $-x$ and $x$ are closest for positive $x$,
+the required tie-break returns $x$.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: a nonempty integer array.
+- `nums`: A nonempty array of $n$ integers, where $1\le n\le 1000$.
+
+Every element satisfies $-10^5\le\texttt{nums[i]}\le 10^5$.
 
 **Return value**
 
-The value minimizing absolute magnitude, with the larger value breaking ties.
+Return an element of `nums` minimizing its absolute value; among equal-distance
+elements, return the largest value.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [-4, -2, 1, 4, 8]`
@@ -38,18 +49,5 @@ The value minimizing absolute magnitude, with the larger value breaking ties.
 
 **Example 3**
 
-- Input: `nums = [0, 5, -5]`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-Scan once while tracking the best value. Replace it when a candidate has smaller absolute value, or when the absolute values tie and the candidate itself is larger.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [-5, -3, -9]`
+- Output: `-3`

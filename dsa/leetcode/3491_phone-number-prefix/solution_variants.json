@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Phone Number Prefix and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Inserts every phone number into a trie and detects shorter, longer, and duplicate prefix conflicts during insertion.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(S)"
     }
   ]
 }

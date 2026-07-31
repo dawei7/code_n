@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3433",
+  "frontend_id": "3125",
+  "title_slug": "maximum-number-that-makes-result-of-bitwise-and-zero",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maxNumber",
+  "verified_submission_id": "2079539928",
+  "verified_at": "2026-07-24T14:07:00+02:00"
+}

@@ -3,72 +3,16 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: path frequencies on a seven-node chain",
+      "name": "sample: two uniform paths and two mixed paths",
       "kind": "sample",
       "visible": true,
       "input": {
         "n": 7,
-        "edges": [
-          [
-            0,
-            1,
-            1
-          ],
-          [
-            1,
-            2,
-            1
-          ],
-          [
-            2,
-            3,
-            1
-          ],
-          [
-            3,
-            4,
-            2
-          ],
-          [
-            4,
-            5,
-            2
-          ],
-          [
-            5,
-            6,
-            2
-          ]
-        ],
-        "queries": [
-          [
-            0,
-            3
-          ],
-          [
-            3,
-            6
-          ],
-          [
-            2,
-            6
-          ],
-          [
-            0,
-            6
-          ]
-        ]
+        "edges": [[0,1,1],[1,2,1],[2,3,1],[3,4,2],[4,5,2],[5,6,2]],
+        "queries": [[0,3],[3,6],[2,6],[0,6]]
       },
-      "tags": [
-        "sample",
-        "tree"
-      ],
-      "expected": [
-        0,
-        0,
-        1,
-        3
-      ]
+      "expected": [0,0,1,3],
+      "tags": ["sample", "chain"]
     },
     {
       "id": "sample-2",
@@ -77,254 +21,115 @@
       "visible": true,
       "input": {
         "n": 8,
-        "edges": [
-          [
-            1,
-            2,
-            6
-          ],
-          [
-            1,
-            3,
-            4
-          ],
-          [
-            2,
-            4,
-            6
-          ],
-          [
-            2,
-            5,
-            3
-          ],
-          [
-            3,
-            6,
-            6
-          ],
-          [
-            3,
-            0,
-            8
-          ],
-          [
-            7,
-            0,
-            5
-          ]
-        ],
-        "queries": [
-          [
-            4,
-            6
-          ],
-          [
-            0,
-            4
-          ],
-          [
-            6,
-            5
-          ],
-          [
-            7,
-            4
-          ]
-        ]
+        "edges": [[1,2,6],[1,3,4],[2,4,6],[2,5,3],[3,6,6],[3,0,8],[7,0,2]],
+        "queries": [[4,6],[0,4],[6,5],[7,4]]
       },
-      "tags": [
-        "sample",
-        "lca"
-      ],
-      "expected": [
-        1,
-        2,
-        2,
-        3
-      ]
+      "expected": [1,2,2,3],
+      "tags": ["sample", "branching"]
     },
     {
       "id": "trial-same-node",
-      "name": "trial: same-node query has empty path",
+      "name": "trial: same-node query has an empty path",
       "kind": "trial",
       "visible": true,
       "input": {
         "n": 3,
-        "edges": [
-          [
-            0,
-            1,
-            4
-          ],
-          [
-            1,
-            2,
-            4
-          ]
-        ],
-        "queries": [
-          [
-            1,
-            1
-          ],
-          [
-            0,
-            2
-          ]
-        ]
+        "edges": [[0,1,4],[1,2,4]],
+        "queries": [[1,1],[0,2]]
       },
-      "tags": [
-        "trial",
-        "empty-path"
-      ],
-      "expected": [
-        0,
-        0
-      ]
+      "expected": [0,0],
+      "tags": ["trial", "empty-path"]
     },
     {
       "id": "trial-star-tree",
-      "name": "trial: star paths choose the majority edge weight",
+      "name": "trial: star paths compare their two edge weights",
       "kind": "trial",
       "visible": true,
       "input": {
         "n": 6,
-        "edges": [
-          [
-            0,
-            1,
-            2
-          ],
-          [
-            0,
-            2,
-            2
-          ],
-          [
-            0,
-            3,
-            5
-          ],
-          [
-            0,
-            4,
-            5
-          ],
-          [
-            0,
-            5,
-            5
-          ]
-        ],
-        "queries": [
-          [
-            1,
-            2
-          ],
-          [
-            1,
-            3
-          ],
-          [
-            4,
-            5
-          ]
-        ]
+        "edges": [[0,1,2],[0,2,2],[0,3,5],[0,4,5],[0,5,5]],
+        "queries": [[1,2],[1,3],[4,5]]
       },
-      "tags": [
-        "trial",
-        "star"
-      ],
-      "expected": [
-        0,
-        1,
-        0
-      ]
+      "expected": [0,1,0],
+      "tags": ["trial", "star"]
+    },
+    {
+      "id": "real-single-node",
+      "name": "hidden: one-node tree has no edges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "edges": [],
+        "queries": [[0,0],[0,0]]
+      },
+      "expected": [0,0],
+      "tags": ["hidden", "minimum-tree"]
+    },
+    {
+      "id": "real-maximum-weight",
+      "name": "hidden: maximum edge weight is indexed correctly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "edges": [[0,1,26]],
+        "queries": [[0,1],[1,0],[1,1]]
+      },
+      "expected": [0,0,0],
+      "tags": ["hidden", "maximum-weight"]
+    },
+    {
+      "id": "real-all-distinct-chain",
+      "name": "hidden: every edge on a chain has a distinct weight",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 7,
+        "edges": [[0,1,1],[1,2,2],[2,3,3],[3,4,4],[4,5,5],[5,6,6]],
+        "queries": [[0,6],[1,5],[3,3]]
+      },
+      "expected": [5,3,0],
+      "tags": ["hidden", "distinct-weights", "chain"]
     },
     {
       "id": "real-deeper-branching-tree",
-      "name": "hidden: deeper branches with repeated weights",
+      "name": "hidden: LCAs occur at several depths",
       "kind": "real",
       "visible": false,
       "input": {
         "n": 10,
-        "edges": [
-          [
-            0,
-            1,
-            1
-          ],
-          [
-            1,
-            2,
-            2
-          ],
-          [
-            1,
-            3,
-            2
-          ],
-          [
-            3,
-            4,
-            3
-          ],
-          [
-            3,
-            5,
-            3
-          ],
-          [
-            0,
-            6,
-            1
-          ],
-          [
-            6,
-            7,
-            4
-          ],
-          [
-            7,
-            8,
-            4
-          ],
-          [
-            7,
-            9,
-            2
-          ]
-        ],
-        "queries": [
-          [
-            2,
-            5
-          ],
-          [
-            4,
-            9
-          ],
-          [
-            8,
-            2
-          ],
-          [
-            6,
-            9
-          ]
-        ]
+        "edges": [[0,1,1],[1,2,2],[1,3,2],[3,4,3],[3,5,3],[0,6,1],[6,7,4],[7,8,4],[7,9,2]],
+        "queries": [[2,5],[4,9],[8,2],[6,9]]
       },
-      "tags": [
-        "hidden",
-        "lca"
-      ],
-      "expected": [
-        1,
-        4,
-        3,
-        1
-      ]
+      "expected": [1,4,3,1],
+      "tags": ["hidden", "lca", "branching"]
+    },
+    {
+      "id": "real-branch-frequency",
+      "name": "hidden: root-prefix counts combine across branches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 7,
+        "edges": [[0,1,1],[0,2,2],[1,3,1],[1,4,3],[2,5,2],[2,6,2]],
+        "queries": [[3,4],[3,5],[5,6],[4,6]]
+      },
+      "expected": [1,2,0,2],
+      "tags": ["hidden", "frequency", "cross-branch"]
+    },
+    {
+      "id": "real-majority-and-reversal",
+      "name": "hidden: majority weight and reversed endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [[0,1,4],[1,2,4],[2,3,2],[3,4,4],[4,5,3]],
+        "queries": [[0,5],[1,4],[2,5],[5,0]]
+      },
+      "expected": [2,1,2,2],
+      "tags": ["hidden", "majority", "reversed-endpoints"]
     }
   ]
 }

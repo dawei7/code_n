@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Grid of Region Average and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Validates every 3 x 3 window and accumulates its rounded average into the pixels it covers.",
+      "time_complexity": "O(MN)",
+      "space_complexity": "O(MN)"
     }
   ]
 }

@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3671",
+  "cases": [
+    {
+      "id": "benchmark-increasing-3",
+      "name": "benchmark: enumerate alternatives for 3 increasing values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark",
+        "increasing",
+        "exponential-subsequences",
+        "length-3"
+      ]
+    },
+    {
+      "id": "benchmark-increasing-6",
+      "name": "benchmark: enumerate alternatives for 6 increasing values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 84,
+      "tags": [
+        "benchmark",
+        "increasing",
+        "exponential-subsequences",
+        "length-6"
+      ]
+    },
+    {
+      "id": "benchmark-increasing-12",
+      "name": "benchmark: enumerate alternatives for 12 increasing values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "expected": 4254,
+      "tags": [
+        "benchmark",
+        "increasing",
+        "exponential-subsequences",
+        "length-12"
+      ]
+    }
+  ]
+}

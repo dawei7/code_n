@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2457",
+  "measurement_note": "Size is n, the input integer. Inputs just below a power-of-ten boundary with target one make digit rounding inspect decimal positions, while a correct increment-by-one search tests a number of candidates proportional to n.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: search from nineteen",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 19,
+      "input": {"n": 19, "target": 1},
+      "expected": 81,
+      "tags": ["benchmark", "increment-search"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: search from one hundred ninety-nine",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 199,
+      "input": {"n": 199, "target": 1},
+      "expected": 801,
+      "tags": ["benchmark", "increment-search"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: search from one thousand nine hundred ninety-nine",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1999,
+      "input": {"n": 1999, "target": 1},
+      "expected": 8001,
+      "tags": ["benchmark", "increment-search"]
+    }
+  ]
+}

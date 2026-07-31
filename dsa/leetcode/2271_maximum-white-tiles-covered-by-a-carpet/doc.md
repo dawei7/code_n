@@ -5,52 +5,54 @@
 | Source | LeetCode |
 | Frontend ID | 2271 |
 | Difficulty | Medium |
-| Category | Algorithms |
-| Topics | Array, Binary Search, Greedy, Sliding Window, Sorting, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-white-tiles-covered-by-a-carpet](https://leetcode.com/problems/maximum-white-tiles-covered-by-a-carpet/) |
+| Topics | Array, Binary Search, Greedy, Sorting, Prefix Sum, Sliding Window |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-white-tiles-covered-by-a-carpet/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-white-tiles-covered-by-a-carpet/).
 
 ### Goal
-Place one carpet of fixed integer length over nonoverlapping intervals of white floor tiles. Maximize the number of white tile positions covered, including carpet endpoints.
+
+Each entry `tiles[i] = [li, ri]` describes an inclusive interval of integer
+positions: every position $j$ with $l_i\le j\le r_i$ contains a white tile.
+The intervals do not overlap, but they may be given in any order.
+
+One carpet of length `carpetLen` may be placed at any integer position. It
+covers a consecutive inclusive range of exactly `carpetLen` positions, and
+only white positions inside that range contribute to the result. Gaps between
+white intervals are covered physically but add nothing.
+
+Choose the carpet placement that covers the greatest possible number of white
+tiles and return that maximum.
 
 ### Function Contract
+
 **Inputs**
 
-- `tiles`: disjoint inclusive intervals `[start, end]`.
-- `carpetLen`: the number of consecutive positions covered by the carpet.
+- `tiles`: A list of $n$ pairwise non-overlapping inclusive intervals `[left, right]`.
+- `carpetLen`: The positive number of consecutive positions covered by the carpet.
+
+The constraints are $1\le n\le5\cdot10^4$,
+$1\le\texttt{left}\le\texttt{right}\le10^9$, and
+$1\le\texttt{carpetLen}\le10^9$.
 
 **Return value**
 
-The maximum number of white tiles the carpet can cover.
+Return the maximum number of white integer positions contained in any
+inclusive interval of length `carpetLen`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `tiles = [[1, 5], [10, 11], [12, 18], [20, 25], [30, 32]]`, `carpetLen = 10`
+- Input: `tiles = [[1,5],[10,11],[12,18],[20,25],[30,32]], carpetLen = 10`
 - Output: `9`
+
+A carpet beginning at position `10` covers nine white tiles across the
+adjacent intervals `[10,11]` and `[12,18]`.
 
 **Example 2**
 
-- Input: `tiles = [[10, 11], [1, 1]]`, `carpetLen = 2`
+- Input: `tiles = [[10,11],[1,1]], carpetLen = 2`
 - Output: `2`
 
-**Example 3**
-
-- Input: `tiles = [[1, 3]]`, `carpetLen = 2`
-- Output: `2`
-
----
-
-## Solution
-### Approach
-Sort intervals and use a sliding window whose carpet begins at the current interval's start. Advance the right pointer across intervals fully covered by the carpet while maintaining their total lengths, then add any partial coverage of the next interval. Remove the left interval as the start advances and maximize the total.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)` including sorting; the window scan is `O(n)`
-- **Space Complexity**: `O(1)` auxiliary space when sorting in place
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Placing the carpet on `[10,11]` covers both white positions.

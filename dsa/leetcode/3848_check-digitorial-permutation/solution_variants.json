@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Check Digitorial Permutation and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses the permutation-invariant digit-factorial sum and compares its digit multiset with the input's.",
+      "time_complexity": "O(D)",
+      "space_complexity": "O(1)"
     }
   ]
 }

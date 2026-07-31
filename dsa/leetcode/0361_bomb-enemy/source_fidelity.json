@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_361", "frontend_id": "361", "title_slug": "bomb-enemy", "url": "https://leetcode.com/problems/bomb-enemy/description/", "paid_only": true, "content_sha256": "c68efe22fa272037ad8c7e4e91fe81939172f4b62b76465f37212cfa69609bb9", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "grid = [[\"0\",\"E\",\"0\",\"0\"],[\"E\",\"0\",\"W\",\"E\"],[\"0\",\"E\",\"0\",\"0\"]]", "output": "3", "has_explanation": false},
+      {"ordinal": 2, "input": "grid = [[\"W\",\"W\",\"W\"],[\"0\",\"0\",\"0\"],[\"E\",\"E\",\"E\"]]", "output": "1", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "724943a36d63c801924040dbb897553e25e6bd2e833a216f54f2d8e86a7fa015",
+    "reference/contract.md": "9420fe566c61216fd046e6a09b79cdfd46a250ba453c4ea94d84496bd2169902",
+    "reference/examples.md": "645196a1a904efdf80543e07c0c94da05b09ea6869a9534e60eb5ab54505f71d",
+    "reference/constraints.md": "f479ebb0cc9dd2e24de60746b25de378290e7620d44e634abe81e8c1a050638c"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

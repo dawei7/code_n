@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_215", "frontend_id": "215", "title_slug": "kth-largest-element-in-an-array", "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/description/", "paid_only": false, "content_sha256": "35f0aefaa222be2b2944cd0ec7767432454660a0023599f83404c118b2c58195", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "nums = [3,2,1,5,6,4], k = 2", "output": "5", "has_explanation": false}, {"ordinal": 2, "input": "nums = [3,2,3,1,2,4,5,5,6], k = 4", "output": "4", "has_explanation": false}],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "99ae4f893f24c19651c2325b68035d240d9532d9b485c42a424cf2e63b3ffa37", "reference/contract.md": "bd7dab06edc7323ed1be055fc562d0f9820a728e246bfedbe585c53d793f3883", "reference/examples.md": "dedee6670c236147cc86671a85faf1af61f986fab9a8806b547c891a31308773", "reference/constraints.md": "b0ec86a465b36468c10a6cfd8a442eb48365b3053f1dfedb6642ef60015ffc95"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

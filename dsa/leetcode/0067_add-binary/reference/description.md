@@ -1,0 +1,3 @@
+## Description
+
+Given two binary strings `a` and `b`, return their sum as another binary string.

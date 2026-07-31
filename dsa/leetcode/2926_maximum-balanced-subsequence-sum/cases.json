@@ -3,120 +3,84 @@
   "cases": [
     {
       "id": "sample-balanced-middle",
-      "name": "sample: balanced middle subsequence",
+      "name": "sample: skip one equal starting value",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          3,
-          5,
-          6
-        ]
-      },
+      "input": {"nums": [3, 3, 5, 6]},
       "expected": 14,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
       "id": "sample-skip-negatives",
-      "name": "sample: skip negative dip",
+      "name": "sample: bridge across a negative dip",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          -1,
-          -3,
-          8
-        ]
-      },
+      "input": {"nums": [5, -1, -3, 8]},
       "expected": 13,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
       "id": "sample-all-negative",
-      "name": "sample: best single negative",
+      "name": "sample: choose the best negative singleton",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          -2,
-          -1
-        ]
-      },
+      "input": {"nums": [-2, -1]},
       "expected": -1,
-      "tags": [
-        "sample",
-        "negative"
-      ]
+      "tags": ["sample", "negative"]
     },
     {
-      "id": "trial-repeated-b-values",
-      "name": "trial: repeated transformed values",
+      "id": "trial-equal-keys",
+      "name": "trial: every transformed key is equal",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          4,
-          2,
-          3,
-          7,
-          8,
-          1,
-          11
-        ]
-      },
+      "input": {"nums": [1, 2, 3, 4]},
+      "expected": 10,
+      "tags": ["equal-keys", "inclusive-prefix"]
+    },
+    {
+      "id": "trial-decreasing-keys",
+      "name": "trial: equal values cannot be combined",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 5, 5]},
+      "expected": 5,
+      "tags": ["decreasing-keys"]
+    },
+    {
+      "id": "trial-repeated-transformed-values",
+      "name": "trial: combine repeated transformed values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 2, 3, 7, 8, 1, 11]},
       "expected": 31,
-      "tags": [
-        "fenwick"
-      ]
+      "tags": ["fenwick", "equal-keys"]
     },
     {
       "id": "real-mixed-signs",
-      "name": "real: mixed signs and late gain",
+      "name": "hidden: mixed signs and a late gain",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          10,
-          -5,
-          0,
-          1,
-          8,
-          7,
-          15,
-          -1,
-          20
-        ]
-      },
+      "input": {"nums": [10, -5, 0, 1, 8, 7, 15, -1, 20]},
       "expected": 44,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "mixed-signs"]
     },
     {
-      "id": "real-descending-negative",
-      "name": "real: descending negatives",
+      "id": "real-minimum-value",
+      "name": "hidden: minimum-length input at the value boundary",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          -1,
-          -2,
-          -3,
-          -4,
-          -5
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "hidden",
-        "negative"
-      ]
+      "input": {"nums": [-1000000000]},
+      "expected": -1000000000,
+      "tags": ["hidden", "boundary", "singleton"]
+    },
+    {
+      "id": "real-extreme-values",
+      "name": "hidden: extreme values do not imply compatible endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, -1000000000, 1000000000]},
+      "expected": 1000000000,
+      "tags": ["hidden", "boundary", "wide-integer"]
     }
   ]
 }

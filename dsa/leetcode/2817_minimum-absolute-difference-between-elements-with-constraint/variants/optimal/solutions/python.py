@@ -1,35 +1,50 @@
-import bisect
+from bisect import bisect_left
+
 
 def solve(nums: list[int], x: int) -> int:
-    if x == 0:
-        return 0
-    
-    n = len(nums)
-    sorted_elements = []
-    min_diff = float('inf')
-    
-    # We iterate through the array. For each index i, we consider
-    # elements at index j <= i - x.
-    for i in range(x, n):
-        # Add the element that just became valid (index i - x)
-        val_to_add = nums[i - x]
-        idx = bisect.bisect_left(sorted_elements, val_to_add)
-        sorted_elements.insert(idx, val_to_add)
-        
-        # Find the closest values in the sorted list to nums[i]
-        current_val = nums[i]
-        pos = bisect.bisect_left(sorted_elements, current_val)
-        
-        # Check the element at pos (the smallest element >= current_val)
-        if pos < len(sorted_elements):
-            min_diff = min(min_diff, abs(sorted_elements[pos] - current_val))
-            
-        # Check the element at pos - 1 (the largest element < current_val)
-        if pos > 0:
-            min_diff = min(min_diff, abs(sorted_elements[pos - 1] - current_val))
-            
-        # Optimization: if we found 0, we can't do better
-        if min_diff == 0:
-            return 0
-            
-    return int(min_diff)
+    values = sorted(set(nums))
+    size = len(values)
+    tree = [0] * (size + 1)
+
+    def add(index: int) -> None:
+        index += 1
+        while index <= size:
+            tree[index] += 1
+            index += index & -index
+
+    def prefix(end: int) -> int:
+        count = 0
+        while end:
+            count += tree[end]
+            end -= end & -end
+        return count
+
+    def kth(order: int) -> int:
+        index = 0
+        step = 1 << (size.bit_length() - 1)
+        while step:
+            candidate = index + step
+            if candidate <= size and tree[candidate] < order:
+                index = candidate
+                order -= tree[candidate]
+            step >>= 1
+        return index
+
+    answer = float("inf")
+    inserted = 0
+
+    for right, value in enumerate(nums):
+        if right < x:
+            continue
+
+        add(bisect_left(values, nums[right - x]))
+        inserted += 1
+        position = bisect_left(values, value)
+        before = prefix(position)
+
+        if before:
+            answer = min(answer, value - values[kth(before)])
+        if before < inserted:
+            answer = min(answer, values[kth(before + 1)] - value)
+
+    return answer

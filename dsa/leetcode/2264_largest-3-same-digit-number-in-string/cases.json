@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2264",
+  "cases": [
+    {"id":"sample-two-candidates","name":"sample: larger of two good digits is returned","kind":"sample","visible":true,"input":{"num":"6777133339"},"expected":"777","tags":["sample","maximum"]},
+    {"id":"sample-leading-zeroes","name":"sample: zero triple preserves all three characters","kind":"sample","visible":true,"input":{"num":"2300019"},"expected":"000","tags":["sample","zero"]},
+    {"id":"sample-none","name":"sample: no equal-digit window exists","kind":"sample","visible":true,"input":{"num":"42352338"},"expected":"","tags":["sample","none"]},
+    {"id":"trial-exact-nine","name":"exact three-character maximum candidate","kind":"trial","visible":true,"input":{"num":"999"},"expected":"999","tags":["exact-length","maximum-digit"]},
+    {"id":"trial-overlap","name":"overlapping windows in a longer run produce one value","kind":"trial","visible":true,"input":{"num":"144441"},"expected":"444","tags":["overlap","long-run"]},
+    {"id":"real-zero-only","name":"hidden: the whole input is the zero candidate","kind":"real","visible":false,"input":{"num":"000"},"expected":"000","tags":["hidden","zero","exact-length"]},
+    {"id":"real-late-maximum","name":"hidden: a later maximum beats earlier lower triples","kind":"real","visible":false,"input":{"num":"111222333999000"},"expected":"999","tags":["hidden","late-maximum"]},
+    {"id":"real-repeated-highest","name":"hidden: repeated highest candidates do not change the result","kind":"real","visible":false,"input":{"num":"888108888"},"expected":"888","tags":["hidden","duplicates"]}
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of Number and Its Reverse and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates every possible first addend and tests its decimal digit reversal.",
+      "time_complexity": "O(num log num)",
+      "space_complexity": "O(log num)"
     }
   ]
 }

@@ -8,82 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-value-of-the-partition](https://leetcode.com/problems/find-the-value-of-the-partition/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/find-the-value-of-the-partition/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-value-of-the-partition/).
 
 ### Goal
-Given an array of positive integers `nums`, your task is to partition it into two non-empty arrays, `nums1` and `nums2`, such that:
-1. Every element of `nums` belongs to either `nums1` or `nums2`.
-2. The value of the partition is minimized.
 
-The value of the partition is defined as the absolute difference between the maximum element of `nums1` and the minimum element of `nums2` (i.e., `|max(nums1) - min(nums2)|`), under the condition that all elements in `nums1` are less than or equal to all elements in `nums2`.
+Given a positive integer array `nums`, distribute every element into exactly one of two arrays, `nums1` and `nums2`. Both resulting arrays must contain at least one element.
+
+The value of a partition is the absolute difference between the largest element placed in `nums1` and the smallest element placed in `nums2`, namely `abs(max(nums1) - min(nums2))`. Choose the distribution that makes this value as small as possible and return that minimum. The original order of `nums` does not constrain either group.
 
 ### Function Contract
+
+Let $n$ be the length of `nums`.
+
 **Inputs**
 
-- `nums`: `List[int]` - An array of positive integers containing at least 2 elements.
+- `nums`: An array of positive integers, where $2 \le n \le 10^5$ and $1 \le \texttt{nums}[i] \le 10^9$.
 
 **Return value**
 
-- `int` - The minimum possible value of the partition.
+Return the minimum possible value of `abs(max(nums1) - min(nums2))` over all assignments of the elements to two non-empty arrays.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 3, 2, 4]`
+- Input: `nums = [1,3,2,4]`
 - Output: `1`
-- Explanation: We can partition `nums` into `nums1 = [1, 2]` and `nums2 = [3, 4]`. The maximum of `nums1` is `2` and the minimum of `nums2` is `3`. The value of the partition is `|2 - 3| = 1`, which is the minimum possible.
+- Explanation: Choosing `nums1 = [1,2]` and `nums2 = [3,4]` gives `abs(2 - 3) = 1`, which is minimal.
 
 **Example 2**
 
-- Input: `nums = [100, 1, 10]`
+- Input: `nums = [100,1,10]`
 - Output: `9`
-- Explanation: We can partition `nums` into `nums1 = [1]` and `nums2 = [10, 100]`. The maximum of `nums1` is `1` and the minimum of `nums2` is `10`. The value of the partition is `|1 - 10| = 9`, which is the minimum possible.
+- Explanation: Choosing `nums1 = [10]` and `nums2 = [100,1]` gives `abs(10 - 1) = 9`.
 
----
+**Example 3**
 
-## Solution
-### Approach
-To minimize the partition value `|max(nums1) - min(nums2)|` where all elements in `nums1` are less than or equal to all elements in `nums2`, we can visualize the sorted version of the array.
-
-If we sort `nums` in ascending order: $a_1 \le a_2 \le \dots \le a_n$, any valid partition that satisfies the condition will split the sorted array at some index $i$ such that:
-- $nums1 = \{a_1, a_2, \dots, a_i\}$
-- $nums2 = \{a_{i+1}, \dots, a_n\}$
-
-For this partition, $\max(nums1) = a_i$ and $\min(nums2) = a_{i+1}$. The partition value is simply the difference between these two adjacent elements: $a_{i+1} - a_i$.
-
-Thus, the problem reduces to finding the minimum difference between any two adjacent elements in the sorted array.
-
-1. **Sort** the array in non-decreasing order.
-2. **Iterate** through the sorted array to find the minimum difference between consecutive elements: `nums[i] - nums[i - 1]`.
-
-### Complexity Analysis
-- **Time Complexity**: $\mathcal{O}(N \log N)$ where $N$ is the length of the array `nums`. This is dominated by the sorting step. The subsequent linear scan takes $\mathcal{O}(N)$ time.
-- **Space Complexity**: $\mathcal{O}(1)$ auxiliary space if we sort the array in-place (or $\mathcal{O}(N)$ depending on the implementation of the sorting algorithm, such as Timsort in Python which requires $\mathcal{O}(N)$ space in the worst case).
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    """
-    Finds the minimum partition value by sorting the array and
-    calculating the minimum difference between adjacent elements.
-    """
-    nums.sort()
-
-    # Find the minimum difference between adjacent elements
-    min_diff = float('inf')
-    for i in range(1, len(nums)):
-        diff = nums[i] - nums[i - 1]
-        if diff < min_diff:
-            min_diff = diff
-
-    return min_diff
-```
-</details>
+- Input: `nums = [5,3,5,9]`
+- Output: `0`
+- Explanation: Put one occurrence of `5` in each array so the relevant maximum and minimum are equal.

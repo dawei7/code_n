@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | Math |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sum-multiples](https://leetcode.com/problems/sum-multiples/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/sum-multiples/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sum-multiples/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a positive integer `n`, consider every integer from $1$ through $n$, including both endpoints. Select a number when it is divisible by at least one of $3$, $5$, or $7$. A number divisible by several of these divisors still appears only once in the selected set.
+
+Return the sum of all selected integers. Values that are divisible by none of the three specified numbers contribute nothing, and the inclusive upper endpoint contributes whenever it satisfies at least one divisibility condition.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The inclusive upper bound, where $1 \le n \le 1000$.
 
 **Return value**
 
-TODO
+- Return the sum of the integers in $[1,n]$ divisible by $3$, $5$, or $7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 7`
+- Output: `21`
+- Explanation: The selected values are `3`, `5`, `6`, and `7`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 10`
+- Output: `40`
+- Explanation: The selected values are `3`, `5`, `6`, `7`, `9`, and `10`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 9`
+- Output: `30`
+- Explanation: The selected values are `3`, `5`, `6`, `7`, and `9`.

@@ -1,61 +1,64 @@
+from collections import deque
+from functools import lru_cache
+
+
 def solve(kx: int, ky: int, positions: list[list[int]]) -> int:
-    n = len(positions)
-    all_points = [[kx, ky]] + positions
-    num_points = len(all_points)
+    pawns = len(positions)
+    points = positions + [[kx, ky]]
+    moves = (
+        (1, 2), (1, -2), (-1, 2), (-1, -2),
+        (2, 1), (2, -1), (-2, 1), (-2, -1),
+    )
+    distances = [[0] * (pawns + 1) for _ in range(pawns + 1)]
 
-    def knight_distance(a: list[int], b: list[int]) -> int:
-        ax, ay = a
-        bx, by = b
-        corner_pairs = (
-            ((0, 0), (1, 1)),
-            ((0, 49), (1, 48)),
-            ((49, 0), (48, 1)),
-            ((49, 49), (48, 48)),
-        )
-        endpoints = {(ax, ay), (bx, by)}
-        if any(endpoints == {p, q} for p, q in corner_pairs):
-            return 4
+    for source_index, (source_x, source_y) in enumerate(points[:-1]):
+        targets = {
+            tuple(points[target_index]): target_index
+            for target_index in range(source_index + 1, pawns + 1)
+        }
+        board = [[-1] * 50 for _ in range(50)]
+        board[source_x][source_y] = 0
+        queue = deque([(source_x, source_y)])
 
-        dx = abs(ax - bx)
-        dy = abs(ay - by)
-        if dx < dy:
-            dx, dy = dy, dx
-        if dx == 0 and dy == 0:
+        while queue:
+            x, y = queue.popleft()
+            target_index = targets.pop((x, y), None)
+            if target_index is not None:
+                distance = board[x][y]
+                distances[source_index][target_index] = distance
+                distances[target_index][source_index] = distance
+                if not targets:
+                    break
+
+            for dx, dy in moves:
+                next_x = x + dx
+                next_y = y + dy
+                if (
+                    0 <= next_x < 50
+                    and 0 <= next_y < 50
+                    and board[next_x][next_y] == -1
+                ):
+                    board[next_x][next_y] = board[x][y] + 1
+                    queue.append((next_x, next_y))
+
+    @lru_cache(None)
+    def play(current: int, remaining: int) -> int:
+        if remaining == 0:
             return 0
-        if dx == 1 and dy == 0:
-            return 3
-        if dx == 2 and dy == 2:
-            return 4
-        moves = max((dx + 1) // 2, (dx + dy + 2) // 3)
-        return moves + ((moves + dx + dy) & 1)
 
-    dist = [[0] * num_points for _ in range(num_points)]
-    for i in range(num_points):
-        for j in range(num_points):
-            dist[i][j] = knight_distance(all_points[i], all_points[j])
+        alice_turn = (pawns - remaining.bit_count()) % 2 == 0
+        result = -1 if alice_turn else float("inf")
+        choices = remaining
 
-    memo = {}
+        while choices:
+            pawn_bit = choices & -choices
+            pawn_index = pawn_bit.bit_length() - 1
+            total = distances[current][pawn_index] + play(
+                pawn_index, remaining ^ pawn_bit
+            )
+            result = max(result, total) if alice_turn else min(result, total)
+            choices -= pawn_bit
 
-    def get_moves(last_idx, mask, turn):
-        state = (last_idx, mask, turn)
-        if mask == (1 << n) - 1:
-            return 0
-        if state in memo:
-            return memo[state]
+        return result
 
-        if turn == 0:  # Alice's turn (Maximize)
-            res = -float('inf')
-            for i in range(n):
-                if not (mask & (1 << i)):
-                    res = max(res, dist[last_idx][i + 1] + get_moves(i + 1, mask | (1 << i), 1))
-            memo[state] = res
-            return res
-        else:  # Bob's turn (Minimize)
-            res = float('inf')
-            for i in range(n):
-                if not (mask & (1 << i)):
-                    res = min(res, dist[last_idx][i + 1] + get_moves(i + 1, mask | (1 << i), 0))
-            memo[state] = res
-            return res
-
-    return get_moves(0, 0, 0)
+    return play(pawns, (1 << pawns) - 1)

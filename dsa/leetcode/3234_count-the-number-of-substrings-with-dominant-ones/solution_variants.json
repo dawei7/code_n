@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count the Number of Substrings With Dominant Ones and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates feasible consecutive zero blocks and counts valid endpoint pairs with arithmetic sums.",
+      "time_complexity": "O(n sqrt(n))",
+      "space_complexity": "O(n)"
     }
   ]
 }

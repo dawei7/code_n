@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2486",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: partial target prefix matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "coaching", "t": "coding"},
+      "expected": 4,
+      "tags": ["sample", "partial-match"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: target already matched",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcde", "t": "a"},
+      "expected": 0,
+      "tags": ["sample", "already-subsequence"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: no target character matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "z", "t": "abcde"},
+      "expected": 5,
+      "tags": ["sample", "no-match"]
+    },
+    {
+      "id": "trial-equal-strings",
+      "name": "trial: identical source and target",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abc", "t": "abc"},
+      "expected": 0,
+      "tags": ["trial", "exact-match"]
+    },
+    {
+      "id": "trial-interleaved",
+      "name": "trial: target matched with gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "axbyc", "t": "abc"},
+      "expected": 0,
+      "tags": ["trial", "subsequence-gaps"]
+    },
+    {
+      "id": "real-unmatched-suffix",
+      "name": "hidden: matched prefix followed by absent suffix",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abzz", "t": "abcde"},
+      "expected": 3,
+      "tags": ["hidden", "partial-match"]
+    },
+    {
+      "id": "real-repeated-letters",
+      "name": "hidden: repeated target prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaa", "t": "aaab"},
+      "expected": 1,
+      "tags": ["hidden", "repeated-letters"]
+    },
+    {
+      "id": "real-order-mismatch",
+      "name": "hidden: only the first target character appears in order",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdef", "t": "fed"},
+      "expected": 2,
+      "tags": ["hidden", "order"]
+    }
+  ]
+}

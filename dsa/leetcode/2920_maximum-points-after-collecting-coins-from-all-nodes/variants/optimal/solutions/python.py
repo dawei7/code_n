@@ -1,40 +1,32 @@
-import sys
-
-# Increase recursion depth for deep trees
-sys.setrecursionlimit(200000)
-
-def solve(edges, coins, k):
+def solve(edges: list[list[int]], coins: list[int], k: int) -> int:
     n = len(coins)
-    adj = [[] for _ in range(n)]
-    for u, v in edges:
-        adj[u].append(v)
-        adj[v].append(u)
+    graph = [[] for _ in range(n)]
+    for first, second in edges:
+        graph[first].append(second)
+        graph[second].append(first)
 
-    # Memoization table: (node, halving_count)
-    # halving_count is capped at 13 because 10^9 // 2^14 is 0
-    memo = {}
+    parent = [-2] * n
+    parent[0] = -1
+    order = [0]
+    for node in order:
+        for neighbor in graph[node]:
+            if neighbor != parent[node]:
+                parent[neighbor] = node
+                order.append(neighbor)
 
-    def dfs(u, p, halving_count):
-        # Cap halving_count at 13
-        state = (u, halving_count)
-        if state in memo:
-            return memo[state]
+    maximum_shift = 14
+    dp = [[0] * (maximum_shift + 1) for _ in range(n)]
 
-        # Strategy 1: Take the current coins minus the penalty.
-        # This does not add any new halving effect for descendants.
-        val1 = (coins[u] >> halving_count) - k
-        for v in adj[u]:
-            if v != p:
-                val1 += dfs(v, u, halving_count)
+    for node in reversed(order):
+        for shift in range(maximum_shift - 1, -1, -1):
+            keep_shift = (coins[node] >> shift) - k
+            add_shift = coins[node] >> (shift + 1)
 
-        # Strategy 2: Take half the current coins and halve the descendants.
-        val2 = (coins[u] >> (halving_count + 1))
-        for v in adj[u]:
-            if v != p:
-                val2 += dfs(v, u, min(halving_count + 1, 13))
+            for neighbor in graph[node]:
+                if parent[neighbor] == node:
+                    keep_shift += dp[neighbor][shift]
+                    add_shift += dp[neighbor][shift + 1]
 
-        res = max(val1, val2)
-        memo[state] = res
-        return res
+            dp[node][shift] = max(keep_shift, add_shift)
 
-    return dfs(0, -1, 0)
+    return dp[0][0]

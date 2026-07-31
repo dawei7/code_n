@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-window-choice",
-      "name": "sample: best starts are in the allowed distance window",
+      "name": "sample: best starts span the full allowed distance",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,30 +24,9 @@
       ]
     },
     {
-      "id": "trial-tight-window",
-      "name": "trial: tight distance forces adjacent starts",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          10,
-          8,
-          3,
-          7,
-          15
-        ],
-        "k": 3,
-        "dist": 1
-      },
-      "expected": 20,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "trial-duplicates-window",
-      "name": "trial: duplicate low costs inside a window",
-      "kind": "trial",
+      "id": "sample-duplicates",
+      "name": "sample: duplicate costs within a legal span",
+      "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
@@ -63,61 +42,137 @@
       },
       "expected": 15,
       "tags": [
-        "trial"
+        "sample",
+        "duplicates"
       ]
     },
     {
-      "id": "trial-late-best-window",
-      "name": "trial: optimal window appears late",
+      "id": "sample-tight-window",
+      "name": "sample: distance one forces adjacent starts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          8,
+          18,
+          9
+        ],
+        "k": 3,
+        "dist": 1
+      },
+      "expected": 36,
+      "tags": [
+        "sample",
+        "boundary"
+      ]
+    },
+    {
+      "id": "minimum-length",
+      "name": "boundary: three values require every start",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          4,
+          9
+        ],
+        "k": 3,
+        "dist": 1
+      },
+      "expected": 20,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "every-index-starts",
+      "name": "trial: k equal to n chooses every value",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           5,
           9,
+          1,
           8,
-          7,
-          1,
-          2,
-          1,
-          6
+          2
         ],
-        "k": 4,
+        "k": 5,
         "dist": 3
       },
-      "expected": 9,
+      "expected": 25,
       "tags": [
-        "trial"
+        "boundary"
       ]
     },
     {
-      "id": "real-many-candidates",
-      "name": "real: many candidate starts and duplicate costs",
+      "id": "equal-window-values",
+      "name": "real: equal costs retain their multiplicity",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
           20,
-          14,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "k": 4,
+        "dist": 4
+      },
+      "expected": 32,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "late-optimal-window",
+      "name": "real: the cheapest legal span occurs at the end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          50,
+          100,
+          90,
+          80,
           3,
-          18,
-          4,
-          4,
-          17,
           2,
-          2,
-          16,
-          5,
-          1,
           1
         ],
-        "k": 5,
-        "dist": 5
+        "k": 4,
+        "dist": 3
       },
-      "expected": 26,
+      "expected": 56,
       "tags": [
-        "real",
         "window"
+      ]
+    },
+    {
+      "id": "large-values",
+      "name": "real: the optimum mixes a large and small interior value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1000000000,
+          999999999,
+          1,
+          2,
+          3
+        ],
+        "k": 3,
+        "dist": 2
+      },
+      "expected": 1000000003,
+      "tags": [
+        "large-values"
       ]
     }
   ]

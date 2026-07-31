@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Two Pointers, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [valid-palindrome-iv](https://leetcode.com/problems/valid-palindrome-iv/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/valid-palindrome-iv/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/valid-palindrome-iv/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a string of lowercase English letters. One operation chooses any position and changes its character to a different lowercase letter.
+
+Determine whether the string can be made a palindrome using exactly one or exactly two operations. An already-palindromic string can still qualify: a center character can be changed once, or the two characters of a mirrored pair can both be changed to the same different letter. Return a Boolean answer.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A lowercase English string of length between $1$ and $10^5$.
 
 **Return value**
 
-TODO
+Return `true` if exactly one or two character replacements can produce a palindrome; otherwise, return `false`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcdba"`
+- Output: `true`
+
+Only the mirrored pair `c` and `d` disagrees, so changing either character fixes the string in one operation.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aa"`
+- Output: `true`
+
+Changing both characters to the same different letter uses two operations and preserves a palindrome.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcdef"`
+- Output: `false`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+All three mirrored pairs differ, and each pair requires at least one operation.

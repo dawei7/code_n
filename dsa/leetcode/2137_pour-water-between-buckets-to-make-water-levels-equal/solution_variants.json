@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Pour Water Between Buckets to Make Water Levels Equal and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the common level and compares transferable surplus with the total deficit.",
+      "time_complexity": "O(n \\log(R / \\varepsilon))",
+      "space_complexity": "O(1)"
     }
   ]
 }

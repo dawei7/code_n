@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3771",
+  "cases": [
+    {"id":"sample-1","name":"sample: mixed scores across three starts","kind":"sample","visible":true,"input":{"hp":11,"damage":[3,6,7],"requirement":[4,2,5]},"expected":3,"validator":{"kind":"exact"},"tags":["sample","mixed-scores"]},
+    {"id":"sample-2","name":"sample: a run continues after health becomes negative","kind":"sample","visible":true,"input":{"hp":2,"damage":[10000,1],"requirement":[1,1]},"expected":1,"validator":{"kind":"exact"},"tags":["sample","non-positive-health"]},
+    {"id":"trial-single-equality","name":"trial: equality after damage earns one point","kind":"trial","visible":true,"input":{"hp":5,"damage":[2],"requirement":[3]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","inclusive-threshold"]},
+    {"id":"trial-single-failure","name":"trial: one room can award no point","kind":"trial","visible":true,"input":{"hp":5,"damage":[2],"requirement":[4]},"expected":0,"validator":{"kind":"exact"},"tags":["trial","zero-score"]},
+    {"id":"trial-every-pair-scores","name":"trial: all room and starting-position pairs score","kind":"trial","visible":true,"input":{"hp":100,"damage":[1,2,3],"requirement":[1,1,1]},"expected":6,"validator":{"kind":"exact"},"tags":["trial","maximum-score"]},
+    {"id":"trial-varying-thresholds","name":"trial: room requirements change which starts qualify","kind":"trial","visible":true,"input":{"hp":6,"damage":[4,1,4],"requirement":[2,5,1]},"expected":4,"validator":{"kind":"exact"},"tags":["trial","varying-requirements"]},
+    {"id":"real-no-points","name":"hidden: every post-damage health misses the requirement","kind":"real","visible":false,"input":{"hp":1,"damage":[1,1,1],"requirement":[1,1,1]},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","zero-score"]},
+    {"id":"real-reset-between-starts","name":"hidden: each new starting room resets health","kind":"real","visible":false,"input":{"hp":3,"damage":[5,1],"requirement":[1,1]},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","health-reset","non-positive-health"]},
+    {"id":"real-large-values","name":"hidden: large health and maximum damage values","kind":"real","visible":false,"input":{"hp":1000000000,"damage":[10000,10000,10000],"requirement":[10000,10000,10000]},"expected":6,"validator":{"kind":"exact"},"tags":["hidden","value-boundary","maximum-score"]}
+  ]
+}

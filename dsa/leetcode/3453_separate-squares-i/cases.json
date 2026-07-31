@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3453",
   "cases": [
     {
@@ -20,14 +21,14 @@
           ]
         ]
       },
-      "expected": 1.0,
+      "expected": 1,
       "tags": [
         "sample",
-        "area"
+        "minimum-plateau"
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       }
     },
     {
@@ -56,12 +57,12 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       }
     },
     {
-      "id": "trial-stacked",
-      "name": "trial: stacked vertical squares",
+      "id": "trial-touching-edges",
+      "name": "trial: balance exactly at touching edges",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -69,33 +70,28 @@
           [
             0,
             0,
-            2
+            1
           ],
           [
-            3,
-            2,
-            2
-          ],
-          [
-            6,
-            4,
-            2
+            1,
+            1,
+            1
           ]
         ]
       },
-      "expected": 3.0,
+      "expected": 1,
       "tags": [
         "trial",
-        "stacked"
+        "edge"
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       }
     },
     {
       "id": "trial-shared-baseline",
-      "name": "trial: shared baseline different sizes",
+      "name": "trial: shared baseline with different sides",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -124,12 +120,41 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
+      }
+    },
+    {
+      "id": "real-wide-empty-gap",
+      "name": "real: minimum of a wide balancing interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "squares": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            100,
+            100,
+            1
+          ]
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "minimum-plateau"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 0.00001
       }
     },
     {
       "id": "real-layered-overlaps",
-      "name": "real: layered counted overlaps",
+      "name": "real: several independently counted overlaps",
       "kind": "real",
       "visible": false,
       "input": {
@@ -163,7 +188,65 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
+      }
+    },
+    {
+      "id": "real-x-coordinate-irrelevant",
+      "name": "real: x positions do not alter counted strips",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "squares": [
+          [
+            0,
+            4,
+            2
+          ],
+          [
+            1000000000,
+            4,
+            2
+          ],
+          [
+            23,
+            4,
+            2
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "x-coordinate"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 0.00001
+      }
+    },
+    {
+      "id": "real-large-coordinate",
+      "name": "real: large coordinate and side length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "squares": [
+          [
+            1000000000,
+            1000000000,
+            1000000
+          ]
+        ]
+      },
+      "expected": 1000500000,
+      "tags": [
+        "real",
+        "large-values"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 0.00001
       }
     }
   ]

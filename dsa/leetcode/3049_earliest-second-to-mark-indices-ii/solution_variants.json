@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Earliest Second to Mark Indices II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the earliest prefix and greedily selects the most valuable schedulable zero-setting operations with a min-heap.",
+      "time_complexity": "O((n + m log n) log m)",
+      "space_complexity": "O(n)"
     }
   ]
 }

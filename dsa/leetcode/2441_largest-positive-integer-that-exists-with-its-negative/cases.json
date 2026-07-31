@@ -1,99 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2441",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: largest pair is three",
+      "name": "sample: only three qualifies",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          -1,
-          2,
-          -3,
-          3
-        ]
-      },
+      "input": {"nums": [-1, 2, -3, 3]},
       "expected": 3,
-      "tags": [
-        "sample",
-        "hash-set"
-      ]
+      "tags": ["sample", "single-pair"]
     },
     {
       "id": "sample-2",
-      "name": "sample: seven has its negative",
+      "name": "sample: choose seven over one",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          -1,
-          10,
-          6,
-          7,
-          -7,
-          1
-        ]
-      },
+      "input": {"nums": [-1, 10, 6, 7, -7, 1]},
       "expected": 7,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "multiple-pairs"]
     },
     {
       "id": "sample-3",
-      "name": "sample: no positive-negative pair",
+      "name": "sample: no opposite pair",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          -10,
-          8,
-          6,
-          7,
-          -2,
-          -3
-        ]
-      },
+      "input": {"nums": [-10, 8, 6, 7, -2, -3]},
       "expected": -1,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "no-pair"]
     },
     {
-      "id": "trial-two-valid-pairs",
-      "name": "trial: choose the larger valid positive",
+      "id": "trial-two-pairs",
+      "name": "trial: larger of two adjacent pairs",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          -1,
-          2,
-          -2
-        ]
-      },
+      "input": {"nums": [1, -1, 2, -2]},
       "expected": 2,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["trial", "maximum"]
     },
     {
-      "id": "real-only-positive",
-      "name": "hidden: positives without negatives",
+      "id": "real-duplicates",
+      "name": "hidden: duplicate copies do not matter",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3
-        ]
-      },
+      "input": {"nums": [-5, -5, 5, 5, 2]},
+      "expected": 5,
+      "tags": ["hidden", "duplicates"]
+    },
+    {
+      "id": "real-only-negative",
+      "name": "hidden: only negative values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-1, -2, -3]},
       "expected": -1,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "no-positive"]
+    },
+    {
+      "id": "real-boundary",
+      "name": "hidden: largest permitted magnitude",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [999, -999, -1000, 1000]},
+      "expected": 1000,
+      "tags": ["hidden", "boundary"]
+    },
+    {
+      "id": "real-reversed-order",
+      "name": "hidden: positive appears before negative",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [42, 7, -42, -3]},
+      "expected": 42,
+      "tags": ["hidden", "order-independent"]
     }
   ]
 }

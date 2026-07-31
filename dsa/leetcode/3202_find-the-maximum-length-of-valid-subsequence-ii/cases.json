@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3202",
   "cases": [
     {
-      "id": "sample-k-two-all-valid",
-      "name": "sample: all adjacent sums have same parity",
+      "id": "sample-k-two-whole-array",
+      "name": "sample: all adjacent sums share remainder one",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,13 +19,12 @@
       },
       "expected": 5,
       "tags": [
-        "sample",
-        "modulo"
+        "sample"
       ]
     },
     {
-      "id": "sample-k-three",
-      "name": "sample: choose a modulo pattern",
+      "id": "sample-k-three-alternation",
+      "name": "sample: select alternating remainders one and one",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -45,68 +45,222 @@
       ]
     },
     {
-      "id": "trial-not-just-zero",
-      "name": "trial: constant remainder is not zero",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          4,
-          5,
-          7,
-          8
-        ],
-        "k": 3
-      },
-      "expected": 6,
-      "tags": [
-        "constant-remainder"
-      ]
-    },
-    {
-      "id": "trial-two-elements",
-      "name": "trial: any two elements are valid",
+      "id": "trial-k-one",
+      "name": "trial: modulus one makes the entire array valid",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           9,
-          14
+          2,
+          7,
+          4,
+          5
         ],
-        "k": 5
+        "k": 1
       },
-      "expected": 2,
+      "expected": 5,
       "tags": [
-        "edge"
+        "k-one"
       ]
     },
     {
-      "id": "real-k-five",
-      "name": "real: longer k-five sequence",
+      "id": "trial-two-elements",
+      "name": "trial: any two positions form a valid subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          1
+        ],
+        "k": 37
+      },
+      "expected": 2,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-nonzero-common-remainder",
+      "name": "trial: the common sum remainder need not be zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          1,
+          4,
+          1,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 6,
+      "tags": [
+        "nonzero-remainder"
+      ]
+    },
+    {
+      "id": "trial-constant-remainder",
+      "name": "trial: equal element remainders may all be selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          8,
+          11,
+          14
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "constant-remainder"
+      ]
+    },
+    {
+      "id": "real-three-remainder-noise",
+      "name": "real: noise is skipped around a two-remainder pattern",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          6,
-          11,
-          3,
-          8,
-          13,
+          1,
           2,
-          7,
-          12,
-          17,
           4,
-          9
+          3,
+          7,
+          6,
+          10,
+          9,
+          13
         ],
         "k": 5
       },
       "expected": 4,
       "tags": [
-        "real",
-        "modulo-dp"
+        "order",
+        "noise"
+      ]
+    },
+    {
+      "id": "real-k-larger-than-values",
+      "name": "real: a large modulus preserves distinct small values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          3,
+          1,
+          2
+        ],
+        "k": 10
+      },
+      "expected": 6,
+      "tags": [
+        "large-k"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "real: maximum values reduce to bounded remainders",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10000000,
+          9999999,
+          9999998,
+          10000000,
+          9999999
+        ],
+        "k": 1000
+      },
+      "expected": 4,
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-repeated-blocks",
+      "name": "real: repeated runs require ordered selections",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          7,
+          2,
+          2,
+          7,
+          2,
+          2,
+          7,
+          2
+        ],
+        "k": 9
+      },
+      "expected": 6,
+      "tags": [
+        "duplicates",
+        "runs"
+      ]
+    },
+    {
+      "id": "real-single-remainder-dominates",
+      "name": "real: one remainder class beats shorter alternations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          1,
+          11,
+          16,
+          21,
+          2,
+          26,
+          31
+        ],
+        "k": 5
+      },
+      "expected": 7,
+      "tags": [
+        "candidate-selection"
+      ]
+    },
+    {
+      "id": "real-k-five-mixed",
+      "name": "real: mixed residues choose the best endpoint pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          6,
+          2,
+          7,
+          3,
+          8,
+          4,
+          9,
+          5,
+          10,
+          11
+        ],
+        "k": 5
+      },
+      "expected": 3,
+      "tags": [
+        "mixed-remainders"
       ]
     }
   ]

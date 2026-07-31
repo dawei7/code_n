@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3573",
+  "cases": [
+    {
+      "id": "sample-normal-then-short",
+      "name": "sample: combine a normal transaction with a later short sale",
+      "kind": "sample",
+      "visible": true,
+      "input": {"prices":[1,7,9,8,2],"k":2},
+      "expected": 14,
+      "tags": ["sample","normal","short-selling"]
+    },
+    {
+      "id": "sample-three-mixed-transactions",
+      "name": "sample: alternate normal and short-selling transactions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"prices":[12,16,19,19,8,1,19,13,9],"k":3},
+      "expected": 36,
+      "tags": ["sample","mixed-transactions","transaction-limit"]
+    },
+    {
+      "id": "trial-closing-day-cannot-reopen",
+      "name": "trial: a peak cannot close a long and open a short on the same day",
+      "kind": "trial",
+      "visible": true,
+      "input": {"prices":[1,10,1],"k":2},
+      "expected": 9,
+      "tags": ["trial","same-day-reuse","semantic-trap"]
+    },
+    {
+      "id": "trial-two-separated-rises",
+      "name": "trial: use two normal transactions on disjoint day pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {"prices":[5,1,5,1,5],"k":2},
+      "expected": 8,
+      "tags": ["trial","normal","disjoint-transactions"]
+    },
+    {
+      "id": "real-monotone-increasing",
+      "name": "real: extra transaction capacity cannot improve one continuous rise",
+      "kind": "real",
+      "visible": false,
+      "input": {"prices":[1,2,3,4,5,6],"k":3},
+      "expected": 5,
+      "tags": ["real","monotone-increasing","at-most-k"]
+    },
+    {
+      "id": "real-monotone-decreasing",
+      "name": "real: one short sale captures a continuous decline",
+      "kind": "real",
+      "visible": false,
+      "input": {"prices":[6,5,4,3,2,1],"k":3},
+      "expected": 5,
+      "tags": ["real","monotone-decreasing","short-selling"]
+    },
+    {
+      "id": "real-select-best-two",
+      "name": "real: select the best two trades across mixed movements",
+      "kind": "real",
+      "visible": false,
+      "input": {"prices":[10,4,8,2,9,3],"k":2},
+      "expected": 14,
+      "tags": ["real","mixed-transactions","transaction-limit"]
+    },
+    {
+      "id": "real-profit-exceeds-int32",
+      "name": "real: two boundary-price short sales exceed 32-bit signed range",
+      "kind": "real",
+      "visible": false,
+      "input": {"prices":[1000000000,1,1000000000,1],"k":2},
+      "expected": 1999999998,
+      "tags": ["real","value-boundary","large-profit"]
+    },
+    {
+      "id": "real-equal-prices",
+      "name": "real: equal prices yield zero profit",
+      "kind": "real",
+      "visible": false,
+      "input": {"prices":[7,7],"k":1},
+      "expected": 0,
+      "tags": ["real","minimum-length","zero-profit"]
+    }
+  ]
+}

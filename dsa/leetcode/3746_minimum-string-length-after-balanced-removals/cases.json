@@ -1,0 +1,13 @@
+{"schema_version":1,"challenge_id":"lc_3746","cases":[
+{"id":"sample-whole-string","name":"sample: remove the balanced whole string","kind":"sample","visible":true,"input":{"s":"aabbab"},"expected":0,"validator":{"kind":"exact"},"tags":["sample","balanced"]},
+{"id":"sample-no-removal","name":"sample: no balanced substring exists","kind":"sample","visible":true,"input":{"s":"aaaa"},"expected":4,"validator":{"kind":"exact"},"tags":["sample","single-character-kind"]},
+{"id":"sample-two-removals","name":"sample: two removals leave one character","kind":"sample","visible":true,"input":{"s":"aaabb"},"expected":1,"validator":{"kind":"exact"},"tags":["sample","majority-a"]},
+{"id":"trial-single-a","name":"trial: one a cannot be removed","kind":"trial","visible":true,"input":{"s":"a"},"expected":1,"validator":{"kind":"exact"},"tags":["trial","minimum-length"]},
+{"id":"trial-adjacent-ba","name":"trial: reverse transition is balanced","kind":"trial","visible":true,"input":{"s":"ba"},"expected":0,"validator":{"kind":"exact"},"tags":["trial","balanced-pair"]},
+{"id":"trial-alternating-majority","name":"trial: alternating string leaves one b","kind":"trial","visible":true,"input":{"s":"babab"},"expected":1,"validator":{"kind":"exact"},"tags":["trial","majority-b"]},
+{"id":"real-blocks-balanced","name":"hidden: separate blocks have equal totals","kind":"real","visible":false,"input":{"s":"aaaabbbb"},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","balanced"]},
+{"id":"real-majority-b","name":"hidden: several b characters remain","kind":"real","visible":false,"input":{"s":"bbabbabbb"},"expected":5,"validator":{"kind":"exact"},"tags":["hidden","majority-b"]},
+{"id":"real-balanced-interleaved","name":"hidden: interleaved characters all disappear","kind":"real","visible":false,"input":{"s":"abbabaab"},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","new-adjacency"]},
+{"id":"real-all-b","name":"hidden: all b characters remain","kind":"real","visible":false,"input":{"s":"bbbbbb"},"expected":6,"validator":{"kind":"exact"},"tags":["hidden","single-character-kind"]},
+{"id":"real-one-excess-a","name":"hidden: one excess a remains after cancellations","kind":"real","visible":false,"input":{"s":"bbaaabaab"},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","majority-a"]}
+]}

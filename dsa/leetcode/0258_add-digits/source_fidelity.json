@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_258", "frontend_id": "258", "title_slug": "add-digits", "url": "https://leetcode.com/problems/add-digits/description/", "paid_only": false, "content_sha256": "e259585732132197215d54b793c8dbb64ec3941883b241ac563f61b96eeebb65", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [{"ordinal": 1, "input": "num = 38", "output": "2", "has_explanation": true}, {"ordinal": 2, "input": "num = 0", "output": "0", "has_explanation": false}],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "9618c5bbeb9685b51933c3c83b593a59fa21423db14f4c81984cc66dbadef165", "reference/contract.md": "c825b34648e147d930fc5130b8d2fb29d04d9aebb5c7f6fe776c0bb0a724b7d7", "reference/examples.md": "42c79621948e1271952333a8e9c585d9b8d8b79ac98de4d26bb41bbafcda4cae", "reference/constraints.md": "8e519d79fe0c5dabd7d04b0c8f4ab14383a279a5aab9a318fdcf3d820ab0da30", "reference/follow_up.md": "b1a8be09b31ca2200a70d6e984cca2dad77b729f94a85ea2100baf31da6f0079"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

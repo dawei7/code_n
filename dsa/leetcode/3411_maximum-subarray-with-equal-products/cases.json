@@ -1,108 +1,16 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3411",
   "cases": [
-    {
-      "id": "sample-ones-and-twos",
-      "name": "sample: long product-equivalent subarray",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          1,
-          2,
-          1,
-          1,
-          1
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-three-length",
-      "name": "sample: coprime middle segment",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-five-length",
-      "name": "sample: ones extend the segment",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          1,
-          4,
-          5,
-          1
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-single-best",
-      "name": "trial: repeated composite values block long products",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          2,
-          2,
-          2
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-small-values",
-      "name": "real: mixed values under official bound",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          1,
-          6,
-          1,
-          2,
-          3,
-          1,
-          5,
-          10,
-          1,
-          2
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "real"
-      ]
-    }
+    {"id":"sample-ones-and-twos","name":"sample: ones extend a valid factor window","kind":"sample","visible":true,"input":{"nums":[1,2,1,2,1,1,1]},"expected":5,"tags":["sample","ones"]},
+    {"id":"sample-three-length","name":"sample: pairwise-coprime middle segment","kind":"sample","visible":true,"input":{"nums":[2,3,4,5,6]},"expected":3,"tags":["sample","coprime"]},
+    {"id":"sample-five-length","name":"sample: a later factor conflict limits the window","kind":"sample","visible":true,"input":{"nums":[1,2,3,1,4,5,1]},"expected":5,"tags":["sample","factor-conflict"]},
+    {"id":"trial-minimum-pair","name":"trial: every two-element subarray is valid","kind":"trial","visible":true,"input":{"nums":[6,6]},"expected":2,"tags":["minimum-length","repeated-factor"]},
+    {"id":"trial-all-ones","name":"trial: ones share no prime factors","kind":"trial","visible":true,"input":{"nums":[1,1,1,1]},"expected":4,"tags":["ones","full-array"]},
+    {"id":"trial-four-primes","name":"trial: all available prime factors occur once","kind":"trial","visible":true,"input":{"nums":[2,1,3,5,1,7]},"expected":6,"tags":["coprime","full-array"]},
+    {"id":"trial-overlapping-composites","name":"trial: a length-three window repeats prime factors","kind":"trial","visible":true,"input":{"nums":[6,10,9]},"expected":2,"tags":["composite","factor-conflict"]},
+    {"id":"real-conflict-at-ends","name":"real: a repeated factor excludes one endpoint","kind":"real","visible":false,"input":{"nums":[2,1,3,1,2]},"expected":4,"tags":["factor-conflict","sliding-window"]},
+    {"id":"real-disjoint-composite","name":"real: a composite can coexist with disjoint primes","kind":"real","visible":false,"input":{"nums":[6,5,7,1]},"expected":4,"tags":["composite","coprime"]},
+    {"id":"real-upper-value","name":"real: value ten contributes factors two and five","kind":"real","visible":false,"input":{"nums":[10,3,7,1]},"expected":4,"tags":["upper-bound","factor-mask"]}
   ]
 }

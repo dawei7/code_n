@@ -2,12 +2,12 @@
   "challenge_id": "lc_3181",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: duplicate small rewards",
+      "id": "sample-duplicate-rewards",
+      "name": "sample: choose one from each useful duplicate group",
       "kind": "sample",
       "visible": true,
       "input": {
-        "reward_values": [
+        "rewardValues": [
           1,
           1,
           3,
@@ -17,16 +17,16 @@
       "expected": 4,
       "tags": [
         "sample",
-        "reward"
+        "duplicates"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: increasing reward path",
+      "id": "sample-unsorted-rewards",
+      "name": "sample: optimal choices from unsorted rewards",
       "kind": "sample",
       "visible": true,
       "input": {
-        "reward_values": [
+        "rewardValues": [
           1,
           6,
           4,
@@ -36,16 +36,67 @@
       },
       "expected": 11,
       "tags": [
-        "sample"
+        "sample",
+        "unsorted"
       ]
     },
     {
-      "id": "trial-powers",
-      "name": "trial: powers can all be selected",
+      "id": "trial-single-minimum-reward",
+      "name": "trial: one minimum reward",
       "kind": "trial",
       "visible": true,
       "input": {
-        "reward_values": [
+        "rewardValues": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length",
+        "minimum-value"
+      ]
+    },
+    {
+      "id": "trial-single-maximum-reward",
+      "name": "trial: one maximum reward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rewardValues": [
+          50000
+        ]
+      },
+      "expected": 50000,
+      "tags": [
+        "minimum-length",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-all-duplicates",
+      "name": "trial: equal rewards can be selected only once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rewardValues": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "duplicates",
+        "strict-inequality"
+      ]
+    },
+    {
+      "id": "trial-doubling-chain",
+      "name": "trial: every power of two remains selectable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "rewardValues": [
           1,
           2,
           4,
@@ -55,16 +106,17 @@
       },
       "expected": 31,
       "tags": [
-        "powers"
+        "chain",
+        "all-selected"
       ]
     },
     {
-      "id": "trial-dense-values",
-      "name": "trial: dense values require skipping some rewards",
-      "kind": "trial",
-      "visible": true,
+      "id": "real-dense-without-one",
+      "name": "real: dense rewards need not begin at one",
+      "kind": "real",
+      "visible": false,
       "input": {
-        "reward_values": [
+        "rewardValues": [
           2,
           3,
           4,
@@ -75,16 +127,17 @@
       },
       "expected": 13,
       "tags": [
-        "dense"
+        "dense",
+        "strict-inequality"
       ]
     },
     {
-      "id": "real-large-gap",
-      "name": "real: large reward after small prefix",
+      "id": "real-large-gaps",
+      "name": "real: several gaps permit a long valid sequence",
       "kind": "real",
       "visible": false,
       "input": {
-        "reward_values": [
+        "rewardValues": [
           1,
           2,
           3,
@@ -95,8 +148,83 @@
       },
       "expected": 156,
       "tags": [
-        "real",
-        "gap"
+        "gaps",
+        "large-final-reward"
+      ]
+    },
+    {
+      "id": "real-unsorted-large-values",
+      "name": "real: unsorted large rewards retain their original indices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rewardValues": [
+          50000,
+          1,
+          25000
+        ]
+      },
+      "expected": 75001,
+      "tags": [
+        "unsorted",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-duplicate-doubling-levels",
+      "name": "real: duplicates across doubling levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rewardValues": [
+          1,
+          1,
+          2,
+          2,
+          4,
+          4,
+          8,
+          8
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "duplicates",
+        "chain"
+      ]
+    },
+    {
+      "id": "real-maximum-after-half",
+      "name": "real: maximum reward follows an exact half-sized total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rewardValues": [
+          25000,
+          50000
+        ]
+      },
+      "expected": 75000,
+      "tags": [
+        "maximum-value",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-global-total-bound",
+      "name": "real: two largest rewards attain the global upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "rewardValues": [
+          49999,
+          50000
+        ]
+      },
+      "expected": 99999,
+      "tags": [
+        "maximum-value",
+        "maximum-total"
       ]
     }
   ]

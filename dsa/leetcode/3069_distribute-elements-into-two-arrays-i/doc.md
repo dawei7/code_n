@@ -8,69 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [distribute-elements-into-two-arrays-i](https://leetcode.com/problems/distribute-elements-into-two-arrays-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/distribute-elements-into-two-arrays-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/distribute-elements-into-two-arrays-i/).
 
 ### Goal
-Given an array of integers, distribute its elements into two separate arrays based on a specific rule: the first element goes to the first array, the second goes to the second array, and subsequent elements are appended to the array whose last element is greater, or to the first array if the last elements are equal.
+
+You are given a conceptually one-indexed array `nums` containing $n$ distinct integers. Distribute every value between two initially empty arrays, `arr1` and `arr2`, in exactly $n$ operations.
+
+Append `nums[1]` to `arr1` in the first operation and `nums[2]` to `arr2` in the second. For every later position $i$, compare the two arrays' last values. If the last value of `arr1` is greater than the last value of `arr2`, append `nums[i]` to `arr1`; otherwise, append it to `arr2`.
+
+Form `result` by concatenating the completed `arr1` followed by the completed `arr2`, and return that array.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers (`List[int]`).
+- `nums`: An array of $n$ distinct integers. The function's language-native list uses zero-based storage even though the operation description numbers positions from $1$.
+
+The constraints are $3 \le n \le 50$, $1 \le \texttt{nums[i]} \le 100$, and all values in `nums` are distinct.
 
 **Return value**
 
-- A list formed by concatenating the final `arr1` followed by the final `arr2`.
+Return the final contents of `arr1` followed immediately by the final contents of `arr2`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [2, 1, 3]`
 - Output: `[2, 3, 1]`
+- Explanation: The initial arrays are `[2]` and `[1]`. Since `2 > 1`, append `3` to the first array before concatenation.
 
 **Example 2**
 
 - Input: `nums = [5, 4, 3, 8]`
 - Output: `[5, 3, 4, 8]`
-
-**Example 3**
-
-- Input: `nums = [3, 3, 3, 3]`
-- Output: `[3, 3, 3, 3]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a direct simulation approach. By maintaining two lists and tracking their last elements, we iterate through the input array once and apply the conditional logic to determine the destination of each element.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single pass over the elements.
-- **Space Complexity**: `O(n)`, as we store all elements of the input array across the two resulting lists.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int]) -> List[List[int]]:
-    if not nums:
-        return [[], []]
-
-    arr1 = [nums[0]]
-    arr2 = [nums[1]]
-
-    for i in range(2, len(nums)):
-        if arr1[-1] > arr2[-1]:
-            arr1.append(nums[i])
-        else:
-            arr2.append(nums[i])
-
-    return arr1 + arr2
-```
-</details>
+- Explanation: Append `3` to the first array because `5 > 4`; then append `8` to the second because its last value `4` is greater than the first array's last value `3`.

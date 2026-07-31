@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Number of K-Even Arrays and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts arrays by completed even-even adjacencies and the parity of the last value.",
+      "time_complexity": "O(nk)",
+      "space_complexity": "O(k)"
     }
   ]
 }

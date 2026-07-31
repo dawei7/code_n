@@ -1,35 +1,36 @@
 {
   "challenge_id": "lc_2850",
+  "measurement_note": "Size is k, the number of empty cells and therefore the number of surplus stones that must be assigned. Each tier exercises the full matching problem. Subset DP uses O(k * 2^k) transitions, while enumerating every source-target permutation grows as O(k! * k).",
   "cases": [
     {
-      "id": "benchmark-all-extra-stones-in-corner",
-      "name": "benchmark: all extra stones start in one corner",
+      "id": "benchmark-two-surplus-stones",
+      "name": "benchmark: assign two surplus stones",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            9,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0
-          ]
-        ]
-      },
-      "tags": [
-        "benchmark",
-        "fixed-grid",
-        "assignment"
-      ]
+      "size": 2,
+      "input": {"grid": [[3, 0, 0], [1, 1, 1], [1, 1, 1]]},
+      "expected": 3,
+      "tags": ["benchmark", "small", "assignment"]
+    },
+    {
+      "id": "benchmark-four-surplus-stones",
+      "name": "benchmark: assign four surplus stones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"grid": [[3, 0, 0], [0, 2, 0], [1, 1, 2]]},
+      "expected": 5,
+      "tags": ["benchmark", "medium", "assignment"]
+    },
+    {
+      "id": "benchmark-eight-surplus-stones",
+      "name": "benchmark: assign eight surplus stones",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"grid": [[9, 0, 0], [0, 0, 0], [0, 0, 0]]},
+      "expected": 18,
+      "tags": ["benchmark", "large", "assignment"]
     }
   ]
 }

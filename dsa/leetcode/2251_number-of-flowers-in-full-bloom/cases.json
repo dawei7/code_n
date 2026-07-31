@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2251",
+  "cases": [
+    {"id":"sample-overlapping","name":"sample: arrivals meet overlapping intervals","kind":"sample","visible":true,"input":{"flowers":[[1,6],[3,7],[9,12],[4,13]],"people":[2,3,7,11]},"expected":[1,2,2,2],"tags":["sample","overlap"]},
+    {"id":"sample-repeated-arrival","name":"sample: repeated inclusive arrival","kind":"sample","visible":true,"input":{"flowers":[[1,10],[3,3]],"people":[3,3,2]},"expected":[2,2,1],"tags":["sample","repeated-query","inclusive"]},
+    {"id":"trial-single-time","name":"one-time bloom is active only at its endpoint","kind":"trial","visible":true,"input":{"flowers":[[5,5]],"people":[4,5,6]},"expected":[0,1,0],"tags":["single-time","boundary"]},
+    {"id":"trial-disjoint","name":"arrivals cross gaps between disjoint intervals","kind":"trial","visible":true,"input":{"flowers":[[1,2],[5,6],[9,10]],"people":[1,3,6,8,10]},"expected":[1,0,1,0,1],"tags":["disjoint"]},
+    {"id":"trial-nested","name":"nested blooms create different overlap depths","kind":"trial","visible":true,"input":{"flowers":[[1,10],[2,9],[3,8]],"people":[1,2,3,8,9,10]},"expected":[1,2,3,3,2,1],"tags":["nested","boundaries"]},
+    {"id":"real-large-time","name":"hidden: large coordinates preserve endpoint rules","kind":"real","visible":false,"input":{"flowers":[[1,1000000000],[1000000000,1000000000]],"people":[999999999,1000000000]},"expected":[1,2],"tags":["hidden","large-coordinate"]},
+    {"id":"real-unsorted","name":"hidden: endpoint and query input order is irrelevant","kind":"real","visible":false,"input":{"flowers":[[8,12],[1,4],[3,10],[6,6]],"people":[11,2,6,13,4]},"expected":[1,1,2,0,2],"tags":["hidden","unsorted"]},
+    {"id":"real-shared-end","name":"hidden: several flowers remain active at a shared end","kind":"real","visible":false,"input":{"flowers":[[1,5],[2,5],[5,5],[6,7]],"people":[5,6]},"expected":[3,1],"tags":["hidden","shared-end"]}
+  ]
+}

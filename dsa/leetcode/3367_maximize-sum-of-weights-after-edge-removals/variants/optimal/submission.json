@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3675",
+  "frontend_id": "3367",
+  "title_slug": "maximize-sum-of-weights-after-edge-removals",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maximizeSumOfWeights",
+  "verified_submission_id": "2081259402",
+  "verified_at": "2026-07-25T22:08:00Z"
+}

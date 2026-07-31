@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3106",
+  "frontend_id": "2915",
+  "title_slug": "length-of-the-longest-subsequence-that-sums-to-target",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.lengthOfLongestSubsequence",
+  "verified_submission_id": "2078138649",
+  "verified_at": "2026-07-23T08:42:19.316113+00:00"
+}

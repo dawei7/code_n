@@ -8,68 +8,52 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-common-elements-between-two-arrays](https://leetcode.com/problems/find-common-elements-between-two-arrays/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-common-elements-between-two-arrays/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-common-elements-between-two-arrays/).
-
 ### Goal
-Given two integer arrays, determine how many elements from the first array exist in the second array, and conversely, how many elements from the second array exist in the first array. The result should be a pair of counts representing these two values.
+You are given two integer arrays, `nums1` and `nums2`, with lengths $N$ and
+$M$. Determine two values based on whether each indexed element also occurs in
+the other array.
+
+The first value is the number of indices `i` in `nums1` for which the value
+`nums1[i]` exists somewhere in `nums2`. The second is defined symmetrically for
+indices in `nums2` whose values occur in `nums1`. Occurrences are counted by
+index: if a shared value appears several times in one array, every one of those
+positions contributes to that array's answer.
+
+Return the two counts as `[answer1, answer2]`.
 
 ### Function Contract
 **Inputs**
 
-- `nums1`: A list of integers.
-- `nums2`: A list of integers.
+- `nums1`: the first integer array
+- `nums2`: the second integer array
+
+Let $N=\lvert\texttt{nums1}\rvert$ and $M=\lvert\texttt{nums2}\rvert$. The
+contract guarantees $1\le N,M\le100$ and every array value lies from $1$ to
+$100$, inclusive.
 
 **Return value**
 
-- A list of two integers `[count1, count2]`, where `count1` is the number of indices `i` such that `nums1[i]` exists in `nums2`, and `count2` is the number of indices `j` such that `nums2[j]` exists in `nums1`.
+A two-element array whose first entry counts qualifying indices in `nums1` and
+whose second entry counts qualifying indices in `nums2`.
 
 ### Examples
 **Example 1**
 
-- Input: `nums1 = [4,3,2,3,1], nums2 = [2,2,5,2,3,6]`
-- Output: `[3,4]`
+- Input: `nums1 = [2,3,2], nums2 = [1,2]`
+- Output: `[2,1]`
+- Explanation: Both positions containing `2` in `nums1` count, while the single `2` in `nums2` counts once.
 
 **Example 2**
 
-- Input: `nums1 = [3,4,2,3], nums2 = [1,5]`
-- Output: `[0,0]`
+- Input: `nums1 = [4,3,2,3,1], nums2 = [2,2,5,2,3,6]`
+- Output: `[3,4]`
+- Explanation: The `2` and both `3` positions qualify in the first array; three `2` positions and the `3` qualify in the second.
 
 **Example 3**
 
-- Input: `nums1 = [1,1], nums2 = [1,1]`
-- Output: `[2,2]`
-
----
-
-## Solution
-### Approach
-The problem is solved using Hash Sets for O(1) average-time complexity lookups. By converting both input arrays into sets, we can iterate through each array once and check for the existence of each element in the set representation of the other array.
-
-### Complexity Analysis
-- **Time Complexity**: O(N + M), where N is the length of `nums1` and M is the length of `nums2`. We iterate through each array once to build sets and once to count occurrences.
-- **Space Complexity**: O(N + M) to store the unique elements of both arrays in hash sets.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums1: List[int], nums2: List[int]) -> List[int]:
-    """
-    Calculates the number of common elements between two arrays from the
-    perspective of each array.
-    """
-    set1 = set(nums1)
-    set2 = set(nums2)
-
-    count1 = sum(1 for x in nums1 if x in set2)
-    count2 = sum(1 for x in nums2 if x in set1)
-
-    return [count1, count2]
-```
-</details>
+- Input: `nums1 = [3,4,2,3], nums2 = [1,5]`
+- Output: `[0,0]`
+- Explanation: The arrays share no value, so neither contains a qualifying index.

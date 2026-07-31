@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2805",
+  "cases": [
+    {
+      "id": "sample-three-invocations",
+      "name": "sample: three increasing waits",
+      "kind": "sample",
+      "visible": true,
+      "input": {"delay": 50, "period": 20, "cancelTime": 225},
+      "expected": [50, 120, 210],
+      "tags": ["sample", "increasing-delay"]
+    },
+    {
+      "id": "sample-short-initial-delay",
+      "name": "sample: short initial delay",
+      "kind": "sample",
+      "visible": true,
+      "input": {"delay": 20, "period": 20, "cancelTime": 150},
+      "expected": [20, 60, 120],
+      "tags": ["sample", "equal-parameters"]
+    },
+    {
+      "id": "sample-large-period",
+      "name": "sample: period dominates later waits",
+      "kind": "sample",
+      "visible": true,
+      "input": {"delay": 100, "period": 200, "cancelTime": 500},
+      "expected": [100, 400],
+      "tags": ["sample", "large-period"]
+    },
+    {
+      "id": "trial-cancel-before-first",
+      "name": "trial: cancellation precedes first invocation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"delay": 100, "period": 50, "cancelTime": 50},
+      "expected": [],
+      "tags": ["trial", "no-invocation"]
+    },
+    {
+      "id": "trial-one-invocation",
+      "name": "trial: exactly one invocation fits",
+      "kind": "trial",
+      "visible": true,
+      "input": {"delay": 50, "period": 20, "cancelTime": 51},
+      "expected": [50],
+      "tags": ["trial", "single-invocation"]
+    },
+    {
+      "id": "real-cancel-at-scheduled-time",
+      "name": "hidden: cancellation suppresses an equal-time invocation",
+      "kind": "real",
+      "visible": false,
+      "input": {"delay": 50, "period": 20, "cancelTime": 120},
+      "expected": [50],
+      "tags": ["hidden", "strict-boundary"]
+    },
+    {
+      "id": "real-maximum-invocations",
+      "name": "hidden: minimum waits maximize invocation count",
+      "kind": "real",
+      "visible": false,
+      "input": {"delay": 20, "period": 20, "cancelTime": 1000},
+      "expected": [20, 60, 120, 200, 300, 420, 560, 720, 900],
+      "tags": ["hidden", "constraint-boundary", "maximum-work"]
+    },
+    {
+      "id": "real-maximum-parameters",
+      "name": "hidden: maximum delay and period",
+      "kind": "real",
+      "visible": false,
+      "input": {"delay": 250, "period": 250, "cancelTime": 1000},
+      "expected": [250, 750],
+      "tags": ["hidden", "constraint-boundary"]
+    }
+  ]
+}

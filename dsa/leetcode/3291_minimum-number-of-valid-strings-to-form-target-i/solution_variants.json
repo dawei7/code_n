@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Number of Valid Strings to Form Target I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Stores all word prefixes in a trie and relaxes every matching target segment from each reachable position.",
+      "time_complexity": "O(S + T^2)",
+      "space_complexity": "O(S + T)"
     }
   ]
 }

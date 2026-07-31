@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2595",
+  "measurement_note": "Size is n itself. The optimal scan processes only the O(log n) represented bits. A correct slower implementation that tests every potential position from 0 through n scales linearly while remaining within the complete legal domain.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: n equals 15",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 15,
+      "input": { "n": 15 },
+      "expected": [2, 2],
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: n equals 127",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 127,
+      "input": { "n": 127 },
+      "expected": [4, 3],
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: n equals 1000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": { "n": 1000 },
+      "expected": [2, 4],
+      "tags": ["benchmark", "scale-large"]
+    }
+  ]
+}

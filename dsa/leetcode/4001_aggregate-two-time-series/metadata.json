@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_4001",
+  "source": "leetcode",
+  "frontend_id": "4001",
+  "slug": "aggregate-two-time-series",
+  "title": "Aggregate Two Time Series",
+  "difficulty": "Medium",
+  "acceptance_rate": 56.72602688151802,
+  "frequency": 1.1,
+  "elo_rating": null,
+  "estimated_elo_rating": 1494.658126,
+  "contest_source": null,
+  "contest_slug": null,
+  "contest_problem_index": null,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/aggregate-two-time-series/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "solution_variants": {
+    "manifest": "solution_variants.json",
+    "default": "optimal"
+  },
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

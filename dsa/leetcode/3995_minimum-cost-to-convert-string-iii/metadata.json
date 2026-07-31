@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_3995",
+  "source": "leetcode",
+  "frontend_id": "3995",
+  "slug": "minimum-cost-to-convert-string-iii",
+  "title": "Minimum Cost to Convert String III",
+  "difficulty": "Hard",
+  "acceptance_rate": 55.206167706167705,
+  "frequency": 25.0,
+  "elo_rating": 2100.7367066386,
+  "estimated_elo_rating": null,
+  "contest_source": "Biweekly Contest 187",
+  "contest_slug": "biweekly-contest-187",
+  "contest_problem_index": "Q4",
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/minimum-cost-to-convert-string-iii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "solution_variants": {
+    "manifest": "solution_variants.json",
+    "default": "optimal"
+  },
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

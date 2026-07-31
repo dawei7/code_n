@@ -2,32 +2,36 @@
   "challenge_id": "lc_2967",
   "cases": [
     {
-      "id": "sample-small-median",
-      "name": "sample: median is already a palindrome",
+      "id": "sample-small-values",
+      "name": "sample: median is a palindrome",
       "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
           1,
           2,
-          3
+          3,
+          4,
+          5
         ]
       },
-      "expected": 2,
+      "expected": 6,
       "tags": [
         "sample"
       ]
     },
     {
-      "id": "sample-repeated-palindrome",
-      "name": "sample: repeated palindrome target",
+      "id": "sample-near-eleven",
+      "name": "sample: closest optimal palindrome is eleven",
       "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
-          22,
-          33,
-          22
+          10,
+          12,
+          13,
+          14,
+          15
         ]
       },
       "expected": 11,
@@ -36,25 +40,59 @@
       ]
     },
     {
-      "id": "trial-near-eleven",
-      "name": "trial: nearest palindrome around median",
+      "id": "sample-repeated-palindromes",
+      "name": "sample: repeated lower palindrome is optimal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          22,
+          33,
+          22,
+          33,
+          22
+        ]
+      },
+      "expected": 22,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-palindromic-singleton",
+      "name": "trial: palindromic singleton needs no move",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          10,
-          12,
-          13
+          121
         ]
       },
-      "expected": 4,
+      "expected": 0,
       "tags": [
-        "palindrome"
+        "boundary",
+        "singleton"
       ]
     },
     {
-      "id": "trial-power-boundary",
-      "name": "trial: palindrome near digit boundary",
+      "id": "trial-nonpalindromic-singleton",
+      "name": "trial: singleton moves to adjacent palindrome",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-digit-boundary",
+      "name": "trial: nearest choices straddle a digit boundary",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -66,25 +104,61 @@
       },
       "expected": 5,
       "tags": [
-        "boundary"
+        "digit-boundary"
       ]
     },
     {
-      "id": "real-large-values",
-      "name": "real: larger values near six digits",
+      "id": "real-even-median-interval",
+      "name": "real: a palindrome inside the median interval is optimal",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          12321,
-          12400,
-          13031,
-          99999
+          10,
+          100
         ]
       },
-      "expected": 88309,
+      "expected": 90,
       "tags": [
-        "hidden"
+        "hidden",
+        "even-length"
+      ]
+    },
+    {
+      "id": "real-palindromic-center",
+      "name": "real: center palindrome minimizes four values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          101,
+          102,
+          103
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "palindromic-center"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "real: target must remain below one billion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          999999998,
+          999999999,
+          1000000000
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "value-boundary"
       ]
     }
   ]

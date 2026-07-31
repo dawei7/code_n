@@ -8,73 +8,38 @@
 | Category | Algorithms |
 | Topics | Array, Math, Bit Manipulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-operations-to-make-array-elements-zero](https://leetcode.com/problems/minimum-operations-to-make-array-elements-zero/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-operations-to-make-array-elements-zero/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-operations-to-make-array-elements-zero/).
 
 ### Goal
-Given an array of non-negative integers, determine the minimum number of operations required to reduce all elements to zero. In one operation, you may choose an index `i` and replace `nums[i]` with `nums[i] XOR k`, where `k` is any integer such that `0 <= k <= nums[i]`. However, the constraint is that the operation must effectively reduce the value of the element based on specific bitwise properties or prefix/suffix constraints defined by the problem's transformation rules.
+
+Each query `[l, r]` independently represents the complete integer array `[l, l + 1, ..., r]`. In one operation, select two entries `a` and `b` from that array and replace them simultaneously by $\lfloor a/4\rfloor$ and $\lfloor b/4\rfloor$. Entries that have already reached zero may still be selected when another entry needs further work.
+
+For every query, find the minimum number of operations that reduces every represented integer to zero. Queries do not share state: each begins from its own inclusive interval. Return the sum of these minimum operation counts over the entire `queries` list.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of non-negative integers (`List[int]`).
+- `queries`: A list of pairs `[l, r]`, each describing every integer from `l` through `r`, inclusive.
+
+There are between $1$ and $10^5$ queries. Every pair satisfies $1\le l<r\le10^9$.
 
 **Return value**
 
-- An integer representing the minimum number of operations to make all elements in the array zero.
+Return the sum of the minimum operation counts for all queries.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 2, 3]`
-- Output: `2`
+- Input: `queries = [[1,2],[2,4]]`
+- Output: `3`
+- Explanation: The interval `[1,2]` needs one paired operation. The interval `[2,4]` needs two, so their contribution is `1 + 2`.
 
 **Example 2**
 
-- Input: `nums = [0, 0, 0]`
-- Output: `0`
-
-**Example 3**
-
-- Input: `nums = [5, 7, 1]`
-- Output: `3`
-
----
-
-## Solution
-### Approach
-The problem relies on Greedy strategy combined with Bit Manipulation. Since XOR operations allow us to eliminate bits from most significant to least significant, we can determine the minimum operations by analyzing the bitwise contribution of each element and identifying the necessary state transitions to reach zero.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n * log(max(nums)))`, where `n` is the length of the array. We iterate through the array and process bits for each number.
-- **Space Complexity**: `O(1)`, as we only use a constant amount of extra space for counters and bitwise variables.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def _steps_sum(upto: int) -> int:
-    if upto <= 0:
-        return 0
-    total = 0
-    start = 1
-    steps = 1
-    while start <= upto:
-        end = min(upto, start * 4 - 1)
-        total += (end - start + 1) * steps
-        start *= 4
-        steps += 1
-    return total
-
-
-def solve(queries: list[list[int]]) -> int:
-    answer = 0
-    for left, right in queries:
-        required = _steps_sum(right) - _steps_sum(left - 1)
-        answer += (required + 1) // 2
-    return answer
-```
-</details>
+- Input: `queries = [[2,6]]`
+- Output: `4`
+- Explanation: Values `2` and `3` need one division step each, while `4`, `5`, and `6` need two each, for eight required steps that can be paired into four operations.

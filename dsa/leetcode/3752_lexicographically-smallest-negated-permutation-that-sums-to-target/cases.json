@@ -1,0 +1,13 @@
+{"schema_version":1,"challenge_id":"lc_3752","cases":[
+{"id":"sample-zero-sum","name":"sample: lexicographically smallest zero-sum signing","kind":"sample","visible":true,"input":{"n":3,"target":0},"expected":[-3,1,2],"validator":{"kind":"exact"},"tags":["sample","zero-sum"]},
+{"id":"sample-impossible-large","name":"sample: target exceeds total magnitude","kind":"sample","visible":true,"input":{"n":1,"target":10000000000},"expected":[],"validator":{"kind":"exact"},"tags":["sample","impossible-magnitude"]},
+{"id":"trial-one-positive","name":"trial: sole magnitude is positive","kind":"trial","visible":true,"input":{"n":1,"target":1},"expected":[1],"validator":{"kind":"exact"},"tags":["trial","all-positive"]},
+{"id":"trial-one-negative","name":"trial: sole magnitude is negative","kind":"trial","visible":true,"input":{"n":1,"target":-1},"expected":[-1],"validator":{"kind":"exact"},"tags":["trial","all-negative"]},
+{"id":"trial-parity-impossible","name":"trial: target has the wrong parity","kind":"trial","visible":true,"input":{"n":1,"target":0},"expected":[],"validator":{"kind":"exact"},"tags":["trial","impossible-parity"]},
+{"id":"real-two-negatives","name":"hidden: two separated magnitudes are negative","kind":"real","visible":false,"input":{"n":4,"target":0},"expected":[-4,-1,2,3],"validator":{"kind":"exact"},"tags":["hidden","greedy-subset"]},
+{"id":"real-one-large-negative","name":"hidden: largest magnitude plus one is selected","kind":"real","visible":false,"input":{"n":5,"target":3},"expected":[-5,-1,2,3,4],"validator":{"kind":"exact"},"tags":["hidden","greedy-subset"]},
+{"id":"real-all-positive","name":"hidden: maximum reachable target","kind":"real","visible":false,"input":{"n":5,"target":15},"expected":[1,2,3,4,5],"validator":{"kind":"exact"},"tags":["hidden","all-positive"]},
+{"id":"real-all-negative","name":"hidden: minimum reachable target","kind":"real","visible":false,"input":{"n":5,"target":-15},"expected":[-5,-4,-3,-2,-1],"validator":{"kind":"exact"},"tags":["hidden","all-negative"]},
+{"id":"real-middle-target","name":"hidden: greedy uses two nonconsecutive negatives","kind":"real","visible":false,"input":{"n":6,"target":1},"expected":[-6,-4,1,2,3,5],"validator":{"kind":"exact"},"tags":["hidden","greedy-subset"]},
+{"id":"real-negative-out-of-range","name":"hidden: negative target exceeds total magnitude","kind":"real","visible":false,"input":{"n":3,"target":-8},"expected":[],"validator":{"kind":"exact"},"tags":["hidden","impossible-magnitude"]}
+]}

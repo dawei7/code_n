@@ -6,110 +6,63 @@
       "name": "sample: collect one and two from the suffix",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          1,
-          5,
-          4,
-          2
-        ],
-        "k": 2
-      },
-      "tags": [
-        "sample",
-        "reverse-scan"
-      ],
+      "input": {"nums": [3, 1, 5, 4, 2], "k": 2},
+      "tags": ["sample", "reverse-scan"],
       "expected": 4
     },
     {
       "id": "sample-2",
-      "name": "sample: collecting one through five needs all elements",
+      "name": "sample: every element is required",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          1,
-          5,
-          4,
-          2
-        ],
-        "k": 5
-      },
-      "tags": [
-        "sample",
-        "all-values"
-      ],
+      "input": {"nums": [3, 1, 5, 4, 2], "k": 5},
+      "tags": ["sample", "whole-array"],
       "expected": 5
     },
     {
       "id": "sample-3",
-      "name": "sample: duplicate three appears before one",
+      "name": "sample: an irrelevant value lies in the suffix",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          2,
-          5,
-          3,
-          1
-        ],
-        "k": 3
-      },
-      "tags": [
-        "sample",
-        "duplicates"
-      ],
+      "input": {"nums": [3, 2, 5, 3, 1], "k": 3},
+      "tags": ["sample", "irrelevant-value"],
       "expected": 4
     },
     {
-      "id": "trial-suffix-already-complete",
-      "name": "trial: last k values contain the full set",
+      "id": "trial-single-target",
+      "name": "trial: one target after an irrelevant suffix value",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          9,
-          8,
-          1,
-          2,
-          3
-        ],
-        "k": 3
-      },
-      "tags": [
-        "trial",
-        "suffix"
-      ],
+      "input": {"nums": [1, 5, 1, 4], "k": 1},
+      "tags": ["trial", "minimum-k"],
+      "expected": 2
+    },
+    {
+      "id": "real-duplicate-targets",
+      "name": "hidden: duplicate targets do not increase coverage",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 1, 2, 3], "k": 2},
+      "tags": ["hidden", "duplicates"],
       "expected": 3
     },
     {
-      "id": "real-many-irrelevant-values",
-      "name": "hidden: large values are ignored while scanning",
+      "id": "real-complete-short-suffix",
+      "name": "hidden: the shortest suffix already contains every target",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          7,
-          4,
-          2,
-          8,
-          1,
-          9,
-          3,
-          10,
-          2,
-          1
-        ],
-        "k": 4
-      },
-      "tags": [
-        "hidden",
-        "ignored-values"
-      ],
-      "expected": 9
+      "input": {"nums": [1, 2, 2, 1], "k": 2},
+      "tags": ["hidden", "early-stop"],
+      "expected": 2
+    },
+    {
+      "id": "real-irrelevant-suffix",
+      "name": "hidden: irrelevant suffix values still count as removals",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 5, 5], "k": 2},
+      "tags": ["hidden", "irrelevant-values"],
+      "expected": 4
     }
   ]
 }

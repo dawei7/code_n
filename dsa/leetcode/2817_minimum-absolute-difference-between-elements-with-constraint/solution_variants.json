@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Absolute Difference Between Elements With Constraint and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sweeps the right index, activates exactly the values far enough to its left, and uses Fenwick order statistics to inspect the closest predecessor and successor.",
+      "time_complexity": "O(n \\log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

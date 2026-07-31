@@ -5,25 +5,26 @@
 | Source | LeetCode |
 | Frontend ID | 2221 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Math, Simulation, Combinatorics, Number Theory |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-triangular-sum-of-an-array](https://leetcode.com/problems/find-triangular-sum-of-an-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-triangular-sum-of-an-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-triangular-sum-of-an-array/).
-
 ### Goal
-Repeatedly replace an array by the adjacent pair sums modulo `10` until one digit remains. Return that final triangular sum.
+
+Begin with a 0-indexed list of decimal digits. If it contains more than one element, create a list one position shorter whose value at index $i$ is `(nums[i] + nums[i + 1]) % 10`.
+
+Replace the current list with this adjacent-sum list and repeat until exactly one digit remains. Return that final digit, called the triangular sum of the original array.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: an array of decimal digits.
+- `nums`: A nonempty list whose elements are integers from `0` through `9`.
+
+Let $n=\lvert\texttt{nums}\rvert$.
 
 **Return value**
 
-The single remaining digit.
+Return the sole digit remaining after repeatedly applying the adjacent-sum transformation modulo 10.
 
 ### Examples
 **Example 1**
@@ -40,16 +41,3 @@ The single remaining digit.
 
 - Input: `nums = [9, 9]`
 - Output: `8`
-
----
-
-## Solution
-### Approach
-Simulate each shrinking row in place. For a current length `len`, set `nums[i] = (nums[i] + nums[i + 1]) mod 10` for `0 <= i < len - 1`, then reduce the active length. The first position contains the answer after `n - 1` rounds.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n^2)`
-- **Space Complexity**: `O(1)` auxiliary space when modifying the input
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

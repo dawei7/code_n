@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2179",
+  "cases": [
+    {"id":"sample-one","name":"sample: one shared-order triplet","kind":"sample","visible":true,"input":{"nums1":[2,0,1,3],"nums2":[0,1,2,3]},"expected":1,"tags":["sample","crossing-orders"]},
+    {"id":"sample-four","name":"sample: four shared-order triplets","kind":"sample","visible":true,"input":{"nums1":[4,0,1,3,2],"nums2":[4,1,0,2,3]},"expected":4,"tags":["sample","mixed-order"]},
+    {"id":"trial-identical-minimum","name":"minimum identical permutations","kind":"trial","visible":true,"input":{"nums1":[0,1,2],"nums2":[0,1,2]},"expected":1,"tags":["minimum","identical"]},
+    {"id":"trial-reversed-minimum","name":"minimum reversed permutations","kind":"trial","visible":true,"input":{"nums1":[0,1,2],"nums2":[2,1,0]},"expected":0,"tags":["minimum","reversed"]},
+    {"id":"trial-single-inversion","name":"one inversion leaves two good triplets","kind":"trial","visible":true,"input":{"nums1":[0,1,2,3],"nums2":[0,2,1,3]},"expected":2,"tags":["single-inversion"]},
+    {"id":"real-both-sides-cross","name":"hidden: middle counts require both directions","kind":"real","visible":false,"input":{"nums1":[0,3,1,4,2],"nums2":[3,0,2,1,4]},"expected":2,"tags":["hidden","both-sides"]},
+    {"id":"real-unrelated-label-order","name":"hidden: value labels do not determine position order","kind":"real","visible":false,"input":{"nums1":[5,1,4,0,3,2],"nums2":[1,5,0,2,4,3]},"expected":6,"tags":["hidden","permutation-map"]},
+    {"id":"real-rotation","name":"hidden: rotation preserves only one triple","kind":"real","visible":false,"input":{"nums1":[0,1,2,3,4],"nums2":[2,3,4,0,1]},"expected":1,"tags":["hidden","rotation"]}
+  ]
+}

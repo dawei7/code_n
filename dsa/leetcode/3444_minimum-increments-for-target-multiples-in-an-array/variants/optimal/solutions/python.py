@@ -1,35 +1,32 @@
-import math
+from math import lcm
+
 
 def solve(nums: list[int], target: list[int]) -> int:
-    m = len(target)
-    num_masks = 1 << m
-
-    def get_lcm(a, b):
-        if a == 0 or b == 0: return 0
-        return abs(a * b) // math.gcd(a, b)
-
-    lcms = [1] * num_masks
-    for mask in range(1, num_masks):
+    target_count = len(target)
+    full_mask = (1 << target_count) - 1
+    subset_lcm = [1] * (full_mask + 1)
+    for mask in range(1, full_mask + 1):
         bit = mask & -mask
         index = bit.bit_length() - 1
-        lcms[mask] = get_lcm(lcms[mask ^ bit], target[index])
+        subset_lcm[mask] = lcm(subset_lcm[mask ^ bit], target[index])
 
-    # dp[mask] is the min cost to satisfy the subset of targets represented by mask
-    dp = [float('inf')] * num_masks
+    infinity = 10**30
+    dp = [infinity] * (full_mask + 1)
     dp[0] = 0
 
-    for num in nums:
-        new_dp = dp[:]
-        costs = [0] * num_masks
-        for submask in range(1, num_masks):
-            costs[submask] = (-num) % lcms[submask]
-
-        for mask, current in enumerate(dp):
-            if current == float('inf'):
+    for value in nums:
+        next_dp = dp.copy()
+        for covered, current_cost in enumerate(dp):
+            if current_cost == infinity:
                 continue
-            for submask in range(num_masks):
-                new_mask = mask | submask
-                new_dp[new_mask] = min(new_dp[new_mask], current + costs[submask])
-        dp = new_dp
+            remaining = full_mask ^ covered
+            subset = remaining
+            while subset:
+                multiple = subset_lcm[subset]
+                increment = (-value) % multiple
+                next_mask = covered | subset
+                next_dp[next_mask] = min(next_dp[next_mask], current_cost + increment)
+                subset = (subset - 1) & remaining
+        dp = next_dp
 
-    return int(dp[num_masks - 1])
+    return dp[full_mask]

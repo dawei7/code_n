@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3869",
+  "cases": [
+    {
+      "id": "sample-three-good-values",
+      "name": "sample: every value from eight through ten is good",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 8,
+        "r": 10
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "direct-good",
+        "explained"
+      ]
+    },
+    {
+      "id": "sample-digit-sum-rescue",
+      "name": "sample: only the first value has a good digit sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 12340,
+        "r": 12341
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "digit-sum",
+        "explained"
+      ]
+    },
+    {
+      "id": "sample-neither-property",
+      "name": "sample: equal adjacent digits defeat both properties",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 123456788,
+        "r": 123456788
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "not-fancy",
+        "explained"
+      ]
+    },
+    {
+      "id": "trial-all-single-digits",
+      "name": "trial: all positive single digits are fancy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 1,
+        "r": 9
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-digit",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-small-non-fancy",
+      "name": "trial: 164 and its digit sum 11 are both nonmonotone",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 164,
+        "r": 164
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "equal-sum-digits",
+        "not-fancy"
+      ]
+    },
+    {
+      "id": "trial-small-sum-rescue",
+      "name": "trial: 101 is rescued by its one-digit sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 101,
+        "r": 101
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "digit-sum",
+        "internal-zero"
+      ]
+    },
+    {
+      "id": "trial-good-bad-sum",
+      "name": "trial: 29 is increasing although its sum 11 is not good",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 29,
+        "r": 29
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "direct-good",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "trial-mixed-short-range",
+      "name": "trial: one of five neighboring values is not fancy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 12341,
+        "r": 12345
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "mixed-range",
+        "inclusive"
+      ]
+    },
+    {
+      "id": "real-first-hundred",
+      "name": "hidden: every value through one hundred is fancy",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 1,
+        "r": 100
+      },
+      "expected": 100,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "prefix-range",
+        "small-boundary"
+      ]
+    },
+    {
+      "id": "real-digit-length-transition",
+      "name": "hidden: a range crosses from three to four digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 999,
+        "r": 1050
+      },
+      "expected": 48,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "digit-length",
+        "mixed-range"
+      ]
+    },
+    {
+      "id": "real-maximum-endpoint",
+      "name": "hidden: the maximum endpoint is fancy through digit sum one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 1000000000000000,
+        "r": 1000000000000000
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-endpoint",
+        "digit-sum"
+      ]
+    },
+    {
+      "id": "real-fifteen-nines",
+      "name": "hidden: fifteen repeated nines have good digit sum 135",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 999999999999999,
+        "r": 999999999999999
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-digit-sum",
+        "repeated-digits"
+      ]
+    },
+    {
+      "id": "real-short-mixed-block",
+      "name": "hidden: two hundred through two hundred twenty contains two misses",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 200,
+        "r": 220
+      },
+      "expected": 19,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-block",
+        "repeated-digits"
+      ]
+    },
+    {
+      "id": "real-long-decreasing",
+      "name": "hidden: a ten-digit strictly decreasing number is directly good",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 9876543210,
+        "r": 9876543210
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "strictly-decreasing",
+        "includes-zero"
+      ]
+    },
+    {
+      "id": "real-large-narrow-range",
+      "name": "hidden: a narrow range near a fifteen-digit power is counted exactly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 100000000000000,
+        "r": 100000000000100
+      },
+      "expected": 92,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-values",
+        "narrow-range"
+      ]
+    }
+  ]
+}

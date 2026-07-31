@@ -5,51 +5,43 @@
 | Source | LeetCode |
 | Frontend ID | 2230 |
 | Difficulty | Easy |
-| Category | Database |
 | Topics | Database |
-| Supported Languages | sql |
-| Official Link | [the-users-that-are-eligible-for-discount](https://leetcode.com/problems/the-users-that-are-eligible-for-discount/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/the-users-that-are-eligible-for-discount/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/the-users-that-are-eligible-for-discount/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `Purchases` table records each user's purchase timestamp and paid amount. Its composite primary key is (`user_id`, `time_stamp`), so a user cannot have two rows at the same instant.
+
+Given `startDate`, `endDate`, and `minAmount`, report every user who made at least one purchase both within the inclusive interval from `startDate` through `endDate` and for an amount of at least `minAmount`. Each date parameter denotes the start of its day: in particular, the upper boundary is `endDate` at `00:00:00`, not the end of that calendar day. Return qualifying IDs once in ascending order.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `Purchases`: Rows containing integer `user_id`, datetime `time_stamp`, and integer `amount`.
+- `Parameters`: One app-local row containing `startDate`, `endDate`, and `minAmount`.
+
+Let $r$ be the number of purchase rows.
 
 **Return value**
 
-TODO
+Return a one-column table of distinct qualifying `user_id` values ordered numerically.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: purchases `(1, "2022-04-20 09:03:00", 4416)`, `(2, "2022-03-19 19:24:02", 678)`, `(3, "2022-03-18 12:03:09", 4523)`, `(3, "2022-03-30 09:43:42", 626)`; dates `"2022-03-08"` through `"2022-03-20"`; minimum `1000`
+- Output: user `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: a qualifying-amount purchase exactly at the start-date boundary
+- Output: that purchase's user
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: a purchase later than midnight on `endDate`
+- Output: no row for that purchase alone

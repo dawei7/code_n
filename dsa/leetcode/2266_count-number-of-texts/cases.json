@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2266",
+  "cases": [
+    {"id":"sample-two-runs","name":"sample: independent three-key and two-key runs","kind":"sample","visible":true,"input":{"pressedKeys":"22233"},"expected":8,"tags":["sample","multiple-runs"]},
+    {"id":"sample-long-run","name":"sample: long run requires modular reduction","kind":"sample","visible":true,"input":{"pressedKeys":"222222222222222222222222222222222222"},"expected":82876089,"tags":["sample","modulus","long-run"]},
+    {"id":"trial-single-press","name":"one press has one interpretation","kind":"trial","visible":true,"input":{"pressedKeys":"2"},"expected":1,"tags":["minimum-length"]},
+    {"id":"trial-three-letter-cap","name":"four presses on a three-letter key","kind":"trial","visible":true,"input":{"pressedKeys":"2222"},"expected":7,"tags":["three-letter-key"]},
+    {"id":"trial-four-letter-cap","name":"four presses on a four-letter key","kind":"trial","visible":true,"input":{"pressedKeys":"7777"},"expected":8,"tags":["four-letter-key"]},
+    {"id":"real-independent-runs","name":"hidden: run counts multiply across a digit change","kind":"real","visible":false,"input":{"pressedKeys":"222777"},"expected":16,"tags":["hidden","product"]},
+    {"id":"real-forced-boundaries","name":"hidden: every press uses a different key","kind":"real","visible":false,"input":{"pressedKeys":"23456789"},"expected":1,"tags":["hidden","forced-boundaries"]},
+    {"id":"real-six-nines","name":"hidden: a longer four-letter-key recurrence","kind":"real","visible":false,"input":{"pressedKeys":"999999"},"expected":29,"tags":["hidden","four-letter-key"]}
+  ]
+}

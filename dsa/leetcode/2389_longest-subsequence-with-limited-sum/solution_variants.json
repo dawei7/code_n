@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Subsequence With Limited Sum and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts values, builds prefix sums of the cheapest possible selections, and binary-searches each query budget.",
+      "time_complexity": "O(n log n + m log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

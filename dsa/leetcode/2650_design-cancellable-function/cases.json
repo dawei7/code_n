@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_2650",
+  "cases": [
+    {"id":"sample-immediate-return","name":"sample: completion makes later cancellation inert","kind":"sample","visible":true,"input":{"scenario":"immediate-return","cancelledAt":10},"expected":{"resolved":42},"tags":["sample","immediate-return","late-cancel"]},
+    {"id":"sample-generator-throw","name":"sample: uncaught generator error rejects","kind":"sample","visible":true,"input":{"scenario":"uncaught-throw","cancelledAt":null},"expected":{"rejected":"Error: Hello"},"tags":["sample","generator-throw"]},
+    {"id":"sample-uncaught-cancel","name":"sample: uncaught cancellation rejects","kind":"sample","visible":true,"input":{"scenario":"uncaught-cancel","cancelledAt":20},"expected":{"rejected":"Cancelled"},"tags":["sample","cancellation","uncaught"]},
+    {"id":"trial-normal-completion","name":"trial: multiple yielded promises feed values back","kind":"trial","visible":true,"input":{"scenario":"accumulate","cancelledAt":null},"expected":{"resolved":2},"tags":["multiple-yields","resolved-values"]},
+    {"id":"trial-caught-cancel","name":"trial: generator catches cancellation and returns partial result","kind":"trial","visible":true,"input":{"scenario":"caught-cancel","cancelledAt":30},"expected":{"resolved":1},"tags":["cancellation","caught","partial-result"]},
+    {"id":"real-caught-rejection","name":"hidden: rejected yield is thrown back and recovered","kind":"real","visible":false,"input":{"scenario":"caught-rejection","cancelledAt":null},"expected":{"resolved":4},"tags":["hidden","promise-rejection","caught"]},
+    {"id":"real-cancel-yield-recovery","name":"hidden: cancellation resolves with next yielded value and stops","kind":"real","visible":false,"input":{"scenario":"cancel-yield-recovery","cancelledAt":20},"expected":{"resolved":4},"tags":["hidden","cancellation","yield-recovery","stop"]},
+    {"id":"real-cancel-after-completion","name":"hidden: cancellation after awaited completion has no effect","kind":"real","visible":false,"input":{"scenario":"uncaught-cancel","cancelledAt":150},"expected":{"resolved":"Success"},"tags":["hidden","late-cancel","completion"]}
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Peak Calling Hours for Each City and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Aggregates calls by city and hour, then retains every per-city maximum with a window rank.",
+      "time_complexity": "O(R log R)",
+      "space_complexity": "O(R)"
     }
   ]
 }

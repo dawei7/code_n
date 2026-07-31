@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4180",
+  "frontend_id": "3820",
+  "title_slug": "pythagorean-distance-nodes-in-a-tree",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.specialNodes",
+  "verified_submission_id": "2085584286",
+  "verified_at": "2026-07-29T05:00:33.577380+00:00"
+}

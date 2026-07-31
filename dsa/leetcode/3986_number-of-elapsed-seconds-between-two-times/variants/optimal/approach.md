@@ -1,42 +1,21 @@
 ## General
-Teach the reasoning, not merely the final technique:
 
-Organize this section around the problem's actual ideas. Derive the method from
-the decisive constraints and explain correctness, examples, invariants, or
-traces where they materially help. The only level-four subsection headings are
-`General`, `Complexity detail`, and `Alternatives and edge cases`; all three are
-required in that order. The Two Sum document's sequence must not be copied
-mechanically.
+A clock reading has three place values. If its components are hours $h$, minutes $m$, and seconds $s$, then the number of seconds that have passed since `00:00:00` is
 
-Organize a substantial `General` explanation with descriptive bold subheadings
-such as `**Why the unique pair must be found**`. Choose each signpost for this
-problem (for example, name a state definition, greedy choice, or reconstruction
-step); do not repeat a mandatory set across the corpus. A short, simple approach
-may need none. Do not introduce additional Markdown heading levels inside
-Approach.
+$$
+3600h + 60m + s.
+$$
 
-Correctness reasoning belongs in every explanation, but not in a mandatory
-`Correctness` or `Correctness argument` slot. Integrate it with the relevant
-state, transition, exchange argument, construction, or trace rather than
-adding another subsection heading.
-
-Let the problem determine the length. A direct observation may need only a
-short derivation, but a complex algorithm should receive enough space for its
-state, transitions, data structures, worked reasoning, and correctness
-argument. Never omit useful explanation to make documents the same size.
-
-Do not include solution code or a reference implementation in the problem document.
+Parse both input strings into those three components and evaluate this expression for each one. The source guarantees that `endTime` is not earlier than `startTime` on the same day, so subtracting the start total from the end total directly gives the requested nonnegative duration. Both totals use the same origin, which is why all time before `startTime` cancels from the difference.
 
 ## Complexity detail
-Explain the stated time and auxiliary-space bounds precisely, including the
-meaning of any problem-specific variables and why apparently nested work is or
-is not repeated.
+
+Each input is exactly eight characters long and contains exactly three numeric fields. Parsing and combining those fixed-size fields therefore takes $O(1)$ time. The three parsed integers and two totals occupy $O(1)$ auxiliary space.
 
 ## Alternatives and edge cases
-- **Name a genuine alternative:** compare its complexity, storage, correctness
-  risk, or implementation tradeoff with the selected method.
-- **Name another alternative when useful:** do not invent one merely to reach a
-  fixed number of bullets.
-- State each material boundary condition or semantic trap as its own bullet.
-- Keep this entire subsection as a scannable list rather than free-text
-  paragraphs.
+
+- **Parse fixed slices:** Reading `time[0:2]`, `time[3:5]`, and `time[6:8]` avoids splitting the string and has the same constant bounds, but relies more directly on the fixed layout.
+- **Use a date-time library:** A standard-library parser can represent the same conversion, but introduces unnecessary configuration and object creation for two guaranteed-valid time-only strings.
+- **Equal times:** When both inputs are identical, their seconds-since-midnight totals are equal and the answer is `0`.
+- **No overnight wrap:** `endTime` is guaranteed not to be earlier than `startTime`, so a negative difference must not be adjusted by adding one day.
+- **Leading zeroes:** Components such as `"01"` and `"00"` are ordinary decimal fields; they do not change the place-value calculation.

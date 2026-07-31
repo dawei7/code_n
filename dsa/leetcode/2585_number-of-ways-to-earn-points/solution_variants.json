@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Ways to Earn Points and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Applies a bounded-knapsack sliding window for each question type.",
+      "time_complexity": "O(n * target)",
+      "space_complexity": "O(target)"
     }
   ]
 }

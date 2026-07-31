@@ -8,48 +8,46 @@
 | Category | Algorithms |
 | Topics | Math, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-integers-with-even-digit-sum](https://leetcode.com/problems/count-integers-with-even-digit-sum/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-integers-with-even-digit-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-integers-with-even-digit-sum/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+For a positive integer, its digit sum is obtained by adding all of its decimal
+digits. For example, the digit sum of `241` is $2+4+1=7$.
+
+Given a positive integer `num`, consider every positive integer from $1$
+through `num`, including the upper endpoint. Count how many of those integers
+have an even digit sum. This property depends on the sum of the digits, not on
+whether the integer itself is even: for instance, `11` qualifies because its
+digit sum is $2$, whereas `10` does not because its digit sum is $1$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `num`: a positive integer satisfying $1\le\texttt{num}\le1000$.
 
 **Return value**
 
-TODO
+Return the number of positive integers at most `num` whose decimal digits sum
+to an even integer.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 4`
+- Output: `2`
+- Explanation: `2` and `4` have even digit sums.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 30`
+- Output: `14`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `num = 1`
+- Output: `0`

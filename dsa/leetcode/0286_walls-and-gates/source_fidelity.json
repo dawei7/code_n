@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_286", "frontend_id": "286", "title_slug": "walls-and-gates", "url": "https://leetcode.com/problems/walls-and-gates/description/", "paid_only": true, "content_sha256": "63de656adb5d49e372c7a4cb2f2a3b9a51c0991ec3eb6d230c8ba9b44a628fb9", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "rooms = [[2147483647,-1,0,2147483647],[2147483647,2147483647,2147483647,-1],[2147483647,-1,2147483647,-1],[0,-1,2147483647,2147483647]]", "output": "[[3,-1,0,1],[2,2,1,-1],[1,-1,2,-1],[0,-1,3,4]]", "has_explanation": false},
+      {"ordinal": 2, "input": "rooms = [[-1]]", "output": "[[-1]]", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "88dce6e8dfdac67977a5c9e79ddcd799307ca4c38a8d8a3a517023f7e6ffe857",
+      "reference/contract.md": "b9db9d61bfb31d30e7ca3328a50c678476b8d7eead2010fa59feaeb844dfec7b",
+      "reference/examples.md": "d1026c4b1106432751eee531ddb7448d79afdafc60f2a11a46bd8a7935467094",
+      "reference/constraints.md": "fd62cc76b8200680c1eb300c3861a2911fe471cdd3d89a55de3add7559641fc1"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

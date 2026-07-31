@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_394", "frontend_id": "394", "title_slug": "decode-string", "url": "https://leetcode.com/problems/decode-string/description/", "paid_only": false, "content_sha256": "8641889e2cf2a8e8256947581a60bcaffe0898a0d6de820f7012008624c83842", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"3[a]2[bc]\"", "output": "\"aaabcbc\"", "has_explanation": false},
+      {"ordinal": 2, "input": "s = \"3[a2[c]]\"", "output": "\"accaccacc\"", "has_explanation": false},
+      {"ordinal": 3, "input": "s = \"2[abc]3[cd]ef\"", "output": "\"abcabccdcdcdef\"", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "7200c449f1268cf48f35ec9bce24f08420cf81a3ee1a47f5341886ded4b82251",
+    "reference/contract.md": "4c637656f956160ef4b83f146bd528438789fb43c08f4a169c4b61e59f96c028",
+    "reference/examples.md": "54ca2047819538d8525a4e5f67114e39bf6b69973ec4a61b2a2f31a270bbd469",
+    "reference/constraints.md": "72354020aa9c508460bfb9fac0379ef811bab5f81ea86d7dbba713778b74d832"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

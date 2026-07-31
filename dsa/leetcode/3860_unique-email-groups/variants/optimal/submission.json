@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4241",
+  "frontend_id": "3860",
+  "title_slug": "unique-email-groups",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.uniqueEmailGroups",
+  "verified_submission_id": "2086243193",
+  "verified_at": "2026-07-29T14:28:39.357815+00:00"
+}

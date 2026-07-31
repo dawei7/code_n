@@ -1,0 +1,57 @@
+{
+  "challenge_id": "lc_2516",
+  "measurement_note": "Size is n, the length of s. Balanced repeated blocks keep most candidate middle intervals feasible, so a direct enumeration of every kept substring performs quadratic work while the sliding window remains linear.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: balanced string of length 20",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "s": "abcabcabcabcabcabcab",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "balanced",
+        "quadratic-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: balanced string of length 80",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 80,
+      "input": {
+        "s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcab",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "balanced",
+        "quadratic-contrast"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: balanced string of length 180",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 180,
+      "input": {
+        "s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "balanced",
+        "quadratic-contrast"
+      ]
+    }
+  ]
+}

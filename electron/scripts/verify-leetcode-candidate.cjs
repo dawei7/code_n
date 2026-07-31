@@ -6,6 +6,7 @@ const { spawnSync } = require('node:child_process');
 const projectRoot = path.resolve(__dirname, '..', '..');
 const rawTargets = process.argv.slice(2);
 const codenHome = path.resolve(process.env.CODEN_HOME || path.join(projectRoot, '.coden-data'));
+const candidateSource = process.env.CODEN_LEETCODE_CANDIDATE_SOURCE || '';
 // Match the development app's Chromium profile because safeStorage's key is
 // held there, while cOde(n) deliberately stores the encrypted credential blob
 // in the separate repository-local CODEN_HOME.
@@ -16,6 +17,9 @@ async function main() {
     throw new Error(
       'Pass canonical challenge ids, optionally with a variant, for example lc_44 or lc_1502:simplified.',
     );
+  }
+  if (candidateSource && rawTargets.length !== 1) {
+    throw new Error('A staged replacement source can be verified for only one challenge at a time.');
   }
   const targets = rawTargets.map((value) => {
     const [challengeId, variantId = ''] = value.split(':', 2);
@@ -38,6 +42,7 @@ async function main() {
     if (index > 0) await new Promise((resolve) => setTimeout(resolve, 10_000));
     const verifierArgs = [verifier, challengeId];
     if (variantId) verifierArgs.push('--variant', variantId);
+    if (candidateSource) verifierArgs.push('--candidate-source', candidateSource);
     verifierArgs.push('--confirm-submit');
     const child = spawnSync(python, verifierArgs, {
       cwd: projectRoot,
@@ -55,7 +60,7 @@ async function main() {
     if (child.stdout) process.stdout.write(child.stdout);
     if (child.stderr) process.stderr.write(child.stderr);
     if (child.error) throw child.error;
-    if (child.status === 0 && !variantId) {
+    if (child.status === 0 && !variantId && !candidateSource) {
       spawnSync(python, ['tools/audit_leetcode_migration.py', '--clear-block', challengeId.slice(3)], {
         cwd: projectRoot,
         stdio: 'ignore',

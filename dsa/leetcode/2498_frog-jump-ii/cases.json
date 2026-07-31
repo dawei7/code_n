@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2498",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: skip stones to minimize the worst jump",
+      "name": "sample: alternating routes minimize the largest jump",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,12 +19,12 @@
       "expected": 5,
       "tags": [
         "sample",
-        "greedy"
+        "alternating-routes"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: three stones force the full span",
+      "name": "sample: three stones force one full-span jump",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,12 +36,13 @@
       },
       "expected": 9,
       "tags": [
-        "sample"
+        "sample",
+        "three-stones"
       ]
     },
     {
       "id": "trial-two-stones",
-      "name": "trial: only the start and end stones exist",
+      "name": "trial: only the two endpoints exist",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -51,12 +53,34 @@
       },
       "expected": 1,
       "tags": [
-        "trial"
+        "trial",
+        "minimum-length"
       ]
     },
     {
-      "id": "real-small-three-stone-span",
-      "name": "hidden: one middle stone still forces the span",
+      "id": "trial-uniform-gaps",
+      "name": "trial: unit-spaced stones",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "stones": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "uniform-gaps"
+      ]
+    },
+    {
+      "id": "real-small-three-span",
+      "name": "hidden: asymmetric three-stone positions",
       "kind": "real",
       "visible": false,
       "input": {
@@ -68,7 +92,87 @@
       },
       "expected": 3,
       "tags": [
-        "hidden"
+        "hidden",
+        "three-stones"
+      ]
+    },
+    {
+      "id": "real-equal-two-spans",
+      "name": "hidden: uneven adjacent gaps produce equal skip spans",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          0,
+          1,
+          10,
+          11,
+          20
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "uneven-gaps"
+      ]
+    },
+    {
+      "id": "real-largest-span-near-end",
+      "name": "hidden: decisive skipped-stone jump is near the end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          0,
+          4,
+          6,
+          11,
+          15
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "late-maximum"
+      ]
+    },
+    {
+      "id": "real-irregular",
+      "name": "hidden: several competing two-index spans",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          0,
+          2,
+          3,
+          10,
+          11,
+          12
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "irregular-gaps"
+      ]
+    },
+    {
+      "id": "real-maximum-coordinate",
+      "name": "hidden: endpoint reaches the coordinate limit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "stones": [
+          0,
+          1000000000
+        ]
+      },
+      "expected": 1000000000,
+      "tags": [
+        "hidden",
+        "boundary",
+        "large-coordinate"
       ]
     }
   ]

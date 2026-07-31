@@ -50,23 +50,41 @@ approved, sponsored, or endorsed cOde(n).
   answer, while authored benchmark tiers test whether runtime growth matches
   the required complexity class.
 - **Useful learning paths:** browse the same canonical packages through
-  LeetCode categories and study plans, company and topic views, NeetCode views,
-  or AlgoMaster collections. These are views, never duplicate problem roots.
+  LeetCode categories, study plans, Quests, company and topic views, NeetCode
+  views, or AlgoMaster collections. These are views, never duplicate problem
+  roots.
 - **Local progress and solutions:** profiles, progress, and three personal
   solution versions per language stay in the writable local user-data
   directory. Bundled learning resources remain read-only.
 
 ## Project status
 
-Version `0.1.0` is an active corpus migration, not a claim that every package is
-finished. The repository indexes 3,985 canonical frontend IDs. At this version,
-819 packages are locally complete and remotely verified, and documentation has
-been authored through frontend ID 822. The generated migration reports in
+Version `0.2.0` is an active corpus migration, not a claim that every package is
+finished. The repository indexes its final corpus of 4,005 canonical frontend
+IDs. At this checkpoint, 3,722 packages are locally complete and remotely
+verified, package authoring has reached the permanent frontend-ID ceiling of
+4005, and every package has a remotely verified Optimal submission. The generated
+migration reports in
 [`dsa/leetcode/_reports/`](dsa/leetcode/_reports/) are the current source of
-truth.
+truth. In particular, the generated
+[`END_OF_CORPUS_REWORK_GAPS.md`](dsa/leetcode/_reports/END_OF_CORPUS_REWORK_GAPS.md)
+currently records all 283 packages that are not fully complete (zero active
+verified-solution scaffolds and 283 deferred documentation-only failures), all
+3,285 packages whose source fidelity has not yet been reviewed, and 15 known
+repository-regression packages for the consolidated cleanup pass.
 
-The long-term objective is one complete educational package for every indexed
-problem through frontend ID 3985.
+The fixed objective is one complete educational package for each of those
+4,005 indexed problems. Frontend ID 4005 is the permanent application boundary;
+future LeetCode publications will not expand this corpus.
+
+LeetCode-derived metadata is also frozen. The final authenticated snapshot was
+captured on **2026-07-29** and includes the then-current official difficulty,
+acceptance rate, Premium Frequency, and every bundled company/list relevance
+signal. Those values are historical snapshots, not claims about current or
+future company interview activity. Real contest Elo comes from the final
+[ZeroTrac](https://zerotrac.github.io/leetcode_problem_rating/#/) snapshot;
+problems absent from ZeroTrac retain an explicitly labelled estimated Elo.
+Neither source will be refreshed for this application after the freeze date.
 
 ## How a problem package is organized
 
@@ -75,7 +93,14 @@ Each problem has one canonical home:
 ```text
 dsa/leetcode/<frontend_id:04d>_<slug>/
   metadata.json
-  doc.md
+  doc.md                              # legacy document or compatibility anchor
+  reference/                          # section-authored Reference document
+    description.md
+    contract.md
+    examples.md
+    constraints.md
+    follow_up.md                      # optional source-native section
+  source_fidelity.json                # optional reviewed source-fidelity facts
   cases.json
   benchmark.json
   guided_example.md                 # optional code-free worked example
@@ -198,6 +223,14 @@ npm.cmd run dev --prefix web
 
 Then open `http://localhost:5173`.
 
+VS Code 1.121 and newer render fenced `mermaid` blocks directly in the built-in
+Markdown preview. Open a package Markdown file and press `Ctrl+K V` to preview
+beside the editor, or `Ctrl+Shift+V` to replace the editor with the preview. No
+extension is required. If a preview opened before a VS Code update still shows
+the Mermaid source as an ordinary code block, close and reopen the preview (or
+reload the VS Code window) and verify that the file language is Markdown and
+the built-in **Markdown Language Features** extension is enabled.
+
 ## Validation
 
 Run the complete repository checks with:
@@ -213,6 +246,7 @@ For canonical dataset documentation work, also run:
 ```powershell
 .\.venv\Scripts\python.exe tools\check_leetcode_dataset.py
 .\.venv\Scripts\python.exe -m pytest server\tests\test_dynamic_docs.py -q
+npm.cmd run test:mermaid --prefix web
 ```
 
 ## Maintainer documentation

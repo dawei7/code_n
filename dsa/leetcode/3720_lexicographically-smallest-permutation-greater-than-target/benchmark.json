@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3720",
+  "cases": [
+    {
+      "id": "benchmark-maximum-target-32",
+      "name": "benchmark: exhaust 32 positions against the maximum permutation",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaz",
+        "target": "zaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": "",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "backtracking",
+        "maximum-permutation"
+      ]
+    },
+    {
+      "id": "benchmark-maximum-target-128",
+      "name": "benchmark: exhaust 128 positions against the maximum permutation",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaz",
+        "target": "zaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": "",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "backtracking",
+        "maximum-permutation"
+      ]
+    },
+    {
+      "id": "benchmark-maximum-target-300",
+      "name": "benchmark: exhaust 300 positions against the maximum permutation",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 300,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaz",
+        "target": "zaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": "",
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "backtracking",
+        "maximum-permutation"
+      ]
+    }
+  ]
+}
+

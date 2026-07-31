@@ -5,27 +5,34 @@
 | Source | LeetCode |
 | Frontend ID | 2279 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Greedy, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-bags-with-full-capacity-of-rocks](https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks/).
-
 ### Goal
-Distribute at most `additionalRocks` among bags without exceeding their capacities. Maximize how many bags become exactly full.
+There are $n$ bags. Bag $i$ can hold at most `capacity[i]` rocks and currently
+contains `rocks[i]` rocks. A bag is full exactly when its current number of
+rocks equals its capacity.
+
+Distribute at most `additionalRocks` more rocks among the bags. No bag may
+receive more rocks than its remaining capacity, and unused rocks may be left
+over. Return the greatest number of bags that can be made full.
 
 ### Function Contract
 **Inputs**
 
-- `capacity`: maximum rocks for each bag.
-- `rocks`: current rocks at matching indices.
-- `additionalRocks`: available rocks to add.
+- `capacity`: An integer array of length $n$ whose value at index $i$ is the maximum number of rocks bag $i$ can contain.
+- `rocks`: An integer array of length $n$ whose value at index $i$ is the number of rocks already in bag $i$.
+- `additionalRocks`: The number of extra rocks available for distribution.
+
+Here, $1 \le n \le 5 \cdot 10^4$, both arrays have length $n$,
+$1 \le \texttt{capacity[i]} \le 10^9$, and
+$0 \le \texttt{rocks[i]} \le \texttt{capacity[i]}$.
 
 **Return value**
 
-The greatest number of bags that can be full.
+The maximum number of bags that can be exactly full after distributing at most
+the available additional rocks.
 
 ### Examples
 **Example 1**
@@ -40,18 +47,5 @@ The greatest number of bags that can be full.
 
 **Example 3**
 
-- Input: `capacity = [5]`, `rocks = [0]`, `additionalRocks = 4`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-Compute each bag's deficit `capacity[i] - rocks[i]` and sort deficits ascending. Fill bags from cheapest to most expensive until the next deficit exceeds the remaining additional rocks. Zero-deficit bags are counted automatically.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(n)` for deficits, or `O(1)` extra if an input array is reused
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `capacity = [5, 5]`, `rocks = [5, 0]`, `additionalRocks = 1`
+- Output: `1`

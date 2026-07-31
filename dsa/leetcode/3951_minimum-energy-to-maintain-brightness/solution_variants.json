@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Energy to Maintain Brightness and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Multiplies the minimum bulbs needed per active time by the inclusive union length obtained from a sorted interval sweep.",
+      "time_complexity": "O(m log m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

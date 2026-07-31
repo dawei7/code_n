@@ -1,34 +1,29 @@
-from typing import List
+def solve(nums1: list[list[int]], nums2: list[list[int]]) -> list[list[int]]:
+    first = 0
+    second = 0
+    merged: list[list[int]] = []
 
-def solve(nums1: List[List[int]], nums2: List[List[int]]) -> List[List[int]]:
-    """
-    Merges two sorted 2D arrays by summing values for matching IDs using the Two Pointers approach.
-    """
-    i, j = 0, 0
-    result = []
-    
-    while i < len(nums1) and j < len(nums2):
-        id1, val1 = nums1[i]
-        id2, val2 = nums2[j]
-        
-        if id1 == id2:
-            result.append([id1, val1 + val2])
-            i += 1
-            j += 1
-        elif id1 < id2:
-            result.append([id1, val1])
-            i += 1
+    while first < len(nums1) and second < len(nums2):
+        first_id, first_value = nums1[first]
+        second_id, second_value = nums2[second]
+
+        if first_id == second_id:
+            merged.append([first_id, first_value + second_value])
+            first += 1
+            second += 1
+        elif first_id < second_id:
+            merged.append([first_id, first_value])
+            first += 1
         else:
-            result.append([id2, val2])
-            j += 1
-            
-    # Append remaining elements from either array
-    while i < len(nums1):
-        result.append(nums1[i])
-        i += 1
-        
-    while j < len(nums2):
-        result.append(nums2[j])
-        j += 1
-        
-    return result
+            merged.append([second_id, second_value])
+            second += 1
+
+    while first < len(nums1):
+        merged.append(nums1[first][:])
+        first += 1
+
+    while second < len(nums2):
+        merged.append(nums2[second][:])
+        second += 1
+
+    return merged

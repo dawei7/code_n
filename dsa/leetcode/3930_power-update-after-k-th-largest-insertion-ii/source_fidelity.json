@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3930",
+    "frontend_id": "3930",
+    "title_slug": "power-update-after-k-th-largest-insertion-ii",
+    "url": "https://leetcode.com/problems/power-update-after-k-th-largest-insertion-ii/description/",
+    "paid_only": true,
+    "content_sha256": "a0af38ae8506ae788f50b8fb84092501a168922f6a856598f23ed184c9d2056e",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [2], p = 4, queries = [[3,1],[1,2]]",
+        "output": "[64,4096]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [7,5], p = 6, queries = [[4,3],[7,2]]",
+        "output": "[1296,220296870]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 2,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ea0994f74bb55a3ef05779e9a3a012d912daeebfe4a086d34c2af0c5285f8463",
+      "reference/contract.md": "f55c21172619fb6737754b3be55c93eeb3a1783f9f474a3484990e40bb997c5f",
+      "reference/examples.md": "508e25731e0b8285c5a038297b244dcb5a0d72e857e5236908f8e20aa979a783",
+      "reference/constraints.md": "82d911c537a2f8abc9fa9b6cd3d911c0141619a9b8824adac46a306d3b00380f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

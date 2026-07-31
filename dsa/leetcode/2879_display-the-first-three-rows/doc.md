@@ -8,48 +8,39 @@
 | Category | pandas |
 | Topics | Uncategorized |
 | Supported Languages | python |
-| Official Link | [display-the-first-three-rows](https://leetcode.com/problems/display-the-first-three-rows/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/display-the-first-three-rows/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/display-the-first-three-rows/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The pandas `DataFrame` named `employees` stores employee records in their current row order. Its four columns are `employee_id`, `name`, `department`, and `salary`; each output row must retain all four values and the original column labels.
+
+Return a DataFrame containing only the first three rows of `employees`, without sorting or otherwise changing their order. If the input contains fewer than three rows, return every available row. Rows after the third position must not appear in the result.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `employees`: A pandas `DataFrame` with columns `employee_id`, `name`, `department`, and `salary`.
 
 **Return value**
 
-TODO
+A pandas `DataFrame` containing the first `min(3, len(employees))` rows with the original columns and order.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: six employee rows beginning with Bob, Alice, and Tatiana.
+- Output: the three rows for Bob, Alice, and Tatiana, with all four columns preserved.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: exactly three employee rows.
+- Output: all three rows in their original order.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: one employee row.
+- Output: that single row with the original schema.

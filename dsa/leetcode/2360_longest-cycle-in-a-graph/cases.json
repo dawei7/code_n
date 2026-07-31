@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2360",
+  "cases": [
+    {"id":"sample-three-cycle","name":"sample: tail entries feed a three-node cycle","kind":"sample","visible":true,"input":{"edges":[3,3,4,2,3]},"expected":3,"tags":["sample","cycle"]},
+    {"id":"sample-no-cycle","name":"sample: all paths terminate","kind":"sample","visible":true,"input":{"edges":[2,-1,3,1]},"expected":-1,"tags":["sample","acyclic"]},
+    {"id":"trial-two-cycle","name":"smallest legal cycle","kind":"trial","visible":true,"input":{"edges":[1,0]},"expected":2,"tags":["boundary","cycle"]},
+    {"id":"trial-disconnected-sinks","name":"separate terminating components","kind":"trial","visible":true,"input":{"edges":[-1,-1,-1]},"expected":-1,"tags":["acyclic","disconnected"]},
+    {"id":"trial-two-cycles","name":"choose the longer of two cycles","kind":"trial","visible":true,"input":{"edges":[1,0,3,4,2]},"expected":3,"tags":["multiple-cycles"]},
+    {"id":"real-tail-to-two-cycle","name":"hidden: tail nodes are not part of the cycle","kind":"real","visible":false,"input":{"edges":[1,2,3,2]},"expected":2,"tags":["hidden","tail"]},
+    {"id":"real-four-cycle","name":"hidden: one full-component cycle","kind":"real","visible":false,"input":{"edges":[1,2,3,0]},"expected":4,"tags":["hidden","cycle"]},
+    {"id":"real-cycle-and-chain","name":"hidden: ignore an acyclic component","kind":"real","visible":false,"input":{"edges":[1,0,3,4,-1]},"expected":2,"tags":["hidden","disconnected"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4086",
+  "frontend_id": "3816",
+  "title_slug": "lexicographically-smallest-string-after-deleting-duplicate-characters",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.lexSmallestAfterDeletion",
+  "verified_submission_id": "2085539771",
+  "verified_at": "2026-07-29T04:21:34.065308+00:00"
+}

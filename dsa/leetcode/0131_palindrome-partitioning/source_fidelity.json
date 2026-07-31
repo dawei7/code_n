@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_131", "frontend_id": "131", "title_slug": "palindrome-partitioning", "url": "https://leetcode.com/problems/palindrome-partitioning/description/", "paid_only": false, "content_sha256": "bc42c48324195fde8b22b64698266be9529954cd0c0353ca45782ea5f5cc0970", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"aab\"", "output": "[[\"a\",\"a\",\"b\"],[\"aa\",\"b\"]]", "has_explanation": false},
+      {"ordinal": 2, "input": "s = \"a\"", "output": "[[\"a\"]]", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "7799b0394226c3a86c2a3300d4b5d35f79c7a81658b2c7b7b32992247f0e6495", "reference/contract.md": "07e2f7211e2ba0cd7493b93025dce08b7c703acec8f8a7516af1c5204fb9b2c6", "reference/examples.md": "4d0c9abdaccb83aa320955a3043f8ea35df9efb0818c56e274ab4c1d4dd96a3f", "reference/constraints.md": "efe87e36028a6f998d57999bd2d79f7f930f309518edfb86c929c5dd24f08584"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

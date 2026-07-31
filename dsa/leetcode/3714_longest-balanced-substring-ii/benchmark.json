@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3714",
+  "measurement_note": "Size is string length. Each tier is fully balanced, while the slower control still enumerates every interval rather than stopping after finding the full answer.",
+  "cases": [
+    {
+      "id": "benchmark-balanced-period-120",
+      "name": "benchmark: inspect every interval in 120 characters of repeated abc",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 120,
+      "input": {
+        "s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc"
+      },
+      "expected": 120,
+      "tags": [
+        "benchmark",
+        "quadratic-enumeration-pressure",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-balanced-period-240",
+      "name": "benchmark: inspect every interval in 240 characters of repeated abc",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 240,
+      "input": {
+        "s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc"
+      },
+      "expected": 240,
+      "tags": [
+        "benchmark",
+        "quadratic-enumeration-pressure",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-balanced-period-480",
+      "name": "benchmark: inspect every interval in 480 characters of repeated abc",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 480,
+      "input": {
+        "s": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc"
+      },
+      "expected": 480,
+      "tags": [
+        "benchmark",
+        "quadratic-enumeration-pressure",
+        "scale-large"
+      ]
+    }
+  ]
+}

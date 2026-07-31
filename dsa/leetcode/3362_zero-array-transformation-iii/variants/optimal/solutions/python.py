@@ -1,46 +1,28 @@
-import heapq
-from collections import defaultdict
+from heapq import heappop, heappush
+
 
 def solve(nums: list[int], queries: list[list[int]]) -> int:
-    n = len(nums)
-    # Group queries by their start index
-    starts = defaultdict(list)
-    for l, r in queries:
-        starts[l].append(r)
+    queries.sort()
+    available: list[int] = []
+    difference = [0] * (len(nums) + 1)
+    coverage = 0
+    selected = 0
+    query_index = 0
 
-    # Max-heap to store the end indices of active queries
-    # We want to pick queries that end as far as possible
-    active_queries = []
+    for index, required in enumerate(nums):
+        coverage += difference[index]
 
-    # Difference array to track current reduction applied to nums[i]
-    diff = [0] * (n + 1)
-    current_reduction = 0
-    count = 0
+        while query_index < len(queries) and queries[query_index][0] <= index:
+            heappush(available, -queries[query_index][1])
+            query_index += 1
 
-    for i in range(n):
-        # Add all queries starting at i to the heap
-        for r in starts[i]:
-            heapq.heappush(active_queries, -r)
-
-        # Update current reduction using difference array
-        current_reduction += diff[i]
-
-        # While current value is not satisfied, use queries
-        while nums[i] + current_reduction > 0:
-            if not active_queries:
+        while coverage < required:
+            if not available or -available[0] < index:
                 return -1
 
-            # Pick the query that ends furthest to the right
-            r = -heapq.heappop(active_queries)
+            end = -heappop(available)
+            coverage += 1
+            difference[end + 1] -= 1
+            selected += 1
 
-            # If the query ends before current index, it's useless
-            if r < i:
-                continue
-
-            # Apply the query
-            count += 1
-            current_reduction -= 1
-            # The effect of this query ends at r
-            diff[r + 1] += 1
-
-    return len(queries) - count
+    return len(queries) - selected

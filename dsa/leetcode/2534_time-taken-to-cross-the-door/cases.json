@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_2534",
+  "cases": [
+    {"id": "sample-1", "name": "sample: entering direction retains priority", "kind": "sample", "visible": true, "input": {"arrival": [0, 1, 1, 2, 4], "state": [0, 1, 0, 0, 1]}, "expected": [0, 3, 1, 2, 4], "tags": ["sample", "previous-direction"]},
+    {"id": "sample-2", "name": "sample: unused door prioritizes exiting", "kind": "sample", "visible": true, "input": {"arrival": [0, 0, 0], "state": [1, 0, 1]}, "expected": [0, 2, 1], "tags": ["sample", "exit-priority"]},
+    {"id": "trial-idle-reset", "name": "trial: idle second resets priority to exiting", "kind": "trial", "visible": true, "input": {"arrival": [0, 2], "state": [0, 1]}, "expected": [0, 2], "tags": ["trial", "idle-gap"]},
+    {"id": "trial-continuous-exit", "name": "trial: exiting retains priority without a gap", "kind": "trial", "visible": true, "input": {"arrival": [0, 1, 1], "state": [1, 0, 1]}, "expected": [0, 2, 1], "tags": ["trial", "continuous-use"]},
+    {"id": "real-all-enter", "name": "hidden: same-direction ties follow indices", "kind": "real", "visible": false, "input": {"arrival": [0, 0, 0], "state": [0, 0, 0]}, "expected": [0, 1, 2], "tags": ["hidden", "fifo"]},
+    {"id": "real-batched-arrivals", "name": "hidden: queued directions across several arrival batches", "kind": "real", "visible": false, "input": {"arrival": [3, 3, 4, 5, 5, 5], "state": [1, 0, 1, 0, 1, 0]}, "expected": [3, 6, 4, 7, 5, 8], "tags": ["hidden", "batching"]},
+    {"id": "real-multiple-idle-periods", "name": "hidden: reset and retain priority across mixed gaps", "kind": "real", "visible": false, "input": {"arrival": [0, 5, 6, 6, 7], "state": [1, 0, 0, 1, 0]}, "expected": [0, 5, 6, 8, 7], "tags": ["hidden", "idle-reset"]}
+  ]
+}

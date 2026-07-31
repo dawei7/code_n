@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Sliding Window |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-length-substring-with-two-occurrences](https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-length-substring-with-two-occurrences/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a string `s`, consider its contiguous substrings. A substring is valid when every character appearing inside it occurs at most two times. It may begin and end at any positions, but it must preserve the original order and adjacency of the selected characters.
+
+Return the maximum length among all valid substrings. The chosen substring may contain many different lowercase letters; the restriction applies independently to the frequency of each letter, rather than to the total number of distinct letters.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: a string of lowercase English letters, with $2 \leq \lvert s \rvert \leq 100$.
+
+Let $n = \lvert s \rvert$.
 
 **Return value**
 
-TODO
+Return an integer equal to the greatest length of a contiguous substring in which no character occurs more than twice.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "bcbbbcba"`
+- Output: `4`
+- Explanation: `"bcba"` is a length-four substring whose characters each occur at most twice. No longer substring satisfies the limit.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaaa"`
+- Output: `2`
+- Explanation: Any two adjacent letters are valid, while every substring of length three contains `'a'` three times.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "abcdef"`
+- Output: `6`
+- Explanation: Every character is distinct, so the entire string is valid.

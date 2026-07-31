@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Breadth-First Search, Graph Theory, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-the-number-of-houses-at-a-certain-distance-i](https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-i/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A city has houses numbered from $1$ through $n$. Consecutive houses $i$ and $i+1$ are joined by a street, and one additional street connects houses $x$ and $y$. The two shortcut endpoints may be equal, in which case that street does not shorten travel between distinct houses.
+
+For every distance $k$ from $1$ through $n$, count ordered pairs of distinct houses `(house1, house2)` whose shortest route uses exactly $k$ streets. Reversing a pair creates a separate count. Return a length-$n$ list whose position $k-1$ stores the count for distance $k$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The number of houses, between $2$ and $100$.
+- `x`: One endpoint of the additional street, between $1$ and $n$.
+- `y`: The other endpoint of the additional street, between $1$ and $n$.
 
 **Return value**
 
-TODO
+Return `counts`, where `counts[k - 1]` is the number of ordered pairs of distinct houses at shortest-path distance $k$ for every $1\le k\le n$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3, x = 1, y = 3`
+- Output: `[6,0,0]`
+
+The shortcut completes a triangle, so every ordered pair of distinct houses is one street apart.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5, x = 2, y = 4`
+- Output: `[10,8,2,0,0]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4, x = 1, y = 1`
+- Output: `[6,4,2,0]`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The self-loop does not improve the ordinary path distances.

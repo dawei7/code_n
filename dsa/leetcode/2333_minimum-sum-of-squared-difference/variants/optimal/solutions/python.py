@@ -1,51 +1,33 @@
-import collections
+from collections import Counter
+from typing import List
 
-def solve(nums1: list[int], nums2: list[int], k1: int, k2: int) -> int:
-    n = len(nums1)
-    total_k = k1 + k2
 
-    # Max possible difference is 10^5 - 1 = 99999.
-    # An array of size 100001 is sufficient for counts (indices 0 to 100000).
-    MAX_DIFF_VAL = 100000 
-    counts = [0] * (MAX_DIFF_VAL + 1)
-    
-    max_current_diff = 0
-    for i in range(n):
-        diff = abs(nums1[i] - nums2[i])
-        counts[diff] += 1
-        if diff > max_current_diff:
-            max_current_diff = diff
+def solve(nums1: List[int], nums2: List[int], k1: int, k2: int) -> int:
+    differences = [abs(first - second) for first, second in zip(nums1, nums2)]
+    operations = k1 + k2
+    if operations >= sum(differences):
+        return 0
 
-    # Greedily reduce the largest differences
-    # Iterate from the largest observed difference down to 1
-    for d in range(max_current_diff, 0, -1):
-        if total_k == 0:
-            break # No operations left
+    frequency = Counter(differences)
+    levels = sorted(frequency, reverse=True)
+    leveled_count = 0
 
-        if counts[d] > 0:
-            # Number of items with current difference 'd'
-            num_items_at_d = counts[d]
-            
-            # If we have enough operations to reduce all these items by 1
-            if total_k >= num_items_at_d:
-                total_k -= num_items_at_d
-                counts[d-1] += num_items_at_d
-                counts[d] = 0 # All items at 'd' moved to 'd-1'
-            else:
-                # We only have 'total_k' operations left.
-                # Reduce 'total_k' items from 'd' to 'd-1'.
-                counts[d-1] += total_k
-                counts[d] -= total_k
-                total_k = 0 # No operations left
-                break # Exit loop as no more operations
+    for level_index, level in enumerate(levels):
+        leveled_count += frequency[level]
+        next_level = levels[level_index + 1] if level_index + 1 < len(levels) else 0
+        cost = (level - next_level) * leveled_count
+        if operations >= cost:
+            operations -= cost
+            continue
 
-    # Calculate the final sum of squared differences
-    min_sum_sq_diff = 0
-    # Iterate through all possible differences (from 0 up to max_current_diff, or MAX_DIFF_VAL)
-    # Using max_current_diff as upper bound is slightly more efficient if max_current_diff is small.
-    # Using MAX_DIFF_VAL is also correct and safe.
-    for d in range(max_current_diff + 1): 
-        if counts[d] > 0:
-            min_sum_sq_diff += counts[d] * d * d
-            
-    return min_sum_sq_diff
+        full_steps, partially_reduced = divmod(operations, leveled_count)
+        final_level = level - full_steps
+        answer = (
+            (leveled_count - partially_reduced) * final_level * final_level
+            + partially_reduced * (final_level - 1) * (final_level - 1)
+        )
+        for lower_level in levels[level_index + 1 :]:
+            answer += frequency[lower_level] * lower_level * lower_level
+        return answer
+
+    return 0

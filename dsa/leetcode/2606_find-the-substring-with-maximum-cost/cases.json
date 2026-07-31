@@ -16,7 +16,7 @@
       "expected": 2,
       "tags": [
         "sample",
-        "kadane"
+        "reset"
       ]
     },
     {
@@ -36,29 +36,30 @@
       "expected": 0,
       "tags": [
         "sample",
-        "edge"
+        "empty-substring"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: negative c resets the run",
-      "kind": "sample",
+      "id": "trial-default-values",
+      "name": "trial: alphabet positions without overrides",
+      "kind": "trial",
       "visible": true,
       "input": {
-        "s": "bcacc",
-        "chars": "c",
+        "s": "azby",
+        "chars": "x",
         "vals": [
-          -1
+          -100
         ]
       },
-      "expected": 2,
+      "expected": 54,
       "tags": [
-        "sample"
+        "trial",
+        "default-values"
       ]
     },
     {
-      "id": "trial-custom-positive-and-negative",
-      "name": "trial: custom values dominate alphabet cost",
+      "id": "trial-custom-run",
+      "name": "trial: custom values create the best prefix",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -71,24 +72,45 @@
       },
       "expected": 110,
       "tags": [
-        "trial"
+        "trial",
+        "custom-values"
       ]
     },
     {
-      "id": "real-negative-high-letter",
-      "name": "hidden: negative z leaves small positive suffix",
+      "id": "real-repeated-reset",
+      "name": "hidden: negative separators split positive runs",
       "kind": "real",
       "visible": false,
       "input": {
-        "s": "zzza",
-        "chars": "z",
+        "s": "abxabyab",
+        "chars": "xy",
         "vals": [
-          -5
+          -20,
+          -30
         ]
       },
-      "expected": 1,
+      "expected": 3,
       "tags": [
-        "hidden"
+        "hidden",
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "real-positive-override",
+      "name": "hidden: positive override dominates defaults",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zaz",
+        "chars": "a",
+        "vals": [
+          1000
+        ]
+      },
+      "expected": 1052,
+      "tags": [
+        "hidden",
+        "positive-override"
       ]
     }
   ]

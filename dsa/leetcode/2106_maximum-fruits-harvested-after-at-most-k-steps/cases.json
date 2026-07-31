@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2106",
+  "cases": [
+    {
+      "id": "sample-right-only",
+      "name": "sample: best route moves only right",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "fruits": [[2, 8], [6, 3], [8, 6]],
+        "startPos": 5,
+        "k": 4
+      },
+      "expected": 9,
+      "tags": ["sample", "one-direction"]
+    },
+    {
+      "id": "sample-turn-once",
+      "name": "sample: best route changes direction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "fruits": [[0, 9], [4, 1], [5, 7], [6, 2], [7, 4], [10, 9]],
+        "startPos": 5,
+        "k": 4
+      },
+      "expected": 14,
+      "tags": ["sample", "direction-change", "fruit-at-start"]
+    },
+    {
+      "id": "sample-unreachable",
+      "name": "sample: every pile is unreachable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "fruits": [[0, 3], [6, 4], [8, 5]],
+        "startPos": 3,
+        "k": 2
+      },
+      "expected": 0,
+      "tags": ["sample", "unreachable"]
+    },
+    {
+      "id": "trial-zero-steps",
+      "name": "zero steps harvest only at the starting coordinate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [[4, 10], [5, 7], [6, 20]],
+        "startPos": 5,
+        "k": 0
+      },
+      "expected": 7,
+      "tags": ["zero-budget", "fruit-at-start"]
+    },
+    {
+      "id": "trial-left-only",
+      "name": "best route moves only left",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [[1, 4], [3, 5], [10, 100]],
+        "startPos": 5,
+        "k": 4
+      },
+      "expected": 9,
+      "tags": ["one-direction", "left"]
+    },
+    {
+      "id": "real-turn-cost-choice",
+      "name": "hidden: choose the cheaper turn order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [[2, 20], [4, 1], [7, 20]],
+        "startPos": 5,
+        "k": 7
+      },
+      "expected": 41,
+      "tags": ["hidden", "direction-change", "route-cost"]
+    },
+    {
+      "id": "real-distant-high-value",
+      "name": "hidden: unreachable high value must not enter the window",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [[10, 5], [11, 6], [30, 1000]],
+        "startPos": 10,
+        "k": 2
+      },
+      "expected": 11,
+      "tags": ["hidden", "unreachable", "fruit-at-start"]
+    }
+  ]
+}

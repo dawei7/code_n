@@ -8,48 +8,41 @@
 | Category | Algorithms |
 | Topics | Math, Bit Manipulation, Recursion |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-k-th-character-in-string-game-ii](https://leetcode.com/problems/find-the-k-th-character-in-string-game-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-k-th-character-in-string-game-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-k-th-character-in-string-game-ii/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Alice begins with `word = "a"` and performs every value in the binary array `operations` from left to right. Operation `0` appends an unchanged copy of the current word. Operation `1` instead makes a copy in which every letter advances once through the English alphabet, with `z` wrapping to `a`, and appends that transformed copy to the unchanged original.
+
+Each operation therefore doubles the word's length. Given a positive one-based position `k`, determine the character occupying that position after the full sequence has been applied. The input guarantees that the final word is long enough, even though constructing it explicitly may be impossible because `k` can be as large as $10^{14}$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `k`: The one-based character position to inspect, where $1\leq k\leq10^{14}$.
+- `operations`: An array of between 1 and 100 integers, each equal to `0` or `1`.
+
+After all operations, the generated word is guaranteed to contain at least `k` characters.
 
 **Return value**
 
-TODO
+Return the single lowercase English character at position `k` in the final word.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `k = 5, operations = [0, 0, 0]`
+- Output: `"a"`
+
+Every operation copies the word unchanged, producing `"aaaaaaaa"` after three steps.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `k = 10, operations = [0, 1, 0, 1]`
+- Output: `"b"`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The successive words are `"aa"`, `"aabb"`, `"aabbaabb"`, and `"aabbaabbbbccbbcc"`; its tenth character is `b`.

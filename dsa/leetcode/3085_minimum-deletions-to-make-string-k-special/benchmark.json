@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_3085",
+  "cases": [
+    {
+      "id": "benchmark-frequency-range-small",
+      "name": "benchmark: 16 characters across four frequencies",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"word": "abbbcccccddddddd", "k": 1},
+      "expected": 5,
+      "tags": ["benchmark", "scale-small", "frequency-range"]
+    },
+    {
+      "id": "benchmark-frequency-range-medium",
+      "name": "benchmark: 40 characters across four frequencies",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {"word": "aaaabbbbbbbbccccccccccccdddddddddddddddd", "k": 2},
+      "expected": 12,
+      "tags": ["benchmark", "scale-medium", "frequency-range"]
+    },
+    {
+      "id": "benchmark-frequency-range-large",
+      "name": "benchmark: 100 characters across four frequencies",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"word": "aaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccccccccccccccccccccccdddddddddddddddddddddddddddddddddddddddd", "k": 5},
+      "expected": 30,
+      "tags": ["benchmark", "scale-large", "frequency-range"]
+    }
+  ]
+}

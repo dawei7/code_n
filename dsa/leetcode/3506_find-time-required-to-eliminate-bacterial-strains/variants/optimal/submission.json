@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3814",
+  "frontend_id": "3506",
+  "title_slug": "find-time-required-to-eliminate-bacterial-strains",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minEliminationTime",
+  "verified_submission_id": "2082512450",
+  "verified_at": "2026-07-26T19:24:00Z"
+}

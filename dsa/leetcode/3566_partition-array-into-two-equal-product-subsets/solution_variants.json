@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Partition Array into Two Equal Product Subsets and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Checks the mandatory total product, then uses a divisibility-pruned include/exclude search for one target-product subset.",
+      "time_complexity": "O(2^n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

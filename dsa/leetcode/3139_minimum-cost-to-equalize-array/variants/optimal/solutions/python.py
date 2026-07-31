@@ -1,34 +1,30 @@
 def solve(nums: list[int], cost1: int, cost2: int) -> int:
+    mod = 10**9 + 7
     n = len(nums)
-    if n <= 1:
-        return 0
-    
-    min_val = min(nums)
-    max_val = max(nums)
-    total_sum = sum(nums)
-    MOD = 10**9 + 7
-    
-    def get_cost(target):
-        s = n * target - total_sum
-        m = target - min_val
-        
-        # If we can pair up almost all increments
-        if 2 * m <= s:
-            # Use cost2 for s // 2 pairs, cost1 for s % 2
-            return (s // 2) * min(2 * cost1, cost2) + (s % 2) * cost1
-        else:
-            # We are forced to use cost1 for the excess of the max element
-            # The number of pairs we can form is (s - m)
-            # The remaining (m - (s - m)) = 2m - s elements must be filled with cost1
-            pairs = s - m
-            remainder = m - pairs
-            return pairs * min(2 * cost1, cost2) + remainder * cost1
+    minimum = min(nums)
+    maximum = max(nums)
+    total = sum(nums)
+    deficit_at_maximum = n * maximum - total
 
-    ans = float('inf')
-    # The target can range from max_val to 2 * max_val
-    # We check target = max_val and target = max_val + 1 separately
-    # because the logic for the "bottleneck" element changes.
-    for target in range(max_val, 2 * max_val + 1):
-        ans = min(ans, get_cost(target))
-        
-    return ans % MOD
+    if n <= 2 or cost2 >= 2 * cost1:
+        return deficit_at_maximum * cost1 % mod
+
+    balance = max(
+        maximum,
+        (total - 2 * minimum + n - 3) // (n - 2),
+    )
+
+    def cost(target: int) -> int:
+        deficit = n * target - total
+        largest = target - minimum
+        pairs = min(deficit // 2, deficit - largest)
+        singles = deficit - 2 * pairs
+        return pairs * cost2 + singles * cost1
+
+    candidates = {
+        maximum,
+        max(maximum, balance - 1),
+        balance,
+        balance + 1,
+    }
+    return min(cost(target) for target in candidates) % mod

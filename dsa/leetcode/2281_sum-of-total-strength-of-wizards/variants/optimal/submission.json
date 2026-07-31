@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2368",
+  "frontend_id": "2281",
+  "title_slug": "sum-of-total-strength-of-wizards",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.totalStrength",
+  "verified_submission_id": "2073984376",
+  "verified_at": "2026-07-20T02:17:13.517864+00:00"
+}

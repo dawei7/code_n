@@ -1,0 +1,15 @@
+{
+  "schema_version":1,
+  "source":{"provider":"leetcode","challenge_id":"lc_3748","frontend_id":"3748","title_slug":"count-stable-subarrays","url":"https://leetcode.com/problems/count-stable-subarrays/description/","paid_only":false,"content_sha256":"0f03b008f0ec850aa4891a1afd0e9221d525578df27415be61ba0c8d70b6b747","checked_at":"2026-07-28"},
+  "structure":{"sections":["description","note","examples","constraints"],"examples":[
+    {"ordinal":1,"input":"nums = [3,1,2], queries = [[0,1],[1,2],[0,2]]","output":"[2,3,4]","has_explanation":true},
+    {"ordinal":2,"input":"nums = [2,2], queries = [[0,1],[0,0]]","output":"[3,1]","has_explanation":true}
+  ],"constraint_count":5,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
+  "review":{"status":"verified","files":{
+    "reference/description.md":"b758a193818ed62fe2f3b143c5490a225f3ee76a66f371e627f93d946c3bdddc",
+    "reference/contract.md":"4b5cc87e59a1df2c1969a3e201b084fb2be66c43daface61ad48454d4fb96d99",
+    "reference/note.md":"ef6df3b43a9e4e3e3e183af030197de569a5769408e1e6df080dc1844ecee21a",
+    "reference/examples.md":"d18aba434310758c5d7c4bc26a938e3981c83a64af1c8eb1731c57f310694cc6",
+    "reference/constraints.md":"740968805b7d7f6791ed770611abbc7ff2c30b4891db5f9cf3b85654b1321c23"
+  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+}

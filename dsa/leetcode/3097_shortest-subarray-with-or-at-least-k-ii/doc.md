@@ -8,85 +8,51 @@
 | Category | Algorithms |
 | Topics | Array, Bit Manipulation, Sliding Window |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [shortest-subarray-with-or-at-least-k-ii](https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/) |
+| LeetCode | [shortest-subarray-with-or-at-least-k-ii](https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/shortest-subarray-with-or-at-least-k-ii/).
 
 ### Goal
-Given an array of non-negative integers and an integer `k`, find the length of the shortest non-empty subarray such that the bitwise OR of all elements in that subarray is at least `k`. If no such subarray exists, return -1.
+
+You are given an array `nums` of non-negative integers and a non-negative integer `k`. A subarray consists of one or more contiguous elements of `nums`. Such a non-empty subarray is *special* when the bitwise OR of all its elements is at least `k`.
+
+Return the length of the shortest special subarray of `nums`. If no non-empty subarray has a bitwise OR of at least `k`, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of non-negative integers.
-- `k`: A non-negative integer representing the target threshold.
+- `nums`: A list of $n$ non-negative integers, where $1 \le n \le 2 \cdot 10^5$ and every value is at most $10^9$.
+- `k`: The non-negative target threshold, with $0 \le k \le 10^9$.
+
+Let
+
+$$
+V = \max\bigl(\{1, k\} \cup \{x : x \in \texttt{nums}\}\bigr).
+$$
+
+Thus, $O(\log V)$ bit positions suffice to represent every relevant value.
 
 **Return value**
 
-- An integer representing the minimum length of a subarray whose bitwise OR is $\ge k$, or -1 if no such subarray exists.
+- The minimum positive length of a contiguous subarray whose bitwise OR is at least `k`, or `-1` if no such subarray exists.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [1, 2, 3], k = 2`
 - Output: `1`
+- Explanation: The one-element subarray `[3]` has bitwise OR $3$, which reaches the threshold.
 
 **Example 2**
 
 - Input: `nums = [2, 1, 8], k = 10`
 - Output: `3`
+- Explanation: The entire array has bitwise OR $11$, and neither a one- nor a two-element subarray reaches $10$.
 
 **Example 3**
 
 - Input: `nums = [1, 2], k = 0`
 - Output: `1`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Sliding Window** approach combined with **Bit Frequency Counting**. Since the bitwise OR operation is monotonic (adding an element never decreases the OR sum), we can maintain a window `[left, right]` and track the count of set bits at each of the 30 possible positions (since integers are up to $10^9$). When the current OR sum is $\ge k$, we shrink the window from the left to find the minimal length.
-
-### Complexity Analysis
-- **Time Complexity**: $O(n \cdot \log(\max(nums)))$, where $n$ is the length of the array. For each element, we perform constant-time bitwise operations (30 bits).
-- **Space Complexity**: $O(1)$, as we only store a fixed-size array of size 30 to track bit counts, regardless of the input size.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int], k: int) -> int:
-    if k == 0:
-        return 1
-
-    n = len(nums)
-    min_len = float('inf')
-    bit_counts = [0] * 32
-    current_or = 0
-    left = 0
-
-    def update_or(val, delta):
-        nonlocal current_or
-        for i in range(32):
-            if (val >> i) & 1:
-                bit_counts[i] += delta
-
-        new_or = 0
-        for i in range(32):
-            if bit_counts[i] > 0:
-                new_or |= (1 << i)
-        return new_or
-
-    for right in range(n):
-        current_or = update_or(nums[right], 1)
-
-        while current_or >= k:
-            min_len = min(min_len, right - left + 1)
-            current_or = update_or(nums[left], -1)
-            left += 1
-
-    return int(min_len) if min_len != float('inf') else -1
-```
-</details>
+- Explanation: Every non-empty subarray has a non-negative OR value, so one element is sufficient.

@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3629",
+  "cases": [
+    {
+      "id": "sample-even-teleport",
+      "name": "sample: reach the final multiple of two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prime-teleportation"
+      ]
+    },
+    {
+      "id": "sample-three-teleport",
+      "name": "sample: use three to reach nine",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          4,
+          7,
+          9
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "prime-teleportation"
+      ]
+    },
+    {
+      "id": "sample-no-teleport",
+      "name": "sample: no useful prime teleportation",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          6,
+          5,
+          8
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "adjacent-only"
+      ]
+    },
+    {
+      "id": "trial-single-index",
+      "name": "trial: start is already the destination",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-direct-from-start",
+      "name": "trial: starting prime reaches the end directly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          9,
+          8
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "direct-teleport"
+      ]
+    },
+    {
+      "id": "trial-later-prime",
+      "name": "trial: one adjacent step unlocks a teleport",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          10,
+          15
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "prime-teleportation"
+      ]
+    },
+    {
+      "id": "trial-composite-cannot-teleport",
+      "name": "trial: a composite value cannot initiate teleportation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          12,
+          18
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "composite-source"
+      ]
+    },
+    {
+      "id": "real-duplicate-prime",
+      "name": "hidden: repeated prime values share the same destinations",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          10,
+          5,
+          25
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "duplicate-values"
+      ]
+    },
+    {
+      "id": "real-backward-step",
+      "name": "hidden: a backward step after teleporting is optimal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          1,
+          1,
+          3,
+          6,
+          1,
+          1,
+          15
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "backward-step",
+        "multi-teleport"
+      ]
+    },
+    {
+      "id": "real-nondivisible-end",
+      "name": "hidden: teleportation requires exact divisibility",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          14,
+          15,
+          22
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "real-distant-prime",
+      "name": "hidden: walk to a distant prime then teleport",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          11,
+          22,
+          33,
+          55
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "prime-teleportation"
+      ]
+    },
+    {
+      "id": "real-many-destinations",
+      "name": "hidden: a prime may reach several multiples",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          6,
+          10,
+          12,
+          14,
+          15
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "multiple-destinations"
+      ]
+    },
+    {
+      "id": "real-all-ones",
+      "name": "hidden: one values permit only adjacent steps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "adjacent-only"
+      ]
+    },
+    {
+      "id": "real-large-prime",
+      "name": "hidden: handle the largest prime below one million",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          999983,
+          1,
+          999983
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "large-value",
+        "direct-teleport"
+      ]
+    },
+    {
+      "id": "real-prime-links-no-shortcut",
+      "name": "hidden: available teleports need not improve the path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          2,
+          8,
+          3,
+          9,
+          25
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "no-improvement"
+      ]
+    }
+  ]
+}

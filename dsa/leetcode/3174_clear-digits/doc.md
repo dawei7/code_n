@@ -8,48 +8,38 @@
 | Category | Algorithms |
 | Topics | String, Stack, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [clear-digits](https://leetcode.com/problems/clear-digits/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/clear-digits/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/clear-digits/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a string `s`. Repeatedly locate the first digit still present, then delete that digit together with the closest non-digit character to its left. Continue until the string contains no digits, and return the remaining characters in their original relative order.
+
+The operation cannot be applied when a digit has no non-digit character to its left. Every input is generated so that all digits can be removed successfully, which means each encountered deletion has an eligible character available.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A string of length $n$, where $1 \le n \le 100$, containing only lowercase English letters and decimal digits.
+
+The input guarantees that repeated legal operations can delete every digit.
 
 **Return value**
 
-TODO
+- The string left after all digits and their paired non-digit characters have been removed.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abc"`
+- Output: `"abc"`
+- Explanation: The string contains no digit, so no operation is performed.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "cb34"`
+- Output: `""`
+- Explanation: Removing `3` with the closest letter `b` leaves `"c4"`; removing `4` with `c` then leaves the empty string.

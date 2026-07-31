@@ -8,48 +8,48 @@
 | Category | Algorithms |
 | Topics | Greedy, Bit Manipulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimize-xor](https://leetcode.com/problems/minimize-xor/) |
+| LeetCode | [Minimize XOR](https://leetcode.com/problems/minimize-xor/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimize-xor/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given two positive integers `num1` and `num2`. Choose a positive integer $x$ whose binary representation contains exactly as many set bits as `num2`.
+
+Among every integer satisfying that bit-count requirement, minimize the value of `x ^ num1`, where `^` is bitwise XOR. Return $x$ itself, not the minimized XOR value. The test data guarantees that the minimizing integer is unique.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `num1`: A positive integer.
+- `num2`: A positive integer whose set-bit count $k$ must be matched by the result.
+
+Both inputs lie in $[1,10^9]$. Let $U=\max(\texttt{num1},\texttt{num2})$; every legal input fits within 30 binary positions.
 
 **Return value**
 
-TODO
+- The unique positive integer $x$ with exactly $k$ set bits that minimizes `x ^ num1`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num1 = 3, num2 = 5`
+- Output: `3`
+
+Both `3` and `5` contain two set bits, and choosing 3 makes the XOR zero.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num1 = 1, num2 = 12`
+- Output: `3`
+
+Two set bits are required. Keeping the low set bit of `num1` and adding the next-lowest zero bit produces `3`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num1 = 15, num2 = 1`
+- Output: `8`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Only one set bit is allowed, so matching the highest set bit of `num1` minimizes the XOR.

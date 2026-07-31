@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2518",
+  "frontend_id": "2432",
+  "title_slug": "the-employee-that-worked-on-the-longest-task",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.hardestWorker",
+  "verified_submission_id": "2074858259",
+  "verified_at": "2026-07-20T16:57:18.451163+00:00"
+}

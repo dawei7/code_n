@@ -2,8 +2,8 @@
   "challenge_id": "lc_2958",
   "cases": [
     {
-      "id": "sample-each-twice",
-      "name": "sample: each value at most twice",
+      "id": "sample-balanced-repetitions",
+      "name": "sample: three values occur at most twice",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -21,12 +21,13 @@
       },
       "expected": 6,
       "tags": [
-        "sample"
+        "sample",
+        "sliding-window"
       ]
     },
     {
       "id": "sample-k-one",
-      "name": "sample: k equals one",
+      "name": "sample: each value may occur once",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -37,18 +38,20 @@
           2,
           1,
           2,
-          1
+          1,
+          2
         ],
         "k": 1
       },
       "expected": 2,
       "tags": [
-        "sample"
+        "sample",
+        "k-one"
       ]
     },
     {
-      "id": "sample-all-same",
-      "name": "sample: all values same",
+      "id": "sample-all-equal",
+      "name": "sample: one value repeated",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -65,39 +68,32 @@
       },
       "expected": 4,
       "tags": [
-        "sample"
+        "sample",
+        "all-equal"
       ]
     },
     {
-      "id": "trial-window-shrinks-many",
-      "name": "trial: repeated shrink operations",
+      "id": "trial-singleton",
+      "name": "trial: singleton array",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          1,
-          1,
-          2,
-          2,
-          3,
-          3,
-          1,
-          2,
-          3,
-          4
+          9
         ],
-        "k": 2
+        "k": 1
       },
-      "expected": 6,
+      "expected": 1,
       "tags": [
-        "sliding-window"
+        "boundary",
+        "singleton"
       ]
     },
     {
-      "id": "real-large-k",
-      "name": "real: k larger than every frequency",
-      "kind": "real",
-      "visible": false,
+      "id": "trial-whole-array",
+      "name": "trial: every frequency stays within k",
+      "kind": "trial",
+      "visible": true,
       "input": {
         "nums": [
           1,
@@ -108,12 +104,100 @@
           4,
           1
         ],
-        "k": 5
+        "k": 3
       },
       "expected": 7,
       "tags": [
+        "whole-array"
+      ]
+    },
+    {
+      "id": "trial-shrink-past-several-values",
+      "name": "trial: violation moves left boundary several steps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1,
+          4,
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "shrink"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: large values and repeated endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          4,
+          5,
+          1000000000,
+          6,
+          7,
+          1000000000
+        ],
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
         "hidden",
-        "edge"
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-late-best",
+      "name": "real: longest window occurs at the end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "late-best"
+      ]
+    },
+    {
+      "id": "real-k-equals-length",
+      "name": "real: k equals array length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          8,
+          8,
+          8
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "k-boundary"
       ]
     }
   ]

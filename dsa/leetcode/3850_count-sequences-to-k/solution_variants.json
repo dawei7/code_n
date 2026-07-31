@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Sequences to K and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Represents exact rationals by signed exponents of 2, 3, and 5, then counts action sequences with a rolling state map.",
+      "time_complexity": "O(N S)",
+      "space_complexity": "O(S)"
     }
   ]
 }

@@ -3,107 +3,84 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: peak near the left",
+      "name": "sample: peak at the left endpoint",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "maxHeights": [
-          5,
-          3,
-          4,
-          1,
-          1
-        ]
-      },
-      "tags": [
-        "sample",
-        "mountain"
-      ],
-      "expected": 13
+      "input": {"maxHeights": [5, 3, 4, 1, 1]},
+      "expected": 13,
+      "tags": ["sample", "endpoint-peak"]
     },
     {
       "id": "sample-2",
-      "name": "sample: high middle peak with constraints",
+      "name": "sample: tall interior peak",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "maxHeights": [
-          6,
-          5,
-          3,
-          9,
-          2,
-          7
-        ]
-      },
-      "tags": [
-        "sample",
-        "mountain"
-      ],
-      "expected": 22
+      "input": {"maxHeights": [6, 5, 3, 9, 2, 7]},
+      "expected": 22,
+      "tags": ["sample", "interior-peak"]
     },
     {
       "id": "sample-3",
-      "name": "sample: plateau around the peak",
+      "name": "sample: plateau at the peak",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "maxHeights": [
-          3,
-          2,
-          5,
-          5,
-          2,
-          3
-        ]
-      },
-      "tags": [
-        "sample",
-        "plateau"
-      ],
-      "expected": 18
+      "input": {"maxHeights": [3, 2, 5, 5, 2, 3]},
+      "expected": 18,
+      "tags": ["sample", "plateau"]
     },
     {
-      "id": "trial-increasing-limits",
-      "name": "trial: strictly increasing limits peak at the end",
+      "id": "trial-single-tower",
+      "name": "trial: one tower",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "maxHeights": [
-          1,
-          2,
-          3,
-          4,
-          5
-        ]
-      },
-      "tags": [
-        "trial",
-        "increasing"
-      ],
-      "expected": 15
+      "input": {"maxHeights": [7]},
+      "expected": 7,
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "trial: already increasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {"maxHeights": [1, 2, 3, 4, 5]},
+      "expected": 15,
+      "tags": ["trial", "right-endpoint-peak"]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: already decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {"maxHeights": [5, 4, 3, 2, 1]},
+      "expected": 15,
+      "tags": ["trial", "left-endpoint-peak"]
+    },
+    {
+      "id": "real-equal-plateau",
+      "name": "hidden: every tower belongs to the peak plateau",
+      "kind": "real",
+      "visible": false,
+      "input": {"maxHeights": [4, 4, 4, 4]},
+      "expected": 16,
+      "tags": ["hidden", "plateau"]
     },
     {
       "id": "real-deep-valley",
-      "name": "hidden: low valley constrains both sides",
+      "name": "hidden: a deep valley separates tall regions",
       "kind": "real",
       "visible": false,
-      "input": {
-        "maxHeights": [
-          9,
-          8,
-          1,
-          8,
-          9,
-          7,
-          6
-        ]
-      },
-      "tags": [
-        "hidden",
-        "valley"
-      ],
-      "expected": 33
+      "input": {"maxHeights": [9, 8, 1, 8, 9, 7, 6]},
+      "expected": 33,
+      "tags": ["hidden", "valley"]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: large limits require a wide integer sum",
+      "kind": "real",
+      "visible": false,
+      "input": {"maxHeights": [1000000000, 1000000000, 1000000000]},
+      "expected": 3000000000,
+      "tags": ["hidden", "large-values"]
     }
   ]
 }

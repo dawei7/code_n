@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-two-by-two",
-      "name": "sample: two by two grid",
+      "name": "sample: repeated two and missing four",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -28,7 +28,7 @@
     },
     {
       "id": "sample-three-by-three",
-      "name": "sample: three by three grid",
+      "name": "sample: repeated nine and missing five",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -59,9 +59,9 @@
       ]
     },
     {
-      "id": "sample-first-repeated",
-      "name": "sample: first value repeated",
-      "kind": "sample",
+      "id": "trial-smallest-repeated",
+      "name": "trial: smallest value repeats",
+      "kind": "trial",
       "visible": true,
       "input": {
         "grid": [
@@ -80,12 +80,39 @@
         4
       ],
       "tags": [
-        "sample"
+        "boundary",
+        "repeated-minimum"
       ]
     },
     {
-      "id": "trial-middle-missing",
-      "name": "trial: missing middle value",
+      "id": "trial-largest-repeated",
+      "name": "trial: largest value repeats",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            4,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        4,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "repeated-maximum"
+      ]
+    },
+    {
+      "id": "trial-largest-missing",
+      "name": "trial: largest value is absent",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,12 +139,12 @@
         9
       ],
       "tags": [
-        "matrix"
+        "missing-maximum"
       ]
     },
     {
       "id": "real-four-by-four",
-      "name": "real: larger grid",
+      "name": "real: interior values differ",
       "kind": "real",
       "visible": false,
       "input": {
@@ -153,7 +180,74 @@
         15
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "larger-grid"
+      ]
+    },
+    {
+      "id": "real-shuffled-grid",
+      "name": "real: positions do not follow numeric order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            7,
+            5,
+            2
+          ],
+          [
+            9,
+            3,
+            8
+          ],
+          [
+            4,
+            6,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "shuffled"
+      ]
+    },
+    {
+      "id": "real-distant-values",
+      "name": "real: repeated and missing values are far apart",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            9
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        9,
+        6
+      ],
+      "tags": [
+        "hidden",
+        "distant-values"
       ]
     }
   ]

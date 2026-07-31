@@ -1,0 +1,605 @@
+{
+  "challenge_id": "lc_3268",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official mixed employees",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 1,
+              "start_time": "2023-10-01 09:00:00",
+              "end_time": "2023-10-01 17:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "2023-10-01 15:00:00",
+              "end_time": "2023-10-01 23:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "2023-10-01 16:00:00",
+              "end_time": "2023-10-02 00:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "2023-10-01 09:00:00",
+              "end_time": "2023-10-01 17:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "2023-10-01 11:00:00",
+              "end_time": "2023-10-01 19:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "2023-10-01 09:00:00",
+              "end_time": "2023-10-01 17:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            1,
+            3,
+            600
+          ],
+          [
+            2,
+            2,
+            360
+          ],
+          [
+            3,
+            1,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-touching",
+      "name": "sample: touching endpoints do not overlap",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 1,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 10:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "2024-01-01 10:00:00",
+              "end_time": "2024-01-01 12:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "strict-boundary"
+      ]
+    },
+    {
+      "id": "sample-nested",
+      "name": "sample: three nested shifts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 1,
+              "start_time": "2024-01-01 08:00:00",
+              "end_time": "2024-01-01 18:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "2024-01-01 09:00:00",
+              "end_time": "2024-01-01 17:00:00"
+            },
+            {
+              "employee_id": 1,
+              "start_time": "2024-01-01 10:00:00",
+              "end_time": "2024-01-01 16:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            1,
+            3,
+            1200
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "nested"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one shift has zero overlap duration",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 8,
+              "start_time": "2024-02-01 09:00:00",
+              "end_time": "2024-02-01 17:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            8,
+            1,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "single",
+        "zero-duration"
+      ]
+    },
+    {
+      "id": "trial-two-dates",
+      "name": "trial: employee metrics combine separate dates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 2,
+              "start_time": "2024-02-01 08:00:00",
+              "end_time": "2024-02-01 12:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "2024-02-01 10:00:00",
+              "end_time": "2024-02-01 14:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "2024-02-02 09:00:00",
+              "end_time": "2024-02-02 15:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "2024-02-02 10:00:00",
+              "end_time": "2024-02-02 14:00:00"
+            },
+            {
+              "employee_id": 2,
+              "start_time": "2024-02-02 11:00:00",
+              "end_time": "2024-02-02 13:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            2,
+            3,
+            600
+          ]
+        ]
+      },
+      "tags": [
+        "multiple-dates",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "trial-cross-midnight",
+      "name": "trial: same-start-date shifts overlap across midnight",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 4,
+              "start_time": "2024-03-01 20:00:00",
+              "end_time": "2024-03-02 02:00:00"
+            },
+            {
+              "employee_id": 4,
+              "start_time": "2024-03-01 23:00:00",
+              "end_time": "2024-03-02 01:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            4,
+            2,
+            120
+          ]
+        ]
+      },
+      "tags": [
+        "cross-midnight",
+        "same-date"
+      ]
+    },
+    {
+      "id": "trial-different-start-dates",
+      "name": "trial: different start dates remain separate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 5,
+              "start_time": "2024-03-01 22:00:00",
+              "end_time": "2024-03-02 03:00:00"
+            },
+            {
+              "employee_id": 5,
+              "start_time": "2024-03-02 01:00:00",
+              "end_time": "2024-03-02 04:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            5,
+            1,
+            0
+          ]
+        ]
+      },
+      "tags": [
+        "different-dates",
+        "partitioning"
+      ]
+    },
+    {
+      "id": "real-multiple-employees",
+      "name": "real: employees remain independent and sorted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 9,
+              "start_time": "2024-04-01 08:00:00",
+              "end_time": "2024-04-01 12:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "2024-04-01 09:00:00",
+              "end_time": "2024-04-01 11:00:00"
+            },
+            {
+              "employee_id": 9,
+              "start_time": "2024-04-01 10:00:00",
+              "end_time": "2024-04-01 14:00:00"
+            },
+            {
+              "employee_id": 3,
+              "start_time": "2024-04-01 10:00:00",
+              "end_time": "2024-04-01 13:00:00"
+            },
+            {
+              "employee_id": 7,
+              "start_time": "2024-04-01 07:00:00",
+              "end_time": "2024-04-01 08:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            3,
+            2,
+            60
+          ],
+          [
+            7,
+            1,
+            0
+          ],
+          [
+            9,
+            2,
+            120
+          ]
+        ]
+      },
+      "tags": [
+        "employees",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-four-concurrent",
+      "name": "real: four-way concurrency counts six pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 6,
+              "start_time": "2024-05-01 08:00:00",
+              "end_time": "2024-05-01 18:00:00"
+            },
+            {
+              "employee_id": 6,
+              "start_time": "2024-05-01 09:00:00",
+              "end_time": "2024-05-01 17:00:00"
+            },
+            {
+              "employee_id": 6,
+              "start_time": "2024-05-01 10:00:00",
+              "end_time": "2024-05-01 16:00:00"
+            },
+            {
+              "employee_id": 6,
+              "start_time": "2024-05-01 11:00:00",
+              "end_time": "2024-05-01 15:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            6,
+            4,
+            1920
+          ]
+        ]
+      },
+      "tags": [
+        "dense",
+        "four-way"
+      ]
+    },
+    {
+      "id": "real-two-clusters",
+      "name": "real: separated overlap clusters add duration",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 10,
+              "start_time": "2024-06-01 08:00:00",
+              "end_time": "2024-06-01 10:00:00"
+            },
+            {
+              "employee_id": 10,
+              "start_time": "2024-06-01 09:00:00",
+              "end_time": "2024-06-01 11:00:00"
+            },
+            {
+              "employee_id": 10,
+              "start_time": "2024-06-01 14:00:00",
+              "end_time": "2024-06-01 16:00:00"
+            },
+            {
+              "employee_id": 10,
+              "start_time": "2024-06-01 15:00:00",
+              "end_time": "2024-06-01 17:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            10,
+            2,
+            120
+          ]
+        ]
+      },
+      "tags": [
+        "clusters",
+        "separated"
+      ]
+    },
+    {
+      "id": "real-chain",
+      "name": "real: overlap chain never exceeds two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 11,
+              "start_time": "2024-07-01 08:00:00",
+              "end_time": "2024-07-01 10:00:00"
+            },
+            {
+              "employee_id": 11,
+              "start_time": "2024-07-01 09:00:00",
+              "end_time": "2024-07-01 11:00:00"
+            },
+            {
+              "employee_id": 11,
+              "start_time": "2024-07-01 10:30:00",
+              "end_time": "2024-07-01 12:30:00"
+            },
+            {
+              "employee_id": 11,
+              "start_time": "2024-07-01 12:00:00",
+              "end_time": "2024-07-01 14:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            11,
+            2,
+            120
+          ]
+        ]
+      },
+      "tags": [
+        "chain",
+        "partial"
+      ]
+    },
+    {
+      "id": "real-mixed-dates",
+      "name": "real: peak and duration aggregate differently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "EmployeeShifts": [
+            {
+              "employee_id": 12,
+              "start_time": "2024-08-01 08:00:00",
+              "end_time": "2024-08-01 18:00:00"
+            },
+            {
+              "employee_id": 12,
+              "start_time": "2024-08-01 09:00:00",
+              "end_time": "2024-08-01 10:00:00"
+            },
+            {
+              "employee_id": 12,
+              "start_time": "2024-08-01 11:00:00",
+              "end_time": "2024-08-01 12:00:00"
+            },
+            {
+              "employee_id": 12,
+              "start_time": "2024-08-02 08:00:00",
+              "end_time": "2024-08-02 12:00:00"
+            },
+            {
+              "employee_id": 12,
+              "start_time": "2024-08-02 09:00:00",
+              "end_time": "2024-08-02 11:00:00"
+            },
+            {
+              "employee_id": 12,
+              "start_time": "2024-08-02 10:00:00",
+              "end_time": "2024-08-02 13:00:00"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "employee_id",
+          "max_overlapping_shifts",
+          "total_overlap_duration"
+        ],
+        "rows": [
+          [
+            12,
+            3,
+            420
+          ]
+        ]
+      },
+      "tags": [
+        "multiple-dates",
+        "mixed"
+      ]
+    }
+  ]
+}

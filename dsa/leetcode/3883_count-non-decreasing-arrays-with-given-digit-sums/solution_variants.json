@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Non Decreasing Arrays With Given Digit Sums and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts prefixes by their final value and evaluates every non-decreasing transition with one prefix scan.",
+      "time_complexity": "O(nU)",
+      "space_complexity": "O(U)"
     }
   ]
 }

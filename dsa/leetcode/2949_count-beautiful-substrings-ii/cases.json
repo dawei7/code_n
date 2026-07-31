@@ -1,0 +1,151 @@
+{
+  "challenge_id": "lc_2949",
+  "cases": [
+    {
+      "id": "sample-two-long",
+      "name": "sample: two length-four beautiful substrings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "baeyh",
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three",
+      "name": "sample: two pairs and the whole string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abba",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-vowels",
+      "name": "sample: no substring can balance vowels and consonants",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bcdf",
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-vowels"
+      ]
+    },
+    {
+      "id": "trial-single-vowel",
+      "name": "trial: one character cannot be balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-one-pair",
+      "name": "trial: one balanced pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "pair"
+      ]
+    },
+    {
+      "id": "trial-product-not-divisible",
+      "name": "trial: balanced pair fails divisibility",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "divisibility"
+      ]
+    },
+    {
+      "id": "real-cubed-prime-factor",
+      "name": "hidden: a cubed prime factor requires four vowels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abababab",
+        "k": 8
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "prime-exponent"
+      ]
+    },
+    {
+      "id": "real-two-prime-factors",
+      "name": "hidden: the complete string first reaches the required period",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abababababab",
+        "k": 18
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "number-theory"
+      ]
+    },
+    {
+      "id": "real-all-vowels",
+      "name": "hidden: all vowels never balance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aeiouaeiou",
+        "k": 1000
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "no-consonants"
+      ]
+    },
+    {
+      "id": "real-mixed-periods",
+      "name": "hidden: several balanced lengths meet the derived period",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "leetcodeisgreat",
+        "k": 3
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}
+

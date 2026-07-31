@@ -2,108 +2,85 @@
   "challenge_id": "lc_3076",
   "cases": [
     {
-      "id": "sample-distinct-letters",
-      "name": "sample: each word has a short uncommon substring",
+      "id": "sample-mixed-answers",
+      "name": "sample: ties, missing answers, and a unique pair",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "arr": [
-          "cab",
-          "ad",
-          "bad",
-          "c"
-        ]
-      },
-      "expected": [
-        "ab",
-        "",
-        "ba",
-        ""
-      ],
-      "tags": [
-        "sample"
-      ]
+      "input": { "arr": ["cab", "ad", "bad", "c"] },
+      "expected": ["ab", "", "ba", ""],
+      "tags": ["sample", "lexicographic-tie", "empty-answer"]
     },
     {
-      "id": "sample-no-unique",
-      "name": "sample: identical words have no uncommon substring",
+      "id": "sample-full-word-required",
+      "name": "sample: only the full longest word is uncommon",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "arr": [
-          "abc",
-          "abc"
-        ]
-      },
-      "expected": [
-        "",
-        ""
-      ],
-      "tags": [
-        "sample"
-      ]
+      "input": { "arr": ["abc", "bcd", "abcd"] },
+      "expected": ["", "", "abcd"],
+      "tags": ["sample", "full-word", "empty-answer"]
     },
     {
-      "id": "trial-lexicographic-tie",
-      "name": "trial: choose lexicographically smallest among shortest candidates",
+      "id": "trial-distinct-single-letters",
+      "name": "trial: minimum-size array with distinct letters",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "arr": [
-          "banana",
-          "band",
-          "an"
-        ]
-      },
-      "expected": [
-        "na",
-        "d",
-        ""
-      ],
-      "tags": [
-        "trial"
-      ]
+      "input": { "arr": ["a", "b"] },
+      "expected": ["a", "b"],
+      "tags": ["trial", "minimum-size", "single-character"]
     },
     {
-      "id": "trial-single-word",
-      "name": "trial: one word can use its first character",
+      "id": "trial-duplicate-words",
+      "name": "trial: duplicate words have no uncommon substring",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "arr": [
-          "solo"
-        ]
-      },
-      "expected": [
-        "l"
-      ],
-      "tags": [
-        "trial"
-      ]
+      "input": { "arr": ["aaa", "aaa", "aab"] },
+      "expected": ["", "", "b"],
+      "tags": ["trial", "duplicates", "ownership"]
+    },
+    {
+      "id": "trial-repeated-inside-one-word",
+      "name": "trial: repeated occurrences in one word count as one owner",
+      "kind": "trial",
+      "visible": true,
+      "input": { "arr": ["aaaa", "b"] },
+      "expected": ["a", "b"],
+      "tags": ["trial", "repeated-substring", "ownership"]
+    },
+    {
+      "id": "trial-lexicographic-priority-after-length",
+      "name": "trial: shortest length takes priority over lexical order",
+      "kind": "trial",
+      "visible": true,
+      "input": { "arr": ["gfnt", "xn", "mdz", "yfmr", "fi", "wwncn", "hkdy"] },
+      "expected": ["g", "x", "z", "r", "i", "c", "h"],
+      "tags": ["trial", "tie-breaking", "single-character"]
     },
     {
       "id": "real-overlapping-strings",
-      "name": "real: overlapping substrings across several words",
+      "name": "real: overlapping words require answers of different lengths",
       "kind": "real",
       "visible": false,
-      "input": {
-        "arr": [
-          "abcd",
-          "bcde",
-          "cdef",
-          "abxy"
-        ]
-      },
-      "expected": [
-        "abc",
-        "bcde",
-        "f",
-        "x"
-      ],
-      "tags": [
-        "real",
-        "strings"
-      ]
+      "input": { "arr": ["abcd", "bcde", "cdef", "abxy"] },
+      "expected": ["abc", "bcde", "f", "x"],
+      "tags": ["real", "overlap", "mixed-lengths"]
+    },
+    {
+      "id": "real-repeated-patterns",
+      "name": "real: repeated patterns and lexical ties",
+      "kind": "real",
+      "visible": false,
+      "input": { "arr": ["banana", "band", "an"] },
+      "expected": ["na", "d", ""],
+      "tags": ["real", "overlap", "lexicographic-tie"]
+    },
+    {
+      "id": "real-maximum-word-length",
+      "name": "real: words at the maximum length",
+      "kind": "real",
+      "visible": false,
+      "input": { "arr": ["abcdefghijklmnopqrst", "abcdefghijklmnopqrsa"] },
+      "expected": ["t", "sa"],
+      "tags": ["real", "maximum-length", "boundary"]
     }
   ]
 }

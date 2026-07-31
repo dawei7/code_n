@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3456",
+  "cases": [
+    {
+      "id": "sample-terminal-run",
+      "name": "sample: qualifying run at the end",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaabaaa",
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "terminal"
+      ]
+    },
+    {
+      "id": "sample-no-uniform-window",
+      "name": "sample: no repeated pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-longer-run-invalid",
+      "name": "trial: length-k slice inside longer run is invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "maximal-run"
+      ]
+    },
+    {
+      "id": "trial-whole-string",
+      "name": "trial: whole string is the qualifying run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zzzzz",
+        "k": 5
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "whole-string"
+      ]
+    },
+    {
+      "id": "trial-middle-run",
+      "name": "trial: qualifying run has two different neighbors",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abbcccdd",
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "middle"
+      ]
+    },
+    {
+      "id": "real-single-character",
+      "name": "real: one-character string and k one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "q",
+        "k": 1
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-no-singleton",
+      "name": "real: k one but every run is longer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aabbcc",
+        "k": 1
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "singleton"
+      ]
+    },
+    {
+      "id": "real-first-run",
+      "name": "real: qualifying run at the beginning",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "xxxyyzzzz",
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "real",
+        "initial"
+      ]
+    },
+    {
+      "id": "real-several-run-lengths",
+      "name": "real: several runs but none has exact length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aabbbbccccc",
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "varied-runs"
+      ]
+    },
+    {
+      "id": "real-k-equals-length-nonuniform",
+      "name": "real: k equals length but string is not uniform",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ab",
+        "k": 2
+      },
+      "expected": false,
+      "tags": [
+        "real",
+        "full-length"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+class Solution:
+    def maxSelectedElements(self, nums: List[int]) -> int:
+        longest = {}
+        answer = 0
+
+        for value in sorted(nums):
+            incremented = longest.get(value, 0) + 1
+            unchanged = longest.get(value - 1, 0) + 1
+
+            longest[value + 1] = incremented
+            longest[value] = unchanged
+            answer = max(answer, incremented, unchanged)
+
+        return answer

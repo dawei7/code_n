@@ -8,79 +8,36 @@
 | Category | Algorithms |
 | Topics | Array, Math, Number Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-number-of-operations-to-make-all-array-elements-equal-to-1](https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/).
 
 ### Goal
-Given an array of integers, determine the minimum number of operations required to transform every element in the array to 1. In one operation, you can select any two adjacent elements and replace one of them with their greatest common divisor (GCD).
+
+You are given a 0-indexed array `nums` containing positive integers. In one operation, choose an index `i` with $0 \le i < n-1$, compute the greatest common divisor of the adjacent values `nums[i]` and `nums[i + 1]`, and replace either one of those two values with that gcd. The other value remains unchanged.
+
+Apply this operation any number of times and return the minimum number needed to make every array element equal to `1`. If no sequence of permitted adjacent replacements can produce an all-ones array, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers (`List[int]`).
+- `nums`: An array of $n$ positive integers, where $2 \le n \le 50$ and $1 \le \texttt{nums[i]} \le 10^6$.
 
 **Return value**
 
-- An integer representing the minimum operations needed, or -1 if it is impossible to make all elements 1.
+- Return the minimum number of adjacent-gcd replacements needed to make all elements `1`, or `-1` when this is impossible.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [2, 6, 3, 4]`
+- Input: `nums = [2,6,3,4]`
 - Output: `4`
+- Explanation: Combining `3` and `4` first creates a `1`; three more adjacent operations spread that value across the remaining positions.
 
 **Example 2**
 
-- Input: `nums = [2, 10, 6, 14]`
+- Input: `nums = [2,10,6,14]`
 - Output: `-1`
-
-**Example 3**
-
-- Input: `nums = [1, 1, 1]`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-The problem relies on the property that if the GCD of the entire array is greater than 1, it is impossible to create a 1, returning -1. If there is already a 1 in the array, the answer is `(n - count_of_ones)`. If no 1 exists, we must find the shortest subarray whose GCD is 1. The length of this subarray `L` allows us to create a 1 in `L-1` operations, and then we use that 1 to convert the remaining `n-1` elements, resulting in `(L-1) + (n-1)` operations.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n^2 + n * log(max(nums)))`, where `n` is the length of the array. We iterate through all possible subarrays to find the shortest one with a GCD of 1.
-- **Space Complexity**: `O(1)`, as we only use a few variables for tracking the minimum length and GCD calculations.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import math
-
-def solve(nums: list[int]) -> int:
-    n = len(nums)
-    ones_count = nums.count(1)
-
-    if ones_count > 0:
-        return n - ones_count
-
-    # Find the shortest subarray with GCD == 1
-    min_len = float('inf')
-
-    for i in range(n):
-        current_gcd = nums[i]
-        for j in range(i + 1, n):
-            current_gcd = math.gcd(current_gcd, nums[j])
-            if current_gcd == 1:
-                min_len = min(min_len, j - i + 1)
-                break
-
-    if min_len == float('inf'):
-        return -1
-
-    # Operations = (min_len - 1) to create one '1'
-    # + (n - 1) to propagate that '1' to the rest of the array
-    return min_len - 1 + n - 1
-```
-</details>
+- Explanation: Every array value is even, so every gcd produced by an operation remains greater than `1`.

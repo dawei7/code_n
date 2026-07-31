@@ -1,214 +1,87 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3459",
   "cases": [
     {
-      "id": "sample-long-v",
-      "name": "sample: longest V-shaped diagonal",
+      "id": "sample-five-with-turn",
+      "name": "sample: length five with a clockwise turn",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            2,
-            2,
-            1,
-            2,
-            2
-          ],
-          [
-            2,
-            0,
-            2,
-            2,
-            0
-          ],
-          [
-            2,
-            0,
-            1,
-            1,
-            0
-          ],
-          [
-            1,
-            0,
-            2,
-            2,
-            2
-          ],
-          [
-            2,
-            0,
-            0,
-            2,
-            2
-          ]
-        ]
-      },
+      "input": {"grid": [[2,2,1,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]},
       "expected": 5,
-      "tags": [
-        "sample",
-        "v-shape"
-      ]
+      "tags": ["sample", "turn"]
+    },
+    {
+      "id": "sample-four-with-turn",
+      "name": "sample: direction changes after two cells",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[2,2,2,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]},
+      "expected": 4,
+      "tags": ["sample", "turn"]
+    },
+    {
+      "id": "sample-straight-five",
+      "name": "sample: longest segment needs no turn",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,2,2,2,2],[2,2,2,2,0],[2,0,0,0,0],[0,0,2,2,2],[2,0,0,2,0]]},
+      "expected": 5,
+      "tags": ["sample", "straight"]
     },
     {
       "id": "sample-single-cell",
       "name": "sample: one starting cell",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1
-          ]
-        ]
-      },
+      "input": {"grid": [[1]]},
       "expected": 1,
-      "tags": [
-        "sample",
-        "edge"
-      ]
+      "tags": ["sample", "single-cell"]
     },
     {
-      "id": "trial-straight-diagonal",
-      "name": "trial: straight alternating diagonal",
+      "id": "trial-no-start",
+      "name": "trial: matrix contains no one",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            2,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            2
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "trial",
-        "straight"
-      ]
+      "input": {"grid": [[2,0],[0,2]]},
+      "expected": 0,
+      "tags": ["trial", "no-start"]
     },
     {
-      "id": "trial-turn-needed",
-      "name": "trial: clockwise turn extends segment",
+      "id": "trial-clockwise-corner",
+      "name": "trial: clockwise turn completes the segment",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            2,
-            1,
-            0
-          ],
-          [
-            2,
-            2,
-            0,
-            2
-          ],
-          [
-            1,
-            0,
-            2,
-            2
-          ],
-          [
-            0,
-            2,
-            2,
-            0
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "trial",
-        "turn"
-      ]
+      "input": {"grid": [[1,0,2],[0,2,0],[0,0,2]]},
+      "expected": 3,
+      "tags": ["trial", "clockwise"]
     },
     {
-      "id": "real-dense-pattern",
-      "name": "real: dense alternating pattern",
+      "id": "real-counterclockwise-forbidden",
+      "name": "real: counterclockwise continuation cannot be used",
       "kind": "real",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            1,
-            2,
-            0,
-            2,
-            0,
-            2
-          ],
-          [
-            2,
-            2,
-            2,
-            0,
-            2,
-            0
-          ],
-          [
-            0,
-            2,
-            1,
-            2,
-            0,
-            2
-          ],
-          [
-            2,
-            0,
-            2,
-            0,
-            2,
-            0
-          ],
-          [
-            0,
-            2,
-            0,
-            2,
-            1,
-            2
-          ],
-          [
-            2,
-            0,
-            2,
-            0,
-            2,
-            0
-          ]
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "real",
-        "diagonal-dp"
-      ]
+      "input": {"grid": [[0,2,2],[2,2,2],[1,2,2]]},
+      "expected": 2,
+      "tags": ["real", "counterclockwise"]
+    },
+    {
+      "id": "real-single-row",
+      "name": "real: horizontal adjacency is not diagonal",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,2,0,2]]},
+      "expected": 1,
+      "tags": ["real", "one-row"]
+    },
+    {
+      "id": "real-sequence-break",
+      "name": "real: repeated two breaks the required alternation",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,0,0,0],[0,2,0,0],[2,0,2,0],[0,0,0,0]]},
+      "expected": 2,
+      "tags": ["real", "sequence"]
     }
   ]
 }

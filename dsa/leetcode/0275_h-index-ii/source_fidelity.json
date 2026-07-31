@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_275", "frontend_id": "275", "title_slug": "h-index-ii", "url": "https://leetcode.com/problems/h-index-ii/description/", "paid_only": false, "content_sha256": "4582c86bac837211866d81d7f6792a1bc7c19f875efa1ac10577036cc2ab8174", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "citations = [0,1,3,5,6]", "output": "3", "has_explanation": true}, {"ordinal": 2, "input": "citations = [1,2,100]", "output": "2", "has_explanation": false}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "61bd2891823b9306c1fcb5bd37cc40f9232805fdba3caccea8a579ca8989df43", "reference/contract.md": "1ec241582934d8195afd27e37507c55e384befe89de794171a1ac78b23f35ab4", "reference/examples.md": "7508dae4184ef04979e168f79332d4ac8eeefd3136110236ecc9564707498a23", "reference/constraints.md": "25173d0c3572937250c799bd55957b5f0139b083f731b811932577ef16333223"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

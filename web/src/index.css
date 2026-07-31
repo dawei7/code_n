@@ -178,6 +178,59 @@ select option {
   text-align: left !important;
 }
 
+/* Mermaid owns graph geometry and emits a responsive SVG. The surrounding
+   figure supplies a predictable light canvas in both application themes and
+   in the dedicated print document. */
+.coden-mermaid-diagram {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--coden-border);
+  border-radius: 0.375rem;
+  background: #ffffff;
+  color: #0f172a;
+  box-sizing: border-box;
+}
+
+.coden-mermaid-diagram-svg {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.coden-mermaid-diagram-svg > svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Mermaid's default edge-label rectangle is translucent. That works on a
+   light canvas, but it makes one-digit weights disappear when a Markdown host
+   applies a dark theme. Keep weights opaque and visually independent of the
+   edge that passes behind them. */
+.coden-mermaid-diagram-svg .edgeLabel text,
+.coden-mermaid-diagram-svg .edgeLabel tspan {
+  fill: #0f172a !important;
+  stroke: #ffffff !important;
+  stroke-width: 4px !important;
+  stroke-linejoin: round !important;
+  paint-order: stroke fill !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+}
+
+.coden-mermaid-diagram-svg .edgeLabel rect,
+.coden-mermaid-diagram-svg .edgeLabel .background {
+  fill: #ffffff !important;
+  stroke: #475569 !important;
+  stroke-width: 1.5px !important;
+  opacity: 1 !important;
+  rx: 3px;
+  ry: 3px;
+}
+
 #coden-pdf-root {
   display: none;
 }
@@ -682,6 +735,17 @@ html.coden-pdf-export-active body {
   #coden-pdf-root svg {
     max-width: 100% !important;
     max-height: 225mm !important;
+    break-inside: avoid-page;
+    page-break-inside: avoid;
+  }
+
+  #coden-pdf-root .coden-mermaid-diagram {
+    margin: 4mm 0 !important;
+    padding: 4mm !important;
+    overflow: visible !important;
+    border: 0.25mm solid #cbd5e1 !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
     break-inside: avoid-page;
     page-break-inside: avoid;
   }

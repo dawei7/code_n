@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3822",
+  "frontend_id": "3537",
+  "title_slug": "fill-a-special-grid",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.specialGrid",
+  "verified_submission_id": "2082624144",
+  "verified_at": "2026-07-26T23:43:00Z"
+}

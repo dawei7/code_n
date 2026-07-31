@@ -8,48 +8,54 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Rolling Hash, Counting, Hash Function |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [unique-substrings-with-equal-digit-frequency](https://leetcode.com/problems/unique-substrings-with-equal-digit-frequency/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/unique-substrings-with-equal-digit-frequency/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/unique-substrings-with-equal-digit-frequency/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a string `s` made only of decimal digits, consider every nonempty
+substring. A substring qualifies when all digits that occur in it have the
+same frequency. Digits absent from that substring do not participate in the
+comparison.
+
+Count how many different substring values qualify. Uniqueness is based on the
+digit sequence itself rather than its positions in `s`, so multiple
+occurrences of identical text contribute only once.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: a string of length $n$, where $1\le n\le 1000$ and every character is a
+  digit from `0` through `9`.
+
+A substring is a contiguous, nonempty section of `s`.
 
 **Return value**
 
-TODO
+Return the number of distinct substring strings in which every present digit
+occurs equally often.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "1212"`
+- Output: `5`
+
+The qualifying values are `"1"`, `"2"`, `"12"`, `"21"`, and `"1212"`.
+Although `"12"` occurs twice, it is counted once.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "12321"`
+- Output: `9`
+
+The qualifying values are the three one-character strings, `"12"`, `"23"`,
+`"32"`, `"21"`, `"123"`, and `"321"`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "000"`
+- Output: `3`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The distinct values `"0"`, `"00"`, and `"000"` each contain only one
+present digit, so all three qualify.

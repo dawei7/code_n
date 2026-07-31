@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Assign Elements to Groups with Constraints and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Keeps the first index of each distinct element value and propagates those indices to divisible group values with a multiples sieve.",
+      "time_complexity": "O(G + E + V log V)",
+      "space_complexity": "O(E + V)"
     }
   ]
 }

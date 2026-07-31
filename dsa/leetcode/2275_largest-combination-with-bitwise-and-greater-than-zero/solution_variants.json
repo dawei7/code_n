@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Largest Combination With Bitwise AND Greater Than Zero and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts how many candidates contain each possible shared set bit.",
+      "time_complexity": "O(n log M)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3564",
+  "frontend_id": "3252",
+  "title_slug": "premier-league-table-ranking-ii",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "verified_submission_id": "2080301573",
+  "verified_at": "2026-07-25T05:32:22.486407+00:00"
+}

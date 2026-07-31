@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3666",
+  "cases": [
+    {
+      "id": "sample-one-flip",
+      "name": "sample: flip the only zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "110",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "one-operation"
+      ]
+    },
+    {
+      "id": "sample-two-operations",
+      "name": "sample: three-index flips require two operations",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "0101",
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "even-branch"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: parity makes target unreachable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "101",
+        "k": 2
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible",
+        "parity"
+      ]
+    },
+    {
+      "id": "trial-already-ones",
+      "name": "trial: target is already reached",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "11111",
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-all-zeros-whole-string",
+      "name": "trial: flipping the whole all-zero string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0000",
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "k-equals-n",
+        "all-zeros"
+      ]
+    },
+    {
+      "id": "trial-mixed-whole-string",
+      "name": "trial: whole-string flips cannot fix mixed bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "0011",
+        "k": 4
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "k-equals-n",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-three-odd-operations",
+      "name": "hidden: one zero with a large odd k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0111",
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "odd-branch",
+        "three-operations"
+      ]
+    },
+    {
+      "id": "real-even-multi-operation",
+      "name": "hidden: complement capacity controls even branch",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "000011",
+        "k": 5
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "even-branch",
+        "capacity-bound"
+      ]
+    },
+    {
+      "id": "real-all-zeros-three-operations",
+      "name": "hidden: partition all zeros across repeated flips",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "000000",
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "all-zeros",
+        "three-operations"
+      ]
+    },
+    {
+      "id": "real-arrangement-irrelevant",
+      "name": "hidden: interleaved zeros share the same count state",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "01010101",
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "symmetry",
+        "one-operation"
+      ]
+    }
+  ]
+}

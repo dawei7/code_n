@@ -5,51 +5,43 @@
 | Source | LeetCode |
 | Frontend ID | 2825 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Two Pointers, String |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [make-string-a-subsequence-using-cyclic-increments](https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/make-string-a-subsequence-using-cyclic-increments/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given two 0-indexed strings, `str1` and `str2`, containing only lowercase English letters.
+
+You may perform at most one operation. In that operation, choose any set of indices in `str1` and increment the character at every chosen index by one cyclic alphabet step: `a` becomes `b`, `b` becomes `c`, and so on, while `z` wraps to `a`. An index is either left unchanged or incremented once; a character cannot advance by multiple steps.
+
+Determine whether `str2` can be made a subsequence of the resulting `str1`. A subsequence keeps the relative order of its selected characters but may delete any number of the other characters.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `str1`: A lowercase English string with length between $1$ and $10^5$, inclusive.
+- `str2`: A lowercase English string with length between $1$ and $10^5$, inclusive.
 
 **Return value**
 
-TODO
+Return `true` if one allowed choice of indices makes `str2` a subsequence of `str1`; otherwise return `false`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `str1 = "abc", str2 = "ad"`
+- Output: `true`
+- Explanation: Increment the final `c` to `d`; then `ad` is a subsequence of `abd`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `str1 = "zc", str2 = "ad"`
+- Output: `true`
+- Explanation: Increment `z` to `a` and `c` to `d`, producing `ad`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `str1 = "ab", str2 = "d"`
+- Output: `false`
+- Explanation: Neither source character is `d` or one cyclic step before `d`.

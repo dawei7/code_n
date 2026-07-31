@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Dynamic Programming, Backtracking |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [partition-string-into-minimum-beautiful-substrings](https://leetcode.com/problems/partition-string-into-minimum-beautiful-substrings/) |
+| LeetCode | [Partition String Into Minimum Beautiful Substrings](https://leetcode.com/problems/partition-string-into-minimum-beautiful-substrings/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/partition-string-into-minimum-beautiful-substrings/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a binary string `s`. Partition all of its characters, without reordering or omission, into one or more contiguous substrings. A substring is beautiful only if it has no leading zero and its binary value is a power of $5$.
+
+Powers include $5^0 = 1$, whose binary representation is `"1"`. Return the minimum number of beautiful substrings needed for a complete partition of `s`. If no such partition exists, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A string of length $n$, where $1 \leq n \leq 15$ and every character is either `'0'` or `'1'`.
 
 **Return value**
 
-TODO
+Return the minimum number of beautiful contiguous pieces in a complete partition, or `-1` when no complete partition is possible.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "1011"`
+- Output: `2`
+- Explanation: Split the string as `"101" | "1"`, representing $5^1$ and $5^0$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "111"`
+- Output: `3`
+- Explanation: Each `"1"` is beautiful, and no longer piece is a power of $5$.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "0"`
+- Output: `-1`
+- Explanation: A beautiful substring cannot begin with zero.

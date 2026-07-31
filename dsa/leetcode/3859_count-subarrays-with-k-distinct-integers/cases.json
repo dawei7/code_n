@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3859",
+  "cases": [
+    {
+      "id": "sample-two-qualifying",
+      "name": "sample: two qualifying repeated-value windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,2,1,2,2], "k": 2, "m": 2},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "frequency-threshold", "two-distinct"]
+    },
+    {
+      "id": "sample-three-adjacent-pairs",
+      "name": "sample: three adjacent pairs when m is one",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3,1,2,4], "k": 2, "m": 1},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "m-one", "adjacent-pairs"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: the sole element forms one valid subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1], "k": 1, "m": 1},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "single-value"]
+    },
+    {
+      "id": "trial-unreachable-distinct-count",
+      "name": "trial: k exceeds the array's distinct count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1,1,1], "k": 2, "m": 1},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "impossible-k", "zero-answer"]
+    },
+    {
+      "id": "trial-exact-threshold",
+      "name": "trial: only the complete array reaches both thresholds",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1,1,2,2], "k": 2, "m": 2},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "exact-threshold", "complete-array"]
+    },
+    {
+      "id": "real-removable-prefix",
+      "name": "hidden: surplus leading occurrences create two starts",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,1,1,2,2], "k": 2, "m": 2},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "removable-prefix", "surplus-frequency"]
+    },
+    {
+      "id": "real-adjacent-groups",
+      "name": "hidden: two neighboring pairs of value groups qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,1,2,2,3,3], "k": 2, "m": 2},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "group-boundaries", "exact-k"]
+    },
+    {
+      "id": "real-m-one-exact-k",
+      "name": "hidden: m one still requires exactly k distinct values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,2,1,3,4], "k": 3, "m": 1},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "m-one", "exact-distinct"]
+    },
+    {
+      "id": "real-all-same-threshold",
+      "name": "hidden: every sufficiently long same-value interval counts",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5,5,5,5,5,5], "k": 1, "m": 3},
+      "expected": 10,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "all-same", "many-valid-windows"]
+    },
+    {
+      "id": "real-separated-runs",
+      "name": "hidden: qualifying one-value windows cannot cross runs",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,1,2,2,2,1,1], "k": 1, "m": 2},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "separate-runs", "k-one"]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: maximum-valued cells meet the repeated-pair threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100000,99999,100000,99999], "k": 2, "m": 2},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-value", "alternating-pairs"]
+    },
+    {
+      "id": "real-reset-after-new-distinct",
+      "name": "hidden: adding a third value resets older removable starts",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,1,2,2,1,3,3,2,3], "k": 2, "m": 2},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "window-reset", "semantic-trap"]
+    },
+    {
+      "id": "real-all-below-threshold",
+      "name": "hidden: all values remain below the required frequency",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,2,3,1,2,3], "k": 3, "m": 3},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "insufficient-frequency", "zero-answer"]
+    }
+  ]
+}

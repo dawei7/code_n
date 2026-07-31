@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_240", "frontend_id": "240", "title_slug": "search-a-2d-matrix-ii", "url": "https://leetcode.com/problems/search-a-2d-matrix-ii/description/", "paid_only": false, "content_sha256": "35976f01fbee81926b9b1179f0cc4ba2b244dbef903518eb9bfde65375cd57a1", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 5", "output": "true", "has_explanation": false}, {"ordinal": 2, "input": "matrix = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]], target = 20", "output": "false", "has_explanation": false}],
+    "constraint_count": 7,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "3da32f3b135f622f89b1e4fc91cc9a00c291c5af984b2b947eff9b0006d0bebd", "reference/contract.md": "8331811b0a9facb73721b7fdc37c99db6b51c686ab8e77ed7cf359aa8a04d6d6", "reference/examples.md": "f82fca571c76b4b1bc7602b1d20ccc9b5ac107d9b342c58e5a73d9e7fad4748e", "reference/constraints.md": "a766a83479e160337992109a1de9515dcfefcdab194c4b7e76a6e5b8b721c1c9"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

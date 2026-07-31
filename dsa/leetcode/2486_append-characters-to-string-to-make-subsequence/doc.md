@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Two Pointers, String, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [append-characters-to-string-to-make-subsequence](https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given two nonempty strings `s` and `t` made only of lowercase English letters, append characters exclusively to the end of `s` until `t` is a subsequence of the resulting string. A subsequence keeps its selected characters in their original order but may omit any number of intervening characters.
+
+Return the minimum number of appended characters required. Existing characters of `s` cannot be reordered or removed, and every new character is placed after the entire original string, so the answer depends on how long a prefix of `t` can already be matched inside `s`.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A nonempty lowercase English string.
+- `t`: A nonempty lowercase English string that must become a subsequence.
+
+Let $n = \lvert\texttt{s}\rvert$ and $m = \lvert\texttt{t}\rvert$. The constraints satisfy $1 \le n,m \le 10^5$.
 
 **Return value**
 
-TODO
+Return the minimum number of lowercase letters that must be appended to the end of `s` so that all characters of `t` can be selected in order from the extended string.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "coaching", t = "coding"`
+- Output: `4`
+- Explanation: The prefix `"co"` already matches in `s`; appending `"ding"` completes `t`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcde", t = "a"`
+- Output: `0`
+- Explanation: The target is already a subsequence of `s`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "z", t = "abcde"`
+- Output: `5`
+- Explanation: No nonempty prefix of `t` matches, so all five target characters must be appended.

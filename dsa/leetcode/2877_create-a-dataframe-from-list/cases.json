@@ -1,0 +1,189 @@
+{
+  "challenge_id": "lc_2877",
+  "cases": [
+    {
+      "id": "sample-four-students",
+      "name": "sample: four students become four rows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "args": {
+          "student_data": [
+            [
+              1,
+              15
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              3,
+              11
+            ],
+            [
+              4,
+              20
+            ]
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "age"
+        ],
+        "rows": [
+          [
+            1,
+            15
+          ],
+          [
+            2,
+            11
+          ],
+          [
+            3,
+            11
+          ],
+          [
+            4,
+            20
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "construction"
+      ]
+    },
+    {
+      "id": "trial-single-student",
+      "name": "single student produces one row",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "args": {
+          "student_data": [
+            [
+              42,
+              18
+            ]
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "age"
+        ],
+        "rows": [
+          [
+            42,
+            18
+          ]
+        ]
+      },
+      "tags": [
+        "boundary",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-preserve-order",
+      "name": "input order is preserved without sorting",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "args": {
+          "student_data": [
+            [
+              9,
+              20
+            ],
+            [
+              2,
+              11
+            ],
+            [
+              7,
+              16
+            ]
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "age"
+        ],
+        "rows": [
+          [
+            9,
+            20
+          ],
+          [
+            2,
+            11
+          ],
+          [
+            7,
+            16
+          ]
+        ]
+      },
+      "tags": [
+        "order"
+      ]
+    },
+    {
+      "id": "real-repeated-ages",
+      "name": "hidden: repeated ages remain separate records",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "args": {
+          "student_data": [
+            [
+              10,
+              12
+            ],
+            [
+              11,
+              12
+            ],
+            [
+              12,
+              19
+            ]
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "age"
+        ],
+        "rows": [
+          [
+            10,
+            12
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            12,
+            19
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3898",
+    "frontend_id": "3898",
+    "title_slug": "find-the-degree-of-each-vertex",
+    "url": "https://leetcode.com/problems/find-the-degree-of-each-vertex/description/",
+    "paid_only": false,
+    "content_sha256": "7998423332ad3940b9e770aba39ccbfd4d64dbff5621f71dac4306fb76369221",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "matrix = [[0,1,1],[1,0,1],[1,1,0]]",
+        "output": "[2,2,2]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "matrix = [[0,1,0],[1,0,0],[0,0,0]]",
+        "output": "[1,1,0]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "matrix = [[0]]",
+        "output": "[0]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ca0535ca460cc12d08a2e0c4602fbfa7e2111c305612d31cd3c04f21d9c99424",
+      "reference/contract.md": "ce73ecc73e3f3617e3c6eb3f5ab24f01f6c151f09b1e7d53eda9d2a28947b101",
+      "reference/examples.md": "8bd64f6760acb62653d7ae723a9cc82f597dbf5ca0f18eab844852555f675dc6",
+      "reference/constraints.md": "55e5d9ce57ee9790aa29234802e1b4defef922bd922f19558c89335aa50c90ff"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

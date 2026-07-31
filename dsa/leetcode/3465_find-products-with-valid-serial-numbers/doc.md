@@ -8,48 +8,52 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [find-products-with-valid-serial-numbers](https://leetcode.com/problems/find-products-with-valid-serial-numbers/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-products-with-valid-serial-numbers/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-products-with-valid-serial-numbers/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `products` table stores each product's unique identifier, name, and free-text description. Select every product whose description contains a complete, case-sensitive serial-number token of the form `SNdddd-dddd`, where each `d` is one decimal digit. The token may occur at the beginning, in the middle, or at the end of the description.
+
+The prefix must be uppercase `SN`, and each digit group must contain exactly four digits with one hyphen between them. A longer alphanumeric or underscore-containing word must not qualify merely because it contains a matching-looking substring. Return all three source columns for qualifying products, ordered by `product_id` in ascending order.
 
 ### Function Contract
-**Inputs**
 
-- TODO
+**Input table**
+
+`products`
+
+| Column | Type | Meaning |
+|---|---|---|
+| `product_id` | int | Unique product identifier |
+| `product_name` | varchar | Product name |
+| `description` | varchar | Free-text product description to inspect |
 
 **Return value**
 
-TODO
+Return `product_id`, `product_name`, and `description` for every row containing a valid serial number, sorted by ascending `product_id`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+Input table `products`:
 
-**Example 2**
+| product_id | product_name | description |
+|---:|---|---|
+| 1 | Widget A | `This is a sample product with SN1234-5678` |
+| 2 | Widget B | `A product with serial SN9876-1234 in the description` |
+| 3 | Widget C | `Product SN1234-56789 is available now` |
+| 4 | Widget D | `No serial number here` |
+| 5 | Widget E | `Check out SN4321-8765 in this description` |
 
-- Input: `TODO`
-- Output: `TODO`
+Output:
 
-**Example 3**
+| product_id | product_name | description |
+|---:|---|---|
+| 1 | Widget A | `This is a sample product with SN1234-5678` |
+| 2 | Widget B | `A product with serial SN9876-1234 in the description` |
+| 5 | Widget E | `Check out SN4321-8765 in this description` |
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Product 3 has five digits after the hyphen, and product 4 contains no serial-number token.

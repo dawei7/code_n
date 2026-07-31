@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_2468",
+  "cases": [
+    {"id":"sample-1","name":"sample: fourteen parts cross an index digit boundary","kind":"sample","visible":true,"input":{"message":"this is really a very awesome message","limit":9},"expected":["thi<1/14>","s i<2/14>","s r<3/14>","eal<4/14>","ly <5/14>","a v<6/14>","ery<7/14>"," aw<8/14>","eso<9/14>","me<10/14>"," m<11/14>","es<12/14>","sa<13/14>","ge<14/14>"],"tags":["sample","digit-boundary"]},
+    {"id":"sample-2","name":"sample: final part is shorter than the limit","kind":"sample","visible":true,"input":{"message":"short message","limit":15},"expected":["short mess<1/2>","age<2/2>"],"tags":["sample","short-final-part"]},
+    {"id":"trial-single-part","name":"trial: one payload character and one suffix","kind":"trial","visible":true,"input":{"message":"a","limit":6},"expected":["a<1/1>"],"tags":["trial","single-part"]},
+    {"id":"trial-five-equal-parts","name":"trial: five parts use equal payloads","kind":"trial","visible":true,"input":{"message":"abcdefghij","limit":7},"expected":["ab<1/5>","cd<2/5>","ef<3/5>","gh<4/5>","ij<5/5>"],"tags":["trial","full-parts"]},
+    {"id":"real-impossible-digit-boundary","name":"hidden: ten characters cannot cross to two-digit suffixes","kind":"real","visible":false,"input":{"message":"abcdefghij","limit":6},"expected":[],"tags":["hidden","impossible"]},
+    {"id":"real-nonmonotone-boundary","name":"hidden: seven parts are minimal despite later feasible counts","kind":"real","visible":false,"input":{"message":"abbababbbaaa aabaa a","limit":8},"expected":["abb<1/7>","aba<2/7>","bbb<3/7>","aaa<4/7>"," aa<5/7>","baa<6/7>"," a<7/7>"],"tags":["hidden","nonmonotone-capacity"]},
+    {"id":"real-preserve-spaces","name":"hidden: repeated spaces remain payload characters","kind":"real","visible":false,"input":{"message":"keep  two spaces","limit":9},"expected":["keep<1/4>","  tw<2/4>","o sp<3/4>","aces<4/4>"],"tags":["hidden","spaces"]},
+    {"id":"real-suffix-too-long","name":"hidden: no suffix can leave payload capacity","kind":"real","visible":false,"input":{"message":"abc","limit":5},"expected":[],"tags":["hidden","suffix-capacity"]}
+  ]
+}

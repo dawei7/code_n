@@ -1,0 +1,916 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3832",
+  "cases": [
+    {
+      "id": "sample-three-users",
+      "name": "sample: seven-day and five-day stable users are returned",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 1,
+              "action_date": "2024-01-01",
+              "action": "login"
+            },
+            {
+              "user_id": 1,
+              "action_date": "2024-01-02",
+              "action": "login"
+            },
+            {
+              "user_id": 1,
+              "action_date": "2024-01-03",
+              "action": "login"
+            },
+            {
+              "user_id": 1,
+              "action_date": "2024-01-04",
+              "action": "login"
+            },
+            {
+              "user_id": 1,
+              "action_date": "2024-01-05",
+              "action": "login"
+            },
+            {
+              "user_id": 1,
+              "action_date": "2024-01-06",
+              "action": "logout"
+            },
+            {
+              "user_id": 2,
+              "action_date": "2024-01-01",
+              "action": "click"
+            },
+            {
+              "user_id": 2,
+              "action_date": "2024-01-02",
+              "action": "click"
+            },
+            {
+              "user_id": 2,
+              "action_date": "2024-01-03",
+              "action": "click"
+            },
+            {
+              "user_id": 2,
+              "action_date": "2024-01-04",
+              "action": "click"
+            },
+            {
+              "user_id": 3,
+              "action_date": "2024-01-01",
+              "action": "view"
+            },
+            {
+              "user_id": 3,
+              "action_date": "2024-01-02",
+              "action": "view"
+            },
+            {
+              "user_id": 3,
+              "action_date": "2024-01-03",
+              "action": "view"
+            },
+            {
+              "user_id": 3,
+              "action_date": "2024-01-04",
+              "action": "view"
+            },
+            {
+              "user_id": 3,
+              "action_date": "2024-01-05",
+              "action": "view"
+            },
+            {
+              "user_id": 3,
+              "action_date": "2024-01-06",
+              "action": "view"
+            },
+            {
+              "user_id": 3,
+              "action_date": "2024-01-07",
+              "action": "view"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": [
+          [
+            3,
+            "view",
+            7,
+            "2024-01-01",
+            "2024-01-07"
+          ],
+          [
+            1,
+            "login",
+            5,
+            "2024-01-01",
+            "2024-01-05"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "minimum-length",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-exactly-five",
+      "name": "trial: exactly five consecutive single-action dates qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 10,
+              "action_date": "2024-02-01",
+              "action": "open"
+            },
+            {
+              "user_id": 10,
+              "action_date": "2024-02-02",
+              "action": "open"
+            },
+            {
+              "user_id": 10,
+              "action_date": "2024-02-03",
+              "action": "open"
+            },
+            {
+              "user_id": 10,
+              "action_date": "2024-02-04",
+              "action": "open"
+            },
+            {
+              "user_id": 10,
+              "action_date": "2024-02-05",
+              "action": "open"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": [
+          [
+            10,
+            "open",
+            5,
+            "2024-02-01",
+            "2024-02-05"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-four-days",
+      "name": "trial: four consecutive dates remain below the minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 11,
+              "action_date": "2024-02-01",
+              "action": "open"
+            },
+            {
+              "user_id": 11,
+              "action_date": "2024-02-02",
+              "action": "open"
+            },
+            {
+              "user_id": 11,
+              "action_date": "2024-02-03",
+              "action": "open"
+            },
+            {
+              "user_id": 11,
+              "action_date": "2024-02-04",
+              "action": "open"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "below-minimum",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-longer-action-run",
+      "name": "trial: the longer of two qualifying action runs is selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 12,
+              "action_date": "2024-03-01",
+              "action": "login"
+            },
+            {
+              "user_id": 12,
+              "action_date": "2024-03-02",
+              "action": "login"
+            },
+            {
+              "user_id": 12,
+              "action_date": "2024-03-03",
+              "action": "login"
+            },
+            {
+              "user_id": 12,
+              "action_date": "2024-03-04",
+              "action": "login"
+            },
+            {
+              "user_id": 12,
+              "action_date": "2024-03-05",
+              "action": "login"
+            },
+            {
+              "user_id": 12,
+              "action_date": "2024-03-06",
+              "action": "logout"
+            },
+            {
+              "user_id": 12,
+              "action_date": "2024-03-07",
+              "action": "logout"
+            },
+            {
+              "user_id": 12,
+              "action_date": "2024-03-08",
+              "action": "logout"
+            },
+            {
+              "user_id": 12,
+              "action_date": "2024-03-09",
+              "action": "logout"
+            },
+            {
+              "user_id": 12,
+              "action_date": "2024-03-10",
+              "action": "logout"
+            },
+            {
+              "user_id": 12,
+              "action_date": "2024-03-11",
+              "action": "logout"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": [
+          [
+            12,
+            "logout",
+            6,
+            "2024-03-06",
+            "2024-03-11"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "action-change",
+        "maximum-run"
+      ]
+    },
+    {
+      "id": "real-calendar-gap",
+      "name": "hidden: a missing calendar date separates same-action records",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 13,
+              "action_date": "2024-04-01",
+              "action": "view"
+            },
+            {
+              "user_id": 13,
+              "action_date": "2024-04-02",
+              "action": "view"
+            },
+            {
+              "user_id": 13,
+              "action_date": "2024-04-03",
+              "action": "view"
+            },
+            {
+              "user_id": 13,
+              "action_date": "2024-04-04",
+              "action": "view"
+            },
+            {
+              "user_id": 13,
+              "action_date": "2024-04-06",
+              "action": "view"
+            },
+            {
+              "user_id": 13,
+              "action_date": "2024-04-07",
+              "action": "view"
+            },
+            {
+              "user_id": 13,
+              "action_date": "2024-04-08",
+              "action": "view"
+            },
+            {
+              "user_id": 13,
+              "action_date": "2024-04-09",
+              "action": "view"
+            },
+            {
+              "user_id": 13,
+              "action_date": "2024-04-10",
+              "action": "view"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": [
+          [
+            13,
+            "view",
+            5,
+            "2024-04-06",
+            "2024-04-10"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "calendar-gap",
+        "maximum-run"
+      ]
+    },
+    {
+      "id": "real-multi-action-break",
+      "name": "hidden: a multi-action date invalidates that date and breaks a run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 14,
+              "action_date": "2024-05-01",
+              "action": "read"
+            },
+            {
+              "user_id": 14,
+              "action_date": "2024-05-02",
+              "action": "read"
+            },
+            {
+              "user_id": 14,
+              "action_date": "2024-05-03",
+              "action": "read"
+            },
+            {
+              "user_id": 14,
+              "action_date": "2024-05-04",
+              "action": "read"
+            },
+            {
+              "user_id": 14,
+              "action_date": "2024-05-05",
+              "action": "read"
+            },
+            {
+              "user_id": 14,
+              "action_date": "2024-05-06",
+              "action": "read"
+            },
+            {
+              "user_id": 14,
+              "action_date": "2024-05-04",
+              "action": "write"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "exactly-one-action",
+        "composite-primary-key",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-multi-action-boundary",
+      "name": "hidden: excluding a multi-action first date leaves a valid five-day run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 15,
+              "action_date": "2024-06-01",
+              "action": "read"
+            },
+            {
+              "user_id": 15,
+              "action_date": "2024-06-02",
+              "action": "read"
+            },
+            {
+              "user_id": 15,
+              "action_date": "2024-06-03",
+              "action": "read"
+            },
+            {
+              "user_id": 15,
+              "action_date": "2024-06-04",
+              "action": "read"
+            },
+            {
+              "user_id": 15,
+              "action_date": "2024-06-05",
+              "action": "read"
+            },
+            {
+              "user_id": 15,
+              "action_date": "2024-06-06",
+              "action": "read"
+            },
+            {
+              "user_id": 15,
+              "action_date": "2024-06-01",
+              "action": "write"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": [
+          [
+            15,
+            "read",
+            5,
+            "2024-06-02",
+            "2024-06-06"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "exactly-one-action",
+        "boundary-date"
+      ]
+    },
+    {
+      "id": "real-return-to-action",
+      "name": "hidden: returning to an earlier action starts a separate island",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 16,
+              "action_date": "2024-07-01",
+              "action": "login"
+            },
+            {
+              "user_id": 16,
+              "action_date": "2024-07-02",
+              "action": "login"
+            },
+            {
+              "user_id": 16,
+              "action_date": "2024-07-03",
+              "action": "login"
+            },
+            {
+              "user_id": 16,
+              "action_date": "2024-07-04",
+              "action": "logout"
+            },
+            {
+              "user_id": 16,
+              "action_date": "2024-07-05",
+              "action": "login"
+            },
+            {
+              "user_id": 16,
+              "action_date": "2024-07-06",
+              "action": "login"
+            },
+            {
+              "user_id": 16,
+              "action_date": "2024-07-07",
+              "action": "login"
+            },
+            {
+              "user_id": 16,
+              "action_date": "2024-07-08",
+              "action": "login"
+            },
+            {
+              "user_id": 16,
+              "action_date": "2024-07-09",
+              "action": "login"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": [
+          [
+            16,
+            "login",
+            5,
+            "2024-07-05",
+            "2024-07-09"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "action-return",
+        "separate-islands"
+      ]
+    },
+    {
+      "id": "real-output-order",
+      "name": "hidden: length descends before the ascending user tie-break",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 21,
+              "action_date": "2024-08-01",
+              "action": "sync"
+            },
+            {
+              "user_id": 21,
+              "action_date": "2024-08-02",
+              "action": "sync"
+            },
+            {
+              "user_id": 21,
+              "action_date": "2024-08-03",
+              "action": "sync"
+            },
+            {
+              "user_id": 21,
+              "action_date": "2024-08-04",
+              "action": "sync"
+            },
+            {
+              "user_id": 21,
+              "action_date": "2024-08-05",
+              "action": "sync"
+            },
+            {
+              "user_id": 19,
+              "action_date": "2024-08-01",
+              "action": "sync"
+            },
+            {
+              "user_id": 19,
+              "action_date": "2024-08-02",
+              "action": "sync"
+            },
+            {
+              "user_id": 19,
+              "action_date": "2024-08-03",
+              "action": "sync"
+            },
+            {
+              "user_id": 19,
+              "action_date": "2024-08-04",
+              "action": "sync"
+            },
+            {
+              "user_id": 19,
+              "action_date": "2024-08-05",
+              "action": "sync"
+            },
+            {
+              "user_id": 20,
+              "action_date": "2024-08-01",
+              "action": "sync"
+            },
+            {
+              "user_id": 20,
+              "action_date": "2024-08-02",
+              "action": "sync"
+            },
+            {
+              "user_id": 20,
+              "action_date": "2024-08-03",
+              "action": "sync"
+            },
+            {
+              "user_id": 20,
+              "action_date": "2024-08-04",
+              "action": "sync"
+            },
+            {
+              "user_id": 20,
+              "action_date": "2024-08-05",
+              "action": "sync"
+            },
+            {
+              "user_id": 20,
+              "action_date": "2024-08-06",
+              "action": "sync"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": [
+          [
+            20,
+            "sync",
+            6,
+            "2024-08-01",
+            "2024-08-06"
+          ],
+          [
+            19,
+            "sync",
+            5,
+            "2024-08-01",
+            "2024-08-05"
+          ],
+          [
+            21,
+            "sync",
+            5,
+            "2024-08-01",
+            "2024-08-05"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering",
+        "user-id-tie-break"
+      ]
+    },
+    {
+      "id": "real-year-boundary",
+      "name": "hidden: consecutive dates can cross a month and year boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 30,
+              "action_date": "2024-12-29",
+              "action": "sync"
+            },
+            {
+              "user_id": 30,
+              "action_date": "2024-12-30",
+              "action": "sync"
+            },
+            {
+              "user_id": 30,
+              "action_date": "2024-12-31",
+              "action": "sync"
+            },
+            {
+              "user_id": 30,
+              "action_date": "2025-01-01",
+              "action": "sync"
+            },
+            {
+              "user_id": 30,
+              "action_date": "2025-01-02",
+              "action": "sync"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": [
+          [
+            30,
+            "sync",
+            5,
+            "2024-12-29",
+            "2025-01-02"
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "calendar-boundary",
+        "date-arithmetic"
+      ]
+    },
+    {
+      "id": "real-only-multi-action-date",
+      "name": "hidden: a user with only one multi-action date has no eligible day",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 31,
+              "action_date": "2025-01-15",
+              "action": "a"
+            },
+            {
+              "user_id": 31,
+              "action_date": "2025-01-15",
+              "action": "b"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "multi-action",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-single-row",
+      "name": "hidden: one activity row cannot form a qualifying run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "activity": [
+            {
+              "user_id": 32,
+              "action_date": "2025-02-01",
+              "action": "ping"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "user_id",
+          "action",
+          "streak_length",
+          "start_date",
+          "end_date"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "singleton",
+        "empty-result"
+      ]
+    }
+  ]
+}

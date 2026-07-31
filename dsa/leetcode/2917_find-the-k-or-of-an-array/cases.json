@@ -19,32 +19,35 @@
       },
       "tags": [
         "sample",
-        "bits"
+        "threshold"
       ],
       "expected": 9
     },
     {
       "id": "sample-2",
-      "name": "sample: k one is ordinary bitwise OR",
+      "name": "sample: no bit is common to all six values",
       "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
-          1,
           2,
-          3
+          12,
+          1,
+          11,
+          4,
+          5
         ],
-        "k": 1
+        "k": 6
       },
       "tags": [
         "sample",
-        "or"
+        "zero-result"
       ],
-      "expected": 3
+      "expected": 0
     },
     {
       "id": "sample-3",
-      "name": "sample: several values cover every low bit",
+      "name": "sample: threshold one becomes ordinary bitwise OR",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -61,50 +64,105 @@
       },
       "tags": [
         "sample",
-        "bits"
+        "bitwise-or"
       ],
       "expected": 15
     },
     {
-      "id": "trial-no-bit-meets-threshold",
-      "name": "trial: no bit is present in two numbers",
+      "id": "trial-exact-threshold",
+      "name": "trial: two independent bits meet the threshold exactly",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
+          5,
+          4,
           1,
-          2,
-          4
+          0
         ],
         "k": 2
       },
       "tags": [
         "trial",
-        "zero"
+        "exact-threshold"
       ],
-      "expected": 0
+      "expected": 5
     },
     {
-      "id": "real-high-threshold",
-      "name": "hidden: only common high-frequency bits survive",
+      "id": "trial-duplicate-values",
+      "name": "trial: duplicate values each count separately",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          6,
+          1
+        ],
+        "k": 2
+      },
+      "tags": [
+        "trial",
+        "duplicates"
+      ],
+      "expected": 6
+    },
+    {
+      "id": "real-zero-singleton",
+      "name": "hidden: zero has no set bits",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          31,
-          14,
+          0
+        ],
+        "k": 1
+      },
+      "tags": [
+        "hidden",
+        "zero",
+        "singleton"
+      ],
+      "expected": 0
+    },
+    {
+      "id": "real-all-values-required",
+      "name": "hidden: only the common intersection survives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
           7,
-          28,
-          21,
-          13
+          3,
+          1
         ],
         "k": 3
       },
       "tags": [
         "hidden",
-        "frequency"
+        "maximum-threshold"
       ],
-      "expected": 31
+      "expected": 1
+    },
+    {
+      "id": "real-highest-permitted-bit",
+      "name": "hidden: bit 30 and low bits qualify independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1073741824,
+          1073741827,
+          3
+        ],
+        "k": 2
+      },
+      "tags": [
+        "hidden",
+        "bit-30",
+        "boundary"
+      ],
+      "expected": 1073741827
     }
   ]
 }

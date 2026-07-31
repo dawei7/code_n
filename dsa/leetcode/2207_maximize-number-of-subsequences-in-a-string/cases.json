@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2207",
+  "cases": [
+    {"id":"sample-separated-pattern","name":"sample: insertion augments existing ac subsequences","kind":"sample","visible":true,"input":{"text":"abdcdbc","pattern":"ac"},"expected":4,"tags":["sample","distinct-letters"]},
+    {"id":"sample-balanced-blocks","name":"sample: either endpoint insertion reaches six","kind":"sample","visible":true,"input":{"text":"aabb","pattern":"ab"},"expected":6,"tags":["sample","tie"]},
+    {"id":"trial-equal-pattern","name":"equal pattern letters count all position pairs","kind":"trial","visible":true,"input":{"text":"aaaa","pattern":"aa"},"expected":10,"tags":["equal-letters","combinations"]},
+    {"id":"trial-no-pattern-letters","name":"one insertion cannot form a pair without either existing letter","kind":"trial","visible":true,"input":{"text":"xyz","pattern":"ab"},"expected":0,"tags":["unrelated-letters"]},
+    {"id":"real-only-first-letters","name":"hidden: append the second pattern character","kind":"real","visible":false,"input":{"text":"aaaaa","pattern":"ab"},"expected":5,"tags":["hidden","append"]},
+    {"id":"real-only-second-letters","name":"hidden: prepend the first pattern character","kind":"real","visible":false,"input":{"text":"bbbbb","pattern":"ab"},"expected":5,"tags":["hidden","prepend"]},
+    {"id":"real-reverse-order","name":"hidden: insertion creates the only attainable ordered pairs","kind":"real","visible":false,"input":{"text":"ccbbbaaa","pattern":"ab"},"expected":3,"tags":["hidden","order"]},
+    {"id":"real-asymmetric-choice","name":"hidden: choose the endpoint with the larger contribution","kind":"real","visible":false,"input":{"text":"abbbb","pattern":"ab"},"expected":8,"tags":["hidden","greedy-choice"]},
+    {"id":"real-equal-pattern-with-no-match","name":"hidden: one matching insertion is insufficient for a doubled letter","kind":"real","visible":false,"input":{"text":"bcdef","pattern":"aa"},"expected":0,"tags":["hidden","equal-letters","zero"]}
+  ]
+}

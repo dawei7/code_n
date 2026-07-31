@@ -2,8 +2,8 @@
   "challenge_id": "lc_2900",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: skip same-group middle word",
+      "id": "sample-skip-same-group-word",
+      "name": "sample: skip a word from the same first run",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,21 +18,21 @@
           1
         ]
       },
-      "tags": [
-        "sample",
-        "subsequence"
-      ],
       "expected": [
         "e",
         "b"
       ],
       "validator": {
         "kind": "alternating_groups_subsequence"
-      }
+      },
+      "tags": [
+        "sample",
+        "subsequence"
+      ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: stop before repeated final group",
+      "id": "sample-repeated-final-group",
+      "name": "sample: one representative is selected from the final run",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -49,10 +49,6 @@
           1
         ]
       },
-      "tags": [
-        "sample",
-        "alternating"
-      ],
       "expected": [
         "a",
         "b",
@@ -60,44 +56,39 @@
       ],
       "validator": {
         "kind": "alternating_groups_subsequence"
-      }
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: every adjacent group differs",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "a",
-          "b",
-          "c",
-          "d"
-        ],
-        "groups": [
-          0,
-          1,
-          0,
-          1
-        ]
       },
       "tags": [
         "sample",
-        "full-length"
-      ],
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-single-word",
+      "name": "one word forms a longest alternating subsequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "solo"
+        ],
+        "groups": [
+          0
+        ]
+      },
       "expected": [
-        "a",
-        "b",
-        "c",
-        "d"
+        "solo"
       ],
       "validator": {
         "kind": "alternating_groups_subsequence"
-      }
+      },
+      "tags": [
+        "boundary",
+        "single-element"
+      ]
     },
     {
       "id": "trial-single-run",
-      "name": "trial: one long same-group run contributes one word",
+      "name": "one same-group run contributes one representative",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -112,31 +103,31 @@
           1
         ]
       },
-      "tags": [
-        "trial",
-        "single-run"
-      ],
       "expected": [
         "aa"
       ],
       "validator": {
         "kind": "alternating_groups_subsequence"
-      }
+      },
+      "tags": [
+        "single-run",
+        "multiple-valid-answers"
+      ]
     },
     {
       "id": "real-many-runs",
-      "name": "hidden: several alternating runs with skipped words",
+      "name": "hidden: several runs contain skipped representatives",
       "kind": "real",
       "visible": false,
       "input": {
         "words": [
-          "w0",
-          "w1",
-          "w2",
-          "w3",
-          "w4",
-          "w5",
-          "w6"
+          "wa",
+          "wb",
+          "wc",
+          "wd",
+          "we",
+          "wf",
+          "wg"
         ],
         "groups": [
           0,
@@ -148,19 +139,341 @@
           1
         ]
       },
-      "tags": [
-        "hidden",
-        "runs"
-      ],
       "expected": [
-        "w0",
-        "w2",
-        "w4",
-        "w5"
+        "wa",
+        "wc",
+        "we",
+        "wf"
       ],
       "validator": {
         "kind": "alternating_groups_subsequence"
-      }
+      },
+      "tags": [
+        "hidden",
+        "run-boundaries"
+      ]
+    },
+    {
+      "id": "real-maximum-length-alternating",
+      "name": "hidden: every word is selected at maximum legal length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aa",
+          "ab",
+          "ac",
+          "ad",
+          "ae",
+          "af",
+          "ag",
+          "ah",
+          "ai",
+          "aj",
+          "ak",
+          "al",
+          "am",
+          "an",
+          "ao",
+          "ap",
+          "aq",
+          "ar",
+          "as",
+          "at",
+          "au",
+          "av",
+          "aw",
+          "ax",
+          "ay",
+          "az",
+          "ba",
+          "bb",
+          "bc",
+          "bd",
+          "be",
+          "bf",
+          "bg",
+          "bh",
+          "bi",
+          "bj",
+          "bk",
+          "bl",
+          "bm",
+          "bn",
+          "bo",
+          "bp",
+          "bq",
+          "br",
+          "bs",
+          "bt",
+          "bu",
+          "bv",
+          "bw",
+          "bx",
+          "by",
+          "bz",
+          "ca",
+          "cb",
+          "cc",
+          "cd",
+          "ce",
+          "cf",
+          "cg",
+          "ch",
+          "ci",
+          "cj",
+          "ck",
+          "cl",
+          "cm",
+          "cn",
+          "co",
+          "cp",
+          "cq",
+          "cr",
+          "cs",
+          "ct",
+          "cu",
+          "cv",
+          "cw",
+          "cx",
+          "cy",
+          "cz",
+          "da",
+          "db",
+          "dc",
+          "dd",
+          "de",
+          "df",
+          "dg",
+          "dh",
+          "di",
+          "dj",
+          "dk",
+          "dl",
+          "dm",
+          "dn",
+          "do",
+          "dp",
+          "dq",
+          "dr",
+          "ds",
+          "dt",
+          "du",
+          "dv"
+        ],
+        "groups": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": [
+        "aa",
+        "ab",
+        "ac",
+        "ad",
+        "ae",
+        "af",
+        "ag",
+        "ah",
+        "ai",
+        "aj",
+        "ak",
+        "al",
+        "am",
+        "an",
+        "ao",
+        "ap",
+        "aq",
+        "ar",
+        "as",
+        "at",
+        "au",
+        "av",
+        "aw",
+        "ax",
+        "ay",
+        "az",
+        "ba",
+        "bb",
+        "bc",
+        "bd",
+        "be",
+        "bf",
+        "bg",
+        "bh",
+        "bi",
+        "bj",
+        "bk",
+        "bl",
+        "bm",
+        "bn",
+        "bo",
+        "bp",
+        "bq",
+        "br",
+        "bs",
+        "bt",
+        "bu",
+        "bv",
+        "bw",
+        "bx",
+        "by",
+        "bz",
+        "ca",
+        "cb",
+        "cc",
+        "cd",
+        "ce",
+        "cf",
+        "cg",
+        "ch",
+        "ci",
+        "cj",
+        "ck",
+        "cl",
+        "cm",
+        "cn",
+        "co",
+        "cp",
+        "cq",
+        "cr",
+        "cs",
+        "ct",
+        "cu",
+        "cv",
+        "cw",
+        "cx",
+        "cy",
+        "cz",
+        "da",
+        "db",
+        "dc",
+        "dd",
+        "de",
+        "df",
+        "dg",
+        "dh",
+        "di",
+        "dj",
+        "dk",
+        "dl",
+        "dm",
+        "dn",
+        "do",
+        "dp",
+        "dq",
+        "dr",
+        "ds",
+        "dt",
+        "du",
+        "dv"
+      ],
+      "validator": {
+        "kind": "alternating_groups_subsequence"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "fully-alternating"
+      ]
     }
   ]
 }

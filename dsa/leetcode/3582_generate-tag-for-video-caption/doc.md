@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | String, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [generate-tag-for-video-caption](https://leetcode.com/problems/generate-tag-for-video-caption/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/generate-tag-for-video-caption/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/generate-tag-for-video-caption/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Convert a video caption into a tag by applying the required transformations in order. Join its space-separated words into camelCase and prefix the result with `#`. The first word must be entirely lowercase. For every later word, uppercase its first letter and lowercase every remaining letter.
+
+Remove all characters other than English letters, while retaining the initial `#`. Finally, if the tag is longer than 100 characters, keep only its first 100 characters.
+
+Return the resulting tag.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `caption`: A string of length $n$, where $1\le n\le150$, containing only English letters and spaces.
 
 **Return value**
 
-TODO
+Return the normalized camelCase tag beginning with `#` and containing at most 100 characters.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `caption = "Leetcode daily streak achieved"`
+- Output: `"#leetcodeDailyStreakAchieved"`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `caption = "can I Go There"`
+- Output: `"#canIGoThere"`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: A single word containing 101 lowercase `h` characters.
+- Output: `#` followed by 99 lowercase `h` characters.
+- Explanation: The complete tag would contain 102 characters, so its final two letters are removed.
 
 ---
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

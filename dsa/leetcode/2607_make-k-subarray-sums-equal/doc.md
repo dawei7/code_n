@@ -8,83 +8,41 @@
 | Category | Algorithms |
 | Topics | Array, Math, Greedy, Sorting, Number Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [make-k-subarray-sums-equal](https://leetcode.com/problems/make-k-subarray-sums-equal/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/make-k-subarray-sums-equal/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/make-k-subarray-sums-equal/).
 
 ### Goal
-Given an integer array `arr` and an integer `k`, determine the minimum number of operations required to make the sum of every contiguous subarray of length `k` equal. In one operation, you can increment or decrement any element of the array by 1.
+
+You are given a zero-indexed integer array `arr` and an integer `k`. Treat `arr` as circular: the element after its last position is the first element, and the element before its first position is the last element.
+
+In one operation, choose any element and increase or decrease it by exactly $1$. You may perform this operation any number of times on any positions.
+
+Return the minimum number of operations required to make the sums of all circular subarrays of length `k` equal. A subarray is a contiguous segment, with wrapping allowed by the circular interpretation.
 
 ### Function Contract
+
 **Inputs**
 
-- `arr`: A list of integers representing the initial array.
-- `k`: An integer representing the length of the subarrays that must have equal sums.
+- `arr`: A list of $n$ positive integers, where $1 \leq n \leq 10^5$ and $1 \leq \texttt{arr[i]} \leq 10^9$.
+- `k`: The circular subarray length, where $1 \leq k \leq n$.
 
 **Return value**
 
-- An integer representing the minimum total operations (sum of absolute differences) to satisfy the condition.
+- The minimum total number of unit increments and decrements needed to equalize every length-`k` circular subarray sum.
 
 ### Examples
+
 **Example 1**
 
-- Input: `arr = [1, 4, 1, 3], k = 2`
+- Input: `arr = [1,4,1,3], k = 2`
 - Output: `1`
-- Explanation: We can change the array to `[1, 3, 1, 3]`. Subarrays of length 2 are `[1, 3]` (sum 4) and `[3, 1]` (sum 4) and `[1, 3]` (sum 4).
+
+Decreasing the value at index $1$ from $4$ to $3$ produces `[1,3,1,3]`; every circular length-$2$ subarray then sums to $4$.
 
 **Example 2**
 
-- Input: `arr = [2, 5, 5, 7], k = 3`
+- Input: `arr = [2,5,5,7], k = 3`
 - Output: `5`
-- Explanation: We can change the array to `[5, 5, 5, 5]`.
 
-**Example 3**
-
-- Input: `arr = [4, 3, 2, 1], k = 4`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-The problem implies that `arr[i] == arr[i + k]` must hold for all `i` to ensure all subarrays of length `k` have the same sum. This partitions the array into `gcd(n, k)` independent cycles. For each cycle, we collect the elements and find the median. The minimum operations to make all elements in a cycle equal to a target value is achieved when the target is the median of those elements.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`, where `n` is the length of the array, due to sorting the elements within each cycle.
-- **Space Complexity**: `O(n)` to store the elements of the cycles.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import math
-
-def solve(arr: list[int], k: int) -> int:
-    n = len(arr)
-    k = math.gcd(k, n)
-    visited = [False] * n
-    total_ops = 0
-
-    for i in range(n):
-        if not visited[i]:
-            # Extract all elements belonging to the same cycle
-            cycle = []
-            curr = i
-            while not visited[curr]:
-                visited[curr] = True
-                cycle.append(arr[curr])
-                curr = (curr + k) % n
-
-            # To minimize sum of absolute differences,
-            # we transform all elements in the cycle to their median.
-            cycle.sort()
-            median = cycle[len(cycle) // 2]
-
-            for val in cycle:
-                total_ops += abs(val - median)
-
-    return total_ops
-```
-</details>
+Changing the first and last values to $5$ costs $3+2=5$ and makes the array constant, so every circular length-$3$ sum is equal.

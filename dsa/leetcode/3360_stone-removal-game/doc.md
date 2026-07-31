@@ -8,48 +8,36 @@
 | Category | Algorithms |
 | Topics | Math, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [stone-removal-game](https://leetcode.com/problems/stone-removal-game/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/stone-removal-game/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/stone-removal-game/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Alice and Bob alternate turns removing stones from one pile, with Alice moving first. Alice's opening move must remove exactly $10$ stones. Every later move must remove exactly one fewer stone than the immediately preceding move, so the forced sequence of requested amounts is $10,9,8,\ldots$.
+
+A player cannot choose a different amount or skip a turn. If the pile contains fewer stones than the current required amount, that player cannot move and loses immediately. Given the positive initial pile size $n$, determine whether Alice is the winner when both players follow these forced rules.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The initial number of stones, with $1\le n\le50$.
 
 **Return value**
 
-TODO
+- `True` if Alice makes the last successful move and Bob is the first player unable to move; otherwise `False`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 12`
+- Output: `true`
+- Explanation: Alice removes $10$, leaving $2$. Bob needs to remove $9$ but cannot, so Alice wins.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 1`
+- Output: `false`
+- Explanation: Alice cannot make the required opening move of $10$ stones.

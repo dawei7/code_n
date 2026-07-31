@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3911",
+  "frontend_id": "3571",
+  "title_slug": "find-the-shortest-superstring-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.shortestSuperstring",
+  "verified_submission_id": "2083174843",
+  "verified_at": "2026-07-27T09:55:34Z"
+}

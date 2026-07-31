@@ -1,35 +1,45 @@
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+from typing import Any
 
-def solve(root: TreeNode, queries: list[int]) -> list[int]:
-    node_height = {}
 
-    def get_height(node):
-        if not node:
-            return -1
+def solve(root: Any, queries: list[int]) -> list[int]:
+    heights = {}
+    stack = [(root, False)]
+    while stack:
+        node, expanded = stack.pop()
+        if node is None:
+            continue
+        if expanded:
+            left_height = heights[node.left.val] if node.left else -1
+            right_height = heights[node.right.val] if node.right else -1
+            heights[node.val] = 1 + max(left_height, right_height)
+        else:
+            stack.append((node, True))
+            stack.append((node.right, False))
+            stack.append((node.left, False))
 
-        h = 1 + max(get_height(node.left), get_height(node.right))
-        node_height[node.val] = h
-        return h
+    answer_by_value = {}
+    stack = [(root, 0, 0)]
+    while stack:
+        node, depth, outside_height = stack.pop()
+        answer_by_value[node.val] = outside_height
+        left_height = heights[node.left.val] if node.left else -1
+        right_height = heights[node.right.val] if node.right else -1
 
-    get_height(root)
+        if node.left:
+            stack.append(
+                (
+                    node.left,
+                    depth + 1,
+                    max(outside_height, depth + 1 + right_height),
+                )
+            )
+        if node.right:
+            stack.append(
+                (
+                    node.right,
+                    depth + 1,
+                    max(outside_height, depth + 1 + left_height),
+                )
+            )
 
-    ans = {}
-
-    def compute_results(node, depth, best_without_subtree):
-        if not node:
-            return
-
-        ans[node.val] = best_without_subtree
-
-        left_h = node_height[node.left.val] if node.left else -1
-        right_h = node_height[node.right.val] if node.right else -1
-
-        compute_results(node.left, depth + 1, max(best_without_subtree, depth + 1 + right_h))
-        compute_results(node.right, depth + 1, max(best_without_subtree, depth + 1 + left_h))
-
-    compute_results(root, 0, 0)
-    return [ans[q] for q in queries]
+    return [answer_by_value[value] for value in queries]

@@ -8,79 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Bit Manipulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-operations-to-collect-elements](https://leetcode.com/problems/minimum-operations-to-collect-elements/) |
+| LeetCode | [Minimum Operations to Collect Elements](https://leetcode.com/problems/minimum-operations-to-collect-elements/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-operations-to-collect-elements/).
 
 ### Goal
-Given an array of integers and an integer `k`, determine the minimum number of elements that must be removed from the end of the array to collect all integers from 1 to `k` inclusive.
+
+You are given an array `nums` of positive integers and an integer `k`. One operation removes the last element of the current array and places that value in your collection. Because removal always happens at the end, the values are collected by scanning the original array from right to left.
+
+Determine the minimum number of operations required before the collection contains every integer from $1$ through $k$. Values outside that target range may still have to be removed, and collecting a duplicate target value does not replace any missing value. The input guarantees that all required values can eventually be collected.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the sequence.
-- `k`: An integer representing the target range of values [1, k] to collect.
+- `nums`: A nonempty list of positive integers.
+- `k`: The inclusive upper bound of the target values that must be collected.
+
+Let $n = \lvert\texttt{nums}\rvert$. The constraints are $1 \le n \le 50$, $1 \le \texttt{nums[i]} \le n$, and $1 \le k \le n$. Every integer in $\{1, 2, \ldots, k\}$ occurs in `nums`.
 
 **Return value**
 
-- An integer representing the minimum number of operations (removals from the end) required to gather all integers in the set {1, 2, ..., k}.
+- The minimum number of removals from the end of `nums` needed to collect all integers from $1$ through $k$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [3, 1, 5, 4, 2], k = 2`
+- Input: `nums = [3,1,5,4,2], k = 2`
 - Output: `4`
-- Explanation: Removing 2, 4, 5, 1 leaves {3, 1}. We have collected 1 and 2.
+- Explanation: The removed values are `2`, `4`, `5`, and `1`. At that point both required values, `1` and `2`, have been collected.
 
 **Example 2**
 
-- Input: `nums = [3, 1, 5, 4, 2], k = 5`
+- Input: `nums = [3,1,5,4,2], k = 5`
 - Output: `5`
+- Explanation: Every array element must be removed before the collection contains all values from `1` through `5`.
 
 **Example 3**
 
-- Input: `nums = [3, 2, 5, 3, 1], k = 3`
+- Input: `nums = [3,2,5,3,1], k = 3`
 - Output: `4`
-
----
-
-## Solution
-### Approach
-The problem is solved using a reverse iteration approach combined with a Hash Set (or a boolean array) to track unique collected elements. By traversing the array from right to left, we can greedily identify the first occurrence of each number in the range [1, k]. Once the size of our tracking set reaches `k`, the current index provides the total count of operations.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we traverse the array at most once.
-- **Space Complexity**: `O(k)`, as we store at most `k` unique integers in our tracking set.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int], k: int) -> int:
-    """
-    Calculates the minimum operations to collect all integers from 1 to k
-    by iterating backwards through the list.
-    """
-    collected = set()
-    operations = 0
-
-    # Iterate backwards through the array
-    for i in range(len(nums) - 1, -1, -1):
-        operations += 1
-        val = nums[i]
-
-        # Only track values within the target range [1, k]
-        if val <= k:
-            collected.add(val)
-
-        # If we have collected all numbers from 1 to k, return the count
-        if len(collected) == k:
-            return operations
-
-    return operations
-```
-</details>
+- Explanation: Removing `1`, `3`, `5`, and `2` collects every required value; the irrelevant `5` still counts as an operation.

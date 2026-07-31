@@ -8,48 +8,39 @@
 | Category | Algorithms |
 | Topics | Math, Number Theory |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [smallest-even-multiple](https://leetcode.com/problems/smallest-even-multiple/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/smallest-even-multiple/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/smallest-even-multiple/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a positive integer `n`, find the smallest positive integer divisible by both `n` and 2. In number-theoretic terms, the result is the least common multiple of `n` and 2, but only the parity of `n` is needed to determine it.
+
+When `n` is already even, `n` itself satisfies both divisibility requirements and no smaller positive multiple of `n` exists. When `n` is odd, its first multiple is odd, while the next multiple, `2 * n`, is even and is therefore the first common multiple.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: A positive integer satisfying $1 \le n \le 150$.
 
 **Return value**
 
-TODO
+Return the smallest positive integer that is a multiple of both 2 and `n`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5`
+- Output: `10`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 6`
+- Output: `6`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 1`
+- Output: `2`

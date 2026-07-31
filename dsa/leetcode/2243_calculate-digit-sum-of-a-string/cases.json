@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2243",
+  "cases": [
+    {"id":"sample-two-rounds","name":"sample: two rounds with a short final group","kind":"sample","visible":true,"input":{"s":"11111222223","k":3},"expected":"135","tags":["sample","multiple-rounds"]},
+    {"id":"sample-zero-groups","name":"sample: each zero group contributes one zero","kind":"sample","visible":true,"input":{"s":"00000000","k":3},"expected":"000","tags":["sample","zeroes"]},
+    {"id":"trial-no-round","name":"length equal to k is returned unchanged","kind":"trial","visible":true,"input":{"s":"123","k":3},"expected":"123","tags":["stopping-condition"]},
+    {"id":"trial-carrying-sums","name":"group sums can contain two digits","kind":"trial","visible":true,"input":{"s":"987654","k":4},"expected":"309","tags":["two-digit-sum","short-final-group"]},
+    {"id":"trial-k-two","name":"k two can require several rounds","kind":"trial","visible":true,"input":{"s":"9999999999","k":2},"expected":"99","tags":["multiple-rounds","minimum-k"]},
+    {"id":"real-leading-zeroes","name":"hidden: original leading zeroes still belong to groups","kind":"real","visible":false,"input":{"s":"10001000","k":3},"expected":"110","tags":["hidden","zeroes","group-boundaries"]},
+    {"id":"real-three-groups","name":"hidden: group results are concatenated before repeating","kind":"real","visible":false,"input":{"s":"123456789","k":3},"expected":"126","tags":["hidden","concatenation"]},
+    {"id":"real-max-k","name":"hidden: maximum k prevents a round at maximum input length","kind":"real","visible":false,"input":{"s":"1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890","k":100},"expected":"1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890","tags":["hidden","maximum-length","no-round"]}
+  ]
+}

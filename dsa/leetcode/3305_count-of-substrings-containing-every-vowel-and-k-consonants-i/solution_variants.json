@@ -2,15 +2,13 @@
   "schema_version": 1,
   "challenge_id": "lc_3305",
   "default_variant": "optimal",
-  "variants": [
-    {
+  "variants": [{
       "id": "optimal",
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count of Substrings Containing Every Vowel and K Consonants I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
+      "summary": "Enumerates each start and extends until the consonant count exceeds k while tracking the five vowels.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(1)"
+    }]
 }

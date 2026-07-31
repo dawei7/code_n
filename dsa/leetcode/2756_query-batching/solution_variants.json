@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Query Batching and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Dispatches the first request immediately, collects later requests during one cooldown, and flushes each queued batch at the next legal start time.",
+      "time_complexity": "O(c)",
+      "space_complexity": "O(c)"
     }
   ]
 }

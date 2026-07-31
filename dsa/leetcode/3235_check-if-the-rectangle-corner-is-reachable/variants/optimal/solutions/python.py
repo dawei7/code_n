@@ -1,48 +1,50 @@
-def solve(x: int, y: int, circles: list[list[int]]) -> bool:
-    n = len(circles)
-    parent = list(range(n + 2))
+def solve(xCorner: int, yCorner: int, circles: list[list[int]]) -> bool:
+    count = len(circles)
+    top_or_left = count
+    bottom_or_right = count + 1
+    parent = list(range(count + 2))
 
-    def find(i):
-        if parent[i] == i:
-            return i
-        parent[i] = find(parent[i])
-        return parent[i]
+    def find(node: int) -> int:
+        while parent[node] != node:
+            parent[node] = parent[parent[node]]
+            node = parent[node]
+        return node
 
-    def union(i, j):
-        root_i = find(i)
-        root_j = find(j)
-        if root_i != root_j:
-            parent[root_i] = root_j
+    def union(first: int, second: int) -> None:
+        first_root = find(first)
+        second_root = find(second)
+        if first_root != second_root:
+            parent[first_root] = second_root
 
-    # n: left/top boundary (x=0 or y=y)
-    # n+1: right/bottom boundary (x=x or y=0)
-    for i in range(n):
-        cx, cy, r = circles[i]
+    for index, (x, y, radius) in enumerate(circles):
+        radius_squared = radius * radius
+        above = max(0, y - yCorner)
+        right = max(0, x - xCorner)
 
-        # Check intersection with left (x=0) or top (y=Y)
-        if cx <= r or abs(cy - y) <= r:
-            union(i, n)
+        touches_left = x * x + above * above <= radius_squared
+        touches_top = right * right + (y - yCorner) ** 2 <= radius_squared
+        touches_right = (x - xCorner) ** 2 + above * above <= radius_squared
+        touches_bottom = right * right + y * y <= radius_squared
 
-        # Check intersection with right (x=X) or bottom (y=0)
-        if abs(cx - x) <= r or cy <= r:
-            union(i, n + 1)
+        if touches_left or touches_top:
+            union(index, top_or_left)
+        if touches_bottom or touches_right:
+            union(index, bottom_or_right)
 
-        # Check intersection between circles
-        for j in range(i + 1, n):
-            x2, y2, r2 = circles[j]
-            dist_sq = (cx - x2)**2 + (cy - y2)**2
-            if dist_sq <= (r + r2)**2:
-                union(i, j)
+        for other in range(index):
+            other_x, other_y, other_radius = circles[other]
+            radius_sum = radius + other_radius
+            if (
+                (x - other_x) ** 2 + (y - other_y) ** 2
+                <= radius_sum * radius_sum
+                and x * other_radius + other_x * radius
+                < xCorner * radius_sum
+                and y * other_radius + other_y * radius
+                < yCorner * radius_sum
+            ):
+                union(index, other)
 
-    # If the two boundaries are connected, the path is blocked
-    if find(n) == find(n + 1):
-        return False
-
-    # Check if the start or end points are inside any circle
-    for cx, cy, r in circles:
-        if cx**2 + cy**2 <= r**2:
-            return False
-        if (cx - x)**2 + (cy - y)**2 <= r**2:
+        if find(top_or_left) == find(bottom_or_right):
             return False
 
     return True

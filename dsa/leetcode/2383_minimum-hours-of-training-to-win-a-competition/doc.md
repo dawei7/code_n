@@ -8,81 +8,47 @@
 | Category | Algorithms |
 | Topics | Array, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-hours-of-training-to-win-a-competition](https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-hours-of-training-to-win-a-competition/).
 
 ### Goal
-Calculate the minimum number of training hours required to defeat a series of opponents. You start with an initial energy and experience level. To defeat an opponent, your current energy must strictly exceed their energy requirement, and your current experience must strictly exceed their experience requirement. After each victory, your energy decreases by the opponent's energy, and your experience increases by the opponent's experience. You can train to increase your initial energy or experience by 1 hour per unit.
+
+You enter a competition with positive initial amounts of energy and experience. Two arrays describe the energy and experience of $n$ opponents, whom you must face in the given order. To defeat an opponent, your current energy and current experience must both be strictly greater than that opponent's corresponding values.
+
+After each victory, your energy decreases by the opponent's energy, while your experience increases by the opponent's experience. Before the competition begins, each hour of training can increase either your initial energy or your initial experience by exactly one. Determine the minimum total number of training hours that guarantees you can defeat every opponent in order.
 
 ### Function Contract
+
 **Inputs**
 
-- `initialEnergy` (int): Your starting energy level.
-- `initialExperience` (int): Your starting experience level.
-- `energy` (List[int]): A list of energy requirements for each opponent.
-- `experience` (List[int]): A list of experience requirements for each opponent.
+- `initial_energy`: Your positive starting energy.
+- `initial_experience`: Your positive starting experience.
+- `energy`: A list of $n$ opponents' energy values.
+- `experience`: A list of the same $n$ opponents' experience values.
+
+Here $1 \le n \le 100$, and every initial or opponent value lies between 1 and 100 inclusive.
 
 **Return value**
 
-- `int`: The total number of training hours needed to ensure all opponents are defeated.
+- Return the minimum number of one-point training hours needed before the competition.
+
+**Competition rules**
+
+- Both current statistics must be strictly greater than the current opponent's values.
+- A victory subtracts that opponent's energy and adds that opponent's experience.
+- Training occurs only before the first opponent, but its added points remain part of the evolving statistics.
 
 ### Examples
+
 **Example 1**
 
-- Input: `initialEnergy = 5, initialExperience = 3, energy = [1, 4, 3, 2], experience = [2, 6, 3, 1]`
+- Input: `initial_energy = 5, initial_experience = 3, energy = [1,4,3,2], experience = [2,6,3,1]`
 - Output: `8`
+- Explanation: Six energy hours and two experience hours provide enough strength to win all four encounters in order.
 
 **Example 2**
 
-- Input: `initialEnergy = 2, initialExperience = 4, energy = [1], experience = [3]`
+- Input: `initial_energy = 2, initial_experience = 4, energy = [1], experience = [3]`
 - Output: `0`
-
-**Example 3**
-
-- Input: `initialEnergy = 1, initialExperience = 1, energy = [1, 1, 1, 1], experience = [1, 1, 1, 1]`
-- Output: `5`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Greedy approach**. Since the order of opponents is fixed, we iterate through the list once. At each step, we check if our current stats meet the requirements. If they do not, we calculate the difference, add that difference to our total training hours, and update our current stats to the minimum threshold required to win.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the number of opponents, as we perform a single pass through the input arrays.
-- **Space Complexity**: `O(1)`, as we only use a few variables to track current stats and total training hours.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(initial_energy: int, initial_experience: int, energy: List[int], experience: List[int]) -> int:
-    total_training_hours = 0
-    current_energy = initial_energy
-    current_experience = initial_experience
-
-    for e_req, x_req in zip(energy, experience):
-        # Check energy requirement
-        if current_energy <= e_req:
-            needed = e_req - current_energy + 1
-            total_training_hours += needed
-            current_energy += needed
-
-        # Check experience requirement
-        if current_experience <= x_req:
-            needed = x_req - current_experience + 1
-            total_training_hours += needed
-            current_experience += needed
-
-        # Update stats after winning
-        current_energy -= e_req
-        current_experience += x_req
-
-    return total_training_hours
-```
-</details>
+- Explanation: Both starting statistics are already strictly greater than the only opponent's values.

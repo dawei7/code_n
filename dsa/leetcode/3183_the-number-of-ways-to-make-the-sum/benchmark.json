@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3183",
+  "measurement_note": "Size n is the requested target sum. The closed form evaluates three arithmetic-series expressions in O(1) time, while a correct one-dimensional coin-change dynamic program for values 1, 2, and 6 performs O(n) updates before accounting for zero, one, or two value-four coins.",
+  "cases": [
+    {
+      "id": "benchmark-sum-6250",
+      "name": "benchmark: target sum 6250",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6250,
+      "input": {
+        "n": 6250
+      },
+      "expected": 4884376,
+      "tags": [
+        "benchmark",
+        "closed-form",
+        "linear-dp"
+      ]
+    },
+    {
+      "id": "benchmark-sum-25000",
+      "name": "benchmark: target sum 25000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25000,
+      "input": {
+        "n": 25000
+      },
+      "expected": 78131251,
+      "tags": [
+        "benchmark",
+        "closed-form",
+        "linear-dp"
+      ]
+    },
+    {
+      "id": "benchmark-sum-100000",
+      "name": "benchmark: target sum 100000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100000,
+      "input": {
+        "n": 100000
+      },
+      "expected": 250024994,
+      "tags": [
+        "benchmark",
+        "closed-form",
+        "linear-dp"
+      ]
+    }
+  ]
+}

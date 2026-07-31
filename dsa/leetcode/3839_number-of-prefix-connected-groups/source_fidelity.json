@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3839",
+    "frontend_id": "3839",
+    "title_slug": "number-of-prefix-connected-groups",
+    "url": "https://leetcode.com/problems/number-of-prefix-connected-groups/description/",
+    "paid_only": false,
+    "content_sha256": "3d679c2a5b89d85e7657ec58e1381c524d8c3c259bfb3d7856fd3619ded568fe",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "note",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "words = [\"apple\",\"apply\",\"banana\",\"bandit\"], k = 2",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "words = [\"car\",\"cat\",\"cartoon\"], k = 3",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "words = [\"bat\",\"dog\",\"dog\",\"doggy\",\"bat\"] , k = 3",
+        "output": "2",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "db51097ecb47aff99d4e92b8a364229b12373d053e2ff1f97485147585304c46",
+      "reference/contract.md": "adca3c763b9c8e7723e0ef5e9e2cebed8c4d18dbc790fadaf4be6cc0c38fece1",
+      "reference/note.md": "6e785829c0137027977655215d4852330d5a061b1a96b6ea3a7f5adf15da85d3",
+      "reference/examples.md": "27acdbc5e9bea4b758f9ea173e81ba8e2f3b2d98c648c7ef3cb6c3c590e8c382",
+      "reference/constraints.md": "b30d7a222dd49888f39b561d7bd32613a6401174a3f60eff36ad15040807d8d8"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

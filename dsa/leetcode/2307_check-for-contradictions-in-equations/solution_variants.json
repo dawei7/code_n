@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Check for Contradictions in Equations and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains each connected component with weighted union-find and checks every redundant equation against its implied ratio.",
+      "time_complexity": "O(m alpha(v))",
+      "space_complexity": "O(v)"
     }
   ]
 }

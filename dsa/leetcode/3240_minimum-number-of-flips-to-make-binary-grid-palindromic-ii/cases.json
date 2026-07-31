@@ -2,136 +2,112 @@
   "challenge_id": "lc_3240",
   "cases": [
     {
-      "id": "sample-small-grid",
-      "name": "sample: both palindrome directions plus mod four",
+      "id": "sample-diagonal-three-by-three",
+      "name": "sample: diagonal three by three grid",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0
-          ],
-          [
-            0,
-            1
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "parity"
-      ]
+      "input": {"grid": [[1, 0, 0], [0, 1, 0], [0, 0, 1]]},
+      "expected": 3,
+      "tags": ["sample", "odd-dimensions"]
     },
     {
-      "id": "sample-middle-pairs",
-      "name": "sample: middle row affects parity",
+      "id": "sample-three-by-two",
+      "name": "sample: three by two grid",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            1
-          ],
-          [
-            0,
-            1,
-            0
-          ],
-          [
-            1,
-            0,
-            1
-          ]
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "sample",
-        "middle"
-      ]
+      "input": {"grid": [[0, 1], [0, 1], [0, 0]]},
+      "expected": 2,
+      "tags": ["sample", "middle-row"]
+    },
+    {
+      "id": "sample-two-ones-column",
+      "name": "sample: two ones in one column",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1], [1]]},
+      "expected": 2,
+      "tags": ["sample", "matched-pair"]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: zero center already valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[0]]},
+      "expected": 0,
+      "tags": ["edge", "center"]
     },
     {
       "id": "trial-single-one",
-      "name": "trial: single center one must flip",
+      "name": "trial: one center must flip",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1
-          ]
-        ]
-      },
+      "input": {"grid": [[1]]},
       "expected": 1,
-      "tags": [
-        "edge"
-      ]
+      "tags": ["edge", "center"]
     },
     {
-      "id": "trial-mismatched-middle",
-      "name": "trial: mismatched middle pairs absorb parity",
+      "id": "trial-mismatched-row-pair",
+      "name": "trial: mismatched middle pair absorbs residue",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            0,
-            1
-          ],
-          [
-            0,
-            0
-          ]
-        ]
-      },
+      "input": {"grid": [[0, 1]]},
       "expected": 1,
-      "tags": [
-        "middle"
-      ]
+      "tags": ["edge", "mismatched-pair"]
+    },
+    {
+      "id": "trial-matched-ones-row-pair",
+      "name": "trial: matched ones pair requires two flips",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1]]},
+      "expected": 2,
+      "tags": ["edge", "matched-pair", "modulo-four"]
+    },
+    {
+      "id": "trial-row-with-center-zero",
+      "name": "trial: matched endpoints and zero center",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 0, 1]]},
+      "expected": 2,
+      "tags": ["middle-row", "modulo-four"]
+    },
+    {
+      "id": "trial-row-with-center-one",
+      "name": "trial: center and matched endpoints are ones",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1, 1]]},
+      "expected": 3,
+      "tags": ["middle-row", "center", "modulo-four"]
+    },
+    {
+      "id": "real-all-ones-two-by-two",
+      "name": "real: four ones already satisfy every condition",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 1], [1, 1]]},
+      "expected": 0,
+      "tags": ["four-cell-orbit", "already-valid"]
+    },
+    {
+      "id": "real-diagonal-two-by-two",
+      "name": "real: balanced four-cell orbit",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 0], [0, 1]]},
+      "expected": 2,
+      "tags": ["four-cell-orbit", "tie"]
     },
     {
       "id": "real-odd-rectangle",
-      "name": "real: odd rectangular grid",
+      "name": "real: odd rectangle combines every orbit type",
       "kind": "real",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            0
-          ],
-          [
-            0,
-            1,
-            1
-          ],
-          [
-            1,
-            1,
-            0
-          ],
-          [
-            0,
-            0,
-            1
-          ],
-          [
-            1,
-            0,
-            1
-          ]
-        ]
-      },
+      "input": {"grid": [[1, 0, 0], [0, 1, 1], [1, 1, 0], [0, 0, 1], [1, 0, 1]]},
       "expected": 6,
-      "tags": [
-        "real",
-        "parity"
-      ]
+      "tags": ["odd-dimensions", "four-cell-orbit", "middle-pairs"]
     }
   ]
 }

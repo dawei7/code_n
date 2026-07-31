@@ -1,27 +1,36 @@
 {
   "challenge_id": "lc_2511",
+  "measurement_note": "Size is n, the number of positions. Every tier contains only enemy forts, so checking every endpoint pair takes O(n^2) before returning zero, while the boundary scan remains O(n).",
   "cases": [
     {
-      "id": "benchmark-multiple-opposite-pairs",
-      "name": "benchmark: choose the widest opposite-fort gap",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: twenty enemy forts without endpoints",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "forts": [
-          1,
-          0,
-          -1,
-          0,
-          0,
-          1,
-          0,
-          -1
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 20,
+      "input": { "forts": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] },
+      "expected": 0,
+      "tags": ["benchmark", "all-enemy"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: eighty enemy forts without endpoints",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 80,
+      "input": { "forts": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] },
+      "expected": 0,
+      "tags": ["benchmark", "all-enemy"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: one hundred eighty-eight enemy forts without endpoints",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 188,
+      "input": { "forts": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] },
+      "expected": 0,
+      "tags": ["benchmark", "all-enemy"]
     }
   ]
 }

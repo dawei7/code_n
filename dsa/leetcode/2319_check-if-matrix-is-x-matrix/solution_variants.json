@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Check if Matrix Is X-Matrix and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Classifies every coordinate as diagonal or off-diagonal and checks its required zero status.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(1)"
     }
   ]
 }

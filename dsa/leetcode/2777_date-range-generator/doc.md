@@ -8,48 +8,54 @@
 | Category | JavaScript |
 | Topics | Uncategorized |
 | Supported Languages | javascript |
-| Official Link | [date-range-generator](https://leetcode.com/problems/date-range-generator/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/date-range-generator/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/date-range-generator/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a start date `start`, an end date `end`, and a positive integer `step`, create a generator that yields calendar dates beginning at `start` and continuing toward `end`. Consecutive yielded dates must be exactly `step` days apart.
+
+The range is inclusive: yield `end` when it lies on the progression formed from `start`. If a step passes beyond `end`, stop without yielding that later date. Every yielded value must be a string in `YYYY-MM-DD` format.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `start`: The first date, written as a `YYYY-MM-DD` string.
+- `end`: The inclusive upper date, also written as a `YYYY-MM-DD` string, with `new Date(start) <= new Date(end)`.
+- `step`: The positive number of days between consecutive yielded values, where $1 \le \textit{step} \le 1000$.
+
+Let $d$ be the difference between `start` and `end` in days, where $0 \le d \le 1500$. The generator yields
+
+$$
+k = \left\lfloor \frac{d}{\textit{step}} \right\rfloor + 1
+$$
+
+dates.
+
+For the app-local serializable adapter, `summary` may request a compact description of a generated range instead of materializing its entire result in benchmark output.
 
 **Return value**
 
-TODO
+Return a generator object. Iterating it yields the $k$ dates in increasing order as `YYYY-MM-DD` strings, then finishes.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `start = "2023-04-01"`, `end = "2023-04-04"`, `step = 1`
+- Output: `["2023-04-01","2023-04-02","2023-04-03","2023-04-04"]`
+- Explanation: Advancing one day at a time lands exactly on the inclusive endpoint.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `start = "2023-04-10"`, `end = "2023-04-20"`, `step = 3`
+- Output: `["2023-04-10","2023-04-13","2023-04-16","2023-04-19"]`
+- Explanation: The next three-day step would be April 22, which is beyond `end`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `start = "2023-04-10"`, `end = "2023-04-10"`, `step = 1`
+- Output: `["2023-04-10"]`
+- Explanation: An equal start and end still produces that one inclusive date.

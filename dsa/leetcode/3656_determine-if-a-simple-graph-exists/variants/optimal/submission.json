@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4006",
+  "frontend_id": "3656",
+  "title_slug": "determine-if-a-simple-graph-exists",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.simpleGraphExists",
+  "verified_submission_id": "2083966114",
+  "verified_at": "2026-07-27T21:57:35.291620+00:00"
+}

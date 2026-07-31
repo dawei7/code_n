@@ -1,0 +1,14 @@
+def solve(s: str) -> int:
+    n = len(s)
+    ones = s.count("1")
+
+    answer = min(max(0, ones - 1), n - ones)
+    if n >= 2:
+        endpoint_pattern = (
+            (s[0] == "0")
+            + (s[-1] == "0")
+            + s[1:-1].count("1")
+        )
+        answer = min(answer, endpoint_pattern)
+
+    return answer

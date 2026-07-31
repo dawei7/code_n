@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Abbreviating the Product of a Range and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains normalized leading digits, a zero-stripped modular suffix, and a compensated decimal logarithm without constructing the full product.",
+      "time_complexity": "O(N log R)",
+      "space_complexity": "O(1)"
     }
   ]
 }

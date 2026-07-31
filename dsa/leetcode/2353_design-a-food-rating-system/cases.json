@@ -1,274 +1,90 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2353",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: official operation stream",
+      "id": "sample-full-trace",
+      "name": "sample: updates change leaders and create a tie",
       "kind": "sample",
       "visible": true,
       "input": {
-        "commands": [
-          "FoodRatings",
-          "highestRated",
-          "highestRated",
-          "changeRating",
-          "highestRated",
-          "changeRating",
-          "highestRated"
-        ],
-        "inputs": [
-          [
-            [
-              "kimchi",
-              "miso",
-              "sushi",
-              "moussaka",
-              "ramen",
-              "bulgogi"
-            ],
-            [
-              "korean",
-              "japanese",
-              "japanese",
-              "greek",
-              "japanese",
-              "korean"
-            ],
-            [
-              9,
-              12,
-              8,
-              15,
-              14,
-              7
-            ]
-          ],
-          [
-            "korean"
-          ],
-          [
-            "japanese"
-          ],
-          [
-            "sushi",
-            16
-          ],
-          [
-            "japanese"
-          ],
-          [
-            "ramen",
-            16
-          ],
-          [
-            "japanese"
-          ]
-        ]
+        "operations": ["FoodRatings","highestRated","highestRated","changeRating","highestRated","changeRating","highestRated"],
+        "arguments": [[["kimchi","miso","sushi","moussaka","ramen","bulgogi"],["korean","japanese","japanese","greek","japanese","korean"],[9,12,8,15,14,7]],["korean"],["japanese"],["sushi",16],["japanese"],["ramen",16],["japanese"]]
       },
-      "expected": [
-        null,
-        "kimchi",
-        "ramen",
-        null,
-        "sushi",
-        null,
-        "ramen"
-      ],
-      "tags": [
-        "sample",
-        "design",
-        "heap"
-      ]
+      "expected": [null,"kimchi","ramen",null,"sushi",null,"ramen"],
+      "tags": ["sample","stateful","tie"]
     },
     {
-      "id": "trial-lexicographic-tie",
-      "name": "trial: lexicographic tie after rating changes",
+      "id": "trial-initial-tie",
+      "name": "initial rating tie uses lexicographic order",
       "kind": "trial",
       "visible": true,
       "input": {
-        "commands": [
-          "FoodRatings",
-          "highestRated",
-          "changeRating",
-          "highestRated",
-          "changeRating",
-          "highestRated"
-        ],
-        "inputs": [
-          [
-            [
-              "a",
-              "b",
-              "c"
-            ],
-            [
-              "x",
-              "x",
-              "y"
-            ],
-            [
-              5,
-              7,
-              9
-            ]
-          ],
-          [
-            "x"
-          ],
-          [
-            "a",
-            10
-          ],
-          [
-            "x"
-          ],
-          [
-            "a",
-            7
-          ],
-          [
-            "x"
-          ]
-        ]
+        "operations": ["FoodRatings","highestRated","changeRating","highestRated"],
+        "arguments": [[["apple","apricot"],["fruit","fruit"],[5,5]],["fruit"],["apricot",6],["fruit"]]
       },
-      "expected": [
-        null,
-        "b",
-        null,
-        "a",
-        null,
-        "a"
-      ],
-      "tags": [
-        "trial",
-        "ties"
-      ]
+      "expected": [null,"apple",null,"apricot"],
+      "tags": ["tie","lexicographic"]
     },
     {
-      "id": "trial-two-cuisines",
-      "name": "trial: updates do not affect another cuisine",
+      "id": "trial-cuisine-isolation",
+      "name": "updates do not affect another cuisine",
       "kind": "trial",
       "visible": true,
       "input": {
-        "commands": [
-          "FoodRatings",
-          "highestRated",
-          "changeRating",
-          "changeRating",
-          "highestRated",
-          "highestRated"
-        ],
-        "inputs": [
-          [
-            [
-              "taco",
-              "tofu",
-              "tea"
-            ],
-            [
-              "mexican",
-              "vegan",
-              "vegan"
-            ],
-            [
-              8,
-              8,
-              5
-            ]
-          ],
-          [
-            "vegan"
-          ],
-          [
-            "tea",
-            9
-          ],
-          [
-            "tofu",
-            9
-          ],
-          [
-            "vegan"
-          ],
-          [
-            "mexican"
-          ]
-        ]
+        "operations": ["FoodRatings","highestRated","changeRating","highestRated","highestRated"],
+        "arguments": [[["taco","tofu","tea"],["mexican","vegan","vegan"],[8,8,5]],["vegan"],["tea",9],["vegan"],["mexican"]]
       },
-      "expected": [
-        null,
-        "tofu",
-        null,
-        null,
-        "tea",
-        "taco"
-      ],
-      "tags": [
-        "trial"
-      ]
+      "expected": [null,"tofu",null,"tea","taco"],
+      "tags": ["multiple-cuisines"]
     },
     {
-      "id": "real-rating-update-tie",
-      "name": "hidden: rating update creates and removes a tie",
+      "id": "trial-single-food",
+      "name": "one-food cuisine survives a decrease",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["FoodRatings","changeRating","highestRated"],
+        "arguments": [[["tea"],["drink"],[10]],["tea",1],["drink"]]
+      },
+      "expected": [null,null,"tea"],
+      "tags": ["boundary"]
+    },
+    {
+      "id": "trial-decrease-former-leader",
+      "name": "decreasing the leader exposes the next food",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["FoodRatings","highestRated","changeRating","highestRated"],
+        "arguments": [[["a","b","c"],["x","x","x"],[9,8,7]],["x"],["a",1],["x"]]
+      },
+      "expected": [null,"a",null,"b"],
+      "tags": ["decrease","stale-entry"]
+    },
+    {
+      "id": "real-repeated-updates",
+      "name": "hidden: several stale entries for one food",
       "kind": "real",
       "visible": false,
       "input": {
-        "commands": [
-          "FoodRatings",
-          "highestRated",
-          "changeRating",
-          "highestRated",
-          "changeRating",
-          "highestRated"
-        ],
-        "inputs": [
-          [
-            [
-              "a",
-              "b",
-              "c"
-            ],
-            [
-              "x",
-              "x",
-              "y"
-            ],
-            [
-              5,
-              7,
-              9
-            ]
-          ],
-          [
-            "x"
-          ],
-          [
-            "a",
-            10
-          ],
-          [
-            "x"
-          ],
-          [
-            "a",
-            7
-          ],
-          [
-            "x"
-          ]
-        ]
+        "operations": ["FoodRatings","changeRating","changeRating","changeRating","highestRated","changeRating","highestRated"],
+        "arguments": [[["aa","ab","ac"],["x","x","x"],[3,4,5]],["aa",9],["aa",2],["ab",8],["x"],["ab",1],["x"]]
       },
-      "expected": [
-        null,
-        "b",
-        null,
-        "a",
-        null,
-        "a"
-      ],
-      "tags": [
-        "hidden"
-      ]
+      "expected": [null,null,null,null,"ab",null,"ac"],
+      "tags": ["hidden","lazy-deletion"]
+    },
+    {
+      "id": "real-tie-after-decreases",
+      "name": "hidden: stale maxima reveal a lexicographic tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["FoodRatings","changeRating","changeRating","highestRated"],
+        "arguments": [[["az","ba","bb"],["x","x","x"],[10,9,8]],["az",7],["bb",9],["x"]]
+      },
+      "expected": [null,null,null,"ba"],
+      "tags": ["hidden","tie","stale-entry"]
     }
   ]
 }

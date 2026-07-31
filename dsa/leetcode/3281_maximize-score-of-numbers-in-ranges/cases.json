@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-three-ranges",
-      "name": "sample: three overlapping ranges",
+      "name": "sample: three staggered ranges",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -17,12 +17,12 @@
       "expected": 4,
       "tags": [
         "sample",
-        "binary-search"
+        "unsorted"
       ]
     },
     {
-      "id": "sample-duplicate-starts",
-      "name": "sample: duplicate starts with wide ranges",
+      "id": "sample-duplicate-start",
+      "name": "sample: duplicate final interval starts",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,61 +41,198 @@
       ]
     },
     {
-      "id": "trial-single-range",
-      "name": "trial: one range has no pairwise gap",
+      "id": "trial-zero-width-duplicates",
+      "name": "trial: identical fixed intervals force zero",
       "kind": "trial",
       "visible": true,
       "input": {
         "start": [
-          10
+          4,
+          4,
+          4
         ],
-        "d": 7
+        "d": 0
       },
       "expected": 0,
       "tags": [
-        "edge"
+        "zero-width",
+        "zero-score"
       ]
     },
     {
-      "id": "trial-tight-overlap",
-      "name": "trial: tight overlapping intervals",
+      "id": "trial-zero-width-distinct",
+      "name": "trial: fixed points use their smallest gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          10,
+          0,
+          4,
+          7
+        ],
+        "d": 0
+      },
+      "expected": 3,
+      "tags": [
+        "zero-width",
+        "fixed-points"
+      ]
+    },
+    {
+      "id": "trial-same-start-with-slack",
+      "name": "trial: shared interval distributes its slack",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          5,
+          5,
+          5
+        ],
+        "d": 2
+      },
+      "expected": 1,
+      "tags": [
+        "duplicates",
+        "shared-interval"
+      ]
+    },
+    {
+      "id": "trial-two-intervals",
+      "name": "trial: two intervals use opposite extremes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "start": [
+          10,
+          2
+        ],
+        "d": 4
+      },
+      "expected": 12,
+      "tags": [
+        "two-intervals",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "trial-overlapping-chain",
+      "name": "trial: overlapping intervals require coordinated choices",
       "kind": "trial",
       "visible": true,
       "input": {
         "start": [
           0,
-          1,
           2,
-          3
+          4,
+          6
         ],
-        "d": 1
+        "d": 3
       },
-      "expected": 1,
+      "expected": 3,
       "tags": [
-        "overlap"
+        "overlap",
+        "greedy"
       ]
     },
     {
-      "id": "real-unsorted-wide",
-      "name": "real: unsorted starts and wider intervals",
+      "id": "real-coordinate-bounds",
+      "name": "real: two intervals span both numeric bounds",
       "kind": "real",
       "visible": false,
       "input": {
         "start": [
-          40,
-          5,
-          17,
-          23,
-          11,
-          60,
-          52
+          0,
+          1000000000
+        ],
+        "d": 1000000000
+      },
+      "expected": 2000000000,
+      "tags": [
+        "bounds",
+        "two-intervals"
+      ]
+    },
+    {
+      "id": "real-many-duplicates",
+      "name": "real: five identical intervals share integer points",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "start": [
+          7,
+          7,
+          7,
+          7,
+          7
         ],
         "d": 9
       },
-      "expected": 9,
+      "expected": 2,
       "tags": [
-        "real",
-        "sorting"
+        "duplicates",
+        "distribution"
+      ]
+    },
+    {
+      "id": "real-tight-middle-interval",
+      "name": "real: a tight middle position limits both sides",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "start": [
+          0,
+          100,
+          51
+        ],
+        "d": 1
+      },
+      "expected": 50,
+      "tags": [
+        "bottleneck",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-separated-overlaps",
+      "name": "real: mixed separated and overlapping ranges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "start": [
+          20,
+          1,
+          8,
+          9,
+          30
+        ],
+        "d": 6
+      },
+      "expected": 7,
+      "tags": [
+        "mixed",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-large-offset",
+      "name": "real: translation does not change attainable gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "start": [
+          999999900,
+          999999920,
+          999999940,
+          999999960
+        ],
+        "d": 25
+      },
+      "expected": 28,
+      "tags": [
+        "large-values",
+        "translation"
       ]
     }
   ]

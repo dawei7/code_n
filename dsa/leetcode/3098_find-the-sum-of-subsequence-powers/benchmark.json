@@ -2,61 +2,85 @@
   "challenge_id": "lc_3098",
   "cases": [
     {
-      "id": "benchmark-subsequence-powers-42",
-      "name": "benchmark: 42 values and length 6",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: distinct pair differences at n=4",
       "kind": "benchmark",
       "visible": false,
+      "size": 4,
       "input": {
         "nums": [
-          -50,
-          -13,
-          24,
-          -40,
-          -3,
-          34,
-          -30,
-          7,
-          44,
-          -20,
-          17,
-          -47,
-          -10,
-          27,
-          -37,
-          0,
-          37,
-          -27,
-          10,
-          47,
-          -17,
-          20,
-          -44,
-          -7,
-          30,
-          -34,
-          3,
-          40,
-          -24,
-          13,
-          50,
-          -14,
-          23,
-          -41,
-          -4,
-          33,
-          -31,
-          6,
-          43,
-          -21,
-          16,
-          -48
+          1,
+          4,
+          2,
+          8
         ],
-        "k": 6
+        "k": 2
       },
-      "expected": 20801484,
+      "expected": 23,
       "tags": [
         "benchmark",
-        "dp"
+        "scaling",
+        "distinct-differences"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: distinct pair differences at n=8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          1,
+          4,
+          16,
+          64,
+          2,
+          8,
+          32,
+          128
+        ],
+        "k": 4
+      },
+      "expected": 443,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distinct-differences"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: distinct pair differences at n=16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          1,
+          4,
+          16,
+          64,
+          256,
+          1024,
+          4096,
+          16384,
+          2,
+          8,
+          32,
+          128,
+          512,
+          2048,
+          8192,
+          32768
+        ],
+        "k": 8
+      },
+      "expected": 142163,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distinct-differences"
       ]
     }
   ]

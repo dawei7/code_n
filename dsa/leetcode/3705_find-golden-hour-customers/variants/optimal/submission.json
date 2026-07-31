@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4091",
+  "frontend_id": "3705",
+  "title_slug": "find-golden-hour-customers",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2084886606",
+  "verified_at": "2026-07-28T14:31:53.707609+00:00"
+}

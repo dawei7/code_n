@@ -2,8 +2,8 @@
   "challenge_id": "lc_3277",
   "cases": [
     {
-      "id": "sample-six-values",
-      "name": "sample: six values with three queries",
+      "id": "sample-first",
+      "name": "sample: maximum scores over three ranges",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -13,7 +13,7 @@
           4,
           32,
           16,
-          13
+          1
         ],
         "queries": [
           [
@@ -37,30 +37,28 @@
       ],
       "tags": [
         "sample",
-        "dp"
+        "overlapping-queries"
       ]
     },
     {
-      "id": "sample-nine-values",
-      "name": "sample: varied ranges",
+      "id": "sample-second",
+      "name": "sample: five varied ranges",
       "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
           0,
           7,
+          3,
+          2,
           8,
           5,
-          6,
-          5,
-          1,
-          6,
-          10
+          1
         ],
         "queries": [
           [
             0,
-            7
+            3
           ],
           [
             1,
@@ -71,31 +69,59 @@
             4
           ],
           [
-            0,
-            8
+            2,
+            6
+          ],
+          [
+            5,
+            6
           ]
         ]
       },
       "expected": [
-        15,
-        15,
+        7,
         14,
-        15
+        11,
+        14,
+        5
       ],
       "tags": [
         "sample",
-        "ranges"
+        "varied-ranges"
       ]
     },
     {
-      "id": "trial-singletons",
+      "id": "trial-single-element",
+      "name": "trial: one element and one query",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        5
+      ],
+      "tags": [
+        "singleton",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
       "name": "trial: singleton and pair ranges",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          1,
-          2,
+          5,
           3
         ],
         "queries": [
@@ -105,28 +131,175 @@
           ],
           [
             1,
-            2
+            1
           ],
           [
             0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        5,
+        3,
+        6
+      ],
+      "tags": [
+        "pair",
+        "singletons"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: every XOR score is zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
             2
           ]
         ]
       },
       "expected": [
-        1,
-        3,
-        3
+        0,
+        0,
+        0
       ],
       "tags": [
-        "edge"
+        "zeros",
+        "overlapping-queries"
       ]
     },
     {
-      "id": "trial-repeated-values",
-      "name": "trial: repeated values produce zero scores",
+      "id": "trial-powers-of-two",
+      "name": "trial: reductions differ from ordinary total XOR",
       "kind": "trial",
       "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        6,
+        3,
+        6
+      ],
+      "tags": [
+        "xor-reduction",
+        "three-elements"
+      ]
+    },
+    {
+      "id": "trial-duplicate-query",
+      "name": "trial: duplicate ranges have duplicate answers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          6,
+          3
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        15,
+        15,
+        7
+      ],
+      "tags": [
+        "duplicate-queries",
+        "interior"
+      ]
+    },
+    {
+      "id": "real-maximum-bit-values",
+      "name": "real: values at the numeric upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2147483647,
+          0,
+          2147483647
+        ],
+        "queries": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2147483647,
+        2147483647,
+        2147483647
+      ],
+      "tags": [
+        "bounds",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-repeated-values",
+      "name": "real: repeated equal values cancel by width",
+      "kind": "real",
+      "visible": false,
       "input": {
         "nums": [
           7,
@@ -140,70 +313,162 @@
             3
           ],
           [
-            1,
+            0,
             2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            1
           ]
         ]
       },
       "expected": [
         7,
+        7,
+        7,
         7
       ],
       "tags": [
-        "repeated"
+        "repeated-values",
+        "cancellation"
       ]
     },
     {
-      "id": "real-overlapping-queries",
-      "name": "real: hidden overlapping ranges",
+      "id": "real-interior-best",
+      "name": "real: best score lies strictly inside",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          5,
           1,
-          9,
-          3,
-          12,
-          7,
+          2,
+          8,
           4,
-          6,
-          10,
-          2
+          32,
+          16,
+          3
         ],
         "queries": [
           [
             0,
-            9
-          ],
-          [
-            2,
-            7
-          ],
-          [
-            3,
-            3
-          ],
-          [
-            4,
-            8
+            6
           ],
           [
             1,
             5
+          ],
+          [
+            2,
+            4
           ]
         ]
       },
       "expected": [
-        15,
-        15,
-        3,
-        15,
-        15
+        60,
+        60,
+        40
       ],
       "tags": [
-        "real",
-        "dp"
+        "interior",
+        "full-range"
+      ]
+    },
+    {
+      "id": "real-singleton-subranges",
+      "name": "real: singleton answers across a mixed array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          31,
+          4,
+          12,
+          7,
+          19
+        ],
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        31,
+        12,
+        19,
+        31
+      ],
+      "tags": [
+        "singletons",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-overlapping-boundaries",
+      "name": "real: heavily overlapping query boundaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          13,
+          5,
+          9,
+          2,
+          14,
+          6,
+          11,
+          3
+        ],
+        "queries": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        14,
+        14,
+        14,
+        14,
+        14
+      ],
+      "tags": [
+        "overlapping-queries",
+        "boundaries"
       ]
     }
   ]

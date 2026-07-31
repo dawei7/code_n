@@ -2,15 +2,13 @@
   "schema_version": 1,
   "challenge_id": "lc_3296",
   "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Number of Seconds to Make Mountain Height Zero and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
+  "variants": [{
+    "id": "optimal",
+    "label": "Optimal",
+    "kind": "optimal",
+    "directory": "variants/optimal",
+    "summary": "Binary-searches completion time and inverts each worker's triangular cost with an exact integer square root.",
+    "time_complexity": "O(w log U)",
+    "space_complexity": "O(1)"
+  }]
 }

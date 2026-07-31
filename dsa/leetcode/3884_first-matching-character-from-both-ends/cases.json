@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3884",
+  "cases": [
+    {
+      "id": "sample-first-match-one",
+      "name": "sample: first mirrored match is index one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcacbd"
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "interior-match"
+      ]
+    },
+    {
+      "id": "sample-odd-center",
+      "name": "sample: the center of an odd string matches itself",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "odd-center"
+      ]
+    },
+    {
+      "id": "sample-no-match",
+      "name": "sample: every mirrored pair differs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcdab"
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: a singleton mirrors itself",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "minimum-length",
+        "self-mirror"
+      ]
+    },
+    {
+      "id": "trial-equal-pair",
+      "name": "trial: equal endpoints match at zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "zz"
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-characters",
+        "outer-match"
+      ]
+    },
+    {
+      "id": "trial-different-pair",
+      "name": "trial: two different endpoints never match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az"
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-characters",
+        "no-match"
+      ]
+    },
+    {
+      "id": "trial-even-middle-pair",
+      "name": "trial: first match is the middle pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abccde"
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "even-length",
+        "middle-pair"
+      ]
+    },
+    {
+      "id": "trial-center-only",
+      "name": "trial: only the odd center matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefg"
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "odd-length",
+        "center-only"
+      ]
+    },
+    {
+      "id": "real-palindrome-outer",
+      "name": "hidden: an outer palindrome match wins immediately",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abccba"
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "palindrome",
+        "outer-match"
+      ]
+    },
+    {
+      "id": "real-match-at-one",
+      "name": "hidden: reject the endpoints before an index-one match",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "xabbay"
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "interior-match",
+        "minimum-index"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: repeated characters return zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "mmmmmmmm"
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "repeated-character",
+        "early-return"
+      ]
+    },
+    {
+      "id": "real-maximum-no-match",
+      "name": "hidden: maximum even length has no mirrored equality",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "no-match"
+      ]
+    },
+    {
+      "id": "real-maximum-middle-match",
+      "name": "hidden: maximum even length first matches at index 49",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": 49,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "late-match"
+      ]
+    },
+    {
+      "id": "real-maximum-odd-center",
+      "name": "hidden: a 99-character string first matches at its center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": 49,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "odd-length",
+        "center-only"
+      ]
+    },
+    {
+      "id": "real-alphabet-no-match",
+      "name": "hidden: opposite alphabet positions all differ",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "distinct-characters",
+        "no-match"
+      ]
+    }
+  ]
+}

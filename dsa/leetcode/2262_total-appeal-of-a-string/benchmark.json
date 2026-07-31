@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2262",
+  "measurement_note": "Size is the string length n. Last-occurrence contributions take O(n) time. A correct implementation that extends a distinct-character set from every start completes every tier and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32-character periodic alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdef"
+      },
+      "expected": 5928,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "substring-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128-character periodic alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx"
+      },
+      "expected": 175656,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "substring-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 384-character periodic alphabet",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 384,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrst"
+      },
+      "expected": 1799720,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "substring-enumeration"
+      ]
+    }
+  ]
+}

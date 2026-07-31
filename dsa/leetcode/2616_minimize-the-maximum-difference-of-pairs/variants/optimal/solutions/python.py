@@ -1,35 +1,28 @@
-from typing import List
-
-def solve(nums: List[int], p: int) -> int:
+def solve(nums: list[int], p: int) -> int:
     if p == 0:
         return 0
-    
-    nums.sort()
-    n = len(nums)
-    
-    def can_form_pairs(threshold: int) -> bool:
-        count = 0
+
+    values = sorted(nums)
+
+    def feasible(limit: int) -> bool:
+        pairs = 0
         i = 0
-        while i < n - 1:
-            if nums[i + 1] - nums[i] <= threshold:
-                count += 1
+        while i + 1 < len(values):
+            if values[i + 1] - values[i] <= limit:
+                pairs += 1
                 i += 2
+                if pairs == p:
+                    return True
             else:
                 i += 1
-            if count >= p:
-                return True
-        return count >= p
+        return False
 
     low = 0
-    high = nums[-1] - nums[0]
-    ans = high
-    
-    while low <= high:
-        mid = (low + high) // 2
-        if can_form_pairs(mid):
-            ans = mid
-            high = mid - 1
+    high = values[-1] - values[0]
+    while low < high:
+        middle = (low + high) // 2
+        if feasible(middle):
+            high = middle
         else:
-            low = mid + 1
-            
-    return ans
+            low = middle + 1
+    return low

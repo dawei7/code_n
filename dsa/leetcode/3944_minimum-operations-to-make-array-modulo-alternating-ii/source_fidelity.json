@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3944",
+    "frontend_id": "3944",
+    "title_slug": "minimum-operations-to-make-array-modulo-alternating-ii",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-array-modulo-alternating-ii/description/",
+    "paid_only": true,
+    "content_sha256": "486310cfc0efd989331ff7764cdf17ada06a2d9822f9980fdbd0f0fdcb5c5631",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,4,2,8], k = 3",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,1,1], k = 3",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [6,7,8], k = 2",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "15559369b63c5f9f02d18e2a2ee7470d1c47f5c0cad83531a090db8d4b7815d4",
+      "reference/contract.md": "2fc90d5803ede1d23867697273889338599dc5295ea5b7a782441795e0892329",
+      "reference/examples.md": "710c946da6d0b973159c93802d40e7eac0854304693f78d9aaa28c7018d30374",
+      "reference/constraints.md": "815d8823a0ab477326121ec17e34c7ea059a52a364cfd639cf6ad8f1f5b5871b"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2411",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: suffix bits determine each length",
+      "id": "sample-suffix-bits",
+      "name": "sample: suffix bits determine each endpoint",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -24,12 +25,12 @@
       ],
       "tags": [
         "sample",
-        "bitmask"
+        "bitwise-or"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: two numbers",
+      "id": "sample-two-values",
+      "name": "sample: second value contributes a new bit",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,27 +48,29 @@
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: all zero values",
-      "kind": "sample",
+      "id": "trial-all-zero",
+      "name": "zero suffixes reach their maximum immediately",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
+          0,
           0,
           0
         ]
       },
       "expected": [
         1,
+        1,
         1
       ],
       "tags": [
-        "sample"
+        "zero"
       ]
     },
     {
-      "id": "trial-same-or-immediately",
-      "name": "trial: each value already reaches suffix OR",
+      "id": "trial-complete-immediately",
+      "name": "each repeated value already contains the suffix bits",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -81,12 +84,57 @@
         1
       ],
       "tags": [
-        "trial"
+        "duplicates"
       ]
     },
     {
-      "id": "real-furthest-final-bit",
-      "name": "hidden: final element contributes required bits",
+      "id": "trial-mixed-overlap",
+      "name": "different starts require different final bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        1
+      ],
+      "tags": [
+        "nearest-bit"
+      ]
+    },
+    {
+      "id": "real-final-bit",
+      "name": "hidden: final value supplies a required bit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": [
+        4,
+        3,
+        2,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "furthest"
+      ]
+    },
+    {
+      "id": "real-multiple-bits",
+      "name": "hidden: one final value supplies several suffix bits",
       "kind": "real",
       "visible": false,
       "input": {
@@ -104,7 +152,26 @@
         1
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "combined-bits"
+      ]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "hidden: maximum legal value as a singleton",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
       ]
     }
   ]

@@ -8,48 +8,43 @@
 | Category | Algorithms |
 | Topics | Math |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-key-of-the-numbers](https://leetcode.com/problems/find-the-key-of-the-numbers/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-key-of-the-numbers/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-key-of-the-numbers/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given three positive integers, represent each one with exactly four decimal digits by adding leading zeros when necessary. Construct a four-digit key position by position: at each position, choose the smallest of the three digits appearing there.
+
+Return the key as an integer. Converting the four generated digits to an integer removes any leading zeros; if all four selected digits are zero, the result is `0`.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `num1`: A positive integer from 1 through 9999.
+- `num2`: A positive integer from 1 through 9999.
+- `num3`: A positive integer from 1 through 9999.
 
 **Return value**
 
-TODO
+- The integer represented by the four coordinate-wise minimum digits after all three inputs are padded to width four.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num1 = 1, num2 = 10, num3 = 1000`
+- Output: `0`
+
+The padded strings `0001`, `0010`, and `1000` have minimum digit zero in every position.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num1 = 987, num2 = 879, num3 = 798`
+- Output: `777`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `num1 = 1, num2 = 2, num3 = 3`
+- Output: `1`

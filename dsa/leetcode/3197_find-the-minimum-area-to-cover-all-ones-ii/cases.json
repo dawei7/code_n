@@ -6,169 +6,108 @@
       "name": "sample: compact two-row grid",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            1
-          ],
-          [
-            1,
-            1,
-            1
-          ]
-        ]
-      },
+      "input": {"grid": [[1, 0, 1], [1, 1, 1]]},
       "expected": 5,
-      "tags": [
-        "sample",
-        "grid"
-      ]
+      "tags": ["sample", "mixed-layout"]
     },
     {
-      "id": "sample-diagonal",
-      "name": "sample: three isolated cells",
+      "id": "sample-staggered-pairs",
+      "name": "sample: staggered pairs across two rows",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            0
-          ],
-          [
-            0,
-            1,
-            0
-          ],
-          [
-            0,
-            0,
-            1
-          ]
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "sample",
-        "isolated"
-      ]
+      "input": {"grid": [[1, 0, 1, 0], [0, 1, 0, 1]]},
+      "expected": 5,
+      "tags": ["sample", "horizontal-split"]
     },
     {
-      "id": "trial-l-shape",
-      "name": "trial: split an L-shape",
+      "id": "trial-single-row",
+      "name": "trial: three ones in one row",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            1,
-            0,
-            0
-          ],
-          [
-            1,
-            0,
-            0,
-            1
-          ],
-          [
-            0,
-            0,
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 7,
-      "tags": [
-        "partition"
-      ]
+      "input": {"grid": [[1, 1, 1]]},
+      "expected": 3,
+      "tags": ["boundary", "single-row"]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "trial: three ones in one column",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1], [1], [1]]},
+      "expected": 3,
+      "tags": ["boundary", "single-column"]
+    },
+    {
+      "id": "trial-diagonal-units",
+      "name": "trial: three isolated diagonal cells",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 0, 0], [0, 1, 0], [0, 0, 1]]},
+      "expected": 3,
+      "tags": ["isolated", "unit-rectangles"]
+    },
+    {
+      "id": "trial-dense-two-by-two",
+      "name": "trial: dense square must be partitioned",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1], [1, 1]]},
+      "expected": 4,
+      "tags": ["dense", "touching-rectangles"]
     },
     {
       "id": "trial-four-corners",
-      "name": "trial: four corners need grouping",
+      "name": "trial: four corners require one grouped pair",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            0,
-            1
-          ],
-          [
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            1,
-            0,
-            0,
-            1
-          ]
-        ]
-      },
+      "input": {"grid": [[1, 0, 0, 1], [0, 0, 0, 0], [1, 0, 0, 1]]},
       "expected": 5,
-      "tags": [
-        "corners"
-      ]
+      "tags": ["corners", "empty-middle"]
+    },
+    {
+      "id": "trial-l-shape",
+      "name": "trial: asymmetric L-shaped clusters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1, 1, 0, 0], [1, 0, 0, 1], [0, 0, 1, 1]]},
+      "expected": 7,
+      "tags": ["mixed-layout", "asymmetric"]
     },
     {
       "id": "real-five-by-five",
       "name": "real: mixed clusters in a five by five grid",
       "kind": "real",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            1,
-            0,
-            1,
-            0,
-            0
-          ],
-          [
-            1,
-            0,
-            0,
-            0,
-            1
-          ],
-          [
-            0,
-            0,
-            1,
-            0,
-            1
-          ],
-          [
-            0,
-            1,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            1,
-            0,
-            1,
-            1
-          ]
-        ]
-      },
+      "input": {"grid": [[1, 0, 1, 0, 0], [1, 0, 0, 0, 1], [0, 0, 1, 0, 1], [0, 1, 0, 0, 0], [0, 1, 0, 1, 1]]},
       "expected": 18,
-      "tags": [
-        "real",
-        "grid"
-      ]
+      "tags": ["real", "multiple-clusters"]
+    },
+    {
+      "id": "real-two-above-one-below",
+      "name": "real: two upper regions above one lower region",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 0, 0, 1], [0, 1, 0, 0], [0, 1, 1, 0]]},
+      "expected": 6,
+      "tags": ["real", "mixed-layout", "top-pair"]
+    },
+    {
+      "id": "real-one-above-two-below",
+      "name": "real: one upper region above two lower regions",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 1]]},
+      "expected": 7,
+      "tags": ["real", "mixed-layout", "bottom-pair"]
+    },
+    {
+      "id": "real-two-left-one-right",
+      "name": "real: two left regions beside one right region",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 0, 1], [0, 0, 1], [1, 0, 0], [0, 0, 1]]},
+      "expected": 6,
+      "tags": ["real", "mixed-layout", "left-pair"]
     }
   ]
 }

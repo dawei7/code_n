@@ -8,100 +8,37 @@
 | Category | Algorithms |
 | Topics | Array, Math, Tree, Depth-First Search, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [create-components-with-same-value](https://leetcode.com/problems/create-components-with-same-value/) |
+| LeetCode | [Create Components With Same Value](https://leetcode.com/problems/create-components-with-same-value/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/create-components-with-same-value/).
 
 ### Goal
-Given an undirected tree represented by node values and edges, determine the maximum number of components the tree can be partitioned into by removing edges such that the sum of node values in every resulting component is identical.
+
+An undirected tree has $n$ nodes labeled from 0 through $n-1$. The 0-indexed array `nums` assigns `nums[i]` to node $i$, and each pair `[a, b]` in `edges` connects nodes `a` and `b`.
+
+You may delete some tree edges, producing several connected components. Define a component's value as the sum of the values on all nodes belonging to it. Return the maximum number of edges that can be deleted while making every resulting component have exactly the same value.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the value of each node.
-- `edges`: A list of pairs representing the undirected connections between nodes.
+- `nums`: A length-$n$ list of node values, where $1 \le n \le 2\cdot10^4$ and $1 \le \texttt{nums[i]} \le 50$.
+- `edges`: The $n-1$ undirected edges of a valid tree, with endpoints from 0 through $n-1$.
 
 **Return value**
 
-- An integer representing the maximum number of edges that can be removed so every resulting component has the same value sum.
+- The greatest number of edges whose deletion leaves equal-value connected components.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [6,2,2,2,6], edges = [[0,1],[1,2],[1,3],[3,4]]`
+- Input: `nums = [6, 2, 2, 2, 6], edges = [[0, 1], [1, 2], [1, 3], [3, 4]]`
 - Output: `2`
+- Explanation: Delete `[0, 1]` and `[3, 4]`. The components `{0}`, `{1, 2, 3}`, and `{4}` each have value 6.
 
 **Example 2**
 
 - Input: `nums = [2], edges = []`
 - Output: `0`
-
-**Example 3**
-
-- Input: `nums = [1,2,1,2,1], edges = [[0,1],[1,2],[2,3],[3,4]]`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-The problem relies on **DFS (Depth-First Search)** for tree traversal and **Divisor Enumeration**. Since the total sum of the tree must be partitioned into $k$ equal parts, $k$ must be a divisor of the total sum. We iterate through possible values of $k$ (starting from the largest possible) and use a post-order DFS to check if the tree can be partitioned into components of size `total_sum / k`.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \cdot d(S))$, where $N$ is the number of nodes and $d(S)$ is the number of divisors of the total sum $S$. For each divisor, we perform a linear time DFS traversal.
-- **Space Complexity**: $O(N)$ to store the adjacency list and the recursion stack.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import collections
-
-def solve(nums: list[int], edges: list[list[int]]) -> int:
-    n = len(nums)
-    if n == 0:
-        return 0
-
-    total_sum = sum(nums)
-    adj = collections.defaultdict(list)
-    for u, v in edges:
-        adj[u].append(v)
-        adj[v].append(u)
-
-    def can_partition(target: int) -> bool:
-        # Returns the sum of the current subtree if it can be partitioned,
-        # otherwise returns -1.
-        def dfs(u, p):
-            current_sum = nums[u]
-            for v in adj[u]:
-                if v == p:
-                    continue
-                res = dfs(v, u)
-                if res == -1:
-                    return -1
-                current_sum += res
-
-            if current_sum == target:
-                return 0
-            return current_sum
-
-        return dfs(0, -1) == 0
-
-    # We want to maximize k, which means minimizing target_sum = total_sum / k.
-    # k can range from n down to 1.
-    # target_sum must be a divisor of total_sum.
-    # The smallest possible target_sum is max(nums).
-
-    max_val = max(nums)
-    for k in range(n, 0, -1):
-        if total_sum % k == 0:
-            target = total_sum // k
-            if target >= max_val:
-                if can_partition(target):
-                    return k - 1
-
-    return 0
-```
-</details>
+- Explanation: A one-node tree has no edge available to delete.

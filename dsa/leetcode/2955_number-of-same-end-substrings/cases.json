@@ -1,0 +1,276 @@
+{
+  "challenge_id": "lc_2955",
+  "cases": [
+    {
+      "id": "sample-multiple",
+      "name": "sample: four ranges with repeated endpoints",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcaab",
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        5,
+        5,
+        10
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-distinct",
+      "name": "sample: only single-character substrings qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd",
+        "queries": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        4
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-ranges",
+      "name": "trial: each length-one query contributes one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab",
+        "queries": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-two-equal",
+      "name": "trial: equal pair adds the full two-letter substring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aa",
+        "queries": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "equal-pair"
+      ]
+    },
+    {
+      "id": "trial-two-distinct",
+      "name": "trial: distinct endpoints do not add a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab",
+        "queries": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "tags": [
+        "distinct"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: every substring of the range is same-end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaa",
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        10,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "all-equal"
+      ]
+    },
+    {
+      "id": "real-overlapping",
+      "name": "hidden: overlapping ranges reuse prefix counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abacaba",
+        "queries": [
+          [
+            0,
+            6
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        14,
+        7,
+        4
+      ],
+      "tags": [
+        "hidden",
+        "overlapping"
+      ]
+    },
+    {
+      "id": "real-suffix",
+      "name": "hidden: inclusive right endpoint contains repeated letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "xyzxyz",
+        "queries": [
+          [
+            3,
+            5
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "inclusive"
+      ]
+    },
+    {
+      "id": "real-many-letters",
+      "name": "hidden: several frequencies contribute independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "mississippi",
+        "queries": [
+          [
+            0,
+            10
+          ],
+          [
+            1,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        24,
+        19
+      ],
+      "tags": [
+        "hidden",
+        "frequencies"
+      ]
+    },
+    {
+      "id": "real-repeated-query",
+      "name": "hidden: identical queries produce identical answers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "banana",
+        "queries": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        10,
+        10,
+        6
+      ],
+      "tags": [
+        "hidden",
+        "repeated-query"
+      ]
+    }
+  ]
+}
+

@@ -5,51 +5,35 @@
 | Source | LeetCode |
 | Frontend ID | 3654 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Hash Table, Dynamic Programming, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-sum-after-divisible-sum-deletions](https://leetcode.com/problems/minimum-sum-after-divisible-sum-deletions/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-sum-after-divisible-sum-deletions/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-sum-after-divisible-sum-deletions/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a positive integer array `nums` and an integer `k`. You may repeatedly delete any contiguous subarray whose element sum is divisible by `k`. After a deletion, the elements on its two sides close the gap, so later deletions may span portions that were not adjacent in the original array.
+
+Perform any number of valid deletions, including none, and return the smallest possible sum of the elements that remain.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: Between 1 and $10^5$ positive integers, each at most $10^6$.
+- `k`: The divisibility modulus, with $1\le k\le10^5$.
 
 **Return value**
 
-TODO
+Return the minimum sum achievable after repeatedly deleting contiguous subarrays whose sums are multiples of `k`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,1,1]`, `k = 2`
+- Output: `1`
+- Explanation: Delete either adjacent pair of ones, whose sum is 2.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [3,1,4,1,5]`, `k = 3`
+- Output: `5`
+- Explanation: Delete `[1,4,1]` with sum 6, then delete the remaining leading 3.

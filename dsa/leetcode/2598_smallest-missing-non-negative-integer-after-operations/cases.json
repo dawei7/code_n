@@ -3,107 +3,75 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: value five remainder counts",
+      "name": "sample: value five remainder supplies",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          -10,
-          7,
-          13,
-          6,
-          8
-        ],
-        "value": 5
-      },
+      "input": { "nums": [1,-10,7,13,6,8], "value": 5 },
       "expected": 4,
-      "tags": [
-        "sample",
-        "modulo"
-      ]
+      "tags": ["sample", "modulo"]
     },
     {
       "id": "sample-2",
       "name": "sample: different modulus changes mex",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          -10,
-          7,
-          13,
-          6,
-          8
-        ],
-        "value": 7
-      },
+      "input": { "nums": [1,-10,7,13,6,8], "value": 7 },
       "expected": 2,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "remainder-shortage"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: all residues filled twice",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          3,
-          0,
-          3,
-          2,
-          4,
-          2,
-          1,
-          1,
-          0,
-          4
-        ],
-        "value": 5
-      },
-      "expected": 10,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-missing-next-residue",
-      "name": "trial: first missing residue after consecutive values",
+      "id": "trial-two-complete-cycles",
+      "name": "trial: every residue is supplied twice",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          0,
-          1,
-          2
-        ],
-        "value": 4
-      },
+      "input": { "nums": [3,0,3,2,4,2,1,1,0,4], "value": 5 },
+      "expected": 10,
+      "tags": ["trial", "repeated-residues"]
+    },
+    {
+      "id": "trial-first-missing-residue",
+      "name": "trial: first cycle stops before modulus",
+      "kind": "trial",
+      "visible": true,
+      "input": { "nums": [0,1,2], "value": 4 },
       "expected": 3,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["trial", "first-cycle"]
     },
     {
       "id": "real-negative-values",
-      "name": "hidden: negative numbers use positive modulo classes",
+      "name": "hidden: negative values normalize to residue classes",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          -1,
-          -2,
-          -3
-        ],
-        "value": 2
-      },
+      "input": { "nums": [-1,-2,-3], "value": 2 },
       "expected": 2,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "negative"]
+    },
+    {
+      "id": "real-value-one",
+      "name": "hidden: every element shares the only residue",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [-1000000000,7,19,1000000000], "value": 1 },
+      "expected": 4,
+      "tags": ["hidden", "value-one", "integer-bounds"]
+    },
+    {
+      "id": "real-zero-unavailable",
+      "name": "hidden: no element belongs to residue zero",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [1,6,11], "value": 5 },
+      "expected": 0,
+      "tags": ["hidden", "zero-missing"]
+    },
+    {
+      "id": "real-uneven-cycles",
+      "name": "hidden: repeated cycles exhaust one residue",
+      "kind": "real",
+      "visible": false,
+      "input": { "nums": [0,3,6,1,4,2], "value": 3 },
+      "expected": 5,
+      "tags": ["hidden", "uneven-counts"]
     }
   ]
 }

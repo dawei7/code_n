@@ -1,0 +1,149 @@
+{
+  "challenge_id": "lc_2578",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: four distinct digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 4325
+      },
+      "expected": 59,
+      "tags": [
+        "sample",
+        "even-digit-count"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: three distinct digits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num": 687
+      },
+      "expected": 75,
+      "tags": [
+        "sample",
+        "odd-digit-count"
+      ]
+    },
+    {
+      "id": "trial-minimum-input",
+      "name": "trial: minimum legal input uses a leading zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 10
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-input",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-all-nines",
+      "name": "trial: repeated nines split across unequal lengths",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num": 999
+      },
+      "expected": 108,
+      "tags": [
+        "trial",
+        "repeated-digits"
+      ]
+    },
+    {
+      "id": "real-paired-zeroes",
+      "name": "hidden: zeroes lead both constructed numbers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 1001
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "leading-zeroes"
+      ]
+    },
+    {
+      "id": "real-duplicate-middle-digits",
+      "name": "hidden: duplicate digits are distributed evenly",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 2932
+      },
+      "expected": 52,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-nine-repeated-digits",
+      "name": "hidden: longest ordinary all-nine input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 999999999
+      },
+      "expected": 109998,
+      "tags": [
+        "hidden",
+        "nine-digits"
+      ]
+    },
+    {
+      "id": "real-maximum-input",
+      "name": "hidden: maximum input places nine zeroes first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 1000000000
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "maximum-input",
+        "ten-digits"
+      ]
+    },
+    {
+      "id": "real-all-distinct-nonzero",
+      "name": "hidden: ascending place-value assignment",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 123456789
+      },
+      "expected": 16047,
+      "tags": [
+        "hidden",
+        "distinct-digits"
+      ]
+    },
+    {
+      "id": "real-many-zeroes",
+      "name": "hidden: zeroes consume most positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num": 100000
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "leading-zeroes",
+        "even-digit-count"
+      ]
+    }
+  ]
+}
+

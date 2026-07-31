@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3716",
+    "frontend_id": "3716",
+    "title_slug": "find-churn-risk-customers",
+    "url": "https://leetcode.com/problems/find-churn-risk-customers/description/",
+    "paid_only": false,
+    "content_sha256": "7cec2884a6e98900db9667953025a9dfb8e0936f0dd927c7d56eed13d592edb4",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "note"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`subscription_events` table (16 rows)",
+        "output": "users 501 and 502 with current plan metrics",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "1fbdf26742fd992f5697ef2f1deb3a9e8d820afd75bf3234a54abbefc0906a55",
+      "reference/contract.md": "5828e585bb8e9b299c62bd4f1674f72184bad21a298ca9b9c3222852496f29f2",
+      "reference/examples.md": "8bbdcb090cc1b691c939e5f300e36e3945831b9cd5c578d2db69fe82f1630417",
+      "reference/note.md": "d4859eac916f70e4d667bfd18dcd3aa31f9747f7e4ad52d633c94285f4988667"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

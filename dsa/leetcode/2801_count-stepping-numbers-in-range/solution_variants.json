@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Stepping Numbers in Range and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses digit DP to count valid positive integers at most each endpoint, then subtracts the prefix counts.",
+      "time_complexity": "O(d)",
+      "space_complexity": "O(d)"
     }
   ]
 }

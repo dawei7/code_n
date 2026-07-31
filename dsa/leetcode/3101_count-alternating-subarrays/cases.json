@@ -2,16 +2,34 @@
   "challenge_id": "lc_3101",
   "cases": [
     {
-      "id": "sample-all-alternating",
-      "name": "sample: every subarray in a full alternating run",
+      "id": "sample-equal-breaks",
+      "name": "sample: equal values stop the opening run",
       "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
           0,
           1,
-          0,
+          1,
           1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-all-alternating",
+      "name": "sample: every subarray alternates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          0,
+          1,
+          0
         ]
       },
       "expected": 10,
@@ -20,26 +38,8 @@
       ]
     },
     {
-      "id": "sample-breaks",
-      "name": "sample: equal adjacent values break chains",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          1,
-          0,
-          1
-        ]
-      },
-      "expected": 7,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
       "id": "trial-single",
-      "name": "trial: single value contributes one subarray",
+      "name": "trial: a singleton is alternating",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -49,14 +49,55 @@
       },
       "expected": 1,
       "tags": [
-        "trial"
+        "trial",
+        "boundary"
       ]
     },
     {
-      "id": "trial-many-breaks",
-      "name": "trial: several short alternating chains",
+      "id": "trial-all-equal",
+      "name": "trial: only singletons survive repeated equality",
       "kind": "trial",
       "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "repeated"
+      ]
+    },
+    {
+      "id": "trial-one-break",
+      "name": "trial: two alternating runs meet at an equal pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "break"
+      ]
+    },
+    {
+      "id": "real-many-breaks",
+      "name": "real: several runs have different lengths",
+      "kind": "real",
+      "visible": false,
       "input": {
         "nums": [
           0,
@@ -70,12 +111,56 @@
       },
       "expected": 14,
       "tags": [
-        "trial"
+        "real",
+        "mixed"
       ]
     },
     {
-      "id": "real-longer-pattern",
-      "name": "real: longer mixed binary pattern",
+      "id": "real-leading-repeat",
+      "name": "real: a singleton precedes a long alternating run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          0,
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "real",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-long-run",
+      "name": "real: a longer complete run contributes a triangular count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "real",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-mixed-pattern",
+      "name": "real: repeated values split a longer pattern",
       "kind": "real",
       "visible": false,
       "input": {
@@ -96,7 +181,7 @@
       "expected": 25,
       "tags": [
         "real",
-        "linear"
+        "mixed"
       ]
     }
   ]

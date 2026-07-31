@@ -1,28 +1,20 @@
 def solve(grid: list[list[int]], k: int) -> int:
-    MOD = 10**9 + 7
-    rows = len(grid)
-    cols = len(grid[0])
-    
-    # dp[i][j][rem] stores the number of paths to (i, j) with sum % k == rem
-    dp = [[[0] * k for _ in range(cols)] for _ in range(rows)]
-    
-    # Initialize starting cell
-    dp[0][0][grid[0][0] % k] = 1
-    
-    for i in range(rows):
-        for j in range(cols):
-            for rem in range(k):
-                if dp[i][j][rem] == 0:
-                    continue
-                
-                # Move Down
-                if i + 1 < rows:
-                    new_rem = (rem + grid[i + 1][j]) % k
-                    dp[i + 1][j][new_rem] = (dp[i + 1][j][new_rem] + dp[i][j][rem]) % MOD
-                
-                # Move Right
-                if j + 1 < cols:
-                    new_rem = (rem + grid[i][j + 1]) % k
-                    dp[i][j + 1][new_rem] = (dp[i][j + 1][new_rem] + dp[i][j][rem]) % MOD
-                    
-    return dp[rows - 1][cols - 1][0]
+    modulus = 1_000_000_007
+    columns = len(grid[0])
+    ways = [[0] * k for _ in range(columns)]
+
+    for row in range(len(grid)):
+        for column in range(columns):
+            value = grid[row][column] % k
+            current = [0] * k
+            if row == 0 and column == 0:
+                current[value] = 1
+            else:
+                for remainder in range(k):
+                    count = ways[column][remainder] if row else 0
+                    if column:
+                        count += ways[column - 1][remainder]
+                    current[(remainder + value) % k] = count % modulus
+            ways[column] = current
+
+    return ways[-1][0]

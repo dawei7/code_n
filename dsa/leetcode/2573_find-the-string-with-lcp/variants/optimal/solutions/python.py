@@ -1,26 +1,27 @@
 def solve(lcp: list[list[int]]) -> str:
     n = len(lcp)
+    letters = [""] * n
+    next_letter = ord("a")
 
-    labels = [-1] * n
-    next_label = 0
     for i in range(n):
-        if labels[i] != -1:
+        if letters[i]:
             continue
-        if next_label == 26:
+        if next_letter > ord("z"):
             return ""
+        letter = chr(next_letter)
+        next_letter += 1
         for j in range(i, n):
             if lcp[i][j] > 0:
-                labels[j] = next_label
-        next_label += 1
+                letters[j] = letter
 
-    produced = [[0] * (n + 1) for _ in range(n + 1)]
     for i in range(n - 1, -1, -1):
-        if lcp[i][i] != n - i:
-            return ""
         for j in range(n - 1, -1, -1):
-            if labels[i] == labels[j]:
-                produced[i][j] = produced[i + 1][j + 1] + 1
-            if produced[i][j] != lcp[i][j]:
+            expected = 0
+            if letters[i] == letters[j]:
+                expected = 1
+                if i + 1 < n and j + 1 < n:
+                    expected += lcp[i + 1][j + 1]
+            if lcp[i][j] != expected:
                 return ""
 
-    return "".join(chr(ord("a") + label) for label in labels)
+    return "".join(letters)

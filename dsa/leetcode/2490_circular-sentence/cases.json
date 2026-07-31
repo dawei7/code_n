@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2490",
+  "cases": [
+    {"id": "sample-1", "name": "sample: four-word circular sentence", "kind": "sample", "visible": true, "input": {"sentence": "leetcode exercises sound delightful"}, "expected": true, "tags": ["sample", "multiple-words"]},
+    {"id": "sample-2", "name": "sample: one circular word", "kind": "sample", "visible": true, "input": {"sentence": "eetcode"}, "expected": true, "tags": ["sample", "single-word"]},
+    {"id": "sample-3", "name": "sample: first internal boundary fails", "kind": "sample", "visible": true, "input": {"sentence": "Leetcode is cool"}, "expected": false, "tags": ["sample", "internal-mismatch"]},
+    {"id": "trial-one-character", "name": "trial: one-character word", "kind": "trial", "visible": true, "input": {"sentence": "a"}, "expected": true, "tags": ["trial", "minimum-length"]},
+    {"id": "trial-two-words", "name": "trial: two words close both boundaries", "kind": "trial", "visible": true, "input": {"sentence": "ab ba"}, "expected": true, "tags": ["trial", "two-words"]},
+    {"id": "real-wraparound-failure", "name": "hidden: internal boundary passes but cycle does not close", "kind": "real", "visible": false, "input": {"sentence": "ab ball"}, "expected": false, "tags": ["hidden", "wraparound"]},
+    {"id": "real-case-sensitive-pass", "name": "hidden: mixed case matches exactly", "kind": "real", "visible": false, "input": {"sentence": "Aa aA"}, "expected": true, "tags": ["hidden", "case-sensitive"]},
+    {"id": "real-late-failure", "name": "hidden: a later internal boundary fails", "kind": "real", "visible": false, "input": {"sentence": "ab bc ce da"}, "expected": false, "tags": ["hidden", "late-mismatch"]}
+  ]
+}

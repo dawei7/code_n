@@ -5,26 +5,28 @@
 | Source | LeetCode |
 | Frontend ID | 3175 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Simulation |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-first-player-to-win-k-games-in-a-row](https://leetcode.com/problems/find-the-first-player-to-win-k-games-in-a-row/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-first-player-to-win-k-games-in-a-row/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-first-player-to-win-k-games-in-a-row/).
-
 ### Goal
-Determine the index of the first player who achieves $k$ consecutive wins in a competitive queue. In each round, the first two players in the queue compete; the one with the higher skill value wins, stays at the front, and the loser moves to the back of the queue. If $k$ is very large, the player with the maximum skill value will eventually win indefinitely.
+A competition has $n$ players, numbered from $0$ through $n-1$. The array `skills` gives each player's skill level, and every skill value is unique. Initially, the players stand in a queue in their index order.
+
+During each game, the first two players compete and the one with the higher skill level wins. The winner remains at the beginning of the queue, while the loser moves to its end. A player's consecutive-win count ends as soon as another player defeats them.
+
+The competition winner is the first player to complete a run of $k$ games in a row. Return that player's index in the original `skills` array. The value of $k$ may be much larger than the number of players, so the process must be resolved without simulating an unbounded number of repeated queue rotations.
 
 ### Function Contract
 **Inputs**
 
-- `skills`: A list of integers representing the skill levels of players in their initial queue order.
-- `k`: An integer representing the number of consecutive wins required to be declared the winner.
+- `skills`: A list of $n$ unique integers, where `skills[i]` is the skill level of player $i$ and the list order is the initial queue order.
+- `k`: The positive number of consecutive games a player must win.
+
+The constraints are $2 \le n \le 10^5$, $1 \le k \le 10^9$, and $1 \le \texttt{skills[i]} \le 10^6$.
 
 **Return value**
 
-- An integer representing the index of the player who first achieves $k$ consecutive wins.
+Return the initial index of the first player to win $k$ games in a row.
 
 ### Examples
 **Example 1**
@@ -32,53 +34,11 @@ Determine the index of the first player who achieves $k$ consecutive wins in a c
 - Input: `skills = [4, 2, 6, 3, 9], k = 2`
 - Output: `2`
 
+Player $0$ first beats player $1$, then player $2$ defeats player $0$. Player $2$ next beats player $3$, completing two consecutive wins before player $4$ reaches the front.
+
 **Example 2**
 
 - Input: `skills = [2, 5, 4], k = 3`
 - Output: `1`
 
-**Example 3**
-
-- Input: `skills = [16, 4, 7, 17], k = 562624757`
-- Output: `3`
-
----
-
-## Solution
-### Approach
-The problem can be solved using a linear scan (simulation). We maintain the current "winner" and their current streak count. As we iterate through the array, we compare the current winner's skill with the next player. If the current winner is stronger, their streak increments. If the challenger is stronger, the challenger becomes the new winner with a streak of 1. If any player's streak reaches $k$, or if we encounter the player with the maximum skill value (who will win all subsequent games), we return the result.
-
-### Complexity Analysis
-- **Time Complexity**: $O(n)$, where $n$ is the number of players, as we iterate through the list at most once.
-- **Space Complexity**: $O(1)$, as we only store a few variables to track the current winner, their index, and their streak.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(skills: list[int], k: int) -> int:
-    n = len(skills)
-    # If k is large, the player with the maximum skill will eventually win.
-    # We only need to simulate until we find a winner or reach the max skill.
-
-    current_winner_idx = 0
-    current_streak = 0
-
-    for i in range(1, n):
-        # Compare current winner with the next player
-        if skills[current_winner_idx] > skills[i]:
-            current_streak += 1
-        else:
-            current_winner_idx = i
-            current_streak = 1
-
-        # Check if the current winner has reached k wins
-        if current_streak >= k:
-            return current_winner_idx
-
-    # If we finish the loop, the current_winner_idx is the player with the
-    # maximum skill, who will win all subsequent games.
-    return current_winner_idx
-```
-</details>
+Player $1$ defeats player $0$, then player $2$, and then player $0$ again, so player $1$ is the first to reach three consecutive wins.

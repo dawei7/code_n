@@ -1,47 +1,36 @@
 def solve(nums: list[int], changeIndices: list[int]) -> int:
-    n = len(nums)
-    m = len(changeIndices)
+    index_count = len(nums)
 
-    def check(time: int) -> bool:
-        # last_occurrence stores the latest second an index can be marked
-        last_occurrence = [-1] * (n + 1)
-        for i in range(time):
-            last_occurrence[changeIndices[i]] = i
-        
-        # If any index never appears in the first 'time' seconds, we can't mark it
-        if -1 in last_occurrence[1:]:
+    def can_finish(seconds: int) -> bool:
+        last_occurrence = [-1] * index_count
+        for second in range(seconds):
+            last_occurrence[changeIndices[second] - 1] = second
+
+        if -1 in last_occurrence:
             return False
-        
-        # Sort indices by their last occurrence to process greedily
-        # We need to perform nums[i] decrements before the last_occurrence[i+1]
-        needed = list(nums)
-        events = sorted([(last_occurrence[i + 1], i) for i in range(n)])
-        
-        decrements_available = 0
-        current_time = 0
-        
-        for deadline, idx in events:
-            # Time available for decrements before this deadline
-            # is the time elapsed minus time spent marking previous indices
-            time_to_use = deadline - current_time
-            if time_to_use < needed[idx]:
-                return False
-            
-            # We use 'needed[idx]' seconds to decrement, and 1 second to mark
-            current_time += needed[idx] + 1
-            
+
+        available_decrements = 0
+        for second in range(seconds):
+            index = changeIndices[second] - 1
+            if second == last_occurrence[index]:
+                if available_decrements < nums[index]:
+                    return False
+                available_decrements -= nums[index]
+            else:
+                available_decrements += 1
+
         return True
 
-    low = 1
-    high = m
-    ans = -1
-    
-    while low <= high:
-        mid = (low + high) // 2
-        if check(mid):
-            ans = mid
-            high = mid - 1
+    left = 1
+    right = len(changeIndices)
+    answer = -1
+
+    while left <= right:
+        middle = (left + right) // 2
+        if can_finish(middle):
+            answer = middle
+            right = middle - 1
         else:
-            low = mid + 1
-            
-    return ans
+            left = middle + 1
+
+    return answer

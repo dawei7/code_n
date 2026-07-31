@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2932",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n^2)",
+  "summary": "The source limits nums to 50 elements, so the complete pair scan performs at most 1275 unordered pairs with repetition; this fixed maximum workload is too small for a stable runtime-scaling verdict.",
+  "workload_bound": {
+    "symbol": "P",
+    "maximum": 1275,
+    "unit": "unordered index pairs with repetition",
+    "source_constraint": "nums contains from 1 through 50 integers, giving at most 50 times 51 divided by 2 inspected pairs"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The nested suffix scan visits each unordered index pair with repetition exactly once, for n times n plus 1 divided by 2 constant-time checks."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression compares exhaustive small arrays and maximum-length boundary families with an independent y less than or equal to two x oracle."
+    }
+  ]
+}

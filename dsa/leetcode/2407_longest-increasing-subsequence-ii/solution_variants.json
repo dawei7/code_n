@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Increasing Subsequence II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Stores the best subsequence length by ending value and queries the permitted predecessor-value interval with a segment tree.",
+      "time_complexity": "O(n log M)",
+      "space_complexity": "O(M)"
     }
   ]
 }

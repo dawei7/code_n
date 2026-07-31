@@ -16,9 +16,8 @@ from fastapi import APIRouter, HTTPException
 
 from challenges.registry import CHALLENGE_REGISTRY
 from engine.solutions import _solution_template
-from engine.languages import FUNCTION_LANGUAGES
 from engine.special_environments import category_is_runnable
-from server.app.optimal_sources import load_optimal_sources_by_language
+from server.app.optimal_sources import load_optimal_source
 from server.app.validated_cases import visible_cases
 from server.app.challenge_sets import (
     external_subset_memberships_for,
@@ -28,6 +27,11 @@ from server.app.challenge_packages import (
     leetcode_guided_example_path,
     leetcode_solution_variants_status,
     leetcode_submission_manifest_path,
+)
+from server.app.primary_languages import (
+    optimal_native_submission_source,
+    primary_language_for_challenge,
+    verified_native_submission_source,
 )
 from server.app.schemas import (
     ChallengeDetail,
@@ -108,8 +112,16 @@ def _solution_variant_details(
     if not status.complete:
         return [], "", None, "", None
 
-    variants = [
-        SolutionVariantDetail(
+    variants: list[SolutionVariantDetail] = []
+    for variant in status.variants:
+        native_submission = verified_native_submission_source(variant.submission_path)
+        if native_submission is None:
+            continue
+        language, native_source = native_submission
+        coden_path = variant.solution_paths.get(language)
+        if coden_path is None or not coden_path.is_file():
+            continue
+        variants.append(SolutionVariantDetail(
             id=variant.id,
             label=variant.label,
             kind=variant.kind,
@@ -117,18 +129,18 @@ def _solution_variant_details(
             time_complexity=variant.time_complexity,
             space_complexity=variant.space_complexity,
             approach_markdown=variant.approach_path.read_text(encoding="utf-8"),
-            sources={
-                language: path.read_text(encoding="utf-8")
-                for language, path in variant.solution_paths.items()
-            },
+            sources={language: coden_path.read_text(encoding="utf-8")},
+            leetcode_sources={language: native_source},
             submission_status=variant.submission_status,
             verified_submission_id=variant.verified_submission_id,
-        )
-        for variant in status.variants
-    ]
+        ))
+    variant_ids = {variant.id for variant in variants}
+    default_variant = status.default_variant if status.default_variant in variant_ids else (
+        variants[0].id if variants else ""
+    )
     return (
         variants,
-        status.default_variant,
+        default_variant,
         status.effective_elo,
         status.elo_source,
         status.simplified_elo_ceiling,
@@ -162,6 +174,8 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
             leetcode_title="",
             leetcode_slug="",
             leetcode_url="",
+            supported_languages=["python"],
+            primary_language="python",
             has_guided_example=False,
         )
     reference_metadata = getattr(spec, "reference_metadata", {}) or {}
@@ -171,6 +185,7 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
     leetcode_slug = lc_slug
     leetcode_url = str(spec.source_url or "")
     submission_status, submission_language, submission_paid_only = _submission_summary(spec.id)
+    primary_language = primary_language_for_challenge(spec.id, reference_metadata)
     return ChallengeSummary(
         id=spec.id,
         name=spec.name,
@@ -222,12 +237,8 @@ def _spec_to_summary(challenge_id: str, challenge) -> ChallengeSummary:
             if isinstance(study_plan, dict)
         ],
         leetcode_external_subsets=external_subsets,
-        supported_languages=[
-            str(language)
-            for language in reference_metadata.get("supported_languages", [])
-            if isinstance(language, str)
-        ],
-        primary_language=str(reference_metadata.get("primary_language") or "python"),
+        supported_languages=[primary_language],
+        primary_language=primary_language,
         runnable_in_coden=category_is_runnable(reference_metadata),
         has_guided_example=bool(
             (guided_example_path := leetcode_guided_example_path(spec.id))
@@ -289,7 +300,7 @@ def get_leetcode_question(title_slug: str) -> dict[str, str]:
 
 def get_unlocked_challenges(progress, all_challenges) -> set[str]:
     active_set = normalize_algorithm_set(progress.active_set)
-    if active_set not in {"neetcode", "leetcode_studyplan"}:
+    if active_set not in {"neetcode", "leetcode_studyplan", "leetcode_quest"}:
         return {c.info.id for c in all_challenges}
         
     completed = set(progress.completed)
@@ -309,6 +320,29 @@ def get_unlocked_challenges(progress, all_challenges) -> set[str]:
                 path = membership.get("path") if isinstance(membership.get("path"), list) else []
                 key = "/".join([str(membership.get("subset_slug") or "neetcode"), *(str(part) for part in path)])
                 order = int(membership.get("order", 0) or 0)
+                sequences.setdefault(key, []).append((order, challenge_id))
+
+    if active_set == "leetcode_quest":
+        quest_memberships = {
+            challenge.info.id: [
+                membership
+                for membership in external_subset_memberships_for(challenge.info.id)
+                if str(membership.get("kind") or "") == "leetcode_quest"
+            ]
+            for challenge in all_challenges
+        }
+        for challenge_id, memberships in quest_memberships.items():
+            for membership in memberships:
+                path = membership.get("path") if isinstance(membership.get("path"), list) else []
+                key = "/".join(
+                    [
+                        str(membership.get("subset_slug") or "leetcode-quest"),
+                        *(str(part) for part in path),
+                    ]
+                )
+                order = int(
+                    membership.get("problem_order", membership.get("order", 0)) or 0
+                )
                 sequences.setdefault(key, []).append((order, challenge_id))
 
     if active_set == "leetcode_studyplan":
@@ -337,10 +371,12 @@ def get_unlocked_challenges(progress, all_challenges) -> set[str]:
         ]
         if not cids:
             continue
-        unlocked_challenges.add(cids[0])
-        for index in range(1, len(cids)):
-            if cids[index - 1] in completed:
-                unlocked_challenges.add(cids[index])
+        all_previous_solved = True
+        for challenge_id in cids:
+            if all_previous_solved or challenge_id in completed:
+                unlocked_challenges.add(challenge_id)
+            if challenge_id not in completed:
+                all_previous_solved = False
     return unlocked_challenges
 
 
@@ -368,28 +404,24 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
         for case in visible_cases(spec.id)
     ]
     reference_metadata = getattr(spec, "reference_metadata", {}) or {}
-    runnable_in_coden = category_is_runnable(reference_metadata)
-    supported_languages = set(reference_metadata.get("supported_languages") or [])
-    starter_source = _starter_source_for(spec, "python")
-    starter_sources = _custom_starter_sources(reference_metadata)
-    if runnable_in_coden:
-        starter_sources = {
-            **{
-            language: _solution_template(
-                spec.id,
-                heading=f"{spec.id}: {spec.name}",
-                description=spec.description,
-                language=language,
-            )
-            for language in FUNCTION_LANGUAGES
-            if not supported_languages or language in supported_languages
-            },
-            **starter_sources,
-        }
+    primary_language = primary_language_for_challenge(spec.id, reference_metadata)
+    starter_source = _starter_source_for(spec, primary_language)
+    starter_sources = {primary_language: starter_source}
     complexity_notes = getattr(spec, "complexity_notes", {}) or {}
 
-    optimal_sources = load_optimal_sources_by_language(spec.id, spec)
-    optimal_source = optimal_sources.get("python", "")
+    coden_optimal_source = load_optimal_source(spec.id, spec, language=primary_language)
+    optimal_sources = (
+        {primary_language: coden_optimal_source}
+        if coden_optimal_source
+        else {}
+    )
+    native_optimal = optimal_native_submission_source(spec.id)
+    leetcode_optimal_sources = (
+        {native_optimal[0]: native_optimal[1]}
+        if native_optimal is not None
+        else {}
+    )
+    leetcode_optimal_source = native_optimal[1] if native_optimal is not None else ""
     (
         solution_variants,
         default_solution_variant,
@@ -405,8 +437,10 @@ def _spec_to_detail(challenge) -> ChallengeDetail:
         test_cases=test_cases,
         starter_source=starter_source,
         starter_sources=starter_sources,
-        optimal_source=optimal_source,
+        optimal_source=coden_optimal_source,
         optimal_sources=optimal_sources,
+        leetcode_optimal_source=leetcode_optimal_source,
+        leetcode_optimal_sources=leetcode_optimal_sources,
         default_solution_variant=default_solution_variant,
         solution_variants=solution_variants,
         solution_variant_effective_elo=solution_variant_effective_elo,

@@ -1,0 +1,11 @@
+{"challenge_id":"lc_2999","cases":[
+{"id":"sample-five-values","name":"sample: five powerful integers","kind":"sample","visible":true,"input":{"start":1,"finish":6000,"limit":4,"s":"124"},"expected":5,"tags":["sample"]},
+{"id":"sample-lower-bound","name":"sample: lower bound excludes suffix alone","kind":"sample","visible":true,"input":{"start":15,"finish":215,"limit":6,"s":"10"},"expected":2,"tags":["sample","range"]},
+{"id":"sample-suffix-too-large","name":"sample: suffix exceeds range","kind":"sample","visible":true,"input":{"start":1000,"finish":2000,"limit":4,"s":"3000"},"expected":0,"tags":["sample","empty"]},
+{"id":"trial-suffix-alone","name":"trial: suffix occupies entire number","kind":"trial","visible":true,"input":{"start":1,"finish":1,"limit":9,"s":"1"},"expected":1,"tags":["suffix-alone"]},
+{"id":"trial-two-prefixes","name":"trial: suffix alone and one prefixed value","kind":"trial","visible":true,"input":{"start":20,"finish":120,"limit":2,"s":"20"},"expected":2,"tags":["prefix"]},
+{"id":"trial-low-limit","name":"trial: low digit ceiling","kind":"trial","visible":true,"input":{"start":100,"finish":9999,"limit":1,"s":"1"},"expected":6,"tags":["digit-limit"]},
+{"id":"real-subtracted-prefix-range","name":"real: subtract prefixes below lower bound","kind":"real","visible":false,"input":{"start":1000,"finish":5000,"limit":4,"s":"24"},"expected":20,"tags":["hidden","range"]},
+{"id":"real-upper-boundary","name":"real: fifteen-digit suffix near upper bound","kind":"real","visible":false,"input":{"start":1,"finish":1000000000000000,"limit":1,"s":"111111111111111"},"expected":1,"tags":["hidden","boundary"]},
+{"id":"real-long-suffix","name":"real: long suffix under full digit ceiling","kind":"real","visible":false,"input":{"start":1,"finish":1000000,"limit":9,"s":"123456"},"expected":1,"tags":["hidden","full-limit"]}
+]}

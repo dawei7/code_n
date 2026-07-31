@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Ways to Buy Pens and Pencils and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates quantities of the more expensive item and counts all affordable quantities of the other item arithmetically.",
+      "time_complexity": "O(T / max(c1, c2))",
+      "space_complexity": "O(1)"
     }
   ]
 }

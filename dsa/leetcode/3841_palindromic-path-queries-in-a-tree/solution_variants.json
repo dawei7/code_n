@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Palindromic Path Queries in a Tree and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines Euler-tour subtree XOR updates, root-path parity masks, and binary-lifting LCA queries.",
+      "time_complexity": "O((N + Q) log N)",
+      "space_complexity": "O(N log N)"
     }
   ]
 }

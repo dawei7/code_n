@@ -8,48 +8,43 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Trie, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [partition-string](https://leetcode.com/problems/partition-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/partition-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/partition-string/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Scan a lowercase string `s` from left to right and divide its characters into segments according to a greedy uniqueness rule. Begin a candidate at the next unused index and extend it one character at a time. As soon as that whole candidate string has never been emitted as a segment before, record it and start the next candidate at the following character.
+
+Continue until the scan reaches the end of `s`, then return the recorded segments in creation order. Uniqueness refers to equality with previously recorded whole segments; characters inside one segment may repeat. If the final characters form only a segment that was already recorded and there is no further character with which to extend it, no additional segment is created.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: a nonempty string containing only lowercase English letters
+
+The input length satisfies $1 \le \lvert\texttt{s}\rvert \le 10^5$.
 
 **Return value**
 
-TODO
+A list of the distinct segments emitted by the prescribed left-to-right procedure, in order.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abbccccd"`
+- Output: `["a", "b", "bc", "c", "cc", "d"]`
+
+At the second `b`, the one-character candidate has already appeared, so it extends to the new segment `"bc"`. The same rule later extends a repeated `"c"` to `"cc"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaaa"`
+- Output: `["a", "aa"]`
+
+After recording `"a"`, the next candidate grows to `"aa"`. The last `"a"` is already seen and cannot be extended, so it creates no segment.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abc"`
+- Output: `["a", "b", "c"]`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Every one-character candidate is new, so every character becomes its own segment.

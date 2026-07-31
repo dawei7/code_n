@@ -5,26 +5,37 @@
 | Source | LeetCode |
 | Frontend ID | 2294 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Greedy, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [partition-array-such-that-maximum-difference-is-k](https://leetcode.com/problems/partition-array-such-that-maximum-difference-is-k/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/partition-array-such-that-maximum-difference-is-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/partition-array-such-that-maximum-difference-is-k/).
-
 ### Goal
-Partition all array elements into the fewest nonempty subsequences such that each group's maximum minus minimum is at most `k`. Original ordering within subsequences imposes no restriction on grouping.
+Partition every occurrence in the integer array `nums` into one or more
+subsequences. Each original element must appear in exactly one subsequence,
+and the relative order of elements assigned to the same subsequence is
+preserved.
+
+Within every chosen subsequence, the difference between its maximum and
+minimum values must be at most `k`. Return the smallest possible number of
+subsequences in such a partition.
+
+Because any set of selected positions forms a subsequence when read in
+increasing index order, feasibility depends on how values are grouped rather
+than on their original arrangement.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: an integer array.
-- `k`: the maximum spread allowed within a group.
+- `nums`: A nonempty array of nonnegative integers whose occurrences must all be assigned.
+- `k`: The maximum allowed difference between the largest and smallest value in one subsequence.
+
+The contract guarantees $1 \le \lvert\texttt{nums}\rvert \le 10^5$,
+$0 \le \texttt{nums}[i] \le 10^5$, and $0 \le k \le 10^5$.
 
 **Return value**
 
-The minimum number of subsequences required.
+The minimum number of subsequences needed to cover every occurrence while
+keeping each subsequence's value range at most `k`.
 
 ### Examples
 **Example 1**
@@ -34,23 +45,10 @@ The minimum number of subsequences required.
 
 **Example 2**
 
-- Input: `nums = [1, 2, 3]`, `k = 0`
-- Output: `3`
+- Input: `nums = [1, 2, 3]`, `k = 1`
+- Output: `2`
 
 **Example 3**
 
-- Input: `nums = [4, 4, 4]`, `k = 0`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-Sort the values. Start a group at the smallest unassigned value and include every following value no more than `k` above it. When one exceeds that bound, start the next group there. Taking the widest valid group from each smallest remaining value is greedily optimal.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(1)` auxiliary space when sorting in place
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [2, 2, 4, 5]`, `k = 0`
+- Output: `3`

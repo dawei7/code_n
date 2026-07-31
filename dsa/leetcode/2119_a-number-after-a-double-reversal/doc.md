@@ -8,48 +8,51 @@
 | Category | Algorithms |
 | Topics | Math |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [a-number-after-a-double-reversal](https://leetcode.com/problems/a-number-after-a-double-reversal/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/a-number-after-a-double-reversal/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/a-number-after-a-double-reversal/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Reversing an integer reverses the order of its decimal digits. Any zeros that
+would lead the reversed representation are discarded; for example, reversing
+`12300` produces `321`. Digits elsewhere in the representation remain present,
+and the reversed result is interpreted as an ordinary nonnegative integer
+rather than as a fixed-width digit sequence.
+
+Given a nonnegative integer `num`, reverse it once to obtain `reversed1`, then
+reverse that result to obtain `reversed2`. Determine whether `reversed2` equals
+the original number exactly. The comparison concerns the numeric values after
+both applications of the same leading-zero rule.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `num`: An integer from $0$ through $10^6$.
 
 **Return value**
 
-TODO
+Return `true` when reversing `num` twice restores it exactly; otherwise return
+`false`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 526`
+- Output: `true`
+
+The reversals are `526 -> 625 -> 526`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 1800`
+- Output: `false`
+
+The first reversal discards two leading zeros, giving `81`, and the second
+therefore produces only `18`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 0`
+- Output: `true`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Zero remains zero under both reversals.

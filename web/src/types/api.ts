@@ -29,7 +29,8 @@ export interface TestCaseSummary {
   tags: string[];
 }
 
-export type SupportedLanguage = 'python' | 'cpp' | 'java' | 'csharp' | 'javascript' | 'go' | 'kotlin' | 'sql' | 'bash';
+/** The sole verified LeetCode language family exposed for a problem. */
+export type SupportedLanguage = 'python' | 'javascript' | 'sql' | 'bash';
 
 export interface TutorChatMessage {
   role: 'user' | 'assistant';
@@ -101,6 +102,7 @@ export interface SolutionVariantDetail {
   space_complexity: string;
   approach_markdown: string;
   sources: Partial<Record<SupportedLanguage, string>>;
+  leetcode_sources: Partial<Record<SupportedLanguage, string>>;
   submission_status: string;
   verified_submission_id: string;
 }
@@ -113,6 +115,8 @@ export interface ChallengeDetail extends ChallengeSummary {
   starter_sources: Record<SupportedLanguage, string>;
   optimal_source: string;
   optimal_sources?: Partial<Record<SupportedLanguage, string>>;
+  leetcode_optimal_source: string;
+  leetcode_optimal_sources?: Partial<Record<SupportedLanguage, string>>;
   default_solution_variant: string;
   solution_variants: SolutionVariantDetail[];
   solution_variant_effective_elo: number | null;

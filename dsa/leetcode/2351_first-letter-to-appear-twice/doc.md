@@ -8,48 +8,53 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Bit Manipulation, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [first-letter-to-appear-twice](https://leetcode.com/problems/first-letter-to-appear-twice/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/first-letter-to-appear-twice/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/first-letter-to-appear-twice/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a string `s` made only of lowercase English letters, identify the first
+letter whose second occurrence is encountered while reading the string from
+left to right. In other words, compare repeated letters by the positions of
+their second appearances, not by where their first appearances occur.
+
+Return that letter as a one-character string. The input is guaranteed to
+contain at least one repeated letter, so a valid answer always exists. A
+letter may occur more than twice, but only its second appearance matters when
+determining which repeated letter comes first.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A string of lowercase English letters with
+  $2 \le \lvert\texttt{s}\rvert \le 100$.
+
+At least one letter occurs more than once.
 
 **Return value**
 
-TODO
+The letter whose second occurrence has the smallest index.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abccbaacz"`
+- Output: `"c"`
+- Explanation: The second `c` appears at index 3, before the second
+  appearances of `b` and `a`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcdd"`
+- Output: `"d"`
+- Explanation: `d` is the only repeated letter.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "bacab"`
+- Output: `"a"`
+- Explanation: Although `b` appears first, the second `a` occurs before the
+  second `b`.

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3767",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: meet the quota with indices one and two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"technique1": [5, 2, 10], "technique2": [10, 3, 8], "k": 2},
+      "expected": 22,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "mixed-techniques", "quota"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: use technique one more than the required minimum",
+      "kind": "sample",
+      "visible": true,
+      "input": {"technique1": [10, 20, 30], "technique2": [5, 15, 25], "k": 2},
+      "expected": 60,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "at-least", "all-technique-one"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: zero quota allows technique two for every task",
+      "kind": "sample",
+      "visible": true,
+      "input": {"technique1": [1, 2, 3], "technique2": [4, 5, 6], "k": 0},
+      "expected": 15,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "zero-quota", "all-technique-two"]
+    },
+    {
+      "id": "trial-profitable-beyond-quota",
+      "name": "trial: every profitable technique-one choice is taken beyond k",
+      "kind": "trial",
+      "visible": true,
+      "input": {"technique1": [10, 10, 1], "technique2": [1, 1, 100], "k": 1},
+      "expected": 120,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "at-least-not-exactly", "positive-gains"]
+    },
+    {
+      "id": "trial-zero-quota-mixed",
+      "name": "trial: zero quota independently chooses the better technique",
+      "kind": "trial",
+      "visible": true,
+      "input": {"technique1": [10, 1], "technique2": [5, 9], "k": 0},
+      "expected": 19,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "zero-quota", "mixed-techniques"]
+    },
+    {
+      "id": "trial-full-quota",
+      "name": "trial: k equal to n forces technique one everywhere",
+      "kind": "trial",
+      "visible": true,
+      "input": {"technique1": [1, 2, 3], "technique2": [100, 100, 100], "k": 3},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "full-quota", "mandatory-losses"]
+    },
+    {
+      "id": "trial-zero-gain-satisfies-quota",
+      "name": "trial: an equal-score task satisfies the quota without loss",
+      "kind": "trial",
+      "visible": true,
+      "input": {"technique1": [5, 5, 1], "technique2": [5, 10, 10], "k": 1},
+      "expected": 25,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "zero-gain", "quota"]
+    },
+    {
+      "id": "real-least-harmful-losses",
+      "name": "hidden: choose the two negative gains closest to zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"technique1": [1, 9, 5], "technique2": [10, 10, 10], "k": 2},
+      "expected": 24,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "negative-gains", "mandatory-losses"]
+    },
+    {
+      "id": "real-large-values-mixed-quota",
+      "name": "hidden: large point values require a 64-bit-compatible total",
+      "kind": "real",
+      "visible": false,
+      "input": {"technique1": [100000, 1, 100000, 1], "technique2": [1, 100000, 1, 100000], "k": 3},
+      "expected": 300001,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "value-boundary", "mandatory-loss"]
+    },
+    {
+      "id": "real-duplicates-and-ties",
+      "name": "hidden: duplicate scores and ties preserve the optimum",
+      "kind": "real",
+      "visible": false,
+      "input": {"technique1": [8, 8, 8, 8, 8], "technique2": [8, 9, 7, 9, 7], "k": 4},
+      "expected": 41,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "duplicates", "ties", "quota"]
+    }
+  ]
+}

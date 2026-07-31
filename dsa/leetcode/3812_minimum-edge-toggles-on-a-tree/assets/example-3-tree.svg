@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 410 190" role="img" aria-labelledby="title desc">
+  <title id="title">Example 3 initial tree</title>
+  <desc id="desc">Nodes 0 and 1 both have initial color 0 and are joined by edge 0.</desc>
+  <rect width="410" height="190" rx="18" fill="#f8fafc"/>
+  <text x="205" y="30" text-anchor="middle" font-family="Inter,Segoe UI,sans-serif" font-size="14" font-weight="600" fill="#334155">Initial colors · red = 0 · green = 1</text>
+  <line x1="120" y1="104" x2="290" y2="104" stroke="#475569" stroke-width="4" stroke-linecap="round"/>
+  <g transform="translate(193 69)" font-family="Inter,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">
+    <rect width="24" height="22" rx="11" fill="#e2e8f0"/><text x="12" y="16">0</text>
+  </g>
+  <g font-family="Inter,Segoe UI,sans-serif" font-size="18" font-weight="700" fill="white" text-anchor="middle">
+    <circle cx="120" cy="104" r="34" fill="#dc2626" stroke="#991b1b" stroke-width="3"/><text x="120" y="111">0</text>
+    <circle cx="290" cy="104" r="34" fill="#dc2626" stroke="#991b1b" stroke-width="3"/><text x="290" y="111">1</text>
+  </g>
+  <g font-family="Inter,Segoe UI,sans-serif" font-size="12" fill="#475569" text-anchor="middle">
+    <text x="120" y="158">node 0</text><text x="290" y="158">node 1</text>
+  </g>
+</svg>

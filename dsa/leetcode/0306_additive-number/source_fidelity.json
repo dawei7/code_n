@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_306", "frontend_id": "306", "title_slug": "additive-number", "url": "https://leetcode.com/problems/additive-number/description/", "paid_only": false, "content_sha256": "ccb738b214e99337a6fc5db428091d07c80252410e321f2243a0b683e4abd8d6", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "\"112358\"", "output": "true", "has_explanation": true},
+      {"ordinal": 2, "input": "\"199100199\"", "output": "true", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "2ff314029769d920f63316cecbdb6e25d34228135336b1a952a37f69d08e1208",
+    "reference/contract.md": "12d65fd84c8905bb47a65fa93ab9fa8f03c433e07e4a95230c0d7759884248f8",
+    "reference/note.md": "105e2a144416b3332cbcb46d964641df337d3658b8bff5378d7880fc4f61f08f",
+    "reference/examples.md": "077ae422570b3cc19db6e877f48e4dd4e8706c5e7aa1149a9ccfebe96debd371",
+    "reference/constraints.md": "170f8d0b7d29507451a6b706baeef87fdf4d2ce5b3d326fd1b8a972d9e078299",
+    "reference/follow_up.md": "dad91d1ea1915749e8f304ee36b57c2e51b421f9192d7f5475024788ce80cc86"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

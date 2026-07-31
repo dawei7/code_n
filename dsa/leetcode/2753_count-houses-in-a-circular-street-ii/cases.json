@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2753",
+  "cases": [
+    {
+      "id": "sample-all-open",
+      "name": "sample: four open houses with a loose bound",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "street": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 10
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "all-open"
+      ]
+    },
+    {
+      "id": "sample-mixed-tight",
+      "name": "sample: mixed doors with a tight bound",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "street": [
+          1,
+          0,
+          1,
+          1,
+          0
+        ],
+        "k": 5
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "trial-single-open",
+      "name": "trial: one-house street",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "street": [
+          1
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-first-open-late",
+      "name": "trial: initial position is closed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "street": [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        "k": 9
+      },
+      "expected": 6,
+      "tags": [
+        "search-prefix"
+      ]
+    },
+    {
+      "id": "real-one-open-loose",
+      "name": "hidden: one marker with a loose bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "street": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 20
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "one-open"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: alternating door states",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "street": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        "k": 8
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "alternating",
+        "tight-bound"
+      ]
+    },
+    {
+      "id": "real-open-at-end",
+      "name": "hidden: only the final indexed door is open",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "street": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "k": 9
+      },
+      "expected": 9,
+      "tags": [
+        "hidden",
+        "latest-first-marker"
+      ]
+    },
+    {
+      "id": "real-irregular-loose",
+      "name": "hidden: irregular states with several reset laps available",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "street": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "k": 1000
+      },
+      "expected": 13,
+      "tags": [
+        "hidden",
+        "loose-bound"
+      ]
+    }
+  ]
+}
+

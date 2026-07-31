@@ -1,0 +1,171 @@
+{
+  "challenge_id": "lc_3174",
+  "cases": [
+    {
+      "id": "sample-no-digits",
+      "name": "sample: no operation is needed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": "abc",
+      "tags": [
+        "sample",
+        "no-digits"
+      ]
+    },
+    {
+      "id": "sample-consecutive-digits",
+      "name": "sample: consecutive digits remove both letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "cb34"
+      },
+      "expected": "",
+      "tags": [
+        "sample",
+        "consecutive-digits"
+      ]
+    },
+    {
+      "id": "trial-one-pair",
+      "name": "trial: one letter-digit pair disappears",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a1"
+      },
+      "expected": "",
+      "tags": [
+        "minimum-pair",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-leading-survivor",
+      "name": "trial: one earlier letter survives",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab1"
+      },
+      "expected": "a",
+      "tags": [
+        "survivor"
+      ]
+    },
+    {
+      "id": "trial-separated-pairs",
+      "name": "trial: alternating pairs all disappear",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a1b2"
+      },
+      "expected": "",
+      "tags": [
+        "alternating",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-letters-then-digits",
+      "name": "trial: trailing digits consume letters right to left",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc123"
+      },
+      "expected": "",
+      "tags": [
+        "consecutive-digits",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-suffix-survives",
+      "name": "real: a suffix letter follows all deletions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ab12c"
+      },
+      "expected": "c",
+      "tags": [
+        "suffix",
+        "survivor"
+      ]
+    },
+    {
+      "id": "real-varied-digits",
+      "name": "real: digit values do not affect deletion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "z0y9x8"
+      },
+      "expected": "",
+      "tags": [
+        "digit-values",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-long-untouched-word",
+      "name": "real: a longer all-letter string is preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "leetcode"
+      },
+      "expected": "leetcode",
+      "tags": [
+        "no-digits"
+      ]
+    },
+    {
+      "id": "real-mixed-survivors",
+      "name": "real: separated operations leave outer letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ab1c2d"
+      },
+      "expected": "ad",
+      "tags": [
+        "mixed",
+        "survivors"
+      ]
+    },
+    {
+      "id": "real-two-of-four-survive",
+      "name": "real: two trailing digits remove the two nearest letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcd12"
+      },
+      "expected": "ab",
+      "tags": [
+        "consecutive-digits",
+        "survivors"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "real: maximum legal length with all pairs deleted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa11111111111111111111111111111111111111111111111111"
+      },
+      "expected": "",
+      "tags": [
+        "maximum-length",
+        "consecutive-digits"
+      ]
+    }
+  ]
+}

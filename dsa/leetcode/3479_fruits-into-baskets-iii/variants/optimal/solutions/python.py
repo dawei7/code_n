@@ -1,49 +1,32 @@
 def solve(fruits: list[int], baskets: list[int]) -> int:
-    n = len(baskets)
-    # Segment tree to store the maximum capacity in a range
-    tree = [-1] * (4 * n)
+    basket_count = len(baskets)
+    leaf_count = 1
+    while leaf_count < basket_count:
+        leaf_count *= 2
 
-    def build(node, start, end):
-        if start == end:
-            tree[node] = baskets[start]
-            return
-        mid = (start + end) // 2
-        build(2 * node, start, mid)
-        build(2 * node + 1, mid + 1, end)
-        tree[node] = max(tree[2 * node], tree[2 * node + 1])
+    maximum = [0] * (2 * leaf_count)
+    maximum[leaf_count : leaf_count + basket_count] = baskets
+    for node in range(leaf_count - 1, 0, -1):
+        maximum[node] = max(maximum[2 * node], maximum[2 * node + 1])
 
-    def update(node, start, end, idx, val):
-        if start == end:
-            tree[node] = val
-            return
-        mid = (start + end) // 2
-        if idx <= mid:
-            update(2 * node, start, mid, idx, val)
-        else:
-            update(2 * node + 1, mid + 1, end, idx, val)
-        tree[node] = max(tree[2 * node], tree[2 * node + 1])
-
-    def query(node, start, end, fruit_size):
-        # If the max in this range is less than fruit_size, no basket here
-        if tree[node] < fruit_size:
-            return -1
-        if start == end:
-            return start
-
-        mid = (start + end) // 2
-        # Try left child first to find the smallest index
-        res = query(2 * node, start, mid, fruit_size)
-        if res == -1:
-            res = query(2 * node + 1, mid + 1, end, fruit_size)
-        return res
-
-    build(1, 0, n - 1)
-
-    placed = 0
+    unplaced = 0
     for fruit in fruits:
-        idx = query(1, 0, n - 1, fruit)
-        if idx != -1:
-            placed += 1
-            update(1, 0, n - 1, idx, -1)
+        if maximum[1] < fruit:
+            unplaced += 1
+            continue
 
-    return n - placed
+        node = 1
+        while node < leaf_count:
+            left_child = 2 * node
+            if maximum[left_child] >= fruit:
+                node = left_child
+            else:
+                node = left_child + 1
+
+        maximum[node] = 0
+        node //= 2
+        while node:
+            maximum[node] = max(maximum[2 * node], maximum[2 * node + 1])
+            node //= 2
+
+    return unplaced

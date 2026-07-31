@@ -8,48 +8,39 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Queue, Sliding Window, Prefix Sum, Monotonic Queue |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-partitions-with-max-min-difference-at-most-k](https://leetcode.com/problems/count-partitions-with-max-min-difference-at-most-k/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-partitions-with-max-min-difference-at-most-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-partitions-with-max-min-difference-at-most-k/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Partition an integer array `nums` into one or more non-empty contiguous segments. Every array element must belong to exactly one segment and the segments must retain their original order.
+
+A segment is valid when the difference between its maximum and minimum elements is at most `k`. Count all ways to choose the segment boundaries so that every resulting segment is valid. Because the count may be large, return it modulo $10^9+7$.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: An integer array of length $n$, where $2\le n\le5\cdot10^4$ and $1\le\texttt{nums[i]}\le10^9$.
+- `k`: The maximum permitted difference within each segment, where $0\le k\le10^9$.
 
 **Return value**
 
-TODO
+Return the number of valid contiguous partitions modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [9,4,1,3,7], k = 4`
+- Output: `6`
+- Explanation: Six choices of segment boundaries keep every segment's maximum-minus-minimum difference at most `4`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3,3,4], k = 0`
+- Output: `2`
+- Explanation: The two equal `3` values may be grouped together or separated, while `4` must form its own segment.
 
 ---
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

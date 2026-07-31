@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximize Points After Choosing K Tasks and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Starts from technique 2, keeps the largest k technique-1 gains, and also takes every additional positive gain.",
+      "time_complexity": "O(N log(K + 1))",
+      "space_complexity": "O(K)"
     }
   ]
 }

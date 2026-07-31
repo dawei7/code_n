@@ -1,33 +1,29 @@
-import heapq
+from typing import List
 
-def solve(nums, queries):
-    n = len(nums)
-    total_sum = sum(nums)
-    marked = [False] * n
-    
-    # Create a min-heap of (value, index)
-    # This allows us to efficiently find the smallest unmarked elements
-    pq = []
-    for i in range(n):
-        heapq.heappush(pq, (nums[i], i))
-    
-    results = []
-    
-    for index, k in queries:
-        # Mark the element at the given index if not already marked
+
+def solve(nums: List[int], queries: List[List[int]]) -> List[int]:
+    ordered = sorted((value, index) for index, value in enumerate(nums))
+    marked = [False] * len(nums)
+    remaining_sum = sum(nums)
+    cursor = 0
+    answer = []
+
+    for index, count in queries:
         if not marked[index]:
             marked[index] = True
-            total_sum -= nums[index]
-        
-        # Mark k smallest unmarked elements
-        count = 0
-        while count < k and pq:
-            val, idx = heapq.heappop(pq)
-            if not marked[idx]:
-                marked[idx] = True
-                total_sum -= val
-                count += 1
-        
-        results.append(total_sum)
-        
-    return results
+            remaining_sum -= nums[index]
+
+        while count > 0 and cursor < len(ordered):
+            value, smallest_index = ordered[cursor]
+            cursor += 1
+
+            if marked[smallest_index]:
+                continue
+
+            marked[smallest_index] = True
+            remaining_sum -= value
+            count -= 1
+
+        answer.append(remaining_sum)
+
+    return answer

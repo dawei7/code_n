@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3771",
+    "frontend_id": "3771",
+    "title_slug": "total-score-of-dungeon-runs",
+    "url": "https://leetcode.com/problems/total-score-of-dungeon-runs/description/",
+    "paid_only": false,
+    "content_sha256": "08b9c720a3f02792487e604a1a1787b3d8b3bd22f5ef0d17f9cad9b542b431f6",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {"ordinal":1,"input":"`hp = 11, damage = [3,6,7], requirement = [4,2,5]`","output":"`3`","has_explanation":true},
+      {"ordinal":2,"input":"`hp = 2, damage = [10000,1], requirement = [1,1]`","output":"`1`","has_explanation":true}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c8ea380df68c63ee725277a273205a61d7f8802046793ec9b80bfa4416f979f2",
+      "reference/contract.md": "44fa9c2f5b510c7e6e4f42c417afa79c8038c2319e0e7f409b0325e52228b668",
+      "reference/note.md": "4fdeaee3fac89cc6c269a2739764af2061b1308ffa42d527fdb91044687e3060",
+      "reference/examples.md": "312e3a6f58c8b6ed240e9766f488e931fa3d0599fcdce004430be6e61311666b",
+      "reference/constraints.md": "18d7565a7b4d373e1b35589b86f71700e597c4da01a510774af66c45a9d44449"
+    },
+    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+  }
+}

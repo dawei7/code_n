@@ -8,48 +8,47 @@
 | Category | Algorithms |
 | Topics | String, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-steps-to-convert-string-with-operations](https://leetcode.com/problems/minimum-steps-to-convert-string-with-operations/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-steps-to-convert-string-with-operations/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-steps-to-convert-string-with-operations/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Two lowercase strings `word1` and `word2` have the same length. Divide `word1` into one or more non-empty contiguous substrings; these segments keep their order and correspond to the same index ranges in `word2`.
+
+Within each chosen substring, an operation may replace one character with another lowercase letter, swap any two characters, or reverse the entire substring. Each operation costs one step. A character position may participate at most once in each operation type: at most one replacement, at most one swap, and at most one reversal.
+
+Determine the minimum total steps needed to transform every segment of `word1` into its corresponding segment of `word2`, and therefore transform the complete first string into the second.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `word1`: A lowercase English string of length $n$, where $1\le n\le100$.
+- `word2`: A lowercase English string with the same length as `word1`.
 
 **Return value**
 
-TODO
+Return the minimum number of allowed operations required to transform `word1` into `word2`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word1 = "abcdf", word2 = "dacbe"`
+- Output: `4`
+- Explanation: One optimal partition uses `"ab"`, `"c"`, and `"df"`; reversing and replacing within the first segment and making two replacements in the last costs four steps.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word1 = "abceded", word2 = "baecfef"`
+- Output: `4`
+- Explanation: Partitioning as `"ab"`, `"ce"`, and `"ded"` permits two swaps followed by two replacements.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word1 = "abcdef", word2 = "fedabc"`
+- Output: `2`
+- Explanation: Reverse the complete string, then use one swap to obtain the target.
 
 ---
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

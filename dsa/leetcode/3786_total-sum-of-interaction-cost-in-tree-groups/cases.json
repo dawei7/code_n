@@ -1,0 +1,14 @@
+{"schema_version":1,"challenge_id":"lc_3786","cases":[
+{"id":"sample-1","name":"sample: all nodes on a path share one group","kind":"sample","visible":true,"input":{"n":3,"edges":[[0,1],[1,2]],"group":[1,1,1]},"expected":4,"validator":{"kind":"exact"},"tags":["sample","path"]},
+{"id":"sample-2","name":"sample: equal-group endpoints of a path","kind":"sample","visible":true,"input":{"n":3,"edges":[[0,1],[1,2]],"group":[3,2,3]},"expected":2,"validator":{"kind":"exact"},"tags":["sample","path","single-pair"]},
+{"id":"sample-3","name":"sample: two groups in a star","kind":"sample","visible":true,"input":{"n":4,"edges":[[0,1],[0,2],[0,3]],"group":[1,1,4,4]},"expected":3,"validator":{"kind":"exact"},"tags":["sample","star"]},
+{"id":"sample-4","name":"sample: no equal-group pair","kind":"sample","visible":true,"input":{"n":2,"edges":[[0,1]],"group":[9,8]},"expected":0,"validator":{"kind":"exact"},"tags":["sample","zero"]},
+{"id":"trial-singleton","name":"trial: a singleton forms no pair","kind":"trial","visible":true,"input":{"n":1,"edges":[],"group":[1]},"expected":0,"validator":{"kind":"exact"},"tags":["trial","minimum"]},
+{"id":"trial-two-equal","name":"trial: one edge connects an equal-group pair","kind":"trial","visible":true,"input":{"n":2,"edges":[[0,1]],"group":[20,20]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","boundary-label"]},
+{"id":"real-four-path","name":"hidden: all pair distances on a four-node path","kind":"real","visible":false,"input":{"n":4,"edges":[[0,1],[1,2],[2,3]],"group":[1,1,1,1]},"expected":10,"validator":{"kind":"exact"},"tags":["hidden","path"]},
+{"id":"real-separated-groups","name":"hidden: two interleaved groups on a path","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1],[1,2],[2,3],[3,4]],"group":[1,2,1,2,1]},"expected":10,"validator":{"kind":"exact"},"tags":["hidden","multiple-groups"]},
+{"id":"real-balanced-tree","name":"hidden: repeated labels across branches","kind":"real","visible":false,"input":{"n":7,"edges":[[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]],"group":[1,2,2,1,3,1,3]},"expected":14,"validator":{"kind":"exact"},"tags":["hidden","branches"]},
+{"id":"real-all-distinct","name":"hidden: every label is different","kind":"real","visible":false,"input":{"n":6,"edges":[[0,1],[0,2],[2,3],[2,4],[4,5]],"group":[1,2,3,4,5,6]},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","zero"]},
+{"id":"real-one-repeated-pair","name":"hidden: only two distant nodes share a label","kind":"real","visible":false,"input":{"n":6,"edges":[[0,1],[1,2],[1,3],[3,4],[3,5]],"group":[7,1,2,3,4,7]},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","single-pair"]},
+{"id":"real-label-twenty","name":"hidden: maximum label appears in separate branches","kind":"real","visible":false,"input":{"n":5,"edges":[[0,1],[0,2],[0,3],[0,4]],"group":[1,20,20,20,20]},"expected":12,"validator":{"kind":"exact"},"tags":["hidden","boundary-label","star"]}
+]}

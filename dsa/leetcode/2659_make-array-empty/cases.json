@@ -1,119 +1,13 @@
 {
   "challenge_id": "lc_2659",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: smallest value starts at the end",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          3,
-          4,
-          -1
-        ]
-      },
-      "tags": [
-        "sample",
-        "circular"
-      ],
-      "expected": 5
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: nearly sorted with one late removal",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          4,
-          3
-        ]
-      },
-      "tags": [
-        "sample",
-        "rotation"
-      ],
-      "expected": 5
-    },
-    {
-      "id": "trial-catches-static-rank-bug",
-      "name": "trial: removing one then rotating around",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          1,
-          3
-        ]
-      },
-      "tags": [
-        "trial",
-        "regression"
-      ],
-      "expected": 5
-    },
-    {
-      "id": "trial-already-increasing",
-      "name": "trial: already increasing order",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "tags": [
-        "trial",
-        "edge"
-      ],
-      "expected": 4
-    },
-    {
-      "id": "real-decreasing-order",
-      "name": "hidden: decreasing order forces repeated wraps",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          5,
-          4,
-          3,
-          2,
-          1
-        ]
-      },
-      "tags": [
-        "hidden",
-        "wrap"
-      ],
-      "expected": 15
-    },
-    {
-      "id": "real-mixed-negative-positive",
-      "name": "hidden: mixed negative and positive values",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          7,
-          -3,
-          5,
-          -1,
-          2
-        ]
-      },
-      "tags": [
-        "hidden",
-        "mixed"
-      ],
-      "expected": 8
-    }
+    {"id":"sample-wrap","name":"sample: rotate before the first removal","kind":"sample","visible":true,"input":{"nums":[3,4,-1]},"expected":5,"tags":["sample","wrap"]},
+    {"id":"sample-one-rotation","name":"sample: one later rotation","kind":"sample","visible":true,"input":{"nums":[1,2,4,3]},"expected":5,"tags":["sample","rotation"]},
+    {"id":"sample-sorted","name":"sample: already increasing","kind":"sample","visible":true,"input":{"nums":[1,2,3]},"expected":3,"tags":["sample","increasing"]},
+    {"id":"trial-single","name":"trial: one element","kind":"trial","visible":true,"input":{"nums":[7]},"expected":1,"tags":["minimum-n"]},
+    {"id":"trial-descending","name":"trial: every target needs a full pass","kind":"trial","visible":true,"input":{"nums":[4,3,2,1]},"expected":10,"tags":["descending","worst-rotations"]},
+    {"id":"real-middle-minimum","name":"hidden: minimum begins in the middle","kind":"real","visible":false,"input":{"nums":[2,1,3]},"expected":5,"tags":["hidden","middle-minimum"]},
+    {"id":"real-negative","name":"hidden: mixed negative values","kind":"real","visible":false,"input":{"nums":[0,-3,5,-1,2]},"expected":9,"tags":["hidden","negative"]},
+    {"id":"real-alternating","name":"hidden: several circular wraps","kind":"real","visible":false,"input":{"nums":[6,1,5,2,4,3]},"expected":12,"tags":["hidden","multiple-wraps"]}
   ]
 }

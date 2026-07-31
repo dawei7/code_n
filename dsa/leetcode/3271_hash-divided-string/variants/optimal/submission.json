@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3540",
+  "frontend_id": "3271",
+  "title_slug": "hash-divided-string",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.stringHash",
+  "verified_submission_id": "2080427609",
+  "verified_at": "2026-07-25T07:17:41.598542+00:00"
+}

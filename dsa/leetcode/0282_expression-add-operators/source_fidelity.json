@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_282", "frontend_id": "282", "title_slug": "expression-add-operators", "url": "https://leetcode.com/problems/expression-add-operators/description/", "paid_only": false, "content_sha256": "65bf13300f88d247d4810802d7a3b413e3e821b408db3e1d1f1745649e26f6e3", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "num = \"123\", target = 6", "output": "[\"1*2*3\",\"1+2+3\"]", "has_explanation": true}, {"ordinal": 2, "input": "num = \"232\", target = 8", "output": "[\"2*3+2\",\"2+3*2\"]", "has_explanation": true}, {"ordinal": 3, "input": "num = \"3456237490\", target = 9191", "output": "[]", "has_explanation": true}],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "7eef6f960c19edfc0b5b12737150194b8372b42f929ba0f13118d095e933fa80", "reference/contract.md": "a987b9ab78e659c21f179f3a729525e741983ceb9c19fadb7ba4402ac9fa0f4c", "reference/examples.md": "b993fb00fb53efc9cc18ead4ce0c1a6d89676f0688c637af5509907dd1b7565a", "reference/constraints.md": "836b8a7dc75ed934feefd79695af089ebbe8f9c4aab0acdc588dcc1f6467ebc5"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

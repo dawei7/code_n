@@ -1,117 +1,69 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2352",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-one-match",
       "name": "sample: one row-column pair",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            3,
-            2,
-            1
-          ],
-          [
-            1,
-            7,
-            6
-          ],
-          [
-            2,
-            7,
-            7
-          ]
-        ]
-      },
+      "input": {"grid": [[3,2,1],[1,7,6],[2,7,7]]},
       "expected": 1,
-      "tags": [
-        "sample",
-        "matrix"
-      ]
+      "tags": ["sample", "matrix"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: repeated rows and columns",
+      "id": "sample-duplicate-rows",
+      "name": "sample: duplicate rows contribute separate pairs",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            3,
-            1,
-            2,
-            2
-          ],
-          [
-            1,
-            4,
-            4,
-            5
-          ],
-          [
-            2,
-            4,
-            2,
-            2
-          ],
-          [
-            2,
-            4,
-            2,
-            2
-          ]
-        ]
-      },
+      "input": {"grid": [[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]},
       "expected": 3,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "multiplicity"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: symmetric diagonal values",
-      "kind": "sample",
+      "id": "trial-single-cell",
+      "name": "a single row always matches the single column",
+      "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            11,
-            1
-          ],
-          [
-            1,
-            11
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample"
-      ]
+      "input": {"grid": [[5]]},
+      "expected": 1,
+      "tags": ["boundary"]
     },
     {
-      "id": "real-two-by-two-symmetric",
-      "name": "hidden: both rows match columns",
+      "id": "trial-no-matches",
+      "name": "no row sequence equals a column sequence",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,2],[3,4]]},
+      "expected": 0,
+      "tags": ["zero"]
+    },
+    {
+      "id": "trial-all-identical",
+      "name": "every row matches every column",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]},
+      "expected": 9,
+      "tags": ["multiplicity"]
+    },
+    {
+      "id": "real-symmetric-distinct",
+      "name": "hidden: a symmetric matrix has two distinct matches",
       "kind": "real",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            1
-          ]
-        ]
-      },
+      "input": {"grid": [[11,1],[1,11]]},
       "expected": 2,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "symmetric"]
+    },
+    {
+      "id": "real-one-duplicated-column",
+      "name": "hidden: two identical rows match one column",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[2,2,1],[2,2,1],[1,3,4]]},
+      "expected": 2,
+      "tags": ["hidden", "multiplicity"]
     }
   ]
 }

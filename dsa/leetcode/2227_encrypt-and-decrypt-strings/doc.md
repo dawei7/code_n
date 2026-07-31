@@ -5,53 +5,45 @@
 | Source | LeetCode |
 | Frontend ID | 2227 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Hash Table, String, Design, Trie |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [encrypt-and-decrypt-strings](https://leetcode.com/problems/encrypt-and-decrypt-strings/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/encrypt-and-decrypt-strings/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/encrypt-and-decrypt-strings/).
 
 ### Goal
-Design an encrypter from a character-to-string mapping and a dictionary. Encryption replaces every character and concatenates the mapped strings. Decryption reports how many dictionary words encrypt to a supplied ciphertext; it does not need to reconstruct those words.
+
+Build an `Encrypter` from parallel arrays `keys` and `values` plus a dictionary of permitted plaintext words. Each character in `keys` is unique, and its corresponding value is a two-character replacement. Encrypt a plaintext by concatenating its replacements in order; if any character has no mapping, encryption fails and returns the empty string.
+
+To decrypt an even-length ciphertext, divide it into two-character blocks. A block may correspond to more than one key because different keys can share a value, so several plaintexts may be possible. The `decrypt` operation must return how many of those possibilities occur in `dictionary`, rather than listing or choosing one of them.
 
 ### Function Contract
+
 **Inputs**
 
-- Constructor inputs `keys` and `values` define corresponding character mappings, and `dictionary` lists valid plaintext words.
-- `encrypt(word1)` receives a plaintext word.
-- `decrypt(word2)` receives an encrypted string.
+- `operations`: A sequence beginning with `"Encrypter"` and followed by `"encrypt"` or `"decrypt"` method names.
+- `arguments`: Arguments aligned with `operations`; construction receives `keys`, `values`, and `dictionary`, while each later operation receives one word.
+
+Let $D$ be the total number of characters across `dictionary`, and let $Q$ be the total number of characters supplied to all later method calls.
+
+The key array contains at most 26 unique lowercase letters. Every mapped value has length two, the dictionary contains at most 100 unique words of length at most 100, and at most 200 method calls follow construction.
 
 **Return value**
 
-`encrypt` returns the mapped ciphertext, or an empty string if a character has no mapping. `decrypt` returns the number of dictionary entries whose encryption exactly equals its input.
+Return one result per operation. Construction contributes `null`; `encrypt` contributes the mapped ciphertext or `""` when a character is unmapped; and `decrypt` contributes the number of dictionary words whose encryption equals the supplied ciphertext.
 
 ### Examples
+
 **Example 1**
 
-- Input: `keys = ["a", "b", "c", "d"]`, `values = ["ei", "zf", "ei", "am"]`, `dictionary = ["abcd", "acbd", "adbc", "badc", "dacb", "cadb", "cbda", "abad"]`; operation: `encrypt("abcd")`
-- Output: `"eizfeiam"`
+- Input: `operations = ["Encrypter", "encrypt", "decrypt"]`, with constructor arguments `keys = ["a", "b", "c", "d"]`, `values = ["ei", "zf", "ei", "am"]`, `dictionary = ["abcd", "acbd", "adbc", "badc", "dacb", "cadb", "cbda", "abad"]`, followed by `"abcd"` and `"eizfeiam"`
+- Output: `[null, "eizfeiam", 2]`
 
 **Example 2**
 
-- Input: the same encrypter; operation: `decrypt("eizfeiam")`
-- Output: `2`
+- Input: `keys = ["a"]`, `values = ["xy"]`, `dictionary = ["a", "aa"]`; then encrypt `"aa"` and decrypt `"xy"`
+- Output: `[null, "xyxy", 1]`
 
 **Example 3**
 
-- Input: `keys = ["a"]`, `values = ["xy"]`, `dictionary = ["a", "aa"]`; operations: `encrypt("aa")`, `decrypt("xy")`
-- Output: `"xyxy"`, then `1`
-
----
-
-## Solution
-### Approach
-Store the direct character mapping for encryption. During construction, encrypt every dictionary word and count the resulting ciphertexts in a hash map. Encryption is a linear mapping pass; decryption becomes one hash lookup. Counting encrypted dictionary forms also naturally handles different words that collide to the same ciphertext.
-
-### Complexity Analysis
-- **Time Complexity**: construction is `O(D)`, where `D` is the total dictionary characters; `encrypt` is `O(length(word1))`; `decrypt` is `O(length(word2))` for hashing
-- **Space Complexity**: `O(D)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `keys = ["a", "b"]`, `values = ["zz", "zz"]`, `dictionary = ["a", "b", "ab"]`; then decrypt `"zz"`
+- Output: `[null, 2]`

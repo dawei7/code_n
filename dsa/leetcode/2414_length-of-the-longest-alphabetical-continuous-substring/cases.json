@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2414",
+  "cases": [
+    {
+      "id": "sample-broken-runs",
+      "name": "sample: several short successor runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abacaba"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "runs"
+      ]
+    },
+    {
+      "id": "sample-full-prefix",
+      "name": "sample: one continuous prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcde"
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "single character is a valid substring",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-no-wrap",
+      "name": "alphabet does not wrap from z to a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "za"
+      },
+      "expected": 1,
+      "tags": [
+        "wrap"
+      ]
+    },
+    {
+      "id": "trial-full-alphabet",
+      "name": "entire alphabet is continuous",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 26,
+      "tags": [
+        "maximum-run"
+      ]
+    },
+    {
+      "id": "real-tied-runs",
+      "name": "hidden: separate xyz and abc runs tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abxyzabc"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "multiple-runs"
+      ]
+    },
+    {
+      "id": "real-repeated",
+      "name": "hidden: repeated letters reset every run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaa"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-embedded-long-run",
+      "name": "hidden: longest run appears in the middle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "qbcdefm"
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "middle"
+      ]
+    }
+  ]
+}

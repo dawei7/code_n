@@ -1,0 +1,68 @@
+{
+  "challenge_id": "lc_2613",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: closest points use nonadjacent indices",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [1, 2, 3, 2, 4], "nums2": [2, 3, 1, 2, 3]},
+      "expected": [0, 3],
+      "tags": ["sample", "manhattan-distance"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: closest vertical pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [1, 2, 4, 3, 2, 5], "nums2": [1, 4, 2, 3, 5, 1]},
+      "expected": [1, 4],
+      "tags": ["sample", "same-first-coordinate"]
+    },
+    {
+      "id": "trial-duplicate-points",
+      "name": "trial: duplicate points choose earliest indices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [0, 0, 0], "nums2": [1, 1, 1]},
+      "expected": [0, 1],
+      "tags": ["trial", "zero-distance", "lexicographic-tie"]
+    },
+    {
+      "id": "trial-three-way-tie",
+      "name": "trial: equal positive distances use lexicographic order",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [0, 1, 2], "nums2": [0, 1, 0]},
+      "expected": [0, 1],
+      "tags": ["trial", "lexicographic-tie"]
+    },
+    {
+      "id": "real-equal-first-coordinate",
+      "name": "hidden: vertical candidate is retained",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [2, 2, 0, 4], "nums2": [3, 1, 2, 2]},
+      "expected": [0, 1],
+      "tags": ["hidden", "same-first-coordinate"]
+    },
+    {
+      "id": "real-maximum-coordinate",
+      "name": "hidden: coordinates may equal array length",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [4, 0, 4, 2, 1], "nums2": [4, 0, 3, 2, 1]},
+      "expected": [0, 2],
+      "tags": ["hidden", "coordinate-boundary"]
+    },
+    {
+      "id": "real-symmetric-closest-pairs",
+      "name": "hidden: symmetric closest pairs require index tie-break",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [6, 0, 3, 6, 1, 5], "nums2": [0, 6, 3, 6, 5, 1]},
+      "expected": [0, 5],
+      "tags": ["hidden", "lexicographic-tie"]
+    }
+  ]
+}

@@ -6,181 +6,80 @@
       "name": "sample: two creators tie in total views",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "creators": [
-          "alice",
-          "bob",
-          "alice",
-          "chris"
-        ],
-        "ids": [
-          "one",
-          "two",
-          "three",
-          "four"
-        ],
-        "views": [
-          5,
-          10,
-          5,
-          4
-        ]
-      },
-      "expected": [
-        [
-          "alice",
-          "one"
-        ],
-        [
-          "bob",
-          "two"
-        ]
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample",
-        "hash-map"
-      ]
+      "input": {"creators": ["alice","bob","alice","chris"], "ids": ["one","two","three","four"], "views": [5,10,5,4]},
+      "expected": [["alice","one"],["bob","two"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "creator-tie"]
     },
     {
       "id": "sample-2",
-      "name": "sample: lexicographically smallest id wins tie",
+      "name": "sample: smallest id resolves a video tie",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "creators": [
-          "alice",
-          "alice",
-          "alice"
-        ],
-        "ids": [
-          "a",
-          "b",
-          "c"
-        ],
-        "views": [
-          1,
-          2,
-          2
-        ]
-      },
-      "expected": [
-        [
-          "alice",
-          "b"
-        ]
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample"
-      ]
+      "input": {"creators": ["alice","alice","alice"], "ids": ["a","b","c"], "views": [1,2,2]},
+      "expected": [["alice","b"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["sample", "lexicographic-tie"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one creator with tied videos",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "creators": [
-          "a",
-          "a"
-        ],
-        "ids": [
-          "b",
-          "c"
-        ],
-        "views": [
-          1,
-          1
-        ]
-      },
-      "expected": [
-        [
-          "a",
-          "b"
-        ]
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-two-popular-creators",
-      "name": "trial: two creators tie and both are returned",
+      "id": "trial-distinct-ids-not-required",
+      "name": "trial: duplicate ids remain distinct videos",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "creators": [
-          "a",
-          "b",
-          "a",
-          "b"
-        ],
-        "ids": [
-          "z",
-          "y",
-          "a",
-          "x"
-        ],
-        "views": [
-          2,
-          1,
-          2,
-          3
-        ]
-      },
-      "expected": [
-        [
-          "a",
-          "a"
-        ],
-        [
-          "b",
-          "x"
-        ]
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "trial"
-      ]
+      "input": {"creators": ["a","a","b"], "ids": ["x","x","y"], "views": [4,5,8]},
+      "expected": [["a","x"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["trial", "duplicate-id"]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: all creators tie at zero popularity",
+      "kind": "trial",
+      "visible": true,
+      "input": {"creators": ["b","a","b"], "ids": ["z","y","x"], "views": [0,0,0]},
+      "expected": [["b","x"],["a","y"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["trial", "zero-views"]
     },
     {
       "id": "real-single-video",
-      "name": "hidden: single video",
+      "name": "hidden: one video",
       "kind": "real",
       "visible": false,
-      "input": {
-        "creators": [
-          "solo"
-        ],
-        "ids": [
-          "only"
-        ],
-        "views": [
-          0
-        ]
-      },
-      "expected": [
-        [
-          "solo",
-          "only"
-        ]
-      ],
-      "validator": {
-        "kind": "unordered_list"
-      },
-      "tags": [
-        "hidden"
-      ]
+      "input": {"creators": ["solo"], "ids": ["only"], "views": [0]},
+      "expected": [["solo","only"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "singleton"]
+    },
+    {
+      "id": "real-best-video-late",
+      "name": "hidden: later video becomes the creator's best",
+      "kind": "real",
+      "visible": false,
+      "input": {"creators": ["aa","bb","aa"], "ids": ["z","m","q"], "views": [2,6,5]},
+      "expected": [["aa","q"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "late-update"]
+    },
+    {
+      "id": "real-tied-video-earlier-id-late",
+      "name": "hidden: lexicographically smaller tied id arrives later",
+      "kind": "real",
+      "visible": false,
+      "input": {"creators": ["a","a","b"], "ids": ["z","a","b"], "views": [7,7,13]},
+      "expected": [["a","a"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "lexicographic-tie"]
+    },
+    {
+      "id": "real-three-way-creator-tie",
+      "name": "hidden: three creators share maximum popularity",
+      "kind": "real",
+      "visible": false,
+      "input": {"creators": ["a","b","c","a"], "ids": ["a1","b1","c1","a2"], "views": [2,5,5,3]},
+      "expected": [["a","a2"],["b","b1"],["c","c1"]],
+      "validator": {"kind": "unordered_list"},
+      "tags": ["hidden", "creator-tie"]
     }
   ]
 }

@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-four-points",
-      "name": "sample: remove one point to minimize maximum distance",
+      "name": "sample: remove the point causing the largest spread",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -32,8 +32,8 @@
       ]
     },
     {
-      "id": "sample-duplicates",
-      "name": "sample: all identical points",
+      "id": "sample-identical",
+      "name": "sample: all coordinates are identical",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,16 +58,12 @@
       ]
     },
     {
-      "id": "trial-outlier",
-      "name": "trial: removing the outlier collapses the distance",
+      "id": "trial-minimum-outlier",
+      "name": "trial: minimum-size input with one remote outlier",
       "kind": "trial",
       "visible": true,
       "input": {
         "points": [
-          [
-            0,
-            0
-          ],
           [
             1,
             1
@@ -82,74 +78,239 @@
           ]
         ]
       },
-      "expected": 4,
+      "expected": 2,
       "tags": [
-        "trial"
+        "trial",
+        "boundary"
       ]
     },
     {
-      "id": "trial-negative-coordinates",
-      "name": "trial: negative and positive coordinates",
+      "id": "trial-rectangle",
+      "name": "trial: every removal leaves an opposite corner pair",
       "kind": "trial",
       "visible": true,
       "input": {
         "points": [
           [
-            -5,
-            4
-          ],
-          [
-            3,
-            -2
-          ],
-          [
-            8,
+            1,
             1
           ],
           [
-            0,
-            0
+            1,
+            5
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            5
           ]
         ]
       },
-      "expected": 9,
+      "expected": 8,
       "tags": [
-        "trial"
+        "trial",
+        "geometry"
       ]
     },
     {
-      "id": "real-multiple-extremes",
-      "name": "real: multiple transformed-coordinate extremes",
+      "id": "trial-duplicate-extreme",
+      "name": "trial: removing one tied extreme does not remove its value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            5,
+            5
+          ]
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-extreme-coordinates",
+      "name": "real: maximum coordinates exercise the integer range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            100000000,
+            1
+          ],
+          [
+            1,
+            100000000
+          ]
+        ]
+      },
+      "expected": 99999999,
+      "tags": [
+        "real",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-discussion-configuration",
+      "name": "real: mixed points with competing transformed extremes",
       "kind": "real",
       "visible": false,
       "input": {
         "points": [
           [
             3,
-            10
-          ],
-          [
-            5,
-            15
-          ],
-          [
-            10,
             2
+          ],
+          [
+            3,
+            9
+          ],
+          [
+            7,
+            10
           ],
           [
             4,
             4
           ],
           [
-            1,
-            1
+            8,
+            10
+          ],
+          [
+            2,
+            7
           ]
         ]
       },
-      "expected": 15,
+      "expected": 10,
       "tags": [
         "real",
-        "geometry"
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-vertical-line",
+      "name": "real: one-dimensional spread on a vertical line",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            20
+          ]
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "collinear"
+      ]
+    },
+    {
+      "id": "real-difference-axis",
+      "name": "real: the x-minus-y projection controls the diameter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            9,
+            2
+          ]
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "real",
+        "projection"
+      ]
+    },
+    {
+      "id": "real-mixed-interior",
+      "name": "real: an interior point is not a useful removal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            2,
+            8
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            7,
+            5
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "mixed"
       ]
     }
   ]

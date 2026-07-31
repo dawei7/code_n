@@ -5,51 +5,34 @@
 | Source | LeetCode |
 | Frontend ID | 3627 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Math, Greedy, Sorting, Game Theory |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-median-sum-of-subsequences-of-size-3](https://leetcode.com/problems/maximum-median-sum-of-subsequences-of-size-3/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-median-sum-of-subsequences-of-size-3/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-median-sum-of-subsequences-of-size-3/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given an integer array `nums` whose length is divisible by three. Empty the array through a sequence of steps. At each step, choose any three remaining elements, compute the median of those three values, and remove all three selected elements.
+
+For an odd-length sequence, the median is the middle value after sorting the sequence in non-decreasing order. Add the median obtained at every removal step and return the maximum total that any sequence of choices can achieve.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ positive integers, where $1 \le n \le 5\cdot10^5$, $n$ is divisible by $3$, and $1 \le \texttt{nums[i]} \le 10^9$.
 
 **Return value**
 
-TODO
+Return the maximum possible sum of the $n/3$ medians.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2,1,3,2,1,3]`
+- Output: `5`
+- Explanation: Groups with medians 3 and 2 achieve the maximum sum.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1,1,10,10,10,10]`
+- Output: `20`
+- Explanation: Each low value can accompany two values of 10, making both medians 10.

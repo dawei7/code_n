@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Smallest Value After Replacing With Sum of Prime Factors and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Simulates the decreasing sequence while factoring each current value only through its square root.",
+      "time_complexity": "O(sqrt(n) log n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Create Binary Tree From Descriptions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Interns every node by value, links each described edge, and identifies the only non-child.",
+      "time_complexity": "O(m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

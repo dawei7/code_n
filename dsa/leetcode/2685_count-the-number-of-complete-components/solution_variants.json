@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count the Number of Complete Components and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Traverse each component once and compare its degree sum with the complete-graph requirement.",
+      "time_complexity": "O(n + e)",
+      "space_complexity": "O(n + e)"
     }
   ]
 }

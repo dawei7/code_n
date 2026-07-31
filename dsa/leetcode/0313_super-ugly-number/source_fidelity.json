@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_313", "frontend_id": "313", "title_slug": "super-ugly-number", "url": "https://leetcode.com/problems/super-ugly-number/description/", "paid_only": false, "content_sha256": "2f5c264fb62a5b6766c0cd8f0964c79e4250b81cc05a8bfb24556e320e3c9399", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 12, primes = [2,7,13,19]", "output": "32", "has_explanation": true},
+      {"ordinal": 2, "input": "n = 1, primes = [2,3,5]", "output": "1", "has_explanation": true}
+    ],
+    "constraint_count": 5,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "497cc66e010ee56f51e2ab12943a8bf8bc474027ac1271ced8b2b6362bb11d47",
+    "reference/contract.md": "6cce276e24d4b8824ea8b5a7e7d2f3b71c7d59ba63ebf5f14964b94009c4a6e5",
+    "reference/examples.md": "58c420e6642bac8f5665b4f0d00c9a002f5f7e0d7a66cdd7a89bde3e398649bb",
+    "reference/constraints.md": "e963f1d882c82461b80f3e7595ac989956aba11947a07667276e64bb1a5b690c"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

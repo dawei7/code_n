@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_3492",
+  "cases": [
+    {
+      "id": "sample-deck-limit",
+      "name": "sample: every deck cell can be filled",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2, "w": 3, "maxWeight": 15},
+      "expected": 4,
+      "tags": ["sample", "deck-limit"]
+    },
+    {
+      "id": "sample-weight-limit",
+      "name": "sample: weight capacity binds before deck area",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 3, "w": 5, "maxWeight": 20},
+      "expected": 4,
+      "tags": ["sample", "weight-limit"]
+    },
+    {
+      "id": "trial-smallest-input",
+      "name": "trial: one cell and one unit of capacity",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "w": 1, "maxWeight": 1},
+      "expected": 1,
+      "tags": ["trial", "minimum-input"]
+    },
+    {
+      "id": "trial-no-container-fits",
+      "name": "trial: capacity is below one container weight",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5, "w": 10, "maxWeight": 9},
+      "expected": 0,
+      "tags": ["trial", "zero-result", "weight-limit"]
+    },
+    {
+      "id": "trial-exact-capacity",
+      "name": "trial: capacity holds an exact whole number",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 10, "w": 7, "maxWeight": 49},
+      "expected": 7,
+      "tags": ["trial", "exact-division"]
+    },
+    {
+      "id": "real-floor-division",
+      "name": "real: leftover capacity cannot hold another container",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 8, "w": 6, "maxWeight": 41},
+      "expected": 6,
+      "tags": ["real", "floor-division", "weight-limit"]
+    },
+    {
+      "id": "real-deck-one-cell",
+      "name": "real: abundant capacity cannot exceed one deck cell",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1, "w": 999, "maxWeight": 1000000000},
+      "expected": 1,
+      "tags": ["real", "deck-limit", "large-capacity"]
+    },
+    {
+      "id": "real-maximum-deck-and-weight",
+      "name": "real: maximum deck and capacity permit every cell",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000, "w": 1000, "maxWeight": 1000000000},
+      "expected": 1000000,
+      "tags": ["real", "maximum-input", "equal-limits"]
+    },
+    {
+      "id": "real-large-deck-small-capacity",
+      "name": "real: large deck with sharply limiting capacity",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000, "w": 1000, "maxWeight": 999999},
+      "expected": 999,
+      "tags": ["real", "maximum-deck", "weight-limit"]
+    }
+  ]
+}

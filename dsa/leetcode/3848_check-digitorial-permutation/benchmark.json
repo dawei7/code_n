@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3848",
+  "measurement_note": "Size is D, the number of decimal digits in n. Each false input has distinct digits, so a literal correct permutation search exhausts every arrangement before concluding that none equals the invariant factorial sum. The accepted digit-count method is O(D); the exhaustive control is O(D! * D).",
+  "cases": [
+    {
+      "id": "benchmark-1-single-digit",
+      "name": "benchmark: one digit with no digitorial ordering",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"n": 3},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "distinct-digits", "permutation-exhaustion"],
+      "size": 1
+    },
+    {
+      "id": "benchmark-3-distinct-digits",
+      "name": "benchmark: three distinct digits with no digitorial ordering",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"n": 347},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "distinct-digits", "permutation-exhaustion"],
+      "size": 3
+    },
+    {
+      "id": "benchmark-5-distinct-digits",
+      "name": "benchmark: five distinct digits with no digitorial ordering",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {"n": 12347},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "distinct-digits", "permutation-exhaustion"],
+      "size": 5
+    }
+  ]
+}

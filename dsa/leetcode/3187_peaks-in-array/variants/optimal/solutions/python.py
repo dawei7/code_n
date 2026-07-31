@@ -1,53 +1,61 @@
-def solve(nums, queries):
+class FenwickTree:
+    def __init__(self, size: int):
+        self.tree = [0] * (size + 1)
+
+    def add(self, index: int, delta: int) -> None:
+        index += 1
+        while index < len(self.tree):
+            self.tree[index] += delta
+            index += index & -index
+
+    def prefix_sum(self, index: int) -> int:
+        total = 0
+        index += 1
+        while index > 0:
+            total += self.tree[index]
+            index -= index & -index
+        return total
+
+    def range_sum(self, left: int, right: int) -> int:
+        if left > right:
+            return 0
+        return self.prefix_sum(right) - self.prefix_sum(left - 1)
+
+
+def solve(nums: list[int], queries: list[list[int]]) -> list[int]:
     nums = list(nums)
     n = len(nums)
-    bit = [0] * (n + 1)
+    peak = [0] * n
+    peaks = FenwickTree(n)
 
-    def update_bit(i, delta):
-        i += 1
-        while i <= n:
-            bit[i] += delta
-            i += i & (-i)
+    def is_peak(index: int) -> int:
+        return int(
+            0 < index < n - 1
+            and nums[index] > nums[index - 1]
+            and nums[index] > nums[index + 1]
+        )
 
-    def query_bit(i):
-        i += 1
-        s = 0
-        while i > 0:
-            s += bit[i]
-            i -= i & (-i)
-        return s
+    for index in range(1, n - 1):
+        peak[index] = is_peak(index)
+        if peak[index]:
+            peaks.add(index, 1)
 
-    def is_peak(i):
-        if 0 < i < n - 1:
-            return 1 if nums[i - 1] < nums[i] > nums[i + 1] else 0
-        return 0
+    answer = []
+    for query_type, first, second in queries:
+        if query_type == 1:
+            answer.append(peaks.range_sum(first + 1, second - 1))
+            continue
 
-    # Initialize BIT
-    for i in range(1, n - 1):
-        if is_peak(i):
-            update_bit(i, 1)
+        affected = range(max(1, first - 1), min(n - 2, first + 1) + 1)
+        for index in affected:
+            if peak[index]:
+                peaks.add(index, -1)
 
-    results = []
-    for q in queries:
-        if q[0] == 1:
-            l, r = q[1], q[2]
-            # Peaks must be strictly inside [l, r], so range is [l+1, r-1]
-            if l + 1 > r - 1:
-                results.append(0)
-            else:
-                results.append(query_bit(r - 1) - query_bit(l))
-        else:
-            idx, val = q[1], q[2]
-            # Before update, remove peak status of affected indices
-            for i in range(idx - 1, idx + 2):
-                if is_peak(i):
-                    update_bit(i, -1)
+        nums[first] = second
 
-            nums[idx] = val
+        for index in affected:
+            peak[index] = is_peak(index)
+            if peak[index]:
+                peaks.add(index, 1)
 
-            # After update, add peak status of affected indices
-            for i in range(idx - 1, idx + 2):
-                if is_peak(i):
-                    update_bit(i, 1)
-
-    return results
+    return answer

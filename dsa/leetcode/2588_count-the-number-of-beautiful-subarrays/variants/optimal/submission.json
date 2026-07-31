@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2656",
+  "frontend_id": "2588",
+  "title_slug": "count-the-number-of-beautiful-subarrays",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.beautifulSubarrays",
+  "verified_submission_id": "2075709764",
+  "verified_at": "2026-07-21T10:51:00+00:00"
+}

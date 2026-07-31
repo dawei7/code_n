@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_27", "frontend_id": "27",
+    "title_slug": "remove-element", "url": "https://leetcode.com/problems/remove-element/description/",
+    "paid_only": false, "content_sha256": "07f10d56443664668c244ad462b50b58cd6aa46a6d4e770398faa06043b38330", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "custom_judge", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [3,2,2,3], val = 3", "output": "2, nums = [2,2,_,_]", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [0,1,2,2,3,0,4,2], val = 2", "output": "5, nums = [0,1,4,0,3,_,_,_]", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0f0bbc1aa4011fc1ad11c53d405160985193901cb168fe3935bb78c125a0d639",
+      "reference/contract.md": "a077ecab9c85cd19debb1b4bf64189776c0421d21689dd559bb137de49e0a412",
+      "reference/custom_judge.md": "0eb0cbfa2d7d7833f3d53a94dc779a6c490d03dfc93d6dce00cf8a64d09f29be",
+      "reference/examples.md": "5cd983e50b6b24fafa944d0d562bd10bc03a969dbbb1e2dc5954a72ee745e632",
+      "reference/constraints.md": "baf1e57d18c8bdc1f27b196fb4381c9c65f36e8ace341d338cb93659eeed04d2"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

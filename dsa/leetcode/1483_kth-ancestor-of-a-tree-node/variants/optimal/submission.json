@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1296",
+  "frontend_id": "1483",
+  "title_slug": "kth-ancestor-of-a-tree-node",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "TreeAncestor",
+  "verified_submission_id": "2074760649",
+  "verified_at": "2026-07-20T15:45:10.190566+00:00"
+}

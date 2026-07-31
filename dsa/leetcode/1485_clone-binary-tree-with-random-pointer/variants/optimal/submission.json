@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1624",
+  "frontend_id": "1485",
+  "title_slug": "clone-binary-tree-with-random-pointer",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.copyRandomBinaryTree",
+  "verified_submission_id": "2074761861",
+  "verified_at": "2026-07-20T15:46:11.257681+00:00"
+}

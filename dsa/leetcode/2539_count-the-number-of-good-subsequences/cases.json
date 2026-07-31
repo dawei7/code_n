@@ -1,0 +1,103 @@
+{
+  "challenge_id": "lc_2539",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two characters each appear twice",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aabb"
+      },
+      "expected": 11,
+      "tags": [
+        "sample",
+        "balanced"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: one repeated character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leet"
+      },
+      "expected": 12,
+      "tags": [
+        "sample",
+        "mixed-frequency"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every character is distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcd"
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one-character string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "single-character"
+      ]
+    },
+    {
+      "id": "trial-one-duplicate",
+      "name": "trial: one duplicate and one singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aab"
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "position-choices"
+      ]
+    },
+    {
+      "id": "real-three-frequencies",
+      "name": "hidden: three distinct positive frequencies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaabbc"
+      },
+      "expected": 31,
+      "tags": [
+        "hidden",
+        "combinatorics"
+      ]
+    },
+    {
+      "id": "real-one-symbol",
+      "name": "hidden: every nonempty subset is good",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzzzzzzzzz"
+      },
+      "expected": 1023,
+      "tags": [
+        "hidden",
+        "single-symbol"
+      ]
+    }
+  ]
+}

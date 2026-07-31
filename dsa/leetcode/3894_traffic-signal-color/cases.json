@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3894",
+  "cases": [
+    {
+      "id": "sample-red-middle",
+      "name": "sample: a timer inside the red interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {"timer": 60},
+      "expected": "Red",
+      "tags": ["sample", "red", "interval-interior"]
+    },
+    {
+      "id": "sample-invalid-low",
+      "name": "sample: an unmatched low timer is invalid",
+      "kind": "sample",
+      "visible": true,
+      "input": {"timer": 5},
+      "expected": "Invalid",
+      "tags": ["sample", "invalid", "low-range"]
+    },
+    {
+      "id": "trial-green-zero",
+      "name": "trial: zero selects green",
+      "kind": "trial",
+      "visible": true,
+      "input": {"timer": 0},
+      "expected": "Green",
+      "tags": ["trial", "green", "lower-bound"]
+    },
+    {
+      "id": "trial-orange-thirty",
+      "name": "trial: thirty selects orange",
+      "kind": "trial",
+      "visible": true,
+      "input": {"timer": 30},
+      "expected": "Orange",
+      "tags": ["trial", "orange", "strict-boundary"]
+    },
+    {
+      "id": "trial-red-lower-endpoint",
+      "name": "trial: thirty-one begins the red interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {"timer": 31},
+      "expected": "Red",
+      "tags": ["trial", "red", "lower-endpoint"]
+    },
+    {
+      "id": "trial-red-upper-endpoint",
+      "name": "trial: ninety remains red",
+      "kind": "trial",
+      "visible": true,
+      "input": {"timer": 90},
+      "expected": "Red",
+      "tags": ["trial", "red", "inclusive-upper-endpoint"]
+    },
+    {
+      "id": "trial-invalid-before-orange",
+      "name": "trial: twenty-nine does not select orange",
+      "kind": "trial",
+      "visible": true,
+      "input": {"timer": 29},
+      "expected": "Invalid",
+      "tags": ["trial", "invalid", "below-orange"]
+    },
+    {
+      "id": "real-one-after-green",
+      "name": "hidden: one is invalid immediately after green",
+      "kind": "real",
+      "visible": false,
+      "input": {"timer": 1},
+      "expected": "Invalid",
+      "tags": ["hidden", "invalid", "above-green"]
+    },
+    {
+      "id": "real-invalid-low-interior",
+      "name": "hidden: a low interior value remains invalid",
+      "kind": "real",
+      "visible": false,
+      "input": {"timer": 17},
+      "expected": "Invalid",
+      "tags": ["hidden", "invalid", "low-range"]
+    },
+    {
+      "id": "real-red-near-upper-endpoint",
+      "name": "hidden: eighty-nine is still red",
+      "kind": "real",
+      "visible": false,
+      "input": {"timer": 89},
+      "expected": "Red",
+      "tags": ["hidden", "red", "upper-interior"]
+    },
+    {
+      "id": "real-invalid-after-red",
+      "name": "hidden: ninety-one is invalid immediately after red",
+      "kind": "real",
+      "visible": false,
+      "input": {"timer": 91},
+      "expected": "Invalid",
+      "tags": ["hidden", "invalid", "above-red"]
+    },
+    {
+      "id": "real-red-interior",
+      "name": "hidden: an interior red value selects red",
+      "kind": "real",
+      "visible": false,
+      "input": {"timer": 45},
+      "expected": "Red",
+      "tags": ["hidden", "red", "interval-interior"]
+    },
+    {
+      "id": "real-invalid-high-interior",
+      "name": "hidden: a high interior value is invalid",
+      "kind": "real",
+      "visible": false,
+      "input": {"timer": 500},
+      "expected": "Invalid",
+      "tags": ["hidden", "invalid", "high-range"]
+    },
+    {
+      "id": "real-maximum-timer",
+      "name": "hidden: the maximum legal timer is invalid",
+      "kind": "real",
+      "visible": false,
+      "input": {"timer": 1000},
+      "expected": "Invalid",
+      "tags": ["hidden", "invalid", "upper-bound"]
+    }
+  ]
+}

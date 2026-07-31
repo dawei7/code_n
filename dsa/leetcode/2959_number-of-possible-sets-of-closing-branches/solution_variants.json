@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Possible Sets of Closing Branches and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates every remaining-branch subset and runs all-pairs shortest paths using only roads whose endpoints remain open.",
+      "time_complexity": "O(2^N(N^3 + R))",
+      "space_complexity": "O(N^2)"
     }
   ]
 }

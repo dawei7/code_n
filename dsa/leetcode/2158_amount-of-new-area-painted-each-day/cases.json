@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2158",
+  "cases": [
+    {"id": "sample-overlap-at-end", "name": "sample: final interval extends past prior paint", "kind": "sample", "visible": true, "input": {"paint": [[1, 4], [4, 7], [5, 8]]}, "expected": [3, 3, 1], "tags": ["sample", "overlap"]},
+    {"id": "sample-fill-gap", "name": "sample: later interval fills one new gap", "kind": "sample", "visible": true, "input": {"paint": [[1, 4], [5, 8], [4, 7]]}, "expected": [3, 3, 1], "tags": ["sample", "gap"]},
+    {"id": "sample-contained", "name": "sample: contained interval adds no area", "kind": "sample", "visible": true, "input": {"paint": [[1, 5], [2, 4]]}, "expected": [4, 0], "tags": ["sample", "contained"]},
+    {"id": "trial-disjoint", "name": "disjoint intervals are entirely new", "kind": "trial", "visible": true, "input": {"paint": [[0, 2], [5, 7]]}, "expected": [2, 2], "tags": ["disjoint", "zero-endpoint"]},
+    {"id": "trial-repeated", "name": "repeating the same interval adds nothing", "kind": "trial", "visible": true, "input": {"paint": [[2, 6], [2, 6], [2, 6]]}, "expected": [4, 0, 0], "tags": ["duplicate", "contained"]},
+    {"id": "trial-touching", "name": "touching half-open intervals do not overlap", "kind": "trial", "visible": true, "input": {"paint": [[0, 1], [1, 2], [2, 3]]}, "expected": [1, 1, 1], "tags": ["half-open", "touching"]},
+    {"id": "real-nested-and-extending", "name": "hidden: nested and two-sided extensions", "kind": "real", "visible": false, "input": {"paint": [[3, 8], [4, 6], [1, 5], [7, 10]]}, "expected": [5, 0, 2, 2], "tags": ["hidden", "nested", "extension"]},
+    {"id": "real-maximum-coordinate", "name": "hidden: intervals ending at the coordinate bound", "kind": "real", "visible": false, "input": {"paint": [[49998, 50000], [49997, 49999]]}, "expected": [2, 1], "tags": ["hidden", "upper-bound", "overlap"]}
+  ]
+}

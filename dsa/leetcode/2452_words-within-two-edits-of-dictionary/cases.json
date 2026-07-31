@@ -3,118 +3,75 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: three queries within two edits",
+      "name": "sample: zero one and two edits qualify",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "queries": [
-          "word",
-          "note",
-          "ants",
-          "wood"
-        ],
-        "dictionary": [
-          "wood",
-          "joke",
-          "moat"
-        ]
-      },
-      "expected": [
-        "word",
-        "note",
-        "wood"
-      ],
-      "tags": [
-        "sample",
-        "string"
-      ]
+      "input": {"queries": ["word", "note", "ants", "wood"], "dictionary": ["wood", "joke", "moat"]},
+      "expected": ["word", "note", "wood"],
+      "tags": ["sample", "edit-boundary"]
     },
     {
       "id": "sample-2",
-      "name": "sample: no match within two edits",
+      "name": "sample: three mismatches reject",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "queries": [
-          "yes"
-        ],
-        "dictionary": [
-          "not"
-        ]
-      },
+      "input": {"queries": ["yes"], "dictionary": ["not"]},
       "expected": [],
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "rejected"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: exact matches qualify",
-      "kind": "sample",
+      "id": "trial-exact-matches",
+      "name": "trial: exact dictionary matches",
+      "kind": "trial",
       "visible": true,
-      "input": {
-        "queries": [
-          "ac",
-          "ab"
-        ],
-        "dictionary": [
-          "ac",
-          "ab"
-        ]
-      },
-      "expected": [
-        "ac",
-        "ab"
-      ],
-      "tags": [
-        "sample"
-      ]
+      "input": {"queries": ["ac", "ab"], "dictionary": ["ac", "ab"]},
+      "expected": ["ac", "ab"],
+      "tags": ["trial", "zero-edits"]
     },
     {
       "id": "trial-shared-prefix",
-      "name": "trial: two queries near the same dictionary word",
+      "name": "trial: two nearby queries and one distant query",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "queries": [
-          "abcd",
-          "abce",
-          "zzzz"
-        ],
-        "dictionary": [
-          "abcf"
-        ]
-      },
-      "expected": [
-        "abcd",
-        "abce"
-      ],
-      "tags": [
-        "trial"
-      ]
+      "input": {"queries": ["abcd", "abce", "zzzz"], "dictionary": ["abcf"]},
+      "expected": ["abcd", "abce"],
+      "tags": ["trial", "shared-prefix"]
     },
     {
-      "id": "real-only-first-query",
-      "name": "hidden: only first query qualifies",
+      "id": "real-single-character",
+      "name": "hidden: every one-character query qualifies",
       "kind": "real",
       "visible": false,
-      "input": {
-        "queries": [
-          "aaaa",
-          "bbbb",
-          "cccc"
-        ],
-        "dictionary": [
-          "zzzz",
-          "aaaz"
-        ]
-      },
-      "expected": [
-        "aaaa"
-      ],
-      "tags": [
-        "hidden"
-      ]
+      "input": {"queries": ["a", "z", "m"], "dictionary": ["q"]},
+      "expected": ["a", "z", "m"],
+      "tags": ["hidden", "minimum-length"]
+    },
+    {
+      "id": "real-late-witness",
+      "name": "hidden: qualifying witness is last",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": ["aaaa", "bbbb", "cccc"], "dictionary": ["zzzz", "yyyy", "aaaz"]},
+      "expected": ["aaaa"],
+      "tags": ["hidden", "late-witness"]
+    },
+    {
+      "id": "real-duplicate-query",
+      "name": "hidden: qualifying duplicate occurrences are preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": ["code", "xxxx", "code"], "dictionary": ["cope"]},
+      "expected": ["code", "code"],
+      "tags": ["hidden", "duplicates", "order"]
+    },
+    {
+      "id": "real-exactly-two",
+      "name": "hidden: exactly two trailing edits",
+      "kind": "real",
+      "visible": false,
+      "input": {"queries": ["abcdefghij"], "dictionary": ["abcdefghxy"]},
+      "expected": ["abcdefghij"],
+      "tags": ["hidden", "exactly-two"]
     }
   ]
 }

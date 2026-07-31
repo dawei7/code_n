@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: zeros in both arrays can balance at seven",
+      "name": "sample: both arrays balance at twelve",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -11,24 +11,24 @@
           3,
           2,
           0,
-          1
+          1,
+          0
         ],
         "nums2": [
-          2,
-          0,
-          0,
+          6,
+          5,
           0
         ]
       },
       "tags": [
         "sample",
-        "zeros"
+        "both-flexible"
       ],
-      "expected": 7
+      "expected": 12
     },
     {
       "id": "sample-2",
-      "name": "sample: fixed second sum is too small",
+      "name": "sample: fixed second sum is below the first minimum",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -50,8 +50,27 @@
       "expected": -1
     },
     {
-      "id": "trial-no-zeros-equal",
-      "name": "trial: already equal fixed sums",
+      "id": "trial-single-zero-each",
+      "name": "trial: both minimum attainable sums are one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          0
+        ],
+        "nums2": [
+          0
+        ]
+      },
+      "tags": [
+        "trial",
+        "zeros"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "trial-fixed-equal",
+      "name": "trial: already equal arrays need no replacements",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -70,31 +89,10 @@
       "expected": 3
     },
     {
-      "id": "trial-fixed-side-too-small",
-      "name": "trial: fixed side cannot be increased",
+      "id": "trial-flexible-catches-fixed",
+      "name": "trial: flexible first array grows to fixed second sum",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums1": [
-          1,
-          0,
-          0
-        ],
-        "nums2": [
-          1
-        ]
-      },
-      "tags": [
-        "trial",
-        "impossible"
-      ],
-      "expected": -1
-    },
-    {
-      "id": "real-one-flexible-side",
-      "name": "hidden: one array has enough zeros to catch up",
-      "kind": "real",
-      "visible": false,
       "input": {
         "nums1": [
           8,
@@ -109,10 +107,94 @@
         ]
       },
       "tags": [
-        "hidden",
-        "greedy"
+        "trial",
+        "one-flexible-side"
       ],
       "expected": 12
+    },
+    {
+      "id": "real-flexible-minimum-above-fixed",
+      "name": "hidden: first minimum exceeds fixed second sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          0,
+          0
+        ],
+        "nums2": [
+          1
+        ]
+      },
+      "tags": [
+        "hidden",
+        "impossible"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "real-opposite-impossible-direction",
+      "name": "hidden: fixed first sum is below second minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "hidden",
+        "impossible",
+        "opposite-direction"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "real-maximum-value-replacement",
+      "name": "hidden: one zero can absorb a large difference",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1000000
+        ],
+        "nums2": [
+          0
+        ]
+      },
+      "tags": [
+        "hidden",
+        "boundary",
+        "one-flexible-side"
+      ],
+      "expected": 1000000
+    },
+    {
+      "id": "real-maximum-plus-zero-too-large",
+      "name": "hidden: flexible minimum exceeds a fixed million",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1000000,
+          0
+        ],
+        "nums2": [
+          999999,
+          1
+        ]
+      },
+      "tags": [
+        "hidden",
+        "boundary",
+        "impossible"
+      ],
+      "expected": -1
     }
   ]
 }

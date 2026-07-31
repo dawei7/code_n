@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Calculate Amount Paid in Taxes and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Traverses the progressive brackets once and taxes only the income slice belonging to each bracket.",
+      "time_complexity": "O(b)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -132,7 +132,30 @@
       ],
       "tags": [
         "trial",
-        "tie"
+        "tie",
+        "up-to-four"
+      ]
+    },
+    {
+      "id": "trial-single-interval",
+      "name": "trial: one available interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "intervals": [
+          [
+            7,
+            7,
+            9
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial",
+        "minimum"
       ]
     },
     {
@@ -183,6 +206,131 @@
       "tags": [
         "real",
         "boundaries"
+      ]
+    },
+    {
+      "id": "real-identical-tie",
+      "name": "real: identical intervals prefer smallest original index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "intervals": [
+          [
+            1,
+            5,
+            8
+          ],
+          [
+            1,
+            5,
+            8
+          ],
+          [
+            1,
+            5,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "real",
+        "tie",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-four-interval-cap",
+      "name": "real: at most four equal disjoint intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "intervals": [
+          [
+            1,
+            1,
+            5
+          ],
+          [
+            3,
+            3,
+            5
+          ],
+          [
+            5,
+            5,
+            5
+          ],
+          [
+            7,
+            7,
+            5
+          ],
+          [
+            9,
+            9,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "real",
+        "selection-cap",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-unsorted-endpoints",
+      "name": "real: input order differs from right-end order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "intervals": [
+          [
+            10,
+            10,
+            4
+          ],
+          [
+            1,
+            2,
+            7
+          ],
+          [
+            6,
+            7,
+            6
+          ],
+          [
+            3,
+            5,
+            5
+          ],
+          [
+            8,
+            9,
+            8
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "real",
+        "unsorted",
+        "original-indices"
       ]
     }
   ]

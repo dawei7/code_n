@@ -8,73 +8,46 @@
 | Category | Algorithms |
 | Topics | Array, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-levels-to-gain-more-points](https://leetcode.com/problems/minimum-levels-to-gain-more-points/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-levels-to-gain-more-points/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-levels-to-gain-more-points/).
 
 ### Goal
-Given an array of game levels where each level is represented by 1 (win) or 0 (loss), determine the minimum number of levels the first player must complete to ensure their total score is strictly greater than the second player's total score. The game must be split into two non-empty parts, where the first player takes the first $k$ levels and the second player takes the remaining levels. If no such split exists, return -1.
+
+Alice and Bob play a game containing $n$ levels, described in their fixed order by the binary array `possible`. A level with value `1` can always be cleared, while a level with value `0` is impossible for either player to clear. Clearing a level awards one point; failing an impossible level loses one point.
+
+Alice plays a non-empty prefix of the levels beginning at index zero. Bob then plays every remaining level, also receiving at least one level. Both players maximize the score available from their assigned levels. Find the minimum number of levels Alice must play so that her score is **strictly greater** than Bob's score. Return `-1` if no valid split gives Alice a strict lead.
 
 ### Function Contract
+
 **Inputs**
 
-- `possible`: A list of integers where each element is either 0 or 1.
+- `possible`: A binary list of length $n$, where $2 \le n \le 10^5$ and every value is either `0` or `1`.
+
+The split preserves the given order. Alice receives indices $0$ through $i-1$ and Bob receives indices $i$ through $n-1$ for some $1 \le i < n$.
+
+Each `1` contributes $+1$ to its player's score, and each `0` contributes $-1$.
 
 **Return value**
 
-- An integer representing the minimum number of levels (1-indexed) the first player must play, or -1 if it is impossible to achieve a higher score than the second player.
+Return the smallest valid prefix length for which Alice's score is greater than Bob's. Return `-1` if no such prefix exists.
 
 ### Examples
+
 **Example 1**
 
 - Input: `possible = [1, 0, 1, 0]`
 - Output: `1`
+- Explanation: Alice scores `1` on the first level, while Bob scores `-1 + 1 - 1 = -1` on the remaining levels.
 
 **Example 2**
 
 - Input: `possible = [1, 1, 1, 1, 1]`
 - Output: `3`
+- Explanation: With three levels Alice scores `3` and Bob scores `2`; shorter valid prefixes do not give Alice a strict lead.
 
 **Example 3**
 
 - Input: `possible = [0, 0]`
 - Output: `-1`
-
----
-
-## Solution
-### Approach
-The problem is solved using the **Prefix Sum** technique. By pre-calculating the total sum of the array, we can determine the second player's score in constant time for any given split point. We iterate through the array once, maintaining a running sum for the first player and subtracting that from the total sum to find the second player's score, checking the condition at each step.
-
-### Complexity Analysis
-- **Time Complexity**: $O(n)$, where $n$ is the length of the input array. We perform one pass to calculate the total sum and a second pass to evaluate the split points.
-- **Space Complexity**: $O(1)$, as we only use a few integer variables to track the running sums and the total sum.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(possible: list[int]) -> int:
-    # Convert 0s to -1s to represent losses, as per game rules
-    # Total score is sum of (1 if win else -1)
-    n = len(possible)
-    total_sum = 0
-    for x in possible:
-        total_sum += 1 if x == 1 else -1
-
-    current_player_sum = 0
-    # We must split into two non-empty parts, so the first player
-    # can take at most n-1 levels.
-    for i in range(n - 1):
-        val = 1 if possible[i] == 1 else -1
-        current_player_sum += val
-        remaining_sum = total_sum - current_player_sum
-
-        if current_player_sum > remaining_sum:
-            return i + 1
-
-    return -1
-```
-</details>
+- Explanation: Each player must take one level and scores `-1`, so Alice does not score strictly more.

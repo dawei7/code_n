@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3652",
+  "cases": [
+    {
+      "id": "sample-use-modification",
+      "name": "sample: first window raises profit to ten",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          4,
+          2,
+          8
+        ],
+        "strategy": [
+          -1,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 10,
+      "tags": [
+        "sample",
+        "use-modification"
+      ]
+    },
+    {
+      "id": "sample-skip-modification",
+      "name": "sample: original strategy remains best",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          5,
+          4,
+          3
+        ],
+        "strategy": [
+          1,
+          1,
+          0
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "no-modification"
+      ]
+    },
+    {
+      "id": "trial-two-days",
+      "name": "trial: only window covers both days",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          7,
+          9
+        ],
+        "strategy": [
+          -1,
+          -1
+        ],
+        "k": 2
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "minimum-n",
+        "full-window"
+      ]
+    },
+    {
+      "id": "trial-all-holds",
+      "name": "trial: forced sells create positive gain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          2,
+          8,
+          3,
+          7
+        ],
+        "strategy": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 2
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "all-hold"
+      ]
+    },
+    {
+      "id": "trial-full-array-window",
+      "name": "trial: modification covers entire strategy",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          3,
+          1,
+          10,
+          2
+        ],
+        "strategy": [
+          -1,
+          1,
+          -1,
+          0
+        ],
+        "k": 4
+      },
+      "expected": 12,
+      "tags": [
+        "trial",
+        "full-window"
+      ]
+    },
+    {
+      "id": "real-negative-optimum",
+      "name": "real: maximum profit may stay negative",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          100,
+          1
+        ],
+        "strategy": [
+          -1,
+          -1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "negative-profit"
+      ]
+    },
+    {
+      "id": "real-middle-window",
+      "name": "real: best block begins inside array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          9,
+          1,
+          8,
+          2,
+          7
+        ],
+        "strategy": [
+          1,
+          -1,
+          -1,
+          0,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 24,
+      "tags": [
+        "real",
+        "interior-window"
+      ]
+    },
+    {
+      "id": "real-longer-window",
+      "name": "real: four-day gain combines both halves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          5,
+          20,
+          4,
+          30,
+          3,
+          40
+        ],
+        "strategy": [
+          -1,
+          1,
+          -1,
+          0,
+          1,
+          -1
+        ],
+        "k": 4
+      },
+      "expected": 58,
+      "tags": [
+        "real",
+        "long-window"
+      ]
+    },
+    {
+      "id": "real-all-sells",
+      "name": "real: existing sells make modification harmful",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "strategy": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 21,
+      "tags": [
+        "real",
+        "all-sell"
+      ]
+    },
+    {
+      "id": "real-all-buys",
+      "name": "real: forced hold and sell replace buys",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "strategy": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "all-buy"
+      ]
+    },
+    {
+      "id": "real-large-prices",
+      "name": "real: large products use wide accumulator",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          100000,
+          99999,
+          100000,
+          99999
+        ],
+        "strategy": [
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 99999,
+      "tags": [
+        "real",
+        "maximum-price"
+      ]
+    }
+  ]
+}

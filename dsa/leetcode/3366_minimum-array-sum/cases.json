@@ -2,114 +2,94 @@
   "challenge_id": "lc_3366",
   "cases": [
     {
-      "id": "sample-op2-then-op1",
-      "name": "sample: use subtract and divide on different values",
+      "id": "sample-separate-operations",
+      "name": "sample: subtract and halve different values",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          8,
-          3,
-          19,
-          3
-        ],
-        "k": 3,
-        "op1": 1,
-        "op2": 1
-      },
+      "input": {"nums": [2, 8, 3, 19, 3], "k": 3, "op1": 1, "op2": 1},
       "expected": 23,
-      "tags": [
-        "sample",
-        "dp"
-      ]
+      "tags": ["sample", "budget-allocation"]
     },
     {
-      "id": "sample-two-divides-one-subtract",
-      "name": "sample: all operations on separate indices",
+      "id": "sample-three-operations",
+      "name": "sample: use both budgets across three indices",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          4,
-          3
-        ],
-        "k": 3,
-        "op1": 2,
-        "op2": 1
-      },
+      "input": {"nums": [2, 4, 3], "k": 3, "op1": 2, "op2": 1},
       "expected": 3,
-      "tags": [
-        "sample",
-        "dp"
-      ]
+      "tags": ["sample", "budget-allocation"]
     },
     {
       "id": "trial-both-orders-matter",
-      "name": "trial: subtract-then-divide can beat divide-then-subtract",
+      "name": "trial: divide then subtract can be strictly better",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          10,
-          5,
-          1
-        ],
-        "k": 4,
-        "op1": 2,
-        "op2": 2
-      },
+      "input": {"nums": [10, 5, 1], "k": 4, "op1": 2, "op2": 2},
       "expected": 3,
-      "tags": [
-        "regression",
-        "operation-order"
-      ]
+      "tags": ["regression", "operation-order"]
     },
     {
       "id": "trial-zero-k",
-      "name": "trial: subtracting zero should not change the optimum",
+      "name": "trial: subtracting zero never improves the sum",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          0,
-          9
-        ],
-        "k": 0,
-        "op1": 2,
-        "op2": 3
-      },
+      "input": {"nums": [5, 0, 9], "k": 0, "op1": 2, "op2": 3},
       "expected": 8,
-      "tags": [
-        "edge",
-        "zero-k"
-      ]
+      "tags": ["edge", "zero-k"]
     },
     {
-      "id": "real-balanced-ops",
-      "name": "real: limited operation budgets over mixed values",
+      "id": "trial-no-budget",
+      "name": "trial: no operations preserves the original sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 9], "k": 3, "op1": 0, "op2": 0},
+      "expected": 14,
+      "tags": ["edge", "zero-budget"]
+    },
+    {
+      "id": "trial-only-halving",
+      "name": "trial: limited halvings target the largest savings",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4], "k": 20, "op1": 2, "op2": 0},
+      "expected": 7,
+      "tags": ["edge", "operation-one"]
+    },
+    {
+      "id": "real-only-subtraction",
+      "name": "real: subtraction applies only to eligible values",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          18,
-          7,
-          25,
-          3,
-          12,
-          30
-        ],
-        "k": 6,
-        "op1": 3,
-        "op2": 2
-      },
+      "input": {"nums": [2, 7, 9], "k": 5, "op1": 0, "op2": 2},
+      "expected": 8,
+      "tags": ["real", "eligibility"]
+    },
+    {
+      "id": "real-balanced-operations",
+      "name": "real: both budgets compete across mixed values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [18, 7, 25, 3, 12, 30], "k": 6, "op1": 3, "op2": 2},
       "expected": 47,
-      "tags": [
-        "real",
-        "dp"
-      ]
+      "tags": ["real", "dynamic-programming"]
+    },
+    {
+      "id": "real-combined-operation",
+      "name": "real: both operations belong on the same index",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [10], "k": 4, "op1": 1, "op2": 1},
+      "expected": 1,
+      "tags": ["real", "operation-order"]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "real: separate operations beat combining them",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100000, 99999], "k": 100000, "op1": 1, "op2": 1},
+      "expected": 50000,
+      "tags": ["real", "maximum-values"]
     }
   ]
 }

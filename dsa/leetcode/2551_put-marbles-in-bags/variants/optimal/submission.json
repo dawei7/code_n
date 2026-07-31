@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2681",
+  "frontend_id": "2551",
+  "title_slug": "put-marbles-in-bags",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.putMarbles",
+  "verified_submission_id": "2075403397",
+  "verified_at": "2026-07-21T06:08:00+00:00"
+}

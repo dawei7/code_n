@@ -8,48 +8,40 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-difference-between-even-and-odd-frequency-i](https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-difference-between-even-and-odd-frequency-i/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+For each distinct lowercase letter in a string, consider how often it occurs. Choose one present character whose frequency is odd and another present character whose frequency is even.
+
+Maximize the odd-frequency character's count minus the even-frequency character's count, and return that difference. The input guarantees that both kinds of frequency exist, so a valid pair can always be selected.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A lowercase English string of length from $3$ through $100$.
+
+At least one present character has odd frequency and at least one has even frequency.
 
 **Return value**
 
-TODO
+Return the maximum value of $\operatorname{freq}(a_1)-\operatorname{freq}(a_2)$ where $a_1$ has odd frequency and $a_2$ has even frequency.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaaaabbc"`
+- Output: `3`
+
+The largest odd frequency is $5$ for `a`, while `b` has the smallest even frequency $2$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcabcab"`
+- Output: `1`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The odd frequency $3$ of `a` minus the even frequency $2$ of `c` gives $1$.

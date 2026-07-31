@@ -2,8 +2,8 @@
   "challenge_id": "lc_3350",
   "cases": [
     {
-      "id": "sample-max-three",
-      "name": "sample: maximum adjacent increasing length is three",
+      "id": "sample-maximum-three",
+      "name": "sample: maximum adjacent length is three",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -23,12 +23,12 @@
       "expected": 3,
       "tags": [
         "sample",
-        "binary-search"
+        "consecutive-runs"
       ]
     },
     {
-      "id": "sample-max-two",
-      "name": "sample: maximum adjacent increasing length is two",
+      "id": "sample-maximum-two",
+      "name": "sample: maximum adjacent length is two",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -48,78 +48,192 @@
       "expected": 2,
       "tags": [
         "sample",
-        "increasing-runs"
+        "multiple-breaks"
       ]
     },
     {
-      "id": "trial-whole-run-splits",
-      "name": "trial: one long run can be split into adjacent halves",
+      "id": "trial-two-equal-values",
+      "name": "trial: singleton blocks in equal pair",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "regression",
-        "single-run"
-      ]
-    },
-    {
-      "id": "trial-no-increase",
-      "name": "trial: no increasing pair beyond length one",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          5,
-          5,
-          5,
-          5
+          1
         ]
       },
       "expected": 1,
       "tags": [
         "edge",
-        "flat"
+        "singletons"
       ]
     },
     {
-      "id": "real-many-runs",
-      "name": "real: several candidate run lengths",
+      "id": "trial-single-long-run",
+      "name": "trial: split a six-element run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "single-run",
+        "internal-split"
+      ]
+    },
+    {
+      "id": "trial-two-exact-runs",
+      "name": "trial: equal runs separated by a decrease",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "consecutive-runs",
+        "exact-fit"
+      ]
+    },
+    {
+      "id": "real-separated-short-blocks",
+      "name": "real: separated length-two blocks cannot pair",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          3,
-          4,
-          5,
-          6,
           1,
           2,
-          3,
-          7,
-          8,
-          9,
-          10,
-          11,
           0,
-          1
+          0,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "adjacency",
+        "regression"
+      ]
+    },
+    {
+      "id": "real-equal-shared-boundary",
+      "name": "real: equality at shared boundary is allowed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "semantic-boundary",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-negative-exact-runs",
+      "name": "real: negative and positive consecutive runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -4,
+          -3,
+          -2,
+          10,
+          -5,
+          -4,
+          -3,
+          0
         ]
       },
       "expected": 4,
       "tags": [
-        "real",
-        "increasing-runs"
+        "negative-values",
+        "consecutive-runs"
+      ]
+    },
+    {
+      "id": "real-strictly-descending",
+      "name": "real: descending input yields singleton blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "descending",
+        "minimum-answer"
+      ]
+    },
+    {
+      "id": "real-asymmetric-runs",
+      "name": "real: smaller neighboring run limits answer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          0,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "asymmetric-runs",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: comparisons at value limits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1000000000,
+          0,
+          1000000000,
+          -1000000000,
+          0,
+          1000000000
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "value-limits",
+        "consecutive-runs"
       ]
     }
   ]

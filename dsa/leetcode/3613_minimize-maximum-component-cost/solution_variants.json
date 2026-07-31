@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimize Maximum Component Cost and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Run Kruskal in increasing weight order and stop when the forest first has exactly k components.",
+      "time_complexity": "O(m log m + (n + m) alpha(n))",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

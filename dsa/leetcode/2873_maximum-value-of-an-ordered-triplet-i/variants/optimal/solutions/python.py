@@ -1,12 +1,17 @@
-def solve(nums: list[int]) -> int:
-    n = len(nums)
-    max_val = 0
-    
-    for i in range(n):
-        for j in range(i + 1, n):
-            for k in range(j + 1, n):
-                current_val = (nums[i] - nums[j]) * nums[k]
-                if current_val > max_val:
-                    max_val = current_val
-                    
-    return max_val
+from typing import List
+
+
+def solve(nums: List[int]) -> int:
+    maximum_value = nums[0]
+    maximum_difference = 0
+    answer = 0
+
+    for value in nums[1:]:
+        answer = max(answer, maximum_difference * value)
+        maximum_difference = max(
+            maximum_difference,
+            maximum_value - value,
+        )
+        maximum_value = max(maximum_value, value)
+
+    return answer

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Time to Eat All Grains and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Binary-searches the minimum time and greedily assigns each sorted hen a consecutive prefix of the remaining grains.",
+      "time_complexity": "O(n log n + m log m + (n + m) log C)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

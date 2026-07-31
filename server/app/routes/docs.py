@@ -1,8 +1,9 @@
 """Canonical LeetCode documentation endpoints.
 
 The repository has no parallel algorithm-doc tree. Product overview content is
-the root README, and every problem owns its reference at
-``dsa/leetcode/<frontend_id:04d>_<slug>/doc.md``.
+the root README, and every problem owns its reference inside its canonical
+``dsa/leetcode/<frontend_id:04d>_<slug>/`` package. References may be a legacy
+``doc.md`` or a server-composed ``reference/*.md`` section set.
 """
 from __future__ import annotations
 
@@ -16,6 +17,7 @@ from pydantic import BaseModel
 from challenges.registry import CHALLENGE_REGISTRY
 from server.app.challenge_packages import (
     is_leetcode_id,
+    leetcode_doc_markdown,
     leetcode_doc_path,
     leetcode_guided_example_path,
     leetcode_package_dir,
@@ -42,6 +44,12 @@ def _find_doc_path(challenge_id: str, lang: str = "en") -> Path | None:
     if not is_leetcode_id(challenge_id):
         return None
     return leetcode_doc_path(challenge_id, lang)
+
+
+def _find_doc_markdown(challenge_id: str, lang: str = "en") -> str | None:
+    if not is_leetcode_id(challenge_id):
+        return None
+    return leetcode_doc_markdown(challenge_id, lang)
 
 
 @router.get("/docs/index")
@@ -93,21 +101,21 @@ def docs_by_id(challenge_id: str, lang: str = "en") -> Response:
     challenge_cls = CHALLENGE_REGISTRY.get(challenge_id)
     if challenge_cls is None:
         raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
-    doc = _find_doc_path(challenge_id, lang)
-    if doc is None:
+    markdown = _find_doc_markdown(challenge_id, lang)
+    if markdown is None:
         package_dir = leetcode_package_dir(challenge_id)
         package_name = (
             package_dir.name
             if package_dir is not None
             else "<frontend_id:04d>_<slug>"
         )
-        package_hint = f"dsa/leetcode/{package_name}/doc.md"
+        package_hint = f"dsa/leetcode/{package_name}/doc.md or reference/*.md"
         raise HTTPException(
             status_code=404,
             detail=f"No canonical doc for {challenge_id}. Contribute at {package_hint}",
         )
     return Response(
-        content=doc.read_text(encoding="utf-8"),
+        content=markdown,
         media_type="text/markdown; charset=utf-8",
     )
 

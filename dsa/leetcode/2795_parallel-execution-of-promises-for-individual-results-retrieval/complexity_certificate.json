@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2795",
+  "status": "verified",
+  "method": "bounded_concurrency",
+  "required_time": "O(n)",
+  "summary": "At most ten promise-producing functions are allowed; correctness is established through immediate invocation, input-indexed settlement records, wait-for-all behavior, and finite aggregate settlement rather than artificial asymptotic wall-clock tiers.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 10,
+    "unit": "promise-producing functions",
+    "source_constraint": "functions.length is between one and ten"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The implementation invokes each function once, attaches one fulfillment/rejection pair, writes one indexed result record per settlement, and increments one counter, for O(n) bookkeeping."
+    },
+    {
+      "kind": "scheduler_stress",
+      "evidence": "Authored schedules cover one and ten functions, immediate and tied settlements, out-of-order fulfillment, several rejections, a rejection preceding a slower fulfillment, and structured payloads."
+    },
+    {
+      "kind": "semantic_validator",
+      "evidence": "The deterministic app adapter records all start times, the last settlement time, and every input-indexed fulfillment or rejection record so cases verify parallel start, wait-for-all behavior, ordering, and payload preservation."
+    },
+    {
+      "kind": "deadlock_timeout",
+      "evidence": "The exact native promise source is remotely Accepted under the provider timeout, and every deterministic local schedule reaches a finite aggregate resolution."
+    }
+  ]
+}

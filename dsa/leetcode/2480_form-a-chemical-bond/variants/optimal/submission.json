@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2622",
+  "frontend_id": "2480",
+  "title_slug": "form-a-chemical-bond",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2075119391",
+  "verified_at": "2026-07-20T22:33:00+00:00"
+}

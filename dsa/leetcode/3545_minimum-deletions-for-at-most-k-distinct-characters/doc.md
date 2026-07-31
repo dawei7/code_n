@@ -8,48 +8,47 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Greedy, Sorting, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-deletions-for-at-most-k-distinct-characters](https://leetcode.com/problems/minimum-deletions-for-at-most-k-distinct-characters/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-deletions-for-at-most-k-distinct-characters/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-deletions-for-at-most-k-distinct-characters/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a string of lowercase English letters, delete any number of individual characters so that the resulting string contains at most `k` distinct characters. The relative order of characters that remain is irrelevant to the distinct-character count.
+
+Return the smallest possible number of deletions. If the original string already uses no more than `k` distinct letters, no deletion is necessary.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A nonempty string containing only lowercase English letters.
+- `k`: The maximum number of distinct characters permitted after deletion.
+
+The constraints are $1 \le \lvert s \rvert \le 16$ and $1 \le k \le 16$.
 
 **Return value**
 
-TODO
+Return the minimum number of characters that must be deleted so the remaining string has at most `k` distinct letters.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abc", k = 2`
+- Output: `1`
+- Explanation: Removing the only occurrence of any one letter leaves two distinct letters.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aabb", k = 2`
+- Output: `0`
+- Explanation: The string already has exactly two distinct letters.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "yyyzz", k = 1`
+- Output: `2`
+- Explanation: Deleting both `z` characters is cheaper than deleting the three `y` characters.
 
 ---
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

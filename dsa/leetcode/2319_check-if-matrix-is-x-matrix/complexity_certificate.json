@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2319",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n^2)",
+  "summary": "Any matrix cell may be the sole X-matrix violation, so every one of the n squared entries must be inspected in the worst case; a full coordinate scan matches that lower bound.",
+  "optimality": {
+    "symbol": "C",
+    "lower_bound": "Omega(C)",
+    "upper_bound": "O(C)",
+    "argument": "Let C=n^2 be the number of cells. Start with a valid X-matrix. For any uninspected coordinate, changing a diagonal value to zero or an off-diagonal zero to one changes the correct result while preserving every inspected cell. Therefore a worst-case exact algorithm must inspect all C cells. Classifying and checking each coordinate once takes O(C) time."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Every coordinate can independently be the sole violation: zero on a diagonal or nonzero off both diagonals."},
+    {"kind":"upper_bound_proof","evidence":"A nested scan visits each cell once and compares its zero status with the two diagonal equations."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover valid odd and even matrices, the shared center, zeros on each diagonal, off-diagonal nonzeros, and both public examples; regression exhausts all binary 3 by 3 matrices."}
+  ]
+}

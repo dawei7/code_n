@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2472",
+  "frontend_id": "2392",
+  "title_slug": "build-a-matrix-with-conditions",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.buildMatrix",
+  "verified_submission_id": "2074557967",
+  "verified_at": "2026-07-20T12:41:59.608330+00:00"
+}

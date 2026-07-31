@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2335",
+  "frontend_id": "2199",
+  "title_slug": "finding-the-topic-of-each-post",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2073842142",
+  "verified_at": "2026-07-19T18:58:55.762808+00:00"
+}

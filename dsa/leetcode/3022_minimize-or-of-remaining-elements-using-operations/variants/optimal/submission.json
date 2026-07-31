@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3261",
+  "frontend_id": "3022",
+  "title_slug": "minimize-or-of-remaining-elements-using-operations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minOrAfterOperations",
+  "verified_submission_id": "2078871783",
+  "verified_at": "2026-07-23T20:49:32.8334247Z"
+}

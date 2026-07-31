@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4225",
+  "frontend_id": "3989",
+  "title_slug": "maximum-consistent-columns-in-a-grid",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxConsistentColumns",
+  "verified_submission_id": "2088119644",
+  "verified_at": "2026-07-31T00:47:06.6836225Z"
+}

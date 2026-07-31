@@ -1,0 +1,373 @@
+{
+  "challenge_id": "lc_2783",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: overbooked, full, and overbooked flights",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "flight_id": 1,
+              "capacity": 2
+            },
+            {
+              "flight_id": 2,
+              "capacity": 2
+            },
+            {
+              "flight_id": 3,
+              "capacity": 1
+            }
+          ],
+          "Passengers": [
+            {
+              "passenger_id": 101,
+              "flight_id": 1
+            },
+            {
+              "passenger_id": 102,
+              "flight_id": 1
+            },
+            {
+              "passenger_id": 103,
+              "flight_id": 1
+            },
+            {
+              "passenger_id": 104,
+              "flight_id": 2
+            },
+            {
+              "passenger_id": 105,
+              "flight_id": 2
+            },
+            {
+              "passenger_id": 106,
+              "flight_id": 3
+            },
+            {
+              "passenger_id": 107,
+              "flight_id": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "flight_id",
+          "booked_cnt",
+          "waitlist_cnt"
+        ],
+        "rows": [
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            2,
+            0
+          ],
+          [
+            3,
+            1,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "mixed-occupancy"
+      ]
+    },
+    {
+      "id": "trial-empty-flight",
+      "name": "trial: flight with no passenger requests",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "flight_id": 4,
+              "capacity": 3
+            },
+            {
+              "flight_id": 9,
+              "capacity": 2
+            }
+          ],
+          "Passengers": [
+            {
+              "passenger_id": 201,
+              "flight_id": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "flight_id",
+          "booked_cnt",
+          "waitlist_cnt"
+        ],
+        "rows": [
+          [
+            4,
+            1,
+            0
+          ],
+          [
+            9,
+            0,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "left-join"
+      ]
+    },
+    {
+      "id": "trial-orphan-passenger",
+      "name": "trial: nonexistent flight request is ignored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "flight_id": 7,
+              "capacity": 1
+            }
+          ],
+          "Passengers": [
+            {
+              "passenger_id": 301,
+              "flight_id": 7
+            },
+            {
+              "passenger_id": 302,
+              "flight_id": 7
+            },
+            {
+              "passenger_id": 303,
+              "flight_id": 99
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "flight_id",
+          "booked_cnt",
+          "waitlist_cnt"
+        ],
+        "rows": [
+          [
+            7,
+            1,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "orphan-request"
+      ]
+    },
+    {
+      "id": "trial-zero-capacity",
+      "name": "trial: zero-capacity flight places everyone on waitlist",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "flight_id": 2,
+              "capacity": 0
+            }
+          ],
+          "Passengers": [
+            {
+              "passenger_id": 401,
+              "flight_id": 2
+            },
+            {
+              "passenger_id": 402,
+              "flight_id": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "flight_id",
+          "booked_cnt",
+          "waitlist_cnt"
+        ],
+        "rows": [
+          [
+            2,
+            0,
+            2
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "zero-capacity"
+      ]
+    },
+    {
+      "id": "real-order-and-counts",
+      "name": "hidden: unsorted flights with every occupancy state",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "flight_id": 30,
+              "capacity": 1
+            },
+            {
+              "flight_id": 10,
+              "capacity": 4
+            },
+            {
+              "flight_id": 20,
+              "capacity": 2
+            }
+          ],
+          "Passengers": [
+            {
+              "passenger_id": 501,
+              "flight_id": 30
+            },
+            {
+              "passenger_id": 502,
+              "flight_id": 30
+            },
+            {
+              "passenger_id": 503,
+              "flight_id": 10
+            },
+            {
+              "passenger_id": 504,
+              "flight_id": 20
+            },
+            {
+              "passenger_id": 505,
+              "flight_id": 20
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "flight_id",
+          "booked_cnt",
+          "waitlist_cnt"
+        ],
+        "rows": [
+          [
+            10,
+            1,
+            0
+          ],
+          [
+            20,
+            2,
+            0
+          ],
+          [
+            30,
+            1,
+            1
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-only-orphans",
+      "name": "hidden: passenger table contains only unmatched flights",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Flights": [
+            {
+              "flight_id": 5,
+              "capacity": 5
+            },
+            {
+              "flight_id": 6,
+              "capacity": 1
+            }
+          ],
+          "Passengers": [
+            {
+              "passenger_id": 601,
+              "flight_id": 100
+            },
+            {
+              "passenger_id": 602,
+              "flight_id": 101
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "flight_id",
+          "booked_cnt",
+          "waitlist_cnt"
+        ],
+        "rows": [
+          [
+            5,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "orphans"
+      ]
+    }
+  ]
+}

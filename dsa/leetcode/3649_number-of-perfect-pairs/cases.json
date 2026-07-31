@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3649",
+  "cases": [
+    {
+      "id": "sample-positive",
+      "name": "sample: two positive pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "positive"
+      ]
+    },
+    {
+      "id": "sample-mixed-signs",
+      "name": "sample: four mixed-sign pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          -3,
+          2,
+          -1,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "mixed-signs"
+      ]
+    },
+    {
+      "id": "sample-separated-scales",
+      "name": "sample: no magnitudes are close enough",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          100,
+          1000
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-result"
+      ]
+    },
+    {
+      "id": "trial-two-zeros",
+      "name": "trial: two zeros form a pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "zeros"
+      ]
+    },
+    {
+      "id": "trial-zero-and-nonzero",
+      "name": "trial: zero does not pair with nonzero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          -1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-boundary"
+      ]
+    },
+    {
+      "id": "trial-exact-factor-two",
+      "name": "trial: factor two is inclusive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -2,
+          4,
+          -8
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "real-just-over-factor-two",
+      "name": "real: values just beyond factor two fail",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          11,
+          23,
+          47
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "exclusive-outside"
+      ]
+    },
+    {
+      "id": "real-duplicate-magnitudes",
+      "name": "real: duplicate magnitudes count index pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -7,
+          7,
+          -7,
+          7
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-mixed-zero-cluster",
+      "name": "real: zero pairs stay within zero cluster",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          1,
+          -1,
+          2,
+          -2
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "real",
+        "zeros",
+        "mixed-signs"
+      ]
+    },
+    {
+      "id": "real-extreme-values",
+      "name": "real: integer boundaries and halves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1000000000,
+          1000000000,
+          -500000000,
+          499999999
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "value-boundaries"
+      ]
+    },
+    {
+      "id": "real-all-pairs",
+      "name": "real: every pair in dense magnitude range qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000,
+          -1001,
+          1002,
+          -1003,
+          1004,
+          -1005,
+          1006,
+          -1007,
+          1008,
+          -1009,
+          1010,
+          -1011,
+          1012,
+          -1013,
+          1014,
+          -1015,
+          1016,
+          -1017,
+          1018,
+          -1019,
+          1020,
+          -1021,
+          1022,
+          -1023,
+          1024,
+          -1025,
+          1026,
+          -1027,
+          1028,
+          -1029,
+          1030,
+          -1031,
+          1032,
+          -1033,
+          1034,
+          -1035,
+          1036,
+          -1037,
+          1038,
+          -1039,
+          1040,
+          -1041,
+          1042,
+          -1043,
+          1044,
+          -1045,
+          1046,
+          -1047,
+          1048,
+          -1049,
+          1050,
+          -1051,
+          1052,
+          -1053,
+          1054,
+          -1055,
+          1056,
+          -1057,
+          1058,
+          -1059,
+          1060,
+          -1061,
+          1062,
+          -1063,
+          1064,
+          -1065,
+          1066,
+          -1067,
+          1068,
+          -1069,
+          1070,
+          -1071,
+          1072,
+          -1073,
+          1074,
+          -1075,
+          1076,
+          -1077,
+          1078,
+          -1079,
+          1080,
+          -1081,
+          1082,
+          -1083,
+          1084,
+          -1085,
+          1086,
+          -1087,
+          1088,
+          -1089,
+          1090,
+          -1091,
+          1092,
+          -1093,
+          1094,
+          -1095,
+          1096,
+          -1097,
+          1098,
+          -1099
+        ]
+      },
+      "expected": 4950,
+      "tags": [
+        "real",
+        "all-pairs",
+        "large-count"
+      ]
+    }
+  ]
+}

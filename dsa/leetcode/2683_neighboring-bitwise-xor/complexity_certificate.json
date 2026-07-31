@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2683",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Validity is the XOR parity of all n input bits. Every bit can change the answer, yielding an Omega(n) inspection lower bound that the accepted single-pass fold matches.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "A correct algorithm must inspect all n derived bits because changing any one bit flips validity, while the accepted solution performs one constant-time XOR per bit."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"For any uninspected position, flipping only that derived bit flips the total XOR and therefore flips validity; a correct worst-case algorithm must inspect all n positions."},
+    {"kind":"upper_bound_proof","evidence":"The accepted solution visits each derived entry once, performs one constant-time XOR, and stores only one parity bit, establishing O(n) time and O(1) space."},
+    {"kind":"boundary_property_cases","evidence":"Cases cover length one, valid and invalid pairs, all zeros, even and odd counts of set bits, and circular arrays of several lengths."}
+  ]
+}

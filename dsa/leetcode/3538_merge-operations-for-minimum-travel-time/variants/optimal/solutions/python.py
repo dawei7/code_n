@@ -1,30 +1,43 @@
-def solve(nums: list[int]) -> int:
-    """
-    To make the array non-decreasing with minimum merges, we process the array
-    from right to left. We keep track of the value of the current segment 
-    (the rightmost segment of the suffix we are considering) and ensure that 
-    the segment to its left is smaller than or equal to it.
-    """
-    n = len(nums)
-    if n <= 1:
-        return 0
-    
-    merges = 0
-    # current_val represents the value of the segment we are currently comparing against
-    current_val = nums[-1]
-    # current_sum represents the sum of the segment we are currently building
-    current_sum = 0
-    
-    # Iterate backwards from the second to last element
-    for i in range(n - 2, -1, -1):
-        current_sum += nums[i]
-        
-        if current_sum <= current_val:
-            # We found a valid segment, update current_val and reset current_sum
-            current_val = current_sum
-            current_sum = 0
-        else:
-            # We must merge the current element with the next one
-            merges += 1
-            
-    return merges
+def solve(
+    l: int,
+    n: int,
+    k: int,
+    position: list[int],
+    time: list[int],
+) -> int:
+    prefix_time = [0]
+    for value in time:
+        prefix_time.append(prefix_time[-1] + value)
+
+    infinity = 10**30
+    dp = [
+        [[infinity] * (k + 1) for _ in range(k + 1)]
+        for _ in range(n)
+    ]
+    dp[0][0][0] = 0
+
+    for current in range(n - 1):
+        for removed in range(k + 1):
+            for before in range(k + 1):
+                cost = dp[current][removed][before]
+                if cost == infinity:
+                    continue
+
+                rate = (
+                    prefix_time[current + 1]
+                    - prefix_time[current - before]
+                )
+                max_skipped = min(k - removed, n - 2 - current)
+
+                for skipped in range(max_skipped + 1):
+                    next_sign = current + skipped + 1
+                    total = (
+                        cost
+                        + (position[next_sign] - position[current]) * rate
+                    )
+                    dp[next_sign][removed + skipped][skipped] = min(
+                        dp[next_sign][removed + skipped][skipped],
+                        total,
+                    )
+
+    return min(dp[n - 1][k])

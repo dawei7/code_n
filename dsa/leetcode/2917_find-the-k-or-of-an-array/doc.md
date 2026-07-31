@@ -8,78 +8,55 @@
 | Category | Algorithms |
 | Topics | Array, Bit Manipulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-k-or-of-an-array](https://leetcode.com/problems/find-the-k-or-of-an-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-k-or-of-an-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-k-or-of-an-array/).
 
 ### Goal
-Given an array of integers and an integer `k`, calculate a new integer (the "K-or") where the $i$-th bit is set to 1 if and only if at least `k` elements in the input array have their $i$-th bit set to 1. Otherwise, the $i$-th bit of the result is 0.
+
+Given an integer array `nums` and an integer threshold `k`, extend the
+standard bitwise OR operation to form the array's K-or. Consider every binary
+bit position independently: that position is `1` in the result exactly when
+at least `k` array elements have a `1` there.
+
+Return the integer represented by all qualifying positions. Repeated values
+remain separate array elements and each contributes to the count. Positions
+appearing in fewer than `k` elements are `0` in the result, even when they
+occur in some values.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of non-negative integers.
-- `k`: An integer representing the threshold count for bit activation.
+- `nums`: A non-empty list of non-negative integers.
+- `k`: The minimum number of array elements that must contain a bit.
+
+Let $n=\lvert\texttt{nums}\rvert$. The constraints are
+$1\le n\le 50$, $0\le\texttt{nums[i]}<2^{31}$, and $1\le\texttt{k}\le n$.
 
 **Return value**
 
-- An integer representing the calculated K-or value.
+- The K-or of `nums`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [7, 12, 9, 8, 9, 15], k = 4`
 - Output: `9`
+- Explanation: Bit 0 occurs in `7`, both copies of `9`, and `15`. Bit 3
+  occurs in five values. Those are the only positions reaching four
+  occurrences, so the result is `1001` in binary.
 
 **Example 2**
 
-- Input: `nums = [1, 2, 3], k = 1`
-- Output: `3`
+- Input: `nums = [2, 12, 1, 11, 4, 5], k = 6`
+- Output: `0`
+- Explanation: No bit is present in every one of the six values.
 
 **Example 3**
 
 - Input: `nums = [10, 8, 5, 9, 11, 6, 8], k = 1`
 - Output: `15`
-
----
-
-## Solution
-### Approach
-The problem utilizes bitwise manipulation and frequency counting. Since the input integers are typically within a 32-bit range, we can iterate through each bit position (0 to 31). For each position, we count how many numbers in the array have that specific bit set. If the count meets or exceeds `k`, we set the corresponding bit in our result using the bitwise OR operator.
-
-### Complexity Analysis
-- **Time Complexity**: $O(n \cdot \log(\max(nums)))$, where $n$ is the length of the array. Given the constraints (usually 32 bits), this simplifies to $O(n)$.
-- **Space Complexity**: $O(1)$, as we only use a constant amount of extra space regardless of the input size.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int], k: int) -> int:
-    """
-    Calculates the K-or of an array by checking the frequency of set bits
-    at each position from 0 to 31.
-    """
-    k_or_result = 0
-
-    # Iterate through each bit position (assuming 32-bit integers)
-    for i in range(32):
-        count = 0
-        mask = 1 << i
-
-        # Count how many numbers have the i-th bit set
-        for num in nums:
-            if num & mask:
-                count += 1
-
-        # If the count meets the threshold k, set the i-th bit in the result
-        if count >= k:
-            k_or_result |= mask
-
-    return k_or_result
-```
-</details>
+- Explanation: With a threshold of one, every bit appearing anywhere
+  qualifies, which is the ordinary bitwise OR of the array.

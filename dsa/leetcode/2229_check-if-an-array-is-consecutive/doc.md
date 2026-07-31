@@ -5,51 +5,42 @@
 | Source | LeetCode |
 | Frontend ID | 2229 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array, Hash Table, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-an-array-is-consecutive](https://leetcode.com/problems/check-if-an-array-is-consecutive/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-an-array-is-consecutive/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-an-array-is-consecutive/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Determine whether the integer array `nums` is consecutive. If $x$ is its minimum value and $n$ is its length, being consecutive means that the array contains every integer in the inclusive range $[x,x+n-1]$.
+
+The input order does not matter, but every required value must occur. Because the array itself has exactly $n$ positions and the target range has exactly $n$ distinct integers, a duplicated value necessarily leaves another value missing and makes the result false. Return a boolean expressing whether the complete range is present.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: A nonempty list of integers, each between $0$ and $10^5$ inclusive.
+
+Let $n=\lvert\texttt{nums}\rvert$, where $1\le n\le 10^5$.
 
 **Return value**
 
-TODO
+Return `true` exactly when `nums` contains each integer from its minimum through that minimum plus $n-1`; otherwise return `false`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 4, 2]`
+- Output: `true`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3]`
+- Output: `false`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [3, 5, 4]`
+- Output: `true`

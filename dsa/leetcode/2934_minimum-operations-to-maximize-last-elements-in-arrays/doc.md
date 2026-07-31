@@ -8,84 +8,52 @@
 | Category | Algorithms |
 | Topics | Array, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-operations-to-maximize-last-elements-in-arrays](https://leetcode.com/problems/minimum-operations-to-maximize-last-elements-in-arrays/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-operations-to-maximize-last-elements-in-arrays/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-operations-to-maximize-last-elements-in-arrays/).
 
 ### Goal
-Given two integer arrays of equal length, you are permitted to swap elements at the same index between the two arrays. The objective is to determine the minimum number of swaps required such that the final element of both arrays is maximized (specifically, `nums1[-1]` must be the maximum of all elements in `nums1`, and `nums2[-1]` must be the maximum of all elements in `nums2`). If it is impossible to satisfy this condition, return -1.
+
+Two 0-indexed integer arrays `nums1` and `nums2` have the same length `n`. In
+one operation, choose an index `i` and swap `nums1[i]` with `nums2[i]`. Any
+indices, including the last one, may be selected, and no operation is required
+when the desired state already holds.
+
+Find the fewest operations after which `nums1[n - 1]` is a maximum element of
+`nums1` and `nums2[n - 1]` is a maximum element of `nums2`. Equal maximum
+values are allowed. Return that minimum, or `-1` when no set of index-wise
+swaps can satisfy both conditions.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums1`: A list of integers.
-- `nums2`: A list of integers.
+- `nums1`: The first positive integer array.
+- `nums2`: The second positive integer array, with the same length as `nums1`.
+
+Let $n=\lvert\texttt{nums1}\rvert=\lvert\texttt{nums2}\rvert$. The constraints
+are $1\le n\le1000$ and $1\le\texttt{nums1[i]},\texttt{nums2[i]}\le10^9$.
 
 **Return value**
 
-- An integer representing the minimum number of swaps, or -1 if the condition cannot be met.
+- The minimum number of vertical swaps needed to make both last elements array maxima, or `-1` if impossible.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums1 = [1,2,7], nums2 = [4,5,3]`
+- Input: `nums1 = [1, 2, 7], nums2 = [4, 5, 3]`
 - Output: `1`
+- Explanation: Swap the last pair, producing final maxima 3 and 7.
 
 **Example 2**
 
-- Input: `nums1 = [2,3,4,5,9], nums2 = [8,7,6,5,4]`
-- Output: `0`
+- Input: `nums1 = [2, 3, 4, 5, 9], nums2 = [8, 8, 4, 4, 4]`
+- Output: `2`
+- Explanation: Swap indices 4 and 3; the resulting last values 4 and 9 are maxima of their arrays.
 
 **Example 3**
 
-- Input: `nums1 = [1,5,4], nums2 = [2,5,3]`
+- Input: `nums1 = [1, 5, 4], nums2 = [2, 5, 3]`
 - Output: `-1`
-
----
-
-## Solution
-### Approach
-The problem can be solved using a greedy approach combined with enumeration. Since the last elements of the arrays are fixed by the final state, there are only two possible scenarios for the final pair `(nums1[-1], nums2[-1])`:
-1. No swap at the last index: `(nums1[-1], nums2[-1])` remains as is.
-2. Swap at the last index: `(nums2[-1], nums1[-1])` becomes the new pair.
-
-For each scenario, we iterate through the arrays and count how many swaps are needed to ensure every element at index `i` satisfies the condition relative to the target last elements. If a swap is required but impossible (because the values don't fit), that scenario is invalid. We take the minimum of the two scenarios.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the arrays, as we perform two linear passes over the input.
-- **Space Complexity**: `O(1)`, as we only use a few variables to track counts and states.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums1: list[int], nums2: list[int]) -> int:
-    n = len(nums1)
-
-    def count_swaps(last1, last2):
-        swaps = 0
-        for i in range(n - 1):
-            a, b = nums1[i], nums2[i]
-            # If current elements already satisfy the condition
-            if a <= last1 and b <= last2:
-                continue
-            # Try swapping to satisfy the condition
-            elif b <= last1 and a <= last2:
-                swaps += 1
-            else:
-                # Impossible to satisfy
-                return float('inf')
-        return swaps
-
-    # Scenario 1: Keep the last elements as they are
-    res1 = count_swaps(nums1[-1], nums2[-1])
-
-    # Scenario 2: Swap the last elements
-    res2 = count_swaps(nums2[-1], nums1[-1]) + 1
-
-    ans = min(res1, res2)
-    return int(ans) if ans != float('inf') else -1
-```
-</details>
+- Explanation: Neither orientation of the last pair can dominate every earlier vertical pair.

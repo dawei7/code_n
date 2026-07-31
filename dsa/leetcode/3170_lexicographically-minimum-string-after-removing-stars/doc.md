@@ -8,48 +8,40 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Stack, Greedy, Heap (Priority Queue) |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [lexicographically-minimum-string-after-removing-stars](https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/lexicographically-minimum-string-after-removing-stars/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A string `s` contains lowercase English letters and possibly `*` characters. Remove every star by repeatedly selecting the leftmost remaining `*`, deleting it, and also deleting one smallest non-star character to its left. If that smallest character occurs more than once to the left of the star, any one of those occurrences may be chosen.
+
+Return the lexicographically smallest string obtainable after all stars have been removed. The input guarantees that every star has an eligible letter to its left when it is processed.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A string containing lowercase English letters and `*` characters.
+
+Let $n = \lvert\texttt{s}\rvert$. The constraints satisfy $1 \le n \le 10^5$, and the sequence always permits all required deletions.
 
 **Return value**
 
-TODO
+- The lexicographically smallest remaining string after applying every star operation.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaba*"`
+- Output: `"aab"`
+
+The smallest eligible letter is `a`. Deleting its rightmost eligible occurrence gives the smallest remaining order.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abc"`
+- Output: `"abc"`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+There are no stars, so no characters are removed.

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3286",
+  "frontend_id": "2989",
+  "title_slug": "class-performance",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2078578201",
+  "verified_at": "2026-07-23T15:34:07.793477+00:00"
+}

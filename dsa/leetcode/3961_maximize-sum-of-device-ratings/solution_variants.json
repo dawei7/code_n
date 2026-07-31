@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximize Sum of Device Ratings and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scans each device for its two smallest capacities and concentrates all transferred minima in one destination.",
+      "time_complexity": "O(U)",
+      "space_complexity": "O(1)"
     }
   ]
 }

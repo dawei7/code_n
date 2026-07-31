@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4061",
+  "frontend_id": "3785",
+  "title_slug": "minimum-swaps-to-avoid-forbidden-values",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minSwaps",
+  "verified_submission_id": "2085403037",
+  "verified_at": "2026-07-28T23:48:11.181030+00:00"
+}

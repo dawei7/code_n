@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3062",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Every pair can change the final winner, so all n nodes must be inspected; the one-pass reference meets that linear lower bound with constant auxiliary storage.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "If an algorithm skips any pair, that pair's legal even and odd values can be chosen to award the decisive point to either team without changing the inspected nodes. A correct algorithm must therefore examine all n/2 pairs, while the reference performs constant work per pair."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An uninspected pair can reverse a tied score or change which team wins by one point, so its values cannot be ignored."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The reference advances by exactly two nodes per iteration and uses only a score difference and one traversal pointer."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover the minimum list, unanimous wins for each team, tied scores, alternating winners, boundary values, and a result decided by the final pair."
+    }
+  ]
+}

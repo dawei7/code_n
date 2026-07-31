@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_268", "frontend_id": "268", "title_slug": "missing-number", "url": "https://leetcode.com/problems/missing-number/description/", "paid_only": false, "content_sha256": "c9975c44e1863b7394b95e2200688207da9e08bd025b5a88ef3ba7bbe5ac600d", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [{"ordinal": 1, "input": "nums = [3,0,1]", "output": "2", "has_explanation": true}, {"ordinal": 2, "input": "nums = [0,1]", "output": "2", "has_explanation": true}, {"ordinal": 3, "input": "nums = [9,6,4,2,3,5,7,0,1]", "output": "8", "has_explanation": true}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "01557359c56e3f3f908a786dcde86c9c4dca650dfa4a8df90a71fdf84cde35b3", "reference/contract.md": "a7c0ebf55dae2b50bac9674589c4320f592c7bd13171c5430cd6b97dfd99963a", "reference/examples.md": "335bc5565ab6b10feb6e8db8f49c17322f3740354adacbc4b7777382b662cb9b", "reference/constraints.md": "490a5f9094e2dfd63b8611a7a563913984c63682ed194f672751b7b4bab83ecc", "reference/follow_up.md": "b92d4f096512270a8a7e025006a737ec667fe4dbf8a41a170d4977cb318dbffe"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

@@ -1,0 +1,442 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3865",
+  "cases": [
+    {
+      "id": "sample-three-blocks",
+      "name": "sample: three equal blocks reverse independently",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          3,
+          5,
+          6
+        ],
+        "k": 3
+      },
+      "expected": [
+        2,
+        1,
+        3,
+        4,
+        6,
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "three-blocks",
+        "explained"
+      ]
+    },
+    {
+      "id": "sample-one-block",
+      "name": "sample: one block reverses the complete array",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          4,
+          2
+        ],
+        "k": 1
+      },
+      "expected": [
+        2,
+        4,
+        4,
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "one-block",
+        "explained"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "trial: a singleton is its own only block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1
+      },
+      "expected": [
+        7
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-unit-blocks",
+      "name": "trial: k equal to n leaves every unit block unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          1,
+          8,
+          2,
+          7
+        ],
+        "k": 5
+      },
+      "expected": [
+        9,
+        1,
+        8,
+        2,
+        7
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "unit-blocks",
+        "k-equals-n"
+      ]
+    },
+    {
+      "id": "trial-two-wide-blocks",
+      "name": "trial: two length-four blocks keep their boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "k": 2
+      },
+      "expected": [
+        4,
+        3,
+        2,
+        1,
+        8,
+        7,
+        6,
+        5
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "two-blocks",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-odd-block-length",
+      "name": "trial: each odd block keeps its center in place",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "k": 3
+      },
+      "expected": [
+        3,
+        2,
+        1,
+        6,
+        5,
+        4,
+        9,
+        8,
+        7
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "odd-block-length",
+        "center"
+      ]
+    },
+    {
+      "id": "trial-symmetric-duplicates",
+      "name": "trial: symmetric equal pairs are unchanged by reversal",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          3,
+          4,
+          4
+        ],
+        "k": 3
+      },
+      "expected": [
+        2,
+        2,
+        3,
+        3,
+        4,
+        4
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "symmetric-blocks"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: maximum and mixed values reverse within length-three blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000,
+          1,
+          999,
+          2,
+          998,
+          3
+        ],
+        "k": 2
+      },
+      "expected": [
+        999,
+        1,
+        1000,
+        3,
+        998,
+        2
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "odd-block-length"
+      ]
+    },
+    {
+      "id": "real-k-is-block-count",
+      "name": "hidden: k counts blocks rather than elements per block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "k": 3
+      },
+      "expected": [
+        4,
+        3,
+        2,
+        1,
+        8,
+        7,
+        6,
+        5,
+        12,
+        11,
+        10,
+        9
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "semantic-trap",
+        "block-count"
+      ]
+    },
+    {
+      "id": "real-palindromic-blocks",
+      "name": "hidden: palindromic blocks remain identical",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          3,
+          4,
+          3
+        ],
+        "k": 2
+      },
+      "expected": [
+        1,
+        2,
+        1,
+        3,
+        4,
+        3
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "palindrome",
+        "unchanged"
+      ]
+    },
+    {
+      "id": "real-alternating-pairs",
+      "name": "hidden: four alternating pairs reverse independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          1,
+          2,
+          1,
+          2,
+          1,
+          2
+        ],
+        "k": 4
+      },
+      "expected": [
+        2,
+        1,
+        2,
+        1,
+        2,
+        1,
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "alternating",
+        "pair-blocks"
+      ]
+    },
+    {
+      "id": "real-distinct-pairs",
+      "name": "hidden: three distinct pairs preserve block order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          20,
+          30,
+          40,
+          50,
+          60
+        ],
+        "k": 3
+      },
+      "expected": [
+        20,
+        10,
+        40,
+        30,
+        60,
+        50
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "pair-blocks",
+        "block-order"
+      ]
+    },
+    {
+      "id": "real-odd-whole-array",
+      "name": "hidden: one odd-length block reverses around its center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "k": 1
+      },
+      "expected": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "one-block",
+        "odd-block-length"
+      ]
+    }
+  ]
+}

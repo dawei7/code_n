@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4188",
+  "frontend_id": "3984",
+  "title_slug": "divisible-game",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.divisibleGame",
+  "verified_submission_id": "2088089747",
+  "verified_at": "2026-07-30T22:59:33.0949381+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3860",
+  "frontend_id": "3561",
+  "title_slug": "resulting-string-after-adjacent-removals",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.resultingString",
+  "verified_submission_id": "2083057502",
+  "verified_at": "2026-07-27T08:19:15Z"
+}

@@ -8,48 +8,46 @@
 | Category | Algorithms |
 | Topics | String, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [hash-divided-string](https://leetcode.com/problems/hash-divided-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/hash-divided-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/hash-divided-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a lowercase string `s` whose length is divisible by `k`, split it from left to right into consecutive, non-overlapping substrings of exactly `k` characters.
+
+Assign each lowercase letter its zero-based alphabet index: `a` has value 0 through `z` with value 25. For each substring, sum its character values, reduce the sum modulo 26, and convert that remainder back to a lowercase letter. Concatenate the generated letters in group order and return the resulting string.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A lowercase English string of length $n$, where $1 \le n \le 1000$.
+- `k`: A group length from 1 through 100 such that $k$ divides $n$.
 
 **Return value**
 
-TODO
+- A lowercase string of length $n/k$ containing one hash character for each consecutive group.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcd", k = 2`
+- Output: `"bf"`
+
+The groups `"ab"` and `"cd"` have sums 1 and 5.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "mxz", k = 3`
+- Output: `"i"`
+
+The only sum is $12 + 23 + 25 = 60$, whose remainder modulo 26 is 8.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "azby", k = 1`
+- Output: `"azby"`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Every one-character group hashes to the same character.

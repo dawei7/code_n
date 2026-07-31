@@ -5,51 +5,35 @@
 | Source | LeetCode |
 | Frontend ID | 2840 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Hash Table, String, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-strings-can-be-made-equal-with-operations-ii](https://leetcode.com/problems/check-if-strings-can-be-made-equal-with-operations-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-strings-can-be-made-equal-with-operations-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-strings-can-be-made-equal-with-operations-ii/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Two lowercase English strings `s1` and `s2` have the same length $n$. On either string, an operation may choose indices $i<j$ whose difference $j-i$ is even and swap the characters at those positions. Any number of operations, including zero, may be performed on either string.
+
+Determine whether the strings can be made equal. An even index difference means the two chosen indices always have the same parity, so operations can rearrange characters among even positions or among odd positions but can never transfer a character from one parity group to the other.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s1`: A lowercase English string of length $n$, where $1 \le n \le 10^5$.
+- `s2`: A lowercase English string with the same length $n$ as `s1`.
 
 **Return value**
 
-TODO
+Return `true` if the allowed swaps can make `s1` and `s2` equal; otherwise return `false`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s1 = "abcdba", s2 = "cabdab"`
+- Output: `true`
+- Explanation: Characters can be rearranged independently within the even and odd index groups to obtain `s2`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s1 = "abe", s2 = "bea"`
+- Output: `false`
+- Explanation: Matching the target would require at least one character to move between index parities.

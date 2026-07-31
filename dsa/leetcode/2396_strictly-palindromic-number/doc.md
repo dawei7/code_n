@@ -8,48 +8,51 @@
 | Category | Algorithms |
 | Topics | Math, Two Pointers, Brainteaser |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [strictly-palindromic-number](https://leetcode.com/problems/strictly-palindromic-number/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/strictly-palindromic-number/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/strictly-palindromic-number/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+An integer `n` is called strictly palindromic when its digit representation is
+palindromic in every integer base $b$ from 2 through $n-2$, inclusive. A
+palindromic representation reads identically from its most significant digit
+to its least significant digit and in the reverse direction.
+
+Given `n`, determine whether this condition holds for the complete required
+range of bases. It is not enough for the representation to be palindromic in
+one or several bases: every base in the interval must satisfy the condition.
+Return `true` only in that case, and return `false` otherwise.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: An integer satisfying $4 \le n \le 10^5$.
 
 **Return value**
 
-TODO
+Return `True` if the representation of `n` is palindromic in every base
+$b \in \{2,3,\ldots,n-2\}$; otherwise return `False`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 9`
+- Output: `False`
+- Explanation: Although 9 is `1001` in base 2, its base-3 representation
+  `100` is not palindromic.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4`
+- Output: `False`
+- Explanation: The only required base is 2, where 4 is represented as `100`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 5`
+- Output: `False`
+- Explanation: Base 3 is included, and $5 = 1\cdot3+2$ has representation
+  `12`, whose two digits differ.

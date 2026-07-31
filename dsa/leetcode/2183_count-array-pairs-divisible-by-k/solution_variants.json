@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Array Pairs Divisible by K and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Compresses each value to its gcd with k and counts compatible earlier gcd classes.",
+      "time_complexity": "O(n sqrt(k))",
+      "space_complexity": "O(sqrt(k))"
     }
   ]
 }

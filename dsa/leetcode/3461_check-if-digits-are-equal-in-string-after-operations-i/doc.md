@@ -5,51 +5,44 @@
 | Source | LeetCode |
 | Frontend ID | 3461 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Math, String, Simulation, Combinatorics, Number Theory |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-digits-are-equal-in-string-after-operations-i](https://leetcode.com/problems/check-if-digits-are-equal-in-string-after-operations-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-digits-are-equal-in-string-after-operations-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-digits-are-equal-in-string-after-operations-i/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Start with a decimal digit string `s`. In one operation, replace every adjacent pair by a single digit equal to the pair's sum modulo $10$. Compute these new digits from left to right and keep them in that order, so a string of length $L$ becomes one of length $L-1$.
+
+Repeat the operation until exactly two digits remain. Return whether those final digits are equal. Each round uses all digits from the preceding round simultaneously; a newly computed digit must not be reused during the same round.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A string containing only decimal digits.
+
+Let $n=\lvert s\rvert$. The constraints are $3 \le n \le 100$.
 
 **Return value**
 
-TODO
+Return `True` if the final two digits are equal after all required rounds; otherwise return `False`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "3902"`
+- Output: `true`
+
+The successive strings are `"3902"`, `"292"`, and `"11"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "34789"`
+- Output: `false`
+
+The transformations produce `"7157"`, then `"862"`, and finally `"48"`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "111"`
+- Output: `true`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The single required round produces `"22"`.

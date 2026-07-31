@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [circular-sentence](https://leetcode.com/problems/circular-sentence/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/circular-sentence/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/circular-sentence/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A sentence consists of one or more words made only from uppercase and lowercase English letters. Consecutive words are separated by exactly one space, with no space before the first word or after the last word. Letter comparisons are case-sensitive.
+
+Determine whether the sentence is circular. For every neighboring pair of words, the final character of the earlier word must equal the first character of the later word. The same rule must also close the cycle: the final character of the last word must equal the first character of the first word.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `sentence`: A valid nonempty sentence using English letters and single spaces between words.
+
+The string length is between $1$ and $500$, inclusive.
 
 **Return value**
 
-TODO
+Return `true` when every word boundary, including the wraparound boundary, has matching letters; otherwise return `false`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `sentence = "leetcode exercises sound delightful"`
+- Output: `true`
+- Explanation: Each word ends with the letter that begins the next word, and the final `l` also matches the first `l`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `sentence = "eetcode"`
+- Output: `true`
+- Explanation: The only word starts and ends with `e`, so it closes its own cycle.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `sentence = "Leetcode is cool"`
+- Output: `false`
+- Explanation: `Leetcode` ends with `e`, while `is` begins with `i`.

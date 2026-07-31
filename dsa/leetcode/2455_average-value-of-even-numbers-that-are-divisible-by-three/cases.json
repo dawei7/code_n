@@ -6,94 +6,72 @@
       "name": "sample: average of six and twelve",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          3,
-          6,
-          10,
-          12,
-          15
-        ]
-      },
+      "input": {"nums": [1, 3, 6, 10, 12, 15]},
       "expected": 9,
-      "tags": [
-        "sample",
-        "array"
-      ]
+      "tags": ["sample", "mixed-values"]
     },
     {
       "id": "sample-2",
-      "name": "sample: no divisible-by-six values",
+      "name": "sample: no qualifying values",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          4,
-          7,
-          10
-        ]
-      },
+      "input": {"nums": [1, 2, 4, 7, 10]},
       "expected": 0,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-3",
-      "name": "sample: all values qualify",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          6,
-          12,
-          18,
-          24
-        ]
-      },
-      "expected": 15,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "empty-selection"]
     },
     {
       "id": "trial-floor-average",
-      "name": "trial: integer average floors",
+      "name": "trial: fractional average rounds down",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          6,
-          7,
-          12,
-          18,
-          5
-        ]
-      },
-      "expected": 12,
-      "tags": [
-        "trial"
-      ]
+      "input": {"nums": [6, 6, 6, 12]},
+      "expected": 7,
+      "tags": ["trial", "floor"]
     },
     {
-      "id": "real-only-odds",
-      "name": "hidden: only odd values",
+      "id": "trial-divisible-by-three-only",
+      "name": "trial: odd multiples of three do not qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [3, 9, 15, 18]},
+      "expected": 18,
+      "tags": ["trial", "divisibility"]
+    },
+    {
+      "id": "real-even-only",
+      "name": "hidden: even values not divisible by three",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          1,
-          5,
-          7
-        ]
-      },
+      "input": {"nums": [2, 4, 8, 10, 14]},
       "expected": 0,
-      "tags": [
-        "hidden"
-      ]
+      "tags": ["hidden", "divisibility"]
+    },
+    {
+      "id": "real-single-qualifier",
+      "name": "hidden: one qualifying value",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 6, 7]},
+      "expected": 6,
+      "tags": ["hidden", "single-qualifier"]
+    },
+    {
+      "id": "real-singleton-nonqualifier",
+      "name": "hidden: singleton without a match",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1]},
+      "expected": 0,
+      "tags": ["hidden", "singleton"]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: values near the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [996, 999, 1000, 6]},
+      "expected": 501,
+      "tags": ["hidden", "upper-bound"]
     }
   ]
 }

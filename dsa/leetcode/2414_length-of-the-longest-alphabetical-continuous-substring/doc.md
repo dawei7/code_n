@@ -8,48 +8,41 @@
 | Category | Algorithms |
 | Topics | String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [length-of-the-longest-alphabetical-continuous-substring](https://leetcode.com/problems/length-of-the-longest-alphabetical-continuous-substring/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/length-of-the-longest-alphabetical-continuous-substring/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/length-of-the-longest-alphabetical-continuous-substring/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+An alphabetical continuous string consists of consecutive letters in ascending alphabet order. Equivalently, it is a substring of `"abcdefghijklmnopqrstuvwxyz"`: `"abc"` qualifies, while `"acb"` does not because it skips and reverses letters, and `"za"` does not because the alphabet does not wrap.
+
+Given a non-empty lowercase English string `s`, examine its contiguous substrings and return the greatest length among those that are alphabetical continuous. Repeated letters, gaps, descending steps, and the transition from `z` to `a` all end the current qualifying substring.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A string containing only lowercase English letters.
+
+Let $n = \lvert s\rvert$, where $1 \le n \le 10^5$.
 
 **Return value**
 
-TODO
+Return the length of the longest contiguous substring whose adjacent letters each advance by exactly one alphabet position.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abacaba"`
+- Output: `2`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcde"`
+- Output: `5`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "za"`
+- Output: `1`

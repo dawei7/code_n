@@ -8,48 +8,35 @@
 | Category | Algorithms |
 | Topics | Hash Table, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [permutation-difference-between-two-strings](https://leetcode.com/problems/permutation-difference-between-two-strings/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/permutation-difference-between-two-strings/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/permutation-difference-between-two-strings/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given two lowercase strings `s` and `t`. Every character occurs at most once in `s`, and `t` is a permutation of `s`, so both strings contain exactly the same distinct characters.
+
+For each character, compare its zero-based position in `s` with its position in `t`. The permutation difference is the sum of the absolute values of all those position changes. Return that total over every character in the strings.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A string of distinct lowercase English letters.
+- `t`: A permutation of `s`.
+
+Let $n = \lvert\texttt{s}\rvert = \lvert\texttt{t}\rvert$. The constraint is $1 \le n \le 26$.
 
 **Return value**
 
-TODO
+Return the sum, over every character, of the absolute difference between its index in `s` and its index in `t`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abc", t = "bac"`
+- Output: `2`
+- Explanation: Characters `a` and `b` each move one position, while `c` does not move, giving $1+1+0=2$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "abcde", t = "edbac"`
+- Output: `12`
+- Explanation: The five absolute index differences are $3$, $1$, $2$, $2$, and $4$, whose sum is $12$.

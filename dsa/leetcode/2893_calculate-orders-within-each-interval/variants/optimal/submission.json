@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3160",
+  "frontend_id": "2893",
+  "title_slug": "calculate-orders-within-each-interval",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2077960332",
+  "verified_at": "2026-07-23T06:00:23+00:00"
+}

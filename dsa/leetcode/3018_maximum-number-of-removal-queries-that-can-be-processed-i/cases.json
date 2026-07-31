@@ -1,0 +1,176 @@
+{
+  "challenge_id": "lc_3018",
+  "cases": [
+    {
+      "id": "sample-increasing",
+      "name": "sample: four thresholds before the final failure",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "queries": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-both-ends",
+      "name": "sample: alternate ends to process every query",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          2
+        ],
+        "queries": [
+          2,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-use-subsequence",
+      "name": "sample: discard a prefix before processing",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          4,
+          3
+        ],
+        "queries": [
+          4,
+          3,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "single-success",
+      "name": "boundary: one value meets one query",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "queries": [
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "single-failure",
+      "name": "boundary: no value meets the first query",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "queries": [
+          8
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "interior-only",
+      "name": "trial: initial subsequence exposes an interior value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          1
+        ],
+        "queries": [
+          10
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "subsequence"
+      ]
+    },
+    {
+      "id": "query-order",
+      "name": "real: two equal thresholds succeed before a larger one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5
+        ],
+        "queries": [
+          5,
+          5,
+          6
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "order"
+      ]
+    },
+    {
+      "id": "queries-shorter",
+      "name": "real: processing stops after exhausting queries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "queries": [
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "boundary"
+      ]
+    }
+  ]
+}

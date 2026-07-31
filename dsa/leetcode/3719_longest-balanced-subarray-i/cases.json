@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3719",
+  "cases": [
+    {
+      "id": "sample-full-distinct-pairs",
+      "name": "sample: the full array has two distinct values of each parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          4,
+          3
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "sample-duplicate-even",
+      "name": "sample: a repeated even value counts once",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          2,
+          5,
+          4
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "duplicates",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "sample-proper-subarray",
+      "name": "sample: the longest balanced subarray excludes the first value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          2
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "proper-subarray"
+      ]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: one even value cannot balance itself",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-balanced-pair",
+      "name": "trial: one distinct value of each parity forms length two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100,
+          99
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "balanced-pair"
+      ]
+    },
+    {
+      "id": "trial-one-parity-only",
+      "name": "trial: an all-odd array has no balanced subarray",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          3
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-parity",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-frequency-is-not-distinctness",
+      "name": "trial: repeated evens do not match two distinct odd values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "distinctness",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-interior-pair",
+      "name": "hidden: a two-element suffix is better than the unbalanced full array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          1
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "proper-subarray"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: maximum-range values are classified only by parity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          99999
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-long-duplicate-runs",
+      "name": "hidden: duplicate runs can make a long balanced subarray",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 20,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicates",
+        "long-subarray"
+      ]
+    },
+    {
+      "id": "real-all-distinct-balanced",
+      "name": "hidden: three distinct values of each parity balance the whole array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4,
+          3,
+          6,
+          5
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-distinct",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "real-balanced-prefix",
+      "name": "hidden: the longest balance can be a prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          4,
+          6
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "prefix"
+      ]
+    }
+  ]
+}
+

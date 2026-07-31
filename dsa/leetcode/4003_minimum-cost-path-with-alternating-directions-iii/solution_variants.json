@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_4003",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Runs Dijkstra's algorithm on cell-and-parity states so every move, wait, entrance cost, and direction penalty is represented exactly.",
+      "time_complexity": "O(mn log(mn))",
+      "space_complexity": "O(mn)"
+    }
+  ]
+}

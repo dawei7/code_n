@@ -213,6 +213,8 @@ function TopHeader({
   const toggleTheme = useAppStore((s) => s.toggleTheme);
   const language = useAppStore((s) => s.language);
   const setLanguage = useAppStore((s) => s.setLanguage);
+  const cheaterMode = useAppStore((s) => s.cheaterMode);
+  const setCheaterMode = useAppStore((s) => s.setCheaterMode);
   const increaseFontSize = useAppStore((s) => s.increaseFontSize);
   const decreaseFontSize = useAppStore((s) => s.decreaseFontSize);
   const activeProfile = useAppStore((s) => s.activeProfile);
@@ -352,7 +354,35 @@ function TopHeader({
             </optgroup>
           </select>
         </div>
-        {activeSet === 'elo' && (
+        <button
+          type="button"
+          role="switch"
+          aria-checked={cheaterMode}
+          onClick={() => setCheaterMode(!cheaterMode)}
+          className={[
+            'inline-flex h-7 shrink-0 items-center gap-2 rounded-full border px-2.5 text-[10.5px] font-bold shadow-sm transition-all',
+            cheaterMode
+              ? 'border-rose-500 bg-rose-500/20 text-rose-700 ring-1 ring-rose-500/50 hover:bg-rose-500/30 dark:text-rose-200'
+              : 'border-emerald-500/80 bg-coden-bg text-coden-muted hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-300',
+          ].join(' ')}
+          title={cheaterMode
+            ? 'Cheater Mode is on: all reference solutions are visible. Career progression remains unchanged.'
+            : 'Turn on Cheater Mode to reveal all reference solutions without changing Career progression.'}
+        >
+          <span>Cheater Mode 😉</span>
+          <span
+            aria-hidden="true"
+            className={[
+              'rounded-full px-1.5 py-0.5 font-mono text-[9px] tracking-wide',
+              cheaterMode
+                ? 'bg-rose-500 text-white'
+                : 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300',
+            ].join(' ')}
+          >
+            {cheaterMode ? 'ON' : 'OFF'}
+          </span>
+        </button>
+        {(activeSet === 'elo' || activeSet === 'elo_buckets') && (
           <button
             type="button"
             onClick={onOpenEloGuide}

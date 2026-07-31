@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3999",
+    "frontend_id": "3999",
+    "title_slug": "minimum-number-of-string-groups-through-transformations",
+    "url": "https://leetcode.com/problems/minimum-number-of-string-groups-through-transformations/description/",
+    "paid_only": false,
+    "content_sha256": "1eca9053bd1eafce2675fd24ccf93724050b0a730548c9c613d63fea9b3cac9d",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "words = [\"ntgwz\",\"zwntg\"]",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "words = [\"abc\",\"cab\",\"bac\",\"acb\",\"bca\",\"cba\"]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "words = [\"leet\",\"abb\",\"bab\",\"deed\",\"edde\",\"code\",\"bba\"]",
+        "output": "5",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "870f822d32e8dc81dd17336a453484a19747aeb6ca0918667f6ef4efc5527280",
+      "reference/contract.md": "62bfa73a645990fa653c98f278e40bdca8913fb06adb038e0e1f425577574164",
+      "reference/examples.md": "1da4cc37f6f3174c6f8502c09be5c0536adf3942b774fc6b536b672bf0ca7bcd",
+      "reference/constraints.md": "0519fb50f4b09470f0401b338e9bfd86beb77f74a2ebf33ab717dc9d2a5ccfc3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3681",
+  "cases": [
+    {
+      "id": "benchmark-independent-bits-3",
+      "name": "benchmark: span 3 independent bit vectors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {"nums": [1, 2, 4]},
+      "expected": 7,
+      "tags": ["benchmark", "independent-bits"]
+    },
+    {
+      "id": "benchmark-independent-bits-6",
+      "name": "benchmark: span 6 independent bit vectors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"nums": [1, 2, 4, 8, 16, 32]},
+      "expected": 63,
+      "tags": ["benchmark", "independent-bits"]
+    },
+    {
+      "id": "benchmark-independent-bits-12",
+      "name": "benchmark: span 12 independent bit vectors",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"nums": [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]},
+      "expected": 4095,
+      "tags": ["benchmark", "independent-bits"]
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "challenge_id": "lc_3279",
+  "cases": [
+    {
+      "id": "sample-current-maximum",
+      "name": "sample: initial state is maximal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "height": 5,
+        "positions": [
+          2,
+          5
+        ],
+        "directions": "UD"
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "initial-maximum"
+      ]
+    },
+    {
+      "id": "sample-four-pistons",
+      "name": "sample: maximum after three seconds",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "height": 6,
+        "positions": [
+          0,
+          0,
+          6,
+          3
+        ],
+        "directions": "UUDU"
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "later-maximum"
+      ]
+    },
+    {
+      "id": "trial-single-bottom-outward",
+      "name": "trial: bottom endpoint reflects upward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 4,
+        "positions": [
+          0
+        ],
+        "directions": "D"
+      },
+      "expected": 4,
+      "tags": [
+        "single-piston",
+        "bottom"
+      ]
+    },
+    {
+      "id": "trial-single-top-outward",
+      "name": "trial: top endpoint reflects downward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 7,
+        "positions": [
+          7
+        ],
+        "directions": "U"
+      },
+      "expected": 7,
+      "tags": [
+        "single-piston",
+        "top"
+      ]
+    },
+    {
+      "id": "trial-all-upward",
+      "name": "trial: aligned upward pistons reach top together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 5,
+        "positions": [
+          0,
+          0,
+          0
+        ],
+        "directions": "UUU"
+      },
+      "expected": 15,
+      "tags": [
+        "aligned",
+        "all-up"
+      ]
+    },
+    {
+      "id": "trial-opposite-phases",
+      "name": "trial: opposite pistons keep a constant total",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 5,
+        "positions": [
+          0,
+          5
+        ],
+        "directions": "UD"
+      },
+      "expected": 5,
+      "tags": [
+        "opposite-phase",
+        "constant-total"
+      ]
+    },
+    {
+      "id": "trial-shared-reversal",
+      "name": "trial: several pistons reverse together",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": 8,
+        "positions": [
+          2,
+          2,
+          6,
+          6
+        ],
+        "directions": "UUDD"
+      },
+      "expected": 16,
+      "tags": [
+        "shared-event",
+        "symmetry"
+      ]
+    },
+    {
+      "id": "real-mixed-boundaries",
+      "name": "real: both endpoints and interior directions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": 10,
+        "positions": [
+          0,
+          10,
+          3,
+          7,
+          5
+        ],
+        "directions": "DUUDD"
+      },
+      "expected": 30,
+      "tags": [
+        "boundaries",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-height-one",
+      "name": "real: minimum height with many pistons",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": 1,
+        "positions": [
+          0,
+          1,
+          0,
+          1
+        ],
+        "directions": "DUDU"
+      },
+      "expected": 2,
+      "tags": [
+        "minimum-height",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "real-staggered-upward",
+      "name": "real: staggered phases produce an interior peak",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": 9,
+        "positions": [
+          0,
+          2,
+          4,
+          6,
+          8
+        ],
+        "directions": "UUUUU"
+      },
+      "expected": 33,
+      "tags": [
+        "staggered",
+        "interior-peak"
+      ]
+    },
+    {
+      "id": "real-mirrored-groups",
+      "name": "real: mirrored direction groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": 12,
+        "positions": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          11
+        ],
+        "directions": "UDUDUD"
+      },
+      "expected": 36,
+      "tags": [
+        "mixed-directions",
+        "symmetry"
+      ]
+    },
+    {
+      "id": "real-large-height",
+      "name": "real: one piston at the maximum height bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": 1000000,
+        "positions": [
+          333333
+        ],
+        "directions": "D"
+      },
+      "expected": 1000000,
+      "tags": [
+        "height-bound",
+        "single-piston"
+      ]
+    }
+  ]
+}

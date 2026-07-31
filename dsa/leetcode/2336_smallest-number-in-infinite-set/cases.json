@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2336",
+  "cases": [
+    {"id":"sample-restore-one","name":"sample: restore a removed value below the frontier","kind":"sample","visible":true,"input":{"operations":["SmallestInfiniteSet","addBack","popSmallest","popSmallest","popSmallest","addBack","popSmallest","popSmallest","popSmallest"],"arguments":[[],[2],[],[],[],[1],[],[],[]]},"expected":[null,null,1,2,3,null,1,4,5],"tags":["sample","stateful"]},
+    {"id":"trial-immediate-restore","name":"a popped value can be restored immediately","kind":"trial","visible":true,"input":{"operations":["SmallestInfiniteSet","popSmallest","addBack","popSmallest"],"arguments":[[],[],[1],[]]},"expected":[null,1,null,1],"tags":["restore"]},
+    {"id":"trial-add-present","name":"adding an untouched large value has no effect","kind":"trial","visible":true,"input":{"operations":["SmallestInfiniteSet","addBack","popSmallest"],"arguments":[[],[1000],[]]},"expected":[null,null,1],"tags":["no-op"]},
+    {"id":"trial-duplicate-add","name":"restoring the same absent value twice does not duplicate it","kind":"trial","visible":true,"input":{"operations":["SmallestInfiniteSet","popSmallest","popSmallest","addBack","addBack","popSmallest","popSmallest"],"arguments":[[],[],[],[1],[1],[],[]]},"expected":[null,1,2,null,null,1,3],"tags":["deduplication"]},
+    {"id":"trial-out-of-order-restores","name":"heap order overrides restoration order","kind":"trial","visible":true,"input":{"operations":["SmallestInfiniteSet","popSmallest","popSmallest","popSmallest","addBack","addBack","popSmallest","popSmallest"],"arguments":[[],[],[],[],[2],[1],[],[]]},"expected":[null,1,2,3,null,null,1,2],"tags":["heap-order"]},
+    {"id":"real-cross-frontier","name":"hidden: restored values drain before fresh frontier values","kind":"real","visible":false,"input":{"operations":["SmallestInfiniteSet","popSmallest","popSmallest","popSmallest","popSmallest","addBack","addBack","popSmallest","popSmallest","popSmallest"],"arguments":[[],[],[],[],[],[3],[1],[],[],[]]},"expected":[null,1,2,3,4,null,null,1,3,5],"tags":["hidden","frontier"]},
+    {"id":"real-repeat-cycle","name":"hidden: one value can be restored through repeated cycles","kind":"real","visible":false,"input":{"operations":["SmallestInfiniteSet","popSmallest","addBack","popSmallest","addBack","popSmallest","popSmallest"],"arguments":[[],[],[1],[],[1],[],[]]},"expected":[null,1,null,1,null,1,2],"tags":["hidden","repeated-restore"]}
+  ]
+}

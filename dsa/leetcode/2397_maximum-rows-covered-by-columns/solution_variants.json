@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Rows Covered by Columns and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Encodes each row as a bitmask and evaluates every exact-size column combination with a subset test.",
+      "time_complexity": "O(mn + (m + k) C(n,k))",
+      "space_complexity": "O(m)"
     }
   ]
 }

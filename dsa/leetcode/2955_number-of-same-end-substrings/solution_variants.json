@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Same-End Substrings and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses per-letter prefix counts and triangular endpoint-pair totals for every inclusive query range.",
+      "time_complexity": "O(N + Q)",
+      "space_complexity": "O(N)"
     }
   ]
 }

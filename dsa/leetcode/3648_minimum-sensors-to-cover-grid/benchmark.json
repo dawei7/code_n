@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3648",
+  "measurement_note": "Size N is both grid dimensions, with radius k = 2. Tiers 32, 128, and 512 span 16x. The accepted ceiling formula is O(1); a correct construction that allocates the N by N grid and marks every covered cell is O(N^2), must return every expected count, and must fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-grid-32",
+      "name": "benchmark: cover 32 by 32 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 32,
+        "m": 32,
+        "k": 2
+      },
+      "expected": 49,
+      "tags": [
+        "benchmark",
+        "square-grid"
+      ]
+    },
+    {
+      "id": "benchmark-grid-128",
+      "name": "benchmark: cover 128 by 128 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 128,
+        "m": 128,
+        "k": 2
+      },
+      "expected": 676,
+      "tags": [
+        "benchmark",
+        "square-grid"
+      ]
+    },
+    {
+      "id": "benchmark-grid-512",
+      "name": "benchmark: cover 512 by 512 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "n": 512,
+        "m": 512,
+        "k": 2
+      },
+      "expected": 10609,
+      "tags": [
+        "benchmark",
+        "square-grid"
+      ]
+    }
+  ]
+}

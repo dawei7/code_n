@@ -7,7 +7,11 @@ import keyword
 
 from challenges.registry import get_challenge
 from engine import solutions
-from server.app.challenge_packages import leetcode_cases_path, leetcode_solution_path
+from server.app.challenge_packages import (
+    leetcode_cases_path,
+    leetcode_metadata_path,
+    leetcode_solution_path,
+)
 
 
 def test_all_registered_challenges_have_explicit_templates() -> None:
@@ -96,7 +100,21 @@ def test_templates_match_authored_case_inputs() -> None:
         )
         if first_input is None or list(first_input) == ["args"]:
             continue
-        assert info["params"] == list(first_input), challenge_id
+        table_inputs = first_input.get("tables")
+        metadata_path = leetcode_metadata_path(challenge_id)
+        metadata = (
+            json.loads(metadata_path.read_text(encoding="utf-8"))
+            if metadata_path is not None and metadata_path.is_file()
+            else {}
+        )
+        case_params = (
+            list(table_inputs)
+            if metadata.get("category") == "pandas"
+            and list(first_input) == ["tables"]
+            and isinstance(table_inputs, dict)
+            else list(first_input)
+        )
+        assert info["params"] == case_params, challenge_id
 
 
 def test_arithmetic_progression_template_has_only_arr() -> None:

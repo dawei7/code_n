@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3710",
+    "frontend_id": "3710",
+    "title_slug": "maximum-partition-factor",
+    "url": "https://leetcode.com/problems/maximum-partition-factor/description/",
+    "paid_only": false,
+    "content_sha256": "ecf1435f1be840742304373b0a64b5e0d1785bffd004ebc84909d5ac4a4be515",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "points = [[0,0],[0,2],[2,0],[2,2]]", "output": "4", "has_explanation": true},
+      {"ordinal": 2, "input": "points = [[0,0],[0,1],[10,0]]", "output": "11", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "753545d094e97a60955a2ae83b739bcf71c8686394d682130bb1977e6a233912",
+      "reference/contract.md": "9481b07d2268d751d6e27af596cbfdc799d9412319db7c43d3168be2bf78d2f2",
+      "reference/note.md": "058cd6954bd2b4d685e497f0d0871c7f5005f9ca28813a4319b27ff4fdc7028e",
+      "reference/examples.md": "d98022394392d441e9eea84c8489fb7ac0616e20601b980e3c685cefed3a2abd",
+      "reference/constraints.md": "24760bb43bdd92bd198d497e595889e598f870b7a9217bea9eb2f1960c0f3fa8"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

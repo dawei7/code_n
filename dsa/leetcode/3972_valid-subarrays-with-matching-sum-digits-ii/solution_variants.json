@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Valid Subarrays With Matching Sum Digits II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts prefix-sum pairs with monotone windows for every leading-digit scale and a residue table for the last digit.",
+      "time_complexity": "O(n log S)",
+      "space_complexity": "O(n)"
     }
   ]
 }

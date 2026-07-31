@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Water Bottles II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Drinks the initial supply, then simulates each affordable single exchange while increasing its price.",
+      "time_complexity": "O(\\sqrt{n})",
+      "space_complexity": "O(1)"
     }
   ]
 }

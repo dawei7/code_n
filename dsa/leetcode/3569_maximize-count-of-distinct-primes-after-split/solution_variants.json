@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximize Count of Distinct Primes After Split and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Represents each prime by the interval between its first and last occurrence, then maintains the maximum interval overlap under updates with lazy heaps and a range-add segment tree.",
+      "time_complexity": "O(U log log U + (n + q) log(n + q))",
+      "space_complexity": "O(U + n + q)"
     }
   ]
 }

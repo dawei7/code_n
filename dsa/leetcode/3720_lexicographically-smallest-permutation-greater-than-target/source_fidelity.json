@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3720",
+    "frontend_id": "3720",
+    "title_slug": "lexicographically-smallest-permutation-greater-than-target",
+    "url": "https://leetcode.com/problems/lexicographically-smallest-permutation-greater-than-target/description/",
+    "paid_only": false,
+    "content_sha256": "642f2923bd3abaaee95d0e2fcaff01dc68c04f8901eb24fbdd40e418902ffeab",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"abc\", target = \"bba\"",
+        "output": "\"bca\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"leet\", target = \"code\"",
+        "output": "\"eelt\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"baba\", target = \"bbaa\"",
+        "output": "\"\"",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "615b8264c751d48042f001f8b94512222f14605c44f1ef9a9378e8d2c1e2e6b4",
+      "reference/contract.md": "519a5f739ff144fae94f6c3b160869f086278d96236f8dc834aa0f7dd46c0506",
+      "reference/examples.md": "5d9cbb98327472924d88aa039b8e8ac1fcc3e10d1a0028935b02f0a5bd9d9c4c",
+      "reference/constraints.md": "b6ca939fdf0de75d907857984259bab332f47bf19830cd322aec7c8388086602"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

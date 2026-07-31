@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3837",
+  "cases": [
+    {
+      "id": "sample-delay-one",
+      "name": "sample: one-position delay",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 1, 1], "k": 1},
+      "expected": [2, 0, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "delay", "explained-table"]
+    },
+    {
+      "id": "sample-zero-delay",
+      "name": "sample: every later position is eligible",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [3, 1, 3, 1], "k": 0},
+      "expected": [1, 1, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "zero-delay", "explained-table"]
+    },
+    {
+      "id": "trial-strict-boundary",
+      "name": "trial: equality at i plus k is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 5, 5], "k": 1},
+      "expected": [1, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "strict-boundary", "all-equal"]
+    },
+    {
+      "id": "trial-mixed-repetitions",
+      "name": "trial: repeated values cross different delay windows",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 1, 2, 1, 2], "k": 1},
+      "expected": [2, 1, 1, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "mixed-values", "multiple-counts"]
+    },
+    {
+      "id": "trial-duplicates-only-in-gap",
+      "name": "trial: duplicates confined to the excluded gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 4, 4, 9], "k": 2},
+      "expected": [0, 0, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "excluded-gap", "no-match"]
+    },
+    {
+      "id": "trial-short-alternating",
+      "name": "trial: delay removes the nearest alternating duplicate",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 1, 2, 1, 2], "k": 2},
+      "expected": [1, 1, 0, 0, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "alternating", "strict-boundary"]
+    },
+    {
+      "id": "real-single-element",
+      "name": "hidden: one element has no later index",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100000], "k": 0},
+      "expected": [0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "minimum-length", "maximum-value"]
+    },
+    {
+      "id": "real-maximum-delay",
+      "name": "hidden: maximum delay excludes every later position",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, 7, 7, 7], "k": 3},
+      "expected": [0, 0, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-delay", "all-equal"]
+    },
+    {
+      "id": "real-all-distinct",
+      "name": "hidden: distinct values never match",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 4, 5], "k": 0},
+      "expected": [0, 0, 0, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "all-distinct", "zero-delay"]
+    },
+    {
+      "id": "real-all-equal-zero-delay",
+      "name": "hidden: every later equal value contributes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 6, 6, 6, 6], "k": 0},
+      "expected": [4, 3, 2, 1, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "all-equal", "zero-delay"]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: minimum and maximum values repeat beyond the delay",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100000, 1, 100000, 100000], "k": 1},
+      "expected": [2, 0, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "value-boundaries", "delay"]
+    },
+    {
+      "id": "real-late-matches-only",
+      "name": "hidden: matches appear only near the end",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, 3, 4, 8, 3, 8, 3], "k": 2},
+      "expected": [2, 2, 0, 0, 0, 0, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "late-matches", "mixed-values"]
+    }
+  ]
+}

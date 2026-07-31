@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimizing-array-after-replacing-pairs-with-their-product](https://leetcode.com/problems/minimizing-array-after-replacing-pairs-with-their-product/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimizing-array-after-replacing-pairs-with-their-product/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimizing-array-after-replacing-pairs-with-their-product/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given an integer array `nums` and a positive integer `k`. In one operation, choose two adjacent values $x$ and $y$ whose product satisfies $xy \le k$. Remove both values and insert the single value $xy$ in their position, reducing the array length by one. The new product can participate in later operations with either adjacent neighbor.
+
+Perform this operation any number of times, including zero times. Return the smallest array length that can be reached while respecting the product limit at every merge.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: A non-empty list of integers; each value is between $0$ and $10^9$, inclusive.
+- `k`: An integer between $1$ and $10^9$, inclusive; every selected adjacent product must be at most `k`.
+
+Let $n = \lvert\texttt{nums}\rvert$, where $1 \le n \le 10^5$.
 
 **Return value**
 
-TODO
+Return the minimum possible length of `nums` after any legal sequence of adjacent-product replacements.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2, 3, 3, 7, 3, 5], k = 20`
+- Output: `3`
+- Explanation: Merge the first three values into `18` and the final two values into `15`, producing `[18, 7, 15]`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3, 3, 3, 3], k = 6`
+- Output: `4`
+- Explanation: Every adjacent product is `9`, so no operation is legal.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1000000000, 2, 0, 1000000000], k = 1`
+- Output: `1`
+- Explanation: Merge the zero with an adjacent value; the product remains zero and can continue absorbing every remaining neighbor.

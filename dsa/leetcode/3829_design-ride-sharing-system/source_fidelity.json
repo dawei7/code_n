@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3829",
+    "frontend_id": "3829",
+    "title_slug": "design-ride-sharing-system",
+    "url": "https://leetcode.com/problems/design-ride-sharing-system/description/",
+    "paid_only": false,
+    "content_sha256": "6bce020520c5626ba15efa51c7f8c7c84644591df81b4779507c0ce249127987",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "[\"RideSharingSystem\", \"addRider\", \"addDriver\", \"addRider\", \"matchDriverWithRider\", \"addDriver\", \"cancelRider\", \"matchDriverWithRider\", \"matchDriverWithRider\"]",
+        "output": "[null, null, null, null, [2, 3], null, null, [5, 1], [-1, -1]]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "[\"RideSharingSystem\", \"addRider\", \"addDriver\", \"addDriver\", \"matchDriverWithRider\", \"addRider\", \"cancelRider\", \"matchDriverWithRider\"]",
+        "output": "[null, null, null, null, [8, 8], null, null, [-1, -1]]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ba3172ac1bcfac9e16b07de4817bffa74e8e732b7c45103872637843393e6926",
+      "reference/contract.md": "ca74bfe1a4bdbd4be7425abfd6bfac32b286385906e087c9d898ee9a78245970",
+      "reference/examples.md": "e1992adcdf9dca3f804490ef4cc515d830208a8831e59ef3b4a79dc99e9fe5a3",
+      "reference/constraints.md": "d2d61a46e9a7872c144683d2ddc8030ad2f80b4b8ed99e3fdc43a7deba847cae"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

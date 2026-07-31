@@ -1,9 +1,9 @@
 def solve(nums: list[int]) -> list[int]:
     seen = set()
-    result = []
-    for num in nums:
-        if num in seen:
-            result.append(num)
+    answer = []
+    for value in nums:
+        if value in seen:
+            answer.append(value)
         else:
-            seen.add(num)
-    return result
+            seen.add(value)
+    return answer

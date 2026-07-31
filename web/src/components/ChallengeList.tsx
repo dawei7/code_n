@@ -21,6 +21,17 @@ import {
   type EloAverage,
   type FrequencyAverage,
 } from '../lib/challengeMetrics';
+import { ELO_BANDS, eloBandForRating, formatEloBand } from '../lib/eloBands';
+import {
+  FREQUENCY_BANDS,
+  formatFrequencyBand,
+  frequencyBandForValue,
+} from '../lib/frequencyBands';
+import {
+  compareLeetcodeQuestOrder,
+  leetcodeQuestGroupId,
+} from '../lib/leetcodeQuestOrder';
+import { canPreviewChallenge } from '../lib/cheaterMode';
 import {
   buildPdfBundleFilename,
   exportChallengePdfBundle,
@@ -196,6 +207,7 @@ type NavigationGroup = {
   emptyMessage?: string;
   order?: number;
   careerMode?: boolean;
+  description?: string;
 };
 
 type NavigationItem =
@@ -230,10 +242,14 @@ const RESET_SCOPE_COPY: Record<ProgressResetScope, { label: string; description:
 
 function isLeetcodeUniverse(activeSet: string): boolean {
   return activeSet === 'leetcode'
+    || activeSet === 'leetcode_id'
     || activeSet === 'elo'
+    || activeSet === 'elo_buckets'
     || activeSet === 'frequency'
+    || activeSet === 'frequency_buckets'
     || activeSet === 'leetcode_company'
     || activeSet === 'leetcode_studyplan'
+    || activeSet === 'leetcode_quest'
     || activeSet === 'neetcode'
     || activeSet === 'algomaster'
     || activeSet === 'custom';
@@ -346,6 +362,32 @@ function algomasterMemberships(challenge: ChallengeSummary): Array<{
         : [],
       order: numberField(membership.order),
       sectionOrder: numberField(membership.section_order),
+      subsetOrder: numberField(membership.subset_order),
+      problemOrder: numberField(membership.problem_order),
+    }));
+}
+
+function leetcodeQuestMemberships(challenge: ChallengeSummary): Array<{
+  subsetName: string;
+  subsetSlug: string;
+  path: string[];
+  pathOrders: number[];
+  order: number;
+  subsetOrder: number;
+  problemOrder: number;
+}> {
+  return challenge.leetcode_external_subsets
+    .filter((membership) => stringField(membership.kind) === 'leetcode_quest')
+    .map((membership) => ({
+      subsetName: stringField(membership.subset_name) || 'LeetCode Quest',
+      subsetSlug: stringField(membership.subset_slug) || 'leetcode-quest',
+      path: Array.isArray(membership.path)
+        ? membership.path.map((part) => String(part)).filter(Boolean)
+        : [],
+      pathOrders: Array.isArray(membership.path_orders)
+        ? membership.path_orders.map((value) => numberField(value))
+        : [],
+      order: numberField(membership.order),
       subsetOrder: numberField(membership.subset_order),
       problemOrder: numberField(membership.problem_order),
     }));
@@ -658,6 +700,39 @@ function buildEloGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
   return root.children;
 }
 
+function buildEloBucketGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
+  const root = makeGroup('root', 'root');
+  for (const challenge of challenges) {
+    if (challenge.elo_rating === null) continue;
+    const band = eloBandForRating(challenge.elo_rating);
+    if (band === null) continue;
+    const bandOrder = ELO_BANDS.indexOf(band);
+    const bandNode = getOrCreateChild(
+      root,
+      `elo-bucket:${bandOrder}`,
+      `${formatEloBand(band)} · ${band.label}`,
+      bandOrder,
+    );
+    bandNode.challenges.push(challenge);
+  }
+  for (const bandNode of root.children) {
+    bandNode.challenges = sortByEloAscending(bandNode.challenges);
+  }
+  return root.children.sort((left, right) => (
+    (left.order ?? Number.MAX_SAFE_INTEGER) - (right.order ?? Number.MAX_SAFE_INTEGER)
+  ));
+}
+
+function buildLeetcodeIdGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
+  if (challenges.length === 0) return [];
+  return [{
+    id: 'leetcode-id-flat',
+    label: 'All Problems by ID',
+    challenges: sortByLeetcodeId(challenges),
+    children: [],
+  }];
+}
+
 function buildFrequencyGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
   const root = makeGroup('root', 'root');
   for (const challenge of challenges) {
@@ -669,6 +744,30 @@ function buildFrequencyGroups(challenges: ChallengeSummary[]): NavigationGroup[]
     topicNode.challenges = sortByFrequencyDescending(topicNode.challenges);
   }
   return root.children;
+}
+
+function buildFrequencyBucketGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
+  const root = makeGroup('root', 'root');
+  for (const challenge of challenges) {
+    if (challenge.frequency === null) continue;
+    const band = frequencyBandForValue(challenge.frequency);
+    if (band === null) continue;
+    const bandOrder = FREQUENCY_BANDS.indexOf(band);
+    const bandNode = getOrCreateChild(
+      root,
+      `frequency-bucket:${bandOrder}`,
+      `${formatFrequencyBand(band)} · ${band.label}`,
+      bandOrder,
+    );
+    bandNode.description = `${band.relevance} LeetCode Frequency is a relative historical signal, not a guaranteed interview probability.`;
+    bandNode.challenges.push(challenge);
+  }
+  for (const bandNode of root.children) {
+    bandNode.challenges = sortByFrequencyDescending(bandNode.challenges);
+  }
+  return root.children.sort((left, right) => (
+    (left.order ?? Number.MAX_SAFE_INTEGER) - (right.order ?? Number.MAX_SAFE_INTEGER)
+  ));
 }
 
 function buildCustomGroups(
@@ -897,6 +996,71 @@ function buildAlgomasterGroups(challenges: ChallengeSummary[]): NavigationGroup[
   });
 }
 
+function leetcodeQuestLeafGroupId(
+  membership: ReturnType<typeof leetcodeQuestMemberships>[number],
+): string {
+  return leetcodeQuestGroupId(membership.subsetSlug, membership.path);
+}
+
+function buildLeetcodeQuestGroups(challenges: ChallengeSummary[]): NavigationGroup[] {
+  const root = makeGroup('root', 'root');
+  for (const challenge of challenges) {
+    for (const membership of leetcodeQuestMemberships(challenge)) {
+      let current = getOrCreateChild(
+        root,
+        `leetcode-quest:${membership.subsetSlug}`,
+        membership.subsetName,
+        membership.subsetOrder,
+      );
+      membership.path.forEach((part, index) => {
+        current = getOrCreateChild(
+          current,
+          leetcodeQuestGroupId(membership.subsetSlug, membership.path.slice(0, index + 1)),
+          part,
+          membership.pathOrders[index] ?? Number.MAX_SAFE_INTEGER,
+        );
+      });
+      current.challenges.push(challenge);
+    }
+  }
+  const sortRecursive = (group: NavigationGroup) => {
+    group.children.sort((left, right) => {
+      const byOrder = (left.order ?? Number.MAX_SAFE_INTEGER)
+        - (right.order ?? Number.MAX_SAFE_INTEGER);
+      if (byOrder !== 0) return byOrder;
+      return left.label.localeCompare(right.label);
+    });
+    group.challenges = [...group.challenges].sort((left, right) => {
+      const leftMembership = leetcodeQuestMemberships(left).find(
+        (membership) => leetcodeQuestLeafGroupId(membership) === group.id,
+      );
+      const rightMembership = leetcodeQuestMemberships(right).find(
+        (membership) => leetcodeQuestLeafGroupId(membership) === group.id,
+      );
+      return compareLeetcodeQuestOrder(
+        {
+          problemOrder: leftMembership?.problemOrder ?? 0,
+          order: leftMembership?.order ?? 0,
+          frontendId: leetcodeProblemOrder(left),
+        },
+        {
+          problemOrder: rightMembership?.problemOrder ?? 0,
+          order: rightMembership?.order ?? 0,
+          frontendId: leetcodeProblemOrder(right),
+        },
+      );
+    });
+    group.children.forEach(sortRecursive);
+  };
+  root.children.forEach(sortRecursive);
+  return root.children.sort((left, right) => {
+    const byOrder = (left.order ?? Number.MAX_SAFE_INTEGER)
+      - (right.order ?? Number.MAX_SAFE_INTEGER);
+    if (byOrder !== 0) return byOrder;
+    return left.label.localeCompare(right.label);
+  });
+}
+
 function studyPlanLeafGroupId(membership: ReturnType<typeof studyPlanMemberships>[number]): string {
   let id = `study:${membership.planSlug}`;
   membership.path.forEach((part, index) => {
@@ -934,7 +1098,11 @@ function buildCareerUnlockMap(
       (challengeId) => challengeOrder.get(challengeId) ?? Number.MAX_SAFE_INTEGER,
     );
   }
-  if (activeSet !== 'leetcode_studyplan' && activeSet !== 'neetcode') {
+  if (
+    activeSet !== 'leetcode_studyplan'
+    && activeSet !== 'leetcode_quest'
+    && activeSet !== 'neetcode'
+  ) {
     return new Map();
   }
 
@@ -964,6 +1132,21 @@ function buildCareerUnlockMap(
         ]);
       }
     }
+    if (activeSet === 'leetcode_quest') {
+      for (const membership of leetcodeQuestMemberships(challenge)) {
+        const key = leetcodeQuestLeafGroupId(membership);
+        sequences.set(key, [
+          ...(sequences.get(key) ?? []),
+          {
+            challenge,
+            order: resolveCareerSequenceOrder(
+              membership.problemOrder,
+              membership.order || leetcodeProblemOrder(challenge),
+            ),
+          },
+        ]);
+      }
+    }
   }
 
   const result = new Map<string, Set<string>>();
@@ -989,17 +1172,32 @@ function buildNavigationGroups(
   if (activeSet === 'leetcode') {
     return buildCategoryGroups(challenges);
   }
+  if (activeSet === 'leetcode_id') {
+    return buildLeetcodeIdGroups(challenges);
+  }
   if (activeSet === 'elo') {
     return buildEloGroups(challenges);
   }
+  if (activeSet === 'elo_buckets') {
+    return buildEloBucketGroups(challenges);
+  }
   if (activeSet === 'frequency') {
     return buildFrequencyGroups(challenges);
+  }
+  if (activeSet === 'frequency_buckets') {
+    return buildFrequencyBucketGroups(challenges);
   }
   if (activeSet === 'leetcode_company') {
     return buildCompanyGroups(challenges);
   }
   if (activeSet === 'leetcode_studyplan') {
     return buildStudyPlanGroups(challenges).map((group) => ({
+      ...group,
+      careerMode: true,
+    }));
+  }
+  if (activeSet === 'leetcode_quest') {
+    return buildLeetcodeQuestGroups(challenges).map((group) => ({
       ...group,
       careerMode: true,
     }));
@@ -1054,7 +1252,7 @@ function challengesInSetOrder(
   filteredChallenges: ChallengeSummary[],
   activeSet: string,
 ): ChallengeSummary[] {
-  if (activeSet === 'leetcode') {
+  if (activeSet === 'leetcode' || activeSet === 'leetcode_id') {
     return sortByLeetcodeId(filteredChallenges);
   }
   const ordered = uniqueChallengesInOrder(
@@ -1706,6 +1904,7 @@ export function ChallengeList() {
   const loadProgress = useAppStore((s) => s.loadProgress);
   const clearSolutionStateAfterReset = useAppStore((s) => s.clearSolutionStateAfterReset);
   const completed = useAppStore((s) => s.progress?.completed ?? []);
+  const cheaterMode = useAppStore((s) => s.cheaterMode);
   const leetcodeSubmissions = useAppStore((s) => s.progress?.leetcode_submissions ?? {});
   const activeSet = useAppStore((s) => s.activeSet);
   const activeCustomSetId = useAppStore((s) => s.activeCustomSetId);
@@ -1727,6 +1926,7 @@ export function ChallengeList() {
   const [resetError, setResetError] = useState<string | null>(null);
   const [resetNotice, setResetNotice] = useState<SubmissionNotice | null>(null);
   const [showCustomBuilder, setShowCustomBuilder] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const completedSet = useMemo(() => new Set(completed), [completed]);
   const submittedSet = useMemo(() => new Set(Object.keys(leetcodeSubmissions)), [leetcodeSubmissions]);
   const activeCustomProblemSets = useMemo(() => {
@@ -1740,6 +1940,11 @@ export function ChallengeList() {
 
   const toggleCategory = (category: string) => {
     setExpanded((prev) => ({ ...prev, [category]: !prev[category] }));
+  };
+
+  const applySearch = () => {
+    setSearchQuery(searchInputRef.current?.value.trim() ?? '');
+    setExpanded({});
   };
 
 
@@ -2113,6 +2318,7 @@ export function ChallengeList() {
           : `Send the reviewed ${c.leetcode_submission_language || 'platform-native'} solution to LeetCode`;
     const contextUnlocked = groupId ? careerUnlocks.get(groupId)?.has(c.id) : undefined;
     const isLocked = contextUnlocked === undefined ? !c.unlocked : !contextUnlocked;
+    const canSelect = canPreviewChallenge(isLocked, cheaterMode);
     const displayTitle = formatChallengeTitle(c, numberForChallenge(c, categoryContext));
     const leetcodeId = numericLeetcodeId(c);
     const eloDisplay = isLeetcodeUniverse(activeSet)
@@ -2140,19 +2346,25 @@ export function ChallengeList() {
         </div>
         <button
           type="button"
-          onClick={() => !isLocked && selectChallenge(c.id)}
-          disabled={isLocked}
+          onClick={() => canSelect && selectChallenge(c.id)}
+          disabled={!canSelect}
           className={[
             'flex-1 min-w-0 text-left px-2 py-1.5 rounded text-sm',
             'flex items-center gap-2',
             isLocked
-              ? 'opacity-40 cursor-not-allowed'
+              ? cheaterMode
+                ? 'opacity-70 cursor-pointer hover:bg-coden-border transition-colors duration-150'
+                : 'opacity-40 cursor-not-allowed'
               : 'hover:bg-coden-border transition-colors duration-150',
             isCurrent
               ? 'bg-sky-100 text-slate-950 ring-1 ring-sky-300 shadow-inner dark:bg-coden-border dark:text-coden-text dark:ring-0'
               : 'text-coden-text',
           ].join(' ')}
-          title={isLocked ? "Locked in Career Mode (complete the previous task in this sequence first)" : `${c.name} · ${c.required_complexity} · ${c.id}`}
+          title={isLocked
+            ? cheaterMode
+              ? 'Preview with Cheater Mode; this problem remains locked in Career progression'
+              : 'Locked in Career Mode (complete the previous task in this sequence first)'
+            : `${c.name} · ${c.required_complexity} · ${c.id}`}
         >
           {isLocked && <span className="text-coden-muted shrink-0 text-xs" title="Locked in this career sequence">◆</span>}
           <div className="flex-1 min-w-0">
@@ -2266,6 +2478,7 @@ export function ChallengeList() {
           <div className="flex items-center gap-1">
             <button
               onClick={() => toggleCategory(group.id)}
+              title={group.description}
               className="group flex min-w-0 flex-1 items-start rounded px-2 py-1.5 text-xs font-semibold text-coden-muted transition-colors hover:bg-coden-border/35 hover:text-coden-text select-none"
             >
               <span
@@ -2357,14 +2570,31 @@ export function ChallengeList() {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       <div className="p-3 shrink-0 border-b border-coden-border bg-coden-surface">
-        <input 
-          type="text" 
-          placeholder="Search challenges"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          disabled={challengesLoading && challenges.length === 0}
-          className="w-full bg-coden-bg border border-coden-border rounded px-3 py-1.5 text-sm text-coden-text placeholder-coden-muted focus:outline-none focus:border-coden-accent transition-colors"
-        />
+        <form
+          role="search"
+          className="flex w-full overflow-hidden rounded border border-coden-border bg-coden-bg transition-colors focus-within:border-coden-accent"
+          onSubmit={(event) => {
+            event.preventDefault();
+            applySearch();
+          }}
+        >
+          <label htmlFor="challenge-search" className="sr-only">Search challenges</label>
+          <input
+            id="challenge-search"
+            ref={searchInputRef}
+            type="search"
+            placeholder="Search challenges"
+            disabled={challengesLoading && challenges.length === 0}
+            className="min-w-0 flex-1 border-0 bg-transparent px-3 py-1.5 text-sm text-coden-text placeholder-coden-muted focus:outline-none"
+          />
+          <button
+            type="submit"
+            disabled={challengesLoading && challenges.length === 0}
+            className="shrink-0 border-0 border-l border-coden-border bg-coden-border/40 px-3 py-1.5 text-sm font-semibold text-coden-text hover:bg-coden-border focus:outline-none focus-visible:bg-coden-border disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
+          >
+            Search
+          </button>
+        </form>
         {isLeetcodeUniverse(activeSet) && (
           <select
             aria-label="Filter by difficulty"
@@ -2552,7 +2782,16 @@ export function ChallengeList() {
           </div>
         )}
 
-        {!challengesLoading && !challengesError && navigationGroups.map((group) => renderGroup(group))}
+        {!challengesLoading && !challengesError && activeSet === 'leetcode_id' && (
+          <ul className="space-y-0.5">
+            {navigationGroups.flatMap((group) => group.challenges).map((challenge) => (
+              renderChallengeRow(challenge)
+            ))}
+          </ul>
+        )}
+
+        {!challengesLoading && !challengesError && activeSet !== 'leetcode_id'
+          && navigationGroups.map((group) => renderGroup(group))}
 
         {!challengesLoading && !challengesError && navigationGroups.length === 0 && activeSet === 'custom' && (
           <div className="flex flex-col items-center justify-center p-8 text-center text-coden-muted">

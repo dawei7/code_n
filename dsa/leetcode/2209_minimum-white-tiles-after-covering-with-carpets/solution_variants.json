@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum White Tiles After Covering With Carpets and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses prefix dynamic programming to choose whether each final tile stays visible or belongs to the last carpet.",
+      "time_complexity": "O(cn)",
+      "space_complexity": "O(n)"
     }
   ]
 }

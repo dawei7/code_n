@@ -2,8 +2,33 @@
   "challenge_id": "lc_2956",
   "cases": [
     {
-      "id": "sample-overlap-with-duplicates",
-      "name": "sample: overlap with duplicates",
+      "id": "sample-duplicate-overlap",
+      "name": "sample: duplicate values count by index",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          2,
+          3,
+          2
+        ],
+        "nums2": [
+          1,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        1
+      ],
+      "tags": [
+        "sample",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "sample-asymmetric-overlap",
+      "name": "sample: asymmetric duplicate overlap",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -28,12 +53,13 @@
         4
       ],
       "tags": [
-        "sample"
+        "sample",
+        "duplicates"
       ]
     },
     {
       "id": "sample-disjoint",
-      "name": "sample: disjoint arrays",
+      "name": "sample: no common value",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -53,22 +79,128 @@
         0
       ],
       "tags": [
-        "sample"
+        "sample",
+        "disjoint"
       ]
     },
     {
-      "id": "sample-all-common",
-      "name": "sample: all values common",
-      "kind": "sample",
+      "id": "trial-single-equal",
+      "name": "trial: equal singleton arrays",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          1
+        ]
+      },
+      "expected": [
+        1,
+        1
+      ],
+      "tags": [
+        "boundary",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-single-distinct",
+      "name": "trial: distinct singleton arrays",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1
+        ],
+        "nums2": [
+          100
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "boundary",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-all-common",
+      "name": "trial: every index has a common value",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums1": [
           1,
-          1
+          1,
+          2,
+          2
+        ],
+        "nums2": [
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        4,
+        3
+      ],
+      "tags": [
+        "duplicates",
+        "all-common"
+      ]
+    },
+    {
+      "id": "real-one-way-frequency",
+      "name": "real: one shared value with unequal frequencies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          7,
+          7,
+          7,
+          8,
+          9
         ],
         "nums2": [
           1,
-          1
+          7,
+          2,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "frequency"
+      ]
+    },
+    {
+      "id": "real-partial-distinct",
+      "name": "real: several distinct values with partial overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "nums2": [
+          3,
+          5,
+          7,
+          9
         ]
       },
       "expected": [
@@ -76,62 +208,8 @@
         2
       ],
       "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-asymmetric-duplicates",
-      "name": "trial: asymmetric duplicates",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums1": [
-          1,
-          2,
-          2,
-          3,
-          4
-        ],
-        "nums2": [
-          2,
-          4,
-          4,
-          5
-        ]
-      },
-      "expected": [
-        3,
-        3
-      ],
-      "tags": [
-        "duplicates"
-      ]
-    },
-    {
-      "id": "real-negative-values",
-      "name": "real: negative and zero values",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums1": [
-          -1,
-          0,
-          1,
-          1
-        ],
-        "nums2": [
-          0,
-          2,
-          -1,
-          -1
-        ]
-      },
-      "expected": [
-        2,
-        3
-      ],
-      "tags": [
-        "hidden"
+        "hidden",
+        "partial-overlap"
       ]
     }
   ]

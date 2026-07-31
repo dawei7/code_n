@@ -8,48 +8,50 @@
 | Category | Algorithms |
 | Topics | Math, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-moves-to-capture-the-queen](https://leetcode.com/problems/minimum-moves-to-capture-the-queen/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-moves-to-capture-the-queen/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-moves-to-capture-the-queen/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+A 1-indexed $8\times8$ chessboard contains a white rook, a white bishop, and a
+stationary black queen. The rook is at `(a, b)`, the bishop is at `(c, d)`, and
+the queen is at `(e, f)`; the three squares are distinct.
+
+Only the white pieces may move. A rook moves any positive number of squares
+horizontally or vertically, while a bishop moves any positive number of
+squares diagonally. Neither piece may jump over another piece. A move captures
+the queen when the moving white piece reaches its square.
+
+Return the minimum number of white moves required to capture the queen.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `a`: the rook's row
+- `b`: the rook's column
+- `c`: the bishop's row
+- `d`: the bishop's column
+- `e`: the queen's row
+- `f`: the queen's column
+
+Every coordinate is between 1 and 8 inclusive, and no two pieces occupy the
+same square.
 
 **Return value**
 
-TODO
+Return the minimum number of legal white-piece moves needed for a capture.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `a = 1, b = 1, c = 8, d = 8, e = 2, f = 3`
+- Output: `2`
+
+Neither white piece initially attacks the queen, but the rook can capture it
+after repositioning once.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `a = 5, b = 3, c = 3, d = 4, e = 5, f = 2`
+- Output: `1`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The rook and bishop each have an unobstructed capture in one move.

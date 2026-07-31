@@ -1,0 +1,89 @@
+{
+  "challenge_id": "lc_3391",
+  "cases": [
+    {
+      "id": "sample-layer-leader-changes",
+      "name": "sample: layer leader changes after updates",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": ["Matrix3D", "setCell", "largestMatrix", "setCell", "largestMatrix", "setCell", "largestMatrix"],
+        "arguments": [[3], [0, 0, 0], [], [1, 1, 2], [], [0, 0, 1], []]
+      },
+      "expected": [null, null, 0, null, 1, null, 0],
+      "tags": ["sample", "leader-change"]
+    },
+    {
+      "id": "sample-all-zero-tie",
+      "name": "sample: removing the only one restores the largest zero layer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "operations": ["Matrix3D", "setCell", "largestMatrix", "unsetCell", "largestMatrix"],
+        "arguments": [[4], [2, 1, 1], [], [2, 1, 1], []]
+      },
+      "expected": [null, null, 2, null, 3],
+      "tags": ["sample", "all-zero", "tie-break"]
+    },
+    {
+      "id": "trial-idempotent-updates",
+      "name": "trial: duplicate sets and unsets are idempotent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Matrix3D", "largestMatrix", "setCell", "setCell", "largestMatrix", "unsetCell", "unsetCell", "largestMatrix"],
+        "arguments": [[5], [], [1, 2, 3], [1, 2, 3], [], [1, 2, 3], [1, 2, 3], []]
+      },
+      "expected": [null, 4, null, null, 1, null, null, 4],
+      "tags": ["idempotence", "duplicates"]
+    },
+    {
+      "id": "trial-largest-index-wins",
+      "name": "trial: largest index wins every count tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "operations": ["Matrix3D", "setCell", "setCell", "largestMatrix", "setCell", "largestMatrix", "unsetCell", "largestMatrix"],
+        "arguments": [[4], [0, 0, 0], [3, 0, 0], [], [0, 0, 1], [], [0, 0, 1], []]
+      },
+      "expected": [null, null, null, 3, null, 0, null, 3],
+      "tags": ["tie-break", "largest-index"]
+    },
+    {
+      "id": "real-coordinates-are-distinct",
+      "name": "real: equal trailing coordinates on different layers are distinct cells",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Matrix3D", "setCell", "setCell", "setCell", "largestMatrix", "unsetCell", "largestMatrix"],
+        "arguments": [[3], [0, 2, 2], [1, 2, 2], [1, 2, 1], [], [1, 2, 1], []]
+      },
+      "expected": [null, null, null, null, 1, null, 1],
+      "tags": ["coordinate-identity", "layers"]
+    },
+    {
+      "id": "real-discard-stale-leaders",
+      "name": "real: lazy heap discards several obsolete leader records",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Matrix3D", "setCell", "setCell", "setCell", "setCell", "setCell", "largestMatrix", "unsetCell", "unsetCell", "unsetCell", "largestMatrix"],
+        "arguments": [[4], [2, 0, 0], [2, 0, 1], [2, 0, 2], [3, 1, 0], [3, 1, 1], [], [2, 0, 0], [2, 0, 1], [2, 0, 2], []]
+      },
+      "expected": [null, null, null, null, null, null, 2, null, null, null, 3],
+      "tags": ["lazy-deletion", "stale-heap"]
+    },
+    {
+      "id": "real-single-layer",
+      "name": "real: one-layer cube always returns zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "operations": ["Matrix3D", "largestMatrix", "setCell", "largestMatrix", "unsetCell", "largestMatrix"],
+        "arguments": [[1], [], [0, 0, 0], [], [0, 0, 0], []]
+      },
+      "expected": [null, 0, null, 0, null, 0],
+      "tags": ["minimum-dimension", "boundary"]
+    }
+  ]
+}

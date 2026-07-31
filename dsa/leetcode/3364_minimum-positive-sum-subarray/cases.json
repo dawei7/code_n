@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-positive-one",
-      "name": "sample: minimum positive sum is one",
+      "name": "sample: smallest positive sum is one",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +19,12 @@
       "expected": 1,
       "tags": [
         "sample",
-        "prefix-sum"
+        "mixed-signs"
       ]
     },
     {
-      "id": "sample-none",
-      "name": "sample: no positive sum in length range",
+      "id": "sample-no-positive-window",
+      "name": "sample: no allowed subarray has positive sum",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -40,12 +40,12 @@
       "expected": -1,
       "tags": [
         "sample",
-        "none"
+        "no-solution"
       ]
     },
     {
       "id": "sample-all-positive",
-      "name": "sample: shortest positive pair",
+      "name": "sample: shortest allowed prefix is optimal",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -61,45 +61,107 @@
       "expected": 3,
       "tags": [
         "sample",
-        "positive"
+        "all-positive"
       ]
     },
     {
-      "id": "trial-single-length",
-      "name": "trial: exact length window only",
+      "id": "trial-fixed-length",
+      "name": "trial: lower and upper bounds select one length",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           5,
-          -6,
-          4,
-          1
+          -2,
+          1,
+          -1
         ],
         "l": 3,
         "r": 3
       },
-      "expected": 3,
+      "expected": 4,
       "tags": [
         "edge",
-        "exact-length"
+        "fixed-length"
       ]
     },
     {
-      "id": "real-mixed-ranges",
-      "name": "real: several competing positive windows",
+      "id": "trial-zero-is-not-positive",
+      "name": "trial: zero-sum windows are excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          -1,
+          0,
+          2,
+          -2
+        ],
+        "l": 2,
+        "r": 3
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "strictly-positive"
+      ]
+    },
+    {
+      "id": "trial-single-elements",
+      "name": "trial: length one considers individual values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -5,
+          7,
+          -1
+        ],
+        "l": 1,
+        "r": 1
+      },
+      "expected": 7,
+      "tags": [
+        "edge",
+        "single-element"
+      ]
+    },
+    {
+      "id": "real-all-negative",
+      "name": "real: every possible sum is negative",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          7,
-          -9,
-          4,
+          -5,
           -1,
-          2,
-          -3,
-          6,
-          -2
+          -9
+        ],
+        "l": 1,
+        "r": 3
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "all-negative"
+      ]
+    },
+    {
+      "id": "real-mixed-lengths",
+      "name": "real: mixed signs across several allowed lengths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          -7,
+          4,
+          -6,
+          3,
+          -2,
+          5,
+          -9
         ],
         "l": 2,
         "r": 5
@@ -107,7 +169,56 @@
       "expected": 1,
       "tags": [
         "real",
-        "prefix-sum"
+        "mixed-signs"
+      ]
+    },
+    {
+      "id": "real-positive-near-end",
+      "name": "real: the best window occurs near the final index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1000,
+          -1000,
+          -1000,
+          -1000,
+          -1000,
+          -1000,
+          -1000,
+          1000,
+          1
+        ],
+        "l": 2,
+        "r": 4
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "boundary-window"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "real: large positive values and long minimum length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000
+        ],
+        "l": 4,
+        "r": 6
+      },
+      "expected": 4000,
+      "tags": [
+        "real",
+        "maximum-values"
       ]
     }
   ]

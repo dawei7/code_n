@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3980",
+    "frontend_id": "3980",
+    "title_slug": "minimum-operations-to-transform-binary-string",
+    "url": "https://leetcode.com/problems/minimum-operations-to-transform-binary-string/description/",
+    "paid_only": false,
+    "content_sha256": "91da90fa9a8b0a3d379a5381a92029f4f96ae2df3e65580f12f61c781a68d659",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s1 = \"11\", s2 = \"00\"",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s1 = \"01\", s2 = \"10\"",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s1 = \"1\", s2 = \"0\"",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "84d7b2b7150785a949db6a022f692e0643f3b8e57b95d013572f473d4ab640e8",
+      "reference/contract.md": "1f6b566febf8fd40fc3f6f3c2599bf15b8d68eee4d2acf63071f8df304dfc708",
+      "reference/examples.md": "92c98ef923ecd6b4ad21c65d4dc3b630983e485cf3bed81c5abcb53155bf174e",
+      "reference/constraints.md": "fc4c6eb1a8e249f45d7a576df7d24cbe9c5e22f1ffd471c45a0bd668794ff183"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

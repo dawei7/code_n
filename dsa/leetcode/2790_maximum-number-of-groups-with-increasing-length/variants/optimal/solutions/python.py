@@ -1,27 +1,18 @@
 def solve(usageLimits: list[int]) -> int:
-    """
-    Calculates the maximum number of groups with strictly increasing lengths.
-    
-    The strategy is to sort the limits and greedily build groups.
-    If we want to form 'k' groups, the smallest possible sizes are 1, 2, ..., k.
-    The total number of items required is k*(k+1)/2.
-    However, because we have constraints on individual item counts, we sort
-    the limits and keep track of how many items we have 'accumulated' to 
-    satisfy the increasing group size requirements.
-    """
-    usageLimits.sort()
-    
-    groups = 0
-    total_items_accumulated = 0
-    
+    n = len(usageLimits)
+    frequencies = [0] * (n + 1)
+
     for limit in usageLimits:
-        # If the current item's limit allows us to increase the size of the 
-        # next group (which would be groups + 1), we increment the group count.
-        # We track total_items_accumulated to ensure we have enough items 
-        # to satisfy the requirement of having strictly increasing sizes.
-        total_items_accumulated += limit
-        if total_items_accumulated >= (groups + 1):
-            groups += 1
-            total_items_accumulated -= groups
-            
+        frequencies[min(limit, n)] += 1
+
+    available = 0
+    groups = 0
+
+    for limit in range(1, n + 1):
+        for _ in range(frequencies[limit]):
+            available += limit
+            required = (groups + 1) * (groups + 2) // 2
+            if available >= required:
+                groups += 1
+
     return groups

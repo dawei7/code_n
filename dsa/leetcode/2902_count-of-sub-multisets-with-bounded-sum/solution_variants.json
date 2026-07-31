@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count of Sub-Multisets With Bounded Sum and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Groups equal values and applies a sliding-window bounded-knapsack transition for each positive value.",
+      "time_complexity": "O(n + Dr)",
+      "space_complexity": "O(r)"
     }
   ]
 }

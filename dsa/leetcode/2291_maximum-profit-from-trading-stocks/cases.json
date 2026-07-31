@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2291",
+  "cases": [
+    {"id":"sample-combination","name":"sample: three stocks fill the budget","kind":"sample","visible":true,"input":{"present":[5,4,6,2,3],"future":[8,5,4,3,5],"budget":10},"expected":6,"tags":["sample","combination"]},
+    {"id":"sample-single-best","name":"sample: one stock beats affordable alternatives","kind":"sample","visible":true,"input":{"present":[2,2,5],"future":[3,4,10],"budget":6},"expected":5,"tags":["sample","single-stock"]},
+    {"id":"sample-zero-profit","name":"sample: no affordable positive profit","kind":"sample","visible":true,"input":{"present":[3,3,12],"future":[0,3,15],"budget":10},"expected":0,"tags":["sample","skip-losses"]},
+    {"id":"trial-zero-budget-free-stocks","name":"zero-price gains remain available with zero budget","kind":"trial","visible":true,"input":{"present":[0,0,2],"future":[5,1,3],"budget":0},"expected":6,"tags":["zero-cost","zero-budget"]},
+    {"id":"trial-exact-combination","name":"a combination beats the largest individual gain","kind":"trial","visible":true,"input":{"present":[4,5,6],"future":[10,12,14],"budget":10},"expected":14,"tags":["exact-budget","combination"]},
+    {"id":"real-each-stock-once","name":"hidden: a cheap stock cannot be reused","kind":"real","visible":false,"input":{"present":[1,4],"future":[3,9],"budget":4},"expected":5,"tags":["hidden","zero-one"]},
+    {"id":"real-ignore-loss-with-space","name":"hidden: unused budget is better than a loss","kind":"real","visible":false,"input":{"present":[2,3,4],"future":[1,8,2],"budget":9},"expected":5,"tags":["hidden","negative-gain"]},
+    {"id":"real-all-profitable","name":"hidden: every profitable stock fits","kind":"real","visible":false,"input":{"present":[2,3,1],"future":[4,8,2],"budget":20},"expected":8,"tags":["hidden","large-budget"]},
+    {"id":"real-duplicate-prices","name":"hidden: equal prices remain distinct choices","kind":"real","visible":false,"input":{"present":[3,3,3,3],"future":[4,8,7,6],"budget":6},"expected":9,"tags":["hidden","duplicates"]}
+  ]
+}

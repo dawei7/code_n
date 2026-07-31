@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_108", "frontend_id": "108", "title_slug": "convert-sorted-array-to-binary-search-tree", "url": "https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/", "paid_only": false, "content_sha256": "dec3d12000d3bc50675c8aeab1a2cb240fc7bc048a3b5ea3bc0d3e31ab7749b5", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [-10,-3,0,5,9]", "output": "[0,-3,9,-10,null,5]", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [1,3]", "output": "[3,1]", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 3, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 3}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "41ee5e7c99b1ef4198b31da4f81888465ce4372f3849bd457c6238af2f65adf4", "reference/contract.md": "5bb9e6ee54131c0e04b33aa72b21229b5bddeb63c3679316ab08dd6ee37d6854", "reference/examples.md": "8d5d2adcf4aa866f0a82c2986c1e8de019b274f5048ba8c815201a3688104028", "reference/constraints.md": "2f1f85c4fe6ce81a9f0f6930dfec367575a94d54ffc1561c45f2cadef20a25fe"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

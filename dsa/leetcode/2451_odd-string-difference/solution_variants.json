@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Odd String Difference and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Infers the repeated difference vector from the first three words and scans once for the mismatch.",
+      "time_complexity": "O(p m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of ZigZag Arrays III and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts small alphabets with alternating-direction DP and evaluates the resulting degree-n counting polynomial by Lagrange interpolation.",
+      "time_complexity": "O(n^3)",
+      "space_complexity": "O(n)"
     }
   ]
 }

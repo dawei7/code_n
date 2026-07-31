@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Subarrays That Match a Pattern I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Checks each candidate start against the pattern and stops at its first mismatching adjacent relation.",
+      "time_complexity": "O((n-m)m)",
+      "space_complexity": "O(1)"
     }
   ]
 }

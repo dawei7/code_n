@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2156",
+  "cases": [
+    {"id": "sample-repeated-letters", "name": "sample: repeated letters form the first matching hash", "kind": "sample", "visible": true, "input": {"s": "leetcode", "power": 7, "modulo": 20, "k": 2, "hashValue": 0}, "expected": "ee", "tags": ["sample", "rolling-hash"]},
+    {"id": "sample-collision-first", "name": "sample: return the earlier of two hash collisions", "kind": "sample", "visible": true, "input": {"s": "fbxzaad", "power": 31, "modulo": 100, "k": 3, "hashValue": 32}, "expected": "fbx", "tags": ["sample", "collision", "leftmost"]},
+    {"id": "trial-single-character", "name": "one-character windows use alphabet values directly", "kind": "trial", "visible": true, "input": {"s": "azby", "power": 17, "modulo": 29, "k": 1, "hashValue": 26}, "expected": "z", "tags": ["k-one"]},
+    {"id": "trial-whole-string", "name": "the only window is the entire string", "kind": "trial", "visible": true, "input": {"s": "abc", "power": 2, "modulo": 100, "k": 3, "hashValue": 17}, "expected": "abc", "tags": ["whole-string"]},
+    {"id": "trial-modulo-one", "name": "modulus one makes every hash zero", "kind": "trial", "visible": true, "input": {"s": "algorithm", "power": 1000000000, "modulo": 1, "k": 4, "hashValue": 0}, "expected": "algo", "tags": ["modulo-one", "leftmost"]},
+    {"id": "trial-later-match", "name": "the matching window occurs after several nonmatches", "kind": "trial", "visible": true, "input": {"s": "abcdef", "power": 3, "modulo": 101, "k": 2, "hashValue": 19}, "expected": "de", "tags": ["later-window"]},
+    {"id": "real-overlapping-equal-windows", "name": "hidden: equal overlapping windows all collide", "kind": "real", "visible": false, "input": {"s": "aaaaa", "power": 7, "modulo": 13, "k": 3, "hashValue": 5}, "expected": "aaa", "tags": ["hidden", "overlap", "leftmost"]},
+    {"id": "real-power-multiple-of-modulus", "name": "hidden: higher powers vanish modulo the modulus", "kind": "real", "visible": false, "input": {"s": "xyzabc", "power": 1000000000, "modulo": 1000000000, "k": 3, "hashValue": 24}, "expected": "xyz", "tags": ["hidden", "large-values", "zero-base-residue"]}
+  ]
+}

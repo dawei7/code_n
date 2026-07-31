@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-one-two-one",
-      "name": "sample: repeated one with good subsequences",
+      "name": "sample: repeated endpoint value",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,12 +16,12 @@
       "expected": 14,
       "tags": [
         "sample",
-        "subsequence-dp"
+        "bidirectional-extensions"
       ]
     },
     {
       "id": "sample-three-four-five",
-      "name": "sample: increasing chain contributes all prefixes",
+      "name": "sample: increasing consecutive values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -34,12 +34,28 @@
       "expected": 40,
       "tags": [
         "sample",
-        "subsequence-dp"
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: zero singleton contributes zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "edge",
+        "zero"
       ]
     },
     {
       "id": "trial-zero-one-zero",
-      "name": "trial: zero values still form good subsequences",
+      "name": "trial: zero counts still enable extensions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -51,50 +67,130 @@
       },
       "expected": 4,
       "tags": [
-        "edge",
-        "zero"
+        "zero",
+        "repeated-value"
       ]
     },
     {
-      "id": "trial-duplicates",
-      "name": "trial: duplicates multiply subsequences by index choice",
+      "id": "trial-equal-values",
+      "name": "trial: equal values form only singletons",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          2,
           1,
-          2,
-          3
+          1
         ]
       },
-      "expected": 43,
+      "expected": 2,
       "tags": [
-        "regression",
-        "duplicates"
+        "duplicates",
+        "singletons"
       ]
     },
     {
-      "id": "real-zigzag-values",
-      "name": "real: alternating adjacent values",
+      "id": "real-gap-and-neighbor",
+      "name": "real: one gap value and one adjacent pair",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          4,
-          5,
-          4,
           3,
-          4,
-          5,
           6,
-          5
+          4
         ]
       },
-      "expected": 1224,
+      "expected": 20,
       "tags": [
-        "real",
-        "subsequence-dp"
+        "gaps",
+        "subsequence"
+      ]
+    },
+    {
+      "id": "real-decreasing-chain",
+      "name": "real: decreasing consecutive chain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "decreasing",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "real-repeated-two",
+      "name": "real: two index-distinct extensions to repeated value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "duplicates",
+        "bidirectional-extensions"
+      ]
+    },
+    {
+      "id": "real-value-maximum",
+      "name": "real: maximum value singleton",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000
+        ]
+      },
+      "expected": 100000,
+      "tags": [
+        "value-limit",
+        "singleton"
+      ]
+    },
+    {
+      "id": "real-distant-values",
+      "name": "real: distant values cannot connect",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          100000
+        ]
+      },
+      "expected": 100000,
+      "tags": [
+        "value-limits",
+        "gaps"
+      ]
+    },
+    {
+      "id": "real-noncontiguous-choice",
+      "name": "real: subsequence skips a distant middle value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          9,
+          2
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "subsequence",
+        "noncontiguous"
       ]
     }
   ]

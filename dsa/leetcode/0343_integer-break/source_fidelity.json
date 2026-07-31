@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_343", "frontend_id": "343", "title_slug": "integer-break", "url": "https://leetcode.com/problems/integer-break/description/", "paid_only": false, "content_sha256": "c121ca51337c9d00c7b18591567407fd232cb900c36132b08f9c0c0984613978", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 2", "output": "1", "has_explanation": true},
+      {"ordinal": 2, "input": "n = 10", "output": "36", "has_explanation": true}
+    ],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "2ace2e13013db95ac23212fc67e2a2a232ddbbe9e9f3e641d9f4fe9c4c9d0741",
+    "reference/contract.md": "7a09a63519ab537233c3106e8bc434b03f31cab67bcf83663460207708ca91d3",
+    "reference/examples.md": "e2e13e7191c62a2d05036ad46bd927a8abc49eee2f932f31b3cf7251853ed490",
+    "reference/constraints.md": "008c2a0ea5377b7a4a220771306b5d130cd6441b520b1e3bc47a12135153ca93"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

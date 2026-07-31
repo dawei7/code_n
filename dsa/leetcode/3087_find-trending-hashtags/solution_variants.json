@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Trending Hashtags and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Filters February rows, extracts one hashtag token per tweet, aggregates counts once, and applies the required two-key descending ranking.",
+      "time_complexity": "O(S + n log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

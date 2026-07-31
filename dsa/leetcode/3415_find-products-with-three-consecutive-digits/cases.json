@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3415",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official mixture of digit runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "name": "ABC123XYZ"
+            },
+            {
+              "product_id": 2,
+              "name": "A12B34C"
+            },
+            {
+              "product_id": 3,
+              "name": "Product56789"
+            },
+            {
+              "product_id": 4,
+              "name": "NoDigitsHere"
+            },
+            {
+              "product_id": 5,
+              "name": "789Product"
+            },
+            {
+              "product_id": 6,
+              "name": "Item003Description"
+            },
+            {
+              "product_id": 7,
+              "name": "Product12X34"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "name"
+        ],
+        "rows": [
+          [
+            1,
+            "ABC123XYZ"
+          ],
+          [
+            5,
+            "789Product"
+          ],
+          [
+            6,
+            "Item003Description"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "exact-run"
+      ]
+    },
+    {
+      "id": "trial-name-boundaries",
+      "name": "trial: complete run at either name boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 9,
+              "name": "X123Y"
+            },
+            {
+              "product_id": 4,
+              "name": "123Start"
+            },
+            {
+              "product_id": 7,
+              "name": "End789"
+            },
+            {
+              "product_id": 2,
+              "name": "456"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "name"
+        ],
+        "rows": [
+          [
+            2,
+            "456"
+          ],
+          [
+            4,
+            "123Start"
+          ],
+          [
+            7,
+            "End789"
+          ],
+          [
+            9,
+            "X123Y"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "boundaries",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-leading-zeros",
+      "name": "trial: leading zeros remain digit characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 3,
+              "name": "Code007Name"
+            },
+            {
+              "product_id": 1,
+              "name": "Code00Name"
+            },
+            {
+              "product_id": 2,
+              "name": "Code0000Name"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "name"
+        ],
+        "rows": [
+          [
+            3,
+            "Code007Name"
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "leading-zeros"
+      ]
+    },
+    {
+      "id": "real-reject-longer-runs",
+      "name": "hidden: longer and separated shorter runs do not qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 1,
+              "name": "1234"
+            },
+            {
+              "product_id": 2,
+              "name": "X12345Y"
+            },
+            {
+              "product_id": 3,
+              "name": "A12B34C"
+            },
+            {
+              "product_id": 4,
+              "name": "9Z87Q"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "name"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "longer-runs"
+      ]
+    },
+    {
+      "id": "real-long-and-exact-runs",
+      "name": "hidden: an independent exact run still qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 8,
+              "name": "A1234B567C"
+            },
+            {
+              "product_id": 5,
+              "name": "9999X88"
+            },
+            {
+              "product_id": 6,
+              "name": "12X345Y6789"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "name"
+        ],
+        "rows": [
+          [
+            6,
+            "12X345Y6789"
+          ],
+          [
+            8,
+            "A1234B567C"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "multiple-runs",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-punctuation-boundaries",
+      "name": "hidden: punctuation bounds digit runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Products": [
+            {
+              "product_id": 12,
+              "name": "SKU-321_RED"
+            },
+            {
+              "product_id": 10,
+              "name": "SKU_654-RED"
+            },
+            {
+              "product_id": 11,
+              "name": "SKU-7654_RED"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "product_id",
+          "name"
+        ],
+        "rows": [
+          [
+            10,
+            "SKU_654-RED"
+          ],
+          [
+            12,
+            "SKU-321_RED"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "punctuation"
+      ]
+    }
+  ]
+}

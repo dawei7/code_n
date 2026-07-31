@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Complete Subarrays in an Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses a frequency-map sliding window and counts all valid right extensions at once.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(k)"
     }
   ]
 }

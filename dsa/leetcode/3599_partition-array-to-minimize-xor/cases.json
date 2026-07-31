@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3599",
+  "cases": [
+    {
+      "id": "sample-three-values",
+      "name": "sample: two parts both XOR to one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "two-parts"
+      ]
+    },
+    {
+      "id": "sample-three-parts",
+      "name": "sample: equal middle values cancel",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          3,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "three-parts",
+        "cancellation"
+      ]
+    },
+    {
+      "id": "sample-zero-optimum",
+      "name": "sample: both chosen segments XOR to zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-optimum"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one element and one part",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-one-part",
+      "name": "trial: the whole array is forced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          6,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "one-part"
+      ]
+    },
+    {
+      "id": "real-singletons",
+      "name": "real: every element must be its own part",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          1,
+          12,
+          3
+        ],
+        "k": 4
+      },
+      "expected": 12,
+      "tags": [
+        "real",
+        "k-equals-n",
+        "singletons"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "real: repeated values create several zero XOR choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "repeated-values",
+        "cancellation"
+      ]
+    },
+    {
+      "id": "real-non-greedy-cuts",
+      "name": "real: the best cut is not determined by segment length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          2,
+          7,
+          3,
+          6,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "non-greedy",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: large values exercise the full XOR range",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          73741823,
+          1000000000
+        ],
+        "k": 2
+      },
+      "expected": 1073741823,
+      "tags": [
+        "real",
+        "large-values",
+        "bit-boundary"
+      ]
+    },
+    {
+      "id": "real-many-parts",
+      "name": "real: several part counts compete across prefixes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          31,
+          7,
+          12,
+          5,
+          9,
+          18,
+          2,
+          25
+        ],
+        "k": 5
+      },
+      "expected": 24,
+      "tags": [
+        "real",
+        "many-parts",
+        "mixed"
+      ]
+    }
+  ]
+}

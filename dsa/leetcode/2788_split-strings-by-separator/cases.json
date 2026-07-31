@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: split by dot and drop empty parts",
+      "name": "sample: split periods across several words",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -14,10 +14,6 @@
         ],
         "separator": "."
       },
-      "tags": [
-        "sample",
-        "split"
-      ],
       "expected": [
         "one",
         "two",
@@ -25,11 +21,15 @@
         "four",
         "five",
         "six"
+      ],
+      "tags": [
+        "sample",
+        "multiple-words"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: dollar separator creates empty parts",
+      "name": "sample: discard empty edge pieces",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -39,82 +39,183 @@
         ],
         "separator": "$"
       },
-      "tags": [
-        "sample",
-        "empty"
-      ],
       "expected": [
         "easy",
         "problem"
-      ]
-    },
-    {
-      "id": "trial-no-separator-hit",
-      "name": "trial: words without separator stay whole",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "words": [
-          "abc",
-          "def"
-        ],
-        "separator": ","
-      },
-      "tags": [
-        "trial",
-        "none"
       ],
-      "expected": [
-        "abc",
-        "def"
+      "tags": [
+        "sample",
+        "empty-pieces"
       ]
     },
     {
-      "id": "trial-leading-trailing",
-      "name": "trial: leading and trailing separators",
-      "kind": "trial",
+      "id": "sample-3",
+      "name": "sample: separators produce no non-empty pieces",
+      "kind": "sample",
       "visible": true,
       "input": {
         "words": [
-          "|a||b|",
-          "c|"
+          "|||"
         ],
         "separator": "|"
       },
+      "expected": [],
+      "tags": [
+        "sample",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-no-separator",
+      "name": "trial: words without the delimiter stay whole",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "alpha",
+          "beta"
+        ],
+        "separator": "#"
+      },
+      "expected": [
+        "alpha",
+        "beta"
+      ],
       "tags": [
         "trial",
-        "edge"
-      ],
+        "unchanged"
+      ]
+    },
+    {
+      "id": "trial-adjacent-separators",
+      "name": "trial: ignore leading trailing and adjacent gaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "..a..b.",
+          ".c."
+        ],
+        "separator": "."
+      },
       "expected": [
         "a",
         "b",
         "c"
+      ],
+      "tags": [
+        "trial",
+        "adjacent-separators"
       ]
     },
     {
-      "id": "real-mixed-strings",
-      "name": "hidden: mixed separator placements",
+      "id": "trial-other-punctuation",
+      "name": "trial: non-selected punctuation remains in pieces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "a.b,c",
+          "d"
+        ],
+        "separator": ","
+      },
+      "expected": [
+        "a.b",
+        "c",
+        "d"
+      ],
+      "tags": [
+        "trial",
+        "literal-punctuation"
+      ]
+    },
+    {
+      "id": "real-single-characters",
+      "name": "hidden: preserve order of single-character words",
       "kind": "real",
       "visible": false,
       "input": {
         "words": [
-          "aa#bb#",
-          "#cc",
-          "dd##ee#ff"
+          "z",
+          "a",
+          "m"
+        ],
+        "separator": "@"
+      },
+      "expected": [
+        "z",
+        "a",
+        "m"
+      ],
+      "tags": [
+        "hidden",
+        "order"
+      ]
+    },
+    {
+      "id": "real-all-empty",
+      "name": "hidden: several delimiter-only words flatten to empty",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "###",
+          "#",
+          "##"
         ],
         "separator": "#"
       },
+      "expected": [],
+      "tags": [
+        "hidden",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-maximum-word-length",
+      "name": "hidden: maximum-length word has no separator",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "abcdefghijklmnopqrst"
+        ],
+        "separator": "|"
+      },
+      "expected": [
+        "abcdefghijklmnopqrst"
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-mixed-density",
+      "name": "hidden: combine unsplit and densely separated words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "a@b",
+          "plain",
+          "@@c@@d@@",
+          "e@"
+        ],
+        "separator": "@"
+      },
+      "expected": [
+        "a",
+        "b",
+        "plain",
+        "c",
+        "d",
+        "e"
+      ],
       "tags": [
         "hidden",
         "mixed"
-      ],
-      "expected": [
-        "aa",
-        "bb",
-        "cc",
-        "dd",
-        "ee",
-        "ff"
       ]
     }
   ]

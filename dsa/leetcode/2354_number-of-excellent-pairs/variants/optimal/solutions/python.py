@@ -1,18 +1,14 @@
-def solve(nums: list[int], k: int) -> int:
-    # Deduplicate the input array to get unique numbers
-    unique_nums = set(nums)
-    
-    # Count frequencies of each popcount (number of set bits)
-    # Since nums[i] <= 10^9, the maximum number of set bits is 30.
-    count = [0] * 31
-    for x in unique_nums:
-        count[bin(x).count('1')] += 1
-        
-    ans = 0
-    # Iterate over all possible pairs of popcounts
-    for i in range(31):
-        for j in range(31):
-            if i + j >= k:
-                ans += count[i] * count[j]
-                
-    return ans
+from typing import List
+
+
+def solve(nums: List[int], k: int) -> int:
+    frequencies = [0] * 31
+    for value in set(nums):
+        frequencies[value.bit_count()] += 1
+
+    answer = 0
+    for first_count, first_frequency in enumerate(frequencies):
+        for second_count, second_frequency in enumerate(frequencies):
+            if first_count + second_count >= k:
+                answer += first_frequency * second_frequency
+    return answer

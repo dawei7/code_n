@@ -1,29 +1,17 @@
 from collections import defaultdict
-import math
+
 
 def solve(nums: list[int]) -> int:
+    positions: dict[int, list[int]] = defaultdict(list)
+    for index, value in enumerate(nums):
+        positions[value].append(index)
+
     n = len(nums)
-    indices = defaultdict(list)
-    
-    for i, val in enumerate(nums):
-        indices[val].append(i)
-        
-    min_seconds = n
-    
-    for val in indices:
-        pos = indices[val]
-        # Calculate gaps between consecutive occurrences
-        max_gap = 0
-        for i in range(len(pos) - 1):
-            max_gap = max(max_gap, pos[i+1] - pos[i] - 1)
-        
-        # Account for circular gap (last element to first element)
-        circular_gap = (n - 1 - pos[-1]) + pos[0]
-        max_gap = max(max_gap, circular_gap)
-        
-        # The time to fill a gap of size 'g' is ceil(g / 2)
-        # which is equivalent to (g + 1) // 2
-        seconds_needed = (max_gap + 1) // 2
-        min_seconds = min(min_seconds, seconds_needed)
-        
-    return min_seconds
+    answer = n
+    for indices in positions.values():
+        largest_gap = n + indices[0] - indices[-1]
+        for left, right in zip(indices, indices[1:]):
+            largest_gap = max(largest_gap, right - left)
+        answer = min(answer, largest_gap // 2)
+
+    return answer

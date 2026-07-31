@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2204",
+  "cases": [
+    {"id":"sample-four-cycle","name":"sample: paths attach to two nodes of a four-cycle","kind":"sample","visible":true,"input":{"n":7,"edges":[[1,2],[2,4],[4,3],[3,1],[0,1],[5,2],[6,5]]},"expected":[1,0,0,0,0,1,2],"tags":["sample","four-cycle"]},
+    {"id":"sample-triangle-branches","name":"sample: several branches attach to a triangle","kind":"sample","visible":true,"input":{"n":9,"edges":[[0,1],[1,2],[0,2],[2,6],[6,7],[6,8],[0,3],[3,4],[3,5]]},"expected":[0,0,0,1,2,2,1,2,2],"tags":["sample","triangle","branches"]},
+    {"id":"trial-pure-triangle","name":"all nodes belong to the unique cycle","kind":"trial","visible":true,"input":{"n":3,"edges":[[0,1],[1,2],[2,0]]},"expected":[0,0,0],"tags":["minimum","pure-cycle"]},
+    {"id":"trial-one-tail","name":"a single path extends from a triangle","kind":"trial","visible":true,"input":{"n":6,"edges":[[0,1],[1,2],[2,0],[2,3],[3,4],[4,5]]},"expected":[0,0,0,1,2,3],"tags":["long-tail"]},
+    {"id":"real-square-with-leaves","name":"hidden: leaves attach to opposite square nodes","kind":"real","visible":false,"input":{"n":6,"edges":[[0,1],[1,2],[2,3],[3,0],[0,4],[2,5]]},"expected":[0,0,0,0,1,1],"tags":["hidden","square"]},
+    {"id":"real-deep-and-shallow","name":"hidden: branch depths differ around the cycle","kind":"real","visible":false,"input":{"n":8,"edges":[[0,1],[1,2],[2,0],[0,3],[3,4],[4,5],[1,6],[2,7]]},"expected":[0,0,0,1,2,3,1,1],"tags":["hidden","mixed-depth"]},
+    {"id":"real-cycle-labels-unordered","name":"hidden: cycle membership is unrelated to node ordering","kind":"real","visible":false,"input":{"n":7,"edges":[[6,2],[2,4],[4,6],[0,5],[5,2],[1,6],[3,1]]},"expected":[2,1,0,2,0,1,0],"tags":["hidden","unordered-labels"]},
+    {"id":"real-cycle-length-five","name":"hidden: a larger cycle survives leaf trimming","kind":"real","visible":false,"input":{"n":7,"edges":[[0,1],[1,2],[2,3],[3,4],[4,0],[2,5],[5,6]]},"expected":[0,0,0,0,0,1,2],"tags":["hidden","five-cycle"]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2909",
+  "frontend_id": "2821",
+  "title_slug": "delay-the-resolution-of-each-promise",
+  "paid_only": true,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "delayAll",
+  "verified_submission_id": "2077241814",
+  "verified_at": "2026-07-22T14:53:00+00:00"
+}

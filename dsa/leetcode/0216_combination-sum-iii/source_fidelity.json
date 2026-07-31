@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_216", "frontend_id": "216", "title_slug": "combination-sum-iii", "url": "https://leetcode.com/problems/combination-sum-iii/description/", "paid_only": false, "content_sha256": "39df7c89196dade891debcc10891fb7ae8632d20215ec6d19510d435d8c24a94", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "k = 3, n = 7", "output": "[[1,2,4]]", "has_explanation": true}, {"ordinal": 2, "input": "k = 3, n = 9", "output": "[[1,2,6],[1,3,5],[2,3,4]]", "has_explanation": true}, {"ordinal": 3, "input": "k = 4, n = 1", "output": "[]", "has_explanation": true}],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "f842fbf1a6442f83519af3a249911ffd0b3673646485f4ffb658b41d23a3db20", "reference/contract.md": "3bf6a5c209e90436d37137f814fb7bf309010c3176e8d6935da80da8d028347b", "reference/examples.md": "06fe72970fbd539bc246d7c73fdca6861cfa461d71af206ce2a56fb3bae028ed", "reference/constraints.md": "90108cf1e26a69a5a3343c19d2dc577bf63f1421ca09ef36f98d0aecadc99d61"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

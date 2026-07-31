@@ -1,0 +1,16 @@
+{
+  "schema_version":1,
+  "source":{"provider":"leetcode","challenge_id":"lc_3734","frontend_id":"3734","title_slug":"lexicographically-smallest-palindromic-permutation-greater-than-target","url":"https://leetcode.com/problems/lexicographically-smallest-palindromic-permutation-greater-than-target/description/","paid_only":false,"content_sha256":"4685ed0140565db8d5b9a7f141b20b8e8b21733fba213779ec46c5e7833ec25d","checked_at":"2026-07-28"},
+  "structure":{"sections":["description","examples","constraints"],"examples":[
+    {"ordinal":1,"input":"s = \"baba\", target = \"abba\"","output":"\"baab\"","has_explanation":true},
+    {"ordinal":2,"input":"s = \"baba\", target = \"bbaa\"","output":"\"\"","has_explanation":true},
+    {"ordinal":3,"input":"s = \"abc\", target = \"abb\"","output":"\"\"","has_explanation":true},
+    {"ordinal":4,"input":"s = \"aac\", target = \"abb\"","output":"\"aca\"","has_explanation":true}
+  ],"constraint_count":2,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},
+  "review":{"status":"verified","files":{
+    "reference/description.md":"4682d09d4b248f9538042e9712302820347caf4d0e4eb0021af51ac399810b1b",
+    "reference/contract.md":"9c61e66418f2129470c5e64a83c8dc6828d9b2b6a983e18c08562a9d97492442",
+    "reference/examples.md":"c15ff11aee6ffe151629c457f67ac8c1eabc4d5995b681ede39c7b1f4a6f8c3a",
+    "reference/constraints.md":"6478dc973668facd6f846747c958373bc4204b5f0ad31498611cc8bff2e5e742"
+  },"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}
+}

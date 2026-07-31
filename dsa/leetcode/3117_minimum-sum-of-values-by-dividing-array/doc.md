@@ -8,90 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Dynamic Programming, Bit Manipulation, Segment Tree, Queue |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-sum-of-values-by-dividing-array](https://leetcode.com/problems/minimum-sum-of-values-by-dividing-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-sum-of-values-by-dividing-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-sum-of-values-by-dividing-array/).
 
 ### Goal
-Partition an array `nums` into `m` contiguous subarrays such that the bitwise AND of each subarray matches the corresponding element in the array `andValues`. The objective is to minimize the sum of the last elements of these `m` subarrays. If no such partition exists, return -1.
+
+You are given an integer array `nums` of length $n$ and an integer array `and_values` of length $m$. The value of a nonempty array is its last element. Divide `nums` into exactly $m$ disjoint, nonempty, contiguous subarrays that together preserve the original order and cover every element exactly once.
+
+For the $i$-th subarray, the bitwise AND of all its elements must equal `and_values[i]`. Among every division satisfying all $m$ targets, minimize the sum of the subarray values—that is, the sum of the elements at the chosen right endpoints. Return that minimum sum, or return $-1$ when no valid division exists.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the source array.
-- `andValues`: A list of integers representing the required bitwise AND results for each partition.
+- `nums`: A list of $n$ positive integers to partition.
+- `and_values`: A list of $m$ required bitwise-AND values, one for each subarray in order.
+
+The constraints are $1 \le n \le 10^4$, $1 \le m \le \min(n,10)$, $1 \le \texttt{nums[i]} < 10^5$, and $0 \le \texttt{and_values[j]} < 10^5$. Let $V=\max(\texttt{nums})$.
 
 **Return value**
 
-- An integer representing the minimum possible sum of the last elements of the partitions, or -1 if the task is impossible.
+Return the minimum possible sum of the last elements of the $m$ subarrays, or $-1$ if the required partition is impossible.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 4, 3, 3, 2], andValues = [0, 3, 3, 2]`
+- Input: `nums = [1, 4, 3, 3, 2], and_values = [0, 3, 3, 2]`
 - Output: `12`
+- Explanation: The only valid division is `[1, 4]`, `[3]`, `[3]`, `[2]`. Its endpoint sum is `4 + 3 + 3 + 2 = 12`.
 
 **Example 2**
 
-- Input: `nums = [2, 3, 5, 7, 7, 7, 5], andValues = [0, 7, 5]`
+- Input: `nums = [2, 3, 5, 7, 7, 7, 5], and_values = [0, 7, 5]`
 - Output: `17`
+- Explanation: Ending the first subarray at `5` and the second at the first `7` gives endpoint sum `5 + 7 + 5 = 17`, smaller than the other valid divisions.
 
 **Example 3**
 
-- Input: `nums = [1, 2, 3, 4], andValues = [2]`
+- Input: `nums = [1, 2, 3, 4], and_values = [2]`
 - Output: `-1`
-
----
-
-## Solution
-### Approach
-The problem is solved using Dynamic Programming with memoization. We define a state `(i, j, current_and)` where `i` is the current index in `nums`, `j` is the index in `andValues`, and `current_and` is the running bitwise AND of the current subarray. To optimize, we observe that `current_and` can only take values present in the prefix ANDs of `nums`. We use a dictionary to cache results and prune branches where the `current_and` cannot possibly match the target `andValues[j]`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n * m * log(max(nums)))`, where `n` is the length of `nums` and `m` is the length of `andValues`. The number of reachable states is limited by the bitwise properties.
-- **Space Complexity**: `O(n * m)`, required for the memoization table.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import functools
-
-def solve(nums: list[int], and_values: list[int]) -> int:
-    n = len(nums)
-    m = len(and_values)
-    inf = float('inf')
-
-    @functools.lru_cache(None)
-    def dp(i, j, current_and):
-        # Base cases
-        if j == m:
-            return 0 if i == n else inf
-        if i == n:
-            return inf
-
-        # Update current_and with the current element
-        new_and = current_and & nums[i]
-
-        # Pruning: if new_and is already smaller than the target, this path is invalid
-        if (new_and & and_values[j]) != and_values[j]:
-            return inf
-
-        # Option 1: Continue the current subarray
-        res = dp(i + 1, j, new_and)
-
-        # Option 2: End the current subarray here if it matches the target
-        if new_and == and_values[j]:
-            res_end = dp(i + 1, j + 1, -1)
-            if res_end != inf:
-                res = min(res, nums[i] + res_end)
-
-        return res
-
-    # Initial call: -1 acts as a mask of all 1s (identity for AND)
-    result = dp(0, 0, -1)
-    return int(result) if result != inf else -1
-```
-</details>
+- Explanation: With one required subarray, all of `nums` must be used, but its bitwise AND is $0$ rather than $2$.

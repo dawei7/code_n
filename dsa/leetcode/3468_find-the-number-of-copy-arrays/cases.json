@@ -1,195 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3468",
   "cases": [
     {
       "id": "sample-two-copies",
-      "name": "sample: two valid copy starts",
+      "name": "sample: two feasible starting values",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "original": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "bounds": [
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            3,
-            4
-          ],
-          [
-            4,
-            5
-          ]
-        ]
-      },
+      "input": {"original": [1, 2, 3, 4], "bounds": [[1, 2], [2, 3], [3, 4], [4, 5]]},
       "expected": 2,
-      "tags": [
-        "sample",
-        "range-intersection"
-      ]
+      "tags": ["sample", "intersection"]
     },
     {
       "id": "sample-four-copies",
-      "name": "sample: wide bounds",
+      "name": "sample: narrowing wide bounds",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "original": [
-          1,
-          2,
-          3,
-          4
-        ],
-        "bounds": [
-          [
-            1,
-            10
-          ],
-          [
-            2,
-            9
-          ],
-          [
-            3,
-            8
-          ],
-          [
-            4,
-            7
-          ]
-        ]
-      },
+      "input": {"original": [1, 2, 3, 4], "bounds": [[1, 10], [2, 9], [3, 8], [4, 7]]},
       "expected": 4,
-      "tags": [
-        "sample",
-        "wide"
-      ]
+      "tags": ["sample", "intersection"]
     },
     {
       "id": "sample-no-copy",
-      "name": "sample: empty feasible interval",
+      "name": "sample: disjoint translated bounds",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "original": [
-          1,
-          2,
-          1,
-          2
-        ],
-        "bounds": [
-          [
-            1,
-            1
-          ],
-          [
-            2,
-            3
-          ],
-          [
-            3,
-            3
-          ],
-          [
-            2,
-            3
-          ]
-        ]
-      },
+      "input": {"original": [1, 2, 1, 2], "bounds": [[1, 1], [2, 3], [3, 3], [2, 3]]},
       "expected": 0,
-      "tags": [
-        "sample",
-        "empty"
-      ]
+      "tags": ["sample", "empty-intersection"]
     },
     {
-      "id": "trial-negative-drift",
-      "name": "trial: descending original drifts upward",
+      "id": "trial-constant-sequence",
+      "name": "trial: equal copied values share two choices",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "original": [
-          5,
-          3,
-          4,
-          2
-        ],
-        "bounds": [
-          [
-            1,
-            8
-          ],
-          [
-            1,
-            8
-          ],
-          [
-            2,
-            9
-          ],
-          [
-            1,
-            7
-          ]
-        ]
-      },
-      "expected": 5,
-      "tags": [
-        "trial",
-        "diffs"
-      ]
+      "input": {"original": [5, 5], "bounds": [[1, 3], [2, 4]]},
+      "expected": 2,
+      "tags": ["trial", "minimum-length", "zero-difference"]
     },
     {
-      "id": "real-tight-middle",
-      "name": "real: tight middle bound",
+      "id": "trial-mixed-differences",
+      "name": "trial: zigzag differences leave eight shifts",
+      "kind": "trial",
+      "visible": true,
+      "input": {"original": [10, 7, 9, 12, 8], "bounds": [[4, 20], [1, 14], [5, 15], [9, 18], [1, 12]]},
+      "expected": 8,
+      "tags": ["trial", "mixed-differences"]
+    },
+    {
+      "id": "real-full-integer-range",
+      "name": "real: every legal constant value is feasible",
       "kind": "real",
       "visible": false,
-      "input": {
-        "original": [
-          10,
-          7,
-          9,
-          12,
-          8
-        ],
-        "bounds": [
-          [
-            4,
-            20
-          ],
-          [
-            1,
-            14
-          ],
-          [
-            5,
-            15
-          ],
-          [
-            9,
-            18
-          ],
-          [
-            1,
-            12
-          ]
-        ]
-      },
-      "expected": 8,
-      "tags": [
-        "real",
-        "interval"
-      ]
+      "input": {"original": [1000000000, 1000000000], "bounds": [[1, 1000000000], [1, 1000000000]]},
+      "expected": 1000000000,
+      "tags": ["real", "value-boundaries", "wide-answer"]
+    },
+    {
+      "id": "real-late-contradiction",
+      "name": "real: final bound eliminates every start",
+      "kind": "real",
+      "visible": false,
+      "input": {"original": [3, 8, 2, 10], "bounds": [[4, 9], [9, 14], [3, 8], [1, 2]]},
+      "expected": 0,
+      "tags": ["real", "late-contradiction"]
+    },
+    {
+      "id": "real-negative-shift",
+      "name": "real: valid copies lie below the original",
+      "kind": "real",
+      "visible": false,
+      "input": {"original": [100, 95, 105, 90], "bounds": [[11, 20], [6, 15], [16, 25], [1, 2]]},
+      "expected": 2,
+      "tags": ["real", "negative-shift", "mixed-differences"]
     }
   ]
 }

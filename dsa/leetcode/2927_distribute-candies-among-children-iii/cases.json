@@ -1,0 +1,13 @@
+{
+  "challenge_id": "lc_2927",
+  "cases": [
+    {"id":"sample-tight-cap","name":"sample: each child is near the cap","kind":"sample","visible":true,"input":{"n":5,"limit":2},"expected":3,"tags":["sample"]},
+    {"id":"sample-inactive-cap","name":"sample: the cap excludes no distribution","kind":"sample","visible":true,"input":{"n":3,"limit":3},"expected":10,"tags":["sample"]},
+    {"id":"trial-only-balanced","name":"trial: capacity exactly matches the total","kind":"trial","visible":true,"input":{"n":3,"limit":1},"expected":1,"tags":["exact-capacity"]},
+    {"id":"trial-impossible","name":"trial: total exceeds combined capacity","kind":"trial","visible":true,"input":{"n":4,"limit":1},"expected":0,"tags":["impossible"]},
+    {"id":"trial-one-candy","name":"trial: assign one candy to any child","kind":"trial","visible":true,"input":{"n":1,"limit":1},"expected":3,"tags":["minimum"]},
+    {"id":"real-partial-exclusion","name":"hidden: one-bound and two-bound corrections both contribute","kind":"real","visible":false,"input":{"n":10,"limit":4},"expected":6,"tags":["hidden","inclusion-exclusion"]},
+    {"id":"real-large-inactive-cap","name":"hidden: maximum values with inactive cap","kind":"real","visible":false,"input":{"n":100000000,"limit":100000000},"expected":5000000150000001,"tags":["hidden","boundary","wide-integer"]},
+    {"id":"real-large-impossible","name":"hidden: maximum total exceeds tiny combined capacity","kind":"real","visible":false,"input":{"n":100000000,"limit":1},"expected":0,"tags":["hidden","boundary","impossible"]}
+  ]
+}

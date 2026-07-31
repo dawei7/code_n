@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Memoize II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Stores argument tuples as paths through nested Maps, preserving strict equality and object identity at every position.",
+      "time_complexity": "O(a)",
+      "space_complexity": "O(u * a)"
     }
   ]
 }

@@ -8,88 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Bit Manipulation, Graph Theory, Topological Sort, Bitmask |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-profit-from-valid-topological-order-in-dag](https://leetcode.com/problems/maximum-profit-from-valid-topological-order-in-dag/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-profit-from-valid-topological-order-in-dag/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-profit-from-valid-topological-order-in-dag/).
 
 ### Goal
-Given a Directed Acyclic Graph (DAG) represented by nodes and directed edges, and a profit value associated with each node, find the maximum total profit obtainable by selecting a valid topological ordering of the graph. Specifically, you must select a sequence of nodes such that for every edge (u, v), node u appears before node v in the sequence, and the sum of profits of the selected nodes is maximized.
+
+You are given a directed acyclic graph with `n` nodes labeled from `0` through `n - 1`. Every pair `[u, v]` in `edges` is a directed edge requiring node `u` to appear before node `v`.
+
+Choose a valid topological ordering containing every node exactly once. Positions are numbered from $1$ to $n$. If node `x` is placed at position $i$, it contributes $i \cdot \texttt{score[x]}$ to the profit.
+
+Return the maximum total profit attainable by any topological ordering that respects every edge.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: An integer representing the number of nodes (0 to n-1).
-- `edges`: A list of pairs `[u, v]` representing directed edges from `u` to `v`.
-- `values`: A list of integers where `values[i]` is the profit associated with node `i`.
+- `n`: The number of nodes, where $1 \le n \le 22$.
+- `edges`: The directed edges `[u, v]`; the graph is a DAG and contains no duplicate edges.
+- `score`: The positive node scores, where `score[i]` belongs to node `i`.
+
+Every endpoint is in $[0,n-1]$, and `score` has length `n`.
 
 **Return value**
 
-- An integer representing the maximum profit achievable under the topological constraints.
+- The largest possible sum of position-weighted node scores over all valid topological orders.
 
 ### Examples
+
 **Example 1**
 
-- Input: `n = 3, edges = [[0, 1], [1, 2]], values = [1, 2, 3]`
-- Output: `6`
+- Input: `n = 2, edges = [[0, 1]], score = [2, 3]`
+- Output: `8`
+- Explanation: The edge forces the order `[0, 1]`, whose profit is $1 \cdot 2 + 2 \cdot 3 = 8$.
 
 **Example 2**
 
-- Input: `n = 2, edges = [[0, 1]], values = [10, 5]`
-- Output: `15`
-
-**Example 3**
-
-- Input: `n = 4, edges = [[0, 2], [1, 2], [2, 3]], values = [5, 10, 2, 8]`
+- Input: `n = 3, edges = [[0, 1], [0, 2]], score = [1, 6, 3]`
 - Output: `25`
-
----
-
-## Solution
-### Approach
-The problem is solved using Dynamic Programming combined with Topological Sort principles. Since we are dealing with a DAG, we can utilize the property that any valid topological order respects the dependency constraints. The state is defined by the set of visited nodes (using a bitmask for efficiency if n is small, or DP on the DAG structure). For larger constraints, we use the property that the maximum profit is simply the sum of all positive node values, as we can always include all nodes in a valid topological sort of a DAG.
-
-### Complexity Analysis
-- **Time Complexity**: `O(V + E)`, where V is the number of nodes and E is the number of edges, as we traverse the graph to verify the DAG structure and sum the values.
-- **Space Complexity**: `O(V + E)` to store the adjacency list and auxiliary structures for the graph traversal.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(n: int, edges: list[list[int]], values: list[int]) -> int:
-    """
-    In a Directed Acyclic Graph (DAG), a topological sort always exists.
-    Since we want to maximize the profit of a valid topological order,
-    and a topological order includes all nodes in the graph, the maximum
-    profit is simply the sum of all node values, provided the graph is a DAG.
-    If the problem implies selecting a subset, the logic would involve
-    DP on subsets, but for a standard topological order of a DAG,
-    all nodes must be included.
-    """
-    # Build adjacency list to verify DAG property if necessary
-    adj = [[] for _ in range(n)]
-    in_degree = [0] * n
-    for u, v in edges:
-        adj[u].append(v)
-        in_degree[v] += 1
-
-    # Kahn's algorithm to verify if it is a DAG
-    queue = [i for i in range(n) if in_degree[i] == 0]
-    count = 0
-    while queue:
-        u = queue.pop(0)
-        count += 1
-        for v in adj[u]:
-            in_degree[v] -= 1
-            if in_degree[v] == 0:
-                queue.append(v)
-
-    # If count != n, it's not a DAG (though problem constraints usually guarantee it)
-    if count != n:
-        return 0
-
-    return sum(values)
-```
-</details>
+- Explanation: The order `[0, 2, 1]` is valid and earns $1 \cdot 1 + 2 \cdot 3 + 3 \cdot 6 = 25$.

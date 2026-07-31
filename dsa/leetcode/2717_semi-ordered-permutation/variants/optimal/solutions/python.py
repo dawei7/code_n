@@ -1,12 +1,5 @@
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    n = len(nums)
-    idx_1 = nums.index(1)
-    idx_n = nums.index(n)
-    
-    ans = idx_1 + (n - 1 - idx_n)
-    if idx_1 > idx_n:
-        ans -= 1
-        
-    return ans
+def solve(nums: list[int]) -> int:
+    one_index = nums.index(1)
+    maximum_index = nums.index(len(nums))
+    overlap = 1 if one_index > maximum_index else 0
+    return one_index + len(nums) - 1 - maximum_index - overlap

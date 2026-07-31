@@ -8,48 +8,48 @@
 | Category | Algorithms |
 | Topics | Two Pointers, String, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [separate-black-and-white-balls](https://leetcode.com/problems/separate-black-and-white-balls/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/separate-black-and-white-balls/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/separate-black-and-white-balls/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+There are $n$ balls arranged from left to right on a table. Their colors are
+encoded by a 0-indexed binary string `s`: each `1` is a black ball and each
+`0` is a white ball. The relative order among balls of the same color does
+not affect the requested arrangement.
+
+One step selects two adjacent balls and swaps their positions. Determine the
+minimum number of such steps needed to place every white ball to the left of
+every black ball. A string already having that form requires zero steps.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: a binary string encoding the balls from left to right
+
+Let $n=\lvert\texttt{s}\rvert$. The contract guarantees
+$1 \le n \le 10^5$, and every character of `s` is either `0` or `1`.
 
 **Return value**
 
-TODO
+The minimum number of adjacent swaps needed to group all white balls on the
+left and all black balls on the right.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "101"`
+- Output: `1`
+- Explanation: Swap the first two balls to obtain `"011"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "100"`
+- Output: `2`
+- Explanation: Moving the leading black ball past both white balls produces
+  `"001"` in two adjacent swaps.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "0111"`
+- Output: `0`
+- Explanation: Every white ball is already to the left of every black ball.

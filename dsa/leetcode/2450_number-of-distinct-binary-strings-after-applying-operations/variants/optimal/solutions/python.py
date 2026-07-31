@@ -1,0 +1,2 @@
+def solve(s: str, k: int) -> int:
+    return pow(2, len(s) - k + 1, 1_000_000_007)

@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3420",
   "cases": [
     {
@@ -25,7 +26,7 @@
     },
     {
       "id": "sample-five-values",
-      "name": "sample: medium budget",
+      "name": "sample: medium operation budget",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -44,8 +45,25 @@
       ]
     },
     {
+      "id": "trial-single",
+      "name": "trial: one element needs no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000
+        ],
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
       "id": "trial-already-nondecreasing",
-      "name": "trial: all subarrays work with zero budget",
+      "name": "trial: every subarray already works",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -53,20 +71,19 @@
           1,
           2,
           2,
-          3,
           5
         ],
-        "k": 0
+        "k": 1
       },
-      "expected": 15,
+      "expected": 10,
       "tags": [
         "trial",
-        "edge"
+        "non-decreasing"
       ]
     },
     {
       "id": "trial-strictly-decreasing",
-      "name": "trial: budget limits decreasing runs",
+      "name": "trial: budget limits descending windows",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -83,6 +100,63 @@
       "tags": [
         "trial",
         "decreasing"
+      ]
+    },
+    {
+      "id": "trial-longer-peak-effect",
+      "name": "trial: prefix maximum differs from adjacent drops",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          4
+        ],
+        "k": 4
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "prefix-maximum"
+      ]
+    },
+    {
+      "id": "real-exact-drop-budget",
+      "name": "real: one drop exactly consumes the budget",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          1
+        ],
+        "k": 9
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "exact-budget"
+      ]
+    },
+    {
+      "id": "real-plateau-drop",
+      "name": "real: equal-height blocks merge across a drop",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          1,
+          1
+        ],
+        "k": 6
+      },
+      "expected": 10,
+      "tags": [
+        "real",
+        "duplicates"
       ]
     },
     {
@@ -106,7 +180,66 @@
       },
       "expected": 30,
       "tags": [
-        "real"
+        "real",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-large-budget",
+      "name": "real: all subarrays fit a large budget",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          3,
+          1
+        ],
+        "k": 20
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "large-budget"
+      ]
+    },
+    {
+      "id": "real-multiple-contractions",
+      "name": "real: alternating values force repeated contraction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          2,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 10,
+      "tags": [
+        "real",
+        "contraction"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: billion-scale values require wide arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          1000000000
+        ],
+        "k": 1000000000
+      },
+      "expected": 6,
+      "tags": [
+        "real",
+        "integer-range"
       ]
     }
   ]

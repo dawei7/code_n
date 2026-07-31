@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3694",
+    "frontend_id": "3694",
+    "title_slug": "distinct-points-reachable-after-substring-removal",
+    "url": "https://leetcode.com/problems/distinct-points-reachable-after-substring-removal/description/",
+    "paid_only": false,
+    "content_sha256": "319f94fc5ac8d97bacae9be7b616f70c25a7093ad21421c0a0acfc5cdfec2d14",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"LUL\", k = 1",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"UDLR\", k = 4",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"UU\", k = 1",
+        "output": "1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "7a525d0eb3c7c9795ee75a2319d43e7b20b87d17018ab116469ec13f4cb81153",
+      "reference/contract.md": "dbb44508072fb0cd6d7eef1c4929d523b3a93b89024ecc618740a4da5aed957f",
+      "reference/examples.md": "d8c30e05de6b7ad9e441ac6162e007c266755b78d7b2114a4b3c13c9a3d7a7bf",
+      "reference/constraints.md": "a80e978462c516141cc3223c1c17decb068d6ee58c157ad01c5ce72f22fddfe7"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

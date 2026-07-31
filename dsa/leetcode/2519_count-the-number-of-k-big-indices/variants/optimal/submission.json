@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2610",
+  "frontend_id": "2519",
+  "title_slug": "count-the-number-of-k-big-indices",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.kBigIndices",
+  "verified_submission_id": "2075213887",
+  "verified_at": "2026-07-21T03:04:00+00:00"
+}

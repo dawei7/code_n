@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_4004",
+  "source": "leetcode",
+  "frontend_id": "4004",
+  "slug": "minimum-moves-to-balance-circular-array-ii",
+  "title": "Minimum Moves to Balance Circular Array II",
+  "difficulty": "Hard",
+  "acceptance_rate": 54.411764705882355,
+  "frequency": 0.0,
+  "elo_rating": null,
+  "estimated_elo_rating": 2047.030654,
+  "contest_source": null,
+  "contest_slug": null,
+  "contest_problem_index": null,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/minimum-moves-to-balance-circular-array-ii/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "solution_variants": {
+    "manifest": "solution_variants.json",
+    "default": "optimal"
+  },
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

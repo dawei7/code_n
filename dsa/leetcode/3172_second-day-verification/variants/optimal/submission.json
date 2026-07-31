@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3479",
+  "frontend_id": "3172",
+  "title_slug": "second-day-verification",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2080023803",
+  "verified_at": "2026-07-24T21:31:00+02:00"
+}

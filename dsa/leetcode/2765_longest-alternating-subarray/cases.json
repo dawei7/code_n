@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2765",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: alternating pattern length four",
+      "id": "sample-long",
+      "name": "sample: alternating suffix of length four",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,15 +16,15 @@
           4
         ]
       },
+      "expected": 4,
       "tags": [
         "sample",
         "alternating"
-      ],
-      "expected": 4
+      ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: first rise only gives length two",
+      "id": "sample-short",
+      "name": "sample: either rising pair has length two",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -33,15 +34,15 @@
           6
         ]
       },
+      "expected": 2,
       "tags": [
         "sample",
         "short"
-      ],
-      "expected": 2
+      ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no valid start pair",
+      "id": "sample-none",
+      "name": "sample: no valid rising start",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -51,21 +52,52 @@
           5
         ]
       },
+      "expected": -1,
       "tags": [
         "sample",
         "none"
-      ],
-      "expected": -1
+      ]
     },
     {
-      "id": "trial-overlapping-pattern",
-      "name": "trial: overlapping alternating runs",
+      "id": "trial-minimum",
+      "name": "trial: minimum valid length",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           1,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-falling-pair",
+      "name": "hidden: a falling pair cannot start a run",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
           2,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "start-direction"
+      ]
+    },
+    {
+      "id": "real-restart-on-rise",
+      "name": "hidden: a new rise restarts after a mismatch",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
           1,
           2,
           1,
@@ -74,37 +106,92 @@
           3
         ]
       },
+      "expected": 3,
       "tags": [
-        "trial",
-        "overlap"
-      ],
-      "expected": 5
+        "hidden",
+        "restart"
+      ]
     },
     {
-      "id": "real-late-run",
-      "name": "hidden: longest run appears late",
+      "id": "real-consecutive-rises",
+      "name": "hidden: consecutive rises only form pairs",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          5,
-          5,
-          6,
-          5,
-          6,
-          5,
-          7,
-          8,
-          7,
-          8,
-          7
+          1,
+          2,
+          3,
+          4
         ]
       },
+      "expected": 2,
       "tags": [
         "hidden",
-        "late"
-      ],
-      "expected": 5
+        "repeated-rise"
+      ]
+    },
+    {
+      "id": "real-duplicate-break",
+      "name": "hidden: a duplicate breaks the pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          2,
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "duplicate",
+        "restart"
+      ]
+    },
+    {
+      "id": "real-upper-values",
+      "name": "hidden: values near the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9999,
+          10000,
+          9999,
+          10000
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-full-pattern",
+      "name": "hidden: the entire array alternates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          8,
+          7,
+          8,
+          7,
+          8
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "full-array"
+      ]
     }
   ]
 }

@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-add-two",
-      "name": "sample: two added coins",
+      "name": "sample: coins 2 and 8 close two gaps",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -21,7 +21,7 @@
     },
     {
       "id": "sample-add-one",
-      "name": "sample: one added coin",
+      "name": "sample: only coin 2 must be added",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -42,7 +42,7 @@
     },
     {
       "id": "sample-three-ones",
-      "name": "sample: repeated ones",
+      "name": "sample: repeated ones require three powers",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -59,22 +59,78 @@
       ]
     },
     {
-      "id": "trial-empty-coins",
-      "name": "trial: no existing coins",
+      "id": "trial-target-one-covered",
+      "name": "trial: coin one already covers the minimum target",
       "kind": "trial",
       "visible": true,
       "input": {
-        "coins": [],
-        "target": 31
+        "coins": [
+          1
+        ],
+        "target": 1
       },
-      "expected": 5,
+      "expected": 0,
       "tags": [
-        "edge"
+        "minimum"
       ]
     },
     {
-      "id": "real-unsorted-large-gap",
-      "name": "real: unsorted coins with large gap",
+      "id": "trial-target-one-gap",
+      "name": "trial: a larger coin cannot form one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          2
+        ],
+        "target": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum",
+        "first-gap"
+      ]
+    },
+    {
+      "id": "trial-no-additions",
+      "name": "trial: existing coins cover the whole target range",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "coins": [
+          1,
+          2,
+          2
+        ],
+        "target": 5
+      },
+      "expected": 0,
+      "tags": [
+        "already-covered"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "hidden: duplicate twos extend coverage after adding one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          2,
+          2,
+          2
+        ],
+        "target": 6
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-unsorted-gaps",
+      "name": "hidden: unsorted coins leave several separated gaps",
       "kind": "real",
       "visible": false,
       "input": {
@@ -88,7 +144,48 @@
       },
       "expected": 3,
       "tags": [
-        "hidden"
+        "hidden",
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-large-coin-unused",
+      "name": "hidden: a coin above the target cannot close earlier gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          100,
+          1,
+          2
+        ],
+        "target": 10
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "large-coin"
+      ]
+    },
+    {
+      "id": "real-power-chain",
+      "name": "hidden: sparse powers already cover every value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "coins": [
+          16,
+          1,
+          8,
+          2,
+          4
+        ],
+        "target": 31
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "powers"
       ]
     }
   ]

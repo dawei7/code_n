@@ -1,0 +1,61 @@
+{
+  "challenge_id": "lc_2478",
+  "measurement_note": "Size is n, the length of an alternating digit string with a valid cut after every pair. With k fixed at 10, prefix-summed dynamic programming takes O(kn), while enumerating every earlier boundary for each endpoint takes O(kn^2).",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 30-digit alternating string with ten parts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 30,
+      "input": {
+        "s": "212121212121212121212121212121",
+        "k": 10,
+        "minLength": 2
+      },
+      "expected": 2002,
+      "tags": [
+        "benchmark",
+        "many-boundaries",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 120-digit alternating string with ten parts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 120,
+      "input": {
+        "s": "212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121",
+        "k": 10,
+        "minLength": 2
+      },
+      "expected": 565671177,
+      "tags": [
+        "benchmark",
+        "many-boundaries",
+        "prefix-sum"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 300-digit alternating string with ten parts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 300,
+      "input": {
+        "s": "212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121212121",
+        "k": 10,
+        "minLength": 2
+      },
+      "expected": 286002364,
+      "tags": [
+        "benchmark",
+        "many-boundaries",
+        "prefix-sum"
+      ]
+    }
+  ]
+}
+

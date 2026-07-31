@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count K-Reducible Numbers Less Than N and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Precomputes popcount reduction depths and uses a prefix digit DP to count all strictly smaller binary values by their number of set bits.",
+      "time_complexity": "O(m^2)",
+      "space_complexity": "O(m)"
     }
   ]
 }

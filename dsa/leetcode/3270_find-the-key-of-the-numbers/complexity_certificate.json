@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3270",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Every legal input is padded to exactly four digit positions, so runtime scaling cannot expose another asymptotic class.",
+  "workload_bound": {
+    "symbol": "d",
+    "maximum": 4,
+    "unit": "digit positions",
+    "source_constraint": "1 <= num1, num2, num3 <= 9999 and every input is padded to four digits"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation executes exactly four iterations with one digit extraction and constant arithmetic per input and position."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression exhausts all 1000 digit triples independently at each of four positions and checks full-number boundary and deterministic mixed triples against a padded-string oracle."
+    }
+  ]
+}

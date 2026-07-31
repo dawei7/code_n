@@ -8,48 +8,59 @@
 | Category | Algorithms |
 | Topics | Math, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-operations-to-obtain-zero](https://leetcode.com/problems/count-operations-to-obtain-zero/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-operations-to-obtain-zero/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-operations-to-obtain-zero/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Start with two non-negative integers `num1` and `num2`. While both are
+positive, exactly one subtraction is required per operation:
+
+- if `num1 >= num2`, replace `num1` with `num1 - num2`;
+- otherwise, replace `num2` with `num2 - num1`.
+
+The comparison is repeated using the updated values, so the process is fully
+determined. Return how many operations occur before either integer becomes
+zero. If an input is already zero, the process stops without performing an
+operation.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `num1`: an integer between $0$ and $10^5$, inclusive.
+- `num2`: an integer between $0$ and $10^5$, inclusive.
+
+For the complexity bound, define
+
+$$
+M=\max\{2,\texttt{num1},\texttt{num2}\}.
+$$
 
 **Return value**
 
-TODO
+Return the exact number of prescribed subtraction operations needed to make
+`num1` or `num2` equal zero.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num1 = 2, num2 = 3`
+- Output: `3`
+
+The states are `(2, 3)`, `(2, 1)`, `(1, 1)`, and `(0, 1)`, so three
+operations are performed.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num1 = 10, num2 = 10`
+- Output: `1`
+
+Equality follows the `num1 >= num2` rule, and one subtraction changes the
+first value to zero.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num1 = 0, num2 = 7`
+- Output: `0`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The stopping condition already holds.

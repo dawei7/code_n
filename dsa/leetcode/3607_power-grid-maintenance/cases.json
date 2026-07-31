@@ -1,0 +1,452 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3607",
+  "cases": [
+    {
+      "id": "sample-chain-outages",
+      "name": "sample: successive outages advance the smallest responder",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "c": 5,
+        "connections": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        2,
+        3
+      ],
+      "tags": [
+        "sample",
+        "chain",
+        "successive-outages"
+      ]
+    },
+    {
+      "id": "sample-isolated-station",
+      "name": "sample: an isolated offline station has no substitute",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "c": 3,
+        "connections": [],
+        "queries": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        -1
+      ],
+      "tags": [
+        "sample",
+        "isolated",
+        "empty-component"
+      ]
+    },
+    {
+      "id": "trial-separate-components",
+      "name": "trial: outages affect only the target's permanent component",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "c": 5,
+        "connections": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "queries": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        -1,
+        3
+      ],
+      "tags": [
+        "trial",
+        "multiple-components",
+        "isolation"
+      ]
+    },
+    {
+      "id": "trial-online-answers-itself",
+      "name": "trial: an online target answers despite smaller component members",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "c": 3,
+        "connections": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "queries": [
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "tags": [
+        "trial",
+        "online-target",
+        "self-response"
+      ]
+    },
+    {
+      "id": "real-smallest-not-nearest",
+      "name": "real: an offline target uses the smallest identifier, not the nearest",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "c": 5,
+        "connections": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "queries": [
+          [
+            2,
+            4
+          ],
+          [
+            1,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "real",
+        "minimum-id",
+        "distance-trap"
+      ]
+    },
+    {
+      "id": "real-offline-bridge-remains",
+      "name": "real: taking a bridge station offline does not split the grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "c": 3,
+        "connections": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "queries": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        3
+      ],
+      "tags": [
+        "real",
+        "offline-bridge",
+        "fixed-connectivity"
+      ]
+    },
+    {
+      "id": "real-repeated-outage",
+      "name": "real: repeated outages are idempotent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "c": 1,
+        "connections": [],
+        "queries": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        -1
+      ],
+      "tags": [
+        "real",
+        "repeated-outage",
+        "single-station"
+      ]
+    },
+    {
+      "id": "real-cycle-component",
+      "name": "real: cycles still form one permanent component",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "c": 4,
+        "connections": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "queries": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        4
+      ],
+      "tags": [
+        "real",
+        "cycle",
+        "lazy-removal"
+      ]
+    },
+    {
+      "id": "real-exhaust-one-component",
+      "name": "real: only the exhausted component returns minus one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "c": 4,
+        "connections": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "queries": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        -1,
+        3
+      ],
+      "tags": [
+        "real",
+        "exhausted-component",
+        "multiple-components"
+      ]
+    },
+    {
+      "id": "real-no-maintenance-check",
+      "name": "real: an outage-only query stream produces no results",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "c": 3,
+        "connections": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "queries": [
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      },
+      "expected": [],
+      "tags": [
+        "real",
+        "outage-only",
+        "empty-output"
+      ]
+    }
+  ]
+}

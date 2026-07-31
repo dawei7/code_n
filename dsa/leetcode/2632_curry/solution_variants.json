@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Curry and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Retains each argument batch as an immutable linked chunk and flattens the chunks once when the original arity is reached.",
+      "time_complexity": "O(n + p)",
+      "space_complexity": "O(n + p)"
     }
   ]
 }

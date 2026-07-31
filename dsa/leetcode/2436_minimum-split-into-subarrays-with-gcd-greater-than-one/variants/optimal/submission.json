@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2579",
+  "frontend_id": "2436",
+  "title_slug": "minimum-split-into-subarrays-with-gcd-greater-than-one",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimumSplits",
+  "verified_submission_id": "2074929728",
+  "verified_at": "2026-07-20T17:47:54.041903+00:00"
+}

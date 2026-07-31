@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Implement Router and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines a FIFO deque and active-packet set with per-destination sorted timestamp histories and binary-searchable live suffixes.",
+      "time_complexity": "O(q log q)",
+      "space_complexity": "O(q)"
     }
   ]
 }

@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_3014",
+  "cases": [
+    {
+      "id": "sample-five-letters",
+      "name": "sample: every letter uses one push",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abcde"
+      },
+      "expected": 5,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-ten-letters",
+      "name": "sample: two letters enter the second level",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "xycdefghij"
+      },
+      "expected": 12,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "single-letter",
+      "name": "boundary: one mapped letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "z"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "exactly-eight",
+      "name": "trial: all one-push positions are filled",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdefgh"
+      },
+      "expected": 8,
+      "tags": [
+        "level-boundary"
+      ]
+    },
+    {
+      "id": "first-second-level",
+      "name": "trial: ninth letter costs two pushes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcdefghi"
+      },
+      "expected": 10,
+      "tags": [
+        "level-boundary"
+      ]
+    },
+    {
+      "id": "two-full-levels",
+      "name": "real: sixteen letters fill two levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abcdefghijklmnop"
+      },
+      "expected": 24,
+      "tags": [
+        "level-boundary"
+      ]
+    },
+    {
+      "id": "first-third-level",
+      "name": "real: seventeenth letter costs three pushes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abcdefghijklmnopq"
+      },
+      "expected": 27,
+      "tags": [
+        "level-boundary"
+      ]
+    },
+    {
+      "id": "all-letters",
+      "name": "real: all twenty-six lowercase letters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": 56,
+      "tags": [
+        "boundary",
+        "maximum"
+      ]
+    }
+  ]
+}

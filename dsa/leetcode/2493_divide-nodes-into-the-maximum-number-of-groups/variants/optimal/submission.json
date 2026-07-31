@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2583",
+  "frontend_id": "2493",
+  "title_slug": "divide-nodes-into-the-maximum-number-of-groups",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.magnificentSets",
+  "verified_submission_id": "2088527494",
+  "verified_at": "2026-07-31T08:30:54.7775007Z"
+}

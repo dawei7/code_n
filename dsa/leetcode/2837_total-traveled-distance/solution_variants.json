@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Total Traveled Distance and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Left-joins rides to every user, aggregates distance, substitutes zero for missing totals, and orders by user identifier.",
+      "time_complexity": "O((U + R) log (U + R))",
+      "space_complexity": "O(U + R)"
     }
   ]
 }

@@ -3,173 +3,73 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: three rows needed",
+      "name": "sample: three rows forced by one value",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          3,
-          4,
-          1,
-          2,
-          3,
-          1
-        ]
-      },
-      "expected": [
-        [
-          1,
-          3,
-          4,
-          2
-        ],
-        [
-          1,
-          3
-        ],
-        [
-          1
-        ]
-      ],
-      "validator": {
-        "kind": "minimum_unique_rows_matrix",
-        "values_param": "nums"
-      },
-      "tags": [
-        "sample",
-        "matrix"
-      ]
+      "input": {"nums": [1, 3, 4, 1, 2, 3, 1]},
+      "expected": [[1, 3, 4, 2], [1, 3], [1]],
+      "validator": {"kind": "minimum_unique_rows_matrix", "values_param": "nums"},
+      "tags": ["sample", "mixed-frequencies"]
     },
     {
       "id": "sample-2",
-      "name": "sample: one row with unique values",
+      "name": "sample: all values distinct",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "expected": [
-        [
-          1,
-          2,
-          3,
-          4
-        ]
-      ],
-      "validator": {
-        "kind": "minimum_unique_rows_matrix",
-        "values_param": "nums"
-      },
-      "tags": [
-        "sample"
-      ]
+      "input": {"nums": [1, 2, 3, 4]},
+      "expected": [[1, 2, 3, 4]],
+      "validator": {"kind": "minimum_unique_rows_matrix", "values_param": "nums"},
+      "tags": ["sample", "one-row"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: zero values and duplicates",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          0,
-          0,
-          1,
-          2
-        ]
-      },
-      "expected": [
-        [
-          2,
-          0,
-          1
-        ],
-        [
-          2,
-          0
-        ]
-      ],
-      "validator": {
-        "kind": "minimum_unique_rows_matrix",
-        "values_param": "nums"
-      },
-      "tags": [
-        "sample",
-        "duplicates"
-      ]
-    },
-    {
-      "id": "trial-one-value-three-times",
-      "name": "trial: one value repeated three times",
+      "id": "trial-one-value",
+      "name": "trial: every occurrence needs its own row",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          5,
-          5
-        ]
-      },
-      "expected": [
-        [
-          5
-        ],
-        [
-          5
-        ],
-        [
-          5
-        ]
-      ],
-      "validator": {
-        "kind": "minimum_unique_rows_matrix",
-        "values_param": "nums"
-      },
-      "tags": [
-        "trial",
-        "edge"
-      ]
+      "input": {"nums": [2, 2, 2, 2]},
+      "expected": [[2], [2], [2], [2]],
+      "validator": {"kind": "minimum_unique_rows_matrix", "values_param": "nums"},
+      "tags": ["trial", "maximum-frequency"]
+    },
+    {
+      "id": "trial-interleaved-groups",
+      "name": "trial: several frequency levels",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4, 1, 4, 2, 1, 4, 3, 2]},
+      "expected": [[4, 1, 2, 3], [4, 1, 2], [4]],
+      "validator": {"kind": "minimum_unique_rows_matrix", "values_param": "nums"},
+      "tags": ["trial", "staggered-frequencies"]
+    },
+    {
+      "id": "real-single-element",
+      "name": "hidden: minimum input",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1]},
+      "expected": [[1]],
+      "validator": {"kind": "minimum_unique_rows_matrix", "values_param": "nums"},
+      "tags": ["hidden", "minimum-length"]
     },
     {
       "id": "real-balanced-duplicates",
-      "name": "hidden: balanced duplicate groups",
+      "name": "hidden: equal frequencies across values",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          1,
-          1,
-          2,
-          2,
-          3,
-          3
-        ]
-      },
-      "expected": [
-        [
-          1,
-          2,
-          3
-        ],
-        [
-          1,
-          2,
-          3
-        ]
-      ],
-      "validator": {
-        "kind": "minimum_unique_rows_matrix",
-        "values_param": "nums"
-      },
-      "tags": [
-        "hidden"
-      ]
+      "input": {"nums": [1, 2, 3, 1, 2, 3]},
+      "expected": [[1, 2, 3], [1, 2, 3]],
+      "validator": {"kind": "minimum_unique_rows_matrix", "values_param": "nums"},
+      "tags": ["hidden", "equal-frequencies"]
+    },
+    {
+      "id": "real-order-flexible",
+      "name": "hidden: many valid row orders",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 1, 5, 4, 3, 2, 4]},
+      "expected": [[5, 1, 4, 3, 2], [5, 4]],
+      "validator": {"kind": "minimum_unique_rows_matrix", "values_param": "nums"},
+      "tags": ["hidden", "any-valid-answer"]
     }
   ]
 }

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3300",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(S)",
+  "summary": "The complete legal input contains at most 500 decimal digits, which is too little work for an honest runtime scaling verdict between plausible complexity classes.",
+  "workload_bound": {
+    "symbol": "S",
+    "maximum": 500,
+    "unit": "decimal input digits",
+    "source_constraint": "nums has at most 100 elements and every element is at most 10000, so each has at most five decimal digits"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "For each positive value, integer division by ten removes exactly one decimal digit per iteration; therefore the solution performs exactly S digit-extraction iterations."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover one element, one-digit values, internal zeroes, the maximum value 10000, and the maximum list length of 100 elements."
+    }
+  ]
+}

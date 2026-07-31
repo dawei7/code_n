@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_14",
+    "frontend_id": "14",
+    "title_slug": "longest-common-prefix",
+    "url": "https://leetcode.com/problems/longest-common-prefix/description/",
+    "paid_only": false,
+    "content_sha256": "39e26e2df79a10ba618dc6ccb29f492098c3f45830765c3c7594a854e5737634",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "strs = [\"flower\",\"flow\",\"flight\"]", "output": "\"fl\"", "has_explanation": false},
+      {"ordinal": 2, "input": "strs = [\"dog\",\"racecar\",\"car\"]", "output": "\"\"", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "e2a4cd35b26ac565ff61daa9317887a878fed73ee9587e269f0dbc52d7e82bed",
+      "reference/contract.md": "ca0390f408c6819de4fe7ad4420a9b34cc124cedc42fe1776a0af47ed753647b",
+      "reference/examples.md": "9e483f91f95e2fbda0e54ef85c75f1b8749d3e10d439f8cf1b363ddf3ff91690",
+      "reference/constraints.md": "cf19bbe3132753547589c0b49eba0f80179de70e23cf6278dcf5ba3959085ae7"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

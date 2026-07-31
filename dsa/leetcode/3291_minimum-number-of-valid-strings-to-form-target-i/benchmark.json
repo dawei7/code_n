@@ -1,28 +1,8 @@
 {
   "challenge_id": "lc_3291",
   "cases": [
-    {
-      "id": "benchmark-trie-dp-i",
-      "name": "benchmark: long target with prefix trie I",
-      "kind": "benchmark",
-      "visible": false,
-      "input": {
-        "words": [
-          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
-          "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
-          "bcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabca",
-          "cabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabccabc",
-          "dabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabc",
-          "abcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcad"
-        ],
-        "target": "abcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcadabcabcabcabcad"
-      },
-      "expected": 5,
-      "tags": [
-        "benchmark",
-        "trie",
-        "dp"
-      ]
-    }
+    {"id":"benchmark-quadratic-200","name":"benchmark: dense prefix matches at length 200","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"t = 200\ncase = {'words': ['a' * t], 'target': 'a' * t}\nexpected = 1"},"size":200,"tags":["benchmark","quadratic","trie"]},
+    {"id":"benchmark-quadratic-800","name":"benchmark: dense prefix matches at length 800","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"t = 800\ncase = {'words': ['a' * t], 'target': 'a' * t}\nexpected = 1"},"size":800,"tags":["benchmark","quadratic","trie"]},
+    {"id":"benchmark-quadratic-3200","name":"benchmark: dense prefix matches at length 3200","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"t = 3200\ncase = {'words': ['a' * t], 'target': 'a' * t}\nexpected = 1"},"size":3200,"tags":["benchmark","quadratic","trie"]}
   ]
 }

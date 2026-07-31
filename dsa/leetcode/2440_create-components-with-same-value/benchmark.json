@@ -1,37 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2440",
+  "measurement_note": "Size is n, the number of nodes in an all-one path. The iterative postorder recognizes n one-node components in O(n) time, while enumerating every subset of the n-1 edges and validating each partition takes exponential time.",
   "cases": [
     {
-      "id": "benchmark-three-components",
-      "name": "benchmark: split chain into three equal-sum components",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: three-node equal path",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "nums": [
-          2,
-          1,
-          1,
-          2
-        ],
-        "edges": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            3
-          ]
-        ]
-      },
+      "size": 3,
+      "input": {"nums": [1,1,1], "edges": [[0,1],[1,2]]},
       "expected": 2,
-      "tags": [
-        "benchmark"
-      ]
+      "tags": ["benchmark", "edge-subset-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: six-node equal path",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"nums": [1,1,1,1,1,1], "edges": [[0,1],[1,2],[2,3],[3,4],[4,5]]},
+      "expected": 5,
+      "tags": ["benchmark", "edge-subset-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: twelve-node equal path",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {"nums": [1,1,1,1,1,1,1,1,1,1,1,1], "edges": [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,11]]},
+      "expected": 11,
+      "tags": ["benchmark", "edge-subset-enumeration"]
     }
   ]
 }

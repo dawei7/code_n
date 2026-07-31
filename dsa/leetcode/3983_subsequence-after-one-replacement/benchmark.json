@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_3983",
+  "measurement_note": "Size is L = |s| + |t|. Each tier uses equal-length strings that differ at both ends, so every correct one-replacement search must reject. The reference scans t once in O(L), while explicitly trying every replacement position and letter costs O(nm) because each candidate requires another subsequence scan.",
+  "cases": [
+    {
+      "id": "benchmark-two-end-mismatches-small",
+      "name": "benchmark: two end mismatches at length sixteen",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s": "aaaaaaaaaaaaaaaa", "t": "baaaaaaaaaaaaaab"},
+      "expected": false,
+      "tags": ["benchmark", "scale-small", "two-mismatches", "full-scan"]
+    },
+    {
+      "id": "benchmark-two-end-mismatches-medium",
+      "name": "benchmark: two end mismatches at length sixty-four",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "t": "baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"},
+      "expected": false,
+      "tags": ["benchmark", "scale-medium", "two-mismatches", "full-scan"]
+    },
+    {
+      "id": "benchmark-two-end-mismatches-large",
+      "name": "benchmark: two end mismatches at length two hundred fifty-six",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "t": "baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"},
+      "expected": false,
+      "tags": ["benchmark", "scale-large", "two-mismatches", "full-scan"]
+    }
+  ]
+}

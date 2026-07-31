@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3836",
+    "frontend_id": "3836",
+    "title_slug": "maximum-score-using-exactly-k-pairs",
+    "url": "https://leetcode.com/problems/maximum-score-using-exactly-k-pairs/description/",
+    "paid_only": false,
+    "content_sha256": "9df705bb5f64aba51ad82cec872d47669674d227910c39b2abe4055ad91b4524",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums1 = [1,3,2], nums2 = [4,5,1], k = 2",
+        "output": "22",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums1 = [-2,0,5], nums2 = [-3,4,-1,2], k = 2",
+        "output": "26",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums1 = [-3,-2], nums2 = [1,2], k = 2",
+        "output": "-7",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ca31eb6e569049e7893ae81abb7f33f9828a0897fad6b2d6eadafbb93f490d8a",
+      "reference/contract.md": "0591e6b8b82aa2579689555cdca1f612faf08fffcbea9fb805ca5a2694c81d5b",
+      "reference/examples.md": "bb8e5827c4f17261e37a522b71d6c21d94ee1b1f3c371c1933c74a16ddc6b0d6",
+      "reference/constraints.md": "d059a4bba9e9643dbf03605013e4efb40e189828d3b20397e90db41e20679c0e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

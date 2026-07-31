@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3695",
+    "frontend_id": "3695",
+    "title_slug": "maximize-alternating-sum-using-swaps",
+    "url": "https://leetcode.com/problems/maximize-alternating-sum-using-swaps/description/",
+    "paid_only": false,
+    "content_sha256": "6b90e0f89670666ff4b060af07341656c65d9ece2d84af160e903ff3a1a16492",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,3], swaps = [[0,2],[1,2]]",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,2,3], swaps = [[1,2]]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1,1000000000,1,1000000000,1,1000000000], swaps = []",
+        "output": "-2999999997",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "56bd2e15aa4ca7129f42ef28700e11a6c2cebba8ba92e6d02eee8e06065f868d",
+      "reference/contract.md": "87661f9243544c2d48adace9c740f6c2c6fd03d527ad1e8cf5f0cd3110b8a257",
+      "reference/examples.md": "a2a9e57bacf4fc45ac638f22ad6c314e6515546fe9be26d3a6ea3f29fe47de00",
+      "reference/constraints.md": "1f909c22731ad72292f14366b33eb24752972ca6649ea5637df20ece54817584"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

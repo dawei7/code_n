@@ -2,8 +2,8 @@
   "challenge_id": "lc_2923",
   "cases": [
     {
-      "id": "sample-two-teams",
-      "name": "sample: team 0 beats team 1",
+      "id": "sample-1",
+      "name": "sample: team zero is stronger than team one",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,14 +18,15 @@
           ]
         ]
       },
-      "expected": 0,
       "tags": [
-        "sample"
-      ]
+        "sample",
+        "minimum-size"
+      ],
+      "expected": 0
     },
     {
-      "id": "sample-three-teams",
-      "name": "sample: middle team champion",
+      "id": "sample-2",
+      "name": "sample: middle-index team is strongest",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,32 +48,33 @@
           ]
         ]
       },
-      "expected": 1,
       "tags": [
-        "sample"
-      ]
+        "sample",
+        "champion-middle"
+      ],
+      "expected": 1
     },
     {
       "id": "trial-last-team",
-      "name": "trial: last team defeats everyone",
+      "name": "trial: final team is strongest in a four-team order",
       "kind": "trial",
       "visible": true,
       "input": {
         "grid": [
           [
             0,
-            1,
-            0,
-            0
-          ],
-          [
-            0,
             0,
             1,
             0
           ],
           [
             1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
             0,
             0,
             0
@@ -87,12 +89,221 @@
       },
       "expected": 3,
       "tags": [
+        "trial",
         "champion-last"
       ]
     },
     {
-      "id": "real-seven-teams",
-      "name": "real: seven-team tournament",
+      "id": "trial-first-team",
+      "name": "trial: team zero heads the full strength order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "champion-first"
+      ]
+    },
+    {
+      "id": "real-nonmonotonic-order",
+      "name": "hidden: labels do not follow strength order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "permuted-order"
+      ]
+    },
+    {
+      "id": "real-last-in-eight",
+      "name": "hidden: candidate changes at the final comparison",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "grid": [
+          [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "candidate-replacement"
+      ]
+    },
+    {
+      "id": "real-ten-teams",
+      "name": "hidden: larger transitive tournament with central champion label",
       "kind": "real",
       "visible": false,
       "input": {
@@ -100,71 +311,129 @@
           [
             0,
             1,
-            0,
             1,
             1,
-            0,
-            1
-          ],
-          [
-            0,
-            0,
             1,
             0,
             1,
-            0,
+            1,
+            1,
             0
           ],
           [
-            1,
             0,
-            0,
-            1,
-            0,
-            0,
-            1
-          ],
-          [
-            0,
-            1,
             0,
             0,
             1,
-            0,
-            1
-          ],
-          [
-            0,
-            0,
             1,
             0,
+            1,
             0,
             0,
             0
           ],
           [
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
             1,
             1,
             1,
             1,
             1,
             0,
+            1,
+            1,
+            1,
             1
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
           ],
           [
             0,
             1,
             0,
+            1,
+            1,
             0,
             1,
             0,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
             0
           ]
         ]
       },
       "expected": 5,
       "tags": [
-        "hidden"
+        "hidden",
+        "transitive"
       ]
     }
   ]

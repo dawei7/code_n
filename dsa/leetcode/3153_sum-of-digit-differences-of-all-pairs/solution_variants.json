@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of Digit Differences of All Pairs and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Streams the values while counting each decimal digit previously seen at every position.",
+      "time_complexity": "O(nD)",
+      "space_complexity": "O(D)"
     }
   ]
 }

@@ -1,0 +1,5 @@
+{"schema_version":1,"challenge_id":"lc_3789","measurement_note":"Size is max(need1, need2). The closed-form pricing takes O(1) arithmetic, while enumerating every possible combined-item count takes O(size) time.","cases":[
+{"id":"benchmark-enumerate-1000","name":"benchmark: price equal needs of 1000","kind":"benchmark","visible":false,"size":1000,"input":{"cost1":3,"cost2":2,"costBoth":4,"need1":1000,"need2":1000},"expected":4000,"validator":{"kind":"exact"},"tags":["benchmark","equal-needs","scale-small"]},
+{"id":"benchmark-enumerate-10000","name":"benchmark: price equal needs of 10000","kind":"benchmark","visible":false,"size":10000,"input":{"cost1":3,"cost2":2,"costBoth":4,"need1":10000,"need2":10000},"expected":40000,"validator":{"kind":"exact"},"tags":["benchmark","equal-needs","scale-medium"]},
+{"id":"benchmark-enumerate-100000","name":"benchmark: price equal needs of 100000","kind":"benchmark","visible":false,"size":100000,"input":{"cost1":3,"cost2":2,"costBoth":4,"need1":100000,"need2":100000},"expected":400000,"validator":{"kind":"exact"},"tags":["benchmark","equal-needs","scale-large"]}
+]}

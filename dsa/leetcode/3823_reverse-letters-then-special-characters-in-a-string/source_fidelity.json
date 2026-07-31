@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3823",
+    "frontend_id": "3823",
+    "title_slug": "reverse-letters-then-special-characters-in-a-string",
+    "url": "https://leetcode.com/problems/reverse-letters-then-special-characters-in-a-string/description/",
+    "paid_only": false,
+    "content_sha256": "4607db55410ef5338d899ad0f2b8daea6617bcc88605756fc663416c0a5cb8a1",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \")ebc#da@f(\"",
+        "output": "\"(fad@cb#e)\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"z\"",
+        "output": "\"z\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"!@#$%^&*()\"",
+        "output": "\")(*&^%$#@!\"",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f112d6c541f541681033bd2850de4cc6107d88105b91fae5b114f91f95e4748d",
+      "reference/contract.md": "8e6750d961edecfb6607646b2ce8ccc693f6021c34af8d985aa1263dc9806412",
+      "reference/examples.md": "2e0a212f36bef39a29edc149050905c8f69f229be31aaa6731ced8f50da8d91a",
+      "reference/constraints.md": "322b08f10ad2d9ee31a4df98416bf4b12c678aa69f69198e3c551388a3a10623"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

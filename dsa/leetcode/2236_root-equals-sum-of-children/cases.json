@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2236",
+  "cases": [
+    {"id":"sample-equal","name":"sample: root equals positive child sum","kind":"sample","visible":true,"input":{"root":[10,4,6]},"expected":true,"tags":["sample","equal"]},
+    {"id":"sample-not-equal","name":"sample: root differs from child sum","kind":"sample","visible":true,"input":{"root":[5,3,1]},"expected":false,"tags":["sample","not-equal"]},
+    {"id":"trial-cancellation","name":"opposite children sum to zero","kind":"trial","visible":true,"input":{"root":[0,-8,8]},"expected":true,"tags":["negative","cancellation"]},
+    {"id":"trial-negative-root","name":"negative root equals two negative children","kind":"trial","visible":true,"input":{"root":[-100,-60,-40]},"expected":true,"tags":["negative","lower-bound"]},
+    {"id":"trial-off-by-one","name":"root is one greater than the child sum","kind":"trial","visible":true,"input":{"root":[1,-50,50]},"expected":false,"tags":["off-by-one"]},
+    {"id":"real-mixed-sign","name":"hidden: mixed-sign children produce positive root","kind":"real","visible":false,"input":{"root":[75,100,-25]},"expected":true,"tags":["hidden","mixed-sign"]},
+    {"id":"real-boundaries-false","name":"hidden: extreme children exceed root range","kind":"real","visible":false,"input":{"root":[100,100,100]},"expected":false,"tags":["hidden","upper-bound"]},
+    {"id":"real-zero-values","name":"hidden: all zero values satisfy equality","kind":"real","visible":false,"input":{"root":[0,0,0]},"expected":true,"tags":["hidden","zero"]}
+  ]
+}

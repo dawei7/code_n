@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2385",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: infection crosses both sides of the tree",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          5,
+          3,
+          null,
+          4,
+          10,
+          6,
+          9,
+          2
+        ],
+        "start": 3
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "cross-subtree"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: single node",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1
+        ],
+        "start": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-start-at-root",
+      "name": "trial: root reaches both children in one minute",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3
+        ],
+        "start": 1
+      },
+      "expected": 1,
+      "tags": [
+        "root"
+      ]
+    },
+    {
+      "id": "trial-left-chain",
+      "name": "trial: infection travels upward from a deep leaf",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          null,
+          3,
+          null,
+          4
+        ],
+        "start": 4
+      },
+      "expected": 3,
+      "tags": [
+        "chain",
+        "parent-edge"
+      ]
+    },
+    {
+      "id": "real-balanced-leaf",
+      "name": "hidden: farthest node lies across the root",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "start": 5
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "balanced"
+      ]
+    },
+    {
+      "id": "real-sparse-cross-branch",
+      "name": "hidden: sparse tree preserves parent-child distances",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          8,
+          4,
+          12,
+          null,
+          6,
+          10,
+          null,
+          5,
+          7
+        ],
+        "start": 6
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "sparse"
+      ]
+    },
+    {
+      "id": "real-deep-opposite-leaf",
+      "name": "hidden: deepest leaf infects the opposite branch last",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          null,
+          null,
+          5,
+          6
+        ],
+        "start": 6
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "diameter"
+      ]
+    }
+  ]
+}

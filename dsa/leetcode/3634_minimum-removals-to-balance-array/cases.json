@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3634",
+  "cases": [
+    {
+      "id": "sample-remove-high",
+      "name": "sample: remove the value five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "remove-high"
+      ]
+    },
+    {
+      "id": "sample-remove-both-ends",
+      "name": "sample: keep the middle balanced pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          6,
+          2,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "remove-low-and-high"
+      ]
+    },
+    {
+      "id": "sample-already-balanced",
+      "name": "sample: no removals are required",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          6
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "already-balanced"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: one element is always balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-k-one-duplicates",
+      "name": "trial: k one keeps only equal values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "duplicates",
+        "k-one"
+      ]
+    },
+    {
+      "id": "trial-equality-boundary",
+      "name": "trial: maximum exactly equals k times minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          6,
+          9
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "inclusive-boundary"
+      ]
+    },
+    {
+      "id": "trial-remove-low-outlier",
+      "name": "trial: discarding a small minimum saves the suffix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          11,
+          12
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "remove-low"
+      ]
+    },
+    {
+      "id": "trial-remove-high-outlier",
+      "name": "trial: discard one very large maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          6,
+          7,
+          100
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "remove-high"
+      ]
+    },
+    {
+      "id": "real-unsorted-window",
+      "name": "hidden: the optimal value interval is unordered in input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          20,
+          3,
+          8,
+          4,
+          9,
+          2
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "sorting",
+        "middle-window"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: equal values need no removals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "already-balanced"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: multiplication near value limits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          500000000,
+          250000000,
+          1
+        ],
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-multiple-optimal-windows",
+      "name": "hidden: several longest balanced windows tie",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "multiple-optima"
+      ]
+    },
+    {
+      "id": "real-large-k",
+      "name": "hidden: a large multiplier keeps every value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          1,
+          50000
+        ],
+        "k": 100000
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "large-k"
+      ]
+    }
+  ]
+}

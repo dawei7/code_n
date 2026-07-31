@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2763",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: repeated two creates imbalance only in longer subarrays",
+      "id": "sample-one",
+      "name": "sample: three non-zero subarrays",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -14,15 +15,15 @@
           4
         ]
       },
+      "expected": 3,
       "tags": [
         "sample",
-        "imbalance"
-      ],
-      "expected": 3
+        "mixed-gaps"
+      ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: duplicates suppress new imbalance",
+      "id": "sample-two",
+      "name": "sample: duplicates preserve gaps",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -34,15 +35,31 @@
           5
         ]
       },
+      "expected": 8,
       "tags": [
         "sample",
         "duplicates"
-      ],
-      "expected": 8
+      ]
     },
     {
-      "id": "trial-sorted-consecutive",
-      "name": "trial: consecutive sorted values have zero imbalance",
+      "id": "trial-single",
+      "name": "trial: singleton array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "single-element",
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-consecutive",
+      "name": "trial: ascending consecutive values",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -53,33 +70,92 @@
           4
         ]
       },
+      "expected": 0,
       "tags": [
-        "trial",
+        "consecutive",
         "zero"
-      ],
-      "expected": 0
+      ]
     },
     {
-      "id": "trial-gap-values",
-      "name": "trial: gaps create imbalance",
-      "kind": "trial",
-      "visible": true,
+      "id": "real-descending",
+      "name": "hidden: descending consecutive values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "descending",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-isolated-pair",
+      "name": "hidden: one missing interior value",
+      "kind": "real",
+      "visible": false,
       "input": {
         "nums": [
           1,
-          4,
-          2
+          3
         ]
       },
+      "expected": 1,
       "tags": [
-        "trial",
-        "gaps"
-      ],
-      "expected": 3
+        "hidden",
+        "single-gap"
+      ]
+    },
+    {
+      "id": "real-bridge",
+      "name": "hidden: a new value closes an existing gap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "bridge",
+        "decrement"
+      ]
+    },
+    {
+      "id": "real-duplicates-only",
+      "name": "hidden: all values equal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "zero"
+      ]
     },
     {
       "id": "real-mixed-duplicates",
-      "name": "hidden: mixed duplicate and gap values",
+      "name": "hidden: mixed duplicates and gaps",
       "kind": "real",
       "visible": false,
       "input": {
@@ -92,11 +168,33 @@
           6
         ]
       },
+      "expected": 10,
       "tags": [
         "hidden",
         "mixed"
-      ],
-      "expected": 10
+      ]
+    },
+    {
+      "id": "real-multiple-gaps",
+      "name": "hidden: several gaps appear and close",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          1,
+          4,
+          2,
+          5,
+          3
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "multiple-gaps",
+        "permutation"
+      ]
     }
   ]
 }

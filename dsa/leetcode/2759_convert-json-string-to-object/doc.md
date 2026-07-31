@@ -8,48 +8,42 @@
 | Category | JavaScript |
 | Topics | Uncategorized |
 | Supported Languages | javascript |
-| Official Link | [convert-json-string-to-object](https://leetcode.com/problems/convert-json-string-to-object/) |
+| LeetCode | [Convert JSON String to Object](https://leetcode.com/problems/convert-json-string-to-object/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/convert-json-string-to-object/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a valid JSON string `str`, reconstruct and return the JavaScript value that it represents without calling the built-in `JSON.parse` method.
+
+The input may describe an object, an array, a string, a number, a boolean, or `null`. Objects and arrays may contain any of those JSON value types recursively. String contents do not contain escape sequences, and the input contains no invisible characters; punctuation such as commas may still appear inside a quoted string and must not be mistaken for structural syntax.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `str`: A valid JSON string with length $1 \leq \lvert\texttt{str}\rvert \leq 10^5$.
 
 **Return value**
 
-TODO
+Return the parsed JavaScript value: `null`, a boolean, a number, a string, an array, or an object. The parser must not use `JSON.parse`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `str = '{"a":2,"b":[1,2,3]}'`
+- Output: `{"a":2,"b":[1,2,3]}`
+- Explanation: The outer value is an object whose second property contains an array.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `str = 'true'`
+- Output: `true`
+- Explanation: A JSON document may consist of a primitive value.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `str = '[1,5,"false",{"a":2}]'`
+- Output: `[1,5,"false",{"a":2}]`
+- Explanation: The quoted `"false"` is a string, while the remaining entries retain their own JSON types.

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2303",
+  "frontend_id": "2168",
+  "title_slug": "unique-substrings-with-equal-digit-frequency",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.equalDigitFrequency",
+  "verified_submission_id": "2073632584",
+  "verified_at": "2026-07-19T15:41:43.284994+00:00"
+}

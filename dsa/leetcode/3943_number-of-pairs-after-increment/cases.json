@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3943",
+  "cases": [
+    {
+      "id": "sample-single-position-update",
+      "name": "sample: one update removes one of two pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [1, 2], "nums2": [3, 4], "queries": [[2, 5], [1, 0, 0, 2], [2, 5]]},
+      "expected": [2, 1],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "point-update"]
+    },
+    {
+      "id": "sample-duplicate-multiplicity",
+      "name": "sample: duplicates multiply the pair count",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [1, 1], "nums2": [2, 2, 3], "queries": [[2, 4], [1, 0, 1, 1], [2, 4]]},
+      "expected": [2, 6],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "duplicates"]
+    },
+    {
+      "id": "sample-update-eliminates-target",
+      "name": "sample: range update leaves no requested pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [2, 5, 8, 4], "nums2": [1, 3, 8], "queries": [[2, 9], [1, 1, 2, 1], [2, 10]]},
+      "expected": [1, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "range-update"]
+    },
+    {
+      "id": "trial-updates-only",
+      "name": "trial: a sequence without count queries returns no answers",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1], "nums2": [1], "queries": [[1, 0, 0, 5]]},
+      "expected": [],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "no-output"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one position is updated between count requests",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [2], "nums2": [3], "queries": [[2, 5], [1, 0, 0, 2], [2, 5], [2, 7]]},
+      "expected": [1, 0, 1],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "single-element"]
+    },
+    {
+      "id": "trial-whole-range-lazy",
+      "name": "trial: a whole-range update shifts every complement",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1, 2], "nums2": [1, 2, 3, 4], "queries": [[1, 0, 3, 5], [2, 7], [2, 9]]},
+      "expected": [1, 2],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "whole-range"]
+    },
+    {
+      "id": "trial-full-duplicate-product",
+      "name": "trial: multiplicities on both arrays form a Cartesian product",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [2, 2, 2], "nums2": [3, 3], "queries": [[2, 5], [1, 0, 1, 1], [2, 6]]},
+      "expected": [6, 6],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "duplicates"]
+    },
+    {
+      "id": "trial-partial-range",
+      "name": "trial: a strict interior range creates two complement groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [1, 4], "nums2": [2, 2, 2, 2, 2], "queries": [[1, 1, 3, 3], [2, 6], [2, 3]]},
+      "expected": [5, 2],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "partial-range"]
+    },
+    {
+      "id": "real-overlapping-updates",
+      "name": "hidden: overlapping updates change several fixed-value complements",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1, 3, 3, 5], "nums2": [2, 4, 6, 8, 10], "queries": [[2, 5], [1, 1, 3, 2], [2, 7], [1, 0, 4, 1], [2, 10]]},
+      "expected": [3, 2, 3],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "overlapping-updates"]
+    },
+    {
+      "id": "real-upper-value-duplicates",
+      "name": "hidden: maximum initial values retain full multiplicity after a shift",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [100000, 100000, 100000, 100000, 100000], "nums2": [100000, 100000, 100000, 100000, 100000, 100000], "queries": [[2, 1], [2, 200000], [1, 0, 5, 100000], [2, 300000], [2, 200000]]},
+      "expected": [0, 30, 30, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-values", "duplicates"]
+    },
+    {
+      "id": "real-repeated-point-updates",
+      "name": "hidden: repeated updates to one index accumulate",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [2, 5], "nums2": [1, 7, 4], "queries": [[2, 6], [1, 1, 1, 3], [2, 12], [1, 1, 1, 2], [2, 14], [2, 17]]},
+      "expected": [2, 1, 1, 1],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "point-update", "accumulation"]
+    },
+    {
+      "id": "real-nested-ranges",
+      "name": "hidden: a nested range follows a wider update",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1, 2, 4], "nums2": [1, 2, 3, 4, 5, 6], "queries": [[1, 0, 4, 2], [2, 7], [1, 2, 5, 3], [2, 11], [2, 7]]},
+      "expected": [4, 3, 1],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "nested-ranges"]
+    },
+    {
+      "id": "real-many-complements",
+      "name": "hidden: all five fixed values contribute complements",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1, 2, 3, 4, 5], "nums2": [5, 4, 3, 2, 1, 5, 4, 3, 2, 1], "queries": [[2, 6], [1, 1, 8, 1], [2, 6], [1, 0, 9, 10], [2, 16]]},
+      "expected": [10, 9, 9],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "five-distinct-values"]
+    },
+    {
+      "id": "real-stable-total-after-point-change",
+      "name": "hidden: a point change redistributes duplicate complements",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1, 1, 2, 2, 3], "nums2": [1, 2, 2, 3], "queries": [[2, 4], [1, 2, 2, 1], [2, 4]]},
+      "expected": [7, 7],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "duplicates", "point-update"]
+    },
+    {
+      "id": "real-large-targets",
+      "name": "hidden: large values and an absent billion-scale target",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [99999, 100000], "nums2": [99999, 100000], "queries": [[2, 199999], [1, 0, 1, 100000], [2, 299999], [2, 1000000000]]},
+      "expected": [2, 2, 0],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "large-target"]
+    }
+  ]
+}

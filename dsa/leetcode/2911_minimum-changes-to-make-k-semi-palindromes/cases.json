@@ -1,0 +1,125 @@
+{
+  "challenge_id": "lc_2911",
+  "cases": [
+    {
+      "id": "sample-one-change",
+      "name": "sample: one repaired pair plus one palindrome",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcac",
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "partition"
+      ]
+    },
+    {
+      "id": "sample-two-repairs",
+      "name": "sample: two length-three parts each need one change",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcdef",
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "two-parts"
+      ]
+    },
+    {
+      "id": "sample-zero-changes",
+      "name": "sample: three palindromic pairs need no changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aabbaa",
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "already-valid"
+      ]
+    },
+    {
+      "id": "trial-single-semi-palindrome",
+      "name": "repeating period three makes the full string semi-palindromic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabc",
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "proper-divisor",
+        "period-three"
+      ]
+    },
+    {
+      "id": "trial-minimum-length-change",
+      "name": "a mismatched pair requires one replacement",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length",
+        "divisor-one"
+      ]
+    },
+    {
+      "id": "real-full-palindrome",
+      "name": "hidden: divisor one repairs a nearly palindromic whole string",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abca",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "divisor-one"
+      ]
+    },
+    {
+      "id": "real-forced-pairs",
+      "name": "hidden: maximum k forces three length-two parts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcabc",
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "maximum-parts"
+      ]
+    },
+    {
+      "id": "real-uniform-string",
+      "name": "hidden: every legal partition of a uniform string costs zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaa",
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "uniform"
+      ]
+    }
+  ]
+}

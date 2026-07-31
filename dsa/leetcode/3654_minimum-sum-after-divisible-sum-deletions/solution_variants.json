@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Sum After Divisible Sum Deletions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Track the minimum retained prefix sum for each original prefix-sum remainder and choose between keeping the next value or deleting a divisible interval.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(min(n, k))"
     }
   ]
 }

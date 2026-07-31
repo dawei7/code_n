@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3370",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Every legal input is at most 1000 and therefore has at most ten binary digits, so the construction has a fixed operation bound too small for an honest runtime-scaling verdict.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 10,
+    "unit": "binary digits",
+    "source_constraint": "n is an integer from 1 through 1000"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference reads the at-most-ten-bit length, shifts one bit by that fixed amount, and subtracts one."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover all-ones inputs and both sides of every relevant power-of-two bit-length transition through the maximum input."
+    }
+  ]
+}

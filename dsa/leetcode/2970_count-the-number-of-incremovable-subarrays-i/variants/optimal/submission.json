@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3252",
+  "frontend_id": "2970",
+  "title_slug": "count-the-number-of-incremovable-subarrays-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.incremovableSubarrayCount",
+  "verified_submission_id": "2078461635",
+  "verified_at": "2026-07-23T13:54:04.954346+00:00"
+}

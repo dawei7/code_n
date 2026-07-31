@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_4005",
+    "frontend_id": "4005",
+    "title_slug": "minimum-operations-to-make-array-equal-iii",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-array-equal-iii/description/",
+    "paid_only": true,
+    "content_sha256": "f32bda46938e1a6f10f775fc472495eae0d1b3be60bd646610825252aa50cedb",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [6,12,8]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [5,15,20]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [7,7,7]",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "3ff96b95247d99ee35f535890ac3f98d8084023651db5267c87aeb286f0511a1",
+      "reference/contract.md": "91e2b18d455078af622d90a58857695ff58e86563c013d2c24b1f74137b6f876",
+      "reference/examples.md": "62fb9f65ba853244fbf11071440029cac352d663c6a530f89bc76645dfcc0bc2",
+      "reference/constraints.md": "b12fa83a45b99326848df828ca82644b9e50f7f5ca14b9a3ceac8bf5de661998"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

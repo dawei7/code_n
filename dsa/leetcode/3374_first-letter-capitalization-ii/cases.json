@@ -1,0 +1,323 @@
+{
+  "challenge_id": "lc_3374",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: normalize ordinary and valid hyphenated words",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 1,
+              "content_text": "hello world of SQL"
+            },
+            {
+              "content_id": 2,
+              "content_text": "the QUICK-brown fox"
+            },
+            {
+              "content_id": 3,
+              "content_text": "modern-day DATA science"
+            },
+            {
+              "content_id": 4,
+              "content_text": "web-based FRONT-end development"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            1,
+            "hello world of SQL",
+            "Hello World Of Sql"
+          ],
+          [
+            2,
+            "the QUICK-brown fox",
+            "The Quick-Brown Fox"
+          ],
+          [
+            3,
+            "modern-day DATA science",
+            "Modern-Day Data Science"
+          ],
+          [
+            4,
+            "web-based FRONT-end development",
+            "Web-Based Front-End Development"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "hyphenated"
+      ]
+    },
+    {
+      "id": "trial-preserve-spacing",
+      "name": "trial: preserve leading trailing and repeated spaces",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 9,
+              "content_text": "  mULTIPLE   SPACES  "
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            9,
+            "  mULTIPLE   SPACES  ",
+            "  Multiple   Spaces  "
+          ]
+        ]
+      },
+      "tags": [
+        "spacing",
+        "formatting"
+      ]
+    },
+    {
+      "id": "trial-symbol-prefixed-parts",
+      "name": "trial: punctuation does not defer capitalization",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 4,
+              "content_text": "/abc Def-@ghi"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            4,
+            "/abc Def-@ghi",
+            "/abc Def-@ghi"
+          ]
+        ]
+      },
+      "tags": [
+        "symbols",
+        "hyphen-boundary"
+      ]
+    },
+    {
+      "id": "trial-malformed-hyphens",
+      "name": "trial: malformed multi-hyphen tokens use the ordinary rule",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 5,
+              "content_text": "foo--bar -baz lOO-daR-@Daz-"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            5,
+            "foo--bar -baz lOO-daR-@Daz-",
+            "Foo--bar -baz Loo-dar-@daz-"
+          ]
+        ]
+      },
+      "tags": [
+        "malformed-hyphen",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-other-punctuation",
+      "name": "hidden: non-boundary punctuation stays in place",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 8,
+              "content_text": "HELLO,WORLD path/TO a@B x^Y ROOT\\Path"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            8,
+            "HELLO,WORLD path/TO a@B x^Y ROOT\\Path",
+            "Hello,world Path/to A@b X^y Root\\path"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "punctuation"
+      ]
+    },
+    {
+      "id": "real-empty-text",
+      "name": "hidden: empty text produces an empty conversion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 2,
+              "content_text": ""
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            2,
+            "",
+            ""
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "empty-text"
+      ]
+    },
+    {
+      "id": "real-unsorted-identifiers",
+      "name": "hidden: result order follows identifiers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 20,
+              "content_text": "SECOND-row"
+            },
+            {
+              "content_id": 4,
+              "content_text": "fIRST row"
+            },
+            {
+              "content_id": 11,
+              "content_text": "mIDDLE--rOW"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            4,
+            "fIRST row",
+            "First Row"
+          ],
+          [
+            11,
+            "mIDDLE--rOW",
+            "Middle--row"
+          ],
+          [
+            20,
+            "SECOND-row",
+            "Second-Row"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-single-letters-and-hyphen",
+      "name": "hidden: single-letter valid parts are capitalized",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "user_content": [
+            {
+              "content_id": 7,
+              "content_text": "a-b C-d e F- g-h"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "content_id",
+          "original_text",
+          "converted_text"
+        ],
+        "rows": [
+          [
+            7,
+            "a-b C-d e F- g-h",
+            "A-B C-D E F- G-H"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "single-letter",
+        "hyphenated"
+      ]
+    }
+  ]
+}

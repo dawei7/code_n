@@ -1,25 +1,19 @@
-import functools
-import math
+def solve(strength: list[int], k: int) -> int:
+    lock_count = len(strength)
+    full_mask = (1 << lock_count) - 1
+    best = [10**18] * (full_mask + 1)
+    best[0] = 0
 
-
-def solve(locks: list[int], k: int) -> int:
-    n = len(locks)
-
-    @functools.lru_cache(None)
-    def dp(mask: int) -> int:
+    for mask in range(full_mask + 1):
         broken = mask.bit_count()
-        if broken == n:
-            return 0
-
         factor = 1 + broken * k
-        best = math.inf
 
-        for index, strength in enumerate(locks):
+        for index, required in enumerate(strength):
             if mask & (1 << index):
                 continue
-            minutes = math.ceil(strength / factor)
-            best = min(best, minutes + dp(mask | (1 << index)))
 
-        return best
+            minutes = (required + factor - 1) // factor
+            next_mask = mask | (1 << index)
+            best[next_mask] = min(best[next_mask], best[mask] + minutes)
 
-    return dp(0)
+    return best[full_mask]

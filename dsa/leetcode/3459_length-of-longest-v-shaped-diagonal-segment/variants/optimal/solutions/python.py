@@ -15,7 +15,7 @@ def solve(grid: list[list[int]]) -> int:
             for col in col_range:
                 yield row, col, base + col
 
-    straight: list[tuple[array, array]] = []
+    straight = []
     for dr, dc in directions:
         take_two = array("H", [0]) * total
         take_zero = array("H", [0]) * total
@@ -36,6 +36,7 @@ def solve(grid: list[list[int]]) -> int:
         turn_two, turn_zero = straight[turn_direction]
         best_two = array("H", [0]) * total
         best_zero = array("H", [0]) * total
+
         for row, col, idx in ordered_indices(dr, dc):
             next_row, next_col = row + dr, col + dc
             next_idx = next_row * cols + next_col
@@ -43,6 +44,7 @@ def solve(grid: list[list[int]]) -> int:
             turn_row, turn_col = row + turn_dr, col + turn_dc
             turn_idx = turn_row * cols + turn_col
             has_turn = 0 <= turn_row < rows and 0 <= turn_col < cols
+
             if values[idx] == 2:
                 keep = best_zero[next_idx] if has_next else 0
                 turn = turn_zero[turn_idx] if has_turn else 0
@@ -51,6 +53,7 @@ def solve(grid: list[list[int]]) -> int:
                 keep = best_two[next_idx] if has_next else 0
                 turn = turn_two[turn_idx] if has_turn else 0
                 best_zero[idx] = 1 + max(keep, turn)
+
         for row in range(rows):
             next_row = row + dr
             if next_row < 0 or next_row >= rows:
@@ -61,4 +64,5 @@ def solve(grid: list[list[int]]) -> int:
                 next_col = col + dc
                 if values[row_base + col] == 1 and 0 <= next_col < cols:
                     answer = max(answer, 1 + best_two[next_base + next_col])
+
     return answer

@@ -17,12 +17,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "two-pointers"
+        "one-pair"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: two valid pairs",
+      "name": "sample: every index is marked",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,12 +35,13 @@
       },
       "expected": 4,
       "tags": [
-        "sample"
+        "sample",
+        "perfect-matching"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: no pair can be marked",
+      "name": "sample: no valid pair",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -53,12 +54,12 @@
       "expected": 0,
       "tags": [
         "sample",
-        "edge"
+        "no-pair"
       ]
     },
     {
       "id": "trial-duplicate-perfect-pairs",
-      "name": "trial: duplicate values form perfect pairs",
+      "name": "trial: duplicate values meet equality",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -72,27 +73,137 @@
       "expected": 4,
       "tags": [
         "trial",
-        "duplicates"
+        "duplicates",
+        "equality"
       ]
     },
     {
-      "id": "real-chain-of-doubles",
-      "name": "hidden: every small value can be paired",
+      "id": "trial-odd-length",
+      "name": "trial: one of three indices remains unmarked",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "real-single-index",
+      "name": "hidden: one index cannot form a pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-exact-two",
+      "name": "hidden: one exact doubling pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          10
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-two-too-close",
+      "name": "hidden: two values fail the condition",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "no-pair"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: maximum values pair with half-size values",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
           1,
-          2,
-          3,
-          4,
-          8,
-          16
+          500000000,
+          1000000000,
+          1000000000
         ]
       },
-      "expected": 6,
+      "expected": 4,
       "tags": [
-        "hidden"
+        "hidden",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-greedy-stress",
+      "name": "hidden: dense unsorted pairing choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          42,
+          83,
+          48,
+          10,
+          24,
+          55,
+          9,
+          100,
+          10,
+          17,
+          17,
+          99,
+          51,
+          32,
+          16,
+          98,
+          99,
+          31,
+          28,
+          68,
+          71,
+          14,
+          64,
+          29,
+          15,
+          40
+        ]
+      },
+      "expected": 26,
+      "tags": [
+        "hidden",
+        "greedy",
+        "unsorted"
       ]
     }
   ]

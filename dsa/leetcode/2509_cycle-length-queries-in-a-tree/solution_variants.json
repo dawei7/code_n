@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Cycle Length Queries in a Tree and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Climbs the larger heap label toward the root until both query endpoints meet at their lowest common ancestor.",
+      "time_complexity": "O(mn)",
+      "space_complexity": "O(m)"
     }
   ]
 }

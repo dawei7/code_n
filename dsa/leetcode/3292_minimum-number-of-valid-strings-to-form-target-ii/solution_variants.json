@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Number of Valid Strings to Form Target II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses Z-functions to find every position's longest valid prefix deterministically, then greedily covers the target.",
+      "time_complexity": "O(S + WT)",
+      "space_complexity": "O(T + L)"
     }
   ]
 }

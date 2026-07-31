@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3658",
+  "cases": [
+    {
+      "id": "sample-four",
+      "name": "sample: four terms in each sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "even-n"
+      ]
+    },
+    {
+      "id": "sample-five",
+      "name": "sample: five terms in each sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "odd-n"
+      ]
+    },
+    {
+      "id": "trial-minimum",
+      "name": "trial: minimum input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-two",
+      "name": "trial: smallest even input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "even-n"
+      ]
+    },
+    {
+      "id": "trial-ten",
+      "name": "trial: two-digit input",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 10
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "closed-form"
+      ]
+    },
+    {
+      "id": "real-prime",
+      "name": "hidden: prime input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 997
+      },
+      "expected": 997,
+      "tags": [
+        "hidden",
+        "prime"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "hidden: maximum input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000
+      },
+      "expected": 1000,
+      "tags": [
+        "hidden",
+        "maximum"
+      ]
+    }
+  ]
+}

@@ -1,9 +1,24 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3233",
   "cases": [
     {
-      "id": "sample-small-range",
-      "name": "sample: range contains one prime square",
+      "id": "sample-no-special",
+      "name": "sample: interval without special values",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "l": 5,
+        "r": 7
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-special",
+      "name": "sample: two prime squares",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -17,61 +32,148 @@
       ]
     },
     {
-      "id": "sample-no-special",
-      "name": "sample: no special numbers",
-      "kind": "sample",
+      "id": "trial-one",
+      "name": "trial: one is not special",
+      "kind": "trial",
       "visible": true,
+      "input": {
+        "l": 1,
+        "r": 1
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-single-four",
+      "name": "trial: singleton prime square four",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 4,
+        "r": 4
+      },
+      "expected": 0,
+      "tags": [
+        "single",
+        "prime-square"
+      ]
+    },
+    {
+      "id": "trial-single-nine",
+      "name": "trial: singleton prime square nine",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 9,
+        "r": 9
+      },
+      "expected": 0,
+      "tags": [
+        "single",
+        "prime-square"
+      ]
+    },
+    {
+      "id": "trial-composite-square",
+      "name": "trial: composite square is not special",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "l": 16,
+        "r": 16
+      },
+      "expected": 1,
+      "tags": [
+        "composite-root"
+      ]
+    },
+    {
+      "id": "real-first-special-boundary",
+      "name": "real: interval ends at first special value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 1,
+        "r": 4
+      },
+      "expected": 3,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-around-nine",
+      "name": "real: interval surrounds a prime square",
+      "kind": "real",
+      "visible": false,
       "input": {
         "l": 8,
         "r": 10
       },
       "expected": 2,
       "tags": [
-        "sample",
-        "none"
+        "prime-square"
       ]
     },
     {
-      "id": "trial-single-special",
-      "name": "trial: single special number",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "l": 49,
-        "r": 49
-      },
-      "expected": 0,
-      "tags": [
-        "edge"
-      ]
-    },
-    {
-      "id": "trial-wide-small",
-      "name": "trial: several prime squares",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "l": 1,
-        "r": 100
-      },
-      "expected": 96,
-      "tags": [
-        "sieve"
-      ]
-    },
-    {
-      "id": "real-large-window",
-      "name": "real: large upper range window",
+      "id": "real-single-twenty-five",
+      "name": "real: singleton square of five",
       "kind": "real",
       "visible": false,
       "input": {
-        "l": 999900000,
+        "l": 25,
+        "r": 25
+      },
+      "expected": 0,
+      "tags": [
+        "prime-square"
+      ]
+    },
+    {
+      "id": "real-around-forty-nine",
+      "name": "real: interval surrounds square of seven",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 48,
+        "r": 50
+      },
+      "expected": 2,
+      "tags": [
+        "prime-square"
+      ]
+    },
+    {
+      "id": "real-large-nonsquare-singleton",
+      "name": "real: large prime value is not a prime square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 999999937,
+        "r": 999999937
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "large"
+      ]
+    },
+    {
+      "id": "real-upper-end-interval",
+      "name": "real: interval ending at the maximum endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "l": 999950000,
         "r": 1000000000
       },
-      "expected": 100001,
+      "expected": 50001,
       "tags": [
-        "real",
-        "large"
+        "boundary",
+        "maximum"
       ]
     }
   ]

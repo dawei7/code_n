@@ -8,74 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Binary Search, Greedy, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-number-of-integers-to-choose-from-a-range-i](https://leetcode.com/problems/maximum-number-of-integers-to-choose-from-a-range-i/) |
+| LeetCode | [Maximum Number of Integers to Choose From a Range I](https://leetcode.com/problems/maximum-number-of-integers-to-choose-from-a-range-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-number-of-integers-to-choose-from-a-range-i/).
 
 ### Goal
-Given a range of integers from 1 to `n` and a list of "banned" integers, determine the maximum count of unique integers you can select from the range such that no selected integer is in the banned list and the total sum of the selected integers does not exceed a specified limit `maxSum`.
+
+You are given an integer array `banned`, an upper bound `n`, and a sum limit `maxSum`. Choose integers from the inclusive range $[1,n]$. Each integer may be chosen at most once, and no chosen value may appear anywhere in `banned`.
+
+The sum of all chosen integers must not exceed `maxSum`. Return the largest possible number of chosen integers. Duplicate entries in `banned` do not create additional restrictions, and banned values outside $[1,n]$ have no effect on the available choices.
 
 ### Function Contract
+
 **Inputs**
 
-- `banned`: A list of integers that cannot be chosen.
-- `n`: An integer representing the upper bound of the range [1, n].
-- `maxSum`: An integer representing the maximum allowable sum of chosen integers.
+- `banned`: A list of $m$ forbidden integers, where $1 \le m \le 10^4$ and every value lies between $1$ and $10^4$, inclusive.
+- `n`: The inclusive upper bound of the candidate range, with $1 \le n \le 10^4$.
+- `maxSum`: The maximum permitted sum, with $1 \le \texttt{maxSum} \le 10^9$.
 
 **Return value**
 
-- An integer representing the maximum number of integers that can be picked under the given constraints.
+- The maximum number of distinct allowed integers that can be selected without their sum exceeding `maxSum`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `banned = [1, 6, 5], n = 5, maxSum = 6`
-- Output: `2` (We can choose 2 and 4, which sum to 6.)
+- Output: `2`
+- Explanation: Choosing `2` and `4` uses two allowed values and reaches a sum of `6`.
 
 **Example 2**
 
 - Input: `banned = [1, 2, 3, 4, 5, 6, 7], n = 8, maxSum = 1`
-- Output: `0` (No integers can be chosen without exceeding the sum.)
+- Output: `0`
+- Explanation: Every value small enough for the budget is forbidden.
 
 **Example 3**
 
 - Input: `banned = [11], n = 7, maxSum = 50`
-- Output: `7` (We can choose all integers from 1 to 7, as their sum is 28, which is less than 50.)
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Greedy approach**. By iterating through the range [1, n] in ascending order and skipping any numbers present in the banned set, we maximize the count of integers chosen while keeping the running sum as small as possible. A Hash Set is used for O(1) average-time lookups of banned numbers.
-
-### Complexity Analysis
-- **Time Complexity**: O(n + m), where n is the upper bound of the range and m is the number of elements in the banned list. We iterate up to n times and perform constant-time set lookups.
-- **Space Complexity**: O(m), required to store the banned integers in a hash set for efficient lookup.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(banned: list[int], n: int, maxSum: int) -> int:
-    banned_set = set(banned)
-    current_sum = 0
-    count = 0
-
-    for i in range(1, n + 1):
-        if i in banned_set:
-            continue
-
-        if current_sum + i <= maxSum:
-            current_sum += i
-            count += 1
-        else:
-            # Since we are iterating in increasing order,
-            # if the current number exceeds the remaining sum,
-            # no further numbers will fit.
-            break
-
-    return count
-```
-</details>
+- Output: `7`
+- Explanation: The banned value is outside the range, and all values from `1` through `7` sum to `28`.

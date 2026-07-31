@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_202", "frontend_id": "202", "title_slug": "happy-number", "url": "https://leetcode.com/problems/happy-number/description/", "paid_only": false, "content_sha256": "7f8f6dffe2e3cf7073e949bc2b898dfc6f21cf3b52732d7f3d822d955e054274", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "n = 19", "output": "true", "has_explanation": true}, {"ordinal": 2, "input": "n = 2", "output": "false", "has_explanation": false}],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "bc0372d7461ec93654a7625f052f0d5b250ec2aba9d81ef12a142a1f3e1f2b80", "reference/contract.md": "dbad3eff2d930f93b241cacf3018266051445a947bb56891f3fd9e9f5d6f05fc", "reference/examples.md": "2e1f298b740fc445464564cdcd7f12d6ebf6d0c39607381019e82233d281cabb", "reference/constraints.md": "2f864f8196df74960a25b2b9491c8d367f22b132349f263cb68b56db1aba2c22"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

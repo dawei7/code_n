@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3620",
+  "frontend_id": "3397",
+  "title_slug": "maximum-number-of-distinct-elements-after-operations",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.maxDistinctElements",
+  "verified_submission_id": "2081337067",
+  "verified_at": "2026-07-26T02:29:00Z"
+}

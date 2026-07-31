@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Shortest Uncommon Substring in an Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts the input words owning each distinct substring, then selects each word's best uniquely owned candidate.",
+      "time_complexity": "O(n L^3)",
+      "space_complexity": "O(n L^3)"
     }
   ]
 }

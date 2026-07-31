@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3150",
+  "cases": [
+    {
+      "id": "sample-marker-limits",
+      "name": "sample: four mentions or hashtags are invalid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 1,
+              "content": "Update @A @B @C @D"
+            },
+            {
+              "tweet_id": 2,
+              "content": "News #One #Two #Three"
+            },
+            {
+              "tweet_id": 4,
+              "content": "Work #A #B #C #D"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "markers"
+      ]
+    },
+    {
+      "id": "trial-length-boundary",
+      "name": "trial: 140 characters valid and 141 invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 7,
+              "content": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            },
+            {
+              "tweet_id": 8,
+              "content": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": [
+          [
+            8
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "length",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-mention-boundary",
+      "name": "trial: three mentions valid and four invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 10,
+              "content": "@A @B @C"
+            },
+            {
+              "tweet_id": 11,
+              "content": "@A @B @C @D"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": [
+          [
+            11
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "mentions",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-hashtag-boundary",
+      "name": "trial: three hashtags valid and four invalid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 12,
+              "content": "#A #B #C"
+            },
+            {
+              "tweet_id": 13,
+              "content": "#A #B #C #D"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": [
+          [
+            13
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hashtags",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-both-marker-boundaries",
+      "name": "real: three of each marker remains valid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 14,
+              "content": "@A @B @C #X #Y #Z"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "combined-boundary"
+      ]
+    },
+    {
+      "id": "real-length-only",
+      "name": "real: excessive length alone is invalid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 21,
+              "content": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": [
+          [
+            21
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "length"
+      ]
+    },
+    {
+      "id": "real-mentions-only",
+      "name": "real: four mentions alone are invalid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 22,
+              "content": "note@A@B@C@D"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": [
+          [
+            22
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "mentions"
+      ]
+    },
+    {
+      "id": "real-hashtags-only",
+      "name": "real: four hashtags alone are invalid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 23,
+              "content": "note#A#B#C#D"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": [
+          [
+            23
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "hashtags"
+      ]
+    },
+    {
+      "id": "real-multiple-rules-once",
+      "name": "real: one row violating every rule appears once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 24,
+              "content": "@A @B @C @D #A #B #C #D qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": [
+          [
+            24
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "deduplication"
+      ]
+    },
+    {
+      "id": "real-unordered-input",
+      "name": "real: invalid identifiers are sorted ascending",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 30,
+              "content": "@A@B@C@D"
+            },
+            {
+              "tweet_id": 5,
+              "content": "#A#B#C#D"
+            },
+            {
+              "tweet_id": 20,
+              "content": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": [
+          [
+            5
+          ],
+          [
+            20
+          ],
+          [
+            30
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-no-invalid-tweets",
+      "name": "real: all tweets stay within every limit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "tweet_id": 31,
+              "content": "short"
+            },
+            {
+              "tweet_id": 32,
+              "content": "@A @B #X #Y"
+            },
+            {
+              "tweet_id": 33,
+              "content": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-empty-table",
+      "name": "real: empty Tweets table",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+        "Tweets": {
+          "columns": [
+            "tweet_id",
+            "content"
+          ],
+          "rows": []
+        }
+        }
+      },
+      "expected": {
+        "columns": [
+          "tweet_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "real",
+        "empty-table"
+      ]
+    }
+  ]
+}

@@ -3,208 +3,66 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: reachable through mixed row and column jumps",
+      "name": "sample: shortest path visits four cells",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            3,
-            4,
-            2,
-            1
-          ],
-          [
-            4,
-            2,
-            3,
-            1
-          ],
-          [
-            2,
-            1,
-            0,
-            0
-          ],
-          [
-            2,
-            4,
-            0,
-            0
-          ]
-        ]
-      },
+      "input": {"grid": [[3, 4, 2, 1], [4, 2, 3, 1], [2, 1, 0, 0], [2, 4, 0, 0]]},
       "expected": 4,
-      "tags": [
-        "sample",
-        "grid"
-      ]
+      "tags": ["sample", "visited-cell-count"]
     },
     {
       "id": "sample-2",
-      "name": "sample: three cells are enough",
+      "name": "sample: destination reached in three visited cells",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            3,
-            4,
-            2,
-            1
-          ],
-          [
-            4,
-            2,
-            1,
-            1
-          ],
-          [
-            2,
-            1,
-            1,
-            0
-          ],
-          [
-            3,
-            4,
-            1,
-            0
-          ]
-        ]
-      },
+      "input": {"grid": [[3, 4, 2, 1], [4, 2, 1, 1], [2, 1, 1, 0], [3, 4, 1, 0]]},
       "expected": 3,
-      "tags": [
-        "sample",
-        "grid"
-      ]
+      "tags": ["sample", "long-jumps"]
     },
     {
       "id": "sample-3",
-      "name": "sample: blocked destination",
+      "name": "sample: destination is unreachable",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            2,
-            1,
-            0
-          ],
-          [
-            1,
-            0,
-            0
-          ]
-        ]
-      },
+      "input": {"grid": [[2, 1, 0], [1, 0, 0]]},
       "expected": -1,
-      "tags": [
-        "sample",
-        "unreachable"
-      ]
+      "tags": ["sample", "unreachable"]
     },
     {
       "id": "trial-single-cell",
-      "name": "trial: start is already the destination",
+      "name": "trial: starting cell is already the destination",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            0
-          ]
-        ]
-      },
+      "input": {"grid": [[0]]},
       "expected": 1,
-      "tags": [
-        "trial",
-        "edge"
-      ]
+      "tags": ["trial", "single-cell"]
     },
     {
-      "id": "trial-one-row-long-jump",
-      "name": "trial: one row with direct jump",
+      "id": "trial-one-row-jump",
+      "name": "trial: one jump crosses a single row",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            4,
-            0,
-            0,
-            0,
-            0
-          ]
-        ]
-      },
+      "input": {"grid": [[2, 0, 0]]},
       "expected": 2,
-      "tags": [
-        "trial",
-        "row"
-      ]
+      "tags": ["trial", "one-row"]
     },
     {
       "id": "real-unreachable-two-by-two",
-      "name": "hidden: jump cannot reach target",
+      "name": "hidden: zero at the start blocks every move",
       "kind": "real",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            1,
-            0
-          ],
-          [
-            0,
-            0
-          ]
-        ]
-      },
+      "input": {"grid": [[0, 1], [1, 0]]},
       "expected": -1,
-      "tags": [
-        "hidden",
-        "unreachable"
-      ]
+      "tags": ["hidden", "blocked-start"]
     },
     {
-      "id": "real-zigzag-grid",
-      "name": "hidden: path must mix directions",
+      "id": "real-zigzag-only-path",
+      "name": "hidden: progress alternates between rows and columns",
       "kind": "real",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            2,
-            0,
-            2,
-            0
-          ],
-          [
-            1,
-            2,
-            0,
-            1
-          ],
-          [
-            0,
-            1,
-            2,
-            1
-          ],
-          [
-            0,
-            0,
-            1,
-            0
-          ]
-        ]
-      },
+      "input": {"grid": [[1, 0, 0], [2, 1, 0], [0, 1, 0]]},
       "expected": 5,
-      "tags": [
-        "hidden",
-        "mixed-jumps"
-      ]
+      "tags": ["hidden", "zigzag"]
     }
   ]
 }

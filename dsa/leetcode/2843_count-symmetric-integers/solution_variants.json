@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for   Count Symmetric Integers and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates the inclusive interval and compares the digit sums of equal halves for each even-length value.",
+      "time_complexity": "O(R)",
+      "space_complexity": "O(1)"
     }
   ]
 }

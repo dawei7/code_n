@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3621",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O((log n)^2)",
+  "summary": "The inclusive upper bound has at most 50 binary digits, so the complete legal domain is too tightly bounded for an honest fourfold runtime-scaling verdict in the governing bit-length variable.",
+  "workload_bound": {
+    "symbol": "L",
+    "maximum": 50,
+    "unit": "binary digits of n",
+    "source_constraint": "n is from 1 through 10^15 inclusive, hence bit_length(n) is at most 50"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation computes L small depths, considers at most L possible set-bit counts, and scans exactly L bound bits for each qualifying count, performing at most L^2 combinatorial scan iterations with L <= 50."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover n=1 and n=10^15, every legal k from 0 through 5, both samples, power-of-two boundaries, inclusion of n itself, dense one-bit patterns, and unattainable depths."
+    }
+  ]
+}

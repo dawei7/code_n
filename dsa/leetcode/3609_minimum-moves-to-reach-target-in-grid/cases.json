@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3609",
+  "cases": [
+    {
+      "id": "sample-two-moves",
+      "name": "sample: reach (5, 4) in two moves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 2,
+        "tx": 5,
+        "ty": 4
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mixed-coordinates"
+      ]
+    },
+    {
+      "id": "sample-zero-start-coordinate",
+      "name": "sample: grow from (0, 1)",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sx": 0,
+        "sy": 1,
+        "tx": 2,
+        "ty": 3
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "zero-coordinate"
+      ]
+    },
+    {
+      "id": "sample-impossible-equality",
+      "name": "sample: positive equality is unreachable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "sx": 1,
+        "sy": 1,
+        "tx": 2,
+        "ty": 2
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "impossible",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-already-there",
+      "name": "trial: start already equals target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 7,
+        "sy": 9,
+        "tx": 7,
+        "ty": 9
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-moves"
+      ]
+    },
+    {
+      "id": "trial-origin-stuck",
+      "name": "trial: the origin cannot move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 0,
+        "sy": 0,
+        "tx": 0,
+        "ty": 1
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "origin",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-axis-doubling",
+      "name": "trial: double along the x-axis",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 3,
+        "sy": 0,
+        "tx": 24,
+        "ty": 0
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "axis",
+        "doubling"
+      ]
+    },
+    {
+      "id": "trial-axis-parity-failure",
+      "name": "trial: an axis target is not a doubling multiple",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 3,
+        "sy": 0,
+        "tx": 10,
+        "ty": 0
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "axis",
+        "parity",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-x-axis-to-equality",
+      "name": "trial: enter equality from the x-axis",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 3,
+        "sy": 0,
+        "tx": 12,
+        "ty": 12
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "axis",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-y-axis-to-equality",
+      "name": "trial: enter equality from the y-axis",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 0,
+        "sy": 5,
+        "tx": 5,
+        "ty": 5
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "axis",
+        "equality"
+      ]
+    },
+    {
+      "id": "trial-subtraction-transition",
+      "name": "trial: reverse a smaller-coordinate increase",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "sx": 2,
+        "sy": 3,
+        "tx": 5,
+        "ty": 3
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "subtraction"
+      ]
+    },
+    {
+      "id": "hidden-mixed-route",
+      "name": "hidden: alternate larger coordinates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sx": 2,
+        "sy": 1,
+        "tx": 13,
+        "ty": 8
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "mixed-transitions"
+      ]
+    },
+    {
+      "id": "hidden-odd-doubling-region",
+      "name": "hidden: odd larger coordinate has no predecessor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sx": 2,
+        "sy": 1,
+        "tx": 7,
+        "ty": 1
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "parity",
+        "impossible"
+      ]
+    },
+    {
+      "id": "hidden-incompatible-equality",
+      "name": "hidden: non-axis start cannot enter equality",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sx": 2,
+        "sy": 1,
+        "tx": 8,
+        "ty": 8
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "equality",
+        "impossible"
+      ]
+    },
+    {
+      "id": "hidden-reverse-overshoot",
+      "name": "hidden: forced predecessor falls below the start",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sx": 5,
+        "sy": 4,
+        "tx": 6,
+        "ty": 8
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "overshoot",
+        "impossible"
+      ]
+    },
+    {
+      "id": "hidden-large-power",
+      "name": "hidden: repeated doubling near the coordinate limit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sx": 1,
+        "sy": 0,
+        "tx": 536870912,
+        "ty": 0
+      },
+      "expected": 29,
+      "tags": [
+        "hidden",
+        "large",
+        "doubling"
+      ]
+    },
+    {
+      "id": "hidden-billion-unreachable",
+      "name": "hidden: one billion is not a power-of-two axis target",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "sx": 1,
+        "sy": 0,
+        "tx": 1000000000,
+        "ty": 0
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "large",
+        "parity",
+        "impossible"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2430",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one repeated prefix before final deletion",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcabcdabc"},
+      "expected": 2,
+      "tags": ["sample", "adjacent-prefix"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: mixed deletion lengths",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aaabaab"},
+      "expected": 4,
+      "tags": ["sample", "dynamic-programming"]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every character can be deleted separately",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aaaaa"},
+      "expected": 5,
+      "tags": ["sample", "all-equal"]
+    },
+    {
+      "id": "trial-no-adjacent-repeat",
+      "name": "trial: only whole-string deletion is legal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcde"},
+      "expected": 1,
+      "tags": ["trial", "single-operation"]
+    },
+    {
+      "id": "trial-shortest-repeat",
+      "name": "trial: two equal characters",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aa"},
+      "expected": 2,
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "real-overlapping-period",
+      "name": "hidden: overlapping alternating period",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abababa"},
+      "expected": 3,
+      "tags": ["hidden", "overlap"]
+    },
+    {
+      "id": "real-repeated-three-character-block",
+      "name": "hidden: delete four repeated blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcabcabcabc"},
+      "expected": 4,
+      "tags": ["hidden", "periodic"]
+    },
+    {
+      "id": "real-competing-deletions",
+      "name": "hidden: locally valid choices have different futures",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aabaabaabaab"},
+      "expected": 5,
+      "tags": ["hidden", "choice"]
+    }
+  ]
+}

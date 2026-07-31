@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximize Profit from Task Assignment and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Groups task profits by exact skill, assigns each group greedily through max-heaps, then takes the best remaining task for the extra worker.",
+      "time_complexity": "O(w + t + a log t)",
+      "space_complexity": "O(w + t)"
     }
   ]
 }

@@ -1,49 +1,46 @@
-def solve(grid: list[list[int]], threshold: int) -> list[list[int]]:
-    m = len(grid)
-    n = len(grid[0])
-    
-    # sum_grid stores the sum of averages for each cell
-    # count_grid stores how many valid 3x3 regions cover each cell
-    sum_grid = [[0] * n for _ in range(m)]
-    count_grid = [[0] * n for _ in range(m)]
-    
-    def is_valid(r, c):
-        # Check horizontal adjacency
-        for i in range(r, r + 3):
-            for j in range(c, c + 2):
-                if abs(grid[i][j] - grid[i][j + 1]) > threshold:
-                    return False
-        # Check vertical adjacency
-        for i in range(r, r + 2):
-            for j in range(c, c + 3):
-                if abs(grid[i][j] - grid[i + 1][j]) > threshold:
-                    return False
-        return True
+"""Optimal solution for LeetCode 3030: Find the Grid of Region Average."""
 
-    # Iterate through all possible 3x3 top-left corners
-    for i in range(m - 2):
-        for j in range(n - 2):
-            if is_valid(i, j):
-                # Calculate average
-                total = 0
-                for r in range(i, i + 3):
-                    for c in range(j, j + 3):
-                        total += grid[r][c]
-                avg = total // 9
-                
-                # Update auxiliary grids
-                for r in range(i, i + 3):
-                    for c in range(j, j + 3):
-                        sum_grid[r][c] += avg
-                        count_grid[r][c] += 1
-                        
-    # Construct final result
-    result = [[0] * n for _ in range(m)]
-    for i in range(m):
-        for j in range(n):
-            if count_grid[i][j] > 0:
-                result[i][j] = sum_grid[i][j] // count_grid[i][j]
-            else:
-                result[i][j] = grid[i][j]
-                
-    return result
+
+def solve(image: list[list[int]], threshold: int) -> list[list[int]]:
+    rows = len(image)
+    cols = len(image[0])
+    totals = [[0] * cols for _ in range(rows)]
+    counts = [[0] * cols for _ in range(rows)]
+
+    for top in range(rows - 2):
+        for left in range(cols - 2):
+            valid = True
+
+            for row in range(top, top + 3):
+                for col in range(left, left + 2):
+                    if abs(image[row][col] - image[row][col + 1]) > threshold:
+                        valid = False
+
+            for row in range(top, top + 2):
+                for col in range(left, left + 3):
+                    if abs(image[row][col] - image[row + 1][col]) > threshold:
+                        valid = False
+
+            if not valid:
+                continue
+
+            average = sum(
+                image[row][col]
+                for row in range(top, top + 3)
+                for col in range(left, left + 3)
+            ) // 9
+
+            for row in range(top, top + 3):
+                for col in range(left, left + 3):
+                    totals[row][col] += average
+                    counts[row][col] += 1
+
+    return [
+        [
+            totals[row][col] // counts[row][col]
+            if counts[row][col]
+            else image[row][col]
+            for col in range(cols)
+        ]
+        for row in range(rows)
+    ]

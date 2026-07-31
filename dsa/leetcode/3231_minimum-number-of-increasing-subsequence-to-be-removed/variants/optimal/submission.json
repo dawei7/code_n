@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3545",
+  "frontend_id": "3231",
+  "title_slug": "minimum-number-of-increasing-subsequence-to-be-removed",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minOperations",
+  "verified_submission_id": "2080185344",
+  "verified_at": "2026-07-25T03:15:30.551988+00:00"
+}

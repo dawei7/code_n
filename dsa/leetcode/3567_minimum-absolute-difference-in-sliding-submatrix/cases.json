@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3567",
+  "cases": [
+    {
+      "id": "sample-whole-grid",
+      "name": "sample: one whole-grid window",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid":[[1,8],[3,-2]],"k":2},
+      "expected": [[2]],
+      "tags": ["sample","negative-value","whole-grid"]
+    },
+    {
+      "id": "sample-unit-windows",
+      "name": "sample: every one-cell window has answer zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid":[[3,-1]],"k":1},
+      "expected": [[0,0]],
+      "tags": ["sample","unit-window","output-shape"]
+    },
+    {
+      "id": "sample-two-horizontal-windows",
+      "name": "sample: adjacent windows have different gaps",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid":[[1,-2,3],[2,3,5]],"k":2},
+      "expected": [[1,2]],
+      "tags": ["sample","sliding-window","duplicate-value"]
+    },
+    {
+      "id": "trial-duplicates-are-not-a-pair",
+      "name": "trial: repeated equal values do not create a zero gap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid":[[5,5,7],[5,5,7]],"k":2},
+      "expected": [[0,2]],
+      "tags": ["trial","duplicates","single-distinct-value"]
+    },
+    {
+      "id": "real-four-overlapping-windows",
+      "name": "real: compute all four windows of a square matrix",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid":[[1,10,4],[7,3,8],[2,9,5]],"k":2},
+      "expected": [[2,1],[1,1]],
+      "tags": ["real","overlapping-windows","matrix-shape"]
+    },
+    {
+      "id": "real-unit-window-rectangle",
+      "name": "real: unit windows preserve rectangular dimensions",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid":[[4,-1],[4,9]],"k":1},
+      "expected": [[0,0],[0,0]],
+      "tags": ["real","unit-window","rectangular-output"]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "real: handle the full signed value range",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid":[[-100000,-100000],[100000,100000]],"k":2},
+      "expected": [[200000]],
+      "tags": ["real","value-boundary","duplicates"]
+    }
+  ]
+}

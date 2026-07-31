@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3602",
+  "cases": [
+    {
+      "id": "sample-thirteen",
+      "name": "sample: both representations contain letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 13
+      },
+      "expected": "A91P1",
+      "tags": [
+        "sample",
+        "uppercase-letters"
+      ]
+    },
+    {
+      "id": "sample-thirty-six",
+      "name": "sample: cube is a base-36 place value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 36
+      },
+      "expected": "5101000",
+      "tags": [
+        "sample",
+        "base-36-boundary"
+      ]
+    },
+    {
+      "id": "trial-minimum",
+      "name": "trial: minimum input has two one-digit representations",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1
+      },
+      "expected": "11",
+      "tags": [
+        "trial",
+        "minimum-input"
+      ]
+    },
+    {
+      "id": "trial-hex-place-boundary",
+      "name": "trial: square reaches sixteen",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4
+      },
+      "expected": "101S",
+      "tags": [
+        "trial",
+        "base-16-boundary"
+      ]
+    },
+    {
+      "id": "trial-decimal-digits-only",
+      "name": "trial: both representations currently use decimal digit symbols",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2
+      },
+      "expected": "48",
+      "tags": [
+        "trial",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "real-first-square-letter",
+      "name": "real: hexadecimal square uses its first letter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 14
+      },
+      "expected": "C4248",
+      "tags": [
+        "real",
+        "hex-letter"
+      ]
+    },
+    {
+      "id": "real-base36-letter",
+      "name": "real: cube produces base-36 letter digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 7
+      },
+      "expected": "319J",
+      "tags": [
+        "real",
+        "base36-letter"
+      ]
+    },
+    {
+      "id": "real-midrange",
+      "name": "real: several digits in both bases",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100
+      },
+      "expected": "2710LFLS",
+      "tags": [
+        "real",
+        "multi-digit"
+      ]
+    },
+    {
+      "id": "real-near-maximum",
+      "name": "real: input just below the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 999
+      },
+      "expected": "F3A71GHL8FR",
+      "tags": [
+        "real",
+        "near-maximum"
+      ]
+    },
+    {
+      "id": "real-maximum",
+      "name": "real: maximum legal input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000
+      },
+      "expected": "F4240GJDGXS",
+      "tags": [
+        "real",
+        "maximum-input"
+      ]
+    }
+  ]
+}

@@ -8,69 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-maximum-length-of-valid-subsequence-ii](https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-maximum-length-of-valid-subsequence-ii/).
 
 ### Goal
-Given an integer array `nums` and an integer `k`, determine the length of the longest subsequence such that the sum of every two adjacent elements in the subsequence is divisible by `k`.
+
+You are given an integer array `nums` and a positive integer `k`. Select a subsequence `sub`, preserving the relative order of its elements. A selected sequence of length $x$ is valid when every adjacent pair has the same sum remainder modulo `k`:
+
+$$
+(\texttt{sub[0]}+\texttt{sub[1]})\bmod k
+=\cdots=
+(\texttt{sub[x-2]}+\texttt{sub[x-1]})\bmod k.
+$$
+
+The common remainder may be any value from $0$ through $k-1$; adjacent sums do not have to be divisible by `k`. Return the maximum possible length of a valid subsequence.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers.
-- `k`: An integer representing the divisor.
+- `nums`: An integer array with $2\le\lvert\texttt{nums}\rvert\le10^3$ and $1\le\texttt{nums[i]}\le10^7$.
+- `k`: A positive modulus with $1\le k\le10^3$.
+
+Let $n=\lvert\texttt{nums}\rvert$.
 
 **Return value**
 
-- An integer representing the maximum length of the valid subsequence.
+- The length of the longest order-preserving subsequence whose adjacent-pair sums all share one remainder modulo `k`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 2, 3, 4, 5], k = 2`
-- Output: `3`
-- Explanation: The subsequence `[1, 3, 5]` has adjacent sums `1+3=4` and `3+5=8`, both divisible by 2.
+- Input: `nums = [1,2,3,4,5], k = 2`
+- Output: `5`
+- Explanation: The whole array is valid because every adjacent sum is odd and therefore has remainder $1$ modulo $2$.
 
 **Example 2**
 
-- Input: `nums = [1, 4, 2, 3, 1, 4], k = 3`
-- Output: `3`
-- Explanation: The subsequence `[1, 2, 1]` has adjacent sums `1+2=3` and `2+1=3`, both divisible by 3.
-
-**Example 3**
-
-- Input: `nums = [7, 1, 1, 7, 1], k = 3`
+- Input: `nums = [1,4,2,3,1,4], k = 3`
 - Output: `4`
-- Explanation: The subsequence `[7, 1, 7, 1]` has adjacent sums divisible by 3.
-
----
-
-## Solution
-### Approach
-Dynamic Programming. Specifically, we track the state `dp[remainder_a][remainder_b]`, which represents the length of the longest valid subsequence ending with a value having remainder `remainder_b` when the previous element had remainder `remainder_a`. Since we only care about the remainder modulo `k`, we can reduce the state space to `k x k`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n * k)`, where `n` is the length of the array. We iterate through the array once and for each element, we perform constant time updates for all possible remainders.
-- **Space Complexity**: `O(k^2)`, as we maintain a 2D table of size `k` by `k` to store the lengths of subsequences ending in specific remainders.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int], k: int) -> int:
-    dp = [[0] * k for _ in range(k)]
-    best = 0
-
-    for x in nums:
-        r = x % k
-        for prev_r in range(k):
-            dp[prev_r][r] = dp[r][prev_r] + 1
-            if dp[prev_r][r] > best:
-                best = dp[prev_r][r]
-
-    return best
-```
-</details>
+- Explanation: `[1,4,1,4]` is valid because every adjacent sum has remainder $2$ modulo $3$.

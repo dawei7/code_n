@@ -1,43 +1,40 @@
-import heapq
+from heapq import heappop, heappush
+
 
 def solve(grid: list[list[int]]) -> int:
-    m = len(grid)
-    n = len(grid[0])
+    rows = len(grid)
+    columns = len(grid[0])
+    row_heaps: list[list[tuple[int, int]]] = [[] for _ in range(rows)]
+    column_heaps: list[list[tuple[int, int]]] = [[] for _ in range(columns)]
+    unreachable = rows * columns + 1
+    distance = unreachable
 
-    # dp[r][c] stores the min steps to reach (r, c)
-    dp = [[float('inf')] * n for _ in range(m)]
-    dp[0][0] = 1
+    for row in range(rows):
+        for column in range(columns):
+            while row_heaps[row] and row_heaps[row][0][1] < column:
+                heappop(row_heaps[row])
+            while column_heaps[column] and column_heaps[column][0][1] < row:
+                heappop(column_heaps[column])
 
-    # row_heaps[r] stores (steps, col_index) for row r
-    # col_heaps[c] stores (steps, row_index) for col c
-    row_heaps = [[] for _ in range(m)]
-    col_heaps = [[] for _ in range(n)]
+            if row == 0 and column == 0:
+                distance = 1
+            else:
+                from_row = row_heaps[row][0][0] if row_heaps[row] else unreachable
+                from_column = (
+                    column_heaps[column][0][0]
+                    if column_heaps[column]
+                    else unreachable
+                )
+                distance = min(from_row, from_column) + 1
 
-    def push(r, c, val):
-        heapq.heappush(row_heaps[r], (val, c))
-        heapq.heappush(col_heaps[c], (val, r))
+            if distance <= rows * columns:
+                heappush(
+                    row_heaps[row],
+                    (distance, column + grid[row][column]),
+                )
+                heappush(
+                    column_heaps[column],
+                    (distance, row + grid[row][column]),
+                )
 
-    push(0, 0, 1)
-
-    for r in range(m):
-        for c in range(n):
-            if r == 0 and c == 0:
-                continue
-
-            while row_heaps[r] and row_heaps[r][0][1] + grid[r][row_heaps[r][0][1]] < c:
-                heapq.heappop(row_heaps[r])
-
-            while col_heaps[c] and col_heaps[c][0][1] + grid[col_heaps[c][0][1]][c] < r:
-                heapq.heappop(col_heaps[c])
-
-            res = float('inf')
-            if row_heaps[r]:
-                res = min(res, row_heaps[r][0][0] + 1)
-            if col_heaps[c]:
-                res = min(res, col_heaps[c][0][0] + 1)
-
-            dp[r][c] = res
-            if res != float('inf'):
-                push(r, c, res)
-
-    return dp[m-1][n-1] if dp[m-1][n-1] != float('inf') else -1
+    return distance if distance <= rows * columns else -1

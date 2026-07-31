@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3648",
+  "cases": [
+    {
+      "id": "sample-five-square",
+      "name": "sample: five by five radius one",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "m": 5,
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "multiple-bands"
+      ]
+    },
+    {
+      "id": "sample-one-sensor",
+      "name": "sample: radius covers whole grid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "m": 2,
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-sensor"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: one cell needs one sensor",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "m": 1,
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-grid"
+      ]
+    },
+    {
+      "id": "trial-zero-radius",
+      "name": "trial: zero radius needs one sensor per cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "m": 4,
+        "k": 0
+      },
+      "expected": 12,
+      "tags": [
+        "trial",
+        "zero-radius"
+      ]
+    },
+    {
+      "id": "trial-exact-span",
+      "name": "trial: one sensor exactly spans both dimensions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 7,
+        "m": 7,
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "exact-span"
+      ]
+    },
+    {
+      "id": "real-one-dimensional-row",
+      "name": "real: one-row grid reduces to column bands",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1,
+        "m": 20,
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "single-row"
+      ]
+    },
+    {
+      "id": "real-one-dimensional-column",
+      "name": "real: one-column grid reduces to row bands",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 20,
+        "m": 1,
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "single-column"
+      ]
+    },
+    {
+      "id": "real-partial-final-bands",
+      "name": "real: both dimensions end with partial bands",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 12,
+        "m": 18,
+        "k": 2
+      },
+      "expected": 12,
+      "tags": [
+        "real",
+        "partial-band"
+      ]
+    },
+    {
+      "id": "real-rectangular",
+      "name": "real: rectangular dimensions need different counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100,
+        "m": 37,
+        "k": 4
+      },
+      "expected": 60,
+      "tags": [
+        "real",
+        "rectangular"
+      ]
+    },
+    {
+      "id": "real-maximum-grid-zero-radius",
+      "name": "real: maximum grid with zero radius",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000,
+        "m": 1000,
+        "k": 0
+      },
+      "expected": 1000000,
+      "tags": [
+        "real",
+        "maximum-grid",
+        "zero-radius"
+      ]
+    },
+    {
+      "id": "real-maximum-radius",
+      "name": "real: maximum radius covers maximum grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 1000,
+        "m": 1000,
+        "k": 1000
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "maximum-radius"
+      ]
+    }
+  ]
+}

@@ -8,84 +8,38 @@
 | Category | Algorithms |
 | Topics | Array, Greedy, Bit Manipulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [split-array-into-maximum-number-of-subarrays](https://leetcode.com/problems/split-array-into-maximum-number-of-subarrays/) |
+| LeetCode | [Split Array Into Maximum Number of Subarrays](https://leetcode.com/problems/split-array-into-maximum-number-of-subarrays/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/split-array-into-maximum-number-of-subarrays/).
 
 ### Goal
-Given an array of non-negative integers, partition the array into the maximum number of contiguous subarrays such that the bitwise AND of each subarray is equal to the minimum possible total bitwise AND of the entire array.
+
+You are given an array `nums` of non-negative integers. The score of a nonempty subarray `nums[l..r]` is the bitwise AND of every value from index `l` through index `r`.
+
+Split the array into one or more contiguous, nonempty subarrays so that every element belongs to exactly one part. Among all such splits, first minimize the sum of the subarray scores. Subject to that minimum total score, return the maximum possible number of subarrays.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of non-negative integers (`List[int]`).
+- `nums`: A nonempty list of non-negative integers.
+
+Let $n = \lvert\texttt{nums}\rvert$. The constraints are $1 \le n \le 10^5$ and $0 \le \texttt{nums[i]} \le 10^6$.
 
 **Return value**
 
-- An integer representing the maximum number of subarrays the array can be split into.
+- The maximum number of contiguous subarrays among all splits whose sum of bitwise-AND scores is minimum.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 0, 2, 0, 1, 2]`
+- Input: `nums = [1,0,2,0,1,2]`
 - Output: `3`
+- Explanation: The subarrays `[1,0]`, `[2,0]`, and `[1,2]` each have score zero, so their total score is the minimum possible value, zero.
 
 **Example 2**
 
-- Input: `nums = [5, 7, 1, 3]`
+- Input: `nums = [5,7,1,3]`
 - Output: `1`
-
-**Example 3**
-
-- Input: `nums = [1, 1, 1]`
-- Output: `3`
-
----
-
-## Solution
-### Approach
-The problem relies on the property of the bitwise AND operation: the AND sum of a range is non-increasing as you include more elements. The minimum possible AND sum of the entire array is achieved by taking the AND of all elements in the array. If the total AND sum is greater than 0, the only possible split is the array itself (count = 1). If the total AND sum is 0, we can greedily partition the array whenever the running AND sum of a subarray reaches 0.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we perform a single pass to calculate the total AND and another pass to count the partitions.
-- **Space Complexity**: `O(1)`, as we only use a few variables to track the running AND sum and the partition count.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    # First, calculate the total bitwise AND of the entire array.
-    # This represents the minimum possible AND sum for any partition.
-    total_and = nums[0]
-    for x in nums[1:]:
-        total_and &= x
-
-    # If the total AND is greater than 0, we cannot split the array into
-    # multiple subarrays that each result in this same total_and.
-    # Therefore, the maximum number of subarrays is 1.
-    if total_and > 0:
-        return 1
-
-    # If the total AND is 0, we can greedily count how many subarrays
-    # have an AND sum of 0.
-    count = 0
-    current_and = -1  # Initialize with all bits set
-
-    for x in nums:
-        if current_and == -1:
-            current_and = x
-        else:
-            current_and &= x
-
-        if current_and == 0:
-            count += 1
-            current_and = -1
-
-    return count
-```
-</details>
+- Explanation: The bitwise AND of the whole array is `1`. Keeping all elements together attains that minimum score, while every split into multiple subarrays has a larger score sum.

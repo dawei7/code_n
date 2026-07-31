@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3998",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Assigns required wildcard ones as far right as possible, then checks the binary prefix-reachability condition.",
+      "time_complexity": "O(nm)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

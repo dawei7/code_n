@@ -8,48 +8,39 @@
 | Category | JavaScript |
 | Topics | Uncategorized |
 | Supported Languages | javascript |
-| Official Link | [infinite-method-object](https://leetcode.com/problems/infinite-method-object/) |
+| LeetCode | [Open problem](https://leetcode.com/problems/infinite-method-object/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/infinite-method-object/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Create an object that behaves as though it has a method for every possible string property name. Accessing any property must yield a callable function, and invoking that function must return the exact property name that was accessed.
+
+The property does not need to have been declared in advance. Names may be empty, ordinary identifiers, or strings containing punctuation and other characters that require bracket notation. For example, calling `obj.abc123()` returns `"abc123"`, while `obj[".-qw73n|^2It"]()` returns that exact punctuation-heavy name.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `method`: In the app-local adapter, the string property name to access and invoke. Its length is from 0 through 1000.
 
 **Return value**
 
-TODO
+The native `createInfiniteObject()` returns an object whose every string property resolves to a zero-argument function returning that property name. The app-local `solve(method)` returns the result of one such access and call.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `method = "abc123"`
+- Output: `"abc123"`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `method = ".-qw73n|^2It"`
+- Output: `".-qw73n|^2It"`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `method = ""`
+- Output: `""`

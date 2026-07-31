@@ -1,16 +1,11 @@
-from typing import List
+def solve(nums: list[int]) -> list[int]:
+    first = [nums[0]]
+    second = [nums[1]]
 
-def solve(nums: List[int]) -> List[List[int]]:
-    if not nums:
-        return [[], []]
-
-    arr1 = [nums[0]]
-    arr2 = [nums[1]]
-
-    for i in range(2, len(nums)):
-        if arr1[-1] > arr2[-1]:
-            arr1.append(nums[i])
+    for value in nums[2:]:
+        if first[-1] > second[-1]:
+            first.append(value)
         else:
-            arr2.append(nums[i])
+            second.append(value)
 
-    return arr1 + arr2
+    return first + second

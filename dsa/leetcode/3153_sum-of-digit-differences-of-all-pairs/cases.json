@@ -2,8 +2,8 @@
   "challenge_id": "lc_3153",
   "cases": [
     {
-      "id": "sample-three-digit-values",
-      "name": "sample: three equal-length values",
+      "id": "sample-three-values",
+      "name": "sample: three two-digit values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -20,8 +20,8 @@
       ]
     },
     {
-      "id": "sample-all-same",
-      "name": "sample: identical numbers contribute zero",
+      "id": "sample-all-identical",
+      "name": "sample: identical values contribute zero",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,7 +35,7 @@
       "expected": 0,
       "tags": [
         "sample",
-        "zero"
+        "duplicates"
       ]
     },
     {
@@ -57,8 +57,8 @@
       ]
     },
     {
-      "id": "trial-four-digit-mix",
-      "name": "trial: four-digit values with shared prefixes",
+      "id": "trial-shared-prefixes",
+      "name": "trial: four-digit values share positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -75,8 +75,99 @@
       ]
     },
     {
-      "id": "real-large-equal-length",
-      "name": "real: six-digit mixed values",
+      "id": "trial-all-nine-positions",
+      "name": "trial: one pair differs at every position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          123456789,
+          987654321
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "nine-digits",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-duplicates-and-one-change",
+      "name": "trial: duplicates mix with one changed value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          555,
+          555,
+          556,
+          555
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "duplicates",
+        "single-position"
+      ]
+    },
+    {
+      "id": "real-units-only",
+      "name": "real: only the units digits vary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          120,
+          121,
+          122,
+          123,
+          124
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "units"
+      ]
+    },
+    {
+      "id": "real-most-significant-only",
+      "name": "real: only the hundreds digits vary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          200,
+          300,
+          400
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "most-significant"
+      ]
+    },
+    {
+      "id": "real-nine-digit-extremes",
+      "name": "real: large values differ throughout",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          999999999,
+          888888888,
+          777777777
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "nine-digits",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-mixed-six-digits",
+      "name": "real: mixed differences across six positions",
       "kind": "real",
       "visible": false,
       "input": {
@@ -90,8 +181,46 @@
       },
       "expected": 48,
       "tags": [
-        "real",
-        "digits"
+        "mixed",
+        "six-digits"
+      ]
+    },
+    {
+      "id": "real-two-equal-values",
+      "name": "real: one identical pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          42,
+          42
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "minimum-length",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-repeated-groups",
+      "name": "real: repeated value groups count by index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1010,
+          1010,
+          2020,
+          2020,
+          3030,
+          3030
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "duplicates",
+        "groups"
       ]
     }
   ]

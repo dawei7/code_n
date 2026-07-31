@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Highest Salaries Difference and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Computes both departmental maxima in one scan with conditional aggregation and returns their absolute difference.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(1)"
     }
   ]
 }

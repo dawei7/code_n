@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3817",
+    "frontend_id": "3817",
+    "title_slug": "good-indices-in-a-digit-string",
+    "url": "https://leetcode.com/problems/good-indices-in-a-digit-string/description/",
+    "paid_only": true,
+    "content_sha256": "e68361f0a02619108ddd14daf3d523bd0d73da5266e896af5b2a7fd880af3500",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`s = \"0234567890112\"`",
+        "output": "`[0,11,12]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`s = \"01234\"`",
+        "output": "`[0,1,2,3,4]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`s = \"12345\"`",
+        "output": "`[]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c7d5fc871d1cf33e6cf3459db604770b425f918740f59a47951c8f1b5c5d8579",
+      "reference/contract.md": "96ecbf453336671fb8da4021b68a6cde785a10aa439e1d7f9f0ce16c7d249281",
+      "reference/examples.md": "3b4c785d2d17a0b246f6ee8cc08de78a2fb3690c1d88776f61daaab88f2723ca",
+      "reference/constraints.md": "5f0da29b199135c2d7df7a18c5bd787813b9c499643d2908b12c8e5d1d64a1a9"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

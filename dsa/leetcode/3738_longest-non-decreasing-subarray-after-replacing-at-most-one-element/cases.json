@@ -1,0 +1,14 @@
+{"schema_version":1,"challenge_id":"lc_3738","cases":[
+{"id":"sample-replace-drop","name":"sample: replace the interior drop with three","kind":"sample","visible":true,"input":{"nums":[1,2,3,1,2]},"expected":4,"validator":{"kind":"exact"},"tags":["sample","interior-replacement"]},
+{"id":"sample-all-equal","name":"sample: equal array needs no replacement","kind":"sample","visible":true,"input":{"nums":[2,2,2,2,2]},"expected":5,"validator":{"kind":"exact"},"tags":["sample","all-equal"]},
+{"id":"trial-single","name":"trial: one element","kind":"trial","visible":true,"input":{"nums":[5]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","single-element"]},
+{"id":"trial-increasing","name":"trial: the whole array is already increasing","kind":"trial","visible":true,"input":{"nums":[1,2,3,4]},"expected":4,"validator":{"kind":"exact"},"tags":["trial","no-replacement"]},
+{"id":"trial-three-decreasing","name":"trial: one replacement cannot join reversed neighbors","kind":"trial","visible":true,"input":{"nums":[5,4,3]},"expected":2,"validator":{"kind":"exact"},"tags":["trial","non-bridgeable"]},
+{"id":"real-full-bridge","name":"hidden: one replacement joins both complete runs","kind":"real","visible":false,"input":{"nums":[1,2,10,3,4]},"expected":5,"validator":{"kind":"exact"},"tags":["hidden","bridge"]},
+{"id":"real-left-endpoint","name":"hidden: replacing the first value joins the suffix","kind":"real","visible":false,"input":{"nums":[5,1,2,3]},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","left-boundary"]},
+{"id":"real-right-endpoint","name":"hidden: replacing the last value joins the prefix","kind":"real","visible":false,"input":{"nums":[1,2,3,0]},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","right-boundary"]},
+{"id":"real-one-interior-inversion","name":"hidden: replace either side of one inversion","kind":"real","visible":false,"input":{"nums":[1,3,2,4]},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","interior-replacement"]},
+{"id":"real-equal-runs","name":"hidden: plateaus around a non-bridgeable drop","kind":"real","visible":false,"input":{"nums":[3,3,2,2,4]},"expected":4,"validator":{"kind":"exact"},"tags":["hidden","equal-values"]},
+{"id":"real-value-boundaries","name":"hidden: legal extreme values are already ordered","kind":"real","visible":false,"input":{"nums":[-1000000000,0,1000000000]},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","value-boundaries"]},
+{"id":"real-middle-valley","name":"hidden: fill a one-position valley","kind":"real","visible":false,"input":{"nums":[10,1,10]},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","bridge"]}
+]}

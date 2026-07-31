@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2267",
+  "cases": [
+    {"id":"sample-valid","name":"sample: at least one valid path exists","kind":"sample","visible":true,"input":{"grid":[["(","(","("],[")","(",")"],["(","(",")"],["(","(",")"]]},"expected":true,"tags":["sample","valid-path"]},
+    {"id":"sample-closing-start","name":"sample: every path starts with a closing parenthesis","kind":"sample","visible":true,"input":{"grid":[[")",")"],["(","("]]},"expected":false,"tags":["sample","invalid-start"]},
+    {"id":"trial-one-row-valid","name":"a single-row path spells one pair","kind":"trial","visible":true,"input":{"grid":[["(",")"]]},"expected":true,"tags":["single-row","minimum-valid"]},
+    {"id":"trial-single-cell","name":"a one-character path has odd length","kind":"trial","visible":true,"input":{"grid":[["("]]},"expected":false,"tags":["single-cell","odd-length"]},
+    {"id":"trial-opening-end","name":"an opening bottom-right cell prevents zero balance","kind":"trial","visible":true,"input":{"grid":[["(","("],[")","("]]},"expected":false,"tags":["invalid-end"]},
+    {"id":"real-valid-turn","name":"hidden: only a path with a turn maintains valid balance","kind":"real","visible":false,"input":{"grid":[["(","(",")"],[")","(",")"]]},"expected":true,"tags":["hidden","turn"]},
+    {"id":"real-unclosable","name":"hidden: every path retains too many openings","kind":"real","visible":false,"input":{"grid":[["(","(","("],["(","(",")"]]},"expected":false,"tags":["hidden","unclosable-balance"]},
+    {"id":"real-prefix-trap","name":"hidden: equal totals do not repair a negative prefix","kind":"real","visible":false,"input":{"grid":[["(",")",")"],[")","(","("]]},"expected":false,"tags":["hidden","negative-prefix"]}
+  ]
+}

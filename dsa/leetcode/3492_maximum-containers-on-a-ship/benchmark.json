@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3492",
+  "measurement_note": "Size is C = n^2, the number of cargo-deck cells. Unit-weight containers and ample capacity make the deck limit active. The optimal formula is O(1), while a correct baseline that adds one container at a time performs Theta(C) work.",
+  "cases": [
+    {
+      "id": "benchmark-deck-cells-100",
+      "name": "benchmark: fill a 10 by 10 deck",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"n": 10, "w": 1, "maxWeight": 1000000000},
+      "expected": 100,
+      "tags": ["benchmark", "scale-small", "deck-limit"]
+    },
+    {
+      "id": "benchmark-deck-cells-10000",
+      "name": "benchmark: fill a 100 by 100 deck",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {"n": 100, "w": 1, "maxWeight": 1000000000},
+      "expected": 10000,
+      "tags": ["benchmark", "scale-medium", "deck-limit"]
+    },
+    {
+      "id": "benchmark-deck-cells-1000000",
+      "name": "benchmark: fill the maximum 1000 by 1000 deck",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000000,
+      "input": {"n": 1000, "w": 1, "maxWeight": 1000000000},
+      "expected": 1000000,
+      "tags": ["benchmark", "scale-large", "deck-limit", "maximum-deck"]
+    }
+  ]
+}

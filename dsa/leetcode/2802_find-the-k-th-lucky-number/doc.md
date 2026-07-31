@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Math, String, Bit Manipulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-k-th-lucky-number](https://leetcode.com/problems/find-the-k-th-lucky-number/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-k-th-lucky-number/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-k-th-lucky-number/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The digits `4` and `7` are called lucky digits. A positive integer is a lucky number when every digit in its decimal representation is one of those two digits.
+
+Arrange all lucky numbers in increasing numerical order. Numbers with fewer digits therefore appear before longer ones, while equal-length values follow ordinary decimal ordering. Given a one-based position `k`, return the lucky number occupying that position, represented as a string.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `k`: The one-based position in the ordered lucky-number sequence, with $1 \le k \le 10^9$.
+
+Let $m = \lfloor \log_2(k + 1) \rfloor$, which is the number of digits in the returned lucky number.
 
 **Return value**
 
-TODO
+Return the $k$-th lucky number as a string containing only `"4"` and `"7"`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `k = 4`
+- Output: `"47"`
+- Explanation: The sequence starts `4`, `7`, `44`, `47`, so its fourth value is `47`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `k = 10`
+- Output: `"477"`
+- Explanation: The first ten values are `4`, `7`, `44`, `47`, `74`, `77`, `444`, `447`, `474`, and `477`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `k = 1000`
+- Output: `"777747447"`
+- Explanation: The thousandth value in increasing order is `777747447`.

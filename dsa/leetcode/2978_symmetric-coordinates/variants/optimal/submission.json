@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3253",
+  "frontend_id": "2978",
+  "title_slug": "symmetric-coordinates",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2078515393",
+  "verified_at": "2026-07-23T14:40:18.796942+00:00"
+}

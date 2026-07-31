@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2222",
+  "cases": [
+    {"id":"sample-six-ways","name":"sample: both alternating patterns contribute","kind":"sample","visible":true,"input":{"s":"001101"},"expected":6,"tags":["sample","both-patterns"]},
+    {"id":"sample-no-way","name":"sample: two runs cannot form an alternating triple","kind":"sample","visible":true,"input":{"s":"11100"},"expected":0,"tags":["sample","no-solution"]},
+    {"id":"trial-minimum-alternating","name":"three alternating buildings form one selection","kind":"trial","visible":true,"input":{"s":"010"},"expected":1,"tags":["minimum-length","pattern-010"]},
+    {"id":"trial-four-alternating","name":"both length-three windows are valid index triples","kind":"trial","visible":true,"input":{"s":"0101"},"expected":2,"tags":["alternating"]},
+    {"id":"real-all-same","name":"hidden: identical buildings cannot alternate","kind":"real","visible":false,"input":{"s":"000000"},"expected":0,"tags":["hidden","all-same"]},
+    {"id":"real-single-middle","name":"hidden: every zero pair around one creates a choice","kind":"real","visible":false,"input":{"s":"00100"},"expected":4,"tags":["hidden","pattern-010"]},
+    {"id":"real-five-alternating","name":"hidden: nonconsecutive choices also alternate","kind":"real","visible":false,"input":{"s":"10101"},"expected":5,"tags":["hidden","alternating"]},
+    {"id":"real-separated-runs","name":"hidden: choices depend on indices rather than runs","kind":"real","visible":false,"input":{"s":"000111000"},"expected":27,"tags":["hidden","repeated-runs"]}
+  ]
+}

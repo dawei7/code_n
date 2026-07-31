@@ -1,29 +1,24 @@
 def solve(nums: list[int], queries: list[list[int]]) -> int:
-    n = len(nums)
+    length = len(nums)
+    possible = [1] * length
+    masks = [(1 << (target + 1)) - 1 for target in nums]
+    satisfied = [target == 0 for target in nums]
+    remaining = sum(not state for state in satisfied)
 
-    def check(k: int) -> bool:
-        possible = [1] * n
-        masks = [(1 << (value + 1)) - 1 for value in nums]
-        for left, right, value in queries[:k]:
-            shift = 1 << value
-            for index in range(left, right + 1):
-                possible[index] = (possible[index] | (possible[index] * shift)) & masks[index]
-        for index, value in enumerate(nums):
-            if (possible[index] >> value) & 1 == 0:
-                return False
-        return True
+    if remaining == 0:
+        return 0
 
-    # Binary search for the minimum k in [0, len(queries)]
-    low = 0
-    high = len(queries)
-    ans = -1
+    for query_index, (left, right, value) in enumerate(queries, start=1):
+        for index in range(left, right + 1):
+            if satisfied[index]:
+                continue
+            possible[index] |= possible[index] << value
+            possible[index] &= masks[index]
+            if (possible[index] >> nums[index]) & 1:
+                satisfied[index] = True
+                remaining -= 1
 
-    while low <= high:
-        mid = (low + high) // 2
-        if check(mid):
-            ans = mid
-            high = mid - 1
-        else:
-            low = mid + 1
+        if remaining == 0:
+            return query_index
 
-    return ans
+    return -1

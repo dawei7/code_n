@@ -1,79 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2357",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: three distinct positive values",
+      "id": "sample-three-positive-levels",
+      "name": "sample: duplicates and zero with three positive levels",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          5,
-          0,
-          3,
-          5
-        ]
-      },
+      "input": {"nums": [1,5,0,3,5]},
       "expected": 3,
-      "tags": [
-        "sample",
-        "set"
-      ]
+      "tags": ["sample","duplicates","zero"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: already zero",
+      "id": "sample-already-zero",
+      "name": "sample: one zero",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          0
-        ]
-      },
+      "input": {"nums": [0]},
       "expected": 0,
-      "tags": [
-        "sample",
-        "edge"
-      ]
+      "tags": ["sample","boundary","zero"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: four distinct positives",
-      "kind": "sample",
+      "id": "trial-one-positive",
+      "name": "one positive element",
+      "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
+      "input": {"nums": [7]},
+      "expected": 1,
+      "tags": ["single"]
     },
     {
-      "id": "real-repeated-positives",
-      "name": "hidden: repeated values count once",
+      "id": "trial-all-equal-positive",
+      "name": "equal positive values vanish together",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4,4,4,4]},
+      "expected": 1,
+      "tags": ["duplicates"]
+    },
+    {
+      "id": "trial-consecutive-levels",
+      "name": "every positive level is distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1,2,3,4]},
+      "expected": 4,
+      "tags": ["distinct"]
+    },
+    {
+      "id": "real-many-zeros",
+      "name": "hidden: zeros never require an operation",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          0,
-          2,
-          2,
-          4,
-          4,
-          6
-        ]
-      },
-      "expected": 3,
-      "tags": [
-        "hidden"
-      ]
+      "input": {"nums": [0,0,5,0,5,0]},
+      "expected": 1,
+      "tags": ["hidden","zero","duplicates"]
+    },
+    {
+      "id": "real-unsorted-levels",
+      "name": "hidden: input order does not affect the answer",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100,1,50,1,100,0,25]},
+      "expected": 4,
+      "tags": ["hidden","order"]
+    },
+    {
+      "id": "real-all-zero",
+      "name": "hidden: several zeros",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0,0,0,0]},
+      "expected": 0,
+      "tags": ["hidden","zero"]
     }
   ]
 }

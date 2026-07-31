@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3888",
+    "frontend_id": "3888",
+    "title_slug": "minimum-operations-to-make-all-grid-elements-equal",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-all-grid-elements-equal/description/",
+    "paid_only": true,
+    "content_sha256": "5331217e023cf9489650874765a237d52f6db8ffc9e7f7e6f549228af7b62400",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "grid = [[3,3,5],[3,3,5]], k = 2",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "grid = [[1,2],[2,3]], k = 1",
+        "output": "4",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c3f55a2ff670a797219436280d6d1c0950458026cf42af6806f4d56f6e465ea8",
+      "reference/contract.md": "66d3cffec2fb350495eda9b56513a6295067624833fb6a2b77c276b6f1751788",
+      "reference/examples.md": "8c73e80bfd94ee24276cea41f6db6b3baa0500a44470d1645e461a521ece4f49",
+      "reference/constraints.md": "2ae4ac175afcccacc7010a8cc77559066fb7693c4e1934a0d66418d96581b60a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}
+

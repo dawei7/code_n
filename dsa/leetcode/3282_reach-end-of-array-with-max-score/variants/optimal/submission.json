@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3528",
+  "frontend_id": "3282",
+  "title_slug": "reach-end-of-array-with-max-score",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.findMaximumScore",
+  "verified_submission_id": "2080494396",
+  "verified_at": "2026-07-25T08:28:21.464825+00:00"
+}

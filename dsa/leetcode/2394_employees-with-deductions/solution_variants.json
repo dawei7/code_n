@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Employees With Deductions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Left-joins every employee to their sessions, totals independently rounded durations, and filters groups below the required minutes.",
+      "time_complexity": "O((E + L)\\log(E + L))",
+      "space_complexity": "O(E + L)"
     }
   ]
 }

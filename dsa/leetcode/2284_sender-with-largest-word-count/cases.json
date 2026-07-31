@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2284",
+  "cases": [
+    {"id":"sample-accumulation","name":"sample: repeated messages give Alice the largest total","kind":"sample","visible":true,"input":{"messages":["Hello userTwooo","Hi userThree","Wonderful day Alice","Nice day userThree"],"senders":["Alice","userTwo","userThree","Alice"]},"expected":"Alice","tags":["sample","repeated-sender"]},
+    {"id":"sample-tie","name":"sample: lexicographically larger sender wins a tie","kind":"sample","visible":true,"input":{"messages":["How is leetcode for everyone","Leetcode is useful for practice"],"senders":["Bob","Charlie"]},"expected":"Charlie","tags":["sample","tie"]},
+    {"id":"trial-one-message","name":"one sender with one message","kind":"trial","visible":true,"input":{"messages":["one two three"],"senders":["Solo"]},"expected":"Solo","tags":["single-sender"]},
+    {"id":"trial-case-sensitive","name":"lowercase name is lexicographically larger in a tied pair","kind":"trial","visible":true,"input":{"messages":["a","b"],"senders":["Alice","alice"]},"expected":"alice","tags":["tie","case-sensitive"]},
+    {"id":"trial-prefix-name","name":"longer prefix-related name wins a tie","kind":"trial","visible":true,"input":{"messages":["one","two"],"senders":["Ann","Anna"]},"expected":"Anna","tags":["tie","prefix"]},
+    {"id":"real-late-winner","name":"hidden: a late sender wins by total rather than order","kind":"real","visible":false,"input":{"messages":["a b","c","d e f g","h i"],"senders":["Zed","Amy","Amy","Zed"]},"expected":"Amy","tags":["hidden","accumulation"]},
+    {"id":"real-three-way-tie","name":"hidden: three-way tie uses the largest name","kind":"real","visible":false,"input":{"messages":["a b","c d","e f"],"senders":["Bob","Zoe","Amy"]},"expected":"Zoe","tags":["hidden","tie"]},
+    {"id":"real-spaces-count","name":"hidden: every single separator adds one word","kind":"real","visible":false,"input":{"messages":["a b c d e","word","x y"],"senders":["A","B","B"]},"expected":"A","tags":["hidden","word-count"]}
+  ]
+}

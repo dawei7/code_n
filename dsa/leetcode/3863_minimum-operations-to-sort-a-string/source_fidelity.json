@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3863",
+    "frontend_id": "3863",
+    "title_slug": "minimum-operations-to-sort-a-string",
+    "url": "https://leetcode.com/problems/minimum-operations-to-sort-a-string/description/",
+    "paid_only": false,
+    "content_sha256": "006f9eb31290479577068bfeea58f36894728410bd34ab34d4c824504871e5d7",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"dog\"",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"card\"",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"gf\"",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "035b73cb73832457904a95fd1c4cb4ee962d4a2bb4a29cc2679df673bc2e1674",
+      "reference/contract.md": "b40f54f8d037cbbc75713efce06b5e0fcb4a052577907242d941ff16599bb7f5",
+      "reference/examples.md": "0ba4bc30dc005bb549200b56a5cde3f61dfb27ae1be0f8fbabef658caea4ff43",
+      "reference/constraints.md": "35f7591f406bff7c2083c4dc4a8d80abc49eb807acc8db8304b3de4a1c67f999"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

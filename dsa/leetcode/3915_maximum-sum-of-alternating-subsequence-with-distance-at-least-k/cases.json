@@ -1,0 +1,504 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3915",
+  "cases": [
+    {
+      "id": "sample-gap-two-down",
+      "name": "sample: exact distance permits one downward edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "exact-gap",
+        "starts-down"
+      ]
+    },
+    {
+      "id": "sample-four-element-alternation",
+      "name": "sample: four selected values alternate from an upward edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          4,
+          2,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 14,
+      "tags": [
+        "sample",
+        "starts-up",
+        "multi-element"
+      ]
+    },
+    {
+      "id": "sample-singleton",
+      "name": "sample: a singleton is strictly alternating",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "single-element",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-k-equals-n",
+      "name": "trial: maximum distance allows only a singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          10,
+          7
+        ],
+        "k": 3
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "k-equals-n",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: strict comparisons reject every equal pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "duplicates",
+        "strictness"
+      ]
+    },
+    {
+      "id": "trial-two-increasing",
+      "name": "trial: a two-value upward sequence is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          7
+        ],
+        "k": 1
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "two-elements",
+        "starts-up"
+      ]
+    },
+    {
+      "id": "trial-two-decreasing",
+      "name": "trial: a two-value downward sequence is valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          2
+        ],
+        "k": 1
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "two-elements",
+        "starts-down"
+      ]
+    },
+    {
+      "id": "trial-adjacent-peak-blocked",
+      "name": "trial: the largest adjacent value cannot join when k is two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          100,
+          20
+        ],
+        "k": 2
+      },
+      "expected": 100,
+      "tags": [
+        "trial",
+        "distance",
+        "singleton-optimal"
+      ]
+    },
+    {
+      "id": "trial-exact-gap-up",
+      "name": "trial: an upward pair at exactly k is allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          9
+        ],
+        "k": 2
+      },
+      "expected": 13,
+      "tags": [
+        "trial",
+        "exact-gap",
+        "starts-up"
+      ]
+    },
+    {
+      "id": "trial-complete-up-first",
+      "name": "trial: the entire array alternates beginning upward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          2,
+          4,
+          3
+        ],
+        "k": 1
+      },
+      "expected": 15,
+      "tags": [
+        "trial",
+        "starts-up",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "trial-complete-down-first",
+      "name": "trial: the entire array alternates beginning downward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          8,
+          1,
+          7,
+          2,
+          6
+        ],
+        "k": 1
+      },
+      "expected": 24,
+      "tags": [
+        "trial",
+        "starts-down",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "trial-monotone-increasing",
+      "name": "trial: a monotone array can contribute at most two values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "monotone",
+        "two-elements"
+      ]
+    },
+    {
+      "id": "trial-monotone-decreasing",
+      "name": "trial: a decreasing array can contribute at most two values",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "monotone",
+        "two-elements"
+      ]
+    },
+    {
+      "id": "trial-equal-interruption",
+      "name": "trial: duplicate peaks cannot be consecutive selections",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          3,
+          1
+        ],
+        "k": 1
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "duplicates",
+        "strictness"
+      ]
+    },
+    {
+      "id": "trial-gap-two-cross-parity",
+      "name": "trial: distance two permits a cross-parity alternating chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          100,
+          2,
+          99,
+          3,
+          98
+        ],
+        "k": 2
+      },
+      "expected": 199,
+      "tags": [
+        "trial",
+        "distance",
+        "multi-element"
+      ]
+    },
+    {
+      "id": "hidden-restrictive-distance",
+      "name": "hidden: a restrictive gap changes the best combination",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          1,
+          8,
+          2,
+          7,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 17,
+      "tags": [
+        "hidden",
+        "distance",
+        "starts-down"
+      ]
+    },
+    {
+      "id": "hidden-duplicate-valleys",
+      "name": "hidden: equal valleys require skipping one duplicate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          2,
+          2,
+          9,
+          1,
+          8
+        ],
+        "k": 1
+      },
+      "expected": 30,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "strictness"
+      ]
+    },
+    {
+      "id": "hidden-large-alternating-score",
+      "name": "hidden: one hundred alternating values require a 64-bit-capable sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000,
+          1,
+          100000
+        ],
+        "k": 1
+      },
+      "expected": 5000050,
+      "tags": [
+        "hidden",
+        "long-array",
+        "whole-array",
+        "large-score"
+      ]
+    },
+    {
+      "id": "hidden-large-k-singleton",
+      "name": "hidden: a large k leaves only the largest singleton",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          100,
+          4,
+          99,
+          3,
+          98,
+          2,
+          97
+        ],
+        "k": 8
+      },
+      "expected": 100,
+      "tags": [
+        "hidden",
+        "k-equals-n",
+        "singleton"
+      ]
+    }
+  ]
+}
+

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Closest Nodes Queries in a Binary Search Tree and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Flattens the BST in sorted order with iterative in-order traversal, then binary-searches both bounds for every query.",
+      "time_complexity": "O(n + q log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

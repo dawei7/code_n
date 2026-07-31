@@ -1,3 +1,4 @@
+
 # Difference Between Maximum and Minimum Price Sum
 
 | Field | Value |
@@ -8,84 +9,40 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Tree, Depth-First Search |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [difference-between-maximum-and-minimum-price-sum](https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/) |
+| LeetCode | [difference-between-maximum-and-minimum-price-sum](https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/).
 
 ### Goal
-Given an undirected tree where each node has an associated price, find the maximum possible difference between the sum of prices along any path and the price of one of the endpoints of that path. Specifically, for any path between two nodes $u$ and $v$, we want to maximize $|(\sum_{i \in path(u,v)} price_i) - price_u|$ or $|(\sum_{i \in path(u,v)} price_i) - price_v|$. This simplifies to finding the maximum path sum excluding either the start or end node.
+
+An undirected, initially unrooted tree contains `n` nodes numbered from `0` through `n - 1`. Its `n - 1` edges are given by `edges`, and `price[i]` is the positive price attached to node `i`. The price sum of a path is the sum of every node price on that path.
+
+Choose any node as `root`. Consider all paths that start at this root, including the one-node path. The cost of this choice is the maximum such path sum minus the minimum such path sum. Return the maximum cost obtainable over every possible choice of root.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: An integer representing the number of nodes in the tree (labeled 0 to n-1).
-- `edges`: A list of lists where each sublist `[u, v]` represents an undirected edge between nodes `u` and `v`.
-- `price`: A list of integers where `price[i]` is the cost associated with node `i`.
+- `n`: The positive number of nodes in the tree.
+- `edges`: The `n - 1` undirected edges, each represented as `[first, second]`.
+- `price`: The positive node prices, where `price[i]` belongs to node `i`.
+
+The nodes are 0-indexed, `edges` forms a valid tree, and `price` has length `n`. The public constraints permit $n \leq 10^5$ and $1 \leq \texttt{price[i]} \leq 10^5$.
 
 **Return value**
 
-- An integer representing the maximum difference between the path sum and the price of one of its endpoints.
+Return the maximum possible difference between the largest and smallest price sums of paths beginning at the chosen root.
 
 ### Examples
+
 **Example 1**
 
 - Input: `n = 6, edges = [[0,1],[1,2],[1,3],[3,4],[3,5]], price = [9,8,7,6,10,5]`
 - Output: `24`
+- Explanation: With node 2 as root, the path through nodes `[2,1,3,4]` sums to $31$, while the one-node root path sums to $7$. Their difference is $24$.
 
 **Example 2**
 
 - Input: `n = 3, edges = [[0,1],[1,2]], price = [1,1,1]`
 - Output: `2`
-
----
-
-## Solution
-### Approach
-The problem is solved using Tree Dynamic Programming. Since the path can be rooted at any node, we perform a two-pass DFS (Re-rooting technique or post-order traversal). We maintain two DP states for each node: the maximum path sum starting from the node downwards, and the maximum path sum starting from the node downwards excluding the node's own price. By aggregating these values from children, we can compute the optimal path sum for any node acting as the "highest" point of a path.
-
-### Complexity Analysis
-- **Time Complexity**: $O(n)$, where $n$ is the number of nodes. We traverse the tree twice (or once with post-order aggregation) to compute DP values.
-- **Space Complexity**: $O(n)$ to store the adjacency list and the DP tables.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import sys
-
-sys.setrecursionlimit(200000)
-
-
-def solve(n: int, edges: list[list[int]], price: list[int]) -> int:
-    if n == 1:
-        return 0
-
-    adj = [[] for _ in range(n)]
-    for u, v in edges:
-        adj[u].append(v)
-        adj[v].append(u)
-
-    ans = 0
-
-    def dfs(u, p):
-        nonlocal ans
-
-        best_keep = price[u]
-        best_drop = 0
-
-        for v in adj[u]:
-            if v == p:
-                continue
-            child_keep, child_drop = dfs(v, u)
-            ans = max(ans, best_keep + child_drop, best_drop + child_keep)
-            best_keep = max(best_keep, price[u] + child_keep)
-            best_drop = max(best_drop, price[u] + child_drop)
-
-        return best_keep, best_drop
-
-    dfs(0, -1)
-    return ans
-```
-</details>
+- Explanation: Rooting at an endpoint gives path sums $1$ and $3$, producing cost $2$.

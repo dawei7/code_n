@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_305", "frontend_id": "305", "title_slug": "number-of-islands-ii", "url": "https://leetcode.com/problems/number-of-islands-ii/description/", "paid_only": true, "content_sha256": "909ec26f1ca22bffcb92a6977a6a3ff0611da8ffd0901e46447a2bf6d7b18d7a", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "m = 3, n = 3, positions = [[0,0],[0,1],[1,2],[2,1]]", "output": "[1,1,2,3]", "has_explanation": true},
+      {"ordinal": 2, "input": "m = 1, n = 1, positions = [[0,0]]", "output": "[1]", "has_explanation": false}
+    ],
+    "constraint_count": 5,
+    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "e3bfe07d5d4186faa1a464d6765bfddaadfc77a714fd85ec5e0e287a195bfe69",
+    "reference/contract.md": "8de1624c0194810ed2fc5047188ebd6eddb355a23e7bc4659a590ae462c20aab",
+    "reference/examples.md": "580d74b478e5b2db29e877e7f455ab795c88db1a5dee1d87320bfba3bb3118c0",
+    "reference/constraints.md": "a6052d0259b73af4c5ba0f829ce8c9f961219fade53275f3aa6105fcd0a05833",
+    "reference/follow_up.md": "f9262714a4e77ef421fa0f7f03b5216ce79412a1b5c61651c3573cfc07f4ada7"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

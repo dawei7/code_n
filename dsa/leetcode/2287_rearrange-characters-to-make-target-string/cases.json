@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2287",
+  "cases": [
+    {"id":"sample-two-copies","name":"sample: two rearranged copies of code","kind":"sample","visible":true,"input":{"s":"ilovecodingonleetcode","target":"code"},"expected":2,"tags":["sample","rearrangement"]},
+    {"id":"sample-single-bottleneck","name":"sample: one c limits the result","kind":"sample","visible":true,"input":{"s":"abcba","target":"abc"},"expected":1,"tags":["sample","bottleneck"]},
+    {"id":"sample-repeated-letter","name":"sample: five required a letters form one copy","kind":"sample","visible":true,"input":{"s":"abbaccaddaeea","target":"aaaaa"},"expected":1,"tags":["sample","repeated-letter"]},
+    {"id":"trial-missing-copy","name":"a missing repeated letter prevents any copy","kind":"trial","visible":true,"input":{"s":"xyz","target":"xyzz"},"expected":0,"tags":["missing-letter","zero"]},
+    {"id":"trial-exact-repetition","name":"all six letters form three repeated-letter targets","kind":"trial","visible":true,"input":{"s":"aaaaaa","target":"aa"},"expected":3,"tags":["repeated-letter","exact"]},
+    {"id":"trial-balanced","name":"balanced supplies form two copies","kind":"trial","visible":true,"input":{"s":"aabbcc","target":"abc"},"expected":2,"tags":["balanced"]},
+    {"id":"real-uneven-supplies","name":"hidden: the least frequent required letter limits copies","kind":"real","visible":false,"input":{"s":"zzzyyyyxxxxx","target":"zyx"},"expected":3,"tags":["hidden","bottleneck"]},
+    {"id":"real-multiple-demands","name":"hidden: each copy needs two a letters","kind":"real","visible":false,"input":{"s":"aaaabbbbcc","target":"aabc"},"expected":2,"tags":["hidden","multiplicity"]},
+    {"id":"real-irrelevant-letters","name":"hidden: unrelated letters do not affect the quotient","kind":"real","visible":false,"input":{"s":"qqqabcabcwww","target":"abc"},"expected":2,"tags":["hidden","irrelevant-letters"]}
+  ]
+}

@@ -1,39 +1,39 @@
-def solve(nums: list[int]) -> int:
-    nums.sort()
-    n = len(nums)
-    median = nums[n // 2]
-    
-    def is_palindrome(n: int) -> bool:
-        s = str(n)
-        return s == s[::-1]
-    
-    def get_candidates(val: int) -> list[int]:
-        s = str(val)
-        length = len(s)
-        candidates = set()
-        
-        # Add edge cases: 10^(n-1) - 1 and 10^n + 1
-        candidates.add(10**(length - 1) - 1)
-        candidates.add(10**length + 1)
-        
-        # Generate palindromes by modifying the prefix
-        prefix = int(s[:(length + 1) // 2])
-        for i in [-1, 0, 1]:
-            p = str(prefix + i)
-            if length % 2 == 0:
-                res = p + p[::-1]
-            else:
-                res = p + p[:-1][::-1]
-            candidates.add(int(res))
-        
-        return [c for c in candidates if c > 0]
+from typing import List, Set
 
-    candidates = get_candidates(median)
-    
-    min_cost = float('inf')
-    for cand in candidates:
-        current_cost = sum(abs(x - cand) for x in nums)
-        if current_cost < min_cost:
-            min_cost = current_cost
-            
-    return int(min_cost)
+
+def solve(nums: List[int]) -> int:
+    ordered = sorted(nums)
+    median = ordered[len(ordered) // 2]
+    candidates = _nearby_palindromes(median)
+    return min(
+        sum(abs(value - target) for value in ordered)
+        for target in candidates
+    )
+
+
+def _nearby_palindromes(value: int) -> Set[int]:
+    text = str(value)
+    length = len(text)
+    prefix_length = (length + 1) // 2
+    prefix = int(text[:prefix_length])
+    candidates = {1, 999_999_999}
+
+    lower_boundary = 10 ** (length - 1) - 1
+    upper_boundary = 10**length + 1
+    if lower_boundary > 0:
+        candidates.add(lower_boundary)
+    if upper_boundary < 1_000_000_000:
+        candidates.add(upper_boundary)
+
+    for candidate_prefix in range(prefix - 2, prefix + 3):
+        if candidate_prefix <= 0:
+            continue
+        left = str(candidate_prefix)
+        if length % 2:
+            palindrome = int(left + left[-2::-1])
+        else:
+            palindrome = int(left + left[::-1])
+        if 0 < palindrome < 1_000_000_000:
+            candidates.add(palindrome)
+
+    return candidates

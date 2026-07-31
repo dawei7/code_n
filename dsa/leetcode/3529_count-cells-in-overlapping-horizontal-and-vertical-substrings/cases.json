@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3529",
+  "cases": [
+    {"id":"sample-single-intersection","name":"sample: one horizontal and vertical intersection","kind":"sample","visible":true,"input":{"grid":[["a","a","c","c"],["b","b","b","c"],["a","a","b","a"],["c","a","a","c"],["a","a","b","a"]],"pattern":"abaca"},"expected":1,"tags":["sample","boundary-continuation"]},
+    {"id":"sample-four-cells","name":"sample: several overlapping matches","kind":"sample","visible":true,"input":{"grid":[["c","a","a","a"],["a","a","b","a"],["b","b","a","a"],["a","a","b","a"]],"pattern":"aba"},"expected":4,"tags":["sample","overlapping-matches"]},
+    {"id":"sample-single-cell","name":"sample: one cell and one-character pattern","kind":"sample","visible":true,"input":{"grid":[["a"]],"pattern":"a"},"expected":1,"tags":["sample","single-cell"]},
+    {"id":"trial-vertical-boundary","name":"trial: vertical match crosses between columns","kind":"trial","visible":true,"input":{"grid":[["a","b"],["a","b"]],"pattern":"ab"},"expected":2,"tags":["trial","vertical-boundary"]},
+    {"id":"trial-horizontal-boundary","name":"trial: horizontal match crosses between rows","kind":"trial","visible":true,"input":{"grid":[["a","a"],["b","a"]],"pattern":"ab"},"expected":1,"tags":["trial","horizontal-boundary"]},
+    {"id":"real-overlap-everywhere","name":"real: overlapping equal-character matches cover every cell","kind":"real","visible":false,"input":{"grid":[["a","a","a"],["a","a","a"]],"pattern":"aa"},"expected":6,"tags":["real","overlapping-matches"]},
+    {"id":"real-one-character","name":"real: one-character pattern qualifies exactly matching cells","kind":"real","visible":false,"input":{"grid":[["a","b","a"],["c","a","b"]],"pattern":"a"},"expected":3,"tags":["real","single-character-pattern"]},
+    {"id":"real-full-length-mismatch","name":"real: full horizontal match is absent vertically","kind":"real","visible":false,"input":{"grid":[["a","b"],["c","d"]],"pattern":"abcd"},"expected":0,"tags":["real","full-length-pattern"]}
+  ]
+}

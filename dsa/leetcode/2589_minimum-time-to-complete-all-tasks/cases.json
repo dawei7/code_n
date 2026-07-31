@@ -1,142 +1,17 @@
 {
   "challenge_id": "lc_2589",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: shared active time units",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "tasks": [
-          [
-            2,
-            3,
-            1
-          ],
-          [
-            4,
-            5,
-            1
-          ],
-          [
-            1,
-            5,
-            2
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "sample",
-        "greedy"
-      ]
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: overlapping windows",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "tasks": [
-          [
-            1,
-            3,
-            2
-          ],
-          [
-            2,
-            5,
-            3
-          ],
-          [
-            5,
-            6,
-            2
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-disjoint-windows",
-      "name": "trial: disjoint windows add directly",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tasks": [
-          [
-            1,
-            3,
-            2
-          ],
-          [
-            4,
-            9,
-            3
-          ],
-          [
-            10,
-            10,
-            1
-          ]
-        ]
-      },
-      "expected": 6,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "trial-single-task",
-      "name": "trial: single one-unit task",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "tasks": [
-          [
-            1,
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 1,
-      "tags": [
-        "trial",
-        "small"
-      ]
-    },
-    {
-      "id": "real-nested-and-overlapping",
-      "name": "hidden: nested overlap benefits late filling",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "tasks": [
-          [
-            1,
-            4,
-            2
-          ],
-          [
-            2,
-            6,
-            2
-          ],
-          [
-            4,
-            7,
-            3
-          ]
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "hidden"
-      ]
-    }
+    {"id":"sample-1","name":"sample: three tasks share two active seconds","kind":"sample","visible":true,"input":{"tasks":[[2,3,1],[4,5,1],[1,5,2]]},"expected":2,"tags":["sample","shared-seconds"]},
+    {"id":"sample-2","name":"sample: overlapping requirements need four seconds","kind":"sample","visible":true,"input":{"tasks":[[1,3,2],[2,5,3],[5,6,2]]},"expected":4,"tags":["sample","overlap"]},
+    {"id":"trial-single-second","name":"trial: one one-second task","kind":"trial","visible":true,"input":{"tasks":[[1,1,1]]},"expected":1,"tags":["trial","minimum"]},
+    {"id":"trial-partial-interval","name":"trial: two seconds anywhere in a three-second interval","kind":"trial","visible":true,"input":{"tasks":[[1,3,2]]},"expected":2,"tags":["trial","single-task"]},
+    {"id":"real-disjoint","name":"hidden: disjoint tasks cannot share seconds","kind":"real","visible":false,"input":{"tasks":[[1,2,1],[3,4,1]]},"expected":2,"tags":["hidden","disjoint"]},
+    {"id":"real-nested","name":"hidden: nested task reuses later selected seconds","kind":"real","visible":false,"input":{"tasks":[[1,5,3],[2,4,2]]},"expected":3,"tags":["hidden","nested"]},
+    {"id":"real-same-end","name":"hidden: tasks sharing an end reuse the latest choices","kind":"real","visible":false,"input":{"tasks":[[1,3,1],[2,3,2]]},"expected":2,"tags":["hidden","same-end"]},
+    {"id":"real-disjoint-three","name":"hidden: separated intervals add their requirements","kind":"real","visible":false,"input":{"tasks":[[1,3,2],[4,9,3],[10,10,1]]},"expected":6,"tags":["hidden","disjoint","single-point"]},
+    {"id":"real-maximum-time","name":"hidden: the final legal time coordinate","kind":"real","visible":false,"input":{"tasks":[[2000,2000,1]]},"expected":1,"tags":["hidden","maximum-time"]},
+    {"id":"real-overlapping-full","name":"hidden: two full short intervals share their overlap","kind":"real","visible":false,"input":{"tasks":[[1,2,2],[2,3,2]]},"expected":3,"tags":["hidden","overlap","full-duration"]},
+    {"id":"real-contained-full","name":"hidden: a full inner task supplies part of an outer task","kind":"real","visible":false,"input":{"tasks":[[1,6,4],[3,5,3]]},"expected":4,"tags":["hidden","contained","reuse"]},
+    {"id":"real-identical-tasks","name":"hidden: identical tasks use the same active seconds","kind":"real","visible":false,"input":{"tasks":[[4,8,3],[4,8,3],[4,8,3]]},"expected":3,"tags":["hidden","identical","reuse"]}
   ]
 }

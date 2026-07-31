@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | Graph Theory, Heap (Priority Queue), Shortest Path |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-weighted-subgraph-with-the-required-paths](https://leetcode.com/problems/minimum-weighted-subgraph-with-the-required-paths/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-weighted-subgraph-with-the-required-paths/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-weighted-subgraph-with-the-required-paths/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A weighted directed graph has `n` nodes numbered from `0` through `n - 1`. Each entry `[from, to, weight]` is a directed edge with positive weight; parallel edges may occur. The three nodes `src1`, `src2`, and `dest` are pairwise distinct.
+
+Choose a subgraph whose edges allow both source nodes to reach `dest`. Its weight is the sum of its distinct included edge weights, so a shared suffix used by both routes is paid for once. Return the minimum possible subgraph weight, or `-1` when no qualifying subgraph exists.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: the node count, where $3 \le n \le 10^5$.
+- `edges`: up to $10^5$ directed triples `[from, to, weight]`, with positive weights at most $10^5$.
+- `src1`, `src2`, `dest`: three distinct in-bounds node IDs.
+
+Let $m$ be the number of edges.
 
 **Return value**
 
-TODO
+Return the minimum total edge weight of a subgraph containing a path from each source to `dest`, or `-1` if either required route is impossible.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 6`, `edges = [[0,2,2],[0,5,6],[1,0,3],[1,4,5],[2,1,1],[2,3,3],[2,3,4],[3,4,2],[4,5,1]]`, `src1 = 0`, `src2 = 1`, `dest = 5`
+- Output: `9`
+
+The two routes can share edges after meeting, and an optimal qualifying subgraph has total weight `9`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 3`, `edges = [[0,1,1],[2,1,1]]`, `src1 = 0`, `src2 = 1`, `dest = 2`
+- Output: `-1`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+There is no directed route from the second source to the destination.

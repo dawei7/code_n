@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3003",
+  "frontend_id": "2793",
+  "title_slug": "status-of-flight-tickets",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2076924106",
+  "verified_at": "2026-07-22T09:36:00+00:00"
+}

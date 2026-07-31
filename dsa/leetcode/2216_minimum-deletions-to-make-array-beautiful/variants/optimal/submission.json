@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "1355",
+  "frontend_id": "2216",
+  "title_slug": "minimum-deletions-to-make-array-beautiful",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "class Solution.minDeletion",
+  "verified_submission_id": "2073886961",
+  "verified_at": "2026-07-19T20:29:25.087789+00:00"
+}

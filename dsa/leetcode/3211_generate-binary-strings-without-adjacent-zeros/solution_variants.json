@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Generate Binary Strings Without Adjacent Zeros and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Backtracks over only prefixes that can avoid adjacent zeros and emits each valid string once.",
+      "time_complexity": "O(n V_n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

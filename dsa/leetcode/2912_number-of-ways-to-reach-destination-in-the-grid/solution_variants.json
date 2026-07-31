@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Ways to Reach Destination in the Grid and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Tracks path counts in the four classes determined by whether the current cell shares the destination's row and column.",
+      "time_complexity": "O(k)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2489",
+  "frontend_id": "2459",
+  "title_slug": "sort-array-by-moving-items-to-empty-space",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.sortArray",
+  "verified_submission_id": "2075063398",
+  "verified_at": "2026-07-20T20:08:00+00:00"
+}

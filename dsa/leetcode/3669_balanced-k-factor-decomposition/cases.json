@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3669",
+  "cases": [
+    {
+      "id": "sample-perfect-square",
+      "name": "sample: equal square-root factors",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 100,
+        "k": 2
+      },
+      "expected": [
+        10,
+        10
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "sample",
+        "perfect-power"
+      ]
+    },
+    {
+      "id": "sample-three-factors",
+      "name": "sample: balanced decomposition of forty-four",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 44,
+        "k": 3
+      },
+      "expected": [
+        2,
+        2,
+        11
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "sample",
+        "non-perfect-power"
+      ]
+    },
+    {
+      "id": "trial-minimum-n",
+      "name": "trial: minimum n splits equally",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "k": 2
+      },
+      "expected": [
+        2,
+        2
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "trial",
+        "minimum-n"
+      ]
+    },
+    {
+      "id": "trial-three-factor-power",
+      "name": "trial: repeated factors minimize sixteen",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 16,
+        "k": 3
+      },
+      "expected": [
+        2,
+        2,
+        4
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "trial",
+        "repeated-factors"
+      ]
+    },
+    {
+      "id": "trial-four-near-equal",
+      "name": "trial: four factors differ by at most one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 36,
+        "k": 4
+      },
+      "expected": [
+        2,
+        2,
+        3,
+        3
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "trial",
+        "four-factors"
+      ]
+    },
+    {
+      "id": "real-balanced-nonpower",
+      "name": "hidden: three distinct balanced factors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 72,
+        "k": 3
+      },
+      "expected": [
+        3,
+        4,
+        6
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "hidden",
+        "distinct-factors"
+      ]
+    },
+    {
+      "id": "real-four-mixed-factors",
+      "name": "hidden: four-factor decomposition with repetition",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 96,
+        "k": 4
+      },
+      "expected": [
+        2,
+        3,
+        4,
+        4
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "hidden",
+        "four-factors"
+      ]
+    },
+    {
+      "id": "real-maximum-perfect-power",
+      "name": "hidden: maximum n has five equal factors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 100000,
+        "k": 5
+      },
+      "expected": [
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "validator": {
+        "kind": "balanced_factor_decomposition"
+      },
+      "tags": [
+        "hidden",
+        "maximum-n",
+        "perfect-power"
+      ]
+    }
+  ]
+}

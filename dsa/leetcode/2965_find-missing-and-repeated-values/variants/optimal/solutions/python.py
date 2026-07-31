@@ -1,22 +1,21 @@
-def solve(grid: list[list[int]]) -> list[int]:
+from typing import List
+
+
+def solve(grid: List[List[int]]) -> List[int]:
     n = len(grid)
-    n_squared = n * n
-    
-    # Using a frequency array to track occurrences
-    # Size is n^2 + 1 to accommodate values from 1 to n^2
-    counts = [0] * (n_squared + 1)
-    
+    limit = n * n
+    observed_sum = 0
+    observed_square_sum = 0
+
     for row in grid:
-        for val in row:
-            counts[val] += 1
-            
-    repeated = -1
-    missing = -1
-    
-    for i in range(1, n_squared + 1):
-        if counts[i] == 2:
-            repeated = i
-        elif counts[i] == 0:
-            missing = i
-            
+        for value in row:
+            observed_sum += value
+            observed_square_sum += value * value
+
+    expected_sum = limit * (limit + 1) // 2
+    expected_square_sum = limit * (limit + 1) * (2 * limit + 1) // 6
+    difference = observed_sum - expected_sum
+    pair_sum = (observed_square_sum - expected_square_sum) // difference
+    repeated = (difference + pair_sum) // 2
+    missing = pair_sum - repeated
     return [repeated, missing]

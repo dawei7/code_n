@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3630",
+  "cases": [
+    {
+      "id": "sample-two-values",
+      "name": "sample: split two values between XOR and AND",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "empty-subsequence"
+      ]
+    },
+    {
+      "id": "sample-three-singletons",
+      "name": "sample: place one value in each subsequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "three-groups"
+      ]
+    },
+    {
+      "id": "sample-mixed-partition",
+      "name": "sample: combine values in the AND subsequence",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          3,
+          6,
+          7
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "and-group"
+      ]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value and two empty subsequences",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "empty-subsequence"
+      ]
+    },
+    {
+      "id": "trial-two-equal",
+      "name": "trial: equal values can occupy separate XOR groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "trial-three-equal",
+      "name": "trial: identical values benefit all three groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "trial",
+        "duplicates",
+        "three-groups"
+      ]
+    },
+    {
+      "id": "trial-disjoint-bits",
+      "name": "trial: powers of two have disjoint set bits",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "bit-pattern"
+      ]
+    },
+    {
+      "id": "real-two-overlapping-bits",
+      "name": "hidden: overlapping bits across two values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          12
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "hidden",
+        "bit-pattern"
+      ]
+    },
+    {
+      "id": "real-three-overlapping",
+      "name": "hidden: three values with shared bits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          10,
+          15
+        ]
+      },
+      "expected": 30,
+      "tags": [
+        "hidden",
+        "bit-pattern"
+      ]
+    },
+    {
+      "id": "real-consecutive-values",
+      "name": "hidden: consecutive small values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "mixed-partition"
+      ]
+    },
+    {
+      "id": "real-near-limit-values",
+      "name": "hidden: values near the upper bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999
+        ]
+      },
+      "expected": 1999999999,
+      "tags": [
+        "hidden",
+        "large-values"
+      ]
+    },
+    {
+      "id": "real-and-interactions",
+      "name": "hidden: several competing AND subsets",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          10,
+          12,
+          15
+        ]
+      },
+      "expected": 39,
+      "tags": [
+        "hidden",
+        "and-group"
+      ]
+    },
+    {
+      "id": "real-paired-duplicates",
+      "name": "hidden: duplicate pairs alter XOR cancellation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "xor-cancellation"
+      ]
+    },
+    {
+      "id": "real-high-disjoint-bits",
+      "name": "hidden: high bits and their union",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          536870912,
+          268435456,
+          805306368
+        ]
+      },
+      "expected": 1610612736,
+      "tags": [
+        "hidden",
+        "large-values",
+        "bit-pattern"
+      ]
+    }
+  ]
+}

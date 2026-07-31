@@ -8,48 +8,58 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [second-highest-salary-ii](https://leetcode.com/problems/second-highest-salary-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/second-highest-salary-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/second-highest-salary-ii/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `employees` table records each employee's identifier, salary, and department. For every department, determine its second-highest **distinct** salary. Return every employee earning that salary; if several employees tie at the second level, none of them may be discarded.
+
+A department contributes no row when it has fewer than two distinct salary values, even if it contains several employees tied at its only salary. Report only the employee identifier and department, and order the complete result by `emp_id` in ascending order across all departments.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+Table `employees`:
+
+- `emp_id`: An integer that uniquely identifies an employee.
+- `salary`: The employee's integer salary.
+- `dept`: The employee's department as a `varchar` value.
+
+Let $n$ be the number of rows in `employees`.
 
 **Return value**
 
-TODO
+Return columns `emp_id` and `dept` for all employees whose salary is the second-highest distinct salary in their department. Order rows by `emp_id ASC`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+Input table:
 
-**Example 2**
+| emp_id | salary | dept |
+|---:|---:|---|
+| 1 | 70000 | Sales |
+| 2 | 80000 | Sales |
+| 3 | 80000 | Sales |
+| 4 | 90000 | Sales |
+| 5 | 55000 | IT |
+| 6 | 65000 | IT |
+| 7 | 65000 | IT |
+| 8 | 50000 | Marketing |
+| 9 | 55000 | Marketing |
+| 10 | 55000 | HR |
 
-- Input: `TODO`
-- Output: `TODO`
+Output:
 
-**Example 3**
+| emp_id | dept |
+|---:|---|
+| 2 | Sales |
+| 3 | Sales |
+| 5 | IT |
+| 8 | Marketing |
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Sales has two employees tied at its second-highest distinct salary, so both appear. HR has only one distinct salary and contributes no row.

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3847",
+    "frontend_id": "3847",
+    "title_slug": "find-the-score-difference-in-a-game",
+    "url": "https://leetcode.com/problems/find-the-score-difference-in-a-game/description/",
+    "paid_only": false,
+    "content_sha256": "b2d98f37b378da2534117e854272957ae55f1772e69f77f9253f3cf0567f50da",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,3]",
+        "output": "0",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [2,4,2,1,2,1]",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [1]",
+        "output": "-1",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b87cbb95f43011a6e19e4493c760ca46f0d9ce8351c20259de68c9dcd031864c",
+      "reference/contract.md": "5860f00046c17b5df3ced4bd6cfcb0529efec0b7024e94af8ba4d1c62fb8ceee",
+      "reference/examples.md": "a4d67abb0949c8d753410804752180b21d4403f3333f716d32c13cfd2cc130ae",
+      "reference/constraints.md": "dd1358fe6fe62a1a362e59c01035e7a358871c72b7b2590f1f9ee1c2b675f590"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

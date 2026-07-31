@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3931",
+    "frontend_id": "3931",
+    "title_slug": "check-adjacent-digit-differences",
+    "url": "https://leetcode.com/problems/check-adjacent-digit-differences/description/",
+    "paid_only": false,
+    "content_sha256": "b45e4b8ebf76fa22ab53e8ee0a43817b4cc61195d4899c028f7a24728cd4df12",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"132\"",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"129\"",
+        "output": "false",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "882a7915c11581a19db21f0b611963dd65bd0c4dcf15816ed17bc00ecc6dbed8",
+      "reference/contract.md": "8108533a541362e69a805fe2f9a7fda0ad248391a92558b482b9aacb875f5442",
+      "reference/examples.md": "a98ca293900632030e0e09d022d63efe381e5608957e151ea0fd2918860b5edf",
+      "reference/constraints.md": "894b9ab14dbcdaaa934923f12c21fe438b6dfc6ddfeaa83bfa4bfe654d6e1360"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,12 +1,18 @@
 from typing import List
 
+
 def solve(nums: List[int]) -> int:
-    def encrypt(n: int) -> int:
-        s = str(n)
-        max_digit = max(s)
-        return int(max_digit * len(s))
-    
-    total_sum = 0
-    for num in nums:
-        total_sum += encrypt(num)
-    return total_sum
+    total = 0
+
+    for number in nums:
+        largest_digit = 0
+        repeated_ones = 0
+
+        while number:
+            largest_digit = max(largest_digit, number % 10)
+            repeated_ones = repeated_ones * 10 + 1
+            number //= 10
+
+        total += largest_digit * repeated_ones
+
+    return total

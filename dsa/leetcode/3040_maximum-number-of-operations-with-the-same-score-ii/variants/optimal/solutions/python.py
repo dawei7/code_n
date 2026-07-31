@@ -1,38 +1,36 @@
-from functools import lru_cache
-import sys
-
 def solve(nums: list[int]) -> int:
     n = len(nums)
-    sys.setrecursionlimit(max(sys.getrecursionlimit(), n + 50))
+    choices = [
+        (nums[0] + nums[1], 2),
+        (nums[-2] + nums[-1], 0),
+        (nums[0] + nums[-1], 1),
+    ]
+    answer = 0
 
-    @lru_cache(None)
-    def get_max_ops(i, j, target):
-        if i >= j:
-            return 0
+    for target in {score for score, _ in choices}:
+        base_length = n % 2
+        previous = [0] * (n - base_length + 1)
 
-        res = 0
-        # Option 1: Remove two from the front
-        if i + 1 <= j and nums[i] + nums[i + 1] == target:
-            res = max(res, 1 + get_max_ops(i + 2, j, target))
+        for length in range(base_length + 2, n - 1, 2):
+            current = [0] * (n - length + 1)
 
-        # Option 2: Remove two from the back
-        if j - 1 >= i and nums[j] + nums[j - 1] == target:
-            res = max(res, 1 + get_max_ops(i, j - 2, target))
+            for start in range(n - length + 1):
+                end = start + length - 1
+                best = 0
 
-        # Option 3: Remove one from front and one from back
-        if i < j and nums[i] + nums[j] == target:
-            res = max(res, 1 + get_max_ops(i + 1, j - 1, target))
+                if nums[start] + nums[start + 1] == target:
+                    best = max(best, 1 + previous[start + 2])
+                if nums[end - 1] + nums[end] == target:
+                    best = max(best, 1 + previous[start])
+                if nums[start] + nums[end] == target:
+                    best = max(best, 1 + previous[start + 1])
 
-        return res
+                current[start] = best
 
-    # The first operation determines the target sum.
-    # There are three possible first operations:
-    # 1. First two elements
-    # 2. Last two elements
-    # 3. First and last element
+            previous = current
 
-    ans1 = 1 + get_max_ops(2, n - 1, nums[0] + nums[1])
-    ans2 = 1 + get_max_ops(0, n - 3, nums[n - 1] + nums[n - 2])
-    ans3 = 1 + get_max_ops(1, n - 2, nums[0] + nums[n - 1])
+        for score, start in choices:
+            if score == target:
+                answer = max(answer, 1 + previous[start])
 
-    return max(ans1, ans2, ans3)
+    return answer

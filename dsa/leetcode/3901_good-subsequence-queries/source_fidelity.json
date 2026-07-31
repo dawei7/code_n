@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3901",
+    "frontend_id": "3901",
+    "title_slug": "good-subsequence-queries",
+    "url": "https://leetcode.com/problems/good-subsequence-queries/description/",
+    "paid_only": false,
+    "content_sha256": "adf8dffb9c90d4816d54212bff780c9bc1d37fe4470d94d18bb52b76d762d6ac",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [4,8,12,16], p = 2, queries = [[0,3],[2,6]]",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [4,5,7,8], p = 3, queries = [[0,6],[1,9],[2,3]]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [5,7,9], p = 2, queries = [[1,4],[2,8]]",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0c7dfa4aecf7308d0be73051ec46a79cf61d955cb30ad113e30ab218454301e6",
+      "reference/contract.md": "897724fe7791f87bc1903f6996a9bee3525502d7fa4a59d6c2978de8d87fff11",
+      "reference/examples.md": "414f686d58e255f0d51ac21c94538315864d36cf004911117aa3a9c7105294c5",
+      "reference/constraints.md": "3c6ac88e2c5d937b449fc5ec52085b90aea3413c9b3cf1efe6d92145e1d302c3"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

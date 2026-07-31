@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3769",
+    "frontend_id": "3769",
+    "title_slug": "sort-integers-by-binary-reflection",
+    "url": "https://leetcode.com/problems/sort-integers-by-binary-reflection/description/",
+    "paid_only": false,
+    "content_sha256": "b339f8f3ae7c1e5ab63505280292d3a2c98e599df3fd8955ff8e60b45507b0b8",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`nums = [4,5,4]`",
+        "output": "`[4,4,5]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`nums = [3,6,5,8]`",
+        "output": "`[8,3,6,5]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "8b12389b04ca48f9243e801b94159444e132de6c29d1a08bcd9453bad11c51df",
+      "reference/contract.md": "cf5fff9622a09d9592a2379b9d4964eaf0ca2628c144692e262de0be925ab38c",
+      "reference/examples.md": "968ddebae049a4967fd83bae09abcd004b106762a5dedd1a5a2c128d5fee45ea",
+      "reference/constraints.md": "c95f9ca913f063aa4a24666bfc88d6074be14bc9ccfb3e591a664c94594b5bf4"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

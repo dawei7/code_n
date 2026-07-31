@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Integers With Popcount-Depth Equal to K II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintain one Fenwick tree for each possible popcount-depth, enabling dynamic range counts and point reclassification.",
+      "time_complexity": "O(n + q log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

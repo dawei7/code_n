@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4355",
+  "frontend_id": "3992",
+  "title_slug": "rearrange-string-to-avoid-character-pair",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.rearrangeString",
+  "verified_submission_id": "2088142060",
+  "verified_at": "2026-07-31T01:51:31.0328829Z"
+}

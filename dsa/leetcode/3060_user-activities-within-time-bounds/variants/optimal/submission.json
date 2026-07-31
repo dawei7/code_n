@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3344",
+  "frontend_id": "3060",
+  "title_slug": "user-activities-within-time-bounds",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2078975043",
+  "verified_at": "2026-07-24T04:10:00+02:00"
+}

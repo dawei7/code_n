@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2403",
+  "measurement_note": "Size is n*2^(n-1), the exact number of subset transitions. The subset DP reuses each killed-monster set, while enumerating every complete kill order performs factorial work but still finishes all three legal tiers below the benchmark safety cap.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3 monsters versus complete order enumeration",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "power": [
+          1,
+          104730,
+          209459
+        ]
+      },
+      "expected": 122186,
+      "tags": [
+        "benchmark",
+        "subset-dp",
+        "permutation-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 monsters versus complete order enumeration",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": {
+        "power": [
+          8192,
+          112921,
+          217650,
+          322379,
+          427108,
+          531837
+        ]
+      },
+      "expected": 391860,
+      "tags": [
+        "benchmark",
+        "subset-dp",
+        "permutation-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 8 monsters versus complete order enumeration",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {
+        "power": [
+          16383,
+          121112,
+          225841,
+          330570,
+          435299,
+          540028,
+          644757,
+          749486
+        ]
+      },
+      "expected": 597723,
+      "tags": [
+        "benchmark",
+        "subset-dp",
+        "permutation-enumeration"
+      ]
+    }
+  ]
+}

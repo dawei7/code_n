@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2701",
+  "frontend_id": "2629",
+  "title_slug": "function-composition",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "compose",
+  "verified_submission_id": "2076092096",
+  "verified_at": "2026-07-21T16:30:00+00:00"
+}

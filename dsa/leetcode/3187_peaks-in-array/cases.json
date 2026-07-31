@@ -1,220 +1,114 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3187",
   "cases": [
     {
-      "id": "sample-query-and-update",
-      "name": "sample: peak count changes after update",
+      "id": "sample-one",
+      "name": "sample: update removes the only possible peak",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          1,
-          4,
-          2,
-          5
-        ],
-        "queries": [
-          [
-            1,
-            0,
-            4
-          ],
-          [
-            2,
-            2,
-            0
-          ],
-          [
-            1,
-            0,
-            4
-          ]
-        ]
-      },
-      "expected": [
-        1,
-        0
-      ],
-      "tags": [
-        "sample",
-        "peaks"
-      ]
+      "input": {"nums": [3, 1, 4, 2, 5], "queries": [[2, 3, 4], [1, 0, 4]]},
+      "expected": [0],
+      "tags": ["sample", "update"]
     },
     {
-      "id": "sample-short-range",
-      "name": "sample: endpoints cannot be peaks in range",
+      "id": "sample-two",
+      "name": "sample: unchanged update and endpoint exclusion",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          3,
-          1
-        ],
-        "queries": [
-          [
-            1,
-            0,
-            2
-          ],
-          [
-            1,
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": [
-        1,
-        0
-      ],
-      "tags": [
-        "sample",
-        "edge"
-      ]
+      "input": {"nums": [4, 1, 4, 2, 1, 5], "queries": [[2, 2, 4], [1, 0, 2], [1, 0, 4]]},
+      "expected": [0, 1],
+      "tags": ["sample", "endpoint"]
     },
     {
-      "id": "trial-multiple-updates",
-      "name": "trial: updates affect neighboring peak statuses",
+      "id": "trial-short-ranges",
+      "name": "trial: ranges need an interior position",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          5,
-          2,
-          6,
-          3,
-          4,
-          1
-        ],
-        "queries": [
-          [
-            1,
-            0,
-            6
-          ],
-          [
-            2,
-            3,
-            0
-          ],
-          [
-            1,
-            0,
-            6
-          ],
-          [
-            2,
-            4,
-            9
-          ],
-          [
-            1,
-            2,
-            5
-          ]
-        ]
-      },
-      "expected": [
-        3,
-        2,
-        1
-      ],
-      "tags": [
-        "updates"
-      ]
+      "input": {"nums": [1, 3, 2], "queries": [[1, 0, 0], [1, 0, 1], [1, 1, 2], [1, 0, 2]]},
+      "expected": [0, 0, 0, 1],
+      "tags": ["short-range", "boundary"]
     },
     {
-      "id": "trial-flat-values",
-      "name": "trial: equal neighbors are not peaks",
+      "id": "trial-multiple-peaks",
+      "name": "trial: several peaks and nested ranges",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          2,
-          2,
-          2
-        ],
-        "queries": [
-          [
-            1,
-            0,
-            3
-          ],
-          [
-            2,
-            1,
-            5
-          ],
-          [
-            1,
-            0,
-            3
-          ]
-        ]
-      },
-      "expected": [
-        0,
-        1
-      ],
-      "tags": [
-        "flat"
-      ]
+      "input": {"nums": [1, 5, 1, 4, 1, 3, 1], "queries": [[1, 0, 6], [1, 1, 5], [1, 2, 4]]},
+      "expected": [3, 1, 1],
+      "tags": ["multiple-peaks", "nested-range"]
     },
     {
-      "id": "real-boundary-update",
-      "name": "real: boundary update only affects its neighbor",
+      "id": "trial-query-endpoints",
+      "name": "trial: query endpoints never count",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 5, 1, 4, 1], "queries": [[1, 1, 4], [1, 0, 3]]},
+      "expected": [1, 1],
+      "tags": ["endpoint", "subarray"]
+    },
+    {
+      "id": "real-update-creates-peak",
+      "name": "real: update creates a peak",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          5,
-          1,
-          5,
-          1,
-          5,
-          1
-        ],
-        "queries": [
-          [
-            1,
-            0,
-            5
-          ],
-          [
-            2,
-            0,
-            0
-          ],
-          [
-            1,
-            0,
-            5
-          ],
-          [
-            2,
-            5,
-            10
-          ],
-          [
-            1,
-            0,
-            5
-          ]
-        ]
-      },
-      "expected": [
-        2,
-        2,
-        1
-      ],
-      "tags": [
-        "real",
-        "boundary"
-      ]
+      "input": {"nums": [1, 2, 1], "queries": [[2, 1, 5], [1, 0, 2]]},
+      "expected": [1],
+      "tags": ["create-peak", "update"]
+    },
+    {
+      "id": "real-update-removes-peak",
+      "name": "real: update removes a peak",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 5, 1], "queries": [[2, 1, 1], [1, 0, 2]]},
+      "expected": [0],
+      "tags": ["remove-peak", "update"]
+    },
+    {
+      "id": "real-update-affects-three-statuses",
+      "name": "real: one update changes neighboring peak statuses",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 5, 1, 4, 1], "queries": [[1, 0, 4], [2, 2, 6], [1, 0, 4]]},
+      "expected": [2, 1],
+      "tags": ["neighbor-effects", "update"]
+    },
+    {
+      "id": "real-strict-plateau",
+      "name": "real: equal neighbors do not form a peak",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 3, 3, 1], "queries": [[1, 0, 3], [2, 1, 4], [1, 0, 3]]},
+      "expected": [0, 1],
+      "tags": ["strict", "plateau"]
+    },
+    {
+      "id": "real-left-edge-update",
+      "name": "real: updating the first element changes index one",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 3, 2, 1], "queries": [[1, 0, 3], [2, 0, 4], [1, 0, 3]]},
+      "expected": [1, 0],
+      "tags": ["left-boundary", "update"]
+    },
+    {
+      "id": "real-right-edge-update",
+      "name": "real: updating the last element changes its neighbor",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 4, 1], "queries": [[1, 0, 3], [2, 3, 5], [1, 0, 3]]},
+      "expected": [1, 0],
+      "tags": ["right-boundary", "update"]
+    },
+    {
+      "id": "real-interleaved-operations",
+      "name": "real: interleaved updates and varied ranges",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 7, 3, 6, 1, 5, 4], "queries": [[1, 0, 6], [2, 3, 2], [1, 0, 6], [1, 1, 5], [2, 4, 8], [1, 0, 6], [1, 3, 6]]},
+      "expected": [3, 2, 0, 2, 1],
+      "tags": ["interleaved", "range"]
     }
   ]
 }

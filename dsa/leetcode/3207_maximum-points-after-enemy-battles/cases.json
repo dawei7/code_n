@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3207",
   "cases": [
     {
-      "id": "sample-three-enemies",
-      "name": "sample: enough energy for the weakest enemy",
+      "id": "sample-mark-for-energy",
+      "name": "sample: marking other enemies enables three points",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,13 +17,12 @@
       },
       "expected": 3,
       "tags": [
-        "sample",
-        "greedy"
+        "sample"
       ]
     },
     {
-      "id": "sample-single-enemy",
-      "name": "sample: one enemy can be farmed for points",
+      "id": "sample-single-repeatable",
+      "name": "sample: one enemy remains repeatable",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -34,67 +34,191 @@
       "expected": 5,
       "tags": [
         "sample",
-        "single"
+        "single-enemy"
       ]
     },
     {
-      "id": "trial-not-enough-energy",
-      "name": "trial: cannot beat the weakest enemy",
+      "id": "trial-cannot-start",
+      "name": "trial: initial energy is below every enemy",
       "kind": "trial",
       "visible": true,
       "input": {
         "enemy_energies": [
           5,
-          9,
-          4
+          7,
+          9
         ],
-        "current_energy": 3
+        "current_energy": 4
       },
       "expected": 0,
       "tags": [
-        "edge"
+        "insufficient-energy"
       ]
     },
     {
-      "id": "trial-large-weak-enemy-gap",
-      "name": "trial: weakest enemy controls the score",
+      "id": "trial-zero-energy",
+      "name": "trial: zero energy cannot unlock marking",
       "kind": "trial",
       "visible": true,
       "input": {
         "enemy_energies": [
-          8,
           1,
-          20,
-          4
+          2,
+          3
         ],
-        "current_energy": 8
+        "current_energy": 0
       },
-      "expected": 40,
+      "expected": 0,
       "tags": [
-        "minimum"
+        "zero-energy"
       ]
     },
     {
-      "id": "real-many-enemies",
-      "name": "real: many enemy energies",
+      "id": "trial-exact-threshold",
+      "name": "trial: exact minimum energy unlocks all other enemies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "enemy_energies": [
+          4,
+          9,
+          6
+        ],
+        "current_energy": 4
+      },
+      "expected": 4,
+      "tags": [
+        "exact-threshold"
+      ]
+    },
+    {
+      "id": "trial-duplicate-minima",
+      "name": "trial: one duplicate minimum stays unmarked",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "enemy_energies": [
+          2,
+          2,
+          2,
+          7
+        ],
+        "current_energy": 2
+      },
+      "expected": 6,
+      "tags": [
+        "duplicate-minimum"
+      ]
+    },
+    {
+      "id": "real-unsorted-minimum-last",
+      "name": "real: the minimum may occur at the final position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "enemy_energies": [
+          20,
+          11,
+          6,
+          3
+        ],
+        "current_energy": 9
+      },
+      "expected": 15,
+      "tags": [
+        "unsorted"
+      ]
+    },
+    {
+      "id": "real-large-current-energy",
+      "name": "real: large starting energy produces many repeated scores",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "enemy_energies": [
+          100,
+          250,
+          400
+        ],
+        "current_energy": 1000000000
+      },
+      "expected": 10000006,
+      "tags": [
+        "energy-boundary"
+      ]
+    },
+    {
+      "id": "real-billion-energy-values",
+      "name": "real: billion-value enemies require wide totals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "enemy_energies": [
+          1000000000,
+          999999999,
+          500000000
+        ],
+        "current_energy": 500000000
+      },
+      "expected": 4,
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-remainder-energy",
+      "name": "real: leftover energy below the minimum earns no point",
       "kind": "real",
       "visible": false,
       "input": {
         "enemy_energies": [
           6,
-          14,
-          3,
-          9,
-          11,
-          5,
-          20
+          10,
+          15
         ],
-        "current_energy": 18
+        "current_energy": 7
       },
-      "expected": 27,
+      "expected": 5,
       "tags": [
-        "real",
-        "greedy"
+        "floor-division"
+      ]
+    },
+    {
+      "id": "real-many-conversions",
+      "name": "real: every nonminimum enemy contributes energy",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "enemy_energies": [
+          8,
+          3,
+          12,
+          5,
+          20,
+          7
+        ],
+        "current_energy": 3
+      },
+      "expected": 18,
+      "tags": [
+        "energy-pool"
+      ]
+    },
+    {
+      "id": "real-single-unaffordable",
+      "name": "real: one unaffordable enemy cannot be marked first",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "enemy_energies": [
+          9
+        ],
+        "current_energy": 8
+      },
+      "expected": 0,
+      "tags": [
+        "single-enemy",
+        "insufficient-energy"
       ]
     }
   ]

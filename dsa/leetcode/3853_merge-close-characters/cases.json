@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3853",
+  "cases": [
+    {
+      "id": "sample-inclusive-distance",
+      "name": "sample: equal characters merge at distance exactly k",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abca", "k": 3},
+      "expected": "abc",
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "inclusive-boundary", "single-merge"]
+    },
+    {
+      "id": "sample-updated-distance-too-large",
+      "name": "sample: one merge leaves the remaining copies too far apart",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "aabca", "k": 2},
+      "expected": "abca",
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "updated-indices", "stopping-condition"]
+    },
+    {
+      "id": "sample-two-successive-merges",
+      "name": "sample: updated indices enable a second merge from the same left index",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "yybyzybz", "k": 2},
+      "expected": "ybzybz",
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "successive-merges", "updated-indices"]
+    },
+    {
+      "id": "trial-priority-changes-result",
+      "name": "trial: smallest-left priority determines the stable result",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abaca", "k": 2},
+      "expected": "abca",
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "smallest-left", "order-sensitive"]
+    },
+    {
+      "id": "trial-cascade-after-other-character",
+      "name": "trial: a merge brings an earlier equal pair within range",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abbca", "k": 3},
+      "expected": "abc",
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "cascade", "updated-indices"]
+    },
+    {
+      "id": "trial-adjacent-runs",
+      "name": "trial: adjacent equal runs collapse one merge at a time",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaabcc", "k": 1},
+      "expected": "abc",
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "adjacent", "multiple-runs"]
+    },
+    {
+      "id": "real-alternating-cascade",
+      "name": "hidden: alternating copies trigger merges of different characters",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ababa", "k": 2},
+      "expected": "ab",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "alternating", "cascade"]
+    },
+    {
+      "id": "real-full-range",
+      "name": "hidden: maximum k eventually leaves one copy of each selected character",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "cabacbc", "k": 7},
+      "expected": "cab",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-k", "multiple-characters"]
+    },
+    {
+      "id": "real-smaller-left-preempts",
+      "name": "hidden: a newly close pair preempts later-left candidates",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abbaca", "k": 2},
+      "expected": "abca",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "smallest-left", "preemption"]
+    },
+    {
+      "id": "real-all-unique",
+      "name": "hidden: a unique alphabet remains unchanged",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcdefghijklmnopqrstuvwxyz", "k": 26},
+      "expected": "abcdefghijklmnopqrstuvwxyz",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "all-unique", "no-merge"]
+    },
+    {
+      "id": "real-long-adjacent-run",
+      "name": "hidden: a long internal run retains its leftmost copy",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zaaaaaaz", "k": 1},
+      "expected": "zaz",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "adjacent-run", "left-copy-retained"]
+    },
+    {
+      "id": "real-priority-over-adjacent-run",
+      "name": "hidden: an earlier endpoint pair preempts later adjacent copies",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "azzzza", "k": 4},
+      "expected": "az",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "priority", "inclusive-boundary"]
+    },
+    {
+      "id": "real-repeated-blocks",
+      "name": "hidden: repeated alphabet blocks collapse through updated indices",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcabcabc", "k": 3},
+      "expected": "abc",
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "repeated-blocks", "successive-merges"]
+    }
+  ]
+}

@@ -8,79 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Backtracking, Bit Manipulation, Breadth-First Search, Bitmask |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-time-to-break-locks-i](https://leetcode.com/problems/minimum-time-to-break-locks-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-time-to-break-locks-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-time-to-break-locks-i/).
 
 ### Goal
-You must break every lock in any order. Each lock has a required energy `strength[i]`. The sword starts with energy `0` and factor `x = 1`; every minute, energy increases by `x`. When the current energy reaches a lock's strength, that lock can be broken, energy resets to `0`, and `x` increases by `k`. Return the minimum number of minutes needed to break all locks.
+
+Bob must break every dungeon lock. Lock `i` requires the sword to hold at least `strength[i]` energy. The sword begins with zero energy and a growth factor $x=1$; after each minute, its energy increases by the current value of $x$. Bob may choose the order in which locks are attacked.
+
+When enough energy has accumulated, Bob breaks one lock immediately. The sword's energy then resets to zero, while $x$ increases by `k`. Determine the minimum total number of elapsed minutes needed to break all locks. Waiting energy cannot carry across a broken lock, but the larger growth factor applies to every later lock.
 
 ### Function Contract
+
 **Inputs**
 
-- `locks`: A list of lock strengths.
-- `k`: The amount added to the energy growth factor after each broken lock.
+- `strength`: A list of $n$ positive integers, where `strength[i]` is the energy required by lock `i`.
+- `k`: The positive amount added to the sword's growth factor after each broken lock.
+
+The constraints are $1\leq n\leq8$, $1\leq k\leq10$, and $1\leq\texttt{strength[i]}\leq10^6$.
 
 **Return value**
 
-- An integer representing the minimum total time required to break all locks.
+- The minimum total time in minutes required to break all $n$ locks.
 
 ### Examples
+
 **Example 1**
 
-- Input: `locks = [3, 4, 1], k = 1`
+- Input: `strength = [3,4,1]`, `k = 1`
 - Output: `4`
+- Explanation: Break strengths `1`, `4`, and `3` using factors `1`, `2`, and `3`.
 
 **Example 2**
 
-- Input: `locks = [2, 5, 4], k = 2`
+- Input: `strength = [2,5,4]`, `k = 2`
 - Output: `5`
+- Explanation: One optimal order spends `2`, `2`, and `1` minutes as the factors become `1`, `3`, and `5`.
 
 **Example 3**
 
-- Input: `locks = [6, 7], k = 3`
-- Output: `4`
-
----
-
-## Solution
-### Approach
-The problem can be solved using Bitmask Dynamic Programming or Backtracking with memoization. Since the number of locks is small (implied by the constraints of "I" version), we can represent the set of broken locks as a bitmask. The state is defined by `(mask, current_factor)`, where `mask` tracks which locks are broken and `current_factor` is the current multiplier.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n * 2^n)`, where `n` is the number of locks. We explore all permutations of locks, and the state space is defined by the bitmask of broken locks.
-- **Space Complexity**: `O(2^n)` to store the memoization table for the visited states.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import functools
-import math
-
-
-def solve(locks: list[int], k: int) -> int:
-    n = len(locks)
-
-    @functools.lru_cache(None)
-    def dp(mask: int) -> int:
-        broken = mask.bit_count()
-        if broken == n:
-            return 0
-
-        factor = 1 + broken * k
-        best = math.inf
-
-        for index, strength in enumerate(locks):
-            if mask & (1 << index):
-                continue
-            minutes = math.ceil(strength / factor)
-            best = min(best, minutes + dp(mask | (1 << index)))
-
-        return best
-
-    return dp(0)
-```
-</details>
+- Input: `strength = [6,7]`, `k = 3`
+- Output: `8`
+- Explanation: Breaking strength `6` first takes six minutes; strength `7` then needs two minutes at factor four.

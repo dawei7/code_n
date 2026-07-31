@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3994",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Maps every value to one of the three required parts and counts all inversions of those group numbers in one pass.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

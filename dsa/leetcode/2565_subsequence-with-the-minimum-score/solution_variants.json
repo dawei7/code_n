@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Subsequence With the Minimum Score and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines greedy prefix matches with right-to-left suffix positions to minimize the removable middle span.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

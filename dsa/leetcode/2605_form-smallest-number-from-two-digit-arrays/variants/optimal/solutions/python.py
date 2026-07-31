@@ -1,18 +1,15 @@
-def solve(nums1: list[int], nums2: list[int]) -> int:
-    set1 = set(nums1)
-    set2 = set(nums2)
-    
-    # Check for common digits
-    common = set1.intersection(set2)
-    if common:
-        return min(common)
-    
-    # If no common digits, pick the smallest from each
-    min1 = min(set1)
-    min2 = min(set2)
-    
-    # Form the smallest two-digit number
-    if min1 < min2:
-        return min1 * 10 + min2
-    else:
-        return min2 * 10 + min1
+def solve(nums1, nums2):
+    present = [False] * 10
+    for digit in nums1:
+        present[digit] = True
+
+    common = 10
+    for digit in nums2:
+        if present[digit]:
+            common = min(common, digit)
+    if common < 10:
+        return common
+
+    first = min(nums1)
+    second = min(nums2)
+    return min(10 * first + second, 10 * second + first)

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Ways to Reach a Position After Exactly k Steps and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Derives the required count of right steps and evaluates the corresponding binomial coefficient.",
+      "time_complexity": "O(k)",
+      "space_complexity": "O(1)"
     }
   ]
 }

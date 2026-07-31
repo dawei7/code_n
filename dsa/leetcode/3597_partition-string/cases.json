@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3597",
+  "cases": [
+    {
+      "id": "sample-abbccccd",
+      "name": "sample: repeated singletons extend to new segments",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abbccccd"
+      },
+      "expected": [
+        "a",
+        "b",
+        "bc",
+        "c",
+        "cc",
+        "d"
+      ],
+      "tags": [
+        "sample",
+        "repeated-characters"
+      ]
+    },
+    {
+      "id": "sample-aaaa",
+      "name": "sample: a final seen suffix is not emitted",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": [
+        "a",
+        "aa"
+      ],
+      "tags": [
+        "sample",
+        "repeated-run",
+        "trailing-seen"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "trial: one character forms one segment",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "z"
+      },
+      "expected": [
+        "z"
+      ],
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-all-distinct",
+      "name": "trial: distinct letters become singletons",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f"
+      ],
+      "tags": [
+        "trial",
+        "all-distinct",
+        "singletons"
+      ]
+    },
+    {
+      "id": "trial-prefix-extension",
+      "name": "trial: a repeated singleton extends with a new letter",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abac"
+      },
+      "expected": [
+        "a",
+        "b",
+        "ac"
+      ],
+      "tags": [
+        "trial",
+        "prefix-extension"
+      ]
+    },
+    {
+      "id": "real-two-equal",
+      "name": "real: the last singleton is already seen",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aa"
+      },
+      "expected": [
+        "a"
+      ],
+      "tags": [
+        "real",
+        "minimum-trailing-seen"
+      ]
+    },
+    {
+      "id": "real-repeat-after-distinct",
+      "name": "real: an ending segment can be omitted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aba"
+      },
+      "expected": [
+        "a",
+        "b"
+      ],
+      "tags": [
+        "real",
+        "trailing-seen"
+      ]
+    },
+    {
+      "id": "real-complete-triangular-run",
+      "name": "real: repeated run exactly fills growing segments",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaaaaaaaaaaaa"
+      },
+      "expected": [
+        "a",
+        "aa",
+        "aaa",
+        "aaaa",
+        "aaaaa"
+      ],
+      "tags": [
+        "real",
+        "repeated-run",
+        "triangular-length"
+      ]
+    },
+    {
+      "id": "real-mixed-prefix-tree",
+      "name": "real: several branches share trie prefixes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abacabadabacaba"
+      },
+      "expected": [
+        "a",
+        "b",
+        "ac",
+        "ab",
+        "ad",
+        "aba",
+        "c"
+      ],
+      "tags": [
+        "real",
+        "shared-prefixes",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-alphabet-boundary",
+      "name": "real: all lowercase letters remain distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ],
+      "tags": [
+        "real",
+        "alphabet",
+        "all-distinct"
+      ]
+    }
+  ]
+}

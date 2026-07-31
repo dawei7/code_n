@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_9",
+    "frontend_id": "9",
+    "title_slug": "palindrome-number",
+    "url": "https://leetcode.com/problems/palindrome-number/description/",
+    "paid_only": false,
+    "content_sha256": "6fbaffc981615a800ba9ae682595fbb93179d44e339b6be993c8c1d8440e566d",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "x = 121", "output": "true", "has_explanation": true},
+      {"ordinal": 2, "input": "x = -121", "output": "false", "has_explanation": true},
+      {"ordinal": 3, "input": "x = 10", "output": "false", "has_explanation": true}
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "4ef4331d730a00a1dfc4fe93b1eae44464574225b68187332517a03ce596252e",
+      "reference/contract.md": "98c1ebbb399aa42e03ad175821103672b71e56fa1dba6417d6675642615cd681",
+      "reference/examples.md": "11cfbc44333bcb9442b0430ca21d97b426f645ad46570df62e879bf92f3a890d",
+      "reference/constraints.md": "90d57d801fd98d8421d9ddcdcbb0b3536454e32aba1dc121ea0e9a6801b811e5",
+      "reference/follow_up.md": "6fd4f96c1afb9d6b9727851602f60a9778a0982c40615c2383121ec4c69743ba"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

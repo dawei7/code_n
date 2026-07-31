@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Unique Subjects Taught by Each Teacher and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Groups assignments by teacher and counts distinct subject identifiers within each group.",
+      "time_complexity": "O(R\\log R)",
+      "space_complexity": "O(R)"
     }
   ]
 }

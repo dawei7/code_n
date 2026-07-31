@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3896",
+  "cases": [
+    {
+      "id": "sample-mixed-repairs",
+      "name": "sample: both parity classes require and avoid repairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3, 4]},
+      "expected": 3,
+      "tags": ["sample", "both-parities", "prime-two"]
+    },
+    {
+      "id": "sample-already-alternating",
+      "name": "sample: every index already has the required primality",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [5, 6, 7, 8]},
+      "expected": 0,
+      "tags": ["sample", "already-valid", "zero-operations"]
+    },
+    {
+      "id": "sample-even-index-repair",
+      "name": "sample: only the even index needs one increment",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4, 4]},
+      "expected": 1,
+      "tags": ["sample", "even-index", "next-prime"]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: one becomes the first prime",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1]},
+      "expected": 1,
+      "tags": ["trial", "minimum-length", "one-is-non-prime"]
+    },
+    {
+      "id": "trial-single-prime",
+      "name": "trial: a single prime already satisfies even index zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2]},
+      "expected": 0,
+      "tags": ["trial", "minimum-length", "already-valid"]
+    },
+    {
+      "id": "trial-two-at-odd-index",
+      "name": "trial: prime two needs two increments at an odd index",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 2]},
+      "expected": 2,
+      "tags": ["trial", "odd-index", "prime-two"]
+    },
+    {
+      "id": "trial-odd-prime-at-odd-index",
+      "name": "trial: an odd prime needs one increment at an odd index",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [3, 3]},
+      "expected": 1,
+      "tags": ["trial", "odd-index", "odd-prime"]
+    },
+    {
+      "id": "trial-composite-to-next-prime",
+      "name": "trial: an even-index composite advances across two composites",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [8, 9]},
+      "expected": 3,
+      "tags": ["trial", "prime-gap", "odd-index-valid"]
+    },
+    {
+      "id": "real-both-special-costs",
+      "name": "hidden: a prime gap and odd-index two costs combine",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, 2]},
+      "expected": 5,
+      "tags": ["hidden", "both-parities", "prime-two"]
+    },
+    {
+      "id": "real-repairs-at-every-index",
+      "name": "hidden: every position requires an increment sequence",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [14, 17, 20, 23]},
+      "expected": 8,
+      "tags": ["hidden", "all-positions", "prime-gaps"]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "hidden: the maximum legal value advances beyond the input bound",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100000]},
+      "expected": 3,
+      "tags": ["hidden", "upper-bound", "next-prime-beyond-bound"]
+    },
+    {
+      "id": "real-all-ones",
+      "name": "hidden: only even indices repair repeated ones",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1, 1, 1, 1]},
+      "expected": 3,
+      "tags": ["hidden", "one-is-non-prime", "index-parity"]
+    },
+    {
+      "id": "real-primes-on-odd-indices",
+      "name": "hidden: even composites and odd primes all need repairs",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 5, 6, 7, 8, 11]},
+      "expected": 8,
+      "tags": ["hidden", "both-parities", "mixed-prime-gaps"]
+    },
+    {
+      "id": "real-composite-squares",
+      "name": "hidden: composite squares advance to later primes",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [25, 4, 49, 6]},
+      "expected": 8,
+      "tags": ["hidden", "composite-squares", "next-prime"]
+    },
+    {
+      "id": "real-repeated-large-prime",
+      "name": "hidden: a large prime changes only at odd indices",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [99991, 99991, 99991, 99991]},
+      "expected": 2,
+      "tags": ["hidden", "large-prime", "index-parity"]
+    }
+  ]
+}

@@ -1,8 +1,9 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2418",
   "cases": [
     {
-      "id": "sample-1",
+      "id": "sample-three-people",
       "name": "sample: sort three people",
       "kind": "sample",
       "visible": true,
@@ -29,8 +30,8 @@
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: repeated names with distinct heights",
+      "id": "sample-duplicate-name",
+      "name": "sample: repeated name belongs to distinct people",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -51,13 +52,14 @@
         "Bob"
       ],
       "tags": [
-        "sample"
+        "sample",
+        "duplicate-names"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: one person",
-      "kind": "sample",
+      "id": "trial-single",
+      "name": "single person remains unchanged",
+      "kind": "trial",
       "visible": true,
       "input": {
         "names": [
@@ -71,12 +73,12 @@
         "Alex"
       ],
       "tags": [
-        "sample"
+        "boundary"
       ]
     },
     {
-      "id": "trial-unsorted-heights",
-      "name": "trial: heights are not initially ordered",
+      "id": "trial-unsorted",
+      "name": "arbitrary input order is ignored",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -97,30 +99,114 @@
         "B"
       ],
       "tags": [
-        "trial"
+        "sorting"
       ]
     },
     {
-      "id": "real-two-people",
-      "name": "hidden: two people",
+      "id": "trial-already-descending",
+      "name": "already descending heights preserve order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "names": [
+          "Tall",
+          "Mid",
+          "Low"
+        ],
+        "heights": [
+          300,
+          200,
+          100
+        ]
+      },
+      "expected": [
+        "Tall",
+        "Mid",
+        "Low"
+      ],
+      "tags": [
+        "ordered"
+      ]
+    },
+    {
+      "id": "real-ascending",
+      "name": "hidden: ascending heights reverse all names",
       "kind": "real",
       "visible": false,
       "input": {
         "names": [
-          "Kai",
-          "Noa"
+          "A",
+          "B",
+          "C",
+          "D"
         ],
         "heights": [
-          160,
-          175
+          1,
+          2,
+          3,
+          4
         ]
       },
       "expected": [
-        "Noa",
-        "Kai"
+        "D",
+        "C",
+        "B",
+        "A"
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "reverse"
+      ]
+    },
+    {
+      "id": "real-case-sensitive",
+      "name": "hidden: names are data rather than sort keys",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "names": [
+          "z",
+          "A",
+          "m"
+        ],
+        "heights": [
+          20,
+          30,
+          10
+        ]
+      },
+      "expected": [
+        "A",
+        "z",
+        "m"
+      ],
+      "tags": [
+        "hidden",
+        "case"
+      ]
+    },
+    {
+      "id": "real-large-heights",
+      "name": "hidden: boundary heights stay attached",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "names": [
+          "Min",
+          "Max"
+        ],
+        "heights": [
+          1,
+          100000
+        ]
+      },
+      "expected": [
+        "Max",
+        "Min"
+      ],
+      "tags": [
+        "hidden",
+        "boundary"
       ]
     }
   ]

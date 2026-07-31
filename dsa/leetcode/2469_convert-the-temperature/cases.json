@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_2469",
+  "cases": [
+    {"id":"sample-1","name":"sample: ordinary positive temperature","kind":"sample","visible":true,"input":{"celsius":36.5},"expected":[309.65,97.7],"tags":["sample","conversion"]},
+    {"id":"sample-2","name":"sample: fractional Celsius value","kind":"sample","visible":true,"input":{"celsius":122.11},"expected":[395.26,251.798],"tags":["sample","fractional"]},
+    {"id":"trial-zero","name":"trial: zero Celsius","kind":"trial","visible":true,"input":{"celsius":0.0},"expected":[273.15,32.0],"tags":["trial","lower-bound"]},
+    {"id":"trial-boiling-water","name":"trial: one hundred Celsius","kind":"trial","visible":true,"input":{"celsius":100.0},"expected":[373.15,212.0],"tags":["trial","integer"]},
+    {"id":"real-smallest-hundredth","name":"hidden: smallest positive hundredth","kind":"real","visible":false,"input":{"celsius":0.01},"expected":[273.15999999999997,32.018],"tags":["hidden","precision"]},
+    {"id":"real-upper-bound","name":"hidden: maximum Celsius value","kind":"real","visible":false,"input":{"celsius":1000.0},"expected":[1273.15,1832.0],"tags":["hidden","upper-bound"]},
+    {"id":"real-two-decimal-value","name":"hidden: both conversion results are fractional","kind":"real","visible":false,"input":{"celsius":17.23},"expected":[290.38,63.014],"tags":["hidden","precision"]}
+  ]
+}

@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3049",
   "cases": [
     {
-      "id": "sample-fast-zeroing",
-      "name": "sample: fast zeroing enables six-second finish",
+      "id": "sample-three-resets",
+      "name": "sample: three early assignments enable three later marks",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -28,8 +29,8 @@
       ]
     },
     {
-      "id": "sample-normal-decrements",
-      "name": "sample: normal decrements can beat zeroing choices",
+      "id": "sample-ordinary-work",
+      "name": "sample: ordinary decrements beat zero-value assignments",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -56,8 +57,8 @@
       ]
     },
     {
-      "id": "sample-impossible",
-      "name": "sample: too few seconds for any strategy",
+      "id": "sample-too-few-seconds",
+      "name": "sample: one second per index cannot also prepare positive values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -78,57 +79,134 @@
       ]
     },
     {
-      "id": "trial-single-appearance",
-      "name": "trial: a single fast-zero appearance still needs mark time",
+      "id": "trial-zero-singleton",
+      "name": "trial: an initially zero singleton is marked immediately",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          3,
-          0,
-          1
+          0
         ],
         "changeIndices": [
-          1,
-          3,
-          2,
-          1,
-          2
+          1
         ]
       },
-      "expected": 5,
+      "expected": 1,
       "tags": [
-        "trial"
+        "trial",
+        "minimum"
       ]
     },
     {
-      "id": "real-mixed-zero-and-decrement",
-      "name": "real: mix zero operations with normal marking",
+      "id": "trial-reset-singleton",
+      "name": "trial: a large singleton needs one reset and one mark",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ],
+        "changeIndices": [
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "reset"
+      ]
+    },
+    {
+      "id": "trial-one-second-short",
+      "name": "trial: setting zero and marking cannot share a second",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9
+        ],
+        "changeIndices": [
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "separate-operations"
+      ]
+    },
+    {
+      "id": "real-mark-unrestricted",
+      "name": "real: zero indices may be marked when another index is designated",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          5
+        ],
+        "changeIndices": [
+          3,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "real",
+        "unrestricted-mark"
+      ]
+    },
+    {
+      "id": "real-repeated-first-occurrences",
+      "name": "real: repeated occurrences provide free marking capacity",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
           2,
-          0,
-          4,
-          1
+          5
         ],
         "changeIndices": [
           1,
-          3,
-          2,
-          4,
-          3,
           1,
-          4,
           2,
-          3
+          1,
+          1
         ]
       },
-      "expected": 7,
+      "expected": 4,
       "tags": [
         "real",
-        "heap"
+        "repeated-occurrences"
+      ]
+    },
+    {
+      "id": "real-unavailable-reset",
+      "name": "real: an absent positive index must use ordinary decrements",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          4
+        ],
+        "changeIndices": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "real",
+        "missing-reset-opportunity"
       ]
     }
   ]

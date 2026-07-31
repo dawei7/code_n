@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3864",
+    "frontend_id": "3864",
+    "title_slug": "minimum-cost-to-partition-a-binary-string",
+    "url": "https://leetcode.com/problems/minimum-cost-to-partition-a-binary-string/description/",
+    "paid_only": false,
+    "content_sha256": "4dbdd11fd21395f97c6d98aad7496722602dfa1f8a72531479c43ae274752c06",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"1010\", encCost = 2, flatCost = 1",
+        "output": "6",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"1010\", encCost = 3, flatCost = 10",
+        "output": "12",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"00\", encCost = 1, flatCost = 2",
+        "output": "2",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "dcafba79a4bad2584bb8eedbf7f61ac828eede213da6ad799a95fd2d2e18a9ab",
+      "reference/contract.md": "8f32e1b7c20eb57cc70f98906cb0e18139975d7b72a26da1235afa5f3caf44b2",
+      "reference/examples.md": "bdb63a7157f6c5f09bde76065f1730b38867e53e5054be8ff29a4da0a35ec74e",
+      "reference/constraints.md": "47e78aaf7f35359b964ee075def929812ead356598760a82b4d17cea5be29d03"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

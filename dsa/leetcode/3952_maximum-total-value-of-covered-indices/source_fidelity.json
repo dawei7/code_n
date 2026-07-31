@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3952",
+    "frontend_id": "3952",
+    "title_slug": "maximum-total-value-of-covered-indices",
+    "url": "https://leetcode.com/problems/maximum-total-value-of-covered-indices/description/",
+    "paid_only": false,
+    "content_sha256": "eacec705dba2c02be7fa4ac09abffc316e8bffde324afe06ec3c84864dd1d266",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [9,2,6,1], s = \"0101\"",
+        "output": "15",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [5,1,4], s = \"001\"",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums = [9,3,5], s = \"011\"",
+        "output": "14",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "99a4f89ad6dad2177b1be0a73d470bba88236f10397fbd342f516504963c7319",
+      "reference/contract.md": "b95b8a51394759035e676f9e4691ab66a336865c30375f9c1c157c8dc5263f5b",
+      "reference/examples.md": "b2bb736e39e108fbb8b323baa4a01608c300bae36c61040e5f6f246efbdb8a97",
+      "reference/constraints.md": "7c3697ee04958f2d6a9cb31c0d4c401a5c8f504a1bc5e3d9a21412f880de97e5"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

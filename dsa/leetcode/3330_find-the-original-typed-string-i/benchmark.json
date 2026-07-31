@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3330",
+  "measurement_note": "Size is n, the displayed word length. One all-equal run exercises every adjacent comparison and produces exactly n possible originals.",
+  "cases": [
+    {
+      "id": "benchmark-single-run-6",
+      "name": "benchmark: 6-character single run",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "word": "aaaaaa"
+      },
+      "expected": 6,
+      "size": 6,
+      "tags": [
+        "benchmark",
+        "string-scan",
+        "single-run"
+      ]
+    },
+    {
+      "id": "benchmark-single-run-24",
+      "name": "benchmark: 24-character single run",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 24,
+      "size": 24,
+      "tags": [
+        "benchmark",
+        "string-scan",
+        "single-run"
+      ]
+    },
+    {
+      "id": "benchmark-single-run-96",
+      "name": "benchmark: 96-character single run",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 96,
+      "size": 96,
+      "tags": [
+        "benchmark",
+        "string-scan",
+        "single-run"
+      ]
+    }
+  ]
+}

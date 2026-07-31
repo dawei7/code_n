@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Count of Monotonic Pairs II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Compresses each DP transition into a prefix-sum lookup over legal predecessor values.",
+      "time_complexity": "O(nm)",
+      "space_complexity": "O(m)"
     }
   ]
 }

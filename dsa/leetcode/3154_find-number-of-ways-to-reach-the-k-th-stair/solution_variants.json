@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Number of Ways to Reach the K-th Stair and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts legal placements of downward moves around each feasible number of power-of-two upward jumps.",
+      "time_complexity": "O(log(k + 2))",
+      "space_complexity": "O(1)"
     }
   ]
 }

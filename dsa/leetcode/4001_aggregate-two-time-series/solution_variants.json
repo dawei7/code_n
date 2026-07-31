@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_4001",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Merges timestamps from right to left while carrying each series' next available value.",
+      "time_complexity": "O(n+m)",
+      "space_complexity": "O(1)"
+    }
+  ]
+}

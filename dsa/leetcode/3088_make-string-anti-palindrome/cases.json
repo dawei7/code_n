@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3088",
+  "cases": [
+    {
+      "id": "sample-first",
+      "name": "sample: rearrange two copies of the smallest letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abca"},
+      "expected": "aabc",
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-balanced",
+      "name": "sample: place two equal groups in opposite halves",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abba"},
+      "expected": "aabb",
+      "tags": ["sample"]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: one character exceeds half the length",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "cccd"},
+      "expected": "-1",
+      "tags": ["sample", "impossible"]
+    },
+    {
+      "id": "trial-two-distinct",
+      "name": "trial: two distinct characters are already minimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "ba"},
+      "expected": "ab",
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-two-equal",
+      "name": "trial: equal length-two characters are impossible",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aa"},
+      "expected": "-1",
+      "tags": ["trial", "minimum-length", "impossible"]
+    },
+    {
+      "id": "trial-valid-not-minimal",
+      "name": "trial: an existing anti-palindrome is not lexicographically minimal",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "llnm"},
+      "expected": "llmn",
+      "tags": ["trial", "lexicographic"]
+    },
+    {
+      "id": "real-sorted-conflict",
+      "name": "hidden: sorted order has a conflicting middle mirror pair",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcabc"},
+      "expected": "aabcbc",
+      "tags": ["middle-conflict", "forced-choice"]
+    },
+    {
+      "id": "real-forced-future-letter",
+      "name": "hidden: preserve enough slots for the remaining repeated letter",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaabbbcc"},
+      "expected": "aaabcbbc",
+      "tags": ["forced-choice", "future-feasibility"]
+    },
+    {
+      "id": "real-half-frequency",
+      "name": "hidden: maximum frequency equal to half remains feasible",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaabbbb"},
+      "expected": "aaaabbbb",
+      "tags": ["boundary-frequency"]
+    },
+    {
+      "id": "real-four-groups",
+      "name": "hidden: four equal groups remain globally sorted",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "zzxxyyww"},
+      "expected": "wwxxyyzz",
+      "tags": ["four-letters", "lexicographic"]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3702",
+  "cases": [
+    {
+      "id": "benchmark-equal-values-8",
+      "name": "benchmark: eight equal non-zero values cancel",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [1,1,1,1,1,1,1,1]},
+      "expected": 7,
+      "tags": ["benchmark", "zero-total-xor", "repeated-recompute-pressure"]
+    },
+    {
+      "id": "benchmark-equal-values-32",
+      "name": "benchmark: thirty-two equal non-zero values cancel",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 31,
+      "tags": ["benchmark", "zero-total-xor", "repeated-recompute-pressure"]
+    },
+    {
+      "id": "benchmark-equal-values-127",
+      "name": "benchmark: one hundred twenty-seven equal non-zero values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 127,
+      "input": {"nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 127,
+      "tags": ["benchmark", "whole-array", "repeated-recompute-pressure"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4226",
+  "frontend_id": "3848",
+  "title_slug": "check-digitorial-permutation",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.isDigitorialPermutation",
+  "verified_submission_id": "2086059139",
+  "verified_at": "2026-07-29T11:47:05.972069+00:00"
+}

@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3598",
+  "cases": [
+    {
+      "id": "sample-run-pair",
+      "name": "sample: removing either duplicate destroys the only maximum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "jump",
+          "run",
+          "run",
+          "jump",
+          "run"
+        ]
+      },
+      "expected": [
+        3,
+        0,
+        0,
+        3,
+        3
+      ],
+      "tags": [
+        "sample",
+        "duplicate",
+        "destroyed-maximum"
+      ]
+    },
+    {
+      "id": "sample-no-shared-prefix",
+      "name": "sample: every resulting adjacency has zero prefix",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "words": [
+          "dog",
+          "racer",
+          "car"
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "zero-prefix"
+      ]
+    },
+    {
+      "id": "trial-single-word",
+      "name": "trial: removing the only word leaves no pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "solo"
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-two-identical",
+      "name": "trial: two original words still leave no pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "same",
+          "same"
+        ]
+      },
+      "expected": [
+        0,
+        0
+      ],
+      "tags": [
+        "trial",
+        "two-words",
+        "identical"
+      ]
+    },
+    {
+      "id": "trial-bridge-dominates",
+      "name": "trial: deleting the middle creates the best prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abx",
+          "zzz",
+          "aby"
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        0
+      ],
+      "tags": [
+        "trial",
+        "bridge",
+        "internal-removal"
+      ]
+    },
+    {
+      "id": "real-distant-maximum-survives",
+      "name": "real: a far duplicate pair survives most removals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aaa",
+          "aab",
+          "x",
+          "same",
+          "same"
+        ]
+      },
+      "expected": [
+        4,
+        4,
+        4,
+        2,
+        2
+      ],
+      "tags": [
+        "real",
+        "unaffected-maximum",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "real-tied-maxima",
+      "name": "real: one of two equal maxima survives",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "prefixa",
+          "prefixb",
+          "x",
+          "prefixc",
+          "prefixd"
+        ]
+      },
+      "expected": [
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "tags": [
+        "real",
+        "tied-maxima"
+      ]
+    },
+    {
+      "id": "real-prefix-is-shorter-word",
+      "name": "real: an entire shorter word is the prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "ab",
+          "abcd",
+          "z",
+          "abef"
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        2,
+        2
+      ],
+      "tags": [
+        "real",
+        "whole-word-prefix",
+        "bridge"
+      ]
+    },
+    {
+      "id": "real-multiple-bridge-depths",
+      "name": "real: bridge improvements vary by removal",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "f",
+          "cfe",
+          "feab",
+          "fcc",
+          "cdfda",
+          "fcec",
+          "afae",
+          "cdeb",
+          "dc",
+          "bffd",
+          "edabe"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        0,
+        0,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "real",
+        "mixed-prefixes",
+        "bridge"
+      ]
+    },
+    {
+      "id": "real-long-common-prefix",
+      "name": "real: long strings exercise the character bound",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac",
+          "x",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaad"
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        100,
+        100
+      ],
+      "tags": [
+        "real",
+        "long-prefix",
+        "bridge"
+      ]
+    }
+  ]
+}

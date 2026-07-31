@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2305",
+  "frontend_id": "2195",
+  "title_slug": "append-k-integers-with-minimal-sum",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minimalKSum",
+  "verified_submission_id": "2073825208",
+  "verified_at": "2026-07-19T18:37:42.505918+00:00"
+}

@@ -1,107 +1,78 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2381",
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: mixed forward and backward ranges",
+      "name": "sample: mixed overlapping directions",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "s": "abc",
-        "shifts": [
-          [
-            0,
-            1,
-            0
-          ],
-          [
-            1,
-            2,
-            1
-          ],
-          [
-            0,
-            2,
-            1
-          ]
-        ]
-      },
+      "input": {"s": "abc", "shifts": [[0, 1, 0], [1, 2, 1], [0, 2, 1]]},
       "expected": "ace",
-      "tags": [
-        "sample",
-        "difference-array"
-      ]
+      "tags": ["sample", "difference-array"]
     },
     {
       "id": "sample-2",
-      "name": "sample: wrap around z to a",
+      "name": "sample: forward wrap from z",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "s": "dztz",
-        "shifts": [
-          [
-            0,
-            0,
-            0
-          ],
-          [
-            1,
-            1,
-            1
-          ]
-        ]
-      },
+      "input": {"s": "dztz", "shifts": [[0, 0, 0], [1, 1, 1]]},
       "expected": "catz",
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample", "wrap"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: single character backward",
-      "kind": "sample",
+      "id": "trial-backward-wrap",
+      "name": "single character wraps backward",
+      "kind": "trial",
       "visible": true,
-      "input": {
-        "s": "x",
-        "shifts": [
-          [
-            0,
-            0,
-            0
-          ]
-        ]
-      },
-      "expected": "w",
-      "tags": [
-        "sample",
-        "edge"
-      ]
+      "input": {"s": "a", "shifts": [[0, 0, 0]]},
+      "expected": "z",
+      "tags": ["minimum", "wrap"]
     },
     {
-      "id": "real-overlapping-ranges",
-      "name": "hidden: overlapping shifts cancel in the middle",
+      "id": "trial-inclusive-end",
+      "name": "range includes both endpoints",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abcd", "shifts": [[1, 2, 1]]},
+      "expected": "acdd",
+      "tags": ["inclusive", "boundary"]
+    },
+    {
+      "id": "trial-cancel-overlap",
+      "name": "opposite shifts cancel in the overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "aaa", "shifts": [[0, 2, 1], [1, 1, 0]]},
+      "expected": "bab",
+      "tags": ["overlap", "cancellation"]
+    },
+    {
+      "id": "real-full-range",
+      "name": "hidden: full range shifts together",
       "kind": "real",
       "visible": false,
-      "input": {
-        "s": "aaa",
-        "shifts": [
-          [
-            0,
-            2,
-            1
-          ],
-          [
-            1,
-            1,
-            0
-          ]
-        ]
-      },
-      "expected": "bab",
-      "tags": [
-        "hidden"
-      ]
+      "input": {"s": "xyz", "shifts": [[0, 2, 1]]},
+      "expected": "yza",
+      "tags": ["hidden", "full-range"]
+    },
+    {
+      "id": "real-net-repeated-shifts",
+      "name": "hidden: repeated shifts accumulate modulo 26",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "az", "shifts": [[0, 1, 1], [0, 1, 1], [0, 1, 1], [0, 1, 0], [0, 1, 0]]},
+      "expected": "ba",
+      "tags": ["hidden", "modulo"]
+    },
+    {
+      "id": "real-disjoint-ranges",
+      "name": "hidden: disjoint updates preserve unaffected positions",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "mnopqr", "shifts": [[0, 1, 0], [4, 5, 1]]},
+      "expected": "lmoprs",
+      "tags": ["hidden", "disjoint"]
     }
   ]
 }

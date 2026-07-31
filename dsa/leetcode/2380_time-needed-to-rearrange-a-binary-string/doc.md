@@ -8,48 +8,41 @@
 | Category | Algorithms |
 | Topics | String, Dynamic Programming, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [time-needed-to-rearrange-a-binary-string](https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/time-needed-to-rearrange-a-binary-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a binary string `s`, repeatedly perform a simultaneous update once per second: every occurrence of `"01"` in the string at the start of that second becomes `"10"`.
+
+Continue until the string contains no `"01"` pair, meaning that every `'1'` appears before every `'0'`. Return the number of seconds required. All eligible pairs in one second are replaced together rather than one after another.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A binary string with $1 \le \lvert\texttt{s}\rvert \le 1000$.
 
 **Return value**
 
-TODO
+- Return the number of simultaneous replacement rounds needed until no `"01"` remains.
+
+**Update semantics**
+
+- Each second uses the string state from the beginning of that second to determine all replacements.
+- Replacements occur simultaneously, so a character moved during a second cannot move again until the next second.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "0110101"`
+- Output: `4`
+- Explanation: The successive strings are `"1011010"`, `"1101100"`, `"1110100"`, and `"1111000"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "11100"`
+- Output: `0`
+- Explanation: No `"01"` occurs initially, so the process is already complete.

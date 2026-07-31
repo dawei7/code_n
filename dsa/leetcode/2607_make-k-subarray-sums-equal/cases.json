@@ -18,7 +18,7 @@
       "expected": 1,
       "tags": [
         "sample",
-        "median"
+        "two-cycles"
       ]
     },
     {
@@ -37,12 +37,13 @@
       },
       "expected": 5,
       "tags": [
-        "sample"
+        "sample",
+        "single-cycle"
       ]
     },
     {
       "id": "trial-k-equals-n",
-      "name": "trial: full-length subarrays are already equal",
+      "name": "trial: full-length windows are already equal",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -57,12 +58,12 @@
       "expected": 0,
       "tags": [
         "trial",
-        "edge"
+        "full-length"
       ]
     },
     {
-      "id": "trial-single-cycle",
-      "name": "trial: k one puts all values in one cycle",
+      "id": "trial-k-one",
+      "name": "trial: adjacent values must all agree",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -77,26 +78,54 @@
       },
       "expected": 6,
       "tags": [
-        "trial"
+        "trial",
+        "median"
       ]
     },
     {
-      "id": "real-already-periodic",
-      "name": "hidden: already periodic by gcd cycles",
+      "id": "real-three-cycles",
+      "name": "hidden: three independent residue classes",
       "kind": "real",
       "visible": false,
       "input": {
         "arr": [
-          10,
           1,
           10,
+          4,
+          7,
+          13,
+          4,
+          9,
+          16,
+          4
+        ],
+        "k": 6
+      },
+      "expected": 14,
+      "tags": [
+        "hidden",
+        "gcd-cycles"
+      ]
+    },
+    {
+      "id": "real-wide-values",
+      "name": "hidden: operation count uses wide arithmetic",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "arr": [
+          1,
+          1000000000,
+          1,
+          1000000000,
           1
         ],
         "k": 2
       },
-      "expected": 0,
+      "expected": 1999999998,
       "tags": [
-        "hidden"
+        "hidden",
+        "large-values"
       ]
     }
   ]

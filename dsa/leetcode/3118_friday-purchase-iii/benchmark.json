@@ -1,0 +1,6272 @@
+{
+  "challenge_id": "lc_3118",
+  "cases": [
+    {
+      "id": "benchmark-scale-32",
+      "name": "benchmark: 32 users with one November Friday purchase each",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 3,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 4,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 5,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 6,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 7,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 8,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 9,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 10,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 11,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 12,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 13,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 14,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 15,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 16,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 17,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 18,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 19,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 20,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 21,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 22,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 23,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 24,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 25,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 26,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 27,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 28,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 29,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 30,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 31,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 32,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 2,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 3,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 4,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 5,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 6,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 7,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 8,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 9,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 10,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 11,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 12,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 13,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 14,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 15,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 16,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 17,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 18,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 19,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 20,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 21,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 22,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 23,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 24,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 25,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 26,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 27,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 28,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 29,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 30,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 31,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 32,
+              "membership": "VIP"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "membership",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "Premium",
+            7
+          ],
+          [
+            1,
+            "VIP",
+            9
+          ],
+          [
+            2,
+            "Premium",
+            4
+          ],
+          [
+            2,
+            "VIP",
+            10
+          ],
+          [
+            3,
+            "Premium",
+            10
+          ],
+          [
+            3,
+            "VIP",
+            6
+          ],
+          [
+            4,
+            "Premium",
+            11
+          ],
+          [
+            4,
+            "VIP",
+            8
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "join",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-128",
+      "name": "benchmark: 128 users with one November Friday purchase each",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 3,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 4,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 5,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 6,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 7,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 8,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 9,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 10,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 11,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 12,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 13,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 14,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 15,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 16,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 17,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 18,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 19,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 20,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 21,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 22,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 23,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 24,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 25,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 26,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 27,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 28,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 29,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 30,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 31,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 32,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 33,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 34,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 35,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 36,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 37,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 38,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 39,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 40,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 41,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 42,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 43,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 44,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 45,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 46,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 47,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 48,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 49,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 50,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 51,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 52,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 53,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 54,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 55,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 56,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 57,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 58,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 59,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 60,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 61,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 62,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 63,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 64,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 65,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 66,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 67,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 68,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 69,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 70,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 71,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 72,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 73,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 74,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 75,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 76,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 77,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 78,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 79,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 80,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 81,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 82,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 83,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 84,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 85,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 86,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 87,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 88,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 89,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 90,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 91,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 92,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 93,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 94,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 95,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 96,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 97,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 98,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 99,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 100,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 101,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 102,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 103,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 104,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 105,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 106,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 107,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 108,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 109,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 110,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 111,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 112,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 113,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 114,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 115,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 116,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 117,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 118,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 119,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 120,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 121,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 122,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 123,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 124,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 125,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 126,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 127,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 128,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 2,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 3,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 4,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 5,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 6,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 7,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 8,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 9,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 10,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 11,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 12,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 13,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 14,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 15,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 16,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 17,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 18,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 19,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 20,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 21,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 22,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 23,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 24,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 25,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 26,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 27,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 28,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 29,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 30,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 31,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 32,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 33,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 34,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 35,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 36,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 37,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 38,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 39,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 40,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 41,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 42,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 43,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 44,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 45,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 46,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 47,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 48,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 49,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 50,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 51,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 52,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 53,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 54,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 55,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 56,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 57,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 58,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 59,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 60,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 61,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 62,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 63,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 64,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 65,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 66,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 67,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 68,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 69,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 70,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 71,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 72,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 73,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 74,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 75,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 76,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 77,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 78,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 79,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 80,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 81,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 82,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 83,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 84,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 85,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 86,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 87,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 88,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 89,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 90,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 91,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 92,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 93,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 94,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 95,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 96,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 97,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 98,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 99,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 100,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 101,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 102,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 103,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 104,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 105,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 106,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 107,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 108,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 109,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 110,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 111,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 112,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 113,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 114,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 115,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 116,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 117,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 118,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 119,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 120,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 121,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 122,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 123,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 124,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 125,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 126,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 127,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 128,
+              "membership": "VIP"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "membership",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "Premium",
+            32
+          ],
+          [
+            1,
+            "VIP",
+            31
+          ],
+          [
+            2,
+            "Premium",
+            30
+          ],
+          [
+            2,
+            "VIP",
+            33
+          ],
+          [
+            3,
+            "Premium",
+            33
+          ],
+          [
+            3,
+            "VIP",
+            30
+          ],
+          [
+            4,
+            "Premium",
+            35
+          ],
+          [
+            4,
+            "VIP",
+            34
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "join",
+        "aggregation"
+      ]
+    },
+    {
+      "id": "benchmark-scale-512",
+      "name": "benchmark: 512 users with one November Friday purchase each",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Purchases": [
+            {
+              "user_id": 1,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 2,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 3,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 4,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 5,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 6,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 7,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 8,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 9,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 10,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 11,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 12,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 13,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 14,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 15,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 16,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 17,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 18,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 19,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 20,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 21,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 22,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 23,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 24,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 25,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 26,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 27,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 28,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 29,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 30,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 31,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 32,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 33,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 34,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 35,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 36,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 37,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 38,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 39,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 40,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 41,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 42,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 43,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 44,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 45,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 46,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 47,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 48,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 49,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 50,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 51,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 52,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 53,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 54,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 55,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 56,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 57,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 58,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 59,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 60,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 61,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 62,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 63,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 64,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 65,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 66,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 67,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 68,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 69,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 70,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 71,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 72,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 73,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 74,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 75,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 76,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 77,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 78,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 79,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 80,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 81,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 82,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 83,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 84,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 85,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 86,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 87,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 88,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 89,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 90,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 91,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 92,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 93,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 94,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 95,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 96,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 97,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 98,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 99,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 100,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 101,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 102,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 103,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 104,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 105,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 106,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 107,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 108,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 109,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 110,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 111,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 112,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 113,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 114,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 115,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 116,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 117,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 118,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 119,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 120,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 121,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 122,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 123,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 124,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 125,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 126,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 127,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 128,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 129,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 130,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 131,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 132,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 133,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 134,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 135,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 136,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 137,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 138,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 139,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 140,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 141,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 142,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 143,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 144,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 145,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 146,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 147,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 148,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 149,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 150,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 151,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 152,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 153,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 154,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 155,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 156,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 157,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 158,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 159,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 160,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 161,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 162,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 163,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 164,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 165,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 166,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 167,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 168,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 169,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 170,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 171,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 172,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 173,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 174,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 175,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 176,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 177,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 178,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 179,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 180,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 181,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 182,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 183,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 184,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 185,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 186,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 187,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 188,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 189,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 190,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 191,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 192,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 193,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 194,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 195,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 196,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 197,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 198,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 199,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 200,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 201,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 202,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 203,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 204,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 205,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 206,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 207,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 208,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 209,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 210,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 211,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 212,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 213,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 214,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 215,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 216,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 217,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 218,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 219,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 220,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 221,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 222,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 223,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 224,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 225,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 226,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 227,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 228,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 229,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 230,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 231,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 232,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 233,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 234,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 235,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 236,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 237,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 238,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 239,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 240,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 241,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 242,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 243,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 244,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 245,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 246,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 247,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 248,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 249,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 250,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 251,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 252,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 253,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 254,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 255,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 256,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 257,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 258,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 259,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 260,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 261,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 262,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 263,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 264,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 265,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 266,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 267,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 268,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 269,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 270,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 271,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 272,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 273,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 274,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 275,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 276,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 277,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 278,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 279,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 280,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 281,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 282,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 283,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 284,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 285,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 286,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 287,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 288,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 289,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 290,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 291,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 292,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 293,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 294,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 295,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 296,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 297,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 298,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 299,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 300,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 301,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 302,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 303,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 304,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 305,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 306,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 307,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 308,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 309,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 310,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 311,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 312,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 313,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 314,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 315,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 316,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 317,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 318,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 319,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 320,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 321,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 322,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 323,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 324,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 325,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 326,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 327,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 328,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 329,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 330,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 331,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 332,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 333,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 334,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 335,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 336,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 337,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 338,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 339,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 340,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 341,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 342,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 343,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 344,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 345,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 346,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 347,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 348,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 349,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 350,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 351,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 352,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 353,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 354,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 355,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 356,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 357,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 358,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 359,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 360,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 361,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 362,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 363,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 364,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 365,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 366,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 367,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 368,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 369,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 370,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 371,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 372,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 373,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 374,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 375,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 376,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 377,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 378,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 379,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 380,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 381,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 382,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 383,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 384,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 385,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 386,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 387,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 388,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 389,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 390,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 391,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 392,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 393,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 394,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 395,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 396,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 397,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 398,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 399,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 400,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 401,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 402,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 403,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 404,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 405,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 406,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 407,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 408,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 409,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 410,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 411,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 412,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 413,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 414,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 415,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 416,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 417,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 418,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 419,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 420,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 421,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 422,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 423,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 424,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 425,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 426,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 427,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 428,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 429,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 430,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 431,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 432,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 433,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 434,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 435,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 436,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 437,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 438,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 439,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 440,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 441,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 442,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 443,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 444,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 445,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 446,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 447,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 448,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 449,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 450,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 451,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 452,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 453,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 454,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 455,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 456,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 457,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 458,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 459,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 460,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 461,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 462,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 463,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 464,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 465,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 466,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 467,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 468,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 469,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 470,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 471,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 472,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 473,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 474,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 475,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 476,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 477,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 478,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 479,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 480,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 481,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 482,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 483,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 484,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 485,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 486,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 487,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 488,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 489,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 490,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 491,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 492,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 493,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 494,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 495,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 496,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 497,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 498,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 499,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 500,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 501,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 502,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 503,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 504,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 505,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 506,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 507,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 3
+            },
+            {
+              "user_id": 508,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 4
+            },
+            {
+              "user_id": 509,
+              "purchase_date": "2023-11-03",
+              "amount_spend": 5
+            },
+            {
+              "user_id": 510,
+              "purchase_date": "2023-11-10",
+              "amount_spend": 1
+            },
+            {
+              "user_id": 511,
+              "purchase_date": "2023-11-17",
+              "amount_spend": 2
+            },
+            {
+              "user_id": 512,
+              "purchase_date": "2023-11-24",
+              "amount_spend": 3
+            }
+          ],
+          "Users": [
+            {
+              "user_id": 1,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 2,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 3,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 4,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 5,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 6,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 7,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 8,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 9,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 10,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 11,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 12,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 13,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 14,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 15,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 16,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 17,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 18,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 19,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 20,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 21,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 22,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 23,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 24,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 25,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 26,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 27,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 28,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 29,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 30,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 31,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 32,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 33,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 34,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 35,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 36,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 37,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 38,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 39,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 40,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 41,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 42,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 43,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 44,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 45,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 46,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 47,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 48,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 49,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 50,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 51,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 52,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 53,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 54,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 55,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 56,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 57,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 58,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 59,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 60,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 61,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 62,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 63,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 64,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 65,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 66,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 67,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 68,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 69,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 70,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 71,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 72,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 73,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 74,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 75,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 76,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 77,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 78,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 79,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 80,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 81,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 82,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 83,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 84,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 85,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 86,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 87,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 88,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 89,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 90,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 91,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 92,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 93,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 94,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 95,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 96,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 97,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 98,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 99,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 100,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 101,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 102,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 103,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 104,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 105,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 106,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 107,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 108,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 109,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 110,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 111,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 112,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 113,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 114,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 115,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 116,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 117,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 118,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 119,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 120,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 121,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 122,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 123,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 124,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 125,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 126,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 127,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 128,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 129,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 130,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 131,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 132,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 133,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 134,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 135,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 136,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 137,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 138,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 139,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 140,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 141,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 142,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 143,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 144,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 145,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 146,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 147,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 148,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 149,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 150,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 151,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 152,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 153,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 154,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 155,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 156,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 157,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 158,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 159,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 160,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 161,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 162,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 163,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 164,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 165,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 166,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 167,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 168,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 169,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 170,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 171,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 172,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 173,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 174,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 175,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 176,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 177,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 178,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 179,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 180,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 181,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 182,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 183,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 184,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 185,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 186,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 187,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 188,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 189,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 190,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 191,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 192,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 193,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 194,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 195,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 196,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 197,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 198,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 199,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 200,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 201,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 202,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 203,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 204,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 205,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 206,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 207,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 208,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 209,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 210,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 211,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 212,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 213,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 214,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 215,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 216,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 217,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 218,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 219,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 220,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 221,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 222,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 223,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 224,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 225,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 226,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 227,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 228,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 229,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 230,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 231,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 232,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 233,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 234,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 235,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 236,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 237,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 238,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 239,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 240,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 241,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 242,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 243,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 244,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 245,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 246,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 247,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 248,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 249,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 250,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 251,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 252,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 253,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 254,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 255,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 256,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 257,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 258,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 259,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 260,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 261,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 262,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 263,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 264,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 265,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 266,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 267,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 268,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 269,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 270,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 271,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 272,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 273,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 274,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 275,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 276,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 277,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 278,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 279,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 280,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 281,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 282,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 283,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 284,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 285,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 286,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 287,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 288,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 289,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 290,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 291,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 292,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 293,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 294,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 295,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 296,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 297,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 298,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 299,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 300,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 301,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 302,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 303,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 304,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 305,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 306,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 307,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 308,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 309,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 310,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 311,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 312,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 313,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 314,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 315,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 316,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 317,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 318,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 319,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 320,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 321,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 322,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 323,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 324,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 325,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 326,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 327,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 328,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 329,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 330,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 331,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 332,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 333,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 334,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 335,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 336,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 337,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 338,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 339,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 340,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 341,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 342,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 343,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 344,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 345,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 346,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 347,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 348,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 349,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 350,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 351,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 352,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 353,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 354,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 355,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 356,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 357,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 358,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 359,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 360,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 361,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 362,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 363,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 364,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 365,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 366,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 367,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 368,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 369,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 370,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 371,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 372,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 373,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 374,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 375,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 376,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 377,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 378,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 379,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 380,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 381,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 382,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 383,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 384,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 385,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 386,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 387,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 388,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 389,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 390,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 391,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 392,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 393,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 394,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 395,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 396,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 397,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 398,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 399,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 400,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 401,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 402,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 403,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 404,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 405,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 406,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 407,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 408,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 409,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 410,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 411,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 412,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 413,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 414,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 415,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 416,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 417,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 418,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 419,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 420,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 421,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 422,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 423,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 424,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 425,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 426,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 427,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 428,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 429,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 430,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 431,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 432,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 433,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 434,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 435,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 436,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 437,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 438,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 439,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 440,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 441,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 442,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 443,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 444,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 445,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 446,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 447,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 448,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 449,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 450,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 451,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 452,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 453,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 454,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 455,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 456,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 457,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 458,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 459,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 460,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 461,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 462,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 463,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 464,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 465,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 466,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 467,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 468,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 469,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 470,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 471,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 472,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 473,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 474,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 475,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 476,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 477,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 478,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 479,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 480,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 481,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 482,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 483,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 484,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 485,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 486,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 487,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 488,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 489,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 490,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 491,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 492,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 493,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 494,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 495,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 496,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 497,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 498,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 499,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 500,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 501,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 502,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 503,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 504,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 505,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 506,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 507,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 508,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 509,
+              "membership": "VIP"
+            },
+            {
+              "user_id": 510,
+              "membership": "Standard"
+            },
+            {
+              "user_id": 511,
+              "membership": "Premium"
+            },
+            {
+              "user_id": 512,
+              "membership": "VIP"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "week_of_month",
+          "membership",
+          "total_amount"
+        ],
+        "rows": [
+          [
+            1,
+            "Premium",
+            127
+          ],
+          [
+            1,
+            "VIP",
+            129
+          ],
+          [
+            2,
+            "Premium",
+            124
+          ],
+          [
+            2,
+            "VIP",
+            130
+          ],
+          [
+            3,
+            "Premium",
+            130
+          ],
+          [
+            3,
+            "VIP",
+            126
+          ],
+          [
+            4,
+            "Premium",
+            131
+          ],
+          [
+            4,
+            "VIP",
+            128
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "join",
+        "aggregation"
+      ]
+    }
+  ]
+}

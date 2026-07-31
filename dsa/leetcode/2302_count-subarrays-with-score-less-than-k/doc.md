@@ -5,52 +5,48 @@
 | Source | LeetCode |
 | Frontend ID | 2302 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Binary Search, Sliding Window, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-subarrays-with-score-less-than-k](https://leetcode.com/problems/count-subarrays-with-score-less-than-k/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-subarrays-with-score-less-than-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-subarrays-with-score-less-than-k/).
-
 ### Goal
-Count nonempty contiguous subarrays whose score, defined as their sum multiplied by their length, is strictly less than `k`.
+For any array, define its score as the product of its element sum and its
+length. For example, `[1, 2, 3, 4, 5]` has sum $15$, length $5$, and score
+$15\cdot 5=75$.
+
+Given the positive integer array `nums` and the integer `k`, count the
+nonempty subarrays whose scores are strictly less than `k`. A subarray must be
+a contiguous sequence of `nums`; choosing elements with gaps does not qualify.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: a positive integer array.
-- `k`: the exclusive score limit.
+- `nums`: An array of $n$ positive integers.
+- `k`: The exclusive upper bound on a qualifying subarray's score.
+
+The contract guarantees $1 \le n \le 10^5$, $1 \le \texttt{nums[i]} \le
+10^5$, and $1 \le \texttt{k} \le 10^{15}$.
 
 **Return value**
 
-The number of qualifying subarrays.
+The number of nonempty contiguous ranges `[left:right]` for which
+
+$$
+\left(\sum_{i=\texttt{left}}^{\texttt{right}}\texttt{nums[i]}\right)
+(\texttt{right}-\texttt{left}+1) < \texttt{k}.
+$$
 
 ### Examples
 **Example 1**
 
 - Input: `nums = [2, 1, 4, 3, 5]`, `k = 10`
 - Output: `6`
+- Explanation: The five singleton ranges and `[2, 1]` have scores below $10$.
+  A score equal to $10$, such as that of `[1, 4]`, does not qualify.
 
 **Example 2**
 
 - Input: `nums = [1, 1, 1]`, `k = 5`
 - Output: `5`
-
-**Example 3**
-
-- Input: `nums = [1, 2]`, `k = 1`
-- Output: `0`
-
----
-
-## Solution
-### Approach
-Use a sliding window because all values are positive. Extend the right edge and add its value. While `window_sum * window_length >= k`, move the left edge forward. Every suffix of the remaining window ending at the current right edge is valid, contributing its length to the answer.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: All one- and two-element subarrays qualify, while the complete
+  array has score $3\cdot3=9$.

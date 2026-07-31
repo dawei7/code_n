@@ -8,76 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, String, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [calculate-score-after-performing-instructions](https://leetcode.com/problems/calculate-score-after-performing-instructions/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/calculate-score-after-performing-instructions/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/calculate-score-after-performing-instructions/).
 
 ### Goal
-Given a string of instructions consisting of 'L', 'R', and 'U', calculate the final score based on a stack-based mechanism. When 'L' or 'R' is encountered, push the character onto a stack. When 'U' is encountered, remove the most recently added 'L' or 'R' from the stack (if any exist) and add the numerical value associated with that character (L=1, R=2) to the total score.
+
+Two arrays describe a program of $n$ indexed instructions. Execution begins at index `0` with score `0`. An `"add"` instruction adds the corresponding entry of `values` to the score and continues at the next index. A `"jump"` instruction changes the current index by its corresponding value without changing the score.
+
+Execution stops as soon as the next index lies outside $[0,n)$ or the program attempts to visit an instruction that has already been executed. A repeated instruction is not executed a second time. Return the score accumulated before termination.
 
 ### Function Contract
+
 **Inputs**
 
-- `s`: A string containing only the characters 'L', 'R', and 'U'.
+- `instructions`: A list of $n$ strings, each equal to `"add"` or `"jump"`.
+- `values`: A list of $n$ integers. For an add instruction the value changes the score; for a jump instruction it is the relative index offset.
+
+The arrays have equal length, with $1 \le n \le 10^5$, and every value lies between $-10^5$ and $10^5$ inclusive.
 
 **Return value**
 
-- An integer representing the total accumulated score after processing all instructions.
+Return the integer score when execution first leaves the array or would revisit an executed index.
 
 ### Examples
+
 **Example 1**
 
-- Input: `s = "LRU"`
-- Output: `2`
-- Explanation: 'L' is pushed, 'R' is pushed. 'U' removes 'R' (value 2). Total = 2.
+- Input: `instructions = ["jump", "add", "add", "jump", "add", "jump"]`, `values = [2, 1, 3, 1, -2, -3]`
+- Output: `1`
+- Explanation: The path is `0 -> 2 -> 3 -> 4 -> 5 -> 2`; values `3` and `-2` are added before the attempted revisit of index `2`.
 
 **Example 2**
 
-- Input: `s = "UL"`
+- Input: `instructions = ["jump", "add", "add"]`, `values = [3, 1, 1]`
 - Output: `0`
-- Explanation: 'U' has no preceding 'L' or 'R' to remove. 'L' is pushed but never removed. Total = 0.
+- Explanation: The first jump lands at index `3`, which is out of bounds.
 
 **Example 3**
 
-- Input: `s = "LLRU"`
-- Output: `2`
-- Explanation: 'L', 'L', 'R' are pushed. 'U' removes 'R' (value 2). Total = 2.
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Stack** data structure. By treating the string as a sequence of operations, we maintain a stack of characters. 'L' and 'R' are pushed onto the stack, while 'U' acts as a pop operation that triggers a score update based on the popped element's value.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the string, as we iterate through the string exactly once and perform constant-time stack operations.
-- **Space Complexity**: `O(n)` in the worst case where all characters are 'L' or 'R' and are pushed onto the stack.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(s: str) -> int:
-    """
-    Calculates the score by simulating the instruction stack.
-    'L' maps to 1, 'R' maps to 2. 'U' removes the top element.
-    """
-    stack = []
-    score = 0
-
-    # Mapping for character values
-    values = {'L': 1, 'R': 2}
-
-    for char in s:
-        if char == 'U':
-            if stack:
-                last_char = stack.pop()
-                score += values[last_char]
-        else:
-            stack.append(char)
-
-    return score
-```
-</details>
+- Input: `instructions = ["jump"]`, `values = [0]`
+- Output: `0`
+- Explanation: The jump targets index `0` again, so execution stops before a second execution.

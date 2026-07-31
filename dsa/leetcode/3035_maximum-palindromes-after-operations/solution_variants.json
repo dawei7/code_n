@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Palindromes After Operations and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts the global supply of equal letter pairs and spends it on words in ascending length order.",
+      "time_complexity": "O(S+nlogn)",
+      "space_complexity": "O(n)"
     }
   ]
 }

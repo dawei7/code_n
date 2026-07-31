@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="330" viewBox="0 0 430 330" role="img" aria-labelledby="title desc">
+  <title id="title">Four-node star</title><desc id="desc">Central node 0 connects to leaf nodes 1, 2, and 3.</desc>
+  <g stroke="#202124" stroke-width="4" fill="none"><path d="M215 65L75 230M215 65V270M215 65L355 230"/></g>
+  <g fill="#fff" stroke="#202124" stroke-width="4"><circle cx="215" cy="65" r="38"/><circle cx="75" cy="230" r="38"/><circle cx="215" cy="270" r="38"/><circle cx="355" cy="230" r="38"/></g>
+  <g fill="#111" font-family="Arial,sans-serif" font-size="28" font-weight="600" text-anchor="middle" dominant-baseline="central"><text x="215" y="65">0</text><text x="75" y="230">1</text><text x="215" y="270">2</text><text x="355" y="230">3</text></g>
+</svg>

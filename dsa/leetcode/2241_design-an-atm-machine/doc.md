@@ -5,52 +5,55 @@
 | Source | LeetCode |
 | Frontend ID | 2241 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Greedy, Design |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [design-an-atm-machine](https://leetcode.com/problems/design-an-atm-machine/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/design-an-atm-machine/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/design-an-atm-machine/).
 
 ### Goal
-Design an ATM holding banknotes of denominations `20`, `50`, `100`, `200`, and `500`. Deposits add note counts. Withdrawals must greedily use as many higher-denomination notes as possible; if that mandated strategy cannot produce the amount, return failure without changing inventory.
+
+Design an ATM that stores banknotes in exactly five denominations: $20$, $50$,
+$100$, $200$, and $500$. Its inventory starts empty. Deposits add supplied
+counts in that denomination order, and successive operations share the same
+inventory.
+
+For a withdrawal, the ATM must greedily take as many available notes as
+possible from the largest denomination before considering the next smaller
+one. It may not replace an already preferred large note with smaller notes to
+make a request succeed. If the greedy selection cannot form the exact amount,
+return `[-1]` and leave the complete inventory unchanged. Otherwise, remove and
+return the selected note counts in ascending denomination order.
 
 ### Function Contract
+
 **Inputs**
 
-- `deposit(banknotesCount)` receives counts aligned with `[20, 50, 100, 200, 500]`.
-- `withdraw(amount)` receives a positive multiple of `10` to attempt.
+- `operations`: A sequence beginning with `ATM`, followed by `deposit` and `withdraw` calls.
+- `arguments`: Arguments aligned with the operations. A deposit receives five nonnegative counts; a withdrawal receives one positive amount.
+
+At most 5,000 deposit and withdrawal calls occur. Each deposited count and
+withdrawal amount is at most $10^9$, and the total number of deposited notes
+does not exceed $10^9$.
 
 **Return value**
 
-`deposit` returns nothing. A successful `withdraw` returns the dispensed counts in denomination order; failure returns `[-1]` and leaves all notes in the ATM.
+Return one result per operation: `null` for construction and deposits, a
+five-element note-count array for a successful withdrawal, or `[-1]` for a
+rejected withdrawal.
 
 ### Examples
+
 **Example 1**
 
-- Input: deposit `[0, 0, 1, 2, 1]`, then withdraw `600`
-- Output: `[0, 0, 1, 0, 1]`
+- Input: `operations = ["ATM", "deposit", "withdraw", "deposit", "withdraw", "withdraw"]`, `arguments = [[], [[0,0,1,2,1]], [600], [[0,1,0,1,1]], [600], [550]]`
+- Output: `[null, null, [0,0,1,0,1], null, [-1], [0,1,0,0,1]]`
 
 **Example 2**
 
-- Input: deposit `[0, 1, 0, 3, 1]`, then withdraw `600`
-- Output: `[-1]`
+- Input: `operations = ["ATM", "deposit", "withdraw"]`, `arguments = [[], [[1,1,1,1,1]], [870]]`
+- Output: `[null, null, [1,1,1,1,1]]`
 
 **Example 3**
 
-- Input: deposit `[1, 1, 1, 1, 1]`, then withdraw `870`
-- Output: `[1, 1, 1, 1, 1]`
-
----
-
-## Solution
-### Approach
-Store five inventory counts. For withdrawal, traverse denominations from `500` down to `20`, tentatively taking the smaller of available notes and `remaining / denomination`. If a remainder survives, discard the tentative plan and preserve inventory. Otherwise subtract the selected counts and return them. This intentionally does not backtrack to lower denominations.
-
-### Complexity Analysis
-- **Time Complexity**: `O(1)` per operation because there are five denominations
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `operations = ["ATM", "deposit", "withdraw", "withdraw"]`, `arguments = [[], [[0,0,0,3,1]], [600], [500]]`
+- Output: `[null, null, [-1], [0,0,0,0,1]]`

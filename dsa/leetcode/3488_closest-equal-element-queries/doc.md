@@ -8,84 +8,56 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Binary Search |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [closest-equal-element-queries](https://leetcode.com/problems/closest-equal-element-queries/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/closest-equal-element-queries/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/closest-equal-element-queries/).
 
 ### Goal
-Given an array of integers, process a series of queries. Each query provides an index `i` and an integer `k`. You must find the index `j` such that `nums[j] == nums[i]` and the absolute distance `|i - j|` is minimized, subject to the constraint that `|i - j| <= k`. If multiple such indices exist, return the one with the smallest index; if none exist, return -1.
+
+The array `nums` is circular: index 0 follows index $n-1$, and travel is allowed in either direction. Each entry of `queries` is an index into this array.
+
+For a queried index `i`, consider every other index `j` satisfying `nums[j] = nums[i]`. Find the minimum number of circular steps between `i` and any such `j`. The queried index itself is not a candidate.
+
+Return one distance per query. If the queried value occurs nowhere else in the array, return `-1` for that query.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the input array.
-- `queries`: A list of lists, where each inner list contains two integers `[i, k]`.
+- `nums`: A circular array of positive integers.
+- `queries`: A list of valid indices into `nums`.
+
+Let $n=\lvert\texttt{nums}\rvert$ and $q=\lvert\texttt{queries}\rvert$. The constraints are $1\le q\le n\le10^5$, $1\le\texttt{nums[i]}\le10^6$, and $0\le\texttt{queries[i]}<n$.
+
+For indices $i$ and $j$, their circular distance is
+
+$$
+\min\bigl(\lvert i-j\rvert,\ n-\lvert i-j\rvert\bigr).
+$$
 
 **Return value**
 
-- A list of integers representing the result for each query.
+Return a list of length $q$. Its entry for each query is the smallest circular distance to another equal-valued index, or `-1` if no such index exists.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 2, 3, 1, 1, 2], queries = [[0, 2], [5, 1]]`
-- Output: `[3, -1]`
+- Input: `nums = [1, 3, 1, 4, 1, 3, 2]`, `queries = [0, 3, 5]`
+- Output: `[2, -1, 3]`
+
+Index 0 reaches another 1 at index 2 in two steps. The 4 at index 3 is unique. From index 5, wrapping through indices 6 and 0 reaches the other 3 at index 1 in three steps.
 
 **Example 2**
 
-- Input: `nums = [1, 1, 1], queries = [[1, 1]]`
-- Output: `[0]`
+- Input: `nums = [1, 2, 3, 4]`, `queries = [0, 1, 2, 3]`
+- Output: `[-1, -1, -1, -1]`
+
+Every value occurs once.
 
 **Example 3**
 
-- Input: `nums = [1, 2, 3], queries = [[0, 1]]`
-- Output: `[-1]`
+- Input: `nums = [5, 1, 2, 3, 5]`, `queries = [0, 4]`
+- Output: `[1, 1]`
 
----
-
-## Solution
-### Approach
-The problem is solved by pre-processing the array to map each unique value to a sorted list of its indices. For each query `(i, k)`, we use binary search (`bisect_left` and `bisect_right`) on the index list corresponding to `nums[i]` to find candidates within the range `[i-k, i+k]`. We then evaluate the distance to `i` for the neighbors of `i` in the sorted list to identify the closest valid index.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N + Q log N)`, where `N` is the length of `nums` and `Q` is the number of queries. Pre-processing takes `O(N)`, and each query takes `O(log N)` due to binary search.
-- **Space Complexity**: `O(N)` to store the hash map of indices.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from bisect import bisect_left
-from collections import defaultdict
-
-
-def solve(nums: list[int], queries: list[int]) -> list[int]:
-    n = len(nums)
-    positions: dict[int, list[int]] = defaultdict(list)
-    for index, value in enumerate(nums):
-        positions[value].append(index)
-
-    answer: list[int] = []
-    for query in queries:
-        same = positions[nums[query]]
-        if len(same) == 1:
-            answer.append(-1)
-            continue
-        pos = bisect_left(same, query)
-        previous_index = same[pos - 1]
-        next_index = same[(pos + 1) % len(same)]
-        previous_distance = abs(query - previous_index)
-        next_distance = abs(next_index - query)
-        answer.append(
-            min(
-                previous_distance,
-                n - previous_distance,
-                next_distance,
-                n - next_distance,
-            )
-        )
-    return answer
-```
-</details>
+The two copies of 5 are adjacent across the circular boundary.

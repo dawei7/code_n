@@ -8,48 +8,52 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Greedy, Heap (Priority Queue), Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [construct-string-with-repeat-limit](https://leetcode.com/problems/construct-string-with-repeat-limit/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/construct-string-with-repeat-limit/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/construct-string-with-repeat-limit/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Rearrange some or all characters from a lowercase string `s` to form a new
+string. No letter may occur more than `repeatLimit` times consecutively.
+Characters may be discarded when using them would violate that restriction;
+using every supplied character is not required.
+
+Among all strings satisfying the limit, return the lexicographically largest.
+At the first differing position, the string containing the later alphabetic
+letter is larger. If one string is a prefix of the other, the longer string is
+larger.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: a string of lowercase English letters.
+- `repeatLimit`: the maximum permitted length of any same-letter run.
+
+The inputs satisfy
+$1\le\texttt{repeatLimit}\le\lvert\texttt{s}\rvert\le10^5$.
 
 **Return value**
 
-TODO
+Return the lexicographically largest string obtainable from the available
+characters without exceeding the consecutive-repeat limit.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "cczazcc"`, `repeatLimit = 3`
+- Output: `"zzcccac"`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aababab"`, `repeatLimit = 2`
+- Output: `"bbabaa"`
+- Explanation: one `a` remains unused because no smaller separator exists
+  after the final allowed run.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "aaaaa"`, `repeatLimit = 2`
+- Output: `"aa"`

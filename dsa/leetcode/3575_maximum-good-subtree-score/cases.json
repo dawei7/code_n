@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3575",
+  "cases": [
+    {
+      "id": "sample-two-node-chain",
+      "name": "sample: combine two distinct one-digit values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"vals":[2,3],"par":[-1,0]},
+      "expected": 8,
+      "tags": ["sample","chain","disjoint-digits"]
+    },
+    {
+      "id": "sample-three-node-star",
+      "name": "sample: select every node in a three-node star",
+      "kind": "sample",
+      "visible": true,
+      "input": {"vals":[1,5,2],"par":[-1,0,0]},
+      "expected": 15,
+      "tags": ["sample","star","all-selected"]
+    },
+    {
+      "id": "sample-multidigit-value",
+      "name": "sample: a valid multi-digit value combines with descendants",
+      "kind": "sample",
+      "visible": true,
+      "input": {"vals":[34,1,2],"par":[-1,0,1]},
+      "expected": 42,
+      "tags": ["sample","multi-digit","chain"]
+    },
+    {
+      "id": "trial-repeated-digit-node",
+      "name": "trial: a value with a repeated digit cannot be selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {"vals":[3,22,5],"par":[-1,0,1]},
+      "expected": 18,
+      "tags": ["trial","repeated-digit","invalid-node"]
+    },
+    {
+      "id": "trial-single-invalid-value",
+      "name": "trial: a singleton repeated-digit value has score zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {"vals":[11],"par":[-1]},
+      "expected": 0,
+      "tags": ["trial","minimum-length","empty-subset"]
+    },
+    {
+      "id": "real-invalid-root-valid-child",
+      "name": "real: an invalid root does not exclude a valid descendant",
+      "kind": "real",
+      "visible": false,
+      "input": {"vals":[22,5],"par":[-1,0]},
+      "expected": 10,
+      "tags": ["real","invalid-root","descendant-selection"]
+    },
+    {
+      "id": "real-nontopological-parent-indices",
+      "name": "real: traversal follows parents rather than node-number order",
+      "kind": "real",
+      "visible": false,
+      "input": {"vals":[1,2,3,4],"par":[-1,3,0,0]},
+      "expected": 21,
+      "tags": ["real","parent-order","tree-traversal"]
+    },
+    {
+      "id": "real-zero-digit-conflict",
+      "name": "real: embedded zero conflicts across otherwise valid values",
+      "kind": "real",
+      "visible": false,
+      "input": {"vals":[10,2,30],"par":[-1,0,0]},
+      "expected": 64,
+      "tags": ["real","digit-zero","mask-conflict"]
+    },
+    {
+      "id": "real-modulo-total",
+      "name": "real: reduce the sum of subtree maxima modulo the required prime",
+      "kind": "real",
+      "visible": false,
+      "input": {"vals":[987654321,987654321],"par":[-1,0]},
+      "expected": 975308635,
+      "tags": ["real","modulo","large-values"]
+    },
+    {
+      "id": "real-overlapping-multidigit-masks",
+      "name": "real: choose the larger of two values with the same digit mask",
+      "kind": "real",
+      "visible": false,
+      "input": {"vals":[12,21,3],"par":[-1,0,0]},
+      "expected": 48,
+      "tags": ["real","same-mask","maximize-score"]
+    }
+  ]
+}

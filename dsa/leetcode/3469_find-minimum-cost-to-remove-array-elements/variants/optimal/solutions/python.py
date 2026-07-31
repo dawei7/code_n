@@ -1,25 +1,30 @@
 def solve(nums: list[int]) -> int:
-    n = len(nums)
-    states = {0: 0}
-    index = 1
+    size = len(nums)
+    costs = {0: 0}
+    next_index = 1
 
-    while index + 1 < n:
-        updated: dict[int, int] = {}
-        first = nums[index]
-        second = nums[index + 1]
-        for leftover, cost in states.items():
-            previous = nums[leftover]
-            candidates = (
-                (index + 1, cost + max(previous, first)),
-                (index, cost + max(previous, second)),
-                (leftover, cost + max(first, second)),
-            )
-            for next_leftover, next_cost in candidates:
-                if next_cost < updated.get(next_leftover, 10**30):
-                    updated[next_leftover] = next_cost
-        states = updated
-        index += 2
+    while next_index + 1 < size:
+        second = nums[next_index]
+        third = nums[next_index + 1]
+        updated = {
+            next_index: min(
+                cost + max(nums[carried], third)
+                for carried, cost in costs.items()
+            ),
+            next_index + 1: min(
+                cost + max(nums[carried], second)
+                for carried, cost in costs.items()
+            ),
+        }
+        pair_cost = max(second, third)
+        for carried, cost in costs.items():
+            updated[carried] = cost + pair_cost
+        costs = updated
+        next_index += 2
 
-    if index == n:
-        return min(cost + nums[leftover] for leftover, cost in states.items())
-    return min(cost + max(nums[leftover], nums[index]) for leftover, cost in states.items())
+    if next_index == size:
+        return min(cost + nums[carried] for carried, cost in costs.items())
+    return min(
+        cost + max(nums[carried], nums[next_index])
+        for carried, cost in costs.items()
+    )

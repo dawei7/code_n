@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2814",
+  "cases": [
+    {"id":"sample-safe-route","name":"sample: reach destination before flood","kind":"sample","visible":true,"input":{"land":[["D",".","*"],[".",".","."],[".","S","."]]},"expected":3,"tags":["sample","safe-route"]},
+    {"id":"sample-drowned-route","name":"sample: all routes are overtaken","kind":"sample","visible":true,"input":{"land":[["D","X","*"],[".",".","."],[".",".","S"]]},"expected":-1,"tags":["sample","impossible"]},
+    {"id":"sample-six-seconds","name":"sample: stones shape a six-second route","kind":"sample","visible":true,"input":{"land":[["D",".",".",".","*","."],[".","X",".","X",".","."],[".",".",".",".","S","."]]},"expected":6,"tags":["sample","stones"]},
+    {"id":"trial-adjacent","name":"trial: destination is adjacent to start","kind":"trial","visible":true,"input":{"land":[["S","D"],["*","X"]]},"expected":1,"tags":["trial","adjacent"]},
+    {"id":"trial-same-time-flood","name":"trial: entering a simultaneously flooded cell is forbidden","kind":"trial","visible":true,"input":{"land":[["S",".","D"],["X","*","X"]]},"expected":-1,"tags":["trial","simultaneous"]},
+    {"id":"real-stone-wall","name":"hidden: stones completely separate endpoints","kind":"real","visible":false,"input":{"land":[["S",".","*"],["X","X","X"],["D",".","."]]},"expected":-1,"tags":["hidden","stone-wall"]},
+    {"id":"real-isolated-flood","name":"hidden: isolated flood cannot enter corridor","kind":"real","visible":false,"input":{"land":[["D","X","*"],[".","X","X"],["S","X","X"]]},"expected":2,"tags":["hidden","isolated-flood"]},
+    {"id":"real-detour-overtaken","name":"hidden: flood overtakes the only stone detour","kind":"real","visible":false,"input":{"land":[["S","X","D"],[".","X","."],[".",".","."],["*","X","X"]]},"expected":-1,"tags":["hidden","detour","impossible"]}
+  ]
+}

@@ -8,48 +8,51 @@
 | Category | Algorithms |
 | Topics | Two Pointers, String, Dynamic Programming, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [longest-palindrome-after-substring-concatenation-i](https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-palindrome-after-substring-concatenation-i/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given lowercase strings `s` and `t`, choose one contiguous substring of `s` and one contiguous substring of `t`. Either chosen substring may be empty. Concatenate the substring from `s` first and the substring from `t` second; their order cannot be reversed.
+
+Among all such choices whose concatenation is a palindrome, return the greatest possible length. A solution may use characters from both strings, or it may take a palindrome entirely from one string by choosing the other substring to be empty. Substrings must preserve consecutive characters and their original order.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A nonempty lowercase English string of length $n$.
+- `t`: A nonempty lowercase English string of length $m$.
+
+The constraints are $1 \le n,m \le 30$.
 
 **Return value**
 
-TODO
+Return the maximum length of a palindrome obtainable as `s[i:j] + t[k:l]`, where either slice may be empty.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "a", t = "a"`
+- Output: `2`
+- Explanation: Taking the single character from each string produces `"aa"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abc", t = "def"`
+- Output: `1`
+- Explanation: No characters match across the two strings, but any single character is a palindrome.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "b", t = "aaaa"`
+- Output: `4`
+- Explanation: Choose an empty substring from `s` and all of `t`.
 
----
+**Example 4**
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "abcde", t = "ecdba"`
+- Output: `5`
+- Explanation: `"abc"` from `s` followed by `"ba"` from `t` forms `"abcba"`.

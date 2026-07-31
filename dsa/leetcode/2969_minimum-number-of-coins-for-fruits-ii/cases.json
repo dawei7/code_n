@@ -1,0 +1,171 @@
+{
+  "challenge_id": "lc_2969",
+  "cases": [
+    {
+      "id": "sample-rebuy-free-fruit",
+      "name": "sample: buying a free fruit extends the offer",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-skip-expensive-fruit",
+      "name": "sample: skip an expensive covered fruit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          10,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-fruit",
+      "name": "trial: the first fruit must be purchased",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "boundary",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-two-fruits",
+      "name": "trial: first purchase covers the second fruit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          100
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-cheap-covered-purchase",
+      "name": "trial: purchasing a cheap covered fruit is beneficial",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          5,
+          1,
+          100
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "covered-purchase"
+      ]
+    },
+    {
+      "id": "real-expensive-covered-choice",
+      "name": "real: later coverage still requires a costly purchase",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          5,
+          100,
+          100
+        ]
+      },
+      "expected": 105,
+      "tags": [
+        "hidden",
+        "expensive"
+      ]
+    },
+    {
+      "id": "real-uniform-prices",
+      "name": "real: uniform prices reward exponentially growing coverage",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "hidden",
+        "uniform"
+      ]
+    },
+    {
+      "id": "real-alternating-prices",
+      "name": "real: cheap purchases extend across expensive fruits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-maximum-prices",
+      "name": "real: maximum prices preserve integer totals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          100000,
+          100000,
+          100000,
+          100000
+        ]
+      },
+      "expected": 200000,
+      "tags": [
+        "hidden",
+        "value-boundary"
+      ]
+    }
+  ]
+}

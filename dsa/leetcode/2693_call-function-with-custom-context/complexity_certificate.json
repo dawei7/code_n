@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2693",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(a)",
+  "summary": "The source contract permits at most 99 forwarded arguments, so the legal domain is too small for an honest runtime scaling verdict; the polyfill forwards those arguments once and otherwise performs constant work.",
+  "workload_bound": {
+    "symbol": "a",
+    "maximum": 99,
+    "unit": "forwarded arguments",
+    "source_constraint": "The complete argument list contains between one and 100 values, with the context occupying the first position."
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "The rest parameter stores a forwarded values, one Symbol property is installed, the target is invoked once with one spread of those values, and the property is deleted in a finally block."},
+    {"kind": "boundary_property_cases", "evidence": "Authored cases cover zero, one, multiple, and many forwarded arguments; primitive, string, and object results; context reads; context mutation; nesting; and argument order."}
+  ]
+}

@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: best triplet uses the low middle value",
+      "name": "sample: best middle value is one",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -17,13 +17,13 @@
       },
       "tags": [
         "sample",
-        "triplet"
+        "ordered-triplet"
       ],
       "expected": 77
     },
     {
       "id": "sample-2",
-      "name": "sample: large final multiplier",
+      "name": "sample: a late multiplier realizes the best difference",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -37,13 +37,13 @@
       },
       "tags": [
         "sample",
-        "triplet"
+        "ordered-triplet"
       ],
       "expected": 133
     },
     {
       "id": "sample-3",
-      "name": "sample: all triplets are non-positive",
+      "name": "sample: every triplet value is negative",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -55,50 +55,108 @@
       },
       "tags": [
         "sample",
-        "zero"
+        "zero-floor"
       ],
       "expected": 0
     },
     {
-      "id": "trial-repeated-values",
-      "name": "trial: repeated high values still need ordered indices",
+      "id": "trial-minimum-length-positive",
+      "name": "trial: three elements form one positive triplet",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          9,
-          9,
+          5,
           1,
-          9
+          4
         ]
       },
       "tags": [
         "trial",
-        "duplicates"
+        "minimum-length"
       ],
-      "expected": 72
+      "expected": 16
     },
     {
-      "id": "real-large-prefix-drop",
-      "name": "hidden: prefix maximum and best difference separate",
+      "id": "real-maximum-values",
+      "name": "hidden: maximum values require a wide integer result",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          20,
-          3,
-          18,
-          2,
+          1000000,
           1,
-          30,
+          1000000
+        ]
+      },
+      "tags": [
+        "hidden",
+        "large-product"
+      ],
+      "expected": 999999000000
+    },
+    {
+      "id": "real-repeated-values",
+      "name": "hidden: a later prefix maximum improves the difference",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          1,
+          5,
+          9,
+          2,
+          9
+        ]
+      },
+      "tags": [
+        "hidden",
+        "duplicates"
+      ],
+      "expected": 63
+    },
+    {
+      "id": "real-best-indices-separated",
+      "name": "hidden: all three best indices are separated by distractions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          20,
+          7,
+          19,
+          2,
+          3,
+          15
+        ]
+      },
+      "tags": [
+        "hidden",
+        "index-order"
+      ],
+      "expected": 270
+    },
+    {
+      "id": "real-flat-array",
+      "name": "hidden: equal values produce zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          4,
+          4,
           4
         ]
       },
       "tags": [
         "hidden",
-        "linear"
+        "zero"
       ],
-      "expected": 570
+      "expected": 0
     }
   ]
 }

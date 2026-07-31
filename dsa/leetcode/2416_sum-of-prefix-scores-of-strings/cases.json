@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2416",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: shared abc prefixes",
+      "id": "sample-shared-prefixes",
+      "name": "sample: shared abc and b prefixes",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -26,8 +27,8 @@
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: single word",
+      "id": "sample-single-word",
+      "name": "sample: every prefix occurs once",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -43,29 +44,8 @@
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: disjoint first letters",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "words": [
-          "z",
-          "x",
-          "y"
-        ]
-      },
-      "expected": [
-        1,
-        1,
-        1
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
       "id": "trial-nested-prefixes",
-      "name": "trial: every word is a prefix of a later word",
+      "name": "nested words share increasingly few prefixes",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -81,26 +61,111 @@
         6
       ],
       "tags": [
-        "trial"
+        "nested"
       ]
     },
     {
-      "id": "real-two-disjoint-words",
-      "name": "hidden: two disjoint three-letter words",
+      "id": "trial-disjoint",
+      "name": "disjoint first letters share no prefix",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "z",
+          "x",
+          "y"
+        ]
+      },
+      "expected": [
+        1,
+        1,
+        1
+      ],
+      "tags": [
+        "disjoint"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "duplicate words count as separate entries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "words": [
+          "abc",
+          "abc"
+        ]
+      },
+      "expected": [
+        6,
+        6
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-branching",
+      "name": "hidden: words branch after a shared prefix",
       "kind": "real",
       "visible": false,
       "input": {
         "words": [
-          "dog",
-          "cat"
+          "apple",
+          "ape",
+          "april"
         ]
       },
       "expected": [
-        3,
-        3
+        9,
+        7,
+        9
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "branching"
+      ]
+    },
+    {
+      "id": "real-one-letter-duplicates",
+      "name": "hidden: duplicate one-letter words",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "expected": [
+        2,
+        2,
+        1
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-late-branch",
+      "name": "hidden: words differ only at the final character",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "words": [
+          "aaaa",
+          "aaab"
+        ]
+      },
+      "expected": [
+        7,
+        7
+      ],
+      "tags": [
+        "hidden",
+        "late-branch"
       ]
     }
   ]

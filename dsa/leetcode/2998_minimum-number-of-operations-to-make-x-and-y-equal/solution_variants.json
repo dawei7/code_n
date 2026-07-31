@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Number of Operations to Make X and Y Equal and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Memoizes the best cost after adjusting the current value to a multiple of 5 or 11 and dividing.",
+      "time_complexity": "O(log^2 X)",
+      "space_complexity": "O(log^2 X)"
     }
   ]
 }

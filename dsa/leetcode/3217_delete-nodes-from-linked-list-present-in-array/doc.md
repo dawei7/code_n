@@ -8,79 +8,43 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Linked List |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [delete-nodes-from-linked-list-present-in-array](https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/).
 
 ### Goal
-Given an array of integers and the head of a singly linked list, remove all nodes from the linked list whose values exist within the provided array. The function should return the head of the modified linked list, ensuring that the structural integrity of the remaining nodes is preserved.
+
+You are given an integer array `nums` and the head of a singly linked list. Remove every linked-list node whose value occurs in `nums`, reconnecting the nodes that remain in their original relative order.
+
+Return the head of the modified list. The values in `nums` are unique, and the input guarantees that at least one list node has a value absent from `nums`, so the returned list is nonempty. Nodes may repeat values even though the deletion array does not.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the values to be removed from the linked list.
-- `head`: The head node of a singly linked list.
+- `nums`: A list of unique integers with $1 \leq \lvert\texttt{nums}\rvert \leq 10^5$ and $1 \leq \texttt{nums[i]} \leq 10^5$.
+- `head`: The head of a singly linked list containing between $1$ and $10^5$ nodes; every node value is between $1$ and $10^5$.
 
 **Return value**
 
-- The head of the modified linked list after all nodes with values present in `nums` have been removed.
+Return the head of the linked list after removing every node whose value belongs to `nums`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [1, 2, 3], head = [1, 2, 3, 4, 5]`
 - Output: `[4, 5]`
+- Explanation: The first three nodes have listed values and are removed.
 
 **Example 2**
 
 - Input: `nums = [1], head = [1, 2, 1, 2, 1, 2]`
 - Output: `[2, 2, 2]`
+- Explanation: Every node with value `1` is removed, including the original head.
 
 **Example 3**
 
 - Input: `nums = [5], head = [1, 2, 3, 4]`
 - Output: `[1, 2, 3, 4]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a Hash Set for O(1) average-time complexity lookups of the values to be deleted, combined with a single-pass traversal of the linked list using a dummy head node to simplify edge cases involving the removal of the original head.
-
-### Complexity Analysis
-- **Time Complexity**: O(N + M), where N is the number of nodes in the linked list and M is the number of elements in the input array. We iterate through the array once to build the set and the list once to filter nodes.
-- **Space Complexity**: O(M), required to store the unique elements of the input array in a hash set for efficient lookup.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-def solve(nums: list[int], head: ListNode) -> ListNode:
-    # Convert nums to a set for O(1) average lookup time
-    val_set = set(nums)
-
-    # Use a dummy node to handle cases where the head itself needs to be removed
-    dummy = ListNode(0)
-    dummy.next = head
-
-    current = dummy
-
-    # Traverse the list and remove nodes whose values are in the set
-    while current.next:
-        if current.next.val in val_set:
-            # Skip the node
-            current.next = current.next.next
-        else:
-            # Move to the next node
-            current = current.next
-
-    return dummy.next
-```
-</details>
+- Explanation: No node value occurs in `nums`, so the list is unchanged.

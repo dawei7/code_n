@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_2565",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: remove one mismatching middle character",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abacaba",
+        "t": "bzaa"
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "middle-interval"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: remove the entire target",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "cde",
+        "t": "xyz"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "remove-all"
+      ]
+    },
+    {
+      "id": "trial-already-subsequence",
+      "name": "trial: no removal is needed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcde",
+        "t": "ace"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-score"
+      ]
+    },
+    {
+      "id": "trial-remove-prefix",
+      "name": "trial: remove one leading character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "xabc"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "prefix"
+      ]
+    },
+    {
+      "id": "trial-remove-suffix",
+      "name": "trial: remove one trailing character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc",
+        "t": "abcx"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "suffix"
+      ]
+    },
+    {
+      "id": "real-span-covers-retained-character",
+      "name": "hidden: removed endpoints make the full middle span count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abc",
+        "t": "axbyc"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "score-span"
+      ]
+    },
+    {
+      "id": "real-repeated-character-capacity",
+      "name": "hidden: retain one of several equal characters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "a",
+        "t": "aaaa"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "repeated-characters"
+      ]
+    },
+    {
+      "id": "real-separated-end-removals",
+      "name": "hidden: removing both ends charges their entire span",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "xyz",
+        "t": "axyzb"
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "noncontiguous-removals"
+      ]
+    },
+    {
+      "id": "real-long-middle-interval",
+      "name": "hidden: remove a longer middle block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abacaba",
+        "t": "bzzzaa"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "middle-interval"
+      ]
+    }
+  ]
+}

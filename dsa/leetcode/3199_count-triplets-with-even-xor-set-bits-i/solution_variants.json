@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Triplets with Even XOR Set Bits I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts even- and odd-popcount values in each array, then combines the four parity patterns whose XOR has even parity.",
+      "time_complexity": "O(A + B + C)",
+      "space_complexity": "O(1)"
     }
   ]
 }

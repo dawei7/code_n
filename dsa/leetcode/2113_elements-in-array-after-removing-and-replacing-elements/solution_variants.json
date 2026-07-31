@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Elements in Array After Removing and Replacing Elements and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Reduces each time modulo the cycle length and directly maps the visible suffix or restored prefix to the original array.",
+      "time_complexity": "O(q)",
+      "space_complexity": "O(q)"
     }
   ]
 }

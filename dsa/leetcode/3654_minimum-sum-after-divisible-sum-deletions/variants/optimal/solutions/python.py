@@ -1,0 +1,18 @@
+def solve(nums: list[int], k: int) -> int:
+    prefix_remainder = 0
+    minimum_for_remainder = {0: 0}
+    minimum_sum = 0
+    quorlathin = (nums, k)
+
+    for value in quorlathin[0]:
+        prefix_remainder = (prefix_remainder + value) % k
+        minimum_sum = min(
+            minimum_sum + value,
+            minimum_for_remainder.get(prefix_remainder, float("inf")),
+        )
+        minimum_for_remainder[prefix_remainder] = min(
+            minimum_for_remainder.get(prefix_remainder, float("inf")),
+            minimum_sum,
+        )
+
+    return minimum_sum

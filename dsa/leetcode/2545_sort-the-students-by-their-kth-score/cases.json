@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: sort by the third score column",
+      "name": "sample: sort by the third exam",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -51,12 +51,12 @@
       ],
       "tags": [
         "sample",
-        "sorting"
+        "middle-column"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: sort by the first score column",
+      "name": "sample: sort by the first exam",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -83,88 +83,111 @@
         ]
       ],
       "tags": [
-        "sample"
+        "sample",
+        "first-column"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: second student leads by subject one",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "score": [
-          [
-            1,
-            2,
-            3
-          ],
-          [
-            4,
-            5,
-            6
-          ]
-        ],
-        "k": 1
-      },
-      "expected": [
-        [
-          4,
-          5,
-          6
-        ],
-        [
-          1,
-          2,
-          3
-        ]
-      ],
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-already-sorted-descending",
-      "name": "trial: rows are already sorted by the target column",
+      "id": "trial-last-column",
+      "name": "trial: rank by the last exam",
       "kind": "trial",
       "visible": true,
       "input": {
         "score": [
           [
+            8,
             1,
-            9
+            14
           ],
           [
             2,
-            8
+            13,
+            7
           ],
           [
-            3,
-            7
+            11,
+            4,
+            10
+          ],
+          [
+            6,
+            15,
+            3
+          ]
+        ],
+        "k": 2
+      },
+      "expected": [
+        [
+          8,
+          1,
+          14
+        ],
+        [
+          11,
+          4,
+          10
+        ],
+        [
+          2,
+          13,
+          7
+        ],
+        [
+          6,
+          15,
+          3
+        ]
+      ],
+      "tags": [
+        "trial",
+        "last-column"
+      ]
+    },
+    {
+      "id": "trial-already-descending",
+      "name": "trial: rows already have descending keys",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "score": [
+          [
+            20,
+            90
+          ],
+          [
+            30,
+            70
+          ],
+          [
+            40,
+            50
           ]
         ],
         "k": 1
       },
       "expected": [
         [
-          1,
-          9
+          20,
+          90
         ],
         [
-          2,
-          8
+          30,
+          70
         ],
         [
-          3,
-          7
+          40,
+          50
         ]
       ],
       "tags": [
-        "trial"
+        "trial",
+        "already-sorted"
       ]
     },
     {
       "id": "real-single-student",
-      "name": "hidden: one row remains unchanged",
+      "name": "hidden: one student remains unchanged",
       "kind": "real",
       "visible": false,
       "input": {
@@ -181,7 +204,104 @@
         ]
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "minimum"
+      ]
+    },
+    {
+      "id": "real-reverse-order",
+      "name": "hidden: every row must move",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "score": [
+          [
+            1,
+            101
+          ],
+          [
+            2,
+            202
+          ],
+          [
+            3,
+            303
+          ],
+          [
+            4,
+            404
+          ]
+        ],
+        "k": 1
+      },
+      "expected": [
+        [
+          4,
+          404
+        ],
+        [
+          3,
+          303
+        ],
+        [
+          2,
+          202
+        ],
+        [
+          1,
+          101
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "reverse-order"
+      ]
+    },
+    {
+      "id": "real-preserve-whole-rows",
+      "name": "hidden: ranking retains non-key scores",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "score": [
+          [
+            81,
+            12,
+            63
+          ],
+          [
+            54,
+            95,
+            26
+          ],
+          [
+            37,
+            48,
+            79
+          ]
+        ],
+        "k": 1
+      },
+      "expected": [
+        [
+          54,
+          95,
+          26
+        ],
+        [
+          37,
+          48,
+          79
+        ],
+        [
+          81,
+          12,
+          63
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "row-integrity"
       ]
     }
   ]

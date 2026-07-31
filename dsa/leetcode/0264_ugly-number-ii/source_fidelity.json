@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_264", "frontend_id": "264", "title_slug": "ugly-number-ii", "url": "https://leetcode.com/problems/ugly-number-ii/description/", "paid_only": false, "content_sha256": "4ba308631990e16a1d24adfc6d4a73ad09866a01468e88ec1e44d356403ae656", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "n = 10", "output": "12", "has_explanation": true}, {"ordinal": 2, "input": "n = 1", "output": "1", "has_explanation": true}],
+    "constraint_count": 1,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "d6580f77184a3cd2dec441d026164d9c3db10d7aba3b43567797ac0b1e6c929c", "reference/contract.md": "ea52c20d29f393cb1e5ddde8e593f3f53c030d714e1d75b8319eca72d882770a", "reference/examples.md": "59618db90d5ab04a058b4821296f303fa24b0dd479363af8b19d8ec233552005", "reference/constraints.md": "ba5ceb2dbdc359663f4f258adb5a98d698969210ce1a1ea007979054dd978f24"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

@@ -5,51 +5,40 @@
 | Source | LeetCode |
 | Frontend ID | 2220 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Bit Manipulation |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-bit-flips-to-convert-number](https://leetcode.com/problems/minimum-bit-flips-to-convert-number/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-bit-flips-to-convert-number/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-bit-flips-to-convert-number/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A bit flip chooses one position in an integer's binary representation and changes that bit from `0` to `1` or from `1` to `0`. Positions in the leading-zero region may also be chosen, even though those zeros are not normally displayed.
+
+Given nonnegative integers `start` and `goal`, determine the minimum number of individual bit flips needed to transform `start` into `goal`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `start`: The nonnegative integer to transform.
+- `goal`: The desired nonnegative integer.
+
+Both values are at most $10^9$ and therefore use at most 30 relevant binary positions.
 
 **Return value**
 
-TODO
+Return the minimum number of bit positions whose values must be changed.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `start = 10, goal = 7`
+- Output: `3`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `start = 3, goal = 4`
+- Output: `3`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `start = 42, goal = 21`
+- Output: `6`

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximum Points Tourist Can Earn and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses rolling dynamic programming to evaluate every stay or directed travel transition for each day and destination city.",
+      "time_complexity": "O(kn^2)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -1,0 +1,340 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3237",
+  "cases": [
+    {
+      "id": "sample-repeated-query",
+      "name": "sample: repeated query and final move",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "windows": [
+          1,
+          2,
+          3
+        ],
+        "queries": [
+          3,
+          3,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        1
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three-distinct",
+      "name": "sample: three queried windows",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "windows": [
+          1,
+          4,
+          2,
+          3
+        ],
+        "queries": [
+          4,
+          1,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        1,
+        4,
+        2
+      ],
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-window",
+      "name": "trial: one window queried repeatedly",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "windows": [
+          1
+        ],
+        "queries": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "tags": [
+        "edge",
+        "single"
+      ]
+    },
+    {
+      "id": "trial-query-current-top",
+      "name": "trial: query the current top",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "windows": [
+          3,
+          1,
+          2
+        ],
+        "queries": [
+          3
+        ]
+      },
+      "expected": [
+        3,
+        1,
+        2
+      ],
+      "tags": [
+        "top"
+      ]
+    },
+    {
+      "id": "trial-every-window-reverse",
+      "name": "trial: reverse queries restore ascending order",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "windows": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "tags": [
+        "all-queried"
+      ]
+    },
+    {
+      "id": "trial-one-middle-window",
+      "name": "trial: one middle window moves forward",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "windows": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          2
+        ]
+      },
+      "expected": [
+        2,
+        1,
+        3,
+        4
+      ],
+      "tags": [
+        "subset"
+      ]
+    },
+    {
+      "id": "real-two-from-reversed-order",
+      "name": "real: two queried windows from reversed order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "windows": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "queries": [
+          1,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        1,
+        4,
+        2
+      ],
+      "tags": [
+        "subset"
+      ]
+    },
+    {
+      "id": "real-last-occurrence-wins",
+      "name": "real: last occurrence controls priority",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "windows": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "queries": [
+          2,
+          3,
+          2
+        ]
+      },
+      "expected": [
+        2,
+        3,
+        1,
+        4
+      ],
+      "tags": [
+        "duplicates",
+        "last-occurrence"
+      ]
+    },
+    {
+      "id": "real-duplicate-subset",
+      "name": "real: duplicate queries for a subset",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "windows": [
+          5,
+          1,
+          4,
+          2,
+          3
+        ],
+        "queries": [
+          4,
+          4,
+          2,
+          4
+        ]
+      },
+      "expected": [
+        4,
+        2,
+        5,
+        1,
+        3
+      ],
+      "tags": [
+        "duplicates",
+        "subset"
+      ]
+    },
+    {
+      "id": "real-same-query-only",
+      "name": "real: one identifier is queried many times",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "windows": [
+          2,
+          1,
+          3
+        ],
+        "queries": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-all-windows-with-repeat",
+      "name": "real: all windows queried with a repeat",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "windows": [
+          4,
+          1,
+          3,
+          2
+        ],
+        "queries": [
+          1,
+          4,
+          2,
+          1,
+          3
+        ]
+      },
+      "expected": [
+        3,
+        1,
+        2,
+        4
+      ],
+      "tags": [
+        "all-queried",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-unqueried-order-preserved",
+      "name": "real: unqueried windows keep original order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "windows": [
+          6,
+          2,
+          5,
+          1,
+          4,
+          3
+        ],
+        "queries": [
+          5,
+          3,
+          5
+        ]
+      },
+      "expected": [
+        5,
+        3,
+        6,
+        2,
+        1,
+        4
+      ],
+      "tags": [
+        "subset",
+        "stability"
+      ]
+    }
+  ]
+}

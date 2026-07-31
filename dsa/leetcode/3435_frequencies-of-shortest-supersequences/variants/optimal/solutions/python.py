@@ -1,44 +1,58 @@
 from itertools import combinations
 
 
-def solve(words):
-    letters = sorted(set("".join(words)))
-    index = {letter: pos for pos, letter in enumerate(letters)}
+def solve(words: list[str]) -> list[list[int]]:
+    letters = sorted({letter for word in words for letter in word})
+    index = {letter: i for i, letter in enumerate(letters)}
     m = len(letters)
-    edges = [(index[word[0]], index[word[1]]) for word in words]
+    outgoing = [0] * m
+    for first, second in words:
+        outgoing[index[first]] |= 1 << index[second]
 
-    def acyclic(duplicated: set[int]) -> bool:
-        state = [0] * m
+    full = (1 << m) - 1
+    for doubled_count in range(m + 1):
+        answers: list[list[int]] = []
+        for vertices in combinations(range(m), doubled_count):
+            doubled = sum(1 << vertex for vertex in vertices)
+            remaining = full ^ doubled
+            indegree = [0] * m
+            for source in range(m):
+                if remaining >> source & 1:
+                    targets = outgoing[source] & remaining
+                    while targets:
+                        bit = targets & -targets
+                        indegree[bit.bit_length() - 1] += 1
+                        targets ^= bit
 
-        def dfs(node: int) -> bool:
-            state[node] = 1
-            for source, target in edges:
-                if source != node or target in duplicated:
-                    continue
-                if state[target] == 1:
-                    return False
-                if state[target] == 0 and not dfs(target):
-                    return False
-            state[node] = 2
-            return True
+            ready = 0
+            for vertex in range(m):
+                if remaining >> vertex & 1 and indegree[vertex] == 0:
+                    ready |= 1 << vertex
 
-        for node in range(m):
-            if node in duplicated or state[node] != 0:
+            visited = 0
+            while ready:
+                bit = ready & -ready
+                ready ^= bit
+                source = bit.bit_length() - 1
+                visited |= bit
+                targets = outgoing[source] & remaining
+                while targets:
+                    target_bit = targets & -targets
+                    target = target_bit.bit_length() - 1
+                    indegree[target] -= 1
+                    if indegree[target] == 0:
+                        ready |= target_bit
+                    targets ^= target_bit
+
+            if visited != remaining:
                 continue
-            if not dfs(node):
-                return False
-        return True
+            frequencies = [0] * 26
+            for letter, vertex in index.items():
+                frequencies[ord(letter) - ord("a")] = 1 + (
+                    doubled >> vertex & 1
+                )
+            answers.append(frequencies)
 
-    answers = []
-    for duplicate_count in range(m + 1):
-        for combo in combinations(range(m), duplicate_count):
-            duplicated = set(combo)
-            if not acyclic(duplicated):
-                continue
-            freq = [0] * 26
-            for letter, pos in index.items():
-                freq[ord(letter) - ord("a")] = 2 if pos in duplicated else 1
-            answers.append(freq)
         if answers:
             return answers
 

@@ -8,89 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Breadth-First Search, Graph Theory, Heap (Priority Queue), Matrix, Shortest Path |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-time-to-visit-a-cell-in-a-grid](https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/) |
+| LeetCode | [Minimum Time to Visit a Cell In a Grid](https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid/).
 
 ### Goal
-Given a 2D grid of size `m x n` where each cell contains a non-negative integer representing the earliest time you can enter that cell, determine the minimum time required to travel from the top-left corner `(0, 0)` to the bottom-right corner `(m-1, n-1)`. You can move to adjacent cells (up, down, left, right) at each time step, but you can only enter a cell if your current time is greater than or equal to the value stored in that cell. If you arrive at an adjacent cell earlier than its required time, you must "wait" by moving back and forth between the current cell and an adjacent one until the time is sufficient to enter the target cell.
+
+You are given an $m \times n$ matrix `grid` of non-negative integers. The value `grid[row][col]` is the minimum time at which cell `(row, col)` may be visited: entering that cell at time $t$ is legal only when $t \geq \texttt{grid[row][col]}$.
+
+You begin in the top-left cell `(0, 0)` at time $0$. At every second you must move to an adjacent cell in one of the four cardinal directions; remaining stationary is not allowed. Consequently, passing time may require moving back and forth between already available cells.
+
+Return the minimum time at which the bottom-right cell `(m - 1, n - 1)` can be visited. Return `-1` when no legal first move exists and the destination is therefore unreachable.
 
 ### Function Contract
+
 **Inputs**
 
-- `grid`: A 2D list of integers where `grid[i][j]` is the minimum time required to enter cell `(i, j)`.
+- `grid`: An $m \times n$ matrix of non-negative integers, where `grid[row][col]` is the earliest permitted visit time for that cell.
+
+The dimensions satisfy $2 \leq m,n \leq 1000$ and $4 \leq mn \leq 10^5$. Every cell value lies between $0$ and $10^5$, inclusive, and `grid[0][0] = 0`.
 
 **Return value**
 
-- An integer representing the minimum time to reach `(m-1, n-1)`. If it is impossible to reach the destination, return `-1`.
+- The minimum legal arrival time at `(m - 1, n - 1)`, or `-1` if the destination cannot be reached.
 
 ### Examples
+
 **Example 1**
 
 - Input: `grid = [[0,1,3,2],[5,1,2,5],[4,3,8,6]]`
 - Output: `7`
+- Explanation: A legal route reaches `(0, 1)` at time $1$, uses accessible cells to keep moving while later cells unlock, and first reaches `(2, 3)` at time $7$.
 
 **Example 2**
 
 - Input: `grid = [[0,2,4],[3,2,1],[1,0,4]]`
 - Output: `-1`
-
-**Example 3**
-
-- Input: `grid = [[0,1],[1,2]]`
-- Output: `2`
-
----
-
-## Solution
-### Approach
-The problem is modeled as a shortest-path problem on a weighted graph. Since we need to find the minimum time, **Dijkstra's Algorithm** is the optimal choice. The state is defined by `(time, row, col)`. When moving from a cell, if the current time plus one is less than the target cell's requirement, we calculate the wait time. If the difference between the target requirement and the current time is odd, we can reach the target exactly at the requirement time; if even, we must wait one extra unit to maintain parity.
-
-### Complexity Analysis
-- **Time Complexity**: `O(E log V)` where `E` is the number of edges (4 per cell) and `V` is the number of vertices (`m * n`). This simplifies to `O(m * n * log(m * n))`.
-- **Space Complexity**: `O(m * n)` to store the `visited` matrix and the priority queue.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import heapq
-
-def solve(grid: list[list[int]]) -> int:
-    m, n = len(grid), len(grid[0])
-
-    # If the first step is impossible, return -1
-    if grid[0][1] > 1 and grid[1][0] > 1:
-        return -1
-
-    # Priority Queue stores (time, row, col)
-    pq = [(0, 0, 0)]
-    visited = set([(0, 0)])
-
-    while pq:
-        time, r, c = heapq.heappop(pq)
-
-        if r == m - 1 and c == n - 1:
-            return time
-
-        for dr, dc in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-            nr, nc = r + dr, c + dc
-
-            if 0 <= nr < m and 0 <= nc < n and (nr, nc) not in visited:
-                wait = 0
-                # If the next cell's requirement is greater than current time + 1
-                if grid[nr][nc] > time + 1:
-                    diff = grid[nr][nc] - (time + 1)
-                    # If diff is odd, we can arrive exactly at grid[nr][nc]
-                    # If diff is even, we arrive at grid[nr][nc] + 1
-                    wait = diff if diff % 2 == 0 else diff + 1
-
-                new_time = time + 1 + wait
-                visited.add((nr, nc))
-                heapq.heappush(pq, (new_time, nr, nc))
-
-    return -1
-```
-</details>
+- Explanation: At time $1$, neither neighbor of `(0, 0)` is available. Because a move is mandatory, no route can begin.

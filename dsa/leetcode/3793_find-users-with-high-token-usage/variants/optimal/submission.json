@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4195",
+  "frontend_id": "3793",
+  "title_slug": "find-users-with-high-token-usage",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2085419307",
+  "verified_at": "2026-07-29T00:43:39.755239+00:00"
+}

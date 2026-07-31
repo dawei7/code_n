@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3557",
+  "measurement_note": "Size is n, the string length. Legal tiers 32, 128, and 512 span 16x. Every fourth equal letter closes another optimal interval, while every position also has quadratically many potential equal-letter partners. The reference scans once in O(n), while a correct DP that tries every earlier start for each endpoint takes O(n^2) and must fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-equal-letters-32",
+      "name": "benchmark: 32 equal letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "repeated-letter",
+        "many-intervals",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-equal-letters-128",
+      "name": "benchmark: 128 equal letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark",
+        "repeated-letter",
+        "many-intervals",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-equal-letters-512",
+      "name": "benchmark: 512 equal letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": 128,
+      "tags": [
+        "benchmark",
+        "repeated-letter",
+        "many-intervals",
+        "scale-large"
+      ]
+    }
+  ]
+}

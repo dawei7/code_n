@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2557",
+  "measurement_note": "Size is n, the upper bound of the candidate range. Each workload bans only n and supplies exactly enough budget for every smaller value, forcing a linear-scan implementation to visit the full range while the gap-based reference searches it arithmetically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: full affordable range through 1000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {"banned": [1000], "n": 1000, "maxSum": 499500},
+      "expected": 999,
+      "tags": ["benchmark", "scale-small", "linear-scan-contrast"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: full affordable range through 4000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4000,
+      "input": {"banned": [4000], "n": 4000, "maxSum": 7998000},
+      "expected": 3999,
+      "tags": ["benchmark", "scale-medium", "linear-scan-contrast"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: full affordable range through 16000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16000,
+      "input": {"banned": [16000], "n": 16000, "maxSum": 127992000},
+      "expected": 15999,
+      "tags": ["benchmark", "scale-large", "linear-scan-contrast"]
+    }
+  ]
+}

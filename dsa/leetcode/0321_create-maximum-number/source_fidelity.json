@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_321", "frontend_id": "321", "title_slug": "create-maximum-number", "url": "https://leetcode.com/problems/create-maximum-number/description/", "paid_only": false, "content_sha256": "e4e4fedb0c94025a67cf4862af484f8b89719a6812c437fae1453c572ed0c7ea", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums1 = [3,4,6,5], nums2 = [9,1,2,5,8,3], k = 5", "output": "[9,8,6,5,3]", "has_explanation": false},
+      {"ordinal": 2, "input": "nums1 = [6,7], nums2 = [6,0,4], k = 5", "output": "[6,7,6,0,4]", "has_explanation": false},
+      {"ordinal": 3, "input": "nums1 = [3,9], nums2 = [8,9], k = 3", "output": "[9,8,9]", "has_explanation": false}
+    ],
+    "constraint_count": 6,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "d13e71d311aca34f39136ca2a368627dae6143d6ef6d53f86b54e1f6b29117d7",
+    "reference/contract.md": "3c93a0fbab25f84222d863a0bfab67fd4b64c028f3550a01b87e77b9dbecac0a",
+    "reference/examples.md": "1a96a82f005eb3ec3cbcb7c7f628b691589f0e6de00c796eb3e949c4576caecf",
+    "reference/constraints.md": "4f01e3d0136636a7b497a4c1b41ea1bcaa856f9f6763cc1d6e65957ad4fd2d9c"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

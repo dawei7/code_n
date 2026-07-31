@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3812",
+    "frontend_id": "3812",
+    "title_slug": "minimum-edge-toggles-on-a-tree",
+    "url": "https://leetcode.com/problems/minimum-edge-toggles-on-a-tree/description/",
+    "paid_only": false,
+    "content_sha256": "fbf95ae08a95a863749be54104aca80c1b970e22cc1f505cf37515f704b237ff",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`n = 3, edges = [[0,1],[1,2]], start = \"010\", target = \"100\"`",
+        "output": "`[0]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`n = 7, edges = [[0,1],[1,2],[2,3],[3,4],[3,5],[1,6]], start = \"0011000\", target = \"0010001\"`",
+        "output": "`[1,2,5]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "`n = 2, edges = [[0,1]], start = \"00\", target = \"01\"`",
+        "output": "`[-1]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 7,
+    "visuals": {
+      "source_images": 3,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 3,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f83910810849d6ffea6c98d8a86b3525b7febb4e2c5e4d315271ae737025b08d",
+      "reference/contract.md": "f466a5e8090ace6d32f115126d43b7fdfb331b7b02311bc7e467ca1eedc3768d",
+      "reference/examples.md": "4ccce43f8670919875aa09273e1fea0bafc362b09d33d0079a57540c80e56d79",
+      "reference/constraints.md": "3e416cee15aeb72b86e39b7da7d21411bc8c15ff7098220f6a28110e6383fdc9"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

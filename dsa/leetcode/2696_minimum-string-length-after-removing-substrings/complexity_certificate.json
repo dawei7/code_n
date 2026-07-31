@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2696",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The legal string length is at most 100, which is too small for the runtime harness to separate linear stack processing from correct repeated replacement; the implementation nevertheless performs one bounded pass with at most one push and one pop per character.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 100,
+    "unit": "uppercase characters",
+    "source_constraint": "s.length is between one and 100."
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Each of the n characters is read once, pushed at most once, and popped at most once, establishing linear work over the complete legal domain."},
+    {"kind": "boundary_property_cases", "evidence": "Cases cover both removable pairs, no removal, reversed pairs, independent pairs, cross-kind cascades, long center-out cascades, empty results, and unmatched boundaries."}
+  ]
+}

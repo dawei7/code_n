@@ -1,0 +1,12 @@
+## Examples
+
+**Example 1**
+
+- Input: `nums = [3,5,2,1,6,4]`
+- Output: `[3,5,1,6,2,4]`
+- Explanation: `[1,6,2,5,3,4]` is another accepted arrangement.
+
+**Example 2**
+
+- Input: `nums = [6,6,5,6,3,8]`
+- Output: `[6,6,5,6,3,8]`

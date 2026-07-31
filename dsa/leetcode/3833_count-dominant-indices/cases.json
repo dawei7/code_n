@@ -1,0 +1,373 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3833",
+  "cases": [
+    {
+      "id": "sample-two-dominant",
+      "name": "sample: both eligible indices are dominant",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "decreasing",
+        "explained"
+      ]
+    },
+    {
+      "id": "sample-one-dominant",
+      "name": "sample: only the first index is dominant",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          2
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed-order",
+        "explained"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "trial: a singleton has no eligible index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "singleton",
+        "empty-right-suffix"
+      ]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "trial: no value beats an increasing suffix average",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "increasing",
+        "none-dominant"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: every non-rightmost value is dominant",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "decreasing",
+        "all-eligible"
+      ]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: strict comparison rejects equal averages",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "strict-inequality"
+      ]
+    },
+    {
+      "id": "trial-exact-average",
+      "name": "trial: equality with a mixed suffix average does not qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          2,
+          4
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "exact-average",
+        "strict-inequality"
+      ]
+    },
+    {
+      "id": "real-average-not-maximum",
+      "name": "hidden: dominance does not require exceeding every suffix value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          6,
+          10,
+          1
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "average-semantics",
+        "mixed-order"
+      ]
+    },
+    {
+      "id": "real-only-late-index",
+      "name": "hidden: only an index near the end qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "late-dominance",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-only-first-index",
+      "name": "hidden: only the first value beats its complete suffix average",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          1,
+          1,
+          10
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "first-index",
+        "mixed-order"
+      ]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: minimum and maximum values alternate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          1,
+          100,
+          1,
+          100
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "minimum-value",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: one low endpoint makes every earlier maximum dominant",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          1
+        ]
+      },
+      "expected": 99,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "maximum-value"
+      ]
+    }
+  ]
+}
+

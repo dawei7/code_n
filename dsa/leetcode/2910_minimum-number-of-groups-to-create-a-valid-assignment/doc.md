@@ -8,94 +8,34 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-number-of-groups-to-create-a-valid-assignment](https://leetcode.com/problems/minimum-number-of-groups-to-create-a-valid-assignment/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-number-of-groups-to-create-a-valid-assignment/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-number-of-groups-to-create-a-valid-assignment/).
-
 ### Goal
-Given an array of integers, partition all elements into groups such that each group contains only one type of integer. A valid assignment requires that for any two groups of the same integer type, the difference in their sizes is at most 1. The objective is to minimize the total number of groups formed.
+A collection of numbered balls is given by the array `balls`. Place every ball into exactly one box. Each box must be homogeneous: all balls inside it have the same value. Balls carrying the same value may be split among several boxes.
+
+The distribution must also be nearly balanced across the entire collection of boxes. The largest box may contain at most one ball more than the smallest box, regardless of which values their balls carry. Return the minimum number of boxes needed to satisfy both rules.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: A list of integers representing the items to be grouped.
+- `balls`: An integer array of length $n$, where $1\le n\le 10^5$ and $1\le\texttt{balls}[i]\le 10^9$.
+
+Let $u$ be the number of distinct values in `balls`.
 
 **Return value**
 
-- An integer representing the minimum total number of groups possible under the given constraints.
+Return the fewest boxes in a valid assignment of every ball.
 
 ### Examples
 **Example 1**
 
-- Input: `nums = [3,2,3,2,3]`
+- Input: `balls = [3, 2, 3, 2, 3]`
 - Output: `2`
-- Explanation: We can form two groups of 3s (size 3) and two groups of 2s (size 2). Total groups: 2.
+- Explanation: Use boxes `[3, 3, 3]` and `[2, 2]`. Their sizes differ by one.
 
 **Example 2**
 
-- Input: `nums = [10,10,10,3,1,1]`
+- Input: `balls = [10, 10, 10, 3, 1, 1]`
 - Output: `4`
-- Explanation: We can group 10s into one group of 3, 3s into one group of 1, and 1s into one group of 2. Total groups: 4.
-
-**Example 3**
-
-- Input: `nums = [1,1,3,3,3,3,3,3]`
-- Output: `3`
-
----
-
-## Solution
-### Approach
-The problem is solved using a greedy approach combined with mathematical optimization. First, we count the frequency of each number. Let the minimum frequency be `min_f`. Any valid group size `k` must satisfy the condition that each frequency `f` can be partitioned into groups of size `k` and `k+1`. Specifically, `f = a*k + b*(k+1)` where `a+b` is the number of groups. We iterate through all possible group sizes `k` from `min_f` down to 1. For a fixed `k`, we check if every frequency can be validly partitioned. The first `k` that satisfies this for all frequencies yields the minimum number of groups.
-
-### Complexity Analysis
-- **Time Complexity**: O(N + M * sqrt(min_f)), where N is the number of elements and M is the number of unique elements. We iterate through possible group sizes up to the minimum frequency.
-- **Space Complexity**: O(M) to store the frequency map of the elements.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import Counter
-import math
-
-def solve(nums: list[int]) -> int:
-    counts = Counter(nums)
-    freqs = list(counts.values())
-    min_f = min(freqs)
-
-    def get_groups(f, k):
-        # We want to represent f = a*k + b*(k+1)
-        # This is equivalent to f = (a+b)*k + b
-        # where 0 <= b <= a+b
-        # Let n = a+b (total groups). Then f = n*k + b, where 0 <= b <= n
-        # This implies n*k <= f <= n*(k+1)
-        # n >= f / (k+1) and n <= f / k
-        # So we need to find if there exists an integer n in [ceil(f/(k+1)), floor(f/k)]
-
-        n_min = math.ceil(f / (k + 1))
-        n_max = f // k
-
-        if n_min <= n_max:
-            return n_min
-        return float('inf')
-
-    # Try possible group sizes k starting from min_f down to 1
-    for k in range(min_f, 0, -1):
-        total_groups = 0
-        possible = True
-        for f in freqs:
-            groups = get_groups(f, k)
-            if groups == float('inf'):
-                possible = False
-                break
-            total_groups += groups
-
-        if possible:
-            return total_groups
-
-    return -1
-```
-</details>
+- Explanation: Boxes `[10]`, `[10, 10]`, `[3]`, and `[1, 1]` have sizes one or two. Three boxes cannot satisfy both homogeneity and global balance.

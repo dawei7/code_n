@@ -1,0 +1,12 @@
+{"challenge_id":"lc_3307","cases":[
+{"id":"sample-copy-only","name":"sample: copied word stays all a","kind":"sample","visible":true,"input":{"k":5,"operations":[0,0,0]},"expected":"a","tags":["sample","copy"]},
+{"id":"sample-mixed","name":"sample: mixed operations at position ten","kind":"sample","visible":true,"input":{"k":10,"operations":[0,1,0,1]},"expected":"b","tags":["sample","mixed"]},
+{"id":"trial-first","name":"trial: initial character is never shifted","kind":"trial","visible":true,"input":{"k":1,"operations":[1]},"expected":"a","tags":["minimum"]},
+{"id":"trial-copy-second","name":"trial: copied second character","kind":"trial","visible":true,"input":{"k":2,"operations":[0]},"expected":"a","tags":["copy"]},
+{"id":"trial-shift-second","name":"trial: transformed second character","kind":"trial","visible":true,"input":{"k":2,"operations":[1]},"expected":"b","tags":["shift"]},
+{"id":"trial-two-shifts","name":"trial: both path bits select transformations","kind":"trial","visible":true,"input":{"k":4,"operations":[1,1]},"expected":"c","tags":["multiple-shifts"]},
+{"id":"real-mixed-bits","name":"real: only one selected operation shifts","kind":"real","visible":false,"input":{"k":7,"operations":[1,0,1]},"expected":"b","tags":["bit-path"]},
+{"id":"real-alphabet-wrap","name":"real: twenty-six shifts wrap to a","kind":"real","visible":false,"input":{"k":67108864,"operations":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":"a","tags":["wrap"]},
+{"id":"real-high-operation","name":"real: only the highest relevant operation shifts","kind":"real","visible":false,"input":{"k":70368744177664,"operations":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]},"expected":"b","tags":["high-bit"]},
+{"id":"real-maximum-k","name":"real: maximum position with every operation shifting","kind":"real","visible":false,"input":{"k":100000000000000,"operations":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":"e","tags":["maximum","wrap"]}
+]}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Operations to Transform Array into Alternating Prime and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds one prime sieve, binary-searches the next prime for even indices, and directly repairs prime odd indices.",
+      "time_complexity": "O(M log log M + N log M)",
+      "space_complexity": "O(M)"
     }
   ]
 }

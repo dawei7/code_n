@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3659",
+  "cases": [
+    {
+      "id": "sample-unique-pairs",
+      "name": "sample: unique values form pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "distinct"
+      ]
+    },
+    {
+      "id": "sample-repeat-separated",
+      "name": "sample: repeated value is separated",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          5,
+          2,
+          2
+        ],
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "repeated-value"
+      ]
+    },
+    {
+      "id": "sample-indivisible",
+      "name": "sample: length is not divisible by k",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "trial-frequency-at-limit",
+      "name": "trial: frequency exactly equals group count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2
+        ],
+        "k": 2
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "inclusive-frequency-boundary"
+      ]
+    },
+    {
+      "id": "trial-frequency-over-limit",
+      "name": "trial: one value needs too many groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 3
+      },
+      "expected": false,
+      "tags": [
+        "trial",
+        "frequency-limit"
+      ]
+    },
+    {
+      "id": "trial-singletons",
+      "name": "trial: k equals one with repetitions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 1
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "k-one"
+      ]
+    },
+    {
+      "id": "real-one-full-distinct-group",
+      "name": "hidden: k equals n and all values differ",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          6,
+          5
+        ],
+        "k": 5
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "k-equals-n"
+      ]
+    },
+    {
+      "id": "real-one-full-duplicate-group",
+      "name": "hidden: k equals n with a duplicate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          8,
+          7,
+          7,
+          5
+        ],
+        "k": 5
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "k-equals-n",
+        "duplicate"
+      ]
+    },
+    {
+      "id": "real-several-frequencies-fit",
+      "name": "hidden: several values fill all groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4
+        ],
+        "k": 3
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "balanced-capacities"
+      ]
+    }
+  ]
+}

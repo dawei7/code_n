@@ -8,48 +8,56 @@
 | Category | Algorithms |
 | Topics | Hash Table, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [decode-the-message](https://leetcode.com/problems/decode-the-message/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/decode-the-message/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/decode-the-message/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The strings `key` and `message` describe a substitution cipher. Read `key`
+from left to right and retain only the first occurrence of each lowercase
+English letter. The problem guarantees that this first-occurrence sequence
+eventually contains all 26 letters.
+
+Align the first retained letter with `a`, the second with `b`, and so on
+through `z`. Decode every letter of `message` using that mapping while
+preserving each space exactly as a space. Return the resulting plaintext
+string; repeated letters or spaces in `key` do not create new table entries.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `key`: A string of length from 26 through 2000 containing lowercase English
+  letters and spaces. Every lowercase letter occurs at least once.
+- `message`: A nonempty string of at most 2000 lowercase English letters and
+  spaces.
 
 **Return value**
 
-TODO
+The decoded message obtained from the first-occurrence substitution table,
+with spaces unchanged.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `key = "the quick brown fox jumps over the lazy dog"`,
+  `message = "vkbs bs t suepuv"`
+- Output: `"this is a secret"`
+- Explanation: The distinct letters encountered in `key` begin `t`, `h`, `e`,
+  so those cipher letters decode to `a`, `b`, and `c`, respectively.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `key = "eljuxhpwnyrdgtqkviszcfmabo"`,
+  `message = "zwx hnfx lqantp mnoeius ycgk vcnjrdb"`
+- Output: `"the five boxing wizards jump quickly"`
+- Explanation: Since the key has no repeated letters, its order directly
+  defines all 26 substitutions.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `key = "abcdefghijklmnopqrstuvwxyz"`, `message = "stay curious"`
+- Output: `"stay curious"`
+- Explanation: Alphabetical key order creates the identity substitution.

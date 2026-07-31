@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_3761","cases":[
+{"id":"sample-two-pairs","name":"sample: choose the closer of two mirror pairs","kind":"sample","visible":true,"input":{"nums":[12,21,45,33,54]},"expected":1,"validator":{"kind":"exact"},"tags":["sample","multiple-pairs"]},
+{"id":"sample-trailing-zero-forward","name":"sample: reversing an earlier trailing-zero value matches","kind":"sample","visible":true,"input":{"nums":[120,21]},"expected":1,"validator":{"kind":"exact"},"tags":["sample","trailing-zero"]},
+{"id":"sample-directional-miss","name":"sample: reversing only the earlier value prevents a match","kind":"sample","visible":true,"input":{"nums":[21,120]},"expected":-1,"validator":{"kind":"exact"},"tags":["sample","direction"]},
+{"id":"trial-single-trailing-zero","name":"trial: ten reverses to one","kind":"trial","visible":true,"input":{"nums":[10,1]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","leading-zero-omission"]},
+{"id":"trial-reverse-order","name":"trial: one followed by ten is not a mirror pair","kind":"trial","visible":true,"input":{"nums":[1,10]},"expected":-1,"validator":{"kind":"exact"},"tags":["trial","direction"]},
+{"id":"trial-palindrome","name":"trial: repeated palindrome values match","kind":"trial","visible":true,"input":{"nums":[33,33]},"expected":1,"validator":{"kind":"exact"},"tags":["trial","palindrome"]},
+{"id":"real-latest-index","name":"hidden: latest matching source minimizes the distance","kind":"real","visible":false,"input":{"nums":[12,99,12,21]},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","latest-index"]},
+{"id":"real-upper-bound-reversal","name":"hidden: maximum value reverses after dropping zeros","kind":"real","visible":false,"input":{"nums":[1000000000,1]},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","value-boundary"]}
+]}

@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_3490",
+  "cases": [
+    {
+      "id": "sample-two-multiples-of-ten",
+      "name": "sample: only the two multiples of ten qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {"l": 10, "r": 20},
+      "expected": 2,
+      "tags": ["sample", "zero-digit"]
+    },
+    {
+      "id": "sample-one-digit-and-ten",
+      "name": "sample: all one-digit values and ten qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {"l": 1, "r": 15},
+      "expected": 10,
+      "tags": ["sample", "one-digit"]
+    },
+    {
+      "id": "trial-smallest-number",
+      "name": "trial: smallest legal interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 1, "r": 1},
+      "expected": 1,
+      "tags": ["trial", "minimum-bound"]
+    },
+    {
+      "id": "trial-non-beautiful-singleton",
+      "name": "trial: singleton whose product is not divisible by its sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 19, "r": 19},
+      "expected": 0,
+      "tags": ["trial", "singleton", "non-beautiful"]
+    },
+    {
+      "id": "trial-crossing-hundred",
+      "name": "trial: interval crosses a decimal-length boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 99, "r": 101},
+      "expected": 2,
+      "tags": ["trial", "decimal-boundary", "zero-digit"]
+    },
+    {
+      "id": "real-all-contain-zero",
+      "name": "real: every number contains a zero digit",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 200, "r": 209},
+      "expected": 10,
+      "tags": ["real", "zero-digit", "complete-block"]
+    },
+    {
+      "id": "real-four-digit-block",
+      "name": "real: mixed four-digit interval",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 1000, "r": 1999},
+      "expected": 373,
+      "tags": ["real", "four-digits"]
+    },
+    {
+      "id": "real-interior-range",
+      "name": "real: subtract two nontrivial three-digit prefix counts",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 123, "r": 678},
+      "expected": 189,
+      "tags": ["real", "range-subtraction"]
+    },
+    {
+      "id": "real-dense-nines",
+      "name": "real: three-digit interval ending in all nines",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 900, "r": 999},
+      "expected": 34,
+      "tags": ["real", "three-digits", "all-nines"]
+    }
+  ]
+}

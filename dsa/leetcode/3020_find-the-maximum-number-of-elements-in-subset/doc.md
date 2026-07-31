@@ -8,97 +8,52 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-maximum-number-of-elements-in-subset](https://leetcode.com/problems/find-the-maximum-number-of-elements-in-subset/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-maximum-number-of-elements-in-subset/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-maximum-number-of-elements-in-subset/).
 
 ### Goal
-Given an array of integers, identify the largest possible subset such that the elements can be arranged in a sequence $[x, x^2, x^4, \dots, x^{2^k}]$ where each element is the square of the previous one. The subset must have an odd number of elements.
+
+You are given an array `nums` of positive integers. Select a nonempty subset of its occurrences and rearrange the selected values into a symmetric square chain.
+
+For some positive integer $x$, the arrangement must begin with repeated squaring,
+
+$$
+x, x^2, x^4, ldots,
+$$
+
+reach one central value, and then mirror the preceding values in reverse order. Examples include `[3]`, `[3, 9, 3]`, and `[2, 4, 16, 4, 2]`. By contrast, `[2, 4, 8, 4, 2]` is invalid because $8\ne4^2$.
+
+Every noncentral value therefore needs two copies in the selected subset, while the center needs one. Return the maximum number of selected elements that can form such a pattern.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers (`List[int]`).
+- `nums`: A list of positive integers; duplicate occurrences may occupy symmetric positions.
+
+The source constraints guarantee $2 \le N \le 10^5$, $1 \le \texttt{nums}[i] \le 10^9$, where $N=\lvert\texttt{nums}\rvert$.
 
 **Return value**
 
-- An integer representing the maximum size of a valid subset.
+- The maximum odd length of a subset that can be rearranged into a symmetric square chain.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [5, 4, 1, 2, 2]`
 - Output: `3`
-- Explanation: The subset `[2, 4, 2]` forms the sequence `[2, 4, 2]` (or `[2, 4, 2]` is not the sequence, but the subset `[2, 4, 2]` can be ordered as `2, 4, 2`? No, the sequence is `2, 4, 16...`. The subset `[2, 4, 2]` is valid because $2^1=2, 2^2=4, 4^2=16$ is not possible, but $2, 4, 2$ is not the sequence. Wait, the sequence is $x, x^2, x^4...$. For `[2, 4, 2]`, we have $2, 4$. The subset is `[2, 4, 2]`. The sequence is $2, 4$. The size is 3.
+- Explanation: Select two copies of `2` and one `4`, then arrange them as `[2, 4, 2]`.
 
 **Example 2**
 
-- Input: `nums = [1, 1]`
+- Input: `nums = [1, 3, 2, 4]`
 - Output: `1`
+- Explanation: No value has the duplicate needed for a noncentral layer, so any single value is optimal.
 
 **Example 3**
 
-- Input: `nums = [1, 3, 9, 27]`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-The problem is solved using a Frequency Map (Hash Table). We count the occurrences of each number. For the number `1`, the subset size is simply the count of `1`s (if odd, use all; if even, use count-1). For other numbers $x > 1$, we simulate the chain $x, x^2, x^4, \dots$ as long as the numbers exist in the frequency map, keeping track of the chain length and ensuring the subset size remains odd.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N + M \log(\log(\max(nums))))$, where $N$ is the number of elements and $M$ is the number of unique elements. The chain length is logarithmic relative to the maximum value.
-- **Space Complexity**: $O(N)$ to store the frequency map of the input array.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import Counter
-import math
-
-def solve(nums: list[int]) -> int:
-    counts = Counter(nums)
-    max_subset_size = 1
-
-    # Handle the special case for 1
-    if 1 in counts:
-        ones = counts[1]
-        if ones % 2 == 0:
-            max_subset_size = max(max_subset_size, ones - 1)
-        else:
-            max_subset_size = max(max_subset_size, ones)
-
-    # Handle numbers > 1
-    # We only need to iterate through unique keys
-    unique_nums = sorted(counts.keys())
-
-    for x in unique_nums:
-        if x == 1:
-            continue
-
-        curr = x
-        count = 0
-        # Build the chain x, x^2, x^4, ...
-        while curr in counts and counts[curr] >= 2:
-            count += 2
-            curr = curr * curr
-
-        # After the loop, we check if the last element exists
-        if curr in counts:
-            count += 1
-
-        # The subset size must be odd.
-        # If we have a chain of length 'count' (which is always odd),
-        # we take it. If 'count' is even, we take 'count - 1'.
-        if count % 2 == 0:
-            count -= 1
-
-        max_subset_size = max(max_subset_size, count)
-
-    return max_subset_size
-```
-</details>
+- Input: `nums = [2, 2, 4, 4, 16]`
+- Output: `5`
+- Explanation: All five values form `[2, 4, 16, 4, 2]`.

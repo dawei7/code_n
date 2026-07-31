@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3750",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(B)",
+  "summary": "The legal integer has at most 30 binary digits, which is too narrow for an honest runtime-scaling verdict; the accepted implementation constructs and compares that bounded representation once.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 30,
+    "unit": "binary digits",
+    "source_constraint": "1 <= n <= 10^9"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted source creates at most 30 binary characters and compares each character with exactly one reversed position, establishing O(B) time across the complete legal width bound."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The dedicated regression compares the accepted adapter with independent mirrored bit extraction for every positive integer through 1,000,000 and deterministic values spanning every legal bit width through 10^9."
+    }
+  ]
+}

@@ -1,51 +1,39 @@
 def solve(nums: list[int]) -> list[int]:
-    # Coordinate compression to map values to [1, unique_count]
-    sorted_unique = sorted(list(set(nums)))
-    rank = {val: i + 1 for i, val in enumerate(sorted_unique)}
-    m = len(sorted_unique)
+    ordered_values = sorted(set(nums))
+    ranks = {value: index + 1 for index, value in enumerate(ordered_values)}
+    size = len(ordered_values)
 
-    # Binary Indexed Tree to store frequencies
-    def update(bit, idx, val):
-        while idx <= m:
-            bit[idx] += val
-            idx += idx & (-idx)
+    def add(tree: list[int], index: int) -> None:
+        while index <= size:
+            tree[index] += 1
+            index += index & -index
 
-    def query(bit, idx):
-        s = 0
-        while idx > 0:
-            s += bit[idx]
-            idx -= idx & (-idx)
-        return s
+    def prefix_count(tree: list[int], index: int) -> int:
+        count = 0
+        while index:
+            count += tree[index]
+            index -= index & -index
+        return count
 
-    bit1 = [0] * (m + 1)
-    bit2 = [0] * (m + 1)
-    
-    arr1 = [nums[0]]
-    arr2 = [nums[1]]
-    
-    update(bit1, rank[nums[0]], 1)
-    update(bit2, rank[nums[1]], 1)
-    
-    for i in range(2, len(nums)):
-        val = nums[i]
-        r = rank[val]
-        
-        # Count elements > val: total_elements - count(<= val)
-        count1 = len(arr1) - query(bit1, r)
-        count2 = len(arr2) - query(bit2, r)
-        
-        if count1 > count2:
-            arr1.append(val)
-            update(bit1, r, 1)
-        elif count2 > count1:
-            arr2.append(val)
-            update(bit2, r, 1)
+    first = [nums[0]]
+    second = [nums[1]]
+    first_tree = [0] * (size + 1)
+    second_tree = [0] * (size + 1)
+    add(first_tree, ranks[nums[0]])
+    add(second_tree, ranks[nums[1]])
+
+    for value in nums[2:]:
+        rank = ranks[value]
+        first_greater = len(first) - prefix_count(first_tree, rank)
+        second_greater = len(second) - prefix_count(second_tree, rank)
+
+        if first_greater > second_greater or (
+            first_greater == second_greater and len(first) <= len(second)
+        ):
+            first.append(value)
+            add(first_tree, rank)
         else:
-            if len(arr1) <= len(arr2):
-                arr1.append(val)
-                update(bit1, r, 1)
-            else:
-                arr2.append(val)
-                update(bit2, r, 1)
-                
-    return arr1 + arr2
+            second.append(value)
+            add(second_tree, rank)
+
+    return first + second

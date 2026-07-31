@@ -1,0 +1,140 @@
+{
+  "challenge_id": "lc_3978",
+  "cases": [
+    {
+      "id": "sample-middle-is-unique",
+      "name": "sample: middle value occurs once",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 3]},
+      "expected": true,
+      "tags": ["sample", "unique", "middle-index"]
+    },
+    {
+      "id": "sample-middle-repeated-right",
+      "name": "sample: middle value is repeated to its right",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 2, 2]},
+      "expected": false,
+      "tags": ["sample", "duplicate", "right-side"]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: a one-element array has a unique middle value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [100]},
+      "expected": true,
+      "tags": ["trial", "minimum-length", "maximum-value"]
+    },
+    {
+      "id": "trial-middle-repeated-left",
+      "name": "trial: middle value is repeated to its left",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 2, 3]},
+      "expected": false,
+      "tags": ["trial", "duplicate", "left-side"]
+    },
+    {
+      "id": "trial-other-values-repeat",
+      "name": "trial: repetitions of non-middle values do not matter",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 1, 2, 1, 1]},
+      "expected": true,
+      "tags": ["trial", "other-duplicates", "unique-middle"]
+    },
+    {
+      "id": "trial-middle-occurs-three-times",
+      "name": "trial: middle value occurs on both sides",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [5, 1, 5, 2, 5]},
+      "expected": false,
+      "tags": ["trial", "three-occurrences", "both-sides"]
+    },
+    {
+      "id": "trial-all-equal",
+      "name": "trial: every position contains the middle value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7, 7, 7]},
+      "expected": false,
+      "tags": ["trial", "all-equal", "duplicate"]
+    },
+    {
+      "id": "real-positional-not-statistical-middle",
+      "name": "hidden: middle means the original index rather than the sorted median",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [9, 9, 1, 2, 3]},
+      "expected": true,
+      "tags": ["hidden", "positional-middle", "unsorted"]
+    },
+    {
+      "id": "real-symmetric-other-duplicates",
+      "name": "hidden: symmetric endpoint duplicates leave the middle unique",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 2, 1]},
+      "expected": true,
+      "tags": ["hidden", "symmetric", "other-duplicates"]
+    },
+    {
+      "id": "real-minimum-middle-value",
+      "name": "hidden: minimum legal value is unique at the middle",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 2, 1, 2, 2]},
+      "expected": true,
+      "tags": ["hidden", "minimum-value", "boundary"]
+    },
+    {
+      "id": "real-maximum-middle-value-duplicate",
+      "name": "hidden: maximum legal middle value has a duplicate",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 100, 100]},
+      "expected": false,
+      "tags": ["hidden", "maximum-value", "duplicate"]
+    },
+    {
+      "id": "real-adjacent-left-duplicate",
+      "name": "hidden: duplicate immediately precedes the middle position",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [4, 5, 5, 6, 7]},
+      "expected": false,
+      "tags": ["hidden", "adjacent-duplicate", "left-side"]
+    },
+    {
+      "id": "real-distant-right-duplicate",
+      "name": "hidden: duplicate appears at the final position",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 4, 5, 6, 5]},
+      "expected": false,
+      "tags": ["hidden", "distant-duplicate", "right-side"]
+    },
+    {
+      "id": "real-maximum-length-all-distinct",
+      "name": "hidden: maximum odd length with every value distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99]},
+      "expected": true,
+      "tags": ["hidden", "maximum-length", "all-distinct"]
+    },
+    {
+      "id": "real-maximum-length-final-duplicate",
+      "name": "hidden: maximum length with the middle value repeated at the end",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 50]},
+      "expected": false,
+      "tags": ["hidden", "maximum-length", "final-duplicate"]
+    }
+  ]
+}

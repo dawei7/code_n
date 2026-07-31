@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_2787",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one representation by distinct squares",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 10, "x": 2},
+      "expected": 1,
+      "tags": ["sample", "squares"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two sets of first powers",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 4, "x": 1},
+      "expected": 2,
+      "tags": ["sample", "first-powers"]
+    },
+    {
+      "id": "trial-smallest-target",
+      "name": "trial: one is representable for the largest exponent",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "x": 5},
+      "expected": 1,
+      "tags": ["trial", "boundary"]
+    },
+    {
+      "id": "trial-no-representation",
+      "name": "trial: target cannot be formed from squares",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 2, "x": 2},
+      "expected": 0,
+      "tags": ["trial", "zero-ways"]
+    },
+    {
+      "id": "trial-single-or-pair",
+      "name": "trial: a square alone and a Pythagorean pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 25, "x": 2},
+      "expected": 2,
+      "tags": ["trial", "distinctness"]
+    },
+    {
+      "id": "trial-cubes",
+      "name": "trial: three distinct cubes",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 160, "x": 3},
+      "expected": 1,
+      "tags": ["trial", "cubes"]
+    },
+    {
+      "id": "real-multiple-square-subsets",
+      "name": "hidden: several square subsets reach the target",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 130, "x": 2},
+      "expected": 9,
+      "tags": ["hidden", "multiple-ways"]
+    },
+    {
+      "id": "real-high-exponent-zero",
+      "name": "hidden: fifth powers leave no valid subset",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 300, "x": 5},
+      "expected": 0,
+      "tags": ["hidden", "high-exponent"]
+    },
+    {
+      "id": "real-fourth-power-combination",
+      "name": "hidden: two fourth powers form the target",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 17, "x": 4},
+      "expected": 1,
+      "tags": ["hidden", "fourth-powers"]
+    },
+    {
+      "id": "real-modulo-boundary",
+      "name": "hidden: maximum first-power target requires modulo reduction",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 300, "x": 1},
+      "expected": 872471266,
+      "tags": ["hidden", "maximum", "modulo"]
+    }
+  ]
+}

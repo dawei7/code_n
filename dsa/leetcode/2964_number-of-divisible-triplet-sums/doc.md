@@ -8,48 +8,52 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-divisible-triplet-sums](https://leetcode.com/problems/number-of-divisible-triplet-sums/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-divisible-triplet-sums/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-divisible-triplet-sums/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a 0-indexed integer array `nums` and a positive integer `d`.
+Choose three distinct indices in strictly increasing order, $i<j<k$.
+
+Count the index triplets for which the sum of their three array values is
+divisible by `d`:
+
+$$
+(\texttt{nums[i]}+\texttt{nums[j]}+\texttt{nums[k]})\bmod d=0.
+$$
+
+Triplets are distinguished by indices, so repeated values may participate in
+several different choices.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: the positive integer array supplying triplet values
+- `d`: the divisor used to test each triplet sum
+
+Let $N=\lvert\texttt{nums}\rvert$. The contract guarantees
+$1\le N\le1000$, $1\le\texttt{nums[i]}\le10^9$, and $1\le d\le10^9$.
 
 **Return value**
 
-TODO
+The number of index triples $i<j<k$ whose corresponding value sum is divisible
+by `d`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3,3,4,7,8], d = 5`
+- Output: `3`
+- Explanation: The qualifying index triples are `(0,1,2)`, `(0,2,4)`, and `(1,2,4)`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3,3,3,3], d = 3`
+- Output: `4`
+- Explanation: Every choice of three indices sums to nine, so all four possible triplets qualify.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [3,3,3,3], d = 6`
+- Output: `0`
+- Explanation: Every triplet sum is nine, which is not divisible by six.

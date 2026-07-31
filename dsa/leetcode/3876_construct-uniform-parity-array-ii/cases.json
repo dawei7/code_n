@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3876",
+  "cases": [
+    {
+      "id": "sample-odd-minimum",
+      "name": "sample: odd minimum converts the even value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [1, 4, 7]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "odd-minimum"]
+    },
+    {
+      "id": "sample-even-minimum-mixed",
+      "name": "sample: even minimum blocks a mixed array",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [2, 3]},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "even-minimum", "impossible"]
+    },
+    {
+      "id": "sample-all-even",
+      "name": "sample: keep an all-even array",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums1": [4, 6]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "explained", "all-even"]
+    },
+    {
+      "id": "trial-single-odd",
+      "name": "trial: one odd value is already uniform",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [7]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "odd"]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: one even value is already uniform",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [8]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "even"]
+    },
+    {
+      "id": "trial-all-odd",
+      "name": "trial: all odd values can be retained",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [9, 3, 11, 5]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "all-odd", "keep-values"]
+    },
+    {
+      "id": "trial-all-even",
+      "name": "trial: all even values can be retained",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [10, 2, 8, 4]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "all-even", "keep-values"]
+    },
+    {
+      "id": "trial-odd-minimum-at-end",
+      "name": "trial: input order does not hide an odd minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [8, 6, 4, 3]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "odd-minimum", "minimum-at-end"]
+    },
+    {
+      "id": "trial-odd-minimum-in-middle",
+      "name": "trial: a middle odd minimum converts larger evens",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums1": [10, 1, 4, 7]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "odd-minimum", "mixed-parity"]
+    },
+    {
+      "id": "real-even-minimum-first",
+      "name": "hidden: an odd value makes an even-minimum array impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [2, 5, 8]},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "even-minimum", "mixed-parity"]
+    },
+    {
+      "id": "real-even-minimum-last",
+      "name": "hidden: the forced minimum may appear last",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [9, 7, 2]},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "even-minimum", "minimum-at-end"]
+    },
+    {
+      "id": "real-extreme-odd-minimum",
+      "name": "hidden: the smallest legal value anchors large inputs",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [1, 1000000000, 999999999]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "value-boundaries", "odd-minimum"]
+    },
+    {
+      "id": "real-extreme-even-minimum",
+      "name": "hidden: a large odd value cannot escape an even minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [2, 999999999, 1000000000]},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "value-boundaries", "even-minimum"]
+    },
+    {
+      "id": "real-irregular-feasible",
+      "name": "hidden: irregular order with an odd minimum is feasible",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [15, 8, 3, 22, 11]},
+      "expected": true,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "irregular", "odd-minimum"]
+    },
+    {
+      "id": "real-irregular-impossible",
+      "name": "hidden: irregular mixed parity with an even minimum fails",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums1": [14, 5, 8, 2, 10]},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "irregular", "even-minimum"]
+    }
+  ]
+}

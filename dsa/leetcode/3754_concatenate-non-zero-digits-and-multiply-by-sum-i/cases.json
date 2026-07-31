@@ -1,0 +1,11 @@
+{"schema_version":1,"challenge_id":"lc_3754","cases":[
+{"id":"sample-interleaved-zeros","name":"sample: remove several internal zeros","kind":"sample","visible":true,"input":{"n":10203004},"expected":12340,"validator":{"kind":"exact"},"tags":["sample","internal-zeros"]},
+{"id":"sample-trailing-zeros","name":"sample: retain one digit before trailing zeros","kind":"sample","visible":true,"input":{"n":1000},"expected":1,"validator":{"kind":"exact"},"tags":["sample","trailing-zeros"]},
+{"id":"trial-zero","name":"trial: no nonzero digit exists","kind":"trial","visible":true,"input":{"n":0},"expected":0,"validator":{"kind":"exact"},"tags":["trial","minimum-bound"]},
+{"id":"trial-no-zeros","name":"trial: every digit is retained","kind":"trial","visible":true,"input":{"n":123},"expected":738,"validator":{"kind":"exact"},"tags":["trial","no-zeros"]},
+{"id":"trial-one-internal-zero","name":"trial: two ones become adjacent","kind":"trial","visible":true,"input":{"n":101},"expected":22,"validator":{"kind":"exact"},"tags":["trial","internal-zero"]},
+{"id":"real-many-zero-gaps","name":"hidden: zeros separate all retained digits","kind":"real","visible":false,"input":{"n":1002003},"expected":738,"validator":{"kind":"exact"},"tags":["hidden","repeated-zeros"]},
+{"id":"real-edge-nines","name":"hidden: two nines surround zeros","kind":"real","visible":false,"input":{"n":900000009},"expected":1782,"validator":{"kind":"exact"},"tags":["hidden","large-input"]},
+{"id":"real-largest-no-zeros","name":"hidden: largest nine-digit all-nonzero input","kind":"real","visible":false,"input":{"n":999999999},"expected":80999999919,"validator":{"kind":"exact"},"tags":["hidden","no-zeros"]},
+{"id":"real-maximum","name":"hidden: maximum input retains its leading one","kind":"real","visible":false,"input":{"n":1000000000},"expected":1,"validator":{"kind":"exact"},"tags":["hidden","maximum-bound"]}
+]}

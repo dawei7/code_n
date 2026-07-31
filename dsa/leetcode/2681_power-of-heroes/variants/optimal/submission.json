@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2753",
+  "frontend_id": "2681",
+  "title_slug": "power-of-heroes",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.sumOfPower",
+  "verified_submission_id": "2076376188",
+  "verified_at": "2026-07-21T21:01:00+00:00"
+}

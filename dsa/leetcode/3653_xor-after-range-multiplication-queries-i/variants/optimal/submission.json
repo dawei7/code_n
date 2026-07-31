@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3974",
+  "frontend_id": "3653",
+  "title_slug": "xor-after-range-multiplication-queries-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.xorAfterQueries",
+  "verified_submission_id": "2083960498",
+  "verified_at": "2026-07-27T21:42:08.796910+00:00"
+}

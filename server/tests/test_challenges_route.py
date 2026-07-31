@@ -24,16 +24,27 @@ class ChallengesRouteTest(conftest._Base):
         summaries = response.json()
         self.assertGreater(len(summaries), 3900)
         self.assertTrue(all(item["id"].startswith("lc_") for item in summaries))
+        self.assertTrue(
+            all(
+                item["supported_languages"] == [item["primary_language"]]
+                and item["primary_language"] in {"python", "javascript", "sql", "bash"}
+                for item in summaries
+            )
+        )
         self.assertIn("lc_1", {item["id"] for item in summaries})
 
     def test_leetcode_views_share_the_canonical_base(self) -> None:
         canonical_ids = None
         for active_set in (
             "leetcode",
+            "leetcode_id",
             "elo",
+            "elo_buckets",
             "frequency",
+            "frequency_buckets",
             "leetcode_company",
             "leetcode_studyplan",
+            "leetcode_quest",
         ):
             progress = self.client.put("/api/progress", json={"active_set": active_set})
             self.assertEqual(progress.status_code, 200, progress.text)
@@ -88,6 +99,53 @@ class ChallengesRouteTest(conftest._Base):
             {"am-600": 600, "am-300": 300, "am-150": 150, "am-75": 75},
         )
 
+    def test_leetcode_quests_are_exact_subsets_of_canonical_leetcode(self) -> None:
+        progress = self.client.put("/api/progress", json={"active_set": "leetcode_quest"})
+        self.assertEqual(progress.status_code, 200, progress.text)
+        response = self.client.get("/api/challenges")
+        self.assertEqual(response.status_code, 200, response.text)
+        summaries = response.json()
+        members_by_quest = {
+            slug: set()
+            for slug in (
+                "data-structures-and-algorithms-quest",
+                "database-quest",
+                "system-and-software-design-quest",
+                "maths-quest",
+                "2026-spring-sprint",
+            )
+        }
+        for summary in summaries:
+            for membership in summary["leetcode_external_subsets"]:
+                if membership.get("kind") == "leetcode_quest":
+                    members_by_quest[membership["subset_slug"]].add(summary["id"])
+        self.assertEqual(
+            {slug: len(members) for slug, members in members_by_quest.items()},
+            {
+                "data-structures-and-algorithms-quest": 119,
+                "database-quest": 19,
+                "system-and-software-design-quest": 13,
+                "maths-quest": 22,
+                "2026-spring-sprint": 36,
+            },
+        )
+
+    def test_leetcode_quest_career_sequence_unlocks_in_level_order(self) -> None:
+        challenges = [challenge_cls() for challenge_cls in CHALLENGE_REGISTRY.values()]
+
+        initially_unlocked = get_unlocked_challenges(
+            SimpleNamespace(active_set="leetcode_quest", completed=[]),
+            challenges,
+        )
+        self.assertIn("lc_1929", initially_unlocked)
+        self.assertNotIn("lc_1470", initially_unlocked)
+
+        after_first = get_unlocked_challenges(
+            SimpleNamespace(active_set="leetcode_quest", completed=["lc_1929"]),
+            challenges,
+        )
+        self.assertIn("lc_1470", after_first)
+
     def test_unknown_set_and_challenge_fall_back_cleanly(self) -> None:
         progress = self.client.put("/api/progress", json={"active_set": "retired-source"})
         self.assertEqual(progress.json()["active_set"], "leetcode")
@@ -103,7 +161,14 @@ class ChallengesRouteTest(conftest._Base):
         self.assertEqual(detail["leetcode_slug"], "two-sum")
         self.assertEqual(detail["leetcode_url"], "https://leetcode.com/problems/two-sum/")
         self.assertEqual(detail["primary_language"], "python")
+        self.assertEqual(detail["supported_languages"], ["python"])
+        self.assertEqual(set(detail["starter_sources"]), {"python"})
+        self.assertEqual(set(detail["optimal_sources"]), {"python"})
+        self.assertEqual(set(detail["leetcode_optimal_sources"]), {"python"})
         self.assertIn("def solve(nums, target):", detail["starter_source"])
+        self.assertIn("def solve(", detail["optimal_source"])
+        self.assertIn("class Solution", detail["leetcode_optimal_source"])
+        self.assertNotEqual(detail["optimal_source"], detail["leetcode_optimal_source"])
         self.assertTrue(detail["test_cases"])
         self.assertTrue(detail["optimal_source"])
         self.assertEqual(detail["difficulty_label"], "Easy")
@@ -117,6 +182,52 @@ class ChallengesRouteTest(conftest._Base):
         self.assertIsNotNone(path)
         self.assertTrue(path.is_file())
         self.assertEqual(path.name, "python.py")
+
+    def test_details_expose_coden_and_exact_verified_native_submissions(self) -> None:
+        for challenge_id, expected_language in (
+            ("lc_175", "sql"),
+            ("lc_192", "bash"),
+            ("lc_2694", "javascript"),
+        ):
+            response = self.client.get(f"/api/challenges/{challenge_id}")
+            self.assertEqual(response.status_code, 200, response.text)
+            detail = response.json()
+            self.assertEqual(detail["primary_language"], expected_language)
+            self.assertEqual(detail["supported_languages"], [expected_language])
+            self.assertEqual(set(detail["starter_sources"]), {expected_language})
+            self.assertEqual(set(detail["optimal_sources"]), {expected_language})
+            self.assertEqual(set(detail["leetcode_optimal_sources"]), {expected_language})
+
+            coden_path = organized_solution_path(challenge_id, expected_language)
+            self.assertIsNotNone(coden_path)
+            assert coden_path is not None
+            expected_coden_source = coden_path.read_text(encoding="utf-8")
+
+            manifest_path = leetcode_submission_manifest_path(challenge_id)
+            self.assertIsNotNone(manifest_path)
+            assert manifest_path is not None
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            expected_source = (manifest_path.parent / manifest["source"]).read_text(
+                encoding="utf-8"
+            )
+            self.assertEqual(detail["optimal_source"], expected_coden_source)
+            self.assertEqual(detail["optimal_sources"][expected_language], expected_coden_source)
+            self.assertEqual(detail["leetcode_optimal_source"], expected_source)
+            self.assertEqual(
+                detail["leetcode_optimal_sources"][expected_language],
+                expected_source,
+            )
+
+    def test_run_rejects_a_non_primary_language(self) -> None:
+        response = self.client.post(
+            "/api/challenges/lc_1/run",
+            json={"source": "", "language": "javascript", "mode": "practice"},
+        )
+        self.assertEqual(response.status_code, 422, response.text)
+        self.assertEqual(
+            response.json()["detail"]["error"],
+            "language_not_primary_for_challenge",
+        )
 
     def test_contest_problem_exposes_zerotrac_elo(self) -> None:
         response = self.client.get("/api/challenges/lc_1024")
@@ -160,8 +271,14 @@ class ChallengesRouteTest(conftest._Base):
         self.assertEqual(simplified["time_complexity"], "O(n log n)")
         self.assertEqual(simplified["space_complexity"], "O(n)")
         self.assertIn("sorted(arr)", simplified["sources"]["python"])
+        self.assertIn("class Solution", optimal["leetcode_sources"]["python"])
+        self.assertIn("class Solution", simplified["leetcode_sources"]["python"])
         self.assertNotEqual(optimal["approach_markdown"], simplified["approach_markdown"])
         self.assertNotEqual(optimal["sources"]["python"], simplified["sources"]["python"])
+        self.assertNotEqual(
+            optimal["leetcode_sources"]["python"],
+            simplified["leetcode_sources"]["python"],
+        )
 
     def test_1502_default_paths_resolve_to_optimal_branch(self) -> None:
         package = leetcode_package_dir("lc_1502")

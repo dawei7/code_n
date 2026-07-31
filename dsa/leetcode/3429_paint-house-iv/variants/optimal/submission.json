@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3688",
+  "frontend_id": "3429",
+  "title_slug": "paint-house-iv",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minCost",
+  "verified_submission_id": "2081752339",
+  "verified_at": "2026-07-26T08:07:00Z"
+}

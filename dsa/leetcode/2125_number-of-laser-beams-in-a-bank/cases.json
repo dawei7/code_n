@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2125",
+  "cases": [
+    {"id": "sample-empty-row-gap", "name": "sample: empty rows do not interrupt beams", "kind": "sample", "visible": true, "input": {"bank": ["011001", "000000", "010100", "001000"]}, "expected": 8, "tags": ["sample", "empty-row"]},
+    {"id": "sample-one-nonempty-row", "name": "sample: devices in only one row create no beams", "kind": "sample", "visible": true, "input": {"bank": ["000", "111", "000"]}, "expected": 0, "tags": ["sample", "single-nonempty"]},
+    {"id": "trial-all-empty", "name": "an entirely empty bank has no device pair", "kind": "trial", "visible": true, "input": {"bank": ["00", "00"]}, "expected": 0, "tags": ["all-empty"]},
+    {"id": "trial-consecutive-rows", "name": "consecutive nonempty rows connect every cross-row pair", "kind": "trial", "visible": true, "input": {"bank": ["101", "011"]}, "expected": 4, "tags": ["consecutive", "cartesian-product"]},
+    {"id": "real-many-empty-rows", "name": "hidden: several empty rows preserve the same connection", "kind": "real", "visible": false, "input": {"bank": ["1111", "0000", "0000", "1001"]}, "expected": 8, "tags": ["hidden", "empty-gap"]},
+    {"id": "real-middle-blocks-outer", "name": "hidden: a nonempty middle row blocks outer devices", "kind": "real", "visible": false, "input": {"bank": ["110", "001", "111"]}, "expected": 5, "tags": ["hidden", "blocking-row"]},
+    {"id": "real-single-column", "name": "hidden: one device in each nonempty row forms adjacent pairs", "kind": "real", "visible": false, "input": {"bank": ["1", "0", "1", "1", "0", "1"]}, "expected": 3, "tags": ["hidden", "single-column"]}
+  ]
+}

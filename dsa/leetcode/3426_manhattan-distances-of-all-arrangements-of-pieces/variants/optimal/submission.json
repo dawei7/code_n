@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3685",
+  "frontend_id": "3426",
+  "title_slug": "manhattan-distances-of-all-arrangements-of-pieces",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.distanceSum",
+  "verified_submission_id": "2081733457",
+  "verified_at": "2026-07-26T07:48:00Z"
+}

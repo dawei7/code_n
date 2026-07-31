@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3967",
+  "frontend_id": "3635",
+  "title_slug": "earliest-finish-time-for-land-and-water-rides-ii",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.earliestFinishTime",
+  "verified_submission_id": "2083914365",
+  "verified_at": "2026-07-27T20:06:21.312141+00:00"
+}

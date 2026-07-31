@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_246", "frontend_id": "246", "title_slug": "strobogrammatic-number", "url": "https://leetcode.com/problems/strobogrammatic-number/description/", "paid_only": true, "content_sha256": "1c454fc9ec8879f2b5d362459548c63ae8bfa3757f566508ff4cf8343df0ebe9", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "num = \"69\"", "output": "true", "has_explanation": false}, {"ordinal": 2, "input": "num = \"88\"", "output": "true", "has_explanation": false}, {"ordinal": 3, "input": "num = \"962\"", "output": "false", "has_explanation": false}],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "318c57e0197e3ad92a042f4041986daeb26ea6e2ca4b304896f120c0297392f0", "reference/contract.md": "23e860b331b4e6036951289eff92b885b2551ef85dfd06b1f6ecd69e9bb082bd", "reference/examples.md": "e41548a250e1092a482c70befd5a5aaab524c07fe9d2eeda1aa230075552e0da", "reference/constraints.md": "9d54b0175174267a7ca721e976c7387e56b47b82328ac29589f2abf43ec46569"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Greedy, Heap (Priority Queue) |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [make-the-prefix-sum-non-negative](https://leetcode.com/problems/make-the-prefix-sum-non-negative/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/make-the-prefix-sum-non-negative/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/make-the-prefix-sum-non-negative/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a zero-indexed integer array `nums`. In one operation, choose any element, remove it from its current position, and place it at the end of the array. You may repeat this operation as needed.
+
+For the resulting order, the prefix sum at index `i` is the sum of all elements from index zero through `i`, inclusive. Every one of these prefix sums must be non-negative.
+
+Return the minimum number of move-to-the-end operations required. The input is guaranteed to admit a valid ordering.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ integers, where $1 \leq n \leq 10^5$ and $-10^9 \leq \texttt{nums[i]} \leq 10^9$.
+
+The total sum is guaranteed to make a valid result possible.
 
 **Return value**
 
-TODO
+- The minimum number of elements that must be moved to the end so that no prefix sum is negative.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2,3,-5,4]`
+- Output: `0`
+
+The original prefix sums are `2`, `5`, `0`, and `4`, so no operation is needed.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [3,-5,-2,6]`
+- Output: `1`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Moving `-5` to the end produces `[3,-2,6,-5]`, whose prefix sums are `3`, `1`, `7`, and `2`.

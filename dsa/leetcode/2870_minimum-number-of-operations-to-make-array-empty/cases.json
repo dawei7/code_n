@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: groups of two and three empty the array",
+      "name": "sample: pairs and a triple empty the array",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -21,13 +21,13 @@
       },
       "tags": [
         "sample",
-        "counting"
+        "mixed-groups"
       ],
       "expected": 4
     },
     {
       "id": "sample-2",
-      "name": "sample: a singleton value makes it impossible",
+      "name": "sample: a singleton makes the array impossible",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,63 +47,82 @@
       "expected": -1
     },
     {
-      "id": "sample-3",
-      "name": "sample: larger repeated values",
-      "kind": "sample",
+      "id": "trial-one-pair",
+      "name": "trial: one equal pair needs one operation",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          14,
-          12,
-          14,
-          14,
-          12,
-          14,
-          14,
-          12,
-          12,
-          12,
-          12,
-          14,
-          14,
-          12,
-          14,
-          14,
-          14,
-          12,
-          12
+          1,
+          1
         ]
       },
       "tags": [
-        "sample",
-        "frequency"
+        "trial",
+        "pair"
       ],
-      "expected": 7
+      "expected": 1
     },
     {
-      "id": "trial-count-four-uses-two-pairs",
-      "name": "trial: frequency four takes two operations",
+      "id": "trial-one-triple",
+      "name": "trial: one equal triple needs one operation",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           5,
           5,
-          5,
-          5,
-          6,
-          6
+          5
         ]
       },
       "tags": [
         "trial",
-        "remainder-one"
+        "triple"
       ],
-      "expected": 3
+      "expected": 1
     },
     {
-      "id": "real-many-frequencies",
-      "name": "hidden: several frequency remainders combine",
+      "id": "real-frequency-four",
+      "name": "hidden: four copies must become two pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "tags": [
+        "hidden",
+        "remainder-one"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-frequency-five",
+      "name": "hidden: five copies split into a triple and pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "tags": [
+        "hidden",
+        "remainder-two"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-many-remainders",
+      "name": "hidden: independent frequencies use their best decompositions",
       "kind": "real",
       "visible": false,
       "input": {
@@ -132,9 +151,30 @@
       },
       "tags": [
         "hidden",
-        "frequency"
+        "all-remainders"
       ],
       "expected": 8
+    },
+    {
+      "id": "real-singleton-among-valid-groups",
+      "name": "hidden: one singleton invalidates otherwise removable groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          10,
+          10,
+          20,
+          20,
+          30
+        ]
+      },
+      "tags": [
+        "hidden",
+        "singleton"
+      ],
+      "expected": -1
     }
   ]
 }

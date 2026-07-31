@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Substring With Given Hash Value and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains the required polynomial hash with a right-to-left rolling window.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(k)"
     }
   ]
 }

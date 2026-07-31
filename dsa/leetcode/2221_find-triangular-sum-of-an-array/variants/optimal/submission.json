@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2324",
+  "frontend_id": "2221",
+  "title_slug": "find-triangular-sum-of-an-array",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "class Solution.triangularSum",
+  "verified_submission_id": "2073894964",
+  "verified_at": "2026-07-19T20:52:29.529985+00:00"
+}

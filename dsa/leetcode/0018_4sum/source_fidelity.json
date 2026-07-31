@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_18",
+    "frontend_id": "18",
+    "title_slug": "4sum",
+    "url": "https://leetcode.com/problems/4sum/description/",
+    "paid_only": false,
+    "content_sha256": "66a4b6170c1c76e8e3f3a0c44d8480ea6f6bfd5027cdaac8246700888852c362",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,0,-1,0,-2,2], target = 0", "output": "[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]", "has_explanation": false},
+      {"ordinal": 2, "input": "nums = [2,2,2,2,2], target = 8", "output": "[[2,2,2,2]]", "has_explanation": false}
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "be09e6b8b6812460b27e4da872290e2e8a58e2ea8c744d3af2eedb18a37bc07c",
+      "reference/contract.md": "464699b251631e38daa71cd913d35ba17a6bdf4a49a3e593916fa73869376b8d",
+      "reference/examples.md": "50ef531465ca8146b53d1fc35a99fd936a8930339f73da7a225bf20ae2064adb",
+      "reference/constraints.md": "e13e148178328d17ac4150a0655fcf2ba8199cbdf761abe0d6fa64330051d83a"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

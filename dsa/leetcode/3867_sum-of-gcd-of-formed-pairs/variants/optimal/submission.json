@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4242",
+  "frontend_id": "3867",
+  "title_slug": "sum-of-gcd-of-formed-pairs",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.gcdSum",
+  "verified_submission_id": "2086383743",
+  "verified_at": "2026-07-29T16:16:50.635981+00:00"
+}

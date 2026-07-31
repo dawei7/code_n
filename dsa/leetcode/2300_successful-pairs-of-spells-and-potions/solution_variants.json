@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Successful Pairs of Spells and Potions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts potion strengths and binary-searches the first potion meeting each spell's exact threshold.",
+      "time_complexity": "O(m log m + n log m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

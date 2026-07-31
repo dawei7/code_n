@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: train energy and experience",
+      "name": "sample: train both statistics",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -25,12 +25,12 @@
       "expected": 8,
       "tags": [
         "sample",
-        "simulation"
+        "both-statistics"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: already stronger",
+      "name": "sample: no training required",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -46,14 +46,83 @@
       "expected": 0,
       "tags": [
         "sample",
-        "edge"
+        "no-training"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: repeated small opponents",
-      "kind": "sample",
+      "id": "trial-strict-equality",
+      "name": "trial: equality requires one point per statistic",
+      "kind": "trial",
       "visible": true,
+      "input": {
+        "initial_energy": 5,
+        "initial_experience": 5,
+        "energy": [
+          5
+        ],
+        "experience": [
+          5
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "strict-inequality"
+      ]
+    },
+    {
+      "id": "trial-energy-only",
+      "name": "trial: only energy needs training",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "initial_energy": 1,
+        "initial_experience": 100,
+        "energy": [
+          1,
+          2,
+          3
+        ],
+        "experience": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "energy"
+      ]
+    },
+    {
+      "id": "real-later-experience-deficit",
+      "name": "hidden: experience repair is needed after an earlier victory",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "initial_energy": 100,
+        "initial_experience": 2,
+        "energy": [
+          1,
+          1,
+          1
+        ],
+        "experience": [
+          1,
+          5,
+          1
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "experience"
+      ]
+    },
+    {
+      "id": "real-repeated-small",
+      "name": "hidden: both deficits with repeated opponents",
+      "kind": "real",
+      "visible": false,
       "input": {
         "initial_energy": 1,
         "initial_experience": 1,
@@ -72,27 +141,33 @@
       },
       "expected": 5,
       "tags": [
-        "sample"
+        "hidden",
+        "repeated"
       ]
     },
     {
-      "id": "real-one-opponent",
-      "name": "hidden: one opponent needs energy and experience",
+      "id": "real-maximum-values",
+      "name": "hidden: maximum opponent values",
       "kind": "real",
       "visible": false,
       "input": {
         "initial_energy": 1,
         "initial_experience": 1,
         "energy": [
-          1
+          100,
+          100,
+          100
         ],
         "experience": [
-          1
+          100,
+          100,
+          100
         ]
       },
-      "expected": 2,
+      "expected": 400,
       "tags": [
-        "hidden"
+        "hidden",
+        "maximum-values"
       ]
     }
   ]

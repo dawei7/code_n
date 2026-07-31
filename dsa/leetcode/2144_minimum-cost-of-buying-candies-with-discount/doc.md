@@ -8,48 +8,52 @@
 | Category | Algorithms |
 | Topics | Array, Greedy, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-cost-of-buying-candies-with-discount](https://leetcode.com/problems/minimum-cost-of-buying-candies-with-discount/) |
+| LeetCode | [minimum-cost-of-buying-candies-with-discount](https://leetcode.com/problems/minimum-cost-of-buying-candies-with-discount/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-cost-of-buying-candies-with-discount/).
 
 ### Goal
-Buy every candy under a discount that makes one candy free whenever two candies are purchased, provided the free candy costs no more than the cheaper purchased candy. Find the minimum total payment.
+
+A candy shop offers one free candy for every two candies purchased. The
+customer may choose any remaining candy as the free one, but its cost must be
+less than or equal to the cheaper of the two purchased candies.
+
+For example, buying candies costing `2` and `3` permits a candy costing `1` to
+be free, but does not permit one costing `4`. Discounts may be applied
+repeatedly until every candy has been obtained.
+
+Given the cost of each candy, return the minimum total amount that must be paid
+to obtain all of them.
 
 ### Function Contract
+
 **Inputs**
 
-- `cost`: the price of each candy.
+- `cost`: A 0-indexed list of candy prices. Its length is between $1$ and
+  $100$, inclusive, and every price is between $1$ and $100$, inclusive.
 
 **Return value**
 
-The minimum amount needed to obtain all candies.
+Return the smallest sum of prices that must be paid after assigning every
+valid free candy.
 
 ### Examples
+
 **Example 1**
 
-- Input: `cost = [1, 2, 3]`
+- Input: `cost = [1,2,3]`
 - Output: `5`
+- Explanation: Pay for costs `3` and `2`, then take cost `1` for free.
 
 **Example 2**
 
-- Input: `cost = [6, 5, 7, 9, 2, 2]`
+- Input: `cost = [6,5,7,9,2,2]`
 - Output: `23`
+- Explanation: Pay for `9` and `7` to receive `6` free, then pay for `5` and
+  `2` to receive the remaining `2` free.
 
 **Example 3**
 
-- Input: `cost = [5, 5]`
+- Input: `cost = [5,5]`
 - Output: `10`
-
----
-
-## Solution
-### Approach
-Sort prices from highest to lowest. In each consecutive group of three, pay for the first two and take the third for free. Assigning the largest eligible unpaid candy to each discount minimizes the sum paid.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(1)` auxiliary space when sorting in place
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: Fewer than three candies means neither candy can be free.

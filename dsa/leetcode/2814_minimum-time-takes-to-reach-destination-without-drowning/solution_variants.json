@@ -2,15 +2,13 @@
   "schema_version": 1,
   "challenge_id": "lc_2814",
   "default_variant": "optimal",
-  "variants": [
-    {
-      "id": "optimal",
-      "label": "Optimal",
-      "kind": "optimal",
-      "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Time Takes to Reach Destination Without Drowning and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
+  "variants": [{
+    "id": "optimal",
+    "label": "Optimal",
+    "kind": "optimal",
+    "directory": "variants/optimal",
+    "summary": "Computes every flood-arrival time first, then breadth-first searches traveler states that arrive strictly before water.",
+    "time_complexity": "O(N)",
+    "space_complexity": "O(N)"
+  }]
 }

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_44", "frontend_id": "44",
+    "title_slug": "wildcard-matching",
+    "url": "https://leetcode.com/problems/wildcard-matching/description/",
+    "paid_only": false, "content_sha256": "05280d47a43aa1b2517292da85978fc47fdff3faee1a3dbf9f4f0dd6cc8a12f1", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"aa\", p = \"a\"", "output": "false", "has_explanation": true},
+      {"ordinal": 2, "input": "s = \"aa\", p = \"*\"", "output": "true", "has_explanation": true},
+      {"ordinal": 3, "input": "s = \"cb\", p = \"?a\"", "output": "false", "has_explanation": true}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a7a6441a100087ceed62bceeed97c7f03aee8c2cda705fec1426de8fb159861f",
+      "reference/contract.md": "150308bb8f3e1f3ee42a2d03d943da774bec0990cbdaff4c8d454d05aec1509b",
+      "reference/examples.md": "e09c81eea220381cd2d6b17dc4d12c4b44a88fd3ebad746dc0b4a1dc1edcd8ce",
+      "reference/constraints.md": "83b23bf48d9bbeb0f3bbc16857b50865ae92367c07dd7c62ce64b0e7c2bdc06e"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

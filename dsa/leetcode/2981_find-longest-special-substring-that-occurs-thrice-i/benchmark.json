@@ -1,0 +1,5 @@
+{"challenge_id":"lc_2981","cases":[
+{"id":"benchmark-length-8","name":"benchmark: alternating string of length 8","kind":"benchmark","visible":false,"size":8,"input":{"s":"abababab"},"expected":1,"tags":["benchmark","scaling","string-length","substring-enumeration-baseline"]},
+{"id":"benchmark-length-24","name":"benchmark: alternating string of length 24","kind":"benchmark","visible":false,"size":24,"input":{"s":"abababababababababababab"},"expected":1,"tags":["benchmark","scaling","string-length","substring-enumeration-baseline"]},
+{"id":"benchmark-length-50","name":"benchmark: alternating string of length 50","kind":"benchmark","visible":false,"size":50,"input":{"s":"ababababababababababababababababababababababababab"},"expected":1,"tags":["benchmark","scaling","string-length","substring-enumeration-baseline"]}
+]}

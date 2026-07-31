@@ -1,0 +1,149 @@
+{
+  "challenge_id": "lc_2947",
+  "cases": [
+    {
+      "id": "sample-two-long",
+      "name": "sample: two length-four beautiful substrings",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "baeyh",
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-three",
+      "name": "sample: two pairs and the whole string",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abba",
+        "k": 1
+      },
+      "expected": 3,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-no-vowels",
+      "name": "sample: no substring can balance vowels and consonants",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bcdf",
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "no-vowels"
+      ]
+    },
+    {
+      "id": "trial-single-vowel",
+      "name": "trial: one vowel cannot be balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-single-consonant",
+      "name": "trial: one consonant cannot be balanced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "b",
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "minimum"
+      ]
+    },
+    {
+      "id": "trial-one-pair",
+      "name": "trial: one vowel-consonant pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "pair"
+      ]
+    },
+    {
+      "id": "trial-product-not-divisible",
+      "name": "trial: balanced pair fails divisibility",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "ab",
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "divisibility"
+      ]
+    },
+    {
+      "id": "real-square-divisor",
+      "name": "hidden: four letters satisfy a square divisor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abab",
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "square"
+      ]
+    },
+    {
+      "id": "real-all-vowels",
+      "name": "hidden: all vowels never balance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aeiou",
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "no-consonants"
+      ]
+    },
+    {
+      "id": "real-mixed-periods",
+      "name": "hidden: several balanced lengths meet different periods",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "leetcodeisgreat",
+        "k": 3
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    }
+  ]
+}

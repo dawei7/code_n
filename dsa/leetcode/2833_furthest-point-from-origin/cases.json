@@ -1,0 +1,161 @@
+{
+  "challenge_id": "lc_2833",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: flexible moves extend the leftward endpoint",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "moves": "L_RL__R"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "leftward"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: fixed imbalance chooses the left direction",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "moves": "_R__LL_"
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "fixed-displacement"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: every move is flexible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "moves": "_______"
+      },
+      "expected": 7,
+      "tags": [
+        "sample",
+        "all-flexible"
+      ]
+    },
+    {
+      "id": "trial-single-left",
+      "name": "trial: one forced left move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "L"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-size"
+      ]
+    },
+    {
+      "id": "trial-single-flexible",
+      "name": "trial: one flexible move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "_"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "minimum-size",
+        "flexible"
+      ]
+    },
+    {
+      "id": "trial-balanced-forced",
+      "name": "trial: opposing forced moves finish at the origin",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "moves": "LR"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "zero-distance"
+      ]
+    },
+    {
+      "id": "real-balanced-with-flexible",
+      "name": "hidden: flexible moves decide direction after balanced fixed moves",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "moves": "LLRR__"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "balanced"
+      ]
+    },
+    {
+      "id": "real-left-imbalance",
+      "name": "hidden: all flexible moves reinforce a left imbalance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "moves": "R_L_L"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "leftward"
+      ]
+    },
+    {
+      "id": "real-balanced-many-flexible",
+      "name": "hidden: equal forced counts leave only flexible distance",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "moves": "RRL___LL"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "balanced"
+      ]
+    },
+    {
+      "id": "real-no-flexible-right",
+      "name": "hidden: forced right moves need no choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "moves": "RRRRR"
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "no-flexible"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "hidden: every maximum-length move is flexible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "moves": "__________________________________________________"
+      },
+      "expected": 50,
+      "tags": [
+        "hidden",
+        "maximum-length",
+        "all-flexible"
+      ]
+    }
+  ]
+}

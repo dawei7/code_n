@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2556",
+  "frontend_id": "2465",
+  "title_slug": "number-of-distinct-averages",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.distinctAverages",
+  "verified_submission_id": "2075083963",
+  "verified_at": "2026-07-20T20:54:00+00:00"
+}

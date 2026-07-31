@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2746",
+  "frontend_id": "2674",
+  "title_slug": "split-a-circular-linked-list",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "verified_submission_id": "2076355046",
+  "verified_at": "2026-07-21T20:19:00+00:00"
+}

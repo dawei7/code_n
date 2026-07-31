@@ -5,25 +5,34 @@
 | Source | LeetCode |
 | Frontend ID | 2293 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array, Simulation |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [min-max-game](https://leetcode.com/problems/min-max-game/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/min-max-game/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/min-max-game/).
-
 ### Goal
-Repeatedly halve an array whose length is a power of two. For new index `i`, use the minimum of source pair `2i, 2i+1` when `i` is even and the maximum when `i` is odd. Return the final value.
+Start with a 0-indexed integer array `nums` whose length is a power of two.
+While more than one value remains, replace the current array of length $n$
+with an array of length $n/2$.
+
+For each new index $i$, combine the adjacent old values at indices `2 * i`
+and `2 * i + 1`. Use their minimum when $i$ is even and their maximum when
+$i$ is odd. The parity rule restarts from index zero in every newly created
+array.
+
+Return the single value left after repeating this reduction.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: an integer array of power-of-two length.
+- `nums`: A nonempty integer array whose length is a power of two.
+
+Let $n = \lvert\texttt{nums}\rvert$. The contract guarantees
+$1 \le n \le 1024$ and $1 \le \texttt{nums}[i] \le 10^9$.
 
 **Return value**
 
-The sole value remaining after all rounds.
+The final value produced by the repeated alternating minimum/maximum pair
+reductions.
 
 ### Examples
 **Example 1**
@@ -35,21 +44,3 @@ The sole value remaining after all rounds.
 
 - Input: `nums = [3]`
 - Output: `3`
-
-**Example 3**
-
-- Input: `nums = [5, 4]`
-- Output: `4`
-
----
-
-## Solution
-### Approach
-Simulate rounds in place or into a temporary array. For each destination index, apply the parity-selected min or max to its source pair, then make the new half-length prefix active. Continue until one element remains.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)` across all geometrically shrinking rounds
-- **Space Complexity**: `O(1)` auxiliary space with in-place updates
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

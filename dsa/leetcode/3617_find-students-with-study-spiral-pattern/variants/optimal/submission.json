@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3961",
+  "frontend_id": "3617",
+  "title_slug": "find-students-with-study-spiral-pattern",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2083683252",
+  "verified_at": "2026-07-27T16:55:15.010742+00:00"
+}

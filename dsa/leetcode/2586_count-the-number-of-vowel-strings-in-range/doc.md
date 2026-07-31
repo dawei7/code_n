@@ -8,65 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, String, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-the-number-of-vowel-strings-in-range](https://leetcode.com/problems/count-the-number-of-vowel-strings-in-range/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-vowel-strings-in-range/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-the-number-of-vowel-strings-in-range/).
 
 ### Goal
-Given a list of strings and a specified inclusive index range [left, right], determine how many strings within that range start and end with a vowel (a, e, i, o, u).
+
+You are given a 0-indexed array `words` and two indices, `left` and `right`. A word is a vowel string when both its first and last characters belong to `a`, `e`, `i`, `o`, or `u`.
+
+Only the endpoint characters determine this classification; characters between them do not matter. Every supplied word is nonempty and contains only lowercase English letters, so both endpoints always exist and uppercase handling is unnecessary.
+
+Count the vowel strings whose indices lie in the inclusive range `[left, right]`. Words before `left` or after `right` must not affect the result.
 
 ### Function Contract
+
 **Inputs**
 
-- `words`: A list of strings consisting of lowercase English letters.
-- `left`: An integer representing the starting index of the range.
-- `right`: An integer representing the ending index of the range.
+- `words`: A nonempty list of lowercase English strings. The list has at most $1000$ entries, and every word has length from $1$ through $10$.
+- `left`: The first index included in the inspected range.
+- `right`: The last index included in the inspected range, with $0 \leq \texttt{left} \leq \texttt{right} < \lvert\texttt{words}\rvert$.
 
 **Return value**
 
-- An integer representing the count of strings that satisfy the vowel condition.
+- The number of words in the inclusive range that start and end with vowels.
 
 ### Examples
+
 **Example 1**
 
 - Input: `words = ["are","amy","u"], left = 0, right = 2`
 - Output: `2`
+
+`"are"` and `"u"` start and end with vowels; `"amy"` does not.
 
 **Example 2**
 
 - Input: `words = ["hey","aeo","mu","ooo","artro"], left = 1, right = 4`
 - Output: `3`
 
-**Example 3**
-
-- Input: `words = ["a","b","c","d","e"], left = 0, right = 4`
-- Output: `2`
-
----
-
-## Solution
-### Approach
-The problem utilizes a linear scan (iteration) over a subset of an array. By defining a set of vowels for O(1) lookup, we check the first and last character of each string within the specified bounds.
-
-### Complexity Analysis
-- **Time Complexity**: O(N), where N is the number of strings in the range [left, right]. Each string check is O(1) because we only inspect the first and last characters.
-- **Space Complexity**: O(1), as we only use a constant amount of extra space for the vowel set and the counter.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(words: list[str], left: int, right: int) -> int:
-    vowels = {'a', 'e', 'i', 'o', 'u'}
-    count = 0
-
-    for i in range(left, right + 1):
-        word = words[i]
-        if word[0] in vowels and word[-1] in vowels:
-            count += 1
-
-    return count
-```
-</details>
+The qualifying words in that range are `"aeo"`, `"ooo"`, and `"artro"`.

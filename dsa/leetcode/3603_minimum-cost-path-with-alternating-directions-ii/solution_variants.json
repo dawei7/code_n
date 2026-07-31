@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Cost Path with Alternating Directions II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Applies monotone-grid dynamic programming and compresses the frontier along the smaller grid dimension.",
+      "time_complexity": "O(m n)",
+      "space_complexity": "O(min(m, n))"
     }
   ]
 }

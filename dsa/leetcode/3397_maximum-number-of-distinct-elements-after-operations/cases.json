@@ -2,8 +2,8 @@
   "challenge_id": "lc_3397",
   "cases": [
     {
-      "id": "sample-all-distinct-after-ops",
-      "name": "sample: all six can become distinct",
+      "id": "sample-all-distinct-after-operations",
+      "name": "sample: all six values can become distinct",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -25,7 +25,7 @@
     },
     {
       "id": "sample-four-equal",
-      "name": "sample: four equal values with k one produce three distinct values",
+      "name": "sample: four equal values have only three available targets",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "trial-zero-k",
-      "name": "trial: no movement means only existing distinct values count",
+      "name": "trial: zero adjustment preserves the existing distinct count",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -65,8 +65,26 @@
       ]
     },
     {
+      "id": "trial-single-element",
+      "name": "trial: one element always contributes one distinct value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000
+        ],
+        "k": 1000000000
+      },
+      "expected": 1,
+      "tags": [
+        "edge",
+        "single-element",
+        "bounds"
+      ]
+    },
+    {
       "id": "trial-negative-targets",
-      "name": "trial: assigned values may go below one",
+      "name": "trial: adjusted values may become negative",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -79,13 +97,36 @@
       },
       "expected": 3,
       "tags": [
-        "regression",
-        "range-assignment"
+        "edge",
+        "negative-target"
+      ]
+    },
+    {
+      "id": "trial-capacity-limit",
+      "name": "trial: seven equal values compete for five integer targets",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "edge",
+        "interval-capacity"
       ]
     },
     {
       "id": "real-overlapping-ranges",
-      "name": "real: overlapping sorted ranges with limited slots",
+      "name": "real: overlapping intervals still fit every element",
       "kind": "real",
       "visible": false,
       "input": {
@@ -103,7 +144,28 @@
       "expected": 7,
       "tags": [
         "real",
-        "greedy"
+        "overlapping-ranges"
+      ]
+    },
+    {
+      "id": "real-separated-values",
+      "name": "real: separated input values remain fully distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          100,
+          1000,
+          10000,
+          1000000000
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "real",
+        "separated-ranges"
       ]
     }
   ]

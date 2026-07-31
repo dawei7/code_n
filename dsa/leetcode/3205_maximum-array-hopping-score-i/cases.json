@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3205",
+  "cases": [
+    {
+      "id": "sample-direct-hop",
+      "name": "sample: direct hop to the maximum final value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          5,
+          8
+        ]
+      },
+      "expected": 16,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-two-record-landings",
+      "name": "sample: an intermediate record maximum improves the score",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          5,
+          2,
+          8,
+          9,
+          1,
+          3
+        ]
+      },
+      "expected": 42,
+      "tags": [
+        "sample",
+        "record-maxima"
+      ]
+    },
+    {
+      "id": "trial-two-elements",
+      "name": "trial: the only hop lands at the final index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          7
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-equal-values",
+      "name": "trial: equal landing values make every route equivalent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9,
+          9,
+          9
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "equal-values"
+      ]
+    },
+    {
+      "id": "trial-increasing",
+      "name": "trial: the final maximum covers every interval",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "increasing"
+      ]
+    },
+    {
+      "id": "trial-decreasing",
+      "name": "trial: every next index is a useful landing point",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          8,
+          6,
+          4,
+          2
+        ]
+      },
+      "expected": 20,
+      "tags": [
+        "decreasing"
+      ]
+    },
+    {
+      "id": "real-large-middle-peak",
+      "name": "real: a middle peak dominates until the final hop",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          10,
+          1
+        ]
+      },
+      "expected": 21,
+      "tags": [
+        "middle-maximum"
+      ]
+    },
+    {
+      "id": "real-multiple-records",
+      "name": "real: several right-to-left records determine the route",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          4,
+          9,
+          1,
+          8,
+          2
+        ]
+      },
+      "expected": 27,
+      "tags": [
+        "record-maxima"
+      ]
+    },
+    {
+      "id": "real-starting-value-irrelevant",
+      "name": "real: changing the large starting value cannot earn points",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "starting-value"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "real: maximum values require a wide accumulated score",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          100000,
+          1,
+          100000,
+          2,
+          100000
+        ]
+      },
+      "expected": 500000,
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-late-spike",
+      "name": "real: a late spike dominates all earlier intervals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          3,
+          2,
+          1,
+          999,
+          4
+        ]
+      },
+      "expected": 4000,
+      "tags": [
+        "late-maximum"
+      ]
+    },
+    {
+      "id": "real-alternating-peaks",
+      "name": "real: alternating peaks retain only suffix records",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          50,
+          3,
+          40,
+          4,
+          30,
+          5
+        ]
+      },
+      "expected": 195,
+      "tags": [
+        "alternating",
+        "suffix-maxima"
+      ]
+    }
+  ]
+}
+

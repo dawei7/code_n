@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3299",
+  "measurement_note": "The workload size n is both the list length and maximum value. Strictly increasing nums = [1, ..., n] exercises value-indexed initialization and transitions; each value i belongs to i(n-i+1) valid ranges, giving a closed-form expected total.",
+  "cases": [
+    {"id":"benchmark-increasing-1000","name":"benchmark: increasing values through 1000","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 1000\nmodulus = 1_000_000_007\ncase = {'nums': list(range(1, n + 1))}\nsum_squares = n * (n + 1) * (2 * n + 1) // 6\nsum_cubes = (n * (n + 1) // 2) ** 2\nexpected = ((n + 1) * sum_squares - sum_cubes) % modulus"},"size":1000,"tags":["benchmark","dynamic-programming"]},
+    {"id":"benchmark-increasing-10000","name":"benchmark: increasing values through 10000","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 10000\nmodulus = 1_000_000_007\ncase = {'nums': list(range(1, n + 1))}\nsum_squares = n * (n + 1) * (2 * n + 1) // 6\nsum_cubes = (n * (n + 1) // 2) ** 2\nexpected = ((n + 1) * sum_squares - sum_cubes) % modulus"},"size":10000,"tags":["benchmark","dynamic-programming"]},
+    {"id":"benchmark-increasing-100000","name":"benchmark: increasing values at both legal maxima","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 100000\nmodulus = 1_000_000_007\ncase = {'nums': list(range(1, n + 1))}\nsum_squares = n * (n + 1) * (2 * n + 1) // 6\nsum_cubes = (n * (n + 1) // 2) ** 2\nexpected = ((n + 1) * sum_squares - sum_cubes) % modulus"},"size":100000,"tags":["benchmark","dynamic-programming","boundary"]}
+  ]
+}

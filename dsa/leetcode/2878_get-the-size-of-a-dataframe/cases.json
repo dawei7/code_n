@@ -1,0 +1,210 @@
+{
+  "challenge_id": "lc_2878",
+  "cases": [
+    {
+      "id": "sample-ten-by-five",
+      "name": "sample: ten players and five columns",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "players": [
+            {
+              "player_id": 846,
+              "name": "Mason",
+              "age": 21,
+              "position": "Forward",
+              "team": "RealMadrid"
+            },
+            {
+              "player_id": 749,
+              "name": "Riley",
+              "age": 30,
+              "position": "Winger",
+              "team": "Barcelona"
+            },
+            {
+              "player_id": 155,
+              "name": "Bob",
+              "age": 28,
+              "position": "Striker",
+              "team": "ManchesterUnited"
+            },
+            {
+              "player_id": 583,
+              "name": "Isabella",
+              "age": 32,
+              "position": "Goalkeeper",
+              "team": "Liverpool"
+            },
+            {
+              "player_id": 388,
+              "name": "Zachary",
+              "age": 24,
+              "position": "Midfielder",
+              "team": "BayernMunich"
+            },
+            {
+              "player_id": 883,
+              "name": "Ava",
+              "age": 23,
+              "position": "Defender",
+              "team": "Chelsea"
+            },
+            {
+              "player_id": 355,
+              "name": "Violet",
+              "age": 18,
+              "position": "Striker",
+              "team": "Juventus"
+            },
+            {
+              "player_id": 247,
+              "name": "Thomas",
+              "age": 27,
+              "position": "Striker",
+              "team": "ParisSaint-Germain"
+            },
+            {
+              "player_id": 761,
+              "name": "Jack",
+              "age": 33,
+              "position": "Midfielder",
+              "team": "ManchesterCity"
+            },
+            {
+              "player_id": 642,
+              "name": "Charlie",
+              "age": 36,
+              "position": "Center-back",
+              "team": "Arsenal"
+            }
+          ]
+        }
+      },
+      "expected": [
+        10,
+        5
+      ],
+      "tags": [
+        "sample",
+        "shape"
+      ]
+    },
+    {
+      "id": "trial-one-row",
+      "name": "single player still has five columns",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "players": [
+            {
+              "player_id": 1,
+              "name": "Ada",
+              "age": 25,
+              "position": "Forward",
+              "team": "A"
+            }
+          ]
+        }
+      },
+      "expected": [
+        1,
+        5
+      ],
+      "tags": [
+        "boundary",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-three-rows",
+      "name": "three records report three rows",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "players": [
+            {
+              "player_id": 9,
+              "name": "Lin",
+              "age": 20,
+              "position": "Defender",
+              "team": "B"
+            },
+            {
+              "player_id": 2,
+              "name": "Bo",
+              "age": 31,
+              "position": "Keeper",
+              "team": "C"
+            },
+            {
+              "player_id": 7,
+              "name": "Mia",
+              "age": 27,
+              "position": "Winger",
+              "team": "D"
+            }
+          ]
+        }
+      },
+      "expected": [
+        3,
+        5
+      ],
+      "tags": [
+        "dimensions"
+      ]
+    },
+    {
+      "id": "real-repeated-values",
+      "name": "hidden: repeated cell values do not affect dimensions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "players": [
+            {
+              "player_id": 10,
+              "name": "Same",
+              "age": 22,
+              "position": "Forward",
+              "team": "X"
+            },
+            {
+              "player_id": 11,
+              "name": "Same",
+              "age": 22,
+              "position": "Forward",
+              "team": "X"
+            },
+            {
+              "player_id": 12,
+              "name": "Same",
+              "age": 22,
+              "position": "Forward",
+              "team": "X"
+            },
+            {
+              "player_id": 13,
+              "name": "Same",
+              "age": 22,
+              "position": "Forward",
+              "team": "X"
+            }
+          ]
+        }
+      },
+      "expected": [
+        4,
+        5
+      ],
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    }
+  ]
+}

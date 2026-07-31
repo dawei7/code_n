@@ -1,53 +1,46 @@
 def solve(grid: list[list[int]]) -> int:
     n = len(grid)
-    height_count = n + 1
-
-    col_prefix = [[0] * height_count for _ in range(n)]
-    for col in range(n):
-        for row in range(n):
-            col_prefix[col][row + 1] = col_prefix[col][row] + grid[row][col]
-
-    def column_score(col: int, height: int, neighbor_height: int) -> int:
-        if neighbor_height <= height:
-            return 0
-        return col_prefix[col][neighbor_height] - col_prefix[col][height]
-
     if n == 1:
         return 0
+    prefix = [[0] * (n + 1) for _ in range(n)]
+    for column in range(n):
+        for row in range(n):
+            prefix[column][row + 1] = prefix[column][row] + grid[row][column]
 
-    dp = [[-10**30] * height_count for _ in range(height_count)]
-    for h0 in range(height_count):
-        for h1 in range(height_count):
-            dp[h0][h1] = column_score(0, h0, h1)
+    heights = n + 1
+    dp = [[0] * heights for _ in range(heights)]
+    for left in range(heights):
+        for right in range(heights):
+            dp[left][right] = max(0, prefix[0][right] - prefix[0][left])
 
-    for col in range(1, n - 1):
-        new_dp = [[-10**30] * height_count for _ in range(height_count)]
-        pref = col_prefix[col]
-
-        for current in range(height_count):
-            best_prev_at_most = [-10**30] * height_count
-            running = -10**30
-            for previous in range(height_count):
-                running = max(running, dp[previous][current])
-                best_prev_at_most[previous] = running
-
-            best_prev_more = [-10**30] * (height_count + 1)
-            running = -10**30
-            for previous in range(height_count - 1, -1, -1):
-                extra = pref[previous] - pref[current] if previous > current else 0
-                running = max(running, dp[previous][current] + extra)
-                best_prev_more[previous] = running
-
-            for next_height in range(height_count):
-                from_left_neighbor = best_prev_at_most[next_height] + column_score(col, current, next_height)
-                from_right_neighbor = best_prev_more[next_height + 1]
-                new_dp[current][next_height] = max(from_left_neighbor, from_right_neighbor)
-
-        dp = new_dp
+    for column in range(1, n - 1):
+        next_dp = [[0] * heights for _ in range(heights)]
+        values = prefix[column]
+        for center in range(heights):
+            prefix_best = [0] * heights
+            running = 0
+            for left in range(heights):
+                running = max(running, dp[left][center])
+                prefix_best[left] = running
+            suffix_best = [0] * (heights + 1)
+            running = 0
+            for left in range(heights - 1, -1, -1):
+                gain = max(0, values[left] - values[center])
+                running = max(running, dp[left][center] + gain)
+                suffix_best[left] = running
+            for right in range(heights):
+                gain = max(0, values[right] - values[center])
+                next_dp[center][right] = max(
+                    prefix_best[right] + gain,
+                    suffix_best[right + 1],
+                )
+        dp = next_dp
 
     answer = 0
-    last_col = n - 1
-    for previous in range(height_count):
-        for current in range(height_count):
-            answer = max(answer, dp[previous][current] + column_score(last_col, current, previous))
+    for left in range(heights):
+        for center in range(heights):
+            answer = max(
+                answer,
+                dp[left][center] + max(0, prefix[-1][left] - prefix[-1][center]),
+            )
     return answer

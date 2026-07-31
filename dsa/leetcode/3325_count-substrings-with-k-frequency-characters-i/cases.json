@@ -1,0 +1,110 @@
+{
+  "challenge_id": "lc_3325",
+  "cases": [
+    {
+      "id": "sample-abacb",
+      "name": "sample: two different qualifying letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abacb",
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-threshold-one",
+      "name": "sample: threshold one counts every substring",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "abcde",
+        "k": 1
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "minimum-threshold"
+      ]
+    },
+    {
+      "id": "trial-single",
+      "name": "trial: single-character minimum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum",
+        "threshold-one"
+      ]
+    },
+    {
+      "id": "trial-repeated",
+      "name": "trial: repeated character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaa",
+        "k": 2
+      },
+      "expected": 6,
+      "tags": [
+        "repeated",
+        "overlapping"
+      ]
+    },
+    {
+      "id": "trial-never-reached",
+      "name": "trial: threshold is never reached",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcabc",
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "no-match",
+        "threshold"
+      ]
+    },
+    {
+      "id": "real-full-string-only",
+      "name": "real: only the full string reaches the threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ababa",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "full-string"
+      ]
+    },
+    {
+      "id": "real-multiple-starts",
+      "name": "real: valid suffixes begin at multiple starts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaab",
+        "k": 2
+      },
+      "expected": 5,
+      "tags": [
+        "overlapping",
+        "hidden"
+      ]
+    }
+  ]
+}

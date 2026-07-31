@@ -2,45 +2,8 @@
   "challenge_id": "lc_2968",
   "cases": [
     {
-      "id": "sample-two-frequency",
-      "name": "sample: budget allows frequency two",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          4,
-          8,
-          13
-        ],
-        "k": 5
-      },
-      "expected": 2,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-no-pair",
-      "name": "sample: no pair within budget",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          3,
-          9,
-          6
-        ],
-        "k": 2
-      },
-      "expected": 1,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "sample-frequency-three",
-      "name": "sample: budget allows three equal values",
+      "id": "sample-three-frequency",
+      "name": "sample: three values can meet at two",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -58,20 +21,74 @@
       ]
     },
     {
-      "id": "trial-zero-budget",
-      "name": "trial: zero budget counts duplicates only",
+      "id": "sample-zero-budget",
+      "name": "sample: zero budget preserves existing frequency",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          4,
+          2,
+          4
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "zero-budget"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "trial: singleton score is one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 0
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-median-combines-all",
+      "name": "trial: all values reach the median exactly within budget",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           1,
+          5,
+          9
+        ],
+        "k": 8
+      },
+      "expected": 3,
+      "tags": [
+        "median"
+      ]
+    },
+    {
+      "id": "trial-duplicates-plus-neighbor",
+      "name": "trial: duplicate mode absorbs a nearby value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
           1,
           2,
-          3,
-          3,
-          3
+          2,
+          4
         ],
-        "k": 0
+        "k": 2
       },
       "expected": 3,
       "tags": [
@@ -79,8 +96,8 @@
       ]
     },
     {
-      "id": "real-regression-sign",
-      "name": "real: median-cost sign regression",
+      "id": "real-insufficient-for-pair",
+      "name": "real: every pair exceeds the budget",
       "kind": "real",
       "visible": false,
       "input": {
@@ -94,7 +111,66 @@
       "expected": 1,
       "tags": [
         "hidden",
-        "regression"
+        "small-budget"
+      ]
+    },
+    {
+      "id": "real-large-budget",
+      "name": "real: maximum-scale budget joins distant endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1000000000
+        ],
+        "k": 100000000000000
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "budget-boundary"
+      ]
+    },
+    {
+      "id": "real-even-window",
+      "name": "real: even window may target either middle value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          7,
+          9
+        ],
+        "k": 12
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "even-window"
+      ]
+    },
+    {
+      "id": "real-best-subset-in-middle",
+      "name": "real: optimal values form a middle sorted block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          100,
+          101,
+          102,
+          1000
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "middle-window"
       ]
     }
   ]

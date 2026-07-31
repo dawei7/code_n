@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3995",
+  "frontend_id": "3658",
+  "title_slug": "gcd-of-odd-and-even-sums",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.gcdOfOddEvenSums",
+  "verified_submission_id": "2083970400",
+  "verified_at": "2026-07-27T22:10:30.033814+00:00"
+}

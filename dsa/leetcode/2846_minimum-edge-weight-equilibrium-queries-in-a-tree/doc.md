@@ -8,117 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Bit Manipulation, Tree, Depth-First Search |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-edge-weight-equilibrium-queries-in-a-tree](https://leetcode.com/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/).
 
 ### Goal
-Given a weighted tree with $n$ nodes and $n-1$ edges (weights between 1 and 26), process a series of queries. Each query consists of two nodes $(u, v)$. For each query, determine the minimum number of edge weight modifications required to make all edges on the simple path between $u$ and $v$ have the same weight.
+
+An undirected tree has `n` nodes numbered from `0` through `n - 1`. Each entry `edges[i] = [u_i, v_i, w_i]` joins two nodes with an edge whose weight is `w_i`. The array contains exactly `n - 1` edges and is guaranteed to describe a valid tree.
+
+For every query `queries[i] = [a_i, b_i]`, consider the unique simple path from `a_i` to `b_i`. One operation may select any tree edge and replace its weight with any value. Determine the minimum number of operations needed to make every edge on that query's path have the same weight.
+
+Queries are independent: any changes considered for one query do not carry into another, and each query starts from the original weighted tree. Return the answers in query order. A path is the sequence of distinct nodes from one endpoint to the other in which consecutive nodes share an edge.
 
 ### Function Contract
+
 **Inputs**
 
-- `n`: An integer representing the number of nodes in the tree.
-- `edges`: A list of lists where each inner list `[u, v, w]` represents an undirected edge between `u` and `v` with weight `w`.
-- `queries`: A list of lists where each inner list `[u, v]` represents a query for the path between `u` and `v`.
+- `n`: The number of nodes in the tree.
+- `edges`: The `n - 1` entries `[u, v, w]` describing undirected weighted edges.
+- `queries`: The `m` endpoint pairs `[a, b]` whose paths must be evaluated.
+
+The constraints are $1\le n\le10^4$, $1\le w\le26$, and $1\le m\le2\cdot10^4$. Every node index in `edges` and `queries` lies from `0` through `n - 1`, and `edges` represents a valid tree.
 
 **Return value**
 
-- A list of integers representing the minimum modifications for each query.
+- An array of length $m$ whose $i$th entry is the minimum number of edge-weight changes for `queries[i]`.
 
 ### Examples
+
 **Example 1**
 
 - Input: `n = 7, edges = [[0,1,1],[1,2,1],[2,3,1],[3,4,2],[4,5,2],[5,6,2]], queries = [[0,3],[3,6],[2,6],[0,6]]`
-- Output: `[0, 0, 1, 3]`
+- Output: `[0,0,1,3]`
+- Explanation: The first two paths already have uniform weights. The third changes its one weight-`1` edge to `2`, while the full path needs three of its six edges changed.
 
 **Example 2**
 
-- Input: `n = 8, edges = [[1,2,6],[1,3,4],[2,4,6],[2,5,3],[3,6,6],[3,0,8],[7,0,5]], queries = [[4,6],[0,4],[6,5],[7,4]]`
-- Output: `[1, 2, 3, 2]`
-
-**Example 3**
-
-- Input: `n = 9, edges = [[0,1,3],[1,2,2],[2,3,4],[3,4,4],[4,5,1],[5,6,6],[6,7,9],[7,8,8]], queries = [[0,7],[4,8],[0,1]]`
-- Output: `[6, 5, 0]`
-
----
-
-## Solution
-### Approach
-The problem is solved using Binary Lifting to find the Lowest Common Ancestor (LCA) and to maintain prefix sums of edge weight frequencies along paths from the root. By storing the count of each weight (1-26) on the path from the root to every node, the frequency of weights on any path $(u, v)$ can be calculated as $count(u) + count(v) - 2 \times count(LCA(u, v))$. The minimum modifications required is the total number of edges on the path minus the maximum frequency of any single weight on that path.
-
-### Complexity Analysis
-- **Time Complexity**: $O((n + q) \log n)$, where $n$ is the number of nodes and $q$ is the number of queries. Preprocessing the tree takes $O(n \log n)$, and each query takes $O(\log n)$ to find the LCA and $O(26)$ to compute the result.
-- **Space Complexity**: $O(n \log n)$ to store the binary lifting table and the prefix frequency counts for each node.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import collections
-import sys
-
-def solve(n, edges, queries):
-    sys.setrecursionlimit(max(sys.getrecursionlimit(), n + 10))
-
-    adj = collections.defaultdict(list)
-    for u, v, w in edges:
-        adj[u].append((v, w))
-        adj[v].append((u, w))
-
-    LOG = n.bit_length()
-    up = [[-1] * LOG for _ in range(n)]
-    depth = [0] * n
-    # counts[node][weight-1] stores frequency of weight on path from root to node
-    counts = [[0] * 26 for _ in range(n)]
-
-    def dfs(u, p, d, current_counts):
-        depth[u] = d
-        up[u][0] = p
-        counts[u] = list(current_counts)
-        for v, w in adj[u]:
-            if v != p:
-                current_counts[w - 1] += 1
-                dfs(v, u, d + 1, current_counts)
-                current_counts[w - 1] -= 1
-
-    dfs(0, -1, 0, [0] * 26)
-
-    for i in range(1, LOG):
-        for u in range(n):
-            if up[u][i - 1] != -1:
-                up[u][i] = up[up[u][i - 1]][i - 1]
-
-    def get_lca(u, v):
-        if depth[u] < depth[v]:
-            u, v = v, u
-        for i in range(LOG - 1, -1, -1):
-            if depth[u] - (1 << i) >= depth[v]:
-                u = up[u][i]
-        if u == v:
-            return u
-        for i in range(LOG - 1, -1, -1):
-            if up[u][i] != up[v][i]:
-                u = up[u][i]
-                v = up[v][i]
-        return up[u][0]
-
-    results = []
-    for u, v in queries:
-        lca = get_lca(u, v)
-        path_len = depth[u] + depth[v] - 2 * depth[lca]
-
-        max_freq = 0
-        for i in range(26):
-            freq = counts[u][i] + counts[v][i] - 2 * counts[lca][i]
-            if freq > max_freq:
-                max_freq = freq
-
-        results.append(path_len - max_freq)
-
-    return results
-```
-</details>
+- Input: `n = 8, edges = [[1,2,6],[1,3,4],[2,4,6],[2,5,3],[3,6,6],[3,0,8],[7,0,2]], queries = [[4,6],[0,4],[6,5],[7,4]]`
+- Output: `[1,2,2,3]`
+- Explanation: For each path, retaining its most frequent existing weight minimizes how many other edges must be changed.

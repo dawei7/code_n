@@ -2,8 +2,8 @@
   "challenge_id": "lc_2908",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: mountain around value five",
+      "id": "sample-minimum-nine",
+      "name": "sample: later peak forms the minimum mountain",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -15,15 +15,15 @@
           3
         ]
       },
+      "expected": 9,
       "tags": [
         "sample",
-        "mountain"
-      ],
-      "expected": 9
+        "later-peak"
+      ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: later value ten gives a smaller triplet",
+      "id": "sample-nonconsecutive-mountain",
+      "name": "sample: best mountain uses nonconsecutive indices",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -36,15 +36,15 @@
           2
         ]
       },
+      "expected": 13,
       "tags": [
         "sample",
-        "triplet"
-      ],
-      "expected": 13
+        "nonconsecutive"
+      ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: strictly decreasing has no mountain",
+      "id": "sample-no-mountain",
+      "name": "sample: no value has a smaller item on both sides",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -53,56 +53,112 @@
           5,
           4,
           3,
-          2,
-          1
+          4,
+          5
         ]
       },
+      "expected": -1,
       "tags": [
         "sample",
-        "none"
-      ],
-      "expected": -1
+        "impossible"
+      ]
     },
     {
-      "id": "trial-simple-peak",
-      "name": "trial: single obvious peak",
+      "id": "trial-minimum-length",
+      "name": "minimum-length array contains one valid mountain",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           1,
-          100,
+          50,
           1
         ]
       },
+      "expected": 52,
       "tags": [
-        "trial",
-        "peak"
-      ],
-      "expected": 102
+        "minimum-length",
+        "value-boundary"
+      ]
     },
     {
-      "id": "real-many-candidates",
-      "name": "hidden: multiple peaks compete for minimum sum",
+      "id": "trial-equality-is-not-smaller",
+      "name": "equal left and middle values do not form a mountain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "strict-inequality",
+        "duplicate-values"
+      ]
+    },
+    {
+      "id": "real-competing-peaks",
+      "name": "hidden: side minima differ between competing peaks",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          9,
-          3,
-          8,
+          4,
           2,
           7,
           1,
           6,
-          4
+          3
         ]
       },
+      "expected": 10,
       "tags": [
         "hidden",
-        "minimum"
-      ],
-      "expected": 10
+        "competing-peaks"
+      ]
+    },
+    {
+      "id": "real-late-smaller-right",
+      "name": "hidden: the best right endpoint need not be adjacent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          1,
+          5,
+          4,
+          2
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "suffix-minimum"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: equal values never satisfy strict mountain sides",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "all-equal"
+      ]
     }
   ]
 }

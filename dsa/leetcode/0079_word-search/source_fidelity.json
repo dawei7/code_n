@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode", "challenge_id": "lc_79", "frontend_id": "79",
+    "title_slug": "word-search",
+    "url": "https://leetcode.com/problems/word-search/description/",
+    "paid_only": false, "content_sha256": "d65ac618d2607e43bfc29bcd3efa16b1177662d8f1375422fe576958cd3089e3", "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCCED\"", "output": "true", "has_explanation": false},
+      {"ordinal": 2, "input": "board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"SEE\"", "output": "true", "has_explanation": false},
+      {"ordinal": 3, "input": "board = [[\"A\",\"B\",\"C\",\"E\"],[\"S\",\"F\",\"C\",\"S\"],[\"A\",\"D\",\"E\",\"E\"]], word = \"ABCB\"", "output": "false", "has_explanation": false}
+    ],
+    "constraint_count": 5,
+    "visuals": {"source_images": 3, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 3}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "2c42ef790b7567f4d9c06b5355bcf066a06c1be4667e29cf9e004154c04d11e2",
+      "reference/contract.md": "0e3091d079c7f6f6de74c715c99c9f3e9f1320f96eb5b854a39cf9f07d4e13d9",
+      "reference/examples.md": "0e16265513a8358c4844a05c5b4194ebbbb9826a05b42527772a287ec1e9d23b",
+      "reference/constraints.md": "389431a91db2a91372c59a3fafb73eed92d7c7325450c0103095f9604ffad8a3",
+      "reference/follow_up.md": "1798688b05f3e7d28d1c8247bf0d5b9f41a95f44fe76d358ce78d45b36ea3e46"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

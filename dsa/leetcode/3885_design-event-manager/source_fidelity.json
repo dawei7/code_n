@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3885",
+    "frontend_id": "3885",
+    "title_slug": "design-event-manager",
+    "url": "https://leetcode.com/problems/design-event-manager/description/",
+    "paid_only": false,
+    "content_sha256": "ff035812e355c205f74f3ffac1504a879e502d0eb942ddc7d7e164a86c1d9398",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "[\"EventManager\", \"pollHighest\", \"updatePriority\", \"pollHighest\", \"pollHighest\"]",
+        "output": "[null, 2, null, 5, 9]",
+        "has_explanation": false
+      },
+      {
+        "ordinal": 2,
+        "input": "[\"EventManager\", \"pollHighest\", \"pollHighest\", \"pollHighest\"]",
+        "output": "[null, 7, 4, -1]",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 8,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "02ed9b4d9ac30e4e65de69974206f84cfd16948146c75039dc192664af73d6e9",
+      "reference/contract.md": "fa8476177592100b0857fe44757f155dd116f086fb2018cf83a7c07cdf33e991",
+      "reference/examples.md": "f01052e72efca36fdddb7e6d7486055a10f101850f04a6532d1aaef3e9099071",
+      "reference/constraints.md": "ba825794fedb10b495c29d215e3e8f4b54ef2f16fe76831a314864df70ebf353"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

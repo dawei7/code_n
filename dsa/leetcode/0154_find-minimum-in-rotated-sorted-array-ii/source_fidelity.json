@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_154", "frontend_id": "154", "title_slug": "find-minimum-in-rotated-sorted-array-ii", "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/description/", "paid_only": false, "content_sha256": "c4aeb621a2ff853c2c617cbd291541af0a034a56dd2612cca3bd4171ab9ed628", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,3,5]", "output": "1", "has_explanation": false},
+      {"ordinal": 2, "input": "nums = [2,2,2,0,1]", "output": "0", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {
+    "status": "verified",
+    "files": {"reference/description.md": "0ed035ac0bd1f04d4c0d7920707fa75c106ff421442195571b1f390b19ae8602", "reference/contract.md": "2383c0a29ebf1c198166535ce7b225123e590abb66fcce599549140a32412d71", "reference/examples.md": "d480f77671bf17424dafd46bc93949084e167acbb64889a86117ddc1ec7bded9", "reference/constraints.md": "0ea309dc43c57ecf3327e39e221e974b879885e6e380e8dc6d80835c0c3b82e2", "reference/follow_up.md": "d70840409ea7d8361da3f8feaee981dee3ed97af1b05245b2f9ac9d63cd9ca9f"},
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

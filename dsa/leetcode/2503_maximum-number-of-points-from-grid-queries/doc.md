@@ -5,26 +5,26 @@
 | Source | LeetCode |
 | Frontend ID | 2503 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Two Pointers, Breadth-First Search, Union-Find, Sorting, Heap (Priority Queue), Matrix |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-number-of-points-from-grid-queries](https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-number-of-points-from-grid-queries/).
-
 ### Goal
-Given an $m \times n$ grid of integers and a list of queries, determine for each query $k$ the maximum number of cells you can visit starting from the top-left cell $(0, 0)$. You can only move to adjacent cells (up, down, left, right) if the value in the target cell is strictly less than $k$.
+You are given an $m\times n$ integer matrix `grid` and an array `queries` containing $k$ thresholds. Handle every query independently, always starting at the top-left cell `(0, 0)`.
+
+For a threshold `queries[i]`, a cell can award one point on its first visit only when the threshold is strictly greater than that cell's value. From an eligible current cell, movement may continue to an orthogonally adjacent cell: up, down, left, or right. If the current cell is not eligible, the process stops without scoring it. Cells may be revisited, but revisits award no additional points.
+
+For each query, maximize the total points obtainable and return the $k$ answers in the queries' original order.
 
 ### Function Contract
 **Inputs**
 
-- `grid`: A 2D list of integers representing the grid values.
-- `queries`: A list of integers representing the threshold values for each query.
+- `grid`: An $m\times n$ matrix, where $2\le m,n\le1000$, $4\le mn\le10^5$, and every value is between $1$ and $10^6$ inclusive.
+- `queries`: A list of $k$ thresholds, where $1\le k\le10^4$ and every threshold is between $1$ and $10^6$ inclusive.
 
 **Return value**
 
-- A list of integers where the $i$-th element is the count of reachable cells for the $i$-th query.
+A list of $k$ integers; result `i` is the maximum number of distinct cells that can score under `queries[i]`.
 
 ### Examples
 **Example 1**
@@ -36,59 +36,10 @@ Given an $m \times n$ grid of integers and a list of queries, determine for each
 
 - Input: `grid = [[5,2,1],[1,1,2]], queries = [3]`
 - Output: `[0]`
+- Explanation: The start value is not strictly below the threshold, so no cell scores.
 
 **Example 3**
 
 - Input: `grid = [[1,2],[2,1]], queries = [1,2,3]`
 - Output: `[0,1,4]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a **Min-Priority Queue (Dijkstra-like approach)** combined with **Offline Query Processing**. By sorting the queries, we can process them in increasing order. We maintain a priority queue of reachable boundary cells, always expanding into the smallest available neighbor. This allows us to incrementally count reachable cells as the threshold $k$ increases.
-
-### Complexity Analysis
-- **Time Complexity**: $O(MN \log(MN) + Q \log Q)$, where $M \times N$ is the grid size and $Q$ is the number of queries. We visit each cell once and perform heap operations, and we sort the queries.
-- **Space Complexity**: $O(MN + Q)$ to store the grid, the priority queue, and the results.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import heapq
-
-def solve(grid, queries):
-    m, n = len(grid), len(grid[0])
-
-    # Store queries with original indices to return results in correct order
-    sorted_queries = sorted((q, i) for i, q in enumerate(queries))
-    results = [0] * len(queries)
-
-    # Min-heap stores (value, row, col)
-    # We start from (0, 0)
-    pq = [(grid[0][0], 0, 0)]
-    visited = [[False for _ in range(n)] for _ in range(m)]
-    visited[0][0] = True
-
-    count = 0
-
-    for q_val, original_idx in sorted_queries:
-        # Expand the frontier while the smallest value in heap is less than q_val
-        while pq and pq[0][0] < q_val:
-            val, r, c = heapq.heappop(pq)
-            count += 1
-
-            # Check 4-directional neighbors
-            for dr, dc in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-                nr, nc = r + dr, c + dc
-                if 0 <= nr < m and 0 <= nc < n and not visited[nr][nc]:
-                    visited[nr][nc] = True
-                    heapq.heappush(pq, (grid[nr][nc], nr, nc))
-
-        results[original_idx] = count
-
-    return results
-```
-</details>
+- Explanation: Equality is excluded. Threshold $2$ reaches only the start, while threshold $3$ reaches the entire grid.

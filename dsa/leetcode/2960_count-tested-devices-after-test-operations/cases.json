@@ -38,12 +38,45 @@
       ]
     },
     {
-      "id": "sample-all-zero",
-      "name": "sample: all devices depleted",
-      "kind": "sample",
+      "id": "trial-single-zero",
+      "name": "trial: depleted singleton",
+      "kind": "trial",
       "visible": true,
       "input": {
         "batteryPercentages": [
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-single-positive",
+      "name": "trial: charged singleton",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "batteryPercentages": [
+          100
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: every device is depleted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "batteryPercentages": [
+          0,
           0,
           0,
           0
@@ -51,31 +84,52 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
-        "edge"
+        "all-zero"
       ]
     },
     {
-      "id": "trial-all-pass",
-      "name": "trial: all devices can be tested",
+      "id": "trial-all-tested",
+      "name": "trial: every original battery exceeds its offset",
       "kind": "trial",
       "visible": true,
       "input": {
         "batteryPercentages": [
-          5,
-          5,
-          5,
+          1,
+          2,
+          3,
+          4,
           5
         ]
       },
-      "expected": 4,
+      "expected": 5,
       "tags": [
-        "simulation"
+        "all-tested"
       ]
     },
     {
-      "id": "real-late-recovery",
-      "name": "real: later high batteries still pass",
+      "id": "real-equality-does-not-test",
+      "name": "real: batteries equal to offset are skipped",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "batteryPercentages": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "strict-comparison"
+      ]
+    },
+    {
+      "id": "real-late-high-batteries",
+      "name": "real: later high batteries remain testable",
       "kind": "real",
       "visible": false,
       "input": {
@@ -91,7 +145,28 @@
       },
       "expected": 3,
       "tags": [
-        "hidden"
+        "hidden",
+        "late-tests"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "real: maximum batteries all test",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "batteryPercentages": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "value-boundary"
       ]
     }
   ]

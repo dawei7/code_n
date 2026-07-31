@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3945",
+    "frontend_id": "3945",
+    "title_slug": "digit-frequency-score",
+    "url": "https://leetcode.com/problems/digit-frequency-score/description/",
+    "paid_only": false,
+    "content_sha256": "0aea0f59850f0c5e0646b6ecb8d96a564ee5a58dab6f1466b592dc6d5bf6d616",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 122",
+        "output": "5",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 101",
+        "output": "2",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "5549cce548a88aba53f02fb5a9771ddb435a85e4473ee52b2ec78e625c545081",
+      "reference/contract.md": "93911a9f48219c2eb7edc22c12383eed2cdc165cf91ded15a995aae54568127f",
+      "reference/examples.md": "a0000b74bfb8d8b0a9d946833358c384427c30f8bd33e6405448f5467ef7d3c3",
+      "reference/constraints.md": "cb3df2b25fc30000af2ebdc67febec9b47b281f09de689eb8e8d1b5dc081c856"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

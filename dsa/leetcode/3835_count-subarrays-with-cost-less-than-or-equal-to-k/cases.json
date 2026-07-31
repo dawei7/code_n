@@ -1,0 +1,381 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3835",
+  "cases": [
+    {
+      "id": "sample-five-valid",
+      "name": "sample: exactly one of six subarrays exceeds the threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2
+        ],
+        "k": 4
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed-range",
+        "explained"
+      ]
+    },
+    {
+      "id": "sample-all-equal",
+      "name": "sample: every equal-value subarray has zero cost",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 0
+      },
+      "expected": 10,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "all-equal",
+        "zero-threshold"
+      ]
+    },
+    {
+      "id": "sample-zero-singletons",
+      "name": "sample: only singletons qualify at zero threshold",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 0
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "increasing",
+        "zero-threshold"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "trial: a singleton always has zero cost",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000
+        ],
+        "k": 0
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "singleton",
+        "maximum-value"
+      ]
+    },
+    {
+      "id": "trial-exact-threshold",
+      "name": "trial: a pair whose cost equals k is included",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3
+        ],
+        "k": 4
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "inclusive-threshold",
+        "exact-equality"
+      ]
+    },
+    {
+      "id": "trial-below-pair-cost",
+      "name": "trial: lowering k by one excludes the pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "threshold-boundary"
+      ]
+    },
+    {
+      "id": "trial-duplicate-extrema",
+      "name": "trial: duplicate minima survive while the window shrinks",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          5,
+          2
+        ],
+        "k": 6
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicate-extrema",
+        "multi-step-shrink"
+      ]
+    },
+    {
+      "id": "real-recover-after-outlier",
+      "name": "hidden: valid short windows resume after an outlier",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          10,
+          2,
+          3
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "outlier",
+        "window-recovery"
+      ]
+    },
+    {
+      "id": "real-equal-tail",
+      "name": "hidden: a zero-cost equal tail contributes all of its subarrays",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          10,
+          10,
+          10
+        ],
+        "k": 0
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "equal-run",
+        "zero-threshold"
+      ]
+    },
+    {
+      "id": "real-alternating-extrema",
+      "name": "hidden: every adjacent pair lies exactly on the threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          4,
+          1,
+          4,
+          1
+        ],
+        "k": 6
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "alternating",
+        "duplicate-extrema"
+      ]
+    },
+    {
+      "id": "real-maximum-k",
+      "name": "hidden: the maximum threshold admits every boundary-valued subarray",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1000000000,
+          1
+        ],
+        "k": 1000000000000000
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-k",
+        "value-boundaries"
+      ]
+    },
+    {
+      "id": "real-large-equal-count",
+      "name": "hidden: a longer equal run produces a triangular count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "k": 0
+      },
+      "expected": 5050,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "equal-run",
+        "triangular-count"
+      ]
+    }
+  ]
+}
+

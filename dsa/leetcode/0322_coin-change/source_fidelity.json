@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_322", "frontend_id": "322", "title_slug": "coin-change", "url": "https://leetcode.com/problems/coin-change/description/", "paid_only": false, "content_sha256": "e7f881e12c7a6d6b778dfb62cf13407fb5a5efaa78c703949fd1264c660b5124", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "coins = [1,2,5], amount = 11", "output": "3", "has_explanation": true},
+      {"ordinal": 2, "input": "coins = [2], amount = 3", "output": "-1", "has_explanation": false},
+      {"ordinal": 3, "input": "coins = [1], amount = 0", "output": "0", "has_explanation": false}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "256bc96d6b1f1152086ff23e6e5042426a1eabd92869871fe7d38cd584e38e0e",
+    "reference/contract.md": "267802e7781f45c9f21e9aae007775eed5b233232d9b4847e5b88a71bc4c865d",
+    "reference/examples.md": "9f4d2d359ceac7d868487fe1ecdd6ba6738e36d59b856c172b0d3112d8039070",
+    "reference/constraints.md": "2c2467dc92b7c158514703c3e40b55961b6427aa67b8de7bc0ec37a5d859ce64"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

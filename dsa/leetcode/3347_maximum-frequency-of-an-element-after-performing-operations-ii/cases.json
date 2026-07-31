@@ -2,110 +2,76 @@
   "challenge_id": "lc_3347",
   "cases": [
     {
-      "id": "sample-three-values",
-      "name": "sample: make two equal with two operations",
+      "id": "official-example-one",
+      "name": "official example: one adjustment creates a pair",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          4,
-          5
-        ],
-        "k": 1,
-        "numOperations": 2
-      },
+      "input": {"nums": [1, 4, 5], "k": 1, "numOperations": 2},
       "expected": 2,
-      "tags": [
-        "sample",
-        "frequency"
-      ]
+      "tags": ["sample", "existing-target", "zero-adjustment"]
     },
     {
-      "id": "sample-existing-duplicate",
-      "name": "sample: existing duplicate remains best",
+      "id": "official-example-two",
+      "name": "official example: existing duplicates remain optimal",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          11,
-          20,
-          20
-        ],
-        "k": 5,
-        "numOperations": 1
-      },
+      "input": {"nums": [5, 11, 20, 20], "k": 5, "numOperations": 1},
       "expected": 2,
-      "tags": [
-        "sample",
-        "duplicates"
-      ]
+      "tags": ["sample", "duplicates", "limited-operations"]
     },
     {
       "id": "trial-absent-target",
-      "name": "trial: best target is absent from original array",
+      "name": "trial: the optimal target is absent from the input",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          5
-        ],
-        "k": 2,
-        "numOperations": 2
-      },
+      "input": {"nums": [1, 5], "k": 2, "numOperations": 2},
       "expected": 2,
-      "tags": [
-        "regression",
-        "candidate-boundary"
-      ]
+      "tags": ["trial", "absent-target", "interval-overlap"]
     },
     {
-      "id": "trial-duplicate-zero-ops",
-      "name": "trial: duplicate values count with no useful operations",
+      "id": "trial-billion-scale-intervals-touch",
+      "name": "trial: billion-scale reachability intervals overlap",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          10,
-          2,
-          10
-        ],
-        "k": 3,
-        "numOperations": 0
-      },
+      "input": {"nums": [1, 1000000000], "k": 500000000, "numOperations": 2},
       "expected": 2,
-      "tags": [
-        "regression",
-        "duplicates"
-      ]
+      "tags": ["trial", "maximum-value", "large-coordinates"]
     },
     {
-      "id": "real-overlap-wide",
-      "name": "real: overlapping intervals and limited operations",
+      "id": "trial-billion-scale-intervals-disjoint",
+      "name": "trial: one-unit gap keeps large intervals disjoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 1000000000], "k": 499999999, "numOperations": 2},
+      "expected": 1,
+      "tags": ["trial", "boundary-gap", "large-coordinates"]
+    },
+    {
+      "id": "real-original-target-bonus",
+      "name": "real: existing copies do not consume operation budget",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          2,
-          2,
-          9,
-          14,
-          15,
-          20,
-          24,
-          29,
-          29
-        ],
-        "k": 6,
-        "numOperations": 4
-      },
-      "expected": 4,
-      "tags": [
-        "real",
-        "sweep-line"
-      ]
+      "input": {"nums": [1, 3, 3, 7], "k": 2, "numOperations": 2},
+      "expected": 3,
+      "tags": ["real", "duplicates", "operation-cap"]
+    },
+    {
+      "id": "real-maximum-k-reaches-duplicates",
+      "name": "real: maximum adjustment joins two maximum-value copies",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1000000000, 1000000000], "k": 1000000000, "numOperations": 1},
+      "expected": 3,
+      "tags": ["real", "maximum-k", "maximum-value"]
+    },
+    {
+      "id": "real-zero-k-exact-operations",
+      "name": "real: zero adjustments satisfy exact operations without gains",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [999999999, 1000000000, 1000000000], "k": 0, "numOperations": 3},
+      "expected": 2,
+      "tags": ["real", "zero-k", "exact-operations"]
     }
   ]
 }

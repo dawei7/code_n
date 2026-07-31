@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3215",
+  "cases": [
+    {
+      "id": "sample-zero-xor",
+      "name": "sample: the only triplet XORs to zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": [
+          1
+        ],
+        "b": [
+          2
+        ],
+        "c": [
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "sample-four-triplets",
+      "name": "sample: four index combinations have even parity",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "a": [
+          1,
+          1
+        ],
+        "b": [
+          2,
+          3
+        ],
+        "c": [
+          1,
+          5
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-all-zero",
+      "name": "trial: zero values all have even popcount",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          0,
+          0
+        ],
+        "b": [
+          0
+        ],
+        "c": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "zero"
+      ]
+    },
+    {
+      "id": "trial-all-odd-parity",
+      "name": "trial: three odd popcount selections never qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          1,
+          2
+        ],
+        "b": [
+          4
+        ],
+        "c": [
+          8,
+          16
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "all-odd-parity"
+      ]
+    },
+    {
+      "id": "trial-two-odd-arrays",
+      "name": "trial: exactly two odd parity arrays make every triple valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          1,
+          2
+        ],
+        "b": [
+          1,
+          2
+        ],
+        "c": [
+          0,
+          3
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "two-odd-parities"
+      ]
+    },
+    {
+      "id": "trial-all-even-parity",
+      "name": "trial: all even popcount values make every triple valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "a": [
+          0,
+          3,
+          5
+        ],
+        "b": [
+          6,
+          9
+        ],
+        "c": [
+          10,
+          12
+        ]
+      },
+      "expected": 12,
+      "tags": [
+        "all-even-parity"
+      ]
+    },
+    {
+      "id": "real-mixed-parities",
+      "name": "real: all four qualifying patterns contribute",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          0,
+          1,
+          3
+        ],
+        "b": [
+          2,
+          7,
+          8
+        ],
+        "c": [
+          5,
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "real: duplicate values remain separate index choices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          3,
+          3,
+          3
+        ],
+        "b": [
+          1,
+          1
+        ],
+        "c": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: high legal values use full popcount parity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          1000000000,
+          999999999
+        ],
+        "b": [
+          536870911
+        ],
+        "c": [
+          0,
+          123456789
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-one-element-each-no",
+      "name": "real: one odd parity XOR result is rejected",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          7
+        ],
+        "b": [
+          11
+        ],
+        "c": [
+          13
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "singletons"
+      ]
+    },
+    {
+      "id": "real-unbalanced-lengths",
+      "name": "real: array lengths independently scale parity products",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "b": [
+          5
+        ],
+        "c": [
+          6,
+          7
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "unequal-lengths"
+      ]
+    },
+    {
+      "id": "real-zero-mixed",
+      "name": "real: zeros contribute to even parity counts",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "a": [
+          0,
+          1,
+          0
+        ],
+        "b": [
+          2,
+          3
+        ],
+        "c": [
+          0,
+          4
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "zero",
+        "mixed"
+      ]
+    }
+  ]
+}

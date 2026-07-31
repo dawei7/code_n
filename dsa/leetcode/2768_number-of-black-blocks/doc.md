@@ -8,75 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-black-blocks](https://leetcode.com/problems/number-of-black-blocks/) |
+| LeetCode | [2768. Number of Black Blocks](https://leetcode.com/problems/number-of-black-blocks/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-black-blocks/).
 
 ### Goal
-Given a grid of size `m x n` and a list of coordinates representing "black" cells, identify how many 2x2 subgrids contain exactly 0, 1, 2, 3, or 4 black cells. A 2x2 subgrid is defined by its top-left corner `(r, c)`, where `0 <= r < m-1` and `0 <= c < n-1`.
+
+Consider a 0-indexed grid with `m` rows and `n` columns. Every cell is initially white except for the pairwise distinct positions listed in `coordinates`, which are black. The dimensions can be very large even though the number of listed black cells is comparatively small.
+
+A block is any contiguous $2 \times 2$ submatrix. Its top-left position $(r,c)$ satisfies $0 \le r < m-1$ and $0 \le c < n-1$, and the block contains the four cells at offsets $(0,0)$, $(1,0)$, $(0,1)$, and $(1,1)$. Return five counts: entry $i$ must equal the number of blocks containing exactly $i$ black cells, for every $i$ from $0$ through $4$.
 
 ### Function Contract
+
 **Inputs**
 
-- `m`: An integer representing the number of rows.
-- `n`: An integer representing the number of columns.
-- `coordinates`: A list of lists, where each inner list `[r, c]` denotes the position of a black cell.
+- `m`: The number of grid rows, with $2 \le m \le 10^5$.
+- `n`: The number of grid columns, with $2 \le n \le 10^5$.
+- `coordinates`: A list of pairwise distinct `[row, column]` positions of black cells. Every position lies within the grid, and the list contains at most $10^4$ entries.
+
+Let $k = \lvert\texttt{coordinates}\rvert$.
 
 **Return value**
 
-- A list of 5 integers where the index `i` represents the number of 2x2 subgrids containing exactly `i` black cells.
+Return an integer list `answer` of length $5$, where `answer[i]` is the number of $2 \times 2$ blocks containing exactly $i$ black cells.
 
 ### Examples
+
 **Example 1**
 
-- Input: `m = 3, n = 3, coordinates = [[0,0]]`
+- Input: `m = 3, n = 3, coordinates = [[0, 0]]`
 - Output: `[3, 1, 0, 0, 0]`
+- Explanation: The black corner belongs only to the block whose top-left cell is `[0, 0]`; the other three blocks contain no black cells.
 
 **Example 2**
 
-- Input: `m = 3, n = 3, coordinates = [[0,0],[1,1],[0,2]]`
+- Input: `m = 3, n = 3, coordinates = [[0, 0], [1, 1], [0, 2]]`
 - Output: `[0, 2, 2, 0, 0]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a Hash Map (dictionary) to track the count of black cells for every affected 2x2 subgrid. Since a single black cell at `(r, c)` can be part of at most four 2x2 subgrids (top-left corners: `(r-1, c-1), (r-1, c), (r, c-1), (r, c)`), we iterate through the given coordinates, calculate these potential top-left corners, and increment their counts in the map if they fall within the valid grid boundaries. Finally, we calculate the number of subgrids with 0 black cells by subtracting the number of subgrids that have at least one black cell from the total possible 2x2 subgrids `(m-1) * (n-1)`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(K)`, where `K` is the number of black cells. We perform a constant number of operations (at most 4) for each coordinate.
-- **Space Complexity**: `O(K)`, as we store the counts of affected 2x2 subgrids in a hash map, which can contain at most `4K` entries.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(m: int, n: int, coordinates: list[list[int]]) -> list[int]:
-    # A 2x2 subgrid is identified by its top-left corner (r, c).
-    # Valid top-left corners are 0 <= r < m-1 and 0 <= c < n-1.
-    # A black cell at (r, c) affects subgrids with top-left corners:
-    # (r-1, c-1), (r-1, c), (r, c-1), (r, c)
-
-    counts = {}
-    for r, c in coordinates:
-        for dr in range(-1, 1):
-            for dc in range(-1, 1):
-                nr, nc = r + dr, c + dc
-                if 0 <= nr < m - 1 and 0 <= nc < n - 1:
-                    counts[(nr, nc)] = counts.get((nr, nc), 0) + 1
-
-    result = [0] * 5
-    # Count how many subgrids have 1, 2, 3, or 4 black cells
-    for val in counts.values():
-        result[val] += 1
-
-    # Total possible 2x2 subgrids
-    total_subgrids = (m - 1) * (n - 1)
-    # Subgrids with 0 black cells = Total - subgrids with at least 1 black cell
-    result[0] = total_subgrids - sum(result[1:])
-
-    return result
-```
-</details>
+- Explanation: Two blocks contain one black cell and the other two contain two black cells.

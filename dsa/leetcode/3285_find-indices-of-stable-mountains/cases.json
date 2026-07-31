@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-increasing",
-      "name": "sample: increasing heights",
+      "name": "sample: later predecessors exceed threshold",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -21,12 +21,13 @@
         4
       ],
       "tags": [
-        "sample"
+        "sample",
+        "increasing"
       ]
     },
     {
-      "id": "sample-alternating-highs",
-      "name": "sample: alternating stable predecessors",
+      "id": "sample-alternating",
+      "name": "sample: alternating high predecessors",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -44,38 +45,166 @@
         3
       ],
       "tags": [
-        "sample"
+        "sample",
+        "alternating"
       ]
     },
     {
-      "id": "trial-threshold-equal",
-      "name": "trial: equal to threshold is not stable",
+      "id": "sample-strict-equality",
+      "name": "sample: equality does not qualify",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "height": [
+          10,
+          1,
+          10,
+          1,
+          10
+        ],
+        "threshold": 10
+      },
+      "expected": [],
+      "tags": [
+        "sample",
+        "strict-threshold"
+      ]
+    },
+    {
+      "id": "trial-minimum-length-stable",
+      "name": "trial: second mountain is stable",
       "kind": "trial",
       "visible": true,
       "input": {
         "height": [
-          5,
-          5,
-          6,
-          4
+          2,
+          1
         ],
-        "threshold": 5
+        "threshold": 1
       },
       "expected": [
-        3
+        1
       ],
       "tags": [
-        "edge"
+        "minimum-length",
+        "stable"
       ]
     },
     {
-      "id": "trial-first-index-never-tested",
-      "name": "trial: index zero is never returned",
+      "id": "trial-minimum-length-unstable",
+      "name": "trial: second mountain is not stable",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": [
+          1,
+          100
+        ],
+        "threshold": 1
+      },
+      "expected": [],
+      "tags": [
+        "minimum-length",
+        "current-ignored"
+      ]
+    },
+    {
+      "id": "trial-all-stable",
+      "name": "trial: every possible successor is stable",
       "kind": "trial",
       "visible": true,
       "input": {
         "height": [
           100,
+          100,
+          100,
+          1
+        ],
+        "threshold": 99
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "tags": [
+        "full-output",
+        "upper-height"
+      ]
+    },
+    {
+      "id": "trial-none-stable",
+      "name": "trial: no predecessor exceeds threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "height": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "threshold": 100
+      },
+      "expected": [],
+      "tags": [
+        "empty-output",
+        "upper-threshold"
+      ]
+    },
+    {
+      "id": "real-last-height-irrelevant",
+      "name": "real: final high mountain has no successor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": [
+          1,
+          1,
+          1,
+          100
+        ],
+        "threshold": 50
+      },
+      "expected": [],
+      "tags": [
+        "last-ignored",
+        "empty-output"
+      ]
+    },
+    {
+      "id": "real-equality-mixed",
+      "name": "real: equal and greater predecessors alternate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": [
+          5,
+          6,
+          5,
+          6,
+          5
+        ],
+        "threshold": 5
+      },
+      "expected": [
+        2,
+        4
+      ],
+      "tags": [
+        "strict-threshold",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-first-predecessor",
+      "name": "real: index one depends on mountain zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": [
+          100,
+          1,
           1,
           1
         ],
@@ -85,36 +214,201 @@
         1
       ],
       "tags": [
-        "indexing"
+        "first-successor",
+        "boundary"
       ]
     },
     {
-      "id": "real-mixed-heights",
-      "name": "real: mixed hidden heights",
+      "id": "real-separated-stable",
+      "name": "real: separated high predecessors",
       "kind": "real",
       "visible": false,
       "input": {
         "height": [
-          3,
-          9,
-          2,
-          10,
-          10,
-          1,
           8,
-          7,
-          12
+          2,
+          9,
+          3,
+          10,
+          4
         ],
-        "threshold": 8
+        "threshold": 7
       },
       "expected": [
-        2,
-        4,
+        1,
+        3,
         5
       ],
       "tags": [
-        "real",
-        "linear"
+        "separated",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-maximum-length",
+      "name": "real: maximum length alternating pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "height": [
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1,
+          100,
+          1
+        ],
+        "threshold": 50
+      },
+      "expected": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        27,
+        29,
+        31,
+        33,
+        35,
+        37,
+        39,
+        41,
+        43,
+        45,
+        47,
+        49,
+        51,
+        53,
+        55,
+        57,
+        59,
+        61,
+        63,
+        65,
+        67,
+        69,
+        71,
+        73,
+        75,
+        77,
+        79,
+        81,
+        83,
+        85,
+        87,
+        89,
+        91,
+        93,
+        95,
+        97,
+        99
+      ],
+      "tags": [
+        "maximum-length",
+        "alternating"
       ]
     }
   ]

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Beautiful Pairs and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sweeps points by first coordinate while two segment trees find the best prior point on either side of the current second coordinate.",
+      "time_complexity": "O(n\\log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

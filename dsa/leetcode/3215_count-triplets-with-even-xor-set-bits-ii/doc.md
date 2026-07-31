@@ -8,48 +8,39 @@
 | Category | Algorithms |
 | Topics | Array, Bit Manipulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-triplets-with-even-xor-set-bits-ii](https://leetcode.com/problems/count-triplets-with-even-xor-set-bits-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-triplets-with-even-xor-set-bits-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-triplets-with-even-xor-set-bits-ii/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Choose one element from each of the three integer arrays `a`, `b`, and `c`. Every index combination $(i,j,k)$ defines a separate triplet `(a[i], b[j], c[k])`, even when some selected values are equal.
+
+For each triplet, XOR its three values and count how many set bits appear in that result. Return the number of index triplets for which this set-bit count is even. Zero has no set bits, so its count is even.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `a`, `b`, and `c`: Nonempty integer arrays, each with at most $10^5$ elements.
+- Every array value lies in $[0,10^9]$.
+
+Let $N=\lvert a\rvert+\lvert b\rvert+\lvert c\rvert$.
 
 **Return value**
 
-TODO
+- The number of triples $(i,j,k)$ whose value `a[i] ^ b[j] ^ c[k]` has even popcount.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `a = [1], b = [2], c = [3]`
+- Output: `1`
+- Explanation: `1 ^ 2 ^ 3 = 0`, which has zero set bits.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `a = [1,1], b = [2,3], c = [1,5]`
+- Output: `4`
+- Explanation: Four index triplets produce XOR values with two set bits.

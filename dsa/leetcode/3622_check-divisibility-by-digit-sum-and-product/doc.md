@@ -8,48 +8,43 @@
 | Category | Algorithms |
 | Topics | Math |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-divisibility-by-digit-sum-and-product](https://leetcode.com/problems/check-divisibility-by-digit-sum-and-product/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-divisibility-by-digit-sum-and-product/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-divisibility-by-digit-sum-and-product/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a positive integer `n`, examine every digit in its ordinary decimal representation. Form the digit sum by adding all of those digits, and independently form the digit product by multiplying them. Every occurrence contributes, including repeated digits; if any digit is zero, the complete product is consequently zero.
+
+Add the digit sum and digit product to obtain one positive divisor. Determine whether that combined value divides the original `n` evenly. Return `true` exactly when the remainder is zero, and return `false` otherwise.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The positive integer whose decimal digits and divisibility are examined.
+
+The constraint is $1 \le n \le 10^6$.
 
 **Return value**
 
-TODO
+Return whether `n` is divisible by the sum of its digit sum and digit product.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 99`
+- Output: `true`
+- Explanation: The digit sum is 18 and the digit product is 81; their total is 99, which divides 99.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 23`
+- Output: `false`
+- Explanation: The digit sum is 5 and the digit product is 6, so the divisor is 11 and leaves a remainder when dividing 23.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 10`
+- Output: `true`
+- Explanation: The zero digit makes the product zero, while the digit sum is 1; their total is 1.

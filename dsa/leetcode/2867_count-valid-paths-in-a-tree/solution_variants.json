@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Valid Paths in a Tree and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Contracts non-prime components and counts endpoint combinations around each prime label.",
+      "time_complexity": "O(n log log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

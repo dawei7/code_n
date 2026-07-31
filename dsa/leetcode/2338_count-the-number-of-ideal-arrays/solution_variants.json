@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count the Number of Ideal Arrays and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Factors every possible final value and independently distributes each prime exponent among the array positions.",
+      "time_complexity": "O(M log M)",
+      "space_complexity": "O(M)"
     }
   ]
 }

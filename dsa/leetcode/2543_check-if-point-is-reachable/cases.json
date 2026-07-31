@@ -1,0 +1,111 @@
+{
+  "challenge_id": "lc_2543",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: odd common factor prevents reachability",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "targetX": 6,
+        "targetY": 9
+      },
+      "expected": false,
+      "tags": [
+        "sample",
+        "odd-gcd"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: coprime target is reachable",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "targetX": 4,
+        "targetY": 7
+      },
+      "expected": true,
+      "tags": [
+        "sample",
+        "coprime"
+      ]
+    },
+    {
+      "id": "trial-origin",
+      "name": "trial: starting point needs no moves",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "targetX": 1,
+        "targetY": 1
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "origin"
+      ]
+    },
+    {
+      "id": "trial-power-two-gcd",
+      "name": "trial: shared divisor four is allowed",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "targetX": 8,
+        "targetY": 12
+      },
+      "expected": true,
+      "tags": [
+        "trial",
+        "power-of-two-gcd"
+      ]
+    },
+    {
+      "id": "real-gcd-two",
+      "name": "hidden: even coordinates with gcd two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "targetX": 6,
+        "targetY": 10
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "gcd-two"
+      ]
+    },
+    {
+      "id": "real-even-nonpower",
+      "name": "hidden: even gcd still contains an odd factor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "targetX": 12,
+        "targetY": 18
+      },
+      "expected": false,
+      "tags": [
+        "hidden",
+        "odd-factor"
+      ]
+    },
+    {
+      "id": "real-equal-power",
+      "name": "hidden: equal power-of-two coordinates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "targetX": 536870912,
+        "targetY": 536870912
+      },
+      "expected": true,
+      "tags": [
+        "hidden",
+        "equal",
+        "large"
+      ]
+    }
+  ]
+}

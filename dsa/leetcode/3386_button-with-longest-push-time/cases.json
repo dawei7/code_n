@@ -3,119 +3,75 @@
   "cases": [
     {
       "id": "sample-longest-repeat",
-      "name": "sample: repeated button has longest final duration",
+      "name": "sample: repeated button has the longest final press",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "events": [
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            5
-          ],
-          [
-            3,
-            9
-          ],
-          [
-            1,
-            15
-          ]
-        ]
-      },
+      "input": {"events": [[1, 2], [2, 5], [3, 9], [1, 15]]},
       "expected": 1,
-      "tags": [
-        "sample",
-        "scan"
-      ]
+      "tags": ["sample", "repeated-button"]
     },
     {
       "id": "sample-first-button",
-      "name": "sample: first duration wins",
+      "name": "sample: first press is longest",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "events": [
-          [
-            10,
-            5
-          ],
-          [
-            1,
-            7
-          ]
-        ]
-      },
+      "input": {"events": [[10, 5], [1, 7]]},
       "expected": 10,
-      "tags": [
-        "sample",
-        "tie-break"
-      ]
+      "tags": ["sample", "first-event"]
     },
     {
-      "id": "trial-tie-smallest-index",
-      "name": "trial: equal duration chooses smallest index",
+      "id": "trial-single-event",
+      "name": "trial: one event at the maximum timestamp",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "events": [
-          [
-            5,
-            3
-          ],
-          [
-            2,
-            6
-          ],
-          [
-            4,
-            9
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "regression",
-        "tie-break"
-      ]
+      "input": {"events": [[42, 100000]]},
+      "expected": 42,
+      "tags": ["single-event", "maximum-time"]
     },
     {
-      "id": "real-varied-events",
-      "name": "real: varied sorted press times",
+      "id": "trial-three-way-tie",
+      "name": "trial: smallest index wins a three-way tie",
+      "kind": "trial",
+      "visible": true,
+      "input": {"events": [[9, 4], [3, 8], [7, 12]]},
+      "expected": 3,
+      "tags": ["tie-break", "equal-durations"]
+    },
+    {
+      "id": "real-later-smaller-index-tie",
+      "name": "real: later smaller index replaces an equal first duration",
       "kind": "real",
       "visible": false,
-      "input": {
-        "events": [
-          [
-            8,
-            4
-          ],
-          [
-            3,
-            10
-          ],
-          [
-            9,
-            11
-          ],
-          [
-            2,
-            20
-          ],
-          [
-            1,
-            27
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "real",
-        "scan"
-      ]
+      "input": {"events": [[10, 5], [1, 10]]},
+      "expected": 1,
+      "tags": ["tie-break", "first-event"]
+    },
+    {
+      "id": "real-repeated-button",
+      "name": "real: a repeated button owns the longest press",
+      "kind": "real",
+      "visible": false,
+      "input": {"events": [[5, 2], [5, 8], [1, 11]]},
+      "expected": 5,
+      "tags": ["repeated-button", "middle-event"]
+    },
+    {
+      "id": "real-maximum-index-and-time",
+      "name": "real: maximum button index has a dominant first press",
+      "kind": "real",
+      "visible": false,
+      "input": {"events": [[100000, 99990], [1, 99999], [2, 100000]]},
+      "expected": 100000,
+      "tags": ["maximum-index", "maximum-time"]
+    },
+    {
+      "id": "real-late-long-duration",
+      "name": "real: final event has a much longer duration",
+      "kind": "real",
+      "visible": false,
+      "input": {"events": [[8, 1], [7, 2], [6, 100]]},
+      "expected": 6,
+      "tags": ["final-event", "large-gap"]
     }
   ]
 }

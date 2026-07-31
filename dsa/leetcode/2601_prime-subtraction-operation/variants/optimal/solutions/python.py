@@ -1,37 +1,28 @@
-import bisect
+from bisect import bisect_left
+from math import isqrt
+
 
 def solve(nums: list[int]) -> bool:
-    max_val = max(nums)
-    
-    # Sieve of Eratosthenes to find all primes up to max_val
-    primes = []
-    is_prime = [True] * (max_val + 1)
-    is_prime[0] = is_prime[1] = False
-    for p in range(2, max_val + 1):
-        if is_prime[p]:
-            primes.append(p)
-            for i in range(p * p, max_val + 1, p):
-                is_prime[i] = False
-                
-    prev = 0
-    for num in nums:
-        # We need to find a prime p such that:
-        # num - p > prev  =>  p < num - prev
-        target = num - prev
-        
-        # Find the largest prime strictly less than target
-        idx = bisect.bisect_left(primes, target)
-        
-        # If idx > 0, we can subtract primes[idx-1]
-        if idx > 0:
-            current_val = num - primes[idx - 1]
-        else:
-            current_val = num
-            
-        # If the current value is not strictly greater than the previous, return False
-        if current_val <= prev:
+    maximum = max(nums)
+    is_prime = [True] * (maximum + 1)
+    is_prime[0] = False
+    if maximum >= 1:
+        is_prime[1] = False
+
+    for prime in range(2, isqrt(maximum) + 1):
+        if is_prime[prime]:
+            for multiple in range(prime * prime, maximum + 1, prime):
+                is_prime[multiple] = False
+
+    primes = [number for number in range(2, maximum + 1) if is_prime[number]]
+    previous = 0
+
+    for number in nums:
+        prime_index = bisect_left(primes, number - previous) - 1
+        if prime_index >= 0:
+            number -= primes[prime_index]
+        if number <= previous:
             return False
-        
-        prev = current_val
-        
+        previous = number
+
     return True

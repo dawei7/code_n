@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Ways to Build Sturdy Brick Wall and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Enumerates each row's seam mask, precomputes compatible row transitions, and applies height-wise dynamic programming.",
+      "time_complexity": "O(R^2 + hE)",
+      "space_complexity": "O(R^2)"
     }
   ]
 }

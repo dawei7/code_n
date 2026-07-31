@@ -6,50 +6,53 @@
 | Frontend ID | 2675 |
 | Difficulty | Hard |
 | Category | JavaScript |
-| Topics | Uncategorized |
+| Topics | Object, Array, Recursion, Sorting |
 | Supported Languages | javascript |
-| Official Link | [array-of-objects-to-matrix](https://leetcode.com/problems/array-of-objects-to-matrix/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/array-of-objects-to-matrix/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/array-of-objects-to-matrix/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Convert an array `arr` of JSON objects or arrays into a rectangular matrix. Items may be nested to any depth and their leaves may be numbers, strings, Booleans, or `null`. A leaf's column name is its complete property path, with successive object keys or array indices joined by periods.
+
+The first matrix row lists every distinct leaf path found anywhere in `arr`, sorted in lexicographically ascending order. Each later row represents the corresponding item from `arr`: put its leaf value under the matching column, and use an empty string when that item has no value at that path. Empty objects and arrays contribute no columns.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `arr`: A valid JSON array containing between 1 and 1000 objects or arrays, with at most 1000 distinct leaf paths overall.
+
+Let $r = \lvert\texttt{arr}\rvert$, let $k$ be the number of distinct leaf paths, and let $S$ be the total number of object properties and array elements visited while recursively flattening all rows.
 
 **Return value**
 
-TODO
+- Return a matrix with $r + 1$ rows and $k$ columns. Its header is the sorted path list, followed by one aligned value row per input item.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `arr = [{"b":1,"a":2},{"b":3,"a":4}]`
+- Output: `[["a","b"],[2,1],[4,3]]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `arr = [{"a":1,"b":2},{"c":3,"d":4},{}]`
+- Output: `[["a","b","c","d"],[1,2,"",""],["","",3,4],["","","",""]]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `arr = [{"a":{"b":1,"c":2}},{"a":{"b":3,"d":4}}]`
+- Output: `[["a.b","a.c","a.d"],[1,2,""],[3,"",4]]`
 
----
+**Example 4**
 
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
+- Input: `arr = [[{"a":null}],[{"b":true}],[{"c":"x"}]]`
+- Output: `[["0.a","0.b","0.c"],[null,"",""],["",true,""],["","","x"]]`
 
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
+**Example 5**
 
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `arr = [{},{},{}]`
+- Output: `[[],[],[],[]]`

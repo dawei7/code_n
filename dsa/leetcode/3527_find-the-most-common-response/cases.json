@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3527",
+  "cases": [
+    {"id":"sample-clear-winner","name":"sample: duplicates removed before counting days","kind":"sample","visible":true,"input":{"responses":[["good","ok","good","ok"],["ok","bad","good","ok","ok"],["good"],["bad"]]},"expected":"good","tags":["sample","daily-deduplication"]},
+    {"id":"sample-lexicographic-tie","name":"sample: three responses tie at maximum frequency","kind":"sample","visible":true,"input":{"responses":[["good","ok","good"],["ok","bad"],["bad","notsure"],["great","good"]]},"expected":"bad","tags":["sample","tie-break"]},
+    {"id":"trial-duplicate-does-not-inflate","name":"trial: same-day duplicates count once","kind":"trial","visible":true,"input":{"responses":[["a","a","b"],["b"]]},"expected":"b","tags":["trial","daily-deduplication"]},
+    {"id":"trial-simple-tie","name":"trial: lexicographic order resolves an exact tie","kind":"trial","visible":true,"input":{"responses":[["z","a"],["z","a"]]},"expected":"a","tags":["trial","tie-break"]},
+    {"id":"trial-one-response","name":"trial: one distinct response repeated in one day","kind":"trial","visible":true,"input":{"responses":[["only","only","only"]]},"expected":"only","tags":["trial","single-distinct"]},
+    {"id":"real-three-way-tie","name":"real: daily deduplication produces a three-way tie","kind":"real","visible":false,"input":{"responses":[["yes","yes","no"],["no","maybe"],["yes","maybe"]]},"expected":"maybe","tags":["real","tie-break"]},
+    {"id":"real-many-duplicates","name":"real: duplicate volume cannot outweigh more distinct days","kind":"real","visible":false,"input":{"responses":[["x","x","x","x","a"],["a"],["a"]]},"expected":"a","tags":["real","daily-deduplication"]},
+    {"id":"real-later-winner","name":"real: response introduced later wins by day count","kind":"real","visible":false,"input":{"responses":[["red","blue"],["green","blue"],["green"],["green","red"]]},"expected":"green","tags":["real","frequency"]}
+  ]
+}

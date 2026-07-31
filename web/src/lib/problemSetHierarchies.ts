@@ -3,6 +3,12 @@ import type {
   AlgorithmSetOption,
 } from './algorithmSets';
 import { ALGORITHM_SETS } from './algorithmSets';
+import { ELO_BANDS, eloBandForRating, formatEloBand } from './eloBands';
+import {
+  FREQUENCY_BANDS,
+  formatFrequencyBand,
+  frequencyBandForValue,
+} from './frequencyBands';
 import type { CustomProblemTreeTemplate } from './customProblemSets';
 import type {
   ChallengeSummary,
@@ -269,6 +275,49 @@ function buildAllProblems(
   }
 }
 
+function buildAllProblemsById(
+  root: MutableFolder,
+  challenges: ChallengeSummary[],
+): void {
+  for (const challenge of challenges) addProblem(root, challenge);
+}
+
+function buildEloBuckets(
+  root: MutableFolder,
+  challenges: ChallengeSummary[],
+): void {
+  for (const challenge of challenges) {
+    if (challenge.elo_rating === null) continue;
+    const band = eloBandForRating(challenge.elo_rating);
+    if (band === null) continue;
+    const bandOrder = ELO_BANDS.indexOf(band);
+    const bucket = childFolder(
+      root,
+      `${formatEloBand(band)} · ${band.label}`,
+      bandOrder,
+    );
+    addProblem(bucket, challenge, challenge.elo_rating);
+  }
+}
+
+function buildFrequencyBuckets(
+  root: MutableFolder,
+  challenges: ChallengeSummary[],
+): void {
+  for (const challenge of challenges) {
+    if (challenge.frequency === null) continue;
+    const band = frequencyBandForValue(challenge.frequency);
+    if (band === null) continue;
+    const bandOrder = FREQUENCY_BANDS.indexOf(band);
+    const bucket = childFolder(
+      root,
+      `${formatFrequencyBand(band)} · ${band.label}`,
+      bandOrder,
+    );
+    addProblem(bucket, challenge, -challenge.frequency);
+  }
+}
+
 function buildMetricSet(
   root: MutableFolder,
   challenges: ChallengeSummary[],
@@ -355,22 +404,34 @@ function buildStudyPlans(
 function buildExternalSubsets(
   root: MutableFolder,
   challenges: ChallengeSummary[],
-  kind: 'neetcode' | 'algomaster',
+  kind: 'neetcode' | 'algomaster' | 'leetcode_quest',
 ): void {
   for (const challenge of challenges) {
     for (const membership of challenge.leetcode_external_subsets) {
       if (stringField(membership.kind) !== kind) continue;
       const subsetName = stringField(membership.subset_name)
-        || (kind === 'neetcode' ? 'NeetCode' : 'AlgoMaster');
+        || (kind === 'neetcode'
+          ? 'NeetCode'
+          : kind === 'algomaster' ? 'AlgoMaster' : 'LeetCode Quest');
       const path = Array.isArray(membership.path)
         ? membership.path.map(String).filter(Boolean)
         : [];
+      const rawPathOrders = Array.isArray(membership.path_orders)
+        ? membership.path_orders
+        : [];
+      const pathOrders = path.map((_, index) => (
+        index < rawPathOrders.length
+          ? numberField(rawPathOrders[index])
+          : index === 0
+            ? numberField(membership.section_order)
+            : Number.MAX_SAFE_INTEGER
+      ));
       const leaf = ensurePath(
         root,
         [subsetName, ...path],
         [
           numberField(membership.subset_order),
-          numberField(membership.section_order),
+          ...pathOrders,
         ],
       );
       addProblem(
@@ -390,10 +451,14 @@ export function buildStandardProblemHierarchy(
   if (!option) throw new Error(`Unsupported standard problem set: ${setId}`);
   const root = rootFolder(`standard:${setId}`, option.label);
   if (setId === 'leetcode') buildAllProblems(root, challenges);
+  else if (setId === 'leetcode_id') buildAllProblemsById(root, challenges);
   else if (setId === 'elo') buildMetricSet(root, challenges, 'elo');
+  else if (setId === 'elo_buckets') buildEloBuckets(root, challenges);
   else if (setId === 'frequency') buildMetricSet(root, challenges, 'frequency');
+  else if (setId === 'frequency_buckets') buildFrequencyBuckets(root, challenges);
   else if (setId === 'leetcode_company') buildCompanies(root, challenges);
   else if (setId === 'leetcode_studyplan') buildStudyPlans(root, challenges);
+  else if (setId === 'leetcode_quest') buildExternalSubsets(root, challenges, 'leetcode_quest');
   else if (setId === 'neetcode') buildExternalSubsets(root, challenges, 'neetcode');
   else if (setId === 'algomaster') buildExternalSubsets(root, challenges, 'algomaster');
   return {

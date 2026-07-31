@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3700",
+  "cases": [
+    {
+      "id": "benchmark-matrix-work-8",
+      "name": "benchmark: exponentiate a two-value transition matrix",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"n": 1000, "l": 1, "r": 2},
+      "expected": 2,
+      "tags": ["benchmark", "cubic-matrix-work", "redundant-product-pressure"]
+    },
+    {
+      "id": "benchmark-matrix-work-64",
+      "name": "benchmark: exponentiate a four-value transition matrix",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"n": 1000, "l": 1, "r": 4},
+      "expected": 511963994,
+      "tags": ["benchmark", "cubic-matrix-work", "redundant-product-pressure"]
+    },
+    {
+      "id": "benchmark-matrix-work-512",
+      "name": "benchmark: exponentiate an eight-value transition matrix",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {"n": 1000, "l": 1, "r": 8},
+      "expected": 674068812,
+      "tags": ["benchmark", "cubic-matrix-work", "redundant-product-pressure"]
+    }
+  ]
+}

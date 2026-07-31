@@ -6,118 +6,81 @@
       "name": "sample: one valid spaced quadruple",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4,
-          3,
-          6,
-          1
-        ]
-      },
+      "input": {"nums": [1, 2, 3, 4, 3, 6, 1]},
       "expected": 1,
-      "tags": [
-        "sample",
-        "ratio"
-      ]
+      "tags": ["sample", "ratio"]
     },
     {
       "id": "sample-three-special",
       "name": "sample: three valid spaced quadruples",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          3,
-          4,
-          3,
-          4,
-          3,
-          4,
-          3,
-          4
-        ]
-      },
+      "input": {"nums": [3, 4, 3, 4, 3, 4, 3, 4]},
       "expected": 3,
-      "tags": [
-        "sample",
-        "ratio"
-      ]
+      "tags": ["sample", "ratio"]
+    },
+    {
+      "id": "trial-minimum-length-match",
+      "name": "trial: the only spaced quadruple matches",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1]},
+      "expected": 1,
+      "tags": ["edge", "minimum-length"]
     },
     {
       "id": "trial-no-match",
       "name": "trial: no spaced product match",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          5,
-          7,
-          11,
-          13,
-          17
-        ]
-      },
+      "input": {"nums": [1, 2, 5, 7, 11, 13, 17]},
       "expected": 0,
-      "tags": [
-        "trial",
-        "zero"
-      ]
+      "tags": ["edge", "zero"]
     },
     {
-      "id": "trial-many-equal",
-      "name": "trial: repeated equal values create many choices",
+      "id": "trial-all-equal",
+      "name": "trial: every legally spaced quadruple matches",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          2,
-          9,
-          2,
-          9,
-          2,
-          9,
-          2,
-          9,
-          2
-        ]
-      },
+      "input": {"nums": [2, 2, 2, 2, 2, 2, 2, 2, 2]},
+      "expected": 15,
+      "tags": ["duplicates", "combinatorics"]
+    },
+    {
+      "id": "trial-many-equal-ratios",
+      "name": "trial: repeated values create many equal ratios",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 9, 2, 9, 2, 9, 2, 9, 2]},
       "expected": 9,
-      "tags": [
-        "trial",
-        "duplicates"
-      ]
+      "tags": ["duplicates", "ratios"]
+    },
+    {
+      "id": "real-gap-violation",
+      "name": "real: equal products do not overcome a missing gap",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [20, 2, 6, 15, 15, 16, 12, 8]},
+      "expected": 0,
+      "tags": ["real", "spacing"]
+    },
+    {
+      "id": "real-ratio-reduction",
+      "name": "real: equivalent non-integer ratios match exactly",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 99, 4, 99, 6, 99, 3]},
+      "expected": 1,
+      "tags": ["real", "gcd"]
     },
     {
       "id": "real-mixed-ratios",
       "name": "real: mixed ratios and required gaps",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          2,
-          5,
-          4,
-          10,
-          8,
-          20,
-          4,
-          10,
-          2,
-          5,
-          4,
-          10
-        ]
-      },
+      "input": {"nums": [2, 5, 4, 10, 8, 20, 4, 10, 2, 5, 4, 10]},
       "expected": 17,
-      "tags": [
-        "real",
-        "ratios"
-      ]
+      "tags": ["real", "ratios"]
     }
   ]
 }

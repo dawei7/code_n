@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3385",
+  "measurement_note": "Size is n, the number of locks. The legal 3-, 7-, and 14-lock tiers use distinct large strengths so every assignment cost remains meaningful. The Hungarian reference scales cubically, while the correct slower baseline explores all subsets and every remaining lock in O(n * 2^n) time.",
+  "cases": [
+    {
+      "id": "benchmark-assignment-3",
+      "name": "benchmark: 3 large distinct locks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {"strength": [992081, 984162, 976243]},
+      "expected": 1799018,
+      "tags": ["benchmark", "scale-small", "subset-dp"]
+    },
+    {
+      "id": "benchmark-assignment-7",
+      "name": "benchmark: 7 large distinct locks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 7,
+      "input": {"strength": [992081, 984162, 976243, 968324, 960405, 952486, 944567]},
+      "expected": 2484028,
+      "tags": ["benchmark", "scale-medium", "subset-dp"]
+    },
+    {
+      "id": "benchmark-assignment-14",
+      "name": "benchmark: 14 large distinct locks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 14,
+      "input": {"strength": [992081, 984162, 976243, 968324, 960405, 952486, 944567, 936648, 928729, 920810, 912891, 904972, 897053, 889134]},
+      "expected": 2976196,
+      "tags": ["benchmark", "scale-large", "subset-dp"]
+    }
+  ]
+}

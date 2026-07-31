@@ -8,85 +8,46 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Sliding Window, Sorting, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-frequency-of-an-element-after-performing-operations-i](https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-frequency-of-an-element-after-performing-operations-i/).
 
 ### Goal
-Given an array of integers, you are allowed to modify each element at most once by adding or subtracting a value up to `k`. Additionally, you can perform at most `numOperations` total modifications across the entire array. The objective is to determine the maximum possible frequency of any single integer after these operations are applied.
+
+You are given an integer array `nums`, a non-negative adjustment limit `k`, and an operation count `numOperations`. Perform exactly `numOperations` operations. In each operation, choose an index that has not been chosen before and add one integer from the inclusive range `[-k, k]` to that element.
+
+The added integer may be zero, so an operation is allowed to leave its selected element unchanged. After all operations, determine the largest possible frequency of any single integer in `nums`. Each array position can participate in at most one operation, and different selected positions may receive different adjustments.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the initial array.
-- `k`: An integer representing the maximum range of modification for each element.
-- `numOperations`: An integer representing the maximum number of elements that can be modified.
+- `nums`: A non-empty list of integers with $1 \le \lvert\texttt{nums}\rvert \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^5$.
+- `k`: The maximum absolute adjustment in one operation, with $0 \le k \le 10^5$.
+- `numOperations`: The exact number of distinct indices to select, with $0 \le \texttt{numOperations} \le \lvert\texttt{nums}\rvert$.
+
+An operation on index `i` replaces `nums[i]` by `nums[i] + delta`, where `-k <= delta <= k` and that index has not been selected earlier.
 
 **Return value**
 
-- An integer representing the maximum frequency of any value after performing at most `numOperations` modifications.
+Return the maximum frequency attainable by any integer after performing all operations.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [1, 2, 3], k = 1, numOperations = 1`
+- Input: `nums = [1, 4, 5], k = 1, numOperations = 2`
 - Output: `2`
+- Explanation: Select `4` and add zero, then select `5` and add `-1`; the value `4` appears twice.
 
 **Example 2**
 
-- Input: `nums = [1, 4, 8, 13], k = 5, numOperations = 3`
-- Output: `3`
+- Input: `nums = [5, 11, 20, 20], k = 5, numOperations = 1`
+- Output: `2`
+- Explanation: The two existing copies of `20` already give frequency two. Selecting `11` and adding zero fulfills the operation without changing that frequency.
 
 **Example 3**
 
-- Input: `nums = [9, 11, 12, 15], k = 2, numOperations = 0`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-The problem is solved using a combination of **Frequency Counting** and **Difference Arrays (Sweep Line)**. Since we want to find a target value `x` that maximizes frequency, we observe that any `nums[i]` can become `x` if `|nums[i] - x| <= k`. This defines an interval `[nums[i] - k, nums[i] + k]` where `x` could potentially be formed. By using a difference array, we track how many numbers can reach a specific value `x` without modification (original frequency) versus how many require an operation. We then iterate through all possible candidate values to find the maximum frequency.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N log N)` due to sorting the unique values and processing the difference array, where `N` is the length of the input array.
-- **Space Complexity**: `O(N)` to store the frequency map and the difference array coordinates.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import Counter
-
-
-def solve(nums: list[int], k: int, numOperations: int) -> int:
-    counts = Counter(nums)
-    events = []
-    candidates = set()
-
-    for value, frequency in counts.items():
-        left = value - k
-        right = value + k
-        events.append((left, frequency))
-        events.append((right + 1, -frequency))
-        candidates.add(left)
-        candidates.add(right)
-        candidates.add(value)
-
-    events.sort()
-    event_index = 0
-    reachable = 0
-    best = 0
-
-    for target in sorted(candidates):
-        while event_index < len(events) and events[event_index][0] <= target:
-            reachable += events[event_index][1]
-            event_index += 1
-        unchanged = counts.get(target, 0)
-        best = max(best, unchanged + min(numOperations, reachable - unchanged))
-
-    return best
-```
-</details>
+- Input: `nums = [1, 5], k = 2, numOperations = 2`
+- Output: `2`
+- Explanation: Neither endpoint is initially `3`, but adding `2` to `1` and `-2` to `5` makes both elements equal to `3`.

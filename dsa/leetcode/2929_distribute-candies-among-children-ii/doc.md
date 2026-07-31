@@ -8,48 +8,45 @@
 | Category | Algorithms |
 | Topics | Math, Combinatorics, Enumeration |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [distribute-candies-among-children-ii](https://leetcode.com/problems/distribute-candies-among-children-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/distribute-candies-among-children-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/distribute-candies-among-children-ii/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Distribute all `n` identical candies among three distinct children. A child is
+allowed to receive none, and a distribution is determined by the ordered
+triple of the three children's non-negative counts. Consequently, assigning
+the same three unequal amounts to different children produces different ways.
+
+Each child may receive at most `limit` candies. Count every ordered
+distribution whose counts sum exactly to `n` and whose individual counts do
+not exceed that inclusive upper bound, then return the total.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: The positive total number of candies to assign.
+- `limit`: The inclusive maximum count allowed for each child.
+
+Both values satisfy $1\le\texttt{n},\texttt{limit}\le10^6$.
 
 **Return value**
 
-TODO
+- The number of ordered triples $(x,y,z)$ such that $x+y+z=\texttt{n}$ and
+  $0\le x,y,z\le\texttt{limit}$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 5, limit = 2`
+- Output: `3`
+- Explanation: Exactly `(1, 2, 2)`, `(2, 1, 2)`, and `(2, 2, 1)` satisfy the cap.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 3, limit = 3`
+- Output: `10`
+- Explanation: Every non-negative ordered triple summing to 3 is within the cap.

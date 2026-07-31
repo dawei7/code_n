@@ -8,48 +8,39 @@
 | Category | Algorithms |
 | Topics | Hash Table, String, Counting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-valid-pair-of-adjacent-digits-in-string](https://leetcode.com/problems/find-valid-pair-of-adjacent-digits-in-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-valid-pair-of-adjacent-digits-in-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-valid-pair-of-adjacent-digits-in-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a string containing only the digits `1` through `9`, find a valid pair of adjacent characters. The two digits in such a pair must be different, and each of those digits must occur in the entire string exactly as many times as the numeric value it represents.
+
+Inspect adjacent pairs from left to right and return the first one satisfying both conditions. If the string contains no valid pair, return the empty string.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A digit string of length from $2$ through $100$, using only characters from `1` through `9`.
 
 **Return value**
 
-TODO
+Return the first valid two-character adjacent substring, or `""` when no such pair exists.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "2523533"`
+- Output: `"23"`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "221"`
+- Output: `"21"`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "22"`
+- Output: `""`

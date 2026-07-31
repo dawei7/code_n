@@ -1,0 +1,434 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3963",
+  "cases": [
+    {
+      "id": "sample-two-by-three",
+      "name": "sample: two by three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 3
+      },
+      "expected": [
+        "..#",
+        "#.."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "sample",
+        "turn"
+      ]
+    },
+    {
+      "id": "sample-three-square",
+      "name": "sample: three by three",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 3
+      },
+      "expected": [
+        "..#",
+        "#..",
+        "##."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "sample",
+        "turn"
+      ]
+    },
+    {
+      "id": "sample-single-row",
+      "name": "sample: single row",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 4
+      },
+      "expected": [
+        "...."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "sample",
+        "single-row"
+      ]
+    },
+    {
+      "id": "trial-single-cell",
+      "name": "trial: single cell",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 1
+      },
+      "expected": [
+        "."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "trial",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-single-column",
+      "name": "trial: four by one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 4,
+        "n": 1
+      },
+      "expected": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "trial",
+        "single-column"
+      ]
+    },
+    {
+      "id": "trial-max-width",
+      "name": "trial: one by maximum width",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 1,
+        "n": 25
+      },
+      "expected": [
+        "........................."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "trial",
+        "maximum-width"
+      ]
+    },
+    {
+      "id": "trial-two-square",
+      "name": "trial: two by two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 2,
+        "n": 2
+      },
+      "expected": [
+        "..",
+        "#."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "trial",
+        "small-square"
+      ]
+    },
+    {
+      "id": "trial-wide-rectangle",
+      "name": "trial: wide rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 3,
+        "n": 5
+      },
+      "expected": [
+        ".....",
+        "####.",
+        "####."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "trial",
+        "rectangle"
+      ]
+    },
+    {
+      "id": "trial-tall-rectangle",
+      "name": "trial: tall rectangle",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "m": 5,
+        "n": 3
+      },
+      "expected": [
+        "...",
+        "##.",
+        "##.",
+        "##.",
+        "##."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "trial",
+        "rectangle"
+      ]
+    },
+    {
+      "id": "real-max-height",
+      "name": "real: maximum height single column",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 25,
+        "n": 1
+      },
+      "expected": [
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "real",
+        "maximum-height"
+      ]
+    },
+    {
+      "id": "real-two-by-max-width",
+      "name": "real: two by maximum width",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 2,
+        "n": 25
+      },
+      "expected": [
+        ".........................",
+        "########################."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "real",
+        "maximum-width"
+      ]
+    },
+    {
+      "id": "real-max-height-by-two",
+      "name": "real: maximum height by two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 25,
+        "n": 2
+      },
+      "expected": [
+        "..",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#.",
+        "#."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "real",
+        "maximum-height"
+      ]
+    },
+    {
+      "id": "real-four-square",
+      "name": "real: four by four",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 4,
+        "n": 4
+      },
+      "expected": [
+        "....",
+        "###.",
+        "###.",
+        "###."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "real",
+        "square"
+      ]
+    },
+    {
+      "id": "real-ten-by-seven",
+      "name": "real: ten by seven",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 10,
+        "n": 7
+      },
+      "expected": [
+        ".......",
+        "######.",
+        "######.",
+        "######.",
+        "######.",
+        "######.",
+        "######.",
+        "######.",
+        "######.",
+        "######."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "real",
+        "rectangle"
+      ]
+    },
+    {
+      "id": "real-max-grid",
+      "name": "real: maximum grid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "m": 25,
+        "n": 25
+      },
+      "expected": [
+        ".........................",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################.",
+        "########################."
+      ],
+      "validator": {
+        "kind": "unique_monotone_path_grid",
+        "rows_param": "m",
+        "columns_param": "n"
+      },
+      "tags": [
+        "real",
+        "maximum-grid"
+      ]
+    }
+  ]
+}

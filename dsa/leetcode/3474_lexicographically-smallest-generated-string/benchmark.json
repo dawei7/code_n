@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3474",
+  "measurement_note": "Size scales both n and m. Legal tiers 4, 16, and 64 span 16x; every condition is false and the pattern is a run of a characters ending in b, so all automaton states and forbidden-match checks are exercised while the all-a answer remains valid. The accepted precomputed KMP-transition feasibility DP is O((n + m)m). A correct baseline that recomputes each automaton transition by direct suffix comparison is O((n + m)m^2), must return every expected answer, and must fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-forbidden-4",
+      "name": "benchmark: four false windows and pattern length four",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"str1": "FFFF", "str2": "aaab"},
+      "expected": "aaaaaaa",
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-forbidden-16",
+      "name": "benchmark: sixteen false windows and pattern length sixteen",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"str1": "FFFFFFFFFFFFFFFF", "str2": "aaaaaaaaaaaaaaab"},
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-forbidden-64",
+      "name": "benchmark: sixty-four false windows and pattern length sixty-four",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"str1": "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF", "str2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"},
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "tags": ["benchmark", "scale-large"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3887",
+  "frontend_id": "3650",
+  "title_slug": "minimum-cost-path-with-edge-reversals",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minCost",
+  "verified_submission_id": "2083954731",
+  "verified_at": "2026-07-27T21:26:55.451358+00:00"
+}

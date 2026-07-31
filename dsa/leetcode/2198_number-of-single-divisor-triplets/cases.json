@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2198",
+  "cases": [
+    {"id":"sample-two-value-triples","name":"sample: two value triples each contribute six orders","kind":"sample","visible":true,"input":{"nums":[4,6,7,3,2]},"expected":12,"tags":["sample","distinct-values"]},
+    {"id":"sample-repeated-two","name":"sample: repeated values still use distinct indices","kind":"sample","visible":true,"input":{"nums":[1,2,2]},"expected":6,"tags":["sample","duplicate-values"]},
+    {"id":"sample-all-ones","name":"sample: divisibility succeeds at all three positions","kind":"sample","visible":true,"input":{"nums":[1,1,1]},"expected":0,"tags":["sample","ones"]},
+    {"id":"trial-one-qualifying-set","name":"one distinct-value set contributes every index order","kind":"trial","visible":true,"input":{"nums":[2,3,4]},"expected":6,"tags":["minimum","ordered"]},
+    {"id":"trial-no-qualifying-set","name":"all three divisibility tests succeed","kind":"trial","visible":true,"input":{"nums":[1,2,3]},"expected":0,"tags":["exactly-one"]},
+    {"id":"real-three-equal-choices","name":"hidden: choose two among three equal occurrences","kind":"real","visible":false,"input":{"nums":[1,2,2,2]},"expected":18,"tags":["hidden","multiplicity"]},
+    {"id":"real-two-duplicate-groups","name":"hidden: several duplicate-value combinations qualify","kind":"real","visible":false,"input":{"nums":[1,1,2,2,3,3]},"expected":36,"tags":["hidden","multiplicity"]},
+    {"id":"real-equal-first-values","name":"hidden: a qualifying repeated smaller value uses falling frequency","kind":"real","visible":false,"input":{"nums":[4,4,7,3]},"expected":12,"tags":["hidden","repeated-first"]},
+    {"id":"real-no-divisor","name":"hidden: a sum divisible by none of the values does not qualify","kind":"real","visible":false,"input":{"nums":[2,4,5]},"expected":0,"tags":["hidden","zero-divisors"]},
+    {"id":"real-upper-domain","name":"hidden: values near the domain maximum","kind":"real","visible":false,"input":{"nums":[100,99,98,97]},"expected":12,"tags":["hidden","upper-bound"]}
+  ]
+}

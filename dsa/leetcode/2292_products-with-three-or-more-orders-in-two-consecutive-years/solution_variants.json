@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Products With Three or More Orders in Two Consecutive Years and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts orders per product and calendar year, then joins qualifying groups from adjacent years.",
+      "time_complexity": "O(r log r)",
+      "space_complexity": "O(g)"
     }
   ]
 }

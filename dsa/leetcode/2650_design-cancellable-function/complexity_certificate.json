@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2650",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(y)",
+  "summary": "Driving y yielded promises requires observing and returning every one of their outcomes, and the controller performs constant overhead per yield with one live bridge.",
+  "optimality": {
+    "symbol": "y",
+    "lower_bound": "Omega(y)",
+    "upper_bound": "O(y)",
+    "argument": "For a normally completing generator with y yields, every yielded promise can affect later generator state and the final return, so the controller must process all y outcomes. The accepted driver performs one promise bridge and one next-or-throw transition per yield, matching the Omega(y) lower bound."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Any one of the y yielded outcomes may change the generator's next state or final return value, so none can be skipped in a complete execution."},
+    {"kind":"upper_bound_proof","evidence":"Each yield creates one temporary bridge and causes one generator next or throw call, for O(y) overhead and constant live controller state."},
+    {"kind":"boundary_property_cases","evidence":"Regression executes immediate and delayed completion, resolved and rejected yields, caught and uncaught cancellation, next-yield recovery, and cancellation after completion."}
+  ]
+}

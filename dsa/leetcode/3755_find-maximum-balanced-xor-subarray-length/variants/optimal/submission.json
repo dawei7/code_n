@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3946",
+  "frontend_id": "3755",
+  "title_slug": "find-maximum-balanced-xor-subarray-length",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.maxBalancedSubarray",
+  "verified_submission_id": "2085320815",
+  "verified_at": "2026-07-28T20:08:17.811297+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3512",
+  "frontend_id": "3204",
+  "title_slug": "bitwise-user-permissions-analysis",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2080135152",
+  "verified_at": "2026-07-25T00:46:00.620570+00:00"
+}

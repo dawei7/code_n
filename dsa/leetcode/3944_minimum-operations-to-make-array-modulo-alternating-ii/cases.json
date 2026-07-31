@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3944",
+  "cases": [
+    {
+      "id": "sample-two-changes",
+      "name": "sample: one odd and one even value change",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          2,
+          8
+        ],
+        "k": 3
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "mixed-parity"
+      ]
+    },
+    {
+      "id": "sample-one-change",
+      "name": "sample: only the odd-index value changes",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "distinct-residues"
+      ]
+    },
+    {
+      "id": "sample-already-alternating",
+      "name": "sample: the array already uses two residues",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          6,
+          7,
+          8
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "zero-operations"
+      ]
+    },
+    {
+      "id": "trial-single-index",
+      "name": "trial: an empty odd group can choose a free distinct residue",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 5
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-equal-two",
+      "name": "trial: equal residues force exactly one unit change",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4
+        ],
+        "k": 3
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "distinct-residues"
+      ]
+    },
+    {
+      "id": "trial-wraparound-choice",
+      "name": "trial: an all-zero residue group may move across the modular boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          10,
+          10,
+          10
+        ],
+        "k": 10
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "wraparound"
+      ]
+    },
+    {
+      "id": "trial-equivalent-values",
+      "name": "trial: different values collapse to one residue modulo k",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          8,
+          15,
+          22
+        ],
+        "k": 7
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "equivalent-remainders"
+      ]
+    },
+    {
+      "id": "trial-smaller-parity-moves",
+      "name": "trial: the smaller parity group is cheaper to move",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 100
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "uneven-parity-groups"
+      ]
+    },
+    {
+      "id": "real-second-best-tie",
+      "name": "hidden: a tied second odd residue satisfies the distinctness rule",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "second-best",
+        "tie"
+      ]
+    },
+    {
+      "id": "real-k-two-conflict",
+      "name": "hidden: k = 2 leaves only the opposite residue",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "k": 2
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "minimum-modulus"
+      ]
+    },
+    {
+      "id": "real-odd-length-mixed",
+      "name": "hidden: an odd-length array has one extra even-index element",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          3,
+          2
+        ],
+        "k": 5
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "odd-length"
+      ]
+    },
+    {
+      "id": "real-even-antipodes",
+      "name": "hidden: even-modulus antipodal residues exercise the half-circle boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          4,
+          4
+        ],
+        "k": 6
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "even-modulus",
+        "antipodes"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: billion-scale values are reduced before optimization",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          500000001,
+          500000000,
+          123456789
+        ],
+        "k": 1000
+      },
+      "expected": 213,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "large-values",
+        "large-modulus"
+      ]
+    },
+    {
+      "id": "real-uniform-remainders",
+      "name": "hidden: both parity groups are spread around the entire residue cycle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
+        "k": 20
+      },
+      "expected": 100,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "distributed-remainders"
+      ]
+    },
+    {
+      "id": "real-sparse-large-modulus",
+      "name": "hidden: sparse residues with a large modulus retain the best distinct pair",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          501,
+          1,
+          502
+        ],
+        "k": 1000
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "sparse",
+        "large-modulus"
+      ]
+    }
+  ]
+}

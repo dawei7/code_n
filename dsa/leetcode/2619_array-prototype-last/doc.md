@@ -8,48 +8,42 @@
 | Category | JavaScript |
 | Topics | Uncategorized |
 | Supported Languages | javascript |
-| Official Link | [array-prototype-last](https://leetcode.com/problems/array-prototype-last/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/array-prototype-last/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/array-prototype-last/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Extend JavaScript's `Array` prototype with a method named `last` so that the method is available on every array. Calling `array.last()` must return the array's final element without removing or otherwise changing any element.
+
+If the receiver is empty, return the number `-1` instead. The array may be assumed to be a valid result of `JSON.parse`, so its elements can be any JSON values, including `null`, booleans, numbers, strings, nested arrays, and objects. The array length is between $0$ and $1000$, inclusive.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: The JSON-compatible array that receives the `last` method through `Array.prototype`.
 
 **Return value**
 
-TODO
+Return the element at the final array index when `nums` is non-empty; otherwise return `-1`. The method must not mutate `nums`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [null, {}, 3]`
+- Output: `3`
+- Explanation: The final element is the number `3`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = []`
+- Output: `-1`
+- Explanation: The designated result for an empty array is `-1`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1, 2, -1]`
+- Output: `-1`
+- Explanation: Here `-1` is an actual final element; the same value also serves as the empty-array sentinel.

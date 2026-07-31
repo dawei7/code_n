@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Most Common Response and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Deduplicate each day with a set, count day-level occurrences, then apply the required tie-break.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(U)"
     }
   ]
 }

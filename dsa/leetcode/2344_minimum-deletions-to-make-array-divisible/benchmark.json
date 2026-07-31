@@ -1,26 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2344",
+  "measurement_note": "Size is n = m, the lengths of nums and numsDivide. Both arrays contain only 1, so the answer is zero and complete scans are required. Gcd reduction followed by candidate scans is linear apart from bounded integer gcd work. A correct implementation that tests every candidate against every target completes all tiers but is quadratic.",
   "cases": [
-    {
-      "id": "benchmark-no-candidate",
-      "name": "benchmark: no nums value divides the gcd",
-      "kind": "benchmark",
-      "visible": false,
-      "input": {
-        "nums": [
-          5,
-          10,
-          15
-        ],
-        "nums_divide": [
-          14,
-          28
-        ]
-      },
-      "expected": -1,
-      "tags": [
-        "benchmark"
-      ]
-    }
+    {"id":"benchmark-scale-1","name":"benchmark: 8 candidates and targets","kind":"benchmark","visible":false,"size":8,"input":{"nums":[1,1,1,1,1,1,1,1],"numsDivide":[1,1,1,1,1,1,1,1]},"expected":0},
+    {"id":"benchmark-scale-2","name":"benchmark: 32 candidates and targets","kind":"benchmark","visible":false,"size":32,"input":{"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"numsDivide":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":0},
+    {"id":"benchmark-scale-3","name":"benchmark: 64 candidates and targets","kind":"benchmark","visible":false,"size":64,"input":{"nums":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"numsDivide":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"expected":0}
   ]
 }

@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3868",
+  "cases": [
+    {
+      "id": "sample-free-reordering",
+      "name": "sample: a free in-array swap aligns the arrays",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          10,
+          20
+        ],
+        "nums2": [
+          20,
+          10
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "free-swap",
+        "explained"
+      ]
+    },
+    {
+      "id": "sample-one-paid-swap",
+      "name": "sample: one cross-array swap repairs both sides",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          10,
+          10
+        ],
+        "nums2": [
+          20,
+          20
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "paid-swap",
+        "explained"
+      ]
+    },
+    {
+      "id": "sample-impossible",
+      "name": "sample: odd combined frequencies make equality impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums1": [
+          10,
+          20
+        ],
+        "nums2": [
+          30,
+          40
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "impossible",
+        "explained"
+      ]
+    },
+    {
+      "id": "trial-same-multiset",
+      "name": "trial: different orders of one multiset cost nothing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          3,
+          1,
+          2,
+          1
+        ],
+        "nums2": [
+          1,
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "same-multiset",
+        "free-reordering"
+      ]
+    },
+    {
+      "id": "trial-shared-balanced-value",
+      "name": "trial: a balanced value is unaffected by one paid swap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "nums2": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "shared-value",
+        "one-swap"
+      ]
+    },
+    {
+      "id": "trial-three-swaps",
+      "name": "trial: three disjoint surplus pairs require three swaps",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "nums2": [
+          4,
+          4,
+          5,
+          5,
+          6,
+          6
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "multiple-swaps",
+        "disjoint-values"
+      ]
+    },
+    {
+      "id": "trial-opposite-majorities",
+      "name": "trial: opposite majority values repair each other",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "opposite-surplus"
+      ]
+    },
+    {
+      "id": "real-one-value",
+      "name": "hidden: one repeated value is already balanced",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "nums2": [
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 0,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "one-value",
+        "zero-cost"
+      ]
+    },
+    {
+      "id": "real-maximum-value",
+      "name": "hidden: the maximum legal value crosses once",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          80000,
+          80000
+        ],
+        "nums2": [
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "maximum-value",
+        "one-swap"
+      ]
+    },
+    {
+      "id": "real-mixed-imbalances",
+      "name": "hidden: unequal surplus sizes still pair into two swaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3
+        ],
+        "nums2": [
+          1,
+          1,
+          2,
+          2,
+          4,
+          4,
+          5,
+          5
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-imbalances",
+        "multiple-values"
+      ]
+    },
+    {
+      "id": "real-two-odd-totals",
+      "name": "hidden: two odd combined counts are still impossible",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "nums2": [
+          1,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "odd-frequency",
+        "impossible"
+      ]
+    },
+    {
+      "id": "real-balanced-and-disjoint-groups",
+      "name": "hidden: balanced shared groups coexist with two paid swaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4
+        ],
+        "nums2": [
+          1,
+          1,
+          2,
+          2,
+          5,
+          5,
+          6,
+          6
+        ]
+      },
+      "expected": 2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "balanced-groups",
+        "disjoint-groups"
+      ]
+    },
+    {
+      "id": "real-all-values-shared",
+      "name": "hidden: all values are shared but their counts differ",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          4,
+          4
+        ],
+        "nums2": [
+          2,
+          2,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4
+        ]
+      },
+      "expected": 1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "shared-values",
+        "frequency-imbalance"
+      ]
+    },
+    {
+      "id": "real-late-odd-frequency",
+      "name": "hidden: a late singleton invalidates otherwise even totals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums1": [
+          5,
+          5,
+          6,
+          6,
+          7,
+          8
+        ],
+        "nums2": [
+          9,
+          9,
+          10,
+          10,
+          7,
+          11
+        ]
+      },
+      "expected": -1,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "late-odd-frequency",
+        "impossible"
+      ]
+    }
+  ]
+}

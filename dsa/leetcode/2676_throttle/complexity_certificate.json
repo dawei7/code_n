@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2676",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The platform schedule contains at most ten calls, too few for honest runtime scaling, while the accepted closure performs fixed work per invocation and timer release.",
+  "workload_bound": {
+    "symbol": "C",
+    "maximum": 10,
+    "unit": "scheduled calls",
+    "source_constraint": "calls.length is between 1 and 10"
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"Each invocation either executes once and registers one timer or replaces one pending tuple; each timer release reads at most that tuple and registers at most one successor."},
+    {"kind":"boundary_property_cases","evidence":"Cases cover one and ten calls, zero and maximum delay, same-time ordering, exact-boundary calls, empty arguments, overwriting, chained windows, and idle-separated bursts."}
+  ]
+}

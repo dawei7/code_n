@@ -8,48 +8,52 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [top-percentile-fraud](https://leetcode.com/problems/top-percentile-fraud/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/top-percentile-fraud/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/top-percentile-fraud/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+An insurance fraud model assigns every policy a `fraud_score`, and policies
+belong to states. Experienced adjusters should review the highest-scoring five
+percent of claims independently within each state; one state's population and
+scores must not affect another state's cutoff.
+
+For a state containing $n$ policies, retain the first $\lceil 0.05n\rceil$
+ranked positions after sorting scores from greatest to least. Policies tied at
+the score occupying the final selected position share its rank and must all be
+included. Return the original policy ID, state, and score, ordered by `state`
+ascending, `fraud_score` descending, and `policy_id` ascending.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `Fraud(policy_id, state, fraud_score)`: `policy_id` is unique; each row
+  records a policy's state and predictive fraud score.
+
+Let $n$ be the total row count and $n_s$ the row count of state $s$.
 
 **Return value**
 
-TODO
+- An ordered table with columns `policy_id`, `state`, and `fraud_score`,
+  containing each state's top five-percent ranked positions with boundary ties.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+California, Florida, New York, and Texas each have fewer than twenty policies,
+so each contributes its single highest-scoring policy. The result begins with
+California policy `1`, followed by Florida policy `11` under state ordering.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+A state with exactly twenty policies contributes the one highest-scoring
+position because $\lceil 20\cdot0.05\rceil=1$.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+A state with twenty-one policies contributes two ranked positions. If two
+policies tie for the second-highest score, both are returned along with the
+highest policy.

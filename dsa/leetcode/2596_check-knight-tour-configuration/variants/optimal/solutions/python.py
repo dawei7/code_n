@@ -1,26 +1,19 @@
 def solve(grid: list[list[int]]) -> bool:
     n = len(grid)
-    # Map each step value to its (row, col) coordinate
-    pos = [None] * (n * n)
-    for r in range(n):
-        for c in range(n):
-            pos[grid[r][c]] = (r, c)
-    
-    # A valid tour must start at (0, 0)
-    if grid[0][0] != 0:
+    positions: list[tuple[int, int] | None] = [None] * (n * n)
+
+    for row in range(n):
+        for col in range(n):
+            positions[grid[row][col]] = (row, col)
+
+    if positions[0] != (0, 0):
         return False
-    
-    # Validate each consecutive move
-    for i in range(n * n - 1):
-        r1, c1 = pos[i]
-        r2, c2 = pos[i + 1]
-        
-        dr = abs(r1 - r2)
-        dc = abs(c1 - c2)
-        
-        # A knight move is valid if the absolute differences are {1, 2}
-        # This is equivalent to checking if the product is 2 and sum is 3
-        if not ((dr == 1 and dc == 2) or (dr == 2 and dc == 1)):
+
+    for previous, current in zip(positions, positions[1:]):
+        assert previous is not None and current is not None
+        row_change = abs(previous[0] - current[0])
+        col_change = abs(previous[1] - current[1])
+        if sorted((row_change, col_change)) != [1, 2]:
             return False
-            
+
     return True

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3988",
+    "frontend_id": "3988",
+    "title_slug": "create-grid-with-exactly-k-paths-i",
+    "url": "https://leetcode.com/problems/create-grid-with-exactly-k-paths-i/description/",
+    "paid_only": false,
+    "content_sha256": "3b5e43da3f065b29e44bed032c32b0e0a9962ce6a3ded5e2f321ff873851b795",
+    "checked_at": "2026-07-31"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "m = 2, n = 3, k = 2",
+        "output": "[\"...\",\"#..\"]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "m = 3, n = 3, k = 4",
+        "output": "[\"..#\",\"...\",\"#..\"]",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "m = 1, n = 4, k = 2",
+        "output": "[]",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "522b629a92bfe18bab62fbdf94198a195a9f9681402bd7996bf5db67d1197bb1",
+      "reference/contract.md": "057eb593ee1054287b60a6a0835525a274701db2a06e07257bbf40655a1bbfc4",
+      "reference/examples.md": "f963beccc8cdf2bc8d22528d6224b31cbe7ba06277a5a16823013b89337dc0f3",
+      "reference/constraints.md": "6bc9e661c1beb988bfae6d713ab4d242ab812d0229f9e73eae645116fcf43d43"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

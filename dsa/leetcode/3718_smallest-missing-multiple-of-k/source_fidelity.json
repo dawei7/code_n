@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3718",
+    "frontend_id": "3718",
+    "title_slug": "smallest-missing-multiple-of-k",
+    "url": "https://leetcode.com/problems/smallest-missing-multiple-of-k/description/",
+    "paid_only": false,
+    "content_sha256": "aa7d196fff7c87ad7fbba7d85a6b89ff65e287a57eb9e5f239cacaf758f62025",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [8,2,3,4,6], k = 2",
+        "output": "10",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [1,4,7,10,15], k = 5",
+        "output": "5",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "14641069fb6fb093b9946f782b3a0321e2069d5e0a485397a196e247da1c4783",
+      "reference/contract.md": "b6499a7edeaaa33d95c5941c58f70fd408e38d5aa755249ee457f7f9ec279ade",
+      "reference/examples.md": "943a7b464e6342f2f554ba5e445d0693d6ac27bf4986fa7caa6365206923e8a2",
+      "reference/constraints.md": "f3a7159be8347d7da5811361e34e60a863dc03a8d7016ca788fcf77c80f6a429"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

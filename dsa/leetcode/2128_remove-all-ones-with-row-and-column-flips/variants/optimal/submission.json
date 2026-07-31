@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2268",
+  "frontend_id": "2128",
+  "title_slug": "remove-all-ones-with-row-and-column-flips",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.removeOnes",
+  "verified_submission_id": "2073404719",
+  "verified_at": "2026-07-19T11:37:29.471574+00:00"
+}

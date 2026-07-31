@@ -1,107 +1,14 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2808",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: repeated value spreads around circle",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          1,
-          2
-        ]
-      },
-      "tags": [
-        "sample",
-        "circle"
-      ],
-      "expected": 1
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: already equal",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          2,
-          1,
-          3,
-          3,
-          2
-        ]
-      },
-      "tags": [
-        "sample",
-        "spread"
-      ],
-      "expected": 2
-    },
-    {
-      "id": "trial-single-value",
-      "name": "trial: one value",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          9
-        ]
-      },
-      "tags": [
-        "trial",
-        "edge"
-      ],
-      "expected": 0
-    },
-    {
-      "id": "trial-opposite-anchors",
-      "name": "trial: anchors on opposite sides",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          5,
-          1,
-          1,
-          5,
-          2,
-          2
-        ]
-      },
-      "tags": [
-        "trial",
-        "anchors"
-      ],
-      "expected": 1
-    },
-    {
-      "id": "real-long-gap",
-      "name": "hidden: one value has a long circular gap",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          7,
-          3,
-          3,
-          3,
-          7,
-          2,
-          2,
-          7,
-          4,
-          4,
-          4
-        ]
-      },
-      "tags": [
-        "hidden",
-        "gap"
-      ],
-      "expected": 2
-    }
+    {"id":"sample-alternating","name":"sample: alternating values equalize in one second","kind":"sample","visible":true,"input":{"nums":[1,2,1,2]},"expected":1,"tags":["sample","alternating"]},
+    {"id":"sample-best-of-three","name":"sample: choose the value with the smallest largest gap","kind":"sample","visible":true,"input":{"nums":[2,1,3,3,2]},"expected":2,"tags":["sample","multiple-values"]},
+    {"id":"sample-already-equal","name":"sample: constant array needs no operation","kind":"sample","visible":true,"input":{"nums":[5,5,5,5]},"expected":0,"tags":["sample","already-equal"]},
+    {"id":"trial-singleton","name":"trial: one element is already equalized","kind":"trial","visible":true,"input":{"nums":[9]},"expected":0,"tags":["trial","minimum"]},
+    {"id":"trial-one-source","name":"trial: one occurrence spreads around the circle","kind":"trial","visible":true,"input":{"nums":[1,2,3,4,5,6]},"expected":3,"tags":["trial","all-distinct"]},
+    {"id":"real-wrap-gap","name":"hidden: wraparound gap determines the answer","kind":"real","visible":false,"input":{"nums":[7,1,2,3,7,4,5,6]},"expected":2,"tags":["hidden","wraparound"]},
+    {"id":"real-clustered-occurrences","name":"hidden: clustered copies leave a long opposite arc","kind":"real","visible":false,"input":{"nums":[4,4,4,1,2,3,5,6,7]},"expected":3,"tags":["hidden","clustered"]},
+    {"id":"real-large-values","name":"hidden: values use the full numeric range","kind":"real","visible":false,"input":{"nums":[1000000000,1,1000000000,2,3,1000000000]},"expected":1,"tags":["hidden","value-boundary"]}
   ]
 }

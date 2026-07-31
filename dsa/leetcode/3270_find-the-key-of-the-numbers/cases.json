@@ -1,0 +1,197 @@
+{
+  "challenge_id": "lc_3270",
+  "cases": [
+    {
+      "id": "sample-all-zero-key",
+      "name": "sample: different widths force four zeros",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 10,
+        "num3": 1000
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "padding"
+      ]
+    },
+    {
+      "id": "sample-three-permutations",
+      "name": "sample: coordinate minima are seven",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": 987,
+        "num2": 879,
+        "num3": 798
+      },
+      "expected": 777,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-single-digits",
+      "name": "sample: one is the minimum units digit",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 2,
+        "num3": 3
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "trial-all-minimum",
+      "name": "trial: three minimum inputs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 1,
+        "num2": 1,
+        "num3": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum",
+        "equal"
+      ]
+    },
+    {
+      "id": "trial-all-maximum",
+      "name": "trial: three maximum inputs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 9999,
+        "num2": 9999,
+        "num3": 9999
+      },
+      "expected": 9999,
+      "tags": [
+        "maximum",
+        "equal"
+      ]
+    },
+    {
+      "id": "trial-leading-zero-result",
+      "name": "trial: returned integer drops leading zeros",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 123,
+        "num2": 456,
+        "num3": 789
+      },
+      "expected": 123,
+      "tags": [
+        "leading-zero",
+        "three-digit"
+      ]
+    },
+    {
+      "id": "trial-position-wise",
+      "name": "trial: each position has a different winner",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "num1": 8642,
+        "num2": 2468,
+        "num3": 4826
+      },
+      "expected": 2422,
+      "tags": [
+        "coordinate-minimum",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-one-short-input",
+      "name": "real: single digit zeros higher positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num1": 7,
+        "num2": 7777,
+        "num3": 9999
+      },
+      "expected": 7,
+      "tags": [
+        "padding",
+        "single-digit"
+      ]
+    },
+    {
+      "id": "real-two-digit-padding",
+      "name": "real: two-digit input controls higher places",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num1": 42,
+        "num2": 3142,
+        "num3": 9242
+      },
+      "expected": 42,
+      "tags": [
+        "padding",
+        "two-digit"
+      ]
+    },
+    {
+      "id": "real-zero-in-each-place",
+      "name": "real: distributed zero digits erase the key",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num1": 1023,
+        "num2": 2103,
+        "num3": 3210
+      },
+      "expected": 1000,
+      "tags": [
+        "zeros",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-repeated-patterns",
+      "name": "real: repeated alternating digits",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num1": 1212,
+        "num2": 2121,
+        "num3": 1221
+      },
+      "expected": 1111,
+      "tags": [
+        "repeated-digits",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-asymmetric-boundaries",
+      "name": "real: minimum and maximum with a mixed input",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "num1": 1,
+        "num2": 9999,
+        "num3": 5070
+      },
+      "expected": 0,
+      "tags": [
+        "bounds",
+        "mixed"
+      ]
+    }
+  ]
+}

@@ -5,51 +5,52 @@
 | Source | LeetCode |
 | Frontend ID | 3649 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Math, Two Pointers, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-perfect-pairs](https://leetcode.com/problems/number-of-perfect-pairs/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-perfect-pairs/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-perfect-pairs/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+For every index pair $(i,j)$ with $i<j$, let $a=\texttt{nums[i]}$ and $b=\texttt{nums[j]}$. The pair is perfect when both of these relations hold:
+
+$$
+\min(\lvert a-b\rvert,\lvert a+b\rvert)
+\le \min(\lvert a\rvert,\lvert b\rvert),
+$$
+
+and
+
+$$
+\max(\lvert a-b\rvert,\lvert a+b\rvert)
+\ge \max(\lvert a\rvert,\lvert b\rvert).
+$$
+
+Count and return all distinct index pairs satisfying both conditions. Equal values at different indices still form distinct pairs.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: An array of $n$ integers, where $2\le n\le 10^5$ and every value lies in $[-10^9,10^9]$.
 
 **Return value**
 
-TODO
+Return the number of perfect index pairs.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0,1,2,3]`
+- Output: `2`
+- Explanation: The perfect pairs have values `(1, 2)` and `(2, 3)`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [-3,2,-1,4]`
+- Output: `4`
+- Explanation: Signs do not change the reduced magnitude condition; four index pairs have magnitudes within a factor of two.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1,10,100,1000]`
+- Output: `0`
+- Explanation: Every pair's larger magnitude is more than twice its smaller magnitude.

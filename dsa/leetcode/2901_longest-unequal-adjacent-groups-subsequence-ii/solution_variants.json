@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Longest Unequal Adjacent Groups Subsequence II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Runs longest-path dynamic programming over compatible earlier words and reconstructs one optimum with parent indices.",
+      "time_complexity": "O(n^2 L)",
+      "space_complexity": "O(n)"
     }
   ]
 }

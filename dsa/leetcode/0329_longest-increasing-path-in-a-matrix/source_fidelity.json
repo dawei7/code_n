@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_329", "frontend_id": "329", "title_slug": "longest-increasing-path-in-a-matrix", "url": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/", "paid_only": false, "content_sha256": "114426b2f8f7158ef775c11d5ae38aaf4cc5519735ec1d49ada2b295376e8e0a", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "matrix = [[9,9,4],[6,6,8],[2,1,1]]", "output": "4", "has_explanation": true},
+      {"ordinal": 2, "input": "matrix = [[3,4,5],[3,2,6],[2,2,1]]", "output": "4", "has_explanation": true},
+      {"ordinal": 3, "input": "matrix = [[1]]", "output": "1", "has_explanation": false}
+    ],
+    "constraint_count": 4,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "b1aa05d81f0c9ea706281e35925c5ed187cc9dbc27ea06c1bcfe5c681403cf95",
+    "reference/contract.md": "6d30566c83846bedb3d0126e940adfdf858fdd6c8523f9e594e6f1622915d07e",
+    "reference/examples.md": "de875fcad73b331032ee38dd6eae372cb4ebd4232f61ece912675d2d9608e4a2",
+    "reference/constraints.md": "83236867c30b09fc2f30fe7ba1053f588e2a22c4f3c63788949971d3d7bbcfa2"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

@@ -8,80 +8,42 @@
 | Category | Algorithms |
 | Topics | Array |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [longest-strictly-increasing-or-strictly-decreasing-subarray](https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/) |
+| LeetCode | [longest-strictly-increasing-or-strictly-decreasing-subarray](https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/).
 
 ### Goal
-Given an array of integers, identify the length of the longest contiguous subarray that is either strictly increasing or strictly decreasing. A subarray is defined as a contiguous sequence of elements within the array.
+
+Given an integer array `nums`, consider its nonempty contiguous subarrays. A subarray is strictly increasing when every element after the first is greater than its predecessor. It is strictly decreasing when every element after the first is smaller than its predecessor.
+
+Return the length of the longest subarray that satisfies either of these two strict monotonicity conditions. Equal adjacent values cannot belong to the same strictly increasing or strictly decreasing run.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers (`List[int]`).
+- `nums`: An array of $n$ integers, where $1 \le n \le 50$ and $1 \le \texttt{nums[i]} \le 50$.
 
 **Return value**
 
-- An integer representing the maximum length found among all strictly increasing or strictly decreasing contiguous subarrays.
+- The maximum length of a contiguous subarray that is either strictly increasing or strictly decreasing.
 
 ### Examples
+
 **Example 1**
 
 - Input: `nums = [1, 4, 3, 3, 2]`
 - Output: `2`
-- Explanation: The longest strictly increasing subarray is `[1, 4]` (length 2) and the longest strictly decreasing is `[4, 3]` or `[3, 2]` (length 2).
+- Explanation: The longest strictly increasing run is `[1, 4]`; `[4, 3]` and `[3, 2]` are strictly decreasing runs of the same length. The equal middle pair separates the latter two runs.
 
 **Example 2**
 
 - Input: `nums = [3, 3, 3, 3]`
 - Output: `1`
-- Explanation: Since the elements are identical, no strictly increasing or decreasing subarray can have a length greater than 1.
+- Explanation: Equal adjacent values are neither strictly increasing nor strictly decreasing, so only one-element subarrays qualify.
 
 **Example 3**
 
 - Input: `nums = [3, 2, 1]`
 - Output: `3`
-- Explanation: The entire array is strictly decreasing, so the length is 3.
-
----
-
-## Solution
-### Approach
-The problem can be solved using a single-pass linear scan (greedy approach). We maintain two counters: one for the current increasing sequence length and one for the current decreasing sequence length. As we iterate through the array, we compare adjacent elements to update these counters, resetting them to 1 whenever the strictly increasing or decreasing condition is violated.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the input array, as we traverse the list exactly once.
-- **Space Complexity**: `O(1)`, as we only use a constant amount of extra space for tracking the current and maximum lengths.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    if not nums:
-        return 0
-
-    max_len = 1
-    inc_len = 1
-    dec_len = 1
-
-    for i in range(1, len(nums)):
-        if nums[i] > nums[i - 1]:
-            inc_len += 1
-            dec_len = 1
-        elif nums[i] < nums[i - 1]:
-            dec_len += 1
-            inc_len = 1
-        else:
-            inc_len = 1
-            dec_len = 1
-
-        max_len = max(max_len, inc_len, dec_len)
-
-    return max_len
-```
-</details>
+- Explanation: The entire array is strictly decreasing.

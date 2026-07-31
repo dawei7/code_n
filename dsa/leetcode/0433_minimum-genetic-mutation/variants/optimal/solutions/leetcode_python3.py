@@ -11,11 +11,11 @@ class Solution:
             return -1
 
         queue = deque([(startGene, 0)])
-        for_gene = "ACGT"
+        alphabet = "ACGT"
         while queue:
             gene, distance = queue.popleft()
             for index, original in enumerate(gene):
-                for replacement in for_gene:
+                for replacement in alphabet:
                     if replacement == original:
                         continue
                     candidate = gene[:index] + replacement + gene[index + 1 :]

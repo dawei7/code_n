@@ -1,20 +1,11 @@
-from typing import List
-
-def solve(nums: List[int]) -> int:
-    # Calculate the sum of the longest sequential prefix
+def solve(nums):
     prefix_sum = nums[0]
-    for i in range(1, len(nums)):
-        if nums[i] == nums[i - 1] + 1:
-            prefix_sum += nums[i]
-        else:
+    for index in range(1, len(nums)):
+        if nums[index] != nums[index - 1] + 1:
             break
-    
-    # Use a set for O(1) average time complexity lookups
-    num_set = set(nums)
-    
-    # Find the smallest integer >= prefix_sum not in the set
-    current = prefix_sum
-    while current in num_set:
-        current += 1
-        
-    return current
+        prefix_sum += nums[index]
+
+    present = set(nums)
+    while prefix_sum in present:
+        prefix_sum += 1
+    return prefix_sum

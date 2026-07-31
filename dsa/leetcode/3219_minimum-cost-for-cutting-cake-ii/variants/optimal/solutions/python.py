@@ -1,38 +1,18 @@
-def solve(m: int, n: int, horizontal_cut: list[int], vertical_cut: list[int]) -> int:
-    # Sort cuts in descending order to apply the greedy strategy
-    horizontal_cut = sorted(horizontal_cut, reverse=True)
-    vertical_cut = sorted(vertical_cut, reverse=True)
-
-    h_idx = 0
-    v_idx = 0
-
-    # Number of segments currently created
-    h_segments = 1
-    v_segments = 1
-
-    total_cost = 0
-
-    # Process cuts until all are used
-    while h_idx < len(horizontal_cut) and v_idx < len(vertical_cut):
-        # If the current horizontal cut is more expensive, perform it
-        if horizontal_cut[h_idx] >= vertical_cut[v_idx]:
-            total_cost += horizontal_cut[h_idx] * v_segments
-            h_segments += 1
-            h_idx += 1
+def solve(m: int, n: int, horizontalCut: list[int], verticalCut: list[int]) -> int:
+    horizontal = sorted(horizontalCut, reverse=True)
+    vertical = sorted(verticalCut, reverse=True)
+    i = j = 0
+    horizontal_pieces = vertical_pieces = 1
+    total = 0
+    while i < len(horizontal) and j < len(vertical):
+        if horizontal[i] >= vertical[j]:
+            total += horizontal[i] * vertical_pieces
+            horizontal_pieces += 1
+            i += 1
         else:
-            # Otherwise, perform the vertical cut
-            total_cost += vertical_cut[v_idx] * h_segments
-            v_segments += 1
-            v_idx += 1
-
-    # Add remaining horizontal cuts
-    while h_idx < len(horizontal_cut):
-        total_cost += horizontal_cut[h_idx] * v_segments
-        h_idx += 1
-
-    # Add remaining vertical cuts
-    while v_idx < len(vertical_cut):
-        total_cost += vertical_cut[v_idx] * h_segments
-        v_idx += 1
-
-    return total_cost
+            total += vertical[j] * horizontal_pieces
+            vertical_pieces += 1
+            j += 1
+    total += sum(horizontal[i:]) * vertical_pieces
+    total += sum(vertical[j:]) * horizontal_pieces
+    return total

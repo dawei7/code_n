@@ -8,48 +8,42 @@
 | Category | Algorithms |
 | Topics | String, Greedy, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-number-that-makes-result-of-bitwise-and-zero](https://leetcode.com/problems/maximum-number-that-makes-result-of-bitwise-and-zero/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-number-that-makes-result-of-bitwise-and-zero/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-number-that-makes-result-of-bitwise-and-zero/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a positive integer `n`, choose the maximum integer `x` with $x \le n$ such that the bitwise `AND` of every integer in the inclusive range `[x, n]` equals 0.
+
+The range includes both endpoints. Thus a candidate `x` is valid only when applying bitwise `AND` across `x`, `x + 1`, and every subsequent integer through `n` clears every bit position.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `n`: A positive integer satisfying $1 \le n \le 10^{15}$.
 
 **Return value**
 
-TODO
+Return the greatest integer `x` no larger than `n` for which the cumulative bitwise `AND` of the inclusive range `[x, n]` is 0.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 7`
+- Output: `3`
+- Explanation: The cumulative results for starts 6, 5, and 4 remain positive, whereas `3 & 4 & 5 & 6 & 7` is 0.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 9`
+- Output: `7`
+- Explanation: The bitwise `AND` of `7`, `8`, and `9` is 0.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 17`
+- Output: `15`
+- Explanation: The bitwise `AND` of `15`, `16`, and `17` is 0.

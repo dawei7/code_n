@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Moves to Spread Stones Over Grid and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Matches each surplus stone to an empty cell with subset dynamic programming over destination masks.",
+      "time_complexity": "O(k \\cdot 2^k)",
+      "space_complexity": "O(2^k)"
     }
   ]
 }

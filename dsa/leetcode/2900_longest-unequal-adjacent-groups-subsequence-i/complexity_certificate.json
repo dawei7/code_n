@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2900",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The legal array length is at most 100, too small for a stable scaling verdict; the single-pass structure and boundary cases replace runtime timing evidence.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 100,
+    "unit": "paired array elements",
+    "source_constraint": "The official contract limits words.length and groups.length to at most 100."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "After selecting the first word, the algorithm examines each remaining pair exactly once and performs only constant-time work per pair."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover one run, repeated runs, fully alternating groups, multiple valid outputs, and the maximum legal length of 100."
+    }
+  ]
+}

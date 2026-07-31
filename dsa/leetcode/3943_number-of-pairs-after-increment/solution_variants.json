@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Pairs After Increment and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains lazy range additions and pre-lazy value frequencies in square-root-sized blocks, then combines them with the fixed frequencies of nums1.",
+      "time_complexity": "O(n + q sqrt(n))",
+      "space_complexity": "O(n)"
     }
   ]
 }

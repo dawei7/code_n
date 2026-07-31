@@ -1,42 +1,33 @@
 def solve(n: int, cost: list[list[int]]) -> int:
-    m = len(cost[0])
-    # dp[c1][c2] stores the min cost for the current pair of houses
-    # (i, n-1-i) having colors c1 and c2 respectively.
-    dp = [[float('inf')] * m for _ in range(m)]
-    
-    # Base case: the outermost pair (0, n-1)
-    for c1 in range(m):
-        for c2 in range(m):
-            if c1 != c2:
-                dp[c1][c2] = cost[0][c1] + cost[n - 1][c2]
-                
-    # Iterate through the remaining n/2 - 1 pairs
-    for i in range(1, n // 2):
-        new_dp = [[float('inf')] * m for _ in range(m)]
-        # Precompute min values to optimize transition from O(m^4) to O(m^2)
-        # min_prev[prev_c1][prev_c2] is the min cost of previous pair
-        # We need to find min(dp[prev_c1][prev_c2]) where prev_c1 != c1 and prev_c2 != c2
-        
-        # To optimize, find the smallest and second smallest values in dp
-        # for each row and column, but given m is usually small, 
-        # a direct O(m^4) or O(m^3) is often acceptable.
-        # Here we use O(m^3) by pre-calculating row/col minimums.
-        
-        for c1 in range(m):
-            for c2 in range(m):
-                if c1 == c2:
-                    continue
-                
-                current_cost = cost[i][c1] + cost[n - 1 - i][c2]
-                
-                # Find min(dp[pc1][pc2]) where pc1 != c1 and pc2 != c2
-                for pc1 in range(m):
-                    if pc1 == c1: continue
-                    for pc2 in range(m):
-                        if pc2 == c2: continue
-                        if dp[pc1][pc2] + current_cost < new_dp[c1][c2]:
-                            new_dp[c1][c2] = dp[pc1][pc2] + current_cost
-        dp = new_dp
-        
-    ans = min(min(row) for row in dp)
-    return int(ans) if ans != float('inf') else -1
+    inf = float("inf")
+    dp = [[inf] * 3 for _ in range(3)]
+    for left_color in range(3):
+        for right_color in range(3):
+            if left_color != right_color:
+                dp[left_color][right_color] = (
+                    cost[0][left_color] + cost[n - 1][right_color]
+                )
+
+    for left in range(1, n // 2):
+        right = n - 1 - left
+        next_dp = [[inf] * 3 for _ in range(3)]
+        for previous_left in range(3):
+            for previous_right in range(3):
+                current = dp[previous_left][previous_right]
+                for left_color in range(3):
+                    if left_color == previous_left:
+                        continue
+                    for right_color in range(3):
+                        if right_color == previous_right or right_color == left_color:
+                            continue
+                        candidate = (
+                            current
+                            + cost[left][left_color]
+                            + cost[right][right_color]
+                        )
+                        next_dp[left_color][right_color] = min(
+                            next_dp[left_color][right_color], candidate
+                        )
+        dp = next_dp
+
+    return min(map(min, dp))

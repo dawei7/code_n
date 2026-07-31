@@ -1,0 +1,205 @@
+{
+  "challenge_id": "lc_2921",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: early expensive item cannot lead a triplet",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          10,
+          2,
+          3,
+          4
+        ],
+        "profits": [
+          100,
+          2,
+          7,
+          10
+        ]
+      },
+      "tags": [
+        "sample",
+        "index-order"
+      ],
+      "expected": 19
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: increasing prices select the best three profits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "profits": [
+          1,
+          5,
+          3,
+          4,
+          6
+        ]
+      },
+      "tags": [
+        "sample",
+        "increasing"
+      ],
+      "expected": 15
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: descending prices have no valid triplet",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "prices": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "profits": [
+          33,
+          20,
+          19,
+          87
+        ]
+      },
+      "tags": [
+        "sample",
+        "impossible"
+      ],
+      "expected": -1
+    },
+    {
+      "id": "trial-duplicate-left-prices",
+      "name": "trial: equal-priced left candidates compete by profit",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          1,
+          2,
+          3
+        ],
+        "profits": [
+          100,
+          90,
+          5,
+          6
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "strict"
+      ],
+      "expected": 111
+    },
+    {
+      "id": "trial-only-one-duplicate-middle",
+      "name": "trial: two equal middle prices cannot both be selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "prices": [
+          1,
+          2,
+          2,
+          3
+        ],
+        "profits": [
+          5,
+          100,
+          200,
+          7
+        ]
+      },
+      "tags": [
+        "trial",
+        "duplicates",
+        "strict"
+      ],
+      "expected": 212
+    },
+    {
+      "id": "real-profitable-index-trap",
+      "name": "hidden: an early high-profit price cannot serve as a valid left item",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          3,
+          1,
+          2,
+          4
+        ],
+        "profits": [
+          1000,
+          1,
+          10,
+          100
+        ]
+      },
+      "tags": [
+        "hidden",
+        "index-order"
+      ],
+      "expected": 111
+    },
+    {
+      "id": "real-minimum-length",
+      "name": "hidden: exactly three increasing items",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          1,
+          2,
+          3
+        ],
+        "profits": [
+          7,
+          11,
+          13
+        ]
+      },
+      "tags": [
+        "hidden",
+        "minimum-size"
+      ],
+      "expected": 31
+    },
+    {
+      "id": "real-maximum-boundaries",
+      "name": "hidden: maximum prices and profits preserve the full sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "prices": [
+          4998,
+          4999,
+          5000
+        ],
+        "profits": [
+          1000000,
+          999999,
+          999998
+        ]
+      },
+      "tags": [
+        "hidden",
+        "boundary"
+      ],
+      "expected": 2999997
+    }
+  ]
+}

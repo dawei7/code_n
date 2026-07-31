@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_387", "frontend_id": "387", "title_slug": "first-unique-character-in-a-string", "url": "https://leetcode.com/problems/first-unique-character-in-a-string/description/", "paid_only": false, "content_sha256": "016e293585638938ce6d711e8de2211169d399ead6510e94586d890408c1c0c0", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "s = \"leetcode\"", "output": "0", "has_explanation": true},
+      {"ordinal": 2, "input": "s = \"loveleetcode\"", "output": "2", "has_explanation": false},
+      {"ordinal": 3, "input": "s = \"aabb\"", "output": "-1", "has_explanation": false}
+    ],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "a2001008f2b843c7380e79747287881868adbbe7863f26cab1052e6964eae705",
+    "reference/contract.md": "136141702591f03fd3459eac0c0d850641666273b118d9180351eb5a2f1bc254",
+    "reference/examples.md": "94ae38b80b846a348aeb388a8c9a1b12f5ce9e808e476278a9448ef5b66cdbfd",
+    "reference/constraints.md": "aa8a6667c535adea8feabbaaf2beb93e2790ba11ae66127d0ca37d24c67be22c"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

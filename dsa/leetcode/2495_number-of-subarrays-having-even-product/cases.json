@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2495",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: one even value",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          6,
+          7,
+          13
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "single-even"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: all values are odd",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          7,
+          3,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "all-odd"
+      ]
+    },
+    {
+      "id": "trial-all-even",
+      "name": "trial: every subarray qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6
+        ]
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "all-even"
+      ]
+    },
+    {
+      "id": "trial-single-even",
+      "name": "trial: one even element",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          100000
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "singleton",
+        "even"
+      ]
+    },
+    {
+      "id": "real-single-odd",
+      "name": "hidden: one odd element",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          99999
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "singleton",
+        "odd"
+      ]
+    },
+    {
+      "id": "real-even-at-start",
+      "name": "hidden: an early even value certifies one start per endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "even-prefix"
+      ]
+    },
+    {
+      "id": "real-even-at-end",
+      "name": "hidden: a final even value certifies every start",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          5,
+          7,
+          8
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "hidden",
+        "even-suffix"
+      ]
+    },
+    {
+      "id": "real-several-evens",
+      "name": "hidden: contributions change at several even indices",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "multiple-even"
+      ]
+    },
+    {
+      "id": "real-long-odd-runs",
+      "name": "hidden: separated even values and odd runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          4,
+          1
+        ]
+      },
+      "expected": 26,
+      "tags": [
+        "hidden",
+        "odd-runs",
+        "multiple-even"
+      ]
+    }
+  ]
+}

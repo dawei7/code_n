@@ -1,0 +1,543 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3421",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official students and subjects",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "student_id": 101,
+              "subject": "Math",
+              "score": 70,
+              "exam_date": "2023-01-15"
+            },
+            {
+              "student_id": 101,
+              "subject": "Math",
+              "score": 85,
+              "exam_date": "2023-02-15"
+            },
+            {
+              "student_id": 101,
+              "subject": "Physics",
+              "score": 65,
+              "exam_date": "2023-01-15"
+            },
+            {
+              "student_id": 101,
+              "subject": "Physics",
+              "score": 60,
+              "exam_date": "2023-02-15"
+            },
+            {
+              "student_id": 102,
+              "subject": "Math",
+              "score": 80,
+              "exam_date": "2023-01-15"
+            },
+            {
+              "student_id": 102,
+              "subject": "Math",
+              "score": 85,
+              "exam_date": "2023-02-15"
+            },
+            {
+              "student_id": 103,
+              "subject": "Math",
+              "score": 90,
+              "exam_date": "2023-01-15"
+            },
+            {
+              "student_id": 104,
+              "subject": "Physics",
+              "score": 75,
+              "exam_date": "2023-01-15"
+            },
+            {
+              "student_id": 104,
+              "subject": "Physics",
+              "score": 85,
+              "exam_date": "2023-02-15"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "subject",
+          "first_score",
+          "latest_score"
+        ],
+        "rows": [
+          [
+            101,
+            "Math",
+            70,
+            85
+          ],
+          [
+            102,
+            "Math",
+            80,
+            85
+          ],
+          [
+            104,
+            "Physics",
+            75,
+            85
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-intermediate-high",
+      "name": "trial: intermediate maximum is not the latest score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "student_id": 1,
+              "subject": "Math",
+              "score": 50,
+              "exam_date": "2023-01-01"
+            },
+            {
+              "student_id": 1,
+              "subject": "Math",
+              "score": 99,
+              "exam_date": "2023-02-01"
+            },
+            {
+              "student_id": 1,
+              "subject": "Math",
+              "score": 60,
+              "exam_date": "2023-03-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "subject",
+          "first_score",
+          "latest_score"
+        ],
+        "rows": [
+          [
+            1,
+            "Math",
+            50,
+            60
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "chronology"
+      ]
+    },
+    {
+      "id": "trial-intermediate-low",
+      "name": "trial: intermediate minimum is not the first score",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "student_id": 2,
+              "subject": "Physics",
+              "score": 70,
+              "exam_date": "2023-01-01"
+            },
+            {
+              "student_id": 2,
+              "subject": "Physics",
+              "score": 10,
+              "exam_date": "2023-02-01"
+            },
+            {
+              "student_id": 2,
+              "subject": "Physics",
+              "score": 75,
+              "exam_date": "2023-03-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "subject",
+          "first_score",
+          "latest_score"
+        ],
+        "rows": [
+          [
+            2,
+            "Physics",
+            70,
+            75
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "chronology"
+      ]
+    },
+    {
+      "id": "trial-no-qualifiers",
+      "name": "trial: single exam, equality, and decline are excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "student_id": 3,
+              "subject": "Art",
+              "score": 80,
+              "exam_date": "2023-01-01"
+            },
+            {
+              "student_id": 4,
+              "subject": "Math",
+              "score": 70,
+              "exam_date": "2023-01-01"
+            },
+            {
+              "student_id": 4,
+              "subject": "Math",
+              "score": 70,
+              "exam_date": "2023-02-01"
+            },
+            {
+              "student_id": 5,
+              "subject": "Science",
+              "score": 90,
+              "exam_date": "2023-01-01"
+            },
+            {
+              "student_id": 5,
+              "subject": "Science",
+              "score": 85,
+              "exam_date": "2023-02-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "subject",
+          "first_score",
+          "latest_score"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "trial",
+        "strict-improvement"
+      ]
+    },
+    {
+      "id": "real-independent-subjects",
+      "name": "hidden: subjects for one student are independent",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "student_id": 7,
+              "subject": "Art",
+              "score": 20,
+              "exam_date": "2023-01-01"
+            },
+            {
+              "student_id": 7,
+              "subject": "Art",
+              "score": 30,
+              "exam_date": "2023-04-01"
+            },
+            {
+              "student_id": 7,
+              "subject": "Math",
+              "score": 90,
+              "exam_date": "2023-01-01"
+            },
+            {
+              "student_id": 7,
+              "subject": "Math",
+              "score": 50,
+              "exam_date": "2023-04-01"
+            },
+            {
+              "student_id": 7,
+              "subject": "Physics",
+              "score": 10,
+              "exam_date": "2023-01-01"
+            },
+            {
+              "student_id": 7,
+              "subject": "Physics",
+              "score": 40,
+              "exam_date": "2023-03-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "subject",
+          "first_score",
+          "latest_score"
+        ],
+        "rows": [
+          [
+            7,
+            "Art",
+            20,
+            30
+          ],
+          [
+            7,
+            "Physics",
+            10,
+            40
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "grouping"
+      ]
+    },
+    {
+      "id": "real-unsorted-insertion",
+      "name": "hidden: insertion order differs from date and output order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "student_id": 20,
+              "subject": "Zoology",
+              "score": 90,
+              "exam_date": "2024-12-31"
+            },
+            {
+              "student_id": 10,
+              "subject": "Math",
+              "score": 60,
+              "exam_date": "2024-03-01"
+            },
+            {
+              "student_id": 20,
+              "subject": "Zoology",
+              "score": 30,
+              "exam_date": "2024-01-01"
+            },
+            {
+              "student_id": 10,
+              "subject": "Math",
+              "score": 10,
+              "exam_date": "2024-01-01"
+            },
+            {
+              "student_id": 10,
+              "subject": "Art",
+              "score": 50,
+              "exam_date": "2024-12-01"
+            },
+            {
+              "student_id": 10,
+              "subject": "Art",
+              "score": 40,
+              "exam_date": "2024-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "subject",
+          "first_score",
+          "latest_score"
+        ],
+        "rows": [
+          [
+            10,
+            "Art",
+            40,
+            50
+          ],
+          [
+            10,
+            "Math",
+            10,
+            60
+          ],
+          [
+            20,
+            "Zoology",
+            30,
+            90
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-score-boundaries",
+      "name": "hidden: scores at zero and one hundred",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "student_id": 30,
+              "subject": "Math",
+              "score": 0,
+              "exam_date": "2020-01-01"
+            },
+            {
+              "student_id": 30,
+              "subject": "Math",
+              "score": 100,
+              "exam_date": "2025-01-01"
+            },
+            {
+              "student_id": 31,
+              "subject": "Math",
+              "score": 100,
+              "exam_date": "2020-01-01"
+            },
+            {
+              "student_id": 31,
+              "subject": "Math",
+              "score": 0,
+              "exam_date": "2025-01-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "subject",
+          "first_score",
+          "latest_score"
+        ],
+        "rows": [
+          [
+            30,
+            "Math",
+            0,
+            100
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "score-boundary"
+      ]
+    },
+    {
+      "id": "real-many-exams",
+      "name": "hidden: only first and latest of many exams matter",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "student_id": 40,
+              "subject": "History",
+              "score": 45,
+              "exam_date": "2023-01-01"
+            },
+            {
+              "student_id": 40,
+              "subject": "History",
+              "score": 20,
+              "exam_date": "2023-02-01"
+            },
+            {
+              "student_id": 40,
+              "subject": "History",
+              "score": 100,
+              "exam_date": "2023-03-01"
+            },
+            {
+              "student_id": 40,
+              "subject": "History",
+              "score": 46,
+              "exam_date": "2023-04-01"
+            },
+            {
+              "student_id": 41,
+              "subject": "History",
+              "score": 45,
+              "exam_date": "2023-01-01"
+            },
+            {
+              "student_id": 41,
+              "subject": "History",
+              "score": 100,
+              "exam_date": "2023-02-01"
+            },
+            {
+              "student_id": 41,
+              "subject": "History",
+              "score": 44,
+              "exam_date": "2023-03-01"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id",
+          "subject",
+          "first_score",
+          "latest_score"
+        ],
+        "rows": [
+          [
+            40,
+            "History",
+            45,
+            46
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "many-exams"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "challenge_id": "lc_3994",
+  "measurement_note": "Size is n, the length of nums. Every tier places all high-group values before all middle-group values and all low-group values, forcing all three inversion types. The accepted three-counter scan is linear; explicitly comparing every pair is correct but quadratic on the same legal inputs.",
+  "cases": [
+    {
+      "id": "benchmark-descending-thirty-two",
+      "name": "benchmark: thirty-two descending group values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "nums": [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        "a": 4,
+        "b": 8
+      },
+      "expected": 341,
+      "tags": ["benchmark", "scale-small", "descending-groups"]
+    },
+    {
+      "id": "benchmark-descending-sixty-four",
+      "name": "benchmark: sixty-four descending group values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "nums": [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        "a": 4,
+        "b": 8
+      },
+      "expected": 1364,
+      "tags": ["benchmark", "scale-medium", "descending-groups"]
+    },
+    {
+      "id": "benchmark-descending-one-hundred-thirty-four",
+      "name": "benchmark: one hundred thirty-four descending group values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 134,
+      "input": {
+        "nums": [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        "a": 4,
+        "b": 8
+      },
+      "expected": 5971,
+      "tags": ["benchmark", "scale-large", "descending-groups"]
+    }
+  ]
+}

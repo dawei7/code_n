@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_4",
+    "frontend_id": "4",
+    "title_slug": "median-of-two-sorted-arrays",
+    "url": "https://leetcode.com/problems/median-of-two-sorted-arrays/description/",
+    "paid_only": false,
+    "content_sha256": "969de50fa972f735b63db35007f77081193cd45a44147cf5160dd9808e2781c7",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums1 = [1,3], nums2 = [2]",
+        "output": "2.00000",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums1 = [1,2], nums2 = [3,4]",
+        "output": "2.50000",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a4afa92dd94fed09d30768f854dcc39c86a6c8b3a42ec8395d0b979e318dfbad",
+      "reference/contract.md": "3599388774794fcc87cd96a868e46dc079100640a4597aef49633d678545827b",
+      "reference/examples.md": "7693f751a4308694f0514dde6aee46b2a92f7aed9e47ee9ca306670b44985f40",
+      "reference/constraints.md": "43ce652bbc2b63fb6961606e3ddb2cc6dd257b4490602488e4d41118e283afeb"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

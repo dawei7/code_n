@@ -1,24 +1,16 @@
-import math
-
-def is_prime(n: int) -> bool:
-    if n < 2:
-        return False
-    for i in range(2, int(math.sqrt(n)) + 1):
-        if n % i == 0:
-            return False
-    return True
-
 def solve(nums: list[int]) -> int:
-    first_prime_idx = -1
-    last_prime_idx = -1
-    
-    for i, num in enumerate(nums):
-        if is_prime(num):
-            if first_prime_idx == -1:
-                first_prime_idx = i
-            last_prime_idx = i
-            
-    if first_prime_idx == -1:
-        return 0
-        
-    return last_prime_idx - first_prime_idx
+    primes = {
+        2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
+        31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+        73, 79, 83, 89, 97,
+    }
+
+    first = next(
+        index for index, value in enumerate(nums) if value in primes
+    )
+    last = next(
+        index
+        for index in range(len(nums) - 1, -1, -1)
+        if nums[index] in primes
+    )
+    return last - first

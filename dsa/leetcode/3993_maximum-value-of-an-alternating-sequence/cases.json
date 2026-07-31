@@ -1,0 +1,185 @@
+{
+  "challenge_id": "lc_3993",
+  "cases": [
+    {
+      "id": "sample-four-elements",
+      "name": "sample: four elements reach twelve",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 4, "s": 3, "m": 5},
+      "expected": 12,
+      "tags": ["sample", "even-length"]
+    },
+    {
+      "id": "sample-two-elements",
+      "name": "sample: one maximum rise",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 2, "s": 4, "m": 3},
+      "expected": 7,
+      "tags": ["sample", "minimum-nontrivial-length"]
+    },
+    {
+      "id": "trial-single-minimum",
+      "name": "trial: one element at minimum values",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "s": 1, "m": 1},
+      "expected": 1,
+      "tags": ["trial", "single-element", "minimum-values"]
+    },
+    {
+      "id": "trial-single-maximum",
+      "name": "trial: one element ignores maximum difference limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1, "s": 1000000000, "m": 100000},
+      "expected": 1000000000,
+      "tags": ["trial", "single-element", "maximum-values"]
+    },
+    {
+      "id": "trial-two-unit-limit",
+      "name": "trial: two elements with unit difference limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 2, "s": 1, "m": 1},
+      "expected": 2,
+      "tags": ["trial", "unit-limit", "minimum-nontrivial-length"]
+    },
+    {
+      "id": "trial-three-unit-limit",
+      "name": "trial: third low cannot improve the maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 3, "s": 1, "m": 1},
+      "expected": 2,
+      "tags": ["trial", "unit-limit", "odd-length"]
+    },
+    {
+      "id": "trial-five-sample-parameters",
+      "name": "trial: odd extension ends below the maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5, "s": 3, "m": 5},
+      "expected": 12,
+      "tags": ["trial", "odd-length"]
+    },
+    {
+      "id": "trial-six-sample-parameters",
+      "name": "trial: next even position creates another high",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 6, "s": 3, "m": 5},
+      "expected": 16,
+      "tags": ["trial", "even-length"]
+    },
+    {
+      "id": "trial-four-maximum-m",
+      "name": "trial: two rises with maximum difference limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 4, "s": 1, "m": 100000},
+      "expected": 200000,
+      "tags": ["trial", "maximum-m", "even-length"]
+    },
+    {
+      "id": "trial-five-maximum-m",
+      "name": "trial: trailing low with maximum difference limit",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 5, "s": 1, "m": 100000},
+      "expected": 200000,
+      "tags": ["trial", "maximum-m", "odd-length"]
+    },
+    {
+      "id": "trial-ten-small-gain",
+      "name": "trial: five highs with net gain one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 10, "s": 7, "m": 2},
+      "expected": 13,
+      "tags": ["trial", "small-m", "even-length"]
+    },
+    {
+      "id": "trial-nine-small-gain",
+      "name": "trial: four highs and a trailing low",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 9, "s": 7, "m": 2},
+      "expected": 12,
+      "tags": ["trial", "small-m", "odd-length"]
+    },
+    {
+      "id": "real-hundred-unit-limit",
+      "name": "hidden: unit limit prevents pairwise growth",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 100, "s": 1, "m": 1},
+      "expected": 2,
+      "tags": ["hidden", "unit-limit", "many-elements"]
+    },
+    {
+      "id": "real-odd-unit-limit",
+      "name": "hidden: odd length with unit limit and nonminimum start",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 99, "s": 42, "m": 1},
+      "expected": 43,
+      "tags": ["hidden", "unit-limit", "odd-length"]
+    },
+    {
+      "id": "real-seven-moderate",
+      "name": "hidden: odd length counts three high positions",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 7, "s": 42, "m": 7},
+      "expected": 61,
+      "tags": ["hidden", "odd-length", "moderate-values"]
+    },
+    {
+      "id": "real-eight-moderate",
+      "name": "hidden: even length adds the fourth high position",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 8, "s": 42, "m": 7},
+      "expected": 67,
+      "tags": ["hidden", "even-length", "moderate-values"]
+    },
+    {
+      "id": "real-maximum-n-unit-limit",
+      "name": "hidden: maximum length with no pairwise growth",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000000, "s": 1000000000, "m": 1},
+      "expected": 1000000001,
+      "tags": ["hidden", "maximum-n", "maximum-s", "unit-limit"]
+    },
+    {
+      "id": "real-maximum-odd-length",
+      "name": "hidden: largest odd length and maximum rise",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 999999999, "s": 1000000000, "m": 100000},
+      "expected": 50000499900002,
+      "tags": ["hidden", "large-result", "odd-length", "maximum-m"]
+    },
+    {
+      "id": "real-maximum-even-length-minimum-start",
+      "name": "hidden: maximum length and rise from minimum start",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000000, "s": 1, "m": 100000},
+      "expected": 49999500000002,
+      "tags": ["hidden", "large-result", "maximum-n", "maximum-m"]
+    },
+    {
+      "id": "real-all-maximum-inputs",
+      "name": "hidden: all input values at their maxima",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 1000000000, "s": 1000000000, "m": 100000},
+      "expected": 50000500000001,
+      "tags": ["hidden", "large-result", "maximum-values"]
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: subarray inside the base array",
+      "name": "sample: shortest subarray stays within one copy",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,13 +16,13 @@
       },
       "tags": [
         "sample",
-        "prefix"
+        "within-copy"
       ],
       "expected": 2
     },
     {
       "id": "sample-2",
-      "name": "sample: shortest sum crosses small values",
+      "name": "sample: shortest subarray crosses a copy boundary",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -37,13 +37,13 @@
       },
       "tags": [
         "sample",
-        "sliding-window"
+        "wraparound"
       ],
       "expected": 2
     },
     {
       "id": "sample-3",
-      "name": "sample: target cannot be formed",
+      "name": "sample: parity makes the target impossible",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "trial-full-cycles-only",
-      "name": "trial: target is exactly whole-array cycles",
+      "name": "trial: target consists only of complete cycles",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -74,13 +74,33 @@
       },
       "tags": [
         "trial",
-        "cycles"
+        "full-cycles"
       ],
       "expected": 3
     },
     {
-      "id": "real-wraparound-remainder",
-      "name": "hidden: shortest remainder wraps across the boundary",
+      "id": "trial-short-wraparound",
+      "name": "trial: wrapping pair is shorter than any internal match",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          2,
+          3
+        ],
+        "target": 8
+      },
+      "tags": [
+        "trial",
+        "wraparound"
+      ],
+      "expected": 2
+    },
+    {
+      "id": "real-full-cycle-plus-wrap",
+      "name": "hidden: complete cycle plus a circular remainder",
       "kind": "real",
       "visible": false,
       "input": {
@@ -95,9 +115,50 @@
       },
       "tags": [
         "hidden",
+        "cycles",
         "wraparound"
       ],
       "expected": 9
+    },
+    {
+      "id": "real-large-target",
+      "name": "hidden: very large target over a tiny repeating pattern",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "target": 1000000000
+      },
+      "tags": [
+        "hidden",
+        "large-target"
+      ],
+      "expected": 1000000000
+    },
+    {
+      "id": "real-unreachable-after-cycle",
+      "name": "hidden: remainder stays impossible after removing a cycle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "target": 23
+      },
+      "tags": [
+        "hidden",
+        "impossible",
+        "cycles"
+      ],
+      "expected": -1
     }
   ]
 }

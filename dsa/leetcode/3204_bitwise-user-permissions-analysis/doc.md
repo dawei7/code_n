@@ -8,48 +8,50 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [bitwise-user-permissions-analysis](https://leetcode.com/problems/bitwise-user-permissions-analysis/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/bitwise-user-permissions-analysis/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/bitwise-user-permissions-analysis/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `user_permissions` table stores one integer permission mask for each user. Every bit position represents a distinct access level or feature: a set bit means that the user possesses the corresponding permission.
+
+Produce one result row with two combined masks. `common_perms` must contain exactly the bits set for every user, so it is the bitwise AND of all values in `permissions`. `any_perms` must contain every bit set for at least one user, so it is the bitwise OR of those values.
+
+The result may be returned in any order.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+The `user_permissions` table contains:
+
+- `user_id`: An integer that uniquely identifies a row.
+- `permissions`: The user's permissions encoded as an integer bit mask.
+
+Let $r$ be the number of rows in `user_permissions`.
 
 **Return value**
 
-TODO
+- A one-row table with integer columns `common_perms` and `any_perms`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+Input table `user_permissions`:
 
-**Example 2**
+| user_id | permissions |
+|---:|---:|
+| 1 | 5 |
+| 2 | 12 |
+| 3 | 7 |
+| 4 | 3 |
 
-- Input: `TODO`
-- Output: `TODO`
+Output:
 
-**Example 3**
+| common_perms | any_perms |
+|---:|---:|
+| 0 | 15 |
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The AND of the four masks is `5 & 12 & 7 & 3 = 0`, while their OR is `5 | 12 | 7 | 3 = 15`.

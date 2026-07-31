@@ -5,51 +5,45 @@
 | Source | LeetCode |
 | Frontend ID | 3645 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Two Pointers, Greedy, Sorting, Heap (Priority Queue) |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-total-from-optimal-activation-order](https://leetcode.com/problems/maximum-total-from-optimal-activation-order/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-total-from-optimal-activation-order/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-total-from-optimal-activation-order/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The arrays `value` and `limit` describe $n$ elements, all initially inactive. You may choose an inactive element `i` only while the current number of active elements is strictly smaller than `limit[i]`. Activating it permanently adds `value[i]` to the accumulated total.
+
+After every activation, let $x$ be the new active count. Every element whose limit is at most $x$ then becomes permanently inactive, including elements that were active and elements that were never activated. Permanently inactive elements cannot be chosen later, while elements with larger limits remain in their current state.
+
+Choose the activation order that maximizes the sum of values collected from all activation operations, and return that maximum total.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `value`: Positive activation values, where `value[i]` belongs to element `i`.
+- `limit`: Positive activation thresholds of the same length, with $1\le\texttt{limit[i]}\le n$.
+
+Both arrays have length $n$, where $1\le n\le 10^5$, and each activation value is at most $10^5$.
 
 **Return value**
 
-TODO
+Return the largest total value obtainable by a valid activation order.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `value = [3,5,8]`, `limit = [2,1,3]`
+- Output: `16`
+- Explanation: Activating indices 1, 0, and 2 collects all three values while threshold expirations keep each next activation legal.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `value = [4,2,6]`, `limit = [1,1,1]`
+- Output: `6`
+- Explanation: The first activation makes the active count 1 and permanently disables every element, so choosing the largest value is optimal.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `value = [4,1,5,2]`, `limit = [3,3,2,3]`
+- Output: `12`
+- Explanation: The single limit-2 value and all three limit-3 values can be collected in a valid order.

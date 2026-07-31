@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2056",
+  "frontend_id": "2297",
+  "title_slug": "jump-game-viii",
+  "paid_only": true,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.minCost",
+  "verified_submission_id": "2080684965",
+  "verified_at": "2026-07-25T11:48:11.7538644Z"
+}

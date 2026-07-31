@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3272",
+  "measurement_note": "The legal half count p = 9 * 10^(ceil(n/2) - 1) is the workload size, with k = 1 so every palindrome reaches signature deduplication. One persistent hash set performs an expected-constant insertion per O(n)-digit signature, while rebuilding the entire unique-signature collection after every qualifying palindrome repeats prior deduplication work.",
+  "cases": [
+    {
+      "id": "benchmark-signature-lookup-scale-1",
+      "name": "benchmark: enumerate 4-digit palindromes for divisor one",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 90,
+      "input": {
+        "n": 4,
+        "k": 1
+      },
+      "expected": 252,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-signature-lookup-scale-2",
+      "name": "benchmark: enumerate 6-digit palindromes for divisor one",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 900,
+      "input": {
+        "n": 6,
+        "k": 1
+      },
+      "expected": 10944,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-signature-lookup-scale-3",
+      "name": "benchmark: enumerate 8-digit palindromes for divisor one",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9000,
+      "input": {
+        "n": 8,
+        "k": 1
+      },
+      "expected": 617472,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: two substrings satisfy xor targets",
+      "name": "sample: two XOR targets have matching substrings",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -31,36 +31,37 @@
       ],
       "tags": [
         "sample",
-        "bit-manipulation"
+        "xor"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: zero substring answers zero target",
+      "name": "sample: required binary value is absent",
       "kind": "sample",
       "visible": true,
       "input": {
-        "s": "0",
+        "s": "0101",
         "queries": [
           [
-            0,
-            0
+            12,
+            8
           ]
         ]
       },
       "expected": [
         [
-          0,
-          0
+          -1,
+          -1
         ]
       ],
       "tags": [
-        "sample"
+        "sample",
+        "no-match"
       ]
     },
     {
       "id": "sample-3",
-      "name": "sample: one-character substring answers target one",
+      "name": "sample: one bit satisfies the query",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -84,7 +85,7 @@
     },
     {
       "id": "trial-repeated-target",
-      "name": "trial: two queries share the same shortest substring",
+      "name": "trial: two equations reduce to the same target",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -111,20 +112,108 @@
         ]
       ],
       "tags": [
-        "trial"
+        "trial",
+        "repeated-target"
       ]
     },
     {
-      "id": "real-zero-target-from-single-zero",
-      "name": "hidden: xor target zero maps to the first zero",
+      "id": "trial-zero-target",
+      "name": "trial: first zero is the shortest zero representation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "1010",
+        "queries": [
+          [
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        [
+          1,
+          1
+        ]
+      ],
+      "tags": [
+        "trial",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-leading-zeroes",
+      "name": "hidden: leading zeroes lose the shortest-length tie",
       "kind": "real",
       "visible": false,
       "input": {
-        "s": "0",
+        "s": "0011",
         "queries": [
           [
-            1,
-            1
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        [
+          2,
+          3
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "leading-zeroes"
+      ]
+    },
+    {
+      "id": "real-leftmost-tie",
+      "name": "hidden: equal-length matches choose the smallest left index",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "10101",
+        "queries": [
+          [
+            0,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        [
+          0,
+          2
+        ]
+      ],
+      "tags": [
+        "hidden",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-mixed-results",
+      "name": "hidden: found and missing targets preserve query order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "11001",
+        "queries": [
+          [
+            6,
+            7
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            2,
+            7
           ]
         ]
       },
@@ -132,10 +221,23 @@
         [
           0,
           0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          -1,
+          -1
         ]
       ],
       "tags": [
-        "hidden"
+        "hidden",
+        "mixed-results"
       ]
     }
   ]

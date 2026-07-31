@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="110" viewBox="0 0 280 110" role="img" aria-labelledby="title desc">
+  <title id="title">Example 3 tree</title>
+  <desc id="desc">Bad node zero connected to bad node one.</desc>
+  <rect width="280" height="110" rx="12" fill="#f8fafc"/>
+  <line x1="85" y1="48" x2="195" y2="48" stroke="#475569" stroke-width="4"/>
+  <g stroke="#fff" stroke-width="3" fill="#c93c37"><circle cx="85" cy="48" r="25"/><circle cx="195" cy="48" r="25"/></g>
+  <g fill="#fff" font-family="Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle"><text x="85" y="54">0</text><text x="195" y="54">1</text></g>
+  <circle cx="116" cy="91" r="7" fill="#c93c37"/><text x="128" y="95" fill="#334155" font-family="Arial,sans-serif" font-size="12">bad</text>
+</svg>

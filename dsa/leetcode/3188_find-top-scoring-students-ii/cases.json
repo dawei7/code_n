@@ -1,0 +1,1133 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3188",
+  "cases": [
+    {
+      "id": "sample-top-students-ii",
+      "name": "sample: two students satisfy all three criteria",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 1,
+              "name": "Alice",
+              "major": "Computer Science"
+            },
+            {
+              "student_id": 2,
+              "name": "Bob",
+              "major": "Computer Science"
+            },
+            {
+              "student_id": 3,
+              "name": "Charlie",
+              "major": "Mathematics"
+            },
+            {
+              "student_id": 4,
+              "name": "David",
+              "major": "Mathematics"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 101,
+              "name": "Algorithms",
+              "credits": 3,
+              "major": "Computer Science",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 102,
+              "name": "Data Structures",
+              "credits": 3,
+              "major": "Computer Science",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 103,
+              "name": "Calculus",
+              "credits": 4,
+              "major": "Mathematics",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 104,
+              "name": "Linear Algebra",
+              "credits": 4,
+              "major": "Mathematics",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 105,
+              "name": "Machine Learning",
+              "credits": 3,
+              "major": "Computer Science",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 106,
+              "name": "Probability",
+              "credits": 3,
+              "major": "Mathematics",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 107,
+              "name": "Operating Systems",
+              "credits": 3,
+              "major": "Computer Science",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 108,
+              "name": "Statistics",
+              "credits": 3,
+              "major": "Mathematics",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 1,
+              "course_id": 101,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 1,
+              "course_id": 102,
+              "semester": "Spring 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 1,
+              "course_id": 105,
+              "semester": "Spring 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 1,
+              "course_id": 107,
+              "semester": "Fall 2023",
+              "grade": "B",
+              "GPA": 3.5
+            },
+            {
+              "student_id": 2,
+              "course_id": 101,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 2,
+              "course_id": 102,
+              "semester": "Spring 2023",
+              "grade": "B",
+              "GPA": 3
+            },
+            {
+              "student_id": 3,
+              "course_id": 103,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 3,
+              "course_id": 104,
+              "semester": "Spring 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 3,
+              "course_id": 106,
+              "semester": "Spring 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 3,
+              "course_id": 108,
+              "semester": "Fall 2023",
+              "grade": "B",
+              "GPA": 3.5
+            },
+            {
+              "student_id": 4,
+              "course_id": 103,
+              "semester": "Fall 2023",
+              "grade": "B",
+              "GPA": 3
+            },
+            {
+              "student_id": 4,
+              "course_id": 104,
+              "semester": "Spring 2023",
+              "grade": "B",
+              "GPA": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": [
+          [
+            1
+          ],
+          [
+            3
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "all-criteria",
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-no-mandatory-courses",
+      "name": "trial: a major without mandatory courses can qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 7,
+              "name": "Student 7",
+              "major": "Art"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 201,
+              "name": "Course 201",
+              "credits": 3,
+              "major": "Art",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 202,
+              "name": "Course 202",
+              "credits": 3,
+              "major": "Art",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 7,
+              "course_id": 201,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 2.5
+            },
+            {
+              "student_id": 7,
+              "course_id": 202,
+              "semester": "Spring 2024",
+              "grade": "B",
+              "GPA": 2.5
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": [
+          [
+            7
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "empty-mandatory-set",
+        "qualifies"
+      ]
+    },
+    {
+      "id": "trial-missing-mandatory",
+      "name": "trial: one missing mandatory course excludes the student",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 8,
+              "name": "Student 8",
+              "major": "Biology"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 203,
+              "name": "Course 203",
+              "credits": 3,
+              "major": "Biology",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 204,
+              "name": "Course 204",
+              "credits": 3,
+              "major": "Biology",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 205,
+              "name": "Course 205",
+              "credits": 3,
+              "major": "Biology",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 206,
+              "name": "Course 206",
+              "credits": 3,
+              "major": "Biology",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 8,
+              "course_id": 203,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 8,
+              "course_id": 205,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 8,
+              "course_id": 206,
+              "semester": "Spring 2024",
+              "grade": "B",
+              "GPA": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "missing-mandatory",
+        "excluded"
+      ]
+    },
+    {
+      "id": "trial-mandatory-grade-b",
+      "name": "trial: B in a mandatory course is insufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 9,
+              "name": "Student 9",
+              "major": "History"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 207,
+              "name": "Course 207",
+              "credits": 3,
+              "major": "History",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 208,
+              "name": "Course 208",
+              "credits": 3,
+              "major": "History",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 209,
+              "name": "Course 209",
+              "credits": 3,
+              "major": "History",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 9,
+              "course_id": 207,
+              "semester": "Fall 2023",
+              "grade": "B",
+              "GPA": 4
+            },
+            {
+              "student_id": 9,
+              "course_id": 208,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 9,
+              "course_id": 209,
+              "semester": "Spring 2024",
+              "grade": "B",
+              "GPA": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "mandatory-grade",
+        "excluded"
+      ]
+    },
+    {
+      "id": "trial-one-elective",
+      "name": "trial: one qualifying elective is insufficient",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 10,
+              "name": "Student 10",
+              "major": "Physics"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 210,
+              "name": "Course 210",
+              "credits": 3,
+              "major": "Physics",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 211,
+              "name": "Course 211",
+              "credits": 3,
+              "major": "Physics",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 10,
+              "course_id": 210,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 10,
+              "course_id": 211,
+              "semester": "Spring 2024",
+              "grade": "A",
+              "GPA": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "elective-count",
+        "excluded"
+      ]
+    },
+    {
+      "id": "real-elective-grade-c",
+      "name": "real: C does not qualify an elective",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 11,
+              "name": "Student 11",
+              "major": "Music"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 212,
+              "name": "Course 212",
+              "credits": 3,
+              "major": "Music",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 213,
+              "name": "Course 213",
+              "credits": 3,
+              "major": "Music",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 214,
+              "name": "Course 214",
+              "credits": 3,
+              "major": "Music",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 11,
+              "course_id": 212,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 11,
+              "course_id": 213,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 11,
+              "course_id": 214,
+              "semester": "Spring 2024",
+              "grade": "C",
+              "GPA": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "elective-grade",
+        "excluded"
+      ]
+    },
+    {
+      "id": "real-exact-gpa-boundary",
+      "name": "real: average GPA exactly 2.5 qualifies",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 12,
+              "name": "Student 12",
+              "major": "Law"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 215,
+              "name": "Course 215",
+              "credits": 3,
+              "major": "Law",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 216,
+              "name": "Course 216",
+              "credits": 3,
+              "major": "Law",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 217,
+              "name": "Course 217",
+              "credits": 3,
+              "major": "Law",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 12,
+              "course_id": 215,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 1
+            },
+            {
+              "student_id": 12,
+              "course_id": 216,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 3.25
+            },
+            {
+              "student_id": 12,
+              "course_id": 217,
+              "semester": "Spring 2024",
+              "grade": "B",
+              "GPA": 3.25
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": [
+          [
+            12
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "gpa-boundary",
+        "qualifies"
+      ]
+    },
+    {
+      "id": "real-outside-major-lowers-gpa",
+      "name": "real: an outside-major course lowers the overall GPA",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 13,
+              "name": "Student 13",
+              "major": "Engineering"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 218,
+              "name": "Course 218",
+              "credits": 3,
+              "major": "Engineering",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 219,
+              "name": "Course 219",
+              "credits": 3,
+              "major": "Engineering",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 220,
+              "name": "Course 220",
+              "credits": 3,
+              "major": "Engineering",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 221,
+              "name": "Course 221",
+              "credits": 3,
+              "major": "Poetry",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 13,
+              "course_id": 218,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 3
+            },
+            {
+              "student_id": 13,
+              "course_id": 219,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 3
+            },
+            {
+              "student_id": 13,
+              "course_id": 220,
+              "semester": "Spring 2024",
+              "grade": "B",
+              "GPA": 3
+            },
+            {
+              "student_id": 13,
+              "course_id": 221,
+              "semester": "Spring 2024",
+              "grade": "F",
+              "GPA": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "outside-major",
+        "overall-gpa"
+      ]
+    },
+    {
+      "id": "real-outside-major-grade-ignored",
+      "name": "real: outside-major letter grade does not affect course gates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 14,
+              "name": "Student 14",
+              "major": "Economics"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 222,
+              "name": "Course 222",
+              "credits": 3,
+              "major": "Economics",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 223,
+              "name": "Course 223",
+              "credits": 3,
+              "major": "Economics",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 224,
+              "name": "Course 224",
+              "credits": 3,
+              "major": "Economics",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 225,
+              "name": "Course 225",
+              "credits": 3,
+              "major": "Drama",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 14,
+              "course_id": 222,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 14,
+              "course_id": 223,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 14,
+              "course_id": 224,
+              "semester": "Spring 2024",
+              "grade": "B",
+              "GPA": 4
+            },
+            {
+              "student_id": 14,
+              "course_id": 225,
+              "semester": "Spring 2024",
+              "grade": "C",
+              "GPA": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": [
+          [
+            14
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "outside-major",
+        "grade-scope"
+      ]
+    },
+    {
+      "id": "real-retakes-distinct-courses",
+      "name": "real: retakes count once while every GPA remains",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 15,
+              "name": "Student 15",
+              "major": "Chemistry"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 226,
+              "name": "Course 226",
+              "credits": 3,
+              "major": "Chemistry",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 227,
+              "name": "Course 227",
+              "credits": 3,
+              "major": "Chemistry",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 228,
+              "name": "Course 228",
+              "credits": 3,
+              "major": "Chemistry",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 15,
+              "course_id": 226,
+              "semester": "Fall 2023",
+              "grade": "B",
+              "GPA": 2
+            },
+            {
+              "student_id": 15,
+              "course_id": 226,
+              "semester": "Spring 2024",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 15,
+              "course_id": 227,
+              "semester": "Fall 2023",
+              "grade": "A",
+              "GPA": 3
+            },
+            {
+              "student_id": 15,
+              "course_id": 227,
+              "semester": "Spring 2024",
+              "grade": "A",
+              "GPA": 3
+            },
+            {
+              "student_id": 15,
+              "course_id": 228,
+              "semester": "Spring 2024",
+              "grade": "B",
+              "GPA": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": [
+          [
+            15
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "retake",
+        "distinct-course"
+      ]
+    },
+    {
+      "id": "real-mixed-majors-ordered",
+      "name": "real: qualifying students from different majors are ordered",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 30,
+              "name": "Student 30",
+              "major": "Math"
+            },
+            {
+              "student_id": 2,
+              "name": "Student 2",
+              "major": "Design"
+            },
+            {
+              "student_id": 20,
+              "name": "Student 20",
+              "major": "Math"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 229,
+              "name": "Course 229",
+              "credits": 3,
+              "major": "Math",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 230,
+              "name": "Course 230",
+              "credits": 3,
+              "major": "Math",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 231,
+              "name": "Course 231",
+              "credits": 3,
+              "major": "Math",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 232,
+              "name": "Course 232",
+              "credits": 3,
+              "major": "Design",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 233,
+              "name": "Course 233",
+              "credits": 3,
+              "major": "Design",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 30,
+              "course_id": 229,
+              "semester": "F23",
+              "grade": "A",
+              "GPA": 3
+            },
+            {
+              "student_id": 30,
+              "course_id": 230,
+              "semester": "F23",
+              "grade": "A",
+              "GPA": 3
+            },
+            {
+              "student_id": 30,
+              "course_id": 231,
+              "semester": "S24",
+              "grade": "B",
+              "GPA": 3
+            },
+            {
+              "student_id": 2,
+              "course_id": 232,
+              "semester": "F23",
+              "grade": "A",
+              "GPA": 3
+            },
+            {
+              "student_id": 2,
+              "course_id": 233,
+              "semester": "S24",
+              "grade": "B",
+              "GPA": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": [
+          [
+            2
+          ],
+          [
+            30
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "multiple-majors",
+        "ordering",
+        "no-enrollment"
+      ]
+    },
+    {
+      "id": "real-lower-retake-with-qualifying-attempt",
+      "name": "real: a qualifying attempt covers a course despite another lower attempt",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "students": [
+            {
+              "student_id": 16,
+              "name": "Student 16",
+              "major": "Geology"
+            }
+          ],
+          "courses": [
+            {
+              "course_id": 234,
+              "name": "Course 234",
+              "credits": 3,
+              "major": "Geology",
+              "mandatory": "Yes"
+            },
+            {
+              "course_id": 235,
+              "name": "Course 235",
+              "credits": 3,
+              "major": "Geology",
+              "mandatory": "No"
+            },
+            {
+              "course_id": 236,
+              "name": "Course 236",
+              "credits": 3,
+              "major": "Geology",
+              "mandatory": "No"
+            }
+          ],
+          "enrollments": [
+            {
+              "student_id": 16,
+              "course_id": 234,
+              "semester": "F23",
+              "grade": "A",
+              "GPA": 3
+            },
+            {
+              "student_id": 16,
+              "course_id": 235,
+              "semester": "F23",
+              "grade": "C",
+              "GPA": 2
+            },
+            {
+              "student_id": 16,
+              "course_id": 235,
+              "semester": "S24",
+              "grade": "A",
+              "GPA": 4
+            },
+            {
+              "student_id": 16,
+              "course_id": 236,
+              "semester": "S24",
+              "grade": "B",
+              "GPA": 3
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "student_id"
+        ],
+        "rows": [
+          [
+            16
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "retake",
+        "qualifying-attempt"
+      ]
+    }
+  ]
+}

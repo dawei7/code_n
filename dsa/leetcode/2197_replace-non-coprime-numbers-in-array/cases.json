@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2197",
+  "cases": [
+    {"id":"sample-cascades","name":"sample: several replacements cascade through the prefix","kind":"sample","visible":true,"input":{"nums":[6,4,3,2,7,6,2]},"expected":[12,7,6],"tags":["sample","cascade"]},
+    {"id":"sample-ones","name":"sample: ones separate two groups of equal values","kind":"sample","visible":true,"input":{"nums":[2,2,1,1,3,3,3]},"expected":[2,1,1,3],"tags":["sample","ones"]},
+    {"id":"trial-single","name":"one value is already terminal","kind":"trial","visible":true,"input":{"nums":[5]},"expected":[5],"tags":["minimum"]},
+    {"id":"trial-coprime","name":"pairwise-coprime neighbors remain unchanged","kind":"trial","visible":true,"input":{"nums":[2,3,5,7]},"expected":[2,3,5,7],"tags":["no-merge"]},
+    {"id":"trial-bridge","name":"a right merge creates a new left merge","kind":"trial","visible":true,"input":{"nums":[6,35,10]},"expected":[210],"tags":["left-propagation"]},
+    {"id":"real-two-cascades-meet","name":"hidden: two locally merged blocks subsequently combine","kind":"real","visible":false,"input":{"nums":[4,6,5,10]},"expected":[60],"tags":["hidden","cascade"]},
+    {"id":"real-repeated-lcm","name":"hidden: every replacement leaves the same least common multiple","kind":"real","visible":false,"input":{"nums":[12,6,3,2]},"expected":[12],"tags":["hidden","divisibility"]},
+    {"id":"real-new-factor","name":"hidden: a merged suffix introduces a factor to the prefix","kind":"real","visible":false,"input":{"nums":[8,9,6]},"expected":[72],"tags":["hidden","new-factor"]},
+    {"id":"real-one-separators","name":"hidden: isolated values cannot cross ones","kind":"real","visible":false,"input":{"nums":[1,2,1,4,1]},"expected":[1,2,1,4,1],"tags":["hidden","ones"]},
+    {"id":"real-full-collapse","name":"hidden: chained mixed factors collapse the whole array","kind":"real","visible":false,"input":{"nums":[15,14,21,10]},"expected":[210],"tags":["hidden","full-collapse"]},
+    {"id":"real-large-coprime","name":"hidden: large coprime neighbors remain separate","kind":"real","visible":false,"input":{"nums":[100000,99991]},"expected":[100000,99991],"tags":["hidden","large-values"]}
+  ]
+}

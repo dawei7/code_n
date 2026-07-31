@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Convert Callback Based Function to Promise Based Function and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Returns a closure that creates one promise, inserts its settlement callback, and forwards every argument once.",
+      "time_complexity": "O(a)",
+      "space_complexity": "O(a)"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2223",
+  "cases": [
+    {"id":"sample-repeated-bab","name":"sample: overlapping repeated prefix contributes nine","kind":"sample","visible":true,"input":{"s":"babab"},"expected":9,"tags":["sample","overlap"]},
+    {"id":"sample-sparse-matches","name":"sample: only two proper suffixes contribute","kind":"sample","visible":true,"input":{"s":"azbazbzaz"},"expected":14,"tags":["sample","sparse-matches"]},
+    {"id":"trial-all-equal","name":"every suffix of equal characters matches fully","kind":"trial","visible":true,"input":{"s":"aaaa"},"expected":10,"tags":["all-equal"]},
+    {"id":"trial-singleton","name":"one character contributes its full length","kind":"trial","visible":true,"input":{"s":"x"},"expected":1,"tags":["singleton"]},
+    {"id":"real-distinct","name":"hidden: no proper suffix shares the first character","kind":"real","visible":false,"input":{"s":"abcdef"},"expected":6,"tags":["hidden","no-proper-match"]},
+    {"id":"real-overlapping-prefix","name":"hidden: repeated alternating prefixes overlap","kind":"real","visible":false,"input":{"s":"ababa"},"expected":9,"tags":["hidden","overlap"]},
+    {"id":"real-separated-runs","name":"hidden: matches stop at different internal boundaries","kind":"real","visible":false,"input":{"s":"aaabaaa"},"expected":16,"tags":["hidden","partial-matches"]},
+    {"id":"real-repeated-block","name":"hidden: several suffixes begin with a repeated block","kind":"real","visible":false,"input":{"s":"abcabcabc"},"expected":18,"tags":["hidden","repeated-block"]}
+  ]
+}

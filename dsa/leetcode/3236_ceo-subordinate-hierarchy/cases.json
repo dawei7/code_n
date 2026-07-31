@@ -1,0 +1,800 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3236",
+  "cases": [
+    {
+      "id": "sample-three-level-hierarchy",
+      "name": "sample: three subordinate levels",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Alice",
+              "manager_id": null,
+              "salary": 150000
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Bob",
+              "manager_id": 1,
+              "salary": 120000
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "Charlie",
+              "manager_id": 1,
+              "salary": 110000
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "David",
+              "manager_id": 2,
+              "salary": 105000
+            },
+            {
+              "employee_id": 5,
+              "employee_name": "Eve",
+              "manager_id": 2,
+              "salary": 100000
+            },
+            {
+              "employee_id": 6,
+              "employee_name": "Frank",
+              "manager_id": 3,
+              "salary": 95000
+            },
+            {
+              "employee_id": 7,
+              "employee_name": "Grace",
+              "manager_id": 3,
+              "salary": 98000
+            },
+            {
+              "employee_id": 8,
+              "employee_name": "Helen",
+              "manager_id": 5,
+              "salary": 90000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            2,
+            "Bob",
+            1,
+            -30000
+          ],
+          [
+            3,
+            "Charlie",
+            1,
+            -40000
+          ],
+          [
+            4,
+            "David",
+            2,
+            -45000
+          ],
+          [
+            5,
+            "Eve",
+            2,
+            -50000
+          ],
+          [
+            6,
+            "Frank",
+            2,
+            -55000
+          ],
+          [
+            7,
+            "Grace",
+            2,
+            -52000
+          ],
+          [
+            8,
+            "Helen",
+            3,
+            -60000
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-ceo-only",
+      "name": "trial: CEO without subordinates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "Solo",
+              "manager_id": null,
+              "salary": 100000
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "empty"
+      ]
+    },
+    {
+      "id": "trial-one-direct-report",
+      "name": "trial: one direct report",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 10,
+              "employee_name": "Chief",
+              "manager_id": null,
+              "salary": 100
+            },
+            {
+              "employee_id": 20,
+              "employee_name": "Worker",
+              "manager_id": 10,
+              "salary": 80
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            20,
+            "Worker",
+            1,
+            -20
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "direct"
+      ]
+    },
+    {
+      "id": "trial-level-id-order",
+      "name": "trial: same level sorted by identifier",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 10,
+              "employee_name": "Chief",
+              "manager_id": null,
+              "salary": 100
+            },
+            {
+              "employee_id": 30,
+              "employee_name": "Later",
+              "manager_id": 10,
+              "salary": 70
+            },
+            {
+              "employee_id": 20,
+              "employee_name": "Earlier",
+              "manager_id": 10,
+              "salary": 80
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            20,
+            "Earlier",
+            1,
+            -20
+          ],
+          [
+            30,
+            "Later",
+            1,
+            -30
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "ordering"
+      ]
+    },
+    {
+      "id": "trial-deep-chain",
+      "name": "trial: four-node chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "A",
+              "manager_id": null,
+              "salary": 100
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "B",
+              "manager_id": 1,
+              "salary": 90
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "C",
+              "manager_id": 2,
+              "salary": 80
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "D",
+              "manager_id": 3,
+              "salary": 70
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            2,
+            "B",
+            1,
+            -10
+          ],
+          [
+            3,
+            "C",
+            2,
+            -20
+          ],
+          [
+            4,
+            "D",
+            3,
+            -30
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "depth"
+      ]
+    },
+    {
+      "id": "real-positive-difference",
+      "name": "real: subordinate earns more than CEO",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "CEO",
+              "manager_id": null,
+              "salary": 100
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Expert",
+              "manager_id": 1,
+              "salary": 150
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            2,
+            "Expert",
+            1,
+            50
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "salary",
+        "positive"
+      ]
+    },
+    {
+      "id": "real-zero-difference",
+      "name": "real: equal salaries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "CEO",
+              "manager_id": null,
+              "salary": 100
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Peer",
+              "manager_id": 1,
+              "salary": 100
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            2,
+            "Peer",
+            1,
+            0
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "salary",
+        "zero"
+      ]
+    },
+    {
+      "id": "real-two-branches",
+      "name": "real: two branches at several levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "CEO",
+              "manager_id": null,
+              "salary": 200
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "L",
+              "manager_id": 1,
+              "salary": 180
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "R",
+              "manager_id": 1,
+              "salary": 170
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "LL",
+              "manager_id": 2,
+              "salary": 160
+            },
+            {
+              "employee_id": 5,
+              "employee_name": "RR",
+              "manager_id": 3,
+              "salary": 150
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            2,
+            "L",
+            1,
+            -20
+          ],
+          [
+            3,
+            "R",
+            1,
+            -30
+          ],
+          [
+            4,
+            "LL",
+            2,
+            -40
+          ],
+          [
+            5,
+            "RR",
+            2,
+            -50
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "branches"
+      ]
+    },
+    {
+      "id": "real-unordered-input",
+      "name": "real: input rows are not hierarchical order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 4,
+              "employee_name": "Leaf",
+              "manager_id": 2,
+              "salary": 60
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Manager",
+              "manager_id": 9,
+              "salary": 80
+            },
+            {
+              "employee_id": 9,
+              "employee_name": "Chief",
+              "manager_id": null,
+              "salary": 100
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "Direct",
+              "manager_id": 9,
+              "salary": 90
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            2,
+            "Manager",
+            1,
+            -20
+          ],
+          [
+            3,
+            "Direct",
+            1,
+            -10
+          ],
+          [
+            4,
+            "Leaf",
+            2,
+            -40
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-nonconsecutive-identifiers",
+      "name": "real: nonconsecutive identifiers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 100,
+              "employee_name": "Chief",
+              "manager_id": null,
+              "salary": 500
+            },
+            {
+              "employee_id": 7,
+              "employee_name": "Direct",
+              "manager_id": 100,
+              "salary": 450
+            },
+            {
+              "employee_id": 999,
+              "employee_name": "Leaf",
+              "manager_id": 7,
+              "salary": 400
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            7,
+            "Direct",
+            1,
+            -50
+          ],
+          [
+            999,
+            "Leaf",
+            2,
+            -100
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "identifiers"
+      ]
+    },
+    {
+      "id": "real-wide-second-level",
+      "name": "real: several reports under one manager",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 1,
+              "employee_name": "CEO",
+              "manager_id": null,
+              "salary": 1000
+            },
+            {
+              "employee_id": 2,
+              "employee_name": "Lead",
+              "manager_id": 1,
+              "salary": 900
+            },
+            {
+              "employee_id": 5,
+              "employee_name": "E",
+              "manager_id": 2,
+              "salary": 500
+            },
+            {
+              "employee_id": 3,
+              "employee_name": "C",
+              "manager_id": 2,
+              "salary": 700
+            },
+            {
+              "employee_id": 4,
+              "employee_name": "D",
+              "manager_id": 2,
+              "salary": 600
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            2,
+            "Lead",
+            1,
+            -100
+          ],
+          [
+            3,
+            "C",
+            2,
+            -300
+          ],
+          [
+            4,
+            "D",
+            2,
+            -400
+          ],
+          [
+            5,
+            "E",
+            2,
+            -500
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "wide",
+        "ordering"
+      ]
+    },
+    {
+      "id": "real-four-level-hierarchy",
+      "name": "real: four subordinate levels",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "employee_id": 50,
+              "employee_name": "CEO",
+              "manager_id": null,
+              "salary": 1000
+            },
+            {
+              "employee_id": 60,
+              "employee_name": "A",
+              "manager_id": 50,
+              "salary": 900
+            },
+            {
+              "employee_id": 70,
+              "employee_name": "B",
+              "manager_id": 60,
+              "salary": 800
+            },
+            {
+              "employee_id": 80,
+              "employee_name": "C",
+              "manager_id": 70,
+              "salary": 700
+            },
+            {
+              "employee_id": 90,
+              "employee_name": "D",
+              "manager_id": 80,
+              "salary": 600
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "subordinate_id",
+          "subordinate_name",
+          "hierarchy_level",
+          "salary_difference"
+        ],
+        "rows": [
+          [
+            60,
+            "A",
+            1,
+            -100
+          ],
+          [
+            70,
+            "B",
+            2,
+            -200
+          ],
+          [
+            80,
+            "C",
+            3,
+            -300
+          ],
+          [
+            90,
+            "D",
+            4,
+            -400
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "depth"
+      ]
+    }
+  ]
+}

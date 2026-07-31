@@ -17,12 +17,12 @@
       "expected": 10,
       "tags": [
         "sample",
-        "sum"
+        "positive"
       ]
     },
     {
       "id": "sample-negative-specials",
-      "name": "sample: negative special numbers with positive outlier",
+      "name": "sample: negative specials and positive outlier",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,8 +41,8 @@
       ]
     },
     {
-      "id": "sample-duplicate-sum-value",
-      "name": "sample: sum value and outlier may share value",
+      "id": "sample-equal-sum-and-outlier",
+      "name": "sample: equal-valued sum and outlier use different indices",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -64,7 +64,7 @@
     },
     {
       "id": "trial-largest-among-multiple",
-      "name": "trial: choose largest valid outlier among candidates",
+      "name": "trial: choose the largest of several valid candidates",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -78,29 +78,126 @@
       },
       "expected": 30,
       "tags": [
-        "regression",
+        "multiple-candidates",
         "largest"
       ]
     },
     {
-      "id": "real-duplicates-and-negatives",
-      "name": "real: duplicate values with distinct indices",
+      "id": "trial-all-zero-roles",
+      "name": "trial: all three roles may share value zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "equal-values",
+        "distinct-indices"
+      ]
+    },
+    {
+      "id": "trial-all-negative",
+      "name": "trial: largest valid outlier can be negative",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3,
+          -4
+        ]
+      },
+      "expected": -2,
+      "tags": [
+        "negative",
+        "multiple-candidates"
+      ]
+    },
+    {
+      "id": "real-boundary-values",
+      "name": "hidden: extreme source values with zero sum element",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          3,
-          3,
-          6,
-          12,
-          -6,
-          9
+          -1000,
+          1000,
+          0,
+          999
         ]
       },
-      "expected": 3,
+      "expected": 999,
       "tags": [
-        "real",
-        "counter"
+        "hidden",
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-repeated-specials",
+      "name": "hidden: many duplicate specials and duplicate role values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          8,
+          8
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-zero-sum-specials",
+      "name": "hidden: balanced specials produce zero sum element",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -5,
+          5,
+          -3,
+          3,
+          0,
+          777
+        ]
+      },
+      "expected": 777,
+      "tags": [
+        "hidden",
+        "zero-sum"
+      ]
+    },
+    {
+      "id": "real-parity-rejections",
+      "name": "hidden: odd remainders reject tempting larger candidates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          6,
+          11
+        ]
+      },
+      "expected": 11,
+      "tags": [
+        "hidden",
+        "parity"
       ]
     }
   ]

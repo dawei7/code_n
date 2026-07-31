@@ -5,51 +5,44 @@
 | Source | LeetCode |
 | Frontend ID | 2296 |
 | Difficulty | Hard |
-| Category | Algorithms |
-| Topics | Linked List, String, Stack, Design, Simulation, Doubly-Linked List |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [design-a-text-editor](https://leetcode.com/problems/design-a-text-editor/) |
+| Topics | Array, Linked List, String, Design, Stack, Doubly-Linked List, Simulation |
+| Official Link | [LeetCode](https://leetcode.com/problems/design-a-text-editor/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/design-a-text-editor/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Design a text editor whose cursor always occupies a position between
+characters, from position zero through the current text length. The editor
+starts empty and supports these stateful operations:
+
+- `addText(text)` inserts all of `text` at the cursor and leaves the cursor
+  immediately after the inserted text.
+- `deleteText(k)` acts like backspace: it removes up to `k` characters
+  directly to the left of the cursor and returns how many were removed.
+- `cursorLeft(k)` moves left by up to `k` positions without passing the start.
+- `cursorRight(k)` moves right by up to `k` positions without passing the end.
+
+Each cursor movement returns the suffix of at most ten characters immediately
+to the left of the cursor after moving. If no character lies there, it returns
+the empty string.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `operations`: A trace beginning with `"TextEditor"` and followed by supported method names.
+- `arguments`: The aligned constructor and method arguments for that trace.
+
+Each inserted `text` and each `k` has size or value from 1 through 40; inserted
+text contains lowercase English letters. Across one editor instance, at most
+$2\cdot10^4$ method calls are made.
 
 **Return value**
 
-TODO
+An aligned trace containing `null` for construction and `addText`, the actual
+deletion count for `deleteText`, and the requested left-context string for
+each cursor movement.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 2**
-
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `operations = ["TextEditor", "addText", "deleteText", "addText", "cursorRight", "cursorLeft", "deleteText", "cursorLeft", "cursorRight"]`, `arguments = [[], ["leetcode"], [4], ["practice"], [3], [8], [10], [2], [6]]`
+- Output: `[null, null, 4, null, "etpractice", "leet", 4, "", "practi"]`

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Number of Possible Root Nodes and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts correct guesses for one root, then reroots across each edge with a constant-time score adjustment.",
+      "time_complexity": "O(n + g)",
+      "space_complexity": "O(n + g)"
     }
   ]
 }

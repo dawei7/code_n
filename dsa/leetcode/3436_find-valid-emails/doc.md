@@ -8,48 +8,48 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [find-valid-emails](https://leetcode.com/problems/find-valid-emails/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-valid-emails/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-valid-emails/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+The `Users` table stores one unique `user_id` and one email address per row. Select only addresses with exactly one `@` symbol and a final `.com` suffix.
+
+The non-empty portion before `@` may contain only letters, digits, and underscores. The non-empty domain between `@` and `.com` may contain letters only. Return each qualifying user's id and email, ordered by `user_id` in ascending order.
 
 ### Function Contract
-**Inputs**
 
-- TODO
+**Input table**
+
+`Users`
+
+| Column | Type | Meaning |
+|---|---|---|
+| `user_id` | int | Unique user identifier |
+| `email` | varchar | Address to validate |
 
 **Return value**
 
-TODO
+Return columns `user_id` and `email` for valid addresses, sorted by ascending `user_id`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+Input table `Users`:
 
-**Example 2**
+| user_id | email |
+|---:|---|
+| 1 | `alice@example.com` |
+| 2 | `bob_at_example.com` |
+| 3 | `charlie@example.net` |
+| 4 | `david@domain.com` |
+| 5 | `eve@invalid` |
 
-- Input: `TODO`
-- Output: `TODO`
+Output:
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+| user_id | email |
+|---:|---|
+| 1 | `alice@example.com` |
+| 4 | `david@domain.com` |

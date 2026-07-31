@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3571",
+  "measurement_note": "Size S is the length of each input string. Legal tiers 25, 50, and 100 span 4x. Every possible non-empty boundary overlap compares almost all of its characters before failing. The accepted KMP method stays linear, whereas a correct direct character-by-character overlap scan performs quadratic work and fails only the scaling verdict.",
+  "cases": [
+    {
+      "id": "benchmark-adversarial-overlap-25",
+      "name": "benchmark: two adversarial strings of length 25",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25,
+      "input": {
+        "s1": "aaaaaaaaaaaaaaaaaaaaaaaab",
+        "s2": "aaaaaaaaaaaaaaaaaaaaaaaac"
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaac",
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "string-length-scaling",
+        "quadratic-overlap-scan",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-adversarial-overlap-50",
+      "name": "benchmark: two adversarial strings of length 50",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {
+        "s1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "s2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac"
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac",
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "string-length-scaling",
+        "quadratic-overlap-scan",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-adversarial-overlap-100",
+      "name": "benchmark: two adversarial strings of length 100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "s1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "s2": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac"
+      },
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac",
+      "validator": {
+        "kind": "shortest_superstring",
+        "word_params": [
+          "s1",
+          "s2"
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "string-length-scaling",
+        "quadratic-overlap-scan",
+        "scale-large"
+      ]
+    }
+  ]
+}

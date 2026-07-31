@@ -1,13 +1,15 @@
 from typing import List
 
+
 def solve(nums: List[int]) -> int:
-    seen = set()
-    xor_sum = 0
-    
-    for num in nums:
-        if num in seen:
-            xor_sum ^= num
+    seen = 0
+    duplicates = 0
+
+    for value in nums:
+        bit = 1 << value
+        if seen & bit:
+            duplicates ^= value
         else:
-            seen.add(num)
-            
-    return xor_sum
+            seen |= bit
+
+    return duplicates

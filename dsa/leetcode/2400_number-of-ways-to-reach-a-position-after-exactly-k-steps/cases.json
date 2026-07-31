@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2400",
+  "cases": [
+    {"id":"sample-1","name":"sample: three orders for two right and one left move","kind":"sample","visible":true,"input":{"startPos":1,"endPos":2,"k":3},"expected":3,"tags":["sample","combinations"]},
+    {"id":"sample-2","name":"sample: parity makes the target unreachable","kind":"sample","visible":true,"input":{"startPos":2,"endPos":5,"k":10},"expected":0,"tags":["sample","parity"]},
+    {"id":"trial-same-position","name":"trial: return to the start in two steps","kind":"trial","visible":true,"input":{"startPos":7,"endPos":7,"k":2},"expected":2,"tags":["same-position"]},
+    {"id":"trial-all-one-direction","name":"trial: displacement equal to step count has one order","kind":"trial","visible":true,"input":{"startPos":1,"endPos":6,"k":5},"expected":1,"tags":["boundary","one-direction"]},
+    {"id":"trial-distance-too-large","name":"trial: target lies beyond maximum displacement","kind":"trial","visible":true,"input":{"startPos":1,"endPos":10,"k":3},"expected":0,"tags":["unreachable","distance"]},
+    {"id":"real-reverse-direction","name":"hidden: negative displacement is symmetric","kind":"real","visible":false,"input":{"startPos":5,"endPos":2,"k":5},"expected":5,"tags":["hidden","left"]},
+    {"id":"real-balanced-ten-steps","name":"hidden: balanced walk uses central binomial coefficient","kind":"real","visible":false,"input":{"startPos":500,"endPos":500,"k":10},"expected":252,"tags":["hidden","balanced"]},
+    {"id":"real-modulo-maximum-k","name":"hidden: maximum step count requires modulo reduction","kind":"real","visible":false,"input":{"startPos":1000,"endPos":1000,"k":1000},"expected":159835829,"tags":["hidden","maximum","modulo"]}
+  ]
+}

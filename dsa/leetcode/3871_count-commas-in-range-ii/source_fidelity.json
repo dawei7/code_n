@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3871",
+    "frontend_id": "3871",
+    "title_slug": "count-commas-in-range-ii",
+    "url": "https://leetcode.com/problems/count-commas-in-range-ii/description/",
+    "paid_only": false,
+    "content_sha256": "e9b1ccb44e54bd05a400d1d40bfe9cdf225c38cbae0410d3d68f8ad447f1e54e",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 1002",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 998",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0773d484e8c80c61ae1c60d708de74588fb2439197b78ef1e4153c612f279f83",
+      "reference/contract.md": "71a0651ce87c9b8484066b6a7d0a1af4ca55e6793be0310fc08d6b08427c34eb",
+      "reference/examples.md": "4f06ef963f9f7c19aa541805afbffc3f4e76199facfd3773af638a8b26fcf584",
+      "reference/constraints.md": "c793350e4f7dcd3cf19ae5b1a7c9034516410cc594e2a9a4991056260ff6453b"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

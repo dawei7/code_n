@@ -8,76 +8,43 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [task-scheduler-ii](https://leetcode.com/problems/task-scheduler-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/task-scheduler-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/task-scheduler-ii/).
 
 ### Goal
-Given a sequence of tasks represented by integers and a cooldown period `space`, determine the minimum number of days required to complete all tasks in the given order. You must wait at least `space` days between executing two tasks of the same type.
+
+The positive integers in `tasks` identify task types that must be completed in
+their given order. On each day, either complete the next pending task or take
+a break; tasks cannot be rearranged.
+
+After completing a task, at least `space` whole days must pass before another
+task of the same type can be performed. Return the minimum number of days
+needed to finish the entire sequence.
 
 ### Function Contract
+
 **Inputs**
 
-- `tasks`: A list of integers where each integer represents a specific task type.
-- `space`: An integer representing the minimum number of days that must pass between executing two tasks of the same type.
+- `tasks`: An ordered list of $n$ positive task-type identifiers.
+- `space`: The minimum number of intervening days between equal task types.
+
+The constraints are $1\le n\le10^5$, $1\le\texttt{tasks[i]}\le10^9$, and
+$1\le\texttt{space}\le n$.
 
 **Return value**
 
-- An integer representing the total number of days elapsed to complete all tasks.
+Return the earliest day on which all tasks can be completed. The result may
+require a 64-bit integer.
 
 ### Examples
+
 **Example 1**
 
 - Input: `tasks = [1,2,1,2,3,1], space = 3`
 - Output: `9`
-- Explanation: Day 1: Task 1, Day 2: Task 2, Day 3: Idle, Day 4: Idle, Day 5: Task 1, Day 6: Task 2, Day 7: Task 3, Day 8: Idle, Day 9: Task 1.
 
 **Example 2**
 
 - Input: `tasks = [5,8,8,5], space = 2`
 - Output: `6`
-- Explanation: Day 1: Task 5, Day 2: Task 8, Day 3: Idle, Day 4: Idle, Day 5: Task 8, Day 6: Task 5.
-
-**Example 3**
-
-- Input: `tasks = [1,2,3], space = 1`
-- Output: `3`
-
----
-
-## Solution
-### Approach
-The problem is solved using a Greedy Simulation approach combined with a Hash Map (Dictionary). We maintain a record of the last day each task type was performed. For each task in the sequence, we calculate the earliest possible day it can be executed based on the `space` constraint and the last recorded execution day. If the current day is earlier than the required day, we advance the current day to the required day.
-
-### Complexity Analysis
-- **Time Complexity**: O(N), where N is the number of tasks, as we iterate through the list exactly once.
-- **Space Complexity**: O(K), where K is the number of unique task types, to store the last execution day for each task in a hash map.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(tasks: list[int], space: int) -> int:
-    # last_seen stores the day index (1-based) when a task was last completed
-    last_seen = {}
-    current_day = 0
-
-    for task in tasks:
-        current_day += 1
-
-        # If we have performed this task before, check the cooldown constraint
-        if task in last_seen:
-            # The next available day is last_seen[task] + space + 1
-            # If current_day is less than that, we must jump to that day
-            next_available_day = last_seen[task] + space + 1
-            if current_day < next_available_day:
-                current_day = next_available_day
-
-        # Update the last day this task was performed
-        last_seen[task] = current_day
-
-    return current_day
-```
-</details>

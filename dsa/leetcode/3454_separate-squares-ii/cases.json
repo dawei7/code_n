@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3454",
   "cases": [
     {
@@ -20,19 +21,19 @@
           ]
         ]
       },
-      "expected": 1.0,
+      "expected": 1,
       "tags": [
         "sample",
-        "union-area"
+        "minimum-plateau"
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       }
     },
     {
       "id": "sample-overlapping-union",
-      "name": "sample: overlapping union area",
+      "name": "sample: overlap counted once",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -49,19 +50,19 @@
           ]
         ]
       },
-      "expected": 1.0,
+      "expected": 1,
       "tags": [
         "sample",
         "overlap"
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       }
     },
     {
       "id": "trial-shared-strip",
-      "name": "trial: union with shared strip",
+      "name": "trial: partially overlapping union strips",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -83,19 +84,19 @@
           ]
         ]
       },
-      "expected": 2.0,
+      "expected": 2,
       "tags": [
         "trial",
         "union"
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       }
     },
     {
       "id": "trial-disjoint-bands",
-      "name": "trial: disjoint vertical bands",
+      "name": "trial: several disjoint vertical bands",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -117,19 +118,19 @@
           ]
         ]
       },
-      "expected": 6.0,
+      "expected": 6,
       "tags": [
         "trial",
-        "disjoint"
+        "vertical-gaps"
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
       }
     },
     {
       "id": "real-layered-union",
-      "name": "real: layered union bands",
+      "name": "real: layered union with changing width",
       "kind": "real",
       "visible": false,
       "input": {
@@ -163,7 +164,94 @@
       ],
       "validator": {
         "type": "float_close",
-        "tolerance": 1e-05
+        "tolerance": 0.00001
+      }
+    },
+    {
+      "id": "real-duplicates",
+      "name": "real: duplicate squares add no union area",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "squares": [
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            4
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "duplicate"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 0.00001
+      }
+    },
+    {
+      "id": "real-contained-square",
+      "name": "real: contained square does not change the union",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "squares": [
+          [
+            0,
+            0,
+            6
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "containment"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 0.00001
+      }
+    },
+    {
+      "id": "real-large-coordinate",
+      "name": "real: large coordinate and side length",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "squares": [
+          [
+            1000000000,
+            1000000000,
+            1000000
+          ]
+        ]
+      },
+      "expected": 1000500000,
+      "tags": [
+        "real",
+        "large-values"
+      ],
+      "validator": {
+        "type": "float_close",
+        "tolerance": 0.00001
       }
     }
   ]

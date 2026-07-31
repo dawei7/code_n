@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Selling Pieces of Wood and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds the best revenue for every ordered subboard from direct prices and all full horizontal or vertical cuts.",
+      "time_complexity": "O(mn(m+n))",
+      "space_complexity": "O(mn)"
     }
   ]
 }

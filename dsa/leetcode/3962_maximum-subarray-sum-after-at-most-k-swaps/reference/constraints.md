@@ -1,0 +1,5 @@
+## Constraints
+
+- $1 \le n = \texttt{nums.length} \le 1500$
+- $-10^5 \le \texttt{nums[i]} \le 10^5$
+- $0 \le k \le n$

@@ -2,128 +2,112 @@
   "challenge_id": "lc_3147",
   "cases": [
     {
-      "id": "sample-positive-and-negative",
-      "name": "sample: mixed energy with step two",
+      "id": "sample-mixed-energy",
+      "name": "sample: mixed energy and step three",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "energy": [
-          5,
-          2,
-          -10,
-          -5,
-          1
-        ],
-        "k": 3
-      },
+      "input": {"energy": [5, 2, -10, -5, 1], "k": 3},
       "expected": 3,
-      "tags": [
-        "sample",
-        "mixed"
-      ]
+      "tags": ["sample", "mixed"]
     },
     {
       "id": "sample-all-negative",
-      "name": "sample: all negative values choose least bad path",
+      "name": "sample: choose the least negative forced path",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "energy": [
-          -2,
-          -3,
-          -1
-        ],
-        "k": 2
-      },
+      "input": {"energy": [-2, -3, -1], "k": 2},
       "expected": -1,
-      "tags": [
-        "sample",
-        "negative"
-      ]
+      "tags": ["sample", "negative"]
     },
     {
-      "id": "trial-step-one",
-      "name": "trial: step one suffix sum",
+      "id": "trial-unit-step",
+      "name": "trial: unit step compares every suffix",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "energy": [
-          4,
-          -1,
-          2,
-          -7,
-          3
-        ],
-        "k": 1
-      },
+      "input": {"energy": [4, -1, 2, -7, 3], "k": 1},
       "expected": 3,
-      "tags": [
-        "suffix"
-      ]
+      "tags": ["suffix", "unit-step"]
     },
     {
       "id": "trial-large-step",
-      "name": "trial: step larger than half the array",
+      "name": "trial: jump farther than half the array",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "energy": [
-          8,
-          -4,
-          6,
-          -2,
-          10,
-          -20
-        ],
-        "k": 4
-      },
+      "input": {"energy": [8, -4, 6, -2, 10, -20], "k": 4},
       "expected": 18,
-      "tags": [
-        "edge"
-      ]
+      "tags": ["large-step"]
     },
     {
-      "id": "real-periodic-values",
-      "name": "real: periodic values across residue classes",
+      "id": "trial-positive-chains",
+      "name": "trial: best of two positive residue chains",
+      "kind": "trial",
+      "visible": true,
+      "input": {"energy": [1, 2, 3, 4], "k": 2},
+      "expected": 6,
+      "tags": ["positive", "residue"]
+    },
+    {
+      "id": "real-negative-tail-is-mandatory",
+      "name": "real: positive start cannot skip its negative tail",
       "kind": "real",
       "visible": false,
-      "input": {
-        "energy": [
-          7,
-          -5,
-          4,
-          -2,
-          6,
-          -9,
-          3,
-          8,
-          -1,
-          5
-        ],
-        "k": 3
-      },
+      "input": {"energy": [10, -3, -20, -4, -5], "k": 2},
+      "expected": -4,
+      "tags": ["real", "mandatory-tail"]
+    },
+    {
+      "id": "real-all-negative-unit-step",
+      "name": "real: all-negative unit-step chain",
+      "kind": "real",
+      "visible": false,
+      "input": {"energy": [-5, -2, -8, -1], "k": 1},
+      "expected": -1,
+      "tags": ["real", "negative"]
+    },
+    {
+      "id": "real-maximum-legal-step",
+      "name": "real: maximum legal jump distance",
+      "kind": "real",
+      "visible": false,
+      "input": {"energy": [8, -4, 6, -2, 10, -20], "k": 5},
+      "expected": 10,
+      "tags": ["real", "boundary"]
+    },
+    {
+      "id": "real-periodic-residues",
+      "name": "real: best start lies inside a residue chain",
+      "kind": "real",
+      "visible": false,
+      "input": {"energy": [7, -5, 4, -2, 6, -9, 3, 8, -1, 5], "k": 3},
       "expected": 14,
-      "tags": [
-        "real",
-        "residue"
-      ]
+      "tags": ["real", "residue"]
     },
     {
-      "id": "real-single-cell",
-      "name": "real: one-cell dungeon",
+      "id": "real-zero-is-best",
+      "name": "real: zero beats every negative path",
       "kind": "real",
       "visible": false,
-      "input": {
-        "energy": [
-          -11
-        ],
-        "k": 1
-      },
-      "expected": -11,
-      "tags": [
-        "real",
-        "single"
-      ]
+      "input": {"energy": [0, -5, 0, -1], "k": 2},
+      "expected": 0,
+      "tags": ["real", "zero"]
+    },
+    {
+      "id": "real-alternating-unit-step",
+      "name": "real: best suffix begins after alternating losses",
+      "kind": "real",
+      "visible": false,
+      "input": {"energy": [5, -10, 20, -30, 40], "k": 1},
+      "expected": 40,
+      "tags": ["real", "unit-step"]
+    },
+    {
+      "id": "real-upper-value-bound",
+      "name": "real: repeated maximum energy values",
+      "kind": "real",
+      "visible": false,
+      "input": {"energy": [1000, 1000, 1000, 1000, 1000, 1000], "k": 2},
+      "expected": 3000,
+      "tags": ["real", "value-boundary"]
     }
   ]
 }

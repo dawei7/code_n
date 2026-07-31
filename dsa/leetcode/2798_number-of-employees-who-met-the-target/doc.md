@@ -8,65 +8,39 @@
 | Category | Algorithms |
 | Topics | Array |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-employees-who-met-the-target](https://leetcode.com/problems/number-of-employees-who-met-the-target/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-employees-who-met-the-target/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-employees-who-met-the-target/).
 
 ### Goal
-Given a list of integers representing the number of hours each employee has worked, and a target integer, determine how many employees have met or exceeded the target number of hours.
+
+A company has $n$ employees numbered from $0$ through $n - 1$. The 0-indexed array `hours` records how many hours each employee worked: employee $i$ worked `hours[i]` hours.
+
+Every employee is expected to work at least `target` hours. Determine how many entries in `hours` meet or exceed that inclusive threshold, and return that count. Both worked hours and the target are non-negative, so zero is a valid threshold as well as a valid recorded value.
 
 ### Function Contract
+
 **Inputs**
 
-- `hours`: A list of integers where `hours[i]` represents the hours worked by the i-th employee.
-- `target`: An integer representing the minimum hours required to meet the goal.
+- `hours`: A list of $n$ non-negative integers, where `hours[i]` is employee $i$'s worked time and $1 \le n \le 50$.
+- `target`: The non-negative minimum required number of hours.
+
+Every value in `hours` and `target` lies between $0$ and $10^5$, inclusive.
 
 **Return value**
 
-- An integer representing the count of employees whose worked hours are greater than or equal to the target.
+Return the number of employees whose recorded hours are at least `target`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `hours = [0, 1, 2, 3, 4], target = 2`
+- Input: `hours = [0, 1, 2, 3, 4]`, `target = 2`
 - Output: `3`
+- Explanation: The values `2`, `3`, and `4` meet the inclusive threshold.
 
 **Example 2**
 
-- Input: `hours = [5, 1, 4, 2, 2], target = 6`
+- Input: `hours = [5, 1, 4, 2, 2]`, `target = 6`
 - Output: `0`
-
-**Example 3**
-
-- Input: `hours = [10, 20, 30], target = 15`
-- Output: `2`
-
----
-
-## Solution
-### Approach
-The problem utilizes a simple linear scan (or filtering) algorithm. We iterate through the array once, evaluating a boolean condition for each element and maintaining a running count of elements that satisfy the condition.
-
-### Complexity Analysis
-- **Time Complexity**: O(n), where n is the number of elements in the `hours` list, as we must inspect each element exactly once.
-- **Space Complexity**: O(1), as we only use a single integer variable to store the count, regardless of the input size.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from typing import List
-
-def solve(hours: List[int], target: int) -> int:
-    """
-    Calculates the number of employees who worked at least the target hours.
-    """
-    count = 0
-    for h in hours:
-        if h >= target:
-            count += 1
-    return count
-```
-</details>
+- Explanation: No employee worked at least six hours.

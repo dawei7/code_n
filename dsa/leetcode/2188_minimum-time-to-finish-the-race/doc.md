@@ -8,50 +8,53 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-time-to-finish-the-race](https://leetcode.com/problems/minimum-time-to-finish-the-race/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-time-to-finish-the-race/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-time-to-finish-the-race/).
 
 ### Goal
-Finish a fixed number of race laps in minimum time. A tire described by `[f, r]` takes `f * r^(x-1)` seconds on its `x`-th consecutive lap. Between laps, a tire may be replaced with any new tire at a fixed change cost.
+
+Each tire type is described by a pair `[f, r]`. Its first consecutive lap
+takes `f` seconds, and its $x$-th consecutive lap on the same tire takes
+$f r^{x-1}$ seconds. Thus, retaining a tire makes its lap time grow
+geometrically.
+
+Complete exactly `numLaps` laps as quickly as possible. Any tire may be used at
+the start without a setup delay. After a lap, you may either keep that tire or
+wait `changeTime` seconds and install a fresh tire of any listed type, including
+another copy of the current type. Every tire type has an unlimited supply.
 
 ### Function Contract
+
 **Inputs**
 
-- `tires`: pairs `[first_lap_time, degradation_factor]`.
-- `changeTime`: seconds required to replace a tire.
-- `numLaps`: the number of laps to finish.
+- `tires`: an array of pairs `[f, r]`, where
+  $1\le\lvert\texttt{tires}\rvert\le10^5$, $1\le f\le10^5$, and
+  $2\le r\le10^5$.
+- `changeTime`: the fixed tire-change delay, in $[1,10^5]$ seconds.
+- `numLaps`: the number of laps to complete, in $[1,1000]$.
+
+Let $T=\lvert\texttt{tires}\rvert$, $N=\texttt{numLaps}$, and let $L$ be the
+largest potentially useful consecutive-lap stint: its final lap is no slower
+than changing tires and running the fastest available fresh lap.
 
 **Return value**
 
-The minimum total race time.
+Return the minimum total number of seconds needed to complete all $N$ laps.
 
 ### Examples
+
 **Example 1**
 
-- Input: `tires = [[2, 3], [3, 4]]`, `changeTime = 5`, `numLaps = 4`
+- Input: `tires = [[2,3],[3,4]]`, `changeTime = 5`, `numLaps = 4`
 - Output: `21`
 
 **Example 2**
 
-- Input: `tires = [[1, 10], [2, 2], [3, 4]]`, `changeTime = 6`, `numLaps = 5`
+- Input: `tires = [[1,10],[2,2],[3,4]]`, `changeTime = 6`, `numLaps = 5`
 - Output: `25`
 
 **Example 3**
 
-- Input: `tires = [[2, 2]]`, `changeTime = 3`, `numLaps = 2`
-- Output: `6`
-
----
-
-## Solution
-### Approach
-Precompute `best[len]`, the cheapest time to run `len` consecutive laps on one tire. Stop extending a stint once its next degraded lap is slower than changing and taking a fresh first lap, which keeps the useful stint range small. Then use dynamic programming over completed laps, trying each precomputed final stint; charge `changeTime` between stints but not before the first.
-
-### Complexity Analysis
-- **Time Complexity**: `O(TL + numLaps * L)`, where `T` is the tire count and `L` is the maximum useful stint length
-- **Space Complexity**: `O(numLaps + L)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `tires = [[2,2]]`, `changeTime = 100`, `numLaps = 4`
+- Output: `30`

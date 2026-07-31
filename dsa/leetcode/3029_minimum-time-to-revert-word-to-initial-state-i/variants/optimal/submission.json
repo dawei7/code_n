@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3297",
+  "frontend_id": "3029",
+  "title_slug": "minimum-time-to-revert-word-to-initial-state-i",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minimumTimeToInitialState",
+  "verified_submission_id": "2078892943",
+  "verified_at": "2026-07-23T21:41:00Z"
+}

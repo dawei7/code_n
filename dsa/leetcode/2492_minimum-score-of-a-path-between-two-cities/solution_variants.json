@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Score of a Path Between Two Cities and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Traverses city 1's connected component and takes the minimum distance among all of its roads.",
+      "time_complexity": "O(n+m)",
+      "space_complexity": "O(n+m)"
     }
   ]
 }

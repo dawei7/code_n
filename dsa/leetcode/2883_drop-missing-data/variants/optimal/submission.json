@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3075",
+  "frontend_id": "2883",
+  "title_slug": "drop-missing-data",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "dropMissingData",
+  "verified_submission_id": "2077881860",
+  "verified_at": "2026-07-23T04:55:19+00:00"
+}

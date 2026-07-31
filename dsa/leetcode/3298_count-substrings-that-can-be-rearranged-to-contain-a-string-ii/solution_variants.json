@@ -2,15 +2,13 @@
   "schema_version": 1,
   "challenge_id": "lc_3298",
   "default_variant": "optimal",
-  "variants": [
-    {
+  "variants": [{
       "id": "optimal",
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Substrings That Can Be Rearranged to Contain a String II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
-    }
-  ]
+      "summary": "Uses a two-pointer deficit window to meet the problem's linear-time and constant-space limits.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(1)"
+    }]
 }

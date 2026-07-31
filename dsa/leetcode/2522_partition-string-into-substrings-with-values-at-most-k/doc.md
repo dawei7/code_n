@@ -5,51 +5,34 @@
 | Source | LeetCode |
 | Frontend ID | 2522 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | String, Dynamic Programming, Greedy |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [partition-string-into-substrings-with-values-at-most-k](https://leetcode.com/problems/partition-string-into-substrings-with-values-at-most-k/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/partition-string-into-substrings-with-values-at-most-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/partition-string-into-substrings-with-values-at-most-k/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given a string `s` containing decimal digits from `1` through `9` and a positive integer `k`. Partition `s` into one or more contiguous, nonempty substrings. Every digit must belong to exactly one substring, so the substrings retain their original order and concatenate back to `s`.
+
+A partition is good when the decimal value represented by every substring is at most `k`. Return the minimum possible number of substrings in a good partition. If even one digit is greater than `k`, no valid partition can contain it, so return `-1`.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A string of $n$ characters, each from `1` through `9`, where $1 \le n \le 10^5$.
+- `k`: The maximum permitted substring value, where $1 \le k \le 10^9$.
 
 **Return value**
 
-TODO
+Return the minimum number of substrings in a good partition, or `-1` if no good partition exists.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "165462", k = 60`
+- Output: `4`
+- Explanation: One minimum partition is `"16"`, `"54"`, `"6"`, `"2"`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "238182", k = 5`
+- Output: `-1`
+- Explanation: The digit `8` is already greater than `k`, so no good partition exists.

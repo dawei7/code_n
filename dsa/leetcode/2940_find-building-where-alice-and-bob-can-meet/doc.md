@@ -8,89 +8,54 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Stack, Binary Indexed Tree, Segment Tree, Heap (Priority Queue), Monotonic Stack |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-building-where-alice-and-bob-can-meet](https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-building-where-alice-and-bob-can-meet/).
-
 ### Goal
-Given an array representing the heights of buildings, determine the leftmost building index where two people, Alice and Bob, can meet. A person at index `i` can move to index `j` if `j > i` and `heights[j] > heights[i]`. For a set of queries, each containing two starting indices, find the smallest index `k` such that both people can reach `k` from their respective starting positions. If no such building exists, return -1.
+A 0-indexed array `heights` describes a row of buildings, where
+`heights[i]` is the positive height of building `i`. From building `i`, a
+person may move directly to building `j` if and only if $i<j$ and
+$\texttt{heights[i]}<\texttt{heights[j]}$.
+
+Each entry `queries[i] = [a_i, b_i]` independently places Alice at building
+`a_i` and Bob at building `b_i`. For every query, find the leftmost
+building that both people can reach, allowing either person to remain at their
+starting building. Return `-1` for a query when no common reachable building
+exists.
 
 ### Function Contract
 **Inputs**
 
-- `heights`: A list of integers representing the height of each building.
-- `queries`: A list of lists, where each inner list contains two integers `[a, b]` representing the starting indices of Alice and Bob.
+- `heights`: the building heights in left-to-right order
+- `queries`: pairs containing Alice's and Bob's starting indices
+
+Let $N=\lvert\texttt{heights}\rvert$ and
+$Q=\lvert\texttt{queries}\rvert$. The contract guarantees
+$1 \le N,Q \le 5\cdot10^4$, $1 \le \texttt{heights[i]} \le 10^9$, and
+every query index is between $0$ and $N-1$, inclusive.
 
 **Return value**
 
-- A list of integers where the `i`-th element is the index of the meeting building for the `i`-th query, or -1 if no meeting is possible.
+A length-$Q$ list whose entry for each query is the leftmost common reachable
+building index, or `-1` when there is none.
 
 ### Examples
 **Example 1**
 
 - Input: `heights = [6,4,8,5,2,7], queries = [[0,1],[0,3],[2,4],[3,4],[2,2]]`
 - Output: `[2,5,-1,5,2]`
+- Explanation: Some queries meet at a later building taller than both starts;
+  the final query already places both people at building `2`.
 
 **Example 2**
 
 - Input: `heights = [5,3,8,2,6,1,4,6], queries = [[0,7],[3,5],[5,2],[3,0],[1,6]]`
 - Output: `[7,6,-1,4,6]`
+- Explanation: A later starting building is itself the answer when the person
+  on the left can move directly to it; otherwise the search continues right.
 
 **Example 3**
 
 - Input: `heights = [1,2,1,2], queries = [[0,0]]`
 - Output: `[0]`
-
----
-
-## Solution
-### Approach
-The problem is solved using an offline query processing approach combined with a Min-Heap. By sorting queries based on their rightmost index in descending order, we can process buildings from right to left. We maintain a Min-Heap of queries that are waiting for a building of a certain height to be found. As we iterate through the buildings, we check if the current building's height satisfies the requirements of the queries in the heap.
-
-### Complexity Analysis
-- **Time Complexity**: `O(N log N + Q log Q)`, where `N` is the number of buildings and `Q` is the number of queries. Sorting the queries takes `O(Q log Q)`, and each query is pushed/popped from the heap at most once, taking `O(Q log Q)`. Iterating through buildings takes `O(N)`.
-- **Space Complexity**: `O(N + Q)` to store the queries, the heap, and the results.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-import heapq
-
-def solve(heights, queries):
-    n = len(heights)
-    q = len(queries)
-    results = [-1] * q
-
-    # Store deferred queries by their rightmost starting index. While scanning
-    # left to right, active queries can only be answered by later buildings.
-    deferred_queries = [[] for _ in range(n)]
-
-    for query_idx, (a, b) in enumerate(queries):
-        if a > b:
-            a, b = b, a
-
-        # If a == b or heights[b] > heights[a], they can meet at b
-        if a == b or heights[a] < heights[b]:
-            results[query_idx] = b
-        else:
-            # Otherwise, they need the first index > b with height > heights[a].
-            deferred_queries[b].append((heights[a], query_idx))
-
-    min_heap = []
-
-    for i, height in enumerate(heights):
-        # Resolve queries that started earlier; queries at this same index are
-        # pushed after the check so this building cannot answer itself.
-        while min_heap and heights[i] > min_heap[0][0]:
-            _, query_idx = heapq.heappop(min_heap)
-            results[query_idx] = i
-
-        for required_height, query_idx in deferred_queries[i]:
-            heapq.heappush(min_heap, (required_height, query_idx))
-
-    return results
-```
-</details>
+- Explanation: Alice and Bob already occupy the same building.

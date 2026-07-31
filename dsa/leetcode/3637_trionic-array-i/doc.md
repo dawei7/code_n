@@ -5,51 +5,36 @@
 | Source | LeetCode |
 | Frontend ID | 3637 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [trionic-array-i](https://leetcode.com/problems/trionic-array-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/trionic-array-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/trionic-array-i/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given an integer array `nums` of length $n$, determine whether two indices $p$ and $q$ exist with $0<p<q<n-1$ such that the entire array has exactly three consecutive monotonic segments.
+
+The prefix from index 0 through $p$ must be strictly increasing. The segment from $p$ through $q$ must be strictly decreasing, and the suffix from $q$ through index $n-1$ must be strictly increasing. The turning-point values belong to both adjacent segments.
+
+Return `true` when such breakpoints exist and `false` otherwise. Each phase must contain at least one comparison, and equal adjacent values satisfy neither strict direction.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ integers, where $3 \le n \le 100$ and $-1000 \le \texttt{nums[i]} \le 1000$.
 
 **Return value**
 
-TODO
+Return whether the whole array follows a nonempty strictly-increasing, then nonempty strictly-decreasing, then nonempty strictly-increasing pattern.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1, 3, 5, 4, 2, 6]`
+- Output: `true`
+- Explanation: Choose $p=2$ and $q=4$ to obtain increasing `[1, 3, 5]`, decreasing `[5, 4, 2]`, and increasing `[2, 6]`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [2, 1, 3]`
+- Output: `false`
+- Explanation: No two legal interior breakpoints can provide all three required phases.

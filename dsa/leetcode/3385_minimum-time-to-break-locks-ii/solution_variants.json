@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Time to Break Locks II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Models break positions as an assignment and finds a minimum-cost perfect matching with the Hungarian algorithm.",
+      "time_complexity": "O(n^3)",
+      "space_complexity": "O(n)"
     }
   ]
 }

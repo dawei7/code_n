@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Maximum Divisibility Score and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Scores each candidate once and tracks the smallest divisor attaining the greatest score.",
+      "time_complexity": "O(nd)",
+      "space_complexity": "O(1)"
     }
   ]
 }

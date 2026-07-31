@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_2843",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: all symmetric two-digit integers",
+      "kind": "sample",
+      "visible": true,
+      "input": {"low": 1, "high": 100},
+      "expected": 9,
+      "tags": ["sample", "two-digits"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: four qualifying four-digit values",
+      "kind": "sample",
+      "visible": true,
+      "input": {"low": 1200, "high": 1230},
+      "expected": 4,
+      "tags": ["sample", "four-digits"]
+    },
+    {
+      "id": "trial-single-symmetric",
+      "name": "trial: one inclusive symmetric endpoint",
+      "kind": "trial",
+      "visible": true,
+      "input": {"low": 22, "high": 22},
+      "expected": 1,
+      "tags": ["trial", "single-value", "inclusive"]
+    },
+    {
+      "id": "trial-single-asymmetric",
+      "name": "trial: one asymmetric two-digit value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"low": 35, "high": 35},
+      "expected": 0,
+      "tags": ["trial", "single-value"]
+    },
+    {
+      "id": "real-odd-digit-range",
+      "name": "hidden: every three-digit candidate is rejected",
+      "kind": "real",
+      "visible": false,
+      "input": {"low": 100, "high": 199},
+      "expected": 0,
+      "tags": ["hidden", "odd-digits"]
+    },
+    {
+      "id": "real-cross-digit-boundary",
+      "name": "hidden: interval crosses from two to three digits",
+      "kind": "real",
+      "visible": false,
+      "input": {"low": 95, "high": 105},
+      "expected": 1,
+      "tags": ["hidden", "digit-boundary"]
+    },
+    {
+      "id": "real-four-digit-start",
+      "name": "hidden: first hundred four-digit candidates",
+      "kind": "real",
+      "visible": false,
+      "input": {"low": 1000, "high": 1100},
+      "expected": 2,
+      "tags": ["hidden", "four-digits"]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: legal upper bound is included",
+      "kind": "real",
+      "visible": false,
+      "input": {"low": 9990, "high": 10000},
+      "expected": 1,
+      "tags": ["hidden", "maximum-bound", "inclusive"]
+    },
+    {
+      "id": "real-minimum-bound",
+      "name": "hidden: minimum legal value is not symmetric",
+      "kind": "real",
+      "visible": false,
+      "input": {"low": 1, "high": 1},
+      "expected": 0,
+      "tags": ["hidden", "minimum-bound"]
+    }
+  ]
+}

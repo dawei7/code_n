@@ -5,25 +5,26 @@
 | Source | LeetCode |
 | Frontend ID | 2216 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Stack, Greedy |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-deletions-to-make-array-beautiful](https://leetcode.com/problems/minimum-deletions-to-make-array-beautiful/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-deletions-to-make-array-beautiful/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-deletions-to-make-array-beautiful/).
-
 ### Goal
-Delete the fewest elements so the resulting array has even length and every pair starting at an even index contains two different values.
+
+An integer array is beautiful when its length is even and, for every even index $i$, the elements at positions $i$ and $i+1$ are different. The empty array satisfies these conditions and is therefore beautiful.
+
+You may delete any number of elements. After a deletion, all elements to its right shift left by one position while those to its left keep their positions. Return the minimum number of deletions required to make the resulting array beautiful.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: an integer array.
+- `nums`: A nonempty list of nonnegative integers.
+
+Let $n=\lvert\texttt{nums}\rvert$.
 
 **Return value**
 
-The minimum number of deletions needed to make the array beautiful.
+Return the minimum number of elements that must be deleted so the remaining array has even length and different values within every pair starting at an even index.
 
 ### Examples
 **Example 1**
@@ -40,16 +41,3 @@ The minimum number of deletions needed to make the array beautiful.
 
 - Input: `nums = [1, 2]`
 - Output: `0`
-
----
-
-## Solution
-### Approach
-Greedily build valid pairs from left to right. Keep the first value of the current pair; delete every following equal value until a different value can complete that pair. Start a new pair afterward. If one unpaired value remains at the end, delete it too.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

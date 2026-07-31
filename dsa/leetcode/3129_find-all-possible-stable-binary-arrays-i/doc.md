@@ -8,48 +8,46 @@
 | Category | Algorithms |
 | Topics | Dynamic Programming, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-all-possible-stable-binary-arrays-i](https://leetcode.com/problems/find-all-possible-stable-binary-arrays-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-all-possible-stable-binary-arrays-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-all-possible-stable-binary-arrays-i/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given three positive integers `zero`, `one`, and `limit`. A binary array is stable when it contains exactly `zero` occurrences of `0` and exactly `one` occurrences of `1`.
+
+In addition, every subarray whose length is greater than `limit` must contain at least one `0` and at least one `1`. Equivalently, no consecutive run of equal values may be longer than `limit`. Count all stable binary arrays and return the count modulo $10^9+7$.
 
 ### Function Contract
+
+Let $z=\texttt{zero}$ and $o=\texttt{one}$.
+
 **Inputs**
 
-- TODO
+- `zero`: The exact number $z$ of zeroes to place, where $1\le z\le200$.
+- `one`: The exact number $o$ of ones to place, where $1\le o\le200$.
+- `limit`: The maximum permitted length of a monochromatic run, where $1\le\texttt{limit}\le200$.
 
 **Return value**
 
-TODO
+Return the number of valid arrays modulo $10^9+7$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `zero = 1, one = 1, limit = 2`
+- Output: `2`
+- Explanation: Both `[0,1]` and `[1,0]` use the required values, and neither contains a run longer than two.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `zero = 1, one = 2, limit = 1`
+- Output: `1`
+- Explanation: Only `[1,0,1]` alternates throughout; the other arrangements contain two adjacent ones.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `zero = 3, one = 3, limit = 2`
+- Output: `14`
+- Explanation: Fourteen arrangements use three of each value without ever placing three equal values consecutively.

@@ -5,51 +5,39 @@
 | Source | LeetCode |
 | Frontend ID | 2318 |
 | Difficulty | Hard |
-| Category | Algorithms |
-| Topics | Dynamic Programming, Memoization |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-distinct-roll-sequences](https://leetcode.com/problems/number-of-distinct-roll-sequences/) |
+| Topics | Dynamic Programming |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-distinct-roll-sequences/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-distinct-roll-sequences/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Roll a six-sided die exactly `n` times and consider the ordered sequence of
+faces. Two neighboring rolls are allowed only when their greatest common
+divisor is $1$. In addition, equal faces must be separated by more than two
+positions, so a face may match neither the immediately preceding roll nor the
+roll two positions earlier.
+
+Count all distinct sequences satisfying both restrictions. Sequences are
+different when any position differs. Because the count grows rapidly, return
+the result modulo $10^9+7$.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `n`: The number of die rolls, with $1\le n\le10^4$.
 
 **Return value**
 
-TODO
+The number of valid length-`n` roll sequences modulo $10^9+7$.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `n = 4`
+- Output: `184`
+- Explanation: Adjacent values must be coprime, and positions two apart cannot
+  be equal.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `n = 2`
+- Output: `22`

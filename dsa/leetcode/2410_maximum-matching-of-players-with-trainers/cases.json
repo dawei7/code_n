@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2410",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: two players matched",
+      "id": "sample-two-matches",
+      "name": "sample: two players can be matched",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -26,8 +27,8 @@
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: only one trainer",
+      "id": "sample-one-trainer",
+      "name": "sample: one trainer limits the result",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -42,13 +43,14 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "unequal-lengths"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no trainer is strong enough",
-      "kind": "sample",
+      "id": "trial-no-match",
+      "name": "all trainers are too weak",
+      "kind": "trial",
       "visible": true,
       "input": {
         "players": [
@@ -64,12 +66,12 @@
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "no-match"
       ]
     },
     {
-      "id": "trial-unsorted-input",
-      "name": "trial: unsorted arrays still match greedily",
+      "id": "trial-unsorted",
+      "name": "input order does not constrain pairings",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -85,25 +87,101 @@
       },
       "expected": 2,
       "tags": [
-        "trial"
+        "sorting"
       ]
     },
     {
-      "id": "real-exact-match",
-      "name": "hidden: exact single match",
+      "id": "trial-exact-duplicates",
+      "name": "duplicate exact capacities remain distinct",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "players": [
+          5,
+          5,
+          5
+        ],
+        "trainers": [
+          5,
+          5,
+          4
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "duplicates",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-save-capacity",
+      "name": "hidden: smallest sufficient trainers preserve stronger ones",
       "kind": "real",
       "visible": false,
       "input": {
         "players": [
-          5
+          4,
+          8,
+          1,
+          7,
+          3
         ],
         "trainers": [
-          5
+          2,
+          5,
+          8,
+          8
         ]
       },
-      "expected": 1,
+      "expected": 4,
       "tags": [
-        "hidden"
+        "hidden",
+        "greedy"
+      ]
+    },
+    {
+      "id": "real-more-trainers",
+      "name": "hidden: extra weak trainers are harmless",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "players": [
+          6,
+          2
+        ],
+        "trainers": [
+          1,
+          1,
+          2,
+          3,
+          6
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "skips"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: legal maximum values can match",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "players": [
+          1000000000,
+          999999999
+        ],
+        "trainers": [
+          999999999,
+          1000000000
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundary"
       ]
     }
   ]

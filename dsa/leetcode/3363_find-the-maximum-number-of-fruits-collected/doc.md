@@ -8,98 +8,38 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming, Matrix |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-maximum-number-of-fruits-collected](https://leetcode.com/problems/find-the-maximum-number-of-fruits-collected/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-maximum-number-of-fruits-collected/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-maximum-number-of-fruits-collected/).
 
 ### Goal
-Given an $n \times n$ grid of fruit counts, three children start at `(0, 0)`, `(0, n - 1)`, and `(n - 1, 0)`. Each child makes exactly `n - 1` moves and must finish at `(n - 1, n - 1)`, using the move options defined by the problem. Fruits in a room are collected once even if multiple children visit it. Return the maximum total fruits collected.
+
+An $n\times n$ dungeon grid stores a nonnegative fruit count in every room. Three children begin at $(0,0)$, $(0,n-1)$, and $(n-1,0)$. Each child must make exactly $n-1$ legal moves and finish at $(n-1,n-1)$. Their permitted directions differ according to their starting corner.
+
+The first child may move right, down, or diagonally down-right. The top-right child advances one row while moving left, staying in the same column, or moving right. The bottom-left child advances one column while moving up, staying in the same row, or moving down. Entering a room collects all its fruit, but a room visited by multiple children is counted only once. Determine the maximum total fruit the three paths can collect.
 
 ### Function Contract
+
 **Inputs**
 
-- `fruits`: A square grid where `fruits[i][j]` is the number of fruits in room `(i, j)`.
+- `fruits`: A square grid in which `fruits[i][j]` is the fruit count in room $(i,j)$.
+
+The dimension satisfies $2\le n\le1000$, and every grid value is between $0$ and $1000$, inclusive.
 
 **Return value**
 
-- An integer representing the maximum total fruits collected across the three defined paths.
+- The maximum number of fruits collected across all three children, counting every room at most once.
 
 ### Examples
+
 **Example 1**
 
-- Input: `fruits = [[1,2,3,4],[5,6,8,7],[9,10,11,12],[13,14,15,16]]`
+- Input: `fruits = [[1, 2, 3, 4], [5, 6, 8, 7], [9, 10, 11, 12], [13, 14, 15, 16]]`
 - Output: `100`
+- Explanation: The children can use the main diagonal, a path through the strict upper triangle, and a path through the strict lower triangle, collecting ten distinct rooms.
 
 **Example 2**
 
-- Input: `fruits = [[1,1],[1,1]]`
+- Input: `fruits = [[1, 1], [1, 1]]`
 - Output: `4`
-
-**Example 3**
-
-- Input: `fruits = [[5,100,1],[1,50,100],[100,1,5]]`
-- Output: `262`
-
----
-
-## Solution
-### Approach
-The problem is solved using Dynamic Programming. We decompose the movement into three distinct segments:
-1. **Path 1 (Down-Right):** A simple diagonal path from $(0,0)$ to $(n-1, n-1)$.
-2. **Path 2 (Down-Left):** A path starting from $(0, n-1)$ moving towards the bottom row.
-3. **Path 3 (Up-Right):** A path starting from $(n-1, 0)$ moving towards the right column.
-By calculating the maximum fruits for each path independently while respecting the boundary constraints, we aggregate the results.
-
-### Complexity Analysis
-- **Time Complexity**: $O(n^2)$, where $n$ is the dimension of the grid, as we iterate through the matrix to compute DP states.
-- **Space Complexity**: $O(n^2)$ to store the DP table, which can be optimized to $O(n)$ if only the current and previous rows are maintained.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(fruits: list[list[int]]) -> int:
-    n = len(fruits)
-    diagonal = sum(fruits[i][i] for i in range(n))
-
-    def top_right_path() -> int:
-        negative = -10**18
-        previous = [negative] * n
-        previous[n - 1] = fruits[0][n - 1]
-
-        for row in range(1, n - 1):
-            current = [negative] * n
-            for col in range(row + 1, n):
-                best = previous[col]
-                if col > 0:
-                    best = max(best, previous[col - 1])
-                if col + 1 < n:
-                    best = max(best, previous[col + 1])
-                current[col] = best + fruits[row][col]
-            previous = current
-
-        return previous[n - 1]
-
-    def bottom_left_path() -> int:
-        negative = -10**18
-        previous = [negative] * n
-        previous[n - 1] = fruits[n - 1][0]
-
-        for col in range(1, n - 1):
-            current = [negative] * n
-            for row in range(col + 1, n):
-                best = previous[row]
-                if row > 0:
-                    best = max(best, previous[row - 1])
-                if row + 1 < n:
-                    best = max(best, previous[row + 1])
-                current[row] = best + fruits[row][col]
-            previous = current
-
-        return previous[n - 1]
-
-    return diagonal + top_right_path() + bottom_left_path()
-```
-</details>
+- Explanation: The three starting rooms and their shared destination account for all four rooms exactly once.

@@ -1,25 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2447",
+  "measurement_note": "Size is n, the array length. Every value equals k=6, so every subarray qualifies. GCD-state compression keeps one state per endpoint and takes O(n) on this workload, while enumerating every start and end takes O(n^2) time.",
   "cases": [
     {
-      "id": "benchmark-many-gcd-three",
-      "name": "benchmark: many overlapping gcd-three subarrays",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: sixteen equal values",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "nums": [
-          6,
-          12,
-          3,
-          9,
-          15
-        ],
-        "k": 3
-      },
-      "expected": 10,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 16,
+      "input": {"nums": [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6], "k": 6},
+      "expected": 136,
+      "tags": ["benchmark", "subarray-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: sixty-four equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums": [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6], "k": 6},
+      "expected": 2080,
+      "tags": ["benchmark", "subarray-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: one hundred twenty-seven equal values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 127,
+      "input": {"nums": [6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6], "k": 6},
+      "expected": 8128,
+      "tags": ["benchmark", "subarray-enumeration"]
     }
   ]
 }

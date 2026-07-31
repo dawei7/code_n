@@ -8,83 +8,45 @@
 | Category | Algorithms |
 | Topics | Array, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [visit-array-positions-to-maximize-score](https://leetcode.com/problems/visit-array-positions-to-maximize-score/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/visit-array-positions-to-maximize-score/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/visit-array-positions-to-maximize-score/).
 
 ### Goal
-Given an array of integers and a penalty value, you start at the first element of the array. You must traverse the array from left to right, choosing a subsequence of indices starting at index 0. If you move from an element with a different parity (even vs. odd) to another, you incur a penalty. The objective is to maximize the total sum of the values of the chosen indices.
+
+You are given a 0-indexed integer array `nums` and a positive integer `x`. You begin at index $0$, so `nums[0]` is always included in the score.
+
+From a visited index $i$, you may next visit any index $j$ with $i<j$. Visiting an index adds its array value to the score. When two consecutive visited values have different parity—one even and the other odd—the move also subtracts `x`. Moving between values of the same parity has no penalty.
+
+Choose any increasing sequence of visited indices that starts at $0$ and return the maximum total score. Indices may be skipped, and parity refers to whether each integer is even or odd.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: A list of integers representing the values at each position.
-- `x`: An integer representing the penalty incurred when switching between odd and even numbers.
+- `nums`: An integer array of length $n$, where $2 \le n \le 10^5$ and $1 \le \texttt{nums[i]} \le 10^6$.
+- `x`: The positive score penalty for changing parity between consecutive visited values, where $1 \le x \le 10^6$.
 
 **Return value**
 
-- An integer representing the maximum possible score achievable by selecting a valid subsequence of indices.
+Return the greatest score obtainable by an increasing sequence of visited indices that includes index $0$.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [2, 3, 6, 1, 9, 2], x = 5`
+- Input: `nums = [2,3,6,1,9,2]`, `x = 5`
 - Output: `13`
-- Explanation: We choose indices 0, 2, 4. Values: 2 + 6 + 9 = 17. Parity changes: 2(even) to 6(even) [no penalty], 6(even) to 9(odd) [penalty 5]. Total: 17 - 5 = 12. Alternatively, choosing 0, 1, 4 gives 2+3+9 - 5 - 5 = 4. The optimal path is 13.
+- Explanation: Visiting indices `0 -> 2 -> 3 -> 4` scores `2 + 6 + 1 + 9 - 5 = 13`. Only the move from `6` to `1` changes parity.
 
 **Example 2**
 
-- Input: `nums = [2, 4, 6], x = 3`
-- Output: `12`
-- Explanation: All numbers are even, so no penalty is incurred. Sum = 2 + 4 + 6 = 12.
+- Input: `nums = [2,4,6,8]`, `x = 3`
+- Output: `20`
+- Explanation: All four values are even, so visiting every index earns their full sum without a penalty.
 
 **Example 3**
 
-- Input: `nums = [1], x = 2`
-- Output: `1`
-
----
-
-## Solution
-### Approach
-Dynamic Programming. We maintain two states: the maximum score ending with an even number and the maximum score ending with an odd number. For each new number, we update these states based on whether the current number is even or odd, considering the penalty `x` if the parity differs from the previous state.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`, where `n` is the length of the array, as we iterate through the list exactly once.
-- **Space Complexity**: `O(1)`, as we only store two variables to track the maximum scores for even and odd parities.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(nums: list[int], x: int) -> int:
-    # Initialize DP states with a very small number to represent unreachable states.
-    # even_max: max score ending in an even number
-    # odd_max: max score ending in an odd number
-    even_max = float('-inf')
-    odd_max = float('-inf')
-
-    # Base case: the first element
-    if nums[0] % 2 == 0:
-        even_max = nums[0]
-    else:
-        odd_max = nums[0]
-
-    for i in range(1, len(nums)):
-        val = nums[i]
-        if val % 2 == 0:
-            # Current is even:
-            # 1. Stay even: even_max + val
-            # 2. Switch from odd: odd_max + val - x
-            even_max = max(even_max + val, odd_max + val - x)
-        else:
-            # Current is odd:
-            # 1. Stay odd: odd_max + val
-            # 2. Switch from even: even_max + val - x
-            odd_max = max(odd_max + val, even_max + val - x)
-
-    return max(even_max, odd_max)
-```
-</details>
+- Input: `nums = [1,100]`, `x = 10`
+- Output: `91`
+- Explanation: Index $0$ is mandatory. Moving to the even value changes parity, but `1 + 100 - 10` is better than stopping at the first index.

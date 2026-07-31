@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2417",
+  "cases": [
+    {"id":"sample-single-digit","name":"sample: single digit advances to ten","kind":"sample","visible":true,"input":{"n":2},"expected":10,"tags":["sample","odd-length"]},
+    {"id":"sample-three-digits","name":"sample: three digits advance to four","kind":"sample","visible":true,"input":{"n":403},"expected":1001,"tags":["sample","length-change"]},
+    {"id":"trial-already-fair","name":"an already fair value is unchanged","kind":"trial","visible":true,"input":{"n":98},"expected":98,"tags":["fair"]},
+    {"id":"trial-even-length-overflow","name":"no fair two-digit value remains after ninety-nine","kind":"trial","visible":true,"input":{"n":99},"expected":1001,"tags":["boundary","length-change"]},
+    {"id":"trial-next-nearby","name":"nearby two-digit fair value","kind":"trial","visible":true,"input":{"n":11},"expected":12,"tags":["nearby"]},
+    {"id":"real-six-digits","name":"hidden: nearby six-digit fair value","kind":"real","visible":false,"input":{"n":100000},"expected":100011,"tags":["hidden","length-change"]},
+    {"id":"real-maximum-input","name":"hidden: maximum legal input","kind":"real","visible":false,"input":{"n":1000000000},"expected":1000001111,"tags":["hidden","boundary"]},
+    {"id":"real-large-odd-length","name":"hidden: large odd-length value skips its length","kind":"real","visible":false,"input":{"n":123456789},"expected":1000001111,"tags":["hidden","odd-length"]}
+  ]
+}

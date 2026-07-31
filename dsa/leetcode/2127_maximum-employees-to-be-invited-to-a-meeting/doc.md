@@ -5,51 +5,52 @@
 | Source | LeetCode |
 | Frontend ID | 2127 |
 | Difficulty | Hard |
-| Category | Algorithms |
 | Topics | Array, Dynamic Programming, Depth-First Search, Graph Theory, Topological Sort |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-employees-to-be-invited-to-a-meeting](https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-employees-to-be-invited-to-a-meeting/).
-
 ### Goal
-Seat the largest possible number of employees around one circular table so that each invited employee sits next to their favorite employee. Every employee names exactly one other employee as their favorite.
+A company has $n$ employees numbered from $0$ through $n-1$ and a circular
+table that can hold any number of them. Every employee names exactly one
+favorite employee, and nobody names themself.
+
+An invited employee will attend only when their favorite is seated directly
+beside them. Because each seat at the circular table has two neighbors, an
+arrangement may satisfy several favorite relationships at once, but it cannot
+give one person more than those two adjacent positions. Determine the largest
+number of employees for which some circular seating satisfies every invited
+employee.
 
 ### Function Contract
 **Inputs**
 
-- `favorite`: `favorite[i]` is the employee favored by employee `i`.
+- `favorite`: A 0-indexed integer array of length $n$, where `favorite[i]` is
+  employee $i$'s favorite. It satisfies $2\le n\le 10^5$,
+  $0\le \texttt{favorite[i]}<n$, and `favorite[i] != i`.
 
 **Return value**
 
-The maximum number of employees that can be invited under the seating rule.
+The maximum number of employees that can be invited and seated so each one is
+adjacent to their favorite.
 
 ### Examples
 **Example 1**
 
 - Input: `favorite = [2, 2, 1, 2]`
 - Output: `3`
+- Explanation: Employees `0`, `1`, and `2` can be seated together. Inviting
+  employee `3` as well would require employee `2` to have three neighbors.
 
 **Example 2**
 
 - Input: `favorite = [1, 2, 0]`
 - Output: `3`
+- Explanation: The three favorite links form one circular seating, so every
+  employee can attend.
 
 **Example 3**
 
 - Input: `favorite = [3, 0, 1, 4, 1]`
 - Output: `4`
-
----
-
-## Solution
-### Approach
-View `favorite` as a functional graph. Remove indegree-zero nodes with a topological pass while computing the longest incoming chain ending at each remaining node. The answer is the larger of: the longest cycle of length at least three, or the sum over every mutual-favorite pair of both pair members plus the longest chain entering each member. Separate chains can be attached to opposite sides of every two-cycle.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: Employees `0`, `1`, `3`, and `4` have a valid arrangement;
+  employee `2` cannot also occupy a seat beside favorite employee `1`.

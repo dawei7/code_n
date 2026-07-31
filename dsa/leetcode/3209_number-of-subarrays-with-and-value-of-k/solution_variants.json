@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Subarrays With AND Value of K and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Compresses subarrays ending at each index by their distinct AND value and accumulated frequency.",
+      "time_complexity": "O(n log M)",
+      "space_complexity": "O(log M)"
     }
   ]
 }

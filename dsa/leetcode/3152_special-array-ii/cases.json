@@ -2,8 +2,8 @@
   "challenge_id": "lc_3152",
   "cases": [
     {
-      "id": "sample-basic",
-      "name": "sample: mixed query answers",
+      "id": "sample-full-range-violation",
+      "name": "sample: full range contains an even pair",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,46 +18,231 @@
           [
             0,
             4
+          ]
+        ]
+      },
+      "expected": [
+        false
+      ],
+      "tags": [
+        "sample",
+        "full-range"
+      ]
+    },
+    {
+      "id": "sample-mixed-answers",
+      "name": "sample: one failing and one special range",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          3,
+          1,
+          6
+        ],
+        "queries": [
+          [
+            0,
+            2
           ],
           [
-            1,
+            2,
             3
-          ],
-          [
-            3,
-            4
           ]
         ]
       },
       "expected": [
         false,
-        true,
-        false
+        true
       ],
       "tags": [
         "sample",
-        "queries"
+        "mixed"
       ]
     },
     {
-      "id": "sample-singletons",
-      "name": "sample: singleton ranges are always special",
-      "kind": "sample",
+      "id": "trial-singleton-array",
+      "name": "trial: singleton array query",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          2,
-          2,
-          2
+          100000
         ],
         "queries": [
           [
             0,
             0
+          ]
+        ]
+      },
+      "expected": [
+        true
+      ],
+      "tags": [
+        "singleton",
+        "boundary"
+      ]
+    },
+    {
+      "id": "trial-violation-outside-range",
+      "name": "trial: external violation is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          1,
+          6
+        ],
+        "queries": [
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true
+      ],
+      "tags": [
+        "range-boundary"
+      ]
+    },
+    {
+      "id": "trial-all-alternating",
+      "name": "trial: every requested range alternates",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "queries": [
+          [
+            0,
+            6
           ],
           [
             1,
-            1
+            5
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "trial-all-same-parity",
+      "name": "trial: only singleton ranges survive",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          6,
+          8
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        false,
+        false,
+        true
+      ],
+      "tags": [
+        "same-parity"
+      ]
+    },
+    {
+      "id": "real-left-edge-violation",
+      "name": "real: violation at query left edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "queries": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        false,
+        true
+      ],
+      "tags": [
+        "left-edge"
+      ]
+    },
+    {
+      "id": "real-right-edge-violation",
+      "name": "real: violation at query right edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "queries": [
+          [
+            0,
+            3
           ],
           [
             0,
@@ -66,40 +251,42 @@
         ]
       },
       "expected": [
-        true,
-        true,
-        false
+        false,
+        true
       ],
       "tags": [
-        "sample",
-        "singletons"
+        "right-edge"
       ]
     },
     {
-      "id": "trial-boundary-violations",
-      "name": "trial: violations at both range boundaries",
-      "kind": "trial",
-      "visible": true,
+      "id": "real-separated-violations",
+      "name": "real: queries isolate separated violations",
+      "kind": "real",
+      "visible": false,
       "input": {
         "nums": [
           1,
-          2,
+          3,
           4,
-          5,
+          6,
           7,
-          8
+          9
         ],
         "queries": [
           [
             0,
-            1
+            5
           ],
           [
             1,
-            3
+            2
           ],
           [
             2,
+            4
+          ],
+          [
+            3,
             4
           ],
           [
@@ -109,37 +296,136 @@
         ]
       },
       "expected": [
+        false,
+        true,
+        false,
+        true,
+        false
+      ],
+      "tags": [
+        "multiple-violations"
+      ]
+    },
+    {
+      "id": "real-duplicate-query-order",
+      "name": "real: duplicate queries preserve answer order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          6,
+          8
+        ],
+        "queries": [
+          [
+            1,
+            3
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        false,
         true,
         false,
         false,
         true
       ],
       "tags": [
-        "prefix"
+        "duplicates",
+        "order"
       ]
     },
     {
-      "id": "trial-all-alternating",
-      "name": "trial: all queried ranges are special",
-      "kind": "trial",
-      "visible": true,
+      "id": "real-value-boundaries",
+      "name": "real: values at the allowed maximum",
+      "kind": "real",
+      "visible": false,
       "input": {
         "nums": [
-          0,
+          99999,
+          100000,
+          99998,
+          99997,
           1,
-          0,
-          1,
-          0,
-          1
+          2
         ],
         "queries": [
           [
             0,
-            5
+            1
+          ],
+          [
+            1,
+            2
           ],
           [
             2,
             4
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-many-singletons",
+      "name": "real: every singleton query is special",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          3,
+          5,
+          6
+        ],
+        "queries": [
+          [
+            4,
+            4
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
           ],
           [
             3,
@@ -150,61 +436,13 @@
       "expected": [
         true,
         true,
+        true,
+        true,
         true
       ],
       "tags": [
-        "valid"
-      ]
-    },
-    {
-      "id": "real-many-short-ranges",
-      "name": "real: many short ranges around violations",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          5,
-          7,
-          8,
-          9,
-          10,
-          12,
-          13,
-          15
-        ],
-        "queries": [
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            2
-          ],
-          [
-            2,
-            5
-          ],
-          [
-            4,
-            6
-          ],
-          [
-            6,
-            7
-          ]
-        ]
-      },
-      "expected": [
-        false,
-        true,
-        false,
-        false,
-        false
-      ],
-      "tags": [
-        "real",
-        "mixed"
+        "singletons",
+        "order"
       ]
     }
   ]

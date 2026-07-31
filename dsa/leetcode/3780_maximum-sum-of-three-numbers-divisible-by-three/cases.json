@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3780",
+  "cases": [
+    {"id":"sample-1","name":"sample: choose the larger of two valid triplets","kind":"sample","visible":true,"input":{"nums":[4,2,3,1]},"expected":9,"validator":{"kind":"exact"},"tags":["sample","multiple-valid-triplets"]},
+    {"id":"sample-2","name":"sample: the only triplet is not divisible by three","kind":"sample","visible":true,"input":{"nums":[2,1,5]},"expected":0,"validator":{"kind":"exact"},"tags":["sample","no-solution"]},
+    {"id":"trial-three-zero-remainders","name":"trial: select three multiples of three","kind":"trial","visible":true,"input":{"nums":[3,6,9]},"expected":18,"validator":{"kind":"exact"},"tags":["trial","remainder-000"]},
+    {"id":"trial-three-one-remainders","name":"trial: three remainder-one values form a valid sum","kind":"trial","visible":true,"input":{"nums":[1,4,7]},"expected":12,"validator":{"kind":"exact"},"tags":["trial","remainder-111"]},
+    {"id":"trial-three-two-remainders","name":"trial: three remainder-two values form a valid sum","kind":"trial","visible":true,"input":{"nums":[2,5,8]},"expected":15,"validator":{"kind":"exact"},"tags":["trial","remainder-222"]},
+    {"id":"trial-one-of-each-remainder","name":"trial: one value from every class is valid","kind":"trial","visible":true,"input":{"nums":[3,4,5]},"expected":12,"validator":{"kind":"exact"},"tags":["trial","remainder-012"]},
+    {"id":"real-no-valid-pattern","name":"hidden: three values exist but their only sum is invalid","kind":"real","visible":false,"input":{"nums":[1,1,2]},"expected":0,"validator":{"kind":"exact"},"tags":["hidden","no-valid-pattern"]},
+    {"id":"real-upper-bound-values","name":"hidden: one value from each remainder reaches a large sum","kind":"real","visible":false,"input":{"nums":[100000,99999,99998]},"expected":299997,"validator":{"kind":"exact"},"tags":["hidden","value-bound"]},
+    {"id":"real-largest-three-win","name":"hidden: the three globally largest values are valid","kind":"real","visible":false,"input":{"nums":[9,8,7,6]},"expected":24,"validator":{"kind":"exact"},"tags":["hidden","maximum-choice"]},
+    {"id":"real-repeated-values","name":"hidden: three equal occurrences may all be selected","kind":"real","visible":false,"input":{"nums":[100,100,100,1]},"expected":300,"validator":{"kind":"exact"},"tags":["hidden","duplicates"]},
+    {"id":"real-extra-two-remainder","name":"hidden: choose three of four remainder-two values","kind":"real","visible":false,"input":{"nums":[1,2,2,2]},"expected":6,"validator":{"kind":"exact"},"tags":["hidden","discard-extra"]},
+    {"id":"real-smaller-valid-triplet","name":"hidden: invalid large mixed choices leave a smaller valid triplet","kind":"real","visible":false,"input":{"nums":[6,1,1,1]},"expected":3,"validator":{"kind":"exact"},"tags":["hidden","exact-three"]}
+  ]
+}

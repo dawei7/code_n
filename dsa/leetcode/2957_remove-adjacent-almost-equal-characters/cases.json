@@ -1,0 +1,144 @@
+{
+  "challenge_id": "lc_2957",
+  "cases": [
+    {
+      "id": "sample-repeated-a",
+      "name": "sample: repeated identical letters",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aaaaa"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "equal"
+      ]
+    },
+    {
+      "id": "sample-mixed-conflicts",
+      "name": "sample: separated almost-equal pairs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abddez"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-overlapping-chain",
+      "name": "sample: overlapping adjacent-alphabet conflicts",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "zyxyxyz"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "overlap"
+      ]
+    },
+    {
+      "id": "trial-singleton",
+      "name": "trial: one character needs no change",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "a"
+      },
+      "expected": 0,
+      "tags": [
+        "boundary",
+        "singleton"
+      ]
+    },
+    {
+      "id": "trial-safe-neighbors",
+      "name": "trial: every neighboring gap exceeds one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "acegik"
+      },
+      "expected": 0,
+      "tags": [
+        "no-operations"
+      ]
+    },
+    {
+      "id": "trial-equal-pair",
+      "name": "trial: one equal pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "zz"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "equal"
+      ]
+    },
+    {
+      "id": "trial-adjacent-pair",
+      "name": "trial: alphabet-adjacent pair",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ab"
+      },
+      "expected": 1,
+      "tags": [
+        "boundary",
+        "alphabet-adjacent"
+      ]
+    },
+    {
+      "id": "real-two-conflict-runs",
+      "name": "real: separate conflict runs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abcxxyz"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "runs"
+      ]
+    },
+    {
+      "id": "real-overlap-choice",
+      "name": "real: one change resolves two overlapping edges",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abc"
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-alphabet-ends",
+      "name": "real: conflicts near both alphabet ends",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abmmyz"
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "alphabet-boundary"
+      ]
+    }
+  ]
+}

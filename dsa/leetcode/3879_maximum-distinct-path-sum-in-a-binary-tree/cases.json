@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3879",
+  "cases": [
+    {
+      "id": "sample-duplicate-parent",
+      "name": "sample: duplicate child-to-parent path is invalid",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          2,
+          2,
+          1
+        ]
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "duplicate-value"
+      ]
+    },
+    {
+      "id": "sample-best-rooted-branch",
+      "name": "sample: best path enters one child branch",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          -2,
+          5,
+          null,
+          null,
+          3,
+          5
+        ]
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "internal-duplicate"
+      ]
+    },
+    {
+      "id": "sample-cross-root-duplicate",
+      "name": "sample: repeated values block a cross-branch path",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          4,
+          6,
+          6,
+          null,
+          null,
+          null,
+          9
+        ]
+      },
+      "expected": 19,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "sample",
+        "explained",
+        "cross-branch"
+      ]
+    },
+    {
+      "id": "trial-single-negative",
+      "name": "trial: a negative singleton is still a valid path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          -7
+        ]
+      },
+      "expected": -7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "single-node",
+        "negative"
+      ]
+    },
+    {
+      "id": "trial-all-negative",
+      "name": "trial: all-negative tree chooses its greatest node",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          -5,
+          -2,
+          -3
+        ]
+      },
+      "expected": -2,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "all-negative",
+        "single-node-optimum"
+      ]
+    },
+    {
+      "id": "trial-equal-siblings",
+      "name": "trial: equal siblings cannot share one path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          1,
+          1
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "duplicate-siblings",
+        "root-path"
+      ]
+    },
+    {
+      "id": "trial-root-excluded",
+      "name": "trial: the maximum path need not include the root",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          -100,
+          4,
+          null,
+          5
+        ]
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "root-excluded",
+        "skewed-tree"
+      ]
+    },
+    {
+      "id": "trial-cross-branches",
+      "name": "trial: a distinct path crosses between root branches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "trial",
+        "cross-branch",
+        "all-distinct"
+      ]
+    },
+    {
+      "id": "real-zero-neutral",
+      "name": "hidden: zero does not improve the best positive singleton",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          0,
+          5,
+          -1
+        ]
+      },
+      "expected": 5,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "zero",
+        "negative"
+      ]
+    },
+    {
+      "id": "real-duplicate-chain-restart",
+      "name": "hidden: a path can restart beyond a duplicate ancestor",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          5,
+          2,
+          null,
+          5,
+          null,
+          10
+        ]
+      },
+      "expected": 17,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "duplicate-chain",
+        "root-excluded"
+      ]
+    },
+    {
+      "id": "real-all-equal",
+      "name": "hidden: an all-equal tree permits only singleton paths",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      "expected": 7,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "all-equal",
+        "duplicate-values"
+      ]
+    },
+    {
+      "id": "real-value-boundaries",
+      "name": "hidden: extreme negative root makes the positive endpoint best",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          -1000,
+          999,
+          1000
+        ]
+      },
+      "expected": 1000,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundaries",
+        "negative-root"
+      ]
+    },
+    {
+      "id": "real-large-positive-crossing",
+      "name": "hidden: three distinct high values form the best cross path",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1000,
+          999,
+          998
+        ]
+      },
+      "expected": 2997,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "value-boundaries",
+        "cross-branch"
+      ]
+    },
+    {
+      "id": "real-off-path-duplicate",
+      "name": "hidden: a duplicate outside the chosen route is harmless",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          10,
+          4,
+          6,
+          3,
+          4,
+          5,
+          7
+        ]
+      },
+      "expected": 30,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "off-path-duplicate",
+        "branching"
+      ]
+    },
+    {
+      "id": "real-mixed-sign-crossing",
+      "name": "hidden: a mixed-sign path crosses the root",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          0,
+          -1,
+          2,
+          3,
+          null,
+          -4,
+          5
+        ]
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "hidden",
+        "mixed-sign",
+        "cross-branch"
+      ]
+    }
+  ]
+}

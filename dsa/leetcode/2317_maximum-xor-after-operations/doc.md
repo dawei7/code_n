@@ -5,51 +5,45 @@
 | Source | LeetCode |
 | Frontend ID | 2317 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Math, Bit Manipulation |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-xor-after-operations](https://leetcode.com/problems/maximum-xor-after-operations/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximum-xor-after-operations/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-xor-after-operations/).
-
 ### Goal
-An operation may replace one array value `x` with `x AND (x XOR y)` for any nonnegative `y`, and may be repeated. Maximize the bitwise XOR of all final values.
+Start with the non-negative integers in `nums`. One operation chooses an index
+`i` and any non-negative integer `x`, then replaces `nums[i]` with
+`nums[i] AND (nums[i] XOR x)`. The operation may be applied any number of
+times, including zero times, and each application may choose a different index
+and value of `x`.
+
+After all chosen operations, take the bitwise XOR of every array element.
+Determine the greatest XOR value that can be achieved. Operations can remove
+set bits from an element but cannot introduce a bit that was absent from that
+element, so the answer depends on which bit positions occur anywhere in the
+original array.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: a list of nonnegative integers.
+- `nums`: A nonempty array of integers from $0$ through $10^8$.
+
+The array length is from 1 through $10^5$.
 
 **Return value**
 
-The maximum achievable XOR.
+The maximum possible bitwise XOR of all elements after any number of allowed
+updates.
 
 ### Examples
 **Example 1**
 
-- Input: `nums = [3, 2, 4, 6]`
+- Input: `nums = [3,2,4,6]`
 - Output: `7`
+- Explanation: Clearing the value-four bit from the final element permits the
+  total XOR to contain all three low bits.
 
 **Example 2**
 
-- Input: `nums = [1, 2, 3, 9, 2]`
+- Input: `nums = [1,2,3,9,2]`
 - Output: `11`
-
-**Example 3**
-
-- Input: `nums = [8]`
-- Output: `8`
-
----
-
-## Solution
-### Approach
-The operation can clear any chosen set bit of a value but cannot create a bit absent from it. For each bit present in at least one input value, retain that bit in exactly one final value and clear it from the others, making it appear in the XOR. Therefore the maximum equals the bitwise OR of all inputs.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: Applying no operation already produces the maximum.

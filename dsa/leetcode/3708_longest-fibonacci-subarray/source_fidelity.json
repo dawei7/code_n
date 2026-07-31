@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3708",
+    "frontend_id": "3708",
+    "title_slug": "longest-fibonacci-subarray",
+    "url": "https://leetcode.com/problems/longest-fibonacci-subarray/description/",
+    "paid_only": false,
+    "content_sha256": "2c9df93c5f8ecedfbb319bee37bbf17269ccad43126e9199a5050133c6981616",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "note", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "nums = [1,1,1,1,2,3,5,1]", "output": "5", "has_explanation": true},
+      {"ordinal": 2, "input": "nums = [5,2,7,9,16]", "output": "5", "has_explanation": true},
+      {"ordinal": 3, "input": "nums = [1000000000,1000000000,1000000000]", "output": "2", "has_explanation": true}
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "26ee777346eba2cc4483c5e78d9f84fc5dad3cd8f883f08323ae85c5fd9ee0cc",
+      "reference/contract.md": "8676989ca20f396de0f2c1bd1a2a4af081e765450a860b5d8afeddb6d11c4b95",
+      "reference/note.md": "dd17d9aa4814172e50a4295d17cf38fe9ce03dbe315f552487106f47b07eb162",
+      "reference/examples.md": "154d5bcce6c92768dc18fb155fae5b19615a507a502d18e20310df12dd23eba4",
+      "reference/constraints.md": "b752e51ba36edf3c70413c31d72b55dba1fa9a3ecf7b4eab086fa23fdaa12207"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

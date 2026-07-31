@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Properties Graph and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Encodes each row's distinct values as a bounded bit mask and unions every pair whose word-level intersection reaches the threshold.",
+      "time_complexity": "O(nm+n^2\\alpha(n))",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3855",
+    "frontend_id": "3855",
+    "title_slug": "sum-of-k-digit-numbers-in-a-range",
+    "url": "https://leetcode.com/problems/sum-of-k-digit-numbers-in-a-range/description/",
+    "paid_only": false,
+    "content_sha256": "c88139ae2fc2d91fc7a92918e069ad328d2b5513cd7f9ddae058bd6382eeb62a",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "l = 1, r = 2, k = 2",
+        "output": "66",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "l = 0, r = 1, k = 3",
+        "output": "444",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "l = 5, r = 5, k = 10",
+        "output": "555555520",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "cd0c7ec128381ef4138a840b0f6f9f35df48fe76104fe84d0ce4974fba865409",
+      "reference/contract.md": "a9994e5a887a9b6503941d85caaa61e09df7c282ce0e23d5f91fa357814fb287",
+      "reference/examples.md": "f7e17b01a9ce5bfe6a0b7b04c66789e85328e4d00760f54a59c0202c759bb938",
+      "reference/constraints.md": "2440b3edf33ebe840ea2f23ade96967674f5e5452fefcb371061962b45eefdb6"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

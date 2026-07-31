@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Generations to Target Point and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Simulates simultaneous generations with a frontier, processing each newly legal unordered point pair once.",
+      "time_complexity": "O(n + U^2)",
+      "space_complexity": "O(U)"
     }
   ]
 }

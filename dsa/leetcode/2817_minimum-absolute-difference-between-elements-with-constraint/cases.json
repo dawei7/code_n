@@ -1,109 +1,15 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2817",
   "cases": [
-    {
-      "id": "sample-1",
-      "name": "sample: distance constraint skips close indices",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          4,
-          3,
-          2,
-          4
-        ],
-        "x": 2
-      },
-      "tags": [
-        "sample",
-        "constraint"
-      ],
-      "expected": 0
-    },
-    {
-      "id": "sample-2",
-      "name": "sample: exact duplicate at valid distance",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          5,
-          3,
-          2,
-          10,
-          15
-        ],
-        "x": 1
-      },
-      "tags": [
-        "sample",
-        "diff"
-      ],
-      "expected": 1
-    },
-    {
-      "id": "trial-zero-x",
-      "name": "trial: zero x allows same index distance baseline",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          8,
-          1,
-          6
-        ],
-        "x": 0
-      },
-      "tags": [
-        "trial",
-        "edge"
-      ],
-      "expected": 0
-    },
-    {
-      "id": "trial-negative-values",
-      "name": "trial: negative and positive values",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          -10,
-          5,
-          -3,
-          7,
-          4
-        ],
-        "x": 2
-      },
-      "tags": [
-        "trial",
-        "negative"
-      ],
-      "expected": 1
-    },
-    {
-      "id": "real-late-close-values",
-      "name": "hidden: closest values appear far apart",
-      "kind": "real",
-      "visible": false,
-      "input": {
-        "nums": [
-          100,
-          1,
-          50,
-          52,
-          2,
-          99,
-          51
-        ],
-        "x": 3
-      },
-      "tags": [
-        "hidden",
-        "late"
-      ],
-      "expected": 1
-    }
+    {"id":"sample-equal-values","name":"sample: equal values at sufficient distance","kind":"sample","visible":true,"input":{"nums":[4,3,2,4],"x":2},"expected":0,"tags":["sample","duplicate"]},
+    {"id":"sample-adjacent","name":"sample: neighboring values when x is one","kind":"sample","visible":true,"input":{"nums":[5,3,2,10,15],"x":1},"expected":1,"tags":["sample","adjacent"]},
+    {"id":"sample-only-pair","name":"sample: endpoints are the only eligible pair","kind":"sample","visible":true,"input":{"nums":[1,2,3,4],"x":3},"expected":3,"tags":["sample","maximum-x"]},
+    {"id":"trial-zero-distance","name":"trial: zero distance permits the same index","kind":"trial","visible":true,"input":{"nums":[8],"x":0},"expected":0,"tags":["trial","x-zero","minimum-length"]},
+    {"id":"trial-duplicate-boundary","name":"trial: duplicate values exactly x apart","kind":"trial","visible":true,"input":{"nums":[7,1,7],"x":2},"expected":0,"tags":["trial","distance-boundary"]},
+    {"id":"real-predecessor","name":"hidden: optimum comes from the predecessor value","kind":"real","visible":false,"input":{"nums":[20,4,17,9],"x":2},"expected":3,"tags":["hidden","predecessor"]},
+    {"id":"real-successor","name":"hidden: optimum comes from the successor value","kind":"real","visible":false,"input":{"nums":[5,100,8,1],"x":2},"expected":3,"tags":["hidden","successor"]},
+    {"id":"real-value-boundaries","name":"hidden: minimum and maximum values","kind":"real","visible":false,"input":{"nums":[1,1000000000],"x":1},"expected":999999999,"tags":["hidden","value-boundaries"]},
+    {"id":"real-late-optimum","name":"hidden: best pair appears at the final index","kind":"real","visible":false,"input":{"nums":[10,1,6,20,9],"x":3},"expected":1,"tags":["hidden","late-optimum"]}
   ]
 }

@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: square chain through sixteen",
+      "name": "sample: selected values become a three-value chain after sorting",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +19,12 @@
       "expected": 3,
       "tags": [
         "sample",
-        "hash-set"
+        "out-of-order"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: no square streak exists",
+      "name": "sample: no squared pair",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -38,59 +38,106 @@
       },
       "expected": -1,
       "tags": [
-        "sample"
+        "sample",
+        "no-streak"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: longer chain starting from two",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          10,
-          2,
-          4,
-          16,
-          256
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-two-element-streak",
-      "name": "trial: smallest valid square streak",
+      "id": "trial-full-chain",
+      "name": "trial: longest legal power chain",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           2,
+          4,
+          16,
+          256,
+          65536
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "trial",
+        "long-chain"
+      ]
+    },
+    {
+      "id": "trial-duplicates",
+      "name": "trial: duplicate values do not extend a streak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          2,
+          4,
           4
         ]
       },
       "expected": 2,
       "tags": [
-        "trial"
+        "trial",
+        "duplicates"
       ]
     },
     {
-      "id": "real-odd-square-chain",
-      "name": "hidden: square chain from an odd start",
+      "id": "real-competing-chains",
+      "name": "hidden: choose the longer of two square chains",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
+          2,
+          4,
           3,
           9,
-          81
+          81,
+          7
         ]
       },
       "expected": 3,
       "tags": [
-        "hidden"
+        "hidden",
+        "multiple-chains"
+      ]
+    },
+    {
+      "id": "real-interior-chain",
+      "name": "hidden: a valid chain can begin at a perfect square",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          16,
+          256,
+          10,
+          11
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "perfect-square-start"
+      ]
+    },
+    {
+      "id": "real-large-unrelated",
+      "name": "hidden: large values without a square relation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          18532,
+          92682,
+          99999,
+          100000
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "upper-bound"
       ]
     }
   ]

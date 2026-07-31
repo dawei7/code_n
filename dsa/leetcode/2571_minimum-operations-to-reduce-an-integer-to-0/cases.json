@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2571",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: mixed addition and subtractions",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 39},
+      "expected": 3,
+      "tags": ["sample", "mixed-operations"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: two carries reach the next power of two",
+      "kind": "sample",
+      "visible": true,
+      "input": {"n": 54},
+      "expected": 3,
+      "tags": ["sample", "carry"]
+    },
+    {
+      "id": "trial-smallest",
+      "name": "trial: smallest positive input",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 1},
+      "expected": 1,
+      "tags": ["trial", "minimum"]
+    },
+    {
+      "id": "trial-power-of-two",
+      "name": "trial: exact power of two",
+      "kind": "trial",
+      "visible": true,
+      "input": {"n": 8},
+      "expected": 1,
+      "tags": ["trial", "power-of-two"]
+    },
+    {
+      "id": "real-even-trailing-run",
+      "name": "hidden: adjacent set bits start above the units bit",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 28},
+      "expected": 2,
+      "tags": ["hidden", "shifted-run", "greedy-trap"]
+    },
+    {
+      "id": "real-two-adjacent-bits",
+      "name": "hidden: a two-bit run permits either direction",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 3},
+      "expected": 2,
+      "tags": ["hidden", "tie"]
+    },
+    {
+      "id": "real-alternating-bits",
+      "name": "hidden: isolated set bits are removed separately",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 10},
+      "expected": 2,
+      "tags": ["hidden", "isolated-bits"]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "hidden: maximum legal input",
+      "kind": "real",
+      "visible": false,
+      "input": {"n": 100000},
+      "expected": 6,
+      "tags": ["hidden", "maximum"]
+    }
+  ]
+}

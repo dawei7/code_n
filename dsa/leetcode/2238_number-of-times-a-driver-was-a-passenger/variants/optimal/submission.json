@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2376",
+  "frontend_id": "2238",
+  "title_slug": "number-of-times-a-driver-was-a-passenger",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2073918047",
+  "verified_at": "2026-07-19T22:25:32.753352+00:00"
+}

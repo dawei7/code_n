@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Unreachable Pairs of Nodes in an Undirected Graph and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Finds each connected-component size and pairs its nodes with all nodes in later components.",
+      "time_complexity": "O(n+e)",
+      "space_complexity": "O(n+e)"
     }
   ]
 }

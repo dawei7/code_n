@@ -2,112 +2,112 @@
   "challenge_id": "lc_3176",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: two allowed value changes",
+      "id": "sample-two-changes",
+      "name": "sample: two changes permit length four",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          1,
-          1,
-          3
-        ],
-        "k": 2
-      },
+      "input": {"nums": [1, 2, 1, 1, 3], "k": 2},
       "expected": 4,
-      "tags": [
-        "sample",
-        "dp"
-      ]
+      "tags": ["sample", "two-changes"]
     },
     {
-      "id": "sample-2",
-      "name": "sample: no unequal adjacent pairs allowed",
+      "id": "sample-zero-changes",
+      "name": "sample: repeated value with zero changes",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          1
-        ],
-        "k": 0
-      },
+      "input": {"nums": [1, 2, 3, 4, 5, 1], "k": 0},
       "expected": 2,
-      "tags": [
-        "sample",
-        "k-zero"
-      ]
+      "tags": ["sample", "zero-budget", "subsequence"]
     },
     {
-      "id": "sample-3",
-      "name": "sample: alternating values with one change",
-      "kind": "sample",
+      "id": "trial-single-zero-budget",
+      "name": "trial: one element and zero budget",
+      "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          1,
-          2,
-          1,
-          2,
-          1,
-          2
-        ],
-        "k": 1
-      },
-      "expected": 4,
-      "tags": [
-        "sample",
-        "alternating"
-      ]
+      "input": {"nums": [7], "k": 0},
+      "expected": 1,
+      "tags": ["minimum-length", "zero-budget"]
+    },
+    {
+      "id": "trial-single-positive-budget",
+      "name": "trial: unused positive budget on one element",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [7], "k": 1},
+      "expected": 1,
+      "tags": ["minimum-length", "at-most-budget"]
     },
     {
       "id": "trial-all-equal",
-      "name": "trial: all equal values ignore k",
+      "name": "trial: all equal values need no changes",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          7,
-          7,
-          7,
-          7
-        ],
-        "k": 3
-      },
+      "input": {"nums": [4, 4, 4, 4], "k": 0},
       "expected": 4,
-      "tags": [
-        "edge"
-      ]
+      "tags": ["all-equal", "zero-budget"]
     },
     {
-      "id": "real-three-value-pattern",
-      "name": "real: three repeated values and two changes",
+      "id": "trial-alternating-one-change",
+      "name": "trial: alternating values can be regrouped",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, 1, 2, 1, 2], "k": 1},
+      "expected": 4,
+      "tags": ["alternating", "subsequence"]
+    },
+    {
+      "id": "real-entire-array-good",
+      "name": "real: entire array uses exactly two changes",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          1,
-          2,
-          2,
-          3,
-          3,
-          1,
-          1,
-          2
-        ],
-        "k": 2
-      },
+      "input": {"nums": [1, 1, 2, 2, 3, 3], "k": 2},
       "expected": 6,
-      "tags": [
-        "real",
-        "pattern"
-      ]
+      "tags": ["entire-array", "exact-budget"]
+    },
+    {
+      "id": "real-all-distinct-one-change",
+      "name": "real: distinct values limit length",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 2, 3, 4], "k": 1},
+      "expected": 2,
+      "tags": ["all-distinct", "one-change"]
+    },
+    {
+      "id": "real-long-two-block-subsequence",
+      "name": "real: skipped values form two long blocks",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [5, 1, 5, 2, 5, 2, 2], "k": 1},
+      "expected": 5,
+      "tags": ["skipped-elements", "one-change"]
+    },
+    {
+      "id": "real-large-values-zero-budget",
+      "name": "real: maximum values repeat non-contiguously",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1000000000, 1, 1000000000, 1, 1000000000], "k": 0},
+      "expected": 3,
+      "tags": ["maximum-value", "zero-budget"]
+    },
+    {
+      "id": "real-budget-larger-than-needed",
+      "name": "real: at-most budget need not be exhausted",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8, 8, 9, 9], "k": 4},
+      "expected": 4,
+      "tags": ["at-most-budget", "entire-array"]
+    },
+    {
+      "id": "real-many-reset-options",
+      "name": "real: competing endings across three values",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 1, 2, 1, 2, 1, 3], "k": 2},
+      "expected": 5,
+      "tags": ["multiple-values", "dynamic-programming"]
     }
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Make Three Strings Equal and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Finds the longest nonempty prefix shared by all three strings and deletes every character beyond it.",
+      "time_complexity": "O(L)",
+      "space_complexity": "O(1)"
     }
   ]
 }

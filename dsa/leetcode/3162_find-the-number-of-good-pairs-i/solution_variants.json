@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Number of Good Pairs I and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Checks the defining divisibility relation once for every ordered index pair.",
+      "time_complexity": "O(nm)",
+      "space_complexity": "O(1)"
     }
   ]
 }

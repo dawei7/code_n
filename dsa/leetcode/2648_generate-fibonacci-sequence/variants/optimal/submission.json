@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2720",
+  "frontend_id": "2648",
+  "title_slug": "generate-fibonacci-sequence",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "fibGenerator",
+  "verified_submission_id": "2076241543",
+  "verified_at": "2026-07-21T18:11:00+00:00"
+}

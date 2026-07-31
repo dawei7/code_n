@@ -1,0 +1,535 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3914",
+  "cases": [
+    {
+      "id": "sample-two-unit-suffixes",
+      "name": "sample: two unit suffix increments repair two drops",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "multiple-drops",
+        "suffix-operations"
+      ]
+    },
+    {
+      "id": "sample-one-large-suffix",
+      "name": "sample: one suffix increment repairs the leading drop",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "single-drop",
+        "suffix-operation"
+      ]
+    },
+    {
+      "id": "trial-single-element",
+      "name": "trial: one element has no adjacent boundary",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single-element",
+        "zero-cost"
+      ]
+    },
+    {
+      "id": "trial-two-increasing",
+      "name": "trial: an increasing pair needs no operation",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "two-elements",
+        "already-nondecreasing"
+      ]
+    },
+    {
+      "id": "trial-two-equal",
+      "name": "trial: an equal pair is already non-decreasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          9,
+          9
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "two-elements",
+        "equal-values"
+      ]
+    },
+    {
+      "id": "trial-two-one-drop",
+      "name": "trial: one unit drop costs one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "two-elements",
+        "single-drop"
+      ]
+    },
+    {
+      "id": "trial-maximum-drop",
+      "name": "trial: the largest possible adjacent drop",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1000000000,
+          1
+        ]
+      },
+      "expected": 999999999,
+      "tags": [
+        "trial",
+        "maximum-value",
+        "large-result"
+      ]
+    },
+    {
+      "id": "trial-strictly-increasing",
+      "name": "trial: every adjacent pair is increasing",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "strictly-increasing",
+        "zero-cost"
+      ]
+    },
+    {
+      "id": "trial-strictly-decreasing",
+      "name": "trial: every adjacent pair contributes one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "strictly-decreasing",
+        "multiple-drops"
+      ]
+    },
+    {
+      "id": "trial-descending-plateaus",
+      "name": "trial: equal runs separate two drops",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          4,
+          3,
+          3,
+          2,
+          2
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "plateaus",
+        "multiple-drops"
+      ]
+    },
+    {
+      "id": "trial-alternating-drops",
+      "name": "trial: separated equal-size drops add independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          3,
+          1,
+          3
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "alternating",
+        "multiple-drops"
+      ]
+    },
+    {
+      "id": "trial-separated-unequal-drops",
+      "name": "trial: separated drops of equal magnitude both count",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1,
+          6,
+          2
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "trial",
+        "separated-drops",
+        "multiple-drops"
+      ]
+    },
+    {
+      "id": "trial-deep-valley",
+      "name": "trial: a suffix increase may raise later values above the original maximum",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          10,
+          1,
+          9
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "valley",
+        "single-drop"
+      ]
+    },
+    {
+      "id": "trial-mixed-directions",
+      "name": "trial: rises contribute nothing between two drops",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          4,
+          1,
+          3,
+          2
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "mixed",
+        "multiple-drops"
+      ]
+    },
+    {
+      "id": "hidden-varying-drops",
+      "name": "hidden: three separated drops have different magnitudes",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          1,
+          50,
+          2,
+          40,
+          3
+        ]
+      },
+      "expected": 184,
+      "tags": [
+        "hidden",
+        "multiple-drops",
+        "varying-magnitudes"
+      ]
+    },
+    {
+      "id": "hidden-long-decreasing",
+      "name": "hidden: one hundred descending values exercise every boundary",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100,
+          99,
+          98,
+          97,
+          96,
+          95,
+          94,
+          93,
+          92,
+          91,
+          90,
+          89,
+          88,
+          87,
+          86,
+          85,
+          84,
+          83,
+          82,
+          81,
+          80,
+          79,
+          78,
+          77,
+          76,
+          75,
+          74,
+          73,
+          72,
+          71,
+          70,
+          69,
+          68,
+          67,
+          66,
+          65,
+          64,
+          63,
+          62,
+          61,
+          60,
+          59,
+          58,
+          57,
+          56,
+          55,
+          54,
+          53,
+          52,
+          51,
+          50,
+          49,
+          48,
+          47,
+          46,
+          45,
+          44,
+          43,
+          42,
+          41,
+          40,
+          39,
+          38,
+          37,
+          36,
+          35,
+          34,
+          33,
+          32,
+          31,
+          30,
+          29,
+          28,
+          27,
+          26,
+          25,
+          24,
+          23,
+          22,
+          21,
+          20,
+          19,
+          18,
+          17,
+          16,
+          15,
+          14,
+          13,
+          12,
+          11,
+          10,
+          9,
+          8,
+          7,
+          6,
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 99,
+      "tags": [
+        "hidden",
+        "long-array",
+        "strictly-decreasing"
+      ]
+    },
+    {
+      "id": "hidden-64-bit-alternating",
+      "name": "hidden: repeated maximum drops require a 64-bit total",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1,
+          1000000000,
+          1
+        ]
+      },
+      "expected": 49999999950,
+      "tags": [
+        "hidden",
+        "alternating",
+        "maximum-value",
+        "large-result"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3777",
+  "cases": [
+    {"id":"sample-1","name":"sample: a flip turns ABA into AAA","kind":"sample","visible":true,"input":{"s":"ABA","queries":[[2,1,2],[1,1],[2,0,2]]},"expected":[0,2],"validator":{"kind":"exact"},"tags":["sample","stateful-flip"]},
+    {"id":"sample-2","name":"sample: a flip repairs ABB","kind":"sample","visible":true,"input":{"s":"ABB","queries":[[2,0,2],[1,2],[2,0,2]]},"expected":[1,0],"validator":{"kind":"exact"},"tags":["sample","endpoint-flip"]},
+    {"id":"sample-3","name":"sample: a subrange follows an interior flip","kind":"sample","visible":true,"input":{"s":"BABA","queries":[[2,0,3],[1,1],[2,1,3]]},"expected":[0,1],"validator":{"kind":"exact"},"tags":["sample","subrange"]},
+    {"id":"trial-single-character","name":"trial: every one-character state is alternating","kind":"trial","visible":true,"input":{"s":"A","queries":[[2,0,0],[1,0],[2,0,0]]},"expected":[0,0],"validator":{"kind":"exact"},"tags":["trial","minimum-length"]},
+    {"id":"trial-single-run","name":"trial: one character survives an all-equal run","kind":"trial","visible":true,"input":{"s":"AAAA","queries":[[2,0,3]]},"expected":[3],"validator":{"kind":"exact"},"tags":["trial","all-equal"]},
+    {"id":"trial-near-boundary-repair","name":"trial: flipping the first character repairs the full string","kind":"trial","visible":true,"input":{"s":"AAB","queries":[[2,0,2],[1,0],[2,0,2]]},"expected":[1,0],"validator":{"kind":"exact"},"tags":["trial","boundary-update"]},
+    {"id":"real-double-flip","name":"hidden: two flips of one index restore the original edges","kind":"real","visible":false,"input":{"s":"AB","queries":[[2,0,1],[1,0],[2,0,1],[1,0],[2,0,1]]},"expected":[0,1,0],"validator":{"kind":"exact"},"tags":["hidden","repeated-flip"]},
+    {"id":"real-subrange-excludes-defects","name":"hidden: the narrow range is alternating although the full string is not","kind":"real","visible":false,"input":{"s":"AABB","queries":[[2,1,2],[2,0,3]]},"expected":[0,2],"validator":{"kind":"exact"},"tags":["hidden","range-boundaries"]},
+    {"id":"real-update-outside-range","name":"hidden: a flip outside the requested pair leaves its answer unchanged","kind":"real","visible":false,"input":{"s":"ABBA","queries":[[2,1,2],[1,0],[2,1,2]]},"expected":[1,1],"validator":{"kind":"exact"},"tags":["hidden","unaffected-range"]},
+    {"id":"real-two-incident-edges","name":"hidden: an interior flip changes both adjacent indicators","kind":"real","visible":false,"input":{"s":"ABABA","queries":[[2,0,4],[1,2],[2,0,4],[2,2,2]]},"expected":[0,2,0],"validator":{"kind":"exact"},"tags":["hidden","two-edge-update"]},
+    {"id":"real-no-updates","name":"hidden: several static ranges use the same structure","kind":"real","visible":false,"input":{"s":"AABBAA","queries":[[2,0,5],[2,1,4],[2,2,3],[2,3,5]]},"expected":[3,1,1,1],"validator":{"kind":"exact"},"tags":["hidden","multiple-queries"]},
+    {"id":"real-alternating-after-end-flips","name":"hidden: both endpoint flips are reflected in later answers","kind":"real","visible":false,"input":{"s":"AAAA","queries":[[1,0],[2,0,3],[1,3],[2,0,3]]},"expected":[2,1],"validator":{"kind":"exact"},"tags":["hidden","both-endpoints"]}
+  ]
+}

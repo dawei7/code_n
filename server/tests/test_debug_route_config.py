@@ -383,7 +383,7 @@ class DebugRouteConfigTest(unittest.TestCase):
         self.assertEqual(capability["adapter_command"], str(netcoredbg))
         self.assertEqual(capability["missing"], [])
 
-    def test_capabilities_endpoint_lists_all_languages(self) -> None:
+    def test_capabilities_endpoint_lists_only_primary_language_families(self) -> None:
         def fake_capability(language: str) -> dict[str, str]:
             return {"language": language}
 
@@ -392,7 +392,7 @@ class DebugRouteConfigTest(unittest.TestCase):
 
         self.assertEqual(
             set(body["languages"]),
-            {"python", "cpp", "java", "csharp", "javascript", "go", "kotlin", "sql", "bash"},
+            {"python", "javascript", "sql", "bash"},
         )
 
     def test_javascript_debug_capability_has_launch_wiring(self) -> None:

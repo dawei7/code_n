@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3398",
+  "frontend_id": "3127",
+  "title_slug": "make-a-square-with-the-same-color",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.canMakeSquare",
+  "verified_submission_id": "2079553690",
+  "verified_at": "2026-07-24T14:23:00+02:00"
+}

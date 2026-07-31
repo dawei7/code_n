@@ -8,48 +8,51 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [employees-project-allocation](https://leetcode.com/problems/employees-project-allocation/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/employees-project-allocation/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/employees-project-allocation/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Each employee belongs to a team and is assigned a project workload. A workload
+is considered unusually high only relative to the workloads of employees on
+that same team, not relative to the company as a whole.
+
+Find every employee whose project workload is strictly greater than the
+average workload among employees in their team. Return the employee and
+project identifiers, the employee's name, and the workload. Order the rows by
+`employee_id` ascending and then `project_id` ascending.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `Project(project_id, employee_id, workload)`: records the project and
+  workload assigned to each unique employee.
+- `Employees(employee_id, name, team)`: records each unique employee's name
+  and team.
+
+Let $n$ be the number of project-allocation rows.
 
 **Return value**
 
-TODO
+- An ordered table with columns `employee_id`, `project_id`, `employee_name`,
+  and `project_workload` for allocations strictly above their team average.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+Team A has workloads `45` and `68`, averaging `56.50`, so only employee `4`
+qualifies. Team B has workloads `90` and `12`, averaging `51.00`, so only
+employee `2` qualifies. Employee order places `2` before `4`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+An employee whose workload equals the team average is excluded because the
+comparison is strict.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+A team containing one employee has that employee's workload as its average,
+so it contributes no result row.

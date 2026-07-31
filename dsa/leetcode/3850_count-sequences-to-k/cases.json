@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3850",
+  "cases": [
+    {
+      "id": "sample-multiply-twice",
+      "name": "sample: two sequences produce six",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [2, 3, 2], "k": 6},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "multiplication", "distinct-sequences"]
+    },
+    {
+      "id": "sample-rational-intermediate",
+      "name": "sample: exact rational division later cancels",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [4, 6, 3], "k": 2},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "rational-division", "cancellation"]
+    },
+    {
+      "id": "sample-one-distinct-actions",
+      "name": "sample: three actions on one remain distinct",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1, 5], "k": 1},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "value-one", "distinct-actions"]
+    },
+    {
+      "id": "trial-single-one",
+      "name": "trial: every action on one reaches one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1], "k": 1},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "value-one"]
+    },
+    {
+      "id": "trial-single-multiply",
+      "name": "trial: only multiplication reaches two",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2], "k": 2},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "minimum-length", "multiply"]
+    },
+    {
+      "id": "trial-two-cancel",
+      "name": "trial: equal factors offer three zero-sum choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [2, 2], "k": 1},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "cancellation", "target-one"]
+    },
+    {
+      "id": "real-weighted-cancellation",
+      "name": "hidden: factors with unequal exponents cancel in five ways",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 4, 2], "k": 1},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "weighted-exponents", "cancellation"]
+    },
+    {
+      "id": "real-repeated-six",
+      "name": "hidden: coupled two-and-three exponents reach six",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6, 6, 6], "k": 6},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "coupled-primes", "repeated-values"]
+    },
+    {
+      "id": "real-all-primes",
+      "name": "hidden: all supported prime dimensions reach thirty",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 3, 5, 6], "k": 30},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "three-primes", "mixed-actions"]
+    },
+    {
+      "id": "real-unsupported-prime",
+      "name": "hidden: target seven cannot be introduced",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 3, 5], "k": 7},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "unsupported-prime", "unreachable"]
+    },
+    {
+      "id": "real-exponent-out-of-range",
+      "name": "hidden: target exponent exceeds every possible choice",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 2, 2], "k": 16},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "unreachable-exponent", "zero-count"]
+    },
+    {
+      "id": "real-maximum-count",
+      "name": "hidden: nineteen ones keep all three choices valid",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "k": 1},
+      "expected": 1162261467,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-length", "all-actions-valid"]
+    },
+    {
+      "id": "real-upper-target",
+      "name": "hidden: the upper target requires too many prime factors",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [2, 5, 2, 5, 2, 5, 2, 5, 2, 5, 2, 5, 2, 5, 2, 5, 2, 5, 1], "k": 1000000000000000},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-length", "upper-target"]
+    }
+  ]
+}

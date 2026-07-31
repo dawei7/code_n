@@ -8,50 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, String, Segment Tree, Ordered Set |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [longest-substring-of-one-repeating-character](https://leetcode.com/problems/longest-substring-of-one-repeating-character/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/longest-substring-of-one-repeating-character/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/longest-substring-of-one-repeating-character/).
 
 ### Goal
-Apply point updates to a string. After each replacement, report the length of its longest contiguous substring made of one repeated character.
+
+Begin with a 0-indexed lowercase string `s`. Two equally long query collections describe point replacements: query $i$ changes `s[queryIndices[i]]` to `queryCharacters[i]`. Updates are permanent, so every later query operates on the already modified string.
+
+After each replacement, find the longest contiguous substring whose characters are all equal. Return these maximum run lengths in query order, including an answer when a query writes the character already present.
 
 ### Function Contract
+
 **Inputs**
 
-- `s`: the initial lowercase string.
-- `queryCharacters`: replacement characters, one per query.
-- `queryIndices`: matching zero-based positions to update.
+- `s`: the initial lowercase string of length $n$, where $1 \le n \le 10^5$.
+- `queryCharacters`: a lowercase string containing $q$ replacement characters.
+- `queryIndices`: $q$ valid zero-based indices into `s`, where $1 \le q \le 10^5$.
 
 **Return value**
 
-An array where each value is the longest equal-character run after the corresponding update.
+Return a length-$q$ integer array whose $i$th value is the longest equal-character run after query $i$.
 
 ### Examples
+
 **Example 1**
 
 - Input: `s = "babacc"`, `queryCharacters = "bcb"`, `queryIndices = [1, 3, 3]`
 - Output: `[3, 3, 4]`
+- Explanation: the longest runs after the updates are `bbb`, then either `bbb` or `ccc`, then `bbbb`.
 
 **Example 2**
 
 - Input: `s = "abyzz"`, `queryCharacters = "aa"`, `queryIndices = [2, 1]`
 - Output: `[2, 3]`
+- Explanation: the unchanged `zz` first remains longest, then the prefix becomes `aaa`.
 
 **Example 3**
 
-- Input: `s = "a"`, `queryCharacters = "b"`, `queryIndices = [0]`
-- Output: `[1]`
-
----
-
-## Solution
-### Approach
-Build a segment tree. Each node stores its segment length, leftmost and rightmost characters, longest equal-character prefix and suffix, and best run anywhere in the segment. Merge children by extending prefixes or suffixes when boundary characters match and by considering the joined suffix-plus-prefix run. A point update changes one leaf and recomputes `O(log n)` ancestors; the root's best value answers each query.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n + q log n)`
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `s = "a"`, `queryCharacters = "bb"`, `queryIndices = [0, 0]`
+- Output: `[1, 1]`
+- Explanation: every version of a one-character string has maximum run length one.

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3632",
+  "frontend_id": "3386",
+  "title_slug": "button-with-longest-push-time",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.buttonWithLongestTime",
+  "verified_submission_id": "2081304461",
+  "verified_at": "2026-07-26T00:54:00Z"
+}

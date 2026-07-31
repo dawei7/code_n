@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3437",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(A n)",
+  "summary": "The explicit result contains A permutations of length n, giving an output-size lower bound of Omega(A n), and the accepted reference constructs exactly those valid paths.",
+  "optimality": {
+    "symbol": "A n",
+    "lower_bound": "Omega(A n)",
+    "upper_bound": "O(A n)",
+    "argument": "Every valid answer must materialize A distinct arrays containing n integers each. The reference prunes parity-invalid prefixes and copies one length-n path for each valid permutation, matching that unavoidable output work."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Returning A explicit permutations of length n requires writing A n integer positions, so no implementation can run in o(A n) time under the ordinary materialized-array model."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The accepted search visits only alternating prefixes and performs O(n) path-copy work for each of the A leaves; its prefix-tree work is bounded by the same output term."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover n from 1 through 5, and the certificate regression checks ordering, uniqueness, parity, membership, and the exact combinatorial answer count through the maximum n = 10."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3551",
+  "cases": [
+    {
+      "id": "sample-two-values",
+      "name": "sample: smaller digit sum comes first",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [37, 100]},
+      "expected": 1,
+      "tags": ["sample", "single-swap"]
+    },
+    {
+      "id": "sample-already-sorted",
+      "name": "sample: increasing digit sums",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [22, 14, 33, 7]},
+      "expected": 0,
+      "tags": ["sample", "already-sorted"]
+    },
+    {
+      "id": "sample-equal-sum-ties",
+      "name": "sample: equal digit sums use numeric order",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [18, 43, 34, 16]},
+      "expected": 2,
+      "tags": ["sample", "tie-break"]
+    },
+    {
+      "id": "trial-single-value",
+      "name": "trial: one value is already final",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1]},
+      "expected": 0,
+      "tags": ["trial", "minimum-length"]
+    },
+    {
+      "id": "trial-reversed-equal-sum",
+      "name": "trial: reversed values sharing one digit sum",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [51, 24, 15]},
+      "expected": 1,
+      "tags": ["trial", "tie-break", "cycle"]
+    },
+    {
+      "id": "real-three-cycle",
+      "name": "real: one permutation cycle of length three",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [37, 100, 22]},
+      "expected": 2,
+      "tags": ["real", "cycle"]
+    },
+    {
+      "id": "real-upper-value-bound",
+      "name": "real: maximum value has a small digit sum",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [999999999, 1000000000, 99999999]},
+      "expected": 2,
+      "tags": ["real", "value-boundary", "digit-sum"]
+    },
+    {
+      "id": "real-two-disjoint-swaps",
+      "name": "real: two independent two-cycles",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [40, 30, 20, 10]},
+      "expected": 2,
+      "tags": ["real", "multiple-cycles"]
+    }
+  ]
+}

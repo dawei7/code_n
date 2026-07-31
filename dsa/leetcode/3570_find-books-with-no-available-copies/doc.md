@@ -8,48 +8,35 @@
 | Category | Database |
 | Topics | Database |
 | Supported Languages | sql |
-| Official Link | [find-books-with-no-available-copies](https://leetcode.com/problems/find-books-with-no-available-copies/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-books-with-no-available-copies/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-books-with-no-available-copies/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A library catalog records each book's descriptive fields and the total number of copies owned. A separate borrowing history records individual loans. A loan is still active when its `return_date` is `NULL`; returned loans must not reduce current availability.
+
+Find every book that has at least one active loan and no copy currently available. In other words, the number of active borrowing records for the book must equal its `total_copies`.
+
+For each qualifying book, return its identifier, title, author, genre, publication year, and number of current borrowers. Sort books by that borrower count in descending order, then by title in ascending order.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `library_books`: A table keyed by `book_id`, with columns `title`, `author`, `genre`, `publication_year`, and `total_copies`.
+- `borrowing_records`: A table keyed by `record_id`, with `book_id`, `borrower_name`, `borrow_date`, and nullable `return_date`. A `NULL` return date identifies a currently active loan.
 
 **Return value**
 
-TODO
+Return columns `book_id`, `title`, `author`, `genre`, `publication_year`, and `current_borrowers`, ordered by `current_borrowers` descending and `title` ascending. Include only books whose active-loan count equals their owned-copy count.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 2**
-
-- Input: `TODO`
-- Output: `TODO`
-
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
+- Input: A six-book catalog in which *The Great Gatsby* has three active loans for three copies and *1984* has one active loan for one copy; all other books retain at least one available copy.
+- Output: Rows for *The Great Gatsby* with `current_borrowers = 3`, followed by *1984* with `current_borrowers = 1`.
+- Explanation: Returned records are excluded before counting, so only these two books have zero availability.
 
 ---
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

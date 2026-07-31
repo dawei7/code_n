@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Subarray With Bitwise OR Closest to K and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Carries forward only the distinct OR values of subarrays ending at the previous position.",
+      "time_complexity": "O(n log M)",
+      "space_complexity": "O(log M)"
     }
   ]
 }

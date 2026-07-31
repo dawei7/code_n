@@ -5,51 +5,49 @@
 | Source | LeetCode |
 | Frontend ID | 2310 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Math, Dynamic Programming, Greedy, Enumeration |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sum-of-numbers-with-units-digit-k](https://leetcode.com/problems/sum-of-numbers-with-units-digit-k/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/sum-of-numbers-with-units-digit-k/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sum-of-numbers-with-units-digit-k/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+Given `num` and the decimal digit `k`, form a collection of positive integers
+such that every chosen integer has units digit `k` and all chosen values sum to
+`num`. Repeated instances of the same value are permitted despite the
+statement's use of the word set.
+
+Return the smallest possible number of chosen integers. If no such collection
+can produce `num`, return `-1`. The empty collection has sum zero, so `num = 0`
+requires no integers. A units digit is the rightmost decimal digit.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `num`: The nonnegative target sum.
+- `k`: The required units digit of every positive summand.
+
+The contract guarantees $0\le\texttt{num}\le3000$ and
+$0\le\texttt{k}\le9$.
 
 **Return value**
 
-TODO
+The minimum collection size producing `num`, zero for the empty target, or
+`-1` when no valid sum exists.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 58`, `k = 9`
+- Output: `2`
+- Explanation: `9 + 49 = 58`, and both summands end in 9.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `num = 37`, `k = 2`
+- Output: `-1`
+- Explanation: No count of positive integers ending in 2 can have this sum.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `num = 0`, `k = 7`
+- Output: `0`
+- Explanation: The empty collection supplies the zero sum.

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3887",
+    "frontend_id": "3887",
+    "title_slug": "incremental-even-weighted-cycle-queries",
+    "url": "https://leetcode.com/problems/incremental-even-weighted-cycle-queries/description/",
+    "paid_only": false,
+    "content_sha256": "a4407576c71b13efdb89193ad393e9f14a0659f166d92ba04e540e5537fd483a",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,1]]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 3, edges = [[0,1,1],[1,2,1],[0,2,0]]",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 6,
+    "visuals": {
+      "source_images": 2,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 2
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "ed4d0a50382ec03b8655c5e0d89fc095cc96ea23fca8028221fd233ff47ef7e8",
+      "reference/contract.md": "188392f517fa3a3e2c2362aff218c5d9ec0a4027d29d72b7032460b8eb71f355",
+      "reference/examples.md": "d234cc1e6104d2c0f8347548c6480ed72ea21cc637c56091e5cb3d5eb4c80d9a",
+      "reference/constraints.md": "4cbc6e4d30ab1a2f54d6b957053a1986a888a8a928c861bd0e8217bcc30e2f14"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

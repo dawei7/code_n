@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Symmetric Coordinates and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Aggregates duplicate coordinate counts, self-joins reversed pairs, and handles diagonal symmetry only when two rows exist.",
+      "time_complexity": "O(R + D log(D))",
+      "space_complexity": "O(D)"
     }
   ]
 }

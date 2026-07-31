@@ -5,51 +5,39 @@
 | Source | LeetCode |
 | Frontend ID | 2505 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Math, Bit Manipulation, Brainteaser, Prefix Sum |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [bitwise-or-of-all-subsequence-sums](https://leetcode.com/problems/bitwise-or-of-all-subsequence-sums/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/bitwise-or-of-all-subsequence-sums/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/bitwise-or-of-all-subsequence-sums/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+You are given an integer array `nums`. A subsequence is obtained by deleting zero or more elements while preserving the relative order of the elements that remain. The empty subsequence is permitted and has sum $0$.
+
+Consider the sum of every possible subsequence. Combine all of those sums with the bitwise OR operation and return the resulting integer. Different subsequences may have the same sum; duplicates do not change the OR.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `nums`: A list of $n$ nonnegative integers, where $1\le n\le10^5$ and $0\le\texttt{nums[i]}\le10^9$.
 
 **Return value**
 
-TODO
+An integer equal to the bitwise OR of every achievable subsequence sum.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [2,1,0,3]`
+- Output: `7`
+- Explanation: The achievable sums include every value from $0$ through $6$, whose bitwise OR is $7$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [0,0,0]`
+- Output: `0`
+- Explanation: Every subsequence has sum $0$.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [4,4]`
+- Output: `12`
+- Explanation: The distinct sums are $0$, $4$, and $8$, and $4\mathbin{|}8=12$.

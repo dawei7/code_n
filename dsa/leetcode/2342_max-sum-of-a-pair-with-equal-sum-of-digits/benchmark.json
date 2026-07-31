@@ -1,24 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2342",
+  "measurement_note": "Size is n, the number of input values. Every tier contains only 9, so all values share a digit sum and the complete scan returns 18. Maintaining one maximum per digit sum is linear. A correct implementation that examines every index pair completes all tiers but is quadratic.",
   "cases": [
-    {
-      "id": "benchmark-large-digit-sums",
-      "name": "benchmark: larger values share digit sums",
-      "kind": "benchmark",
-      "visible": false,
-      "input": {
-        "nums": [
-          99,
-          90,
-          9,
-          81,
-          18
-        ]
-      },
-      "expected": 171,
-      "tags": [
-        "benchmark"
-      ]
-    }
+    {"id":"benchmark-scale-1","name":"benchmark: 8 compatible values","kind":"benchmark","visible":false,"size":8,"input":{"nums":[9,9,9,9,9,9,9,9]},"expected":18},
+    {"id":"benchmark-scale-2","name":"benchmark: 32 compatible values","kind":"benchmark","visible":false,"size":32,"input":{"nums":[9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9]},"expected":18},
+    {"id":"benchmark-scale-3","name":"benchmark: 64 compatible values","kind":"benchmark","visible":false,"size":64,"input":{"nums":[9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9]},"expected":18}
   ]
 }

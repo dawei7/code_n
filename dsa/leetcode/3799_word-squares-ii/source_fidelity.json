@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3799",
+    "frontend_id": "3799",
+    "title_slug": "word-squares-ii",
+    "url": "https://leetcode.com/problems/word-squares-ii/description/",
+    "paid_only": false,
+    "content_sha256": "773b8f98c13104619112905ffe1a128a654d0f8796b2e98d75f9e930d84df18d",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`words = [\"able\",\"area\",\"echo\",\"also\"]`",
+        "output": "`[[\"able\",\"area\",\"echo\",\"also\"],[\"area\",\"able\",\"also\",\"echo\"]]`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`words = [\"code\",\"cafe\",\"eden\",\"edge\"]`",
+        "output": "`[]`",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "9aa79172b2ad05530cb093db70dc59f75fe183d8b76a64797de72a37d32d3571",
+      "reference/contract.md": "1978444605720bc0646509446a85eace2925ec93713388beb7d1274cee19381a",
+      "reference/examples.md": "e2cc27c9c4a6195fab901a292f5fa90fffbf0a4c7a4f927e49c29ec94b9642e7",
+      "reference/constraints.md": "764b32be810c47efa5d09bd08b66e0bede0348490f982903a9fd6f320be21ebd"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

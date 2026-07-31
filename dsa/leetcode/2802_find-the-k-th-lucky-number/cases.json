@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2802",
+  "cases": [
+    {
+      "id": "sample-fourth",
+      "name": "sample: fourth lucky number",
+      "kind": "sample",
+      "visible": true,
+      "input": {"k": 4},
+      "expected": "47",
+      "tags": ["sample", "two-digits"]
+    },
+    {
+      "id": "sample-tenth",
+      "name": "sample: tenth lucky number",
+      "kind": "sample",
+      "visible": true,
+      "input": {"k": 10},
+      "expected": "477",
+      "tags": ["sample", "three-digits"]
+    },
+    {
+      "id": "sample-thousandth",
+      "name": "sample: thousandth lucky number",
+      "kind": "sample",
+      "visible": true,
+      "input": {"k": 1000},
+      "expected": "777747447",
+      "tags": ["sample", "larger-index"]
+    },
+    {
+      "id": "trial-first",
+      "name": "trial: first lucky number is four",
+      "kind": "trial",
+      "visible": true,
+      "input": {"k": 1},
+      "expected": "4",
+      "tags": ["trial", "minimum-index"]
+    },
+    {
+      "id": "trial-second",
+      "name": "trial: second lucky number is seven",
+      "kind": "trial",
+      "visible": true,
+      "input": {"k": 2},
+      "expected": "7",
+      "tags": ["trial", "single-digit"]
+    },
+    {
+      "id": "real-last-four-digit",
+      "name": "hidden: final four-digit lucky number",
+      "kind": "real",
+      "visible": false,
+      "input": {"k": 30},
+      "expected": "7777",
+      "tags": ["hidden", "length-boundary", "all-seven"]
+    },
+    {
+      "id": "real-first-five-digit",
+      "name": "hidden: first five-digit lucky number",
+      "kind": "real",
+      "visible": false,
+      "input": {"k": 31},
+      "expected": "44444",
+      "tags": ["hidden", "length-boundary", "all-four"]
+    },
+    {
+      "id": "real-maximum-index",
+      "name": "hidden: maximum legal index",
+      "kind": "real",
+      "visible": false,
+      "input": {"k": 1000000000},
+      "expected": "77477744774747744747444444447",
+      "tags": ["hidden", "maximum-index", "bit-pattern"]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_158", "frontend_id": "158", "title_slug": "read-n-characters-given-read4-ii-call-multiple-times", "url": "https://leetcode.com/problems/read-n-characters-given-read4-ii-call-multiple-times/description/", "paid_only": true, "content_sha256": "62a872538b8abe9e5c366e6b7da2553f4def0a8dffdb344f5b1063e23ded6faa", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "method_read4", "definition_of_read4", "read4_example", "method_read", "definition_of_read", "note", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "file = \"abc\", queries = [1,2,1]", "output": "[1,2,0]", "has_explanation": true}, {"ordinal": 2, "input": "file = \"abc\", queries = [4,1]", "output": "[3,0]", "has_explanation": true}],
+    "constraint_count": 4,
+    "visuals": {"source_images": 1, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 1}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "294a99e15ff755ce916d8585e8016f989237324dcf81383d5c1707c0c4d5a152", "reference/contract.md": "199be55ee7a05e308253b896587e5c0230b4e78c1ce096d1fb2eb54b75f3c18b", "reference/method_read4.md": "34161cac20247acf2cb512ce4b1badf7fcf65898fe394d3545fdbb4b01bf37ae", "reference/definition_of_read4.md": "a051cead154e255dd21e6782210525f8a9aeeeb7a12a18578228d96c27b8bb1b", "reference/read4_example.md": "855e20a9f074d9b75e8b9c0f6a0e10347767e1f8207d1e722e06b6b6c69a8981", "reference/method_read.md": "d3b9c77d1f68a268266b004d84030376a4ab6c00895fbd4bc993c4226a801fba", "reference/definition_of_read.md": "fea6c9c3826315ea4db2674385a8ff6a076d54bbf1a15a53113ea79c337cc792", "reference/note.md": "1ecd9b60aa489e01bbede6480cbcff046eb1b285b697a625728cb701381f95ea", "reference/examples.md": "bbcb6940b82b0a847184f7d1f837d0b50634ae15829981db999de080b1955f64", "reference/constraints.md": "f31010a192b511dbc1759d0ab8a5c3df19b648e68b71a3e27e72732142e8675a"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

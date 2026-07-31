@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sender With Largest Word Count and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Accumulates each sender's words in one map pass and maximizes the count-name pair.",
+      "time_complexity": "O(L)",
+      "space_complexity": "O(s)"
     }
   ]
 }

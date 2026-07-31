@@ -31,7 +31,7 @@
     },
     {
       "id": "sample-2",
-      "name": "sample: all non-positive after update",
+      "name": "sample: empty subsequence beats negative values",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -49,13 +49,13 @@
       "expected": 0,
       "tags": [
         "sample",
-        "zero"
+        "empty-subsequence"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: four values with endpoint update",
-      "kind": "sample",
+      "id": "trial-four-values",
+      "name": "trial: endpoint and interior updates",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -77,44 +77,130 @@
       },
       "expected": 12,
       "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-negative-to-positive",
-      "name": "trial: updates revive negative positions",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "nums": [
-          -5,
-          4,
-          -2,
-          7
-        ],
-        "queries": [
-          [
-            0,
-            6
-          ],
-          [
-            2,
-            5
-          ],
-          [
-            3,
-            -10
-          ]
-        ]
-      },
-      "expected": 37,
-      "tags": [
+        "updates",
         "non-adjacent"
       ]
     },
     {
-      "id": "real-many-updates-same-index",
-      "name": "real: repeated updates on the same index",
+      "id": "trial-singleton",
+      "name": "trial: one position alternates sign",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5
+        ],
+        "queries": [
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            -2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "singleton",
+        "empty-subsequence"
+      ]
+    },
+    {
+      "id": "trial-all-non-positive",
+      "name": "trial: updates leave no positive choice until the end",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          -1,
+          -2,
+          -3
+        ],
+        "queries": [
+          [
+            1,
+            -4
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": 5,
+      "tags": [
+        "non-positive",
+        "empty-subsequence"
+      ]
+    },
+    {
+      "id": "trial-adjacent-rivals",
+      "name": "trial: adjacent positives cannot coexist",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          5,
+          1
+        ],
+        "queries": [
+          [
+            1,
+            6
+          ],
+          [
+            0,
+            7
+          ]
+        ]
+      },
+      "expected": 13,
+      "tags": [
+        "adjacent",
+        "boundary-state"
+      ]
+    },
+    {
+      "id": "real-endpoints-coexist",
+      "name": "real: separated endpoints compete with the middle",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          -1,
+          4
+        ],
+        "queries": [
+          [
+            1,
+            10
+          ],
+          [
+            1,
+            -5
+          ]
+        ]
+      },
+      "expected": 19,
+      "tags": [
+        "real",
+        "endpoint-state"
+      ]
+    },
+    {
+      "id": "real-repeated-index",
+      "name": "real: several assignments revisit one index",
       "kind": "real",
       "visible": false,
       "input": {
@@ -148,6 +234,148 @@
       "tags": [
         "real",
         "repeat-update"
+      ]
+    },
+    {
+      "id": "real-large-accumulation",
+      "name": "real: large positive answers accumulate across queries",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          100000,
+          100000,
+          100000,
+          100000,
+          100000
+        ],
+        "queries": [
+          [
+            0,
+            100000
+          ],
+          [
+            1,
+            100000
+          ],
+          [
+            2,
+            100000
+          ],
+          [
+            3,
+            100000
+          ],
+          [
+            4,
+            100000
+          ]
+        ]
+      },
+      "expected": 1500000,
+      "tags": [
+        "real",
+        "large-total"
+      ]
+    },
+    {
+      "id": "real-zero-boundaries",
+      "name": "real: positive choices move across a zero array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "queries": [
+          [
+            1,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            2,
+            7
+          ]
+        ]
+      },
+      "expected": 24,
+      "tags": [
+        "real",
+        "zeros",
+        "boundary-state"
+      ]
+    },
+    {
+      "id": "real-endpoint-removals",
+      "name": "real: updates change both endpoints and the center",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "queries": [
+          [
+            0,
+            10
+          ],
+          [
+            4,
+            -5
+          ],
+          [
+            2,
+            -3
+          ]
+        ]
+      },
+      "expected": 46,
+      "tags": [
+        "real",
+        "mixed-updates"
+      ]
+    },
+    {
+      "id": "real-negative-to-positive",
+      "name": "real: positive replacements revive separated positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -5,
+          4,
+          -2,
+          7
+        ],
+        "queries": [
+          [
+            0,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            -10
+          ]
+        ]
+      },
+      "expected": 37,
+      "tags": [
+        "real",
+        "non-adjacent"
       ]
     }
   ]

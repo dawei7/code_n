@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Partition Array Into K-Distinct Groups and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Check divisibility, count each value once, and ensure no multiplicity exceeds the number of available groups.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(d)"
     }
   ]
 }

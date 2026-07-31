@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: six pairs fall in the target sum range",
+      "name": "sample: six sums fall inside the interval",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -21,12 +21,12 @@
       "expected": 6,
       "tags": [
         "sample",
-        "two-pointers"
+        "inclusive-range"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: exactly one pair sums to eleven",
+      "name": "sample: one pair sums to exactly eleven",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -42,13 +42,14 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "exact-sum"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: no pair can sum to one",
-      "kind": "sample",
+      "id": "trial-no-fair-pair",
+      "name": "trial: every pair exceeds the exact target",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -61,12 +62,13 @@
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "trial",
+        "no-match"
       ]
     },
     {
       "id": "trial-two-zeroes",
-      "name": "trial: one pair of zeroes is fair",
+      "name": "trial: the only pair lies on both boundaries",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -79,7 +81,8 @@
       },
       "expected": 1,
       "tags": [
-        "trial"
+        "trial",
+        "boundary"
       ]
     },
     {
@@ -96,7 +99,92 @@
       },
       "expected": 0,
       "tags": [
-        "hidden"
+        "hidden",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-all-duplicates",
+      "name": "hidden: all duplicate-index combinations count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "lower": 4,
+        "upper": 4
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-negative-and-positive",
+      "name": "hidden: negative and positive endpoints mix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -3,
+          -1,
+          0,
+          2,
+          4
+        ],
+        "lower": -2,
+        "upper": 1
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "negative-values"
+      ]
+    },
+    {
+      "id": "real-extreme-values",
+      "name": "hidden: extreme values land on inclusive bounds",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -1000000000,
+          1000000000,
+          0
+        ],
+        "lower": -1000000000,
+        "upper": 1000000000
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "constraints",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-zero-sum",
+      "name": "hidden: only one mixed-sign pair sums to zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          -2,
+          0,
+          2
+        ],
+        "lower": 0,
+        "upper": 0
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "exact-sum"
       ]
     }
   ]

@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2412",
   "cases": [
     {
-      "id": "sample-1",
-      "name": "sample: mixed losing transactions",
+      "id": "sample-mixed-losses",
+      "name": "sample: accumulated losses and final bottleneck",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -25,12 +26,12 @@
       "expected": 10,
       "tags": [
         "sample",
-        "greedy"
+        "loss"
       ]
     },
     {
-      "id": "sample-2",
-      "name": "sample: non-losing transaction can be last",
+      "id": "sample-loss-and-gain",
+      "name": "sample: order guarantee ignores helpful ordering",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -47,13 +48,14 @@
       },
       "expected": 3,
       "tags": [
-        "sample"
+        "sample",
+        "adversarial-order"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: zero-cost transaction",
-      "kind": "sample",
+      "id": "trial-zero",
+      "name": "zero cost and cashback require no money",
+      "kind": "trial",
       "visible": true,
       "input": {
         "transactions": [
@@ -65,12 +67,12 @@
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "zero"
       ]
     },
     {
-      "id": "trial-identical-losses",
-      "name": "trial: repeated loss transactions",
+      "id": "trial-repeated-losses",
+      "name": "identical losses accumulate",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -91,7 +93,56 @@
       },
       "expected": 9,
       "tags": [
-        "trial"
+        "loss"
+      ]
+    },
+    {
+      "id": "trial-all-non-losing",
+      "name": "largest cost controls non-losing transactions",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "transactions": [
+          [
+            5,
+            10
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            2,
+            100
+          ]
+        ]
+      },
+      "expected": 7,
+      "tags": [
+        "non-losing"
+      ]
+    },
+    {
+      "id": "real-cashback-bottleneck",
+      "name": "hidden: large cashback can be the final bottleneck",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "transactions": [
+          [
+            10,
+            9
+          ],
+          [
+            5,
+            0
+          ]
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "hidden",
+        "cashback"
       ]
     },
     {
@@ -113,7 +164,31 @@
       },
       "expected": 2,
       "tags": [
-        "hidden"
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-large-total",
+      "name": "hidden: total requirement can exceed one billion",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "transactions": [
+          [
+            1000000000,
+            0
+          ],
+          [
+            1000000000,
+            0
+          ]
+        ]
+      },
+      "expected": 2000000000,
+      "tags": [
+        "hidden",
+        "boundary"
       ]
     }
   ]

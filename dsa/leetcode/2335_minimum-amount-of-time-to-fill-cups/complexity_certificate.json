@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2335",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Every legal input contains exactly three water-type counters, each bounded by 100, so there is no scalable structural input size for an honest asymptotic runtime verdict.",
+  "workload_bound": {
+    "symbol": "t",
+    "maximum": 3,
+    "unit": "water types",
+    "source_constraint": "amount always has exactly three entries, one each for cold, warm, and hot water"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference reads three counters, computes their sum and maximum, and evaluates one ceiling division and one maximum."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "Regression checks every sorted triple with values from 0 through 100 against independent priority-queue simulation; symmetry covers all 1,030,301 ordered legal inputs."
+    }
+  ]
+}

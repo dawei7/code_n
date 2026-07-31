@@ -1,23 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2442",
+  "measurement_note": "Size is n, the array length. Consecutive three-digit originals contribute many distinct reversals. Hash-set insertion takes O(nD) expected time, while maintaining distinct values in a list and scanning it before each insertion takes O(n^2) time.",
   "cases": [
     {
-      "id": "benchmark-overlapping-reversals",
-      "name": "benchmark: several values reverse into existing values",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: eight consecutive originals",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "nums": [
-          12,
-          21,
-          120,
-          3
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 8,
+      "input": {"nums": [100,101,102,103,104,105,106,107]},
+      "expected": 15,
+      "tags": ["benchmark", "linear-membership"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: thirty-two consecutive originals",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"nums": [100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131]},
+      "expected": 60,
+      "tags": ["benchmark", "linear-membership"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: sixty-four consecutive originals",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums": [100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163]},
+      "expected": 121,
+      "tags": ["benchmark", "linear-membership"]
     }
   ]
 }

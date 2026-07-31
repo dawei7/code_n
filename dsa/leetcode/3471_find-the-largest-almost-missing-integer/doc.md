@@ -5,80 +5,45 @@
 | Source | LeetCode |
 | Frontend ID | 3471 |
 | Difficulty | Easy |
-| Category | Algorithms |
 | Topics | Array, Hash Table |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [find-the-largest-almost-missing-integer](https://leetcode.com/problems/find-the-largest-almost-missing-integer/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/find-the-largest-almost-missing-integer/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/find-the-largest-almost-missing-integer/).
-
 ### Goal
-Given an integer array `nums` and an integer `k`, identify the largest integer that appears in exactly one subarray of length `k`. If no such integer exists, return -1.
+You are given an integer array `nums` and an integer `k`. Consider every contiguous subarray whose length is exactly `k`. An integer is **almost missing** when it appears in exactly one of those subarrays. A value is counted once for a particular subarray even if that subarray contains the value at multiple positions; the condition concerns how many distinct size-`k` subarrays contain it.
+
+Return the largest almost missing integer. If every value occurs in either zero or at least two size-`k` subarrays, return `-1`. The full range of valid window positions must be considered, including the special cases in which each window has one element or the only window covers the entire array.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: A list of integers.
-- `k`: An integer representing the length of the subarrays to consider.
+- `nums`: The integer array to examine.
+- `k`: The exact length of every considered subarray.
+
+Let $n=\lvert\texttt{nums}\rvert$. The constraints are $1\le n\le50$, $0\le\texttt{nums[i]}\le50$, and $1\le k\le n$.
 
 **Return value**
 
-- An integer representing the largest value that appears in exactly one subarray of length `k`, or -1 if no such value exists.
+Return the largest value contained in exactly one size-`k` subarray, or `-1` if no such value exists.
 
 ### Examples
 **Example 1**
 
-- Input: `nums = [3, 9, 2, 1, 7], k = 3`
+- Input: `nums = [3,9,2,1,7], k = 3`
 - Output: `7`
+
+The value `7` occurs only in `[2,1,7]`. Although `3` also belongs to exactly one window, `7` is larger.
 
 **Example 2**
 
-- Input: `nums = [3, 9, 7, 2, 1, 7], k = 2`
+- Input: `nums = [3,9,7,2,1,7], k = 4`
 - Output: `3`
+
+Only `3` occurs in one size-four subarray. The repeated value `7` is present in all three windows.
 
 **Example 3**
 
-- Input: `nums = [0, 0], k = 1`
+- Input: `nums = [0,0], k = 1`
 - Output: `-1`
 
----
-
-## Solution
-### Approach
-The problem is solved using a frequency counting approach. We iterate through all possible subarrays of length `k` using a sliding window or simple slicing. For each subarray, we count the occurrences of its elements. We then track how many distinct subarrays each unique integer appears in. Finally, we filter for integers that appear in exactly one subarray and return the maximum among them.
-
-### Complexity Analysis
-- **Time Complexity**: O(n * k), where n is the length of the array. We iterate through n-k+1 subarrays, and for each, we process k elements.
-- **Space Complexity**: O(n), as we store the frequency of each integer across the subarrays in a hash map.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-from collections import defaultdict
-
-def solve(nums: list[int], k: int) -> int:
-    # Map to store how many subarrays of length k contain a specific number
-    count_map = defaultdict(int)
-    n = len(nums)
-
-    # Iterate through all possible subarrays of length k
-    for i in range(n - k + 1):
-        subarray = nums[i : i + k]
-        # Use a set to ensure we only count the number once per subarray
-        unique_elements = set(subarray)
-        for val in unique_elements:
-            count_map[val] += 1
-
-    # Find the largest number that appeared in exactly one subarray
-    max_val = -1
-    for val, count in count_map.items():
-        if count == 1:
-            if val > max_val:
-                max_val = val
-
-    return max_val
-```
-</details>
+Each singleton window contains one zero, so zero appears in two distinct windows.

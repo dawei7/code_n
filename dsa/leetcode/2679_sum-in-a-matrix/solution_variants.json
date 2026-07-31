@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum in a Matrix and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts every row once, then sums the maximum aligned order statistic in each column.",
+      "time_complexity": "O(mn log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

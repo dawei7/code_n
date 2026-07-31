@@ -1,0 +1,2020 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3338",
+  "measurement_note": "Size is n, the number of employee rows. Each three-row department contains one highest earner and two tied second-highest earners; a window rank processes the corpus with partition sorting, while correlated per-employee salary searches repeatedly rescan departments.",
+  "cases": [
+    {
+      "id": "benchmark-tied-second-12-rows",
+      "name": "benchmark: rank tied second salaries across 4 departments",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "emp_id": 3,
+              "salary": 100000,
+              "dept": "Dept 000"
+            },
+            {
+              "emp_id": 1,
+              "salary": 90000,
+              "dept": "Dept 000"
+            },
+            {
+              "emp_id": 2,
+              "salary": 90000,
+              "dept": "Dept 000"
+            },
+            {
+              "emp_id": 6,
+              "salary": 100001,
+              "dept": "Dept 001"
+            },
+            {
+              "emp_id": 4,
+              "salary": 90001,
+              "dept": "Dept 001"
+            },
+            {
+              "emp_id": 5,
+              "salary": 90001,
+              "dept": "Dept 001"
+            },
+            {
+              "emp_id": 9,
+              "salary": 100002,
+              "dept": "Dept 002"
+            },
+            {
+              "emp_id": 7,
+              "salary": 90002,
+              "dept": "Dept 002"
+            },
+            {
+              "emp_id": 8,
+              "salary": 90002,
+              "dept": "Dept 002"
+            },
+            {
+              "emp_id": 12,
+              "salary": 100003,
+              "dept": "Dept 003"
+            },
+            {
+              "emp_id": 10,
+              "salary": 90003,
+              "dept": "Dept 003"
+            },
+            {
+              "emp_id": 11,
+              "salary": 90003,
+              "dept": "Dept 003"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "emp_id",
+          "dept"
+        ],
+        "rows": [
+          [
+            1,
+            "Dept 000"
+          ],
+          [
+            2,
+            "Dept 000"
+          ],
+          [
+            4,
+            "Dept 001"
+          ],
+          [
+            5,
+            "Dept 001"
+          ],
+          [
+            7,
+            "Dept 002"
+          ],
+          [
+            8,
+            "Dept 002"
+          ],
+          [
+            10,
+            "Dept 003"
+          ],
+          [
+            11,
+            "Dept 003"
+          ]
+        ]
+      },
+      "size": 12,
+      "tags": [
+        "benchmark",
+        "dense-rank",
+        "many-departments",
+        "correlated-rescans"
+      ]
+    },
+    {
+      "id": "benchmark-tied-second-48-rows",
+      "name": "benchmark: rank tied second salaries across 16 departments",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "emp_id": 3,
+              "salary": 100000,
+              "dept": "Dept 000"
+            },
+            {
+              "emp_id": 1,
+              "salary": 90000,
+              "dept": "Dept 000"
+            },
+            {
+              "emp_id": 2,
+              "salary": 90000,
+              "dept": "Dept 000"
+            },
+            {
+              "emp_id": 6,
+              "salary": 100001,
+              "dept": "Dept 001"
+            },
+            {
+              "emp_id": 4,
+              "salary": 90001,
+              "dept": "Dept 001"
+            },
+            {
+              "emp_id": 5,
+              "salary": 90001,
+              "dept": "Dept 001"
+            },
+            {
+              "emp_id": 9,
+              "salary": 100002,
+              "dept": "Dept 002"
+            },
+            {
+              "emp_id": 7,
+              "salary": 90002,
+              "dept": "Dept 002"
+            },
+            {
+              "emp_id": 8,
+              "salary": 90002,
+              "dept": "Dept 002"
+            },
+            {
+              "emp_id": 12,
+              "salary": 100003,
+              "dept": "Dept 003"
+            },
+            {
+              "emp_id": 10,
+              "salary": 90003,
+              "dept": "Dept 003"
+            },
+            {
+              "emp_id": 11,
+              "salary": 90003,
+              "dept": "Dept 003"
+            },
+            {
+              "emp_id": 15,
+              "salary": 100004,
+              "dept": "Dept 004"
+            },
+            {
+              "emp_id": 13,
+              "salary": 90004,
+              "dept": "Dept 004"
+            },
+            {
+              "emp_id": 14,
+              "salary": 90004,
+              "dept": "Dept 004"
+            },
+            {
+              "emp_id": 18,
+              "salary": 100005,
+              "dept": "Dept 005"
+            },
+            {
+              "emp_id": 16,
+              "salary": 90005,
+              "dept": "Dept 005"
+            },
+            {
+              "emp_id": 17,
+              "salary": 90005,
+              "dept": "Dept 005"
+            },
+            {
+              "emp_id": 21,
+              "salary": 100006,
+              "dept": "Dept 006"
+            },
+            {
+              "emp_id": 19,
+              "salary": 90006,
+              "dept": "Dept 006"
+            },
+            {
+              "emp_id": 20,
+              "salary": 90006,
+              "dept": "Dept 006"
+            },
+            {
+              "emp_id": 24,
+              "salary": 100007,
+              "dept": "Dept 007"
+            },
+            {
+              "emp_id": 22,
+              "salary": 90007,
+              "dept": "Dept 007"
+            },
+            {
+              "emp_id": 23,
+              "salary": 90007,
+              "dept": "Dept 007"
+            },
+            {
+              "emp_id": 27,
+              "salary": 100008,
+              "dept": "Dept 008"
+            },
+            {
+              "emp_id": 25,
+              "salary": 90008,
+              "dept": "Dept 008"
+            },
+            {
+              "emp_id": 26,
+              "salary": 90008,
+              "dept": "Dept 008"
+            },
+            {
+              "emp_id": 30,
+              "salary": 100009,
+              "dept": "Dept 009"
+            },
+            {
+              "emp_id": 28,
+              "salary": 90009,
+              "dept": "Dept 009"
+            },
+            {
+              "emp_id": 29,
+              "salary": 90009,
+              "dept": "Dept 009"
+            },
+            {
+              "emp_id": 33,
+              "salary": 100010,
+              "dept": "Dept 010"
+            },
+            {
+              "emp_id": 31,
+              "salary": 90010,
+              "dept": "Dept 010"
+            },
+            {
+              "emp_id": 32,
+              "salary": 90010,
+              "dept": "Dept 010"
+            },
+            {
+              "emp_id": 36,
+              "salary": 100011,
+              "dept": "Dept 011"
+            },
+            {
+              "emp_id": 34,
+              "salary": 90011,
+              "dept": "Dept 011"
+            },
+            {
+              "emp_id": 35,
+              "salary": 90011,
+              "dept": "Dept 011"
+            },
+            {
+              "emp_id": 39,
+              "salary": 100012,
+              "dept": "Dept 012"
+            },
+            {
+              "emp_id": 37,
+              "salary": 90012,
+              "dept": "Dept 012"
+            },
+            {
+              "emp_id": 38,
+              "salary": 90012,
+              "dept": "Dept 012"
+            },
+            {
+              "emp_id": 42,
+              "salary": 100013,
+              "dept": "Dept 013"
+            },
+            {
+              "emp_id": 40,
+              "salary": 90013,
+              "dept": "Dept 013"
+            },
+            {
+              "emp_id": 41,
+              "salary": 90013,
+              "dept": "Dept 013"
+            },
+            {
+              "emp_id": 45,
+              "salary": 100014,
+              "dept": "Dept 014"
+            },
+            {
+              "emp_id": 43,
+              "salary": 90014,
+              "dept": "Dept 014"
+            },
+            {
+              "emp_id": 44,
+              "salary": 90014,
+              "dept": "Dept 014"
+            },
+            {
+              "emp_id": 48,
+              "salary": 100015,
+              "dept": "Dept 015"
+            },
+            {
+              "emp_id": 46,
+              "salary": 90015,
+              "dept": "Dept 015"
+            },
+            {
+              "emp_id": 47,
+              "salary": 90015,
+              "dept": "Dept 015"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "emp_id",
+          "dept"
+        ],
+        "rows": [
+          [
+            1,
+            "Dept 000"
+          ],
+          [
+            2,
+            "Dept 000"
+          ],
+          [
+            4,
+            "Dept 001"
+          ],
+          [
+            5,
+            "Dept 001"
+          ],
+          [
+            7,
+            "Dept 002"
+          ],
+          [
+            8,
+            "Dept 002"
+          ],
+          [
+            10,
+            "Dept 003"
+          ],
+          [
+            11,
+            "Dept 003"
+          ],
+          [
+            13,
+            "Dept 004"
+          ],
+          [
+            14,
+            "Dept 004"
+          ],
+          [
+            16,
+            "Dept 005"
+          ],
+          [
+            17,
+            "Dept 005"
+          ],
+          [
+            19,
+            "Dept 006"
+          ],
+          [
+            20,
+            "Dept 006"
+          ],
+          [
+            22,
+            "Dept 007"
+          ],
+          [
+            23,
+            "Dept 007"
+          ],
+          [
+            25,
+            "Dept 008"
+          ],
+          [
+            26,
+            "Dept 008"
+          ],
+          [
+            28,
+            "Dept 009"
+          ],
+          [
+            29,
+            "Dept 009"
+          ],
+          [
+            31,
+            "Dept 010"
+          ],
+          [
+            32,
+            "Dept 010"
+          ],
+          [
+            34,
+            "Dept 011"
+          ],
+          [
+            35,
+            "Dept 011"
+          ],
+          [
+            37,
+            "Dept 012"
+          ],
+          [
+            38,
+            "Dept 012"
+          ],
+          [
+            40,
+            "Dept 013"
+          ],
+          [
+            41,
+            "Dept 013"
+          ],
+          [
+            43,
+            "Dept 014"
+          ],
+          [
+            44,
+            "Dept 014"
+          ],
+          [
+            46,
+            "Dept 015"
+          ],
+          [
+            47,
+            "Dept 015"
+          ]
+        ]
+      },
+      "size": 48,
+      "tags": [
+        "benchmark",
+        "dense-rank",
+        "many-departments",
+        "correlated-rescans"
+      ]
+    },
+    {
+      "id": "benchmark-tied-second-192-rows",
+      "name": "benchmark: rank tied second salaries across 64 departments",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "tables": {
+          "employees": [
+            {
+              "emp_id": 3,
+              "salary": 100000,
+              "dept": "Dept 000"
+            },
+            {
+              "emp_id": 1,
+              "salary": 90000,
+              "dept": "Dept 000"
+            },
+            {
+              "emp_id": 2,
+              "salary": 90000,
+              "dept": "Dept 000"
+            },
+            {
+              "emp_id": 6,
+              "salary": 100001,
+              "dept": "Dept 001"
+            },
+            {
+              "emp_id": 4,
+              "salary": 90001,
+              "dept": "Dept 001"
+            },
+            {
+              "emp_id": 5,
+              "salary": 90001,
+              "dept": "Dept 001"
+            },
+            {
+              "emp_id": 9,
+              "salary": 100002,
+              "dept": "Dept 002"
+            },
+            {
+              "emp_id": 7,
+              "salary": 90002,
+              "dept": "Dept 002"
+            },
+            {
+              "emp_id": 8,
+              "salary": 90002,
+              "dept": "Dept 002"
+            },
+            {
+              "emp_id": 12,
+              "salary": 100003,
+              "dept": "Dept 003"
+            },
+            {
+              "emp_id": 10,
+              "salary": 90003,
+              "dept": "Dept 003"
+            },
+            {
+              "emp_id": 11,
+              "salary": 90003,
+              "dept": "Dept 003"
+            },
+            {
+              "emp_id": 15,
+              "salary": 100004,
+              "dept": "Dept 004"
+            },
+            {
+              "emp_id": 13,
+              "salary": 90004,
+              "dept": "Dept 004"
+            },
+            {
+              "emp_id": 14,
+              "salary": 90004,
+              "dept": "Dept 004"
+            },
+            {
+              "emp_id": 18,
+              "salary": 100005,
+              "dept": "Dept 005"
+            },
+            {
+              "emp_id": 16,
+              "salary": 90005,
+              "dept": "Dept 005"
+            },
+            {
+              "emp_id": 17,
+              "salary": 90005,
+              "dept": "Dept 005"
+            },
+            {
+              "emp_id": 21,
+              "salary": 100006,
+              "dept": "Dept 006"
+            },
+            {
+              "emp_id": 19,
+              "salary": 90006,
+              "dept": "Dept 006"
+            },
+            {
+              "emp_id": 20,
+              "salary": 90006,
+              "dept": "Dept 006"
+            },
+            {
+              "emp_id": 24,
+              "salary": 100007,
+              "dept": "Dept 007"
+            },
+            {
+              "emp_id": 22,
+              "salary": 90007,
+              "dept": "Dept 007"
+            },
+            {
+              "emp_id": 23,
+              "salary": 90007,
+              "dept": "Dept 007"
+            },
+            {
+              "emp_id": 27,
+              "salary": 100008,
+              "dept": "Dept 008"
+            },
+            {
+              "emp_id": 25,
+              "salary": 90008,
+              "dept": "Dept 008"
+            },
+            {
+              "emp_id": 26,
+              "salary": 90008,
+              "dept": "Dept 008"
+            },
+            {
+              "emp_id": 30,
+              "salary": 100009,
+              "dept": "Dept 009"
+            },
+            {
+              "emp_id": 28,
+              "salary": 90009,
+              "dept": "Dept 009"
+            },
+            {
+              "emp_id": 29,
+              "salary": 90009,
+              "dept": "Dept 009"
+            },
+            {
+              "emp_id": 33,
+              "salary": 100010,
+              "dept": "Dept 010"
+            },
+            {
+              "emp_id": 31,
+              "salary": 90010,
+              "dept": "Dept 010"
+            },
+            {
+              "emp_id": 32,
+              "salary": 90010,
+              "dept": "Dept 010"
+            },
+            {
+              "emp_id": 36,
+              "salary": 100011,
+              "dept": "Dept 011"
+            },
+            {
+              "emp_id": 34,
+              "salary": 90011,
+              "dept": "Dept 011"
+            },
+            {
+              "emp_id": 35,
+              "salary": 90011,
+              "dept": "Dept 011"
+            },
+            {
+              "emp_id": 39,
+              "salary": 100012,
+              "dept": "Dept 012"
+            },
+            {
+              "emp_id": 37,
+              "salary": 90012,
+              "dept": "Dept 012"
+            },
+            {
+              "emp_id": 38,
+              "salary": 90012,
+              "dept": "Dept 012"
+            },
+            {
+              "emp_id": 42,
+              "salary": 100013,
+              "dept": "Dept 013"
+            },
+            {
+              "emp_id": 40,
+              "salary": 90013,
+              "dept": "Dept 013"
+            },
+            {
+              "emp_id": 41,
+              "salary": 90013,
+              "dept": "Dept 013"
+            },
+            {
+              "emp_id": 45,
+              "salary": 100014,
+              "dept": "Dept 014"
+            },
+            {
+              "emp_id": 43,
+              "salary": 90014,
+              "dept": "Dept 014"
+            },
+            {
+              "emp_id": 44,
+              "salary": 90014,
+              "dept": "Dept 014"
+            },
+            {
+              "emp_id": 48,
+              "salary": 100015,
+              "dept": "Dept 015"
+            },
+            {
+              "emp_id": 46,
+              "salary": 90015,
+              "dept": "Dept 015"
+            },
+            {
+              "emp_id": 47,
+              "salary": 90015,
+              "dept": "Dept 015"
+            },
+            {
+              "emp_id": 51,
+              "salary": 100016,
+              "dept": "Dept 016"
+            },
+            {
+              "emp_id": 49,
+              "salary": 90016,
+              "dept": "Dept 016"
+            },
+            {
+              "emp_id": 50,
+              "salary": 90016,
+              "dept": "Dept 016"
+            },
+            {
+              "emp_id": 54,
+              "salary": 100017,
+              "dept": "Dept 017"
+            },
+            {
+              "emp_id": 52,
+              "salary": 90017,
+              "dept": "Dept 017"
+            },
+            {
+              "emp_id": 53,
+              "salary": 90017,
+              "dept": "Dept 017"
+            },
+            {
+              "emp_id": 57,
+              "salary": 100018,
+              "dept": "Dept 018"
+            },
+            {
+              "emp_id": 55,
+              "salary": 90018,
+              "dept": "Dept 018"
+            },
+            {
+              "emp_id": 56,
+              "salary": 90018,
+              "dept": "Dept 018"
+            },
+            {
+              "emp_id": 60,
+              "salary": 100019,
+              "dept": "Dept 019"
+            },
+            {
+              "emp_id": 58,
+              "salary": 90019,
+              "dept": "Dept 019"
+            },
+            {
+              "emp_id": 59,
+              "salary": 90019,
+              "dept": "Dept 019"
+            },
+            {
+              "emp_id": 63,
+              "salary": 100020,
+              "dept": "Dept 020"
+            },
+            {
+              "emp_id": 61,
+              "salary": 90020,
+              "dept": "Dept 020"
+            },
+            {
+              "emp_id": 62,
+              "salary": 90020,
+              "dept": "Dept 020"
+            },
+            {
+              "emp_id": 66,
+              "salary": 100021,
+              "dept": "Dept 021"
+            },
+            {
+              "emp_id": 64,
+              "salary": 90021,
+              "dept": "Dept 021"
+            },
+            {
+              "emp_id": 65,
+              "salary": 90021,
+              "dept": "Dept 021"
+            },
+            {
+              "emp_id": 69,
+              "salary": 100022,
+              "dept": "Dept 022"
+            },
+            {
+              "emp_id": 67,
+              "salary": 90022,
+              "dept": "Dept 022"
+            },
+            {
+              "emp_id": 68,
+              "salary": 90022,
+              "dept": "Dept 022"
+            },
+            {
+              "emp_id": 72,
+              "salary": 100023,
+              "dept": "Dept 023"
+            },
+            {
+              "emp_id": 70,
+              "salary": 90023,
+              "dept": "Dept 023"
+            },
+            {
+              "emp_id": 71,
+              "salary": 90023,
+              "dept": "Dept 023"
+            },
+            {
+              "emp_id": 75,
+              "salary": 100024,
+              "dept": "Dept 024"
+            },
+            {
+              "emp_id": 73,
+              "salary": 90024,
+              "dept": "Dept 024"
+            },
+            {
+              "emp_id": 74,
+              "salary": 90024,
+              "dept": "Dept 024"
+            },
+            {
+              "emp_id": 78,
+              "salary": 100025,
+              "dept": "Dept 025"
+            },
+            {
+              "emp_id": 76,
+              "salary": 90025,
+              "dept": "Dept 025"
+            },
+            {
+              "emp_id": 77,
+              "salary": 90025,
+              "dept": "Dept 025"
+            },
+            {
+              "emp_id": 81,
+              "salary": 100026,
+              "dept": "Dept 026"
+            },
+            {
+              "emp_id": 79,
+              "salary": 90026,
+              "dept": "Dept 026"
+            },
+            {
+              "emp_id": 80,
+              "salary": 90026,
+              "dept": "Dept 026"
+            },
+            {
+              "emp_id": 84,
+              "salary": 100027,
+              "dept": "Dept 027"
+            },
+            {
+              "emp_id": 82,
+              "salary": 90027,
+              "dept": "Dept 027"
+            },
+            {
+              "emp_id": 83,
+              "salary": 90027,
+              "dept": "Dept 027"
+            },
+            {
+              "emp_id": 87,
+              "salary": 100028,
+              "dept": "Dept 028"
+            },
+            {
+              "emp_id": 85,
+              "salary": 90028,
+              "dept": "Dept 028"
+            },
+            {
+              "emp_id": 86,
+              "salary": 90028,
+              "dept": "Dept 028"
+            },
+            {
+              "emp_id": 90,
+              "salary": 100029,
+              "dept": "Dept 029"
+            },
+            {
+              "emp_id": 88,
+              "salary": 90029,
+              "dept": "Dept 029"
+            },
+            {
+              "emp_id": 89,
+              "salary": 90029,
+              "dept": "Dept 029"
+            },
+            {
+              "emp_id": 93,
+              "salary": 100030,
+              "dept": "Dept 030"
+            },
+            {
+              "emp_id": 91,
+              "salary": 90030,
+              "dept": "Dept 030"
+            },
+            {
+              "emp_id": 92,
+              "salary": 90030,
+              "dept": "Dept 030"
+            },
+            {
+              "emp_id": 96,
+              "salary": 100031,
+              "dept": "Dept 031"
+            },
+            {
+              "emp_id": 94,
+              "salary": 90031,
+              "dept": "Dept 031"
+            },
+            {
+              "emp_id": 95,
+              "salary": 90031,
+              "dept": "Dept 031"
+            },
+            {
+              "emp_id": 99,
+              "salary": 100032,
+              "dept": "Dept 032"
+            },
+            {
+              "emp_id": 97,
+              "salary": 90032,
+              "dept": "Dept 032"
+            },
+            {
+              "emp_id": 98,
+              "salary": 90032,
+              "dept": "Dept 032"
+            },
+            {
+              "emp_id": 102,
+              "salary": 100033,
+              "dept": "Dept 033"
+            },
+            {
+              "emp_id": 100,
+              "salary": 90033,
+              "dept": "Dept 033"
+            },
+            {
+              "emp_id": 101,
+              "salary": 90033,
+              "dept": "Dept 033"
+            },
+            {
+              "emp_id": 105,
+              "salary": 100034,
+              "dept": "Dept 034"
+            },
+            {
+              "emp_id": 103,
+              "salary": 90034,
+              "dept": "Dept 034"
+            },
+            {
+              "emp_id": 104,
+              "salary": 90034,
+              "dept": "Dept 034"
+            },
+            {
+              "emp_id": 108,
+              "salary": 100035,
+              "dept": "Dept 035"
+            },
+            {
+              "emp_id": 106,
+              "salary": 90035,
+              "dept": "Dept 035"
+            },
+            {
+              "emp_id": 107,
+              "salary": 90035,
+              "dept": "Dept 035"
+            },
+            {
+              "emp_id": 111,
+              "salary": 100036,
+              "dept": "Dept 036"
+            },
+            {
+              "emp_id": 109,
+              "salary": 90036,
+              "dept": "Dept 036"
+            },
+            {
+              "emp_id": 110,
+              "salary": 90036,
+              "dept": "Dept 036"
+            },
+            {
+              "emp_id": 114,
+              "salary": 100037,
+              "dept": "Dept 037"
+            },
+            {
+              "emp_id": 112,
+              "salary": 90037,
+              "dept": "Dept 037"
+            },
+            {
+              "emp_id": 113,
+              "salary": 90037,
+              "dept": "Dept 037"
+            },
+            {
+              "emp_id": 117,
+              "salary": 100038,
+              "dept": "Dept 038"
+            },
+            {
+              "emp_id": 115,
+              "salary": 90038,
+              "dept": "Dept 038"
+            },
+            {
+              "emp_id": 116,
+              "salary": 90038,
+              "dept": "Dept 038"
+            },
+            {
+              "emp_id": 120,
+              "salary": 100039,
+              "dept": "Dept 039"
+            },
+            {
+              "emp_id": 118,
+              "salary": 90039,
+              "dept": "Dept 039"
+            },
+            {
+              "emp_id": 119,
+              "salary": 90039,
+              "dept": "Dept 039"
+            },
+            {
+              "emp_id": 123,
+              "salary": 100040,
+              "dept": "Dept 040"
+            },
+            {
+              "emp_id": 121,
+              "salary": 90040,
+              "dept": "Dept 040"
+            },
+            {
+              "emp_id": 122,
+              "salary": 90040,
+              "dept": "Dept 040"
+            },
+            {
+              "emp_id": 126,
+              "salary": 100041,
+              "dept": "Dept 041"
+            },
+            {
+              "emp_id": 124,
+              "salary": 90041,
+              "dept": "Dept 041"
+            },
+            {
+              "emp_id": 125,
+              "salary": 90041,
+              "dept": "Dept 041"
+            },
+            {
+              "emp_id": 129,
+              "salary": 100042,
+              "dept": "Dept 042"
+            },
+            {
+              "emp_id": 127,
+              "salary": 90042,
+              "dept": "Dept 042"
+            },
+            {
+              "emp_id": 128,
+              "salary": 90042,
+              "dept": "Dept 042"
+            },
+            {
+              "emp_id": 132,
+              "salary": 100043,
+              "dept": "Dept 043"
+            },
+            {
+              "emp_id": 130,
+              "salary": 90043,
+              "dept": "Dept 043"
+            },
+            {
+              "emp_id": 131,
+              "salary": 90043,
+              "dept": "Dept 043"
+            },
+            {
+              "emp_id": 135,
+              "salary": 100044,
+              "dept": "Dept 044"
+            },
+            {
+              "emp_id": 133,
+              "salary": 90044,
+              "dept": "Dept 044"
+            },
+            {
+              "emp_id": 134,
+              "salary": 90044,
+              "dept": "Dept 044"
+            },
+            {
+              "emp_id": 138,
+              "salary": 100045,
+              "dept": "Dept 045"
+            },
+            {
+              "emp_id": 136,
+              "salary": 90045,
+              "dept": "Dept 045"
+            },
+            {
+              "emp_id": 137,
+              "salary": 90045,
+              "dept": "Dept 045"
+            },
+            {
+              "emp_id": 141,
+              "salary": 100046,
+              "dept": "Dept 046"
+            },
+            {
+              "emp_id": 139,
+              "salary": 90046,
+              "dept": "Dept 046"
+            },
+            {
+              "emp_id": 140,
+              "salary": 90046,
+              "dept": "Dept 046"
+            },
+            {
+              "emp_id": 144,
+              "salary": 100047,
+              "dept": "Dept 047"
+            },
+            {
+              "emp_id": 142,
+              "salary": 90047,
+              "dept": "Dept 047"
+            },
+            {
+              "emp_id": 143,
+              "salary": 90047,
+              "dept": "Dept 047"
+            },
+            {
+              "emp_id": 147,
+              "salary": 100048,
+              "dept": "Dept 048"
+            },
+            {
+              "emp_id": 145,
+              "salary": 90048,
+              "dept": "Dept 048"
+            },
+            {
+              "emp_id": 146,
+              "salary": 90048,
+              "dept": "Dept 048"
+            },
+            {
+              "emp_id": 150,
+              "salary": 100049,
+              "dept": "Dept 049"
+            },
+            {
+              "emp_id": 148,
+              "salary": 90049,
+              "dept": "Dept 049"
+            },
+            {
+              "emp_id": 149,
+              "salary": 90049,
+              "dept": "Dept 049"
+            },
+            {
+              "emp_id": 153,
+              "salary": 100050,
+              "dept": "Dept 050"
+            },
+            {
+              "emp_id": 151,
+              "salary": 90050,
+              "dept": "Dept 050"
+            },
+            {
+              "emp_id": 152,
+              "salary": 90050,
+              "dept": "Dept 050"
+            },
+            {
+              "emp_id": 156,
+              "salary": 100051,
+              "dept": "Dept 051"
+            },
+            {
+              "emp_id": 154,
+              "salary": 90051,
+              "dept": "Dept 051"
+            },
+            {
+              "emp_id": 155,
+              "salary": 90051,
+              "dept": "Dept 051"
+            },
+            {
+              "emp_id": 159,
+              "salary": 100052,
+              "dept": "Dept 052"
+            },
+            {
+              "emp_id": 157,
+              "salary": 90052,
+              "dept": "Dept 052"
+            },
+            {
+              "emp_id": 158,
+              "salary": 90052,
+              "dept": "Dept 052"
+            },
+            {
+              "emp_id": 162,
+              "salary": 100053,
+              "dept": "Dept 053"
+            },
+            {
+              "emp_id": 160,
+              "salary": 90053,
+              "dept": "Dept 053"
+            },
+            {
+              "emp_id": 161,
+              "salary": 90053,
+              "dept": "Dept 053"
+            },
+            {
+              "emp_id": 165,
+              "salary": 100054,
+              "dept": "Dept 054"
+            },
+            {
+              "emp_id": 163,
+              "salary": 90054,
+              "dept": "Dept 054"
+            },
+            {
+              "emp_id": 164,
+              "salary": 90054,
+              "dept": "Dept 054"
+            },
+            {
+              "emp_id": 168,
+              "salary": 100055,
+              "dept": "Dept 055"
+            },
+            {
+              "emp_id": 166,
+              "salary": 90055,
+              "dept": "Dept 055"
+            },
+            {
+              "emp_id": 167,
+              "salary": 90055,
+              "dept": "Dept 055"
+            },
+            {
+              "emp_id": 171,
+              "salary": 100056,
+              "dept": "Dept 056"
+            },
+            {
+              "emp_id": 169,
+              "salary": 90056,
+              "dept": "Dept 056"
+            },
+            {
+              "emp_id": 170,
+              "salary": 90056,
+              "dept": "Dept 056"
+            },
+            {
+              "emp_id": 174,
+              "salary": 100057,
+              "dept": "Dept 057"
+            },
+            {
+              "emp_id": 172,
+              "salary": 90057,
+              "dept": "Dept 057"
+            },
+            {
+              "emp_id": 173,
+              "salary": 90057,
+              "dept": "Dept 057"
+            },
+            {
+              "emp_id": 177,
+              "salary": 100058,
+              "dept": "Dept 058"
+            },
+            {
+              "emp_id": 175,
+              "salary": 90058,
+              "dept": "Dept 058"
+            },
+            {
+              "emp_id": 176,
+              "salary": 90058,
+              "dept": "Dept 058"
+            },
+            {
+              "emp_id": 180,
+              "salary": 100059,
+              "dept": "Dept 059"
+            },
+            {
+              "emp_id": 178,
+              "salary": 90059,
+              "dept": "Dept 059"
+            },
+            {
+              "emp_id": 179,
+              "salary": 90059,
+              "dept": "Dept 059"
+            },
+            {
+              "emp_id": 183,
+              "salary": 100060,
+              "dept": "Dept 060"
+            },
+            {
+              "emp_id": 181,
+              "salary": 90060,
+              "dept": "Dept 060"
+            },
+            {
+              "emp_id": 182,
+              "salary": 90060,
+              "dept": "Dept 060"
+            },
+            {
+              "emp_id": 186,
+              "salary": 100061,
+              "dept": "Dept 061"
+            },
+            {
+              "emp_id": 184,
+              "salary": 90061,
+              "dept": "Dept 061"
+            },
+            {
+              "emp_id": 185,
+              "salary": 90061,
+              "dept": "Dept 061"
+            },
+            {
+              "emp_id": 189,
+              "salary": 100062,
+              "dept": "Dept 062"
+            },
+            {
+              "emp_id": 187,
+              "salary": 90062,
+              "dept": "Dept 062"
+            },
+            {
+              "emp_id": 188,
+              "salary": 90062,
+              "dept": "Dept 062"
+            },
+            {
+              "emp_id": 192,
+              "salary": 100063,
+              "dept": "Dept 063"
+            },
+            {
+              "emp_id": 190,
+              "salary": 90063,
+              "dept": "Dept 063"
+            },
+            {
+              "emp_id": 191,
+              "salary": 90063,
+              "dept": "Dept 063"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "emp_id",
+          "dept"
+        ],
+        "rows": [
+          [
+            1,
+            "Dept 000"
+          ],
+          [
+            2,
+            "Dept 000"
+          ],
+          [
+            4,
+            "Dept 001"
+          ],
+          [
+            5,
+            "Dept 001"
+          ],
+          [
+            7,
+            "Dept 002"
+          ],
+          [
+            8,
+            "Dept 002"
+          ],
+          [
+            10,
+            "Dept 003"
+          ],
+          [
+            11,
+            "Dept 003"
+          ],
+          [
+            13,
+            "Dept 004"
+          ],
+          [
+            14,
+            "Dept 004"
+          ],
+          [
+            16,
+            "Dept 005"
+          ],
+          [
+            17,
+            "Dept 005"
+          ],
+          [
+            19,
+            "Dept 006"
+          ],
+          [
+            20,
+            "Dept 006"
+          ],
+          [
+            22,
+            "Dept 007"
+          ],
+          [
+            23,
+            "Dept 007"
+          ],
+          [
+            25,
+            "Dept 008"
+          ],
+          [
+            26,
+            "Dept 008"
+          ],
+          [
+            28,
+            "Dept 009"
+          ],
+          [
+            29,
+            "Dept 009"
+          ],
+          [
+            31,
+            "Dept 010"
+          ],
+          [
+            32,
+            "Dept 010"
+          ],
+          [
+            34,
+            "Dept 011"
+          ],
+          [
+            35,
+            "Dept 011"
+          ],
+          [
+            37,
+            "Dept 012"
+          ],
+          [
+            38,
+            "Dept 012"
+          ],
+          [
+            40,
+            "Dept 013"
+          ],
+          [
+            41,
+            "Dept 013"
+          ],
+          [
+            43,
+            "Dept 014"
+          ],
+          [
+            44,
+            "Dept 014"
+          ],
+          [
+            46,
+            "Dept 015"
+          ],
+          [
+            47,
+            "Dept 015"
+          ],
+          [
+            49,
+            "Dept 016"
+          ],
+          [
+            50,
+            "Dept 016"
+          ],
+          [
+            52,
+            "Dept 017"
+          ],
+          [
+            53,
+            "Dept 017"
+          ],
+          [
+            55,
+            "Dept 018"
+          ],
+          [
+            56,
+            "Dept 018"
+          ],
+          [
+            58,
+            "Dept 019"
+          ],
+          [
+            59,
+            "Dept 019"
+          ],
+          [
+            61,
+            "Dept 020"
+          ],
+          [
+            62,
+            "Dept 020"
+          ],
+          [
+            64,
+            "Dept 021"
+          ],
+          [
+            65,
+            "Dept 021"
+          ],
+          [
+            67,
+            "Dept 022"
+          ],
+          [
+            68,
+            "Dept 022"
+          ],
+          [
+            70,
+            "Dept 023"
+          ],
+          [
+            71,
+            "Dept 023"
+          ],
+          [
+            73,
+            "Dept 024"
+          ],
+          [
+            74,
+            "Dept 024"
+          ],
+          [
+            76,
+            "Dept 025"
+          ],
+          [
+            77,
+            "Dept 025"
+          ],
+          [
+            79,
+            "Dept 026"
+          ],
+          [
+            80,
+            "Dept 026"
+          ],
+          [
+            82,
+            "Dept 027"
+          ],
+          [
+            83,
+            "Dept 027"
+          ],
+          [
+            85,
+            "Dept 028"
+          ],
+          [
+            86,
+            "Dept 028"
+          ],
+          [
+            88,
+            "Dept 029"
+          ],
+          [
+            89,
+            "Dept 029"
+          ],
+          [
+            91,
+            "Dept 030"
+          ],
+          [
+            92,
+            "Dept 030"
+          ],
+          [
+            94,
+            "Dept 031"
+          ],
+          [
+            95,
+            "Dept 031"
+          ],
+          [
+            97,
+            "Dept 032"
+          ],
+          [
+            98,
+            "Dept 032"
+          ],
+          [
+            100,
+            "Dept 033"
+          ],
+          [
+            101,
+            "Dept 033"
+          ],
+          [
+            103,
+            "Dept 034"
+          ],
+          [
+            104,
+            "Dept 034"
+          ],
+          [
+            106,
+            "Dept 035"
+          ],
+          [
+            107,
+            "Dept 035"
+          ],
+          [
+            109,
+            "Dept 036"
+          ],
+          [
+            110,
+            "Dept 036"
+          ],
+          [
+            112,
+            "Dept 037"
+          ],
+          [
+            113,
+            "Dept 037"
+          ],
+          [
+            115,
+            "Dept 038"
+          ],
+          [
+            116,
+            "Dept 038"
+          ],
+          [
+            118,
+            "Dept 039"
+          ],
+          [
+            119,
+            "Dept 039"
+          ],
+          [
+            121,
+            "Dept 040"
+          ],
+          [
+            122,
+            "Dept 040"
+          ],
+          [
+            124,
+            "Dept 041"
+          ],
+          [
+            125,
+            "Dept 041"
+          ],
+          [
+            127,
+            "Dept 042"
+          ],
+          [
+            128,
+            "Dept 042"
+          ],
+          [
+            130,
+            "Dept 043"
+          ],
+          [
+            131,
+            "Dept 043"
+          ],
+          [
+            133,
+            "Dept 044"
+          ],
+          [
+            134,
+            "Dept 044"
+          ],
+          [
+            136,
+            "Dept 045"
+          ],
+          [
+            137,
+            "Dept 045"
+          ],
+          [
+            139,
+            "Dept 046"
+          ],
+          [
+            140,
+            "Dept 046"
+          ],
+          [
+            142,
+            "Dept 047"
+          ],
+          [
+            143,
+            "Dept 047"
+          ],
+          [
+            145,
+            "Dept 048"
+          ],
+          [
+            146,
+            "Dept 048"
+          ],
+          [
+            148,
+            "Dept 049"
+          ],
+          [
+            149,
+            "Dept 049"
+          ],
+          [
+            151,
+            "Dept 050"
+          ],
+          [
+            152,
+            "Dept 050"
+          ],
+          [
+            154,
+            "Dept 051"
+          ],
+          [
+            155,
+            "Dept 051"
+          ],
+          [
+            157,
+            "Dept 052"
+          ],
+          [
+            158,
+            "Dept 052"
+          ],
+          [
+            160,
+            "Dept 053"
+          ],
+          [
+            161,
+            "Dept 053"
+          ],
+          [
+            163,
+            "Dept 054"
+          ],
+          [
+            164,
+            "Dept 054"
+          ],
+          [
+            166,
+            "Dept 055"
+          ],
+          [
+            167,
+            "Dept 055"
+          ],
+          [
+            169,
+            "Dept 056"
+          ],
+          [
+            170,
+            "Dept 056"
+          ],
+          [
+            172,
+            "Dept 057"
+          ],
+          [
+            173,
+            "Dept 057"
+          ],
+          [
+            175,
+            "Dept 058"
+          ],
+          [
+            176,
+            "Dept 058"
+          ],
+          [
+            178,
+            "Dept 059"
+          ],
+          [
+            179,
+            "Dept 059"
+          ],
+          [
+            181,
+            "Dept 060"
+          ],
+          [
+            182,
+            "Dept 060"
+          ],
+          [
+            184,
+            "Dept 061"
+          ],
+          [
+            185,
+            "Dept 061"
+          ],
+          [
+            187,
+            "Dept 062"
+          ],
+          [
+            188,
+            "Dept 062"
+          ],
+          [
+            190,
+            "Dept 063"
+          ],
+          [
+            191,
+            "Dept 063"
+          ]
+        ]
+      },
+      "size": 192,
+      "tags": [
+        "benchmark",
+        "dense-rank",
+        "many-departments",
+        "correlated-rescans"
+      ]
+    }
+  ]
+}

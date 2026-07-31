@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3610",
+  "measurement_note": "Size S is the target n, with m = 3 so the available primes are 2, 3, and 5 at every tier. Targets 16, 32, and 64 span 4x and require increasing numbers of repeated selections. The one-dimensional minimum-count DP visits each sum-prime pair once; a correct count-by-sum table that retains every possible number of selected terms performs an additional factor of n work and must fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-three-primes-16",
+      "name": "benchmark: target 16 with the first three primes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "n": 16,
+        "m": 3
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "three-prime-prefix",
+        "target-16"
+      ]
+    },
+    {
+      "id": "benchmark-three-primes-32",
+      "name": "benchmark: target 32 with the first three primes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 32,
+        "m": 3
+      },
+      "expected": 7,
+      "tags": [
+        "benchmark",
+        "three-prime-prefix",
+        "target-32"
+      ]
+    },
+    {
+      "id": "benchmark-three-primes-64",
+      "name": "benchmark: target 64 with the first three primes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 64,
+        "m": 3
+      },
+      "expected": 14,
+      "tags": [
+        "benchmark",
+        "three-prime-prefix",
+        "target-64"
+      ]
+    }
+  ]
+}

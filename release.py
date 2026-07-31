@@ -200,7 +200,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--patch", action="store_true",
-        help="Bump the patch version (0.1.0 -> 0.1.1) instead of minor.",
+        help="Bump the patch version (0.2.0 -> 0.2.1) instead of minor.",
     )
     parser.add_argument(
         "--set", dest="explicit", metavar="X.Y.Z",

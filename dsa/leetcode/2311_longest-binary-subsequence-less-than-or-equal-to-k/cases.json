@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2311",
+  "cases": [
+    {"id":"sample-five-bits","name":"sample: a length-five subsequence stays below five","kind":"sample","visible":true,"input":{"s":"1001010","k":5},"expected":5,"tags":["sample","greedy"]},
+    {"id":"sample-leading-zeroes","name":"sample: leading zeroes extend a value of one","kind":"sample","visible":true,"input":{"s":"00101001","k":1},"expected":6,"tags":["sample","leading-zeroes"]},
+    {"id":"trial-all-zeroes","name":"every zero can be retained","kind":"trial","visible":true,"input":{"s":"00000","k":1},"expected":5,"tags":["all-zeroes"]},
+    {"id":"trial-exact-limit","name":"the complete string equals the inclusive limit","kind":"trial","visible":true,"input":{"s":"101","k":5},"expected":3,"tags":["equality"]},
+    {"id":"trial-no-one-affordable","name":"only zeroes remain when all one weights are too large","kind":"trial","visible":true,"input":{"s":"1110","k":1},"expected":1,"tags":["unaffordable"]},
+    {"id":"real-single-one","name":"hidden: the minimum-length string fits","kind":"real","visible":false,"input":{"s":"1","k":1},"expected":1,"tags":["hidden","minimum"]},
+    {"id":"real-zeroes-before-one","name":"hidden: zeroes before a selected one remain free","kind":"real","visible":false,"input":{"s":"0001000","k":1},"expected":6,"tags":["hidden","leading-zeroes"]},
+    {"id":"real-skip-expensive-prefix","name":"hidden: an expensive prefix one is skipped without losing later bits","kind":"real","visible":false,"input":{"s":"110101","k":5},"expected":4,"tags":["hidden","skip-prefix"]}
+  ]
+}

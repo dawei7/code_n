@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2288",
+  "cases": [
+    {"id":"sample-half-price","name":"sample: discount only complete dollar-prefixed prices","kind":"sample","visible":true,"input":{"sentence":"there are $1 $2 and 5$ candies in the shop","discount":50},"expected":"there are $0.50 $1.00 and 5$ candies in the shop","tags":["sample","recognition"]},
+    {"id":"sample-full-discount","name":"sample: full discount preserves invalid price-like words","kind":"sample","visible":true,"input":{"sentence":"1 2 $3 4 $5 $6 7 8$ $9 $10$","discount":100},"expected":"1 2 $0.00 4 $0.00 $0.00 7 8$ $0.00 $10$","tags":["sample","full-discount"]},
+    {"id":"trial-zero-discount","name":"zero discount still writes two decimal places","kind":"trial","visible":true,"input":{"sentence":"pay $999 now","discount":0},"expected":"pay $999.00 now","tags":["zero-discount","formatting"]},
+    {"id":"trial-no-prices","name":"bare and mixed dollar tokens remain unchanged","kind":"trial","visible":true,"input":{"sentence":"$ 12$ $1e5 a$2 $3$","discount":25},"expected":"$ 12$ $1e5 a$2 $3$","tags":["invalid-tokens"]},
+    {"id":"trial-one-cent-fraction","name":"one dollar at a 33 percent discount becomes 67 cents","kind":"trial","visible":true,"input":{"sentence":"cost $1","discount":33},"expected":"cost $0.67","tags":["fractional-result"]},
+    {"id":"real-largest-price","name":"hidden: ten-digit price uses exact integer arithmetic","kind":"real","visible":false,"input":{"sentence":"deal $1000000000 today","discount":1},"expected":"deal $990000000.00 today","tags":["hidden","large-price"]},
+    {"id":"real-all-invalid","name":"hidden: dollar signs in the wrong position are untouched","kind":"real","visible":false,"input":{"sentence":"5$ x$5 $5x $5$","discount":100},"expected":"5$ x$5 $5x $5$","tags":["hidden","whole-token"]},
+    {"id":"real-mixed-rounding","name":"hidden: several exact cent remainders are padded","kind":"real","visible":false,"input":{"sentence":"save $7 and $20 but not 7$","discount":75},"expected":"save $1.75 and $5.00 but not 7$","tags":["hidden","formatting"]},
+    {"id":"real-single-price","name":"hidden: one fully discounted token","kind":"real","visible":false,"input":{"sentence":"$8","discount":100},"expected":"$0.00","tags":["hidden","single-token"]}
+  ]
+}

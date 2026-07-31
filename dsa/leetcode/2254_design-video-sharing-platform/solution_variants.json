@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Video Sharing Platform and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Stores active videos and counters by identifier while a min-heap supplies the smallest reusable identifier.",
+      "time_complexity": "O(Q log Q + C)",
+      "space_complexity": "O(U + Q)"
     }
   ]
 }

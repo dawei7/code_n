@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find All Possible Stable Binary Arrays II and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains counts by final bit and turns each bounded run sum into a constant-time add-and-subtract recurrence.",
+      "time_complexity": "O(zo)",
+      "space_complexity": "O(zo)"
     }
   ]
 }

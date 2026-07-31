@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3654",
+  "cases": [
+    {
+      "id": "sample-adjacent-pair",
+      "name": "sample: delete two adjacent ones",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "single-deletion"
+      ]
+    },
+    {
+      "id": "sample-repeated-deletions",
+      "name": "sample: two deletions leave five",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          1,
+          5
+        ],
+        "k": 3
+      },
+      "expected": 5,
+      "tags": [
+        "sample",
+        "repeated-deletions"
+      ]
+    },
+    {
+      "id": "trial-modulus-one",
+      "name": "trial: modulus one deletes entire array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "minimum-n",
+        "modulus-one"
+      ]
+    },
+    {
+      "id": "trial-whole-array",
+      "name": "trial: whole array sum is divisible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          8
+        ],
+        "k": 5
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "whole-array"
+      ]
+    },
+    {
+      "id": "trial-no-divisible-interval",
+      "name": "trial: no interval can be deleted",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 100
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "no-deletion"
+      ]
+    },
+    {
+      "id": "real-disjoint-intervals",
+      "name": "real: two disjoint intervals are deleted",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          5,
+          4,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "disjoint-intervals"
+      ]
+    },
+    {
+      "id": "real-merged-gap-deletion",
+      "name": "real: gap-closing sequence merges to original interval",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          1,
+          3,
+          2,
+          4,
+          1
+        ],
+        "k": 5
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "gap-closing"
+      ]
+    },
+    {
+      "id": "real-repeated-remainders",
+      "name": "real: best cost among repeated remainders matters",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          1,
+          6,
+          2,
+          5,
+          3,
+          4
+        ],
+        "k": 7
+      },
+      "expected": 8,
+      "tags": [
+        "real",
+        "repeated-remainders"
+      ]
+    },
+    {
+      "id": "real-singleton-deletions",
+      "name": "real: individually divisible values disappear",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          10,
+          3,
+          20,
+          7,
+          30
+        ],
+        "k": 10
+      },
+      "expected": 0,
+      "tags": [
+        "real",
+        "singleton-deletions"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: large retained sums use wide integer",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          999999,
+          1000000,
+          999998
+        ],
+        "k": 100000
+      },
+      "expected": 1999997,
+      "tags": [
+        "real",
+        "maximum-values"
+      ]
+    },
+    {
+      "id": "real-large-modulus-boundary",
+      "name": "real: modulus at maximum can delete exact sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          50000,
+          50000,
+          1
+        ],
+        "k": 100000
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "maximum-modulus"
+      ]
+    }
+  ]
+}

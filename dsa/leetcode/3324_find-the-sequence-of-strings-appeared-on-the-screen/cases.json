@@ -1,0 +1,216 @@
+{
+  "challenge_id": "lc_3324",
+  "cases": [
+    {
+      "id": "sample-abc",
+      "name": "sample: increasing target abc",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": "abc"
+      },
+      "expected": [
+        "a",
+        "aa",
+        "ab",
+        "aba",
+        "abb",
+        "abc"
+      ],
+      "tags": [
+        "sample",
+        "mixed"
+      ]
+    },
+    {
+      "id": "sample-he",
+      "name": "sample: target he",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "target": "he"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "ha",
+        "hb",
+        "hc",
+        "hd",
+        "he"
+      ],
+      "tags": [
+        "sample",
+        "increments"
+      ]
+    },
+    {
+      "id": "trial-single-a",
+      "name": "trial: single append without increments",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "a"
+      },
+      "expected": [
+        "a"
+      ],
+      "tags": [
+        "minimum",
+        "a"
+      ]
+    },
+    {
+      "id": "trial-single-z",
+      "name": "trial: full alphabet for one position",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "z"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ],
+      "tags": [
+        "alphabet-boundary",
+        "z"
+      ]
+    },
+    {
+      "id": "trial-repeated-b",
+      "name": "trial: every repeated position restarts at a",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "target": "bbb"
+      },
+      "expected": [
+        "a",
+        "b",
+        "ba",
+        "bb",
+        "bba",
+        "bbb"
+      ],
+      "tags": [
+        "repeated",
+        "restart"
+      ]
+    },
+    {
+      "id": "real-a-then-z",
+      "name": "real: zero increments followed by twenty-five",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "az"
+      },
+      "expected": [
+        "a",
+        "aa",
+        "ab",
+        "ac",
+        "ad",
+        "ae",
+        "af",
+        "ag",
+        "ah",
+        "ai",
+        "aj",
+        "ak",
+        "al",
+        "am",
+        "an",
+        "ao",
+        "ap",
+        "aq",
+        "ar",
+        "as",
+        "at",
+        "au",
+        "av",
+        "aw",
+        "ax",
+        "ay",
+        "az"
+      ],
+      "tags": [
+        "mixed-cost",
+        "hidden"
+      ]
+    },
+    {
+      "id": "real-z-then-a",
+      "name": "real: long first cycle then append only",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "target": "za"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "za"
+      ],
+      "tags": [
+        "prefix",
+        "hidden"
+      ]
+    }
+  ]
+}

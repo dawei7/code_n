@@ -1,13 +1,13 @@
 def solve(nums: list[int], k: int) -> int:
-    mod = 10**9 + 7
+    mod = 1_000_000_007
     dp = [0] * (k + 1)
     dp[0] = 1
 
     for value in nums:
-        nxt = [(count * 2) % mod for count in dp]
+        next_dp = [ways * 2 % mod for ways in dp]
         if value <= k:
             for total in range(value, k + 1):
-                nxt[total] = (nxt[total] + dp[total - value]) % mod
-        dp = nxt
+                next_dp[total] = (next_dp[total] + dp[total - value]) % mod
+        dp = next_dp
 
     return dp[k]

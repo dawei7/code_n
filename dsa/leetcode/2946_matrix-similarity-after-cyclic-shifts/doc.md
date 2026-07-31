@@ -8,81 +8,50 @@
 | Category | Algorithms |
 | Topics | Array, Math, Matrix, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [matrix-similarity-after-cyclic-shifts](https://leetcode.com/problems/matrix-similarity-after-cyclic-shifts/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/matrix-similarity-after-cyclic-shifts/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/matrix-similarity-after-cyclic-shifts/).
-
 ### Goal
-Determine if a matrix remains identical to its original state after performing cyclic shifts on its rows. Specifically, even-indexed rows are shifted to the left by `k` positions, and odd-indexed rows are shifted to the right by `k` positions. The matrix is considered "similar" if the shifted matrix is equal to the original matrix.
+You are given an $R\times C$ integer matrix `mat` with 0-indexed rows and a
+positive integer `k`. Repeat the following process `k` times: cyclically
+shift every even-indexed row one position to the left and every odd-indexed row
+one position to the right. A cyclic shift moves the element leaving one end
+back to the other end.
+
+Return `True` exactly when the matrix obtained after all `k` steps is
+identical, entry for entry, to the original matrix. Otherwise return `False`.
 
 ### Function Contract
 **Inputs**
 
-- `mat`: A 2D list of integers representing the matrix.
-- `k`: An integer representing the number of cyclic shifts to perform.
+- `mat`: the rectangular integer matrix
+- `k`: the number of alternating-direction cyclic-shift steps
+
+Let $R=\lvert\texttt{mat}\rvert$ and
+$C=\lvert\texttt{mat[0]}\rvert$. The contract guarantees
+$1\le R,C\le25$, $1\le\texttt{mat[i][j]}\le25$, and $1\le k\le50$.
 
 **Return value**
 
-- A boolean: `True` if the matrix is identical to its original state after the specified shifts, `False` otherwise.
+A boolean indicating whether the shifted matrix equals `mat`.
 
 ### Examples
 **Example 1**
 
-- Input: `mat = [[1,2,3],[4,5,6],[7,8,9]], k = 1`
+- Input: `mat = [[1,2,3],[4,5,6],[7,8,9]], k = 4`
 - Output: `False`
+- Explanation: Four steps are equivalent to one position modulo three, and
+  the rows are not invariant under that shift.
 
 **Example 2**
 
 - Input: `mat = [[1,2,1,2],[5,5,5,5],[6,3,6,3]], k = 2`
 - Output: `True`
+- Explanation: Each row repeats with a period compatible with a two-position
+  shift.
 
 **Example 3**
 
 - Input: `mat = [[2,2],[2,2]], k = 3`
 - Output: `True`
-
----
-
-## Solution
-### Approach
-The problem relies on the property of cyclic shifts in modular arithmetic. A cyclic shift of a row of length `n` by `k` positions is equivalent to a shift by `k % n`. For a matrix to remain unchanged after a shift, every element at index `j` must be equal to the element at the index it moves to after the shift. Mathematically, this implies that for every row, the element at `mat[i][j]` must equal `mat[i][(j + shift) % n]`.
-
-### Complexity Analysis
-- **Time Complexity**: `O(m * n)`, where `m` is the number of rows and `n` is the number of columns, as we must inspect every element in the matrix once.
-- **Space Complexity**: `O(1)`, as we perform the comparison in-place without allocating additional data structures proportional to the input size.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(mat: list[list[int]], k: int) -> bool:
-    """
-    Determines if the matrix is similar to itself after cyclic shifts.
-    Even rows are shifted left by k, odd rows are shifted right by k.
-    """
-    m = len(mat)
-    n = len(mat[0])
-
-    # The effective shift is k % n
-    shift = k % n
-
-    if shift == 0:
-        return True
-
-    for i in range(m):
-        for j in range(n):
-            # For even rows, left shift: new_idx = (j - shift) % n
-            # For odd rows, right shift: new_idx = (j + shift) % n
-            # We check if mat[i][j] == mat[i][new_idx]
-            if i % 2 == 0:
-                if mat[i][j] != mat[i][(j + shift) % n]:
-                    return False
-            else:
-                if mat[i][j] != mat[i][(j - shift) % n]:
-                    return False
-
-    return True
-```
-</details>
+- Explanation: Every row is constant, so no cyclic shift changes it.

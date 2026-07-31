@@ -1,38 +1,18 @@
-class TrieNode:
-    def __init__(self):
-        self.children = {}
+def solve(nums: list[int], k: int) -> list[int]:
+    result = [0] * k
+    ending = [0] * k
 
-def insert(root, val):
-    node = root
-    for i in range(31, -1, -1):
-        bit = (val >> i) & 1
-        if bit not in node.children:
-            node.children[bit] = TrieNode()
-        node = node.children[bit]
+    for value in nums:
+        remainder = value % k
+        next_ending = [0] * k
+        next_ending[remainder] += 1
 
-def query(root, val):
-    node = root
-    res = 0
-    for i in range(31, -1, -1):
-        bit = (val >> i) & 1
-        target = 1 - bit
-        if target in node.children:
-            res |= (1 << i)
-            node = node.children[target]
-        else:
-            node = node.children.get(bit, node)
-    return res
+        for previous, count in enumerate(ending):
+            next_ending[(previous * remainder) % k] += count
 
-def solve(nums: list[int]) -> int:
-    root = TrieNode()
-    insert(root, 0)
-    
-    max_xor = 0
-    current_prefix = 0
-    
-    for num in nums:
-        current_prefix ^= num
-        insert(root, current_prefix)
-        max_xor = max(max_xor, query(root, current_prefix))
-        
-    return max_xor
+        for x, count in enumerate(next_ending):
+            result[x] += count
+
+        ending = next_ending
+
+    return result

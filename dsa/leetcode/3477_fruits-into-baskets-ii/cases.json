@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3477",
   "cases": [
     {
       "id": "sample-one-unplaced",
-      "name": "sample: one fruit remains unplaced",
+      "name": "sample: one fruit type remains unplaced",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -20,13 +21,12 @@
       },
       "expected": 1,
       "tags": [
-        "sample",
-        "first-fit"
+        "sample"
       ]
     },
     {
       "id": "sample-all-placed",
-      "name": "sample: all fruits can be placed",
+      "name": "sample: every fruit type is placed",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -43,58 +43,223 @@
       },
       "expected": 0,
       "tags": [
-        "sample",
-        "all-placed"
+        "sample"
       ]
     },
     {
-      "id": "trial-leftmost-matters",
-      "name": "trial: leftmost basket choice matters",
+      "id": "trial-leftmost-not-best-fit",
+      "name": "trial: leftmost choice differs from best fit",
       "kind": "trial",
       "visible": true,
       "input": {
         "fruits": [
-          5,
-          4,
+          2,
           3
         ],
         "baskets": [
-          4,
-          5,
-          3
+          3,
+          2
         ]
       },
-      "expected": 0,
+      "expected": 1,
       "tags": [
         "trial",
         "leftmost"
       ]
     },
     {
-      "id": "real-mixed-capacities",
-      "name": "real: mixed capacities",
+      "id": "trial-exact-capacity",
+      "name": "trial: equal capacity qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "fruits": [
+          5,
+          4
+        ],
+        "baskets": [
+          5,
+          4
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "equality"
+      ]
+    },
+    {
+      "id": "real-all-unplaced",
+      "name": "hidden: every basket is too small",
       "kind": "real",
       "visible": false,
       "input": {
         "fruits": [
-          7,
-          2,
-          6,
-          4,
-          5
-        ],
-        "baskets": [
-          3,
-          8,
           5,
           6,
-          4
+          7
+        ],
+        "baskets": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "all-unplaced"
+      ]
+    },
+    {
+      "id": "real-no-reuse",
+      "name": "hidden: a sufficient basket cannot be reused",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          2,
+          2
+        ],
+        "baskets": [
+          2,
+          1
         ]
       },
       "expected": 1,
       "tags": [
-        "real",
-        "first-fit"
+        "hidden",
+        "basket-uniqueness"
+      ]
+    },
+    {
+      "id": "real-skip-insufficient-prefix",
+      "name": "hidden: scan past several small available baskets",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          8,
+          1,
+          7
+        ],
+        "baskets": [
+          2,
+          3,
+          9
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "prefix-scan"
+      ]
+    },
+    {
+      "id": "real-fruit-order-matters",
+      "name": "hidden: fruit processing order is preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          2,
+          4
+        ],
+        "baskets": [
+          4,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "fruit-order"
+      ]
+    },
+    {
+      "id": "real-duplicate-values",
+      "name": "hidden: duplicate quantities and capacities are distinct positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "baskets": [
+          3,
+          2,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-single-fit",
+      "name": "hidden: minimum length with an exact fit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          1
+        ],
+        "baskets": [
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-single-unfit",
+      "name": "hidden: minimum length with no fit",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          2
+        ],
+        "baskets": [
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-maximum-values",
+      "name": "hidden: legal maximum quantity and capacity",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "fruits": [
+          1000,
+          999,
+          1000
+        ],
+        "baskets": [
+          999,
+          1000,
+          1000
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "maximum-values"
       ]
     }
   ]

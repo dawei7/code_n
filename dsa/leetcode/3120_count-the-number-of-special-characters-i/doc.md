@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Hash Table, String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-the-number-of-special-characters-i](https://leetcode.com/problems/count-the-number-of-special-characters-i/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-the-number-of-special-characters-i/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-the-number-of-special-characters-i/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a string `word` made only of lowercase and uppercase English letters. A letter is special when both of its cases occur somewhere in `word`: for example, `a` contributes when the string contains at least one `a` and at least one `A`.
+
+Return the number of distinct special letters. Occurrence order does not matter, and repeated appearances of either case do not increase the count; each underlying English letter contributes either one or zero.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `word`: A string of lowercase and uppercase English letters.
+
+Its length $n$ satisfies $1 \le n \le 50$.
 
 **Return value**
 
-TODO
+Return the number of distinct letters whose lowercase and uppercase forms both appear in `word`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "aaAbcBC"`
+- Output: `3`
+- Explanation: The letters `a`, `b`, and `c` each occur in both cases.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `word = "abc"`
+- Output: `0`
+- Explanation: No uppercase form appears for any letter in the string.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `word = "abBCab"`
+- Output: `1`
+- Explanation: Only `b` occurs in both lowercase and uppercase.

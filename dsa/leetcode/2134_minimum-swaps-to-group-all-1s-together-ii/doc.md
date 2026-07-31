@@ -5,51 +5,42 @@
 | Source | LeetCode |
 | Frontend ID | 2134 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Sliding Window |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-swaps-to-group-all-1s-together-ii](https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/).
-
 ### Goal
-Find the minimum number of swaps needed to place all `1` values in one contiguous block when the binary array is circular. A swap may exchange values at any two positions.
+A swap exchanges the values at two distinct array positions. You are given a
+binary circular array, so its first and last elements are considered adjacent.
+
+Using swaps between any positions, group every `1` into one contiguous
+circular block at any location. Return the minimum number of swaps needed.
+The chosen block may cross the boundary between the end and beginning of the
+stored array.
 
 ### Function Contract
 **Inputs**
 
-- `nums`: a circular binary array.
+- `nums`: A binary array of length $n$, where $1\le n\le 10^5$.
 
 **Return value**
 
-The minimum number of swaps required.
+The minimum number of swaps required to place all ones in one circularly
+contiguous block.
 
 ### Examples
 **Example 1**
 
-- Input: `nums = [0, 1, 0, 1, 1, 0, 0]`
+- Input: `nums = [0,1,0,1,1,0,0]`
 - Output: `1`
 
 **Example 2**
 
-- Input: `nums = [0, 1, 1, 1, 0, 0, 1, 1, 0]`
+- Input: `nums = [0,1,1,1,0,0,1,1,0]`
 - Output: `2`
 
 **Example 3**
 
-- Input: `nums = [1, 1, 0, 0, 1]`
+- Input: `nums = [1,1,0,0,1]`
 - Output: `0`
-
----
-
-## Solution
-### Approach
-Let `k` be the total number of ones. Any final block has length `k`, and the number of swaps it needs equals the zeros currently inside that block. Use a fixed-size sliding window across the circular array, represented by modular indexing or a doubled scan, and minimize the zero count among all `n` windows.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Explanation: The ones already form one block across the circular boundary.

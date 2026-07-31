@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Math, Dynamic Programming |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [number-of-subarrays-having-even-product](https://leetcode.com/problems/number-of-subarrays-having-even-product/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/number-of-subarrays-having-even-product/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/number-of-subarrays-having-even-product/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given a 0-indexed integer array `nums`, count its non-empty contiguous subarrays whose element product is even.
+
+The product itself may become extremely large, but only its parity matters: a product is even exactly when at least one selected element is even. Return the total number of subarrays satisfying that condition.
+
+A subarray must use consecutive positions and contain at least one element; selecting scattered values or the empty range does not count. Each distinct pair of start and end indices defines a separate subarray, even when its values match another range.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: A list of positive integers, with $1 \leq \lvert\texttt{nums}\rvert \leq 10^5$ and $1 \leq \texttt{nums[i]} \leq 10^5$.
 
 **Return value**
 
-TODO
+Return an integer equal to the number of non-empty contiguous subarrays of `nums` having an even product.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [9, 6, 7, 13]`
+- Output: `6`
+- Explanation: Exactly the subarrays containing the value `6` have even products.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [7, 3, 5]`
+- Output: `0`
+- Explanation: Every element is odd, so every subarray product is odd.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [2, 4, 6]`
+- Output: `6`
+- Explanation: Every non-empty subarray contains an even element, so all $3 \cdot 4 / 2 = 6$ subarrays qualify.

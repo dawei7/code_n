@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2721",
+  "frontend_id": "2649",
+  "title_slug": "nested-array-generator",
+  "paid_only": false,
+  "language": "javascript",
+  "source": "solutions/leetcode_javascript.js",
+  "native_entrypoint": "inorderTraversal",
+  "verified_submission_id": "2076246133",
+  "verified_at": "2026-07-21T18:15:00+00:00"
+}

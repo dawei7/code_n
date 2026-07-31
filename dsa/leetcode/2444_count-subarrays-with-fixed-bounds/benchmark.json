@@ -1,28 +1,37 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_2444",
+  "measurement_note": "Size is n, the array length. Alternating 1 and 2 makes every subarray of length at least two valid. Last-seen indices count them in O(n) time, while enumerating all starts and ends with running extrema takes O(n^2) time.",
   "cases": [
     {
-      "id": "benchmark-many-valid-subarrays",
-      "name": "benchmark: many overlapping valid windows",
+      "id": "benchmark-scale-1",
+      "name": "benchmark: sixteen alternating bounds",
       "kind": "benchmark",
       "visible": false,
-      "input": {
-        "nums": [
-          1,
-          2,
-          5,
-          1,
-          5,
-          2,
-          1
-        ],
-        "min_k": 1,
-        "max_k": 5
-      },
-      "expected": 17,
-      "tags": [
-        "benchmark"
-      ]
+      "size": 16,
+      "input": {"nums": [1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2], "min_k": 1, "max_k": 2},
+      "expected": 120,
+      "tags": ["benchmark", "subarray-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: sixty-four alternating bounds",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums": [1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2], "min_k": 1, "max_k": 2},
+      "expected": 2016,
+      "tags": ["benchmark", "subarray-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: one hundred thirty-two alternating bounds",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 132,
+      "input": {"nums": [1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2], "min_k": 1, "max_k": 2},
+      "expected": 8646,
+      "tags": ["benchmark", "subarray-enumeration"]
     }
   ]
 }

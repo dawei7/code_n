@@ -8,76 +8,55 @@
 | Category | Algorithms |
 | Topics | Array, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximize-area-of-square-hole-in-grid](https://leetcode.com/problems/maximize-area-of-square-hole-in-grid/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximize-area-of-square-hole-in-grid/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximize-area-of-square-hole-in-grid/).
-
 ### Goal
-Given a grid defined by horizontal and vertical bars, identify the largest possible square hole that can be formed by removing a contiguous sequence of bars. A square hole is created by removing $k$ consecutive horizontal bars and $k$ consecutive vertical bars, resulting in a square of side length $k+1$.
+A grid contains $n+2$ horizontal bars and $m+2$ vertical bars, all indexed
+starting from $1$. Adjacent bars initially bound unit cells. The arrays
+`hBars` and `vBars` list the horizontal and vertical bars, respectively,
+that are permitted to be removed; every unlisted bar is fixed.
+
+Remove any subset of the permitted bars, possibly none, to create a
+square-shaped hole. Return the maximum possible area of such a square. Removing
+consecutive interior bars joins the unit strips on both sides, while gaps
+between removable indices leave fixed separators in place.
 
 ### Function Contract
 **Inputs**
 
-- `n`: An integer representing the number of horizontal bars (excluding the boundary).
-- `m`: An integer representing the number of vertical bars (excluding the boundary).
-- `hBars`: A list of integers representing the positions of horizontal bars.
-- `vBars`: A list of integers representing the positions of vertical bars.
+- `n`: two fewer than the number of horizontal grid bars
+- `m`: two fewer than the number of vertical grid bars
+- `hBars`: the distinct removable horizontal bar indices
+- `vBars`: the distinct removable vertical bar indices
+
+Let $H=\lvert\texttt{hBars}\rvert$ and
+$V=\lvert\texttt{vBars}\rvert$. The contract guarantees
+$1\le n,m\le10^9$, $1\le H,V\le100$, each horizontal index lies from $2$
+through $n+1$, and each vertical index lies from $2$ through $m+1$.
 
 **Return value**
 
-- An integer representing the maximum area of the square hole that can be formed.
+The maximum area of a square-shaped hole obtainable by removing only listed
+bars.
 
 ### Examples
 **Example 1**
 
-- Input: `n = 2, m = 1, hBars = [2, 3], vBars = [2]`
+- Input: `n = 2, m = 1, hBars = [2,3], vBars = [2]`
 - Output: `4`
+- Explanation: Removing one suitable bar in each direction creates a square
+  with side length `2`.
 
 **Example 2**
 
 - Input: `n = 1, m = 1, hBars = [2], vBars = [2]`
 - Output: `4`
+- Explanation: Removing both listed bars joins a two-by-two block of cells.
 
 **Example 3**
 
-- Input: `n = 2, m = 3, hBars = [2, 3], vBars = [2, 3, 4]`
-- Output: `9`
-
----
-
-## Solution
-### Approach
-The problem reduces to finding the longest sequence of consecutive integers in the provided bar lists. By sorting the bars and identifying the maximum number of consecutive segments, we determine the maximum side length $k+1$ of a square. The area is then the square of the minimum of the maximum consecutive horizontal and vertical segments.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \log N + M \log M)$, where $N$ and $M$ are the lengths of `hBars` and `vBars` respectively, due to the sorting step.
-- **Space Complexity**: $O(1)$ (excluding the input storage), as we only track the current and maximum consecutive sequences.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(n: int, m: int, hBars: list[int], vBars: list[int]) -> int:
-    def get_max_consecutive(bars: list[int]) -> int:
-        if not bars:
-            return 1
-        bars.sort()
-        max_seq = 1
-        current_seq = 1
-        for i in range(1, len(bars)):
-            if bars[i] == bars[i - 1] + 1:
-                current_seq += 1
-            else:
-                current_seq = 1
-            max_seq = max(max_seq, current_seq)
-        return max_seq + 1
-
-    max_h = get_max_consecutive(hBars)
-    max_v = get_max_consecutive(vBars)
-
-    side = min(max_h, max_v)
-    return side * side
-```
-</details>
+- Input: `n = 2, m = 3, hBars = [2,3], vBars = [2,4]`
+- Output: `4`
+- Explanation: The separated vertical indices cannot create a three-unit
+  opening, so the largest square has side length `2`.

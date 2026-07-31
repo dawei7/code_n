@@ -1,9 +1,10 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3209",
   "cases": [
     {
-      "id": "sample-zero-and",
-      "name": "sample: several subarrays AND to zero",
+      "id": "sample-all-ones",
+      "name": "sample: every nonempty subarray qualifies",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -16,90 +17,210 @@
       },
       "expected": 6,
       "tags": [
-        "sample",
-        "and"
+        "sample"
       ]
     },
     {
-      "id": "sample-target-two",
-      "name": "sample: target appears after extension",
+      "id": "sample-prefix-and-singletons",
+      "name": "sample: three subarrays have AND one",
       "kind": "sample",
       "visible": true,
       "input": {
         "nums": [
-          7,
-          3,
-          2,
-          6
+          1,
+          1,
+          2
         ],
-        "k": 2
+        "k": 1
       },
-      "expected": 6,
+      "expected": 3,
       "tags": [
-        "sample",
-        "bitwise"
+        "sample"
       ]
     },
     {
-      "id": "trial-zero-target",
-      "name": "trial: zero target with mixed bits",
+      "id": "sample-two-results",
+      "name": "sample: singleton and pair have AND two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "sample"
+      ]
+    },
+    {
+      "id": "trial-single-match",
+      "name": "trial: one element equals the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 7
+      },
+      "expected": 1,
+      "tags": [
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-single-miss",
+      "name": "trial: one element differs from the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          7
+        ],
+        "k": 3
+      },
+      "expected": 0,
+      "tags": [
+        "single-element"
+      ]
+    },
+    {
+      "id": "trial-zero-element",
+      "name": "trial: all subarrays containing zero reach zero",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
           5,
-          2,
-          7,
           0,
-          3
+          7
         ],
         "k": 0
       },
-      "expected": 10,
+      "expected": 4,
       "tags": [
         "zero"
       ]
     },
     {
-      "id": "trial-no-match",
-      "name": "trial: no subarray reaches target",
-      "kind": "trial",
-      "visible": true,
+      "id": "real-repeated-collapse",
+      "name": "real: repeated values accumulate frequencies",
+      "kind": "real",
+      "visible": false,
       "input": {
         "nums": [
-          8,
-          8,
-          8
+          12,
+          12,
+          12,
+          12
         ],
-        "k": 4
+        "k": 12
       },
-      "expected": 0,
+      "expected": 10,
       "tags": [
-        "edge"
+        "duplicates"
       ]
     },
     {
-      "id": "real-distinct-ands",
-      "name": "real: distinct AND states collapse quickly",
+      "id": "real-progressive-bit-clearing",
+      "name": "real: extensions successively clear target bits",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
           15,
+          14,
+          12,
+          8,
+          7
+        ],
+        "k": 8
+      },
+      "expected": 4,
+      "tags": [
+        "bit-clearing"
+      ]
+    },
+    {
+      "id": "real-multiple-state-merges",
+      "name": "real: different prior AND values merge at one endpoint",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
           7,
           3,
-          11,
-          5,
-          1,
-          13,
-          9
+          6,
+          2,
+          7,
+          2
         ],
-        "k": 1
+        "k": 2
       },
-      "expected": 22,
+      "expected": 16,
       "tags": [
-        "real",
-        "and-states"
+        "state-merging"
+      ]
+    },
+    {
+      "id": "real-impossible-target-bit",
+      "name": "real: a target bit absent from all numbers cannot appear",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          8,
+          12,
+          4,
+          0
+        ],
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "impossible-target"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "real: high legal bits are handled without truncation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000,
+          999999999,
+          536870911
+        ],
+        "k": 536870912
+      },
+      "expected": 0,
+      "tags": [
+        "value-boundary"
+      ]
+    },
+    {
+      "id": "real-many-zero-ands",
+      "name": "real: zero AND frequencies persist across later endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          8,
+          16
+        ],
+        "k": 0
+      },
+      "expected": 10,
+      "tags": [
+        "zero-target"
       ]
     }
   ]

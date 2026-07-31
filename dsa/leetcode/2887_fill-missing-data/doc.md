@@ -8,48 +8,43 @@
 | Category | pandas |
 | Topics | Uncategorized |
 | Supported Languages | python |
-| Official Link | [fill-missing-data](https://leetcode.com/problems/fill-missing-data/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/fill-missing-data/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/fill-missing-data/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+A product DataFrame contains the columns `name`, `quantity`, and `price`. Some rows have no stored value in the `quantity` column.
+
+Replace every missing quantity with `0`. Return the resulting DataFrame with the same columns and row order, preserving each product name, price, and every quantity that was already present. The correction is limited to missing values in `quantity`.
+
+No product row is added or removed by this cleanup.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `products`: A pandas DataFrame with an object column `name` and numeric columns `quantity` and `price`; `quantity` may contain missing values.
+
+Let $n$ be the number of product rows.
 
 **Return value**
 
-TODO
+Return the product DataFrame after replacing each missing value in `quantity` with `0`, without changing other cells.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `products = [{"name": "Wristwatch", "quantity": null, "price": 135}, {"name": "WirelessEarbuds", "quantity": null, "price": 821}, {"name": "GolfClubs", "quantity": 779, "price": 9319}, {"name": "Printer", "quantity": 849, "price": 3051}]`
+- Output: `[{"name": "Wristwatch", "quantity": 0, "price": 135}, {"name": "WirelessEarbuds", "quantity": 0, "price": 821}, {"name": "GolfClubs", "quantity": 779, "price": 9319}, {"name": "Printer", "quantity": 849, "price": 3051}]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `products = [{"name": "Cable", "quantity": null, "price": 12}, {"name": "Adapter", "quantity": null, "price": 19}]`
+- Output: `[{"name": "Cable", "quantity": 0, "price": 12}, {"name": "Adapter", "quantity": 0, "price": 19}]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `products = [{"name": "Notebook", "quantity": 4, "price": 7}, {"name": "Pen", "quantity": 25, "price": 2}]`
+- Output: `[{"name": "Notebook", "quantity": 4, "price": 7}, {"name": "Pen", "quantity": 25, "price": 2}]`

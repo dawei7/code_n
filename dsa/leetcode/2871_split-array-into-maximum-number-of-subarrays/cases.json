@@ -18,13 +18,13 @@
       },
       "tags": [
         "sample",
-        "bitwise-and"
+        "zero-and"
       ],
       "expected": 3
     },
     {
       "id": "sample-2",
-      "name": "sample: total AND positive forces one segment",
+      "name": "sample: positive global AND forces one segment",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -42,31 +42,28 @@
       "expected": 1
     },
     {
-      "id": "trial-all-zero-values",
-      "name": "trial: each zero can stand alone",
+      "id": "trial-single-zero",
+      "name": "trial: one zero is one zero-score segment",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          0,
-          0,
           0
         ]
       },
       "tags": [
         "trial",
-        "zeros"
+        "minimum-length"
       ],
-      "expected": 3
+      "expected": 1
     },
     {
-      "id": "trial-positive-identical-values",
-      "name": "trial: identical positive values still stay together",
+      "id": "trial-single-positive",
+      "name": "trial: one positive value remains one segment",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          7,
           7
         ]
       },
@@ -77,8 +74,65 @@
       "expected": 1
     },
     {
-      "id": "real-many-reset-points",
-      "name": "hidden: greedy resets whenever running AND reaches zero",
+      "id": "real-all-zeros",
+      "name": "hidden: every zero can form its own segment",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "tags": [
+        "hidden",
+        "maximum-splits"
+      ],
+      "expected": 4
+    },
+    {
+      "id": "real-positive-global-and",
+      "name": "hidden: repeated positive segment scores cannot match the minimum sum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          1,
+          3,
+          1
+        ]
+      },
+      "tags": [
+        "hidden",
+        "positive-and"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-one-late-reset",
+      "name": "hidden: the first zero AND appears only at the end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          7,
+          3,
+          1,
+          8
+        ]
+      },
+      "tags": [
+        "hidden",
+        "late-reset"
+      ],
+      "expected": 1
+    },
+    {
+      "id": "real-leftover-after-last-reset",
+      "name": "hidden: a nonzero suffix joins the final zero segment",
       "kind": "real",
       "visible": false,
       "input": {
@@ -97,7 +151,7 @@
       },
       "tags": [
         "hidden",
-        "greedy"
+        "leftover-suffix"
       ],
       "expected": 3
     }

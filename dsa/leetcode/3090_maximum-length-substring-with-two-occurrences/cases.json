@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3090",
+  "cases": [
+    {
+      "id": "sample-mixed",
+      "name": "sample: best substring ends after the central run",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "bcbbbcba"
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "mixed-characters"
+      ]
+    },
+    {
+      "id": "sample-single-letter",
+      "name": "sample: a repeated letter is capped at two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "aaaa"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single-letter"
+      ]
+    },
+    {
+      "id": "trial-whole-string",
+      "name": "trial: all distinct characters keep the whole string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abcdef"
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "whole-string",
+        "distinct"
+      ]
+    },
+    {
+      "id": "trial-exactly-two-each",
+      "name": "trial: two copies of each character remain valid",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aabbcc"
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "frequency-boundary"
+      ]
+    },
+    {
+      "id": "real-repair-one-character",
+      "name": "hidden: shrink only until the added character is valid",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abaccc"
+      },
+      "expected": 5,
+      "tags": [
+        "window-repair",
+        "third-occurrence"
+      ]
+    },
+    {
+      "id": "real-best-prefix",
+      "name": "hidden: optimum occurs before a trailing third copy",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ccaabbb"
+      },
+      "expected": 6,
+      "tags": [
+        "best-prefix",
+        "trailing-violation"
+      ]
+    },
+    {
+      "id": "real-three-cycles",
+      "name": "hidden: every third copy forces the oldest copy out",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcabcabc"
+      },
+      "expected": 6,
+      "tags": [
+        "repeated-cycle",
+        "multiple-repairs"
+      ]
+    },
+    {
+      "id": "real-best-before-end",
+      "name": "hidden: final characters do not improve the maximum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzxyzz"
+      },
+      "expected": 4,
+      "tags": [
+        "best-before-end",
+        "same-letter"
+      ]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Count Submatrices With Equal Frequency of X and Y and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Maintains vertical letter balances and scans horizontal prefixes for every anchored bottom-right corner.",
+      "time_complexity": "O(r c)",
+      "space_complexity": "O(c)"
     }
   ]
 }

@@ -1,0 +1,117 @@
+{
+  "challenge_id": "lc_2645",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: lone middle letter",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "b"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "single"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: repeated starts require separate groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "aaa"
+      },
+      "expected": 6,
+      "tags": [
+        "sample",
+        "repeated"
+      ]
+    },
+    {
+      "id": "sample-3",
+      "name": "sample: already one valid group",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abc"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "valid"
+      ]
+    },
+    {
+      "id": "trial-missing-middle",
+      "name": "trial: one letter missing inside a group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ac"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "gap"
+      ]
+    },
+    {
+      "id": "trial-descending",
+      "name": "trial: every adjacent pair starts a new group",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "cba"
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "boundaries"
+      ]
+    },
+    {
+      "id": "real-valid-multiple",
+      "name": "hidden: multiple complete groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abcabc"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "valid"
+      ]
+    },
+    {
+      "id": "real-cross-boundary",
+      "name": "hidden: one complete group followed by a start",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "abca"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "boundary"
+      ]
+    },
+    {
+      "id": "real-equal-middle-letters",
+      "name": "hidden: repeated middle letters split groups",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "bbb"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "repeated"
+      ]
+    }
+  ]
+}

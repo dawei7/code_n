@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3909",
+  "cases": [
+    {
+      "id": "sample-descending-greater",
+      "name": "sample: descending part has the larger sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          2,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "descending-greater",
+        "peak-counted-twice"
+      ]
+    },
+    {
+      "id": "sample-ascending-greater",
+      "name": "sample: ascending part has the larger sum",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          4,
+          5,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "ascending-greater",
+        "peak-counted-twice"
+      ]
+    },
+    {
+      "id": "sample-equal-sums",
+      "name": "sample: both inclusive part sums are equal",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          4,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "equal-sums",
+        "peak-counted-twice"
+      ]
+    },
+    {
+      "id": "trial-minimum-length-tie",
+      "name": "trial: minimum-length symmetric bitonic array",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          3,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "minimum-length",
+        "equal-sums"
+      ]
+    },
+    {
+      "id": "trial-long-ascending-side",
+      "name": "trial: a long ascending side outweighs one trailing value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          10,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "ascending-greater",
+        "peak-near-end"
+      ]
+    },
+    {
+      "id": "trial-long-descending-side",
+      "name": "trial: several descending values outweigh one prefix value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          10,
+          9,
+          8
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "descending-greater",
+        "peak-near-start"
+      ]
+    },
+    {
+      "id": "trial-peak-near-right",
+      "name": "trial: peak at the penultimate index",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          10,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "peak-near-end",
+        "ascending-greater"
+      ]
+    },
+    {
+      "id": "trial-cross-side-duplicates",
+      "name": "trial: values may repeat across opposite sides of the peak",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          4,
+          7,
+          6,
+          4,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "cross-side-duplicates",
+        "descending-greater"
+      ]
+    },
+    {
+      "id": "trial-billion-scale",
+      "name": "trial: three large values require wide sum arithmetic",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          999999998,
+          1000000000,
+          999999999
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "maximum-value",
+        "wide-sum"
+      ]
+    },
+    {
+      "id": "trial-nontrivial-tie",
+      "name": "trial: different side lengths have equal nonpeak sums",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          2,
+          5,
+          6,
+          4,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "equal-sums",
+        "different-lengths"
+      ]
+    },
+    {
+      "id": "hidden-billion-symmetric",
+      "name": "hidden: the maximum peak with equal endpoints ties",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1000000000,
+          1
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "maximum-peak",
+        "equal-sums"
+      ]
+    },
+    {
+      "id": "hidden-large-descending-tail",
+      "name": "hidden: one near-billion tail value dominates a small prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          1000000000,
+          999999999
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "descending-greater",
+        "large-values"
+      ]
+    },
+    {
+      "id": "hidden-large-ascending-prefix",
+      "name": "hidden: several large prefix values dominate a short tail",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          999999997,
+          999999998,
+          999999999,
+          1000000000,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "ascending-greater",
+        "large-values"
+      ]
+    },
+    {
+      "id": "hidden-mixed-descending",
+      "name": "hidden: descending tail wins after a three-value rise",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          6,
+          9,
+          8,
+          5,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "descending-greater",
+        "mixed-lengths"
+      ]
+    },
+    {
+      "id": "hidden-ascending-control",
+      "name": "hidden: a larger prepeak total wins despite several tail values",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          20,
+          30,
+          50,
+          40,
+          5,
+          1
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "ascending-greater",
+        "several-tail-values"
+      ]
+    }
+  ]
+}

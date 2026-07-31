@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3302",
+  "frontend_id": "2995",
+  "title_slug": "viewers-turned-streamers",
+  "paid_only": true,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "SQL query",
+  "verified_submission_id": "2078611259",
+  "verified_at": "2026-07-23T16:00:55.140230+00:00"
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Subtree Inversion Sum and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Run bottom-up tree DP over inherited sign parity and capped distance from the latest ancestor inversion.",
+      "time_complexity": "O(nk)",
+      "space_complexity": "O(nk)"
     }
   ]
 }

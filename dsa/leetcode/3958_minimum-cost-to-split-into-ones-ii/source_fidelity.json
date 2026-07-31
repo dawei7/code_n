@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3958",
+    "frontend_id": "3958",
+    "title_slug": "minimum-cost-to-split-into-ones-ii",
+    "url": "https://leetcode.com/problems/minimum-cost-to-split-into-ones-ii/description/",
+    "paid_only": true,
+    "content_sha256": "4d181bfd991506a595291c46f2a85f1da49fa6b7609d580871896191aea328c4",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 3", "output": "3", "has_explanation": true},
+      {"ordinal": 2, "input": "n = 4", "output": "6", "has_explanation": true}
+    ],
+    "constraint_count": 1,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 2,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 2,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "0e5996b4942555835212ac9d22670bd320609274a58aeacf8fc21e63e4c01ca0",
+      "reference/contract.md": "2ec6bf321d12b3fa86f5690d11f4f43d25edf13b5c31242c6bd1d596b665e695",
+      "reference/examples.md": "85ca25b281d37f717d3f9624d85e65b0958565ef065d57331e1198c129d579a8",
+      "reference/constraints.md": "c3ba53cfbbf3ddf2fd52b3c2f8355035daecd54465919e1541f7a3b31fc8ef2c"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

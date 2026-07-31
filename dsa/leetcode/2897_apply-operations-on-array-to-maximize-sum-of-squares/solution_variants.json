@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Apply Operations on Array to Maximize Sum of Squares and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts each bit's conserved occurrences and greedily concentrates them into the same first k values.",
+      "time_complexity": "O(n log V)",
+      "space_complexity": "O(log V)"
     }
   ]
 }

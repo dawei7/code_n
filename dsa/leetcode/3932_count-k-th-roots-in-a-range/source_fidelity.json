@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3932",
+    "frontend_id": "3932",
+    "title_slug": "count-k-th-roots-in-a-range",
+    "url": "https://leetcode.com/problems/count-k-th-roots-in-a-range/description/",
+    "paid_only": false,
+    "content_sha256": "d520caaafbc123a39207ce13cb8306ff59a8b7b45a028b28668d640321023af2",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "l = 1, r = 9, k = 3",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "l = 8, r = 30, k = 2",
+        "output": "3",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "48f3b021676afd3746e16246631d3aaf7b0c8c4f8f5efa65155cd99e60ab1ab9",
+      "reference/contract.md": "d35241f0eb98a8a55d475b5878d826262d18c91d283f64389630322b336a8532",
+      "reference/examples.md": "5a8995d22f229017dea76061219a78c723e5e0cc4231c04bd1c80737c82c8b40",
+      "reference/constraints.md": "67322660d46f0e30633e57f15e841d7d0d2d9d84c5f46596146d9fdea0b34f49"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

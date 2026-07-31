@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Overlapping Shifts and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sweeps ordered start and end events and sums the active earlier shifts at every start event.",
+      "time_complexity": "O(m log m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

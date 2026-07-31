@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4143",
+  "frontend_id": "3811",
+  "title_slug": "number-of-alternating-xor-partitions",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.alternatingXOR",
+  "verified_submission_id": "2085491273",
+  "verified_at": "2026-07-29T03:22:46.919766+00:00"
+}

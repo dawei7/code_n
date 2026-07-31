@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2489",
+  "measurement_note": "Size is n, the binary-string length. In an alternating even-length string with ratio 1:1, every even-length substring qualifies, so a correct endpoint-enumeration method examines all Theta(n^2) intervals and cannot exit early. The prefix-score reference is O(n); the quadratic method completes every tier and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: alternating balanced string at n=32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "01010101010101010101010101010101",
+        "num1": 1,
+        "num2": 1
+      },
+      "expected": 256,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "alternating",
+        "quadratic-enumeration-stressor"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: alternating balanced string at n=128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101",
+        "num1": 1,
+        "num2": 1
+      },
+      "expected": 4096,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "alternating",
+        "quadratic-enumeration-stressor"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: alternating balanced string at n=512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101",
+        "num1": 1,
+        "num2": 1
+      },
+      "expected": 65536,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "alternating",
+        "quadratic-enumeration-stressor"
+      ]
+    }
+  ]
+}

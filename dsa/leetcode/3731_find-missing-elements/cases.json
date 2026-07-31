@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3731",
+  "cases": [
+    {"id":"sample-one-gap","name":"sample: one interior value is missing","kind":"sample","visible":true,"input":{"nums":[1,4,2,5]},"expected":[3],"validator":{"kind":"exact"},"tags":["sample","single-gap"]},
+    {"id":"sample-complete-range","name":"sample: an unsorted but complete range has no gaps","kind":"sample","visible":true,"input":{"nums":[7,8,6,9]},"expected":[],"validator":{"kind":"exact"},"tags":["sample","empty-result"]},
+    {"id":"sample-endpoints-only","name":"sample: every value between the surviving endpoints is missing","kind":"sample","visible":true,"input":{"nums":[5,1]},"expected":[2,3,4],"validator":{"kind":"exact"},"tags":["sample","endpoints-only"]},
+    {"id":"trial-adjacent-pair","name":"trial: adjacent endpoints leave no missing integer","kind":"trial","visible":true,"input":{"nums":[1,2]},"expected":[],"validator":{"kind":"exact"},"tags":["trial","minimum-length"]},
+    {"id":"trial-one-between","name":"trial: one integer lies between two endpoints","kind":"trial","visible":true,"input":{"nums":[1,3]},"expected":[2],"validator":{"kind":"exact"},"tags":["trial","minimum-length"]},
+    {"id":"trial-multiple-gaps","name":"trial: separated missing values remain sorted","kind":"trial","visible":true,"input":{"nums":[1,3,5]},"expected":[2,4],"validator":{"kind":"exact"},"tags":["trial","multiple-gaps"]},
+    {"id":"real-unsorted-single-gap","name":"hidden: arbitrary input order does not affect the range scan","kind":"real","visible":false,"input":{"nums":[4,1,2]},"expected":[3],"validator":{"kind":"exact"},"tags":["hidden","unsorted"]},
+    {"id":"real-middle-gap","name":"hidden: one gap appears between supplied interior values","kind":"real","visible":false,"input":{"nums":[2,5,3]},"expected":[4],"validator":{"kind":"exact"},"tags":["hidden","single-gap"]},
+    {"id":"real-upper-complete","name":"hidden: a complete range may touch the value upper bound","kind":"real","visible":false,"input":{"nums":[98,100,99]},"expected":[],"validator":{"kind":"exact"},"tags":["hidden","value-boundary"]},
+    {"id":"real-upper-gaps","name":"hidden: missing values immediately below the upper bound","kind":"real","visible":false,"input":{"nums":[95,100]},"expected":[96,97,98,99],"validator":{"kind":"exact"},"tags":["hidden","value-boundary","endpoints-only"]},
+    {"id":"real-reversed-endpoints","name":"hidden: reversed endpoint order still produces ascending output","kind":"real","visible":false,"input":{"nums":[10,7]},"expected":[8,9],"validator":{"kind":"exact"},"tags":["hidden","unsorted","endpoints-only"]},
+    {"id":"real-alternating-present","name":"hidden: several separated gaps are recovered across the range","kind":"real","visible":false,"input":{"nums":[9,1,7,3,5]},"expected":[2,4,6,8],"validator":{"kind":"exact"},"tags":["hidden","multiple-gaps","unsorted"]}
+  ]
+}

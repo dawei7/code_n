@@ -1,0 +1,238 @@
+{
+  "challenge_id": "lc_2641",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: cousins across uneven sibling groups",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          5,
+          4,
+          9,
+          1,
+          10,
+          null,
+          7
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        7,
+        7,
+        null,
+        11
+      ],
+      "tags": [
+        "sample",
+        "cousins"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: children are siblings only",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "root": [
+          3,
+          1,
+          2
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0
+      ],
+      "tags": [
+        "sample",
+        "no-cousins"
+      ]
+    },
+    {
+      "id": "trial-single-node",
+      "name": "trial: root has no cousins",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          42
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "tags": [
+        "trial",
+        "single-node"
+      ]
+    },
+    {
+      "id": "trial-complete-tree",
+      "name": "trial: complete tree has two sibling groups",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        13,
+        13,
+        9,
+        9
+      ],
+      "tags": [
+        "trial",
+        "complete-tree"
+      ]
+    },
+    {
+      "id": "trial-partial-level",
+      "name": "trial: one child under each parent",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          null,
+          null,
+          5
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        5,
+        null,
+        null,
+        4
+      ],
+      "tags": [
+        "trial",
+        "partial-level"
+      ]
+    },
+    {
+      "id": "real-left-skewed",
+      "name": "hidden: every depth has one node",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          null,
+          3,
+          null,
+          4
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        null,
+        0,
+        null,
+        0
+      ],
+      "tags": [
+        "hidden",
+        "skewed"
+      ]
+    },
+    {
+      "id": "real-one-sided-siblings",
+      "name": "hidden: cousin sum excludes both siblings",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          8,
+          4,
+          6,
+          1,
+          2,
+          3,
+          null
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        3,
+        3,
+        3
+      ],
+      "tags": [
+        "hidden",
+        "siblings"
+      ]
+    },
+    {
+      "id": "real-multiple-depths",
+      "name": "hidden: cousin sums are independent by depth",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "root": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          null,
+          null,
+          9,
+          10,
+          null,
+          null,
+          11
+        ]
+      },
+      "expected": [
+        0,
+        0,
+        0,
+        13,
+        13,
+        9,
+        9,
+        30,
+        null,
+        null,
+        29,
+        28,
+        null,
+        null,
+        27
+      ],
+      "tags": [
+        "hidden",
+        "multiple-depths"
+      ]
+    }
+  ]
+}

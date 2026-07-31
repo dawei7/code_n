@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3729",
+    "frontend_id": "3729",
+    "title_slug": "count-distinct-subarrays-divisible-by-k-in-sorted-array",
+    "url": "https://leetcode.com/problems/count-distinct-subarrays-divisible-by-k-in-sorted-array/description/",
+    "paid_only": false,
+    "content_sha256": "fef809a62dc4709621346d0a065718b204db6944ca816f2c28b85a7c6b1bb42a",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [1,2,3], k = 3",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [2,2,2,2,2,2], k = 6",
+        "output": "2",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "10748abac40673e42892dd1b49ade9a4f82de9f063ff9deaeea0b68d45d929de",
+      "reference/contract.md": "09bde0eb4b8296245ff4b51678fa14b70d63f35871e520bd75aed2a357a7f40f",
+      "reference/examples.md": "c0c7f3b40dd7dc11f25a3f27d79beee4294d611f03a1ca52c954ae59b6833c25",
+      "reference/constraints.md": "94cc0a82df33a609d9e55dfc1c387bd10b678b952bb903871865a872e69cce06"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

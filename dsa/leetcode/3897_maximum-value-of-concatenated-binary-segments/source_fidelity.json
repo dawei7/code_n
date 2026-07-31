@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3897",
+    "frontend_id": "3897",
+    "title_slug": "maximum-value-of-concatenated-binary-segments",
+    "url": "https://leetcode.com/problems/maximum-value-of-concatenated-binary-segments/description/",
+    "paid_only": false,
+    "content_sha256": "bb4607e9d877ef80ce14ca6f7418745360d990a8c6d6a93efa052de5108f4cca",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums1 = [1,2], nums0 = [1,0]",
+        "output": "14",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums1 = [3,1], nums0 = [0,3]",
+        "output": "120",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 4,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "7792763da7a9828861029c62336ae22549228fc32f30d5be150d6da904fd18d7",
+      "reference/contract.md": "77c4f4f3e0cb8c39136891f0a02c7ab449e556fd0e6940e6086752f4f49e415d",
+      "reference/examples.md": "5693e810365d18433a04bfea6bdd80ec6be73f18b77a6073cf615d8a902691e2",
+      "reference/constraints.md": "5e87e4b645b7cdc4ad95f998f02abc670040dbdbb77f18aa08ef7f0689f6faeb"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

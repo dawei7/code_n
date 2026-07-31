@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2288",
+  "frontend_id": "2169",
+  "title_slug": "count-operations-to-obtain-zero",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countOperations",
+  "verified_submission_id": "2073644120",
+  "verified_at": "2026-07-19T15:52:39.921146+00:00"
+}

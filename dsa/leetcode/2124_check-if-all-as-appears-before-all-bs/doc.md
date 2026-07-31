@@ -8,48 +8,49 @@
 | Category | Algorithms |
 | Topics | String |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [check-if-all-as-appears-before-all-bs](https://leetcode.com/problems/check-if-all-as-appears-before-all-bs/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/check-if-all-as-appears-before-all-bs/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/check-if-all-as-appears-before-all-bs/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given a nonempty string `s` containing only the characters `a` and
+`b`. Determine whether every occurrence of `a` lies at a smaller index than
+every occurrence of `b`.
+
+Equivalently, the string must consist of one possibly empty block of `a`
+characters followed by one possibly empty block of `b` characters. A string
+containing only one of the two characters satisfies the condition
+vacuously. Return false as soon as the ordering switches back to `a` after any
+`b` has appeared; otherwise return true.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `s`: A nonempty string containing only `a` and `b`. Let
+  $n=\lvert s\rvert$.
 
 **Return value**
 
-TODO
+Return `true` if every `a` occurs before every `b`; otherwise return `false`.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aaabbb"`
+- Output: `true`
+
+All three `a` characters precede all three `b` characters.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abab"`
+- Output: `false`
+
+The `a` at index two occurs after the `b` at index one.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "bbb"`
+- Output: `true`
 
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+There are no `a` characters that could violate the condition.

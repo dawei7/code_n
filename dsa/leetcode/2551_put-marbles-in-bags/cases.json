@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one cut changes the score difference",
+      "name": "sample: two bags have different extreme scores",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -18,12 +18,12 @@
       "expected": 4,
       "tags": [
         "sample",
-        "sorting"
+        "cuts"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: every marble is its own bag",
+      "name": "sample: two marbles force one distribution",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,59 +35,135 @@
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "sample",
+        "unique"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: equal adjacent cut costs",
-      "kind": "sample",
+      "id": "trial-one-bag",
+      "name": "trial: no cut means no score difference",
+      "kind": "trial",
       "visible": true,
       "input": {
         "weights": [
+          9,
+          2,
+          7,
+          4
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "k-one"
+      ]
+    },
+    {
+      "id": "trial-all-singletons",
+      "name": "trial: every gap is forced",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weights": [
+          5,
           1,
-          1,
-          1
+          8,
+          3
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "k-n"
+      ]
+    },
+    {
+      "id": "trial-equal-weights",
+      "name": "trial: equal boundary costs have no spread",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weights": [
+          4,
+          4,
+          4,
+          4,
+          4
         ],
         "k": 3
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "trial",
+        "ties"
       ]
     },
     {
-      "id": "trial-one-bag",
-      "name": "trial: no cuts means no score spread",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "weights": [
-          1,
-          2,
-          3
-        ],
-        "k": 1
-      },
-      "expected": 0,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "real-single-marble",
-      "name": "hidden: one marble in one bag",
+      "id": "real-increasing",
+      "name": "hidden: choose extremes among increasing boundaries",
       "kind": "real",
       "visible": false,
       "input": {
         "weights": [
-          5
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
         ],
-        "k": 1
+        "k": 3
       },
-      "expected": 0,
+      "expected": 12,
       "tags": [
-        "hidden"
+        "hidden",
+        "ordered"
+      ]
+    },
+    {
+      "id": "real-mixed",
+      "name": "hidden: nonmonotonic boundary costs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weights": [
+          8,
+          1,
+          6,
+          3,
+          9,
+          2,
+          7
+        ],
+        "k": 4
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "mixed"
+      ]
+    },
+    {
+      "id": "real-large-values",
+      "name": "hidden: score difference uses wide integers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weights": [
+          1000000000,
+          1,
+          999999999,
+          2,
+          999999998
+        ],
+        "k": 2
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "large-values"
       ]
     }
   ]

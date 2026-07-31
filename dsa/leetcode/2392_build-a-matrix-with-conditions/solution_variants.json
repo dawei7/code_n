@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Build a Matrix With Conditions and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Topologically orders the values independently for rows and columns, then places each value at the intersection of its two positions.",
+      "time_complexity": "O(k^2 + r + c)",
+      "space_complexity": "O(k^2 + r + c)"
     }
   ]
 }

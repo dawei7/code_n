@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3889",
+  "cases": [
+    {
+      "id": "sample-mixed-unbalanced-pairs",
+      "name": "sample: mixed letter and digit pairs have three unmatched occurrences",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "ab1z9"
+      },
+      "expected": 3,
+      "tags": [
+        "sample",
+        "letters-and-digits",
+        "missing-mirrors"
+      ]
+    },
+    {
+      "id": "sample-three-represented-pairs",
+      "name": "sample: three represented pairs contribute two",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "4m7n"
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "balanced-pair",
+        "missing-mirrors"
+      ]
+    },
+    {
+      "id": "sample-balanced-repetition",
+      "name": "sample: repeated mirror characters have equal frequencies",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "byby"
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "balanced-pair",
+        "repetition"
+      ]
+    },
+    {
+      "id": "trial-single-letter",
+      "name": "trial: a singleton letter has an absent mirror",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a"
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "singleton",
+        "missing-mirror"
+      ]
+    },
+    {
+      "id": "trial-balanced-letter-pair",
+      "name": "trial: one complete letter pair contributes zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "az"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "letter-pair",
+        "balanced-pair"
+      ]
+    },
+    {
+      "id": "trial-balanced-digit-pair",
+      "name": "trial: one complete digit pair contributes zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "09"
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "digit-pair",
+        "balanced-pair"
+      ]
+    },
+    {
+      "id": "trial-distinct-missing-mirrors",
+      "name": "trial: three letters with absent mirrors contribute three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "abc"
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "distinct-characters",
+        "missing-mirrors"
+      ]
+    },
+    {
+      "id": "trial-two-unbalanced-pairs",
+      "name": "trial: repeated letters and digits form two unbalanced pairs",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "aaaz99"
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "letters-and-digits",
+        "unequal-frequencies"
+      ]
+    },
+    {
+      "id": "real-complete-character-domain",
+      "name": "hidden: every possible pair is balanced across the complete domain",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyz0123456789"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "complete-domain",
+        "balanced-pairs"
+      ]
+    },
+    {
+      "id": "real-one-unbalanced-letter-pair",
+      "name": "hidden: repeated opposite letters differ by two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aaaaazzz"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "letter-pair",
+        "unequal-frequencies"
+      ]
+    },
+    {
+      "id": "real-balanced-and-unbalanced-digits",
+      "name": "hidden: one digit pair balances while another does not",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "0001118889"
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "digit-pairs",
+        "mixed-balance"
+      ]
+    },
+    {
+      "id": "real-reversed-orientation",
+      "name": "hidden: encountering high-end mirrors first does not double count",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zyba"
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "pair-orientation",
+        "balanced-pairs"
+      ]
+    },
+    {
+      "id": "real-high-end-characters-only",
+      "name": "hidden: high-end letters and digits all have absent mirrors",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "zzzyy98"
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "high-end-characters",
+        "missing-mirrors"
+      ]
+    },
+    {
+      "id": "real-inner-high-half",
+      "name": "hidden: inner characters from both high halves form six pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "npo765"
+      },
+      "expected": 6,
+      "tags": [
+        "hidden",
+        "inner-pairs",
+        "missing-mirrors"
+      ]
+    },
+    {
+      "id": "real-several-frequency-gaps",
+      "name": "hidden: several pairs contribute independent frequency gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "aazzbbby111889"
+      },
+      "expected": 4,
+      "tags": [
+        "hidden",
+        "letters-and-digits",
+        "multiple-pairs"
+      ]
+    }
+  ]
+}
+

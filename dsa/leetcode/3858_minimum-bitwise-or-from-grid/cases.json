@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3858",
+  "cases": [
+    {
+      "id": "sample-three",
+      "name": "sample: choose one and two for OR three",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[1,5],[2,4]]},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "two-rows", "minimum-or"]
+    },
+    {
+      "id": "sample-five",
+      "name": "sample: avoid the higher-bit alternatives",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[3,5],[6,4]]},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "two-rows", "bit-choice"]
+    },
+    {
+      "id": "sample-one-row",
+      "name": "sample: one row returns its smallest value",
+      "kind": "sample",
+      "visible": true,
+      "input": {"grid": [[7,9,8]]},
+      "expected": 7,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "one-row", "minimum-cell"]
+    },
+    {
+      "id": "trial-one-cell",
+      "name": "trial: one cell must be selected",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[42]]},
+      "expected": 42,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "one-cell", "forced-choice"]
+    },
+    {
+      "id": "trial-one-column",
+      "name": "trial: one column ORs every forced value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1],[2],[4]]},
+      "expected": 7,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "one-column", "forced-choices"]
+    },
+    {
+      "id": "trial-joint-mask-required",
+      "name": "trial: independently clearable bits are not jointly clearable",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1,2],[6,7]]},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "joint-feasibility", "important-case"]
+    },
+    {
+      "id": "real-shared-one",
+      "name": "hidden: every row can select the shared low bit",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1,2],[1,4],[1,8],[1,16]]},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "shared-choice", "multiple-rows"]
+    },
+    {
+      "id": "real-overlapping-bits",
+      "name": "hidden: choices combine overlapping bit patterns",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[10,12],[3,5],[6,9]]},
+      "expected": 11,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "overlapping-bits", "three-rows"]
+    },
+    {
+      "id": "real-duplicate-values",
+      "name": "hidden: duplicate cells do not change feasibility",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[5,5,5],[2,2,2]]},
+      "expected": 7,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "duplicates", "forced-or"]
+    },
+    {
+      "id": "real-row-minima-suboptimal",
+      "name": "hidden: row-wise numerical minima need not give the best OR",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[3,4],[5,8]]},
+      "expected": 5,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "greedy-trap", "row-minimum"]
+    },
+    {
+      "id": "real-maximum-cell-value",
+      "name": "hidden: maximum cell value participates in a one-row minimum",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[100000,99999]]},
+      "expected": 99999,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-value", "one-row"]
+    },
+    {
+      "id": "real-high-bit-avoidable",
+      "name": "hidden: all rows can avoid the highest available bit",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[65536,3],[65536,5],[65536,6]]},
+      "expected": 7,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "high-bit", "avoidable-bit"]
+    },
+    {
+      "id": "real-high-bit-forced",
+      "name": "hidden: one row forces the highest available bit",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[65536],[1,2],[4,8]]},
+      "expected": 65541,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "high-bit", "forced-bit"]
+    }
+  ]
+}

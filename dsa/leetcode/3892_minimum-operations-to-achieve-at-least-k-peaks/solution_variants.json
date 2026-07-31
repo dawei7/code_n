@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimum Operations to Achieve At Least K Peaks and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Splits on the circular boundary and runs a count-compressed minimum-cost independent-set DP on each resulting path.",
+      "time_complexity": "O(nk)",
+      "space_complexity": "O(k)"
     }
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find the Maximum Sequence Value of Array and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines bounded OR states for exactly k selections on every valid prefix-suffix split.",
+      "time_complexity": "O(n(kB + B^2))",
+      "space_complexity": "O((n + k)B)"
     }
   ]
 }

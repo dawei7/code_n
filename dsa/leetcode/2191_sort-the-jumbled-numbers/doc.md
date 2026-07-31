@@ -8,49 +8,48 @@
 | Category | Algorithms |
 | Topics | Array, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [sort-the-jumbled-numbers](https://leetcode.com/problems/sort-the-jumbled-numbers/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/sort-the-jumbled-numbers/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/sort-the-jumbled-numbers/).
 
 ### Goal
-Map every decimal digit through a supplied digit substitution, interpret each mapped digit sequence as a number, and stably sort the original values by those mapped numbers.
+
+The ten-entry array `mapping` defines a shuffled decimal system:
+`mapping[d]` is the digit that replaces every occurrence of decimal digit `d`.
+Applying all such replacements to an integer produces its mapped value;
+leading zeros in that representation do not affect its numeric value.
+
+Return the original elements of `nums` arranged in non-decreasing order of
+their mapped values. Do not replace the returned numbers by their mapped
+forms. When two elements have equal mapped values, preserve their relative
+order from the input.
 
 ### Function Contract
+
 **Inputs**
 
-- `mapping`: a permutation-like length-10 array where digit `d` becomes `mapping[d]`.
-- `nums`: nonnegative integers to sort.
+- `mapping`: a permutation of the digits from $0$ through $9$.
+- `nums`: an array of length $n$, where $1\le n\le3\cdot10^4$ and every
+  element lies in $[0,10^9)$.
 
 **Return value**
 
-The original integers ordered by mapped value; equal mapped values retain their input order.
+Return a stable ordering of the original `nums` values by non-decreasing
+mapped value.
 
 ### Examples
+
 **Example 1**
 
-- Input: `mapping = [8, 9, 4, 0, 2, 1, 3, 5, 7, 6]`, `nums = [991, 338, 38]`
-- Output: `[338, 38, 991]`
+- Input: `mapping = [8,9,4,0,2,1,3,5,7,6]`, `nums = [991,338,38]`
+- Output: `[338,38,991]`
 
 **Example 2**
 
-- Input: `mapping = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]`, `nums = [789, 456, 123]`
-- Output: `[123, 456, 789]`
+- Input: `mapping = [0,1,2,3,4,5,6,7,8,9]`, `nums = [789,456,123]`
+- Output: `[123,456,789]`
 
 **Example 3**
 
-- Input: `mapping = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]`, `nums = [0, 1, 10]`
-- Output: `[1, 0, 10]`
-
----
-
-## Solution
-### Approach
-Compute a mapped numeric key for each value by replacing its digits in place order; handle zero as the one-digit representation `0`. Stable-sort pairs of `(mapped_key, original_index, original_value)` or rely on a stable sorting implementation keyed only by the mapped value.
-
-### Complexity Analysis
-- **Time Complexity**: `O(D + n log n)`, where `D` is the total number of input digits
-- **Space Complexity**: `O(n)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `mapping = [5,1,2,3,4,0,6,7,8,9]`, `nums = [0,10,5]`
+- Output: `[5,0,10]`

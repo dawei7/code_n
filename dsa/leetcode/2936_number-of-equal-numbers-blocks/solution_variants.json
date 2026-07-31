@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Number of Equal Numbers Blocks and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses exponential search to bracket each maximal block boundary and binary search to locate the first different value.",
+      "time_complexity": "O(b log(n))",
+      "space_complexity": "O(1)"
     }
   ]
 }

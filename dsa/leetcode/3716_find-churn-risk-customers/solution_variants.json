@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Churn Risk Customers and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Ranks each user's latest event while attaching complete-history window aggregates.",
+      "time_complexity": "O(R log R + U log U)",
+      "space_complexity": "O(R + U)"
     }
   ]
 }

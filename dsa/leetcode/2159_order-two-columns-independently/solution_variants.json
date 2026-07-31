@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Order Two Columns Independently and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Ranks each column in its required direction and joins values with equal ranks.",
+      "time_complexity": "O(n \\log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

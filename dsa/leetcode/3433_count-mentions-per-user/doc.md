@@ -8,77 +8,42 @@
 | Category | Algorithms |
 | Topics | Array, Math, Sorting, Simulation |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-mentions-per-user](https://leetcode.com/problems/count-mentions-per-user/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-mentions-per-user/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-mentions-per-user/).
 
 ### Goal
-Given a number of users and a list of events (either "MESSAGE" or "OFFLINE"), track how many mentions each user receives. A "MESSAGE" can target specific user IDs, "ALL" users, or "HERE" (users currently online). Users go offline for a specified duration and become available again at a specific timestamp. We need to return an array representing the total mention count for each user ID from 0 to `numberOfUsers - 1`.
+
+A system has `numberOfUsers` users, all initially online, and an unordered collection of timestamped events. A `MESSAGE` event contains either explicit tokens such as `id2 id2 id0`, the token `ALL`, or the token `HERE`. Explicit tokens mention their named users even while offline and count repeated ids separately. `ALL` mentions every user, whereas `HERE` mentions only users online at that timestamp.
+
+An `OFFLINE` event makes its named, currently online user unavailable for exactly 60 time units; that user automatically returns at `timestamp + 60`. Status changes, including automatic returns and `OFFLINE` events, are processed before messages sharing their timestamp. Return an array containing the total number of mentions received by each user across all message events.
 
 ### Function Contract
+
 **Inputs**
 
-- `numberOfUsers` (int): The total number of users in the system.
-- `events` (List[List[str]]): A list of events where each event is `["MESSAGE", timestamp, target]` or `["OFFLINE", timestamp, id]`.
+- `numberOfUsers`: The number $U$ of users, where $1\le U\le100$; ids range from `0` through `U - 1`.
+- `events`: Between 1 and 100 three-string records describing `MESSAGE` or `OFFLINE` events. Timestamps are integers from 1 through $10^5$, and each explicit message contains between 1 and 100 id tokens.
+
+Every user named by an `OFFLINE` event is guaranteed to be online at that event's time.
 
 **Return value**
 
-- `List[int]`: An array of size `numberOfUsers` where the $i$-th element is the total number of mentions received by user $i$.
+Return `mentions`, where `mentions[i]` is the number of times user `i` was mentioned.
 
 ### Examples
+
 **Example 1**
 
-- Input: `numberOfUsers = 2, events = [["MESSAGE", "10", "id0"], ["OFFLINE", "11", "0"], ["MESSAGE", "12", "HERE"]]`
-- Output: `[1, 1]`
+- Input: `numberOfUsers = 2, events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","71","HERE"]]`
+- Output: `[2,2]`
 
 **Example 2**
 
-- Input: `numberOfUsers = 2, events = [["MESSAGE", "10", "id0"], ["OFFLINE", "11", "0"], ["MESSAGE", "12", "ALL"]]`
-- Output: `[1, 2]`
+- Input: `numberOfUsers = 2, events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","12","ALL"]]`
+- Output: `[2,2]`
 
 **Example 3**
 
-- Input: `numberOfUsers = 2, events = [["MESSAGE", "10", "id0"], ["OFFLINE", "11", "0"], ["MESSAGE", "12", "id0"]]`
-- Output: `[2, 0]`
-
----
-
-## Solution
-### Approach
-The problem is solved using a simulation approach. We maintain an `offline_until` array to track when each user becomes available again. Events are processed chronologically by sorting them by timestamp (and prioritizing "MESSAGE" over "OFFLINE" if timestamps are equal). We use string parsing to identify target types ("ALL", "HERE", or specific "idX") and update the mention counts accordingly.
-
-### Complexity Analysis
-- **Time Complexity**: $O(N \log N + M)$, where $N$ is the number of events (due to sorting) and $M$ is the number of users (for iterating through users during "HERE" or "ALL" mentions).
-- **Space Complexity**: $O(N + M)$ to store the events and the status/mention counts for each user.
-
-### Reference Implementations
-<details>
-<summary>python</summary>
-
-```python
-def solve(numberOfUsers, events):
-    ordered = sorted(events, key=lambda event: (int(event[1]), 0 if event[0] == "OFFLINE" else 1))
-    mentions = [0] * numberOfUsers
-    offline_until = [0] * numberOfUsers
-
-    for event_type, timestamp_text, payload in ordered:
-        timestamp = int(timestamp_text)
-        if event_type == "OFFLINE":
-            offline_until[int(payload)] = timestamp + 60
-            continue
-
-        if payload == "ALL":
-            for user in range(numberOfUsers):
-                mentions[user] += 1
-        elif payload == "HERE":
-            for user in range(numberOfUsers):
-                if offline_until[user] <= timestamp:
-                    mentions[user] += 1
-        else:
-            for token in payload.split():
-                mentions[int(token[2:])] += 1
-
-    return mentions
-```
-</details>
+- Input: `numberOfUsers = 2, events = [["OFFLINE","10","0"],["MESSAGE","12","HERE"]]`
+- Output: `[0,1]`

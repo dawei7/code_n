@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3450",
+  "cases": [
+    {
+      "id": "sample-overlapping-benches",
+      "name": "sample: students appear on multiple benches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"students": [[1, 2], [2, 2], [3, 3], [1, 3], [2, 3]]},
+      "expected": 3,
+      "tags": ["sample", "multiple-benches"]
+    },
+    {
+      "id": "sample-separated-groups",
+      "name": "sample: first bench has the largest group",
+      "kind": "sample",
+      "visible": true,
+      "input": {"students": [[1, 1], [2, 1], [3, 1], [4, 2], [5, 2]]},
+      "expected": 3,
+      "tags": ["sample", "maximum"]
+    },
+    {
+      "id": "sample-duplicate-row",
+      "name": "sample: duplicate rows count once",
+      "kind": "sample",
+      "visible": true,
+      "input": {"students": [[1, 1], [1, 1]]},
+      "expected": 1,
+      "tags": ["sample", "duplicate"]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: no student observations",
+      "kind": "sample",
+      "visible": true,
+      "input": {"students": []},
+      "expected": 0,
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "trial-one-student-several-benches",
+      "name": "trial: uniqueness is scoped to each bench",
+      "kind": "trial",
+      "visible": true,
+      "input": {"students": [[1, 1], [1, 2], [1, 2], [2, 2]]},
+      "expected": 2,
+      "tags": ["trial", "per-bench"]
+    },
+    {
+      "id": "real-interleaved-duplicates",
+      "name": "real: interleaved duplicates across three benches",
+      "kind": "real",
+      "visible": false,
+      "input": {"students": [[4, 7], [2, 8], [4, 7], [6, 7], [2, 7], [9, 8], [2, 8], [1, 9], [3, 7]]},
+      "expected": 4,
+      "tags": ["real", "deduplication"]
+    },
+    {
+      "id": "real-every-row-duplicate",
+      "name": "real: all rows describe one presence",
+      "kind": "real",
+      "visible": false,
+      "input": {"students": [[100, 100], [100, 100], [100, 100], [100, 100]]},
+      "expected": 1,
+      "tags": ["real", "all-duplicate"]
+    },
+    {
+      "id": "real-single-row",
+      "name": "real: one observed student",
+      "kind": "real",
+      "visible": false,
+      "input": {"students": [[37, 42]]},
+      "expected": 1,
+      "tags": ["real", "minimum-nonempty"]
+    }
+  ]
+}

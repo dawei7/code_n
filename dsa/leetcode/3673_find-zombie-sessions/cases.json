@@ -1,0 +1,1146 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3673",
+  "cases": [
+    {
+      "id": "sample-zombie-session",
+      "name": "sample: only S001 satisfies all four rules",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "app_events": [
+            {
+              "event_id": 1,
+              "user_id": 201,
+              "event_timestamp": "2024-03-01 10:00:00",
+              "event_type": "app_open",
+              "session_id": "S001",
+              "event_value": null
+            },
+            {
+              "event_id": 2,
+              "user_id": 201,
+              "event_timestamp": "2024-03-01 10:05:00",
+              "event_type": "scroll",
+              "session_id": "S001",
+              "event_value": 500
+            },
+            {
+              "event_id": 3,
+              "user_id": 201,
+              "event_timestamp": "2024-03-01 10:10:00",
+              "event_type": "scroll",
+              "session_id": "S001",
+              "event_value": 750
+            },
+            {
+              "event_id": 4,
+              "user_id": 201,
+              "event_timestamp": "2024-03-01 10:15:00",
+              "event_type": "scroll",
+              "session_id": "S001",
+              "event_value": 600
+            },
+            {
+              "event_id": 5,
+              "user_id": 201,
+              "event_timestamp": "2024-03-01 10:20:00",
+              "event_type": "scroll",
+              "session_id": "S001",
+              "event_value": 800
+            },
+            {
+              "event_id": 6,
+              "user_id": 201,
+              "event_timestamp": "2024-03-01 10:25:00",
+              "event_type": "scroll",
+              "session_id": "S001",
+              "event_value": 550
+            },
+            {
+              "event_id": 7,
+              "user_id": 201,
+              "event_timestamp": "2024-03-01 10:30:00",
+              "event_type": "scroll",
+              "session_id": "S001",
+              "event_value": 900
+            },
+            {
+              "event_id": 8,
+              "user_id": 201,
+              "event_timestamp": "2024-03-01 10:35:00",
+              "event_type": "app_close",
+              "session_id": "S001",
+              "event_value": null
+            },
+            {
+              "event_id": 9,
+              "user_id": 202,
+              "event_timestamp": "2024-03-01 11:00:00",
+              "event_type": "app_open",
+              "session_id": "S002",
+              "event_value": null
+            },
+            {
+              "event_id": 10,
+              "user_id": 202,
+              "event_timestamp": "2024-03-01 11:02:00",
+              "event_type": "click",
+              "session_id": "S002",
+              "event_value": null
+            },
+            {
+              "event_id": 11,
+              "user_id": 202,
+              "event_timestamp": "2024-03-01 11:05:00",
+              "event_type": "scroll",
+              "session_id": "S002",
+              "event_value": 400
+            },
+            {
+              "event_id": 12,
+              "user_id": 202,
+              "event_timestamp": "2024-03-01 11:08:00",
+              "event_type": "click",
+              "session_id": "S002",
+              "event_value": null
+            },
+            {
+              "event_id": 13,
+              "user_id": 202,
+              "event_timestamp": "2024-03-01 11:10:00",
+              "event_type": "scroll",
+              "session_id": "S002",
+              "event_value": 350
+            },
+            {
+              "event_id": 14,
+              "user_id": 202,
+              "event_timestamp": "2024-03-01 11:15:00",
+              "event_type": "purchase",
+              "session_id": "S002",
+              "event_value": 50
+            },
+            {
+              "event_id": 15,
+              "user_id": 202,
+              "event_timestamp": "2024-03-01 11:20:00",
+              "event_type": "app_close",
+              "session_id": "S002",
+              "event_value": null
+            },
+            {
+              "event_id": 16,
+              "user_id": 203,
+              "event_timestamp": "2024-03-01 12:00:00",
+              "event_type": "app_open",
+              "session_id": "S003",
+              "event_value": null
+            },
+            {
+              "event_id": 17,
+              "user_id": 203,
+              "event_timestamp": "2024-03-01 12:10:00",
+              "event_type": "scroll",
+              "session_id": "S003",
+              "event_value": 1000
+            },
+            {
+              "event_id": 18,
+              "user_id": 203,
+              "event_timestamp": "2024-03-01 12:20:00",
+              "event_type": "scroll",
+              "session_id": "S003",
+              "event_value": 1200
+            },
+            {
+              "event_id": 19,
+              "user_id": 203,
+              "event_timestamp": "2024-03-01 12:25:00",
+              "event_type": "click",
+              "session_id": "S003",
+              "event_value": null
+            },
+            {
+              "event_id": 20,
+              "user_id": 203,
+              "event_timestamp": "2024-03-01 12:30:00",
+              "event_type": "scroll",
+              "session_id": "S003",
+              "event_value": 800
+            },
+            {
+              "event_id": 21,
+              "user_id": 203,
+              "event_timestamp": "2024-03-01 12:40:00",
+              "event_type": "scroll",
+              "session_id": "S003",
+              "event_value": 900
+            },
+            {
+              "event_id": 22,
+              "user_id": 203,
+              "event_timestamp": "2024-03-01 12:50:00",
+              "event_type": "scroll",
+              "session_id": "S003",
+              "event_value": 1100
+            },
+            {
+              "event_id": 23,
+              "user_id": 203,
+              "event_timestamp": "2024-03-01 13:00:00",
+              "event_type": "app_close",
+              "session_id": "S003",
+              "event_value": null
+            },
+            {
+              "event_id": 24,
+              "user_id": 204,
+              "event_timestamp": "2024-03-01 14:00:00",
+              "event_type": "app_open",
+              "session_id": "S004",
+              "event_value": null
+            },
+            {
+              "event_id": 25,
+              "user_id": 204,
+              "event_timestamp": "2024-03-01 14:05:00",
+              "event_type": "scroll",
+              "session_id": "S004",
+              "event_value": 600
+            },
+            {
+              "event_id": 26,
+              "user_id": 204,
+              "event_timestamp": "2024-03-01 14:08:00",
+              "event_type": "scroll",
+              "session_id": "S004",
+              "event_value": 700
+            },
+            {
+              "event_id": 27,
+              "user_id": 204,
+              "event_timestamp": "2024-03-01 14:10:00",
+              "event_type": "click",
+              "session_id": "S004",
+              "event_value": null
+            },
+            {
+              "event_id": 28,
+              "user_id": 204,
+              "event_timestamp": "2024-03-01 14:12:00",
+              "event_type": "app_close",
+              "session_id": "S004",
+              "event_value": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id",
+          "user_id",
+          "session_duration_minutes",
+          "scroll_count"
+        ],
+        "rows": [
+          [
+            "S001",
+            201,
+            35,
+            6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "sample",
+        "all-criteria",
+        "strict-ratio"
+      ]
+    },
+    {
+      "id": "trial-exact-duration-boundary",
+      "name": "trial: exactly thirty minutes is excluded",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "app_events": [
+            {
+              "event_id": 1,
+              "user_id": 301,
+              "event_timestamp": "2024-04-01 09:00:00",
+              "event_type": "app_open",
+              "session_id": "T030",
+              "event_value": null
+            },
+            {
+              "event_id": 2,
+              "user_id": 301,
+              "event_timestamp": "2024-04-01 09:01:00",
+              "event_type": "scroll",
+              "session_id": "T030",
+              "event_value": 100
+            },
+            {
+              "event_id": 3,
+              "user_id": 301,
+              "event_timestamp": "2024-04-01 09:02:00",
+              "event_type": "scroll",
+              "session_id": "T030",
+              "event_value": 101
+            },
+            {
+              "event_id": 4,
+              "user_id": 301,
+              "event_timestamp": "2024-04-01 09:03:00",
+              "event_type": "scroll",
+              "session_id": "T030",
+              "event_value": 102
+            },
+            {
+              "event_id": 5,
+              "user_id": 301,
+              "event_timestamp": "2024-04-01 09:04:00",
+              "event_type": "scroll",
+              "session_id": "T030",
+              "event_value": 103
+            },
+            {
+              "event_id": 6,
+              "user_id": 301,
+              "event_timestamp": "2024-04-01 09:05:00",
+              "event_type": "scroll",
+              "session_id": "T030",
+              "event_value": 104
+            },
+            {
+              "event_id": 7,
+              "user_id": 301,
+              "event_timestamp": "2024-04-01 09:30:00",
+              "event_type": "app_close",
+              "session_id": "T030",
+              "event_value": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id",
+          "user_id",
+          "session_duration_minutes",
+          "scroll_count"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "strict-duration",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-minimum-scrolls",
+      "name": "trial: five scrolls and no clicks qualify",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "app_events": [
+            {
+              "event_id": 1,
+              "user_id": 302,
+              "event_timestamp": "2024-04-01 10:00:00",
+              "event_type": "app_open",
+              "session_id": "T031",
+              "event_value": null
+            },
+            {
+              "event_id": 2,
+              "user_id": 302,
+              "event_timestamp": "2024-04-01 10:01:00",
+              "event_type": "scroll",
+              "session_id": "T031",
+              "event_value": 100
+            },
+            {
+              "event_id": 3,
+              "user_id": 302,
+              "event_timestamp": "2024-04-01 10:02:00",
+              "event_type": "scroll",
+              "session_id": "T031",
+              "event_value": 101
+            },
+            {
+              "event_id": 4,
+              "user_id": 302,
+              "event_timestamp": "2024-04-01 10:03:00",
+              "event_type": "scroll",
+              "session_id": "T031",
+              "event_value": 102
+            },
+            {
+              "event_id": 5,
+              "user_id": 302,
+              "event_timestamp": "2024-04-01 10:04:00",
+              "event_type": "scroll",
+              "session_id": "T031",
+              "event_value": 103
+            },
+            {
+              "event_id": 6,
+              "user_id": 302,
+              "event_timestamp": "2024-04-01 10:05:00",
+              "event_type": "scroll",
+              "session_id": "T031",
+              "event_value": 104
+            },
+            {
+              "event_id": 7,
+              "user_id": 302,
+              "event_timestamp": "2024-04-01 10:31:00",
+              "event_type": "app_close",
+              "session_id": "T031",
+              "event_value": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id",
+          "user_id",
+          "session_duration_minutes",
+          "scroll_count"
+        ],
+        "rows": [
+          [
+            "T031",
+            302,
+            31,
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "inclusive-scroll-threshold"
+      ]
+    },
+    {
+      "id": "trial-ratio-below-one-fifth",
+      "name": "trial: one click among six scrolls qualifies",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "app_events": [
+            {
+              "event_id": 1,
+              "user_id": 303,
+              "event_timestamp": "2024-04-01 11:00:00",
+              "event_type": "app_open",
+              "session_id": "R166",
+              "event_value": null
+            },
+            {
+              "event_id": 2,
+              "user_id": 303,
+              "event_timestamp": "2024-04-01 11:01:00",
+              "event_type": "scroll",
+              "session_id": "R166",
+              "event_value": 100
+            },
+            {
+              "event_id": 3,
+              "user_id": 303,
+              "event_timestamp": "2024-04-01 11:02:00",
+              "event_type": "scroll",
+              "session_id": "R166",
+              "event_value": 101
+            },
+            {
+              "event_id": 4,
+              "user_id": 303,
+              "event_timestamp": "2024-04-01 11:03:00",
+              "event_type": "scroll",
+              "session_id": "R166",
+              "event_value": 102
+            },
+            {
+              "event_id": 5,
+              "user_id": 303,
+              "event_timestamp": "2024-04-01 11:04:00",
+              "event_type": "scroll",
+              "session_id": "R166",
+              "event_value": 103
+            },
+            {
+              "event_id": 6,
+              "user_id": 303,
+              "event_timestamp": "2024-04-01 11:05:00",
+              "event_type": "scroll",
+              "session_id": "R166",
+              "event_value": 104
+            },
+            {
+              "event_id": 7,
+              "user_id": 303,
+              "event_timestamp": "2024-04-01 11:06:00",
+              "event_type": "scroll",
+              "session_id": "R166",
+              "event_value": 105
+            },
+            {
+              "event_id": 8,
+              "user_id": 303,
+              "event_timestamp": "2024-04-01 11:10:00",
+              "event_type": "click",
+              "session_id": "R166",
+              "event_value": null
+            },
+            {
+              "event_id": 9,
+              "user_id": 303,
+              "event_timestamp": "2024-04-01 11:45:00",
+              "event_type": "app_close",
+              "session_id": "R166",
+              "event_value": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id",
+          "user_id",
+          "session_duration_minutes",
+          "scroll_count"
+        ],
+        "rows": [
+          [
+            "R166",
+            303,
+            45,
+            6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "strict-ratio"
+      ]
+    },
+    {
+      "id": "trial-purchase-disqualifies",
+      "name": "trial: a single purchase disqualifies an active session",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "app_events": [
+            {
+              "event_id": 1,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:00:00",
+              "event_type": "app_open",
+              "session_id": "BUY1",
+              "event_value": null
+            },
+            {
+              "event_id": 2,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:01:00",
+              "event_type": "scroll",
+              "session_id": "BUY1",
+              "event_value": 100
+            },
+            {
+              "event_id": 3,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:02:00",
+              "event_type": "scroll",
+              "session_id": "BUY1",
+              "event_value": 101
+            },
+            {
+              "event_id": 4,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:03:00",
+              "event_type": "scroll",
+              "session_id": "BUY1",
+              "event_value": 102
+            },
+            {
+              "event_id": 5,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:04:00",
+              "event_type": "scroll",
+              "session_id": "BUY1",
+              "event_value": 103
+            },
+            {
+              "event_id": 6,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:05:00",
+              "event_type": "scroll",
+              "session_id": "BUY1",
+              "event_value": 104
+            },
+            {
+              "event_id": 7,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:06:00",
+              "event_type": "scroll",
+              "session_id": "BUY1",
+              "event_value": 105
+            },
+            {
+              "event_id": 8,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:07:00",
+              "event_type": "scroll",
+              "session_id": "BUY1",
+              "event_value": 106
+            },
+            {
+              "event_id": 9,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:08:00",
+              "event_type": "scroll",
+              "session_id": "BUY1",
+              "event_value": 107
+            },
+            {
+              "event_id": 10,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:15:00",
+              "event_type": "purchase",
+              "session_id": "BUY1",
+              "event_value": 25
+            },
+            {
+              "event_id": 11,
+              "user_id": 304,
+              "event_timestamp": "2024-04-01 12:50:00",
+              "event_type": "app_close",
+              "session_id": "BUY1",
+              "event_value": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id",
+          "user_id",
+          "session_duration_minutes",
+          "scroll_count"
+        ],
+        "rows": []
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "trial",
+        "purchase",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "real-required-ordering",
+      "name": "hidden: scroll count descends before session id ascends",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "app_events": [
+            {
+              "event_id": 1,
+              "user_id": 401,
+              "event_timestamp": "2024-04-01 08:00:00",
+              "event_type": "app_open",
+              "session_id": "BETA",
+              "event_value": null
+            },
+            {
+              "event_id": 2,
+              "user_id": 401,
+              "event_timestamp": "2024-04-01 08:01:00",
+              "event_type": "scroll",
+              "session_id": "BETA",
+              "event_value": 100
+            },
+            {
+              "event_id": 3,
+              "user_id": 401,
+              "event_timestamp": "2024-04-01 08:02:00",
+              "event_type": "scroll",
+              "session_id": "BETA",
+              "event_value": 101
+            },
+            {
+              "event_id": 4,
+              "user_id": 401,
+              "event_timestamp": "2024-04-01 08:03:00",
+              "event_type": "scroll",
+              "session_id": "BETA",
+              "event_value": 102
+            },
+            {
+              "event_id": 5,
+              "user_id": 401,
+              "event_timestamp": "2024-04-01 08:04:00",
+              "event_type": "scroll",
+              "session_id": "BETA",
+              "event_value": 103
+            },
+            {
+              "event_id": 6,
+              "user_id": 401,
+              "event_timestamp": "2024-04-01 08:05:00",
+              "event_type": "scroll",
+              "session_id": "BETA",
+              "event_value": 104
+            },
+            {
+              "event_id": 7,
+              "user_id": 401,
+              "event_timestamp": "2024-04-01 08:06:00",
+              "event_type": "scroll",
+              "session_id": "BETA",
+              "event_value": 105
+            },
+            {
+              "event_id": 8,
+              "user_id": 401,
+              "event_timestamp": "2024-04-01 08:40:00",
+              "event_type": "app_close",
+              "session_id": "BETA",
+              "event_value": null
+            },
+            {
+              "event_id": 9,
+              "user_id": 402,
+              "event_timestamp": "2024-04-01 09:00:00",
+              "event_type": "app_open",
+              "session_id": "ALPHA",
+              "event_value": null
+            },
+            {
+              "event_id": 10,
+              "user_id": 402,
+              "event_timestamp": "2024-04-01 09:01:00",
+              "event_type": "scroll",
+              "session_id": "ALPHA",
+              "event_value": 100
+            },
+            {
+              "event_id": 11,
+              "user_id": 402,
+              "event_timestamp": "2024-04-01 09:02:00",
+              "event_type": "scroll",
+              "session_id": "ALPHA",
+              "event_value": 101
+            },
+            {
+              "event_id": 12,
+              "user_id": 402,
+              "event_timestamp": "2024-04-01 09:03:00",
+              "event_type": "scroll",
+              "session_id": "ALPHA",
+              "event_value": 102
+            },
+            {
+              "event_id": 13,
+              "user_id": 402,
+              "event_timestamp": "2024-04-01 09:04:00",
+              "event_type": "scroll",
+              "session_id": "ALPHA",
+              "event_value": 103
+            },
+            {
+              "event_id": 14,
+              "user_id": 402,
+              "event_timestamp": "2024-04-01 09:05:00",
+              "event_type": "scroll",
+              "session_id": "ALPHA",
+              "event_value": 104
+            },
+            {
+              "event_id": 15,
+              "user_id": 402,
+              "event_timestamp": "2024-04-01 09:06:00",
+              "event_type": "scroll",
+              "session_id": "ALPHA",
+              "event_value": 105
+            },
+            {
+              "event_id": 16,
+              "user_id": 402,
+              "event_timestamp": "2024-04-01 09:40:00",
+              "event_type": "app_close",
+              "session_id": "ALPHA",
+              "event_value": null
+            },
+            {
+              "event_id": 17,
+              "user_id": 403,
+              "event_timestamp": "2024-04-01 10:00:00",
+              "event_type": "app_open",
+              "session_id": "GAMMA",
+              "event_value": null
+            },
+            {
+              "event_id": 18,
+              "user_id": 403,
+              "event_timestamp": "2024-04-01 10:01:00",
+              "event_type": "scroll",
+              "session_id": "GAMMA",
+              "event_value": 100
+            },
+            {
+              "event_id": 19,
+              "user_id": 403,
+              "event_timestamp": "2024-04-01 10:02:00",
+              "event_type": "scroll",
+              "session_id": "GAMMA",
+              "event_value": 101
+            },
+            {
+              "event_id": 20,
+              "user_id": 403,
+              "event_timestamp": "2024-04-01 10:03:00",
+              "event_type": "scroll",
+              "session_id": "GAMMA",
+              "event_value": 102
+            },
+            {
+              "event_id": 21,
+              "user_id": 403,
+              "event_timestamp": "2024-04-01 10:04:00",
+              "event_type": "scroll",
+              "session_id": "GAMMA",
+              "event_value": 103
+            },
+            {
+              "event_id": 22,
+              "user_id": 403,
+              "event_timestamp": "2024-04-01 10:05:00",
+              "event_type": "scroll",
+              "session_id": "GAMMA",
+              "event_value": 104
+            },
+            {
+              "event_id": 23,
+              "user_id": 403,
+              "event_timestamp": "2024-04-01 10:06:00",
+              "event_type": "scroll",
+              "session_id": "GAMMA",
+              "event_value": 105
+            },
+            {
+              "event_id": 24,
+              "user_id": 403,
+              "event_timestamp": "2024-04-01 10:07:00",
+              "event_type": "scroll",
+              "session_id": "GAMMA",
+              "event_value": 106
+            },
+            {
+              "event_id": 25,
+              "user_id": 403,
+              "event_timestamp": "2024-04-01 10:40:00",
+              "event_type": "app_close",
+              "session_id": "GAMMA",
+              "event_value": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id",
+          "user_id",
+          "session_duration_minutes",
+          "scroll_count"
+        ],
+        "rows": [
+          [
+            "GAMMA",
+            403,
+            40,
+            7
+          ],
+          [
+            "ALPHA",
+            402,
+            40,
+            6
+          ],
+          [
+            "BETA",
+            401,
+            40,
+            6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "ordering",
+        "tie-break"
+      ]
+    },
+    {
+      "id": "real-all-event-timestamps",
+      "name": "hidden: duration uses the earliest and latest event regardless of type",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "app_events": [
+            {
+              "event_id": 1,
+              "user_id": 501,
+              "event_timestamp": "2024-05-02 08:20:00",
+              "event_type": "scroll",
+              "session_id": "MIXED",
+              "event_value": 10
+            },
+            {
+              "event_id": 2,
+              "user_id": 501,
+              "event_timestamp": "2024-05-02 08:05:00",
+              "event_type": "scroll",
+              "session_id": "MIXED",
+              "event_value": 20
+            },
+            {
+              "event_id": 3,
+              "user_id": 501,
+              "event_timestamp": "2024-05-02 08:00:00",
+              "event_type": "click",
+              "session_id": "MIXED",
+              "event_value": null
+            },
+            {
+              "event_id": 4,
+              "user_id": 501,
+              "event_timestamp": "2024-05-02 08:10:00",
+              "event_type": "scroll",
+              "session_id": "MIXED",
+              "event_value": 30
+            },
+            {
+              "event_id": 5,
+              "user_id": 501,
+              "event_timestamp": "2024-05-02 08:15:00",
+              "event_type": "scroll",
+              "session_id": "MIXED",
+              "event_value": 40
+            },
+            {
+              "event_id": 6,
+              "user_id": 501,
+              "event_timestamp": "2024-05-02 08:25:00",
+              "event_type": "scroll",
+              "session_id": "MIXED",
+              "event_value": 50
+            },
+            {
+              "event_id": 7,
+              "user_id": 501,
+              "event_timestamp": "2024-05-02 08:35:00",
+              "event_type": "scroll",
+              "session_id": "MIXED",
+              "event_value": 60
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id",
+          "user_id",
+          "session_duration_minutes",
+          "scroll_count"
+        ],
+        "rows": [
+          [
+            "MIXED",
+            501,
+            35,
+            6
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "timestamp-extrema",
+        "input-order"
+      ]
+    },
+    {
+      "id": "real-non-counted-events",
+      "name": "hidden: opens and closes do not count as clicks or scrolls",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "app_events": [
+            {
+              "event_id": 1,
+              "user_id": 601,
+              "event_timestamp": "2024-04-01 13:00:00",
+              "event_type": "app_open",
+              "session_id": "QUIET",
+              "event_value": null
+            },
+            {
+              "event_id": 2,
+              "user_id": 601,
+              "event_timestamp": "2024-04-01 13:01:00",
+              "event_type": "scroll",
+              "session_id": "QUIET",
+              "event_value": 100
+            },
+            {
+              "event_id": 3,
+              "user_id": 601,
+              "event_timestamp": "2024-04-01 13:02:00",
+              "event_type": "scroll",
+              "session_id": "QUIET",
+              "event_value": 101
+            },
+            {
+              "event_id": 4,
+              "user_id": 601,
+              "event_timestamp": "2024-04-01 13:03:00",
+              "event_type": "scroll",
+              "session_id": "QUIET",
+              "event_value": 102
+            },
+            {
+              "event_id": 5,
+              "user_id": 601,
+              "event_timestamp": "2024-04-01 13:04:00",
+              "event_type": "scroll",
+              "session_id": "QUIET",
+              "event_value": 103
+            },
+            {
+              "event_id": 6,
+              "user_id": 601,
+              "event_timestamp": "2024-04-01 13:40:00",
+              "event_type": "app_close",
+              "session_id": "QUIET",
+              "event_value": null
+            },
+            {
+              "event_id": 8,
+              "user_id": 602,
+              "event_timestamp": "2024-04-01 14:00:00",
+              "event_type": "app_open",
+              "session_id": "ACTIVE",
+              "event_value": null
+            },
+            {
+              "event_id": 9,
+              "user_id": 602,
+              "event_timestamp": "2024-04-01 14:01:00",
+              "event_type": "scroll",
+              "session_id": "ACTIVE",
+              "event_value": 100
+            },
+            {
+              "event_id": 10,
+              "user_id": 602,
+              "event_timestamp": "2024-04-01 14:02:00",
+              "event_type": "scroll",
+              "session_id": "ACTIVE",
+              "event_value": 101
+            },
+            {
+              "event_id": 11,
+              "user_id": 602,
+              "event_timestamp": "2024-04-01 14:03:00",
+              "event_type": "scroll",
+              "session_id": "ACTIVE",
+              "event_value": 102
+            },
+            {
+              "event_id": 12,
+              "user_id": 602,
+              "event_timestamp": "2024-04-01 14:04:00",
+              "event_type": "scroll",
+              "session_id": "ACTIVE",
+              "event_value": 103
+            },
+            {
+              "event_id": 13,
+              "user_id": 602,
+              "event_timestamp": "2024-04-01 14:05:00",
+              "event_type": "scroll",
+              "session_id": "ACTIVE",
+              "event_value": 104
+            },
+            {
+              "event_id": 14,
+              "user_id": 602,
+              "event_timestamp": "2024-04-01 14:41:00",
+              "event_type": "app_close",
+              "session_id": "ACTIVE",
+              "event_value": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "session_id",
+          "user_id",
+          "session_duration_minutes",
+          "scroll_count"
+        ],
+        "rows": [
+          [
+            "ACTIVE",
+            602,
+            41,
+            5
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "hidden",
+        "conditional-counts"
+      ]
+    }
+  ]
+}
+

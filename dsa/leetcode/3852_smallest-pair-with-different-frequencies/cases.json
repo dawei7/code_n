@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3852",
+  "cases": [
+    {
+      "id": "sample-skip-equal-frequency",
+      "name": "sample: skip the next value when its frequency matches",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,1,2,2,3,4]},
+      "expected": [1,3],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "equal-frequency-skip", "lexicographic"]
+    },
+    {
+      "id": "sample-two-singletons",
+      "name": "sample: two equally frequent values have no valid pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [1,5]},
+      "expected": [-1,-1],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "uniform-frequency", "no-answer"]
+    },
+    {
+      "id": "sample-one-value",
+      "name": "sample: one distinct value cannot form a pair",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [7]},
+      "expected": [-1,-1],
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "minimum-length", "no-answer"]
+    },
+    {
+      "id": "trial-immediate-different-frequency",
+      "name": "trial: the two smallest values differ in frequency",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [3,2,3]},
+      "expected": [2,3],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "input-order", "immediate-answer"]
+    },
+    {
+      "id": "trial-smallest-y-tiebreak",
+      "name": "trial: select the smallest eligible second value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [4,4,1,3,3,3,2,2]},
+      "expected": [1,2],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "y-tiebreak", "multiple-frequencies"]
+    },
+    {
+      "id": "trial-no-literal-one",
+      "name": "trial: the smallest present value need not be one",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [77,42,42]},
+      "expected": [42,77],
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "sparse-values", "smallest-present"]
+    },
+    {
+      "id": "real-many-equal-before-different",
+      "name": "hidden: several equal-frequency candidates precede the answer",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,1,2,2,3,3,4,4,4]},
+      "expected": [1,4],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "equal-frequency-skip", "late-answer"]
+    },
+    {
+      "id": "real-all-distinct",
+      "name": "hidden: all distinct values share frequency one",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100,1,73,24,50]},
+      "expected": [-1,-1],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "all-distinct", "uniform-frequency"]
+    },
+    {
+      "id": "real-all-twice",
+      "name": "hidden: repeated values can still have uniform frequencies",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [8,5,8,2,5,2]},
+      "expected": [-1,-1],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "duplicates", "uniform-frequency"]
+    },
+    {
+      "id": "real-domain-endpoints",
+      "name": "hidden: the legal value endpoints form the answer",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [100,1,100]},
+      "expected": [1,100],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "domain-boundaries", "sparse-values"]
+    },
+    {
+      "id": "real-smallest-most-frequent",
+      "name": "hidden: the smallest value may be the most frequent",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [6,6,6,6,9,9,12,12,12]},
+      "expected": [6,9],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "smallest-most-frequent", "multiple-frequencies"]
+    },
+    {
+      "id": "real-reordered-occurrences",
+      "name": "hidden: occurrence positions do not determine pair order",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [9,4,9,7,4,9,7,4,7,7]},
+      "expected": [4,7],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "input-order", "lexicographic"]
+    },
+    {
+      "id": "real-late-domain-answer",
+      "name": "hidden: scan to the maximum value for a different count",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1,1,25,25,50,50,75,75,100]},
+      "expected": [1,100],
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "late-answer", "maximum-value"]
+    }
+  ]
+}

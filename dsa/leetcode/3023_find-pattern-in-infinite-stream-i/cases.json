@@ -1,0 +1,14 @@
+{
+  "challenge_id": "lc_3023",
+  "cases": [
+    {"id":"sample-first-pair","name":"sample: first pair starts at index three","kind":"sample","visible":true,"input":{"stream":{"bits":[1,1,1,0,1]},"pattern":[0,1]},"expected":3,"tags":["sample"]},
+    {"id":"sample-single-zero","name":"sample: one-bit pattern matches immediately","kind":"sample","visible":true,"input":{"stream":{"bits":[0]},"pattern":[0]},"expected":0,"tags":["sample","single-bit"]},
+    {"id":"sample-overlapping-four","name":"sample: four-bit pattern starts at index two","kind":"sample","visible":true,"input":{"stream":{"bits":[1,0,1,1,0,1]},"pattern":[1,1,0,1]},"expected":2,"tags":["sample","overlap"]},
+    {"id":"trial-complete-prefix","name":"pattern occupies the initial stream prefix","kind":"trial","visible":true,"input":{"stream":{"bits":[1,0,1]},"pattern":[1,0,1]},"expected":0,"tags":["match-at-zero"]},
+    {"id":"trial-repeated-prefix","name":"overlapping run of ones retains the useful suffix","kind":"trial","visible":true,"input":{"stream":{"bits":[1,1,1,1,0]},"pattern":[1,1,0]},"expected":2,"tags":["overlap","fallback"]},
+    {"id":"real-nested-fallback","name":"hidden: nested prefix fallback finds the first occurrence","kind":"real","visible":false,"input":{"stream":{"bits":[0,1,0,1,0,0,1]},"pattern":[0,1,0,0]},"expected":2,"tags":["hidden","fallback"]},
+    {"id":"real-late-single-bit","name":"hidden: one-bit pattern appears after several reads","kind":"real","visible":false,"input":{"stream":{"bits":[1,1,1,0]},"pattern":[0]},"expected":3,"tags":["hidden","single-bit"]},
+    {"id":"real-max-pattern","name":"hidden: maximum-length pattern matches at zero","kind":"real","visible":false,"input":{"stream":{"repeated_bit":0,"repeat_count":99,"suffix":[1]},"pattern":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1]},"expected":0,"tags":["hidden","maximum-pattern"]},
+    {"id":"real-late-pattern","name":"hidden: match begins after a long uniform prefix","kind":"real","visible":false,"input":{"stream":{"repeated_bit":0,"repeat_count":128,"suffix":[1,0,1,1]},"pattern":[1,0,1,1]},"expected":128,"tags":["hidden","late-match"]}
+  ]
+}

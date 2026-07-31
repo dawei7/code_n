@@ -1,18 +1,14 @@
 def solve(events: list[list[int]]) -> int:
-    max_duration = -1
-    result_index = -1
-    prev_time = 0
-    
-    for index, time in events:
-        duration = time - prev_time
-        
-        if duration > max_duration:
-            max_duration = duration
-            result_index = index
-        elif duration == max_duration:
-            if index < result_index:
-                result_index = index
-        
-        prev_time = time
-        
-    return result_index
+    answer = events[0][0]
+    longest_duration = events[0][1]
+
+    for position in range(1, len(events)):
+        button, time = events[position]
+        duration = time - events[position - 1][1]
+        if duration > longest_duration or (
+            duration == longest_duration and button < answer
+        ):
+            longest_duration = duration
+            answer = button
+
+    return answer

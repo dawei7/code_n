@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: one merged component",
+      "name": "sample: two overlapping ranges",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -21,12 +21,12 @@
       "expected": 2,
       "tags": [
         "sample",
-        "intervals"
+        "one-component"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: two merged components",
+      "name": "sample: transitive chain and isolated range",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -51,14 +51,57 @@
       },
       "expected": 4,
       "tags": [
-        "sample"
+        "sample",
+        "transitive-overlap"
       ]
     },
     {
-      "id": "trial-two-disjoint-ranges",
-      "name": "trial: two disjoint ranges",
+      "id": "trial-single-range",
+      "name": "trial: one component chooses either group",
       "kind": "trial",
       "visible": true,
+      "input": {
+        "ranges": [
+          [
+            4,
+            9
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "trial-touching-endpoints",
+      "name": "trial: shared endpoint counts as overlap",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "ranges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "closed-endpoints"
+      ]
+    },
+    {
+      "id": "real-two-disjoint-ranges",
+      "name": "hidden: two independent singleton components",
+      "kind": "real",
+      "visible": false,
       "input": {
         "ranges": [
           [
@@ -73,60 +116,286 @@
       },
       "expected": 4,
       "tags": [
-        "trial"
+        "hidden",
+        "disjoint"
       ]
     },
     {
-      "id": "trial-single-range",
-      "name": "trial: one range gives two choices",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "ranges": [
-          [
-            1,
-            1
-          ]
-        ]
-      },
-      "expected": 2,
-      "tags": [
-        "trial",
-        "small"
-      ]
-    },
-    {
-      "id": "real-touching-and-separated",
-      "name": "hidden: touching intervals merge",
+      "id": "real-nested-ranges",
+      "name": "hidden: nested intervals form one component",
       "kind": "real",
       "visible": false,
       "input": {
         "ranges": [
           [
+            0,
+            100
+          ],
+          [
+            10,
+            20
+          ],
+          [
+            30,
+            40
+          ],
+          [
+            50,
+            60
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "nested"
+      ]
+    },
+    {
+      "id": "real-duplicate-ranges",
+      "name": "hidden: duplicate point ranges overlap",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "ranges": [
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            7
+          ],
+          [
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "duplicates",
+        "point-ranges"
+      ]
+    },
+    {
+      "id": "real-unsorted-components",
+      "name": "hidden: unsorted input forms three components",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "ranges": [
+          [
+            20,
+            25
+          ],
+          [
             1,
             4
           ],
           [
-            4,
+            3,
             6
           ],
           [
-            7,
-            8
+            10,
+            12
           ],
           [
-            8,
-            10
-          ],
-          [
-            20,
-            30
+            12,
+            14
           ]
         ]
       },
       "expected": 8,
       "tags": [
-        "hidden"
+        "hidden",
+        "unsorted",
+        "three-components"
+      ]
+    },
+    {
+      "id": "real-maximum-coordinate",
+      "name": "hidden: overlap at the maximum coordinate",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "ranges": [
+          [
+            0,
+            1000000000
+          ],
+          [
+            999999999,
+            1000000000
+          ],
+          [
+            1000000000,
+            1000000000
+          ]
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "maximum-coordinate"
+      ]
+    },
+    {
+      "id": "real-modulo-many-components",
+      "name": "hidden: many components require modular exponentiation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "ranges": [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            8,
+            8
+          ],
+          [
+            10,
+            10
+          ],
+          [
+            12,
+            12
+          ],
+          [
+            14,
+            14
+          ],
+          [
+            16,
+            16
+          ],
+          [
+            18,
+            18
+          ],
+          [
+            20,
+            20
+          ],
+          [
+            22,
+            22
+          ],
+          [
+            24,
+            24
+          ],
+          [
+            26,
+            26
+          ],
+          [
+            28,
+            28
+          ],
+          [
+            30,
+            30
+          ],
+          [
+            32,
+            32
+          ],
+          [
+            34,
+            34
+          ],
+          [
+            36,
+            36
+          ],
+          [
+            38,
+            38
+          ],
+          [
+            40,
+            40
+          ],
+          [
+            42,
+            42
+          ],
+          [
+            44,
+            44
+          ],
+          [
+            46,
+            46
+          ],
+          [
+            48,
+            48
+          ],
+          [
+            50,
+            50
+          ],
+          [
+            52,
+            52
+          ],
+          [
+            54,
+            54
+          ],
+          [
+            56,
+            56
+          ],
+          [
+            58,
+            58
+          ],
+          [
+            60,
+            60
+          ],
+          [
+            62,
+            62
+          ],
+          [
+            64,
+            64
+          ],
+          [
+            66,
+            66
+          ],
+          [
+            68,
+            68
+          ]
+        ]
+      },
+      "expected": 359738130,
+      "tags": [
+        "hidden",
+        "modulo",
+        "many-components"
       ]
     }
   ]

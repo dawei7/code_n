@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Design Neighbor Sum Service and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Precomputes both neighbor sums for every distinct value, making each subsequent service query a direct lookup.",
+      "time_complexity": "O(n^2+q)",
+      "space_complexity": "O(n^2)"
     }
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Find Common Elements Between Two Arrays and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Builds one membership set per array, then counts every index whose value occurs in the other set.",
+      "time_complexity": "O(N + M)",
+      "space_complexity": "O(N + M)"
     }
   ]
 }

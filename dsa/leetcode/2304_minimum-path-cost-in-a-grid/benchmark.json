@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2304",
+  "measurement_note": "Size is mn, the number of grid cells. Every tier has two columns, row-major distinct values, and unit move costs. Dynamic programming processes a constant number of transitions per cell on these fixtures. Correct exhaustive path enumeration completes all tiers but grows exponentially with the number of rows.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 4 by 2 layered grid","kind":"benchmark","visible":false,"size":8,"input":{"grid":[[0,1],[2,3],[4,5],[6,7]],"moveCost":[[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]]},"expected":15},
+    {"id":"benchmark-scale-2","name":"benchmark: 8 by 2 layered grid","kind":"benchmark","visible":false,"size":16,"input":{"grid":[[0,1],[2,3],[4,5],[6,7],[8,9],[10,11],[12,13],[14,15]],"moveCost":[[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]]},"expected":63},
+    {"id":"benchmark-scale-3","name":"benchmark: 16 by 2 layered grid","kind":"benchmark","visible":false,"size":32,"input":{"grid":[[0,1],[2,3],[4,5],[6,7],[8,9],[10,11],[12,13],[14,15],[16,17],[18,19],[20,21],[22,23],[24,25],[26,27],[28,29],[30,31]],"moveCost":[[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]]},"expected":255}
+  ]
+}

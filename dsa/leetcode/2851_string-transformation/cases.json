@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_2851",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: two two-step paths reach one rotation",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "abcd", "t": "cdab", "k": 2},
+      "expected": 2,
+      "tags": ["sample", "rotation", "exact-operations"]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: periodic string has two matching nonzero rotations",
+      "kind": "sample",
+      "visible": true,
+      "input": {"s": "ababab", "t": "ababab", "k": 1},
+      "expected": 2,
+      "tags": ["sample", "periodic", "multiplicity"]
+    },
+    {
+      "id": "trial-single-operation",
+      "name": "trial: one suffix move reaches a unique rotation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abc", "t": "bca", "k": 1},
+      "expected": 1,
+      "tags": ["trial", "one-operation"]
+    },
+    {
+      "id": "trial-target-is-not-a-rotation",
+      "name": "trial: target cannot be formed by any rotation",
+      "kind": "trial",
+      "visible": true,
+      "input": {"s": "abc", "t": "acb", "k": 5},
+      "expected": 0,
+      "tags": ["trial", "impossible"]
+    },
+    {
+      "id": "real-equal-unique-one-operation",
+      "name": "hidden: a nontrivial rotation cannot keep a unique string fixed",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abcd", "t": "abcd", "k": 1},
+      "expected": 0,
+      "tags": ["hidden", "equal-target", "exact-operations"]
+    },
+    {
+      "id": "real-equal-unique-two-operations",
+      "name": "hidden: inverse shifts return a unique string after two moves",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abc", "t": "abc", "k": 2},
+      "expected": 2,
+      "tags": ["hidden", "equal-target", "return-count"]
+    },
+    {
+      "id": "real-periodic-nonzero-offsets",
+      "name": "hidden: two nonzero offsets spell the periodic target",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "abab", "t": "baba", "k": 2},
+      "expected": 4,
+      "tags": ["hidden", "periodic", "matching-offsets"]
+    },
+    {
+      "id": "real-all-rotations-equal",
+      "name": "hidden: every suffix choice preserves a uniform string",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaa", "t": "aaaa", "k": 3},
+      "expected": 27,
+      "tags": ["hidden", "uniform", "all-offsets-match"]
+    },
+    {
+      "id": "real-huge-k-parity",
+      "name": "hidden: length two alternates deterministically for huge k",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "ab", "t": "ba", "k": 1000000000000000},
+      "expected": 0,
+      "tags": ["hidden", "huge-k", "parity"]
+    },
+    {
+      "id": "real-huge-k-modulo",
+      "name": "hidden: uniform rotations require modular exponentiation",
+      "kind": "real",
+      "visible": false,
+      "input": {"s": "aaaa", "t": "aaaa", "k": 1000000000000000},
+      "expected": 468606845,
+      "tags": ["hidden", "huge-k", "modulo"]
+    }
+  ]
+}

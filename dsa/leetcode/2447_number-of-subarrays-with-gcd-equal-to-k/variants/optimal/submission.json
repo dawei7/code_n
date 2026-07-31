@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2546",
+  "frontend_id": "2447",
+  "title_slug": "number-of-subarrays-with-gcd-equal-to-k",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.subarrayGCD",
+  "verified_submission_id": "2075003046",
+  "verified_at": "2026-07-20T18:47:37.221234+00:00"
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3922",
+    "frontend_id": "3922",
+    "title_slug": "minimum-flips-to-make-binary-string-coherent",
+    "url": "https://leetcode.com/problems/minimum-flips-to-make-binary-string-coherent/description/",
+    "paid_only": false,
+    "content_sha256": "7af7f404114b6c8a0af4eed4aaadc2725b9c0329113046c3dc2b71e4fce136c3",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"1010\"",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"0110\"",
+        "output": "1",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"1000\"",
+        "output": "0",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "f533e7d3bc5bd55e6ce392ab05cd3fd8473c68f872c2d0b4d581e51a8815f47f",
+      "reference/contract.md": "313236722a6ecb5c91bc41840b50cefb8cfad5b50ae002c622917f912cacd9e4",
+      "reference/examples.md": "c3e90cd7f85846631c75457a6ddeb8d64ed3a8fe946dc41cceead3ce4c34b3d7",
+      "reference/constraints.md": "4552034344136d7d20370aeff5bfaff64815c3b9a00896fa8859872fb9f2e577"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

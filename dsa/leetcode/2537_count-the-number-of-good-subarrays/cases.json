@@ -3,7 +3,7 @@
   "cases": [
     {
       "id": "sample-1",
-      "name": "sample: all equal values form one full-window answer",
+      "name": "sample: all equal values reach ten pairs",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -19,12 +19,12 @@
       "expected": 1,
       "tags": [
         "sample",
-        "sliding-window"
+        "all-equal"
       ]
     },
     {
       "id": "sample-2",
-      "name": "sample: multiple duplicate groups create good subarrays",
+      "name": "sample: several duplicate groups",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -41,13 +41,14 @@
       },
       "expected": 4,
       "tags": [
-        "sample"
+        "sample",
+        "mixed"
       ]
     },
     {
-      "id": "sample-3",
-      "name": "sample: all values are distinct",
-      "kind": "sample",
+      "id": "trial-distinct",
+      "name": "trial: distinct values never form a pair",
+      "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
@@ -59,40 +60,68 @@
       },
       "expected": 0,
       "tags": [
-        "sample"
+        "trial",
+        "no-pairs"
       ]
     },
     {
-      "id": "trial-one-pair",
-      "name": "trial: exactly one identical pair",
+      "id": "trial-exact-pair",
+      "name": "trial: one pair exactly meets the threshold",
       "kind": "trial",
       "visible": true,
       "input": {
         "nums": [
-          1,
-          1
+          7,
+          7
         ],
         "k": 1
       },
       "expected": 1,
       "tags": [
-        "trial"
+        "trial",
+        "exact-threshold"
       ]
     },
     {
-      "id": "real-single-value",
-      "name": "hidden: one value cannot make a pair",
+      "id": "real-overlapping-groups",
+      "name": "hidden: alternating values create overlapping good ranges",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
+          1,
+          2,
+          1,
+          2,
           1
         ],
-        "k": 1
+        "k": 2
       },
-      "expected": 0,
+      "expected": 3,
       "tags": [
-        "hidden"
+        "hidden",
+        "overlap"
+      ]
+    },
+    {
+      "id": "real-identical-threshold",
+      "name": "hidden: identical values cross a combinatorial threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "all-equal",
+        "threshold"
       ]
     }
   ]

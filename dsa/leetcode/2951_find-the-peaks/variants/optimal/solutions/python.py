@@ -1,12 +1,6 @@
-from typing import List
-
-def solve(mountain: List[int]) -> List[int]:
-    """
-    Finds all indices i such that mountain[i-1] < mountain[i] > mountain[i+1].
-    """
-    peaks = []
-    # A peak cannot be the first or last element, so we iterate from 1 to len-2
-    for i in range(1, len(mountain) - 1):
-        if mountain[i - 1] < mountain[i] > mountain[i + 1]:
-            peaks.append(i)
-    return peaks
+def solve(mountain: list[int]) -> list[int]:
+    return [
+        index
+        for index in range(1, len(mountain) - 1)
+        if mountain[index - 1] < mountain[index] > mountain[index + 1]
+    ]

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "4158",
+  "frontend_id": "3774",
+  "title_slug": "absolute-difference-between-maximum-and-minimum-k-elements",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.absDifference",
+  "verified_submission_id": "2085382487",
+  "verified_at": "2026-07-28T22:32:06.662650+00:00"
+}

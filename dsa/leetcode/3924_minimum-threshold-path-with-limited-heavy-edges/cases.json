@@ -1,0 +1,764 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3924",
+  "cases": [
+    {
+      "id": "sample-one-heavy-edge-at-threshold-four",
+      "name": "sample: threshold four permits exactly one heavy edge",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            3,
+            4,
+            4
+          ],
+          [
+            4,
+            5,
+            1
+          ],
+          [
+            1,
+            4,
+            2
+          ]
+        ],
+        "source": 0,
+        "target": 3,
+        "k": 1
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "one-heavy-edge",
+        "minimum-threshold"
+      ]
+    },
+    {
+      "id": "sample-disconnected-components",
+      "name": "sample: disconnected endpoints remain impossible",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            1,
+            2,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            4,
+            5,
+            6
+          ]
+        ],
+        "source": 0,
+        "target": 4,
+        "k": 1
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "disconnected",
+        "impossible"
+      ]
+    },
+    {
+      "id": "sample-identical-endpoints",
+      "name": "sample: the empty path needs threshold zero",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            2
+          ],
+          [
+            3,
+            0,
+            2
+          ]
+        ],
+        "source": 0,
+        "target": 0,
+        "k": 0
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "empty-path",
+        "threshold-zero"
+      ]
+    },
+    {
+      "id": "trial-single-heavy-edge",
+      "name": "trial: one allowed heavy edge makes zero feasible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ]
+        ],
+        "source": 0,
+        "target": 1,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "threshold-zero",
+        "heavy-budget"
+      ]
+    },
+    {
+      "id": "trial-single-edge-must-be-light",
+      "name": "trial: with no heavy budget the only edge must be light",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ]
+        ],
+        "source": 0,
+        "target": 1,
+        "k": 0
+      },
+      "expected": 10,
+      "tags": [
+        "trial",
+        "k-zero",
+        "boundary-weight"
+      ]
+    },
+    {
+      "id": "trial-all-chain-edges-heavy",
+      "name": "trial: the heavy budget covers the whole path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            2,
+            8
+          ]
+        ],
+        "source": 0,
+        "target": 2,
+        "k": 2
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "threshold-zero",
+        "path-length"
+      ]
+    },
+    {
+      "id": "trial-chain-needs-threshold-seven",
+      "name": "trial: one heavy edge remains on a three-edge chain",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1,
+            8
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            7
+          ]
+        ],
+        "source": 0,
+        "target": 3,
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "chain",
+        "one-heavy-edge"
+      ]
+    },
+    {
+      "id": "trial-choose-lower-bottleneck-path",
+      "name": "trial: a two-edge path minimizes the zero-budget threshold",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            3,
+            20
+          ],
+          [
+            0,
+            1,
+            9
+          ],
+          [
+            1,
+            3,
+            9
+          ],
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            2,
+            3,
+            100
+          ]
+        ],
+        "source": 0,
+        "target": 3,
+        "k": 0
+      },
+      "expected": 9,
+      "tags": [
+        "trial",
+        "alternative-paths",
+        "k-zero"
+      ]
+    },
+    {
+      "id": "trial-direct-edge-with-heavy-budget",
+      "name": "trial: the direct edge makes threshold zero feasible",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            3,
+            20
+          ],
+          [
+            0,
+            1,
+            9
+          ],
+          [
+            1,
+            3,
+            9
+          ],
+          [
+            0,
+            2,
+            4
+          ],
+          [
+            2,
+            3,
+            100
+          ]
+        ],
+        "source": 0,
+        "target": 3,
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "direct-edge",
+        "threshold-zero"
+      ]
+    },
+    {
+      "id": "trial-no-edges-distinct-nodes",
+      "name": "trial: distinct nodes with no edges are disconnected",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [],
+        "source": 0,
+        "target": 1,
+        "k": 0
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "empty-graph",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-single-node-empty-graph",
+      "name": "trial: a one-node graph has a valid empty path",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 1,
+        "edges": [],
+        "source": 0,
+        "target": 0,
+        "k": 0
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "single-node",
+        "empty-path"
+      ]
+    },
+    {
+      "id": "trial-cycle-offers-one-heavy-route",
+      "name": "trial: a cycle offers a route with only one heavy edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            8
+          ],
+          [
+            1,
+            4,
+            8
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            9
+          ],
+          [
+            3,
+            4,
+            2
+          ],
+          [
+            1,
+            2,
+            20
+          ]
+        ],
+        "source": 0,
+        "target": 4,
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "cycle",
+        "alternative-paths"
+      ]
+    },
+    {
+      "id": "trial-parallel-edges",
+      "name": "trial: the lighter parallel edge determines the answer",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            50
+          ],
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            1,
+            2,
+            6
+          ]
+        ],
+        "source": 0,
+        "target": 2,
+        "k": 0
+      },
+      "expected": 6,
+      "tags": [
+        "trial",
+        "parallel-edges",
+        "k-zero"
+      ]
+    },
+    {
+      "id": "trial-self-loop-does-not-help",
+      "name": "trial: a self-loop cannot replace the connecting edge",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            7
+          ]
+        ],
+        "source": 0,
+        "target": 1,
+        "k": 0
+      },
+      "expected": 7,
+      "tags": [
+        "trial",
+        "self-loop",
+        "boundary-weight"
+      ]
+    },
+    {
+      "id": "hidden-first-positive-candidate",
+      "name": "hidden: the first edge weight is the minimum threshold",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1,
+            100
+          ],
+          [
+            1,
+            2,
+            1
+          ]
+        ],
+        "source": 0,
+        "target": 2,
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "candidate-boundary",
+        "one-heavy-edge"
+      ]
+    },
+    {
+      "id": "hidden-repeated-weight-jump",
+      "name": "hidden: repeated weights make feasibility jump at seven",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            7
+          ],
+          [
+            1,
+            2,
+            7
+          ],
+          [
+            2,
+            3,
+            7
+          ],
+          [
+            3,
+            4,
+            7
+          ]
+        ],
+        "source": 0,
+        "target": 4,
+        "k": 1
+      },
+      "expected": 7,
+      "tags": [
+        "hidden",
+        "duplicate-weights",
+        "monotonicity"
+      ]
+    },
+    {
+      "id": "hidden-budget-equals-path-length",
+      "name": "hidden: four heavy edges are all allowed",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            1,
+            2,
+            20
+          ],
+          [
+            2,
+            3,
+            30
+          ],
+          [
+            3,
+            4,
+            40
+          ]
+        ],
+        "source": 0,
+        "target": 4,
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "hidden",
+        "threshold-zero",
+        "exact-budget"
+      ]
+    },
+    {
+      "id": "hidden-one-edge-must-turn-light",
+      "name": "hidden: reducing four heavy edges to three needs threshold ten",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1,
+            10
+          ],
+          [
+            1,
+            2,
+            20
+          ],
+          [
+            2,
+            3,
+            30
+          ],
+          [
+            3,
+            4,
+            40
+          ]
+        ],
+        "source": 0,
+        "target": 4,
+        "k": 3
+      },
+      "expected": 10,
+      "tags": [
+        "hidden",
+        "candidate-boundary",
+        "exact-budget"
+      ]
+    },
+    {
+      "id": "hidden-maximum-edge-weight",
+      "name": "hidden: the maximum legal weight must become light",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1,
+            1000000000
+          ]
+        ],
+        "source": 0,
+        "target": 1,
+        "k": 0
+      },
+      "expected": 1000000000,
+      "tags": [
+        "hidden",
+        "maximum-weight",
+        "k-zero"
+      ]
+    },
+    {
+      "id": "hidden-large-budget-cannot-connect-components",
+      "name": "hidden: a large heavy budget cannot cross a missing edge",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 7,
+        "edges": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            3,
+            3
+          ],
+          [
+            4,
+            5,
+            4
+          ],
+          [
+            5,
+            6,
+            5
+          ]
+        ],
+        "source": 0,
+        "target": 6,
+        "k": 5
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "disconnected",
+        "large-budget"
+      ]
+    },
+    {
+      "id": "hidden-multiple-routes-first-feasible-weight",
+      "name": "hidden: a mixed route becomes feasible at weight one",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1,
+            9
+          ],
+          [
+            1,
+            5,
+            1
+          ],
+          [
+            0,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            3
+          ],
+          [
+            3,
+            5,
+            3
+          ],
+          [
+            0,
+            4,
+            2
+          ],
+          [
+            4,
+            5,
+            10
+          ]
+        ],
+        "source": 0,
+        "target": 5,
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "alternative-paths",
+        "first-feasible"
+      ]
+    }
+  ]
+}

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Snake in Matrix and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Translates each direction directly into its row-major index displacement and accumulates the moves.",
+      "time_complexity": "O(c)",
+      "space_complexity": "O(1)"
     }
   ]
 }

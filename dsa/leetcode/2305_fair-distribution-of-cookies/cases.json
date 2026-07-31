@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2305",
+  "cases": [
+    {"id":"sample-two-children","name":"sample: two nearly balanced loads","kind":"sample","visible":true,"input":{"cookies":[8,15,10,20,8],"k":2},"expected":31,"tags":["sample","partition"]},
+    {"id":"sample-three-children","name":"sample: three equal loads","kind":"sample","visible":true,"input":{"cookies":[6,1,3,2,2,4,1,2],"k":3},"expected":7,"tags":["sample","balanced"]},
+    {"id":"trial-one-per-child","name":"each bag can go to a separate child","kind":"trial","visible":true,"input":{"cookies":[1,2],"k":2},"expected":2,"tags":["k-equals-n"]},
+    {"id":"trial-dominant-bag","name":"one bag determines the lower bound","kind":"trial","visible":true,"input":{"cookies":[100,1,1,1],"k":2},"expected":100,"tags":["dominant-bag"]},
+    {"id":"trial-duplicates","name":"duplicate bag sizes divide evenly","kind":"trial","visible":true,"input":{"cookies":[5,5,5,5],"k":2},"expected":10,"tags":["duplicates"]},
+    {"id":"real-empty-children","name":"hidden: some children may receive only one small bag","kind":"real","visible":false,"input":{"cookies":[9,8,1,1],"k":3},"expected":9,"tags":["hidden","many-children"]},
+    {"id":"real-uneven-three-way","name":"hidden: the optimum requires combining nonadjacent bags","kind":"real","visible":false,"input":{"cookies":[7,6,5,4,3],"k":3},"expected":9,"tags":["hidden","partition"]},
+    {"id":"real-maximum-count","name":"hidden: eight bags exercise the complete source-size boundary","kind":"real","visible":false,"input":{"cookies":[9,8,7,6,5,4,3,2],"k":4},"expected":11,"tags":["hidden","maximum-n","symmetry"]}
+  ]
+}

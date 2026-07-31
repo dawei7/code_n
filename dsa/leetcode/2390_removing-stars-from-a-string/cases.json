@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2390",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: several internal removals",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "leet**cod*e"
+      },
+      "expected": "lecoe",
+      "tags": [
+        "sample",
+        "stack"
+      ]
+    },
+    {
+      "id": "sample-2",
+      "name": "sample: every letter is removed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "s": "erase*****"
+      },
+      "expected": "",
+      "tags": [
+        "sample",
+        "empty-result"
+      ]
+    },
+    {
+      "id": "trial-no-stars",
+      "name": "trial: unchanged string",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "algorithm"
+      },
+      "expected": "algorithm",
+      "tags": [
+        "no-stars"
+      ]
+    },
+    {
+      "id": "trial-alternating",
+      "name": "trial: alternating letters and stars",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "s": "a*b*c*"
+      },
+      "expected": "",
+      "tags": [
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-consecutive-stars",
+      "name": "hidden: one run removes the entire prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abc***"
+      },
+      "expected": "",
+      "tags": [
+        "hidden",
+        "consecutive-stars"
+      ]
+    },
+    {
+      "id": "real-retained-suffix",
+      "name": "hidden: suffix remains after consecutive removals",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "ab**c"
+      },
+      "expected": "c",
+      "tags": [
+        "hidden",
+        "suffix"
+      ]
+    },
+    {
+      "id": "real-multiple-runs",
+      "name": "hidden: separate star runs alter the surviving prefix",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "s": "abc*d**e"
+      },
+      "expected": "ae",
+      "tags": [
+        "hidden",
+        "multiple-runs"
+      ]
+    }
+  ]
+}

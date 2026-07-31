@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Closest Node to Path in Tree and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Uses binary-lifting LCAs to find the three-node median for every query.",
+      "time_complexity": "O((n + m) log n)",
+      "space_complexity": "O(n log n)"
     }
   ]
 }

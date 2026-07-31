@@ -18,7 +18,8 @@ from xml.sax.saxutils import escape as xml_escape
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
 from challenges.registry import CHALLENGE_REGISTRY
-from engine.languages import SUPPORTED_LANGUAGES, SupportedLanguage, normalize_language
+from engine.languages import PRIMARY_LANGUAGES, SupportedLanguage, normalize_language
+from server.app.primary_languages import primary_language_for_challenge
 from server.app.config import CODEN_HOME, PROJECT_ROOT
 from server.app.user_solutions import active_solution_path
 from server.app.dap_client import DAPClient, DAPError
@@ -231,7 +232,7 @@ def debug_capabilities() -> dict[str, Any]:
     """
     languages = {
         language: _debug_capability(language)
-        for language in SUPPORTED_LANGUAGES
+        for language in PRIMARY_LANGUAGES
     }
     return {"languages": languages}
 
@@ -451,6 +452,21 @@ async def debug_ws(websocket: WebSocket) -> None:
             language_id = normalize_language(str(payload.get("language") or "python"))
         except ValueError as exc:
             await send({"type": "error", "message": str(exc)})
+            return
+
+        challenge = CHALLENGE_REGISTRY[challenge_id]()
+        spec = getattr(challenge, "_spec", None)
+        metadata = getattr(spec, "reference_metadata", {}) or {}
+        primary_language = primary_language_for_challenge(challenge_id, metadata)
+        if language_id != primary_language:
+            await send({
+                "type": "error",
+                "phase": "capability",
+                "message": (
+                    f"{language_id} is not the verified primary language for this challenge. "
+                    f"Use {primary_language}."
+                ),
+            })
             return
 
         capability = _debug_capability(language_id)

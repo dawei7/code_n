@@ -1,0 +1,156 @@
+{
+  "challenge_id": "lc_3031",
+  "cases": [
+    {
+      "id": "sample-two-seconds",
+      "name": "sample: a later one-character overlap restores the word",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abacaba",
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "later-overlap"
+      ]
+    },
+    {
+      "id": "sample-one-second",
+      "name": "sample: the first surviving suffix matches immediately",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abacaba",
+        "k": 4
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "immediate-overlap"
+      ]
+    },
+    {
+      "id": "sample-full-removal",
+      "name": "sample: no overlap works before all characters are removed",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "word": "abcbabcd",
+        "k": 2
+      },
+      "expected": 4,
+      "tags": [
+        "sample",
+        "no-overlap"
+      ]
+    },
+    {
+      "id": "trial-single-character",
+      "name": "a one-character word still requires one positive second",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "z",
+        "k": 1
+      },
+      "expected": 1,
+      "tags": [
+        "minimum-length",
+        "positive-time"
+      ]
+    },
+    {
+      "id": "trial-periodic",
+      "name": "a long periodic word returns after one block",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc",
+        "k": 3
+      },
+      "expected": 1,
+      "tags": [
+        "periodic",
+        "immediate-overlap"
+      ]
+    },
+    {
+      "id": "trial-arbitrary-append",
+      "name": "the appended character need not be the removed character",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "word": "ba",
+        "k": 1
+      },
+      "expected": 2,
+      "tags": [
+        "arbitrary-append",
+        "semantic-trap"
+      ]
+    },
+    {
+      "id": "real-k-equals-length",
+      "name": "hidden: removing the complete word permits immediate reconstruction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "algorithm",
+        "k": 9
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "full-removal"
+      ]
+    },
+    {
+      "id": "real-nondivisible-length",
+      "name": "hidden: complete removal may require a final partial original block",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "aaaaab",
+        "k": 2
+      },
+      "expected": 3,
+      "tags": [
+        "hidden",
+        "ceiling-division"
+      ]
+    },
+    {
+      "id": "real-late-overlap",
+      "name": "hidden: only the second reachable suffix matches",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "xyzabcxyz",
+        "k": 3
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "late-overlap"
+      ]
+    },
+    {
+      "id": "real-long-no-border",
+      "name": "hidden: a long near-uniform string mismatches only at each suffix end",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "k": 1
+      },
+      "expected": 1000,
+      "tags": [
+        "hidden",
+        "long-input",
+        "worst-case"
+      ]
+    }
+  ]
+}

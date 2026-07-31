@@ -1,0 +1,363 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3451",
+  "cases": [
+    {
+      "id": "sample-official",
+      "name": "sample: official access logs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "logs": [
+            {
+              "log_id": 1,
+              "ip": "192.168.1.1",
+              "status_code": 200
+            },
+            {
+              "log_id": 2,
+              "ip": "256.1.2.3",
+              "status_code": 404
+            },
+            {
+              "log_id": 3,
+              "ip": "192.168.001.1",
+              "status_code": 200
+            },
+            {
+              "log_id": 4,
+              "ip": "192.168.1.1",
+              "status_code": 200
+            },
+            {
+              "log_id": 5,
+              "ip": "192.168.1",
+              "status_code": 500
+            },
+            {
+              "log_id": 6,
+              "ip": "256.1.2.3",
+              "status_code": 404
+            },
+            {
+              "log_id": 7,
+              "ip": "192.168.001.1",
+              "status_code": 200
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ip",
+          "invalid_count"
+        ],
+        "rows": [
+          [
+            "256.1.2.3",
+            2
+          ],
+          [
+            "192.168.001.1",
+            2
+          ],
+          [
+            "192.168.1",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "grouping"
+      ]
+    },
+    {
+      "id": "trial-value-and-zero-boundaries",
+      "name": "trial: 255 and single zero are valid boundaries",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "logs": [
+            {
+              "log_id": 1,
+              "ip": "255.255.255.255",
+              "status_code": 200
+            },
+            {
+              "log_id": 2,
+              "ip": "255.255.255.256",
+              "status_code": 400
+            },
+            {
+              "log_id": 3,
+              "ip": "0.1.2.3",
+              "status_code": 200
+            },
+            {
+              "log_id": 4,
+              "ip": "00.1.2.3",
+              "status_code": 400
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ip",
+          "invalid_count"
+        ],
+        "rows": [
+          [
+            "255.255.255.256",
+            1
+          ],
+          [
+            "00.1.2.3",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "numeric-boundary",
+        "leading-zero"
+      ]
+    },
+    {
+      "id": "trial-octet-count-semantics",
+      "name": "trial: empty component still counts as an octet",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "logs": [
+            {
+              "log_id": 1,
+              "ip": "192.168..1",
+              "status_code": 200
+            },
+            {
+              "log_id": 2,
+              "ip": "1.2.3",
+              "status_code": 400
+            },
+            {
+              "log_id": 3,
+              "ip": "1.2.3.4.5",
+              "status_code": 400
+            },
+            {
+              "log_id": 4,
+              "ip": "1.2.3.",
+              "status_code": 200
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ip",
+          "invalid_count"
+        ],
+        "rows": [
+          [
+            "1.2.3.4.5",
+            1
+          ],
+          [
+            "1.2.3",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "trial",
+        "octet-count",
+        "empty-octet"
+      ]
+    },
+    {
+      "id": "real-count-and-ip-order",
+      "name": "hidden: count then IP descending order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "logs": [
+            {
+              "log_id": 1,
+              "ip": "300.1.1.1",
+              "status_code": 400
+            },
+            {
+              "log_id": 2,
+              "ip": "01.2.3.4",
+              "status_code": 400
+            },
+            {
+              "log_id": 3,
+              "ip": "300.1.1.1",
+              "status_code": 500
+            },
+            {
+              "log_id": 4,
+              "ip": "1.2.3",
+              "status_code": 400
+            },
+            {
+              "log_id": 5,
+              "ip": "01.2.3.4",
+              "status_code": 500
+            },
+            {
+              "log_id": 6,
+              "ip": "999.9.9.9",
+              "status_code": 400
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ip",
+          "invalid_count"
+        ],
+        "rows": [
+          [
+            "300.1.1.1",
+            2
+          ],
+          [
+            "01.2.3.4",
+            2
+          ],
+          [
+            "999.9.9.9",
+            1
+          ],
+          [
+            "1.2.3",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "ordering",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-large-octet-positions",
+      "name": "hidden: oversized value in every octet position",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "logs": [
+            {
+              "log_id": 1,
+              "ip": "256.1.2.3",
+              "status_code": 400
+            },
+            {
+              "log_id": 2,
+              "ip": "1.256.2.3",
+              "status_code": 400
+            },
+            {
+              "log_id": 3,
+              "ip": "1.2.256.3",
+              "status_code": 400
+            },
+            {
+              "log_id": 4,
+              "ip": "1.2.3.256",
+              "status_code": 400
+            },
+            {
+              "log_id": 5,
+              "ip": "1.2.3.255",
+              "status_code": 200
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ip",
+          "invalid_count"
+        ],
+        "rows": [
+          [
+            "256.1.2.3",
+            1
+          ],
+          [
+            "1.256.2.3",
+            1
+          ],
+          [
+            "1.2.3.256",
+            1
+          ],
+          [
+            "1.2.256.3",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "all-octets"
+      ]
+    },
+    {
+      "id": "real-no-invalid-rows",
+      "name": "hidden: all rows avoid the three invalidity rules",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "logs": [
+            {
+              "log_id": 1,
+              "ip": "127.0.0.1",
+              "status_code": 200
+            },
+            {
+              "log_id": 2,
+              "ip": "192.168..1",
+              "status_code": 400
+            },
+            {
+              "log_id": 3,
+              "ip": "1.2.3.",
+              "status_code": 200
+            },
+            {
+              "log_id": 4,
+              "ip": ".1.2.3",
+              "status_code": 200
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "ip",
+          "invalid_count"
+        ],
+        "rows": []
+      },
+      "tags": [
+        "hidden",
+        "empty-result",
+        "source-semantics"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "challenge_id": "lc_3110",
+  "cases": [
+    {"id": "sample-hello", "name": "sample: mixed adjacent differences", "kind": "sample", "visible": true, "input": {"s": "hello"}, "expected": 13, "tags": ["sample"]},
+    {"id": "sample-zaz", "name": "sample: maximum changes in both directions", "kind": "sample", "visible": true, "input": {"s": "zaz"}, "expected": 50, "tags": ["sample"]},
+    {"id": "trial-same-pair", "name": "trial: equal pair contributes zero", "kind": "trial", "visible": true, "input": {"s": "aa"}, "expected": 0, "tags": ["trial", "boundary"]},
+    {"id": "trial-extreme-pair", "name": "trial: alphabet endpoints", "kind": "trial", "visible": true, "input": {"s": "az"}, "expected": 25, "tags": ["trial", "boundary"]},
+    {"id": "real-reversed-extreme-pair", "name": "real: direction does not change the score", "kind": "real", "visible": false, "input": {"s": "za"}, "expected": 25, "tags": ["real", "absolute-difference"]},
+    {"id": "real-consecutive-letters", "name": "real: consecutive ascending letters", "kind": "real", "visible": false, "input": {"s": "abcd"}, "expected": 3, "tags": ["real", "ascending"]},
+    {"id": "real-all-equal", "name": "real: every contribution is zero", "kind": "real", "visible": false, "input": {"s": "zzzz"}, "expected": 0, "tags": ["real", "repeated"]},
+    {"id": "real-alternating", "name": "real: repeated maximum differences", "kind": "real", "visible": false, "input": {"s": "azaz"}, "expected": 75, "tags": ["real", "alternating"]},
+    {"id": "real-palindrome", "name": "real: changes reverse around the center", "kind": "real", "visible": false, "input": {"s": "abcba"}, "expected": 4, "tags": ["real", "palindrome"]},
+    {"id": "real-leetcode", "name": "real: varied repeated letters", "kind": "real", "visible": false, "input": {"s": "leetcode"}, "expected": 63, "tags": ["real", "mixed"]},
+    {"id": "real-full-alphabet", "name": "real: every consecutive lowercase letter", "kind": "real", "visible": false, "input": {"s": "abcdefghijklmnopqrstuvwxyz"}, "expected": 25, "tags": ["real", "ascending"]},
+    {"id": "real-maximum-length", "name": "real: maximum length and maximum total score", "kind": "real", "visible": false, "input": {"s": "azazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazazaz"}, "expected": 2475, "tags": ["real", "boundary", "alternating"]}
+  ]
+}

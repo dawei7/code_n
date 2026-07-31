@@ -8,49 +8,39 @@
 | Category | Algorithms |
 | Topics | Array, Greedy |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximize-the-topmost-element-after-k-moves](https://leetcode.com/problems/maximize-the-topmost-element-after-k-moves/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/maximize-the-topmost-element-after-k-moves/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximize-the-topmost-element-after-k-moves/).
 
 ### Goal
-Perform exactly `k` moves on a stack represented from top to bottom. A move either removes the top element or returns one previously removed element to the top. Maximize the final top value, or return `-1` if the stack must be empty.
+
+The 0-indexed array `nums` describes a pile from top to bottom, with `nums[0]` currently on top. One move may remove the top element when the pile is nonempty, or place any previously removed element back on top.
+
+Perform exactly `k` moves and maximize the value left at the top. Removed elements may be chosen in any order when restored. If every legal sequence of exactly `k` moves leaves the pile empty, return `-1`.
 
 ### Function Contract
+
 **Inputs**
 
-- `nums`: stack values ordered from top to bottom.
-- `k`: the exact number of moves.
+- `nums`: a nonempty list of pile values, with $1 \le n \le 10^5$ and $0 \le \texttt{nums[i]} \le 10^9$.
+- `k`: the exact move count, where $0 \le k \le 10^9$.
 
 **Return value**
 
-The maximum possible top value after exactly `k` moves, or `-1` when no element can remain.
+Return the greatest achievable top value after exactly `k` legal moves, or `-1` if no nonempty final pile is possible.
 
 ### Examples
+
 **Example 1**
 
-- Input: `nums = [5, 2, 2, 4, 0, 6]`, `k = 4`
+- Input: `nums = [5,2,2,4,0,6]`, `k = 4`
 - Output: `5`
+
+Remove the first three values, then restore `5` on the fourth move.
 
 **Example 2**
 
 - Input: `nums = [2]`, `k = 1`
 - Output: `-1`
 
-**Example 3**
-
-- Input: `nums = [1, 2, 3]`, `k = 2`
-- Output: `3`
-
----
-
-## Solution
-### Approach
-Handle the one-element parity case separately. Otherwise, a final top can be either any of the first `k - 1` values, removed and restored on the last move, or `nums[k]`, exposed by making all `k` moves removals when that index exists. Return the maximum among these candidates.
-
-### Complexity Analysis
-- **Time Complexity**: `O(min(n, k))`
-- **Space Complexity**: `O(1)`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The only legal move removes the sole element, leaving the pile empty.

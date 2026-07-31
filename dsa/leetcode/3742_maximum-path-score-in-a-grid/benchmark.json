@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3742",
+  "cases": [
+    {
+      "id": "benchmark-resource-grid-3",
+      "name": "benchmark: score a 3 by 3 resource-constrained grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 27,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ],
+        "k": 3
+      },
+      "expected": 4,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "cost-state-dp"
+      ]
+    },
+    {
+      "id": "benchmark-resource-grid-5",
+      "name": "benchmark: score a 5 by 5 resource-constrained grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 150,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            1,
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            1,
+            0,
+            2,
+            1
+          ]
+        ],
+        "k": 6
+      },
+      "expected": 9,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "cost-state-dp"
+      ]
+    },
+    {
+      "id": "benchmark-resource-grid-9",
+      "name": "benchmark: score a 9 by 9 resource-constrained grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 972,
+      "input": {
+        "grid": [
+          [
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0,
+            2,
+            1,
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0,
+            2,
+            1,
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2,
+            0,
+            1,
+            2,
+            0,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            0,
+            2,
+            1,
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "k": 12
+      },
+      "expected": 17,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "cost-state-dp"
+      ]
+    }
+  ]
+}

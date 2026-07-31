@@ -2,128 +2,76 @@
   "challenge_id": "lc_3070",
   "cases": [
     {
-      "id": "sample-small-grid",
-      "name": "sample: top-left prefix submatrices below k",
+      "id": "sample-first",
+      "name": "sample: four anchored rectangles",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            7,
-            6,
-            3
-          ],
-          [
-            6,
-            6,
-            1
-          ]
-        ],
-        "k": 18
-      },
+      "input": {"grid": [[7, 6, 3], [6, 6, 1]], "k": 18},
       "expected": 4,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["sample"]
     },
     {
-      "id": "sample-none",
-      "name": "sample: every prefix submatrix reaches k",
+      "id": "sample-second",
+      "name": "sample: three-by-three matrix",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            10,
-            20
-          ],
-          [
-            30,
-            40
-          ]
-        ],
-        "k": 10
-      },
+      "input": {"grid": [[7, 2, 9], [1, 5, 0], [2, 6, 6]], "k": 20},
+      "expected": 6,
+      "tags": ["sample"]
+    },
+    {
+      "id": "trial-inclusive-boundary",
+      "name": "trial: sum equal to k is counted",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[1]], "k": 1},
+      "expected": 1,
+      "tags": ["trial", "inclusive-boundary"]
+    },
+    {
+      "id": "trial-first-cell-too-large",
+      "name": "trial: top-left cell exceeds k",
+      "kind": "trial",
+      "visible": true,
+      "input": {"grid": [[2]], "k": 1},
       "expected": 0,
-      "tags": [
-        "sample"
-      ]
+      "tags": ["trial", "minimum-shape"]
     },
     {
-      "id": "trial-one-row",
-      "name": "trial: one-row prefix sums",
+      "id": "trial-all-zero",
+      "name": "trial: every zero rectangle qualifies",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "grid": [
-          [
-            1,
-            2,
-            3,
-            4
-          ]
-        ],
-        "k": 7
-      },
+      "input": {"grid": [[0, 0, 0], [0, 0, 0]], "k": 1},
+      "expected": 6,
+      "tags": ["trial", "zero-values"]
+    },
+    {
+      "id": "real-one-row",
+      "name": "real: one-row prefix sums",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1, 2, 3, 4]], "k": 7},
       "expected": 3,
-      "tags": [
-        "trial"
-      ]
-    },
-    {
-      "id": "trial-one-column",
-      "name": "trial: one-column prefix sums",
-      "kind": "trial",
-      "visible": true,
-      "input": {
-        "grid": [
-          [
-            2
-          ],
-          [
-            3
-          ],
-          [
-            4
-          ]
-        ],
-        "k": 8
-      },
-      "expected": 2,
-      "tags": [
-        "trial"
-      ]
+      "tags": ["real", "single-row"]
     },
     {
       "id": "real-rectangular",
-      "name": "real: rectangular grid with mixed prefix sums",
+      "name": "real: inclusive rectangular prefixes",
       "kind": "real",
       "visible": false,
-      "input": {
-        "grid": [
-          [
-            1,
-            1,
-            2
-          ],
-          [
-            2,
-            3,
-            1
-          ],
-          [
-            4,
-            1,
-            1
-          ]
-        ],
-        "k": 10
-      },
-      "expected": 6,
-      "tags": [
-        "real",
-        "prefix-sum"
-      ]
+      "input": {"grid": [[1, 1, 2], [2, 3, 1], [4, 1, 1]], "k": 10},
+      "expected": 7,
+      "tags": ["real", "prefix-sum", "inclusive-boundary"]
+    },
+    {
+      "id": "real-maximum-cell-values",
+      "name": "real: maximum values with equality",
+      "kind": "real",
+      "visible": false,
+      "input": {"grid": [[1000, 1000], [1000, 1000]], "k": 1000},
+      "expected": 1,
+      "tags": ["real", "maximum-values"]
     }
   ]
 }

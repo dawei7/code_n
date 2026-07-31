@@ -1,0 +1,10 @@
+{"schema_version":1,"challenge_id":"lc_2695","cases":[
+{"id":"sample-add","name":"sample: add two nonempty wrappers","kind":"sample","visible":true,"input":{"nums":[[1,2],[3,4]],"operation":"Add"},"expected":10,"tags":["sample","add"]},
+{"id":"sample-string","name":"sample: stringify a multi-element wrapper","kind":"sample","visible":true,"input":{"nums":[[23,98,42,70]],"operation":"String"},"expected":"[23,98,42,70]","tags":["sample","string"]},
+{"id":"sample-empty-add","name":"sample: two empty wrappers add to zero","kind":"sample","visible":true,"input":{"nums":[[],[]],"operation":"Add"},"expected":0,"tags":["sample","empty","add"]},
+{"id":"trial-empty-string","name":"trial: an empty wrapper stringifies to brackets","kind":"trial","visible":true,"input":{"nums":[[]],"operation":"String"},"expected":"[]","tags":["empty","string"]},
+{"id":"trial-unequal-lengths","name":"trial: addition handles arrays of different lengths","kind":"trial","visible":true,"input":{"nums":[[5],[1,2,3,4]],"operation":"Add"},"expected":15,"tags":["add","unequal-lengths"]},
+{"id":"real-zero-values","name":"hidden: zero values retain their string positions","kind":"real","visible":false,"input":{"nums":[[0,0,7,0]],"operation":"String"},"expected":"[0,0,7,0]","tags":["hidden","zero","string"]},
+{"id":"real-maximum-values","name":"hidden: maximum values are summed without coercion errors","kind":"real","visible":false,"input":{"nums":[[1000,1000,1000],[1000,0]],"operation":"Add"},"expected":4000,"tags":["hidden","boundary","add"]},
+{"id":"real-single-value-string","name":"hidden: one element has no comma","kind":"real","visible":false,"input":{"nums":[[1000]],"operation":"String"},"expected":"[1000]","tags":["hidden","single","string"]}
+]}

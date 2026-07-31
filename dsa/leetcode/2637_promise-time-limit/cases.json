@@ -1,0 +1,86 @@
+{
+  "challenge_id": "lc_2637",
+  "cases": [
+    {
+      "id": "sample-timeout-square",
+      "name": "sample: timeout beats delayed square",
+      "kind": "sample",
+      "visible": true,
+      "input": {"duration": 100, "t": 50, "behavior": "square", "inputs": [5]},
+      "expected": {"status": "rejected", "value": "Time Limit Exceeded", "time": 50},
+      "tags": ["sample", "timeout", "argument-forwarding"]
+    },
+    {
+      "id": "sample-square-resolves",
+      "name": "sample: delayed square beats timeout",
+      "kind": "sample",
+      "visible": true,
+      "input": {"duration": 100, "t": 150, "behavior": "square", "inputs": [5]},
+      "expected": {"status": "resolved", "value": 25, "time": 100},
+      "tags": ["sample", "resolution", "square"]
+    },
+    {
+      "id": "sample-sum-resolves",
+      "name": "sample: multiple arguments are forwarded",
+      "kind": "sample",
+      "visible": true,
+      "input": {"duration": 120, "t": 150, "behavior": "sum", "inputs": [5, 10]},
+      "expected": {"status": "resolved", "value": 15, "time": 120},
+      "tags": ["sample", "multiple-arguments", "resolution"]
+    },
+    {
+      "id": "sample-immediate-error",
+      "name": "sample: immediate source rejection is preserved",
+      "kind": "sample",
+      "visible": true,
+      "input": {"duration": 0, "t": 1000, "behavior": "immediateReject", "inputs": []},
+      "expected": {"status": "rejected", "value": "Error", "time": 0},
+      "tags": ["sample", "source-rejection", "zero-arguments"]
+    },
+    {
+      "id": "trial-zero-limit-immediate",
+      "name": "trial: already resolved promise beats zero-delay timer",
+      "kind": "trial",
+      "visible": true,
+      "input": {"duration": 0, "t": 0, "behavior": "immediateResolve", "inputs": [7]},
+      "expected": {"status": "resolved", "value": 7, "time": 0},
+      "tags": ["trial", "zero-limit", "microtask"]
+    },
+    {
+      "id": "trial-delayed-tie",
+      "name": "trial: wrapper timer wins equal delayed timers",
+      "kind": "trial",
+      "visible": true,
+      "input": {"duration": 25, "t": 25, "behavior": "echo", "inputs": [9]},
+      "expected": {"status": "rejected", "value": "Time Limit Exceeded", "time": 25},
+      "tags": ["trial", "equal-delay", "timer-order"]
+    },
+    {
+      "id": "real-delayed-rejection",
+      "name": "real: source rejection before timeout is preserved",
+      "kind": "real",
+      "visible": false,
+      "input": {"duration": 40, "t": 100, "behavior": "reject", "inputs": [1]},
+      "expected": {"status": "rejected", "value": "Error", "time": 40},
+      "tags": ["real", "delayed-rejection", "source-error"]
+    },
+    {
+      "id": "real-timeout-masks-late-rejection",
+      "name": "real: timeout settles before later source error",
+      "kind": "real",
+      "visible": false,
+      "input": {"duration": 200, "t": 75, "behavior": "reject", "inputs": []},
+      "expected": {"status": "rejected", "value": "Time Limit Exceeded", "time": 75},
+      "tags": ["real", "timeout", "late-rejection"]
+    },
+    {
+      "id": "real-maximum-arguments",
+      "name": "real: ten arguments reach source intact",
+      "kind": "real",
+      "visible": false,
+      "input": {"duration": 1, "t": 1000, "behavior": "sum", "inputs": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
+      "expected": {"status": "resolved", "value": 45, "time": 1},
+      "tags": ["real", "maximum-arguments", "maximum-limit"]
+    }
+  ]
+}

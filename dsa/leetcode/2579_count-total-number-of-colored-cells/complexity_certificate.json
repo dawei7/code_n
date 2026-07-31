@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2579",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(1)",
+  "summary": "The contract is one fixed-width scalar query, so constant output work matches the closed-form upper bound and runtime tiers cannot measure a smaller asymptotic class.",
+  "optimality": {
+    "symbol": "q",
+    "lower_bound": "Omega(1)",
+    "upper_bound": "O(1)",
+    "argument": "Every correct implementation must produce one integer answer for the scalar query. Evaluating 1 + 2n(n - 1) uses a fixed number of arithmetic operations independent of n, matching that unavoidable constant work."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Producing the required integer result for the fixed-arity query requires at least one operation."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The reference evaluates one subtraction, two multiplications, one addition, and one return, with no input-dependent iteration or storage."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover the first layers, odd and power-of-ten minute counts, and the 64-bit maximum result; an independent cumulative-layer recurrence also matched the formula for every legal n from 1 through 100000."
+    }
+  ]
+}

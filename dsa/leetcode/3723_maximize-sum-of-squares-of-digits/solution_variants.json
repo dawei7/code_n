@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Maximize Sum of Squares of Digits and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Concentrates the digit sum into descending nines, one remainder, and trailing zeros.",
+      "time_complexity": "O(num)",
+      "space_complexity": "O(num)"
     }
   ]
 }

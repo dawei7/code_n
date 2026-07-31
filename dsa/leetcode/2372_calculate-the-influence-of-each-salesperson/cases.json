@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2372",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: multiple customers and salesperson without customers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Salesperson": [
+            {"salesperson_id": 1, "name": "Alice"},
+            {"salesperson_id": 2, "name": "Bob"},
+            {"salesperson_id": 3, "name": "Jerry"}
+          ],
+          "Customer": [
+            {"customer_id": 1, "salesperson_id": 1},
+            {"customer_id": 2, "salesperson_id": 1},
+            {"customer_id": 3, "salesperson_id": 2}
+          ],
+          "Sales": [
+            {"sale_id": 1, "customer_id": 2, "price": 892},
+            {"sale_id": 2, "customer_id": 1, "price": 354},
+            {"sale_id": 3, "customer_id": 3, "price": 988},
+            {"sale_id": 4, "customer_id": 3, "price": 856}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["salesperson_id", "name", "total"],
+        "rows": [[1, "Alice", 1246], [2, "Bob", 1844], [3, "Jerry", 0]]
+      },
+      "tags": ["sample", "aggregation"]
+    },
+    {
+      "id": "trial-no-customers",
+      "name": "salesperson without customers has zero influence",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Salesperson": [
+            {"salesperson_id": 7, "name": "Noah"},
+            {"salesperson_id": 8, "name": "Ava"}
+          ],
+          "Customer": [{"customer_id": 1, "salesperson_id": 8}],
+          "Sales": [{"sale_id": 1, "customer_id": 1, "price": 5}]
+        }
+      },
+      "expected": {
+        "columns": ["salesperson_id", "name", "total"],
+        "rows": [[7, "Noah", 0], [8, "Ava", 5]]
+      },
+      "tags": ["empty", "left-join"]
+    },
+    {
+      "id": "trial-customer-no-sales",
+      "name": "customer without sales still yields zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Salesperson": [
+            {"salesperson_id": 4, "name": "Mia"},
+            {"salesperson_id": 5, "name": "Max"}
+          ],
+          "Customer": [
+            {"customer_id": 8, "salesperson_id": 4},
+            {"customer_id": 9, "salesperson_id": 5}
+          ],
+          "Sales": [{"sale_id": 1, "customer_id": 9, "price": 6}]
+        }
+      },
+      "expected": {
+        "columns": ["salesperson_id", "name", "total"],
+        "rows": [[4, "Mia", 0], [5, "Max", 6]]
+      },
+      "tags": ["empty", "sales"]
+    },
+    {
+      "id": "trial-many-sales",
+      "name": "sum sales across several customers",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "Salesperson": [{"salesperson_id": 1, "name": "A"}],
+          "Customer": [
+            {"customer_id": 10, "salesperson_id": 1},
+            {"customer_id": 20, "salesperson_id": 1}
+          ],
+          "Sales": [
+            {"sale_id": 1, "customer_id": 10, "price": 5},
+            {"sale_id": 2, "customer_id": 10, "price": 7},
+            {"sale_id": 3, "customer_id": 20, "price": 11}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["salesperson_id", "name", "total"],
+        "rows": [[1, "A", 23]]
+      },
+      "tags": ["sum", "customers"]
+    },
+    {
+      "id": "real-mixed-zero-and-positive",
+      "name": "hidden: keep zero and positive totals together",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Salesperson": [
+            {"salesperson_id": 2, "name": "Bee"},
+            {"salesperson_id": 9, "name": "Nine"}
+          ],
+          "Customer": [
+            {"customer_id": 3, "salesperson_id": 2},
+            {"customer_id": 4, "salesperson_id": 9}
+          ],
+          "Sales": [
+            {"sale_id": 5, "customer_id": 4, "price": 100},
+            {"sale_id": 6, "customer_id": 4, "price": 50}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["salesperson_id", "name", "total"],
+        "rows": [[2, "Bee", 0], [9, "Nine", 150]]
+      },
+      "tags": ["hidden", "coalesce"]
+    },
+    {
+      "id": "real-separate-salespeople",
+      "name": "hidden: sales remain assigned through customer ownership",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "Salesperson": [
+            {"salesperson_id": 1, "name": "One"},
+            {"salesperson_id": 2, "name": "Two"}
+          ],
+          "Customer": [
+            {"customer_id": 1, "salesperson_id": 2},
+            {"customer_id": 2, "salesperson_id": 1}
+          ],
+          "Sales": [
+            {"sale_id": 1, "customer_id": 1, "price": 40},
+            {"sale_id": 2, "customer_id": 2, "price": 60}
+          ]
+        }
+      },
+      "expected": {
+        "columns": ["salesperson_id", "name", "total"],
+        "rows": [[1, "One", 60], [2, "Two", 40]]
+      },
+      "tags": ["hidden", "join-key"]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3965",
+    "frontend_id": "3965",
+    "title_slug": "finish-time-of-tasks-i",
+    "url": "https://leetcode.com/problems/finish-time-of-tasks-i/description/",
+    "paid_only": false,
+    "content_sha256": "0419b1bee73ad4af6156f481b9e1f346fdd59200c8dd9a1aaa818ed9e2c4aec7",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "n = 3, edges = [[0,1],[1,2]], baseTime = [9,5,3]",
+        "output": "17",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "n = 3, edges = [[0,1],[0,2]], baseTime = [4,7,6]",
+        "output": "12",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "n = 4, edges = [[0,1],[0,2],[2,3]], baseTime = [5,8,2,1]",
+        "output": "18",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 9,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "b4ce3e959eb9bbcdbbc83d6a8f1a7686214f899439da4a0e1590e1678ed3da40",
+      "reference/contract.md": "e8b3675901aedba7feb6299f610509e3d0d8dd9083346688f05d0e91e6bbeaf2",
+      "reference/examples.md": "a49e9924daab87d67467a13199e6d9f71c568711cfabf6bd0a8f58ada4fe47bb",
+      "reference/constraints.md": "02eebdfa73cdd4a8286da474bb39a71e2f045a8e0332d0831d26a8b977f7e08e"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3932",
+  "cases": [
+    {
+      "id": "sample-cubes",
+      "name": "sample: two perfect cubes in the interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {"l": 1, "r": 9, "k": 3},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "cubes", "inclusive-range"]
+    },
+    {
+      "id": "sample-squares",
+      "name": "sample: three perfect squares in the interval",
+      "kind": "sample",
+      "visible": true,
+      "input": {"l": 8, "r": 30, "k": 2},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["sample", "squares"]
+    },
+    {
+      "id": "trial-zero-only",
+      "name": "trial: zero is a perfect power",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 0, "r": 0, "k": 30},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "zero", "singleton"]
+    },
+    {
+      "id": "trial-first-powers",
+      "name": "trial: every value is a perfect first power",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 5, "r": 12, "k": 1},
+      "expected": 8,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "exponent-one"]
+    },
+    {
+      "id": "trial-zero-and-one",
+      "name": "trial: zero and one remain powers for a large exponent",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 0, "r": 1, "k": 30},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "zero", "one", "maximum-exponent"]
+    },
+    {
+      "id": "trial-no-cube",
+      "name": "trial: interval contains no perfect cube",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 2, "r": 7, "k": 3},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "empty-answer"]
+    },
+    {
+      "id": "trial-perfect-singleton",
+      "name": "trial: singleton interval is an exact cube",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 64, "r": 64, "k": 3},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "singleton", "exact-boundary"]
+    },
+    {
+      "id": "trial-nonpower-singleton",
+      "name": "trial: singleton interval is not a cube",
+      "kind": "trial",
+      "visible": true,
+      "input": {"l": 65, "r": 65, "k": 3},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["trial", "singleton", "empty-answer"]
+    },
+    {
+      "id": "real-full-square-domain",
+      "name": "hidden: maximum range includes zero and every legal square",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 0, "r": 1000000000, "k": 2},
+      "expected": 31623,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-boundary", "squares"]
+    },
+    {
+      "id": "real-last-legal-square",
+      "name": "hidden: interval begins at the largest square below one billion",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 999950884, "r": 1000000000, "k": 2},
+      "expected": 1,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-boundary", "exact-lower-endpoint"]
+    },
+    {
+      "id": "real-above-last-square",
+      "name": "hidden: tail above the largest legal square is empty",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 999950885, "r": 1000000000, "k": 2},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-boundary", "empty-answer"]
+    },
+    {
+      "id": "real-maximum-exponent-no-power",
+      "name": "hidden: maximum exponent has no qualifying value above one",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 2, "r": 1000000000, "k": 30},
+      "expected": 0,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "maximum-exponent", "empty-answer"]
+    },
+    {
+      "id": "real-large-odd-exponent",
+      "name": "hidden: zero, one, and two to an odd power qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 0, "r": 1000000000, "k": 29},
+      "expected": 3,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "odd-exponent", "zero", "maximum-boundary"]
+    },
+    {
+      "id": "real-consecutive-fifth-powers",
+      "name": "hidden: both endpoints and four interior fifth powers qualify",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 1024, "r": 59049, "k": 5},
+      "expected": 6,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "exact-endpoints", "fifth-powers"]
+    },
+    {
+      "id": "real-two-cube-endpoints",
+      "name": "hidden: two consecutive cubes coincide with the endpoints",
+      "kind": "real",
+      "visible": false,
+      "input": {"l": 8, "r": 27, "k": 3},
+      "expected": 2,
+      "validator": {"kind": "exact"},
+      "tags": ["hidden", "cubes", "exact-endpoints"]
+    }
+  ]
+}

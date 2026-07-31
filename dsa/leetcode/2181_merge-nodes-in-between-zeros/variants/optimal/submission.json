@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2299",
+  "frontend_id": "2181",
+  "title_slug": "merge-nodes-in-between-zeros",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.mergeNodes",
+  "verified_submission_id": "2073735768",
+  "verified_at": "2026-07-19T17:15:07.027643+00:00"
+}

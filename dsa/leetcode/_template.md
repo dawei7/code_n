@@ -62,4 +62,18 @@ TODO
 - Input: `TODO`
 - Output: `TODO`
 
-Add one or two more concise examples when they expose a distinct edge case.
+Preserve every source example in the same order with the exact input and output
+facts. Include `- Explanation:` exactly when the source example has one, and
+independently rephrase it without dropping any reasoning step. Do not normalize
+the document to a fixed example count. Put authored additions, if necessary,
+under a clearly separate `Additional Examples` heading.
+
+### Constraints
+
+- State every numeric bound, input-domain restriction, and formal guarantee.
+- Keep mathematical limits in LaTeX and independently word any explanatory prose.
+
+Add source-native sections such as `Follow-up` after Constraints when present.
+For tables, preserve the data and schema in a Markdown table. Replace source
+images with independently created diagrams or equivalently complete accessible
+tables rather than copying provider assets.

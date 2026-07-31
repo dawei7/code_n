@@ -1,0 +1,382 @@
+{
+  "challenge_id": "lc_2823",
+  "cases": [
+    {
+      "id": "sample-positive-array",
+      "name": "sample: retain only positive array leaves",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": [
+          -5,
+          -4,
+          -3,
+          -2,
+          -1,
+          0,
+          1
+        ],
+        "predicate": "positive"
+      },
+      "expected": {
+        "defined": true,
+        "value": [
+          1
+        ]
+      },
+      "tags": [
+        "sample",
+        "array"
+      ]
+    },
+    {
+      "id": "sample-string-object",
+      "name": "sample: retain string leaves and prune empty object",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": {
+          "a": 1,
+          "b": "2",
+          "c": 3,
+          "d": "4",
+          "e": 5,
+          "f": 6,
+          "g": {
+            "a": 1
+          }
+        },
+        "predicate": "string"
+      },
+      "expected": {
+        "defined": true,
+        "value": {
+          "b": "2",
+          "d": "4"
+        }
+      },
+      "tags": [
+        "sample",
+        "object",
+        "empty-pruning"
+      ]
+    },
+    {
+      "id": "sample-nested-arrays",
+      "name": "sample: compact nested arrays after positive filtering",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": [
+          -1,
+          [
+            -1,
+            -1,
+            5,
+            -1,
+            10
+          ],
+          -1,
+          [
+            -1
+          ],
+          [
+            -5
+          ]
+        ],
+        "predicate": "positive"
+      },
+      "expected": {
+        "defined": true,
+        "value": [
+          [
+            5,
+            10
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "nested-arrays",
+        "compaction"
+      ]
+    },
+    {
+      "id": "sample-no-leaf-passes",
+      "name": "sample: container predicate never sees containers",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "obj": [
+          [
+            [
+              [
+                5
+              ]
+            ]
+          ]
+        ],
+        "predicate": "array"
+      },
+      "expected": {
+        "defined": false
+      },
+      "tags": [
+        "sample",
+        "undefined-result"
+      ]
+    },
+    {
+      "id": "trial-null-is-leaf",
+      "name": "null is passed to the leaf predicate",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {
+          "a": null,
+          "b": [
+            null,
+            0
+          ],
+          "c": false,
+          "d": {
+            "e": null,
+            "f": "ok"
+          }
+        },
+        "predicate": "nonNull"
+      },
+      "expected": {
+        "defined": true,
+        "value": {
+          "b": [
+            0
+          ],
+          "c": false,
+          "d": {
+            "f": "ok"
+          }
+        }
+      },
+      "tags": [
+        "null",
+        "leaf-semantics"
+      ]
+    },
+    {
+      "id": "trial-truthy-mixed",
+      "name": "truthy filtering prunes empty branches",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {
+          "a": 0,
+          "b": false,
+          "c": "",
+          "d": null,
+          "e": 1,
+          "f": "x",
+          "g": [
+            0,
+            {
+              "h": 2,
+              "i": ""
+            }
+          ],
+          "j": {
+            "k": false
+          }
+        },
+        "predicate": "truthy"
+      },
+      "expected": {
+        "defined": true,
+        "value": {
+          "e": 1,
+          "f": "x",
+          "g": [
+            {
+              "h": 2
+            }
+          ]
+        }
+      },
+      "tags": [
+        "truthiness",
+        "mixed-containers"
+      ]
+    },
+    {
+      "id": "trial-empty-object",
+      "name": "empty root object returns undefined",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": {},
+        "predicate": "truthy"
+      },
+      "expected": {
+        "defined": false
+      },
+      "tags": [
+        "boundary",
+        "empty",
+        "undefined-result"
+      ]
+    },
+    {
+      "id": "trial-empty-array",
+      "name": "empty root array returns undefined",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "obj": [],
+        "predicate": "truthy"
+      },
+      "expected": {
+        "defined": false
+      },
+      "tags": [
+        "boundary",
+        "empty",
+        "array",
+        "undefined-result"
+      ]
+    },
+    {
+      "id": "real-special-object-keys",
+      "name": "hidden: special JSON keys remain own properties",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "obj": {
+          "__proto__": {
+            "keep": 1,
+            "drop": -1
+          },
+          "constructor": {
+            "nested": [
+              "yes",
+              ""
+            ]
+          },
+          "empty": {
+            "drop": 0
+          }
+        },
+        "predicate": "truthy"
+      },
+      "expected": {
+          "defined": true,
+          "value": {
+            "__proto__": {
+              "keep": 1,
+              "drop": -1
+            },
+            "constructor": {
+            "nested": [
+              "yes"
+            ]
+          }
+        }
+      },
+      "tags": [
+        "hidden",
+        "special-keys"
+      ]
+    },
+    {
+      "id": "real-even-numbers",
+      "name": "hidden: even numeric leaves survive across containers",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "obj": {
+          "a": [
+            1,
+            2,
+            {
+              "b": 3,
+              "c": 4
+            }
+          ],
+          "d": {
+            "e": 5,
+            "f": [
+              6,
+              7
+            ]
+          },
+          "g": "8"
+        },
+        "predicate": "evenNumber"
+      },
+      "expected": {
+        "defined": true,
+        "value": {
+          "a": [
+            2,
+            {
+              "c": 4
+            }
+          ],
+          "d": {
+            "f": [
+              6
+            ]
+          }
+        }
+      },
+      "tags": [
+        "hidden",
+        "type-sensitive",
+        "nested"
+      ]
+    },
+    {
+      "id": "real-order-and-compaction",
+      "name": "hidden: nested array order survives removed gaps",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "obj": [
+          {
+            "a": -1,
+            "b": 2
+          },
+          -3,
+          [
+            4,
+            -5,
+            [
+              6,
+              -7
+            ]
+          ],
+          8
+        ],
+        "predicate": "positive"
+      },
+      "expected": {
+        "defined": true,
+        "value": [
+          {
+            "b": 2
+          },
+          [
+            4,
+            [
+              6
+            ]
+          ],
+          8
+        ]
+      },
+      "tags": [
+        "hidden",
+        "order",
+        "compaction"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_255", "frontend_id": "255", "title_slug": "verify-preorder-sequence-in-binary-search-tree", "url": "https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/description/", "paid_only": true, "content_sha256": "1f3b93701c20d9bf73c449cc6fe79987d273ae947671d0f50ec427207d5e84c0", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [{"ordinal": 1, "input": "preorder = [5,2,1,3,6]", "output": "true", "has_explanation": false}, {"ordinal": 2, "input": "preorder = [5,2,6,1,3]", "output": "false", "has_explanation": false}],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "c0bfee4bb0f7f2446e22836126e5609cf23523bb2b37ec71228a51fb60467c0a", "reference/contract.md": "f955d32560d0881fd6b22bba182a5f9f377987fd3a854b9bcefa5bd43eb00ada", "reference/examples.md": "ab2db42bc4cdf9d3dcd9400b0072ad8487bc93843a437f0fce6f7cb5d2f7a4d2", "reference/constraints.md": "f4aaad97238e549066682f19ff33d574698115e58f6babc13e00e4796faaaec9", "reference/follow_up.md": "21cb6d5c0cd197b0d7cb826aad7ef60a3a8984a9ac3478d3e89a4157f684a613"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

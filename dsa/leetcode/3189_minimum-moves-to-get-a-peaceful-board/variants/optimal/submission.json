@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3504",
+  "frontend_id": "3189",
+  "title_slug": "minimum-moves-to-get-a-peaceful-board",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minMoves",
+  "verified_submission_id": "2080099796",
+  "verified_at": "2026-07-25T00:21:00+02:00"
+}

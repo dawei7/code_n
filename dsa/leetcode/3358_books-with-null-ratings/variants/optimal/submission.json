@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3695",
+  "frontend_id": "3358",
+  "title_slug": "books-with-null-ratings",
+  "paid_only": false,
+  "language": "mysql",
+  "source": "solutions/leetcode_mysql.sql",
+  "native_entrypoint": "query",
+  "verified_submission_id": "2081225749",
+  "verified_at": "2026-07-25T20:43:00Z"
+}

@@ -8,48 +8,41 @@
 | Category | Algorithms |
 | Topics | Tree, Depth-First Search, Breadth-First Search, Binary Tree |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [reverse-odd-levels-of-binary-tree](https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/reverse-odd-levels-of-binary-tree/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Given the root of a perfect binary tree, reverse the node values at every odd-numbered level. Level 0 contains the root, level 1 contains its two children, and in general a node's level is the number of edges on the path from the root. Reversing a level changes only the left-to-right order of its values.
+
+The tree structure must remain unchanged: do not move nodes or alter parent-child links. A perfect binary tree guarantees that every internal node has two children and every leaf has the same depth, so nodes on opposite sides always have symmetric partners. Return the original root after all odd levels have been updated.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `root`: The root of a perfect binary tree.
+
+Let $n$ be the number of nodes and $h$ the tree height. The contract guarantees $1 \le n \le 2^{14}$, $0 \le \texttt{Node.val} \le 10^5$, and $h = O(\log n)$.
 
 **Return value**
 
-TODO
+Return the same tree root with the values on levels 1, 3, 5, and so on reversed from left to right.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [2,3,5,8,13,21,34]`
+- Output: `[2,5,3,8,13,21,34]`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `root = [7,13,11]`
+- Output: `[7,11,13]`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `root = [0,1,2,0,0,0,0,1,1,1,1,2,2,2,2]`
+- Output: `[0,2,1,0,0,0,0,2,2,2,2,1,1,1,1]`

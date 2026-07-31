@@ -5,51 +5,40 @@
 | Source | LeetCode |
 | Frontend ID | 2214 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Greedy |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-health-to-beat-game](https://leetcode.com/problems/minimum-health-to-beat-game/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-health-to-beat-game/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-health-to-beat-game/).
-
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You must complete a sequence of game levels in their given order. Level $i$ reduces your health by `damage[i]`. Your health must remain strictly greater than zero throughout the game; reaching zero is not enough to survive.
+
+You also have armor that may be used on at most one level. On that level it prevents up to `armor` points of damage, but it cannot prevent more damage than the level deals. Determine the minimum health with which you can start and still finish every level.
 
 ### Function Contract
 **Inputs**
 
-- TODO
+- `damage`: A nonempty list where `damage[i]` is the nonnegative health loss caused by level $i$.
+- `armor`: A nonnegative integer giving the maximum damage the one-use armor can prevent.
+
+Let $n$ be the number of levels.
 
 **Return value**
 
-TODO
+Return the minimum positive integer starting health that lets you complete all $n$ levels while using the armor at most once.
 
 ### Examples
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `damage = [2, 7, 4, 3], armor = 4`
+- Output: `13`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `damage = [2, 5, 3, 4], armor = 7`
+- Output: `10`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `damage = [3, 3, 3], armor = 0`
+- Output: `10`

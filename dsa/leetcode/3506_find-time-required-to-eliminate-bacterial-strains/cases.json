@@ -1,0 +1,95 @@
+{
+  "challenge_id": "lc_3506",
+  "cases": [
+    {
+      "id": "sample-three-strains",
+      "name": "sample: one branch splits again",
+      "kind": "sample",
+      "visible": true,
+      "input": {"timeReq": [10, 4, 5], "splitTime": 2},
+      "expected": 12,
+      "tags": ["sample", "uneven-tree"]
+    },
+    {
+      "id": "sample-two-strains",
+      "name": "sample: one split creates both workers",
+      "kind": "sample",
+      "visible": true,
+      "input": {"timeReq": [10, 4], "splitTime": 5},
+      "expected": 15,
+      "tags": ["sample", "single-split"]
+    },
+    {
+      "id": "trial-two-equal-strains",
+      "name": "trial: equal work after the mandatory split",
+      "kind": "trial",
+      "visible": true,
+      "input": {"timeReq": [1, 1], "splitTime": 1},
+      "expected": 2,
+      "tags": ["trial", "duplicates"]
+    },
+    {
+      "id": "trial-varied-powers",
+      "name": "trial: longest strain receives a shallow branch",
+      "kind": "trial",
+      "visible": true,
+      "input": {"timeReq": [1, 2, 4, 8], "splitTime": 2},
+      "expected": 10,
+      "tags": ["trial", "greedy-order"]
+    },
+    {
+      "id": "real-balanced-eight-strains",
+      "name": "real: equal strains form a balanced split tree",
+      "kind": "real",
+      "visible": false,
+      "input": {"timeReq": [5, 5, 5, 5, 5, 5, 5, 5], "splitTime": 3},
+      "expected": 14,
+      "tags": ["real", "balanced-tree", "duplicates"]
+    },
+    {
+      "id": "real-one-dominant-strain",
+      "name": "real: dominant strain is assigned after one split",
+      "kind": "real",
+      "visible": false,
+      "input": {"timeReq": [100, 1, 1, 1], "splitTime": 1},
+      "expected": 101,
+      "tags": ["real", "dominant-task", "uneven-tree"]
+    },
+    {
+      "id": "real-expensive-splits",
+      "name": "real: split cost dominates every elimination",
+      "kind": "real",
+      "visible": false,
+      "input": {"timeReq": [1, 2, 3], "splitTime": 100},
+      "expected": 202,
+      "tags": ["real", "large-split-time"]
+    },
+    {
+      "id": "real-maximum-answer-for-two",
+      "name": "real: value bounds require a wide integer result",
+      "kind": "real",
+      "visible": false,
+      "input": {"timeReq": [1, 1000000000], "splitTime": 1000000000},
+      "expected": 2000000000,
+      "tags": ["real", "value-boundary", "large-answer"]
+    },
+    {
+      "id": "real-input-order-irrelevant",
+      "name": "real: arbitrary strain order does not change scheduling",
+      "kind": "real",
+      "visible": false,
+      "input": {"timeReq": [50, 2, 30, 3, 20], "splitTime": 4},
+      "expected": 54,
+      "tags": ["real", "permutation", "greedy-order"]
+    },
+    {
+      "id": "real-three-equal-long-strains",
+      "name": "real: three equal strains need unequal depths",
+      "kind": "real",
+      "visible": false,
+      "input": {"timeReq": [100, 100, 100], "splitTime": 1},
+      "expected": 102,
+      "tags": ["real", "duplicates", "uneven-tree"]
+    }
+  ]
+}

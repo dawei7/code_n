@@ -2,104 +2,94 @@
   "challenge_id": "lc_3505",
   "cases": [
     {
-      "id": "sample-two-windows",
-      "name": "sample: two equalized length-three windows",
+      "id": "sample-two-separated-windows",
+      "name": "sample: two separated length-three windows",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          5,
-          -2,
-          1,
-          3,
-          7,
-          3,
-          6,
-          4,
-          -1
-        ],
-        "x": 3,
-        "k": 2
-      },
+      "input": {"nums": [5, -2, 1, 3, 7, 3, 6, 4, -1], "x": 3, "k": 2},
       "expected": 8,
-      "tags": [
-        "sample",
-        "median-dp"
-      ]
+      "tags": ["sample", "median", "non-overlap"]
     },
     {
       "id": "sample-adjacent-windows",
-      "name": "sample: adjacent equal windows",
+      "name": "sample: adjacent selected windows",
       "kind": "sample",
       "visible": true,
-      "input": {
-        "nums": [
-          9,
-          -2,
-          -2,
-          -2,
-          1,
-          5
-        ],
-        "x": 2,
-        "k": 2
-      },
+      "input": {"nums": [9, -2, -2, -2, 1, 5], "x": 2, "k": 2},
       "expected": 3,
-      "tags": [
-        "sample",
-        "median-dp"
-      ]
+      "tags": ["sample", "adjacent", "zero-cost-window"]
     },
     {
-      "id": "trial-one-window",
-      "name": "trial: choose cheapest single window",
+      "id": "trial-cheapest-single-window",
+      "name": "trial: choose the cheapest of three windows",
       "kind": "trial",
       "visible": true,
-      "input": {
-        "nums": [
-          4,
-          1,
-          7,
-          2,
-          6
-        ],
-        "x": 3,
-        "k": 1
-      },
+      "input": {"nums": [4, 1, 7, 2, 6], "x": 3, "k": 1},
       "expected": 5,
-      "tags": [
-        "trial",
-        "median"
-      ]
+      "tags": ["trial", "window-choice"]
     },
     {
-      "id": "real-three-windows",
-      "name": "real: choose three non-overlapping windows",
+      "id": "trial-entire-array",
+      "name": "trial: the only window is the whole array",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 9, 2, 8], "x": 4, "k": 1},
+      "expected": 14,
+      "tags": ["trial", "even-window", "whole-array"]
+    },
+    {
+      "id": "real-two-zero-cost-windows",
+      "name": "real: skip the middle to use two equal pairs",
       "kind": "real",
       "visible": false,
-      "input": {
-        "nums": [
-          3,
-          8,
-          2,
-          2,
-          9,
-          4,
-          4,
-          5,
-          7,
-          1,
-          1,
-          2
-        ],
-        "x": 2,
-        "k": 3
-      },
+      "input": {"nums": [7, 7, 4, 9, 2, 2], "x": 2, "k": 2},
       "expected": 0,
-      "tags": [
-        "real",
-        "dp"
-      ]
+      "tags": ["real", "zero-cost", "skip"]
+    },
+    {
+      "id": "real-negative-and-positive-groups",
+      "name": "real: medians on both sides of zero",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-5, -1, -3, 10, 12, 11], "x": 3, "k": 2},
+      "expected": 6,
+      "tags": ["real", "negative-values", "adjacent"]
+    },
+    {
+      "id": "real-value-extremes",
+      "name": "real: operation count exceeds one million",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [-1000000, 1000000], "x": 2, "k": 1},
+      "expected": 2000000,
+      "tags": ["real", "value-boundary", "large-answer"]
+    },
+    {
+      "id": "real-three-existing-windows",
+      "name": "real: dynamic program finds three disjoint equal pairs",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [3, 8, 2, 2, 9, 4, 4, 5, 7, 1, 1, 2], "x": 2, "k": 3},
+      "expected": 0,
+      "tags": ["real", "multiple-windows", "skip"]
+    },
+    {
+      "id": "real-even-median-interval",
+      "name": "real: any middle target gives the same cost",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, 10, 20, 30], "x": 4, "k": 1},
+      "expected": 40,
+      "tags": ["real", "even-window", "median"]
+    },
+    {
+      "id": "real-at-least-does-not-require-all",
+      "name": "real: select only the required two windows",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [1, 100, 1, 100, 1, 1], "x": 2, "k": 2},
+      "expected": 99,
+      "tags": ["real", "at-least-k", "non-overlap"]
     }
   ]
 }

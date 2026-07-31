@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2169",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: unit divisor at M=256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"num1": 256, "num2": 1},
+      "expected": 256,
+      "tags": ["benchmark", "scale-small", "quotient-batching"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: unit divisor at M=4096",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {"num1": 4096, "num2": 1},
+      "expected": 4096,
+      "tags": ["benchmark", "scale-medium", "quotient-batching"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: unit divisor at M=65536",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 65536,
+      "input": {"num1": 65536, "num2": 1},
+      "expected": 65536,
+      "tags": ["benchmark", "scale-large", "quotient-batching"]
+    }
+  ]
+}

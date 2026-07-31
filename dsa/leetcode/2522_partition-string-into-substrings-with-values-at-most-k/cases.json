@@ -1,0 +1,12 @@
+{
+  "challenge_id": "lc_2522",
+  "cases": [
+    {"id": "sample-1", "name": "sample: four-part minimum", "kind": "sample", "visible": true, "input": {"s": "165462", "k": 60}, "expected": 4, "tags": ["sample", "greedy-boundary"]},
+    {"id": "sample-2", "name": "sample: impossible digit", "kind": "sample", "visible": true, "input": {"s": "238182", "k": 5}, "expected": -1, "tags": ["sample", "impossible"]},
+    {"id": "trial-single-digit", "name": "trial: one feasible digit", "kind": "trial", "visible": true, "input": {"s": "1", "k": 1}, "expected": 1, "tags": ["trial", "minimum-length"]},
+    {"id": "trial-every-digit-separate", "name": "trial: every digit needs its own part", "kind": "trial", "visible": true, "input": {"s": "999", "k": 9}, "expected": 3, "tags": ["trial", "single-digit-parts"]},
+    {"id": "real-two-long-parts", "name": "hidden: two maximal three-digit parts", "kind": "real", "visible": false, "input": {"s": "123456", "k": 1000}, "expected": 2, "tags": ["hidden", "maximal-prefix"]},
+    {"id": "real-final-short-part", "name": "hidden: final short part", "kind": "real", "visible": false, "input": {"s": "11111", "k": 11}, "expected": 3, "tags": ["hidden", "remainder"]},
+    {"id": "real-large-k", "name": "hidden: entire string fits at maximum k", "kind": "real", "visible": false, "input": {"s": "999999999", "k": 1000000000}, "expected": 1, "tags": ["hidden", "upper-bound"]}
+  ]
+}

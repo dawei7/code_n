@@ -5,52 +5,48 @@
 | Source | LeetCode |
 | Frontend ID | 2135 |
 | Difficulty | Medium |
-| Category | Algorithms |
 | Topics | Array, Hash Table, String, Bit Manipulation, Sorting |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [count-words-obtained-after-adding-a-letter](https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/count-words-obtained-after-adding-a-letter/).
-
 ### Goal
-Count target words that can be formed by taking a start word, adding one letter not already present in it, and rearranging the letters. Letters within every given word are distinct.
+You are given two arrays of lowercase English words. No letter appears more
+than once within any individual word. To convert a start word, append exactly
+one lowercase letter that is not already present, then rearrange all letters
+in any order.
+
+For each target word, determine independently whether at least one unchanged
+word from `startWords` can be converted into it. The start words are only
+tested as possibilities and are not consumed or modified between targets.
+Return the number of obtainable target occurrences.
 
 ### Function Contract
 **Inputs**
 
-- `startWords`: the available lowercase source words.
-- `targetWords`: the lowercase words to test.
+- `startWords`: Between $1$ and $5\cdot 10^4$ distinct-letter lowercase
+  words, each of length from $1$ through $26$.
+- `targetWords`: Between $1$ and $5\cdot 10^4$ target words under the same
+  letter and length guarantees.
+
+Let $L$ be the total number of characters across both arrays, and let $s$ be
+the number of distinct letter sets represented by `startWords`.
 
 **Return value**
 
-The number of target words obtainable by the permitted operation.
+The number of target word occurrences obtainable by adding exactly one new
+letter to some start word and rearranging.
 
 ### Examples
 **Example 1**
 
-- Input: `startWords = ["ant", "act", "tack"]`, `targetWords = ["tack", "act", "acti"]`
+- Input: `startWords = ["ant","act","tack"]`,
+  `targetWords = ["tack","act","acti"]`
 - Output: `2`
+- Explanation: `"tack"` and `"acti"` can come from `"act"`. The target
+  `"act"` is not obtainable merely because it is already a start word; one
+  new letter must be appended.
 
 **Example 2**
 
-- Input: `startWords = ["ab", "a"]`, `targetWords = ["abc", "abcd"]`
+- Input: `startWords = ["ab","a"]`, `targetWords = ["abc","abcd"]`
 - Output: `1`
-
-**Example 3**
-
-- Input: `startWords = ["g", "xy"]`, `targetWords = ["gh", "xyz"]`
-- Output: `2`
-
----
-
-## Solution
-### Approach
-Represent each word as a 26-bit letter mask and store all start-word masks in a set. For each target mask, remove each one of its letters in turn; the target is obtainable if any resulting mask belongs to the start set. The distinct-letter guarantee makes the mask representation exact.
-
-### Complexity Analysis
-- **Time Complexity**: `O(L)`, where `L` is the total number of characters across all words
-- **Space Complexity**: `O(S)`, where `S` is the number of distinct start-word masks
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._

@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3562",
+  "measurement_note": "Size is n, the employee count. Legal tiers 2, 5, and 10 span 5x while holding budget B=12 fixed. Every child of the CEO is profitable only after the shared root decision is accounted for. The accepted O(n B^2) tree knapsack scales linearly in n here, while correct purchase-subset enumeration takes O(n 2^n) and must fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-discount-star-2",
+      "name": "benchmark: 2-employee discounted star",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "n": 2,
+        "present": [
+          2,
+          2
+        ],
+        "future": [
+          4,
+          4
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ]
+        ],
+        "budget": 12
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "discount-star",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-discount-star-5",
+      "name": "benchmark: 5-employee discounted star",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "n": 5,
+        "present": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "future": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "budget": 12
+      },
+      "expected": 14,
+      "tags": [
+        "benchmark",
+        "discount-star",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-discount-star-10",
+      "name": "benchmark: 10-employee discounted star",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "n": 10,
+        "present": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "future": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "hierarchy": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            10
+          ]
+        ],
+        "budget": 12
+      },
+      "expected": 29,
+      "tags": [
+        "benchmark",
+        "discount-star",
+        "scale-large"
+      ]
+    }
+  ]
+}

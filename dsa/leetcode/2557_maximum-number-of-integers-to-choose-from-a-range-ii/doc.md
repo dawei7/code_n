@@ -8,48 +8,44 @@
 | Category | Algorithms |
 | Topics | Array, Binary Search, Greedy, Sorting |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [maximum-number-of-integers-to-choose-from-a-range-ii](https://leetcode.com/problems/maximum-number-of-integers-to-choose-from-a-range-ii/) |
+| LeetCode | [Maximum Number of Integers to Choose From a Range II](https://leetcode.com/problems/maximum-number-of-integers-to-choose-from-a-range-ii/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/maximum-number-of-integers-to-choose-from-a-range-ii/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You are given an integer array `banned`, an upper bound `n`, and a sum limit `maxSum`. Choose any number of distinct integers from the inclusive range $[1,n]$. A value may be chosen at most once, and no value that occurs in `banned` may be included.
+
+The sum of the chosen integers must not exceed `maxSum`. Return the maximum possible number of integers in such a selection. Repeated occurrences of the same banned value still forbid only that one integer; the objective is the number selected, not the number of different valid selections.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `banned`: A list of $m$ forbidden integers, where $1 \le m \le 10^5$ and each value is in $[1,n]$. Duplicate values are permitted.
+- `n`: The inclusive upper bound of the candidate range, where $1 \le n \le 10^9$.
+- `maxSum`: The largest permitted sum of selected values, where $1 \le \texttt{maxSum} \le 10^{15}$.
 
 **Return value**
 
-TODO
+- The maximum number of distinct, non-banned integers that can be selected from $[1,n]$ without their sum exceeding `maxSum`.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `banned = [1, 4, 6], n = 6, maxSum = 4`
+- Output: `1`
+- Explanation: One valid choice is `3`. No two available positive integers have a total at most `4`.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `banned = [4, 3, 5, 6], n = 7, maxSum = 18`
+- Output: `3`
+- Explanation: The allowed values `1`, `2`, and `7` have total `10`; the only other candidate values are banned.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `banned = [2, 4], n = 6, maxSum = 12`
+- Output: `3`
+- Explanation: Selecting `1`, `3`, and `5` costs `9`. Adding the next allowed value `6` would exceed the budget.

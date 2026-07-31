@@ -8,22 +8,32 @@
 | Category | Algorithms |
 | Topics | Array, Greedy, Sorting, Enumeration, Prefix Sum |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [removing-minimum-number-of-magic-beans](https://leetcode.com/problems/removing-minimum-number-of-magic-beans/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/removing-minimum-number-of-magic-beans/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/removing-minimum-number-of-magic-beans/).
-
 ### Goal
-Remove the fewest beans so every nonempty bag contains the same number. Any number of beans may be removed from a bag, including all of them.
+
+Each positive integer in `beans` is the number of magic beans in one bag.
+From every bag, remove any non-negative number of beans, possibly emptying the
+bag completely. Removed beans cannot be placed back into that bag or moved to
+another bag.
+
+After the removals, every bag that remains nonempty must contain the same
+number of beans. Empty bags do not need to match that amount. Return the
+smallest total number of beans that must be removed to meet this condition.
 
 ### Function Contract
 **Inputs**
 
-- `beans`: positive bean counts for the bags.
+- `beans`: an array of $n$ positive integers, where $1\le n\le 10^5$ and each
+  count is between $1$ and $10^5$, inclusive.
+
+Only removal is allowed; no bag's count may increase.
 
 **Return value**
 
-The minimum total number of beans to remove.
+Return the minimum total number of beans removed across all bags so that all
+remaining nonempty bags have equal counts.
 
 ### Examples
 **Example 1**
@@ -31,25 +41,20 @@ The minimum total number of beans to remove.
 - Input: `beans = [4, 1, 6, 5]`
 - Output: `4`
 
+Empty the one-bean bag, reduce `6` to `4`, and reduce `5` to `4`. The nonempty
+bags then all hold four beans after four removals.
+
 **Example 2**
 
 - Input: `beans = [2, 10, 3, 2]`
 - Output: `7`
+
+Empty the two two-bean bags and the three-bean bag, leaving the ten-bean bag
+unchanged.
 
 **Example 3**
 
 - Input: `beans = [5, 5]`
 - Output: `0`
 
----
-
-## Solution
-### Approach
-Sort the bag counts. If sorted value `beans[i]` is chosen as the common nonzero amount, bags before `i` must be emptied and every bag from `i` onward can retain exactly that amount. Thus the retained total is `beans[i] * (n - i)`. Maximize retained beans and subtract from the original total.
-
-### Complexity Analysis
-- **Time Complexity**: `O(n log n)`
-- **Space Complexity**: `O(1)` auxiliary space when sorting in place
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+The nonempty bags already contain the same amount.

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3249",
+  "frontend_id": "2997",
+  "title_slug": "minimum-number-of-operations-to-make-array-xor-equal-to-k",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "Solution.minOperations",
+  "verified_submission_id": "2078624413",
+  "verified_at": "2026-07-23T16:11:02.865103+00:00"
+}

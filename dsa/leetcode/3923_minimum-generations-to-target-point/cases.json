@@ -1,0 +1,724 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3923",
+  "cases": [
+    {
+      "id": "sample-midpoint-generation-one",
+      "name": "sample: the target is the first midpoint",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            6,
+            6
+          ]
+        ],
+        "target": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "sample",
+        "generation-one",
+        "midpoint"
+      ]
+    },
+    {
+      "id": "sample-two-generations",
+      "name": "sample: the target needs a generated midpoint",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            5,
+            5,
+            5
+          ]
+        ],
+        "target": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "sample",
+        "generation-two",
+        "simultaneous"
+      ]
+    },
+    {
+      "id": "sample-target-in-generation-zero",
+      "name": "sample: the target is initially available",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            3,
+            3,
+            3
+          ]
+        ],
+        "target": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "generation-zero",
+        "initial-target"
+      ]
+    },
+    {
+      "id": "sample-singleton-impossible",
+      "name": "sample: one non-target point cannot generate anything",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "target": [
+          5,
+          5,
+          5
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "sample",
+        "singleton",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-singleton-target",
+      "name": "trial: a singleton equal to the target returns zero",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "singleton",
+        "initial-target"
+      ]
+    },
+    {
+      "id": "trial-even-coordinate-sums",
+      "name": "trial: an even coordinate midpoint appears in generation one",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            4,
+            6
+          ]
+        ],
+        "target": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "even-sums",
+        "coordinatewise-midpoint"
+      ]
+    },
+    {
+      "id": "trial-odd-coordinate-floors",
+      "name": "trial: every odd coordinate sum is floored",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ],
+        "target": [
+          1,
+          2,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "floor",
+        "odd-sums"
+      ]
+    },
+    {
+      "id": "trial-mixed-axis-midpoint",
+      "name": "trial: coordinates are averaged independently",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            6,
+            0
+          ],
+          [
+            6,
+            0,
+            6
+          ]
+        ],
+        "target": [
+          3,
+          3,
+          3
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "three-dimensions",
+        "coordinatewise-midpoint"
+      ]
+    },
+    {
+      "id": "trial-diagonal-generation-two",
+      "name": "trial: a diagonal point first appears in generation two",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            6,
+            6
+          ]
+        ],
+        "target": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "trial",
+        "generation-two",
+        "diagonal"
+      ]
+    },
+    {
+      "id": "trial-diagonal-generation-three",
+      "name": "trial: a diagonal point first appears in generation three",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            6,
+            6
+          ]
+        ],
+        "target": [
+          2,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "trial",
+        "generation-three",
+        "diagonal"
+      ]
+    },
+    {
+      "id": "trial-initial-intermediate",
+      "name": "trial: an initially available midpoint accelerates the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            3,
+            3
+          ],
+          [
+            6,
+            6,
+            6
+          ]
+        ],
+        "target": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "initial-intermediate",
+        "minimum-generation"
+      ]
+    },
+    {
+      "id": "trial-stable-pair",
+      "name": "trial: flooring reproduces an existing endpoint and closure stabilizes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            2
+          ]
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "stable-closure",
+        "distinct-points"
+      ]
+    },
+    {
+      "id": "trial-outside-bounding-box",
+      "name": "trial: averaging cannot leave the initial coordinate bounds",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            4,
+            4,
+            4
+          ]
+        ],
+        "target": [
+          1,
+          3,
+          3
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "trial",
+        "bounding-box",
+        "impossible"
+      ]
+    },
+    {
+      "id": "trial-square-corners",
+      "name": "trial: opposite square corners produce the target",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            3,
+            0
+          ]
+        ],
+        "target": [
+          1,
+          1,
+          0
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "trial",
+        "multiple-pairs",
+        "floor"
+      ]
+    },
+    {
+      "id": "hidden-mixed-odd-sums",
+      "name": "hidden: different odd coordinate sums floor independently",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            6,
+            5
+          ],
+          [
+            5,
+            1,
+            0
+          ]
+        ],
+        "target": [
+          2,
+          3,
+          2
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "hidden",
+        "floor",
+        "mixed-coordinates"
+      ]
+    },
+    {
+      "id": "hidden-cube-generation-two",
+      "name": "hidden: a cube interior point needs a previous generation",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            4,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            4
+          ],
+          [
+            4,
+            4,
+            0
+          ],
+          [
+            4,
+            4,
+            4
+          ]
+        ],
+        "target": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "cube-corners",
+        "generation-two"
+      ]
+    },
+    {
+      "id": "hidden-cube-face-generation-two",
+      "name": "hidden: a cube face point appears in generation two",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            4,
+            4
+          ],
+          [
+            4,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            4
+          ],
+          [
+            4,
+            4,
+            0
+          ],
+          [
+            4,
+            4,
+            4
+          ]
+        ],
+        "target": [
+          0,
+          0,
+          3
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "hidden",
+        "cube-corners",
+        "face-point"
+      ]
+    },
+    {
+      "id": "hidden-maximum-initial-count",
+      "name": "hidden: twenty points close inside a small cube and cannot reach six",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "points": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            1
+          ]
+        ],
+        "target": [
+          6,
+          6,
+          6
+        ]
+      },
+      "expected": -1,
+      "tags": [
+        "hidden",
+        "maximum-input-count",
+        "stable-closure"
+      ]
+    }
+  ]
+}

@@ -67,8 +67,11 @@ transition must carry explanatory value.
 - Use Markdown tables for arrays, pointer positions, state variables,
   comparisons, partitions, recurrences, and before/after relationships.
 - Use LaTeX for equations, invariants, ranks, bounds, and proofs.
-- Use fenced `text` diagrams only when spatial structure is clearer than a
-  table. A diagram is not a substitute for an explanation.
+- Prefer fenced `mermaid` blocks for graph, tree, flow, and relationship
+  diagrams. Include an `accTitle` and `accDescr` in every block, and keep the
+  surrounding prose sufficient to understand the lesson without the visual.
+  Use fenced `text` diagrams only when Mermaid cannot express the structure
+  clearly. A diagram is not a substitute for an explanation.
 - Put optional images under the package's `assets/` directory and reference
   them relatively. Provide meaningful alt text and ensure that the surrounding
   prose still communicates the essential conclusion.

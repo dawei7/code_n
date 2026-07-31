@@ -1,0 +1,49 @@
+{
+  "challenge_id": "lc_4002",
+  "source": "leetcode",
+  "frontend_id": "4002",
+  "slug": "count-valid-sequences",
+  "title": "Count Valid Sequences",
+  "difficulty": "Medium",
+  "acceptance_rate": 43.309859154929576,
+  "frequency": 2.3,
+  "elo_rating": null,
+  "estimated_elo_rating": 1673.723425,
+  "contest_source": null,
+  "contest_slug": null,
+  "contest_problem_index": null,
+  "category": "algorithms",
+  "category_title": "Algorithms",
+  "topics": [],
+  "url": "https://leetcode.com/problems/count-valid-sequences/",
+  "supported_languages": [
+    "python",
+    "cpp",
+    "java",
+    "csharp",
+    "javascript",
+    "go",
+    "kotlin"
+  ],
+  "primary_language": "python",
+  "runnable_in_coden": true,
+  "solution_variants": {
+    "manifest": "solution_variants.json",
+    "default": "optimal"
+  },
+  "subsets": [
+    "leetcode_all",
+    "leetcode_category:algorithms"
+  ],
+  "tags": [
+    "category:algorithms",
+    "language:cpp",
+    "language:csharp",
+    "language:go",
+    "language:java",
+    "language:javascript",
+    "language:kotlin",
+    "language:python",
+    "leetcode"
+  ]
+}

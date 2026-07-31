@@ -5,51 +5,51 @@
 | Source | LeetCode |
 | Frontend ID | 2272 |
 | Difficulty | Hard |
-| Category | Algorithms |
-| Topics | Hash Table, String, Dynamic Programming, Enumeration |
-| Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [substring-with-largest-variance](https://leetcode.com/problems/substring-with-largest-variance/) |
+| Topics | Array, Dynamic Programming |
+| Official Link | [LeetCode](https://leetcode.com/problems/substring-with-largest-variance/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/substring-with-largest-variance/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+For any nonempty string, choose two characters that are both present in that
+string and subtract one occurrence count from the other. The string's variance
+is the largest difference obtainable from such a choice. The two selected
+characters are allowed to be the same, which guarantees variance zero when no
+positive difference is possible.
+
+Given a lowercase English string `s`, consider every contiguous nonempty
+substring. Return the largest variance achieved by any of them. A qualifying
+positive difference must involve both selected distinct characters inside the
+same substring; a run containing only one character does not create variance
+against an absent character.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `s`: A lowercase English string of length $n$, where $1\le n\le10^4$.
 
 **Return value**
 
-TODO
+Return the maximum, over every substring and every ordered pair of characters
+present in that substring, of the first character's count minus the second
+character's count.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "aababbb"`
+- Output: `3`
+
+The substring `"babbb"` contains four `b` characters and one `a`, producing
+variance $4-1=3$.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `s = "abcde"`
+- Output: `0`
 
-**Example 3**
-
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+Every character occurs once, so no substring has unequal positive counts for
+two characters that it contains.

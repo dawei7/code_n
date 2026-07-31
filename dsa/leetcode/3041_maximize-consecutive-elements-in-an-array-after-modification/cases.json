@@ -1,4 +1,5 @@
 {
+  "schema_version": 1,
   "challenge_id": "lc_3041",
   "cases": [
     {
@@ -8,11 +9,11 @@
       "visible": true,
       "input": {
         "nums": [
-          1,
-          1,
-          1,
           2,
-          5
+          1,
+          5,
+          1,
+          1
         ]
       },
       "expected": 3,
@@ -22,7 +23,7 @@
     },
     {
       "id": "sample-separated",
-      "name": "sample: separated values cannot connect",
+      "name": "sample: widely separated values cannot connect",
       "kind": "sample",
       "visible": true,
       "input": {
@@ -35,31 +36,13 @@
       },
       "expected": 1,
       "tags": [
-        "sample"
+        "sample",
+        "gaps"
       ]
     },
     {
-      "id": "sample-chain-after-increment",
-      "name": "sample: increments extend a chain",
-      "kind": "sample",
-      "visible": true,
-      "input": {
-        "nums": [
-          4,
-          5,
-          7,
-          8,
-          10
-        ]
-      },
-      "expected": 4,
-      "tags": [
-        "sample"
-      ]
-    },
-    {
-      "id": "trial-dense-window",
-      "name": "trial: dense values and duplicates",
+      "id": "trial-dense-duplicates",
+      "name": "trial: duplicates fill both unchanged and incremented positions",
       "kind": "trial",
       "visible": true,
       "input": {
@@ -74,31 +57,127 @@
       },
       "expected": 6,
       "tags": [
-        "trial"
+        "trial",
+        "duplicates"
       ]
     },
     {
-      "id": "real-mixed-duplicates",
-      "name": "real: mixed duplicates around one long run",
+      "id": "trial-already-consecutive",
+      "name": "trial: an existing consecutive run needs no changes",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "consecutive"
+      ]
+    },
+    {
+      "id": "real-single-value",
+      "name": "real: minimum-length input",
       "kind": "real",
       "visible": false,
       "input": {
         "nums": [
-          4,
-          4,
-          5,
-          6,
-          7,
-          8,
+          7
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "real",
+        "minimum-length"
+      ]
+    },
+    {
+      "id": "real-too-many-duplicates",
+      "name": "real: three equal values contribute at most two positions",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-overlapping-choices",
+      "name": "real: overlapping duplicate choices cannot all be used",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          2
+        ]
+      },
+      "expected": 3,
+      "tags": [
+        "real",
+        "state-order"
+      ]
+    },
+    {
+      "id": "real-unsorted-long-chain",
+      "name": "real: a noncontiguous sorted selection forms the optimum",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
           8,
           10,
-          11
+          6,
+          12,
+          9,
+          12,
+          2,
+          3,
+          13,
+          19,
+          11,
+          18,
+          10,
+          16
         ]
       },
       "expected": 8,
       "tags": [
         "real",
-        "dp"
+        "unsorted",
+        "selection"
+      ]
+    },
+    {
+      "id": "real-upper-bound",
+      "name": "real: a maximum input value may be incremented",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000,
+          1000000
+        ]
+      },
+      "expected": 2,
+      "tags": [
+        "real",
+        "boundary"
       ]
     }
   ]

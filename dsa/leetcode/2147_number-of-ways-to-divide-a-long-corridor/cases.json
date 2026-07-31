@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2147",
+  "cases": [
+    {"id": "sample-three-ways", "name": "sample: three divider positions", "kind": "sample", "visible": true, "input": {"corridor": "SSPPSPS"}, "expected": 3, "tags": ["sample", "one-boundary"]},
+    {"id": "sample-one-section", "name": "sample: exactly two seats need no divider", "kind": "sample", "visible": true, "input": {"corridor": "PPSPSP"}, "expected": 1, "tags": ["sample", "one-section"]},
+    {"id": "sample-one-seat", "name": "sample: an odd seat count is impossible", "kind": "sample", "visible": true, "input": {"corridor": "S"}, "expected": 0, "tags": ["sample", "odd-seats"]},
+    {"id": "trial-no-seats", "name": "plants alone cannot form a valid section", "kind": "trial", "visible": true, "input": {"corridor": "PPPP"}, "expected": 0, "tags": ["no-seats"]},
+    {"id": "trial-adjacent-seat-pairs", "name": "adjacent seat pairs leave one divider choice", "kind": "trial", "visible": true, "input": {"corridor": "SSSS"}, "expected": 1, "tags": ["adjacent-seats"]},
+    {"id": "real-three-gap-options", "name": "hidden: plants between seat pairs create three choices", "kind": "real", "visible": false, "input": {"corridor": "SSPPSS"}, "expected": 3, "tags": ["hidden", "plants-between-pairs"]},
+    {"id": "real-multiple-boundaries", "name": "hidden: independent boundaries multiply", "kind": "real", "visible": false, "input": {"corridor": "SSPSSPSS"}, "expected": 4, "tags": ["hidden", "multiple-boundaries"]},
+    {"id": "real-odd-many-seats", "name": "hidden: plants do not repair an odd seat count", "kind": "real", "visible": false, "input": {"corridor": "SPSPS"}, "expected": 0, "tags": ["hidden", "odd-seats"]}
+  ]
+}

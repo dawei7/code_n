@@ -1,63 +1,47 @@
-import sys
+def solve(parent: list[int], s: str) -> list[bool]:
+    node_count = len(parent)
+    children = [[] for _ in range(node_count)]
+    for node in range(1, node_count):
+        children[parent[node]].append(node)
 
-# Increase recursion depth for deep trees
-sys.setrecursionlimit(200000)
+    starts = [0] * node_count
+    ends = [0] * node_count
+    postorder = []
+    stack = [(0, False)]
 
-def solve(parent, s):
-    n = len(parent)
-    adj = [[] for _ in range(n)]
-    for i in range(1, n):
-        adj[parent[i]].append(i)
+    while stack:
+        node, expanded = stack.pop()
+        if expanded:
+            postorder.append(s[node])
+            ends[node] = len(postorder)
+            continue
 
-    # Sort children to ensure consistent DFS order
-    for i in range(n):
-        adj[i].sort()
+        starts[node] = len(postorder)
+        stack.append((node, True))
+        for child in reversed(children[node]):
+            stack.append((child, False))
 
-    tin = [0] * n
-    tout = [0] * n
-    timer = 0
-    dfs_order = []
+    transformed = "^#" + "#".join(postorder) + "#$"
+    radius = [0] * len(transformed)
+    center = 0
+    right = 0
 
-    def dfs(u):
-        nonlocal timer
-        tin[u] = timer
-        for v in adj[u]:
-            dfs(v)
-        dfs_order.append(s[u])
-        timer += 1
-        tout[u] = timer - 1
+    for index in range(1, len(transformed) - 1):
+        if index < right:
+            mirror = 2 * center - index
+            radius[index] = min(right - index, radius[mirror])
 
-    dfs(0)
+        while (
+            transformed[index + radius[index] + 1]
+            == transformed[index - radius[index] - 1]
+        ):
+            radius[index] += 1
 
-    # Rolling Hash parameters
-    P = 131
-    MOD = (1 << 61) - 1
+        if index + radius[index] > right:
+            center = index
+            right = index + radius[index]
 
-    pow_p = [1] * (n + 1)
-    for i in range(1, n + 1):
-        pow_p[i] = (pow_p[i - 1] * P) % MOD
-
-    pref = [0] * (n + 1)
-    suff = [0] * (n + 1)
-
-    for i in range(n):
-        val = ord(dfs_order[i]) - ord('a') + 1
-        pref[i + 1] = (pref[i] * P + val) % MOD
-
-    for i in range(n - 1, -1, -1):
-        val = ord(dfs_order[i]) - ord('a') + 1
-        suff[i] = (suff[i + 1] * P + val) % MOD
-
-    def get_hash_pref(l, r):
-        return (pref[r + 1] - pref[l] * pow_p[r - l + 1]) % MOD
-
-    def get_hash_suff(l, r):
-        return (suff[l] - suff[r + 1] * pow_p[r - l + 1]) % MOD
-
-    res = [False] * n
-    for i in range(n):
-        l, r = tin[i], tout[i]
-        if get_hash_pref(l, r) == get_hash_suff(l, r):
-            res[i] = True
-
-    return res
+    return [
+        radius[starts[node] + ends[node] + 1] >= ends[node] - starts[node]
+        for node in range(node_count)
+    ]

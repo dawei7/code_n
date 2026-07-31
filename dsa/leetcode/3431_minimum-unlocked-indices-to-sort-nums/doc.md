@@ -8,48 +8,40 @@
 | Category | Algorithms |
 | Topics | Array, Hash Table |
 | Supported Languages | python, cpp, java, csharp, javascript, go, kotlin |
-| Official Link | [minimum-unlocked-indices-to-sort-nums](https://leetcode.com/problems/minimum-unlocked-indices-to-sort-nums/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/minimum-unlocked-indices-to-sort-nums/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/minimum-unlocked-indices-to-sort-nums/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+You receive an array `nums` whose entries are only `1`, `2`, or `3`, together with a same-length binary array `locked`. The array is considered sortable when it can be put into non-decreasing order using a restricted adjacent swap.
+
+Indices `i` and `i + 1` may be swapped only when `nums[i] - nums[i + 1] = 1` and `locked[i] = 0`. In one operation, any index may be permanently unlocked by setting its lock value to zero. Find the minimum number of unlock operations that make sorting possible, or return `-1` when even unlocking every index cannot suffice.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `nums`: An array of length $n$ containing only `1`, `2`, and `3`, where $1\le n\le10^5$.
+- `locked`: A binary array of length $n$; `locked[i] = 1` means index `i` initially prevents a swap whose left endpoint is there.
 
 **Return value**
 
-TODO
+Return the minimum number of indices to unlock, or `-1` if the array cannot be sorted under the swap rule.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,2,1,2,3,2], locked = [1,0,1,1,0,1]`
+- Output: `0`
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `nums = [1,2,1,1,3,2,2], locked = [1,0,1,1,0,1,0]`
+- Output: `2`
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `nums = [1,2,1,2,3,2,1], locked = [0,0,0,0,0,0,0]`
+- Output: `-1`

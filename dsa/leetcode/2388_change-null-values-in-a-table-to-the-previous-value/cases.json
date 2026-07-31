@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2388",
+  "cases": [
+    {
+      "id": "sample-1",
+      "name": "sample: carry drinks across two null runs",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "tables": {
+          "CoffeeShop": [
+            {
+              "id": 9,
+              "drink": "Rum and Coke"
+            },
+            {
+              "id": 6,
+              "drink": null
+            },
+            {
+              "id": 7,
+              "drink": null
+            },
+            {
+              "id": 3,
+              "drink": "St Germain Spritz"
+            },
+            {
+              "id": 1,
+              "drink": "Orange Margarita"
+            },
+            {
+              "id": 2,
+              "drink": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "drink"
+        ],
+        "rows": [
+          [
+            9,
+            "Rum and Coke"
+          ],
+          [
+            6,
+            "Rum and Coke"
+          ],
+          [
+            7,
+            "Rum and Coke"
+          ],
+          [
+            3,
+            "St Germain Spritz"
+          ],
+          [
+            1,
+            "Orange Margarita"
+          ],
+          [
+            2,
+            "Orange Margarita"
+          ]
+        ]
+      },
+      "tags": [
+        "sample",
+        "consecutive-nulls"
+      ]
+    },
+    {
+      "id": "trial-no-nulls",
+      "name": "trial: every row already names a drink",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "CoffeeShop": [
+            {
+              "id": 8,
+              "drink": "Tea"
+            },
+            {
+              "id": 2,
+              "drink": "Coffee"
+            },
+            {
+              "id": 5,
+              "drink": "Water"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "drink"
+        ],
+        "rows": [
+          [
+            8,
+            "Tea"
+          ],
+          [
+            2,
+            "Coffee"
+          ],
+          [
+            5,
+            "Water"
+          ]
+        ]
+      },
+      "tags": [
+        "no-nulls",
+        "input-order"
+      ]
+    },
+    {
+      "id": "trial-long-run",
+      "name": "trial: one drink fills a long trailing run",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "tables": {
+          "CoffeeShop": [
+            {
+              "id": 4,
+              "drink": "Latte"
+            },
+            {
+              "id": 9,
+              "drink": null
+            },
+            {
+              "id": 1,
+              "drink": null
+            },
+            {
+              "id": 7,
+              "drink": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "drink"
+        ],
+        "rows": [
+          [
+            4,
+            "Latte"
+          ],
+          [
+            9,
+            "Latte"
+          ],
+          [
+            1,
+            "Latte"
+          ],
+          [
+            7,
+            "Latte"
+          ]
+        ]
+      },
+      "tags": [
+        "consecutive-nulls"
+      ]
+    },
+    {
+      "id": "real-alternating",
+      "name": "hidden: each named drink fills the following row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "CoffeeShop": [
+            {
+              "id": 20,
+              "drink": "A"
+            },
+            {
+              "id": 3,
+              "drink": null
+            },
+            {
+              "id": 18,
+              "drink": "B"
+            },
+            {
+              "id": 1,
+              "drink": null
+            },
+            {
+              "id": 11,
+              "drink": "C"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "drink"
+        ],
+        "rows": [
+          [
+            20,
+            "A"
+          ],
+          [
+            3,
+            "A"
+          ],
+          [
+            18,
+            "B"
+          ],
+          [
+            1,
+            "B"
+          ],
+          [
+            11,
+            "C"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "alternating"
+      ]
+    },
+    {
+      "id": "real-repeated-name",
+      "name": "hidden: repeated drink names remain separate updates",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "CoffeeShop": [
+            {
+              "id": 5,
+              "drink": "Mocha"
+            },
+            {
+              "id": 4,
+              "drink": null
+            },
+            {
+              "id": 3,
+              "drink": "Mocha"
+            },
+            {
+              "id": 2,
+              "drink": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "drink"
+        ],
+        "rows": [
+          [
+            5,
+            "Mocha"
+          ],
+          [
+            4,
+            "Mocha"
+          ],
+          [
+            3,
+            "Mocha"
+          ],
+          [
+            2,
+            "Mocha"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "repeated-value"
+      ]
+    },
+    {
+      "id": "real-nonnumeric-order",
+      "name": "hidden: identifier order does not define previous row",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "tables": {
+          "CoffeeShop": [
+            {
+              "id": 100,
+              "drink": "First"
+            },
+            {
+              "id": 1,
+              "drink": null
+            },
+            {
+              "id": 50,
+              "drink": "Second"
+            },
+            {
+              "id": 2,
+              "drink": null
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "id",
+          "drink"
+        ],
+        "rows": [
+          [
+            100,
+            "First"
+          ],
+          [
+            1,
+            "First"
+          ],
+          [
+            50,
+            "Second"
+          ],
+          [
+            2,
+            "Second"
+          ]
+        ]
+      },
+      "tags": [
+        "hidden",
+        "input-order"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_310", "frontend_id": "310", "title_slug": "minimum-height-trees", "url": "https://leetcode.com/problems/minimum-height-trees/description/", "paid_only": false, "content_sha256": "bd674dcc87d3292689432994ea7a29a83c34d58657de443847d0d8aaaeca5160", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "n = 4, edges = [[1,0],[1,2],[1,3]]", "output": "[1]", "has_explanation": true},
+      {"ordinal": 2, "input": "n = 6, edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]", "output": "[3,4]", "has_explanation": false}
+    ],
+    "constraint_count": 6,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "5e903ef7903c5580e0032ea1c1d2961e7634353649d846234bd4d090c23878d8",
+    "reference/contract.md": "ca8c0b97aae3f9f4e4201b3a9b8ceb0c4d31ce88bf7580b303ddc8fd96b06e95",
+    "reference/examples.md": "1388d70b3fc0ff75f92c2eec57e3adb1158d8ebfed43e51a74db70d9a15cae2e",
+    "reference/constraints.md": "11b44e64cbc72e983184755619adef42b89aa22c3dad52318f98a0f986bb7f49"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

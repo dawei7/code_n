@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "3070",
+  "frontend_id": "2887",
+  "title_slug": "fill-missing-data",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python.py",
+  "native_entrypoint": "fillMissingValues",
+  "verified_submission_id": "2077911963",
+  "verified_at": "2026-07-23T05:19:32+00:00"
+}

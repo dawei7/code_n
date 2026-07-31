@@ -8,48 +8,44 @@
 | Category | JavaScript |
 | Topics | Uncategorized |
 | Supported Languages | javascript |
-| Official Link | [repeat-string](https://leetcode.com/problems/repeat-string/) |
+| Official Link | [LeetCode](https://leetcode.com/problems/repeat-string/) |
 
 ## Problem Description
-[Open the original LeetCode problem](https://leetcode.com/problems/repeat-string/).
 
 ### Goal
-Write an original local summary of the required input/output behavior. Keep it faithful to the public problem contract, but do not copy LeetCode's statement text.
+
+Extend JavaScript strings with a method named `replicate`. Calling `str.replicate(times)` must produce a new string made by concatenating exactly `times` copies of the receiver `str` in their original order.
+
+The implementation must not call the built-in `String.prototype.repeat` method. For the follow-up complexity model, treat each string concatenation as an $O(1)$ operation and achieve logarithmic time in the repetition count.
 
 ### Function Contract
+
 **Inputs**
 
-- TODO
+- `times`: The positive number of copies to place in the returned string, where $1 \le \texttt{times} \le 10^5$.
+
+The receiver `str` is a string whose length is between $1$ and $1000$ characters.
 
 **Return value**
 
-TODO
+Return the concatenation of `times` consecutive copies of the receiver string.
 
 ### Examples
+
 **Example 1**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `str = "hello"`, `times = 2`
+- Output: `"hellohello"`
+- Explanation: Two copies of `"hello"` are joined.
 
 **Example 2**
 
-- Input: `TODO`
-- Output: `TODO`
+- Input: `str = "code"`, `times = 3`
+- Output: `"codecodecode"`
+- Explanation: The result contains three consecutive copies of `"code"`.
 
 **Example 3**
 
-- Input: `TODO`
-- Output: `TODO`
-
----
-
-## Solution
-### Approach
-Add a local explanation of the main algorithmic idea.
-
-### Complexity Analysis
-- **Time Complexity**: `TODO`
-- **Space Complexity**: `TODO`
-
-### Reference Implementations
-_No local optimal implementation has been authored for this challenge yet._
+- Input: `str = "js"`, `times = 1`
+- Output: `"js"`
+- Explanation: Repeating once leaves the string content unchanged.

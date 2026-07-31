@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2257",
+  "measurement_note": "Size is the number m*n of grid cells. Four directional sweeps take O(m*n) time. A correct brute-force implementation that tests guards for every empty cell completes all tiers and fails only by superlinear scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 by 8 grid with 8 row guards",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "m": 8,
+        "n": 8,
+        "guards": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            0
+          ]
+        ],
+        "walls": [
+          [
+            0,
+            7
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "cell-guard-cross-product"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 by 16 grid with 16 row guards",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "m": 16,
+        "n": 16,
+        "guards": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            9,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            13,
+            0
+          ],
+          [
+            14,
+            0
+          ],
+          [
+            15,
+            0
+          ]
+        ],
+        "walls": [
+          [
+            0,
+            15
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "cell-guard-cross-product"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32 by 32 grid with 32 row guards",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {
+        "m": 32,
+        "n": 32,
+        "guards": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            9,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            13,
+            0
+          ],
+          [
+            14,
+            0
+          ],
+          [
+            15,
+            0
+          ],
+          [
+            16,
+            0
+          ],
+          [
+            17,
+            0
+          ],
+          [
+            18,
+            0
+          ],
+          [
+            19,
+            0
+          ],
+          [
+            20,
+            0
+          ],
+          [
+            21,
+            0
+          ],
+          [
+            22,
+            0
+          ],
+          [
+            23,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            25,
+            0
+          ],
+          [
+            26,
+            0
+          ],
+          [
+            27,
+            0
+          ],
+          [
+            28,
+            0
+          ],
+          [
+            29,
+            0
+          ],
+          [
+            30,
+            0
+          ],
+          [
+            31,
+            0
+          ]
+        ],
+        "walls": [
+          [
+            0,
+            31
+          ]
+        ]
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "cell-guard-cross-product"
+      ]
+    }
+  ]
+}

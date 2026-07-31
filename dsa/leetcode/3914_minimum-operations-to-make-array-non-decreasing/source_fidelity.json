@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3914",
+    "frontend_id": "3914",
+    "title_slug": "minimum-operations-to-make-array-non-decreasing",
+    "url": "https://leetcode.com/problems/minimum-operations-to-make-array-non-decreasing/description/",
+    "paid_only": false,
+    "content_sha256": "1d3fc6862c7d213b9aac4c699b49e1f5964e78e91d391bc1d51e1ba669dfd91a",
+    "checked_at": "2026-07-30"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums = [3,3,2,1]",
+        "output": "2",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums = [5,1,2,3]",
+        "output": "4",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "42bd1c6acd0e1e51b92820cc2af9ed8718d5acd3157fe13a2fe2fb6e4bfae0ee",
+      "reference/contract.md": "007253d3a7c5be5a975765aaf166d0c7d03c09b399ee2e96f625df9fc7562f0a",
+      "reference/examples.md": "e9d526b00eb7c28ff22a55f04ae05d57d24ea1f2eaf69bdedee4fdbf9f7805e9",
+      "reference/constraints.md": "c5eb4204521fa1b3c02a4d766b9729be19cff70ac192f583b4b264cc8744ce68"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

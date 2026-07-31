@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_25",
+    "frontend_id": "25",
+    "title_slug": "reverse-nodes-in-k-group",
+    "url": "https://leetcode.com/problems/reverse-nodes-in-k-group/description/",
+    "paid_only": false,
+    "content_sha256": "f126d491c1855d7340d50bac2ec81e2ecf70523380f77fbd8eeed56c976fbb9b",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples", "constraints", "follow_up"],
+    "examples": [
+      {"ordinal": 1, "input": "head = [1,2,3,4,5], k = 2", "output": "[2,1,4,3,5]", "has_explanation": false},
+      {"ordinal": 2, "input": "head = [1,2,3,4,5], k = 3", "output": "[3,2,1,4,5]", "has_explanation": false}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 2, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 2}
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "c54318d10c1acccf64f3047fe7deab99e28f9f902e65cde31170ee0acb9fa7cb",
+      "reference/contract.md": "cefff35bf23ce14de693b1f2701c9d1047173bd03eddaf710205cccb4838bf10",
+      "reference/examples.md": "e30217ece8d51a49c016a0523a684ff14e21a96f33e6a9e4099acf50f78e948f",
+      "reference/constraints.md": "c0c98487267b9d4071b7f6250ea67561bebe42231c59d7396f7aa5a3beb451ed",
+      "reference/follow_up.md": "5f989c8bbb0511482fdc0fb263ccdf85116b88be464db6e0a38f11a94aee25b9"
+    },
+    "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}
+  }
+}

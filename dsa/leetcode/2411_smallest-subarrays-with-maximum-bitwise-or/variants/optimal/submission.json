@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2498",
+  "frontend_id": "2411",
+  "title_slug": "smallest-subarrays-with-maximum-bitwise-or",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.smallestSubarrays",
+  "verified_submission_id": "2074667419",
+  "verified_at": "2026-07-20T14:26:04.729255+00:00"
+}

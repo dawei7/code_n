@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3647",
+  "cases": [
+    {
+      "id": "sample-fill-both",
+      "name": "sample: both capacities are filled",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "weights": [
+          1,
+          4,
+          3,
+          2
+        ],
+        "w1": 5,
+        "w2": 4
+      },
+      "expected": 9,
+      "tags": [
+        "sample",
+        "exact-fill"
+      ]
+    },
+    {
+      "id": "sample-combined-fifteen",
+      "name": "sample: different combinations fill two bags",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "weights": [
+          3,
+          6,
+          4,
+          8
+        ],
+        "w1": 9,
+        "w2": 7
+      },
+      "expected": 15,
+      "tags": [
+        "sample",
+        "combination"
+      ]
+    },
+    {
+      "id": "sample-none-fit",
+      "name": "sample: no item fits",
+      "kind": "sample",
+      "visible": true,
+      "input": {
+        "weights": [
+          5,
+          7
+        ],
+        "w1": 2,
+        "w2": 3
+      },
+      "expected": 0,
+      "tags": [
+        "sample",
+        "zero-result"
+      ]
+    },
+    {
+      "id": "trial-one-item",
+      "name": "trial: one item is used at most once",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weights": [
+          4
+        ],
+        "w1": 5,
+        "w2": 5
+      },
+      "expected": 4,
+      "tags": [
+        "trial",
+        "single-item"
+      ]
+    },
+    {
+      "id": "trial-exact-independent-fills",
+      "name": "trial: separate subsets exactly fill capacities",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weights": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "w1": 5,
+        "w2": 9
+      },
+      "expected": 14,
+      "tags": [
+        "trial",
+        "exact-fill"
+      ]
+    },
+    {
+      "id": "trial-asymmetric-capacities",
+      "name": "trial: small and large bag need different choices",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "weights": [
+          1,
+          2,
+          6,
+          7,
+          8
+        ],
+        "w1": 3,
+        "w2": 13
+      },
+      "expected": 16,
+      "tags": [
+        "trial",
+        "asymmetric"
+      ]
+    },
+    {
+      "id": "real-duplicates",
+      "name": "real: duplicate weights remain distinct items",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weights": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "w1": 8,
+        "w2": 8
+      },
+      "expected": 16,
+      "tags": [
+        "real",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-skip-disruptive-item",
+      "name": "real: skipping an item improves combined fill",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weights": [
+          9,
+          6,
+          5,
+          5
+        ],
+        "w1": 10,
+        "w2": 10
+      },
+      "expected": 19,
+      "tags": [
+        "real",
+        "skip-item"
+      ]
+    },
+    {
+      "id": "real-unused-capacity",
+      "name": "real: optimum leaves unavoidable capacity unused",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weights": [
+          6,
+          6,
+          6
+        ],
+        "w1": 10,
+        "w2": 10
+      },
+      "expected": 12,
+      "tags": [
+        "real",
+        "unused-capacity"
+      ]
+    },
+    {
+      "id": "real-many-small-items",
+      "name": "real: many small items distribute across both bags",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "weights": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3
+        ],
+        "w1": 7,
+        "w2": 8
+      },
+      "expected": 15,
+      "tags": [
+        "real",
+        "many-items"
+      ]
+    }
+  ]
+}

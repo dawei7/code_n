@@ -1,38 +1,38 @@
 from collections import deque
+from typing import List
 
-def solve(grid: list[list[int]], health: int) -> bool:
+
+def solve(grid: List[List[int]], health: int) -> bool:
     rows = len(grid)
-    cols = len(grid[0])
-    
-    # If the starting cell is hazardous, we lose 1 health immediately
-    start_cost = grid[0][0]
-    if start_cost >= health:
-        return False
-        
-    # dist[r][c] stores the minimum health cost to reach (r, c)
-    dist = [[float('inf')] * cols for _ in range(rows)]
-    dist[0][0] = start_cost
-    
-    # 0-1 BFS using a deque
+    columns = len(grid[0])
+    distance = [[rows * columns] * columns for _ in range(rows)]
+    distance[0][0] = grid[0][0]
     queue = deque([(0, 0)])
-    
+
     while queue:
-        r, c = queue.popleft()
-        
-        if r == rows - 1 and c == cols - 1:
-            return dist[r][c] < health
-            
-        for dr, dc in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
-            nr, nc = r + dr, c + dc
-            
-            if 0 <= nr < rows and 0 <= nc < cols:
-                weight = grid[nr][nc]
-                if dist[r][c] + weight < dist[nr][nc]:
-                    dist[nr][nc] = dist[r][c] + weight
-                    # If weight is 0, add to front; if 1, add to back
-                    if weight == 0:
-                        queue.appendleft((nr, nc))
-                    else:
-                        queue.append((nr, nc))
-                        
-    return dist[rows - 1][cols - 1] < health
+        row, column = queue.popleft()
+        current = distance[row][column]
+
+        for next_row, next_column in (
+            (row - 1, column),
+            (row + 1, column),
+            (row, column - 1),
+            (row, column + 1),
+        ):
+            if not (
+                0 <= next_row < rows
+                and 0 <= next_column < columns
+            ):
+                continue
+
+            candidate = current + grid[next_row][next_column]
+            if candidate >= distance[next_row][next_column]:
+                continue
+
+            distance[next_row][next_column] = candidate
+            if grid[next_row][next_column] == 0:
+                queue.appendleft((next_row, next_column))
+            else:
+                queue.append((next_row, next_column))
+
+    return distance[-1][-1] < health

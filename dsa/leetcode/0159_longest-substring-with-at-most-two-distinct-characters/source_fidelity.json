@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_159", "frontend_id": "159", "title_slug": "longest-substring-with-at-most-two-distinct-characters", "url": "https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/description/", "paid_only": true, "content_sha256": "dbc8979a3dd9458d3af49e900a7489f6faf11d108f40ee2c292b4235972ca59c", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [{"ordinal": 1, "input": "s = \"eceba\"", "output": "3", "has_explanation": true}, {"ordinal": 2, "input": "s = \"ccaabbb\"", "output": "5", "has_explanation": true}],
+    "constraint_count": 2,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {"reference/description.md": "4fca6e5679a0f3b4506e4e5bf25aa8acdb98e0047e7bafae4e9fe0e3c6130ba7", "reference/contract.md": "dc3a58feb4318e370925a93908680ed43a04bcbb7aae2701bfbac9583b89bdec", "reference/examples.md": "78eb859ca36daa208468731c6bd150e8a002d6270671e59c14f8129d29b1e9c9", "reference/constraints.md": "378408d03dd269866d8603a5141b11e03c01b8bb42d501b69365e5353408046e"}, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

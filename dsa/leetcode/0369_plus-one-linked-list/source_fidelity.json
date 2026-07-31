@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {"provider": "leetcode", "challenge_id": "lc_369", "frontend_id": "369", "title_slug": "plus-one-linked-list", "url": "https://leetcode.com/problems/plus-one-linked-list/description/", "paid_only": true, "content_sha256": "5fd3ed179ca558e0410cfac86bfd7418e0cc1bdad36f98a6092f21e6943a4b47", "checked_at": "2026-07-28"},
+  "structure": {
+    "sections": ["description", "examples", "constraints"],
+    "examples": [
+      {"ordinal": 1, "input": "head = [1,2,3]", "output": "[1,2,4]", "has_explanation": false},
+      {"ordinal": 2, "input": "head = [0]", "output": "[1]", "has_explanation": false}
+    ],
+    "constraint_count": 3,
+    "visuals": {"source_images": 0, "source_tables": 0, "source_diagrams": 0, "local_images": 0, "local_tables": 0, "local_diagrams": 0}
+  },
+  "review": {"status": "verified", "files": {
+    "reference/description.md": "23a73a37ac0c127b1fa533879a6fcb79b6d83f5c4abdc22a405a27f188db311c",
+    "reference/contract.md": "5fe56e6d9b49365a19785adf8ec2d5ba913724aad745ae06d0ad6d47b19518b7",
+    "reference/examples.md": "23785057cd16f15530c3eaa3c88dc920ec5f25dd6720ca490feabb2273b29990",
+    "reference/constraints.md": "5f7cb13d14bfa2c7330046025ef7def29a7364a5ba61fd95c4f4ecff5a13d933"
+  }, "assertions": {"semantic_coverage": true, "section_order": true, "examples": true, "example_explanations": true, "constraints": true, "visuals_and_tables": true}}
+}

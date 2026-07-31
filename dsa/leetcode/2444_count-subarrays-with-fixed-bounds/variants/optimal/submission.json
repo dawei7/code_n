@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "provider": "leetcode.com",
+  "status": "verified",
+  "question_id": "2527",
+  "frontend_id": "2444",
+  "title_slug": "count-subarrays-with-fixed-bounds",
+  "paid_only": false,
+  "language": "python3",
+  "source": "solutions/leetcode_python3.py",
+  "native_entrypoint": "Solution.countSubarrays",
+  "verified_submission_id": "2074988768",
+  "verified_at": "2026-07-20T18:33:03.290364+00:00"
+}

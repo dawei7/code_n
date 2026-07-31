@@ -35,7 +35,8 @@
       },
       "expected": 22,
       "tags": [
-        "sample"
+        "sample",
+        "singletons"
       ]
     },
     {
@@ -73,7 +74,25 @@
       },
       "expected": 108,
       "tags": [
-        "trial"
+        "trial",
+        "all-sizes"
+      ]
+    },
+    {
+      "id": "trial-single-zero",
+      "name": "trial: one zero value",
+      "kind": "trial",
+      "visible": true,
+      "input": {
+        "nums": [
+          0
+        ],
+        "k": 1
+      },
+      "expected": 0,
+      "tags": [
+        "trial",
+        "boundary"
       ]
     },
     {
@@ -95,7 +114,147 @@
       },
       "expected": 562,
       "tags": [
-        "real"
+        "mixed",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-maximum-singleton",
+      "name": "real: maximum value modulo reduction",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          1000000000
+        ],
+        "k": 1
+      },
+      "expected": 999999993,
+      "tags": [
+        "maximum",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-all-zeros",
+      "name": "real: every eligible extreme is zero",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "k": 4
+      },
+      "expected": 0,
+      "tags": [
+        "zeros",
+        "duplicates"
+      ]
+    },
+    {
+      "id": "real-decreasing",
+      "name": "real: input begins in decreasing order",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 150,
+      "tags": [
+        "sorting"
+      ]
+    },
+    {
+      "id": "real-many-duplicates",
+      "name": "real: duplicate ranks remain distinct",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          9,
+          1,
+          9,
+          1,
+          9
+        ],
+        "k": 5
+      },
+      "expected": 342,
+      "tags": [
+        "duplicates",
+        "all-sizes"
+      ]
+    },
+    {
+      "id": "real-two-extremes",
+      "name": "real: zero and maximum value",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          0,
+          1000000000
+        ],
+        "k": 2
+      },
+      "expected": 999999986,
+      "tags": [
+        "bounds",
+        "modulo"
+      ]
+    },
+    {
+      "id": "real-k-one-longer",
+      "name": "real: k one on a longer array",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          3,
+          1,
+          4,
+          1,
+          5,
+          9
+        ],
+        "k": 1
+      },
+      "expected": 46,
+      "tags": [
+        "singletons"
+      ]
+    },
+    {
+      "id": "real-unsorted-mixed",
+      "name": "real: unsorted values and intermediate k",
+      "kind": "real",
+      "visible": false,
+      "input": {
+        "nums": [
+          2,
+          7,
+          1,
+          8,
+          2,
+          8
+        ],
+        "k": 4
+      },
+      "expected": 521,
+      "tags": [
+        "sorting",
+        "combinatorics"
       ]
     }
   ]

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Block Placement Queries and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Combines Fenwick-tree obstacle ranks with a segment tree of consecutive-obstacle gaps for logarithmic insertions and prefix checks.",
+      "time_complexity": "O(q log C)",
+      "space_complexity": "O(C)"
     }
   ]
 }

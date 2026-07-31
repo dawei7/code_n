@@ -10,9 +10,9 @@ def solve(n: int, p: int, banned: list[int], k: int) -> list[int]:
         while parent[parity][root] != root:
             root = parent[parity][root]
         while parent[parity][index] != index:
-            nxt = parent[parity][index]
+            following = parent[parity][index]
             parent[parity][index] = root
-            index = nxt
+            index = following
         return root
 
     def remove(index: int) -> None:
@@ -36,13 +36,13 @@ def solve(n: int, p: int, banned: list[int], k: int) -> list[int]:
         high = 2 * right_start + k - 1 - current
         parity = low & 1
 
-        first = max(0, (low - parity + 1) // 2)
+        first = (low - parity + 1) // 2
         last = (high - parity) // 2
         cursor = find(parity, first)
         while cursor <= last:
-            nxt = values[parity][cursor]
-            answer[nxt] = answer[current] + 1
-            queue.append(nxt)
+            next_position = values[parity][cursor]
+            answer[next_position] = answer[current] + 1
+            queue.append(next_position)
             parent[parity][cursor] = find(parity, cursor + 1)
             cursor = find(parity, cursor)
 

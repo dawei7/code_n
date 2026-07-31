@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3705",
+    "frontend_id": "3705",
+    "title_slug": "find-golden-hour-customers",
+    "url": "https://leetcode.com/problems/find-golden-hour-customers/description/",
+    "paid_only": false,
+    "content_sha256": "729702c0919db0dfc92b3e06142dc3927afa1d55d9440bc4cbc1340fe5ed3dea",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": ["description", "examples"],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "restaurant_orders table (16 rows)",
+        "output": "customers 103, 101, and 105 with computed metrics",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 0,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 3,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 3,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "cae92886f396e0ba89f5702c35492d1635d14fc207897b04415c7938b2f6e04a",
+      "reference/contract.md": "8e0d61c819915c9d7db22973d623177d293e3208a221dc024cbb2b154889a97d",
+      "reference/examples.md": "2cf47d2b143ec9d7ac894d11b50f51129f464e0769d3ffd2da902dd86deeab24"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

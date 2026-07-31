@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Minimize the Maximum Difference of Pairs and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Sorts the values, binary-searches the maximum allowed difference, and greedily counts disjoint adjacent pairs under each threshold.",
+      "time_complexity": "O(n\\log n+n\\log D)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -8,9 +8,9 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Uses the canonical optimal approach for Sum of K-Digit Numbers in a Range and meets the required complexity bound.",
-      "time_complexity": "O(...)",
-      "space_complexity": "O(...)"
+      "summary": "Counts each digit's symmetric contribution at every place value and evaluates the resulting geometric series modulo 1,000,000,007.",
+      "time_complexity": "O(log K)",
+      "space_complexity": "O(1)"
     }
   ]
 }

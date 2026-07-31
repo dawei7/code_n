@@ -1,0 +1,77 @@
+{
+  "challenge_id": "lc_2619",
+  "cases": [
+    {
+      "id": "sample-mixed-values",
+      "name": "sample: return the last value from a mixed array",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": [null, {}, 3]},
+      "expected": 3,
+      "tags": ["sample", "mixed-values"]
+    },
+    {
+      "id": "sample-empty",
+      "name": "sample: empty array returns the sentinel",
+      "kind": "sample",
+      "visible": true,
+      "input": {"nums": []},
+      "expected": -1,
+      "tags": ["sample", "empty"]
+    },
+    {
+      "id": "trial-single-null",
+      "name": "trial: null can be the final element",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [null]},
+      "expected": null,
+      "tags": ["trial", "single-element", "null"]
+    },
+    {
+      "id": "trial-string-last",
+      "name": "trial: strings are returned unchanged",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, true, "last"]},
+      "expected": "last",
+      "tags": ["trial", "string"]
+    },
+    {
+      "id": "trial-negative-one-element",
+      "name": "trial: actual negative one matches the sentinel value",
+      "kind": "trial",
+      "visible": true,
+      "input": {"nums": [1, 2, -1]},
+      "expected": -1,
+      "tags": ["trial", "sentinel-ambiguity"]
+    },
+    {
+      "id": "real-object-last",
+      "name": "hidden: object value is returned by reference semantics",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [0, {"answer": 42}]},
+      "expected": {"answer": 42},
+      "tags": ["hidden", "object"]
+    },
+    {
+      "id": "real-nested-array-last",
+      "name": "hidden: nested array remains intact",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [false, [1, 2, 3]]},
+      "expected": [1, 2, 3],
+      "tags": ["hidden", "nested-array"]
+    },
+    {
+      "id": "real-falsy-last",
+      "name": "hidden: false is not mistaken for absence",
+      "kind": "real",
+      "visible": false,
+      "input": {"nums": [7, false]},
+      "expected": false,
+      "tags": ["hidden", "falsy-value"]
+    }
+  ]
+}

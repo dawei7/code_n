@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3876",
+    "frontend_id": "3876",
+    "title_slug": "construct-uniform-parity-array-ii",
+    "url": "https://leetcode.com/problems/construct-uniform-parity-array-ii/description/",
+    "paid_only": false,
+    "content_sha256": "b1d76fbd1e8f7cfe131bc6469fbd848c392c44139b6ec96f251c407e16712430",
+    "checked_at": "2026-07-29"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "nums1 = [1,4,7]",
+        "output": "true",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "nums1 = [2,3]",
+        "output": "false",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "nums1 = [4,6]",
+        "output": "true",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 3,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "a2e36b611ef83a43de1a1d7927a500133b9617e5f87a75d359a5a8142314e8ac",
+      "reference/contract.md": "9092930a36b83d3742a9e8194f63120ffd2dabd20dee186b5221841bc8070b2a",
+      "reference/examples.md": "267bc73a9d6793853c63505ac0744ac14d2efc78a0e342221e8a5d4e1dc59094",
+      "reference/constraints.md": "8e116efd9e9c0cf25e88fbb60f9b1d2be739315082872a993d5fac7de9f6fda8"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

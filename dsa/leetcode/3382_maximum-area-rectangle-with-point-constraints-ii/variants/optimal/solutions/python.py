@@ -1,17 +1,17 @@
 from collections import defaultdict
 
 
-def solve(x: list[int], y: list[int]) -> int:
-    points = list(zip(x, y))
+def solve(xCoord: list[int], yCoord: list[int]) -> int:
+    points = list(zip(xCoord, yCoord))
     columns = defaultdict(list)
-    for px, py in points:
-        columns[px].append(py)
+    for x, y in points:
+        columns[x].append(y)
 
     segment_columns = defaultdict(list)
-    for px, ys in columns.items():
+    for x, ys in columns.items():
         ys.sort()
         for lower, upper in zip(ys, ys[1:]):
-            segment_columns[(lower, upper)].append(px)
+            segment_columns[lower, upper].append(x)
 
     candidates = []
     for (lower, upper), xs in segment_columns.items():
@@ -22,8 +22,11 @@ def solve(x: list[int], y: list[int]) -> int:
     if not candidates:
         return -1
 
-    compressed_y = {value: index + 1 for index, value in enumerate(sorted(set(y)))}
-    size = len(compressed_y)
+    y_rank = {
+        value: index + 1
+        for index, value in enumerate(sorted(set(yCoord)))
+    }
+    size = len(y_rank)
     tree = [0] * (size + 1)
 
     def add(index: int) -> None:
@@ -33,33 +36,34 @@ def solve(x: list[int], y: list[int]) -> int:
 
     def prefix(index: int) -> int:
         total = 0
-        while index > 0:
+        while index:
             total += tree[index]
             index -= index & -index
         return total
 
-    def range_sum(lower: int, upper: int) -> int:
-        return prefix(compressed_y[upper]) - prefix(compressed_y[lower] - 1)
+    def range_count(lower: int, upper: int) -> int:
+        return prefix(y_rank[upper]) - prefix(y_rank[lower] - 1)
 
     events = []
     for query_index, (left, right, lower, upper) in enumerate(candidates):
         events.append((right, query_index, 1, lower, upper))
         events.append((left - 1, query_index, -1, lower, upper))
-    events.sort(key=lambda event: event[0])
+    events.sort()
 
     sorted_points = sorted(points)
     point_index = 0
     counts = [0] * len(candidates)
-
     for limit, query_index, sign, lower, upper in events:
-        while point_index < len(sorted_points) and sorted_points[point_index][0] <= limit:
-            add(compressed_y[sorted_points[point_index][1]])
+        while (
+            point_index < len(sorted_points)
+            and sorted_points[point_index][0] <= limit
+        ):
+            add(y_rank[sorted_points[point_index][1]])
             point_index += 1
-        counts[query_index] += sign * range_sum(lower, upper)
+        counts[query_index] += sign * range_count(lower, upper)
 
-    best = -1
+    answer = -1
     for count, (left, right, lower, upper) in zip(counts, candidates):
         if count == 4:
-            best = max(best, (right - left) * (upper - lower))
-
-    return best
+            answer = max(answer, (right - left) * (upper - lower))
+    return answer
