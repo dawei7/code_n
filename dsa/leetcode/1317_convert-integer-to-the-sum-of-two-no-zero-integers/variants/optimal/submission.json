@@ -7,7 +7,7 @@
   "title_slug": "convert-integer-to-the-sum-of-two-no-zero-integers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.getNoZeroIntegers",
   "verified_submission_id": "2068482128",
   "verified_at": "2026-07-15T10:31:43.081683+00:00"

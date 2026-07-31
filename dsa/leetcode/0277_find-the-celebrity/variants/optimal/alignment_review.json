@@ -2,7 +2,7 @@
   "schema_version": 1,
   "status": "reviewed",
   "app_source": "solutions/solve.py",
-  "native_source": "solutions/leetcode_python3.py",
+  "native_source": "solutions/leetcode.py",
   "hashes": {
     "app_sha256": "0e68deaafff296011ef3e5fe71d3f1c22d9cc0a17a604f8cac2a35a801f3c831",
     "native_sha256": "f23899025dda3d36210d72ff88dbeabd6fef96371d659a2ead1501f55a2e0d94",

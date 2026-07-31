@@ -7,7 +7,7 @@
   "title_slug": "minimum-impossible-or",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minImpossibleOR",
   "verified_submission_id": "2075513871",
   "verified_at": "2026-07-21T07:54:00+00:00"

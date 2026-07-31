@@ -7,7 +7,7 @@
   "title_slug": "count-the-number-of-powerful-integers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.numberOfPowerfulInt",
   "verified_submission_id": "2078640868",
   "verified_at": "2026-07-23T16:23:24.636605+00:00"

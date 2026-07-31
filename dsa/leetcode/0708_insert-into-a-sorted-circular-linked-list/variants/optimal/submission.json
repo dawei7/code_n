@@ -7,7 +7,7 @@
   "title_slug": "insert-into-a-sorted-circular-linked-list",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2065629085",
   "verified_at": "2026-07-13T04:31:08.827826+00:00"
 }

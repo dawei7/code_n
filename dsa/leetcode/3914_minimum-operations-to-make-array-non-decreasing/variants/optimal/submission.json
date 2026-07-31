@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-make-array-non-decreasing",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minOperations",
   "verified_submission_id": "2086857330",
   "verified_at": "2026-07-30T03:38:20.307322+00:00"

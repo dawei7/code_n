@@ -7,7 +7,7 @@
   "title_slug": "largest-color-value-in-a-directed-graph",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.largestPathValue",
   "verified_submission_id": "2071733896",
   "verified_at": "2026-07-18T04:25:50.866990+00:00"

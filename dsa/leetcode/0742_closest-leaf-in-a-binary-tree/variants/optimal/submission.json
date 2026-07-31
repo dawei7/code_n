@@ -7,7 +7,7 @@
   "title_slug": "closest-leaf-in-a-binary-tree",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.findClosestLeaf",
   "verified_submission_id": "2065860138",
   "verified_at": "2026-07-13T08:09:32.811806+00:00"

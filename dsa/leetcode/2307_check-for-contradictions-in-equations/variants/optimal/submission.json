@@ -7,7 +7,7 @@
   "title_slug": "check-for-contradictions-in-equations",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.checkContradictions",
   "verified_submission_id": "2080692531",
   "verified_at": "2026-07-25T11:57:45.2629929Z"

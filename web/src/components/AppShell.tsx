@@ -211,8 +211,6 @@ function TopHeader({
   const updater = useUpdater();
   const theme = useAppStore((s) => s.theme);
   const toggleTheme = useAppStore((s) => s.toggleTheme);
-  const language = useAppStore((s) => s.language);
-  const setLanguage = useAppStore((s) => s.setLanguage);
   const cheaterMode = useAppStore((s) => s.cheaterMode);
   const setCheaterMode = useAppStore((s) => s.setCheaterMode);
   const increaseFontSize = useAppStore((s) => s.increaseFontSize);
@@ -444,14 +442,6 @@ function TopHeader({
             A+
           </button>
         </div>
-        <button
-          type="button"
-          onClick={() => setLanguage(language === 'en' ? 'de' : 'en')}
-          className="px-2 py-1 rounded border border-coden-border text-coden-muted hover:text-coden-text hover:bg-coden-border mr-1"
-          title={`Switch to ${language === 'en' ? 'German' : 'English'}`}
-        >
-          {language === 'en' ? 'DE' : 'EN'}
-        </button>
         <button
           type="button"
           onClick={toggleTheme}

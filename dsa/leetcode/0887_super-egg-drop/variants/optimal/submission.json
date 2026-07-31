@@ -7,7 +7,7 @@
   "title_slug": "super-egg-drop",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.superEggDrop",
   "verified_submission_id": "2066765787",
   "verified_at": "2026-07-14T02:23:32.086594+00:00"

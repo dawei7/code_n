@@ -15735,7 +15735,7 @@ latest completed packages add this evidence:
   ending notices;
 - problem 1747 is complete and remotely verified as Premium MySQL submission
   `2070948346`. Its live backend `question_id` is `1898`, and the exact
-  self-join query in `solutions/leetcode_mysql.sql` is Accepted;
+  self-join query in `solutions/leetcode.sql` is Accepted;
 - the SQL query and every authored expected table matched an independent
   closed-interval pairwise oracle across all eight correctness cases and all
   three benchmark tiers, including shared endpoints, containment,

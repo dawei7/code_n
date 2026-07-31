@@ -40,16 +40,16 @@ class DocIndexEntry(BaseModel):
     has_doc: bool
 
 
-def _find_doc_path(challenge_id: str, lang: str = "en") -> Path | None:
+def _find_doc_path(challenge_id: str) -> Path | None:
     if not is_leetcode_id(challenge_id):
         return None
-    return leetcode_doc_path(challenge_id, lang)
+    return leetcode_doc_path(challenge_id)
 
 
-def _find_doc_markdown(challenge_id: str, lang: str = "en") -> str | None:
+def _find_doc_markdown(challenge_id: str) -> str | None:
     if not is_leetcode_id(challenge_id):
         return None
-    return leetcode_doc_markdown(challenge_id, lang)
+    return leetcode_doc_markdown(challenge_id)
 
 
 @router.get("/docs/index")
@@ -84,9 +84,8 @@ def docs_index() -> list[DocIndexEntry]:
 
 
 @router.get("/docs/overview")
-def docs_overview(lang: str = "en") -> Response:
+def docs_overview() -> Response:
     """Return the product overview from the repository README."""
-    del lang  # The overview currently has one maintained language.
     if not OVERVIEW_DOC.is_file():
         raise HTTPException(status_code=404, detail="README.md not found")
     return Response(
@@ -96,12 +95,12 @@ def docs_overview(lang: str = "en") -> Response:
 
 
 @router.get("/docs/by-id/{challenge_id}")
-def docs_by_id(challenge_id: str, lang: str = "en") -> Response:
+def docs_by_id(challenge_id: str) -> Response:
     """Return one challenge's canonical package document."""
     challenge_cls = CHALLENGE_REGISTRY.get(challenge_id)
     if challenge_cls is None:
         raise HTTPException(status_code=404, detail=f"Challenge '{challenge_id}' not found")
-    markdown = _find_doc_markdown(challenge_id, lang)
+    markdown = _find_doc_markdown(challenge_id)
     if markdown is None:
         package_dir = leetcode_package_dir(challenge_id)
         package_name = (

@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-of-darts-inside-of-a-circular-dartboard",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.numPoints",
   "verified_submission_id": "2069165700",
   "verified_at": "2026-07-15T23:06:45.689954+00:00"

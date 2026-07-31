@@ -7,7 +7,7 @@
   "title_slug": "count-fancy-numbers-in-a-range",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countFancy",
   "verified_submission_id": "2086431900",
   "verified_at": "2026-07-29T16:48:21.588691+00:00"

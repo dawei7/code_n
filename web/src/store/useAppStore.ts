@@ -98,9 +98,6 @@ export interface AppState {
   cheaterMode: boolean;
   setCheaterMode: (enabled: boolean) => void;
 
-  language: 'en' | 'de';
-  setLanguage: (lang: 'en' | 'de') => void;
-
   baseFontSize: number;
   increaseFontSize: () => void;
   decreaseFontSize: () => void;
@@ -239,12 +236,6 @@ export const useAppStore = create<AppState>((set, get) => ({
   setCheaterMode: (enabled) => set(() => {
     localStorage.setItem(CHEATER_MODE_STORAGE_KEY, enabled ? 'true' : 'false');
     return { cheaterMode: enabled };
-  }),
-
-  language: (localStorage.getItem('coden-language') as 'en' | 'de') || 'en',
-  setLanguage: (lang) => set(() => {
-    localStorage.setItem('coden-language', lang);
-    return { language: lang };
   }),
 
   baseFontSize: Number(localStorage.getItem('coden-font-size')) || 16,

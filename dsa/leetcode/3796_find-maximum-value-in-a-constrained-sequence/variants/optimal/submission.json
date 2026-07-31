@@ -7,7 +7,7 @@
   "title_slug": "find-maximum-value-in-a-constrained-sequence",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.findMaxVal",
   "verified_submission_id": "2085425265",
   "verified_at": "2026-07-29T01:01:08.018008+00:00"

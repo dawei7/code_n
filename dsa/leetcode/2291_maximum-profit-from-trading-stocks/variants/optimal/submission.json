@@ -7,7 +7,7 @@
   "title_slug": "maximum-profit-from-trading-stocks",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maximumProfit",
   "verified_submission_id": "2080677859",
   "verified_at": "2026-07-25T11:40:50.2537538Z"

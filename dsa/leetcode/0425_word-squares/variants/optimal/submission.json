@@ -7,7 +7,7 @@
   "title_slug": "word-squares",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064776407",
   "verified_at": "2026-07-12T08:27:43.250049+00:00"
 }

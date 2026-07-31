@@ -64,7 +64,7 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
 def create_app() -> FastAPI:
     app = FastAPI(
         title="cOde(n) server",
-        version="0.2.1",
+        version="0.2.2",
         description="HTTP API wrapping the cOde(n) Python engine.",
         lifespan=lifespan,
     )

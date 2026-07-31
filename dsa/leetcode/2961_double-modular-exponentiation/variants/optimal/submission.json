@@ -7,7 +7,7 @@
   "title_slug": "double-modular-exponentiation",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.getGoodIndices",
   "verified_submission_id": "2078409785",
   "verified_at": "2026-07-23T13:06:40.609553+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "length-of-longest-subarray-with-at-most-k-frequency",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxSubarrayLength",
   "verified_submission_id": "2078394875",
   "verified_at": "2026-07-23T12:51:38.698656+00:00"

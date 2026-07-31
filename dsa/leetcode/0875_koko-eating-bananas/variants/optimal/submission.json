@@ -7,7 +7,7 @@
   "title_slug": "koko-eating-bananas",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minEatingSpeed",
   "verified_submission_id": "2066745662",
   "verified_at": "2026-07-14T01:35:23.218473+00:00"

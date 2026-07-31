@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-equalize-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minOperations",
   "verified_submission_id": "2083997152",
   "verified_at": "2026-07-27T23:41:37.767764+00:00"

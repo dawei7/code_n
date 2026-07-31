@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-of-ways-to-partition-an-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.waysToPartition",
   "verified_submission_id": "2072850961",
   "verified_at": "2026-07-19T00:02:51.651774+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximize-amount-after-two-days-of-conversions",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxAmount",
   "verified_submission_id": "2081306061",
   "verified_at": "2026-07-26T01:00:00Z"

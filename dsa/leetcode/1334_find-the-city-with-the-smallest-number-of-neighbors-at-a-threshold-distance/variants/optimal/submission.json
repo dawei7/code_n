@@ -7,7 +7,7 @@
   "title_slug": "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.findTheCity",
   "verified_submission_id": "2068603266",
   "verified_at": "2026-07-15T12:42:23.153287+00:00"

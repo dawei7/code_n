@@ -7,7 +7,7 @@
   "title_slug": "maximize-distance-to-closest-person",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxDistToClosest",
   "verified_submission_id": "2066710644",
   "verified_at": "2026-07-13T23:44:42.997008+00:00"

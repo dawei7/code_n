@@ -7,7 +7,7 @@
   "title_slug": "count-elements-with-at-least-k-greater-values",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countElements",
   "verified_submission_id": "2085338148",
   "verified_at": "2026-07-28T20:39:05.351666+00:00"

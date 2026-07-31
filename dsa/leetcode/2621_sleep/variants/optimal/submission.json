@@ -7,7 +7,7 @@
   "title_slug": "sleep",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode_javascript.js",
+  "source": "solutions/leetcode.js",
   "native_entrypoint": "sleep",
   "verified_submission_id": "2075919202",
   "verified_at": "2026-07-21T14:18:00+00:00"

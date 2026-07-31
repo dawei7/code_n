@@ -7,7 +7,7 @@
   "title_slug": "smallest-greater-multiple-made-of-two-digits",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.findInteger",
   "verified_submission_id": "2072820273",
   "verified_at": "2026-07-18T22:03:57.046013+00:00"

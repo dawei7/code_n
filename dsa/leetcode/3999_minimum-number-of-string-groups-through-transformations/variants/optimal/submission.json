@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-string-groups-through-transformations",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumGroups",
   "verified_submission_id": "2088192675",
   "verified_at": "2026-07-31T03:31:00Z"

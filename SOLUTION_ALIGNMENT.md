@@ -87,7 +87,7 @@ constraints may contain
   "schema_version": 1,
   "status": "reviewed",
   "app_source": "solutions/solve.py",
-  "native_source": "solutions/leetcode_python3.py",
+  "native_source": "solutions/leetcode.py",
   "hashes": {
     "app_sha256": "<sha256>",
     "native_sha256": "<sha256>",

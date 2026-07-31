@@ -7,7 +7,7 @@
   "title_slug": "all-elements-in-two-binary-search-trees",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.getAllElements",
   "verified_submission_id": "2068432556",
   "verified_at": "2026-07-15T09:46:41.047984+00:00"

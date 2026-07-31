@@ -7,7 +7,7 @@
   "title_slug": "ways-to-express-an-integer-as-sum-of-powers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.numberOfWays",
   "verified_submission_id": "2076777918",
   "verified_at": "2026-07-22T07:15:00+00:00"

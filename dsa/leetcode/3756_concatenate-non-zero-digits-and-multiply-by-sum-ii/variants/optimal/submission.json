@@ -7,7 +7,7 @@
   "title_slug": "concatenate-non-zero-digits-and-multiply-by-sum-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.sumAndMultiply",
   "verified_submission_id": "2085325988",
   "verified_at": "2026-07-28T20:16:54.922727+00:00"

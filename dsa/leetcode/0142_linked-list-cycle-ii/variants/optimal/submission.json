@@ -7,7 +7,7 @@
   "title_slug": "linked-list-cycle-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064168816",
   "verified_at": "2026-07-11T18:03:21.086481+00:00"
 }

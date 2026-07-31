@@ -103,11 +103,11 @@ def test_source_native_judge_models_are_explicit_in_app_solutions() -> None:
         solution_path = leetcode_solution_path(challenge_id, "python")
         if solution_path is None or not solution_path.is_file():
             continue
-        native_paths = sorted(solution_path.parent.glob("leetcode_python*.py"))
-        if not native_paths:
+        native_path = solution_path.parent / "leetcode.py"
+        if not native_path.is_file():
             continue
 
-        native_source = native_paths[0].read_text(encoding="utf-8")
+        native_source = native_path.read_text(encoding="utf-8")
         native_tree = ast.parse(native_source)
         native_defined_models = {
             node.name

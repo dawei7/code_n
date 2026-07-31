@@ -7,7 +7,7 @@
   "title_slug": "number-of-pairs-satisfying-inequality",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.numberOfPairs",
   "verified_submission_id": "2074797832",
   "verified_at": "2026-07-20T16:14:01.346578+00:00"

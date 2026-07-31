@@ -7,7 +7,7 @@
   "title_slug": "partition-array-into-k-distinct-groups",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.partitionArray",
   "verified_submission_id": "2083972273",
   "verified_at": "2026-07-27T22:16:13.153602+00:00"

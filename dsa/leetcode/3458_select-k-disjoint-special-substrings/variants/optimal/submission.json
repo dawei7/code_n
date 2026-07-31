@@ -7,7 +7,7 @@
   "title_slug": "select-k-disjoint-special-substrings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxSubstringLength",
   "verified_submission_id": "2081980767",
   "verified_at": "2026-07-26T11:57:03Z"

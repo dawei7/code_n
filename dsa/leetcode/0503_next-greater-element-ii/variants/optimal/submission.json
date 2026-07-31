@@ -7,7 +7,7 @@
   "title_slug": "next-greater-element-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2065135811",
   "verified_at": "2026-07-12T15:19:27.208742+00:00"
 }

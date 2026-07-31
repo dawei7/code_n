@@ -7,7 +7,6 @@ frontend-ID order:
 ``dsa/leetcode/<frontend_id:04d>_<slug>/``
     ``metadata.json``
     ``doc.md`` (legacy document or compatibility anchor)
-    ``doc_de.md`` (optional)
     ``reference/`` (optional section-authored document)
         ``description.md``
         ``contract.md``
@@ -200,11 +199,9 @@ def _reviewed_source_section_files(package_dir: Path) -> tuple[str, ...] | None:
     return tuple(filenames)
 
 
-def _reference_section_paths(package_dir: Path, lang: str) -> tuple[Path, ...] | None:
+def _reference_section_paths(package_dir: Path) -> tuple[Path, ...] | None:
     reference_dir = package_dir / "reference"
-    if lang != "en":
-        reference_dir /= lang
-    reviewed_files = _reviewed_source_section_files(package_dir) if lang == "en" else None
+    reviewed_files = _reviewed_source_section_files(package_dir)
     filenames = reviewed_files or LEETCODE_REFERENCE_REQUIRED_SECTIONS
     paths = tuple(reference_dir / filename for filename in filenames)
     return paths if all(path.is_file() for path in paths) else None
@@ -277,44 +274,24 @@ def _reference_header(metadata: dict[str, Any]) -> str:
     return "\n".join((f"# {title}", "", "| Field | Value |", "|---|---|", *rows))
 
 
-def leetcode_doc_path(challenge_id: str, lang: str = "en") -> Path | None:
+def leetcode_doc_path(challenge_id: str) -> Path | None:
     package_dir = leetcode_package_dir(challenge_id)
     if package_dir is None:
         return None
-    if lang == "de":
-        translated_sections = _reference_section_paths(package_dir, lang)
-        if translated_sections is not None:
-            return translated_sections[0]
-        translated = package_dir / "doc_de.md"
-        if translated.is_file():
-            return translated
-    canonical_sections = _reference_section_paths(package_dir, "en")
+    canonical_sections = _reference_section_paths(package_dir)
     if canonical_sections is not None:
         return canonical_sections[0]
     doc = package_dir / "doc.md"
     return doc if doc.is_file() else None
 
 
-def leetcode_doc_markdown(challenge_id: str, lang: str = "en") -> str | None:
+def leetcode_doc_markdown(challenge_id: str) -> str | None:
     """Return one composed section document or a legacy monolithic document."""
 
     package_dir = leetcode_package_dir(challenge_id)
     if package_dir is None:
         return None
-    if lang == "de":
-        translated_sections = _reference_section_paths(package_dir, lang)
-        if translated_sections is not None:
-            return "\n\n".join(
-                (_reference_header(leetcode_metadata(challenge_id)),)
-                + tuple(path.read_text(encoding="utf-8").strip() for path in translated_sections)
-            ) + "\n"
-        translated = package_dir / "doc_de.md"
-        if translated.is_file():
-            return _normalize_legacy_reference_header(
-                translated.read_text(encoding="utf-8"),
-                leetcode_metadata(challenge_id),
-            )
-    canonical_sections = _reference_section_paths(package_dir, "en")
+    canonical_sections = _reference_section_paths(package_dir)
     if canonical_sections is not None:
         return "\n\n".join(
             (_reference_header(leetcode_metadata(challenge_id)),)

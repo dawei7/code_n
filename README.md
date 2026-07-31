@@ -31,6 +31,8 @@ approved, sponsored, or endorsed cOde(n).
   without switching to an external IDE.
 - **Original explanations:** every migrated package restates the task in
   independent language and teaches the reasoning behind the selected method.
+- **English-only learning surface:** the interface, references, guided examples,
+  reports, and supporting documentation use one maintained natural language.
 - **Guided representative examples:** package-authored Markdown lessons work
   through carefully selected inputs with tables, diagrams, mathematical
   notation, correctness reasoning, and explicit traps. They teach how and why
@@ -59,7 +61,7 @@ approved, sponsored, or endorsed cOde(n).
 
 ## Project status
 
-Version `0.2.1` is an active corpus migration, not a claim that every package is
+Version `0.2.2` is an active corpus migration, not a claim that every package is
 finished. The repository indexes its final corpus of 4,005 canonical frontend
 IDs. At this checkpoint, 3,722 packages are locally complete and remotely
 verified, package authoring has reached the permanent frontend-ID ceiling of
@@ -111,7 +113,7 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
       submission.json              # present after remote verification
       solutions/
         solve.py                    # app-local Python solve(...) implementation
-        leetcode_python3.py         # native candidate when available
+        leetcode.py                 # native candidate when available
     simplified/                     # optional, only after reviewed verification
       approach.md
       submission.json

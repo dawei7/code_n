@@ -22,6 +22,9 @@ or external memory.
   user-data directory.
 - The editor, runner, and debugger are in-app workflows. Do not make an
   external IDE a requirement.
+- English is the only natural language for the product, canonical learning
+  content, generated reports, and user interface. Do not add translation
+  files, locale selectors, or translated-document fallbacks.
 - The desktop app preloads canonical challenge summaries once before reporting
   health. Set selectors must filter that in-memory corpus client-side and must
   never clear or refetch the list during a view change.
@@ -70,7 +73,6 @@ Each problem is stored once:
 dsa/leetcode/<frontend_id:04d>_<slug>/
   metadata.json
   doc.md                    # legacy document or section-mode compatibility anchor
-  doc_de.md                 # optional translation
   reference/                # optional section-authored Reference document
     description.md
     contract.md
@@ -91,7 +93,7 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
       solutions/
         solve.py                # canonical app-friendly Python reference
         <language>.<extension>  # optional same-language references
-        leetcode_<lang>.<ext>   # optional native submission candidate
+        leetcode.<extension>    # optional native submission candidate
     simplified/              # optional; authored in a later reviewed pass
       approach.md
       submission.json

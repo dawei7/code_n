@@ -7,7 +7,7 @@
   "title_slug": "nested-list-weight-sum-ii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064608985",
   "verified_at": "2026-07-12T05:24:01.305053+00:00"
 }

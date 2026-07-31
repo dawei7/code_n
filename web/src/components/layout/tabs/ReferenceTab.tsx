@@ -48,7 +48,7 @@ type LoadState =
   | { kind: 'missing'; challengeId: string; challengeName: string; category: string }
   | { kind: 'error'; message: string };
 
-const OVERVIEW_CACHE: Map<string, string> = new Map();
+let overviewCache: string | undefined;
 
 const REFERENCE_LANGUAGES: Array<{
   id: SupportedLanguage;
@@ -62,13 +62,8 @@ const REFERENCE_LANGUAGES: Array<{
   { id: 'bash', label: 'Bash', monaco: 'shell', extension: 'sh' },
 ];
 
-function localizedReferenceKey(language: string, id: string): string {
-  return `${language}:${id}`;
-}
-
 export function ReferenceTab() {
   const detail = useAppStore((s) => s.currentDetail);
-  const language = useAppStore((s) => s.language);
   const cheaterMode = useAppStore((s) => s.cheaterMode);
   const completed = useAppStore((s) => s.progress?.completed ?? []);
   const [state, setState] = useState<LoadState>({ kind: 'idle' });
@@ -86,13 +81,12 @@ export function ReferenceTab() {
     setState({ kind: 'loading' });
     try {
       if (which === 'overview') {
-        const cached = OVERVIEW_CACHE.get(language);
-        if (cached !== undefined) {
-          setState({ kind: 'loaded', markdown: cached });
+        if (overviewCache !== undefined) {
+          setState({ kind: 'loaded', markdown: overviewCache });
           return;
         }
-        const text = await apiText(`/docs/overview?lang=${language}`);
-        OVERVIEW_CACHE.set(language, text);
+        const text = await apiText('/docs/overview');
+        overviewCache = text;
         setState({ kind: 'loaded', markdown: text });
       } else {
         if (!id) {
@@ -103,7 +97,7 @@ export function ReferenceTab() {
         // whenever a challenge is opened so edits do not remain hidden behind
         // a process-wide cache keyed only by challenge ID.
         try {
-          const text = await apiText(`/docs/by-id/${encodeURIComponent(id)}?lang=${language}`);
+          const text = await apiText(`/docs/by-id/${encodeURIComponent(id)}`);
           setState({ kind: 'loaded', markdown: text });
         } catch (e) {
           if (e instanceof ApiError && e.status === 404) {
@@ -122,7 +116,7 @@ export function ReferenceTab() {
       const message = e instanceof Error ? e.message : String(e);
       setState({ kind: 'error', message });
     }
-  }, [language]);
+  }, []);
 
   useEffect(() => {
     if (!challengeId) {
@@ -143,7 +137,7 @@ export function ReferenceTab() {
         );
       }
     });
-  }, [challengeId, challengeName, category, language, load]);
+  }, [challengeId, challengeName, category, load]);
 
   if (state.kind === 'idle' || state.kind === 'loading') {
     return (
@@ -380,7 +374,7 @@ export function ReferenceTab() {
         )}
         {!selectedVariant && approachMarkdown && (
           <ApproachDisclosure
-            key={localizedReferenceKey(language, challengeId ?? 'overview')}
+            key={challengeId ?? 'overview'}
             markdown={approachMarkdown}
           />
         )}

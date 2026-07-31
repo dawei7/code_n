@@ -7,7 +7,7 @@
   "title_slug": "exactly-one-consecutive-set-bits-pair",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.consecutiveSetBits",
   "verified_submission_id": "2087602871",
   "verified_at": "2026-07-30T14:18:29.438666+00:00"

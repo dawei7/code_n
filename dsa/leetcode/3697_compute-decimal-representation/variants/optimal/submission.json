@@ -7,7 +7,7 @@
   "title_slug": "compute-decimal-representation",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.decimalRepresentation",
   "verified_submission_id": "2084803756",
   "verified_at": "2026-07-28T13:29:55.093111+00:00"

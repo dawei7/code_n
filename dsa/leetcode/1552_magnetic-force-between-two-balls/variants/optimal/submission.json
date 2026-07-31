@@ -7,7 +7,7 @@
   "title_slug": "magnetic-force-between-two-balls",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxDistance",
   "verified_submission_id": "2069747390",
   "verified_at": "2026-07-16T10:40:48.862954+00:00"

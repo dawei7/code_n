@@ -7,7 +7,7 @@
   "title_slug": "total-waviness-of-numbers-in-range-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.totalWaviness",
   "verified_submission_id": "2085310679",
   "verified_at": "2026-07-28T19:53:10.018446+00:00"

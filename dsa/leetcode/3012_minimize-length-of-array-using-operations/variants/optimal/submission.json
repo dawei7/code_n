@@ -7,7 +7,7 @@
   "title_slug": "minimize-length-of-array-using-operations",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumArrayLength",
   "verified_submission_id": "2078736124",
   "verified_at": "2026-07-23T17:31:50.367772+00:00"

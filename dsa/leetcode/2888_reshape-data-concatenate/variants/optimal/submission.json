@@ -7,7 +7,7 @@
   "title_slug": "reshape-data-concatenate",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "concatenateTables",
   "verified_submission_id": "2077921240",
   "verified_at": "2026-07-23T05:27:02+00:00"

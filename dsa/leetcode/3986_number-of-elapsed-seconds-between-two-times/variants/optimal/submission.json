@@ -7,7 +7,7 @@
   "title_slug": "number-of-elapsed-seconds-between-two-times",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.secondsBetweenTimes",
   "verified_submission_id": "2088101419",
   "verified_at": "2026-07-30T23:42:55.5285130Z"

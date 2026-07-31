@@ -7,7 +7,7 @@
   "title_slug": "median-of-a-binary-search-tree-level",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.levelMedian",
   "verified_submission_id": "2085773286",
   "verified_at": "2026-07-29T07:30:03.760602+00:00"

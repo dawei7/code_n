@@ -38,13 +38,13 @@ variants/
     submission.json
     solutions/
       solve.py
-      leetcode_python3.py
+      leetcode.py
   simplified/
     approach.md
     submission.json
     solutions/
       solve.py
-      leetcode_python3.py
+      leetcode.py
 ```
 
 Each branch owns everything that can differ with the algorithm:

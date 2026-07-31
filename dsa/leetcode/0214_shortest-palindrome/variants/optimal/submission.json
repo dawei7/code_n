@@ -7,7 +7,7 @@
   "title_slug": "shortest-palindrome",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064210023",
   "verified_at": "2026-07-11T18:41:48.474601+00:00"
 }

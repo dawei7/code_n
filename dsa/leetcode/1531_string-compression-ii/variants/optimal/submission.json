@@ -7,7 +7,7 @@
   "title_slug": "string-compression-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.getLengthOfOptimalCompression",
   "verified_submission_id": "2069589037",
   "verified_at": "2026-07-16T08:22:36.185533+00:00"

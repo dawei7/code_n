@@ -7,7 +7,7 @@
   "title_slug": "encode-string-with-shortest-length",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2064971612",
   "verified_at": "2026-07-12T12:24:10.466962+00:00"
 }

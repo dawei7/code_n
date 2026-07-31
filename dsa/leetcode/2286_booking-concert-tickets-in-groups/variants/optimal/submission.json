@@ -7,7 +7,7 @@
   "title_slug": "booking-concert-tickets-in-groups",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "BookMyShow",
   "verified_submission_id": "2073996371",
   "verified_at": "2026-07-20T02:46:45.269353+00:00"

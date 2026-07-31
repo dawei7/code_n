@@ -7,7 +7,7 @@
   "title_slug": "maximum-points-after-collecting-coins-from-all-nodes",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maximumPoints",
   "verified_submission_id": "2078177534",
   "verified_at": "2026-07-23T09:15:18.244811+00:00"

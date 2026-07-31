@@ -7,7 +7,7 @@
   "title_slug": "the-number-of-users-that-are-eligible-for-discount",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode_mysql.sql",
+  "source": "solutions/leetcode.sql",
   "native_entrypoint": "function",
   "verified_submission_id": "2073860894",
   "verified_at": "2026-07-19T19:31:16.469029+00:00"

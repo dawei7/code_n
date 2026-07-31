@@ -7,7 +7,7 @@
   "title_slug": "minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minInteger",
   "verified_submission_id": "2069411408",
   "verified_at": "2026-07-16T05:46:45.934025+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "reverse-substrings-between-each-pair-of-parentheses",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.reverseParentheses",
   "verified_submission_id": "2067911845",
   "verified_at": "2026-07-14T22:56:15.085367+00:00"

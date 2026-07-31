@@ -7,7 +7,7 @@
   "title_slug": "create-components-with-same-value",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.componentValue",
   "verified_submission_id": "2074959703",
   "verified_at": "2026-07-20T18:10:10.105526+00:00"

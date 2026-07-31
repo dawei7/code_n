@@ -7,7 +7,7 @@
   "title_slug": "minimum-time-to-complete-all-deliveries",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumTime",
   "verified_submission_id": "2085159343",
   "verified_at": "2026-07-28T17:39:50.786488+00:00"

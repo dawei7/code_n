@@ -7,7 +7,7 @@
   "title_slug": "maximum-length-of-subarray-with-positive-product",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.getMaxLen",
   "verified_submission_id": "2069833033",
   "verified_at": "2026-07-16T12:13:08.723629+00:00"

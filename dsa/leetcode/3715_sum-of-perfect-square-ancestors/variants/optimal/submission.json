@@ -7,7 +7,7 @@
   "title_slug": "sum-of-perfect-square-ancestors",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.sumOfAncestors",
   "verified_submission_id": "2084982249",
   "verified_at": "2026-07-28T15:45:02.337789+00:00"

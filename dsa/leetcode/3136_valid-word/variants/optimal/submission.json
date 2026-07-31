@@ -7,7 +7,7 @@
   "title_slug": "valid-word",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.isValid",
   "verified_submission_id": "2079634058",
   "verified_at": "2026-07-24T15:47:00+02:00"

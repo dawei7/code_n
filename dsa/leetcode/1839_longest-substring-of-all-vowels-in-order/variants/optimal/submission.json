@@ -7,7 +7,7 @@
   "title_slug": "longest-substring-of-all-vowels-in-order",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.longestBeautifulSubstring",
   "verified_submission_id": "2071657193",
   "verified_at": "2026-07-18T01:52:03.299590+00:00"

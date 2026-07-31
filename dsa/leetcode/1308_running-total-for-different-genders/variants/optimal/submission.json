@@ -7,7 +7,7 @@
   "title_slug": "running-total-for-different-genders",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode_mysql.sql",
+  "source": "solutions/leetcode.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2068448664",
   "verified_at": "2026-07-15T10:00:41.746179+00:00"

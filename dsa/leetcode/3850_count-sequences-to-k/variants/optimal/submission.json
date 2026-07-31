@@ -7,7 +7,7 @@
   "title_slug": "count-sequences-to-k",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countSequences",
   "verified_submission_id": "2086094476",
   "verified_at": "2026-07-29T12:24:46.653854+00:00"

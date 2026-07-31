@@ -7,7 +7,7 @@
   "title_slug": "find-the-count-of-good-integers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countGoodIntegers",
   "verified_submission_id": "2080437086",
   "verified_at": "2026-07-25T07:27:03.160644+00:00"

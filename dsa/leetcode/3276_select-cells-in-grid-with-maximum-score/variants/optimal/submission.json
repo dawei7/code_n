@@ -7,7 +7,7 @@
   "title_slug": "select-cells-in-grid-with-maximum-score",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxScore",
   "verified_submission_id": "2080464043",
   "verified_at": "2026-07-25T07:55:20.649513+00:00"

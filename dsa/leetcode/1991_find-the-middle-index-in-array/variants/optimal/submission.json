@@ -7,7 +7,7 @@
   "title_slug": "find-the-middle-index-in-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.findMiddleIndex",
   "verified_submission_id": "2072807811",
   "verified_at": "2026-07-18T21:26:01.116645+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "sort-the-matrix-diagonally",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.diagonalSort",
   "verified_submission_id": "2068587798",
   "verified_at": "2026-07-15T12:25:43.529447+00:00"

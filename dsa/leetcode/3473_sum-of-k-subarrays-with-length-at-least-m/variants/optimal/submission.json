@@ -7,7 +7,7 @@
   "title_slug": "sum-of-k-subarrays-with-length-at-least-m",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxSum",
   "verified_submission_id": "2082133931",
   "verified_at": "2026-07-26T14:15:00Z"

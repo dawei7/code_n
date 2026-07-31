@@ -7,7 +7,7 @@
   "title_slug": "minimum-distance-between-bst-nodes",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minDiffInBST",
   "verified_submission_id": "2066120333",
   "verified_at": "2026-07-13T12:35:28.384777+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "count-k-reducible-numbers-less-than-n",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.countKReducibleNumbers",
   "verified_submission_id": "2081194170",
   "verified_at": "2026-07-25T19:48:21Z"

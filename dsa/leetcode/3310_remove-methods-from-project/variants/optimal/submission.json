@@ -7,7 +7,7 @@
   "title_slug": "remove-methods-from-project",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.remainingMethods",
   "verified_submission_id": "2080844672",
   "verified_at": "2026-07-25T14:31:22.7820666Z"

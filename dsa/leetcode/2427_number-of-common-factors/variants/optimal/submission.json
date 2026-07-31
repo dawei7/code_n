@@ -7,7 +7,7 @@
   "title_slug": "number-of-common-factors",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.commonFactors",
   "verified_submission_id": "2074805603",
   "verified_at": "2026-07-20T16:19:48.493806+00:00"

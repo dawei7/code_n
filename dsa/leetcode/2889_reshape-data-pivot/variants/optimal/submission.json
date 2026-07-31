@@ -7,7 +7,7 @@
   "title_slug": "reshape-data-pivot",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "pivotTable",
   "verified_submission_id": "2077928145",
   "verified_at": "2026-07-23T05:32:38+00:00"

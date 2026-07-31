@@ -7,7 +7,7 @@
   "title_slug": "daily-temperatures",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.dailyTemperatures",
   "verified_submission_id": "2065840036",
   "verified_at": "2026-07-13T07:46:24.446623+00:00"

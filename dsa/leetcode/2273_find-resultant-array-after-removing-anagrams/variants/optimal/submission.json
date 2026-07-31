@@ -7,7 +7,7 @@
   "title_slug": "find-resultant-array-after-removing-anagrams",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.removeAnagrams",
   "verified_submission_id": "2073965851",
   "verified_at": "2026-07-20T01:24:27.035337+00:00"

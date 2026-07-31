@@ -7,7 +7,7 @@
   "title_slug": "maximum-font-to-fit-a-sentence-in-a-screen",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxFont",
   "verified_submission_id": "2070425052",
   "verified_at": "2026-07-16T21:47:58.586461+00:00"

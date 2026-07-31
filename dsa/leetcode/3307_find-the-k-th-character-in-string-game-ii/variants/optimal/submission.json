@@ -7,7 +7,7 @@
   "title_slug": "find-the-k-th-character-in-string-game-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.kthCharacter",
   "verified_submission_id": "2080825535",
   "verified_at": "2026-07-25T14:13:42.9639898Z"

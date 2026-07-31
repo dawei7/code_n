@@ -7,7 +7,7 @@
   "title_slug": "maximum-linear-stock-score",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxScore",
   "verified_submission_id": "2078015794",
   "verified_at": "2026-07-23T06:40:15.597900+00:00"

@@ -1908,7 +1908,6 @@ export function ChallengeList() {
   const leetcodeSubmissions = useAppStore((s) => s.progress?.leetcode_submissions ?? {});
   const activeSet = useAppStore((s) => s.activeSet);
   const activeCustomSetId = useAppStore((s) => s.activeCustomSetId);
-  const language = useAppStore((s) => s.language);
   const customProblemSets = useAppStore((s) => s.customProblemSets);
   const customProblemSetsLoading = useAppStore((s) => s.customProblemSetsLoading);
   const customProblemSetsError = useAppStore((s) => s.customProblemSetsError);
@@ -2187,7 +2186,6 @@ export function ChallengeList() {
     try {
       const result = await exportChallengePdfBundle({
         challenges: orderedChallenges,
-        language,
         title: `${scopeLabel} - References and Guided Examples${includeSolution ? ' with Solutions' : ''}`,
         suggestedFilename: buildPdfBundleFilename(
           scopeLabel,

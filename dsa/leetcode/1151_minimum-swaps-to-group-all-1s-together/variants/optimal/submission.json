@@ -7,7 +7,7 @@
   "title_slug": "minimum-swaps-to-group-all-1s-together",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minSwaps",
   "verified_submission_id": "2067852416",
   "verified_at": "2026-07-14T20:11:06.160176+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "delay-the-resolution-of-each-promise",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/leetcode_javascript.js",
+  "source": "solutions/leetcode.js",
   "native_entrypoint": "delayAll",
   "verified_submission_id": "2077241814",
   "verified_at": "2026-07-22T14:53:00+00:00"

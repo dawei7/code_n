@@ -7,7 +7,7 @@
   "title_slug": "find-number-of-coins-to-place-in-tree-nodes",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.placedCoins",
   "verified_submission_id": "2078482400",
   "verified_at": "2026-07-23T14:11:49.238248+00:00"

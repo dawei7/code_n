@@ -7,7 +7,7 @@
   "title_slug": "jump-game-ix",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.maxValue",
   "verified_submission_id": "2083973720",
   "verified_at": "2026-07-27T22:20:23.123515+00:00"

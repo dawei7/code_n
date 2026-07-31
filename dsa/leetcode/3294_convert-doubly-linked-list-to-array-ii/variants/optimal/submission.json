@@ -7,7 +7,7 @@
   "title_slug": "convert-doubly-linked-list-to-array-ii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.toArray",
   "verified_submission_id": "2080766910",
   "verified_at": "2026-07-25T13:17:18.1225220Z"

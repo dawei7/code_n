@@ -7,7 +7,7 @@
   "title_slug": "kth-smallest-number-in-multiplication-table",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "verified_submission_id": "2065543228",
   "verified_at": "2026-07-13T02:06:45.358916+00:00"
 }

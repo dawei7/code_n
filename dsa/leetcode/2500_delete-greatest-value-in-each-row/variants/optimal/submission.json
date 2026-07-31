@@ -7,7 +7,7 @@
   "title_slug": "delete-greatest-value-in-each-row",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.deleteGreatestValue",
   "verified_submission_id": "2075159095",
   "verified_at": "2026-07-21T00:54:00+00:00"

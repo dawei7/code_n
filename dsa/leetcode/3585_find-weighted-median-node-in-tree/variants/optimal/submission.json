@@ -7,7 +7,7 @@
   "title_slug": "find-weighted-median-node-in-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.findMedian",
   "verified_submission_id": "2083318259",
   "verified_at": "2026-07-27T12:13:00Z"

@@ -7,7 +7,7 @@
   "title_slug": "longest-string-chain",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.longestStrChain",
   "verified_submission_id": "2067401477",
   "verified_at": "2026-07-14T13:27:28.049481+00:00"

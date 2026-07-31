@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-make-the-array-k-increasing",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.kIncreasing",
   "verified_submission_id": "2073317054",
   "verified_at": "2026-07-19T09:53:11.021769+00:00"

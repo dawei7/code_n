@@ -7,7 +7,7 @@
   "title_slug": "count-ways-to-make-array-with-product",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.waysToFillArray",
   "verified_submission_id": "2070872449",
   "verified_at": "2026-07-17T08:37:28.929628+00:00"

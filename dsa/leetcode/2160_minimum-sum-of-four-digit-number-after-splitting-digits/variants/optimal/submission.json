@@ -7,7 +7,7 @@
   "title_slug": "minimum-sum-of-four-digit-number-after-splitting-digits",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode_python3.py",
+  "source": "solutions/leetcode.py",
   "native_entrypoint": "Solution.minimumSum",
   "verified_submission_id": "2073573612",
   "verified_at": "2026-07-19T14:41:36.805078+00:00"

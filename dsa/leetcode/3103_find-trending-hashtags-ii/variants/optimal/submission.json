@@ -7,7 +7,7 @@
   "title_slug": "find-trending-hashtags-ii",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/leetcode_mysql.sql",
+  "source": "solutions/leetcode.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2079321890",
   "verified_at": "2026-07-24T10:26:00+02:00"
